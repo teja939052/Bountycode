@@ -1,0 +1,612 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(76,201,240,0.3) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 6px;
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: rgba(76,201,240,0.3);
+    border-radius: 3px;
+  }
+
+  body {
+    @apply min-h-screen bg-space-void text-gray-200 font-body antialiased;
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(76,201,240,0.04) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(114,9,183,0.03) 0%, transparent 50%),
+      linear-gradient(rgba(76,201,240,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(76,201,240,0.02) 1px, transparent 1px);
+    background-size: 100%, 100%, 4rem 4rem, 4rem 4rem;
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: rgba(76,201,240,0.3);
+    color: #fff;
+  }
+}
+
+@layer components {
+  /* ─── Command Button Styles ─── */
+  .btn-primary {
+    @apply px-6 py-3 rounded-lg font-display font-semibold text-sm uppercase tracking-wider
+           bg-gradient-to-r from-cyber-blue to-cyan-400 text-space-void
+           hover:shadow-cyber-blue-intense transition-all duration-300
+           disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:shadow-none;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 rounded-lg font-display font-semibold text-sm uppercase tracking-wider
+           border border-cyber-blue/30 text-cyber-blue bg-transparent
+           hover:bg-cyber-blue/10 hover:border-cyber-blue/60 hover:shadow-cyber-blue
+           transition-all duration-300;
+  }
+
+  .btn-ghost {
+    @apply text-gray-400 hover:text-cyber-blue hover:bg-cyber-blue/5
+           px-4 py-2 rounded-lg transition-all duration-200 font-medium;
+  }
+
+  .btn-danger {
+    @apply px-6 py-3 rounded-lg font-display font-semibold text-sm uppercase tracking-wider
+           border border-cyber-red/30 text-cyber-red bg-transparent
+           hover:bg-cyber-red/10 hover:border-cyber-red/60
+           transition-all duration-300;
+  }
+
+  .btn-pro {
+    @apply px-6 py-3 rounded-lg font-display font-semibold text-sm uppercase tracking-wider
+           bg-gradient-to-r from-cyber-purple to-purple-400 text-white
+           hover:shadow-cyber-purple-intense transition-all duration-300;
+  }
+
+  /* ─── Input Styles ─── */
+  .input {
+    @apply w-full px-4 py-3 rounded-lg font-mono text-sm
+           bg-space-panel border border-space-border text-gray-200
+           focus:outline-none focus:border-cyber-blue/50 focus:shadow-cyber-blue
+           placeholder-gray-500 transition-all duration-300;
+  }
+
+  /* ─── Card Styles ─── */
+  .card {
+    @apply rounded-xl p-6 transition-all duration-300
+           bg-space-panel/80 backdrop-blur-sm border border-space-border
+           hover:border-cyber-blue/20 hover:shadow-cyber-blue;
+  }
+
+  .card-glow {
+    @apply rounded-xl p-6 transition-all duration-300
+           bg-space-panel/80 backdrop-blur-sm border border-cyber-blue/20
+           shadow-cyber-blue;
+  }
+
+  .card-pro {
+    @apply rounded-xl p-6 transition-all duration-300
+           bg-space-panel/80 backdrop-blur-sm border border-cyber-purple/20
+           shadow-cyber-purple;
+  }
+
+  .glass {
+    @apply rounded-xl border transition-all duration-300;
+    background: rgba(17, 19, 24, 0.65);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-color: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  }
+
+  .glass:hover {
+    border-color: rgba(76, 201, 240, 0.18);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45), 0 0 20px rgba(76, 201, 240, 0.06);
+  }
+
+  .glass-static {
+    @apply glass;
+  }
+
+  /* Theme variants */
+  [data-theme="cyber"] {
+    --accent-1: #4CC9F0;
+    --accent-2: #7209B7;
+    --accent-glow: rgba(76, 201, 240, 0.12);
+  }
+
+  [data-theme="aurora"] {
+    --accent-1: #4BB543;
+    --accent-2: #ec4899;
+    --accent-glow: rgba(75, 181, 67, 0.12);
+  }
+
+  [data-theme="ember"] {
+    --accent-1: #F59E0B;
+    --accent-2: #EF4444;
+    --accent-glow: rgba(245, 158, 11, 0.12);
+  }
+
+  /* ─── Cyber Badge ─── */
+  .badge {
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-mono font-medium
+           border;
+  }
+
+  .badge-blue {
+    @apply badge bg-cyber-blue/10 text-cyber-blue border-cyber-blue/30;
+  }
+
+  .badge-green {
+    @apply badge bg-cyber-green/10 text-cyber-green border-cyber-green/30;
+  }
+
+  .badge-purple {
+    @apply badge bg-cyber-purple/10 text-cyber-purple border-cyber-purple/30;
+  }
+
+  .badge-amber {
+    @apply badge bg-cyber-amber/10 text-cyber-amber border-cyber-amber/30;
+  }
+
+  .badge-red {
+    @apply badge bg-cyber-red/10 text-cyber-red border-cyber-red/30;
+  }
+
+  /* ─── Score Circle ─── */
+  .score-circle {
+    @apply w-32 h-32 rounded-full flex items-center justify-center
+           font-display font-bold text-3xl;
+  }
+
+  /* ─── Section Header ─── */
+  .section-header {
+    @apply font-display text-xl font-bold uppercase tracking-wider text-white;
+  }
+
+  .section-subheader {
+    @apply font-mono text-xs uppercase tracking-widest text-gray-500;
+  }
+
+  /* ─── Cyber Grid Background ─── */
+  .cyber-grid {
+    background-image:
+      linear-gradient(rgba(76,201,240,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(76,201,240,0.05) 1px, transparent 1px);
+    background-size: 3rem 3rem;
+  }
+
+  /* ─── Scan Line Effect ─── */
+  .scan-line::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent 0%, rgba(76,201,240,0.03) 50%, transparent 100%);
+    animation: scanLine 3s linear infinite;
+    pointer-events: none;
+  }
+
+  /* ─── Holographic Effect ─── */
+  .holo {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .holo::before {
+    content: "";
+    position: absolute;
+    inset: -50%;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      rgba(76,201,240,0.08) 60deg,
+      transparent 120deg,
+      rgba(114,9,183,0.08) 180deg,
+      transparent 240deg,
+      rgba(75,181,67,0.08) 300deg,
+      transparent 360deg
+    );
+    animation: spin 10s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── Glow Text ─── */
+  .glow-blue {
+    text-shadow: 0 0 10px rgba(76,201,240,0.5), 0 0 30px rgba(76,201,240,0.2);
+  }
+
+  .glow-purple {
+    text-shadow: 0 0 10px rgba(114,9,183,0.5), 0 0 30px rgba(114,9,183,0.2);
+  }
+
+  .glow-green {
+    text-shadow: 0 0 10px rgba(75,181,67,0.5), 0 0 30px rgba(75,181,67,0.2);
+  }
+
+  /* ─── Ambient Moving Grid (inside panels) ─── */
+  .ambient-grid {
+    background-image:
+      linear-gradient(rgba(76,201,240,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(76,201,240,0.04) 1px, transparent 1px);
+    background-size: 2rem 2rem;
+    mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, #000 70%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, #000 70%, transparent 100%);
+  }
+
+  /* ─── Status Indicator ─── */
+  .status-dot {
+    @apply w-2 h-2 rounded-full animate-pulse-slow;
+  }
+
+  .status-online {
+    @apply status-dot bg-cyber-green;
+    box-shadow: 0 0 8px rgba(75,181,67,0.6);
+  }
+
+  .status-processing {
+    @apply status-dot bg-cyber-blue;
+    box-shadow: 0 0 8px rgba(76,201,240,0.6);
+  }
+
+  .status-warning {
+    @apply status-dot bg-cyber-amber;
+    box-shadow: 0 0 8px rgba(245,158,11,0.6);
+  }
+
+  /* ─── Glassmorphism (space variant) ─── */
+  .glass {
+    background: rgba(11,12,16,0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(76,201,240,0.1);
+  }
+
+  .glass-card {
+    @apply rounded-xl transition-all;
+    background: rgba(17,19,24,0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(76,201,240,0.1);
+  }
+
+  /* ─── Tab System ─── */
+  .tab {
+    @apply px-4 py-2 rounded-lg font-display text-sm uppercase tracking-wider
+           text-gray-500 hover:text-gray-300 transition-all duration-200;
+  }
+
+  .tab-active {
+    @apply tab bg-cyber-blue/10 text-cyber-blue border border-cyber-blue/30;
+  }
+
+  /* ─── Loading Spinner ─── */
+  .spinner-cyber {
+    @apply w-8 h-8 border-2 border-cyber-blue/20 border-t-cyber-blue rounded-full animate-spin;
+  }
+
+  /* ═══════════════════════════════════════════════════
+     CARD RARITY SYSTEM — Pokemon/FreeFire Style
+     ═══════════════════════════════════════════════════ */
+
+  /* Card Glow Pulse — legendary+ */
+  @keyframes cardGlowPulse {
+    0%, 100% { box-shadow: 0 0 15px var(--glow-color, rgba(99,102,241,0.15)); }
+    50% { box-shadow: 0 0 35px var(--glow-color, rgba(99,102,241,0.35)), 0 0 60px var(--glow-color, rgba(99,102,241,0.1)); }
+  }
+  .card-glow-pulse {
+    animation: cardGlowPulse 2.5s ease-in-out infinite;
+  }
+
+  /* Rainbow Border — mythic */
+  @keyframes rainbowBorder {
+    0%   { border-color: #ff0000; }
+    17%  { border-color: #ff8800; }
+    33%  { border-color: #ffff00; }
+    50%  { border-color: #00ff00; }
+    67%  { border-color: #0088ff; }
+    83%  { border-color: #8800ff; }
+    100% { border-color: #ff0000; }
+  }
+  .border-rainbow {
+    animation: rainbowBorder 3s linear infinite;
+  }
+
+  /* Card Sparkle — particles */
+  @keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1) rotate(180deg); }
+  }
+  .card-sparkle::before,
+  .card-sparkle::after {
+    content: '✨';
+    position: absolute;
+    font-size: 10px;
+    animation: sparkle 2s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 20;
+  }
+  .card-sparkle::before { top: 8px; left: 12px; animation-delay: 0s; }
+  .card-sparkle::after  { bottom: 8px; right: 12px; animation-delay: 0.7s; }
+
+  /* Holographic Shimmer */
+  @keyframes holoShimmer {
+    0%   { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  .holo-shimmer {
+    background: linear-gradient(
+      110deg,
+      transparent 20%,
+      rgba(255,255,255,0.05) 40%,
+      rgba(255,255,255,0.12) 50%,
+      rgba(255,255,255,0.05) 60%,
+      transparent 80%
+    );
+    background-size: 200% 100%;
+    animation: holoShimmer 3s ease-in-out infinite;
+  }
+
+  /* Card Float — idle hover */
+  @keyframes cardFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+  .card-float {
+    animation: cardFloat 3s ease-in-out infinite;
+  }
+
+  /* Card Shine Sweep — on hover */
+  @keyframes shineSweep {
+    0% { left: -100%; }
+    100% { left: 200%; }
+  }
+  .card-shine::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+    transform: skewX(-15deg);
+    transition: none;
+    pointer-events: none;
+  }
+  .card-shine:hover::after {
+    animation: shineSweep 0.8s ease-out forwards;
+  }
+
+  /* Mystery Box Shake */
+  @keyframes mysteryShake {
+    0%, 100% { transform: rotate(0deg); }
+    10% { transform: rotate(-5deg); }
+    20% { transform: rotate(5deg); }
+    30% { transform: rotate(-5deg); }
+    40% { transform: rotate(5deg); }
+    50% { transform: rotate(0deg); }
+  }
+  .mystery-shake {
+    animation: mysteryShake 1.2s ease-in-out infinite;
+  }
+
+  /* Mystery Box Glow */
+  @keyframes mysteryGlow {
+    0%, 100% { box-shadow: 0 0 20px rgba(168,85,247,0.3); }
+    50% { box-shadow: 0 0 50px rgba(168,85,247,0.6), 0 0 80px rgba(168,85,247,0.2); }
+  }
+  .mystery-glow {
+    animation: mysteryGlow 2s ease-in-out infinite;
+  }
+
+  /* XP Bar Fill */
+  @keyframes xpFill {
+    from { width: 0; }
+  }
+  .xp-fill {
+    animation: xpFill 1.5s ease-out forwards;
+  }
+
+  /* Level Up Flash */
+  @keyframes levelUpFlash {
+    0% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 0; transform: scale(2); }
+  }
+  .level-up-flash {
+    animation: levelUpFlash 1s ease-out forwards;
+  }
+
+  /* Streak Fire */
+  @keyframes streakFire {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.3) saturate(1.5); }
+  }
+  .streak-fire {
+    animation: streakFire 1.5s ease-in-out infinite;
+  }
+
+  /* Badge Pop-in */
+  @keyframes badgePop {
+    0% { transform: scale(0) rotate(-15deg); opacity: 0; }
+    60% { transform: scale(1.2) rotate(5deg); opacity: 1; }
+    100% { transform: scale(1) rotate(0); opacity: 1; }
+  }
+  .badge-pop {
+    animation: badgePop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  }
+
+  /* Particle Burst */
+  @keyframes particleBurst {
+    0% { transform: translate(0, 0) scale(1); opacity: 1; }
+    100% { transform: translate(var(--tx, 20px), var(--ty, -20px)) scale(0); opacity: 0; }
+  }
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    animation: particleBurst 0.8s ease-out forwards;
+    pointer-events: none;
+  }
+
+  /* Confetti Fall */
+  @keyframes confettiFall {
+    0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* Pulse Ring — for notifications */
+  @keyframes pulseRing {
+    0% { transform: scale(0.8); opacity: 0.8; }
+    100% { transform: scale(2); opacity: 0; }
+  }
+  .pulse-ring::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border: 2px solid currentColor;
+    border-radius: inherit;
+    animation: pulseRing 1.5s ease-out infinite;
+  }
+
+  /* Typing indicator */
+  @keyframes typingDot {
+    0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+    30% { opacity: 1; transform: translateY(-4px); }
+  }
+  .typing-dot:nth-child(1) { animation: typingDot 1.4s infinite 0s; }
+  .typing-dot:nth-child(2) { animation: typingDot 1.4s infinite 0.2s; }
+  .typing-dot:nth-child(3) { animation: typingDot 1.4s infinite 0.4s; }
+
+  /* Score Ring */
+  @keyframes scoreRing {
+    from { stroke-dashoffset: 251; }
+  }
+
+  /* Card 3D Tilt (applied via JS) */
+  .card-3d {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+  .card-3d-inner {
+    transition: transform 0.15s ease-out;
+    transform-style: preserve-3d;
+  }
+
+  /* Rarity-specific card backgrounds */
+  .card-mythic {
+    background: linear-gradient(135deg, rgba(168,85,247,0.15) 0%, rgba(236,72,153,0.15) 50%, rgba(59,130,246,0.1) 100%);
+  }
+  .card-legendary {
+    background: linear-gradient(135deg, rgba(234,179,8,0.12) 0%, rgba(245,158,11,0.08) 100%);
+  }
+  .card-epic {
+    background: linear-gradient(135deg, rgba(168,85,247,0.1) 0%, rgba(139,92,246,0.08) 100%);
+  }
+  .card-rare {
+    background: linear-gradient(135deg, rgba(59,130,246,0.1) 0%, rgba(37,99,235,0.08) 100%);
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   MOBILE PERFORMANCE + ACCESSIBILITY
+   ═══════════════════════════════════════════════════ */
+
+/* Disable heavy continuous animations on mobile for perf */
+@media (max-width: 640px) {
+  .card-glow-pulse,
+  .mystery-glow,
+  .mystery-shake,
+  .card-float {
+    animation-duration: 6s;
+  }
+  .card-sparkle::before,
+  .card-sparkle::after {
+    display: none;
+  }
+  .holo-shimmer {
+    animation: none;
+  }
+  .border-rainbow {
+    animation-duration: 6s;
+  }
+}
+
+/* ─── Emblem System ─── */
+.emblem-container {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.emblem-svg {
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.emblem-container:hover .emblem-svg {
+  transform: scale(1.1);
+}
+
+/* Emblem rarity glow classes */
+.emblem-glow-common { filter: drop-shadow(0 0 2px rgba(76,201,240,0.2)); }
+.emblem-glow-uncommon { filter: drop-shadow(0 0 4px rgba(34,197,94,0.3)); }
+.emblem-glow-rare { filter: drop-shadow(0 0 8px rgba(99,102,241,0.4)); }
+.emblem-glow-epic { filter: drop-shadow(0 0 12px rgba(168,85,247,0.5)); }
+.emblem-glow-legendary { filter: drop-shadow(0 0 16px rgba(245,158,11,0.6)); }
+.emblem-glow-mythic { filter: drop-shadow(0 0 20px rgba(239,68,68,0.7)); }
+
+/* Emblem entrance animation */
+@keyframes emblemAppear {
+  0% { transform: scale(0) rotate(-180deg); opacity: 0; }
+  60% { transform: scale(1.2) rotate(10deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.emblem-enter {
+  animation: emblemAppear 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Emblem spin on solve */
+@keyframes emblemSolve {
+  0% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(90deg) scale(1.15); }
+  50% { transform: rotate(180deg) scale(1); }
+  75% { transform: rotate(270deg) scale(1.15); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+.emblem-solve {
+  animation: emblemSolve 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Emblem float animation */
+@keyframes emblemFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+}
+
+.emblem-float {
+  animation: emblemFloat 3s ease-in-out infinite;
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

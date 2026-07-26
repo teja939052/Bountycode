@@ -1,0 +1,94 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+*.log
+*.env
+.env.local
+.env.*.local
+*.pid
+*.seed
+*.pid.lock
+
+# Python packaging
+*.egg-info/
+dist/
+build/
+*.egg
+MANIFEST
+
+# Node/JavaScript
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+lerna-debug.log*
+*.tsbuildinfo
+.next/
+out/
+dist/
+.vercel
+*.local
+
+# Testing
+coverage/
+.nyc_output/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Project specific
+placementpro.log
+*.db
+*.sqlite
+.env
+.env.*
+!.env.example
+.secrets.baseline
+
+# Docker
+*.pid
+*.pid.lock
+
+# Frontend
+frontend/dist/
+frontend/build/
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+# Backend
+backend/venv/
+backend/__pycache__/
+backend/.pytest_cache/
+backend/coverage.xml
+backend/.coverage
+backend/bandit-report.json
+backend/htmlcov/
