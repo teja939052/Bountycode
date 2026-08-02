@@ -8,7 +8,7 @@ from app.services.application_tracker import ApplicationTracker
 from app.services.daily_drill import DailyDrill
 from app.services.profile_sync import ProfileSync
 
-router = APIRouter(prefix="/api/student", tags=["student-features"])
+router = APIRouter(prefix="/api/v1/student", tags=["student-features"])
 
 # Initialize services
 cheatsheet_gen = CheatSheetGenerator()

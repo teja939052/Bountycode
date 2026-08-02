@@ -12,7 +12,7 @@ from app.database import (
     question_answers_collection, submissions_collection
 )
 
-router = APIRouter(prefix="/api/submissions", tags=["submissions"])
+router = APIRouter(prefix="/api/v1/submissions", tags=["submissions"])
 
 
 @router.post("/{question_id}/submit")

@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from app.middleware.auth import get_current_user
 from app.services.student_discount import verify_student_discount, get_student_discount_status
 
-router = APIRouter(prefix="/api/discount", tags=["discount"])
+router = APIRouter(prefix="/api/v1/discount", tags=["discount"])
 
 
 class VerifyDiscountRequest(BaseModel):

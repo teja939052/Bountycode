@@ -13,7 +13,7 @@ from app.database import (
 from app.services.ai import chat_completion, parse_json
 from app.services.gamification import record_practice
 
-router = APIRouter(prefix="/api/mock-interview", tags=["mock-interview"])
+router = APIRouter(prefix="/api/v1/mock-interview", tags=["mock-interview"])
 
 # Interview configurations by company
 COMPANY_CONFIGS = {

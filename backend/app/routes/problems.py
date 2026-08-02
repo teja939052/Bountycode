@@ -11,7 +11,7 @@ from app.database import (
     question_answers_collection, users_collection
 )
 
-router = APIRouter(prefix="/api/problems", tags=["problems"])
+router = APIRouter(prefix="/api/v1/problems", tags=["problems"])
 
 # Pattern definitions for DSA problems
 PATTERNS = {

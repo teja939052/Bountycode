@@ -13,7 +13,7 @@ from app.database import (
 )
 from app.services.ai import chat_completion, parse_json
 
-router = APIRouter(prefix="/api/discussions", tags=["discussions"])
+router = APIRouter(prefix="/api/v1/discussions", tags=["discussions"])
 
 
 # Create discussions collection index on startup

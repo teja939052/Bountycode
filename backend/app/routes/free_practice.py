@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from app.middleware.auth import get_current_user
 from app.services.ai import generate_interview_question, evaluate_answer
 
-router = APIRouter(prefix="/api/free", tags=["free-practice"])
+router = APIRouter(prefix="/api/v1/free", tags=["free-practice"])
 
 
 @router.post("/quick-interview")

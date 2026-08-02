@@ -1,5 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
-from pydantic import BaseModel
+from fastapi import APIRouter, Depends, HTTPException, Query
 from app.middleware.auth import get_current_user
 from app.services.gamification import (
     get_gamification_profile,
@@ -13,6 +12,7 @@ from app.services.gamification import (
     buy_streak_freeze,
     get_streak_freeze_status,
     get_daily_goal,
+    claim_daily_bonus,
     BADGES,
     POWER_UPS,
     BOSS_BATTLES,
@@ -25,8 +25,14 @@ from app.services.skill_assessment import (
 )
 from app.config import get_settings
 
-router = APIRouter(prefix="/api/gamification", tags=["gamification"])
+router = APIRouter(prefix="/api/v1/gamification", tags=["gamification"])
 settings = get_settings()
+
+VALID_ACTIVITY_TYPES = {
+    "interview", "resume", "aptitude", "coding", "system_design",
+    "cover_letter", "question_bank",
+}
+VALID_CHALLENGE_TYPES = {"weekly", "monthly"}
 
 
 @router.get("/profile")
@@ -38,14 +44,17 @@ async def get_profile(user=Depends(get_current_user)):
 
 @router.post("/record")
 async def record_activity(
-    activity_type: str,
-    score: float = 0,
-    category: str = None,
-    skill: str = None,
+    activity_type: str = Query(..., min_length=1, max_length=32),
+    score: float = Query(default=0, ge=0, le=100),
+    category: str = Query(default=None, max_length=64),
+    skill: str = Query(default=None, max_length=64),
     user=Depends(get_current_user),
 ):
-    if activity_type not in ["interview", "resume", "aptitude", "coding", "system_design", "cover_letter", "question_bank"]:
-        raise HTTPException(status_code=400, detail="Invalid activity type")
+    if activity_type not in VALID_ACTIVITY_TYPES:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid activity type. Must be one of: {', '.join(sorted(VALID_ACTIVITY_TYPES))}",
+        )
 
     result = await record_practice(user["id"], activity_type, score)
 
@@ -93,7 +102,10 @@ async def get_boss(boss_level: int, user=Depends(get_current_user)):
 
 
 @router.post("/tower/powerup/use")
-async def use_power_up_endpoint(power_up_id: str, user=Depends(get_current_user)):
+async def use_power_up_endpoint(
+    power_up_id: str = Query(..., min_length=1, max_length=32),
+    user=Depends(get_current_user),
+):
     try:
         result = await use_power_up(user["id"], power_up_id)
     except ValueError as e:
@@ -102,7 +114,10 @@ async def use_power_up_endpoint(power_up_id: str, user=Depends(get_current_user)
 
 
 @router.post("/tower/powerup/buy")
-async def buy_power_up_endpoint(power_up_id: str, user=Depends(get_current_user)):
+async def buy_power_up_endpoint(
+    power_up_id: str = Query(..., min_length=1, max_length=32),
+    user=Depends(get_current_user),
+):
     try:
         result = await buy_power_up(user["id"], power_up_id)
     except ValueError as e:
@@ -140,15 +155,27 @@ async def get_challenges_endpoint(user=Depends(get_current_user)):
 
 
 @router.post("/tower/challenges/claim")
-async def claim_reward(challenge_type: str, challenge_id: str, user=Depends(get_current_user)):
-    if challenge_type not in ("weekly", "monthly"):
-        raise HTTPException(status_code=400, detail="Type must be 'weekly' or 'monthly'")
+async def claim_reward(
+    challenge_type: str = Query(..., min_length=1, max_length=16),
+    challenge_id: str = Query(..., min_length=1, max_length=64),
+    user=Depends(get_current_user),
+):
+    if challenge_type not in VALID_CHALLENGE_TYPES:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Type must be one of: {', '.join(sorted(VALID_CHALLENGE_TYPES))}",
+        )
     return await claim_challenge_reward(user["id"], challenge_type, challenge_id)
 
 
 @router.get("/leaderboard")
-async def leaderboard(limit: int = 10):
+async def leaderboard(limit: int = Query(default=10, ge=1, le=100)):
     return await get_leaderboard(limit)
+
+
+@router.post("/daily-bonus")
+async def daily_bonus(user=Depends(get_current_user)):
+    return await claim_daily_bonus(user["id"])
 
 
 @router.get("/badges")
@@ -163,7 +190,7 @@ async def get_skills(user=Depends(get_current_user)):
 
 
 @router.get("/skills/weak")
-async def weak_areas(user=Depends(get_current_user), top_n: int = 5):
+async def weak_areas(user=Depends(get_current_user), top_n: int = Query(default=5, ge=1, le=20)):
     return await get_weak_areas(user["id"], top_n)
 
 

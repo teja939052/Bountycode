@@ -7,17 +7,17 @@ from app.services.resume_engine import ResumeEngine
 from app.services.coding_engine import CodingEngine
 from app.services.behavioral_engine import BehavioralEngine
 from app.services.free_ats_tool import FreeATSTool
-from app.services.ats_semantic import SemanticATSScanner
+from app.services.ats_semantic import semantic_score
 from app.services.monetization import check_feature_access, record_feature_usage
+from app.services.ai import chat_completion, parse_json
 
-router = APIRouter(prefix="/api/enhanced", tags=["enhanced"])
+router = APIRouter(prefix="/api/v1/enhanced", tags=["enhanced"])
 
 # Initialize engines
 resume_engine = ResumeEngine()
 coding_engine = CodingEngine()
 behavioral_engine = BehavioralEngine()
 free_ats = FreeATSTool()
-semantic_ats = SemanticATSScanner()
 
 
 # ============================================
@@ -147,6 +147,14 @@ class ConceptRequest(BaseModel):
     level: str = "intermediate"
 
 
+class CreativeMindRequest(BaseModel):
+    problem_description: str
+    code: str = ""
+    language: str = "python"
+    topic: str = ""
+    mode: str = "mentor"
+
+
 @router.post("/coding/company-challenge")
 async def company_coding_challenge(req: CompanyCodingRequest, user=Depends(get_current_user)):
     access = await check_feature_access(user["id"], "coding_challenge")
@@ -191,6 +199,58 @@ async def explain_concept(req: ConceptRequest, user=Depends(get_current_user)):
     result = await coding_engine.explain_concept(req.concept, req.level)
     await record_feature_usage(user["id"], "concept_explanation")
     return result
+
+
+@router.post("/coding/creative-mind")
+async def creative_mind(req: CreativeMindRequest, user=Depends(get_current_user)):
+    access = await check_feature_access(user["id"], "creative_mind")
+    if not access["allowed"]:
+        raise HTTPException(status_code=403, detail=access.get("upgrade_message", "Daily limit reached"))
+
+    system_prompt = f"""You are PlacementPro's creative coding coach.
+Turn the problem into something memorable, motivating, and practical.
+Stay accurate, but make the answer feel like a mini adventure or boss battle.
+
+Respond in valid JSON with:
+{{
+  "title": "Short punchy title",
+  "mission": "One-sentence mission statement",
+  "analogy": "A vivid analogy that explains the core idea",
+  "first_move": "The very first action the student should take",
+  "micro_challenge": "A fun mini challenge to try next",
+  "edge_case_watch": "A reminder about a tricky edge case",
+  "pep_talk": "A short motivational line",
+  "mode": "{req.mode}"
+}}
+
+Keep it concise, useful, and uplifting. Avoid generic fluff."""
+
+    messages = [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": f"""Problem:
+{req.problem_description}
+
+Language: {req.language}
+Topic: {req.topic or "general"}
+Current code:
+```{req.language}
+{req.code or "// no code yet"}
+```"""},
+    ]
+
+    result = await chat_completion(messages, max_tokens=700)
+    parsed = parse_json(result)
+    parsed.setdefault("title", "Creative Mind")
+    parsed.setdefault("mission", "Break the problem into a win you can see.")
+    parsed.setdefault("analogy", "Think of it like finding the shortest path through a puzzle room.")
+    parsed.setdefault("first_move", "Start with the brute-force version, then trim the waste.")
+    parsed.setdefault("micro_challenge", "Can you explain the solution in 3 bullet points before coding?")
+    parsed.setdefault("edge_case_watch", "Check empty input, duplicates, and off-by-one boundaries.")
+    parsed.setdefault("pep_talk", "You already have the shape of the solution. Now let the code catch up.")
+    parsed["mode"] = req.mode
+
+    await record_feature_usage(user["id"], "creative_mind")
+    return parsed
 
 
 # ============================================
@@ -250,5 +310,5 @@ async def semantic_ats(req: SemanticATSRequest, user=Depends(get_current_user)):
     Hybrid ATS score: semantic similarity + keyword/formatting checks.
     Pro-only deeper analysis; free gets overall score.
     """
-    result = semantic_ats.analyze(req.resume_text, req.job_description or None)
+    result = semantic_score(req.resume_text, req.job_description or None)
     return result

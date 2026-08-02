@@ -12,7 +12,7 @@ from app.services.gamification import record_practice
 from app.config import get_settings
 from bson import ObjectId
 
-router = APIRouter(prefix="/api/coding", tags=["coding"])
+router = APIRouter(prefix="/api/v1/coding", tags=["coding"])
 settings = get_settings()
 code_engine = CodeExecutionEngine()
 coding_engine = CodingEngine()

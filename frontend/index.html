@@ -1,17 +1,42 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PlacementPro — Starship Command</title>
+    <meta name="theme-color" content="#10b981" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <title>PlacementPro</title>
     <meta name="description" content="AI-powered placement preparation. Practice interviews, build resumes, and optimize for ATS." />
+    <script>
+      // Local dev/preview must never be controlled by a service worker: a stale
+      // SW (e.g. from a production build) serves old cached bundles and breaks
+      // the app. Nuke any registration + caches before app JS loads.
+      if (location.hostname === "localhost" && "serviceWorker" in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function (regs) {
+          regs.forEach(function (reg) { reg.unregister(); });
+        });
+        if (window.caches) {
+          window.caches.keys().then(function (keys) {
+            keys.forEach(function (key) { window.caches.delete(key); });
+          });
+        }
+      }
+    </script>
     <style>
-      html, body { background: #05050A; }
+      html, body { background: #F4EFE8; }
     </style>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-PLACEHOLDER', { send_page_view: false });
+    </script>
   </head>
-  <body class="bg-space-void text-gray-200 antialiased">
+  <body class="antialiased">
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

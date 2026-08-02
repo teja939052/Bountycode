@@ -8,7 +8,7 @@ from app.services.ai import generate_salary_benchmark, generate_offer_comparison
 from app.config import get_settings
 from bson import ObjectId
 
-router = APIRouter(prefix="/api/salary", tags=["salary"])
+router = APIRouter(prefix="/api/v1/salary", tags=["salary"])
 settings = get_settings()
 
 
@@ -22,6 +22,18 @@ class SalaryBenchmarkRequest(BaseModel):
 
 class OfferComparisonRequest(BaseModel):
     offers: List[dict]
+
+
+class SaveOfferRequest(BaseModel):
+    company: str = ""
+    title: str = ""
+    offered_salary: float = 0
+    total_compensation: float = 0
+    location: str = ""
+    years_experience: int = 0
+    level: str = ""
+    benefits: str = ""
+    notes: str = ""
 
 
 @router.post("/benchmark")
@@ -42,7 +54,8 @@ async def compare_offers(req: OfferComparisonRequest, user=Depends(get_current_u
 
 
 @router.post("/save")
-async def save_offer(offer: dict, user=Depends(get_current_user)):
+async def save_offer(req: SaveOfferRequest, user=Depends(get_current_user)):
+    offer = req.model_dump()
     offer["user_id"] = user["id"]
     offer["created_at"] = datetime.now(timezone.utc)
 

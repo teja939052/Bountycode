@@ -4,7 +4,7 @@ Concept cards API — Interactive learning cards for DSA topics.
 from fastapi import APIRouter, HTTPException
 from app.services.concepts import get_concept_card, get_available_concepts
 
-router = APIRouter(prefix="/api/concepts", tags=["concepts"])
+router = APIRouter(prefix="/api/v1/concepts", tags=["concepts"])
 
 
 @router.get("")

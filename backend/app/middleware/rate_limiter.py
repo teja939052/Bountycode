@@ -90,6 +90,11 @@ class RateLimiterMiddleware(BaseHTTPMiddleware):
         if path in ("/health", "/", "/docs", "/openapi.json"):
             return await call_next(request)
 
+        # Skip fire-and-forget telemetry endpoints — they're sent on every page
+        # view and would otherwise burn the whole IP budget (blocking auth too).
+        if path.startswith("/api/v1/analytics/track") or path.startswith("/api/v1/debug/log"):
+            return await call_next(request)
+
         # Check rate limit
         if self.use_redis:
             allowed = await self._check_redis_rate_limit(client_ip)

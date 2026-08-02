@@ -15,7 +15,7 @@ class AptitudeQuestion(BaseModel):
     category: str
     question: str
     options: List[str]
-    correct_answer: int
+    correct_answer: str
     explanation: str
     difficulty: str = "medium"
     time_limit: int = 60
@@ -26,7 +26,7 @@ class AptitudeTest(BaseModel):
     user_id: str
     category: str
     questions: List[AptitudeQuestion] = []
-    answers: List[Optional[int]] = []
+    answers: List[Optional[str]] = []
     score: int = 0
     total_questions: int = 0
     time_taken: int = 0
@@ -37,13 +37,13 @@ class AptitudeTest(BaseModel):
 class StartAptitudeTest(BaseModel):
     category: str = "quantitative"
     difficulty: str = "medium"
-    question_count: int = 10
+    question_count: int = 20
 
 
 class SubmitAptitudeAnswer(BaseModel):
     test_id: str
     question_index: int
-    answer: int
+    answer: str
 
 
 class AptitudeResult(BaseModel):

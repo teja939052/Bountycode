@@ -7,7 +7,7 @@ from app.services.code_executor import CodeExecutionEngine as CodeExecutor
 from app.services.smart_prompts import SmartPrompts
 from app.services.ai import chat_completion, parse_json
 
-router = APIRouter(prefix="/api/real", tags=["real-features"])
+router = APIRouter(prefix="/api/v1/real", tags=["real-features"])
 
 # Initialize services
 ats_scanner = RealATSScanner()

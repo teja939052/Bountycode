@@ -13,7 +13,7 @@ from app.database import (
 )
 from app.services.ai import chat_completion, parse_json
 
-router = APIRouter(prefix="/api/company-mocks", tags=["company-mocks"])
+router = APIRouter(prefix="/api/v1/company-mocks", tags=["company-mocks"])
 
 # Company-specific mock test configurations
 COMPANY_MOCK_CONFIGS = {

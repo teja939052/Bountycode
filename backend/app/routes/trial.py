@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from app.middleware.auth import get_current_user
 from app.services.trial import start_trial, check_trial_status, cancel_trial
 
-router = APIRouter(prefix="/api/trial", tags=["trial"])
+router = APIRouter(prefix="/api/v1/trial", tags=["trial"])
 
 
 @router.post("/start")

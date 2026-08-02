@@ -10,6 +10,9 @@ from typing import List, Dict, Any, Optional
 import httpx
 from app.config import get_settings
 from app.services.cache import cache
+from app.services.request_metrics import metrics as request_metrics
+from app.services.resilience import call_with_resilience
+from app.services.circuit_breaker import ai_breaker
 
 logger = logging.getLogger(__name__)
 settings = get_settings()
@@ -45,20 +48,13 @@ MAX_RETRIES = settings.OPENROUTER_MAX_RETRIES
 RETRY_DELAY = 1.0
 
 FALLBACK_MODELS = [
-    "google/gemini-2.0-flash-001",
     "meta-llama/llama-3.1-8b-instruct:free",
     "microsoft/phi-3-mini-128k-instruct:free",
     "deepseek/deepseek-chat-v3-0324:free",
 ]
 
-# Circuit breaker state
-circuit_breaker = {
-    "failures": 0,
-    "last_failure_time": 0,
-    "is_open": False,
-    "threshold": 5,
-    "recovery_time": 60,
-}
+# Circuit breaker — now uses async-safe CircuitBreaker class
+# ai_breaker imported at top of file
 
 # HTTP client with connection pooling
 _http_client: Optional[httpx.AsyncClient] = None
@@ -71,9 +67,9 @@ async def _get_http_client() -> httpx.AsyncClient:
         _http_client = httpx.AsyncClient(
             timeout=httpx.Timeout(settings.OPENROUTER_TIMEOUT, connect=10.0),
             limits=httpx.Limits(
-                max_connections=20,
-                max_keepalive_connections=10,
-                keepalive_expiry=60.0
+                max_connections=10,
+                max_keepalive_connections=5,
+                keepalive_expiry=30.0,
             ),
             http2=True,
         )
@@ -90,32 +86,19 @@ async def close_http_client():
         logger.info("HTTP client closed")
 
 
-def _check_circuit_breaker() -> bool:
+async def _check_circuit_breaker() -> bool:
     """Check if circuit breaker allows requests."""
-    if circuit_breaker["is_open"]:
-        if time.time() - circuit_breaker["last_failure_time"] > circuit_breaker["recovery_time"]:
-            circuit_breaker["is_open"] = False
-            circuit_breaker["failures"] = 0
-            logger.info("Circuit breaker closed — resuming normal operation")
-            return True
-        logger.warning("Circuit breaker is open — using fallback models")
-        return False
-    return True
+    return await ai_breaker.allow_request()
 
 
-def _record_failure():
+async def _record_failure():
     """Record a failure for the circuit breaker."""
-    circuit_breaker["failures"] += 1
-    circuit_breaker["last_failure_time"] = time.time()
-    if circuit_breaker["failures"] >= circuit_breaker["threshold"]:
-        circuit_breaker["is_open"] = True
-        logger.warning("Circuit breaker opened — too many failures")
+    await ai_breaker.record_failure()
 
 
-def _record_success():
+async def _record_success():
     """Record a success for the circuit breaker."""
-    circuit_breaker["failures"] = 0
-    circuit_breaker["is_open"] = False
+    await ai_breaker.record_success()
 
 
 def _make_cache_key(messages: List[Dict], model: str) -> str:
@@ -130,6 +113,7 @@ async def _call_openrouter(messages: List[Dict], model: str) -> str:
         raise ValueError("OPENROUTER_API_KEY not configured")
     
     client = await _get_http_client()
+    started = time.perf_counter()
     
     try:
         response = await client.post(
@@ -151,9 +135,12 @@ async def _call_openrouter(messages: List[Dict], model: str) -> str:
         )
         response.raise_for_status()
         data = response.json()
-        return data["choices"][0]["message"]["content"]
+        content = data["choices"][0]["message"]["content"]
+        await request_metrics.record("ai", "success", duration_ms=(time.perf_counter() - started) * 1000)
+        return content
     except httpx.TimeoutException as e:
         logger.warning(f"OpenRouter timeout for model {model}: {e}")
+        await request_metrics.record("ai", "failure", duration_ms=(time.perf_counter() - started) * 1000, error="timeout")
         raise
     except httpx.HTTPStatusError as e:
         if e.response.status_code == 429:
@@ -162,9 +149,11 @@ async def _call_openrouter(messages: List[Dict], model: str) -> str:
             logger.warning(f"OpenRouter server error for model {model}: {e}")
         else:
             logger.error(f"OpenRouter error for model {model}: {e}")
+        await request_metrics.record("ai", "failure", duration_ms=(time.perf_counter() - started) * 1000, error=str(e))
         raise
     except Exception as e:
         logger.error(f"Unexpected error calling OpenRouter: {e}")
+        await request_metrics.record("ai", "failure", duration_ms=(time.perf_counter() - started) * 1000, error=str(e))
         raise
 
 
@@ -196,17 +185,28 @@ async def chat_completion(
         cached = await cache.get("ai", cache_key)
         if cached:
             logger.debug(f"Cache hit for {primary_model}")
+            await request_metrics.record("ai", "cache_hit")
             return cached
 
     # Check circuit breaker
-    if not _check_circuit_breaker():
+    if not await _check_circuit_breaker():
         # Try fallback models only
         for fallback in FALLBACK_MODELS:
             if fallback != primary_model:
                 try:
-                    result = await _call_openrouter(messages, fallback)
+                    result = await call_with_resilience(
+                        _call_openrouter,
+                        ai_breaker,
+                        "ai",
+                        1,          # max_retries
+                        0.5,        # base_delay
+                        request_metrics,
+                        messages,
+                        fallback,
+                    )
                     _record_success()
                     if use_cache:
+                        cache_key = _make_cache_key(messages, primary_model)
                         await cache.set("ai", cache_key, result, ttl=3600)
                     return result
                 except Exception as e:
@@ -218,22 +218,25 @@ async def chat_completion(
     models_to_try = [primary_model] + [m for m in FALLBACK_MODELS if m != primary_model]
 
     for model_to_use in models_to_try:
-        for attempt in range(MAX_RETRIES):
-            try:
-                result = await _call_openrouter(messages, model_to_use)
-                _record_success()
-                if use_cache:
-                    cache_key = _make_cache_key(messages, primary_model)
-                    await cache.set("ai", cache_key, result, ttl=3600)
-                return result
-            except Exception as e:
-                if attempt == MAX_RETRIES - 1:
-                    _record_failure()
-                    logger.error(f"AI call failed after {MAX_RETRIES} retries: {e}")
-                    break
-                wait_time = RETRY_DELAY * (2 ** attempt)  # Exponential backoff
-                logger.warning(f"Attempt {attempt + 1} failed, retrying in {wait_time}s: {e}")
-                await asyncio.sleep(wait_time)
+        try:
+            result = await call_with_resilience(
+                _call_openrouter,
+                ai_breaker,
+                "ai",
+                MAX_RETRIES,
+                RETRY_DELAY,
+                request_metrics,
+                messages,
+                model_to_use,
+            )
+            _record_success()
+            if use_cache:
+                cache_key = _make_cache_key(messages, primary_model)
+                await cache.set("ai", cache_key, result, ttl=3600)
+            return result
+        except Exception as e:
+            logger.error(f"AI call failed for {model_to_use}: {e}")
+            continue
 
     raise Exception("AI service temporarily unavailable")
 
@@ -367,6 +370,29 @@ async def generate_interview_question(
     Returns:
         {question, question_type, tips, difficulty, company, follow_up_expected}
     """
+    # Try to serve from real question bank first (more authentic)
+    try:
+        from app.data.interview_question_bank import get_random_questions, get_questions_by_company
+        asked_ids = {h.get("question_id", "") for h in history if h.get("question_id")}
+        if not history:
+            pool = get_questions_by_company(company)
+            if not pool:
+                pool = get_questions_by_company("general")
+            if pool:
+                q = random.choice(pool)
+                return {
+                    "question": q["question"],
+                    "question_type": q.get("category", "behavioral"),
+                    "tips": "Think carefully and structure your answer using a framework.",
+                    "difficulty": q.get("difficulty", difficulty),
+                    "company": company,
+                    "follow_up_expected": q.get("category") == "technical",
+                    "companies": assign_companies(),
+                    "question_id": q.get("id", ""),
+                }
+    except Exception:
+        pass  # Fall through to AI generation
+
     company_key = company.lower()
     profile = COMPANY_PROFILES.get(company_key, None)
     
@@ -405,6 +431,7 @@ Questions answered: {len(history)}
     system_prompt = f"""You are an expert technical interviewer for {job_role} positions.
 {company_context}
 You must generate interview questions that are realistic, challenging, and appropriate for the target difficulty.
+Questions should be deep enough to support a follow-up drilldown on edge cases, trade-offs, scaling, or measurable impact.
 
 DIFFICULTY GUIDELINES:
 - easy: Fundamentals, basic concepts, entry-level
@@ -618,6 +645,7 @@ Generate a unique, well-structured coding challenge. The problem should be:
 - Clearly defined with unambiguous input/output
 - Appropriate difficulty for {difficulty} level
 - Related to the topic: {topic}
+- Include at least one meaningful follow-up variant or edge-case twist that probes deeper understanding.
 
 The output MUST be valid JSON with this exact structure:
 {{
@@ -688,6 +716,109 @@ Return ONLY the JSON object. No markdown, no explanation."""
 # APTITUDE TEST
 # ============================================================================
 
+# Sub-category specific guidelines for higher-quality generation
+APTITUDE_SUB_CATEGORY_GUIDELINES = {
+    # Quantitative sub-categories
+    "quant-shortcuts": """Focus on SPEED TRICKS for campus placement:
+- Vedic Math: Vertically & Crosswise multiplication, Nikhilam division, squares/cubes shortcuts
+- Approximation: Rounding for % calculations, fraction-to-% conversion tables
+- Profit/Loss: Successive discount formula, marked price ↔ selling price tricks
+- Time-Speed-Distance: Relative speed, average speed harmonic mean
+- Mixture/Alligation: Visual diagram method, replacement problems
+- Each question must teach a specific named trick (e.g., "Vedic: Vertically Crosswise")""",
+
+    # Logical Reasoning sub-categories
+    "syllogisms": """Focus on VENN DIAGRAM method:
+- Standard form: All/Some/No statements → conclusions
+- 2-statement & 3-statement syllogisms
+- "Some A are B" vs "All A are B" conversion rules
+- Include "Only a few" and "Few" new pattern questions (TCS recent)""",
+
+    "blood-relations": """Focus on FAMILY TREE diagramming:
+- Coded relations: A+B means A is father of B, A-B means A is sister...
+- Multi-generation (3-4 levels), in-laws, step-relations
+- "Pointing to a photograph" type questions
+- Gender-neutral names to avoid assumptions""",
+
+    "direction-sense": """Focus on COORDINATE/VECTOR visualization:
+- Shadow problems (morning/evening sun → shadow direction)
+- Distance using Pythagoras (3-4-5, 5-12-13 triplets)
+- Turn sequences (L/R/U-turn), net displacement
+- Map-based: city grid, landmarks""",
+
+    "coding-decoding": """Focus on PATTERN RECOGNITION:
+- Letter shifting (+1, -2, reverse, skip)
+- Number coding (position in alphabet, prime/composite)
+- Symbol substitution (⊕, ⊗, #, @ mapping)
+- Mixed: letter-number-symbol combined
+- New pattern: "If CAT=3120, DOG=?" (position + reverse)""",
+
+    "series-completion": """Focus on MULTI-LEVEL patterns:
+- Difference of differences (2nd/3rd order)
+- Alternating series (two interleaved sequences)
+- Prime/fibonacci/square/cube based
+- Figure series: rotation, reflection, add/remove elements
+- Wrong number identification (not just completion)""",
+
+    "analogies": """Focus on RELATIONSHIP TYPES:
+- Synonym/Antonym, Cause-Effect, Part-Whole, Tool-Worker
+- Degree (hot:scorching :: cold:freezing)
+- Number: 12:144 :: 13:? (square, cube, n*(n+1))
+- Letter: ABC:ZYX :: DEF:? (reverse position)""",
+
+    "puzzles": """Focus on CONSTRAINT SATISFACTION:
+- Linear/Circular seating (facing in/out, dual row)
+- Scheduling: days-months, floors-flats, boxes-stacking
+- Conditional: "If A then B", "Either A or B but not both"
+- 4-6 variables, 8-12 clues, unique solution""",
+
+    # Verbal sub-categories
+    "reading-comprehension": """Focus on PASSAGE-BASED inference:
+- 150-300 word passages (tech/business/science topics)
+- Question types: Main idea, Inference, Tone, Vocabulary in context, Title
+- NO outside knowledge needed — answer from passage only
+- Include "EXCEPT" and "NOT" questions""",
+
+    "para-jumbles": """Focus on COHERENCE MARKERS:
+- 4-6 sentences, identify opening/closing
+- Pronoun antecedents, transition words (however, therefore, moreover)
+- Chronological/logical flow, example-general-specific
+- New pattern: "Odd sentence out" (5 sentences, 4 form paragraph)""",
+
+    "sentence-correction": """Focus on GRAMMAR RULES tested in placements:
+- Subject-verb agreement (collective nouns, intervening phrases)
+- Parallelism (list items, comparisons, correlative conjunctions)
+- Modifier placement (dangling/misplaced, only/just/even)
+- Pronoun case/antecedent, verb tense consistency
+- Idioms: "not only...but also", "between...and""",
+
+    "vocabulary": """Focus on CONTEXTUAL usage:
+- Synonyms/Antonyms in sentence context (not isolated)
+- Analogy: WORD1:WORD2 :: WORD3:? (degree, function, characteristic)
+- Cloze test: 5-8 blanks in coherent passage
+- Confusable words: affect/effect, imply/infer, complement/compliment""",
+
+    "fill-in-blanks": """Focus on STRUCTURAL clues:
+- Single blank: grammar (preposition, tense, form) + meaning
+- Double blank: parallel structure, contrast/similarity markers
+- Preposition-dependent verbs/adjectives
+- Phrasal verbs in context""",
+
+    "critical-reasoning": """Focus on ARGUMENT STRUCTURE:
+- Assumption: necessary vs sufficient, negation test
+- Strengthen/Weaken: alternative cause, reverse causality
+- Inference: must be true, could be true
+- Flaw: circular, sampling, correlation≠causation, false dilemma
+- Boldface: role of statements (evidence/conclusion/counter)""",
+
+    # Data Interpretation
+    "data-interpretation": """Focus on CALCULATION SPEED:
+- Table/Bar/Line/Pie/Radar charts + caselets (paragraph data)
+- % change, ratio, average, growth rate (CAGR)
+- Approximation: "closest to" options, eliminate by magnitude
+- Multi-chart correlation (table + pie, line + bar)""",
+}
+
 async def generate_aptitude_questions(
     category: str,
     difficulty: str,
@@ -697,29 +828,50 @@ async def generate_aptitude_questions(
     Generate aptitude test MCQs for campus placement preparation.
     
     Args:
-        category: quant, logical, verbal, technical, or general
+        category: quant, logical, verbal, technical, or sub-categories
         difficulty: easy, medium, or hard
         count: Number of questions to generate (1-30)
     
     Returns:
         {questions: [{question, options, correct_answer, explanation, topic, difficulty}]}
     """
+    # Get sub-category specific guidelines
+    sub_guidelines = APTITUDE_SUB_CATEGORY_GUIDELINES.get(category, "")
+    
     system_prompt = f"""You are an expert aptitude test question writer for campus placement preparation.
 Category: {category}
 Difficulty: {difficulty}
 Number of questions: {count}
 
 Generate {count} multiple-choice questions (MCQs) appropriate for campus placement tests.
+Favor questions that require 2-4 steps of reasoning, not one-line trivia.
 
 CATEGORY GUIDELINES:
 - quant: Quantitative aptitude (math, percentages, profit/loss, time-speed-distance, probability, permutations)
+- quant-shortcuts: SPEED TRICKS — Vedic math, approximation, %/ratio shortcuts, named techniques
 - logical: Logical reasoning (series, analogies, coding-decoding, blood relations, direction sense, syllogisms)
-- verbal: Verbal ability (synonyms, antonyms, sentence correction, reading comprehension, fill in the blanks)
-- technical: Programming basics, data structures fundamentals, OS concepts, DBMS, networking
-- general: Mixed questions across all categories
+- syllogisms: VENN DIAGRAM method, 2/3 statement, "Only a few" patterns
+- blood-relations: FAMILY TREE diagramming, coded relations, multi-generation
+- direction-sense: COORDINATE/VECTOR visualization, shadow problems, turn sequences
+- coding-decoding: PATTERN RECOGNITION, letter/number/symbol/mixed
+- series-completion: MULTI-LEVEL patterns, difference-of-differences, alternating
+- analogies: RELATIONSHIP TYPES (synonym, cause-effect, part-whole, degree)
+- puzzles: CONSTRAINT SATISFACTION, seating/scheduling/floor/box
+- verbal: Verbal ability (grammar, vocabulary, comprehension)
+- reading-comprehension: PASSAGE-BASED inference, 150-300 words, main idea/inference/tone
+- para-jumbles: COHERENCE MARKERS, pronoun antecedents, transition words, odd-one-out
+- sentence-correction: GRAMMAR RULES (SVA, parallelism, modifiers, pronouns, idioms)
+- vocabulary: CONTEXTUAL usage, synonyms/antonyms in sentence, analogies, cloze
+- fill-in-blanks: STRUCTURAL clues, single/double blank, phrasal verbs
+- critical-reasoning: ARGUMENT STRUCTURE (assumption, strengthen/weaken, inference, flaw, boldface)
+- technical: Programming basics, data structures, OS, DBMS, networking
+- data-interpretation: CALCULATION SPEED, charts/tables/caselets, % change/ratio/growth
+
+{sub_guidelines}
 
 Each question must have exactly 4 options (A, B, C, D).
 Questions should be realistic and similar to TCS, Infosys, Wipro, Cognizant placement papers.
+Distractors should be plausible and test conceptual understanding, not random wrong answers.
 
 Each question must include 2-5 company tags from this pool indicating which companies have asked similar questions:
 {COMPANY_TAGS}
@@ -758,7 +910,7 @@ Return ONLY the JSON object. No markdown, no explanation."""
         {"role": "user", "content": f"Generate {count} {difficulty} {category} aptitude questions."},
     ]
     
-    result = await chat_completion(messages, max_tokens=4000)
+    result = await chat_completion(messages, max_tokens=6000)
     parsed = parse_json(result)
     
     parsed.setdefault("questions", [])
@@ -1489,6 +1641,7 @@ The output MUST be valid JSON:
     "question": {{
         "question": "Tell me about a time when you... (the behavioral question)",
         "category": "leadership|teamwork|conflict|failure|innovation|customer-focus|ownership",
+        "what_interviewer_looks_for": "What the interviewer is trying to learn from this story",
         "star_framework": {{
             "situation": "What context should the candidate set up?",
             "task": "What responsibility should they describe?",
@@ -1518,6 +1671,7 @@ Return ONLY the JSON object. No markdown, no explanation."""
             "question": {
                 "question": parsed["question"],
                 "category": "leadership",
+                "what_interviewer_looks_for": "Evidence of ownership, clarity, and measurable impact",
                 "star_framework": {
                     "situation": "Describe the context",
                     "task": "Explain your responsibility",
@@ -1533,6 +1687,7 @@ Return ONLY the JSON object. No markdown, no explanation."""
             "question": {
                 "question": f"Tell me about a time you demonstrated leadership at {company}.",
                 "category": "leadership",
+                "what_interviewer_looks_for": "Ownership, judgment, and measurable impact",
                 "star_framework": {
                     "situation": "Describe the context",
                     "task": "Explain your responsibility",
@@ -1618,3 +1773,176 @@ Return ONLY the JSON object. No markdown, no explanation."""
     parsed["tips"].setdefault("common_questions", [f"Tell me about yourself", "Why {company}?", "Describe a challenging project"])
     
     return parsed
+
+
+async def generate_mentor_message(
+    mentor_name: str,
+    day: int,
+    yesterday_completed: int,
+) -> str:
+    """
+    Generate an encouraging daily mentor message for the 30-day challenge.
+    """
+    system_prompt = f"""You are {mentor_name}, a coding mentor guiding a student through placement preparation. Your role is to be encouraging, specific, and slightly challenging — like a coach or personal trainer.
+
+Write a short, encouraging 1-sentence message for day {day} of 30. They completed {yesterday_completed} quests yesterday.
+
+Keep it under 140 characters. Be warm but direct. Use emojis occasionally but sparingly."""
+    messages = [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": f"Write a message for day {day} of the 30-day placement challenge."},
+    ]
+    
+    result = await chat_completion(messages, temperature=0.8, max_tokens=100)
+    return result.strip().strip('"').strip("'")
+
+
+# ============================================================================
+# PROJECT GENERATOR
+# ============================================================================
+
+async def generate_project(description: str, language: str, framework: str = "") -> dict:
+    """Generate a complete project from natural language description."""
+    framework_instruction = f"\nFramework: {framework}" if framework else ""
+    system_prompt = f"""You are a senior software engineer. Generate a complete {language} project based on this description:
+
+Description: {description}{framework_instruction}
+
+Return a JSON object with:
+- "files": array of {{"path": string, "content": string, "language": string}}
+- "description": brief description of what was built (2-3 sentences)
+- "tech_stack": array of technologies used
+- "setup_instructions": string with numbered setup steps
+
+Make each file COMPLETE and FUNCTIONAL. Include all necessary imports, configuration, and entry points.
+Generate at least 2 files (main entry point + supporting files). Use proper project structure.
+Do NOT use placeholder comments like "# TODO" — write real implementations.
+{"" if language == "text" else "Wrap file contents in proper code syntax."}
+
+Return ONLY the JSON object. No markdown, no explanation."""
+
+    messages = [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": f"Generate a {language} project: {description}"},
+    ]
+
+    result = await chat_completion(messages, max_tokens=4000)
+    parsed = parse_json(result)
+
+    parsed.setdefault("files", [])
+    parsed.setdefault("description", f"A {language} project based on: {description}")
+    parsed.setdefault("tech_stack", [language] + ([framework] if framework else []))
+    parsed.setdefault("setup_instructions", f"1. Install {language}\n2. Run the project")
+
+    return parsed
+
+
+async def review_project(files: list) -> dict:
+    """AI code review for a project."""
+    files_text = "\n---\n".join([
+        f"File: {f['path']}\n```{f.get('language', 'text')}\n{f['content']}\n```"
+        for f in files
+    ])
+    system_prompt = f"""Review this code project and provide actionable feedback:
+
+{files_text}
+
+Return a JSON object with:
+- "score": number 0-100
+- "strengths": array of strings (what's done well, 3-5 items)
+- "improvements": array of strings (what could be better, 3-5 items)
+- "suggested_fixes": array of {{"file": string, "line": number or null, "issue": string, "suggestion": string}}
+- "security_concerns": array of strings (security issues found, if any)
+- "best_practices": array of strings (best practice recommendations)
+
+Be specific — reference actual code patterns you see. Score honestly.
+
+Return ONLY the JSON object. No markdown, no explanation."""
+
+    messages = [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": f"Review this project with {len(files)} files."},
+    ]
+
+    result = await chat_completion(messages, max_tokens=3000)
+    parsed = parse_json(result)
+
+    parsed.setdefault("score", 50)
+    parsed.setdefault("strengths", ["Project structure is organized"])
+    parsed.setdefault("improvements", ["Add error handling", "Add input validation"])
+    parsed.setdefault("suggested_fixes", [])
+    parsed.setdefault("security_concerns", [])
+    parsed.setdefault("best_practices", ["Follow language-specific conventions"])
+
+    return parsed
+
+
+async def improve_code(code: str, language: str, aspect: str) -> dict:
+    """Suggest improvements to code focusing on a specific aspect."""
+    system_prompt = f"""Improve this {language} code focusing on {aspect}:
+
+```{language}
+{code}
+```
+
+Return a JSON object with:
+- "improved_code": the improved version (complete file, not just diffs)
+- "changes": array of {{"description": string, "reason": string}}
+
+Focus on {aspect} improvements:
+- performance: optimize algorithms, reduce allocations, cache results
+- security: validate inputs, escape outputs, use safe patterns
+- readability: better naming, extract functions, add structure
+- architecture: separate concerns, use patterns, improve modularity
+
+Make the improved code COMPLETE and ready to use. Preserve all original functionality.
+
+Return ONLY the JSON object. No markdown, no explanation."""
+
+    messages = [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": f"Improve this {language} code for {aspect}."},
+    ]
+
+    result = await chat_completion(messages, max_tokens=3000)
+    parsed = parse_json(result)
+
+    parsed.setdefault("improved_code", code)
+    parsed.setdefault("changes", [{"description": "Preserved original code", "reason": "No improvements identified"}])
+
+    return parsed
+
+
+async def generate_setup_instructions(files: list, language: str) -> str:
+    """Generate setup instructions for a project."""
+    extensions = set()
+    for f in files:
+        if "." in f.get("path", ""):
+            ext = f["path"].rsplit(".", 1)[-1].lower()
+            extensions.add(ext)
+
+    steps = [f"1. Install {language} (if not already installed)"]
+
+    if "py" in extensions or language == "python":
+        steps.append("2. Create a virtual environment: python -m venv venv")
+        steps.append("3. Activate it: source venv/bin/activate (Linux/Mac) or venv\\Scripts\\activate (Windows)")
+        steps.append("4. Install dependencies: pip install -r requirements.txt")
+        steps.append("5. Run: python main.py")
+    elif "js" in extensions or "ts" in extensions or language in ("javascript", "typescript", "node"):
+        steps.append("2. Install dependencies: npm install")
+        steps.append("3. Run: npm start")
+    elif "java" in extensions or language == "java":
+        steps.append("2. Compile: javac Main.java")
+        steps.append("3. Run: java Main")
+    elif "go" in extensions or language == "go":
+        steps.append("2. Run: go run main.go")
+    elif "rs" in extensions or language == "rust":
+        steps.append("2. Build: cargo build")
+        steps.append("3. Run: cargo run")
+    elif "cpp" in extensions or language == "cpp":
+        steps.append("2. Compile: g++ -std=c++17 main.cpp -o main")
+        steps.append("3. Run: ./main")
+    else:
+        steps.append("2. Follow the language-specific instructions to build and run")
+
+    return "\n".join(steps)

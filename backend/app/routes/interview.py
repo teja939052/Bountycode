@@ -1,4 +1,5 @@
 from datetime import datetime, timezone
+import random
 from fastapi import APIRouter, Depends, HTTPException
 from app.models.interview import StartInterview, SubmitAnswer
 from app.database import users_collection, interviews_collection
@@ -18,10 +19,10 @@ from app.services.gamification import record_practice
 from app.config import get_settings
 from bson import ObjectId
 
-router = APIRouter(prefix="/api/interview", tags=["interview"])
+router = APIRouter(prefix="/api/v1/interview", tags=["interview"])
 settings = get_settings()
 
-TOTAL_QUESTIONS = 10
+TOTAL_QUESTIONS = 20
 FOLLOW_UP_CHANCE = 0.4
 MAX_FOLLOW_UPS_PER_QUESTION = 1
 
@@ -137,7 +138,6 @@ async def submit_answer(req: SubmitAnswer, user=Depends(get_current_user)):
     )
 
     if should_follow_up:
-        import random
         if random.random() < FOLLOW_UP_CHANCE:
             follow_up = await generate_follow_up_question(
                 req.question, req.answer, job_role,

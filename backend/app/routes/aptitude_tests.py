@@ -13,7 +13,7 @@ from app.database import (
 )
 from app.services.gamification import record_practice
 
-router = APIRouter(prefix="/api/aptitude-tests", tags=["aptitude-tests"])
+router = APIRouter(prefix="/api/v1/aptitude-tests", tags=["aptitude-tests"])
 
 # Test configurations
 TEST_CONFIGS = {

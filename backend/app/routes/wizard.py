@@ -12,7 +12,7 @@ from app.database import (
     wizard_collection, cards_collection
 )
 
-router = APIRouter(prefix="/api/wizard", tags=["wizard"])
+router = APIRouter(prefix="/api/v1/wizard", tags=["wizard"])
 
 # Wizard configuration
 WIZARD_STYLES = {

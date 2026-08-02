@@ -1,0 +1,16 @@
+{
+  "name": "PlacementPro",
+  "short_name": "PlacementPro",
+  "description": "AI-powered placement preparation platform — level up your career",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#10b981",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "512x512", "type": "image/svg+xml", "purpose": "any" }
+  ],
+  "categories": ["education", "productivity"],
+  "lang": "en-US"
+}

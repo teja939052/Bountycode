@@ -23,7 +23,8 @@ class InMemoryCache:
         full_key = self._make_key(namespace, key)
         if full_key in self.cache:
             entry = self.cache[full_key]
-            if time.time() - entry["timestamp"] < self.ttl_seconds:
+            ttl = entry.get("ttl", self.ttl_seconds)
+            if time.time() - entry["timestamp"] < ttl:
                 self.hits += 1
                 self.cache.move_to_end(full_key)
                 return entry["value"]
@@ -44,6 +45,29 @@ class InMemoryCache:
             "timestamp": time.time(),
             "ttl": ttl or self.ttl_seconds,
         }
+
+    def incr(self, namespace: str, key: str, amount: int = 1, ttl: int = None) -> int:
+        full_key = self._make_key(namespace, key)
+        current = self.cache.get(full_key)
+        current_value = 0
+        if current is not None:
+            ttl = current.get("ttl", ttl or self.ttl_seconds)
+            if time.time() - current["timestamp"] < ttl:
+                try:
+                    current_value = int(current["value"])
+                except (TypeError, ValueError):
+                    current_value = 0
+            else:
+                del self.cache[full_key]
+        next_value = current_value + amount
+        self.cache[full_key] = {
+            "value": next_value,
+            "timestamp": time.time(),
+            "ttl": ttl or self.ttl_seconds,
+        }
+        if len(self.cache) > self.max_size:
+            self.cache.popitem(last=False)
+        return next_value
 
     def delete(self, namespace: str, key: str):
         full_key = self._make_key(namespace, key)
@@ -96,6 +120,8 @@ class RedisCache:
     async def disconnect(self):
         if self.client:
             await self.client.close()
+            self.client = None
+            self.connected = False
 
     async def get(self, namespace: str, key: str) -> Optional[Any]:
         if not self.connected:
@@ -120,6 +146,18 @@ class RedisCache:
             await self.client.setex(full_key, ttl, json.dumps(value, default=str))
         except Exception:
             pass
+
+    async def incr(self, namespace: str, key: str, amount: int = 1, ttl: int = 3600) -> int:
+        if not self.connected:
+            return amount
+        try:
+            full_key = f"{namespace}:{key}"
+            next_value = await self.client.incrby(full_key, amount)
+            if next_value == amount:
+                await self.client.expire(full_key, ttl)
+            return int(next_value)
+        except Exception:
+            return amount
 
     async def delete(self, namespace: str, key: str):
         if not self.connected:
@@ -180,6 +218,14 @@ class UnifiedCache:
         if self.redis and self.redis.connected:
             await self.redis.set(namespace, key, value, ttl)
         self.memory.set(namespace, key, value, ttl)
+
+    async def incr(self, namespace: str, key: str, amount: int = 1, ttl: int = 3600) -> int:
+        if self.redis and self.redis.connected:
+            try:
+                return await self.redis.incr(namespace, key, amount, ttl)
+            except Exception:
+                pass
+        return self.memory.incr(namespace, key, amount, ttl)
 
     async def delete(self, namespace: str, key: str):
         if self.redis and self.redis.connected:

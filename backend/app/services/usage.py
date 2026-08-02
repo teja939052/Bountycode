@@ -52,10 +52,10 @@ async def check_and_reset_monthly_usage(user: dict) -> dict:
     return user
 
 
-def can_use_feature(user: dict, feature: str) -> bool:
+def can_use_feature(user: dict, feature: str) -> tuple[bool, str]:
     """Check if user can use a feature based on their plan and usage."""
     if user.get("plan") in ("pro", "lifetime"):
-        return True
+        return True, ""
 
     limits = {
         "interview": settings.FREE_TIER_INTERVIEW_LIMIT,
@@ -65,6 +65,7 @@ def can_use_feature(user: dict, feature: str) -> bool:
         "company_mock": getattr(settings, "FREE_TIER_COMPANY_MOCK_LIMIT", 1),
         "predictor": getattr(settings, "FREE_TIER_PREDICTOR_LIMIT", 3),
         "question_bank": getattr(settings, "FREE_TIER_QUESTION_BANK_LIMIT", 5),
+        "interview_booking": getattr(settings, "FREE_TIER_INTERVIEW_BOOKING_LIMIT", 3),
     }
 
     used_keys = {
@@ -75,12 +76,36 @@ def can_use_feature(user: dict, feature: str) -> bool:
         "company_mock": "company_mocks_used",
         "predictor": "predictions_used",
         "question_bank": "question_bank_used",
+        "interview_booking": "interview_bookings_used",
     }
 
     limit = limits.get(feature, 0)
     used = user.get(used_keys.get(feature, ""), 0)
 
-    return used < limit
+    if used >= limit:
+        return False, f"Free tier limit reached for {feature}. Upgrade to Pro for unlimited."
+
+    return True, ""
+
+
+async def mark_feature_used(user_id: str, feature: str) -> None:
+    """Increment the usage counter for a feature."""
+    used_keys = {
+        "interview": "interviews_used",
+        "resume": "resumes_used",
+        "aptitude": "aptitude_used",
+        "cover_letter": "cover_letters_used",
+        "company_mock": "company_mocks_used",
+        "predictor": "predictions_used",
+        "question_bank": "question_bank_used",
+        "interview_booking": "interview_bookings_used",
+    }
+    key = used_keys.get(feature)
+    if key:
+        await users_collection.update_one(
+            {"_id": ObjectId(user_id)},
+            {"$inc": {key: 1}},
+        )
 
 
 def get_usage_stats(user: dict) -> dict:

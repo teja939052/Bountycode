@@ -5,7 +5,7 @@ from app.services.placement_engine import PlacementEngine
 from app.middleware.auth import get_current_user
 
 router = APIRouter(
-    prefix="/api/predictor",
+    prefix="/api/v1/predictor",
     tags=["Placement Predictor"]
 )
 

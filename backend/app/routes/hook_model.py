@@ -19,7 +19,7 @@ from app.services.social import (
     get_contest_leaderboard,
 )
 
-router = APIRouter(prefix="/api/hook", tags=["hook-model"])
+router = APIRouter(prefix="/api/v1/hook", tags=["hook-model"])
 
 
 # Mystery Box endpoints

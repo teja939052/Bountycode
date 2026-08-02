@@ -23,9 +23,7 @@ class _LazyCollection:
 
     def _resolve(self):
         name = object.__getattribute__(self, "_name")
-        if name not in _collections:
-            _collections[name] = get_db()[name]
-        return _collections[name]
+        return get_db()[name]
 
     def __getattr__(self, item):
         return getattr(self._resolve(), item)
@@ -36,7 +34,19 @@ class _LazyCollection:
 
 
 def get_client() -> AsyncIOMotorClient:
-    global _client
+    global _client, _db
+    if _client is not None:
+        try:
+            loop = _client.get_io_loop()
+            if loop.is_closed():
+                _client = None
+                _db = None
+                _collections.clear()
+        except Exception:
+            _client = None
+            _db = None
+            _collections.clear()
+
     if _client is None:
         _client = AsyncIOMotorClient(
             settings.MONGODB_URL,
@@ -52,8 +62,8 @@ def get_client() -> AsyncIOMotorClient:
 
 def get_db() -> AsyncIOMotorDatabase:
     global _db
+    client = get_client()
     if _db is None:
-        client = get_client()
         _db = client[settings.DATABASE_NAME]
     return _db
 
@@ -92,130 +102,369 @@ discounts_collection = _LazyCollection("discounts")
 solved_problems_collection = _LazyCollection("solved_problems")
 submissions_collection = _LazyCollection("submissions")
 cards_collection = _LazyCollection("cards")
+learning_progress_collection = _LazyCollection("learning_progress")
+analytics_events_collection = _LazyCollection("analytics_events")
+analytics_rollups_collection = _LazyCollection("analytics_rollups")
+service_metrics_collection = _LazyCollection("service_metrics")
+applications_collection = _LazyCollection("applications")
+study_groups_collection = _LazyCollection("study_groups")
+contests_collection = _LazyCollection("contests")
+contest_entries_collection = _LazyCollection("contest_entries")
+playlists_collection = _LazyCollection("playlists")
+discussions_collection = _LazyCollection("discussions")
+community_posts_collection = _LazyCollection("community_posts")
+battles_collection = _LazyCollection("battles")
+bookmarks_collection = _LazyCollection("bookmarks")
+notes_collection = _LazyCollection("notes")
+wizard_collection = _LazyCollection("wizard")
+aptitude_leaderboard_collection = _LazyCollection("aptitude_leaderboard")
+aptitude_tests_collection = _LazyCollection("aptitude_tests")
+system_design_leaderboard_collection = _LazyCollection("system_design_leaderboard")
+system_design_tests_collection = _LazyCollection("system_design_tests")
+scrims_collection = _LazyCollection("scrims")
+showcase_collection = _LazyCollection("showcase_projects")
+guilds_collection = _LazyCollection("guilds")
+matchmaking_queue_collection = _LazyCollection("matchmaking_queue")
+ranks_collection = _LazyCollection("ranks")
+daily_challenges_users_collection = _LazyCollection("daily_challenges_users")
+generated_projects_collection = _LazyCollection("generated_projects")
+learning_modules_collection = _LazyCollection("learning_modules")
+user_learning_progress_collection = _LazyCollection("user_learning_progress")
+interview_bookings_collection = _LazyCollection("interview_bookings")
+language_modules_collection = _LazyCollection("language_modules")
+language_levels_collection = _LazyCollection("language_levels")
+language_progress_collection = _LazyCollection("language_progress")
+content_modules_collection = _LazyCollection("content_modules")
+assignments_collection = _LazyCollection("assignments")
+assignment_submissions_collection = _LazyCollection("assignment_submissions")
+question_explanations_collection = _LazyCollection("question_explanations")
+daily_boss_collection = _LazyCollection("daily_boss")
+daily_boss_damage_collection = _LazyCollection("daily_boss_damage")
+daily_boss_claims_collection = _LazyCollection("daily_boss_claims")
+seasons_collection = _LazyCollection("seasons")
+season_xp_collection = _LazyCollection("season_xp")
+combos_collection = _LazyCollection("combos")
+campus_profiles_collection = _LazyCollection("campus_profiles")
+campus_leaderboard_collection = _LazyCollection("campus_leaderboard")
+payments_collection = _LazyCollection("payments")
+revenue_events_collection = _LazyCollection("revenue_events")
+billing_metrics_collection = _LazyCollection("billing_metrics")
+coupons_collection = _LazyCollection("coupons")
+referrals_collection = _LazyCollection("referrals")
+campus_events_collection = _LazyCollection("campus_events")
+campus_winners_collection = _LazyCollection("campus_winners")
+newspaper_collection = _LazyCollection("newspaper")
+lucky_spins_collection = _LazyCollection("lucky_spins")
+chat_messages_collection = _LazyCollection("chat_messages")
+battle_pass_collection = _LazyCollection("battle_pass")
+achievements_collection = _LazyCollection("achievements")
+teams_collection = _LazyCollection("teams")
+economy_collection = _LazyCollection("economy")
+skill_trees_collection = _LazyCollection("skill_trees")
+shares_collection = _LazyCollection("shares")
+pulse_battles_collection = _LazyCollection("pulse_battles")
+pulse_daily_collection = _LazyCollection("pulse_daily")
+trending_engagement_collection = _LazyCollection("trending_engagement")
+debug_logs_collection = _LazyCollection("debug_logs")
+srs_collection = _LazyCollection("srs_states")
 
 
 async def init_db():
     db = get_db()
 
-    await db["users"].create_index("email", unique=True)
-    await db["users"].create_index("plan")
-    await db["users"].create_index("created_at")
-    await db["users"].create_index([("email", 1), ("plan", 1)])
+    async def _safe_create_index(collection, keys, **kwargs):
+        """Create an index, silently ignoring conflicts with existing indexes."""
+        try:
+            await collection.create_index(keys, **kwargs)
+        except Exception as e:
+            if "already exists" in str(e).lower() or "IndexOptionsConflict" in str(e):
+                pass  # Index exists with different options — safe to ignore
+            else:
+                raise
 
-    await db["interviews"].create_index("user_id")
-    await db["interviews"].create_index([("user_id", 1), ("created_at", -1)])
-    await db["interviews"].create_index("status")
-    await db["interviews"].create_index([("user_id", 1), ("status", 1)])
+    await _safe_create_index(db["users"], "email", unique=True)
+    await _safe_create_index(db["users"], "plan")
+    await _safe_create_index(db["users"], "created_at")
+    await _safe_create_index(db["users"], [("email", 1), ("plan", 1)])
 
-    await db["resumes"].create_index("user_id")
-    await db["resumes"].create_index([("user_id", 1), ("created_at", -1)])
-    await db["resumes"].create_index("ats_score")
+    await _safe_create_index(db["interviews"], "user_id")
+    await _safe_create_index(db["interviews"], [("user_id", 1), ("created_at", -1)])
+    await _safe_create_index(db["interviews"], "status")
+    await _safe_create_index(db["interviews"], [("user_id", 1), ("status", 1)])
 
-    await db["aptitude_tests"].create_index("user_id")
-    await db["aptitude_tests"].create_index([("user_id", 1), ("created_at", -1)])
-    await db["aptitude_tests"].create_index("category")
-    await db["aptitude_tests"].create_index("status")
-    await db["aptitude_tests"].create_index([("user_id", 1), ("category", 1)])
+    await _safe_create_index(db["resumes"], "user_id")
+    await _safe_create_index(db["resumes"], [("user_id", 1), ("created_at", -1)])
+    await _safe_create_index(db["resumes"], "ats_score")
 
-    await db["cover_letters"].create_index("user_id")
-    await db["cover_letters"].create_index([("user_id", 1), ("created_at", -1)])
+    await _safe_create_index(db["aptitude_tests"], "user_id")
+    await _safe_create_index(db["aptitude_tests"], [("user_id", 1), ("created_at", -1)])
+    await _safe_create_index(db["aptitude_tests"], "category")
+    await _safe_create_index(db["aptitude_tests"], "status")
+    await _safe_create_index(db["aptitude_tests"], [("user_id", 1), ("category", 1)])
 
-    await db["system_design"].create_index("user_id")
-    await db["system_design"].create_index([("user_id", 1), ("created_at", -1)])
-    await db["system_design"].create_index("difficulty")
+    await _safe_create_index(db["cover_letters"], "user_id")
+    await _safe_create_index(db["cover_letters"], [("user_id", 1), ("created_at", -1)])
 
-    await db["coding_challenges"].create_index("user_id")
-    await db["coding_challenges"].create_index([("user_id", 1), ("created_at", -1)])
-    await db["coding_challenges"].create_index("topic")
-    await db["coding_challenges"].create_index("difficulty")
-    await db["coding_challenges"].create_index([("topic", 1), ("difficulty", 1)])
+    await _safe_create_index(db["system_design"], "user_id")
+    await _safe_create_index(db["system_design"], [("user_id", 1), ("created_at", -1)])
+    await _safe_create_index(db["system_design"], "difficulty")
 
-    await db["skill_graphs"].create_index("user_id", unique=True)
+    await _safe_create_index(db["coding_challenges"], "user_id")
+    await _safe_create_index(db["coding_challenges"], [("user_id", 1), ("created_at", -1)])
+    await _safe_create_index(db["coding_challenges"], "topic")
+    await _safe_create_index(db["coding_challenges"], "difficulty")
+    await _safe_create_index(db["coding_challenges"], [("topic", 1), ("difficulty", 1)])
 
-    await db["gamification"].create_index("user_id", unique=True)
-    await db["gamification"].create_index([("xp", -1)])
-    await db["gamification"].create_index([("level", -1), ("xp", -1)])
+    await _safe_create_index(db["skill_graphs"], "user_id", unique=True)
 
-    await db["offers"].create_index("user_id")
-    await db["offers"].create_index([("user_id", 1), ("created_at", -1)])
-    await db["offers"].create_index("status")
+    await _safe_create_index(db["gamification"], "user_id", unique=True)
+    await _safe_create_index(db["gamification"], [("xp", -1)])
+    await _safe_create_index(db["gamification"], [("level", -1), ("xp", -1)])
 
-    await db["progress"].create_index("user_id")
-    await db["progress"].create_index([("user_id", 1), ("topic", 1)])
+    await _safe_create_index(db["offers"], "user_id")
+    await _safe_create_index(db["offers"], [("user_id", 1), ("created_at", -1)])
+    await _safe_create_index(db["offers"], "status")
 
-    await db["company_prep"].create_index("user_id")
-    await db["company_prep"].create_index([("user_id", 1), ("company", 1)])
+    await _safe_create_index(db["progress"], "user_id")
+    await _safe_create_index(db["progress"], [("user_id", 1), ("topic", 1)])
 
-    await db["usage_tracking"].create_index("user_id")
-    await db["usage_tracking"].create_index([("user_id", 1), ("feature", 1)])
-    await db["usage_tracking"].create_index([("user_id", 1), ("period", 1)])
+    await _safe_create_index(db["company_prep"], "user_id")
+    await _safe_create_index(db["company_prep"], [("user_id", 1), ("company", 1)])
 
-    await db["predictions"].create_index("user_id")
-    await db["predictions"].create_index([("user_id", 1), ("created_at", -1)])
+    await _safe_create_index(db["usage_tracking"], "user_id")
+    await _safe_create_index(db["usage_tracking"], [("user_id", 1), ("feature", 1)])
+    await _safe_create_index(db["usage_tracking"], [("user_id", 1), ("period", 1)])
 
-    await db["curated_questions"].create_index("company")
-    await db["curated_questions"].create_index("topic")
-    await db["curated_questions"].create_index("difficulty")
-    await db["curated_questions"].create_index("type")
-    await db["curated_questions"].create_index([("company", 1), ("topic", 1)])
-    await db["curated_questions"].create_index([("company", 1), ("type", 1)])
+    await _safe_create_index(db["predictions"], "user_id")
+    await _safe_create_index(db["predictions"], [("user_id", 1), ("created_at", -1)])
 
-    await db["question_answers"].create_index("user_id")
-    await db["question_answers"].create_index([("user_id", 1), ("question_id", 1)])
-    await db["question_answers"].create_index([("user_id", 1), ("created_at", -1)])
-    await db["question_answers"].create_index("question_id")
+    # curated_questions is file-based (see question_store.py); only index for user submissions
+    await _safe_create_index(db["curated_questions"], [("submitted_by", 1)])
 
-    await db["company_mock_tests"].create_index("user_id")
-    await db["company_mock_tests"].create_index([("user_id", 1), ("company", 1)])
-    await db["company_mock_tests"].create_index([("user_id", 1), ("created_at", -1)])
-    await db["company_mock_tests"].create_index("status")
+    await _safe_create_index(db["question_answers"], "user_id")
+    await _safe_create_index(db["question_answers"], [("user_id", 1), ("question_id", 1)])
+    await _safe_create_index(db["question_answers"], [("user_id", 1), ("created_at", -1)])
+    await _safe_create_index(db["question_answers"], "question_id")
 
-    await db["alumni_experiences"].create_index("company")
-    await db["alumni_experiences"].create_index([("company", 1), ("year", -1)])
-    await db["alumni_experiences"].create_index("role")
+    await _safe_create_index(db["company_mock_tests"], "user_id")
+    await _safe_create_index(db["company_mock_tests"], [("user_id", 1), ("company", 1)])
+    await _safe_create_index(db["company_mock_tests"], [("user_id", 1), ("created_at", -1)])
+    await _safe_create_index(db["company_mock_tests"], "status")
 
-    await db["placement_drives"].create_index("company")
-    await db["placement_drives"].create_index("deadline")
-    await db["placement_drives"].create_index([("is_active", 1), ("deadline", 1)])
-    await db["placement_drives"].create_index("tier")
+    await _safe_create_index(db["alumni_experiences"], "company")
+    await _safe_create_index(db["alumni_experiences"], [("company", 1), ("year", -1)])
+    await _safe_create_index(db["alumni_experiences"], "role")
 
-    await db["career_profiles"].create_index("user_id", unique=True)
-    await db["career_profiles"].create_index("updated_at")
+    await _safe_create_index(db["placement_drives"], "company")
+    await _safe_create_index(db["placement_drives"], "deadline")
+    await _safe_create_index(db["placement_drives"], [("is_active", 1), ("deadline", 1)])
+    await _safe_create_index(db["placement_drives"], "tier")
 
-    await db["practice_sessions"].create_index("user_id")
-    await db["practice_sessions"].create_index([("user_id", 1), ("created_at", -1)])
-    await db["practice_sessions"].create_index("status")
+    await _safe_create_index(db["career_profiles"], "user_id", unique=True)
+    await _safe_create_index(db["career_profiles"], "updated_at")
 
-    await db["mock_tests"].create_index("user_id")
-    await db["mock_tests"].create_index([("user_id", 1), ("created_at", -1)])
-    await db["mock_tests"].create_index("status")
+    await _safe_create_index(db["practice_sessions"], "user_id")
+    await _safe_create_index(db["practice_sessions"], [("user_id", 1), ("created_at", -1)])
+    await _safe_create_index(db["practice_sessions"], "status")
 
-    await db["trials"].create_index("user_id")
-    await db["trials"].create_index([("user_id", 1), ("status", 1)])
+    await _safe_create_index(db["mock_tests"], "user_id")
+    await _safe_create_index(db["mock_tests"], [("user_id", 1), ("created_at", -1)])
+    await _safe_create_index(db["mock_tests"], "status")
 
-    await db["discounts"].create_index("user_id")
-    await db["discounts"].create_index([("user_id", 1), ("type", 1), ("status", 1)])
+    await _safe_create_index(db["trials"], "user_id")
+    await _safe_create_index(db["trials"], [("user_id", 1), ("status", 1)])
 
-    await db["solved_problems"].create_index("user_id")
-    await db["solved_problems"].create_index([("user_id", 1), ("question_id", 1)], unique=True)
-    await db["solved_problems"].create_index([("user_id", 1), ("solved_at", -1)])
+    await _safe_create_index(db["discounts"], "user_id")
+    await _safe_create_index(db["discounts"], [("user_id", 1), ("type", 1), ("status", 1)])
 
-    await db["submissions"].create_index("user_id")
-    await db["submissions"].create_index([("user_id", 1), ("question_id", 1)])
-    await db["submissions"].create_index([("user_id", 1), ("submitted_at", -1)])
-    await db["submissions"].create_index("status")
-    await db["submissions"].create_index([("question_id", 1), ("status", 1)])
+    await _safe_create_index(db["solved_problems"], "user_id")
+    await _safe_create_index(db["solved_problems"], [("user_id", 1), ("question_id", 1)], unique=True)
+    await _safe_create_index(db["solved_problems"], [("user_id", 1), ("solved_at", -1)])
 
-    await db["cards"].create_index("user_id")
-    await db["cards"].create_index([("user_id", 1), ("rarity", 1)])
-    await db["cards"].create_index([("user_id", 1), ("topic", 1)])
-    await db["cards"].create_index([("user_id", 1), ("question_id", 1)])
+    await _safe_create_index(db["submissions"], "user_id")
+    await _safe_create_index(db["submissions"], [("user_id", 1), ("question_id", 1)])
+    await _safe_create_index(db["submissions"], [("user_id", 1), ("submitted_at", -1)])
+    await _safe_create_index(db["submissions"], "status")
+    await _safe_create_index(db["submissions"], [("question_id", 1), ("status", 1)])
+
+    await _safe_create_index(db["cards"], "user_id")
+    await _safe_create_index(db["cards"], [("user_id", 1), ("rarity", 1)])
+    await _safe_create_index(db["cards"], [("user_id", 1), ("topic", 1)])
+    await _safe_create_index(db["cards"], [("user_id", 1), ("question_id", 1)])
+
+    await _safe_create_index(db["learning_progress"], "user_id", unique=True)
+    await _safe_create_index(db["learning_progress"], "total_xp")
+    await _safe_create_index(db["learning_progress"], "daily_date")
+    await _safe_create_index(db["learning_progress"], "daily_goal_bonus_date")
+    await _safe_create_index(db["learning_progress"], "updated_at")
+
+    await _safe_create_index(db["analytics_events"], "event")
+    await _safe_create_index(db["analytics_events"], "date")
+    # TTL index for auto-cleanup (180 days)
+    await _safe_create_index(db["analytics_events"], [("timestamp_dt", 1)], expireAfterSeconds=60 * 60 * 24 * 180)
+    await _safe_create_index(db["analytics_events"], [("event", 1), ("date", 1)])
+    await _safe_create_index(db["analytics_events"], [("path", 1), ("date", 1)])
+    await _safe_create_index(db["analytics_events"], [("event", 1), ("timestamp_dt", -1)])
+
+    await _safe_create_index(db["analytics_rollups"], [("bucket", 1), ("date", 1)], unique=True)
+    await _safe_create_index(db["analytics_rollups"], "date")
+    # TTL indexes for transient data (auto-cleanup to save storage)
+    await _safe_create_index(db["submissions"], [("submitted_at", 1)], expireAfterSeconds=60 * 60 * 24 * 90)
+    await _safe_create_index(db["practice_sessions"], [("created_at", 1)], expireAfterSeconds=60 * 60 * 24 * 90)
+    await _safe_create_index(db["service_metrics"], [("timestamp", 1)], expireAfterSeconds=60 * 60 * 24 * 30)
+
+    await _safe_create_index(db["analytics_rollups"], "bucket")
+
+    await _safe_create_index(db["community_posts"], "user_id")
+    await _safe_create_index(db["community_posts"], [("created_at", -1)])
+    await _safe_create_index(db["community_posts"], [("user_id", 1), ("created_at", -1)])
+
+    await _safe_create_index(db["scrims"], "topic")
+    await _safe_create_index(db["scrims"], "difficulty")
+    await _safe_create_index(db["scrims"], "language")
+    await _safe_create_index(db["scrims"], [("created_at", -1)])
+    await _safe_create_index(db["scrims"], [("topic", 1), ("difficulty", 1), ("language", 1)])
+
+    # Battles indexes
+    await _safe_create_index(db["battles"], [("player1_id", 1), ("created_at", -1)])
+    await _safe_create_index(db["battles"], [("player2_id", 1), ("created_at", -1)])
+    await _safe_create_index(db["battles"], "status")
+    await _safe_create_index(db["battles"], [("status", 1), ("created_at", -1)])
+    await _safe_create_index(db["battles"], "winner_id")
+    await _safe_create_index(db["battles"], [("winner_id", 1), ("status", 1)])
+
+    # Matchmaking queue indexes
+    await _safe_create_index(db["matchmaking_queue"], "user_id", unique=True)
+    await _safe_create_index(db["matchmaking_queue"], [("mode", 1), ("difficulty", 1), ("language", 1)])
+    await _safe_create_index(db["matchmaking_queue"], "joined_at", expireAfterSeconds=3600)
+
+    # Ranks / leaderboard cache
+    await _safe_create_index(db["ranks"], "user_id", unique=True)
+    await _safe_create_index(db["ranks"], [("honor", -1)])
+
+    # Daily challenges users indexes
+    await _safe_create_index(db["daily_challenges_users"], "user_id", unique=True)
+    await _safe_create_index(db["daily_challenges_users"], [("total_xp_earned", -1)])
+    await _safe_create_index(db["daily_challenges_users"], [("enrolled", 1), ("current_day", 1)])
+
+    # Generated projects indexes
+    await _safe_create_index(db["generated_projects"], "user_id")
+    await _safe_create_index(db["generated_projects"], [("user_id", 1), ("created_at", -1)])
+    await _safe_create_index(db["generated_projects"], "project_id", unique=True)
+
+    # User honor field index for leaderboard
+    await _safe_create_index(db["users"], [("honor", -1)])
+
+    # Learning modules indexes
+    await _safe_create_index(db["learning_modules"], "question_id", unique=True)
+    await _safe_create_index(db["learning_modules"], "difficulty")
+    await _safe_create_index(db["learning_modules"], "topic")
+    await _safe_create_index(db["learning_modules"], "company_tags")
+
+    # User learning progress indexes
+    await _safe_create_index(db["user_learning_progress"], [("user_id", 1), ("module_id", 1)], unique=True)
+    await _safe_create_index(db["user_learning_progress"], "user_id")
+    await _safe_create_index(db["user_learning_progress"], "completed_at")
+
+    await _safe_create_index(db["interview_bookings"], "user_id")
+    await _safe_create_index(db["interview_bookings"], [("user_id", 1), ("scheduled_at", -1)])
+    await _safe_create_index(db["interview_bookings"], "status")
+    await _safe_create_index(db["interview_bookings"], [("user_id", 1), ("status", 1)])
+    await _safe_create_index(db["interview_bookings"], [("user_id", 1), ("scheduled_at", 1), ("status", 1)])
+
+    # Language learning path indexes
+    await _safe_create_index(db["language_modules"], "language_id")
+    await _safe_create_index(db["language_modules"], [("language_id", 1), ("module_index", 1)], unique=True)
+    await _safe_create_index(db["language_modules"], "difficulty")
+    await _safe_create_index(db["language_modules"], [("language_id", 1), ("tier", 1)])
+
+    await _safe_create_index(db["language_levels"], "language_id")
+    await _safe_create_index(db["language_levels"], [("language_id", 1), ("level", 1)], unique=True)
+
+    await _safe_create_index(db["language_progress"], [("user_id", 1), ("language_id", 1)], unique=True)
+    await _safe_create_index(db["language_progress"], "user_id")
+    await _safe_create_index(db["language_progress"], "language_id")
+
+    # Content modules + assignments indexes
+    await _safe_create_index(db["content_modules"], [("order", 1)])
+    await _safe_create_index(db["content_modules"], "category")
+    await _safe_create_index(db["content_modules"], "difficulty")
+
+    await _safe_create_index(db["assignments"], [("created_at", -1)])
+    await _safe_create_index(db["assignments"], "assigned_to")
+    await _safe_create_index(db["assignments"], "content_id")
+
+    await _safe_create_index(db["assignment_submissions"], [("assignment_id", 1), ("user_id", 1)], unique=True)
+    await _safe_create_index(db["assignment_submissions"], "user_id")
+    await _safe_create_index(db["assignment_submissions"], "assignment_id")
+    await _safe_create_index(db["assignment_submissions"], "status")
+    await _safe_create_index(db["assignment_submissions"], [("assignment_id", 1), ("status", 1)])
+
+    # Campus Wars indexes
+    await _safe_create_index(db["campus_profiles"], "user_id", unique=True)
+    await _safe_create_index(db["campus_profiles"], "month")
+    await _safe_create_index(db["campus_profiles"], [("college", 1), ("month", 1)])
+    await _safe_create_index(db["campus_leaderboard"], [("college", 1), ("month", 1)], unique=True)
+    await _safe_create_index(db["campus_leaderboard"], [("month", 1), ("points", -1)])
+    await _safe_create_index(db["campus_leaderboard"], "points")
+    await _safe_create_index(db["campus_winners"], "month", unique=True)
+    await _safe_create_index(
+        db["campus_events"],
+        "month",
+        unique=True,
+        partialFilterExpression={"kind": "campus_event"},
+    )
+
+    # College Network indexes (reuses campus_profiles / campus_events)
+    await _safe_create_index(db["campus_profiles"], [("college", 1), ("branch", 1), ("year", 1)])
+    await _safe_create_index(db["campus_events"], [("college", 1), ("created_at", -1)])
+
+    # Game events indexes
+    await _safe_create_index(db["daily_boss"], "date", unique=True)
+    await _safe_create_index(db["daily_boss_damage"], [("boss_id", 1), ("user_id", 1)])
+    await _safe_create_index(db["daily_boss_claims"], [("boss_id", 1), ("user_id", 1)], unique=True)
+    await _safe_create_index(db["seasons"], "season_number", unique=True)
+    await _safe_create_index(db["season_xp"], [("season_id", 1), ("user_id", 1)], unique=True)
+    await _safe_create_index(db["season_xp"], [("season_id", 1), ("xp", -1)])
+    await _safe_create_index(db["combos"], "user_id", unique=True)
+
+    # Placement Times — daily newspaper editions (2 docs/day: edition + snapshot)
+    await _safe_create_index(db["newspaper"], [("date", 1), ("kind", 1)], unique=True)
+    await _safe_create_index(db["newspaper"], [("created_at", -1)])
+
+    # Daily Lucky Wheel — one doc per user (unique), date field tracks today's spin
+    await _safe_create_index(db["lucky_spins"], "user_id", unique=True)
+    await _safe_create_index(db["lucky_spins"], [("user_id", 1), ("date", 1)])
+
+    # Chat messages — TTL 7 days keeps storage bounded on the 500MB cluster
+    await _safe_create_index(db["chat_messages"], "created_at", expireAfterSeconds=604800)
+    await _safe_create_index(db["chat_messages"], [("room_type", 1), ("room_id", 1), ("created_at", -1)])
+
+    # Shareable achievements TTL (cards expire after 30 days)
+    await _safe_create_index(db["shares"], [("user_id", 1), ("date", 1)], unique=True)
+    await _safe_create_index(db["shares"], [("created_at", -1)], expireAfterSeconds=604800)
+
+    # Campus Pulse TTL (battles auto-expire after 48 hours)
+    await _safe_create_index(db["pulse_battles"], [("created_at", -1)], expireAfterSeconds=172800)
+    await _safe_create_index(db["pulse_battles"], [("campus_a", 1), ("campus_b", 1)])
+
+    # Pulse daily TTL (1 doc/user/day, expires after 7 days)
+    await _safe_create_index(db["pulse_daily"], [("user_id", 1), ("date", 1)], unique=True)
+    await _safe_create_index(db["pulse_daily"], [("created_at", -1)], expireAfterSeconds=604800)
+
+    # Trending engagement TTL (1 doc/user/question/day, expires after 7 days)
+    await _safe_create_index(db["trending_engagement"], [("user_id", 1), ("question_id", 1), ("date", 1)], unique=True)
+    await _safe_create_index(db["trending_engagement"], [("created_at", -1)], expireAfterSeconds=259200)
+
+    # Client-side error logs — auto-cleanup after 30 days
+    await _safe_create_index(db["debug_logs"], [("created_at", -1)])
+    await _safe_create_index(db["debug_logs"], [("created_at", 1)], expireAfterSeconds=60 * 60 * 24 * 30)
 
     logger.info("Database indexes created successfully")
 
 
 async def close_db():
-    global _client
+    global _client, _db
     if _client:
         _client.close()
         _client = None

@@ -10,7 +10,7 @@ from app.database import curated_questions_collection
 from app.services.ai import chat_completion, parse_json
 from app.services.code_executor import CodeExecutionEngine
 
-router = APIRouter(prefix="/api/ai-debugger", tags=["ai-debugger"])
+router = APIRouter(prefix="/api/v1/ai-debugger", tags=["ai-debugger"])
 engine = CodeExecutionEngine()
 
 

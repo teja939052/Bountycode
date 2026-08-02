@@ -12,7 +12,7 @@ from app.database import (
     playlists_collection
 )
 
-router = APIRouter(prefix="/api/playlists", tags=["playlists"])
+router = APIRouter(prefix="/api/v1/playlists", tags=["playlists"])
 
 # Pre-defined curated playlists
 CURATED_PLAYLISTS = [

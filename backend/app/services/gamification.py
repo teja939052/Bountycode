@@ -1,8 +1,12 @@
 from datetime import datetime, timezone, timedelta
-from app.database import users_collection, gamification_collection
+from app.database import users_collection, gamification_collection, get_client
 from bson import ObjectId
 import math
+import logging
 
+logger = logging.getLogger(__name__)
+
+# Activity types that auto-record a milestone on the placement timeline.
 
 # ─── Placement Tower: Level titles ───
 TOWER_TITLES = {
@@ -373,31 +377,65 @@ async def record_practice(user_id: str, activity_type: str, score: float = 0, me
     if streak_frozen_today:
         update_ops["$set"]["streak_freezes"] = streak_freezes
 
-    await gamification_collection.update_one({"user_id": user_id}, update_ops)
+    # ─── Transactional multi-step write ───
+    # Wraps: activity update + level recalc + challenge progress in a
+    # MongoDB transaction for atomicity on replica-set deployments.
+    try:
+        client = get_client()
+        async with client.start_session() as session:
+            async with session.start_transaction():
+                # 1. Record activity (streak, XP, coins, counters)
+                coll = gamification_collection()
+                await coll.update_one({"user_id": user_id}, update_ops, session=session)
 
-    # ─── Update challenge progress ───
-    await _update_challenge_progress(user_id, activity_type, score, new_streak, new_level)
+                # 2. Re-read profile within transaction for consistent level calc
+                profile = await coll.find_one({"user_id": user_id}, session=session)
+                old_level = profile.get("level", 1)
+                new_level = _calculate_level(profile.get("xp", 0))
+                level_up = new_level != old_level
+
+                if level_up:
+                    await coll.update_one(
+                        {"user_id": user_id},
+                        {"$set": {"level": new_level}},
+                        session=session,
+                    )
+                    outfit = get_wizard_outfit(new_level)
+                    await coll.update_one(
+                        {"user_id": user_id},
+                        {"$set": {"wizard_outfit": outfit["name"]}},
+                        session=session,
+                    )
+
+                # 3. Update challenge progress inside the same transaction
+                await _update_challenge_progress_tx(
+                    user_id, activity_type, score, new_streak, new_level, session
+                )
+    except Exception as exc:
+        logger.warning(
+            f"Gamification transaction failed, falling back to atomic writes: {exc}"
+        )
+        # ── Fallback: same logic without transactions (standalone mongod) ──
+        await gamification_collection.update_one({"user_id": user_id}, update_ops)
+        profile = await gamification_collection.find_one({"user_id": user_id})
+        old_level = profile.get("level", 1)
+        new_level = _calculate_level(profile.get("xp", 0))
+        level_up = new_level != old_level
+
+        if level_up:
+            await gamification_collection.update_one(
+                {"user_id": user_id},
+                {"$set": {"level": new_level}},
+            )
+            outfit = get_wizard_outfit(new_level)
+            await gamification_collection.update_one(
+                {"user_id": user_id},
+                {"$set": {"wizard_outfit": outfit["name"]}},
+            )
+        await _update_challenge_progress(user_id, activity_type, score, new_streak, new_level)
 
     # Check for new badges
     new_badges = await _check_badges(user_id, activity_type, score, new_streak)
-
-    # Recalculate level
-    profile = await gamification_collection.find_one({"user_id": user_id})
-    old_level = profile.get("level", 1)
-    new_level = _calculate_level(profile.get("xp", 0))
-    level_up = new_level != old_level
-
-    if level_up:
-        await gamification_collection.update_one(
-            {"user_id": user_id},
-            {"$set": {"level": new_level}},
-        )
-        # Update wizard outfit
-        outfit = get_wizard_outfit(new_level)
-        await gamification_collection.update_one(
-            {"user_id": user_id},
-            {"$set": {"wizard_outfit": outfit["name"]}},
-        )
 
     # Check if current level is a boss level
     boss_level = new_level if new_level % 10 == 0 and new_level <= 100 else None
@@ -580,6 +618,100 @@ async def _check_badges(user_id: str, activity_type: str, score: float, streak: 
             )
 
     return [BADGES[b] for b in new_badges if b in BADGES]
+
+
+async def _update_challenge_progress_tx(
+    user_id: str,
+    activity_type: str,
+    score: float,
+    streak: int,
+    level: int,
+    session,
+):
+    """Transaction-aware version of _update_challenge_progress.
+
+    Accepts a ``motor`` session object so it participates in the caller's
+    transaction.  Reads and writes are routed through the session to ensure
+    snapshot-level isolation.
+    """
+    coll = gamification_collection()
+    profile = await coll.find_one({"user_id": user_id}, session=session)
+    if not profile:
+        return
+
+    now = datetime.now(timezone.utc)
+    week_num = now.isocalendar()[1]
+    month_key = f"{now.year}-{now.month}"
+
+    if profile.get("challenge_week") != week_num and profile.get("challenge_month") != month_key:
+        return
+
+    weekly = profile.get("weekly_challenges", [])
+    monthly = profile.get("monthly_challenges", [])
+    updated = False
+
+    for ch in weekly:
+        if ch.get("completed"):
+            continue
+        metric = ch.get("metric", "")
+        if metric == "problems_solved" and activity_type in ("question_bank", "coding"):
+            ch["progress"] = ch.get("progress", 0) + 1
+            if ch["progress"] >= ch["target"]:
+                ch["completed"] = True
+            updated = True
+        elif metric == "streak" and streak >= ch["target"]:
+            ch["progress"] = streak
+            ch["completed"] = True
+            updated = True
+        elif metric == "aptitude_90plus" and activity_type == "aptitude" and score >= 90:
+            ch["progress"] = ch.get("progress", 0) + 1
+            if ch["progress"] >= ch["target"]:
+                ch["completed"] = True
+            updated = True
+        elif metric == "interviews" and activity_type == "interview":
+            ch["progress"] = ch.get("progress", 0) + 1
+            if ch["progress"] >= ch["target"]:
+                ch["completed"] = True
+            updated = True
+        elif metric == "hard_solved" and activity_type in ("question_bank", "coding") and score >= 8:
+            ch["progress"] = ch.get("progress", 0) + 1
+            if ch["progress"] >= ch["target"]:
+                ch["completed"] = True
+            updated = True
+
+    for ch in monthly:
+        if ch.get("completed"):
+            continue
+        metric = ch.get("metric", "")
+        if metric == "problems_solved" and activity_type in ("question_bank", "coding"):
+            ch["progress"] = ch.get("progress", 0) + 1
+            if ch["progress"] >= ch["target"]:
+                ch["completed"] = True
+            updated = True
+        elif metric == "level" and level >= ch["target"]:
+            ch["progress"] = level
+            ch["completed"] = True
+            updated = True
+        elif metric == "interviews" and activity_type == "interview":
+            ch["progress"] = ch.get("progress", 0) + 1
+            if ch["progress"] >= ch["target"]:
+                ch["completed"] = True
+            updated = True
+        elif metric == "streak" and streak >= ch["target"]:
+            ch["progress"] = streak
+            ch["completed"] = True
+            updated = True
+
+    if updated:
+        update_ops = {}
+        if weekly:
+            update_ops["weekly_challenges"] = weekly
+        if monthly:
+            update_ops["monthly_challenges"] = monthly
+        if update_ops:
+            await coll.update_one(
+                {"user_id": user_id}, {"$set": update_ops}, session=session
+            )
 
 
 async def _update_challenge_progress(user_id: str, activity_type: str, score: float, streak: int, level: int):
@@ -990,3 +1122,64 @@ async def get_leaderboard(limit: int = 10) -> list:
         })
 
     return leaderboard
+
+
+async def claim_daily_bonus(user_id: str) -> dict:
+    now = datetime.now(timezone.utc)
+    today = now.strftime("%Y-%m-%d")
+
+    profile = await gamification_collection.find_one({"user_id": user_id})
+    if not profile:
+        profile = await initialize_gamification(user_id)
+
+    last_bonus = profile.get("last_daily_bonus_date")
+    if last_bonus and last_bonus == today:
+        return {
+            "claimed": False,
+            "xp_bonus": 0,
+            "streak_bonus": 0,
+            "badge_unlocked": None,
+            "message": "Already claimed today",
+        }
+
+    import random
+    xp_bonus = 10
+    streak = profile.get("streak", 0)
+    streak_bonus = 0
+
+    if streak >= 30:
+        streak_bonus = 200
+    elif streak >= 7:
+        streak_bonus = 50
+
+    badge_unlocked = None
+    if random.random() < 0.1:
+        badge_id = f"daily_bonus_{random.randint(1, 100)}"
+        badge_unlocked = {
+            "id": badge_id,
+            "name": "Lucky Streak",
+            "description": "Unlocked from daily bonus!",
+            "icon": "🍀",
+        }
+        badges = profile.get("badges", [])
+        badges.append({**badge_unlocked, "earned_at": now.isoformat()})
+        await gamification_collection.update_one(
+            {"user_id": user_id},
+            {"$set": {"badges": badges}}
+        )
+
+    total_xp = xp_bonus + streak_bonus
+    await gamification_collection.update_one(
+        {"user_id": user_id},
+        {
+            "$set": {"last_daily_bonus_date": today},
+            "$inc": {"xp": total_xp},
+        }
+    )
+
+    return {
+        "claimed": True,
+        "xp_bonus": xp_bonus,
+        "streak_bonus": streak_bonus,
+        "badge_unlocked": badge_unlocked,
+    }

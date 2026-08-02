@@ -13,7 +13,7 @@ from app.data.indian_companies import (
     INDIAN_COMPANIES, get_all_companies, get_company_detail, get_company_mock_sections
 )
 
-router = APIRouter(prefix="/api/indian-placement", tags=["indian-placement"])
+router = APIRouter(prefix="/api/v1/indian-placement", tags=["indian-placement"])
 
 
 @router.get("/companies")

@@ -10,7 +10,7 @@ from app.database import (
     question_answers_collection, users_collection
 )
 
-router = APIRouter(prefix="/api/dashboard", tags=["personal-dashboard"])
+router = APIRouter(prefix="/api/v1/dashboard", tags=["personal-dashboard"])
 
 
 @router.get("/personal")

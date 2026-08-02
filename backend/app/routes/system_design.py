@@ -9,7 +9,7 @@ from app.services.usage import check_and_reset_monthly_usage, can_use_feature
 from app.config import get_settings
 from bson import ObjectId
 
-router = APIRouter(prefix="/api/system-design", tags=["system-design"])
+router = APIRouter(prefix="/api/v1/system-design", tags=["system-design"])
 settings = get_settings()
 
 

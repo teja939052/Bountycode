@@ -101,3 +101,22 @@ async def delete_application(user_id: str, application_id: str) -> dict:
         return {"success": False, "message": "Application not found"}
     except Exception:
         return {"success": False, "message": "Invalid application ID"}
+
+
+class ApplicationTracker:
+    """Class wrapper around module-level functions for backward compatibility."""
+
+    async def create_application(self, user_id, company, role, job_url="", notes=""):
+        return await create_application(user_id, company, role, job_url, notes)
+
+    async def get_user_pipeline(self, user_id):
+        return await get_application_pipeline(user_id)
+
+    async def update_stage(self, application_id, new_stage, user_id):
+        return await update_application_stage(user_id, application_id, new_stage)
+
+    async def get_stats(self, user_id):
+        return await get_application_stats(user_id)
+
+    async def delete_application(self, application_id, user_id):
+        return await delete_application(user_id, application_id)

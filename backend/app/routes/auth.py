@@ -23,7 +23,7 @@ from app.services.usage import check_and_reset_monthly_usage, get_usage_stats
 
 logger = logging.getLogger(__name__)
 
-router = APIRouter(prefix="/api/auth", tags=["auth"])
+router = APIRouter(prefix="/api/v1/auth", tags=["auth"])
 
 
 class ForgotPasswordRequest(BaseModel):
@@ -193,3 +193,37 @@ async def reset_password(req: ResetPasswordRequest):
     )
 
     return {"message": "Password reset successful. You can now log in."}
+
+
+class OnboardingData(BaseModel):
+    klass: Optional[str] = None
+    target_companies: list = []
+    skill_self_assessment: dict = {}
+
+
+@router.get("/onboarding-status")
+async def onboarding_status(user=Depends(get_current_user)):
+    from bson import ObjectId
+    db_user = await users_collection.find_one({"_id": ObjectId(user["id"])})
+    onboarding = db_user.get("onboarding", {}) if db_user else {}
+    return {
+        "completed": onboarding.get("completed", False),
+        "class": onboarding.get("class"),
+    }
+
+
+@router.post("/onboarding-complete")
+async def onboarding_complete(req: OnboardingData, user=Depends(get_current_user)):
+    from bson import ObjectId
+    onboarding = {
+        "completed": True,
+        "class": req.klass,
+        "target_companies": req.target_companies,
+        "skill_self_assessment": req.skill_self_assessment,
+        "completed_at": datetime.now(timezone.utc),
+    }
+    await users_collection.update_one(
+        {"_id": ObjectId(user["id"])},
+        {"$set": {"onboarding": onboarding}}
+    )
+    return {"status": "ok", "onboarding": onboarding}

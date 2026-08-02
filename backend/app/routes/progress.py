@@ -11,7 +11,7 @@ from app.database import (
     submissions_collection, gamification_collection
 )
 
-router = APIRouter(prefix="/api/progress", tags=["progress"])
+router = APIRouter(prefix="/api/v1/progress", tags=["progress"])
 
 
 @router.get("/heatmap")

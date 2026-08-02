@@ -1,6 +1,6 @@
-# FUTURE.md — PlacementPro $1M ARR Roadmap
+# FUTURE.md — PlacementPro $2M ARR Roadmap
 
-> From $0 to $1M annual recurring revenue as a solo founder, built with MimoCode.
+> From $0 to $2M annual recurring revenue as a solo founder, built with MimoCode.
 
 ---
 

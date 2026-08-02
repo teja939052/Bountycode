@@ -4,7 +4,7 @@ from typing import Optional
 from app.middleware.auth import get_current_user
 from app.services.ai_feedback import sentence_level_feedback
 
-router = APIRouter(prefix="/api/feedback", tags=["ai-feedback"])
+router = APIRouter(prefix="/api/v1/feedback", tags=["ai-feedback"])
 
 
 class SentenceFeedbackRequest(BaseModel):

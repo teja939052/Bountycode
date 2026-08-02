@@ -23,7 +23,7 @@ from app.database import (
     gamification_collection,
 )
 
-router = APIRouter(prefix="/api/practice", tags=["practice"])
+router = APIRouter(prefix="/api/v1/practice", tags=["practice"])
 settings = get_settings()
 engine = PlacementEngine()
 

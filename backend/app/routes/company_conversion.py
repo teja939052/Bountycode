@@ -13,7 +13,7 @@ from app.services.usage import check_and_reset_monthly_usage
 from app.services.placement_engine import PlacementEngine
 from app.config import get_settings
 
-router = APIRouter(prefix="/api/placement", tags=["placement-conversion"])
+router = APIRouter(prefix="/api/v1/placement", tags=["placement-conversion"])
 settings = get_settings()
 engine = PlacementEngine()
 

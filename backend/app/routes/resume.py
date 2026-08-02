@@ -14,7 +14,7 @@ from app.config import get_settings
 from bson import ObjectId
 from fastapi.responses import StreamingResponse
 
-router = APIRouter(prefix="/api/resume", tags=["resume"])
+router = APIRouter(prefix="/api/v1/resume", tags=["resume"])
 settings = get_settings()
 
 
@@ -99,7 +99,9 @@ async def generate_resume(req: GenerateResume, user=Depends(get_current_user)):
             detail=f"Free tier limit reached ({settings.FREE_TIER_RESUME_LIMIT} resumes). Upgrade to Pro.",
         )
 
-    content = await generate_resume_content(req.model_dump())
+    content = await generate_resume_content(
+        req.name, req.email, req.target_role, req.experience, req.education, req.skills
+    )
 
     resume_doc = {
         "user_id": user["id"],

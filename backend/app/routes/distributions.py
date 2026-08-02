@@ -12,7 +12,7 @@ from app.database import (
     solved_problems_collection
 )
 
-router = APIRouter(prefix="/api/distributions", tags=["distributions"])
+router = APIRouter(prefix="/api/v1/distributions", tags=["distributions"])
 
 
 @router.get("/runtime/{question_id}")

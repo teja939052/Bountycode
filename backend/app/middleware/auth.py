@@ -5,6 +5,7 @@ from jose import JWTError, jwt
 from passlib.context import CryptContext
 from fastapi import Depends, HTTPException, Request, Response, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from fastapi import WebSocket
 from app.config import get_settings
 from app.database import users_collection
 from app.services.cache import cache
@@ -37,14 +38,23 @@ class PasswordValidator:
         return True, "Password is valid"
 
 
+import bcrypt
+
 def hash_password(password: str) -> str:
     """Hash a password using bcrypt."""
-    return pwd_context.hash(password)
+    pwd_bytes = password.encode('utf-8')[:72]
+    salt = bcrypt.gensalt()
+    return bcrypt.hashpw(pwd_bytes, salt).decode('utf-8')
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     """Verify a password against its hash."""
-    return pwd_context.verify(plain_password, hashed_password)
+    pwd_bytes = plain_password.encode('utf-8')[:72]
+    hash_bytes = hashed_password.encode('utf-8')
+    try:
+        return bcrypt.checkpw(pwd_bytes, hash_bytes)
+    except Exception:
+        return False
 
 
 def create_access_token(user_id: str) -> str:
@@ -79,6 +89,42 @@ def decode_token(token: str) -> Dict[str, Any]:
     except JWTError as e:
         logger.warning(f"JWT decode error: {e}")
         raise HTTPException(status_code=401, detail="Invalid or expired token")
+
+
+async def _user_from_payload(payload: Dict[str, Any]) -> Dict[str, Any]:
+    """Fetch a user doc from an authenticated payload, or raise 401."""
+    if payload.get("type") != "access":
+        raise HTTPException(status_code=401, detail="Invalid token type")
+    user_id = payload.get("user_id")
+    if not user_id:
+        raise HTTPException(status_code=401, detail="Invalid token payload")
+    try:
+        user = await users_collection().find_one({"_id": ObjectId(user_id)})
+    except Exception:
+        raise HTTPException(status_code=401, detail="Invalid user ID")
+    if not user:
+        raise HTTPException(status_code=401, detail="User not found")
+    user["id"] = str(user["_id"])
+    if "password_hash" in user:
+        user["password_hash"] = None
+    return user
+
+
+async def get_current_user_ws(
+    websocket: WebSocket,
+    token: Optional[str] = None,
+) -> Dict[str, Any]:
+    """Authenticate a WebSocket connection from a query `token` param or the
+    `pp_token` cookie. Returns the user dict or raises a 401 HTTPException
+    (callers convert to close codes)."""
+    raw = token
+    if not raw:
+        cookies = websocket.cookies
+        raw = cookies.get(COOKIE_NAME)
+    if not raw:
+        raise HTTPException(status_code=401, detail="Missing token")
+    payload = decode_token(raw)
+    return await _user_from_payload(payload)
 
 
 def set_auth_cookie(response: Response, token: str):

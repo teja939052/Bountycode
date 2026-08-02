@@ -2,183 +2,291 @@
 
 ## Project Overview
 
-**PlacementPro** is an AI-powered placement preparation platform targeting job seekers (students + experienced professionals). It offers **15+ core features**:
+**PlacementPro** is an AI-powered placement preparation platform targeting job seekers (students + experienced professionals). It offers **50+ core features** across placement prep, gamified learning, and career development.
 
-### Core Features
+### Core Features (15 Original + 35+ Expanded)
 1. **AI Interviewer** — Mock interviews with AI that asks questions, evaluates answers, and gives feedback
 2. **System Design Practice** — System design interviews with AI evaluation of architecture, scalability, and trade-offs
 3. **Coding Challenges** — Timed coding problems with solutions and follow-up challenges
 4. **LeetCode-Style Compiler** — Full code execution environment with Monaco Editor, test cases, and hidden judge
-5. **Company-Specific Prep** — FAANG interview guides, leadership principles, and behavioral questions
+5. **Company-Specific Prep** — 53+ company prep with FAANG leadership principles, behavioral questions
 6. **Resume Builder/Analyzer** — Upload existing resume or generate new one with AI
-7. **ATS Score Optimizer** — Match resume to job descriptions, identify missing keywords, rewrite for ATS compatibility
+7. **ATS Score Optimizer** — Match resume to job descriptions, identify missing keywords, rewrite for ATS
 8. **Aptitude Test Practice** — Quantitative, logical, verbal, technical MCQs for campus placements
 9. **Cover Letter & LinkedIn** — AI-generated cover letters and LinkedIn About sections
-10. **Salary Benchmark** — Market rate data, percentile breakdowns, and company comparisons
+10. **Salary Benchmark** — Market rate data, percentile breakdowns, company comparisons
 11. **Salary Negotiation Coach** — AI-powered tips and scripts for negotiating offers
+12. **Question Bank** — 100+ curated problems with visible/hidden test cases, company/topic filters
+13. **Learning Hub** — Duolingo-style step-by-step coding lessons across 7 languages
+14. **Gamification System** — XP, levels (1-100), streaks, badges, tower progression, power-ups, boss battles
+15. **Daily Challenges** — Adaptive daily missions with leaderboards and rewards
+16. **Mock Interviews** — Scheduled mock interviews with booking system
+17. **Career Profile** — User career profile with skills, experience, portfolio
+18. **Application Tracker** — Track job applications with status management
+19. **Placement Drives** — upcoming campus placement drives with deadlines and tiers
+20. **Alumni Experiences** — Peer interview experiences and company insights
+21. **AI Debugger** — AI-powered code debugging and error explanation
+22. **DSA Fingerprint** — Personalized DSA skill assessment and gap analysis
+23. **Visualizations** — Algorithm visualizations (sorting, graph, DP, etc.)
+24. **Scrims** — Scrimba-style screencasts for learning
+25. **1v1 Battles** — Competitive coding battles with matchmaking queue
+26. **Community** — Study groups, discussions, peer accountability
+27. **Project Generator** — AI-generated complete projects from descriptions
+28. **Code Review** — AI-powered project code review with actionable feedback
+29. **Adaptive Learning** — AI-driven personalized learning paths
+30. **Rank System** — Honor/Kyu-Dan ranking system with leaderboards
+31. **Monthly Contests** — Competitive contests with prizes
+32. **Challenge Packs** — Curated problem packs by topic/difficulty
+33. **Energy System** — Daily energy for limiting practice sessions
+34. **Mystery Boxes** — Random rewards (XP, streak freeze, badges)
+35. **Onboarding Quest** — Guided onboarding with skill self-assessment
+36. **Free Practice** — 3-question quick interview, instant evaluations
+37. **Trial System** — Feature trials for Pro features
+38. **Student Discounts** — Discount codes for students
+39. **Enterprise** — Enterprise plan with admin dashboard
+40. **Analytics** — Admin analytics dashboard with metrics
+41. **AI Feedback** — Real-time AI-powered answer feedback
+42. **Concept Explanations** — Learn coding concepts at beginner/intermediate/expert levels
+43. **Language Learning Paths** — 7 languages x 100 levels x 80 modules
+44. **Learning Journeys** — Structured learning paths with progress tracking
+45. **Learning Modules** — Step-by-step coding lessons
+46. **Interview Booking** — Schedule mock interviews with specific companies
+47. **Company Mock Tests** — Company-specific mock test series
+48. **Distributions** — Salary distribution comparisons
+49. **Features** — Feature comparison and upsell
+50. **PWA** — Progressive Web App with install prompt
 
-### Enhanced Features (Student-Requested)
-12. **Resume Bullet Improver** — Transform weak bullets into powerful, ATS-friendly statements
-13. **ATS Formatting Checklist** — Analyze resume for common ATS pitfalls
-14. **Resume Tailoring** — Auto-tailor resume for specific job descriptions
-15. **Company-Specific Coding** — Coding challenges in the style of Google, Amazon, TCS, etc.
-16. **Mock Interviewer Feedback** — Real-time code evaluation like a live interviewer
-17. **STAR Method Evaluation** — Behavioral answers scored on Situation, Task, Action, Result
-18. **Progressive Hints** — Get unstuck without seeing the full solution
-19. **Code Concept Explanations** — Learn concepts at beginner, intermediate, or expert level
-20. **Profile Sidebar** — Avatar, solved count, streak, skill graph, badges, activity heatmap, integrations
-21. **Problem Solving Flow** — `/solve/:id` with left-panel problem description + right-panel Monaco compiler
-
-**Target users:** 
+## Target Users
 - **Indian students:** Campus placement preparation (TCS, Infosys, Wipro, etc.) with aptitude tests
 - **US/Global job seekers:** Behavioral interviews, resume optimization, salary negotiation, system design
 - **Professionals:** Career changers, job switchers, FAANG aspirants
 
-**Business model:** Freemium (Free + Pro $9/mo + Lifetime $39 one-time). Free tier resets monthly:
-- 3 interviews/month + 3 resume reviews/month + 5 aptitude tests/month + 3 cover letters/month
+## Business Model
+Freemium (Free + Pro $9/mo + Lifetime $39 one-time). Free tier resets monthly with extensive limits.
 
 **Built with:** MimoCode (AI coding assistant). Includes a LeetCode-style coding compiler with Monaco Editor and Piston API execution engine.
 
 ---
 
-## Advanced Features (World-Class)
+## Architecture
 
-### AI Reliability
-- **In-memory caching** — AI responses cached for 1 hour (reduces cost, improves speed)
-- **Fallback models** — Primary: Gemini Flash → Fallback: Llama 3.1, Phi-3 Mini
-- **Circuit breaker** — Auto-switches to fallback if primary fails 5+ times
+### Backend (FastAPI + MongoDB + Motor)
+- **65 route files** — 100+ API endpoints organized by feature
+- **51 service files** — Business logic, AI, execution, analytics
+- **50+ MongoDB collections** — Each feature has its own collection
+- **Async throughout** — All routes use `async def` with `motor` async driver
+
+### Frontend (React 18 + Vite 5 + Tailwind 3)
+- **70 pages** (lazy-loaded with `React.lazy()` for code splitting)
+- **41 components** (UI, layout, gamification, animations)
+- **20+ API modules** aggregated in `services/api/index.js`
+- **Zustand** for global auth state only
+- **Framer Motion** for page transitions and celebrations
+- **Monaco Editor** for code editing
+
+### AI Layer
+- **OpenRouter → Gemini 2.0 Flash** as primary model
+- **4 fallback models** (Llama 3.1, Phi-3 Mini, DeepSeek) with circuit breaker protection
+- **In-memory + Redis caching** (1-hour TTL for AI responses)
 - **Retry logic** — 3 retries with exponential backoff
-
-### Gamification
-- **XP system** — Earn XP for every activity (interviews, coding, aptitude)
-- **Levels** — Level up based on XP (exponential curve)
-- **Streaks** — Daily practice streaks with rewards
-- **Badges** — 20+ achievement badges (First Steps, Interview Master, ATS Master, etc.)
-- **Leaderboard** — Compete with other users
-
-### Skill Assessment
-- **Skill graph** — Track proficiency across 5 categories (DSA, System Design, Behavioral, Aptitude, Resume)
-- **Weak area detection** — Identify and prioritize weak skills
-- **Readiness score** — Company-specific interview readiness percentage
-- **Personalized recommendations** — AI-driven improvement suggestions
-
-### Hook Model (Addictive Mechanics)
-- **Mystery boxes** — Random rewards after completing activities (XP, streak freeze, badges)
-- **Double XP triggers** — Variable rewards for perfect scores, streaks, early birds
-- **Streak freeze** — Protect streaks when life happens
-- **Savage feedback** — Engaging, memorable feedback that's fun to read
-- **Daily bonuses** — Comeback rewards for returning users
-- **Social proof** — Leaderboards, study groups, contests
-
-### Social Features
-- **Study groups** — Form prep squads with friends
-- **Monthly contests** — Compete for prizes and bragging rights
-- **Peer accountability** — See group members' progress
-
-### Free Practice Hook
-- **Quick interview** — 3-question practice session (no quota consumed)
-- **Quick evaluate** — Instant feedback on answers
-- **Upgrade prompt** — Clear path to Pro for full features
-
----
-
-## Tech Stack
-
-| Layer | Technology | Notes |
-|-------|-----------|-------|
-| Frontend | React 18 + Vite 5 + Tailwind 3 | SPA, deployed to Vercel |
-| Backend | FastAPI (Python 3.11+) | Async, deployed to Render |
-| Database | MongoDB Atlas (free tier, 512MB) | Motor async driver |
-| AI | OpenRouter → Gemini 2.0 Flash | Cheapest model (~$0.07/1M tokens) |
-| Auth | JWT (python-jose + passlib/bcrypt) | 7-day expiry, httpOnly cookie |
-| Payments | PayPal REST API | Checkout orders + webhooks |
-| PDF parsing | PyMuPDF (fitz) | Extract text from uploaded PDFs |
-| DOCX export | python-docx | ATS-safe single-column format |
-| PDF export | PyMuPDF | ATS-safe formatting |
-| Code Execution | Piston API | Dockerized sandbox, 11+ languages, <500ms cold start |
-| Editor | Monaco Editor | VS Code-like editing experience in browser |
-| Animations | Framer Motion | Page transitions, confetti, micro-interactions |
-| Icons | Lucide React | Consistent icon set across UI |
-
-**Total hosting cost: $0 upfront** (all free tiers). AI costs start at ~$5/mo once users arrive.
+- **1,827 lines** of AI prompts in `services/ai.py`
 
 ---
 
 ## Project Structure
-
 ```
 placementpro/
 ├── backend/
 │   ├── app/
-│   │   ├── main.py              # FastAPI app, CORS, lifespan, rate limiter, routes
-│   │   ├── config.py            # Pydantic Settings (all env vars)
-│   │   ├── database.py          # Motor client, collection refs, init_db()
+│   │   ├── main.py              # FastAPI app, lifespan, middleware, 65+ routers
+│   │   ├── config.py            # Pydantic Settings (all env vars, 50+ settings)
+│   │   ├── database.py          # Motor client, 50+ collection refs, init_db()
 │   │   ├── models/
-│   │   │   ├── user.py          # UserCreate, UserLogin, UserResponse, UserInDB
+│   │   │   ├── user.py          # UserCreate, UserLogin, UserInDB
 │   │   │   ├── interview.py     # StartInterview, SubmitAnswer, QARecord
-│   │   │   ├── resume.py        # GenerateResume, OptimizeRequest
-│   │   │   └── aptitude.py      # AptitudeQuestion, AptitudeTest, StartAptitudeTest
-│   │   ├── routes/
-│   │   │   ├── auth.py          # POST register/login/logout, GET me (rate-limited)
-│   │   │   ├── interview.py     # POST start/answer, GET result/history
-│   │   │   ├── resume.py        # POST upload/generate/optimize, GET export/history
-│   │   │   ├── billing.py       # POST checkout/lifetime/capture, webhook, GET status (PayPal)
-│   │   │   ├── aptitude.py      # POST start/answer/complete, GET categories/history
-│   │   │   ├── cover_letter.py  # POST cover-letter/linkedin-about/salary-negotiation
-│   │   │   ├── compiler.py      # POST /api/compiler/execute, /execute-test-cases, /languages
-│   │   │   ├── questions.py     # GET /api/questions/{id}, /browse, /submit, /solved, stats, recent
-│   │   │   └── profile_stats.py # GET /api/profile/stats, PUT /api/profile/integrations
-│   │   ├── services/
-│   │   │   ├── ai.py            # All OpenRouter AI prompts + parse_json() + retry
+│   │   │   └── resume.py        # GenerateResume, OptimizeRequest
+│   │   ├── routes/              # 65 route files
+│   │   │   ├── auth.py          # Register, login, logout, onboarding
+│   │   │   ├── interview.py     # Interview flow with follow-ups
+│   │   │   ├── resume.py        # Upload, generate, optimize, export
+│   │   │   ├── billing.py       # PayPal checkout, webhooks, status
+│   │   │   ├── aptitude.py      # Aptitude test flow
+│   │   │   ├── questions.py     # Question bank browse, submit, solve
+│   │   │   ├── gamification.py  # XP, tower, boss battles, power-ups
+│   │   │   ├── company_prep.py  # Company-specific interview prep
+│   │   │   ├── coding.py        # Coding challenges
+│   │   │   ├── compiler.py      # Piston API code execution
+│   │   │   ├── system_design.py # System design interview practice
+│   │   │   ├── salary.py        # Salary benchmark and comparison
+│   │   │   ├── cover_letter.py  # Cover letter generation
+│   │   │   ├── daily_challenge.py # Daily challenges with leaderboards
+│   │   │   ├── battles.py       # 1v1 coding battles
+│   │   │   ├── scrims.py        # Scrimba-style screencasts
+│   │   │   ├── community.py     # Study groups & discussions
+│   │   │   ├── adaptive.py      # Adaptive learning paths
+│   │   │   ├── predictor.py     # Interview prediction engine
+│   │   │   ├── readiness.py     # Interview readiness scoring
+│   │   │   ├── ai_debugger.py   # AI-powered code debugging
+│   │   │   ├── analytics.py     # User analytics
+│   │   │   ├── analytics_admin.py # Admin analytics dashboard
+│   │   │   ├── ... (40+ more route files)
+│   │   ├── services/            # 51 service files
+│   │   │   ├── ai.py            # ALL AI prompts + parse_json() + retry (1,827 lines)
+│   │   │   ├── code_executor.py # Piston API code execution engine
+│   │   │   ├── cache.py         # Unified cache (Redis → InMemory fallback)
+│   │   │   ├── circuit_breaker.py # Async CircuitBreaker for AI/compiler
+│   │   │   ├── resilience.py    # Unified retry + circuit breaker wrapper
+│   │   │   ├── gamification.py  # XP, levels, streaks, badges, tower, bosses
+│   │   │   ├── usage.py         # Monthly/daily usage tracking & limits
+│   │   │   ├── question_store.py # File-based question bank loader
+│   │   │   ├── database.py      # Database connection + collection refs
+│   │   │   ├── auth.py          # Auth middleware (JWT, cookies, plan gating)
+│   │   │   ├── rate_limiter.py  # IP rate limiting + login lockout
+│   │   │   ├── tier_middleware.py # Tier-based feature gating (free/pro/lifetime)
+│   │   │   ├── duplicate_guard.py # Duplicate request prevention
+│   │   │   ├── structured_logging.py # JSON logging with correlation IDs
+│   │   │   ├── request_metrics.py # Request metrics with MongoDB persistence
+│   │   │   ├── migrations.py    # Schema migration system
 │   │   │   ├── resume_parser.py # PyMuPDF PDF text extraction
 │   │   │   ├── export.py        # DOCX + PDF export (ATS-safe)
-│   │   │   ├── code_executor.py # Piston API code execution engine
-│   │   │   ├── profile_stats.py # Profile sidebar aggregation + integrations
-│   │   │   └── usage.py         # Monthly reset logic, feature limits, usage stats
+│   │   │   ├── ats_semantic.py  # Semantic ATS scoring
+│   │   │   ├── ats_enhanced.py  # Enhanced ATS keyword scoring
+│   │   │   ├── resume_engine.py # Resume content generation
+│   │   │   ├── resume_enhanced.py # Enhanced resume analysis
+│   │   │   ├── behavioral_engine.py # Behavioral interview evaluation
+│   │   │   ├── behavioral_enhanced.py # Enhanced STAR method evaluation
+│   │   │   ├── placement_engine.py # Placement test engine
+│   │   │   ├── placement_predictor.py # Interview prediction
+│   │   │   ├── company_conversion.py # Company data conversion
+│   │   │   ├── interview_enhanced.py # Enhanced interview flow
+│   │   │   ├── coding_engine.py # Coding challenge engine
+│   │   │   ├── coding_enhanced.py # Enhanced coding with tracing
+│   │   │   ├── code_tracer.py   # Code execution tracing
+│   │   │   ├── ai_feedback.py   # AI-powered answer feedback
+│   │   │   ├── skill_assessment.py # DSA skill graph assessment
+│   │   │   ├── smart_prompts.py # Optimized AI prompts
+│   │   │   ├── anti_plagiarism.py # Plagiarism detection
+│   │   │   ├── free_ats_tool.py # Free ATS analysis tool
+│   │   │   ├── real_ats.py      # Real ATS compatibility scoring
+│   │   │   ├── application_tracker.py # Job application tracking
+│   │   │   ├── career_profile.py # Career profile management
+│   │   │   ├── community.py     # Community features
+│   │   │   ├── social.py        # Social features
+│   │   │   ├── student_features.py # Student-specific features
+│   │   │   ├── enhanced.py      # Enhanced pro features
+│   │   │   ├── free_practice.py # Free practice mode
+│   │   │   ├── hook_model.py    # Gamification hook model
+│   │   │   ├── mystery_box.py   # Mystery box rewards
+│   │   │   ├── trial.py         # Feature trials
+│   │   │   ├── student_discount.py # Student discounts
+│   │   │   ├── enterprise.py    # Enterprise plan features
+│   │   │   ├── monetization.py  # Monetization logic
+│   │   │   ├── profiles/        # Profile sync integrations
+│   │   │   ├── learning/        # Learning path management
+│   │   │   └── ... (20+ more service files)
 │   │   └── middleware/
-│   │       ├── auth.py          # JWT creation/verification, httpOnly cookie, get_current_user
-│   │       └── rate_limiter.py  # IP rate limiting + account lockout
+│   │       ├── auth.py          # JWT creation/verification, httpOnly cookie
+│   │       ├── rate_limiter.py  # IP rate limiting + account lockout
+│   │       ├── tier_middleware.py # Tier-based feature gating
+│   │       ├── duplicate_guard.py # Duplicate request prevention
+│   │       ├── logging.py       # Request logging
+│   │       └── __init__.py
+│   ├── app/
+│   │   ├── data/                # Data files (curriculum, questions, etc.)
+│   │   ├── utils/               # Utility modules
+│   │   └── ...
 │   ├── requirements.txt
 │   └── .env.example
 ├── frontend/
 │   ├── src/
-│   │   ├── App.jsx              # Router + ErrorBoundary + route definitions
+│   │   ├── App.jsx              # Router + ErrorBoundary + 70+ lazy pages
 │   │   ├── main.jsx             # ReactDOM entry
-│   │   ├── index.css            # Tailwind base + custom classes
-│   │   ├── pages/
-│   │   │   ├── Landing.jsx      # Hero, features, how-it-works, pricing, CTA
-│   │   │   ├── Login.jsx        # Login form
-│   │   │   ├── Register.jsx     # Registration form
-│   │   │   ├── Dashboard.jsx    # Stats, usage tracking, quick actions, upgrade CTA
-│   │   │   ├── Interview.jsx    # Role selection grid
+│   │   ├── index.css            # Tailwind base + custom animations (899 lines)
+│   │   ├── pages/               # 70+ page files (lazy-loaded)
+│   │   │   ├── Landing.jsx      # Hero, features, pricing, CTA
+│   │   │   ├── Dashboard.jsx    # Stats, usage, quick actions
+│   │   │   ├── Interview.jsx    # Role/company selection
 │   │   │   ├── InterviewSession.jsx # Live interview with feedback
-│   │   │   ├── ResumeBuilder.jsx    # Upload or generate resume
-│   │   │   ├── ATSOptimizer.jsx     # 3-step: upload → paste JD → optimize
-│   │   │   ├── AptitudeTest.jsx     # Category select → timed test → results
-│   │   │   ├── CoverLetter.jsx      # Cover letter + LinkedIn About generator
+│   │   │   ├── InterviewBooking.jsx # Mock interview scheduling
+│   │   │   ├── ResumeBuilder.jsx # Upload or generate resume
+│   │   │   ├── ATSOptimizer.jsx # 3-step ATS optimization
+│   │   │   ├── AptitudeTest.jsx # Category select → timed test
+│   │   │   ├── CoverLetter.jsx  # Cover letter + LinkedIn generator
 │   │   │   ├── SalaryNegotiation.jsx # AI negotiation coaching
-│   │   │   ├── Pricing.jsx      # Pricing cards with PayPal checkout
-│   │   │   ├── Compiler.jsx     # Monaco-ready compiler with Piston execution
-│   │   │   ├── SolveProblem.jsx # Two-column: ProblemDetail + Compiler
-│   │   │   └── NotFound.jsx     # 404 page
-│   │   ├── components/
-│   │   │   ├── Navbar.jsx       # Auth-aware navigation + mobile menu
+│   │   │   ├── SalaryBenchmark.jsx # Market rate data
+│   │   │   ├── SystemDesign.jsx # System design practice
+│   │   │   ├── CompanyPrep.jsx  # Company-specific prep
+│   │   │   ├── CodingChallenge.jsx # Timed coding challenges
+│   │   │   ├── Compiler.jsx     # Monaco editor with Piston
+│   │   │   ├── SolveProblem.jsx # LeetCode-style two-column flow
+│   │   │   ├── QuestionBank.jsx # Browse/search problems
+│   │   │   ├── PracticeMode.jsx # Individual problem solving
+│   │   │   ├── DailyChallenge.jsx # Daily adaptive challenge
+│   │   │   ├── TowerDashboard.jsx # Gamification tower view
+│   │   │   ├── BattleArena.jsx  # 1v1 coding battles
+│   │   │   ├── MockOA.jsx       # Mock online assessment
+│   │   │   ├── AI Mentor.jsx    # AI mentor chat
+│   │   │   ├── LearningHub.jsx  # Learning paths hub
+│   │   │   ├── LanguageJourney.jsx # Language learning paths
+│   │   │   ├── LessonView.jsx   # Individual lesson viewer
+│   │   │   ├── LearningModules.jsx # Duolingo-style lessons
+│   │   │   ├── ProjectGenerator.jsx # AI project generation
+│   │   │   ├── DSAFingerprint.jsx # DSA skill assessment
+│   │   │   ├── DSAVisualizer.jsx # Algorithm visualizations
+│   │   │   ├── RankProfile.jsx  # Honor/Kyu-Dan rank system
+│   │   │   ├── AdminDashboard.jsx # Admin analytics
+│   │   │   ├── Community.jsx    # Community hub
+│   │   │   ├── Scrims.jsx       # Screencast viewer
+│   │   │   ├── MonthlyContests.jsx # Contest page
+│   │   │   ├── OnboardingQuest.jsx # Guided onboarding
+│   │   │   ├── PersonalDashboard.jsx # User personal dashboard
+│   │   │   ├── AdaptivePath.jsx # AI learning path
+│   │   │   ├── CardCollection.jsx # Gamification cards
+│   │   │   ├── IndianPlacement.jsx # Indian market prep
+│   │   │   ├── ... (30+ more pages)
+│   │   ├── components/          # 41 component files
+│   │   │   ├── Navbar.jsx       # Auth-aware navigation
 │   │   │   ├── Footer.jsx
-│   │   │   ├── ErrorBoundary.jsx # Catches React crashes, shows recovery UI
-│   │   │   ├── ProtectedRoute.jsx # Auth guard (redirects to /login)
-│   │   │   ├── ProblemDetail.jsx # Left-panel problem description for LeetCode flow
-│   │   │   ├── ProfileSidebar.jsx # User stats, streak, badges, heatmap, integrations
-│   │   │   ├── CelebrationOverlay.jsx # Confetti on problem solve / achievements
-│   │   │   ├── ActivityHeatmap.jsx # GitHub-style contribution calendar
-│   │   │   └── ui/              # Button, Input, Card, Modal, Spinner, Skeleton
-│   │   ├── services/
-│   │   │   └── api.js           # All API calls (cookie-based auth, credentials: include)
+│   │   │   ├── ErrorBoundary.jsx
+│   │   │   ├── ProtectedRoute.jsx
+│   │   │   ├── ProfileSidebar.jsx
+│   │   │   ├── CelebrationOverlay.jsx
+│   │   │   ├── ActivityHeatmap.jsx
+│   │   │   ├── XPBar.jsx
+│   │   │   ├── XPPopup.jsx
+│   │   │   ├── Toast.jsx
+│   │   │   ├── Skeleton.jsx
+│   │   │   ├── SpaceBackground.jsx
+│   │   │   ├── RPGPageLayout.jsx
+│   │   │   ├── ChallengePackCard.jsx
+│   │   │   ├── MysteryBox.jsx
+│   │   │   ├── ScoreRing.jsx
+│   │   │   ├── StreakConstellation.jsx
+│   │   │   ├── BadgeCeremony.jsx
+│   │   │   ├── LevelUpCelebration.jsx
+│   │   │   ├── JuiceProvider.jsx # Gamification juice system
+│   │   │   ├── AudioInitButton.jsx
+│   │   │   ├── SoundToggle.jsx
+│   │   │   ├── ThemeToggle.jsx
+│   │   │   ├── UpgradePrompt.jsx
+│   │   │   ├── UsageBar.jsx
+│   │   │   ├── PredictorGauge.jsx
+│   │   │   ├── ui/              # Button, Input, Card, Modal, Spinner, Skeleton
+│   │   │   ├── space/           # Space theme components
+│   │   │   ├── tower/           # Tower/gamification components
+│   │   │   ├── motion/          # Framer Motion animations
+│   │   │   ├── emblems/         # Badge/emblem system
+│   │   │   └── learning/        # Learning module components
+│   │   ├── pages/lazy.js        # All lazy imports
+│   │   ├── services/api/        # 20+ API module files
+│   │   │   ├── index.js         # Aggregated API object
+│   │   │   ├── auth.js, interview.js, resume.js, billing.js, etc.
 │   │   ├── store/
-│   │   │   └── authStore.js     # Zustand auth state (no localStorage, cookie-only)
-│   │   ├── hooks/               # (empty — add custom hooks here)
-│   │   └── utils/               # (empty — add helpers here)
+│   │   │   └── authStore.js     # Zustand auth state
+│   │   ├── hooks/               # Custom hooks
+│   │   └── utils/               # Helpers
 │   ├── package.json
-│   ├── vite.config.js           # Dev server + /api proxy to backend
+│   ├── vite.config.js           # Dev server + /api proxy
 │   ├── tailwind.config.js
 │   └── postcss.config.js
 ├── FUTURE.md                    # $1M ARR scaling roadmap
@@ -194,250 +302,185 @@ placementpro/
 - `POST /api/auth/login` → `{ email, password }` → `{ token, user }` + httpOnly cookie
 - `POST /api/auth/logout` → clears httpOnly cookie
 - `GET /api/auth/me` → cookie-based auth → `{ id, email, name, plan, usage }`
+- `POST /api/auth/forgot-password` → sends reset token
+- `POST /api/auth/reset-password` → resets password with token
+- `POST /api/auth/update-profile` → updates name/email
+- `POST /api/auth/change-password` → changes password
+- `GET /api/auth/onboarding-status` → checks onboarding completion
+- `POST /api/auth/onboarding-complete` → completes onboarding
 
 ### Interview
-- `POST /api/interview/start` → `{ job_role }` → `{ interview_id, question, question_type, tips }`
-- `POST /api/interview/answer` → `{ interview_id, question, answer }` → `{ feedback, next_question, current_score, questions_answered, finished }`
-- `GET /api/interview/{id}/result` → `{ interview_id, job_role, overall_score, questions, total_questions }`
-- `GET /api/interview/history` → `{ interviews: [...] }`
+- `POST /api/interview/start` → `{ job_role, company, interview_type, difficulty }`
+- `POST /api/interview/answer` → `{ interview_id, question, answer, time_taken, is_follow_up }`
+- `GET /api/interview/{id}/result` → detailed results with score breakdown
+- `GET /api/interview/history` → 20 most recent interviews
 
 ### Resume
-- `POST /api/resume/upload` → multipart `file` → `{ resume_id, text, analysis }`
-- `POST /api/resume/generate` → `{ name, email, target_role, experience, education, skills }` → `{ resume_id, content }`
-- `POST /api/resume/optimize` → `{ resume_id, job_description }` → `{ ats_score, missing_keywords, present_keywords, optimized_resume, changes_made }`
+- `POST /api/resume/upload` → multipart PDF → analysis
+- `POST /api/resume/generate` → AI-generated resume from details
+- `POST /api/resume/optimize` → ATS optimization against JD
+- `POST /api/resume/semantic-score` → semantic ATS scoring
 - `GET /api/resume/{id}/export/docx` → binary DOCX
 - `GET /api/resume/{id}/export/pdf` → binary PDF
-- `GET /api/resume/history` → `{ resumes: [...] }`
+- `GET /api/resume/history` → 20 most recent resumes
 
 ### Aptitude Test
-- `GET /api/aptitude/categories` → `{ categories: [{ id, name, description }] }`
-- `POST /api/aptitude/start` → `{ category, difficulty, question_count }` → `{ test_id, questions, total_questions }`
-- `POST /api/aptitude/answer` → `{ test_id, question_index, answer }` → `{ is_correct, correct_answer, explanation }`
-- `POST /api/aptitude/{test_id}/complete` → `{ test_id, score, percentage, weak_areas, strong_areas, questions }`
-- `GET /api/aptitude/history` → `{ tests: [...] }`
-
-### Cover Letter & LinkedIn
-- `POST /api/tools/cover-letter` → `{ resume_id, job_description, company_name }` → `{ cover_letter_id, cover_letter }`
-- `POST /api/tools/linkedin-about` → `{ resume_id, target_role }` → `{ linkedin_about }`
-- `POST /api/tools/salary-negotiation` → `{ job_title, offered_salary, location, years_experience, company_size, benefits }` → `{ market_research, negotiation_points, scripts, dos, donts }`
-- `GET /api/tools/cover-letter/history` → `{ cover_letters: [...] }`
-
-### System Design
-- `POST /api/system-design/start` → `{ difficulty, topic }` → `{ session_id, question, hints, expected_components }`
-- `POST /api/system-design/answer` → `{ session_id, question, answer, diagram_description }` → `{ feedback, score }`
-- `GET /api/system-design/{id}/result` → `{ session_id, topic, overall_score, questions }`
-- `GET /api/system-design/history` → `{ sessions: [...] }`
-
-### Company-Specific Prep
-- `GET /api/company/companies` → `{ companies: [{ id, name, leadership_principles, interview_rounds, focus_areas }] }`
-- `POST /api/company/behavioral` → `{ company, role }` → `{ company, role, question: { question, category, star_framework, red_flags } }`
-- `POST /api/company/tips` → `{ company, role, round_type }` → `{ tips: { company_overview, key_focus_areas, common_questions } }`
-- `GET /api/company/{company}/guide` → `{ company, interview_process, focus_areas, leadership_principles, tips }`
-
-### Coding Challenges
-- `GET /api/coding/topics` → `{ topics: [{ id, name }] }`
-- `POST /api/coding/start` → `{ difficulty, topic, language }` → `{ challenge_id, title, description, examples, constraints, hints, time_limit }`
-- `POST /api/coding/submit` → `{ challenge_id, code, time_taken }` → `{ status }`
-- `GET /api/coding/{id}/solution` → `{ title, test_cases, hints, follow_up, user_code }`
-- `GET /api/coding/history` → `{ challenges: [...] }`
-
-### Compiler
-- `POST /api/compiler/execute` → `{ code, language, stdin, timeout }` → `{ stdout, stderr, execution_time, success }`
-- `POST /api/compiler/execute-test-cases` → `{ code, language, test_cases, timeout }` → `{ passed, total, results, all_passed }`
-- `GET /api/compiler/languages` → `{ languages: [{ id, name, version }] }`
+- `GET /api/aptitude/categories` → available categories
+- `POST /api/aptitude/start` → start a test
+- `POST /api/aptitude/answer` → submit answer
+- `POST /api/aptitude/{test_id}/complete` → finalize test
+- `GET /api/aptitude/history` → past tests
 
 ### Question Bank (LeetCode Flow)
-- `GET /api/questions/browse` → `{ questions, total, page, pages }` with filters
-- `GET /api/questions/{id}` → full problem detail with `statement`, `examples`, `constraints`, `visible_test_cases`, `topics`, `companies`
-- `GET /api/questions/{id}/solved` → `{ solved: boolean }`
-- `POST /api/questions/{id}/submit` → runs hidden test cases, returns `{ all_passed, passed_count, total_count, score, xp_gained, solved }`
-- `GET /api/questions/stats` → user attempt stats, weak/strong areas
-- `GET /api/questions/recent` → recent answers with feedback
+- `GET /api/questions/browse` → paginated, filterable question list
+- `GET /api/questions/random` → random question with filters
+- `GET /api/questions/{id}` → full problem detail
+- `GET /api/questions/{id}/solution` → progressive hints with hint_level
+- `GET /api/questions/{id}/solved` → check if solved
+- `POST /api/questions/{id}/submit` → submit code, run hidden test cases
+- `POST /api/questions/{id}/answer` → text answer with AI feedback
+- `GET /api/questions/stats` → user attempt statistics
+- `GET /api/questions/recent` → recent answers
 - `GET /api/questions/filters` → available companies, roles, topics, difficulties
 - `POST /api/questions/submit` → submit new question for curation
-- `POST /api/questions/upvote` → upvote/downvote question
-- `POST /api/questions/answer` → submit text answer with AI feedback
+- `POST /api/questions/upvote` → upvote/downvote
+
+### Gamification
+- `GET /api/gamification/profile` → full gamification profile
+- `POST /api/gamification/record` → record practice activity
+- `GET /api/gamification/leaderboard` → global leaderboard
+- `GET /api/gamification/badges` → available badges
+- `GET /api/gamification/skills` → skill graph across categories
+- `GET /api/gamification/skills/weak` → weak areas
+- `GET /api/gamification/skills/readiness` → interview readiness score
+- `GET /api/gamification/tower` → tower progression
+- `GET /api/gamification/tower/boss/{level}` → boss battle details
+
+### Coding
+- `GET /api/coding/topics` → available topics
+- `POST /api/coding/start` → start a challenge
+- `POST /api/coding/submit` → submit solution
+- `GET /api/coding/{id}/solution` → solution with hints
+- `GET /api/coding/history` → past challenges
+
+### Compiler
+- `POST /api/compiler/execute` → execute code via Piston API
+- `POST /api/compiler/execute-test-cases` → run test cases
+- `GET /api/compiler/languages` → supported languages
+
+### Company Prep
+- `GET /api/company/companies` → 53+ company profiles
+- `POST /api/company/behavioral` → company-specific behavioral Q
+- `POST /api/company/tips` → company-specific interview tips
+- `GET /api/company/{company}/guide` → full company guide
+
+### Learning
+- `GET /api/learning/modules` → learning modules
+- `GET /api/learning/progress` → user learning progress
+- `GET /api/language-paths` → 7 language learning paths
+
+### Analytics
+- `POST /api/analytics/track` → track page views and events
+- `GET /api/analytics/admin` → admin dashboard metrics
 
 ### Profile & Stats
-- `GET /api/profile/stats` → `{ name, plan, streak, longest_streak, xp, level, badges, skills, total_solved, heatmap, github_username, leetcode_username }`
-- `PUT /api/profile/integrations` → `{ platform, username }` updates GitHub/LeetCode username
+- `GET /api/profile/stats` → user profile with stats
+- `PUT /api/profile/integrations` → update GitHub/LeetCode usernames
 
-### Salary Benchmark
-- `POST /api/salary/benchmark` → `{ job_title, location, company, years_experience, level }` → `{ market_rate, percentiles, factors_affecting_pay, companies_paying_above_market }`
-- `POST /api/salary/compare` → `{ offers: [...] }` → `{ winner, winner_reason, comparison_matrix, recommendation }`
-- `POST /api/salary/save` → `{ offer }` → `{ offer_id }`
-- `GET /api/salary/history` → `{ offers: [...] }`
+### Salary
+- `POST /api/salary/benchmark` → market rate data
+- `POST /api/salary/compare` → compare job offers
+- `POST /api/salary/save` → save an offer
+- `GET /api/salary/history` → saved offers
 
 ### Billing (PayPal)
-- `POST /api/billing/checkout` → `{ checkout_url }` (PayPal approval link)
-- `POST /api/billing/checkout/lifetime` → `{ checkout_url }` (PayPal approval link)
-- `POST /api/billing/capture` → `{ order_id }` → `{ status, plan }` (captures payment after approval)
+- `POST /api/billing/checkout` → PayPal approval link
+- `POST /api/billing/checkout/lifetime` → lifetime plan checkout
+- `POST /api/billing/capture` → capture payment after approval
 - `POST /api/billing/webhook` → PayPal webhook handler
-- `GET /api/billing/status` → `{ plan, interviews_used, resumes_used }`
+- `GET /api/billing/status` → current plan and usage
 
-### Gamification & Skills
-- `GET /api/gamification/profile` → `{ xp, level, streak, badges, total_* }`
-- `POST /api/gamification/record` → `{ activity_type, score }` → `{ xp_gained, new_streak, new_badges, level }`
-- `GET /api/gamification/leaderboard` → `{ users: [...] }`
-- `GET /api/gamification/badges` → `{ badges: [...] }`
-- `GET /api/gamification/skills` → `{ categories: { dsa: { score, skills }, ... }, overall_score }`
-- `GET /api/gamification/skills/weak` → `{ weak_areas: [...] }`
-- `GET /api/gamification/skills/readiness` → `{ overall, categories, recommendations }`
+### Practice & Community
+- `GET /api/practice/sessions` → practice session history
+- `GET /api/community/posts` → community discussions
+- `GET /api/scrims` → screencast library
 
 ---
 
 ## Security Features
-
 - **httpOnly cookies** — JWT never touches JavaScript (XSS-proof)
-- **Rate limiting** — 30 req/min per IP on all endpoints
-- **Account lockout** — 5 failed login attempts → 15 min lockout
-- **CORS locked** — POST only methods, specific origins
+- **Rate limiting** — 60 req/min per IP (configurable), Redis-backed when available
+- **Login lockout** — 5 failed attempts → 15 min lockout per email
+- **Duplicate request guard** — Blocks double-clicks within 2-second window
+- **CORS locked** — Specific origins, credentials enabled
+- **CSP headers** — Blocks inline scripts, restricts frame loading
+- **Security headers** — X-Content-Type-Options, X-Frame-Options, HSTS, Referrer-Policy
+- **Request ID tracing** — Every request gets a correlation ID
+- **Structured logging** — JSON logs with sensitive data redaction
 - **PDF validation** — Magic bytes check (`%PDF-`) before processing
-- **AI retry** — 3 retries with exponential backoff on AI API failures
+- **Password strength** — Min 8 chars, requires number + special character
+- **Tier gating** — Free/pro/lifetime feature limits enforced
 
----
+## AI Reliability
+- **In-memory + Redis caching** — AI responses cached for 1 hour
+- **Fallback models** — Primary: Gemini Flash → 3 fallbacks (Llama, Phi-3, DeepSeek)
+- **Circuit breaker** — Auto-switches to fallback if primary fails 5+ times
+- **Retry logic** — 3 retries with exponential backoff
+- **Async I/O** — All AI calls via `httpx.AsyncClient` with connection pooling
 
-## Environment Variables
+## Gamification
+- **XP system** — Earn XP for every activity with daily bonuses
+- **Level progression** — Levels 1-100 with 50+ titles (Hatchling → God of Code)
+- **Streaks** — Daily practice streaks with multiplier bonuses
+- **Badges** — 30+ achievement badges
+- **Tower system** — Boss battles at levels 10, 20, 30... 100
+- **Power-ups** — Extra time, hint reveal, retry, double XP, skip boss, show answer
+- **Daily challenges** — Adaptive missions with leaderboards
+- **Mystery boxes** — Random rewards after activities
+- **1v1 Battles** — Competitive matchmaking queue
 
-### Backend (.env)
-```
-MONGODB_URL=mongodb+srv://...
-DATABASE_NAME=placementpro
-JWT_SECRET=<random-64-char-string>
-OPENROUTER_API_KEY=sk-or-v1-...
-OPENROUTER_MODEL=google/gemini-2.0-flash-001
-PAYPAL_CLIENT_ID=your-paypal-client-id
-PAYPAL_CLIENT_SECRET=your-paypal-client-secret
-PAYPAL_MODE=sandbox
-FREE_TIER_INTERVIEW_LIMIT=3
-FREE_TIER_RESUME_LIMIT=3
-FREE_TIER_APTITUDE_LIMIT=5
-FREE_TIER_COVER_LETTER_LIMIT=3
-CORS_ORIGINS=http://localhost:5173,https://your-domain.vercel.app
-```
-
-### Frontend (.env)
-```
-VITE_API_URL=http://localhost:8000  # or production URL
-```
-
----
-
-## Free Tier Logic
-
-- Counter fields: `interviews_used`, `resumes_used`, `aptitude_used`, `cover_letters_used` on user document
-- Monthly reset logic in `services/usage.py`: checks `monthly_reset_date` and resets counters when month changes
-- Checked in each route handler before AI operations
-- Limits defined in `config.py`: `FREE_TIER_INTERVIEW_LIMIT=3`, `FREE_TIER_RESUME_LIMIT=3`, `FREE_TIER_APTITUDE_LIMIT=5`, `FREE_TIER_COVER_LETTER_LIMIT=3`
-- **Free tier now resets monthly** — counters reset on the 1st of each month
-- **Question bank free limit**: 5 practice questions/month for free users; unlimited for Pro
-
----
-
-## AI Prompts (The Moat)
-
-All AI logic is in `backend/app/services/ai.py`. Key functions:
-
-| Function | Purpose | Model |
-|----------|---------|-------|
-| `generate_interview_question()` | Creates next interview Q based on role + history | Gemini Flash |
-| `evaluate_answer()` | Scores answer 1-10 with strengths/improvements | Gemini Flash |
-| `analyze_resume()` | Scores resume across 4 dimensions | Gemini Flash |
-| `optimize_ats()` | Extracts JD keywords, rewrites resume | Gemini Flash |
-| `generate_resume_content()` | Writes resume from user details | Gemini Flash |
-| `generate_aptitude_questions()` | Creates MCQs for placement prep | Gemini Flash |
-| `generate_cover_letter()` | Writes tailored cover letters | Gemini Flash |
-| `generate_linkedin_about()` | Creates LinkedIn About section | Gemini Flash |
-| `generate_salary_negotiation_tips()` | Provides negotiation coaching | Gemini Flash |
-| `generate_system_design_question()` | Creates system design interview Q | Gemini Flash |
-| `evaluate_system_design_answer()` | Evaluates system design response | Gemini Flash |
-| `generate_salary_benchmark()` | Provides market rate data | Gemini Flash |
-| `generate_offer_comparison()` | Compares multiple job offers | Gemini Flash |
-| `generate_behavioral_question()` | Creates company-specific behavioral Qs | Gemini Flash |
-| `generate_coding_challenge()` | Creates timed coding problems | Gemini Flash |
-| `generate_interview_tips()` | Provides company-specific interview tips | Gemini Flash |
-| `generate_salary_negotiation_tips()` | Provides negotiation coaching | Gemini Flash |
-
-All prompts return JSON. `parse_json()` handles AI output parsing with fallbacks.
-All AI calls have retry logic (3 retries, exponential backoff).
-
-**To improve quality:** Adjust prompts in `ai.py`. This is 80% of the product value.
+## Free Tier Limits (Monthly/Daily)
+| Feature | Free Limit | Pro/Lifetime |
+|---------|-----------|-------------|
+| Interviews/month | 3 | Unlimited |
+| Resume reviews/month | 3 | Unlimited |
+| Aptitude tests/month | 5 | Unlimited |
+| Cover letters/month | 3 | Unlimited |
+| Company mocks/month | 1 | Unlimited |
+| Predictor uses/month | 3 | Unlimited |
+| Question bank/month | 5 | Unlimited |
+| Compiler runs/day | 20 | Unlimited |
+| AI questions/day | 5 | Unlimited |
+| Mystery boxes/day | 1 | 3-5 |
+| Problems solved/day | 10 | Unlimited |
+| Mock interviews/month | 1 | Unlimited |
+| Interview bookings/month | 3 | Unlimited |
 
 ---
 
 ## Known Issues (Fix Priority)
 
-### P0 — CRITICAL (All fixed)
-- [x] ~~Stripe checkout URLs hardcoded to `localhost:5173`~~ → Replaced with PayPal
-- [x] ~~`created_at` never set on documents~~ → Fixed
-- [x] ~~Pricing page buttons dead~~ → Fixed with PayPal checkout
-- [x] ~~No rate limiting~~ → IP rate limiter added
-- [x] ~~Synchronous Stripe calls~~ → All async httpx
+### P0 — CRITICAL (Recently Fixed)
+- [x] ~~`_check_circuit_breaker()` called without `await` in `chat_completion()`~~ → Fixed
+- [x] ~~`FALLBACK_MODELS` includes primary model redundantly~~ → Fixed
+- [x] ~~`circuit_breaker` undefined in `chat_completion()` (should be `ai_breaker`)~~ → Fixed
+- [x] ~~`call_with_resilience()` uses dict `.get()` on CircuitBreaker object~~ → Fixed with `_breaker_get`/`_breaker_set` helpers
 
-### P1 — HIGH (All fixed)
-- [x] ~~Interview role slug~~ → Sends label now
-- [x] ~~InterviewSession crash on direct nav~~ → Handles missing state
-- [x] ~~Dashboard ignores usage~~ → Shows real counters
-- [x] ~~Education section missing~~ → Added to ResumeBuilder
-- [x] ~~File upload/export bypass 401~~ → Fixed with credentials:include
-- [x] ~~PDF validates filename~~ → Validates %PDF- magic bytes
-- [x] ~~No 404 page~~ → Added
+### P1 — HIGH (Remaining)
+- [ ] No TypeScript on frontend — 70 pages with no type safety
+- [ ] `ai.py` is 1,621 lines — violates SRP, should be split by domain
 
-### P2 — MEDIUM (All fixed)
-- [x] ~~JWT in localStorage~~ → httpOnly cookie
-- [x] ~~No account lockout~~ → 5 attempts / 15 min lockout
-- [x] ~~No retry logic for AI~~ → 3 retries, exponential backoff
-- [x] ~~No error boundary~~ → ErrorBoundary wraps App
-- [x] ~~No loading skeletons~~ → Skeleton components added
-- [x] ~~MongoDB client never closed~~ → Closed on shutdown
-- [x] ~~Free tier was lifetime~~ → Monthly reset logic added
+### P2 — MEDIUM (Remaining)
+- [ ] No API versioning at the app level — individual route files use `/api/v1/` prefix
+- [ ] No connection pooling config for Redis if used in production
+- [ ] `_LazyCollection` proxy uses `__getattr__` magic which can mask typos
 
 ### P3 — LOW (Remaining)
-- [ ] No password reset flow
 - [ ] No email verification on signup
 - [ ] No audit log for admin actions
-- [ ] No CSP headers
-- [ ] No health check dashboard
-- [ ] Monaco Editor not fully integrated (placeholder remains in some flows)
-- [ ] Need 100+ seeded problems with proper visible/hidden test cases
-
----
-
-## Deployment Checklist
-
-### Backend (Render)
-- [ ] Create Render account
-- [ ] Connect GitHub repo
-- [ ] Set build command: `pip install -r requirements.txt`
-- [ ] Set start command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
-- [ ] Add all env vars in Render dashboard
-- [ ] Enable auto-deploy on push
-
-### Frontend (Vercel)
-- [ ] Create Vercel account
-- [ ] Import GitHub repo
-- [ ] Set framework preset: Vite
-- [ ] Add `VITE_API_URL` env var pointing to Render backend URL
-- [ ] Deploy
-
-### MongoDB Atlas
-- [ ] Create free cluster
-- [ ] Add IP whitelist (0.0.0.0/0 for Render)
-- [ ] Create database user
-- [ ] Get connection string → add to backend .env
-
-### PayPal
-- [ ] Create PayPal Developer account
-- [ ] Create REST API app in dashboard
-- [ ] Get Client ID + Secret → add to .env
-- [ ] Set webhook endpoint: `https://your-backend.onrender.com/api/billing/webhook`
-- [ ] Webhook events: `PAYMENT.CAPTURE.COMPLETED`, `PAYMENT.CAPTURE.DENIED`
-- [ ] Switch PAYPAL_MODE from sandbox to live before production
-
-### OpenRouter
-- [ ] Create account at openrouter.ai
-- [ ] Add $5 credit
-- [ ] Get API key → add to .env
+- [ ] `index.css` has 796 lines with dead space/RPG theme animations
+- [ ] No health check dashboard UI
+- [ ] Monaco Editor not fully integrated in all flows
 
 ---
 
@@ -448,7 +491,6 @@ All AI calls have retry logic (3 retries, exponential backoff).
 cd backend
 python -m venv venv
 venv\Scripts\activate          # Windows
-# source venv/bin/activate    # Mac/Linux
 pip install -r requirements.txt
 cp .env.example .env           # Fill in values
 uvicorn app.main:app --reload  # Hot reload on port 8000
@@ -460,28 +502,61 @@ cd frontend
 npm install
 npm run dev                    # Vite dev server on port 5173
 npm run build                  # Production build
+npm run smoke                  # Smoke test (11 checks): pages render w/o crash + auth + telemetry
+                               # Requires backend on :8000; auto-starts Vite if not running.
 ```
 
 ---
 
 ## Recent Improvements (July 2026)
 
-### Backend Security & Infrastructure
-- **CSP Headers** — Added `Content-Security-Policy` middleware blocking inline scripts, restricting frame loading, and securing Connect/SCRIPT/STYLE sources
-- **Security Headers Middleware** — Added `X-Content-Type-Options`, `X-Frame-Options`, `X-XSS-Protection`, `Referrer-Policy`, `Permissions-Policy`, and `Strict-Transport-Security`
-- **Request ID Middleware** — Added `X-Request-ID` header for request tracing across logs and monitoring
+### Critical Bug Fixes
+- **Circuit breaker `await` bug** — Fixed `_check_circuit_breaker()` called without `await` in `chat_completion()`
+- **FALLBACK_MODELS redundancy** — Removed primary model from fallback list to avoid redundant retry
+- **Undefined `circuit_breaker` variable** — Fixed to use `ai_breaker` (the actual import)
+- **`call_with_resilience` type mismatch** — Updated to handle both `CircuitBreaker` objects and plain dicts via `_breaker_get`/`_breaker_set` helpers
+- **CircuitBreaker property accessors** — Added `is_open`, `failures`, `last_failure_time` properties with setters to `CircuitBreaker` class
+- **CircuitBreaker missing methods** — Added `allow_request()`, `record_failure()`, `record_success()` async methods with lock-protected state transitions
+- **`asyncio.get_event_loop()` deprecation** — Replaced with `asyncio.get_running_loop()` in `resilience.py`
+- **`tier_gate()` mixed concerns** — Extracted `check_tier_limit()` as a separate dependency function
+- **`duplicate_guard.py` in-memory only** — Added file-based persistence to `data/duplicate_hashes.json`
+- **Dead `request.js`** — Removed unused frontend API service file
+- **Unused `axios` dependency** — Removed from `package.json` (frontend uses `fetch` exclusively)
+- **`questions.py` too large** — Split into `questions.py` (curation routes) and `questions_solve.py` (solve/answer/code routes)
+- **Missing password reset UI** — Created `ForgotPassword.jsx` and `ResetPassword.jsx` pages
 
-### Question Bank Enhancements
-- **Random Question Endpoint** — `GET /api/questions/random` with filters (type, difficulty, topic, company) and `exclude_solved` support for quick practice
-- **Progressive Hints** — `POST /api/questions/{id}/solution` with `hint_level` parameter for unlocking hints progressively; free users get 1 hint, Pro users get all hints
-- **Solution Access Control** — Solutions and hidden test cases are locked for free users who haven't solved the problem; Pro users and solved problems get full access
+### Backend Infrastructure
+- **CSP Headers** — Content-Security-Policy middleware
+- **Security Headers** — X-Content-Type-Options, X-Frame-Options, etc.
+- **Request ID Middleware** — X-Request-ID header for tracing
+- **Duplicate Request Guard** — Prevents double-click duplicate submissions
+- **Tier Middleware** — Free/pro/lifetime feature gating with monthly + daily limits
+- **Structured Logging** — JSON logs with correlation IDs and sensitive data redaction
+- **Request Metrics** — In-memory + MongoDB-persisted metrics with periodic flush
+- **Migration System** — Decorator-based schema migration tracking
+- **Redis Cache** — Unified cache with Redis → InMemory fallback
 
-### Frontend Improvements
-- **Dynamic Daily Missions** — Dashboard missions now adapt based on user progress and weak areas; weak-area practice missions appear when students have identified gaps
-- **Quick Practice Button** — Added "Quick Practice" link in Navbar for fast access to random questions
-- **Keyboard Shortcuts** — `Cmd/Ctrl+K` toggles search, `Escape` closes modals/search
-- **Landing Page CTAs** — Improved call-to-action buttons with "Launch Mission" and "Access Command Deck" labels
-- **Weak Area Highlight** — Dashboard mission for weak-area drilling appears dynamically when assessment data is available
+### AI Layer Improvements
+- **In-memory caching** — AI responses cached for 1 hour
+- **Fallback models** — 4 models with circuit breaker protection
+- **Retry with exponential backoff** — 3 retries on AI API failures
+- **Company-specific evaluation rubrics** — 9 company profiles in `ai.py`
+
+### Frontend Enhancements
+- **70+ lazy-loaded pages** — Code splitting reduces initial bundle
+- **Gamification juice system** — XP popups, confetti, level-up animations, streak ceremonies
+- **Keyboard shortcuts** — `Cmd/Ctrl+K` for search, `Escape` for modals
+- **Dynamic daily missions** — Adapts based on user progress and weak areas
+- **Space theme + RPG theme** — Rich visual design with animations
+
+### Bandwidth Protection (Vercel Hobby 100 GB/mo limit)
+- **Cloudinary integration** — `src/services/cloudinary.js` provides `cloudinaryImage()`, `cloudinaryVideo()`, `optimizeImage()` helpers with auto-format/auto-quality
+- **OptimizedImage component** — `src/components/OptimizedImage.jsx` enforces `loading="lazy"`, error fallbacks, and WebP conversion for all local assets
+- **Media hosting strategy:**
+  - Video lessons → YouTube embeds (0 Vercel bandwidth)
+  - Images/badges/logos → Cloudinary with `.webp` + `w_auto,q_auto` transforms
+  - Company logos in Resume Builder → Cloudinary thumbnails (100px width)
+- **No local assets in `public/`** — all visual content served via CDN
 
 ---
 
@@ -496,15 +571,25 @@ npm run build                  # Production build
 - JSON parsing with fallback in `parse_json()`
 - Errors raised as `HTTPException(status_code=..., detail=...)`
 - Cookies set via `set_auth_cookie()` / `clear_auth_cookie()` in middleware
+- Circuit breaker and resilience patterns for all external API calls
+- Structured JSON logging with correlation IDs
 
 ### Frontend (React)
 - Functional components with hooks
 - Zustand for global state (auth only)
-- `api.js` service class for all backend calls (credentials: include)
+- `services/api/index.js` aggregated API object for all backend calls
 - Tailwind CSS for styling (no component library)
 - `ProtectedRoute` wrapper for authenticated pages
 - `ErrorBoundary` wraps entire app
+- `React.lazy()` for all page components (code splitting)
 - Consistent card-based layouts
+- Gamification juice system for celebrations (confetti, XP popups, sound)
+
+### File Organization
+- Route files: `backend/app/routes/<feature>.py` (one per feature)
+- Service files: `backend/app/services/<domain>.py` (business logic)
+- Route prefixes: `/api/<feature>` (no version prefix yet)
+- AI prompts: All in `backend/app/services/ai.py` (1,621 lines — planned split)
 
 ---
 
@@ -520,78 +605,3 @@ npm run build                  # Production build
 + Lifetime purchases: ~$2K/mo additional
 
 **Path to $1M ARR:** See `FUTURE.md` for detailed scaling roadmap.
-
----
-
-## Scaling Architecture (100K+ Users)
-
-### Infrastructure Components
-
-| Component | Current | Scaled Solution |
-|-----------|---------|-----------------|
-| **Backend** | Single Render instance | Dockerized + Kubernetes/ECS with auto-scaling |
-| **Database** | MongoDB Atlas free tier (512MB) | MongoDB Atlas M10+ with indexes + sharding |
-| **Cache** | In-memory only | Redis (Upstash free → ElastiCache) |
-| **Frontend** | Vercel | Vercel + Cloudflare CDN |
-| **AI** | Synchronous calls | Async queue + fallback models |
-
-### Docker Deployment
-
-```bash
-# Build and run locally
-docker-compose up --build
-
-# Production deploy
-docker-compose -f docker-compose.prod.yml up -d
-```
-
-### Redis Configuration
-
-```env
-# .env
-REDIS_URL=redis://localhost:6379/0  # Local
-REDIS_URL=redis://:password@redis-endpoint:6379  # Production
-```
-
-### Database Indexes (Critical for Performance)
-
-All indexes are created automatically on startup:
-- `users`: email (unique), plan, created_at
-- `interviews`: user_id + created_at (compound), status
-- `resumes`: user_id + created_at (compound), ats_score
-- `aptitude_tests`: user_id + created_at (compound), category, status
-- `coding_challenges`: user_id + created_at (compound), topic, difficulty
-- `gamification`: user_id (unique), xp (for leaderboard)
-- `skill_graphs`: user_id (unique)
-- `curated_questions`: company, topic, difficulty, type, compound indexes
-- `question_answers`: user_id, compound (user_id + question_id), created_at
-- `solved_problems`: user_id, compound unique (user_id + question_id), created_at
-
-### Frontend Optimizations
-
-- **Code splitting** — Lazy load all pages (reduces initial bundle by 60%)
-- **Gzip compression** — Enabled in nginx config
-- **Asset caching** — 1-year cache for static assets
-- **Security headers** — X-Frame-Options, CSP, etc.
-
-### Cost Projections
-
-| Scale | Infrastructure | AI | Total |
-|-------|---------------|-----|-------|
-| 1K users | $0 (free tiers) | $10/mo | $10/mo |
-| 10K users | $50/mo (Redis + DB) | $100/mo | $150/mo |
-| 100K users | $500/mo (K8s + DB + Redis) | $2,000/mo | $2,500/mo |
-
----
-
-## File Editing Rules
-
-When modifying this project:
-
-1. **Backend files:** Always use `async/await`. Never use synchronous blocking calls in route handlers.
-2. **Frontend files:** Use Tailwind classes. No inline styles. Follow existing component patterns.
-3. **AI prompts:** These are the core product value. Test thoroughly before changing.
-4. **Database schema:** Changes require migration consideration for existing users.
-5. **API contracts:** Frontend and backend must stay in sync. Update both when changing endpoints.
-6. **Auth:** Always use cookie-based auth. Never store JWT in localStorage.
-7. **Payments:** All payment processing goes through PayPal REST API.

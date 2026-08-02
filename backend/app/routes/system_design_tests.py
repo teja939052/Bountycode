@@ -14,7 +14,7 @@ from app.database import (
 from app.services.ai import chat_completion, parse_json
 from app.services.gamification import record_practice
 
-router = APIRouter(prefix="/api/system-design-tests", tags=["system-design-tests"])
+router = APIRouter(prefix="/api/v1/system-design-tests", tags=["system-design-tests"])
 
 # System design categories
 SD_CATEGORIES = {

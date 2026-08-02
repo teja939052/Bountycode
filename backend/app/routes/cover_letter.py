@@ -9,7 +9,7 @@ from app.services.usage import check_and_reset_monthly_usage, can_use_feature
 from app.config import get_settings
 from bson import ObjectId
 
-router = APIRouter(prefix="/api/tools", tags=["tools"])
+router = APIRouter(prefix="/api/v1/tools", tags=["tools"])
 settings = get_settings()
 
 
@@ -113,7 +113,10 @@ async def get_salary_negotiation_tips(req: SalaryNegotiationRequest, user=Depend
         "benefits": req.benefits,
     }
 
-    tips = await generate_salary_negotiation_tips(offer_details)
+    tips = await generate_salary_negotiation_tips(
+        req.job_title, req.offered_salary, req.location,
+        req.years_experience, req.company_size, req.benefits
+    )
 
     return tips
 

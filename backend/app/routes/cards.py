@@ -13,7 +13,7 @@ from app.database import (
     cards_collection
 )
 
-router = APIRouter(prefix="/api/cards", tags=["cards"])
+router = APIRouter(prefix="/api/v1/cards", tags=["cards"])
 
 # Card rarity configuration
 RARITY_CONFIG = {

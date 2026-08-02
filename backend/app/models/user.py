@@ -33,8 +33,16 @@ class UserInDB(BaseModel):
     resumes_used: int = 0
     aptitude_used: int = 0
     cover_letters_used: int = 0
+    mock_interviews_used: int = 0
     monthly_reset_date: Optional[datetime] = None
+    daily_usage: dict = {}
+    all_time_usage: dict = {}
     created_at: datetime = Field(default_factory=datetime.utcnow)
+
+    class Config:
+        json_encoders = {
+            datetime: lambda v: v.isoformat() if v else None,
+        }
 
 
 class UpdateProfileRequest(BaseModel):

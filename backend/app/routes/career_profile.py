@@ -13,7 +13,7 @@ from app.services.career_profile import (
 from app.services.resume_parser import extract_text_from_pdf
 from app.config import get_settings
 
-router = APIRouter(prefix="/api/profile", tags=["career-profile"])
+router = APIRouter(prefix="/api/v1/profile", tags=["career-profile"])
 settings = get_settings()
 
 

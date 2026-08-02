@@ -8,7 +8,7 @@ from app.services.analytics import (
     get_insights,
 )
 
-router = APIRouter(prefix="/api/analytics", tags=["analytics"])
+router = APIRouter(prefix="/api/v1/analytics", tags=["analytics"])
 
 
 @router.get("/overview")

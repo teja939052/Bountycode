@@ -14,7 +14,7 @@ from app.middleware.auth import get_current_user
 from app.data.indian_companies import INDIAN_COMPANIES
 from collections import defaultdict
 
-router = APIRouter(prefix="/api/fingerprint", tags=["dsa-fingerprint"])
+router = APIRouter(prefix="/api/v1/fingerprint", tags=["dsa-fingerprint"])
 
 # Topic weights per company category
 # Maps topic -> relevance weight per company category

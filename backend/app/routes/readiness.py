@@ -12,7 +12,7 @@ from app.database import (
     gamification_collection
 )
 
-router = APIRouter(prefix="/api/readiness", tags=["readiness"])
+router = APIRouter(prefix="/api/v1/readiness", tags=["readiness"])
 
 # Company readiness requirements (based on real interview data)
 COMPANY_REQUIREMENTS = {

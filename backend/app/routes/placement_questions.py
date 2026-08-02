@@ -13,7 +13,7 @@ try:
 except ImportError:
     PLACEMENT_APTITUDE_QUESTIONS = []
 
-router = APIRouter(prefix="/api/placement-questions", tags=["placement-questions"])
+router = APIRouter(prefix="/api/v1/placement-questions", tags=["placement-questions"])
 
 
 def _strip_correct_answer(q: dict) -> dict:

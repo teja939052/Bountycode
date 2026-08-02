@@ -13,7 +13,7 @@ from app.database import (
     notes_collection, solved_problems_collection
 )
 
-router = APIRouter(prefix="/api/features", tags=["features"])
+router = APIRouter(prefix="/api/v1/features", tags=["features"])
 
 
 # ═══════════════════════════════════════════════════════════════════════════

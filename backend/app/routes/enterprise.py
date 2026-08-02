@@ -5,7 +5,7 @@ from app.middleware.auth import get_current_user
 from app.database import get_collection
 from datetime import datetime, timezone
 
-router = APIRouter(prefix="/api/enterprise", tags=["enterprise"])
+router = APIRouter(prefix="/api/v1/enterprise", tags=["enterprise"])
 
 
 class CreateCohortRequest(BaseModel):

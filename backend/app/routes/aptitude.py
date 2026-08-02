@@ -8,13 +8,34 @@ from app.services.usage import check_and_reset_monthly_usage, can_use_feature
 from app.config import get_settings
 from bson import ObjectId
 
-router = APIRouter(prefix="/api/aptitude", tags=["aptitude"])
+router = APIRouter(prefix="/api/v1/aptitude", tags=["aptitude"])
 settings = get_settings()
 
 APTITUDE_CATEGORIES = {
+    # Quantitative Aptitude
     "quantitative": "Quantitative Aptitude - Math, Numbers, Statistics",
+    "quant-shortcuts": "Quant Shortcuts - Vedic Math, Approximation, Speed Tricks",
+    
+    # Logical Reasoning
     "logical": "Logical Reasoning - Patterns, Sequences, Deductions",
+    "syllogisms": "Syllogisms - Venn Diagrams, Logical Deduction",
+    "blood-relations": "Blood Relations - Family Trees, Coded Relations",
+    "direction-sense": "Direction Sense - Distance, Shadow, Map Problems",
+    "coding-decoding": "Coding-Decoding - Letter/Number/Symbol Patterns",
+    "series-completion": "Series Completion - Number/Letter/Figure Series",
+    "analogies": "Analogies - Word/Number/Figure Relationships",
+    "puzzles": "Logical Puzzles - Seating, Scheduling, Constraints",
+    
+    # Verbal Ability
     "verbal": "Verbal Ability - Grammar, Vocabulary, Comprehension",
+    "reading-comprehension": "Reading Comprehension - Passages, Inference, Tone",
+    "para-jumbles": "Para Jumbles - Sentence Reordering, Coherence",
+    "sentence-correction": "Sentence Correction - Grammar, Parallelism, Modifiers",
+    "vocabulary": "Vocabulary - Synonyms, Antonyms, Analogies, Cloze",
+    "fill-in-blanks": "Fill in the Blanks - Single/Double, Context Clues",
+    "critical-reasoning": "Critical Reasoning - Assumptions, Inferences, Arguments",
+    
+    # Technical
     "technical": "Technical MCQs - Programming, CS Fundamentals",
     "data-interpretation": "Data Interpretation - Charts, Graphs, Tables",
 }
@@ -47,7 +68,12 @@ async def start_aptitude_test(req: StartAptitudeTest, user=Depends(get_current_u
     if req.category not in APTITUDE_CATEGORIES:
         raise HTTPException(status_code=400, detail=f"Invalid category. Choose from: {list(APTITUDE_CATEGORIES.keys())}")
 
-    questions = await generate_aptitude_questions(req.category, req.difficulty, req.question_count)
+    result = await generate_aptitude_questions(req.category, req.difficulty, req.question_count)
+
+    questions = result.get("questions", []) if isinstance(result, dict) else result
+
+    if not questions:
+        raise HTTPException(status_code=500, detail="Failed to generate aptitude questions")
 
     test_doc = {
         "user_id": user["id"],
@@ -115,7 +141,7 @@ async def submit_aptitude_answer(req: SubmitAptitudeAnswer, user=Depends(get_cur
     )
 
     correct = questions[req.question_index]["correct_answer"]
-    is_correct = req.answer == correct
+    is_correct = str(req.answer).strip().upper() == str(correct).strip().upper()
 
     return {
         "is_correct": is_correct,
@@ -144,7 +170,7 @@ async def complete_aptitude_test(test_id: str, time_taken: int = 0, user=Depends
 
     score = 0
     for i, q in enumerate(questions):
-        if answers[i] is not None and answers[i] == q["correct_answer"]:
+        if answers[i] is not None and str(answers[i]).strip().upper() == str(q["correct_answer"]).strip().upper():
             score += 1
 
     percentage = (score / len(questions)) * 100 if questions else 0
@@ -158,7 +184,7 @@ async def complete_aptitude_test(test_id: str, time_taken: int = 0, user=Depends
         if cat not in category_scores:
             category_scores[cat] = {"correct": 0, "total": 0}
         category_scores[cat]["total"] += 1
-        if answers[i] is not None and answers[i] == q["correct_answer"]:
+        if answers[i] is not None and str(answers[i]).strip().upper() == str(q["correct_answer"]).strip().upper():
             category_scores[cat]["correct"] += 1
 
     for cat, s in category_scores.items():
@@ -195,7 +221,7 @@ async def complete_aptitude_test(test_id: str, time_taken: int = 0, user=Depends
                 "options": q["options"],
                 "your_answer": answers[i],
                 "correct_answer": q["correct_answer"],
-                "is_correct": answers[i] is not None and answers[i] == q["correct_answer"],
+                "is_correct": answers[i] is not None and str(answers[i]).strip().upper() == str(q["correct_answer"]).strip().upper(),
                 "explanation": q["explanation"],
                 "companies": q.get("companies", []),
             }
