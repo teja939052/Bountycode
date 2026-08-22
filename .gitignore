@@ -107,3 +107,4 @@ d8.py
 test_bank.py
 sandbox-opencode.bat
 *.log
+*.pyc

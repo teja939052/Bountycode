@@ -4,27 +4,31 @@
 
 @layer base {
   :root {
-    --pp-canvas: #F7FAF7;
+    --pp-canvas: #FFFFFF;
     --pp-surface: #FFFFFF;
-    --pp-surface-2: #F0F7F1;
+    --pp-surface-2: #F8FAFC;
     --pp-border: #E3EBE4;
-    --pp-text: #17211B;
-    --pp-text-muted: #68736B;
-    --pp-primary: #22C55E;
-    --pp-primary-dark: #16A34A;
-    --pp-primary-soft: #DCFCE7;
+    --pp-text: #0A0E17;
+    --pp-text-muted: #6B7280;
+    --pp-primary: #FFD700;
+    --pp-primary-dark: #E6C200;
+    --pp-primary-soft: #FFEB99;
     --pp-blue: #3B82F6;
     --pp-blue-soft: #DBEAFE;
-    --pp-gold: #F59E0B;
-    --pp-gold-soft: #FEF3C7;
+    --pp-gold: #FFD700;
+    --pp-gold-soft: #FFEB99;
     --pp-purple: #8B5CF6;
     --pp-purple-soft: #EDE9FE;
-    --pp-red: #EF4444;
+    --pp-red: #DC2626;
     --pp-red-soft: #FEE2E2;
+    --pp-navy: #0A0E17;
+    --pp-smoke: #6B7280;
+    --pp-cream: #F5E6D3;
 
-    --pp-shadow-card: 0 1px 3px rgba(17, 33, 27, 0.04), 0 2px 8px rgba(17, 33, 27, 0.02);
-    --pp-shadow-elevated: 0 4px 16px rgba(17, 33, 27, 0.06), 0 8px 30px rgba(17, 33, 27, 0.04);
-    --pp-shadow-modal: 0 20px 60px rgba(17, 33, 27, 0.12);
+    --pp-shadow-card: 0 1px 3px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.02);
+    --pp-shadow-elevated: 0 4px 16px rgba(0, 0, 0, 0.06), 0 8px 30px rgba(0, 0, 0, 0.04);
+    --pp-shadow-modal: 0 20px 60px rgba(0, 0, 0, 0.12);
+    --pp-shadow-bounty: 0 4px 20px rgba(255, 215, 0, 0.2);
 
     --pp-radius-card: 16px;
     --pp-radius-button: 10px;
@@ -44,13 +48,13 @@
 
   * {
     scrollbar-width: thin;
-    scrollbar-color: rgba(34, 197, 94, 0.30) transparent;
+    scrollbar-color: rgba(255, 215, 0, 0.30) transparent;
   }
 
   *::-webkit-scrollbar { width: 6px; }
   *::-webkit-scrollbar-track { background: transparent; }
   *::-webkit-scrollbar-thumb {
-    background: rgba(34, 197, 94, 0.30);
+    background: rgba(255, 215, 0, 0.30);
     border-radius: 3px;
   }
 
@@ -58,9 +62,6 @@
     font-family: "Inter", system-ui, sans-serif;
     color: var(--pp-text);
     background-color: var(--pp-canvas);
-    background-image:
-      radial-gradient(ellipse at 15% 0%, rgba(34, 197, 94, 0.04), transparent 48%),
-      linear-gradient(180deg, var(--pp-canvas) 0%, var(--pp-surface-2) 100%);
     font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -112,21 +113,18 @@
   }
 }
 
-/* ── Light-theme contrast safety net ──
-   Remaps dark-scheme text utilities to readable darks.
-   Dark-scheme pages opt in via data-theme="deep". */
-.text-white { color: var(--pp-text) !important; }
+/* ── Contrast safety net ──
+   Remaps Tailwind gray text utilities to the theme's muted text color.
+   .text-white is NOT remapped — it's used on primary buttons. */
 .text-gray-300 { color: var(--pp-text-muted) !important; }
 .text-gray-400 { color: var(--pp-text-muted) !important; }
-.text-gray-200 { color: #94A3B8 !important; }
-.text-gray-100 { color: #94A3B8 !important; }
+.text-gray-200 { color: #9CA3AF !important; }
+.text-gray-100 { color: #9CA3AF !important; }
 .text-muted { color: var(--pp-text-muted) !important; }
 
 /* ── Utility classes ── */
 .page-surface {
-  background:
-    radial-gradient(ellipse at 15% 0%, rgba(34, 197, 94, 0.04), transparent 48%),
-    linear-gradient(180deg, var(--pp-canvas) 0%, var(--pp-surface-2) 100%);
+  background-color: var(--pp-canvas);
 }
 
 .canvas-bg { background-color: var(--pp-canvas); }
@@ -145,47 +143,47 @@
            focus:outline-none focus:ring-2 focus:ring-offset-2
            disabled:opacity-50 disabled:pointer-events-none;
     border-radius: var(--pp-radius-button);
-    --tw-ring-color: rgba(34, 197, 94, 0.2);
+    --tw-ring-color: rgba(255, 215, 0, 0.2);
   }
 
   .btn-primary {
-    @apply btn text-white
-           hover:shadow-[0_4px_16px_rgba(34,197,94,0.25)]
+    @apply btn text-navy font-bold
+           hover:shadow-[0_4px_16px_rgba(255,215,0,0.25)]
            active:scale-[0.97];
     background-color: var(--pp-primary);
-    --tw-ring-color: rgba(22, 163, 74, 0.5);
+    --tw-ring-color: rgba(230, 194, 0, 0.5);
   }
   .btn-primary:hover { background-color: var(--pp-primary-dark); }
 
   .btn-secondary {
-    @apply btn border text-primary-dark
+    @apply btn border text-navy
            hover:bg-primary/10 hover:border-primary/50;
     border-color: var(--pp-primary);
     background-color: var(--pp-primary-soft);
-    --tw-ring-color: rgba(34, 197, 94, 0.3);
+    --tw-ring-color: rgba(255, 215, 0, 0.3);
   }
 
   .btn-ghost {
     @apply btn text-text-muted hover:text-primary hover:bg-primary-soft;
-    --tw-ring-color: rgba(34, 197, 94, 0.3);
+    --tw-ring-color: rgba(255, 215, 0, 0.3);
   }
 
   .btn-danger {
     @apply btn border border-red-500/25 text-red-600 bg-red-50
            hover:bg-red-100 hover:border-red-500/50;
-    --tw-ring-color: rgba(239, 68, 68, 0.5);
+    --tw-ring-color: rgba(220, 38, 38, 0.5);
   }
 
   .btn-pro {
-    @apply btn text-white hover:bg-primary;
+    @apply btn text-navy font-bold hover:bg-primary-dark;
     background-color: var(--pp-primary-dark);
-    --tw-ring-color: rgba(34, 197, 94, 0.5);
+    --tw-ring-color: rgba(255, 215, 0, 0.5);
   }
 
   .btn-outline {
     @apply btn border text-text-muted border-text-muted/20
-           hover:border-primary hover:text-primary hover:bg-primary-soft;
-    --tw-ring-color: rgba(34, 197, 94, 0.3);
+           hover:border-primary hover:text-navy hover:bg-primary-soft;
+    --tw-ring-color: rgba(255, 215, 0, 0.3);
   }
 
   .card {
@@ -237,7 +235,7 @@
 
   .badge-primary { @apply badge; background-color: var(--pp-primary-soft); color: var(--pp-primary-dark); }
   .badge-blue { @apply badge bg-blue-100 text-blue-700; }
-  .badge-gold { @apply badge; background-color: var(--pp-gold); color: white; }
+  .badge-gold { @apply badge; background-color: var(--pp-gold); color: var(--pp-navy); }
   .badge-purple { @apply badge bg-purple-100 text-purple-700; }
   .badge-red { @apply badge bg-red-100 text-red-700; }
 

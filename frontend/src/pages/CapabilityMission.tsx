@@ -62,18 +62,18 @@ export default function CapabilityMission() {
   }, [worldId, competencyId]);
 
   if (loading) return (
-    <div className="min-h-screen bg-[#0a0e17] flex items-center justify-center">
-      <div className="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+    <div className="min-h-screen page-surface flex items-center justify-center">
+      <div className="w-8 h-8 border-2 border-border border-t-primary rounded-full animate-spin" />
     </div>
   );
 
   if (!step) return (
-    <div className="min-h-screen bg-[#0a0e17] flex items-center justify-center text-white">
+    <div className="min-h-screen page-surface flex items-center justify-center">
       <div className="text-center">
         <div className="text-6xl mb-4">🎉</div>
         <h2 className="text-2xl font-bold mb-2">Mission Complete!</h2>
-        <p className="text-gray-400 mb-6">{completedSteps.size} / {totalSteps} steps done.</p>
-        <button onClick={() => navigate('/capability-worlds')} className="px-6 py-3 bg-emerald-500/20 hover:bg-emerald-500/30 rounded-xl text-emerald-300 font-medium">
+        <p className="text-text-muted mb-6">{completedSteps.size} / {totalSteps} steps done.</p>
+        <button onClick={() => navigate('/capability-worlds')} className="px-6 py-3 bg-primary-soft hover:bg-primary/20 rounded-xl text-primary-dark font-medium">
           Back to Worlds
         </button>
       </div>
@@ -87,40 +87,40 @@ export default function CapabilityMission() {
   const Icon = stepIcons[step.type] || Target;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0a0e17] via-[#0d1525] to-[#0f172a] text-white">
+    <div className="min-h-screen page-surface">
       {reward && (
         <motion.div initial={{ opacity: 0, y: -30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-          className="fixed top-6 left-1/2 -translate-x-1/2 z-50 px-6 py-3 bg-gradient-to-r from-purple-500/30 to-cyan-500/30 border border-purple-500/40 rounded-2xl backdrop-blur-lg flex items-center gap-4 shadow-xl">
-          {reward.xp > 0 && <span className="text-amber-300 font-bold">+{reward.xp} XP</span>}
+          className="fixed top-6 left-1/2 -translate-x-1/2 z-50 px-6 py-3 bg-white border border-primary shadow-primary rounded-2xl backdrop-blur-lg flex items-center gap-4 shadow-xl">
+          {reward.xp > 0 && <span className="text-gold font-bold">+{reward.xp} XP</span>}
           {reward.readiness != null && (
-            <span className="text-cyan-300 text-sm">Job Readiness: <strong>{Math.round(reward.readiness)}%</strong></span>
+            <span className="text-blue text-sm">Job Readiness: <strong>{Math.round(reward.readiness)}%</strong></span>
           )}
         </motion.div>
       )}
       <div className="max-w-4xl mx-auto px-4 py-8">
         <div className="mb-6 flex items-center gap-4">
-          <button onClick={() => navigate(-1)} className="text-gray-400 hover:text-white">
+          <button onClick={() => navigate(-1)} className="text-text-muted hover:text-primary">
             <ArrowLeft className="w-5 h-5" />
           </button>
-          <div className="flex-1 h-2 bg-white/5 rounded-full overflow-hidden">
-            <motion.div className="h-full bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full"
+          <div className="flex-1 h-2 bg-border rounded-full overflow-hidden">
+            <motion.div className="h-full bg-primary rounded-full"
               animate={{ width: `${((currentStep + 1) / totalSteps) * 100}%` }} />
           </div>
-          <span className="text-sm text-gray-400">{currentStep + 1}/{totalSteps}</span>
+          <span className="text-sm text-text-muted">{currentStep + 1}/{totalSteps}</span>
         </div>
 
         <motion.div key={currentStep} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} className="mb-8">
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-10 h-10 rounded-xl bg-purple-500/20 flex items-center justify-center">
-              <Icon className="w-5 h-5 text-purple-400" />
+            <div className="w-10 h-10 rounded-xl bg-purple-soft flex items-center justify-center">
+              <Icon className="w-5 h-5 text-purple" />
             </div>
             <div>
-              <div className="text-xs text-purple-400 uppercase tracking-wider font-medium">{step.type}</div>
-              <h2 className="text-xl font-bold">{step.title}</h2>
+              <div className="text-xs text-purple uppercase tracking-wider font-medium">{step.type}</div>
+              <h2 className="text-xl font-bold text-text-primary">{step.title}</h2>
             </div>
           </div>
           {step.content && step.type !== 'context' && step.type !== 'goal' && (
-            <p className="text-gray-300 ml-13">{step.content}</p>
+            <p className="text-text-muted ml-13">{step.content}</p>
           )}
         </motion.div>
 
@@ -135,27 +135,27 @@ export default function CapabilityMission() {
         {step.hint && (
           <div className="mt-6">
             {!showHint ? (
-              <button onClick={() => setShowHint(true)} className="text-sm text-amber-400 hover:text-amber-300">Need a hint?</button>
+              <button onClick={() => setShowHint(true)} className="text-sm text-gold hover:text-gold/80">Need a hint?</button>
             ) : (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                className="p-4 bg-amber-500/10 border border-amber-500/20 rounded-xl text-amber-200 text-sm">
+                className="p-4 bg-gold-soft border border-gold/20 rounded-xl text-gold text-sm">
                 {step.hint}
               </motion.div>
             )}
           </div>
         )}
 
-        <div className="flex items-center justify-between mt-8 pt-6 border-t border-white/10">
+        <div className="flex items-center justify-between mt-8 pt-6 border-t border-border">
           <button onClick={() => { if (currentStep > 0) { setCurrentStep(currentStep - 1); setShowHint(false); } }}
             disabled={currentStep === 0}
-            className="px-5 py-2.5 text-sm text-gray-400 hover:text-white disabled:opacity-30">
+            className="px-5 py-2.5 text-sm text-text-muted hover:text-primary disabled:opacity-30">
             Previous
           </button>
-          <div className="text-sm text-gray-500">
+          <div className="text-sm text-text-muted">
             {step.xp ? `${step.xp} XP` : ''} {step.timed ? `${step.time_limit_minutes} min` : ''}
           </div>
           <button onClick={() => { if (currentStep < totalSteps - 1) { setCurrentStep(currentStep + 1); setShowHint(false); setCode(''); } }}
-            className="px-5 py-2.5 bg-white/10 hover:bg-white/15 rounded-xl text-sm font-medium flex items-center gap-2">
+            className="px-5 py-2.5 bg-surface-2 hover:bg-primary-soft border border-border rounded-xl text-sm font-medium flex items-center gap-2">
             {currentStep === totalSteps - 1 ? 'Complete' : 'Next'} <ArrowRight className="w-4 h-4" />
           </button>
         </div>
@@ -170,17 +170,17 @@ function StepRenderer({ step, stepIndex, onAnswer, answer, completed, code, setC
 }) {
   if (step.type === 'context' || step.type === 'goal') {
     return (
-      <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
+      <div className="p-6 bg-white border border-border rounded-2xl shadow-card">
         {step.simulation && (
-          <div className="mb-4 p-4 bg-black/40 rounded-xl font-mono text-sm text-green-400 whitespace-pre-wrap">
+          <div className="mb-4 p-4 bg-surface-2 border border-border rounded-xl font-mono text-sm text-primary-dark whitespace-pre-wrap">
             {String((step.simulation as Record<string, unknown>).initial_state || '')}
           </div>
         )}
         {step.type === 'goal' && step.content && (
-          <div className="text-lg font-semibold text-emerald-400">{step.content}</div>
+          <div className="text-lg font-semibold text-primary-dark">{step.content}</div>
         )}
         {step.content && step.type === 'context' && (
-          <div className="text-gray-300">{step.content}</div>
+          <div className="text-text-muted">{step.content}</div>
         )}
       </div>
     );
@@ -189,13 +189,13 @@ function StepRenderer({ step, stepIndex, onAnswer, answer, completed, code, setC
   if (step.type === 'explore') {
     return (
       <div className="space-y-4">
-        <div className="p-4 bg-black/40 rounded-xl font-mono text-sm text-green-400 whitespace-pre-wrap overflow-x-auto">
+        <div className="p-4 bg-surface-2 border border-border rounded-xl font-mono text-sm text-primary-dark whitespace-pre-wrap overflow-x-auto">
           {step.code}
         </div>
-        <div className="text-xs text-gray-500">Expected output:</div>
-        <div className="p-3 bg-white/5 rounded-lg font-mono text-sm text-cyan-300">{step.expected_output}</div>
+        <div className="text-xs text-text-muted">Expected output:</div>
+        <div className="p-3 bg-surface-2 border border-border rounded-lg font-mono text-sm text-blue">{step.expected_output}</div>
         {completed && (
-          <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-emerald-300 text-sm flex items-center gap-2">
+          <div className="p-3 bg-primary-soft border border-primary/20 rounded-lg text-primary-dark text-sm flex items-center gap-2">
             <CheckCircle2 className="w-4 h-4" /> Explored
           </div>
         )}
@@ -213,17 +213,17 @@ function StepRenderer({ step, stepIndex, onAnswer, answer, completed, code, setC
             onClick={() => onAnswer(stepIndex, opt.id, opt.correct ? 100 : 0)}
             className={`w-full p-4 rounded-xl border text-left transition-all ${
               selected === opt.id
-                ? opt.correct ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300' : 'bg-red-500/10 border-red-500/30 text-red-300'
-                : 'bg-white/5 border-white/10 hover:border-white/20'
+                ? opt.correct ? "bg-primary-soft border-primary/30 text-primary-dark" : "bg-red-soft border-red/30 text-red"
+                : "bg-white border-border hover:border-primary/20"
             }`}>
             <span className="font-medium mr-3">{opt.id.toUpperCase()}.</span> {opt.text}
-            {selected === opt.id && opt.correct && <CheckCircle2 className="w-4 h-4 inline ml-2 text-emerald-400" />}
-            {selected === opt.id && !opt.correct && <XCircle className="w-4 h-4 inline ml-2 text-red-400" />}
+            {selected === opt.id && opt.correct && <CheckCircle2 className="w-4 h-4 inline ml-2 text-primary-dark" />}
+            {selected === opt.id && !opt.correct && <XCircle className="w-4 h-4 inline ml-2 text-red" />}
           </button>
         ))}
         {completed && step.explanation && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-            className="p-4 bg-cyan-500/10 border border-cyan-500/20 rounded-xl text-cyan-200 text-sm mt-4">
+            className="p-4 bg-blue-soft border border-blue/20 rounded-xl text-blue text-sm mt-4">
             {step.explanation}
           </motion.div>
         )}
@@ -234,42 +234,42 @@ function StepRenderer({ step, stepIndex, onAnswer, answer, completed, code, setC
   if (step.type === 'build' || step.type === 'real_world') {
     return (
       <div className="space-y-4">
-        <div className="p-4 bg-white/5 border border-white/10 rounded-xl">
-          <div className="text-sm text-gray-400 mb-2">
-            Function: <code className="text-cyan-300">{step.function_name}</code>
+        <div className="p-4 bg-white border border-border rounded-xl shadow-card">
+          <div className="text-sm text-text-muted mb-2">
+            Function: <code className="text-blue font-mono">{step.function_name}</code>
           </div>
           {step.signature && (
-            <pre className="p-3 bg-black/40 rounded-lg font-mono text-sm text-green-400 overflow-x-auto">{step.signature}</pre>
+            <pre className="p-3 bg-surface-2 border border-border rounded-lg font-mono text-sm text-primary-dark overflow-x-auto">{step.signature}</pre>
           )}
-          {step.description && <p className="text-sm text-gray-300 mt-3">{step.description}</p>}
+          {step.description && <p className="text-sm text-text-muted mt-3">{step.description}</p>}
         </div>
         {step.test_cases && (
-          <div className="p-4 bg-white/5 border border-white/10 rounded-xl">
-            <div className="text-sm font-medium text-gray-400 mb-3">Test Cases</div>
+          <div className="p-4 bg-white border border-border rounded-xl shadow-card">
+            <div className="text-sm font-medium text-text-muted mb-3">Test Cases</div>
             <div className="space-y-2">
               {step.test_cases.slice(0, 4).map((tc, i) => (
-                <div key={i} className="p-3 bg-black/30 rounded-lg font-mono text-xs">
+                <div key={i} className="p-3 bg-surface-2 border border-border rounded-lg font-mono text-xs">
                   <div className="text-green-400">Input: {JSON.stringify(tc.input)}</div>
-                  <div className="text-cyan-300">Expected: {JSON.stringify(tc.expected)}</div>
+                  <div className="text-blue">Expected: {JSON.stringify(tc.expected)}</div>
                 </div>
               ))}
-              {step.hidden_tests ? <div className="text-xs text-gray-500">+ {step.hidden_tests} hidden tests</div> : null}
+              {step.hidden_tests ? <div className="text-xs text-text-muted">+ {step.hidden_tests} hidden tests</div> : null}
             </div>
           </div>
         )}
         {!completed && (
           <textarea value={code} onChange={e => setCode(e.target.value)}
             placeholder="Write your solution here..."
-            className="w-full h-40 bg-black/40 border border-white/10 rounded-xl p-4 font-mono text-sm text-green-400 placeholder-gray-600 resize-none focus:outline-none focus:border-purple-500/50" />
+            className="w-full h-40 bg-surface-2 border border-border rounded-xl p-4 font-mono text-sm text-primary-dark placeholder-text-muted resize-none focus:outline-none focus:border-purple-500/50" />
         )}
         {!completed && (
           <button onClick={() => onAnswer(stepIndex, code, code.length > 20 ? 85 : 50)}
-            className="px-6 py-3 bg-gradient-to-r from-purple-500 to-cyan-500 hover:from-purple-400 hover:to-cyan-400 rounded-xl font-medium text-sm">
+            className="px-6 py-3 bg-primary hover:from-purple-400 hover:to-cyan-400 rounded-xl font-medium text-sm">
             Submit Solution
           </button>
         )}
         {completed && (
-          <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-emerald-300 text-sm flex items-center gap-2">
+          <div className="p-3 bg-primary-soft border border-primary/20 rounded-lg text-primary-dark text-sm flex items-center gap-2">
             <CheckCircle2 className="w-4 h-4" /> Completed — Score: {stepScores[stepIndex]}%
           </div>
         )}
@@ -280,26 +280,26 @@ function StepRenderer({ step, stepIndex, onAnswer, answer, completed, code, setC
   if (step.type === 'debug') {
     return (
       <div className="space-y-4">
-        <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
-          <div className="text-sm text-red-400 font-medium mb-2">Buggy Code</div>
-          <pre className="p-3 bg-black/40 rounded-lg font-mono text-sm text-red-300 overflow-x-auto">{step.buggy_code}</pre>
+        <div className="p-4 bg-red-soft border border-red/20 rounded-xl">
+          <div className="text-sm text-red font-medium mb-2">Buggy Code</div>
+          <pre className="p-3 bg-surface-2 border border-border rounded-lg font-mono text-sm text-red overflow-x-auto">{step.buggy_code}</pre>
           {step.failing_input && (
-            <div className="mt-2 text-xs text-gray-400">Fails on: {JSON.stringify(step.failing_input)}</div>
+            <div className="mt-2 text-xs text-text-muted">Fails on: {JSON.stringify(step.failing_input)}</div>
           )}
         </div>
-        <div className="p-4 bg-white/5 border border-white/10 rounded-xl">
-          <div className="text-sm font-medium mb-2">{step.question}</div>
+        <div className="p-4 bg-white border border-border rounded-xl shadow-card">
+          <div className="text-sm font-medium mb-2 text-text-primary">{step.question}</div>
           <textarea value={code} onChange={e => setCode(e.target.value)} placeholder="Describe the bug and provide the fix..."
-            className="w-full h-24 bg-black/40 border border-white/10 rounded-lg p-3 font-mono text-sm text-green-400 placeholder-gray-600 resize-none focus:outline-none focus:border-purple-500/50" />
+            className="w-full h-24 bg-surface-2 border border-border rounded-lg p-3 font-mono text-sm text-primary-dark placeholder-text-muted resize-none focus:outline-none focus:border-purple-500/50" />
         </div>
         {!completed && (
           <button onClick={() => onAnswer(stepIndex, code, code.length > 10 ? 85 : 40)}
-            className="px-6 py-3 bg-gradient-to-r from-purple-500 to-cyan-500 hover:from-purple-400 hover:to-cyan-400 rounded-xl font-medium text-sm">
+            className="px-6 py-3 bg-primary hover:from-purple-400 hover:to-cyan-400 rounded-xl font-medium text-sm">
             Submit Fix
           </button>
         )}
         {completed && (
-          <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-emerald-300 text-sm flex items-center gap-2">
+          <div className="p-3 bg-primary-soft border border-primary/20 rounded-lg text-primary-dark text-sm flex items-center gap-2">
             <CheckCircle2 className="w-4 h-4" /> Debugged — Score: {stepScores[stepIndex]}%
           </div>
         )}
@@ -310,18 +310,18 @@ function StepRenderer({ step, stepIndex, onAnswer, answer, completed, code, setC
   if (step.type === 'break') {
     return (
       <div className="space-y-4">
-        <div className="p-4 bg-white/5 border border-white/10 rounded-xl">
-          <div className="text-sm font-medium text-amber-400 mb-2">Break It</div>
-          {step.content && <p className="text-gray-300 text-sm">{step.content}</p>}
+        <div className="p-4 bg-white border border-border rounded-xl shadow-card">
+          <div className="text-sm font-medium text-gold mb-2">Break It</div>
+          {step.content && <p className="text-text-muted text-sm">{step.content}</p>}
         </div>
-        <div className="p-4 bg-white/5 border border-white/10 rounded-xl">
-          <div className="text-sm font-medium mb-2">{step.question}</div>
+        <div className="p-4 bg-white border border-border rounded-xl shadow-card">
+          <div className="text-sm font-medium mb-2 text-text-primary">{step.question}</div>
           <textarea value={code} onChange={e => setCode(e.target.value)} placeholder="Your answer..."
-            className="w-full h-24 bg-black/40 border border-white/10 rounded-lg p-3 font-mono text-sm text-green-400 placeholder-gray-600 resize-none focus:outline-none focus:border-purple-500/50" />
+            className="w-full h-24 bg-surface-2 border border-border rounded-lg p-3 font-mono text-sm text-primary-dark placeholder-text-muted resize-none focus:outline-none focus:border-purple-500/50" />
         </div>
         {!completed && (
           <button onClick={() => onAnswer(stepIndex, code, code.length > 5 ? 85 : 40)}
-            className="px-6 py-3 bg-gradient-to-r from-purple-500 to-cyan-500 hover:from-purple-400 hover:to-cyan-400 rounded-xl font-medium text-sm">
+            className="px-6 py-3 bg-primary hover:from-purple-400 hover:to-cyan-400 rounded-xl font-medium text-sm">
             Submit
           </button>
         )}
@@ -332,38 +332,38 @@ function StepRenderer({ step, stepIndex, onAnswer, answer, completed, code, setC
   if (step.type === 'assessment') {
     return (
       <div className="space-y-4">
-        <div className="p-6 bg-gradient-to-br from-purple-500/10 to-cyan-500/10 border border-purple-500/20 rounded-2xl text-center">
+        <div className="p-6 bg-purple-soft border border-purple/20 rounded-2xl text-center">
           <div className="text-3xl mb-3">⚔️</div>
           <h3 className="text-xl font-bold mb-2">{step.title}</h3>
-          {step.timed && <div className="text-amber-400 text-sm mb-2">⏱ {step.time_limit_minutes} minutes</div>}
-          {step.description && <p className="text-gray-300 text-sm">{step.description}</p>}
+          {step.timed && <div className="text-gold text-sm mb-2">⏱ {step.time_limit_minutes} minutes</div>}
+          {step.description && <p className="text-text-muted text-sm">{step.description}</p>}
         </div>
         {step.test_cases && (
-          <div className="p-4 bg-white/5 border border-white/10 rounded-xl">
-            <div className="text-sm font-medium text-gray-400 mb-3">Test Cases</div>
+          <div className="p-4 bg-white border border-border rounded-xl shadow-card">
+            <div className="text-sm font-medium text-text-muted mb-3">Test Cases</div>
             <div className="space-y-2">
               {step.test_cases.slice(0, 3).map((tc, i) => (
-                <div key={i} className="p-3 bg-black/30 rounded-lg font-mono text-xs">
+                <div key={i} className="p-3 bg-surface-2 border border-border rounded-lg font-mono text-xs">
                   <div className="text-green-400">Input: {JSON.stringify(tc.input)}</div>
-                  <div className="text-cyan-300">Expected: {JSON.stringify(tc.expected)}</div>
+                  <div className="text-blue">Expected: {JSON.stringify(tc.expected)}</div>
                 </div>
               ))}
-              {step.hidden_tests ? <div className="text-xs text-gray-500">+ {step.hidden_tests} hidden tests</div> : null}
+              {step.hidden_tests ? <div className="text-xs text-text-muted">+ {step.hidden_tests} hidden tests</div> : null}
             </div>
           </div>
         )}
         {!completed && (
           <textarea value={code} onChange={e => setCode(e.target.value)} placeholder="Write your solution..."
-            className="w-full h-48 bg-black/40 border border-white/10 rounded-xl p-4 font-mono text-sm text-green-400 placeholder-gray-600 resize-none focus:outline-none focus:border-purple-500/50" />
+            className="w-full h-48 bg-surface-2 border border-border rounded-xl p-4 font-mono text-sm text-primary-dark placeholder-text-muted resize-none focus:outline-none focus:border-purple-500/50" />
         )}
         {!completed && (
           <button onClick={() => onAnswer(stepIndex, code, code.length > 20 ? 80 : 30)}
-            className="px-6 py-3 bg-gradient-to-r from-purple-500 to-cyan-500 hover:from-purple-400 hover:to-cyan-400 rounded-xl font-medium text-sm">
+            className="px-6 py-3 bg-primary hover:from-purple-400 hover:to-cyan-400 rounded-xl font-medium text-sm">
             Submit Assessment
           </button>
         )}
         {completed && (
-          <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-emerald-300 text-sm flex items-center gap-2">
+          <div className="p-3 bg-primary-soft border border-primary/20 rounded-lg text-primary-dark text-sm flex items-center gap-2">
             <CheckCircle2 className="w-4 h-4" /> Assessment Complete — Score: {stepScores[stepIndex]}%
           </div>
         )}
@@ -374,15 +374,15 @@ function StepRenderer({ step, stepIndex, onAnswer, answer, completed, code, setC
   if (step.type === 'reflection') {
     return (
       <div className="space-y-4">
-        <div className="p-4 bg-white/5 border border-white/10 rounded-xl">
-          <div className="text-sm font-medium text-purple-400 mb-2">Reflect</div>
-          {step.content && <p className="text-gray-300 text-sm">{step.content}</p>}
+        <div className="p-4 bg-white border border-border rounded-xl shadow-card">
+          <div className="text-sm font-medium text-purple mb-2">Reflect</div>
+          {step.content && <p className="text-text-muted text-sm">{step.content}</p>}
         </div>
         <textarea value={code} onChange={e => setCode(e.target.value)} placeholder="What did you learn? What was hard?"
-          className="w-full h-32 bg-black/40 border border-white/10 rounded-xl p-4 text-sm text-green-400 placeholder-gray-600 resize-none focus:outline-none focus:border-purple-500/50" />
+          className="w-full h-32 bg-surface-2 border border-border rounded-xl p-4 text-sm text-primary-dark placeholder-text-muted resize-none focus:outline-none focus:border-purple-500/50" />
         {!completed && (
           <button onClick={() => onAnswer(stepIndex, code, code.length > 5 ? 90 : 50)}
-            className="px-6 py-3 bg-gradient-to-r from-purple-500 to-cyan-500 hover:from-purple-400 hover:to-cyan-400 rounded-xl font-medium text-sm">
+            className="px-6 py-3 bg-primary hover:from-purple-400 hover:to-cyan-400 rounded-xl font-medium text-sm">
             Complete Reflection
           </button>
         )}
@@ -390,5 +390,5 @@ function StepRenderer({ step, stepIndex, onAnswer, answer, completed, code, setC
     );
   }
 
-  return <div className="p-4 bg-white/5 border border-white/10 rounded-xl text-gray-400">Step type: {step.type}</div>;
+  return <div className="p-4 bg-white border border-border rounded-xl shadow-card text-text-muted">Step type: {step.type}</div>;
 }
