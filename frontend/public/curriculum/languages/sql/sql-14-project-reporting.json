@@ -1,0 +1,51 @@
+{
+  "id": "sql-14-project-reporting",
+  "track": "sql",
+  "title": "Project: Sales Reporting",
+  "section": "Advanced SQL",
+  "order": 14,
+  "type": "project",
+  "duration": "18 min",
+  "xp": 40,
+  "content": {
+    "theory": "Final project: you are a data analyst building a reporting query. The database is `students(id, name, city, score, grade)`, `teachers(id, name, subject)`, `classes(id, subject, teacher_id)`, and `enrollments(student_id, class_id, grade)`. Every real production report is JOINs + aggregates + CASE + windows composed in layers — this lesson builds one from the ground up.\n\n### Step 1 — join the facts\n\n```sql\nSELECT c.subject, s.name, e.grade\nFROM classes AS c\nJOIN enrollments AS e ON c.id = e.class_id\nJOIN students AS s ON s.id = e.student_id;\n```\n\nThe JOINs connect the fact table (enrollments) to its dimensions.\n\n### Step 2 — aggregate per class\n\n```sql\nSELECT c.subject, COUNT(e.student_id) AS students, AVG(e.grade) AS avg_grade\nFROM classes AS c\nLEFT JOIN enrollments AS e ON c.id = e.class_id\nGROUP BY c.subject;\n```\n\n`LEFT JOIN` keeps classes with zero enrollments visible — COUNT returns 0 instead of dropping the row.\n\n### Step 3 — classify with CASE\n\n```sql\nSELECT c.subject,\n  COUNT(e.student_id) AS students,\n  CASE WHEN COUNT(e.student_id) >= 5 THEN 'Popular'\n       ELSE 'Small' END AS size\nFROM classes AS c\nLEFT JOIN enrollments AS e ON c.id = e.class_id\nGROUP BY c.subject;\n```\n\n### Step 4 — rank with a window function\n\n```sql\nSELECT subject, students,\n  RANK() OVER (ORDER BY students DESC) AS rnk\nFROM (\n  SELECT c.subject, COUNT(e.student_id) AS students\n  FROM classes AS c\n  LEFT JOIN enrollments AS e ON c.id = e.class_id\n  GROUP BY c.subject\n) AS stats;\n```\n\nThe inner query computes the totals; the outer window adds a rank. Notice how each step feeds the next — same skill as the CTE pipelines you built earlier.",
+    "codeSnippets": [
+      {
+        "language": "sql",
+        "code": "SELECT c.subject, COUNT(e.student_id) AS students, AVG(e.grade) AS avg_grade\nFROM classes AS c\nLEFT JOIN enrollments AS e ON c.id = e.class_id\nGROUP BY c.subject;",
+        "output": "One row per class: subject, number of enrolled students, and average grade"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write a reporting query that joins 'classes' (alias c) with 'enrollments' (alias e) ON c.id = e.class_id, then shows each class's 'subject', the COUNT of 'e.student_id', and groups by subject.",
+      "starterCode": "",
+      "required": ["SELECT c.subject", "COUNT(e.student_id)", "FROM classes", "JOIN enrollments", "ON c.id = e.class_id", "GROUP BY c.subject"],
+      "hints": [
+        "Hint 1: SELECT c.subject, COUNT(e.student_id) AS students",
+        "Hint 2: FROM classes AS c JOIN enrollments AS e ON c.id = e.class_id",
+        "Hint 3: GROUP BY c.subject;"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Why use LEFT JOIN instead of INNER JOIN when counting enrollments per class?",
+        "options": ["To keep classes with zero enrollments", "To make the query faster", "To avoid using GROUP BY"],
+        "correct": 0
+      },
+      {
+        "question": "Which aggregate counts the rows in each group?",
+        "options": ["COUNT(", "SUM(", "MIN("],
+        "correct": 0
+      },
+      {
+        "question": "What belongs in the GROUP BY clause?",
+        "options": ["The aggregate functions", "The ORDER BY clause", "The non-aggregate columns you selected"],
+        "correct": 2
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": null,
+    "unlocks": []
+  }
+}

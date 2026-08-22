@@ -102,7 +102,7 @@ export default function CareerProfile() {
   if (!profile) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p className="text-gray-500">Failed to load profile</p>
+        <p className="text-brand-muted">Failed to load profile</p>
       </div>
     );
   }
@@ -125,13 +125,13 @@ export default function CareerProfile() {
               </div>
               <div>
                 <h1 className="text-3xl font-bold dark:text-white">Career Profile</h1>
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-brand-secondary dark:text-gray-400">
                   {profile.full_name || "Your master profile"} · {sourceLabel}
                 </p>
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <label className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+              <label className="flex items-center gap-2 px-4 py-2 bg-surface-card/50 bg-surface-card rounded-lg cursor-pointer hover:bg-surface-card/50 dark:hover:bg-gray-700 transition-colors">
                 <Upload size={16} />
                 <span className="text-sm font-medium">Import Resume</span>
                 <input type="file" accept=".pdf" className="hidden" onChange={handleUploadResume} disabled={uploading} />
@@ -152,11 +152,11 @@ export default function CareerProfile() {
         <form onSubmit={handlePracticeForRole} className="card mb-6">
           <div className="flex flex-wrap items-end gap-3">
             <div className="flex-1 min-w-[180px]">
-              <label className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">Target Company</label>
+              <label className="block text-xs font-medium text-brand-secondary dark:text-gray-400 mb-1">Target Company</label>
               <input className="input" placeholder="e.g. Amazon" value={practiceCompany} onChange={(e) => setPracticeCompany(e.target.value)} required />
             </div>
             <div className="w-40">
-              <label className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">Role</label>
+              <label className="block text-xs font-medium text-brand-secondary dark:text-gray-400 mb-1">Role</label>
               <input className="input" placeholder="SDE" value={practiceRole} onChange={(e) => setPracticeRole(e.target.value)} />
             </div>
             <button type="submit" className="btn-primary flex items-center gap-2">
@@ -166,7 +166,7 @@ export default function CareerProfile() {
           {practiceResult && (
             <div className="mt-4 p-4 bg-primary-50 dark:bg-primary-900/20 rounded-lg">
               <p className="text-sm font-semibold dark:text-white mb-2">Practice session created for {practiceResult.company}</p>
-              <div className="flex flex-wrap gap-4 text-xs text-gray-600 dark:text-gray-400">
+              <div className="flex flex-wrap gap-4 text-xs text-brand-secondary dark:text-gray-400">
                 <span>Coding: {practiceResult.coding?.length || 0}</span>
                 <span>Behavioral: {practiceResult.behavioral?.length || 0}</span>
                 <span>System Design: {practiceResult.system_design?.length || 0}</span>
@@ -187,7 +187,7 @@ export default function CareerProfile() {
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
                     activeTab === tab.id
                       ? "bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400"
-                      : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800"
+                      : "text-brand-secondary dark:text-gray-400 hover:bg-surface-card dark:hover:bg-gray-800"
                   }`}
                 >
                   <tab.icon size={18} />
@@ -198,7 +198,7 @@ export default function CareerProfile() {
 
             {profile.resume_id && (
               <div className="mt-4 card p-4">
-                <p className="text-xs text-gray-500 mb-2">Source Resume</p>
+                <p className="text-xs text-brand-muted mb-2">Source Resume</p>
                 <p className="text-sm font-medium dark:text-white">Linked to resume upload</p>
               </div>
             )}
@@ -312,7 +312,7 @@ function ContactTab({ profile, onSave, saving }) {
     });
   };
 
-  const inputClass = "w-full px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 dark:text-white text-sm focus:ring-2 focus:ring-primary-500";
+  const inputClass = "w-full px-4 py-2.5 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card dark:text-white text-sm focus:ring-2 focus:ring-primary-500";
 
   return (
     <AnimatedCard className="card">
@@ -320,30 +320,30 @@ function ContactTab({ profile, onSave, saving }) {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Full Name</label>
+            <label className="block text-sm font-medium text-brand-primary dark:text-gray-300 mb-1">Full Name</label>
             <input className={inputClass} value={form.full_name} onChange={(e) => setForm({ ...form, full_name: e.target.value })} />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
+            <label className="block text-sm font-medium text-brand-primary dark:text-gray-300 mb-1">Email</label>
             <input className={inputClass} type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Phone</label>
+            <label className="block text-sm font-medium text-brand-primary dark:text-gray-300 mb-1">Phone</label>
             <input className={inputClass} value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Location</label>
+            <label className="block text-sm font-medium text-brand-primary dark:text-gray-300 mb-1">Location</label>
             <input className={inputClass} value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">LinkedIn</label>
+            <label className="block text-sm font-medium text-brand-primary dark:text-gray-300 mb-1">LinkedIn</label>
             <div className="relative">
               <Linkedin size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
               <input className={`${inputClass} pl-10`} value={form.linkedin} onChange={(e) => setForm({ ...form, linkedin: e.target.value })} />
             </div>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">GitHub</label>
+            <label className="block text-sm font-medium text-brand-primary dark:text-gray-300 mb-1">GitHub</label>
             <div className="relative">
               <Github size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
               <input className={`${inputClass} pl-10`} value={form.github} onChange={(e) => setForm({ ...form, github: e.target.value })} />
@@ -352,7 +352,7 @@ function ContactTab({ profile, onSave, saving }) {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Website / Portfolio</label>
+          <label className="block text-sm font-medium text-brand-primary dark:text-gray-300 mb-1">Website / Portfolio</label>
           <div className="relative">
             <LinkIcon size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
             <input className={`${inputClass} pl-10`} value={form.website} onChange={(e) => setForm({ ...form, website: e.target.value })} />
@@ -360,7 +360,7 @@ function ContactTab({ profile, onSave, saving }) {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Professional Summary</label>
+          <label className="block text-sm font-medium text-brand-primary dark:text-gray-300 mb-1">Professional Summary</label>
           <textarea
             className={inputClass}
             rows={4}
@@ -399,7 +399,7 @@ function ListSectionTab({ title, items, emptyLabel, onAdd, onRemove, renderForm,
       </div>
 
       {showForm && (
-        <motion.form onSubmit={handleSubmit} className="mb-6 p-4 bg-gray-50 dark:bg-gray-700/30 rounded-lg space-y-3"
+        <motion.form onSubmit={handleSubmit} className="mb-6 p-4 bg-surface-base bg-surface-card/50 rounded-lg space-y-3"
           initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }}>
           {renderForm(formData, setFormData)}
           <div className="flex gap-2">
@@ -410,11 +410,11 @@ function ListSectionTab({ title, items, emptyLabel, onAdd, onRemove, renderForm,
       )}
 
       {items.length === 0 ? (
-        <p className="text-gray-400 dark:text-gray-500 text-sm">{emptyLabel}</p>
+        <p className="text-gray-400 dark:text-brand-muted text-sm">{emptyLabel}</p>
       ) : (
         <div className="space-y-4">
           {items.map((item, idx) => (
-            <div key={idx} className="flex items-start justify-between p-4 bg-gray-50 dark:bg-gray-700/30 rounded-lg">
+            <div key={idx} className="flex items-start justify-between p-4 bg-surface-base bg-surface-card/50 rounded-lg">
               <div className="flex-1 min-w-0">
                 {renderItem(item, idx)}
               </div>
@@ -438,7 +438,7 @@ function ExperienceForm(data, set) {
         <input className="input" placeholder="Location" value={data.location || ""} onChange={(e) => set({ ...data, location: e.target.value })} />
         <input className="input" placeholder="Start Date (YYYY or YYYY-MM)" value={data.start_date || ""} onChange={(e) => set({ ...data, start_date: e.target.value })} />
         <input className="input" placeholder="End Date (or 'Present')" value={data.end_date || ""} onChange={(e) => set({ ...data, end_date: e.target.value })} />
-        <label className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+        <label className="flex items-center gap-2 text-sm text-brand-secondary dark:text-gray-400">
           <input type="checkbox" checked={data.current || false} onChange={(e) => set({ ...data, current: e.target.checked })} />
           Current role
         </label>
@@ -454,12 +454,12 @@ function ExperienceItem(item) {
       <div className="flex items-center gap-2 mb-1">
         <h3 className="font-semibold text-sm dark:text-white">{item.title}</h3>
         <span className="text-gray-400">at</span>
-        <span className="text-sm text-gray-600 dark:text-gray-400">{item.company}</span>
+        <span className="text-sm text-brand-secondary dark:text-gray-400">{item.company}</span>
         {item.current && <span className="text-xs px-2 py-0.5 rounded-full bg-green-100 text-green-700">Current</span>}
       </div>
-      <p className="text-xs text-gray-500 mb-2">{item.location} · {item.start_date} — {item.end_date || "Present"}</p>
+      <p className="text-xs text-brand-muted mb-2">{item.location} · {item.start_date} — {item.end_date || "Present"}</p>
       {item.bullets?.length > 0 && (
-        <ul className="list-disc list-inside text-sm text-gray-600 dark:text-gray-400 space-y-1">
+        <ul className="list-disc list-inside text-sm text-brand-secondary dark:text-gray-400 space-y-1">
           {item.bullets.slice(0, 3).map((b, i) => <li key={i}>{b}</li>)}
         </ul>
       )}
@@ -484,8 +484,8 @@ function EducationItem(item) {
   return (
     <>
       <h3 className="font-semibold text-sm dark:text-white">{item.school}</h3>
-      <p className="text-sm text-gray-600 dark:text-gray-400">{item.degree} in {item.field}</p>
-      <p className="text-xs text-gray-500">{item.start_year} — {item.end_year} {item.gpa ? `· GPA: ${item.gpa}` : ""}</p>
+      <p className="text-sm text-brand-secondary dark:text-gray-400">{item.degree} in {item.field}</p>
+      <p className="text-xs text-brand-muted">{item.start_year} — {item.end_year} {item.gpa ? `· GPA: ${item.gpa}` : ""}</p>
     </>
   );
 }
@@ -513,14 +513,14 @@ function ProjectItem(item) {
           </a>
         )}
       </div>
-      <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">{item.description}</p>
+      <p className="text-sm text-brand-secondary dark:text-gray-400 mb-1">{item.description}</p>
       <div className="flex flex-wrap gap-1 mb-1">
         {item.tech_stack?.map((t, i) => (
-          <span key={i} className="text-xs px-2 py-0.5 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400">{t}</span>
+          <span key={i} className="text-xs px-2 py-0.5 rounded-full bg-surface-card/50 dark:bg-gray-700 text-brand-secondary dark:text-gray-400">{t}</span>
         ))}
       </div>
       {item.highlights?.length > 0 && (
-        <ul className="list-disc list-inside text-xs text-gray-500 space-y-0.5">
+        <ul className="list-disc list-inside text-xs text-brand-muted space-y-0.5">
           {item.highlights.slice(0, 2).map((h, i) => <li key={i}>{h}</li>)}
         </ul>
       )}
@@ -549,7 +549,7 @@ function CertificationItem(item) {
           {item.issuer}
         </span>
       </div>
-      <p className="text-xs text-gray-500">
+      <p className="text-xs text-brand-muted">
         {item.date} {item.expiry ? `· Expires ${item.expiry}` : ""}
         {item.credential_id ? `· ID: ${item.credential_id}` : ""}
       </p>
@@ -596,7 +596,7 @@ function SkillsTab({ skills, onSave, saving }) {
         </button>
       </div>
       {local.length === 0 ? (
-        <p className="text-gray-400 dark:text-gray-500 text-sm">No skills added yet</p>
+        <p className="text-gray-400 dark:text-brand-muted text-sm">No skills added yet</p>
       ) : (
         <div className="flex flex-wrap gap-2">
           {local.map((skill, idx) => (

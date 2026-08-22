@@ -1,0 +1,47 @@
+{
+  "id": "cpp-08-classes",
+  "track": "cpp",
+  "title": "Classes & Objects",
+  "section": "C++ Basics",
+  "order": 8,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 20,
+  "content": {
+    "theory": "C++ supports **object-oriented programming**. A class is a blueprint; an object is an instance.\n\nBasic class:\n\n```cpp\nclass Player {\npublic:\n    std::string name;\n    int hp;\n\n    void takeDamage(int amount) {\n        hp -= amount;\n    }\n};\n```\n\nNote the **semicolon after the closing brace** — easy to forget and a common compile error.\n\n`public:` makes members accessible from outside the class. Members before `private:` (the default) can only be used inside the class.\n\nCreate and use objects:\n\n```cpp\nPlayer hero;\nhero.name = \"Aria\";\nhero.hp = 100;\nhero.takeDamage(25);\nstd::cout << hero.hp << std::endl;   // 75\n```\n\nA **constructor** runs on creation:\n\n```cpp\nclass Player {\npublic:\n    std::string name;\n    int hp;\n\n    Player(std::string n, int h) {\n        name = n;\n        hp = h;\n    }\n};\n\nPlayer hero(\"Aria\", 100);   // constructor call\n```",
+    "codeSnippets": [
+      {
+        "language": "cpp",
+        "code": "#include <iostream>\n#include <string>\n\nclass Cat {\npublic:\n    std::string name;\n    Cat(std::string n) { name = n; }\n    void meow() { std::cout << name << \" says meow\" << std::endl; }\n};\n\nint main() {\n    Cat c(\"Milo\");\n    c.meow();\n    return 0;\n}",
+        "output": "Milo says meow"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write the full program: a class 'Dog' with public std::string name, a constructor Dog(std::string n) that sets name, and a method bark() that prints '<name> says woof'. In main create Dog d(\"Rex\") and call d.bark().",
+      "starterCode": "#include <iostream>\n#include <string>\n\nint main() {\n\n    return 0;\n}",
+      "language": "cpp",
+      "expected": "Rex says woof",
+      "required": ["class Dog", "public:", "std::string name", "Dog(std::string n)", "name = n", "bark()", "Dog d(", "Rex", "d.bark()"],
+      "hints": [
+        "Hint 1: class Dog { public: std::string name; Dog(std::string n) { name = n; } void bark() { std::cout << name << \" says woof\" << std::endl; } };",
+        "Hint 2: In main: Dog d(\"Rex\"); d.bark();"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What's easy to forget at the end of a class definition?",
+        "options": ["A closing brace", "A semicolon", "return 0"],
+        "correct": 1
+      },
+      {
+        "question": "What does public: do?",
+        "options": ["Makes members accessible from outside the class", "Makes members private", "Hides the class"],
+        "correct": 0
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "cpp-09-fizzbuzz",
+    "unlocks": ["cpp-09-fizzbuzz"]
+  }
+}

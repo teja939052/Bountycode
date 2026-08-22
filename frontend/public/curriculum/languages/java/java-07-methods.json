@@ -1,0 +1,47 @@
+{
+  "id": "java-07-methods",
+  "track": "java",
+  "title": "Methods",
+  "section": "Java Basics",
+  "order": 7,
+  "type": "lesson",
+  "duration": "11 min",
+  "xp": 20,
+  "content": {
+    "theory": "A **method** is a named block of code — Java's version of a function. Define it inside your class, then call it:\n\n```java\npublic class Main {\n    public static void main(String[] args) {\n        greet();\n        greet();\n    }\n\n    static void greet() {\n        System.out.println(\"Hello!\");\n    }\n}\n```\n\nMethods can take parameters and **return** a value — the return type comes before the name:\n\n```java\nstatic int add(int a, int b) {\n    return a + b;\n}\n\n// call:\nint result = add(3, 5);   // 8\n```\n\n- `static` — belongs to the class, callable from main\n- `void` — returns nothing\n- Methods **must declare a return type**, and `return` must match it\n- If a method declares a return type, every code path must return a value\n\nA method that computes but doesn't return is a bug — it silently does nothing useful:\n\n```java\nstatic int doubleOf(int n) {\n    return n * 2;   // must return!\n}\n```",
+    "codeSnippets": [
+      {
+        "language": "java",
+        "code": "static int square(int x) {\n    return x * x;\n}\n\npublic static void main(String[] args) {\n    System.out.println(square(4));\n}",
+        "output": "16"
+      }
+    ],
+    "exercise": {
+      "instruction": "Add a static method 'doubleOf' that takes an int 'n' and returns n * 2. Call it with 21 in main and print the result.",
+      "starterCode": "public class Main {\n    public static void main(String[] args) {\n\n    }\n\n}\n",
+      "language": "java",
+      "expected": "42",
+      "required": ["static int doubleOf", "(int n)", "return n * 2", "doubleOf(21)"],
+      "hints": [
+        "Hint 1: static int doubleOf(int n) { return n * 2; }",
+        "Hint 2: In main: System.out.println(doubleOf(21));"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What does 'void' mean as a return type?",
+        "options": ["Returns 0", "Returns nothing", "Returns null"],
+        "correct": 1
+      },
+      {
+        "question": "Where must a method be defined?",
+        "options": ["Outside any class", "Inside a class", "Inside main"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "java-08-classes-objects",
+    "unlocks": ["java-08-classes-objects"]
+  }
+}

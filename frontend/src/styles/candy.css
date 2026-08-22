@@ -1,0 +1,376 @@
+/* ── 🍬 Candy Design System ─────────────────────────────────────
+    Playful, glossy, game-like tokens for the learning UI
+    (Coddy.tech × Candy Crush × Duolingo inspired).
+    Enhanced for Dribbble-level polish. */
+
+:root {
+  /* Core palette */
+  --candy-strawberry: #ff6b6b;
+  --candy-grape: #845ec2;
+  --candy-lemon: #ffc75f;
+  --candy-mint: #00c9a7;
+  --candy-blueberry: #4b7bec;
+  --candy-tangerine: #ff8a5c;
+  --candy-cherry: #ff3f6c;
+  --candy-gold: #ffd700;
+  --candy-ink: #0f0f1a;
+  --candy-cream: #FFF8F0;
+  --candy-rose: #FF8A9F;
+
+  /* Semantic tokens */
+  --candy-bg: #0f0f1a;
+  --candy-surface: #1a1a2e;
+  --candy-surface-light: #252540;
+  --candy-text: #ffffff;
+  --candy-text-dim: #a0a0b8;
+  --candy-border: rgba(255, 255, 255, 0.08);
+  --candy-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+
+  /* Glossy overlays */
+  --candy-gloss: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.38) 0%,
+    rgba(255, 255, 255, 0.1) 45%,
+    transparent 60%
+  );
+
+  --candy-gloss-strong: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 62%
+  );
+
+  --candy-inner-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.2), inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ── Animations ──────────────────────────────────────────────── */
+
+@keyframes candy-shimmer-sweep {
+  0% { transform: translateX(-120%); }
+  60%, 100% { transform: translateX(220%); }
+}
+
+.candy-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.candy-shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  animation: candy-shimmer-sweep 2.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes candy-pop {
+  0% { transform: scale(0.6); opacity: 0; }
+  60% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+.candy-pop {
+  animation: candy-pop 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes candy-spin {
+  to { transform: rotate(360deg); }
+}
+
+.candy-spin {
+  animation: candy-spin 7s linear infinite;
+}
+
+@keyframes candy-float {
+  0%, 100% { transform: translateY(0) rotate(-8deg); }
+  50% { transform: translateY(-16px) rotate(8deg); }
+}
+
+.candy-float {
+  animation: candy-float 5s ease-in-out infinite;
+}
+
+@keyframes candy-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+
+.candy-pulse {
+  animation: candy-pulse 2s ease-in-out infinite;
+}
+
+@keyframes candy-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(255, 199, 95, 0.3), inset 0 1px 2px rgba(255,255,255,0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 199, 95, 0.6), inset 0 1px 2px rgba(255,255,255,0.3);
+  }
+}
+
+.animate-pulse-glow {
+  animation: candy-glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes candy-bounce-in {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.15); }
+  70% { transform: scale(0.95); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.candy-bounce-in {
+  animation: candy-bounce-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes candy-wobble {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
+}
+
+.candy-wobble:hover {
+  animation: candy-wobble 0.4s ease-in-out;
+}
+
+@keyframes candy-glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 107, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(255, 107, 107, 0.5); }
+}
+
+.candy-glow-pulse {
+  animation: candy-glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes candy-gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.candy-gradient-animated {
+  background-size: 200% 200%;
+  animation: candy-gradient-shift 4s ease infinite;
+}
+
+@keyframes candy-confetti-fall {
+  0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+.candy-confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: candy-confetti-fall 3s linear infinite;
+}
+
+/* ── Text Effects ────────────────────────────────────────────── */
+
+.candy-text {
+  background: linear-gradient(92deg, #ffc75f 0%, #ff6b6b 45%, #845ec2 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
+}
+
+.candy-text-green {
+  background: linear-gradient(92deg, #7BB661 0%, #4F8F57 50%, #2d5a30 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
+}
+
+.candy-text-glow {
+  text-shadow: 0 0 10px rgba(255, 107, 107, 0.5), 0 0 20px rgba(132, 92, 194, 0.3);
+}
+
+/* ── Card Enhancements ───────────────────────────────────────── */
+
+.candy-card-hover {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+}
+
+.candy-card-hover:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: var(--candy-shadow), 0 0 30px rgba(255, 107, 107, 0.15);
+}
+
+/* ── Button Polish ───────────────────────────────────────────── */
+
+.candy-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.candy-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.candy-btn:hover::before {
+  left: 100%;
+}
+
+.candy-btn:active {
+  transform: scale(0.96);
+}
+
+/* ── Progress Bar Enhancements ───────────────────────────────── */
+
+.candy-progress-glow {
+  box-shadow: 0 0 10px rgba(255, 107, 107, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+/* ── Level Node Styles ───────────────────────────────────────── */
+
+.candy-level-node {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.candy-level-node:hover {
+  transform: scale(1.15);
+  z-index: 10;
+}
+
+.candy-level-node.completed {
+  filter: drop-shadow(0 0 8px rgba(0, 201, 167, 0.5));
+}
+
+.candy-level-node.locked {
+  filter: grayscale(0.8) brightness(0.6);
+}
+
+.candy-level-node.current {
+  animation: candy-glow-pulse 2s ease-in-out infinite;
+}
+
+/* ── Path/Connection Lines ───────────────────────────────────── */
+
+.candy-path {
+  stroke-dasharray: 8 4;
+  animation: candy-flow 1.5s linear infinite;
+}
+
+.candy-path-completed {
+  stroke-dasharray: none;
+  filter: drop-shadow(0 0 4px rgba(0, 201, 167, 0.5));
+}
+
+/* ── Badge/Trophy Styles ─────────────────────────────────────── */
+
+.candy-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--candy-gloss);
+  box-shadow: var(--candy-shadow), inset 0 2px 4px rgba(255, 255, 255, 0.2);
+}
+
+.candy-badge::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  animation: candy-spin 10s linear infinite;
+}
+
+/* ── Tooltip Styles ──────────────────────────────────────────── */
+
+.candy-tooltip {
+  position: relative;
+}
+
+.candy-tooltip::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  padding: 6px 12px;
+  background: var(--candy-surface);
+  color: var(--candy-text);
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  box-shadow: var(--candy-shadow);
+  border: 1px solid var(--candy-border);
+}
+
+.candy-tooltip:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── Glass Morphism ──────────────────────────────────────────── */
+
+.candy-glass {
+  background: rgba(26, 26, 46, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--candy-shadow);
+}
+
+.candy-glass-light {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ── Celebration Effects ─────────────────────────────────────── */
+
+@keyframes candy-star-burst {
+  0% { transform: scale(0) rotate(0deg); opacity: 1; }
+  50% { transform: scale(1.2) rotate(180deg); opacity: 0.8; }
+  100% { transform: scale(0) rotate(360deg); opacity: 0; }
+}
+
+.candy-star-burst {
+  animation: candy-star-burst 0.8s ease-out forwards;
+}
+
+/* ── Scroll Reveal ───────────────────────────────────────────── */
+
+.candy-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.candy-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .candy-card-hover:hover {
+    transform: none;
+  }
+}

@@ -1,17 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import api from "../services/api";
 
 export default function ResetPassword() {
   const [searchParams] = useSearchParams();
-  const token = searchParams.get("token") || "";
+  const urlToken = searchParams.get("token") || "";
+  const urlEmail = searchParams.get("email") || "";
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(urlEmail);
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (urlToken) {
+      document.getElementById("token")?.focus();
+    }
+  }, [urlToken]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,14 +32,14 @@ export default function ResetPassword() {
       return;
     }
 
-    if (newPassword.length < 6) {
-      setError("Password must be at least 6 characters");
+    if (newPassword.length < 8) {
+      setError("Password must be at least 8 characters");
       setLoading(false);
       return;
     }
 
     try {
-      await api.resetPassword(email, token, newPassword);
+      await api.resetPassword(email, urlToken, newPassword);
       setMessage("Password reset successful. You can now log in.");
       setTimeout(() => navigate("/login"), 2000);
     } catch (err) {
@@ -43,14 +50,14 @@ export default function ResetPassword() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-surface-base py-12 px-4">
       <div className="max-w-md w-full space-y-8">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
             Set new password
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Enter your email, the reset token, and your new password.
+          <p className="mt-2 text-center text-sm text-brand-secondary">
+            Choose a strong password for your account.
           </p>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
@@ -62,7 +69,7 @@ export default function ResetPassword() {
                 name="email"
                 type="email"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-brand-primary/20 placeholder-brand-dim text-white rounded-t-md focus:outline-none focus:ring-brand-primary focus:border-brand-primary focus:z-10 sm:text-sm"
                 placeholder="Email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -75,11 +82,12 @@ export default function ResetPassword() {
                 name="token"
                 type="text"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Reset token"
-                value={token}
-                onChange={(e) => {}}
+                readOnly
+                value={urlToken}
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-brand-primary/20 placeholder-brand-dim text-brand-dim bg-surface-card focus:outline-none focus:ring-brand-primary focus:border-brand-primary focus:z-10 sm:text-sm"
+                placeholder="Reset token auto-filled"
               />
+              <p className="text-[10px] text-brand-dim mt-1">Token auto-filled from email link</p>
             </div>
             <div>
               <label htmlFor="new-password" className="sr-only">New password</label>
@@ -88,9 +96,9 @@ export default function ResetPassword() {
                 name="new_password"
                 type="password"
                 required
-                minLength={6}
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="New password"
+                minLength={8}
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-brand-primary/20 placeholder-brand-dim text-white focus:outline-none focus:ring-brand-primary focus:border-brand-primary focus:z-10 sm:text-sm"
+                placeholder="New password (min 8 characters)"
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
               />
@@ -102,9 +110,9 @@ export default function ResetPassword() {
                 name="confirm_password"
                 type="password"
                 required
-                minLength={6}
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Confirm password"
+                minLength={8}
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-brand-primary/20 placeholder-brand-dim text-white rounded-b-md focus:outline-none focus:ring-brand-primary focus:border-brand-primary focus:z-10 sm:text-sm"
+                placeholder="Confirm new password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
@@ -112,24 +120,24 @@ export default function ResetPassword() {
           </div>
 
           {error && (
-            <div className="text-red-600 text-sm text-center">{error}</div>
+            <div className="text-brand-accent text-sm text-center">{error}</div>
           )}
           {message && (
-            <div className="text-green-600 text-sm text-center">{message}</div>
+            <div className="text-brand-emerald text-sm text-center">{message}</div>
           )}
 
           <div>
             <button
               type="submit"
               disabled={loading}
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-brand-primary hover:bg-brand-primary/80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-primary disabled:opacity-50"
             >
               {loading ? "Resetting..." : "Reset password"}
             </button>
           </div>
 
           <div className="text-sm text-center">
-            <Link to="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
+            <Link to="/login" className="font-medium text-brand-secondary hover:text-brand-primary">
               Back to login
             </Link>
           </div>

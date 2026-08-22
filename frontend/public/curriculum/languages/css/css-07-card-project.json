@@ -1,0 +1,46 @@
+{
+  "id": "css-07-card-project",
+  "track": "css",
+  "title": "Project: Profile Card",
+  "section": "CSS Projects",
+  "order": 7,
+  "type": "project",
+  "duration": "18 min",
+  "xp": 40,
+  "content": {
+    "theory": "Final CSS project: a polished **profile card** that puts selectors, flexbox, grid, and transforms together.\n\n### The card layout\n```css\n.card {\n  max-width: 320px;\n  margin: 0 auto;\n  border-radius: 16px;\n  overflow: hidden;\n  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);\n}\n```\n`overflow: hidden` keeps the avatar's rounded corners clean.\n\n### Centering with flexbox\n```css\n.card-body {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  padding: 24px;\n}\n```\n\n### Circular avatar\n```css\n.avatar {\n  width: 96px;\n  height: 96px;\n  border-radius: 50%;\n  object-fit: cover;   /* crop instead of stretch */\n}\n```\n\n### Hover lift\n```css\n.card {\n  transition: transform 0.3s ease, box-shadow 0.3s ease;\n}\n.card:hover {\n  transform: translateY(-6px);\n  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);\n}\n```\nThe card gently floats up on hover — a classic premium-feel interaction.\n\n### Badges with flexbox + gap\n```css\n.skills {\n  display: flex;\n  gap: 8px;\n}\n.skill {\n  background: #f3f4f6;\n  border-radius: 9999px;\n  padding: 4px 12px;\n  font-size: 12px;\n}\n```\n\nCombine these patterns and you have a component that looks like a real product UI.",
+    "codeSnippets": [
+      {
+        "language": "css",
+        "code": ".card:hover {\n  transform: translateY(-6px);\n  transition: transform 0.3s ease;\n}",
+        "output": "The card lifts 6px smoothly on hover."
+      }
+    ],
+    "exercise": {
+      "instruction": "Style the card: .avatar should be 96px, perfectly round, with object-fit cover. .card-body should be a centered column (flex, column, align-items center, padding 24px). Add a hover transition that lifts the card 6px with 0.3s ease.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Profile Card</title>\n  <style>\n    .card {\n      max-width: 320px;\n      margin: 0 auto;\n      border-radius: 16px;\n      overflow: hidden;\n      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);\n      transition: transform 0.3s ease, box-shadow 0.3s ease;\n    }\n    .card:hover {\n      transform: translateY(-6px);\n    }\n    .avatar {\n\n    }\n    .card-body {\n\n    }\n    .skill {\n      background: #f3f4f6;\n      border-radius: 9999px;\n      padding: 4px 12px;\n      font-size: 12px;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"card\">\n    <div class=\"card-body\">\n      <img class=\"avatar\" src=\"https://i.pravatar.cc/96\" alt=\"avatar\">\n      <h3>Aria Chen</h3>\n      <p>Frontend Developer</p>\n      <div class=\"skills\">\n        <span class=\"skill\">React</span>\n        <span class=\"skill\">CSS</span>\n        <span class=\"skill\">JS</span>\n      </div>\n    </div>\n  </div>\n</body>\n</html>",
+      "required": [".avatar", "96px", "border-radius: 50%", "object-fit: cover", "flex-direction: column", "align-items: center", "padding: 24px", "translateY(-6px)"],
+      "hints": [
+        "Hint 1: .avatar { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; }",
+        "Hint 2: .card-body { display: flex; flex-direction: column; align-items: center; padding: 24px; }",
+        "Hint 3: The hover lift is already started — the transition is already on .card."
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What does object-fit: cover do?",
+        "options": ["Blurs the image", "Crops the image to fill the box", "Stretches the image"],
+        "correct": 1
+      },
+      {
+        "question": "Why use overflow: hidden on the card?",
+        "options": ["To save memory", "To keep rounded corners clipping the content", "To hide text"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "css-08-typography",
+    "unlocks": ["css-08-typography"]
+  }
+}

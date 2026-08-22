@@ -81,7 +81,7 @@ function ModuleCard({ module, onClick }) {
       whileHover={{ y: -4, scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       onClick={onClick}
-      className="relative rounded-2xl border border-white/60 bg-white/80 backdrop-blur-sm p-5 cursor-pointer transition-all duration-200 hover:shadow-soft-lg group"
+      className="relative rounded-2xl border border-brand-primary/20 bg-surface-card/90 p-5 cursor-pointer transition-all duration-200 hover:shadow-soft-lg group"
     >
       {isComplete && (
         <div className="absolute top-3 right-3" aria-label="Module completed">
@@ -101,16 +101,16 @@ function ModuleCard({ module, onClick }) {
       <h3 className="font-display font-bold text-text-primary mb-1 group-hover:text-brand-sky transition-colors">
         {module.title}
       </h3>
-      <p className="text-xs text-text-light mb-3 line-clamp-2" style={{ display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+      <p className="text-xs text-brand-secondary mb-3 line-clamp-2" style={{ display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
         {module.description}
       </p>
 
       <div className="mb-3">
-        <div className="flex justify-between text-[10px] text-text-light mb-1">
+        <div className="flex justify-between text-[10px] text-brand-secondary mb-1">
           <span>Progress</span>
           <span>{progress}%</span>
         </div>
-        <div className="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden">
+        <div className="h-1.5 w-full bg-surface-card/50 rounded-full overflow-hidden">
           <div
             className="h-full bg-gradient-to-r from-brand-sky to-brand-lavender rounded-full transition-all duration-500"
             style={{ width: `${progress}%` }}
@@ -119,7 +119,7 @@ function ModuleCard({ module, onClick }) {
       </div>
 
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3 text-[10px] text-text-light">
+        <div className="flex items-center gap-3 text-[10px] text-brand-secondary">
           <span className="flex items-center gap-1"><Clock size={10} /> {module.estimated_time_minutes}m</span>
           <span className="flex items-center gap-1"><Zap size={10} /> {module.xp_reward} XP</span>
         </div>
@@ -159,8 +159,8 @@ function StepList({ steps, currentStep, completedSteps, onStepClick }) {
                 : isCompleted
                 ? "bg-green-50 border border-green-200 text-text-secondary"
                 : isLocked
-                ? "bg-gray-50 border border-gray-100 text-text-light cursor-not-allowed opacity-60"
-                : "hover:bg-gray-50 border border-transparent"
+                ? "bg-surface-base border border-brand-primary/5 text-brand-secondary cursor-not-allowed opacity-60"
+                : "hover:bg-surface-base border border-transparent"
             }`}
           >
             <span className="flex-shrink-0 w-6 text-center">
@@ -173,7 +173,7 @@ function StepList({ steps, currentStep, completedSteps, onStepClick }) {
               )}
             </span>
             <span className="flex-1 text-xs font-medium truncate">{step.title}</span>
-            <span className="text-[9px] font-mono uppercase text-text-light hidden sm:inline">
+            <span className="text-[9px] font-mono uppercase text-brand-secondary hidden sm:inline">
               {STEP_TYPE_LABEL[step.type] || step.type}
             </span>
           </button>
@@ -186,7 +186,7 @@ function StepList({ steps, currentStep, completedSteps, onStepClick }) {
 function renderContent(content) {
   if (!content) return null;
   return (
-    <div className="text-text-secondary leading-relaxed [&_h1]:font-display [&_h1]:text-text-primary [&_h1]:text-xl [&_h1]:font-bold [&_h1]:mt-6 [&_h1]:mb-3 [&_h2]:font-display [&_h2]:text-text-primary [&_h2]:text-lg [&_h2]:font-bold [&_h2]:mt-4 [&_h2]:mb-2 [&_p]:mb-3 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mb-1 [&_code]:bg-gray-100 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-sm [&_pre]:bg-gray-900 [&_pre]:rounded-xl [&_pre]:p-4 [&_pre]:my-3 [&_pre]:overflow-x-auto [&_pre]:text-gray-100 [&_pre]:text-sm [&_pre]:font-mono [&_a]:text-brand-sky [&_a]:underline"
+    <div className="text-text-secondary leading-relaxed [&_h1]:font-display [&_h1]:text-text-primary [&_h1]:text-xl [&_h1]:font-bold [&_h1]:mt-6 [&_h1]:mb-3 [&_h2]:font-display [&_h2]:text-text-primary [&_h2]:text-lg [&_h2]:font-bold [&_h2]:mt-4 [&_h2]:mb-2 [&_p]:mb-3 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mb-1 [&_code]:bg-surface-card/50 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-sm [&_pre]:bg-surface-base [&_pre]:rounded-xl [&_pre]:p-4 [&_pre]:my-3 [&_pre]:overflow-x-auto [&_pre]:text-gray-100 [&_pre]:text-sm [&_pre]:font-mono [&_a]:text-brand-sky [&_a]:underline"
       dangerouslySetInnerHTML={{ __html: content }}
     />
   );
@@ -305,7 +305,7 @@ export default function LearningModules() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-surface-base">
       <CelebrationOverlay
         show={showCelebration}
         type={celebrationData?.type || "confetti"}
@@ -324,7 +324,7 @@ export default function LearningModules() {
           {view === "detail" && (
             <button
               onClick={() => setView("list")}
-              className="flex items-center gap-2 text-sm font-medium text-text-light hover:text-brand-sky transition-colors"
+              className="flex items-center gap-2 text-sm font-medium text-brand-secondary hover:text-brand-sky transition-colors"
             >
               <ArrowLeft size={16} />
               Back to Modules
@@ -334,7 +334,7 @@ export default function LearningModules() {
             <h1 className="font-display font-extrabold text-2xl text-text-primary">
               {view === "detail" ? selectedModule?.title : "Learning Modules"}
             </h1>
-            <p className="text-sm text-text-light mt-1">
+            <p className="text-sm text-brand-secondary mt-1">
               {view === "detail"
                 ? "Master concepts step by step with interactive lessons"
                 : "Choose a topic and start your learning journey"}
@@ -377,7 +377,7 @@ export default function LearningModules() {
             {modules.length === 0 ? (
               <div className="text-center py-16">
                 <GraduationCap size={48} className="mx-auto text-gray-300 mb-4" />
-                <p className="text-text-light">No modules found for this filter.</p>
+                <p className="text-brand-secondary">No modules found for this filter.</p>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -409,10 +409,10 @@ export default function LearningModules() {
                 <h3 className="font-display font-bold text-text-primary mt-4">
                   {isModuleComplete ? "Complete!" : "In Progress"}
                 </h3>
-                <p className="text-xs text-text-light mt-1">
+                <p className="text-xs text-brand-secondary mt-1">
                   {progress?.completed_steps?.length || 0} of {selectedModule.steps?.length} steps
                 </p>
-                <div className="flex items-center justify-center gap-4 mt-3 text-xs text-text-light">
+                <div className="flex items-center justify-center gap-4 mt-3 text-xs text-brand-secondary">
                   <span className="flex items-center gap-1"><Zap size={12} /> {progress?.xp_earned || 0} XP</span>
                   {progress?.badge_unlocked && <span className="flex items-center gap-1"><Trophy size={12} /> {progress.badge_unlocked}</span>}
                 </div>
@@ -488,7 +488,7 @@ export default function LearningModules() {
                         <div className="mb-8">
                           <div className="flex items-center gap-2 mb-3">
                             <Code2 size={14} className="text-brand-sky" />
-                            <span className="text-xs font-mono font-medium text-text-light">
+                            <span className="text-xs font-mono font-medium text-brand-secondary">
                               {step.language ? `${step.language} — ` : ""}Code
                             </span>
                           </div>
@@ -512,14 +512,14 @@ export default function LearningModules() {
                       )}
 
                       {/* Navigation Buttons */}
-                      <div className="flex items-center justify-between pt-6 border-t border-gray-100">
+                      <div className="flex items-center justify-between pt-6 border-t border-brand-primary/5">
                         <button
                           onClick={() => {
                             const prev = Math.max(1, currentStep - 1);
                             setCurrentStepView(prev);
                           }}
                           disabled={currentStep <= 1}
-                          className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-text-light hover:text-brand-sky transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                          className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-brand-secondary hover:text-brand-sky transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
                         >
                           <ChevronLeft size={16} /> Previous
                         </button>

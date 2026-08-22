@@ -1,0 +1,46 @@
+{
+  "id": "css-01-selectors",
+  "track": "css",
+  "title": "CSS Basics & Selectors",
+  "section": "Styling with CSS",
+  "order": 1,
+  "type": "lesson",
+  "duration": "9 min",
+  "xp": 15,
+  "content": {
+    "theory": "CSS (Cascading Style Sheets) controls how HTML **looks**. It targets elements with **selectors** and applies **declarations**.\n\n### Anatomy of a rule\n```css\np {\n  color: red;\n  font-size: 16px;\n}\n```\n- `p` = selector (which elements)\n- `color`, `font-size` = properties\n- `red`, `16px` = values\n\n### Three ways to add CSS\n```html\n<!-- 1. External (best) -->\n<link rel=\"stylesheet\" href=\"style.css\">\n\n<!-- 2. Internal -->\n<style>\n  p { color: blue; }\n</style>\n\n<!-- 3. Inline (avoid) -->\n<p style=\"color: green\">Hi</p>\n```\nExternal stylesheets keep structure and style separate.\n\n### Element, class, and ID selectors\n```css\n/* All paragraphs */\np { color: gray; }\n\n/* Everything with class=\"card\" — reusable */\n.card { border: 1px solid #ddd; }\n\n/* The one element with id=\"hero\" — unique */\n#hero { background: navy; }\n```\n\n### Common properties\n```css\nh1 {\n  color: #1f2937;\n  font-size: 32px;\n  font-family: Arial, sans-serif;\n  text-align: center;\n  background-color: #f3f4f6;\n  margin: 20px;\n  padding: 12px;\n}\n```\n\n### Specificity\nWhen rules conflict, **specificity** decides: `#id` beats `.class` beats `p`. The last rule wins for equal specificity.",
+    "codeSnippets": [
+      {
+        "language": "css",
+        "code": "h1 {\n  color: #1f2937;\n  text-align: center;\n}",
+        "output": "Centered, dark grey headings."
+      }
+    ],
+    "exercise": {
+      "instruction": "Add a <style> block that makes all <h1> elements dark green (#166534), centered, and all elements with class 'card' get a light gray background (#f9fafb) and a 1px solid border (#e5e7eb).",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Styled</title>\n  <style>\n\n  </style>\n</head>\n<body>\n  <h1>Hello</h1>\n  <div class=\"card\">I'm a card</div>\n</body>\n</html>",
+      "required": ["h1 {", "color: #166534", "text-align: center", ".card {", "background: #f9fafb", "border: 1px solid #e5e7eb"],
+      "hints": [
+        "Hint 1: Style h1 first: h1 { color: #166534; text-align: center; }",
+        "Hint 2: Then the class: .card { background: #f9fafb; border: 1px solid #e5e7eb; }",
+        "Hint 3: Selectors ending in { must close with }."
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which selector targets every element with class 'card'?",
+        "options": ["#card", ".card", "card"],
+        "correct": 1
+      },
+      {
+        "question": "Which CSS property changes text color?",
+        "options": ["font-style", "background", "color"],
+        "correct": 2
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "css-02-box-model",
+    "unlocks": ["css-02-box-model"]
+  }
+}

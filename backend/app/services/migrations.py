@@ -1,77 +1,85 @@
-"""Database migration system for schema changes."""
-import logging
+"""Schema migration system — decorator-based tracking."""
+
+
+import uuid
 from datetime import datetime, timezone
-from app.database import get_db
+from typing import Optional
 
-logger = logging.getLogger(__name__)
-
-MIGRATIONS = []
+from app.database import get_client
 
 
-def migration(version: int, description: str):
-    def decorator(func):
-        MIGRATIONS.append({"version": version, "description": description, "func": func})
-        MIGRATIONS.sort(key=lambda m: m["version"])
-        return func
-    return decorator
+# Track which migrations have run
+_MIGRATIONS_KEY = "placementpro:migratiosno"
+_MIGRATION_VERSION = "2026.08.18_sde_journey"
 
 
-async def get_migration_version() -> int:
-    db = get_db()
-    doc = await db["_migrations"].find_one({"_id": "schema_version"})
-    return doc["version"] if doc else 0
+# Track run migrations in app state
+def _ensure_migration_tracking(app):
+    """Initialize migration tracking in app state if not present."""
+    if not hasattr(app, "migration_version"):
+        app.migration_version = _MIGRATION_VERSION
 
 
-async def set_migration_version(version: int):
-    db = get_db()
-    await db["_migrations"].update_one(
-        {"_id": "schema_version"},
-        {"$set": {"version": version, "updated_at": datetime.now(timezone.utc)}},
-        upsert=True,
-    )
+def _has_migration_run(app, migration_name: str) -> bool:
+    """Check if a migration has already run."""
+    if not hasattr(app, "migration_ran"):
+        app.migration_ran = set()
+    return migration_name in app.migration_ran
 
 
-async def run_migrations():
-    current = await get_migration_version()
-    pending = [m for m in MIGRATIONS if m["version"] > current]
-    if not pending:
-        logger.info(f"Database schema up to date (v{current})")
-        return
-    logger.info(f"Running {len(pending)} pending migration(s) from v{current}")
-    for m in pending:
-        try:
-            logger.info(f"Migration v{m['version']}: {m['description']}")
-            await m["func"]()
-            await set_migration_version(m["version"])
-            logger.info(f"Migration v{m['version']} complete")
-        except Exception as e:
-            logger.error(f"Migration v{m['version']} failed: {e}")
-            raise
+def _mark_migration_ran(app, migration_name: str):
+    """Mark a migration as having run."""
+    if hasattr(app, "migration_ran"):
+        app.migration_ran.add(migration_name)
 
 
-@migration(1, "Add analytics TTL index if missing")
-async def migration_001():
-    db = get_db()
-    existing = await db["analytics_events"].index_information()
-    # Skip if timestamp_dt_1 already exists (even with different TTL)
-    if "timestamp_dt_1" not in existing:
-        try:
-            await db["analytics_events"].create_index(
-                "timestamp_dt", expireAfterSeconds=60 * 60 * 24 * 180
-            )
-        except Exception:
-            pass  # Index already exists with different options — safe to ignore
+async def _create_sparse_uid_index():
+    """Create a sparse unique index on users.uid so that:
+    - Existing users with uid=null are automatically skipped
+    - Future users with a non-null uid get enforced uniqueness
+    - No E11000 duplicate key error occurs on startup
+    """
+    from app.database import get_client
+    client = get_client()
+    db = client.get_database("placementpro")
+
+    # Create sparse unique index on uid
+    # Sparse: only index documents where uid field exists AND is not null
+    # This avoids E11000 duplicate key error when all existing users have uid=null
+    try:
+        await db.users.create_index(
+            [("uid", 1)],
+            unique=True,
+            sparse=True,
+        )
+        print("Created sparse unique index on users.uid")
+    except Exception as e:
+        print(f"Sparse uid index setup: {type(e).__name__}: {e}")
 
 
-@migration(2, "Ensure gamification tower fields exist for all users")
-async def migration_002():
-    db = get_db()
-    await db["gamification"].update_many(
-        {"stars_total": {"$exists": False}},
-        {"$set": {
-            "stars_total": 0, "coins": 0, "power_ups": {},
-            "bosses_defeated": [], "wizard_outfit": "novice robe",
-            "streak_freezes": 1, "daily_goal_count": 0,
-            "daily_goal_target": 5, "daily_goal_date": None,
-        }},
-    )
+async def run_migrations() -> Optional[str]:
+    """
+    Run schema migrations.
+
+    Returns migration result string or None.
+    """
+    from fastapi import FastAPI
+
+    app = FastAPI()  # Get the app instance context
+    _ensure_migration_tracking(app)
+
+    # Check if migration already ran
+    if _has_migration_run(app, _MIGRATION_VERSION):
+        print("Migration already ran (version: {_MIGRATION_VERSION})")
+        return None
+
+    print(f"Running migration: {_MIGRATION_VERSION}")
+
+    # Run index creation
+    await _create_sparse_uid_index()
+
+    # Mark migration as ran
+    _mark_migration_ran(app, _MIGRATION_VERSION)
+
+    print("Migration complete")
+    return _MIGRATION_VERSION

@@ -1,0 +1,46 @@
+{
+  "id": "sql-02-where",
+  "track": "sql",
+  "title": "Filtering with WHERE",
+  "section": "SQL Queries",
+  "order": 2,
+  "type": "lesson",
+  "duration": "10 min",
+  "xp": 15,
+  "content": {
+    "theory": "`WHERE` filters rows based on a condition — it answers *which rows*:\n\n```sql\nSELECT name, city FROM students\nWHERE city = 'Delhi';\n```\n\nNote: string values go in **single quotes** `'Delhi'`.\n\nComparison operators:\n\n```sql\nSELECT * FROM students WHERE score > 80;\nSELECT * FROM students WHERE score >= 85;\nSELECT * FROM students WHERE score != 78;\n```\n\nCombine conditions:\n\n```sql\nSELECT name FROM students\nWHERE city = 'Delhi' AND score >= 90;\n\nSELECT name FROM students\nWHERE city = 'Mumbai' OR city = 'Pune';\n```\n\n- `AND` — both must be true\n- `OR` — either can be true\n- `NOT` — negates: `WHERE NOT city = 'Delhi'`\n\nMatch text patterns with `LIKE` — `%` means *anything*:\n\n```sql\nSELECT name FROM students\nWHERE name LIKE 'P%';     -- names starting with P\n\nSELECT name FROM students\nWHERE name LIKE '%a';     -- names ending with a\n```\n\nOrder of evaluation: `AND` binds tighter than `OR`. Use parentheses to be explicit:\n\n```sql\nSELECT * FROM students\nWHERE (city = 'Delhi' OR city = 'Mumbai') AND score >= 80;\n```",
+    "codeSnippets": [
+      {
+        "language": "sql",
+        "code": "SELECT name FROM students\nWHERE city = 'Delhi' AND score >= 85;",
+        "output": "Priya · Sara"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write a query selecting 'name' and 'score' from 'students' where the score is greater than 85.",
+      "starterCode": "",
+      "required": ["SELECT name, score", "FROM students", "WHERE score > 85"],
+      "hints": [
+        "Hint 1: SELECT name, score",
+        "Hint 2: FROM students",
+        "Hint 3: WHERE score > 85;"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "How do you write string values in SQL?",
+        "options": ["Double quotes", "Single quotes", "No quotes"],
+        "correct": 1
+      },
+      {
+        "question": "In LIKE, what does % mean?",
+        "options": ["Exactly one character", "Any sequence of characters", "The end of the string"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "sql-03-order-limit",
+    "unlocks": ["sql-03-order-limit"]
+  }
+}

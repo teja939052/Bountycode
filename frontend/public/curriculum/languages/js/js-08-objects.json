@@ -1,0 +1,46 @@
+{
+  "id": "js-08-objects",
+  "track": "javascript",
+  "title": "Objects & Destructuring",
+  "section": "JavaScript in Action",
+  "order": 8,
+  "type": "lesson",
+  "duration": "13 min",
+  "xp": 25,
+  "content": {
+    "theory": "Objects group related data and behavior under one name — the most important data structure in JavaScript.\n\n### Object literals\n```js\nconst user = {\n  name: \"Ada\",\n  age: 36,\n  city: \"London\",\n  greet() {\n    console.log(`Hi, I'm ${this.name}`);\n  }\n};\n\nconsole.log(user.name);        // Ada\nconsole.log(user[\"age\"]);      // 36\nuser.greet();                  // Hi, I'm Ada\n```\n\n### Add / change / delete properties\n```js\nuser.job = \"Programmer\";       // add\nuser.age = 37;                  // change\ndelete user.city;               // remove\n```\n\n### Destructuring — unpack properties in one line\n```js\nconst { name, age } = user;\nconsole.log(name, age);   // Ada 36\n```\n\n### Spread — clone and extend\n```js\nconst copy = { ...user, active: true };\n```\n\n### Arrays of objects — the real world\n```js\nconst players = [\n  { name: \"Aria\", hp: 100 },\n  { name: \"Blake\", hp: 85 }\n];\n\nconst names = players.map(p => p.name);      // [\"Aria\", \"Blake\"]\nconst full = players.find(p => p.hp === 100); // the first object\n```\n\n### Optional chaining — safe access\n```js\nconsole.log(user.address?.street);   // undefined, no crash\n```\n\n### this\nInside a method, `this` refers to the object the method was called on. Use regular `function`/method shorthand for `this`, and be careful using it inside arrow functions nested in methods.",
+    "codeSnippets": [
+      {
+        "language": "javascript",
+        "code": "const player = { name: \"Aria\", hp: 100 };\nplayer.hp -= 25;\nconsole.log(player.name, player.hp);",
+        "output": "Aria 75"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write a script: create 'hero' = { name: 'Aria', hp: 100 }. Add a method hit(damage) that reduces this.hp. Call hero.hit(25), then set output.textContent to hero.name + ' hp ' + hero.hp. Expected: 'Aria hp 75'.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<body>\n  <p id=\"output\"></p>\n  <script>\n    const hero = { name: \"Aria\", hp: 100 };\n\n  </script>\n</body>\n</html>",
+      "required": ["hit(", "this.hp", "-=", "hero.hit(25)", "Aria hp 75"],
+      "hints": [
+        "Hint 1: const hero = { name: \"Aria\", hp: 100, hit(damage) { this.hp -= damage; } };",
+        "Hint 2: hero.hit(25);",
+        "Hint 3: document.querySelector(\"#output\").textContent = hero.name + \" hp \" + hero.hp;"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What does destructuring `const { name } = user` do?",
+        "options": ["Copies the object", "Pulls the name property into a variable", "Deletes name"],
+        "correct": 1
+      },
+      {
+        "question": "Inside a method, what does this refer to?",
+        "options": ["The global object", "The object the method was called on", "The previous object"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "js-09-todo-project",
+    "unlocks": ["js-09-todo-project"]
+  }
+}

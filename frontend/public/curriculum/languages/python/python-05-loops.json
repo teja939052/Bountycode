@@ -1,0 +1,47 @@
+{
+  "id": "python-05-loops",
+  "track": "python",
+  "title": "Repeating with Loops",
+  "section": "Python Basics",
+  "order": 5,
+  "type": "lesson",
+  "duration": "11 min",
+  "xp": 20,
+  "content": {
+    "theory": "Loops repeat code. The **for loop** iterates over a sequence (like `range`):\n\n```python\nfor i in range(5):\n    print(i)   # prints 0 1 2 3 4\n```\n\n`range(start, stop)` controls where to start and stop — note stop is exclusive:\n\n```python\nfor i in range(1, 6):\n    print(i)   # 1 2 3 4 5\n```\n\nThe **while loop** repeats *while a condition is true*:\n\n```python\ncount = 0\nwhile count < 3:\n    print(\"Tick\", count)\n    count = count + 1\n```\n\nTwo useful controls:\n\n```python\nfor i in range(10):\n    if i == 2:\n        continue   # skip this iteration\n    if i == 5:\n        break      # exit the loop entirely\n    print(i)\n```\n\nThe biggest while-loop danger is forgetting to update the counter — that causes an **infinite loop**.",
+    "codeSnippets": [
+      {
+        "language": "python",
+        "code": "for i in range(1, 4):\n    print(f\"Row {i}\")",
+        "output": "Row 1\nRow 2\nRow 3"
+      }
+    ],
+    "exercise": {
+      "instruction": "Use a for loop with range(1, 4) to print 'Bottle 1', 'Bottle 2', 'Bottle 3' using an f-string.",
+      "starterCode": "",
+      "language": "python",
+      "expected": "Bottle 1\nBottle 2\nBottle 3",
+      "required": ["for i in range(1, 4)", "f\"Bottle", "{i}"],
+      "hints": [
+        "Hint 1: for i in range(1, 4):",
+        "Hint 2: print(f\"Bottle {i}\")"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What does range(3) produce?",
+        "options": ["[1, 2, 3]", "[0, 1, 2]", "[3]"],
+        "correct": 1
+      },
+      {
+        "question": "Which keyword exits a loop immediately?",
+        "options": ["continue", "pass", "break"],
+        "correct": 2
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "python-06-lists",
+    "unlocks": ["python-06-lists"]
+  }
+}

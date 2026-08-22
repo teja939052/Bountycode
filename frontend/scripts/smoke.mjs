@@ -204,9 +204,9 @@ async function main() {
   }
   record("frontend reachable", true);
 
-  await checkPage("/", { expect: ["anime-style progression"], forbid: ["Something went wrong", "Invalid hook"] });
-  await checkPage("/register", { expect: ["Initialize Cadet Profile"], forbid: ["Something went wrong", "Invalid hook"] });
-  await checkPage("/login", { expect: ["Access Command Deck"], forbid: ["Something went wrong", "Invalid hook"] });
+  await checkPage("/", { expect: ["turns placement stress into"], forbid: ["Something went wrong", "Invalid hook"] });
+  await checkPage("/register", { expect: ["Create your account"], forbid: ["Something went wrong", "Invalid hook"] });
+  await checkPage("/login", { expect: ["Welcome back"], forbid: ["Something went wrong", "Invalid hook"] });
 
   await apiCheck();
   return finish();

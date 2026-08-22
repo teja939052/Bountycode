@@ -34,7 +34,7 @@ async def clean_db():
 async def test_register(client, clean_db):
     """Test user registration."""
     response = await client.post(
-        "/api/auth/register",
+        "/api/v1/auth/register",
         json={
             "email": "test@example.com",
             "name": "Test User",
@@ -58,7 +58,7 @@ async def test_register_duplicate_email(client, clean_db):
 
     # First registration
     r1 = await client.post(
-        "/api/auth/register",
+        "/api/v1/auth/register",
         json={
             "email": email,
             "name": "Test User",
@@ -69,7 +69,7 @@ async def test_register_duplicate_email(client, clean_db):
     
     # Second registration with same email
     r2 = await client.post(
-        "/api/auth/register",
+        "/api/v1/auth/register",
         json={
             "email": email,
             "name": "Test User 2",
@@ -87,7 +87,7 @@ async def test_login(client, clean_db):
     """Test user login."""
     # Register user
     await client.post(
-        "/api/auth/register",
+        "/api/v1/auth/register",
         json={
             "email": "test@example.com",
             "name": "Test User",
@@ -97,7 +97,7 @@ async def test_login(client, clean_db):
     
     # Login
     response = await client.post(
-        "/api/auth/login",
+        "/api/v1/auth/login",
         json={
             "email": "test@example.com",
             "password": "SecurePass123!"
@@ -115,7 +115,7 @@ async def test_login_invalid_credentials(client, clean_db):
     """Test login with invalid credentials."""
     # Register user
     await client.post(
-        "/api/auth/register",
+        "/api/v1/auth/register",
         json={
             "email": "test@example.com",
             "name": "Test User",
@@ -125,7 +125,7 @@ async def test_login_invalid_credentials(client, clean_db):
     
     # Login with wrong password
     response = await client.post(
-        "/api/auth/login",
+        "/api/v1/auth/login",
         json={
             "email": "test@example.com",
             "password": "WrongPassword123!"
@@ -143,7 +143,7 @@ async def test_get_me(client, clean_db):
     reg_email = "getme_test@example.com"
     await users_collection().delete_many({"email": reg_email})
     register_response = await client.post(
-        "/api/auth/register",
+        "/api/v1/auth/register",
         json={
             "email": reg_email,
             "name": "Test User",
@@ -155,7 +155,7 @@ async def test_get_me(client, clean_db):
     
     # Get user info with cookie or bearer token
     response = await client.get(
-        "/api/auth/me",
+        "/api/v1/auth/me",
         headers={"Authorization": f"Bearer {token}"} if token else {}
     )
     
@@ -170,7 +170,7 @@ async def test_get_me(client, clean_db):
 @pytest.mark.asyncio
 async def test_logout(client, clean_db):
     """Test logout."""
-    response = await client.post("/api/auth/logout")
+    response = await client.post("/api/v1/auth/logout")
     assert response.status_code == 200
     assert response.json()["message"] == "Logged out"
     # Check that cookie was cleared
@@ -182,7 +182,7 @@ async def test_rate_limiting_login(client, clean_db):
     """Test login rate limiting."""
     # Register user
     await client.post(
-        "/api/auth/register",
+        "/api/v1/auth/register",
         json={
             "email": "test@example.com",
             "name": "Test User",
@@ -194,7 +194,7 @@ async def test_rate_limiting_login(client, clean_db):
     last_status = None
     for i in range(6):
         response = await client.post(
-            "/api/auth/login",
+            "/api/v1/auth/login",
             json={
                 "email": "test@example.com",
                 "password": f"WrongPassword{i}!"
@@ -203,3 +203,4 @@ async def test_rate_limiting_login(client, clean_db):
         last_status = response.status_code
     
     assert last_status == 429
+

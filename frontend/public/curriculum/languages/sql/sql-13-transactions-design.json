@@ -1,0 +1,56 @@
+{
+  "id": "sql-13-transactions-design",
+  "track": "sql",
+  "title": "Transactions, Constraints & Design",
+  "section": "Advanced SQL",
+  "order": 13,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "**Design** is what separates a toy table from a system that stays correct at scale. This lesson covers data definition, integrity constraints, transactions, and normalization. The sample dataset: `students(id, name, city, score, grade)`, `teachers(id, name, subject)`, `classes(id, subject, teacher_id)`, and `enrollments(student_id, class_id, grade)`.\n\n### DDL vs DML\n\n- **DDL** (Data Definition Language) shapes the schema: `CREATE TABLE`, `ALTER TABLE`, `DROP TABLE`, `CREATE INDEX`.\n- **DML** (Data Manipulation Language) works on data: `INSERT`, `UPDATE`, `DELETE`, `SELECT`.\n\nYou use DML all the time, but DDL decides whether the data stays sane.\n\n### CREATE TABLE with constraints\n\n```sql\nCREATE TABLE projects (\n  id INT PRIMARY KEY,\n  title VARCHAR(100) NOT NULL,\n  owner_id INT NOT NULL,\n  status VARCHAR(20) DEFAULT 'draft',\n  CHECK (status IN ('draft', 'live', 'archived')),\n  FOREIGN KEY (owner_id) REFERENCES students(id)\n);\n```\n\nConstraints are the database itself enforcing your rules:\n\n| Constraint | Guarantees |\n|---|---|\n| PRIMARY KEY | Unique + NOT NULL identifier for the row |\n| FOREIGN KEY | Value must exist in the referenced table |\n| UNIQUE | No duplicate values in the column |\n| NOT NULL | The column can never be missing |\n| CHECK | Every row satisfies a boolean condition |\n\n### Transactions: BEGIN / COMMIT / ROLLBACK\n\n```sql\nBEGIN;\nINSERT INTO enrollments VALUES (1, 5, 'A');\nUPDATE students SET score = score + 5 WHERE id = 1;\nCOMMIT;      -- make everything permanent\n-- or ROLLBACK; to undo everything\n```\n\nTransactions wrap multiple statements so they all succeed or all fail together. **ACID** is the contract: **A**tomicity (all-or-nothing), **C**onsistency (constraints always hold), **I**solation (concurrent transactions don't corrupt each other), **D**urability (committed data survives crashes).\n\n### Why normalize — 1NF, 2NF, 3NF\n\n- **1NF:** atomic columns, no repeating groups — no 'hobbies' column holding a comma-separated list.\n- **2NF:** 1NF plus no partial dependency on part of a composite key.\n- **3NF:** 2NF plus no non-key column depending on another non-key column.\n\nNormalization removes duplicate data and prevents update anomalies — editing one copy of a value but not another — at the cost of more JOINs when reading. That trade-off is why you normalize, then denormalize deliberately for hot read paths.\n\n### Common mistakes\n\n- Omitting a PRIMARY KEY and relying on the app to enforce uniqueness.\n- A FOREIGN KEY referencing a table that doesn't exist or a non-key column.\n- Forgetting `COMMIT`, leaving locks held inside an open transaction.\n- Storing redundant values that should be derived through JOINs.",
+    "codeSnippets": [
+      {
+        "language": "sql",
+        "code": "CREATE TABLE projects (\n  id INT PRIMARY KEY,\n  title VARCHAR(100) NOT NULL,\n  owner_id INT,\n  FOREIGN KEY (owner_id) REFERENCES students(id)\n);",
+        "output": "Creates a 'projects' table with a primary key and a foreign key to students"
+      },
+      {
+        "language": "sql",
+        "code": "BEGIN;\nINSERT INTO enrollments VALUES (1, 5, 'A');\nCOMMIT;",
+        "output": "The insert becomes permanent only after COMMIT"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write a CREATE TABLE statement for a table named 'projects' with an integer 'id' column as PRIMARY KEY and an 'owner_id' column that is a FOREIGN KEY REFERENCES students(id).",
+      "starterCode": "",
+      "required": ["CREATE TABLE projects", "PRIMARY KEY", "owner_id", "FOREIGN KEY", "REFERENCES students(id)"],
+      "hints": [
+        "Hint 1: CREATE TABLE projects (id INT PRIMARY KEY,",
+        "Hint 2: owner_id INT,",
+        "Hint 3: FOREIGN KEY (owner_id) REFERENCES students(id));"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which constraint guarantees a column has no duplicate values?",
+        "options": ["UNIQUE", "INDEX", "NOT NULL"],
+        "correct": 0
+      },
+      {
+        "question": "What does COMMIT do in a transaction?",
+        "options": ["Undoes changes", "Starts a new transaction", "Makes changes permanent"],
+        "correct": 2
+      },
+      {
+        "question": "What does 'Atomicity' in ACID mean?",
+        "options": ["Queries always return quickly", "Tables are split into small pieces", "All statements succeed or all roll back"],
+        "correct": 2
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "sql-14-project-reporting",
+    "unlocks": ["sql-14-project-reporting"]
+  }
+}

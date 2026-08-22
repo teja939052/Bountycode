@@ -1,0 +1,56 @@
+{
+  "id": "js-16-project-notes-app",
+  "track": "javascript",
+  "title": "Project: Notes App with localStorage",
+  "section": "JavaScript Advanced",
+  "order": 16,
+  "type": "project",
+  "duration": "20 min",
+  "xp": 40,
+  "content": {
+    "theory": "Final advanced project: a **notes app** that persists between reloads. It combines everything — the event loop, functions, arrays, and the localStorage pattern. The golden rule from the last lesson: **save on change, load on start**.\n\n### The plan\n1. On load, read notes from localStorage (default `[]`)\n2. Render each note as an `<li>` inside `#note-list`\n3. On form submit, push the new note to the array\n4. Save the array with `JSON.stringify` and re-render\n\n### Loading notes on start\n```js\nlet notes = JSON.parse(localStorage.getItem(\"notes\")) || [];\n```\nThe `|| []` guard matters — if nothing is stored yet, `getItem` returns `null`, and we want an empty array.\n\n### Rendering the list\n```js\nfunction render() {\n  list.innerHTML = \"\";\n  notes.forEach((note) => {\n    const li = document.createElement(\"li\");\n    li.textContent = note;\n    list.appendChild(li);\n  });\n}\n```\nA small render function that wipes and rebuilds the list from the array keeps the UI in sync with state — the same idea behind React and Vue.\n\n### Saving on change\n```js\nfunction save() {\n  localStorage.setItem(\"notes\", JSON.stringify(notes));\n}\n```\nCall `save()` every time the array changes, then `render()`.\n\n### Adding and deleting\n```js\nform.addEventListener(\"submit\", (event) => {\n  event.preventDefault();\n  const value = input.value.trim();\n  if (!value) return;\n  notes.push(value);\n  input.value = \"\";\n  save();\n  render();\n});\n```\nFor delete, render a button per note and remove by index: `notes.splice(index, 1)` then save and render again.\n\nEvery feature follows the same loop: mutate the array → save → re-render. Master that rhythm and you can build any CRUD app.",
+    "codeSnippets": [
+      {
+        "language": "javascript",
+        "code": "let notes = JSON.parse(localStorage.getItem(\"notes\")) || [];\nnotes.push(\"buy milk\");\nlocalStorage.setItem(\"notes\", JSON.stringify(notes));\nconsole.log(notes);",
+        "output": "[\"buy milk\"]"
+      },
+      {
+        "language": "javascript",
+        "code": "const li = document.createElement(\"li\");\nli.textContent = note;\nlist.appendChild(li);",
+        "output": "Adds one <li> for the given note."
+      }
+    ],
+    "exercise": {
+      "instruction": "Complete the notes app. On load, read notes from localStorage key \"notes\" (default []). Build a render() function that clears #note-list and appends an li (created with createElement and appendChild) for each note. On form submit, preventDefault, trim the input, push the value to notes, save with localStorage.setItem + JSON.stringify, clear the input, and re-render. Call render() once on load.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<body>\n  <form id=\"note-form\">\n    <input id=\"note-input\" placeholder=\"Write a note\">\n    <button type=\"submit\">Add</button>\n  </form>\n  <ul id=\"note-list\"></ul>\n  <script>\n    let notes = JSON.parse(localStorage.getItem(\"notes\")) || [];\n    const form = document.querySelector(\"#note-form\");\n    const input = document.querySelector(\"#note-input\");\n    const list = document.querySelector(\"#note-list\");\n\n  </script>\n</body>\n</html>",
+      "required": ["localStorage", "JSON.parse", "createElement(\"li\")", "appendChild", "addEventListener", "\"submit\"", "event.preventDefault()", "JSON.stringify", ".push("],
+      "hints": [
+        "Hint 1: function render() { list.innerHTML = \"\"; notes.forEach((note) => { const li = document.createElement(\"li\"); li.textContent = note; list.appendChild(li); }); }",
+        "Hint 2: form.addEventListener(\"submit\", (event) => { event.preventDefault(); const value = input.value.trim(); if (!value) return; notes.push(value); input.value = \"\"; localStorage.setItem(\"notes\", JSON.stringify(notes)); render(); });",
+        "Hint 3: render(); — call it once at the bottom to display any stored notes on load."
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What does the || [] guard do when reading notes?",
+        "options": ["Makes the app faster", "Defaults to an empty array when getItem returns null", "Prevents saving"],
+        "correct": 1
+      },
+      {
+        "question": "When should you call save()?",
+        "options": ["Only on page load", "Once at the end of the script", "After every mutation of the notes array"],
+        "correct": 2
+      },
+      {
+        "question": "Why does render() clear the list first?",
+        "options": ["To avoid duplicating items on every re-render", "To delete saved data", "Because innerHTML requires it"],
+        "correct": 0
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": null,
+    "unlocks": []
+  }
+}

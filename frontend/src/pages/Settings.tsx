@@ -170,9 +170,9 @@ export default function Settings() {
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
                   className="input w-full pl-10"
-                  minLength={6}
-                  required
-                />
+                   minLength={8}
+                   required
+                 />
               </div>
             </div>
             <motion.button

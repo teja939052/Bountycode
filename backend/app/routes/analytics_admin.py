@@ -10,9 +10,19 @@ from app.services.analytics_service import (
     get_feature_usage,
     get_realtime_stats,
     get_hourly_distribution,
+    get_geo_breakdown,
+    get_retention_stats,
+    get_user_list,
+    get_user_stats_summary,
 )
 
 router = APIRouter(prefix="/api/v1/analytics", tags=["analytics"])
+
+
+async def require_admin(user=Depends(get_current_user)):
+    if user.get("role") == "admin" or user.get("is_admin") is True:
+        return user
+    raise HTTPException(status_code=403, detail="Admin access required")
 
 
 @router.post("/track")
@@ -26,12 +36,11 @@ async def track(request: Request):
     event = body.get("event", "page_view")
     path = body.get("path", "")
     meta = body.get("meta", {})
+    ip_address = request.client.host if request.client else None
 
-    # Try to get user_id from cookie (optional)
     user_id = None
     try:
         from app.middleware.auth import decode_token
-        from fastapi.security import HTTPBearer
         import jose
         from app.config import settings
         cookies = request.cookies
@@ -42,35 +51,59 @@ async def track(request: Request):
     except Exception:
         pass
 
-    await track_event(event=event, path=path, user_id=user_id, meta=meta)
+    await track_event(event=event, path=path, user_id=user_id, meta=meta, ip_address=ip_address)
     return {"ok": True}
 
 
 @router.get("/admin/realtime")
-async def admin_realtime(user=Depends(get_current_user)):
+async def admin_realtime(admin=Depends(require_admin)):
     """Admin: real-time stats."""
     return await get_realtime_stats()
 
 
 @router.get("/admin/visitors")
-async def admin_visitors(days: int = 30, user=Depends(get_current_user)):
+async def admin_visitors(days: int = 30, admin=Depends(require_admin)):
     """Admin: daily visitor stats."""
     return await get_visitor_stats(min(days, 90))
 
 
 @router.get("/admin/pages")
-async def admin_pages(days: int = 7, user=Depends(get_current_user)):
+async def admin_pages(days: int = 7, admin=Depends(require_admin)):
     """Admin: top pages by views."""
     return await get_page_stats(min(days, 30))
 
 
 @router.get("/admin/features")
-async def admin_features(days: int = 7, user=Depends(get_current_user)):
+async def admin_features(days: int = 7, admin=Depends(require_admin)):
     """Admin: feature usage breakdown."""
     return await get_feature_usage(min(days, 30))
 
 
 @router.get("/admin/hourly")
-async def admin_hourly(days: int = 7, user=Depends(get_current_user)):
+async def admin_hourly(days: int = 7, admin=Depends(require_admin)):
     """Admin: hourly traffic distribution."""
     return await get_hourly_distribution(min(days, 30))
+
+
+@router.get("/admin/geo")
+async def admin_geo(days: int = 30, admin=Depends(require_admin)):
+    """Admin: geo breakdown by IP address."""
+    return await get_geo_breakdown(min(days, 90))
+
+
+@router.get("/admin/retention")
+async def admin_retention(days: int = 30, admin=Depends(require_admin)):
+    """Admin: new vs returning visitor stats."""
+    return await get_retention_stats(min(days, 90))
+
+
+@router.get("/admin/users")
+async def admin_users(days: int = 30, limit: int = 50, admin=Depends(require_admin)):
+    """Admin: user list with activity stats."""
+    return await get_user_list(min(days, 90), limit)
+
+
+@router.get("/admin/summary")
+async def admin_summary(admin=Depends(require_admin)):
+    """Admin: aggregate user stats summary."""
+    return await get_user_stats_summary()

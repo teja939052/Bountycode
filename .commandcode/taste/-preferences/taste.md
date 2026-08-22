@@ -1,0 +1,13 @@
+# Taste / Preferences
+- Communicates in terse, minimal instructions (e.g., "analyze the code", "total project") rather than detailed or elaborately phrased requests. Confidence: 0.7
+- Writes informally and casually, with typos and slang, even on substantive requests (e.g., "so man this is my life like enhanec all the gamificationn features...", "so like if i use 10$ dollar of my credits now nd then"). Confidence: 0.7
+- Explicitly prefers building features that do NOT depend on AI/LLM, prioritizing usefulness and what students would pay for (monetization/upsell potential). Confidence: 0.8
+- Considers job seekers the core user base and main product moat; the AI interviewer and company-specific online assessments are the primary drivers of conversion to subscription and should be made best-in-class (research competitors, outclass them). Confidence: 0.8
+- Wants new AI features built on the existing OpenRouter-based AI stack (explicitly notes "we are using openrouter aoi for this") rather than switching providers. Confidence: 0.6
+- Treats gamification and UI/UX as core priority areas to enhance, alongside new features. Confidence: 0.6
+- When asking to analyze code, expects whole-project scope (entire codebase across backend, frontend, and overall project health), not just the file currently open in the IDE. Confidence: 0.7
+- Works on a Windows/PowerShell dev environment (opens files like `backend\start_backend.ps1`); infrastructure/scripts should be kept PowerShell-portable. Confidence: 0.6
+- Prioritizes application security and auth hardening — wants auth uncrackable, user data protected, and modern security practices applied (e.g., no admin escalation, token rotation, password rules). Confidence: 0.8
+- Wants the app to be crash-proof and resilient, expecting best-practice system design principles applied across the whole stack (error handling, fail-fast startup, no white-screen UI). Confidence: 0.7
+- Benchmarks feature quality against industry-standard platforms and expects best-in-class, hardened implementations (e.g., "make the compiler robust and best like leetcode" — wants judge-grade sandboxing, timeouts, and resource limits, not minimal versions). Explicitly asks to research competitor platforms and outclass them (e.g., "research other ai interview platforms and make the best than them"). Confidence: 0.85
+- Prefers generic/universal implementations over fixed, hardcoded demos (e.g., a DSA visualizer that "can visualize any algorithm or code on earth", not just preset algorithm families). Confidence: 0.65

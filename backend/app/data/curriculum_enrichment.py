@@ -442,3 +442,16 @@ for a, b, focus in lang_pairs:
 # Install 50-level curriculum (replaces 12-level with 50-level for all languages)
 from .curriculum_50_levels import install_50_level_curriculum
 _ = install_50_level_curriculum()
+
+# Install web development tracks (HTML, CSS, SQL, TypeScript, React, Node.js)
+from .curriculum_web import install_web_curriculum
+_ = install_web_curriculum()
+
+# Install depth expansion — doubles every track (core 50 -> 100 levels, web 20 -> 40)
+from .curriculum_depth import install_depth_curriculum
+_ = install_depth_curriculum()
+
+# Install world-class enrichment — adds why/real_world/interview/build/problem_set/engineering/career
+# to every lesson + interview_prep/career_mapping/capstone_challenge to every level.
+# Runs LAST so it enriches the fully-built LANGUAGES state (auto-installs on import).
+from . import curriculum_world_class  # noqa: E402,F401

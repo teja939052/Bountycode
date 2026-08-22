@@ -1,0 +1,58 @@
+{
+  "id": "python-11-tuples-sets",
+  "track": "python",
+  "title": "Tuples & Sets",
+  "section": "Python Intermediate",
+  "order": 11,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "**Tuples** are ordered collections that, like lists, hold any mix of values — but they are **immutable**. Once a tuple exists, you cannot add, remove, or replace items:\n\n```python\npoint = (3, 5)\npoint[0] = 99  # TypeError: 'tuple' object does not support item assignment\n```\n\nBecause tuples can't change, they are perfect for data that must stay fixed: coordinates, RGB colors, row identifiers in a database. Use a list when you need to grow, reorder, or edit the collection.\n\n**Packing and unpacking** are tuple superpowers. Packing collects values into a tuple; unpacking pulls them back out:\n\n```python\ncoords = (3, 5)   # packing\nx, y = coords     # unpacking\nprint(x, y)       # 3 5\n\nx, y = y, x       # swap without a temp variable\nprint(x, y)       # 5 3\n```\n\nUnpacking works with any iterable, but it shines with tuples because their fixed length is guaranteed — a 2-tuple always unpacks into exactly two names.\n\n### Sets\n\nA **set** is an unordered collection of **unique** items:\n\n```python\nskills = {\"python\", \"sql\", \"python\", \"git\"}\nprint(skills)  # {'python', 'git', 'sql'} — duplicates dropped\n```\n\nDuplicates are silently removed, membership tests are fast, and order is not preserved. Add and remove with `add()` and `discard()` (discard never raises, even if the item is missing):\n\n```python\nskills.add(\"docker\")\nskills.discard(\"git\")\n```\n\nSet math is the killer feature: `|` for union, `&` for intersection, `-` for difference:\n\n```python\na = {1, 2, 3}\nb = {3, 4, 5}\nprint(a | b)  # {1, 2, 3, 4, 5}\nprint(a & b)  # {3}\nprint(a - b)  # {1, 2}\n```\n\n### When to use which\n\n| Container | Ordered | Duplicates | Mutable | Best for |\n|---|---|---|---|---|\n| list | Yes | Yes | Yes | Ordered, editable data |\n| tuple | Yes | Yes | No | Fixed data, dict keys |\n| set | No | No | Yes | Unique items, membership tests |\n\n**Common pitfalls:** indexing a set (`my_set[0]` raises TypeError — sets have no positions), expecting insertion order to be preserved, and forgetting that `{}` creates an empty **dict**, not a set — use `set()` for an empty set. If you need a read-only list, a tuple is safer than a list because the data can never be corrupted by accident. Use a set whenever you only care about *which* items exist, not *where* they are.",
+    "codeSnippets": [
+      {
+        "language": "python",
+        "code": "x, y = 3, 5\nx, y = y, x\nprint(x, y)",
+        "output": "5 3"
+      },
+      {
+        "language": "python",
+        "code": "a = {1, 2, 3}\nb = {3, 4, 5}\nprint(a & b)\nprint(a - b)",
+        "output": "{3}\n{1, 2}"
+      }
+    ],
+    "exercise": {
+      "instruction": "Create a set 'numbers' containing 3, 1, and 2. Add 0 to it with .add(), then loop over sorted(numbers) and print each number on its own line.",
+      "starterCode": "numbers = {3, 1, 2}\n",
+      "language": "python",
+      "expected": "0\n1\n2\n3",
+      "required": ["numbers.add(", "sorted(numbers)", "print("],
+      "hints": [
+        "Hint 1: numbers.add(0) inserts 0 into the set",
+        "Hint 2: sorted(numbers) returns a sorted list: [0, 1, 2, 3]",
+        "Hint 3: for n in sorted(numbers): print(n)"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which container is immutable?",
+        "options": ["list", "tuple", "set"],
+        "correct": 1
+      },
+      {
+        "question": "What does {1, 2, 2, 3} evaluate to?",
+        "options": ["{1, 2, 3}", "{1, 2, 2, 3}", "It raises an error"],
+        "correct": 0
+      },
+      {
+        "question": "Which operator finds items in BOTH sets a and b?",
+        "options": ["a | b", "a & b", "a - b"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "python-12-comprehensions",
+    "unlocks": ["python-12-comprehensions"]
+  }
+}

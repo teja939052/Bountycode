@@ -1,0 +1,47 @@
+{
+  "id": "cpp-06-functions",
+  "track": "cpp",
+  "title": "Functions",
+  "section": "C++ Basics",
+  "order": 6,
+  "type": "lesson",
+  "duration": "11 min",
+  "xp": 20,
+  "content": {
+    "theory": "Functions let you reuse code. In C++ you declare the **return type**, then the name, then parameters:\n\n```cpp\nint add(int a, int b) {\n    return a + b;\n}\n\nint main() {\n    int result = add(3, 5);\n    std::cout << result << std::endl;   // 8\n    return 0;\n}\n```\n\n- `int add(...)` — returns an int\n- `void greet()` — returns nothing\n- If a function has a return type, every path must `return` a value\n\nFunction **overloading** — same name, different parameters:\n\n```cpp\nint add(int a, int b) { return a + b; }\ndouble add(double a, double b) { return a + b; }\n```\n\nC++ is compiled top-to-bottom, so a function must be **defined (or declared) before it's called**. Use a forward declaration when you want to define it later:\n\n```cpp\nint add(int a, int b);   // declaration\n\nint main() {\n    std::cout << add(2, 3);   // works\n    return 0;\n}\n\nint add(int a, int b) {   // definition\n    return a + b;\n}\n```",
+    "codeSnippets": [
+      {
+        "language": "cpp",
+        "code": "int square(int x) {\n    return x * x;\n}\n\nint main() {\n    std::cout << square(4) << std::endl;\n    return 0;\n}",
+        "output": "16"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write the program: add an int function 'doubleOf' that takes (int n) and returns n * 2, then call it with 21 in main and print the result.",
+      "starterCode": "#include <iostream>\n\nint main() {\n\n    return 0;\n}",
+      "language": "cpp",
+      "expected": "42",
+      "required": ["int doubleOf(int n)", "return n * 2", "doubleOf(21)"],
+      "hints": [
+        "Hint 1: int doubleOf(int n) { return n * 2; } — define it BEFORE main",
+        "Hint 2: In main: std::cout << doubleOf(21) << std::endl;"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What must a function with a return type do?",
+        "options": ["Print something", "Return a value on every path", "Take parameters"],
+        "correct": 1
+      },
+      {
+        "question": "Why do you need a forward declaration sometimes?",
+        "options": ["For speed", "Because C++ compiles top-to-bottom", "It's optional syntax"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "cpp-07-arrays",
+    "unlocks": ["cpp-07-arrays"]
+  }
+}

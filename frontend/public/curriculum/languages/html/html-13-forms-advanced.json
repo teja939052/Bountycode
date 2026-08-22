@@ -1,0 +1,51 @@
+{
+  "id": "html-13-forms-advanced",
+  "track": "html",
+  "title": "Advanced Forms & Validation",
+  "section": "Advanced HTML",
+  "order": 13,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "Basic forms collect names and passwords; advanced forms collect **the right data in the right format**. HTML5 gives you a rich toolbox of input types and built-in validation attributes that prevent bad data from ever reaching your server — no JavaScript required.\n\n### The right input type\n\nThe `type` attribute turns a plain text box into a purpose-built field. Each type triggers the correct mobile keyboard, validation rule, and formatting hint:\n\n| type | Used for | Built-in behaviour |\n|---|---|---|\n| `email` | Email addresses | Requires `@` and a domain |\n| `tel` | Phone numbers | Shows the dial pad on mobile |\n| `number` | Numeric values | Spin buttons + `min`/`max` |\n| `date` | Calendar dates | Date picker in most browsers |\n| `url` | Website links | Requires a valid URL format |\n| `color` | Colour picker | Browser colour palette |\n| `range` | Sliders | Visual slider, ideal with an output |\n\n```html\n<input type=\"email\" name=\"email\" required>\n<input type=\"number\" name=\"age\" min=\"16\" max=\"99\">\n<input type=\"date\" name=\"dob\">\n<input type=\"range\" name=\"level\" min=\"1\" max=\"10\" value=\"5\">\n<input type=\"color\" name=\"theme\">\n```\n\n### Selects, optgroups, and textareas\n\nA dropdown is a `<select>` filled with `<option>`s, optionally grouped with `<optgroup label=\"...\">`. Long free-form input belongs in a `<textarea>`, where **rows** and **cols** set the visible box (users can still type more than it shows).\n\n```html\n<select name=\"batch\">\n  <optgroup label=\"Undergraduate\">\n    <option value=\"btech\">B.Tech</option>\n    <option value=\"bsc\">B.Sc</option>\n  </optgroup>\n  <optgroup label=\"Postgraduate\">\n    <option value=\"mtech\">M.Tech</option>\n  </optgroup>\n</select>\n\n<textarea name=\"bio\" rows=\"4\" cols=\"40\"></textarea>\n```\n\n### Grouping with fieldset and legend\n\nRelated fields — like shipping address, or 'Which role are you targeting?' — belong in a `<fieldset>`, titled by a `<legend>`. Screen readers announce the legend before each control inside it, and visual users get a clean grouped box.\n\n```html\n<fieldset>\n  <legend>Contact details</legend>\n  <label for=\"email\">Email</label>\n  <input type=\"email\" id=\"email\" name=\"email\" required>\n</fieldset>\n```\n\n### Validation attributes\n\nNative validation is declarative: `required` blocks empty submission, `min`/`max` bound numbers and dates, `minlength`/`maxlength` bound text length, and `pattern` matches a **regular expression**. Pair them with `name` (so the server receives the data) and a matching `<label for=\"id\">` (so clicking the label focuses the field).\n\n```html\n<input type=\"text\" name=\"roll\" pattern=\"[A-Z]{2}\\d{4}\" title=\"Two letters then four digits\">\n```\n\n### Placeholder is not a label\n\n`placeholder` shows grey hint text that disappears on focus and vanishes entirely on some screens — never use it as a replacement for a real `<label>`. A placeholder should *supplement* a label, not stand in for it.\n\n### Common mistakes\n\n- Using `placeholder` instead of `<label>` — an accessibility failure\n- Forgetting `name` — the browser validates fine, but the server receives nothing\n- Using `type=\"text\"` for emails and phones — you lose free validation and mobile keyboards\n- Applying `pattern` without a `title` hint — users do not know what format is expected\n- `min`/`max` on a `<textarea>` — they do nothing; use `minlength`/`maxlength`",
+    "codeSnippets": [
+      {
+        "language": "html",
+        "code": "<form action=\"/api/signup\" method=\"post\">\n  <fieldset>\n    <legend>Registration</legend>\n\n    <label for=\"email\">Email</label>\n    <input type=\"email\" id=\"email\" name=\"email\" required>\n\n    <label for=\"course\">Course</label>\n    <select id=\"course\" name=\"course\">\n      <option value=\"btech\">B.Tech</option>\n      <option value=\"mtech\">M.Tech</option>\n    </select>\n\n    <label for=\"notes\">Notes</label>\n    <textarea id=\"notes\" name=\"notes\" rows=\"4\" cols=\"40\"></textarea>\n  </fieldset>\n  <button type=\"submit\">Register</button>\n</form>",
+        "output": "A grouped registration form with a required email field, a course dropdown, and a textarea."
+      }
+    ],
+    "exercise": {
+      "instruction": "Build a <form> containing a <fieldset> with a <legend> reading 'Registration'. Inside it, add: a <select> named 'course' with at least two <option>s, a <textarea> named 'notes' with rows and cols, and an email input named 'email' marked required. Close the fieldset and the form.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Sign Up</title>\n</head>\n<body>\n  <form action=\"/api/signup\" method=\"post\">\n\n  </form>\n</body>\n</html>",
+      "required": ["<fieldset>", "<legend>", "<select", "<option", "<textarea", "required"],
+      "hints": [
+        "Hint 1: Wrap everything in <fieldset> and add <legend>Registration</legend>.",
+        "Hint 2: Add <select name=\"course\"> with two <option>s, and a <textarea name=\"notes\" rows=\"4\" cols=\"40\">.",
+        "Hint 3: Finish with a required email input: <input type=\"email\" name=\"email\" required>."
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which input type triggers a number spinner and supports min/max?",
+        "options": ["type=\"number\"", "type=\"tel\"", "type=\"range\""],
+        "correct": 0
+      },
+      {
+        "question": "Which attribute makes a field mandatory?",
+        "options": ["validate", "required", "checked"],
+        "correct": 1
+      },
+      {
+        "question": "What does <legend> do?",
+        "options": ["Labels the whole fieldset for users and screen readers", "Adds a tooltip to every input", "Places a title above the submit button"],
+        "correct": 0
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "html-14-semantics-accessibility",
+    "unlocks": ["html-14-semantics-accessibility"]
+  }
+}

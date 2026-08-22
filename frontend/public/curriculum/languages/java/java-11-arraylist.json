@@ -1,0 +1,53 @@
+{
+  "id": "java-11-arraylist",
+  "track": "java",
+  "title": "ArrayList & Collections",
+  "section": "Java Intermediate",
+  "order": 11,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "A fixed-size array is great until you run out of room — then you're stuck. **ArrayList** is the go-to **resizable list** from `java.util`. It wraps an array and grows it automatically when you `add()`, which is why it's the default collection for ordered data in almost every real Java program.\n\nUnlike arrays, an `ArrayList` needs the `import`:\n\n```java\nimport java.util.*;\n\nArrayList<String> names = new ArrayList<>();\nnames.add(\"Ada\");\nnames.add(\"Linus\");\n```\n\n### Generics — the angle brackets\n\n`ArrayList<String>` is pronounced \"ArrayList of String\". The **generic type** tells the compiler exactly what the list holds, so you get type safety — you can't accidentally insert an `int` into a `String` list. Two details trip everyone up:\n\n- The diamond `<>` on the right side lets Java infer the type from the left.\n- You can't write `ArrayList<int>` — generics need **reference types**. Use the wrapper class `ArrayList<Integer>` and Java **autoboxes** plain `int` values into `Integer` objects automatically.\n\n### Common methods\n\n| Method | What it does |\n|---|---|\n| `add(item)` | Append to the end |\n| `get(i)` | Read the element at index `i` |\n| `set(i, item)` | Replace the element at index `i` |\n| `remove(i)` | Delete the element at index `i` |\n| `size()` | Number of elements |\n| `contains(item)` | True if the list holds `item` |\n\n### Looping and sorting\n\nA **for-each loop** is the cleanest way to visit every element — no index math, no off-by-one errors:\n\n```java\nfor (String name : names) {\n    System.out.println(name);\n}\n```\n\nTo sort, use `Collections.sort(names)` — a static utility method that sorts any `List` of `Comparable` elements in place. Avoid a classic bug: `names.size()` returns the **count**, while `names.length` doesn't exist on an `ArrayList` (that's an array thing).",
+    "codeSnippets": [
+      {
+        "language": "java",
+        "code": "import java.util.*;\n\nArrayList<String> names = new ArrayList<>();\nnames.add(\"Ada\");\nnames.add(\"Linus\");\nnames.add(\"Grace\");\n\nSystem.out.println(names.size());      // 3\nfor (String name : names) {\n    System.out.println(name);\n}",
+        "output": "3\nAda\nLinus\nGrace"
+      }
+    ],
+    "exercise": {
+      "instruction": "Create an ArrayList<String> named 'names'. Add the names \"Ada\" then \"Linus\". Print the size on its own line with System.out.println(names.size()), then print each name on its own line using a for-each loop over 'names'.",
+      "starterCode": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n\n    }\n}",
+      "language": "java",
+      "expected": "2\nAda\nLinus",
+      "required": ["import java.util", "ArrayList<String>", "names.add(\"Ada\")", "names.size()", "for (String name : names)", "System.out.println(name)"],
+      "hints": [
+        "Hint 1: import java.util.*; goes above the class — ArrayList lives there.",
+        "Hint 2: ArrayList<String> names = new ArrayList<>(); then names.add(\"Ada\"); names.add(\"Linus\");",
+        "Hint 3: System.out.println(names.size()); then for (String name : names) { System.out.println(name); }"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What happens when an ArrayList runs out of internal space?",
+        "options": ["It throws an exception", "It grows automatically", "It discards the oldest element"],
+        "correct": 1
+      },
+      {
+        "question": "Why is ArrayList<Integer> used instead of ArrayList<int>?",
+        "options": ["Generics need reference types, not primitives", "int is a reserved word", "There is no difference"],
+        "correct": 0
+      },
+      {
+        "question": "Which method returns the number of elements in an ArrayList?",
+        "options": [".length", ".size()", ".count()"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "java-12-hashmap",
+    "unlocks": ["java-12-hashmap"]
+  }
+}

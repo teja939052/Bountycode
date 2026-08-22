@@ -17,7 +17,7 @@ function StatusPill({ online }) {
     <span
       className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold border ${
         online
-          ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/30"
+          ? "bg-nature-bark text-nature-blossom border-nature-leaf/30"
           : "bg-amber-500/10 text-amber-400 border-amber-500/30"
       }`}
     >
@@ -36,7 +36,7 @@ function Toggle({ checked, onChange, disabled }) {
       disabled={disabled}
       onClick={() => onChange(!checked)}
       className={`relative w-12 h-7 rounded-full transition-colors shrink-0 ${
-        checked ? "bg-emerald-500" : "bg-slate-700"
+        checked ? "bg-emerald-500" : "bg-[#E5E0D3]"
       } ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
     >
       <span
@@ -113,21 +113,21 @@ export default function PwaSetup() {
     reduced ? {} : { opacity: 0, y: 16, transition: { delay } };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
+    <div className="min-h-screen bg-surface-base text-text-primary">
       <div className="max-w-2xl mx-auto px-4 py-10 md:py-14">
         <motion.div
           initial={reduced ? {} : { opacity: 0, y: -16 }}
           animate={{ opacity: 1, y: 0 }}
           className="flex items-center gap-3 mb-8"
         >
-          <div className="p-3 bg-gradient-to-br from-emerald-500/20 to-indigo-500/20 rounded-2xl border border-white/10">
-            <Smartphone className="w-7 h-7 text-emerald-400" />
+          <div className="p-3 bg-gradient-to-br from-[#EDF5E6] to-[#D9EFCF] rounded-2xl border border-nature-leaf/30">
+            <Smartphone className="w-7 h-7 text-nature-blossom" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-white via-emerald-200 to-indigo-200 bg-clip-text text-transparent">
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-[#1F2937] via-[#4F8F57] to-[#7BB661] bg-clip-text text-transparent">
               Offline & Notifications
             </h1>
-            <p className="text-slate-400 text-sm mt-1">
+            <p className="text-text-muted text-sm mt-1">
               Install the app, save lessons offline, and stay notified
             </p>
           </div>
@@ -136,21 +136,21 @@ export default function PwaSetup() {
         <motion.div
           initial={fade(0.05)}
           animate={{ opacity: 1, y: 0 }}
-          className="flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-slate-900/60 p-4 mb-6"
+          className="flex items-center justify-between gap-4 rounded-2xl border border-nature-leaf/20 bg-white p-4 mb-6"
         >
           <div className="flex items-center gap-3">
             <div
               className={`w-10 h-10 rounded-xl flex items-center justify-center ${
                 isOnline
-                  ? "bg-emerald-500/15 text-emerald-400"
+                  ? "bg-nature-bark text-nature-blossom"
                   : "bg-amber-500/15 text-amber-400"
               }`}
             >
               {isOnline ? <Wifi size={20} /> : <WifiOff size={20} />}
             </div>
             <div>
-              <p className="font-semibold text-sm text-white">Connection Status</p>
-              <p className="text-xs text-slate-400">
+              <p className="font-semibold text-sm text-text-primary">Connection Status</p>
+              <p className="text-xs text-text-muted">
                 {isOnline
                   ? "You are connected to the internet"
                   : "You are offline — cached content is available"}
@@ -164,33 +164,33 @@ export default function PwaSetup() {
           <motion.div
             initial={fade(0.1)}
             animate={{ opacity: 1, y: 0 }}
-            className="rounded-2xl border border-white/10 bg-slate-900/60 p-6"
+            className="rounded-2xl border border-nature-leaf/20 bg-white p-6"
           >
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-indigo-500/15 text-indigo-400 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-surface-card text-nature-blossom flex items-center justify-center">
                 <Download size={20} />
               </div>
               <div>
-                <h2 className="font-semibold text-white">Install App</h2>
-                <p className="text-xs text-slate-400 mt-0.5">
+                <h2 className="font-semibold text-text-primary">Install App</h2>
+                <p className="text-xs text-text-muted mt-0.5">
                   Add PlacementPro to your home screen for full-screen access
                 </p>
               </div>
             </div>
             <div className="mt-5">
               {installed ? (
-                <span className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                <span className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium bg-nature-bark text-nature-blossom border border-nature-leaf/30">
                   <Check size={16} /> Installed
                 </span>
               ) : deferredPrompt ? (
                 <button
                   onClick={handleInstall}
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-nature-leaf hover:bg-nature-moss text-white text-sm font-semibold transition-colors"
                 >
                   <Download size={16} /> Install App
                 </button>
               ) : (
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-text-muted">
                   Use your browser's "Add to Home Screen" / "Install app" option
                 </p>
               )}
@@ -200,16 +200,16 @@ export default function PwaSetup() {
           <motion.div
             initial={fade(0.15)}
             animate={{ opacity: 1, y: 0 }}
-            className="rounded-2xl border border-white/10 bg-slate-900/60 p-6"
+            className="rounded-2xl border border-nature-leaf/20 bg-white p-6"
           >
             <div className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-nature-bark text-nature-blossom flex items-center justify-center">
                   <BookOpen size={20} />
                 </div>
                 <div>
-                  <h2 className="font-semibold text-white">Enable Offline Lessons</h2>
-                  <p className="text-xs text-slate-400 mt-0.5">
+                  <h2 className="font-semibold text-text-primary">Enable Offline Lessons</h2>
+                  <p className="text-xs text-text-muted mt-0.5">
                     Save lessons to your device and read them without an internet
                     connection
                   </p>
@@ -225,8 +225,8 @@ export default function PwaSetup() {
               <span
                 className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-medium border ${
                   permission === "granted"
-                    ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/30"
-                    : "bg-slate-800/60 text-slate-400 border-white/10"
+                    ? "bg-nature-bark text-nature-blossom border-nature-leaf/30"
+                    : "bg-surface-card text-text-muted border-nature-leaf/20"
                 }`}
               >
                 {permission === "granted" ? <Bell size={12} /> : <BellOff size={12} />}
@@ -235,8 +235,8 @@ export default function PwaSetup() {
               <span
                 className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-medium border ${
                   subscribed
-                    ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/30"
-                    : "bg-slate-800/60 text-slate-400 border-white/10"
+                    ? "bg-nature-bark text-nature-blossom border-nature-leaf/30"
+                    : "bg-surface-card text-text-muted border-nature-leaf/20"
                 }`}
               >
                 {subscribed ? <Check size={12} /> : <BellOff size={12} />}
@@ -248,20 +248,20 @@ export default function PwaSetup() {
           <motion.div
             initial={fade(0.2)}
             animate={{ opacity: 1, y: 0 }}
-            className="rounded-2xl border border-white/10 bg-slate-900/60 p-6 flex items-center justify-between gap-4"
+            className="rounded-2xl border border-nature-leaf/20 bg-white p-6 flex items-center justify-between gap-4"
           >
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-indigo-500/15 text-indigo-400 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-surface-card text-nature-blossom flex items-center justify-center">
                 <HardDrive size={20} />
               </div>
               <div>
-                <h2 className="font-semibold text-white">Cached Lessons</h2>
-                <p className="text-xs text-slate-400 mt-0.5">
+                <h2 className="font-semibold text-text-primary">Cached Lessons</h2>
+                <p className="text-xs text-text-muted mt-0.5">
                   Lessons saved on this device for offline reading
                 </p>
               </div>
             </div>
-            <span className="text-2xl font-bold font-mono bg-gradient-to-r from-emerald-400 to-indigo-400 bg-clip-text text-transparent">
+            <span className="text-2xl font-bold font-mono bg-gradient-to-r from-[#4F8F57] to-[#7BB661] bg-clip-text text-transparent">
               {cachedCount}
             </span>
           </motion.div>

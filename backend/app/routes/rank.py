@@ -101,6 +101,7 @@ async def _ensure_honor_field(user_id: str):
     await users_collection().update_one(
         {"_id": ObjectId(user_id)},
         {"$setOnInsert": {"honor": 0}},
+        upsert=True,
     )
 
 
@@ -132,21 +133,18 @@ async def get_rank_profile(user=Depends(get_current_user)):
 @router.post("/award-honor")
 async def award_honor(
     action: str = Query(..., min_length=1, max_length=50),
-    amount: int = Query(0, ge=0, le=100),
     user=Depends(get_current_user),
 ):
-    """Award honor points for various actions."""
+    """Award honor points for server-verified actions. Amount is always
+    derived server-side from HONOR_ACTIONS — client-supplied amounts are
+    never honored."""
     uid = user["id"]
-    await _ensure_honor_field(uid)
 
-    # If amount is 0, use default for action
-    if amount == 0 and action in HONOR_ACTIONS:
-        amount = HONOR_ACTIONS[action]
-    elif amount == 0:
+    if action not in HONOR_ACTIONS:
         raise HTTPException(status_code=400, detail=f"Unknown action: {action}")
 
-    if action not in HONOR_ACTIONS and amount <= 0:
-        raise HTTPException(status_code=400, detail="Invalid honor amount")
+    amount = HONOR_ACTIONS[action]
+    await _ensure_honor_field(uid)
 
     await users_collection().update_one(
         {"_id": ObjectId(uid)},

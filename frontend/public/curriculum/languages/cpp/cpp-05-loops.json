@@ -1,0 +1,48 @@
+{
+  "id": "cpp-05-loops",
+  "track": "cpp",
+  "title": "Loops",
+  "section": "C++ Basics",
+  "order": 5,
+  "type": "lesson",
+  "duration": "11 min",
+  "xp": 20,
+  "content": {
+    "theory": "C++ `for` loops follow the classic C format — initialization, condition, update:\n\n```cpp\nfor (int i = 0; i < 5; i++) {\n    std::cout << i << std::endl;   // 0 1 2 3 4\n}\n```\n\nThe `while` loop runs while a condition holds:\n\n```cpp\nint count = 0;\nwhile (count < 3) {\n    std::cout << \"Tick \" << count << std::endl;\n    count++;\n}\n```\n\nThe **range-based for** (C++11+) loops directly over collections:\n\n```cpp\nint nums[] = {10, 20, 30};\nfor (int n : nums) {\n    std::cout << n << std::endl;\n}\n```\n\nLoop controls:\n\n```cpp\nfor (int i = 0; i < 10; i++) {\n    if (i == 2) continue;   // skip this iteration\n    if (i == 5) break;      // exit the loop\n    std::cout << i << std::endl;\n}\n```\n\nCount down with `i--`:\n\n```cpp\nfor (int i = 3; i > 0; i--) {\n    std::cout << i << std::endl;   // 3 2 1\n}\n```",
+    "codeSnippets": [
+      {
+        "language": "cpp",
+        "code": "for (int i = 1; i <= 3; i++) {\n    std::cout << \"Row \" << i << std::endl;\n}",
+        "output": "Row 1\nRow 2\nRow 3"
+      }
+    ],
+    "exercise": {
+      "instruction": "Use a for loop that counts down from 3 to 1 (i = 3; i > 0; i--) printing each number with std::cout, then print 'Go!' after the loop.",
+      "starterCode": "#include <iostream>\n\nint main() {\n\n    return 0;\n}",
+      "language": "cpp",
+      "expected": "3\n2\n1\nGo!",
+      "required": ["for (int i = 3", "i > 0", "i--", "std::cout << i", "Go!"],
+      "hints": [
+        "Hint 1: for (int i = 3; i > 0; i--) {",
+        "Hint 2: std::cout << i << std::endl;",
+        "Hint 3: After the loop: std::cout << \"Go!\" << std::endl;"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What does i-- do?",
+        "options": ["Adds 1 to i", "Subtracts 1 from i", "Sets i to 0"],
+        "correct": 1
+      },
+      {
+        "question": "Which loop is best for iterating over every item of an array?",
+        "options": ["Range-based for", "while", "do-while"],
+        "correct": 0
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "cpp-06-functions",
+    "unlocks": ["cpp-06-functions"]
+  }
+}

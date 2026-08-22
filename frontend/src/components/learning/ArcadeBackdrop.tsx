@@ -48,7 +48,9 @@ const SHAPES = [
   },
 ];
 
-export default function ArcadeBackdrop({ variant = "arcade", className = "" }) {
+export type ArcadeVariant = "arcade" | "dojo" | "candy";
+
+export default function ArcadeBackdrop({ variant = "arcade", className = "" }: { variant?: ArcadeVariant; className?: string }) {
   const reduced = useReducedMotion();
   const theme = THEMES[variant] || THEMES.arcade;
 
@@ -56,17 +58,17 @@ export default function ArcadeBackdrop({ variant = "arcade", className = "" }) {
     <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
       <div className={`absolute inset-0 bg-gradient-to-br ${theme.base}`} />
       <div
-        className={`absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(72,149,239,0.34),transparent_26%),radial-gradient(circle_at_82%_14%,rgba(124,109,175,0.28),transparent_24%),radial-gradient(circle_at_28%_82%,rgba(233,196,106,0.18),transparent_24%),radial-gradient(circle_at_75%_78%,rgba(42,157,143,0.16),transparent_28%)]`}
+        className={`absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(72,149,239,0.22),transparent_24%),radial-gradient(circle_at_82%_14%,rgba(124,109,175,0.18),transparent_22%),radial-gradient(circle_at_28%_82%,rgba(233,196,106,0.12),transparent_22%)]`}
       />
       <div
-        className={`absolute inset-0 ${theme.grid} bg-[linear-gradient(rgba(255,255,255,0.10)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.10)_1px,transparent_1px)] bg-[size:42px_42px]`}
+        className={`absolute inset-0 ${theme.grid} bg-[linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:48px_48px]`}
       />
-      <div className={`absolute inset-0 bg-[linear-gradient(135deg,transparent_44%,rgba(255,255,255,0.08)_45%,transparent_46%)] opacity-30`} />
+      <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_44%,rgba(255,255,255,0.06)_45%,transparent_46%)] opacity-20" />
 
       <div className="absolute inset-0">
-        <div className={`absolute -left-24 top-12 h-72 w-72 rounded-full ${theme.glowA} blur-3xl`} />
-        <div className={`absolute -right-24 top-20 h-80 w-80 rounded-full ${theme.glowB} blur-3xl`} />
-        <div className={`absolute left-1/2 bottom-0 h-72 w-72 -translate-x-1/2 rounded-full ${theme.glowC} blur-3xl`} />
+        <div className={`absolute -left-24 top-12 h-64 w-64 rounded-full ${theme.glowA} blur-3xl`} />
+        <div className={`absolute -right-24 top-20 h-72 w-72 rounded-full ${theme.glowB} blur-3xl`} />
+        <div className={`absolute left-1/2 bottom-0 h-64 w-64 -translate-x-1/2 rounded-full ${theme.glowC} blur-3xl`} />
       </div>
 
       {!reduced && (
@@ -74,10 +76,10 @@ export default function ArcadeBackdrop({ variant = "arcade", className = "" }) {
           {SHAPES.map((shape, index) => (
             <motion.div
               key={shape.className}
-              className={`absolute border backdrop-blur-sm ${shape.className} ${shape.color}`}
+              className={`absolute border ${shape.className} ${shape.color}`}
               animate={shape.motion}
               transition={{
-                duration: 7 + index,
+                duration: 10 + index * 1.5,
                 repeat: Infinity,
                 ease: "easeInOut",
               }}

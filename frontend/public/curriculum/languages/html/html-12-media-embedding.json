@@ -1,0 +1,51 @@
+{
+  "id": "html-12-media-embedding",
+  "track": "html",
+  "title": "Media: Images, Audio & Video",
+  "section": "Advanced HTML",
+  "order": 12,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "Modern web pages are multimedia documents. Images, audio, and video make content engaging — but each media type comes with its own semantics, accessibility rules, and performance traps. Get the attributes right and your page loads fast and works for everyone; get them wrong and you ship broken icons and media that hijack screen readers.\n\n### Images: src, alt, and dimensions\n\nThe `<img>` element is self-closing and needs two things: **src** (the URL of the image) and **alt** (a text description). The `alt` attribute is not decorative — when an image fails to load, the alt text is what your visitor sees, and when a screen reader encounters the image, it announces the alt text. Decorative images that add nothing should use `alt=\"\"` so assistive tech skips them entirely.\n\n```html\n<img src=\"https://example.com/campus.jpg\" alt=\"Students on the placement drive stage\" width=\"640\" height=\"360\" loading=\"lazy\">\n```\n\nSetting **width** and **height** prevents layout shift (CLS) while the image downloads, and `loading=\"lazy\"` defers off-screen images until the user scrolls to them — a big win for bandwidth and page speed.\n\n### figure and figcaption\n\nWhen an image (or media block) needs a caption, wrap it in `<figure>` and add `<figcaption>`. This pairs the media with its label semantically, so screen readers announce 'image: ... — caption: ...' as one unit.\n\n```html\n<figure>\n  <img src=\"team.jpg\" alt=\"The core team at the office\">\n  <figcaption>Core team, Q3 2026</figcaption>\n</figure>\n```\n\n### Audio and video\n\nUse `<audio>` for sound and `<video>` for moving pictures. The **controls** attribute renders the play/pause UI; without it most users have no way to start playback. Give `<video>` a **poster** image shown before playback, and always include a fallback message inside the element for very old browsers.\n\n```html\n<audio src=\"intro.mp3\" controls></audio>\n\n<video src=\"demo.mp4\" controls poster=\"demo-poster.jpg\" width=\"480\">\n  Your browser does not support video. Download <a href=\"demo.mp4\">here</a>.\n</video>\n```\n\n### Embedding with iframe\n\nTo embed a YouTube video, Vimeo clip, or any third-party page, use `<iframe>` with **src**, a **title** (screen readers announce it), **width**, and **height**. YouTube's Share → Embed gives you a ready-made snippet.\n\n```html\n<iframe src=\"https://www.youtube.com/embed/dQw4w9WgXcQ\" title=\"Demo video\" width=\"560\" height=\"315\" loading=\"lazy\"></iframe>\n```\n\n### Common mistakes\n\n- Missing `alt` — every meaningful image needs one, every decorative one needs `alt=\"\"`\n- No `controls` on `<audio>`/`<video>` — users cannot play the media\n- No `title` on `<iframe>` — screen readers announce a raw URL instead\n- Hotlinking huge images with no `width`/`height` — causes layout shift\n- Autoplay-with-sound videos — a user-hostility that browsers often block anyway\n\nGet the source right, describe the content, size the box, and lazy-load what is off-screen. Your media then enhances the page instead of breaking it.",
+    "codeSnippets": [
+      {
+        "language": "html",
+        "code": "<figure>\n  <img src=\"poster.jpg\" alt=\"Concert poster for the 2026 world tour\" width=\"480\" height=\"640\">\n  <figcaption>Poster for the 2026 world tour</figcaption>\n</figure>\n\n<audio src=\"track.mp3\" controls></audio>",
+        "output": "A captioned image figure, followed by an audio player with play/pause controls."
+      }
+    ],
+    "exercise": {
+      "instruction": "Inside the <body>, create a <figure> containing an <img> (src=\"poster.jpg\") with a meaningful alt attribute and a <figcaption>. Below the figure, add an <audio> element with src=\"track.mp3\" and the controls attribute.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Media Gallery</title>\n</head>\n<body>\n\n</body>\n</html>",
+      "required": ["<figure>", "<img", "alt=", "<figcaption>", "<audio", "controls"],
+      "hints": [
+        "Hint 1: Wrap the media in <figure> so its caption is linked semantically.",
+        "Hint 2: Give the img a descriptive alt text like alt=\"Concert poster for the 2026 tour\".",
+        "Hint 3: Add <audio src=\"track.mp3\" controls></audio> after the figure."
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What does alt text provide?",
+        "options": ["A tooltip on hover", "A description read by screen readers and shown if the image fails", "A caption below the image"],
+        "correct": 1
+      },
+      {
+        "question": "Which attribute on <img> defers loading until the image is near the viewport?",
+        "options": ["defer", "loading=\"lazy\"", "preload"],
+        "correct": 1
+      },
+      {
+        "question": "Which element pairs media with its caption?",
+        "options": ["<legend>", "<label>", "<figure>"],
+        "correct": 2
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "html-13-forms-advanced",
+    "unlocks": ["html-13-forms-advanced"]
+  }
+}

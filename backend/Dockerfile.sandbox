@@ -1,0 +1,41 @@
+# Dockerfile for secure code execution sandbox
+# Build: docker build -t placementpro/sandbox:latest .
+# Run: docker run --rm placementpro/sandbox:latest
+
+# Base image with all required language runtimes
+FROM ubuntu:22.04
+
+# Prevent interactive prompts
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install all language runtimes and tools
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3 python3-pip python3-venv \
+    nodejs npm \
+    openjdk-17-jdk-headless \
+    gcc g++ make \
+    golang-go \
+    rustc cargo \
+    ruby ruby-dev \
+    php php-cli \
+    swift \
+    kotlinc \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install TypeScript compiler globally
+RUN npm install -g typescript
+
+# Create non-root user for sandbox execution
+RUN groupadd -r sandbox --gid=1000 && \
+    useradd -r -g sandbox --uid=1000 --home-dir=/home/sandbox --create-home sandbox
+
+# Set up workspace directory
+WORKDIR /workspace
+RUN chown sandbox:sandbox /workspace
+
+# Switch to non-root user
+USER sandbox
+
+# Default command
+CMD ["bash"]

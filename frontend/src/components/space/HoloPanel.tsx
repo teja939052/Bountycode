@@ -28,7 +28,7 @@ export default function HoloPanel({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`relative overflow-hidden rounded-xl bg-space-panel/80 backdrop-blur-sm border ${glowMap[glowColor] || glowMap.blue} ${className}`}
+      className={`relative overflow-hidden rounded-xl bg-space-panel/80 border ${glowMap[glowColor] || glowMap.blue} ${className}`}
     >
       {/* Ambient grid background */}
       <div className="absolute inset-0 ambient-grid opacity-30 pointer-events-none" />

@@ -1,19 +1,33 @@
 """
 Analytics service — page views, sessions, feature usage tracking.
+Also supports geo-IP tracking and visitor retention.
 """
 from datetime import datetime, timezone, timedelta
 from app.database import analytics_events_collection, users_collection
 from app.database import analytics_rollups_collection
 
 
-async def track_event(event: str, path: str = "", user_id: str = None, meta: dict = None):
-    """Track an analytics event (page_view, feature_use, etc.)."""
+async def track_event(
+    event: str,
+    path: str = "",
+    user_id: str = None,
+    meta: dict = None,
+    ip_address: str = None,
+):
+    """Track an analytics event (page_view, feature_use, etc.).
+
+    Optionally capture ip_address in meta for geo tracking.
+    """
     now = datetime.now(timezone.utc)
+    meta = meta or {}
+    if ip_address:
+        meta["ip_address"] = ip_address
+
     doc = {
         "event": event,
         "path": path,
         "user_id": user_id,
-        "meta": meta or {},
+        "meta": meta,
         "timestamp": now.isoformat(),
         "timestamp_dt": now,
         "date": now.strftime("%Y-%m-%d"),
@@ -71,6 +85,78 @@ async def _update_rollups(doc: dict):
             },
             upsert=True,
         )
+
+
+async def _get_new_returning_stats(days: int = 30):
+    """Get new vs returning visitor counts."""
+    since = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%Y-%m-%d")
+    # Users with only one event in the period are "new"; multiple events suggest "returning"
+    pipeline = [
+        {"$match": {"event": "page_view", "date": {"$gte": since}}},
+        {"$group": {
+            "_id": "$user_id",
+            "event_count": {"$sum": 1},
+            "first_date": {"$min": "$date"},
+        }},
+        {"$group": {
+            "_id": "$event_count",
+            "user_count": {"$sum": 1},
+        }},
+        {"$sort": {"_id": 1}},
+    ]
+    cursor = analytics_events_collection.aggregate(pipeline)
+    results = {}
+    async for doc in cursor:
+        results[str(doc["_id"])] = doc["user_count"]
+    return results
+
+
+async def get_geo_breakdown(days: int = 30):
+    """Get visitor breakdown by IP address (for geo tracking)."""
+    since = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%Y-%m-%d")
+    pipeline = [
+        {"$match": {"event": "page_view", "date": {"$gte": since}, "meta.ip_address": {"$exists": True}}},
+        {"$group": {
+            "_id": "$meta.ip_address",
+            "visits": {"$sum": 1},
+        }},
+        {"$sort": {"visits": -1}},
+        {"$limit": 50},
+    ]
+    cursor = analytics_events_collection.aggregate(pipeline)
+    results = []
+    async for doc in cursor:
+        results.append({"ip": doc["_id"], "visits": doc["visits"]})
+    return results
+
+
+async def get_retention_stats(days: int = 30):
+    """Get new vs returning visitor percentages."""
+    since = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%Y-%m-%d")
+    # New users: had their first page_view in the period and no events before
+    # Returning users: had at least one event before the period
+    new_pipeline = [
+        {"$match": {"event": "page_view", "date": {"$gte": since}}},
+        {"$group": {"_id": "$user_id", "first_event": {"$min": "$timestamp_dt"}}},
+        {"$match": {"first_event": {"$gte": datetime.now(timezone.utc) - timedelta(days=days)}}},
+        {"$count": "new_users"},
+    ]
+    returning_pipeline = [
+        {"$match": {"event": "page_view", "timestamp_dt": {"$lt": datetime.now(timezone.utc) - timedelta(days=days)}}},
+        {"$group": {"_id": None, "count": {"$sum": 1}}},
+        {"$count": "returning_users"},
+    ]
+    new_result = await analytics_events_collection.aggregate(new_pipeline).to_list(length=1)
+    returning_result = await analytics_events_collection.aggregate(returning_pipeline).to_list(length=1)
+    new_users = new_result[0]["new_users"] if new_result else 0
+    returning_users = returning_result[0]["returning_users"] if returning_result else 0
+    total = new_users + returning_users
+    return {
+        "new_users": new_users,
+        "returning_users": returning_users,
+        "retention_rate": round(returning_users / total * 100, 1) if total > 0 else 0,
+        "total_visitors": total,
+    }
 
 
 async def get_visitor_stats(days: int = 30):
@@ -289,3 +375,90 @@ async def get_hourly_distribution(days: int = 7):
     async for doc in cursor:
         results.append({"hour": doc["_id"], "views": doc["views"]})
     return results
+
+
+async def get_user_list(days: int = 30, limit: int = 50):
+    """Get registered users with their activity counts."""
+    from bson import ObjectId
+
+    since = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%Y-%m-%d")
+    pipeline = [
+        {"$match": {"event": "page_view", "date": {"$gte": since}}},
+        {"$group": {
+            "_id": "$user_id",
+            "total_views": {"$sum": 1},
+            "last_active": {"$max": "$timestamp_dt"},
+            "pages_visited": {"$addToSet": "$path"},
+        }},
+        {"$project": {
+            "user_id": "$_id",
+            "total_views": 1,
+            "last_active": 1,
+            "pages_count": {"$size": "$pages_visited"},
+        }},
+        {"$sort": {"total_views": -1}},
+        {"$limit": limit},
+    ]
+    cursor = analytics_events_collection.aggregate(pipeline)
+    results = []
+    async for doc in cursor:
+        doc.pop("_id", None)
+        uid = doc.get("user_id")
+        doc["is_registered"] = uid is not None and uid != ""
+        if doc["is_registered"] and ObjectId.is_valid(uid):
+            user_doc = await users_collection.find_one(
+                {"_id": ObjectId(uid)},
+                {"name": 1, "email": 1, "plan": 1, "created_at": 1},
+            )
+            if user_doc:
+                doc["name"] = user_doc.get("name", "")
+                doc["email"] = user_doc.get("email", "")
+                doc["plan"] = user_doc.get("plan", "free")
+        results.append(doc)
+    return results
+
+
+async def get_user_stats_summary():
+    """Get aggregate user statistics."""
+    total_users = await users_collection.count_documents({})
+    pipeline = [
+        {"$group": {
+            "_id": "$plan",
+            "count": {"$sum": 1},
+        }},
+    ]
+    cursor = users_collection.aggregate(pipeline)
+    plan_counts = {"free": 0, "pro": 0, "lifetime": 0}
+    async for doc in cursor:
+        plan_counts[doc["_id"]] = doc["count"]
+
+    now = datetime.now(timezone.utc)
+    today = now.strftime("%Y-%m-%d")
+    week_ago = (now - timedelta(days=7)).strftime("%Y-%m-%d")
+    month_ago = (now - timedelta(days=30)).strftime("%Y-%m-%d")
+
+    new_today = await users_collection.count_documents({"created_at": {"$gte": today}})
+    new_this_week = await users_collection.count_documents({"created_at": {"$gte": week_ago}})
+    new_this_month = await users_collection.count_documents({"created_at": {"$gte": month_ago}})
+
+    active_users = 0
+    try:
+        active_pipeline = [
+            {"$match": {"event": "page_view", "date": {"$gte": today}}},
+            {"$group": {"_id": "$user_id"}},
+            {"$count": "total"},
+        ]
+        cursor = analytics_events_collection.aggregate(active_pipeline)
+        async for doc in cursor:
+            active_users = doc["total"]
+    except Exception:
+        pass
+
+    return {
+        "total_users": total_users,
+        "plan_counts": plan_counts,
+        "new_today": new_today,
+        "new_this_week": new_this_week,
+        "new_this_month": new_this_month,
+        "active_today": active_users,
+    }

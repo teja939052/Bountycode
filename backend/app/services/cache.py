@@ -1,3 +1,11 @@
+"""Unified caching layer with in-memory and optional Redis backends.
+
+Provides:
+- InMemoryCache: Local LRU cache with TTL eviction
+- RedisCache: Distributed Redis-backed cache
+- UnifiedCache: Redis-first with in-memory fallback
+- Global singleton `cache` instance
+"""
 import json
 import hashlib
 import time
@@ -7,7 +15,12 @@ import asyncio
 
 
 class InMemoryCache:
-    """In-memory cache with TTL and LRU eviction. Fallback when Redis is unavailable."""
+    """In-memory cache with TTL and LRU eviction. Fallback when Redis is unavailable.
+
+    Args:
+        max_size: Maximum number of entries before eviction.
+        ttl_seconds: Default time-to-live in seconds for entries.
+    """
 
     def __init__(self, max_size: int = 2000, ttl_seconds: int = 3600):
         self.cache: OrderedDict[str, dict] = OrderedDict()
@@ -91,7 +104,11 @@ class InMemoryCache:
 
 
 class RedisCache:
-    """Redis-based distributed cache for production."""
+    """Redis-based distributed cache for production.
+
+    Args:
+        redis_url: Redis connection URL string (e.g., 'redis://localhost:6379/0').
+    """
 
     def __init__(self, redis_url: str = "redis://localhost:6379/0"):
         self.redis_url = redis_url
@@ -101,6 +118,11 @@ class RedisCache:
         self.misses = 0
 
     async def connect(self):
+        """Establish connection to Redis.
+
+        Raises:
+            Exception: If the Redis connection or ping fails (logged and swallowed).
+        """
         try:
             import redis.asyncio as aioredis
             self.client = aioredis.from_url(
@@ -118,12 +140,22 @@ class RedisCache:
             self.connected = False
 
     async def disconnect(self):
+        """Close the Redis client connection and reset state."""
         if self.client:
             await self.client.close()
             self.client = None
             self.connected = False
 
     async def get(self, namespace: str, key: str) -> Optional[Any]:
+        """Retrieve a value from Redis.
+
+        Args:
+            namespace: Logical grouping for the key.
+            key: Unique identifier within the namespace.
+
+        Returns:
+            Optional[Any]: Deserialized value if found, else None.
+        """
         if not self.connected:
             return None
         try:
@@ -139,6 +171,14 @@ class RedisCache:
             return None
 
     async def set(self, namespace: str, key: str, value: Any, ttl: int = 3600):
+        """Store a value in Redis with expiration.
+
+        Args:
+            namespace: Logical grouping for the key.
+            key: Unique identifier within the namespace.
+            value: Value to serialize and store.
+            ttl: Expiration time in seconds.
+        """
         if not self.connected:
             return
         try:
@@ -148,6 +188,19 @@ class RedisCache:
             pass
 
     async def incr(self, namespace: str, key: str, amount: int = 1, ttl: int = 3600) -> int:
+        """Atomically increment an integer value in Redis.
+
+        If the key does not exist, initializes it to `amount` and sets TTL.
+
+        Args:
+            namespace: Logical grouping for the key.
+            key: Unique identifier within the namespace.
+            amount: Amount to add (default: 1).
+            ttl: Expiration time in seconds.
+
+        Returns:
+            int: The new value after increment, or `amount` on failure.
+        """
         if not self.connected:
             return amount
         try:
@@ -160,6 +213,12 @@ class RedisCache:
             return amount
 
     async def delete(self, namespace: str, key: str):
+        """Delete a key from Redis.
+
+        Args:
+            namespace: Logical grouping for the key.
+            key: Unique identifier within the namespace.
+        """
         if not self.connected:
             return
         try:
@@ -169,6 +228,11 @@ class RedisCache:
             pass
 
     async def clear_namespace(self, namespace: str):
+        """Delete all keys matching a namespace prefix.
+
+        Args:
+            namespace: Logical grouping prefix to clear.
+        """
         if not self.connected:
             return
         try:
@@ -189,7 +253,11 @@ class RedisCache:
 
 
 class UnifiedCache:
-    """Unified cache that tries Redis first, falls back to in-memory."""
+    """Unified cache that tries Redis first, falls back to in-memory.
+
+    Args:
+        redis_url: Optional Redis URL. If provided, initializes a RedisCache backend.
+    """
 
     def __init__(self, redis_url: str = None):
         self.redis = RedisCache(redis_url) if redis_url else None
@@ -197,6 +265,11 @@ class UnifiedCache:
         self.initialized = False
 
     async def initialize(self, redis_url: str = None):
+        """Initialize Redis connection if a URL is provided.
+
+        Args:
+            redis_url: Optional Redis URL override.
+        """
         if redis_url and not self.redis:
             self.redis = RedisCache(redis_url)
         if self.redis:
@@ -249,9 +322,22 @@ cache = UnifiedCache()
 
 
 async def get_cache():
+    """Return the global cache singleton instance.
+
+    Returns:
+        UnifiedCache: The global cache instance.
+    """
     return cache
 
 
 async def init_cache(redis_url: str = None):
+    """Initialize the global cache with an optional Redis URL.
+
+    Args:
+        redis_url: Optional Redis connection URL.
+
+    Returns:
+        UnifiedCache: The initialized global cache instance.
+    """
     await cache.initialize(redis_url)
     return cache

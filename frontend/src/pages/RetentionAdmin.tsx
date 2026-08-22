@@ -5,14 +5,14 @@ import { metricsApi } from "../services/api/metrics.ts";
 
 function StatCard({ icon: Icon, label, value }) {
   return (
-    <div className="rounded-xl border border-white/10 bg-slate-900/60 p-5">
+    <div className="rounded-xl border border-nature-leaf/20 bg-white p-5">
       <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center">
-          <Icon size={18} className="text-indigo-400" />
+        <div className="w-10 h-10 rounded-lg bg-surface-card flex items-center justify-center">
+          <Icon size={18} className="text-nature-blossom" />
         </div>
         <div>
-          <p className="text-xs text-slate-400">{label}</p>
-          <p className="text-2xl font-bold text-white">{value ?? 0}</p>
+          <p className="text-xs text-text-muted">{label}</p>
+          <p className="text-2xl font-bold text-text-primary">{value ?? 0}</p>
         </div>
       </div>
     </div>
@@ -51,30 +51,30 @@ export default function RetentionAdmin() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
-        <div className="w-8 h-8 border-2 border-indigo-400 border-t-transparent rounded-full animate-spin" />
+      <div className="min-h-screen bg-surface-base flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-[#4F8F57] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 px-6 py-10">
+    <div className="min-h-screen bg-surface-base text-text-primary px-6 py-10">
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-white">Retention Analytics</h1>
-            <p className="text-sm text-slate-400 mt-1">Gamification feature engagement</p>
+            <h1 className="text-2xl font-bold text-text-primary">Retention Analytics</h1>
+            <p className="text-sm text-text-muted mt-1">Gamification feature engagement</p>
           </div>
           <button
             onClick={load}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 text-sm text-slate-300 hover:bg-white/5"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg border border-nature-leaf/20 text-sm text-text-secondary hover:bg-surface-card"
           >
             <RefreshCw size={16} /> Refresh
           </button>
         </div>
 
         {error && (
-          <div className="mb-6 p-4 rounded-lg border border-red-500/30 bg-red-500/10 text-sm text-red-300">
+          <div className="mb-6 p-4 rounded-lg border border-red-500/30 bg-red-500/10 text-sm text-red-500">
             {error}
           </div>
         )}
@@ -101,18 +101,18 @@ export default function RetentionAdmin() {
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-8 rounded-xl border border-white/10 bg-slate-900/60 p-5"
+            className="mb-8 rounded-xl border border-nature-leaf/20 bg-white p-5"
           >
-            <h2 className="text-sm font-semibold text-slate-300 mb-4">Daily Active Users</h2>
+            <h2 className="text-sm font-semibold text-text-secondary mb-4">Daily Active Users</h2>
             <div className="flex items-end gap-2 h-32">
               {daily.map((d) => (
                 <div key={d.day} className="flex-1 flex flex-col items-center gap-2">
-                  <span className="text-[10px] text-slate-400">{d.users}</span>
+                  <span className="text-[10px] text-text-muted">{d.users}</span>
                   <div
-                    className="w-full rounded-t bg-gradient-to-t from-indigo-600 to-indigo-400"
+                    className="w-full rounded-t bg-gradient-to-t from-[#4F8F57] to-[#7BB661]"
                     style={{ height: `${Math.max((d.users / maxDaily) * 100, 2)}%` }}
                   />
-                  <span className="text-[10px] text-slate-500">{d.day.slice(5)}</span>
+                  <span className="text-[10px] text-text-muted">{d.day.slice(5)}</span>
                 </div>
               ))}
             </div>
@@ -122,13 +122,13 @@ export default function RetentionAdmin() {
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          className="rounded-xl border border-white/10 bg-slate-900/60 overflow-hidden"
+          className="rounded-xl border border-nature-leaf/20 bg-white overflow-hidden"
         >
-          <div className="p-5 border-b border-white/10">
-            <h2 className="text-sm font-semibold text-slate-300">Feature Breakdown</h2>
+          <div className="p-5 border-b border-[#EDEAE0]">
+            <h2 className="text-sm font-semibold text-text-secondary">Feature Breakdown</h2>
           </div>
           {features.length === 0 ? (
-            <div className="p-10 flex flex-col items-center text-slate-500">
+            <div className="p-10 flex flex-col items-center text-text-muted">
               <Inbox size={32} className="mb-2" />
               <p className="text-sm">No feature events recorded yet</p>
             </div>
@@ -136,7 +136,7 @@ export default function RetentionAdmin() {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="text-left text-slate-400 border-b border-white/10">
+                  <tr className="text-left text-text-muted border-b border-[#EDEAE0]">
                     <th className="px-5 py-3 font-medium">Feature</th>
                     <th className="px-5 py-3 font-medium">Active Users (7d)</th>
                     <th className="px-5 py-3 font-medium">Total Events</th>
@@ -147,22 +147,22 @@ export default function RetentionAdmin() {
                   {features.map((f) => (
                     <tr
                       key={f.feature}
-                      className="border-b border-white/5 last:border-0 hover:bg-white/5"
+                      className="border-b border-[#EDEAE0] last:border-0 hover:bg-surface-card"
                     >
-                      <td className="px-5 py-3 font-medium text-slate-200">{f.feature}</td>
-                      <td className="px-5 py-3 text-slate-300">{f.active_users}</td>
-                      <td className="px-5 py-3 text-slate-300">{f.total_events}</td>
+                      <td className="px-5 py-3 font-medium text-text-secondary">{f.feature}</td>
+                      <td className="px-5 py-3 text-text-secondary">{f.active_users}</td>
+                      <td className="px-5 py-3 text-text-secondary">{f.total_events}</td>
                       <td className="px-5 py-3">
                         {topEvents(f.event_breakdown).length === 0 ? (
-                          <span className="text-xs text-slate-600">No events</span>
+                          <span className="text-xs text-text-muted">No events</span>
                         ) : (
                           <div className="flex flex-wrap gap-2">
                             {topEvents(f.event_breakdown).map((e) => (
                               <span
                                 key={e.event}
-                                className="px-2 py-1 rounded-md border border-white/10 bg-white/5 text-xs text-slate-300"
+                                className="px-2 py-1 rounded-md border border-nature-leaf/20 bg-surface-card text-xs text-text-secondary"
                               >
-                                {e.event} <span className="text-indigo-300">×{e.count}</span>
+                                {e.event} <span className="text-nature-blossom">×{e.count}</span>
                               </span>
                             ))}
                           </div>

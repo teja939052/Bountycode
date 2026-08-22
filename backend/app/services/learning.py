@@ -85,7 +85,7 @@ async def complete_lesson(user_id: str, language_id: str, lesson_id: str, xp: in
     # for atomicity on replica-set deployments (Atlas free tier uses RS).
     try:
         client = get_client()
-        async with client.start_session() as session:
+        async with await client.start_session() as session:
             async with session.start_transaction():
                 update_result = await learning_progress_collection.update_one(
                     {
@@ -95,11 +95,6 @@ async def complete_lesson(user_id: str, language_id: str, lesson_id: str, xp: in
                     {
                         "$setOnInsert": {
                             "user_id": user_id,
-                            "languages": {},
-                            "total_xp": 0,
-                            "total_lessons_completed": 0,
-                            "daily_completed": [],
-                            "daily_date": today,
                             "daily_goal_bonus_date": None,
                             "created_at": now.isoformat(),
                         },
@@ -187,11 +182,6 @@ async def complete_lesson(user_id: str, language_id: str, lesson_id: str, xp: in
             {
                 "$setOnInsert": {
                     "user_id": user_id,
-                    "languages": {},
-                    "total_xp": 0,
-                    "total_lessons_completed": 0,
-                    "daily_completed": [],
-                    "daily_date": today,
                     "daily_goal_bonus_date": None,
                     "created_at": now.isoformat(),
                 },
@@ -322,7 +312,12 @@ async def get_leaderboard(limit: int = 20):
 
     results = []
     async for doc in cursor:
-        user = await users_collection.find_one({"_id": ObjectId(doc["user_id"])})
+        user_id = doc.get("user_id")
+        try:
+            user_object_id = ObjectId(user_id)
+        except Exception:
+            continue
+        user = await users_collection.find_one({"_id": user_object_id})
         name = user.get("name", "Anonymous") if user else "Anonymous"
         results.append({
             "user_id": doc["user_id"],

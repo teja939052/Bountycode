@@ -3005,6 +3005,133 @@ def generate_template_content(
     }
 
     analogy_count = len(config["analogies"])
+    is_project = lesson_type == "project"
+
+    mistakes = config["mistakes"]
+    quiz_first = {
+        "question": config["quiz_question"],
+        "options": [
+            f"To organize code using {concept}",
+            f"To replace variables with {concept}",
+            f"To make programs run faster",
+            f"To delete unnecessary code",
+        ],
+        "correct": 0,
+        "explanation": config["quiz_explanation"],
+    }
+    quiz_second = {
+        "question": f"Which practice should you follow when working with {concept} in {lang_label}?",
+        "options": [
+            (mistakes[0]["fix"] if mistakes else f"Review the exact {concept} rules for {lang_label}"),
+            f"Ignore edge cases in {concept}",
+            f"Use {concept} without checking types",
+            f"Copy {concept} code without understanding it",
+        ],
+        "correct": 0,
+        "explanation": f"Reviewing the common mistakes above shows the recommended way to apply {concept}.",
+    }
+    quiz_third = {
+        "question": f"Your {lang_label} program using {concept} behaves unexpectedly. What is the best first step?",
+        "options": [
+            f"Test {concept} with a minimal example to isolate the issue",
+            f"Rewrite the entire program from scratch",
+            f"Delete the code and move on",
+            f"Add more {concept} everywhere until it works",
+        ],
+        "correct": 0,
+        "explanation": f"Debugging {concept} starts with a minimal reproduction and checking the exact syntax.",
+    }
+    quizzes = [] if is_project else [quiz_first, quiz_second, quiz_third]
+
+    exercises = [
+        {
+            "description": (
+                f"Warm-up: write the simplest possible {lang_label} program that uses {concept}. "
+                f"Get it compiling and running first — correctness beats elegance."
+            ),
+            "starter_code": config["exercise_starter"],
+            "hints": [
+                f"Review the basic {concept} syntax in {lang_label} first",
+                f"Keep the warm-up to 5-10 lines",
+                f"Print something visible so you can verify it runs",
+            ],
+            "expected_output": config["output_example"],
+        },
+        {
+            "description": (
+                f"Main task: build a small {lang_label} program that applies {concept} to a "
+                f"realistic input. Handle at least two different cases correctly."
+            ),
+            "starter_code": config["exercise_starter"],
+            "hints": [
+                f"Plan the input and expected output for {concept} first",
+                f"Split the task into small steps and test each one",
+                f"Combine {concept} with functions or variables you already know",
+            ],
+            "expected_output": f"Your program should correctly apply {concept} and handle edge cases.",
+        },
+        {
+            "description": (
+                f"Stretch: extend your solution to handle edge cases and integrate {concept} "
+                f"with another {lang_label} feature. Think about what a real project needs."
+            ),
+            "starter_code": config["exercise_starter"],
+            "hints": [
+                f"List at least two edge cases for {concept}",
+                f"Refactor your solution into a reusable function",
+                f"Add comments explaining your {concept} decisions",
+            ],
+            "expected_output": f"Your extended program should handle edge cases gracefully and stay readable.",
+        },
+    ]
+
+    project_brief = {
+        "brief": (
+            f"Build a complete {lang_label} project centered on {concept}. Make it real, "
+            f"runnable, and polished enough to show off."
+        ),
+        "phases": [
+            {
+                "title": "1. Setup & scaffold",
+                "tasks": [
+                    f"Create the project structure for a {lang_label} project",
+                    "Add a README describing what the project does",
+                    "Wire up a minimal working shell that compiles and runs",
+                    "Commit your initial scaffold",
+                ],
+            },
+            {
+                "title": "2. Core feature",
+                "tasks": [
+                    f"Implement the main feature built on {concept}",
+                    "Handle the primary happy path first, then one edge case",
+                    "Test the feature with real inputs",
+                    f"Refactor any duplicated {concept} code into helpers",
+                ],
+            },
+            {
+                "title": "3. Polish & ship",
+                "tasks": [
+                    "Add error handling and graceful failure paths",
+                    "Write a short usage guide (how to run, what it does)",
+                    "Review the code for readability and remove dead code",
+                    "Final run: demo the complete project",
+                ],
+            },
+        ],
+        "checklist": [
+            f"Project compiles and runs without errors using {concept}",
+            "Core feature works for the happy path",
+            "At least one edge case is handled",
+            "Code is readable and commented where needed",
+            "README explains how to run and what the project does",
+        ],
+        "deliverables": [
+            f"A working {lang_label} project that demonstrates {concept}",
+            "At least two tests or manual verification runs",
+            "A short write-up of design decisions",
+        ],
+    }
 
     return {
         "theory": theory_by_type.get(lesson_type, base_theory),
@@ -3025,6 +3152,19 @@ def generate_template_content(
                 "pro_tip": (
                     f"When learning {concept}, start with the simplest example and "
                     f"gradually add complexity. Test each step before moving on."
+                ),
+            },
+            {
+                "heading": f"How {concept} works",
+                "body": (
+                    f"{platform_notes.get(lang_label, '')} "
+                    f"This is exactly why {concept} behaves the way it does in {lang_label} — "
+                    f"understanding the mechanism beats memorizing syntax."
+                ),
+                "code": config["code_template"],
+                "pro_tip": (
+                    f"Change one part of the {concept} example at a time and observe the result "
+                    f"to build an intuition."
                 ),
             },
             {
@@ -3068,36 +3208,17 @@ def generate_template_content(
             ],
         },
         "common_mistakes": config["mistakes"],
-        "exercise": {
-            "description": (
-                f"Write a program that demonstrates {concept} in {lang_label}. "
-                f"Start with a simple example and then extend it. "
-                f"Test your program with different inputs to make sure it works correctly."
-            ),
-            "starter_code": config["exercise_starter"],
-            "hints": [
-                f"Start by understanding the basic {concept} syntax in {lang_label}",
-                f"Test with simple inputs first",
-                f"Add error handling for edge cases",
-            ],
-            "expected_output": f"Your program should correctly demonstrate {concept}.",
-        },
-        "quiz": None if lesson_type == "project" else {
-            "question": config["quiz_question"],
-            "options": [
-                f"To organize code using {concept}",
-                f"To replace variables with {concept}",
-                f"To make programs run faster",
-                f"To delete unnecessary code",
-            ],
-            "correct": 0,
-            "explanation": config["quiz_explanation"],
-        },
+        "exercise": exercises[0] if exercises else None,
+        "exercises": exercises,
+        "quiz": quiz_first if quizzes else None,
+        "quizzes": quizzes,
+        "project": project_brief if is_project else None,
         "key_takeaways": [
             f"{concept} is an important concept in {lang_label} programming",
             f"Understanding {concept} helps you write better code",
             f"Practice with {concept} to build mastery",
             f"Combine {concept} with other features for powerful programs",
+            f"Real projects exercise {concept} in many small ways — build to learn",
         ],
         "next_steps": f"Great progress! Keep practicing {concept} in your own {lang_label} projects.",
     }
@@ -3140,10 +3261,27 @@ def get_lesson_content(
     if lesson_id in HAND_CRAFTED_PYTHON_LESSONS:
         return HAND_CRAFTED_PYTHON_LESSONS[lesson_id]
 
-    if language_id == "c":
+    if language_id in {"c", "cpp", "java", "python"}:
         return generate_template_content(language_id, lesson_title, lesson_type, lesson_id)
 
+    web_related = {
+        "html", "css", "sql", "typescript", "react", "node",
+        "javascript", "go", "rust",
+    }
+    if language_id in web_related:
+        from app.data.lesson_content_web import generate_web_template_content
+        try:
+            return generate_web_template_content(language_id, lesson_title, lesson_type)
+        except ValueError:
+            pass
+
     lang_name = {"cpp": "C++", "java": "Java", "python": "Python"}.get(language_id, language_id.upper())
+    fallback_exercise = {
+        "description": f"Write a {lang_name} program that demonstrates {lesson_title}.",
+        "starter_code": f"// Your {lang_name} code here\n",
+        "hints": [f"Review the {lesson_title} concept before starting"],
+        "expected_output": f"A working {lang_name} program demonstrating {lesson_title}.",
+    }
     return {
         "theory": f"Learn about {lesson_title} in {lang_name}.",
         "analogy": f"Think of this concept like a tool in {lang_name} programming.",
@@ -3156,13 +3294,11 @@ def get_lesson_content(
         ],
         "code_example": None,
         "common_mistakes": [],
-        "exercise": {
-            "description": f"Write a {lang_name} program that demonstrates {lesson_title}.",
-            "starter_code": f"// Your {lang_name} code here\n",
-            "hints": [f"Review the {lesson_title} concept before starting"],
-            "expected_output": f"A working {lang_name} program demonstrating {lesson_title}.",
-        },
+        "exercise": fallback_exercise,
+        "exercises": [fallback_exercise],
         "quiz": None,
+        "quizzes": [],
+        "project": None,
         "key_takeaways": [
             f"{lesson_title} is a key concept in {lang_name}",
             f"Practice using {lesson_title} in different contexts",

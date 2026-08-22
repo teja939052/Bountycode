@@ -9,15 +9,15 @@ import useReducedMotion from "../hooks/useReducedMotion";
 import AnimatedCard from "../components/motion/AnimatedCard";
 
 const STAGE_COLORS = {
-  interested: "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300",
-  applied: "bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400",
+  interested: "bg-surface-card/50 dark:bg-gray-700 text-brand-primary dark:text-brand-secondary",
+  applied: "bg-brand-sky/10 dark:bg-blue-900/30 text-brand-sky dark:text-blue-400",
   oa_received: "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400",
   interview_scheduled: "bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400",
   interview_completed: "bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400",
   offer_received: "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400",
-  accepted: "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400",
+  accepted: "bg-brand-emerald/10 dark:bg-emerald-900/30 text-brand-emerald dark:text-emerald-400",
   rejected: "bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400",
-  withdrawn: "bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400",
+  withdrawn: "bg-surface-card/50 dark:bg-gray-800 text-gray-500 dark:text-brand-muted",
 };
 
 const PIPELINE_COLUMNS = [
@@ -106,7 +106,7 @@ export default function ApplicationTracker() {
               </div>
               <div>
                 <h1 className="text-3xl font-bold dark:text-white">Application Tracker</h1>
-                <p className="text-gray-600 dark:text-gray-400">Kanban board for your job applications</p>
+                <p className="text-brand-secondary dark:text-brand-muted">Kanban board for your job applications</p>
               </div>
             </div>
             <button onClick={() => setShowForm(true)} className="btn-primary flex items-center gap-2">
@@ -119,7 +119,7 @@ export default function ApplicationTracker() {
         {stats && (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
             {[
-              { label: "Total", value: stats.total_applications, color: "text-gray-600 dark:text-gray-400" },
+              { label: "Total", value: stats.total_applications, color: "text-brand-secondary dark:text-brand-muted" },
               { label: "Applied", value: stats.by_stage?.applied?.count || 0, color: "text-blue-600" },
               { label: "Interview", value: (stats.by_stage?.interview_scheduled?.count || 0) + (stats.by_stage?.interview_completed?.count || 0), color: "text-purple-600" },
               { label: "Offers", value: stats.by_stage?.offer_received?.count || 0, color: "text-green-600" },
@@ -141,31 +141,31 @@ export default function ApplicationTracker() {
               onClick={() => setShowForm(false)}
             >
               <motion.div
-                className="bg-white dark:bg-gray-900 rounded-2xl p-6 max-w-md w-full"
+                className="bg-surface-card dark:bg-gray-900 rounded-2xl p-6 max-w-md w-full"
                 initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="text-xl font-bold dark:text-white">New Application</h2>
-                  <button onClick={() => setShowForm(false)} className="text-gray-400 hover:text-gray-600">
+                  <button onClick={() => setShowForm(false)} className="text-brand-muted hover:text-brand-secondary">
                     <X size={20} />
                   </button>
                 </div>
                 <form onSubmit={handleCreate} className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Company</label>
+                    <label className="block text-sm font-medium text-brand-primary dark:text-brand-secondary mb-1">Company</label>
                     <input className="input" value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} required />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Role</label>
+                    <label className="block text-sm font-medium text-brand-primary dark:text-brand-secondary mb-1">Role</label>
                     <input className="input" value={form.role} onChange={(e) => setForm({ ...form, role: e.target.value })} required />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Job URL</label>
+                    <label className="block text-sm font-medium text-brand-primary dark:text-brand-secondary mb-1">Job URL</label>
                     <input className="input" value={form.job_url} onChange={(e) => setForm({ ...form, job_url: e.target.value })} />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Notes</label>
+                    <label className="block text-sm font-medium text-brand-primary dark:text-brand-secondary mb-1">Notes</label>
                     <textarea className="input" rows={3} value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} />
                   </div>
                   <div className="flex gap-3">
@@ -181,8 +181,8 @@ export default function ApplicationTracker() {
         {/* Kanban Board */}
         {apps.length === 0 ? (
           <div className="card text-center py-12">
-            <Briefcase size={48} className="mx-auto text-gray-300 dark:text-gray-600 mb-4" />
-            <p className="text-gray-500 dark:text-gray-400 mb-4">No applications tracked yet</p>
+            <Briefcase size={48} className="mx-auto text-brand-secondary dark:text-brand-secondary mb-4" />
+            <p className="text-gray-500 dark:text-brand-muted mb-4">No applications tracked yet</p>
             <button onClick={() => setShowForm(true)} className="btn-primary">Add Your First Application</button>
           </div>
         ) : (
@@ -209,7 +209,7 @@ export default function ApplicationTracker() {
                             <h4 className="font-semibold text-sm dark:text-white">{app.company}</h4>
                             <p className="text-xs text-gray-500">{app.role}</p>
                           </div>
-                          <button onClick={() => handleDelete(app.id)} className="text-gray-400 hover:text-red-500">
+                          <button onClick={() => handleDelete(app.id)} className="text-brand-muted hover:text-red-500">
                             <Trash2 size={14} />
                           </button>
                         </div>
@@ -225,7 +225,7 @@ export default function ApplicationTracker() {
                         )}
 
                         <div className="flex items-center justify-between">
-                          <span className="text-[10px] text-gray-400">
+                          <span className="text-[10px] text-brand-muted">
                             {new Date(app.created_at).toLocaleDateString()}
                           </span>
                           <div className="relative">

@@ -2,7 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import api from "../services/api";
-import { ExternalLink, Send, CheckCircle, XCircle, ArrowRight, RotateCcw, BookOpen } from "lucide-react";
+import PracticeConsole from "../components/learning/PracticeConsole";
+import { ExternalLink, Send, CheckCircle, XCircle, ArrowRight, RotateCcw, BookOpen, Terminal } from "lucide-react";
 import useReducedMotion from "../hooks/useReducedMotion";
 import CelebrationOverlay from "../components/CelebrationOverlay";
 import SubmitReveal from "../components/SubmitReveal";
@@ -28,10 +29,9 @@ export default function PracticeMode() {
   const loadQuestion = async () => {
     setLoading(true);
     try {
-      const data = await api.browseQuestions({ limit: 100 });
-      const q = data.questions?.find((q) => q.id === questionId);
-      if (q) {
-        setQuestion(q);
+      const data = await api.questions.getFull(questionId);
+      if (data) {
+        setQuestion(data);
         setStartTime(Date.now());
       }
     } catch {} finally {
@@ -82,7 +82,7 @@ export default function PracticeMode() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="card text-center py-12">
-          <BookOpen size={48} className="mx-auto text-gray-300 dark:text-gray-600 mb-4" />
+          <BookOpen size={48} className="mx-auto text-brand-secondary dark:text-brand-secondary mb-4" />
           <p className="text-gray-500 dark:text-gray-400 mb-4">Question not found</p>
           <Link to="/question-bank" className="text-primary-600 font-semibold hover:text-primary-700">
             Back to Question Bank
@@ -113,7 +113,7 @@ export default function PracticeMode() {
           <div className="flex items-start justify-between mb-4">
             <div>
               <div className="flex flex-wrap items-center gap-2 mb-2">
-                <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400">
+                <span className="text-xs px-2 py-0.5 rounded-full bg-surface-card/50 bg-surface-card/50 text-brand-secondary dark:text-gray-400">
                   {question.company}
                 </span>
                 <span className="text-xs px-2 py-0.5 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400">
@@ -141,6 +141,26 @@ export default function PracticeMode() {
           </a>
         </motion.div>
 
+        {/* Write & Run Code */}
+        {!feedback && (
+          <motion.div
+            className="mb-6"
+            initial={reduced ? {} : { opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.05 }}
+          >
+            <div className="flex items-center gap-2 mb-2">
+              <Terminal size={16} className="text-cyber-green" />
+              <h3 className="font-semibold text-brand-primary dark:text-brand-secondary">Write & Run Code</h3>
+            </div>
+            <PracticeConsole
+              height={280}
+              title="Code Playground"
+              onResult={() => {}}
+            />
+          </motion.div>
+        )}
+
         {/* Answer Input */}
         {!feedback && (
           <motion.div
@@ -149,7 +169,7 @@ export default function PracticeMode() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
           >
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-brand-primary dark:text-brand-secondary mb-2">
               Your Answer / Approach
             </label>
             <textarea
@@ -157,7 +177,7 @@ export default function PracticeMode() {
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}
               placeholder="Write your approach, code, or answer here. Be as detailed as possible..."
-              className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 bg-white dark:bg-gray-800 dark:text-white min-h-[200px] resize-y"
+              className="w-full px-4 py-3 border border-brand-primary/20 border-brand-primary/15 rounded-lg focus:ring-2 focus:ring-primary-500 bg-surface-card bg-surface-card dark:text-white min-h-[200px] resize-y"
               rows={8}
             />
             <div className="flex items-center justify-between mt-4">
@@ -215,14 +235,14 @@ export default function PracticeMode() {
               {/* Feedback Details */}
               <div className="card">
                 <h3 className="font-bold mb-3 dark:text-white">AI Feedback</h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">{feedback.feedback}</p>
+                <p className="text-brand-secondary dark:text-gray-400 mb-4">{feedback.feedback}</p>
 
                 {feedback.strengths?.length > 0 && (
                   <div className="mb-4">
                     <h4 className="font-semibold text-sm text-green-600 dark:text-green-400 mb-2">Strengths</h4>
                     <ul className="space-y-1">
                       {feedback.strengths.map((s, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
+                        <li key={i} className="flex items-start gap-2 text-sm text-brand-secondary dark:text-gray-400">
                           <CheckCircle size={14} className="text-green-500 mt-0.5 shrink-0" />
                           {s}
                         </li>
@@ -236,7 +256,7 @@ export default function PracticeMode() {
                     <h4 className="font-semibold text-sm text-orange-600 dark:text-orange-400 mb-2">Areas to Improve</h4>
                     <ul className="space-y-1">
                       {feedback.improvements.map((s, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
+                        <li key={i} className="flex items-start gap-2 text-sm text-brand-secondary dark:text-gray-400">
                           <XCircle size={14} className="text-orange-500 mt-0.5 shrink-0" />
                           {s}
                         </li>
@@ -248,18 +268,18 @@ export default function PracticeMode() {
                 {feedback.better_approach && (
                   <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
                     <h4 className="font-semibold text-sm text-blue-600 dark:text-blue-400 mb-2">Better Approach</h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{feedback.better_approach}</p>
+                    <p className="text-sm text-brand-secondary dark:text-gray-400">{feedback.better_approach}</p>
                   </div>
                 )}
 
                 {feedback.explanation && (
                   <div className="bg-emerald-50 dark:bg-emerald-900/20 rounded-lg p-4">
                     <h4 className="font-semibold text-sm text-emerald-600 dark:text-emerald-400 mb-2">Concept Explained</h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">{feedback.explanation.approach}</p>
+                    <p className="text-sm text-brand-secondary dark:text-gray-400 mb-2">{feedback.explanation.approach}</p>
                     {feedback.explanation.steps?.length > 0 && (
                       <ol className="list-decimal list-inside space-y-1 mb-2">
                         {feedback.explanation.steps.map((step, i) => (
-                          <li key={i} className="text-sm text-gray-600 dark:text-gray-400">{step}</li>
+                          <li key={i} className="text-sm text-brand-secondary dark:text-gray-400">{step}</li>
                         ))}
                       </ol>
                     )}
@@ -278,7 +298,7 @@ export default function PracticeMode() {
               <div className="flex gap-3">
                 <button
                   onClick={handleTryAgain}
-                  className="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                  className="flex items-center gap-2 bg-surface-card/50 bg-surface-card text-brand-secondary dark:text-gray-400 px-6 py-3 rounded-lg font-semibold hover:bg-surface-card/50 dark:hover:bg-gray-700 transition-colors"
                 >
                   <RotateCcw size={18} />
                   Try Again

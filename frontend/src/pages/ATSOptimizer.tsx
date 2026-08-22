@@ -98,13 +98,13 @@ export default function ATSOptimizer() {
         <div className="flex items-center justify-center gap-4 mb-10">
           {[1, 2, 3].map((s) => (
             <div key={s} className="flex items-center gap-2">
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-display font-bold ${step >= s ? "bg-cyber-orange text-space-void" : "bg-space-panel border border-gray-200 text-gray-500"}`}>
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-display font-bold ${step >= s ? "bg-cyber-orange text-space-void" : "bg-space-panel border border-brand-primary/10 text-gray-500"}`}>
                 {s}
               </div>
               <span className={`text-xs font-mono ${step >= s ? "text-text-primary" : "text-gray-500"}`}>
                 {s === 1 ? "Upload" : s === 2 ? "Paste JD" : "Optimize"}
               </span>
-              {s < 3 && <ArrowRight size={12} className="text-gray-600" />}
+              {s < 3 && <ArrowRight size={12} className="text-brand-secondary" />}
             </div>
           ))}
         </div>
@@ -117,12 +117,12 @@ export default function ATSOptimizer() {
         {step === 1 && !loading && (
           <div className="card">
             <h2 className="font-display font-bold text-text-primary text-lg mb-4">Step 1: Upload Resume</h2>
-            <div className="border-2 border-dashed border-gray-200 rounded-lg p-8 text-center hover:border-cyber-orange/50 transition-colors">
+            <div className="border-2 border-dashed border-brand-primary/10 rounded-lg p-8 text-center hover:border-cyber-orange/50 transition-colors">
               <input type="file" accept=".pdf" onChange={handleUploadResume} className="hidden" id="ats-upload" />
               <label htmlFor="ats-upload" className="cursor-pointer">
                 <Target className="mx-auto text-gray-500 mb-3" size={40} />
                 <p className="text-gray-400 font-mono text-sm">Click to upload PDF resume</p>
-                <p className="text-xs text-gray-600 font-mono mt-1">Max 5MB</p>
+                <p className="text-xs text-brand-secondary font-mono mt-1">Max 5MB</p>
               </label>
             </div>
           </div>
@@ -132,7 +132,7 @@ export default function ATSOptimizer() {
         {step === 2 && !loading && (
           <div className="card">
             <h2 className="font-display font-bold text-text-primary text-lg mb-4">Step 2: Paste Mission Parameters</h2>
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 mb-4">
+            <div className="bg-surface-base border border-brand-primary/10 rounded-lg p-3 mb-4">
               <p className="text-xs font-mono text-gray-400">
                 Resume loaded: <span className="text-text-primary">{resumeText.substring(0, 80)}...</span>
               </p>
@@ -188,7 +188,7 @@ export default function ATSOptimizer() {
                     <p className="text-xs font-mono text-gray-400 mb-2">Semantic gaps</p>
                     <div className="space-y-2">
                       {semanticScore.semantic_gaps.gaps.slice(0, 5).map((g, i) => (
-                        <div key={i} className="bg-gray-50 border border-gray-200 rounded-lg p-3">
+                        <div key={i} className="bg-surface-base border border-brand-primary/10 rounded-lg p-3">
                           <p className="text-xs text-gray-300 mb-1">{g.jd_sentence}</p>
                           <p className="text-[10px] text-gray-500 font-mono">Best match: {g.best_resume_match || "None"}</p>
                         </div>
@@ -244,7 +244,7 @@ export default function ATSOptimizer() {
                   </div>
                   <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
                     {Object.entries(semanticScore.breakdown || {}).map(([key, val]: [string, any]) => (
-                      <div key={key} className="bg-gray-50 border border-gray-200 rounded-lg p-3 text-center">
+                      <div key={key} className="bg-surface-base border border-brand-primary/10 rounded-lg p-3 text-center">
                         <p className="text-[10px] font-mono text-gray-400 uppercase tracking-wider mb-1">{key.replace(/_/g, " ")}</p>
                         <p className="text-lg font-bold text-text-primary">{val.score}</p>
                         <p className="text-[10px] font-mono text-gray-500">{val.weight}</p>
@@ -258,7 +258,7 @@ export default function ATSOptimizer() {
                     <h3 className="font-display font-bold text-cyber-green text-sm mb-3">Semantic Matches</h3>
                     <div className="space-y-2">
                       {semanticScore.semantic_matches.map((m, i) => (
-                        <div key={i} className="bg-gray-50 border border-gray-200 rounded-lg p-3">
+                        <div key={i} className="bg-surface-base border border-brand-primary/10 rounded-lg p-3">
                           <p className="text-xs text-gray-400 mb-1">JD: {m.jd}</p>
                           <p className="text-xs text-cyber-green">Resume: {m.resume}</p>
                           <p className="text-[10px] font-mono text-gray-500 mt-1">Similarity: {m.score}%</p>
@@ -273,7 +273,7 @@ export default function ATSOptimizer() {
                     <h3 className="font-display font-bold text-cyber-orange text-sm mb-3">Semantic Gaps</h3>
                     <div className="space-y-2">
                       {semanticScore.semantic_gaps.map((g, i) => (
-                        <div key={i} className="bg-gray-50 border border-gray-200 rounded-lg p-3">
+                        <div key={i} className="bg-surface-base border border-brand-primary/10 rounded-lg p-3">
                           <p className="text-xs text-gray-400">JD requirement: {g.jd_requirement}</p>
                         </div>
                       ))}
@@ -286,7 +286,7 @@ export default function ATSOptimizer() {
                     <h3 className="font-display font-bold text-text-primary text-sm mb-3">Section Similarity</h3>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                       {Object.entries(semanticScore.semantic_sections).map(([section, score]: [string, any]) => (
-                        <div key={section} className="bg-gray-50 border border-gray-200 rounded-lg p-3 text-center">
+                        <div key={section} className="bg-surface-base border border-brand-primary/10 rounded-lg p-3 text-center">
                           <p className="text-[10px] font-mono text-gray-400 uppercase mb-1">{section}</p>
                           <p className="text-lg font-bold text-text-primary">{score}%</p>
                         </div>
@@ -315,7 +315,7 @@ export default function ATSOptimizer() {
             {optimization.optimized_resume && (
               <div className="card">
                 <h3 className="font-display font-bold text-text-primary text-sm mb-4">📄 Optimized Manifest</h3>
-                <pre className="whitespace-pre-wrap text-xs font-mono text-gray-700 bg-gray-50 border border-gray-200 p-4 rounded-lg max-h-96 overflow-y-auto">
+                <pre className="whitespace-pre-wrap text-xs font-mono text-brand-primary bg-surface-base border border-brand-primary/10 p-4 rounded-lg max-h-96 overflow-y-auto">
                   {optimization.optimized_resume}
                 </pre>
               </div>
@@ -338,7 +338,7 @@ export default function ATSOptimizer() {
             <p className="text-gray-400 font-mono text-sm mt-4">
               {step === 1 ? "Scanning hull integrity..." : "Optimizing for ATS scanners..."}
             </p>
-            <p className="text-xs font-mono text-gray-600 mt-1">Estimated: 15-30 seconds</p>
+            <p className="text-xs font-mono text-brand-secondary mt-1">Estimated: 15-30 seconds</p>
           </div>
         )}
       </div>

@@ -1,48 +1,46 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import api from '../services/api';
+import { ChevronRight } from 'lucide-react';
 import { Card } from '../components/ui/Card';
+import { useCompanyPrep } from '../hooks/useCompanyPrep';
 
 export default function CompanyPrep() {
-  const [companies, setCompanies] = useState([]);
+  const { companies, isLoading: companiesLoading, isError: companiesError, useGuide, useBehavioral, useQuestions, useQuestionList, practiceMutation } = useCompanyPrep();
   const [selectedCompany, setSelectedCompany] = useState(null);
-  const [guide, setGuide] = useState(null);
-  const [behavioral, setBehavioral] = useState(null);
   const [role, setRole] = useState('Software Engineer');
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [activeTab, setActiveTab] = useState('guide');
   const [practiceResult, setPracticeResult] = useState(null);
-  const [practicing, setPracticing] = useState(false);
+  const [bankCategory, setBankCategory] = useState(null);
 
-  useEffect(() => {
-    api.getCompanies().then(d => setCompanies(d.companies || [])).catch(() => {});
-  }, []);
+  const { data: guide, isLoading: guideLoading } = useGuide(selectedCompany);
+  const { data: behavioralData, refetch: refetchBehavioral, isLoading: behavioralLoading } = useBehavioral(selectedCompany, role);
+  const { data: bank, isLoading: bankLoading } = useQuestions(selectedCompany);
+  const { data: bankList, isLoading: bankListLoading } = useQuestionList(bank?.company_id || selectedCompany, bankCategory);
 
-  const loadGuide = async (companyId) => {
-    setLoading(true); setError('');
-    try {
-      const data = await api.getCompanyGuide(companyId);
-      setGuide(data); setSelectedCompany(companyId);
-    } catch (err) { setError(err.message); }
-    setLoading(false);
+  const behavioral = behavioralData?.question || null;
+
+  const loadGuide = (companyId) => {
+    setSelectedCompany(companyId);
+    setActiveTab('guide');
   };
 
-  const loadBehavioral = async () => {
+  const loadBehavioral = () => {
     if (!selectedCompany) return;
-    setLoading(true); setError('');
-    try {
-      const data = await api.getBehavioralQuestion(selectedCompany, role);
-      setBehavioral(data.question);
-    } catch (err) { setError(err.message); }
-    setLoading(false);
+    setError('');
+    refetchBehavioral();
   };
 
-  const handlePracticeForRole = async () => {
+  const handlePracticeForRole = () => {
     if (!selectedCompany) return;
-    setPracticing(true); setPracticeResult(null);
-    try { const data = await api.createPracticeSession({ company: selectedCompany, role: role || 'SDE' }); setPracticeResult(data); } catch {}
-    setPracticing(false);
+    setPracticeResult(null);
+    practiceMutation.mutate(
+      { company: selectedCompany, role: role || 'SDE' },
+      {
+        onSuccess: (data) => setPracticeResult(data),
+        onError: () => {},
+      },
+    );
   };
 
   const COMPANY_ICONS = { google: '🔍', amazon: '📦', microsoft: '🪟', apple: '🍎', meta: '👥', netflix: '🎬', tesla: '⚡', adobe: '🎨', oracle: '☁️', salesforce: '☁️' };
@@ -58,20 +56,27 @@ export default function CompanyPrep() {
           <p className="text-gray-500 text-sm font-mono">Prepare for interviews at top companies with insider tips</p>
         </motion.div>
 
-        {error && <div className="bg-red-950/30 border border-red-500/30 text-red-400 px-4 py-3 rounded-lg mb-6 text-center text-sm font-mono">{error}</div>}
+        {(error || companiesError) && <div className="bg-red-950/30 border border-red-500/30 text-red-400 px-4 py-3 rounded-lg mb-6 text-center text-sm font-mono">
+                {error || 'Failed to load companies'}
+                {companiesError && (
+                  <button onClick={() => window.location.reload()} className="ml-2 text-sm text-brand-primary hover:text-brand-primary/90 transition-colors">
+                    Retry
+                  </button>
+                )}
+              </div>}
 
         {!selectedCompany ? (
           <>
             <div className="flex flex-wrap gap-2 mb-6 justify-center">
               {companies.map((c) => (
                 <button key={c.id} onClick={() => loadGuide(c.id)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all border ${loading ? 'opacity-50' : 'border-gray-700/30 text-gray-400 hover:text-text-primary hover:border-cyber-blue/40 hover:bg-cyber-blue/5'}`}>
+                  className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all border ${companiesLoading ? 'opacity-50' : 'border-gray-700/30 text-gray-400 hover:text-text-primary hover:border-cyber-blue/40 hover:bg-cyber-blue/5'}`}>
                   {COMPANY_ICONS[c.id] || '🏢'} {c.name}
                 </button>
               ))}
             </div>
 
-            {loading ? (
+            {companiesLoading ? (
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {Array.from({ length: 6 }).map((_, i) => (
                   <div key={i} className="rounded-xl border border-gray-700/20 p-5 animate-pulse bg-gray-900/20">
@@ -104,7 +109,7 @@ export default function CompanyPrep() {
           </>
         ) : (
           <div>
-            <button onClick={() => { setSelectedCompany(null); setGuide(null); setBehavioral(null); setPracticeResult(null); }}
+            <button onClick={() => { setSelectedCompany(null); setPracticeResult(null); setBankCategory(null); }}
               className="mb-5 text-sm font-mono text-cyber-blue hover:text-cyber-blue/80 transition-colors">
               ← Back to Companies
             </button>
@@ -119,20 +124,20 @@ export default function CompanyPrep() {
 
             {/* Tabs */}
             <div className="flex gap-1.5 mb-5">
-              {['guide', 'behavioral'].map((tab) => (
+              {['guide', 'behavioral', 'questions'].map((tab) => (
                 <button key={tab} onClick={() => { setActiveTab(tab); if (tab === 'behavioral') loadBehavioral(); }}
                   className={`px-4 py-2 rounded-lg text-xs font-mono font-medium uppercase tracking-wider transition-all border ${
                     activeTab === tab ? 'bg-cyber-blue/15 text-cyber-blue border-cyber-blue/40' : 'border-transparent text-gray-500 hover:text-gray-300 hover:bg-gray-50'
                   }`}>
-                  {tab === 'guide' ? '📋 Interview Guide' : '💬 Behavioral'}
+                  {tab === 'guide' ? '📋 Interview Guide' : tab === 'behavioral' ? '💬 Behavioral' : '🗂️ Question Bank'}
                 </button>
               ))}
             </div>
 
             {/* Practice button */}
             <div className="mb-5">
-              <button onClick={handlePracticeForRole} disabled={practicing} className="btn-primary text-sm inline-flex items-center gap-2">
-                {practicing ? 'Starting...' : '🔥 Practice for This Role'}
+              <button onClick={handlePracticeForRole} disabled={practiceMutation.isPending} className="btn-primary text-sm inline-flex items-center gap-2">
+                {practiceMutation.isPending ? 'Starting...' : '🔥 Practice for This Role'}
               </button>
               {practiceResult && (
                 <div className="mt-3 p-3 rounded-lg bg-green-950/20 border border-green-500/20 text-xs font-mono text-green-400">
@@ -143,7 +148,7 @@ export default function CompanyPrep() {
               )}
             </div>
 
-            {loading ? (
+            {guideLoading ? (
               <div className="text-center py-12"><div className="spinner-cyber mx-auto" /></div>
             ) : activeTab === 'guide' && guide ? (
               <div className="space-y-4">
@@ -251,6 +256,138 @@ export default function CompanyPrep() {
 
                 <button onClick={loadBehavioral} className="btn-primary text-sm">Get Another Question</button>
               </Card>
+            ) : activeTab === 'questions' ? (
+              bankLoading || !bank ? (
+                <div className="text-center py-12"><div className="spinner-cyber mx-auto" /></div>
+              ) : (
+                <div className="space-y-4">
+                  <Card rarity="rare" hoverEffect={false}>
+                    <div className="flex items-center justify-between gap-3 mb-3">
+                      <div>
+                        <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-400 mb-1">Question Bank</h3>
+                        <p className="text-[11px] font-mono text-gray-500">{bank.source}</p>
+                      </div>
+                      <div className="text-right shrink-0">
+                        <p className="text-2xl font-display font-black text-cyber-blue">{bank.total_bank_questions || 0}</p>
+                        <p className="text-[10px] font-mono text-gray-500">authored questions</p>
+                      </div>
+                    </div>
+
+                    {(bank.focus_areas?.length > 0 || bank.leadership_principles?.length > 0) && (
+                      <div className="flex flex-wrap gap-1.5 mb-4">
+                        {(bank.focus_areas || []).map((area, i) => (
+                          <span key={i} className="px-2.5 py-1 rounded-lg text-[10px] font-mono bg-blue-500/10 text-blue-400 border border-blue-500/20">{area}</span>
+                        ))}
+                        {bank.leadership_principles?.length > 0 && (
+                          <span className="px-2.5 py-1 rounded-lg text-[10px] font-mono bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">
+                            {bank.leadership_principles.length} Leadership Principles
+                          </span>
+                        )}
+                      </div>
+                    )}
+
+                    {bank.categories?.length > 0 ? (
+                      <div className="space-y-4">
+                        {bank.categories.map((cat) => {
+                          const max = bank.categories[0].count || 1;
+                          return (
+                            <div key={cat.category}>
+                              <button onClick={() => setBankCategory(cat.category)} className="w-full text-left group">
+                                <div className="flex items-center justify-between text-xs mb-1">
+                                  <span className="font-mono font-bold text-text-primary group-hover:text-cyber-blue transition-colors">{cat.label}</span>
+                                  <span className="font-mono text-gray-400">{cat.count} questions</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  <div className="flex-1 bg-gray-800/60 rounded-full h-2 overflow-hidden">
+                                    <motion.div initial={{ width: 0 }} whileInView={{ width: `${(cat.count / max) * 100}%` }} viewport={{ once: true }}
+                                      className="h-2 rounded-full bg-cyber-blue/70" />
+                                  </div>
+                                  <ChevronRight size={14} className="text-gray-600 group-hover:text-cyber-blue transition-colors" />
+                                </div>
+                                <div className="flex gap-1.5 mt-1.5">
+                                  {Object.entries(cat.difficulty || {}).map(([d, n]) => (
+                                    <span key={d} className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-gray-800/60 text-gray-400 capitalize">{d} {n}</span>
+                                  ))}
+                                </div>
+                              </button>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      <p className="text-xs font-mono text-gray-500">No authored bank for this company yet — practice with the coding problems below.</p>
+                    )}
+                  </Card>
+
+                  {bank.coding_store?.hits > 0 && (
+                    <Card rarity="rare" hoverEffect={false}>
+                      <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-400 mb-3">
+                        Coding Practice Problems · {bank.coding_store.hits} tagged
+                      </h3>
+                      <div className="flex flex-wrap gap-1.5 mb-4">
+                        {(bank.coding_store.top_topics || []).map((t, i) => (
+                          <span key={i} className="px-2 py-0.5 rounded-full text-[10px] font-mono bg-cyber-blue/10 text-cyber-blue border border-cyber-blue/20">{t.topic} ×{t.count}</span>
+                        ))}
+                      </div>
+                      <div className="space-y-2">
+                        {bank.sample_questions.filter((s) => s.type === 'coding').map((s) => (
+                          <a key={s.id} href={`/solve/${s.id}`} className="block rounded-lg border border-gray-700/20 bg-gray-900/30 p-3 hover:border-cyber-blue/40 transition-colors">
+                            <p className="text-xs font-mono text-text-primary">{s.question}</p>
+                            <div className="flex gap-1.5 mt-2">
+                              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-gray-800 text-cyber-blue">{s.topic}</span>
+                              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-gray-800 text-gray-400 capitalize">{s.difficulty}</span>
+                              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-gray-800 text-gray-400 ml-auto">Open →</span>
+                            </div>
+                          </a>
+                        ))}
+                      </div>
+                    </Card>
+                  )}
+
+                  {bank.sample_questions?.filter((s) => s.type === 'bank').length > 0 && (
+                    <Card rarity="epic" hoverEffect={false}>
+                      <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-400 mb-3">Sample Questions</h3>
+                      <div className="space-y-2">
+                        {bank.sample_questions.filter((s) => s.type === 'bank').map((s) => (
+                          <div key={s.id} className="rounded-lg border border-gray-700/20 bg-gray-900/30 p-3">
+                            <div className="flex items-center justify-between gap-2 mb-1">
+                              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-purple-500/15 text-purple-400">{s.category_label}</span>
+                              <span className="text-[10px] font-mono text-gray-500 capitalize">{s.difficulty}</span>
+                            </div>
+                            <p className="text-xs font-mono text-gray-300">{s.question}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </Card>
+                  )}
+
+                  {bankList && (
+                    <Card rarity="epic" hoverEffect={false}>
+                      <div className="flex items-center justify-between mb-3">
+                        <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-400">
+                          {bankList.company} · {(bankList.questions[0]?.category_label || bankList.category || 'All')} ({bankList.total})
+                        </h3>
+                        <button onClick={() => { setBankCategory(null); }} className="text-xs font-mono text-gray-500 hover:text-red-400 transition-colors">✕ Close</button>
+                      </div>
+                      {bankListLoading ? (
+                        <div className="text-center py-8"><div className="spinner-cyber mx-auto" /></div>
+                      ) : (
+                        <div className="space-y-2">
+                          {bankList.questions.map((q) => (
+                            <div key={q.id} className="rounded-lg border border-gray-700/20 bg-gray-900/30 p-3">
+                              <div className="flex items-center justify-between gap-2 mb-1">
+                                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-purple-500/15 text-purple-400">{q.category_label}</span>
+                                <span className="text-[10px] font-mono text-gray-500 capitalize">{q.difficulty}</span>
+                              </div>
+                              <p className="text-xs font-mono text-gray-300">{q.question}</p>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </Card>
+                  )}
+                </div>
+              )
             ) : null}
           </div>
         )}

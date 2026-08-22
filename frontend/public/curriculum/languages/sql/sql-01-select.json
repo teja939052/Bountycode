@@ -1,0 +1,45 @@
+{
+  "id": "sql-01-select",
+  "track": "sql",
+  "title": "Reading Data with SELECT",
+  "section": "SQL Queries",
+  "order": 1,
+  "type": "lesson",
+  "duration": "9 min",
+  "xp": 15,
+  "content": {
+    "theory": "SQL (**Structured Query Language**) is how you talk to databases. The most common operation is **reading** data with `SELECT`.\n\nImagine a table called `students`:\n\n| id | name | city | score |\n|----|------|------|-------|\n| 1 | Priya | Delhi | 92 |\n| 2 | Rohan | Mumbai | 78 |\n| 3 | Sara | Delhi | 85 |\n\nSelect every column of every row:\n\n```sql\nSELECT * FROM students;\n```\n\nThe `*` means *all columns*. Pick specific columns instead:\n\n```sql\nSELECT name, city FROM students;\n```\n\n**SQL keywords are conventionally UPPERCASE** (though lowercase works). Every query ends with a semicolon.\n\nDeduplicate rows with `DISTINCT`:\n\n```sql\nSELECT DISTINCT city FROM students;   -- Delhi, Mumbai\n```\n\nLimit how many rows come back with `LIMIT`:\n\n```sql\nSELECT * FROM students LIMIT 2;\n```\n\nThe pattern to remember: `SELECT columns FROM table;` — choose what, from where.",
+    "codeSnippets": [
+      {
+        "language": "sql",
+        "code": "SELECT name, score FROM students;",
+        "output": "Priya 92 · Rohan 78 · Sara 85"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write a query that selects only the 'name' and 'city' columns from the 'students' table.",
+      "starterCode": "",
+      "required": ["SELECT name, city FROM students"],
+      "hints": [
+        "Hint 1: SELECT name, city",
+        "Hint 2: FROM students;"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What does SELECT * do?",
+        "options": ["Selects all rows", "Selects all columns", "Selects one row"],
+        "correct": 1
+      },
+      {
+        "question": "How does every SQL statement typically end?",
+        "options": ["With a newline", "With a semicolon", "With GO"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "sql-02-where",
+    "unlocks": ["sql-02-where"]
+  }
+}

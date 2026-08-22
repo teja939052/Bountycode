@@ -1,0 +1,56 @@
+{
+  "id": "js-12-error-handling",
+  "track": "javascript",
+  "title": "Error Handling & Debugging",
+  "section": "JavaScript Advanced",
+  "order": 12,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "Real code fails — the skill is handling failure gracefully. JavaScript's `try/catch/finally` blocks let you run code, catch errors, and clean up afterward. Without them, one bad line can silently kill your whole script.\n\n### The basics\n```js\ntry {\n  JSON.parse(\"not json\");\n} catch (error) {\n  console.log(\"Something broke:\", error);\n} finally {\n  console.log(\"Always runs\");\n}\n```\nThe `try` block runs first. If it throws, execution jumps to `catch`, which receives the `error` object. The `finally` block runs no matter what — perfect for cleanup like closing spinners.\n\n### Throwing your own errors\n```js\nfunction divide(a, b) {\n  if (b === 0) {\n    throw new Error(\"Cannot divide by zero\");\n  }\n  return a / b;\n}\n```\n`throw` stops execution and hands an `Error` object to the nearest `catch`. Give errors clear messages — you'll read them at 3 a.m.\n\n### Common runtime errors\n- **TypeError** — calling a method that doesn't exist, e.g. `null.map()`\n- **ReferenceError** — using a variable that was never declared\n- **SyntaxError** — the code can't even be parsed\n\n```js\nconsole.log(missingVariable);   // ReferenceError: missingVariable is not defined\nundefined.foo;                  // TypeError: Cannot read properties of undefined\n```\n\n### Debugging like a pro\n- `console.log` — quick values\n- `console.table(arr)` — arrays/objects as neat tables\n- `console.error(msg)` — red, loud, obvious\n- `console.debug(msg)` — verbose diagnostic detail\n- **Breakpoints** — in DevTools, click the line number in the Sources/Console tab to pause execution and inspect variables step by step\n\nA common mistake is letting `catch` swallow errors silently: `catch (e) {}` hides bugs for hours. Always log the error and decide what the user should see. When JSON comes from an external source, always wrap parsing in try/catch — malformed data is not a question of if, but when.",
+    "codeSnippets": [
+      {
+        "language": "javascript",
+        "code": "try {\n  JSON.parse(\"not json\");\n} catch (error) {\n  console.log(\"Invalid JSON\");\n}",
+        "output": "Invalid JSON"
+      },
+      {
+        "language": "javascript",
+        "code": "console.table([{ name: \"Ada\" }, { name: \"Grace\" }]);",
+        "output": "A table with two rows: Ada and Grace."
+      }
+    ],
+    "exercise": {
+      "instruction": "Wrap JSON.parse(\"not json\") in a try block. In the catch block, set output.textContent to \"Invalid JSON\". Run it and confirm #output displays Invalid JSON instead of crashing.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<body>\n  <p id=\"output\"></p>\n  <script>\n\n  </script>\n</body>\n</html>",
+      "required": ["try {", "JSON.parse", "\"not json\"", "catch", "output", "textContent", "Invalid JSON"],
+      "hints": [
+        "Hint 1: try { JSON.parse(\"not json\"); }",
+        "Hint 2: catch (error) { ... } receives the thrown error.",
+        "Hint 3: Inside catch: document.getElementById(\"output\").textContent = \"Invalid JSON\";"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "When does the finally block run?",
+        "options": ["Only when there is no error", "Only when an error is thrown", "Always, after try/catch completes"],
+        "correct": 2
+      },
+      {
+        "question": "What error is thrown by undefined.foo?",
+        "options": ["SyntaxError", "ReferenceError", "TypeError"],
+        "correct": 2
+      },
+      {
+        "question": "How do you throw a custom error?",
+        "options": ["throw new Error(\"message\")", "return \"message\"", "console.error(\"message\")"],
+        "correct": 0
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "js-13-async-basics",
+    "unlocks": ["js-13-async-basics"]
+  }
+}

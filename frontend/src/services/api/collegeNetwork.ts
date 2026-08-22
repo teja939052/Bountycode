@@ -2,19 +2,19 @@ import { requestWithRetry } from "./request.ts";
 
 export const collegeNetworkApi = {
   join(payload) {
-    return requestWithRetry("/api/v1/college/join", {
+    return requestWithRetry("/api/v1/campus-connect/join", {
       method: "POST",
       body: JSON.stringify(payload),
     });
   },
 
   profile() {
-    return requestWithRetry("/api/v1/college/profile");
+    return requestWithRetry("/api/v1/campus-connect/profile");
   },
 
   leaderboard(college) {
     const q = college ? `?college=${encodeURIComponent(college)}` : "";
-    return requestWithRetry(`/api/v1/college/leaderboard${q}`);
+    return requestWithRetry(`/api/v1/campus-connect/leaderboard${q}`);
   },
 
   feed(college, limit = 20) {
@@ -34,11 +34,11 @@ export const collegeNetworkApi = {
   },
 
   colleges() {
-    return requestWithRetry("/api/v1/college/colleges");
+    return requestWithRetry("/api/v1/campus-connect/colleges");
   },
 
   startDuel(data) {
-    return requestWithRetry("/api/v1/college/duel/start", {
+    return requestWithRetry("/api/v1/campus-connect/duel", {
       method: "POST",
       body: JSON.stringify(data),
     });

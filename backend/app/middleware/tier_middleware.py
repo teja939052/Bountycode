@@ -68,6 +68,26 @@ FEATURE_TO_LIMIT_KEY = {
     "ai_mistakes": "ai_mistakes_per_day",
 }
 
+USED_KEY_MAP = {
+    "interview": "interviews_used",
+    "interviews": "interviews_used",
+    "resume": "resumes_used",
+    "resumes": "resumes_used",
+    "resume_review": "resumes_used",
+    "aptitude": "aptitude_used",
+    "aptitude_test": "aptitude_used",
+    "aptitude_tests": "aptitude_used",
+    "cover_letter": "cover_letters_used",
+    "cover_letters": "cover_letters_used",
+    "mock_interview": "mock_interviews_used",
+    "mock_interviews": "mock_interviews_used",
+    "company_mock": "company_mocks_used",
+    "predictor": "predictions_used",
+    "question_bank": "question_bank_used",
+    "interview_booking": "interview_bookings_used",
+    "streak_repair": "streak_repairs_used",
+}
+
 MONTHLY_FEATURES = {
     "interview", "interviews", "interviews_per_month",
     "resume", "resume_review", "resume_reviews", "resume_reviews_per_month",
@@ -86,6 +106,14 @@ DAILY_FEATURES = {
 
 
 def _get_tier(plan: str) -> str:
+    """Map a subscription plan to a tier string.
+
+    Args:
+        plan: Raw plan string from the user document.
+
+    Returns:
+        str: 'lifetime', 'pro', or 'free'.
+    """
     if plan == "lifetime":
         return "lifetime"
     if plan == "pro":
@@ -94,17 +122,35 @@ def _get_tier(plan: str) -> str:
 
 
 def _get_current_month_key():
+    """Generate a 'YYYY-MM' key for the current UTC month.
+
+    Returns:
+        str: Current month key string (e.g., '2026-08').
+    """
     now = datetime.now(timezone.utc)
     return f"{now.year}-{now.month}"
 
 
 def _get_daily_key():
+    """Generate a 'YYYY-MM-DD' key for the current UTC day.
+
+    Returns:
+        str: Current date key string (e.g., '2026-08-16').
+    """
     now = datetime.now(timezone.utc)
     return now.strftime("%Y-%m-%d")
 
 
 async def _increment_daily_usage(user: dict, feature_key: str):
-    """Increment daily usage counter for a user."""
+    """Increment daily usage counter for a user.
+
+    Args:
+        user: Authenticated user document dict.
+        feature_key: The feature limit key (e.g., 'daily_compiler_runs').
+
+    Returns:
+        int: The updated daily usage count for the feature.
+    """
     from app.database import users_collection
     from bson import ObjectId
 
@@ -128,7 +174,15 @@ async def _increment_daily_usage(user: dict, feature_key: str):
 
 
 async def _increment_monthly_usage(user: dict, feature_key: str):
-    """Increment monthly usage counter for a user."""
+    """Increment monthly usage counter for a user.
+
+    Args:
+        user: Authenticated user document dict.
+        feature_key: The feature limit key (e.g., 'interviews_per_month').
+
+    Returns:
+        int: The updated monthly usage count for the feature.
+    """
     from app.database import users_collection
     from bson import ObjectId
 
@@ -145,7 +199,15 @@ async def _increment_monthly_usage(user: dict, feature_key: str):
 
 async def check_tier_limit(user: dict, feature: str) -> None:
     """Check if a user's tier and usage allow access to a feature.
-    Raises HTTPException(403) when the limit is reached."""
+    Raises HTTPException(403) when the limit is reached.
+
+    Args:
+        user: Authenticated user document dict.
+        feature: Feature name to check (e.g., 'interview', 'compiler_run').
+
+    Raises:
+        HTTPException: 403 if the feature limit has been reached for the user's tier.
+    """
     plan = user.get("plan", "free")
     tier = _get_tier(plan)
     limits = TIER_LIMITS[tier]
@@ -160,9 +222,7 @@ async def check_tier_limit(user: dict, feature: str) -> None:
         return
 
     if limit_key in MONTHLY_FEATURES or feature in MONTHLY_FEATURES:
-        used_key = feature.replace("_per_month", "") + "_used" if "_per_month" in limit_key else feature + "_used"
-        if limit_key.startswith("daily_"):
-            used_key = limit_key.replace("daily_", "") + "_used"
+        used_key = USED_KEY_MAP.get(feature, feature + "_used")
         used = user.get(used_key, 0)
 
         if used >= limit:
@@ -202,10 +262,19 @@ async def check_tier_limit(user: dict, feature: str) -> None:
             )
 
 
-async def tier_gate(feature: str):
+async def reset_monthly_usage(user: dict) -> None:
+    """Reset monthly usage counters if a new month has started.
+
+    Args:
+        user: Authenticated user document dict.
     """
-    Dependency that gates a feature based on the user's tier and usage.
-    Raises HTTPException(403) with structured error when limit is reached.
+    await check_and_reset_monthly_usage(user)
+
+
+async def tier_gate(feature: str):
+    """Dependency that gates a feature based on the user's tier and usage.
+
+    Raises HTTPException(403) with structured error when the limit is reached.
 
     Usage in route:
         @router.post("/interview/answer")
@@ -214,9 +283,14 @@ async def tier_gate(feature: str):
             ...
         ):
             ...
+
+    Args:
+        feature: Feature name string to check limits for.
+
+    Returns:
+        Callable: FastAPI dependency that returns the authenticated user if allowed.
     """
     async def dependency(user=Depends(get_current_user)):
-        await check_and_reset_monthly_usage(user)
         await check_tier_limit(user, feature)
         return user
 
@@ -224,9 +298,16 @@ async def tier_gate(feature: str):
 
 
 async def tier_gate_middleware(request: Request, call_next):
-    """
-    Middleware that checks tier limits on protected routes.
-    Attach tier info to request state for route handlers to use.
+    """Middleware that checks tier limits on protected routes.
+
+    Attaches tier info to request state for route handlers to use.
+
+    Args:
+        request: Incoming FastAPI Request.
+        call_next: Next middleware/handler in the chain.
+
+    Returns:
+        Response: The downstream response.
     """
     user = getattr(request.state, "user", None)
     if user is None:
@@ -237,7 +318,7 @@ async def tier_gate_middleware(request: Request, call_next):
             pass
 
     if user:
-        await check_and_reset_monthly_usage(user)
+        await reset_monthly_usage(user)
         tier = _get_tier(user.get("plan", "free"))
         limits = TIER_LIMITS[tier]
         request.state.tier = tier

@@ -1,0 +1,47 @@
+{
+  "id": "python-01-basics",
+  "track": "python",
+  "title": "Your First Program",
+  "section": "Python Basics",
+  "order": 1,
+  "type": "lesson",
+  "duration": "8 min",
+  "xp": 15,
+  "content": {
+    "theory": "Python is a **high-level**, **interpreted** language — the code you write is executed line by line, no compilation step needed. It's famous for being readable and beginner-friendly.\n\nThe first thing you learn is `print()`, which outputs text to the screen:\n\n```python\nprint(\"Hello, world!\")\n```\n\n- `print` is the **function** name\n- The text in quotes is the **argument** — what gets printed\n- Python runs top to bottom, so this runs immediately\n\nYou can print numbers and combine values:\n\n```python\nprint(42)\nprint(\"Total:\", 7 + 5)\n```\n\n**Comments** start with `#` — Python ignores them. They explain your code to other humans (and future you):\n\n```python\n# This line is ignored\nprint(\"But this runs\")\n```\n\nRun this lesson's code to see your first program work.",
+    "codeSnippets": [
+      {
+        "language": "python",
+        "code": "print(\"Hello, world!\")",
+        "output": "Hello, world!"
+      }
+    ],
+    "exercise": {
+      "instruction": "Print the message 'Welcome to Python!' on its own line.",
+      "starterCode": "",
+      "language": "python",
+      "expected": "Welcome to Python!",
+      "required": ["print(", "Welcome to Python!"],
+      "hints": [
+        "Hint 1: print(\"Welcome to Python!\")",
+        "Hint 2: The message must be inside quotes."
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which function outputs text to the screen?",
+        "options": ["output()", "print()", "echo()"],
+        "correct": 1
+      },
+      {
+        "question": "How do you write a comment in Python?",
+        "options": ["// comment", "# comment", "<!-- comment -->"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "python-02-variables",
+    "unlocks": ["python-02-variables"]
+  }
+}

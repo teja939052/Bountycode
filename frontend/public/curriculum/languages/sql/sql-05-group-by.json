@@ -1,0 +1,46 @@
+{
+  "id": "sql-05-group-by",
+  "track": "sql",
+  "title": "GROUP BY",
+  "section": "SQL Queries",
+  "order": 5,
+  "type": "lesson",
+  "duration": "11 min",
+  "xp": 20,
+  "content": {
+    "theory": "`GROUP BY` lets you run aggregates **per group** instead of over the whole table.\n\nWithout GROUP BY:\n\n```sql\nSELECT AVG(score) FROM students;   -- one number for everyone\n```\n\nWith GROUP BY — one row per city:\n\n```sql\nSELECT city, AVG(score)\nFROM students\nGROUP BY city;\n```\n\nResult:\n\n| city | AVG(score) |\n|------|-----------|\n| Delhi | 88.5 |\n| Mumbai | 78.0 |\n\nThe rule: any column in the SELECT that isn't an aggregate **must appear in GROUP BY**.\n\nCount rows per group:\n\n```sql\nSELECT city, COUNT(*) AS students\nFROM students\nGROUP BY city;\n```\n\nFilter **groups** with `HAVING` (you can't use WHERE on aggregates):\n\n```sql\nSELECT city, AVG(score) AS avg_score\nFROM students\nGROUP BY city\nHAVING AVG(score) >= 85;\n```\n\nKey difference:\n\n- `WHERE` filters rows **before** grouping\n- `HAVING` filters groups **after** grouping\n\nFull clause order:\n\n`SELECT … FROM … WHERE … GROUP BY … HAVING … ORDER BY …`",
+    "codeSnippets": [
+      {
+        "language": "sql",
+        "code": "SELECT city, COUNT(*) AS total\nFROM students\nGROUP BY city;",
+        "output": "Delhi: 2 · Mumbai: 1"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write a query that shows the average score per city: select 'city' and AVG(score), grouped by city.",
+      "starterCode": "",
+      "required": ["SELECT city, AVG(score)", "FROM students", "GROUP BY city"],
+      "hints": [
+        "Hint 1: SELECT city, AVG(score)",
+        "Hint 2: FROM students",
+        "Hint 3: GROUP BY city;"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which keyword filters groups after aggregation?",
+        "options": ["WHERE", "HAVING", "FILTER"],
+        "correct": 1
+      },
+      {
+        "question": "What's the rule for non-aggregate columns in SELECT when using GROUP BY?",
+        "options": ["They must be in GROUP BY", "They must be removed", "No rule exists"],
+        "correct": 0
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "sql-06-joins",
+    "unlocks": ["sql-06-joins"]
+  }
+}

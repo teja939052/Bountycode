@@ -7,7 +7,7 @@ import {
 import { assignmentsApi } from "../services/api/adminContent";
 import Spinner from "../components/ui/Spinner";
 
-const inputCls = "w-full px-3.5 py-2.5 rounded-xl bg-slate-950/60 border border-white/10 text-sm text-text-primary placeholder-gray-600 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/30 transition-all";
+const inputCls = "w-full px-3.5 py-2.5 rounded-xl bg-surface-base border border-nature-leaf/20 text-sm text-text-primary placeholder-text-muted focus:outline-none focus:border-nature-leaf focus:ring-1 focus:ring-nature-leaf/30 transition-all";
 
 function formatDate(value) {
   if (!value) return "—";
@@ -21,7 +21,7 @@ function StatusBadge({ status }) {
   const config = {
     pending: { label: "Pending", cls: "bg-amber-500/10 text-amber-400 border-amber-500/30", icon: Clock },
     submitted: { label: "Submitted", cls: "bg-sky-500/10 text-sky-400 border-sky-500/30", icon: Send },
-    graded: { label: "Graded", cls: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30", icon: CheckCircle2 },
+    graded: { label: "Graded", cls: "bg-nature-bark text-nature-blossom border-nature-leaf/30", icon: CheckCircle2 },
   };
   const c = config[status] || config.pending;
   const Icon = c.icon;
@@ -86,19 +86,19 @@ export default function MyAssignments() {
   const isOverdue = (a) => a.due_date && new Date(a.due_date) < new Date() && a.submission_status === "pending";
 
   return (
-    <div className="min-h-screen bg-slate-950 px-4 py-8 max-w-4xl mx-auto">
+    <div className="min-h-screen bg-surface-base px-4 py-8 max-w-4xl mx-auto">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 mb-3">
-          <ClipboardList size={14} className="text-indigo-400" />
-          <span className="text-xs font-mono text-indigo-400">MY ASSIGNMENTS</span>
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-card border border-nature-leaf/30 mb-3">
+          <ClipboardList size={14} className="text-nature-blossom" />
+          <span className="text-xs font-mono text-nature-blossom">MY ASSIGNMENTS</span>
         </div>
         <h1 className="text-3xl font-display font-black text-text-primary">Assignments</h1>
-        <p className="mt-2 text-sm text-gray-400">Complete your homework tasks and track teacher feedback.</p>
+        <p className="mt-2 text-sm text-text-muted">Complete your homework tasks and track teacher feedback.</p>
       </motion.div>
 
       {(error || success) && (
         <div className={`mb-6 px-4 py-3 rounded-xl border text-sm font-mono flex items-center justify-between ${
-          error ? "bg-red-500/10 border-red-500/20 text-red-300" : "bg-emerald-500/10 border-emerald-500/20 text-emerald-300"
+          error ? "bg-red-500/10 border-red-500/20 text-red-500" : "bg-nature-bark border-nature-leaf/30 text-nature-blossom"
         }`}>
           <span>{error || success}</span>
           <button onClick={() => { setError(""); setSuccess(""); }} className="opacity-70 hover:opacity-100">
@@ -110,7 +110,7 @@ export default function MyAssignments() {
       {loading ? (
         <div className="flex justify-center py-20"><Spinner /></div>
       ) : assignments.length === 0 ? (
-        <div className="glass rounded-xl p-16 text-center text-gray-500 font-mono text-sm">
+        <div className="glass rounded-xl p-16 text-center text-text-muted font-mono text-sm">
           No assignments assigned to you yet. Check back soon!
         </div>
       ) : (
@@ -129,8 +129,8 @@ export default function MyAssignments() {
                   <div className="flex items-start justify-between gap-4 flex-wrap">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-3 flex-wrap">
-                        <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-indigo-500/10 border border-indigo-500/20">
-                          <FileText size={14} className="text-indigo-400" />
+                        <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-surface-card border border-nature-leaf/30">
+                          <FileText size={14} className="text-nature-blossom" />
                         </span>
                         <h3 className="font-display font-bold text-text-primary">{a.title}</h3>
                         <StatusBadge status={status} />
@@ -141,9 +141,9 @@ export default function MyAssignments() {
                         )}
                       </div>
                       {a.description && (
-                        <p className="mt-2 text-sm text-gray-400 whitespace-pre-wrap">{a.description}</p>
+                        <p className="mt-2 text-sm text-text-muted whitespace-pre-wrap">{a.description}</p>
                       )}
-                      <div className="mt-3 flex flex-wrap gap-4 text-xs font-mono text-gray-500">
+                      <div className="mt-3 flex flex-wrap gap-4 text-xs font-mono text-text-muted">
                         <span className="flex items-center gap-1.5">
                           <Calendar size={12} className="text-sky-400" />
                           Due {formatDate(a.due_date)}
@@ -154,13 +154,13 @@ export default function MyAssignments() {
                         </span>
                         {a.content_title && (
                           <span className="flex items-center gap-1.5">
-                            <BookOpen size={12} className="text-indigo-400" />
+                            <BookOpen size={12} className="text-nature-blossom" />
                             {a.content_title}
                           </span>
                         )}
                         {status !== "pending" && (
                           <span className="flex items-center gap-1.5">
-                            <Clock size={12} className="text-gray-500" />
+                            <Clock size={12} className="text-text-muted" />
                             Submitted {formatDate(a.submitted_at)}
                           </span>
                         )}
@@ -169,17 +169,17 @@ export default function MyAssignments() {
                   </div>
 
                   {status === "graded" && (
-                    <div className="mt-4 flex items-start gap-4 flex-wrap rounded-xl bg-slate-950/40 border border-white/10 p-4">
-                      <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30">
-                        <Award size={15} className="text-emerald-400" />
-                        <span className="text-lg font-bold text-emerald-400">{a.score}</span>
-                        <span className="text-[10px] font-mono text-gray-500">/ {a.max_score}</span>
+                    <div className="mt-4 flex items-start gap-4 flex-wrap rounded-xl bg-surface-base border border-nature-leaf/20 p-4">
+                      <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-nature-bark border border-nature-leaf/30">
+                        <Award size={15} className="text-nature-blossom" />
+                        <span className="text-lg font-bold text-nature-blossom">{a.score}</span>
+                        <span className="text-[10px] font-mono text-text-muted">/ {a.max_score}</span>
                       </div>
                       <div className="flex-1 min-w-[200px]">
-                        <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-gray-500 mb-1">Teacher Feedback</p>
-                        <p className="text-sm text-gray-300 whitespace-pre-wrap">{a.feedback || "No feedback provided."}</p>
+                        <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted mb-1">Teacher Feedback</p>
+                        <p className="text-sm text-text-secondary whitespace-pre-wrap">{a.feedback || "No feedback provided."}</p>
                         {a.graded_at && (
-                          <p className="mt-2 text-[10px] font-mono text-gray-600">Graded {formatDate(a.graded_at)}</p>
+                          <p className="mt-2 text-[10px] font-mono text-text-muted">Graded {formatDate(a.graded_at)}</p>
                         )}
                       </div>
                     </div>
@@ -190,7 +190,7 @@ export default function MyAssignments() {
                       <div className="flex items-center justify-between mb-2">
                         <button
                           onClick={() => setExpanded(prev => ({ ...prev, [a.id]: !prev[a.id] }))}
-                          className="text-xs font-mono text-indigo-400 hover:text-indigo-300 transition-all">
+                          className="text-xs font-mono text-nature-blossom hover:text-nature-blossom transition-all">
                           {expanded[a.id] ? "Hide" : "Show"} answer form
                         </button>
                       </div>
@@ -212,7 +212,7 @@ export default function MyAssignments() {
                               <button
                                 onClick={() => handleSubmit(a)}
                                 disabled={submitting[a.id]}
-                                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-500/90 hover:bg-indigo-500 text-white text-sm font-semibold transition-all disabled:opacity-50">
+                                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-nature-leaf hover:bg-nature-moss text-white text-sm font-semibold transition-all disabled:opacity-50">
                                 {submitting[a.id] ? <Loader2 size={15} className="animate-spin" /> : <Send size={15} />}
                                 {status === "submitted" ? "Resubmit" : "Submit Answer"}
                               </button>
@@ -224,9 +224,9 @@ export default function MyAssignments() {
                   )}
 
                   {status === "submitted" && (
-                    <div className="mt-4 rounded-xl bg-slate-950/40 border border-white/10 p-3">
-                      <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-gray-500 mb-1">Your Answer</p>
-                      <p className="text-sm text-gray-300 whitespace-pre-wrap line-clamp-4">{a.answer_text || ""}</p>
+                    <div className="mt-4 rounded-xl bg-surface-base border border-nature-leaf/20 p-3">
+                      <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-text-muted mb-1">Your Answer</p>
+                      <p className="text-sm text-text-secondary whitespace-pre-wrap line-clamp-4">{a.answer_text || ""}</p>
                     </div>
                   )}
                 </div>

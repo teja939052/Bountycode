@@ -1,0 +1,46 @@
+{
+  "id": "js-05-conditionals",
+  "track": "javascript",
+  "title": "Conditionals & Logic",
+  "section": "JavaScript in Action",
+  "order": 5,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 20,
+  "content": {
+    "theory": "Conditionals make code make decisions. JavaScript's `if`/`else if`/`else` is the workhorse:\n\n```js\nlet score = 85;\n\nif (score >= 90) {\n  console.log(\"A\");\n} else if (score >= 80) {\n  console.log(\"B\");\n} else {\n  console.log(\"Keep practicing\");\n}\n```\n\n### Comparison operators\n`==` (loose), `===` (strict), `!=`, `!==`, `>`, `<`, `>=`, `<=`.\nAlways prefer **`===`** — it checks value *and* type, avoiding surprises:\n```js\n1 == \"1\"    // true (loose — converts)\n1 === \"1\"   // false (strict)\n```\n\n### Logical operators\n```js\nlet age = 20;\nlet hasId = true;\n\nif (age >= 18 && hasId) {\n  console.log(\"Allowed\");      // AND\n}\nif (age < 13 || age > 60) {\n  console.log(\"Discount\");     // OR\n}\nif (!hasId) {\n  console.log(\"No ID\");        // NOT\n}\n```\n\n### Truthiness\nJavaScript coerces values to booleans in conditions. Falsy values: `false`, `0`, `\"\"`, `null`, `undefined`, `NaN`. Everything else is truthy.\n```js\nif (name) {\n  // runs only when name is not empty/null/undefined\n}\n```\n\n### Ternary\nOne-line if/else:\n```js\nlet status = (score >= 50) ? \"Pass\" : \"Fail\";\n```\n\n### Switch\nClean for matching one value against many constants:\n```js\nswitch (day) {\n  case 1: console.log(\"Mon\"); break;\n  case 2: console.log(\"Tue\"); break;\n  default: console.log(\"Other\");\n}\n```",
+    "codeSnippets": [
+      {
+        "language": "javascript",
+        "code": "const temp = 30;\nif (temp > 25) {\n  console.log(\"Hot day\");\n} else {\n  console.log(\"Cool day\");\n}",
+        "output": "Hot day"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write a script: let 'age' = 20. If age >= 18 AND age < 65, set output.textContent to 'Adult'. Else if age >= 65, set it to 'Senior'. Else set it to 'Minor'.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<body>\n  <p id=\"output\"></p>\n  <script>\n    let age = 20;\n\n  </script>\n</body>\n</html>",
+      "required": ["if (age >= 18", "&&", "age < 65", "Adult", "else if (age >= 65", "Senior", "Minor"],
+      "hints": [
+        "Hint 1: if (age >= 18 && age < 65) { document.querySelector(\"#output\").textContent = \"Adult\"; }",
+        "Hint 2: else if (age >= 65) { ... \"Senior\" }",
+        "Hint 3: else { ... \"Minor\" }"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Why prefer === over ==?",
+        "options": ["It's faster", "It checks value AND type", "It's the only valid operator"],
+        "correct": 1
+      },
+      {
+        "question": "Which of these is falsy?",
+        "options": ["\"false\"", "0", "\"0\""],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "js-06-loops",
+    "unlocks": ["js-06-loops"]
+  }
+}

@@ -89,18 +89,18 @@ export default function CampusConnect() {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-slate-950 text-white">
+      <div className="flex min-h-screen items-center justify-center bg-surface-base text-text-primary">
         <div className="animate-pulse">Loading colleges...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white px-4 py-8">
+    <div className="min-h-screen bg-surface-base text-text-primary px-4 py-8">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold">🏫 Campus Connect</h1>
-          <p className="text-slate-400 mt-2">
+          <p className="text-text-muted mt-2">
             Find classmates, share invites, and battle it out in 1v1 duels.
           </p>
         </div>
@@ -114,13 +114,13 @@ export default function CampusConnect() {
         {/* College Selection */}
         <div className="mb-8">
           <div className="relative mb-3">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-500" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-text-muted" />
             <input
               type="text"
               placeholder="Search your college..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-xl border border-slate-700 bg-slate-900 pl-10 pr-4 py-2 text-sm text-slate-100 placeholder-slate-500 focus:border-indigo-500 focus:outline-none"
+              className="w-full rounded-xl border border-nature-leaf/20 bg-white pl-10 pr-4 py-2 text-sm text-text-primary placeholder-text-muted focus:border-nature-leaf focus:outline-none"
             />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 max-h-60 overflow-y-auto">
@@ -133,22 +133,22 @@ export default function CampusConnect() {
                 }}
                 className={"text-left rounded-lg border px-3 py-2 text-sm transition " +
                   (selectedCollege === college
-                    ? "border-indigo-500 bg-indigo-600/20 text-white"
-                    : "border-slate-700 bg-slate-800/50 text-slate-300 hover:border-slate-500")}
+                    ? "border-[#4F8F57] bg-nature-bark text-text-primary"
+                    : "border-nature-leaf/20 bg-surface-card text-text-secondary hover:border-nature-leaf/30")}
               >
                 {college}
               </button>
             ))}
           </div>
           {colleges.length === 0 && (
-            <p className="text-center text-slate-500 text-sm py-4">
+            <p className="text-center text-text-muted text-sm py-4">
               No colleges found. Type to search.
             </p>
           )}
         </div>
 
         {!selectedCollege && (
-          <p className="text-slate-500 text-sm text-center mb-6">
+          <p className="text-text-muted text-sm text-center mb-6">
             Select your college above to unlock invites and duels.
           </p>
         )}
@@ -162,7 +162,7 @@ export default function CampusConnect() {
           >
             <button
               onClick={generateInvite}
-              className="flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-6 py-3 font-semibold text-white shadow hover:bg-indigo-500"
+              className="flex items-center justify-center gap-2 rounded-xl bg-nature-leaf px-6 py-3 font-semibold text-white shadow hover:bg-nature-moss"
             >
               <Share2 className="h-5 w-5" />
               Generate Invite Link
@@ -182,19 +182,19 @@ export default function CampusConnect() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 mb-8"
+            className="bg-white border border-nature-leaf/20 rounded-2xl p-6 mb-8"
           >
-            <h3 className="text-lg font-bold text-slate-200 mb-3">Your Invite Link</h3>
-            <p className="text-sm text-slate-400 mb-3">
-              Share this link with classmates at <span className="text-indigo-300">{invite.college}</span>
+            <h3 className="text-lg font-bold text-text-primary mb-3">Your Invite Link</h3>
+            <p className="text-sm text-text-muted mb-3">
+              Share this link with classmates at <span className="text-nature-blossom">{invite.college}</span>
             </p>
             <div className="flex items-center gap-2">
-              <code className="flex-1 break-all rounded-lg bg-slate-800 px-3 py-2 text-sm text-amber-300">
+              <code className="flex-1 break-all rounded-lg bg-[#101623] border border-[#1F2937] px-3 py-2 text-sm text-amber-300">
                 {invite.invite_url}
               </code>
               <button
                 onClick={copyInvite}
-                className="rounded-lg bg-slate-700 px-3 py-2 text-sm text-slate-200 hover:bg-slate-600"
+                className="rounded-lg bg-nature-leaf px-3 py-2 text-sm text-white hover:bg-nature-moss"
                 title="Copy link"
               >
                 <Copy className="h-4 w-4" />
@@ -208,16 +208,16 @@ export default function CampusConnect() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 mb-8"
+            className="bg-white border border-nature-leaf/20 rounded-2xl p-6 mb-8"
           >
-            <h3 className="text-lg font-bold text-slate-200 mb-3">Duel Created</h3>
-            <p className="text-sm text-slate-400 mb-2">
-              Duel ID: <span className="font-mono text-indigo-300">{duelState.duel_id}</span>
+            <h3 className="text-lg font-bold text-text-primary mb-3">Duel Created</h3>
+            <p className="text-sm text-text-muted mb-2">
+              Duel ID: <span className="font-mono text-nature-blossom">{duelState.duel_id}</span>
             </p>
-            <p className="text-sm text-slate-400">
-              Status: <span className="text-amber-300">{duelState.status}</span>
+            <p className="text-sm text-text-muted">
+              Status: <span className="text-amber-600">{duelState.status}</span>
             </p>
-            <p className="text-sm text-slate-400 mt-2">{duelState.message}</p>
+            <p className="text-sm text-text-muted mt-2">{duelState.message}</p>
           </motion.div>
         )}
 
@@ -226,27 +226,27 @@ export default function CampusConnect() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6"
+            className="bg-white border border-nature-leaf/20 rounded-2xl p-6"
           >
             <div className="flex items-center gap-2 mb-4">
               <Trophy className="h-5 w-5 text-amber-400" />
-              <h3 className="text-lg font-bold text-slate-200">
+              <h3 className="text-lg font-bold text-text-primary">
                 {selectedCollege} Leaderboard
               </h3>
             </div>
             {leaderboard.length === 0 ? (
-              <p className="text-sm text-slate-500">No duel winners yet. Be the first!</p>
+              <p className="text-sm text-text-muted">No duel winners yet. Be the first!</p>
             ) : (
               <ul className="space-y-2">
                 {leaderboard.map((entry, idx) => (
                   <div
                     key={entry.user_id}
-                    className="flex items-center justify-between rounded-lg bg-slate-800/50 px-3 py-2"
+                    className="flex items-center justify-between rounded-lg bg-surface-card px-3 py-2"
                   >
                     <span className="flex items-center gap-3">
-                      <span className="text-sm font-bold text-slate-500">#{idx + 1}</span>
-                      <Users className="h-4 w-4 text-slate-500" />
-                      <span className="text-sm text-slate-300">
+                      <span className="text-sm font-bold text-text-muted">#{idx + 1}</span>
+                      <Users className="h-4 w-4 text-text-muted" />
+                      <span className="text-sm text-text-secondary">
                         {entry.user_id?.slice(0, 8) || "Anonymous"}
                       </span>
                     </span>

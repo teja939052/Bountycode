@@ -1,0 +1,46 @@
+{
+  "id": "html-06-forms-part1",
+  "track": "html",
+  "title": "Forms & Inputs (Part 1)",
+  "section": "Fundamentals",
+  "order": 6,
+  "type": "lesson",
+  "duration": "10 min",
+  "xp": 20,
+  "content": {
+    "theory": "Forms collect input from users — signups, logins, searches. A form is built from three things: the `<form>` wrapper, `<input>` fields, and a submit `<button>`.\n\n### The form element\n```html\n<form action=\"/api/register\" method=\"post\">\n  ...fields...\n</form>\n```\n\n- `action` = where the data is sent\n- `method` = `get` or `post`\n\n### Text input\nThe workhorse field:\n```html\n<input type=\"text\" name=\"username\" placeholder=\"Pick a username\">\n```\n- `name` = the key the server receives (required!)\n- `placeholder` = grey hint text\n\n### Labels\nAlways pair inputs with `<label>` for accessibility — clicking the label focuses the field:\n```html\n<label for=\"username\">Username</label>\n<input type=\"text\" id=\"username\" name=\"username\">\n```\nThe `for` attribute must match the input's `id`.\n\n### Common input types\n| Type | Use |\n|------|-----|\n| `text` | Single line of text |\n| `email` | Email address (browser validates format) |\n| `password` | Masked text |\n| `number` | Numeric value |\n| `date` | Date picker |\n\n### Textarea & submit\n```html\n<textarea name=\"message\" rows=\"4\"></textarea>\n<button type=\"submit\">Sign Up</button>\n```",
+    "codeSnippets": [
+      {
+        "language": "html",
+        "code": "<label for=\"email\">Email</label>\n<input type=\"email\" id=\"email\" name=\"email\" placeholder=\"you@example.com\">",
+        "output": "An email field with a label above it and placeholder text."
+      }
+    ],
+    "exercise": {
+      "instruction": "Create a form with a text input for a username. Give it a label 'Username', an id of 'username', and a name of 'username'. Add a submit button labelled 'Sign In'.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Login</title>\n</head>\n<body>\n  <form action=\"/api/login\" method=\"post\">\n\n  </form>\n</body>\n</html>",
+      "required": ["<label", "for=\"username\"", "Username", "</label>", "<input", "id=\"username\"", "name=\"username\"", "<button type=\"submit\">", "Sign In", "</button>"],
+      "hints": [
+        "Hint 1: Add <label for=\"username\">Username</label>.",
+        "Hint 2: Add <input type=\"text\" id=\"username\" name=\"username\">.",
+        "Hint 3: Finish with <button type=\"submit\">Sign In</button>."
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What attribute on an input tells the server what key to use?",
+        "options": ["id", "name", "for"],
+        "correct": 1
+      },
+      {
+        "question": "Which input type validates that the value looks like an email?",
+        "options": ["text", "password", "email"],
+        "correct": 2
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "html-07-forms-part2",
+    "unlocks": ["html-07-forms-part2"]
+  }
+}

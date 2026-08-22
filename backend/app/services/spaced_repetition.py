@@ -3,6 +3,8 @@ Spaced Repetition Engine (SM-2 Algorithm) for DSA Concept Mastery
 Implements Anki/SuperMemo scheduling for optimal retention
 """
 from datetime import datetime, timedelta
+
+from app.utils.timeutil import utcnow
 from typing import Dict, List, Optional, Any
 from dataclasses import dataclass, asdict
 from enum import Enum
@@ -43,11 +45,11 @@ class SRSState:
     
     def __post_init__(self):
         if self.next_review is None:
-            self.next_review = datetime.utcnow()
+            self.next_review = utcnow()
         if self.created_at is None:
-            self.created_at = datetime.utcnow()
+            self.created_at = utcnow()
         if self.updated_at is None:
-            self.updated_at = datetime.utcnow()
+            self.updated_at = utcnow()
 
 
 class SpacedRepetitionEngine:
@@ -79,7 +81,7 @@ class SpacedRepetitionEngine:
             interval=0,
             repetitions=0,
             ease_factor=2.5,
-            next_review=datetime.utcnow(),
+            next_review=utcnow(),
             learning_step=0,
             total_reviews=0,
             lapses=0,
@@ -129,7 +131,7 @@ class SpacedRepetitionEngine:
         """
         Process a review and return updated state
         """
-        now = datetime.utcnow()
+        now = utcnow()
         new_state = SRSState(**asdict(state))  # Copy
         new_state.last_reviewed = now
         new_state.total_reviews += 1
@@ -170,7 +172,7 @@ class SpacedRepetitionEngine:
     
     def get_due_cards(self, states: List[SRSState], limit: int = 20) -> List[SRSState]:
         """Get cards due for review, sorted by overdue-ness"""
-        now = datetime.utcnow()
+        now = utcnow()
         due = [s for s in states if s.next_review <= now]
         # Sort: overdue first (most overdue), then by ease factor (hardest first)
         due.sort(key=lambda s: (s.next_review, s.ease_factor))
@@ -178,7 +180,7 @@ class SpacedRepetitionEngine:
     
     def get_stats(self, states: List[SRSState]) -> Dict[str, Any]:
         """Get SRS statistics for a user"""
-        now = datetime.utcnow()
+        now = utcnow()
         total = len(states)
         new_cards = sum(1 for s in states if s.repetitions == 0 and s.interval == 0)
         learning = sum(1 for s in states if s.interval == 0 and s.repetitions > 0)
@@ -211,10 +213,10 @@ class SpacedRepetitionEngine:
         forecast = []
         current = state
         for day in range(days):
-            due_count = 1 if current.next_review <= datetime.utcnow() + timedelta(days=day+1) else 0
+            due_count = 1 if current.next_review <= utcnow() + timedelta(days=day+1) else 0
             forecast.append({
                 "day": day + 1,
-                "date": (datetime.utcnow() + timedelta(days=day)).strftime("%Y-%m-%d"),
+                "date": (utcnow() + timedelta(days=day)).strftime("%Y-%m-%d"),
                 "reviews_due": due_count,
             })
         return forecast

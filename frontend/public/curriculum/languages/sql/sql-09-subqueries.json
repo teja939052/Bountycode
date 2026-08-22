@@ -1,0 +1,55 @@
+{
+  "id": "sql-09-subqueries",
+  "track": "sql",
+  "title": "Subqueries & Nested Queries",
+  "section": "Advanced SQL",
+  "order": 9,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "**Subqueries** (also called nested queries) are queries placed inside another query. Conceptually the inner query runs first and its result feeds the outer query, letting you ask questions like 'students who beat the class average' in a single statement. The sample dataset throughout: `students(id, name, city, score, grade)`, `teachers(id, name, subject)`, `classes(id, subject, teacher_id)`, and `enrollments(student_id, class_id, grade)`.\n\n### Scalar subquery in SELECT\n\nA subquery that returns exactly one value (one row, one column) can appear in the SELECT list:\n\n```sql\nSELECT name, score,\n  (SELECT AVG(score) FROM students) AS class_avg\nFROM students;\n```\n\nEvery row shows the overall average next to the student's own score. A scalar subquery that returns more than one row raises a runtime error, so keep its conditions tight.\n\n### Subquery in WHERE with IN / NOT IN\n\nUse `IN` when the inner query returns a list of values:\n\n```sql\nSELECT name FROM students\nWHERE id IN (SELECT student_id FROM enrollments WHERE class_id = 1);\n```\n\nA WHERE subquery must return exactly one column. Beware `NOT IN`: if the subquery result contains any `NULL`, `NOT IN` matches nothing — the safe habit is to use `NOT EXISTS` instead.\n\n### Subquery vs JOIN\n\n| Subquery | JOIN |\n|---|---|\n| Reads like English for single-column checks | Can return columns from both tables |\n| No risk of duplicate rows from fan-out | A 1-to-many match duplicates left rows |\n| `IN`/`EXISTS` may scan more on large data | Planner usually optimizes joins well |\n\nReach for a subquery when you only need to filter by a value. Reach for a JOIN when you need columns from both tables — that is the core rule.\n\n### EXISTS and NOT EXISTS\n\n`EXISTS` only checks whether the subquery returns any rows at all and stops at the first match, which often makes it faster than `IN`:\n\n```sql\nSELECT name FROM students AS s\nWHERE EXISTS (\n  SELECT 1 FROM enrollments e WHERE e.student_id = s.id\n);\n```\n\n### Correlated subqueries\n\nA **correlated subquery** references a column from the outer query (`e.student_id = s.id` above). It must be re-evaluated once per outer row, so it is powerful but potentially slow; optimizers frequently rewrite it into a JOIN.\n\n### Common mistakes\n\n- Scalar subquery returning multiple rows instead of one value.\n- Subquery in WHERE returning multiple columns.\n- `NOT IN` combined with `NULL` values in the subquery result.\n- Forgetting aliases so outer and inner columns become ambiguous.",
+    "codeSnippets": [
+      {
+        "language": "sql",
+        "code": "SELECT name, score,\n  (SELECT AVG(score) FROM students) AS class_avg\nFROM students;",
+        "output": "Each student's score alongside the overall class average"
+      },
+      {
+        "language": "sql",
+        "code": "SELECT name FROM students\nWHERE id IN (SELECT student_id FROM enrollments);",
+        "output": "Names of students enrolled in at least one class"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write a query listing the names of students who are enrolled in at least one class, using a subquery with IN against the 'enrollments' table: select 'name' from 'students' where the student's 'id' is IN the subquery that selects 'student_id' from 'enrollments'.",
+      "starterCode": "",
+      "required": ["SELECT name", "FROM students", "WHERE id IN", "student_id", "enrollments"],
+      "hints": [
+        "Hint 1: SELECT name FROM students",
+        "Hint 2: WHERE id IN (SELECT student_id FROM enrollments);"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What must a scalar subquery in the SELECT list return?",
+        "options": ["Exactly one value (one row, one column)", "A list of values", "At least two rows"],
+        "correct": 0
+      },
+      {
+        "question": "Which operator stops at the first matching row and is often faster than IN?",
+        "options": ["EXISTS", "ALL", "LIKE"],
+        "correct": 0
+      },
+      {
+        "question": "When is a JOIN usually a better choice than a subquery?",
+        "options": ["When you need columns from both tables", "When you only need to check membership", "When the subquery is scalar"],
+        "correct": 0
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "sql-10-ctes",
+    "unlocks": ["sql-10-ctes"]
+  }
+}

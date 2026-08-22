@@ -7,7 +7,7 @@ import CelebrationOverlay from "../components/CelebrationOverlay";
 import { Brain, Clock, CheckCircle, XCircle, AlertTriangle, Sparkles, Zap, BookOpen, TrendingUp, Target } from "lucide-react";
 
 const MASTERY_COLORS = {
-  new: "text-slate-400 bg-slate-400/10 border-slate-400/20",
+  new: "text-text-muted bg-surface-card border-nature-leaf/20",
   learning: "text-cyber-blue bg-cyber-blue/10 border-cyber-blue/20",
   young: "text-cyber-yellow bg-cyber-yellow/10 border-cyber-yellow/20",
   maturing: "text-cyber-green bg-cyber-green/10 border-cyber-green/20",
@@ -109,7 +109,7 @@ export default function SRSMastery() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-950">
+      <div className="min-h-screen flex items-center justify-center bg-surface-base">
         <Spinner size="lg" />
       </div>
     );
@@ -121,17 +121,17 @@ export default function SRSMastery() {
   const newCount = topics.reduce((sum, t) => sum + t.subtopics.filter(s => s.mastery === "new").length, 0);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
+    <div className="min-h-screen bg-surface-base text-text-primary">
       <CelebrationOverlay show={showCelebration} type="perfect" title="Concept Mastered!" onClose={() => setShowCelebration(false)} />
       
-      <nav className="sticky top-0 z-50 border-b border-slate-800/50 bg-slate-950/95 backdrop-blur-xl">
+      <nav className="sticky top-0 z-50 border-b border-nature-leaf/20 bg-white/90">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center gap-3">
               <Brain className="text-cyber-purple" size={24} />
               <div>
                 <h1 className="font-display font-bold text-xl">DSA Mastery</h1>
-                <p className="text-[10px] font-mono text-slate-500">Spaced Repetition Engine</p>
+                <p className="text-[10px] font-mono text-text-muted">Spaced Repetition Engine</p>
               </div>
             </div>
             <div className="flex items-center gap-2">
@@ -161,7 +161,7 @@ export default function SRSMastery() {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-2 mb-6 border-b border-slate-800">
+        <div className="flex gap-2 mb-6 border-b border-[#EDEAE0]">
           {[
             { id: "overview", label: "Overview", icon: TrendingUp },
             { id: "due", label: `Due (${dueCards.length})`, icon: Clock },
@@ -174,7 +174,7 @@ export default function SRSMastery() {
               className={`px-4 py-2 text-sm font-mono transition-colors flex items-center gap-2 ${
                 activeTab === tab.id
                   ? "text-cyber-purple border-b-2 border-cyber-purple"
-                  : "text-slate-500 hover:text-slate-300"
+                  : "text-text-muted hover:text-text-secondary"
               }`}
             >
               <tab.icon size={14} />
@@ -209,7 +209,7 @@ export default function SRSMastery() {
             >
               <Brain className="text-cyber-purple mx-auto mb-4" size={48} />
               <h3 className="font-display font-bold text-xl mb-2">Initialize Spaced Repetition</h3>
-              <p className="text-slate-400 text-sm mb-6">
+              <p className="text-text-muted text-sm mb-6">
                 Set up your DSA mastery tracking with {get_all_concept_ids().length} concepts across 11 topics.
                 The SM-2 algorithm will schedule optimal reviews for long-term retention.
               </p>
@@ -238,7 +238,7 @@ function StatCard({ icon: Icon, label, value, color }: {
     >
       <div className="flex items-center gap-3 mb-2">
         <Icon className={`${color}`} size={24} />
-        <span className="text-xs font-mono text-slate-500 uppercase tracking-wider">{label}</span>
+        <span className="text-xs font-mono text-text-muted uppercase tracking-wider">{label}</span>
       </div>
       <div className="font-display font-bold text-3xl">{value}</div>
     </motion.div>
@@ -253,7 +253,7 @@ function OverviewTab({ stats, dueCards, topics, forecast, onReview, reviewing }:
   onReview: (conceptId: string, grade: number) => void;
   reviewing: boolean;
 }) {
-  if (!stats) return <div className="text-center py-12 text-slate-500">Loading stats...</div>;
+  if (!stats) return <div className="text-center py-12 text-text-muted">Loading stats...</div>;
 
   const retention = stats.retention_rate || 100;
   const avgEase = stats.avg_ease_factor || 2.5;
@@ -265,13 +265,13 @@ function OverviewTab({ stats, dueCards, topics, forecast, onReview, reviewing }:
         <motion.div className="card" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
           <div className="flex items-center gap-3 mb-2">
             <TrendingUp className="text-cyber-green" size={24} />
-            <span className="text-xs font-mono text-slate-500 uppercase tracking-wider">Retention Rate</span>
+            <span className="text-xs font-mono text-text-muted uppercase tracking-wider">Retention Rate</span>
           </div>
           <div className="flex items-baseline gap-2">
             <span className="font-display font-bold text-4xl">{retention}%</span>
-            <span className="text-xs font-mono text-slate-500">Target: {'>'}90%</span>
+            <span className="text-xs font-mono text-text-muted">Target: {'>'}90%</span>
           </div>
-          <div className="mt-2 h-2 bg-slate-800 rounded-full overflow-hidden">
+          <div className="mt-2 h-2 bg-[#E5E0D3] rounded-full overflow-hidden">
             <motion.div
               className="h-full bg-gradient-to-r from-cyber-green to-cyber-blue rounded-full"
               initial={{ width: 0 }}
@@ -284,13 +284,13 @@ function OverviewTab({ stats, dueCards, topics, forecast, onReview, reviewing }:
         <motion.div className="card" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
           <div className="flex items-center gap-3 mb-2">
             <Target className="text-cyber-blue" size={24} />
-            <span className="text-xs font-mono text-slate-500 uppercase tracking-wider">Avg Ease Factor</span>
+            <span className="text-xs font-mono text-text-muted uppercase tracking-wider">Avg Ease Factor</span>
           </div>
           <div className="flex items-baseline gap-2">
             <span className="font-display font-bold text-4xl">{avgEase}</span>
-            <span className="text-xs font-mono text-slate-500">Range: 1.3 - 3.0</span>
+            <span className="text-xs font-mono text-text-muted">Range: 1.3 - 3.0</span>
           </div>
-          <div className="mt-2 h-2 bg-slate-800 rounded-full overflow-hidden">
+          <div className="mt-2 h-2 bg-[#E5E0D3] rounded-full overflow-hidden">
             <motion.div
               className="h-full bg-gradient-to-r from-cyber-blue to-cyber-purple rounded-full"
               initial={{ width: 0 }}
@@ -309,15 +309,15 @@ function OverviewTab({ stats, dueCards, topics, forecast, onReview, reviewing }:
         </h3>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {Object.entries(stats.topic_breakdown || {}).map(([topic, data]: [string, any]) => (
-            <div key={topic} className="p-4 bg-slate-900/50 rounded-xl border border-slate-800">
+            <div key={topic} className="p-4 bg-surface-base rounded-xl border border-nature-leaf/20">
               <div className="flex items-center justify-between mb-2">
                 <span className="font-medium text-sm">{topic}</span>
-                <span className="text-xs font-mono text-slate-500">{data.pct || 0}% mastered</span>
+                <span className="text-xs font-mono text-text-muted">{data.pct || 0}% mastered</span>
               </div>
-              <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden">
+              <div className="h-1.5 bg-[#E5E0D3] rounded-full overflow-hidden">
                 <div className="h-full bg-gradient-to-r from-cyber-purple to-cyber-blue rounded-full" style={{ width: `${data.pct || 0}%` }} />
               </div>
-              <div className="flex justify-between text-[10px] font-mono text-slate-500 mt-1">
+              <div className="flex justify-between text-[10px] font-mono text-text-muted mt-1">
                 <span>🏆 {data.mastered || 0}</span>
                 <span>📚 {data.learning || 0}</span>
                 <span>✨ {data.new || 0}</span>
@@ -337,10 +337,10 @@ function OverviewTab({ stats, dueCards, topics, forecast, onReview, reviewing }:
         >
           <div className="flex items-center gap-3 mb-2">
             <Clock className="text-cyber-yellow" size={24} />
-            <span className="text-xs font-mono text-slate-500 uppercase tracking-wider">Due Now</span>
+            <span className="text-xs font-mono text-text-muted uppercase tracking-wider">Due Now</span>
           </div>
           <div className="font-display font-bold text-3xl">{dueCards.length}</div>
-          <p className="text-xs text-slate-500 mt-1">concepts ready for review</p>
+          <p className="text-xs text-text-muted mt-1">concepts ready for review</p>
         </motion.button>
 
         <motion.button
@@ -350,10 +350,10 @@ function OverviewTab({ stats, dueCards, topics, forecast, onReview, reviewing }:
         >
           <div className="flex items-center gap-3 mb-2">
             <Target className="text-cyber-blue" size={24} />
-            <span className="text-xs font-mono text-slate-500 uppercase tracking-wider">30-Day Forecast</span>
+            <span className="text-xs font-mono text-text-muted uppercase tracking-wider">30-Day Forecast</span>
           </div>
           <div className="font-display font-bold text-3xl">{Array.from({length: 30}, (_, i) => i + 1).reduce((sum, d) => sum + (forecast.find(f => f.date === new Date(Date.now() + d * 86400000).toISOString().split('T')[0])?.reviews_due || 0), 0)}</div>
-          <p className="text-xs text-slate-500 mt-1">total reviews predicted</p>
+          <p className="text-xs text-text-muted mt-1">total reviews predicted</p>
         </motion.button>
       </div>
     </div>
@@ -370,7 +370,7 @@ function DueTab({ cards, onReview, reviewing }: {
       <motion.div className="card text-center py-12" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
         <CheckCircle className="text-cyber-green mx-auto mb-4" size={48} />
         <h3 className="font-display font-bold text-xl mb-2">All Caught Up!</h3>
-        <p className="text-slate-400">No concepts due for review right now. Check back later.</p>
+        <p className="text-text-muted">No concepts due for review right now. Check back later.</p>
       </motion.div>
     );
   }
@@ -406,11 +406,11 @@ function DueCard({ card, index, onReview, reviewing }: {
             <span className={`px-2 py-0.5 rounded text-[10px] font-mono ${masteryColor}`}>
               {MASTERY_LABELS[card.is_learning ? "learning" : "young"]}
             </span>
-            <span className="text-[10px] font-mono text-slate-500">{card.topic}</span>
+            <span className="text-[10px] font-mono text-text-muted">{card.topic}</span>
             {overdue && <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-cyber-red/10 text-cyber-red border border-cyber-red/20">{card.overdue_days}d overdue</span>}
           </div>
           <h4 className="font-display font-bold text-lg truncate">{card.subtopic}</h4>
-          <div className="flex items-center gap-4 mt-2 text-[10px] font-mono text-slate-500">
+          <div className="flex items-center gap-4 mt-2 text-[10px] font-mono text-text-muted">
             <span>Interval: {card.interval}d</span>
             <span>EF: {card.ease_factor}</span>
             <span>Reps: {card.repetitions}</span>
@@ -468,11 +468,11 @@ function TopicAccordion({ topic, onReview, reviewing }: {
           <span className="text-2xl">{icon}</span>
           <div>
             <h4 className="font-display font-bold">{topic.name}</h4>
-            <p className="text-xs font-mono text-slate-500">{topic.subtopics.length} concepts • {progress.pct}% mastered</p>
+            <p className="text-xs font-mono text-text-muted">{topic.subtopics.length} concepts • {progress.pct}% mastered</p>
           </div>
         </div>
         <div className="flex items-center gap-4">
-          <div className="h-4 w-32 bg-slate-800 rounded-full overflow-hidden flex-1 max-w-xs">
+          <div className="h-4 w-32 bg-[#E5E0D3] rounded-full overflow-hidden flex-1 max-w-xs">
             <div className="h-full bg-gradient-to-r from-cyber-purple to-cyber-blue rounded-full" style={{ width: `${progress.pct}%` }} />
           </div>
           <span className="text-sm font-mono font-bold text-cyber-purple">{progress.pct}%</span>
@@ -484,7 +484,7 @@ function TopicAccordion({ topic, onReview, reviewing }: {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="border-t border-slate-800 p-4"
+            className="border-t border-[#EDEAE0] p-4"
           >
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {topic.subtopics.map((sub) => (
@@ -521,7 +521,7 @@ function SubtopicCard({ sub, onReview, reviewing }: {
             )}
           </div>
           <h5 className="font-medium text-sm truncate">{sub.name}</h5>
-          <div className="flex items-center gap-3 mt-1 text-[10px] font-mono text-slate-500">
+          <div className="flex items-center gap-3 mt-1 text-[10px] font-mono text-text-muted">
             <span>Interval: {sub.interval}d</span>
             <span>EF: {sub.ease_factor}</span>
             <span>Reps: {sub.repetitions}</span>
@@ -554,7 +554,7 @@ function ForecastTab({ forecast }: { forecast: any[] }) {
       </h3>
       <div className="grid grid-cols-7 gap-1 text-center">
         {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => (
-          <div key={d} className="text-[10px] font-mono text-slate-500 py-2">{d}</div>
+          <div key={d} className="text-[10px] font-mono text-text-muted py-2">{d}</div>
         ))}
         {Array.from({ length: 42 }, (_, i) => {
           const date = new Date();
@@ -569,11 +569,11 @@ function ForecastTab({ forecast }: { forecast: any[] }) {
             <motion.div
               key={dateStr}
               className={`aspect-square flex flex-col items-center justify-center rounded-xl text-xs font-mono transition-all ${
-                isPast ? "text-slate-500 bg-slate-900/50" : 
+                isPast ? "text-text-muted bg-surface-card" : 
                 count > 10 ? "bg-cyber-red/20 text-cyber-red" :
                 count > 5 ? "bg-cyber-yellow/20 text-cyber-yellow" :
                 count > 0 ? "bg-cyber-green/20 text-cyber-green" :
-                "bg-slate-800/50 text-slate-400"
+                "bg-surface-card text-text-muted"
               } ${isToday ? "ring-2 ring-cyber-purple" : ""}`}
               whileHover={{ scale: 1.1 }}
             >

@@ -1,0 +1,48 @@
+{
+  "id": "python-07-functions",
+  "track": "python",
+  "title": "Functions",
+  "section": "Python Basics",
+  "order": 7,
+  "type": "lesson",
+  "duration": "11 min",
+  "xp": 20,
+  "content": {
+    "theory": "A **function** is a reusable block of code. Define one with `def`, then **call** it by name:\n\n```python\ndef greet():\n    print(\"Hello!\")\n\ngreet()  # calls the function → Hello!\n```\n\nFunctions take **parameters** and can **return** values:\n\n```python\ndef add(a, b):\n    return a + b\n\nresult = add(3, 5)\nprint(result)  # 8\n```\n\n**Default parameters** kick in when no value is passed:\n\n```python\ndef greet(name=\"friend\"):\n    print(f\"Hi, {name}!\")\n\ngreet()        # Hi, friend!\ngreet(\"Sam\")   # Hi, Sam!\n```\n\nFunction naming follows the same rules as variables: lowercase, underscores for spaces.\n\nCalling a function **before** defining it causes a NameError — define first, call after.",
+    "codeSnippets": [
+      {
+        "language": "python",
+        "code": "def square(x):\n    return x * x\n\nprint(square(4))",
+        "output": "16"
+      }
+    ],
+    "exercise": {
+      "instruction": "Define a function 'double' that takes one parameter 'n' and returns n * 2. Then print double(21).",
+      "starterCode": "",
+      "language": "python",
+      "expected": "42",
+      "required": ["def double", "(n)", "return n * 2", "print(double(21))"],
+      "hints": [
+        "Hint 1: def double(n):",
+        "Hint 2: return n * 2",
+        "Hint 3: print(double(21)) → 42"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which keyword defines a function?",
+        "options": ["function", "def", "fn"],
+        "correct": 1
+      },
+      {
+        "question": "What does return do?",
+        "options": ["Prints a value", "Sends a value back to the caller", "Stops the whole program"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "python-08-dictionaries",
+    "unlocks": ["python-08-dictionaries"]
+  }
+}

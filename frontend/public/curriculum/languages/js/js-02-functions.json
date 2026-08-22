@@ -1,0 +1,46 @@
+{
+  "id": "js-02-functions",
+  "track": "javascript",
+  "title": "Functions",
+  "section": "JavaScript in Action",
+  "order": 2,
+  "type": "lesson",
+  "duration": "10 min",
+  "xp": 15,
+  "content": {
+    "theory": "A **function** is a reusable block of code that runs when you call it.\n\n### Declaring a function\n```js\nfunction greet(name) {\n  return \"Hello, \" + name + \"!\";\n}\n\nconsole.log(greet(\"Aarav\"));  // Hello, Aarav!\n```\n- `name` is a **parameter** (an input)\n- `return` sends a value back to the caller\n\n### Arrow functions (modern style)\n```js\nconst greet = (name) => {\n  return \"Hello, \" + name + \"!\";\n};\n\n// Even shorter when there's a single expression:\nconst greet = (name) => `Hello, ${name}!`;\n```\nArrow functions are the style you'll see in most modern code.\n\n### Functions with no return\nA function without `return` returns `undefined`:\n```js\nfunction logMessage(msg) {\n  console.log(msg);\n}\n```\n\n### Default parameters\n```js\nfunction greet(name = \"there\") {\n  return `Hello, ${name}!`;\n}\ngreet();          // Hello, there!\ngreet(\"Priya\");  // Hello, Priya!\n```\n\n### Passing & using results\n```js\nfunction add(a, b) {\n  return a + b;\n}\nconst total = add(3, 4);   // 7\n```",
+    "codeSnippets": [
+      {
+        "language": "javascript",
+        "code": "const square = (n) => n * n;\nconsole.log(square(5));  // 25",
+        "output": "25"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write an arrow function named 'multiply' that takes two numbers and returns their product. Call it with 6 and 7 and log the result.",
+      "starterCode": "<script>\n\n</script>",
+      "required": ["const multiply", "=>", "return", "multiply(6, 7)", "console.log"],
+      "hints": [
+        "Hint 1: const multiply = (a, b) => { return a * b; };",
+        "Hint 2: Call it: multiply(6, 7).",
+        "Hint 3: Log it: console.log(multiply(6, 7));"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What keyword sends a value back from a function?",
+        "options": ["return", "break", "yield"],
+        "correct": 0
+      },
+      {
+        "question": "What does an arrow function use instead of the 'function' keyword?",
+        "options": ["=>", "->", ":="],
+        "correct": 0
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "js-03-dom",
+    "unlocks": ["js-03-dom"]
+  }
+}

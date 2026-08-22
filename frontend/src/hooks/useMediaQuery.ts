@@ -1,42 +1,20 @@
 import { useEffect, useState } from "react";
 
-export default function useMediaQuery(query, defaultValue = false) {
-  const [matches, setMatches] = useState(() => {
-    if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
-      return defaultValue;
-    }
-
-    try {
-      return window.matchMedia(query).matches;
-    } catch {
-      return defaultValue;
-    }
-  });
+export function useMediaQuery(query: string): boolean {
+  const [matches, setMatches] = useState<boolean>(() =>
+    typeof window !== "undefined" ? window.matchMedia(query).matches : false
+  );
 
   useEffect(() => {
-    if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
-      return undefined;
-    }
-
-    const mediaQueryList = window.matchMedia(query);
-    const updateMatches = (event) => {
-      setMatches(event.matches);
-    };
-
-    setMatches(mediaQueryList.matches);
-
-    if (typeof mediaQueryList.addEventListener === "function") {
-      mediaQueryList.addEventListener("change", updateMatches);
-      return () => mediaQueryList.removeEventListener("change", updateMatches);
-    }
-
-    if (typeof mediaQueryList.addListener === "function") {
-      mediaQueryList.addListener(updateMatches);
-      return () => mediaQueryList.removeListener(updateMatches);
-    }
-
-    return undefined;
+    if (typeof window === "undefined") return;
+    const mql = window.matchMedia(query);
+    const onChange = (e: MediaQueryListEvent) => setMatches(e.matches);
+    setMatches(mql.matches);
+    mql.addEventListener("change", onChange);
+    return () => mql.removeEventListener("change", onChange);
   }, [query]);
 
   return matches;
 }
+
+export default useMediaQuery;

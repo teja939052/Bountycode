@@ -1,0 +1,56 @@
+{
+  "id": "js-14-fetch-api",
+  "track": "javascript",
+  "title": "Fetch & APIs",
+  "section": "JavaScript Advanced",
+  "order": 14,
+  "type": "lesson",
+  "duration": "13 min",
+  "xp": 25,
+  "content": {
+    "theory": "The `fetch()` function is the modern way to talk to servers. A **REST API** is a set of URLs that return data — usually JSON. `fetch(url)` sends a request and returns a Promise that resolves to a `Response` object, which you must parse before you can use the data.\n\n### Promise style\n```js\nfetch(\"https://api.example.com/user\")\n  .then((res) => res.json())\n  .then((data) => console.log(data.name));\n```\n`.json()` is async too — it reads the body and parses it, so it returns a promise you must also resolve. This is a classic two-step: get the response, then get the data.\n\n### async / await style\n```js\nasync function load() {\n  const res = await fetch(\"https://api.example.com/user\");\n  const data = await res.json();\n  console.log(data.name);\n}\n```\nCleaner and easier to read. Both styles are used in real codebases, so know both.\n\n### Handling errors properly\n`fetch` only rejects on network failures — a 404 or 500 still resolves! Always check `response.ok`:\n```js\nconst res = await fetch(url);\nif (!res.ok) {\n  throw new Error(\"Request failed: \" + res.status);\n}\nconst data = await res.json();\n```\n\n### Loading / error state pattern\n```js\nlet status = \"loading\";\ntry {\n  const data = await load();\n  status = \"loaded\";\n} catch (err) {\n  status = \"error: \" + err.message;\n}\n```\nReal apps flip between three states — loading, loaded, error — and re-render the UI on each change. Never assume the fetch succeeded.\n\n### JSON.stringify — the reverse\nSending data back uses `JSON.stringify(obj)` to turn an object into a JSON string. The round-trip is: `JSON.stringify` to encode, `JSON.parse` to decode. Remember `response.ok` checks HTTP status, `res.json()` parses the body, and an unawaited fetch is a Promise you never use — a silent, confusing bug.",
+    "codeSnippets": [
+      {
+        "language": "javascript",
+        "code": "const res = await fetch(\"https://api.example.com/user\");\nconst data = await res.json();\nconsole.log(data.name);",
+        "output": "The value of data.name from the API."
+      },
+      {
+        "language": "javascript",
+        "code": "JSON.stringify({ name: \"Ada\", age: 36 })",
+        "output": "{\"name\":\"Ada\",\"age\":36}"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write an async function load() that fetches \"data.json\", awaits res.json(), and sets output.textContent to data.title. Call load() at the end. (The preview has no real data.json — we're testing the code structure, not the result.)",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<body>\n  <p id=\"output\"></p>\n  <script>\n\n  </script>\n</body>\n</html>",
+      "required": ["async function load", "fetch(", "\"data.json\"", "await", "res.json()", "data.title", "load()"],
+      "hints": [
+        "Hint 1: async function load() { const res = await fetch(\"data.json\"); ... }",
+        "Hint 2: const data = await res.json();",
+        "Hint 3: document.getElementById(\"output\").textContent = data.title; then load();"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What does res.json() do?",
+        "options": ["Checks if the request worked", "Reads and parses the response body as JSON", "Sends JSON to the server"],
+        "correct": 1
+      },
+      {
+        "question": "Does fetch reject on a 404 response?",
+        "options": ["Yes, always", "No, only on network failures — check res.ok", "Only in async functions"],
+        "correct": 1
+      },
+      {
+        "question": "How do you turn an object into a JSON string?",
+        "options": ["JSON.parse(obj)", "obj.toJSON()", "JSON.stringify(obj)"],
+        "correct": 2
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "js-15-localstorage",
+    "unlocks": ["js-15-localstorage"]
+  }
+}

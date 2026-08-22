@@ -1,0 +1,46 @@
+{
+  "id": "css-05-grid",
+  "track": "css",
+  "title": "CSS Grid Layout",
+  "section": "Styling with CSS",
+  "order": 5,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "CSS **Grid** is the modern two-dimensional layout system — it arranges items in rows *and* columns at once, perfect for page-level layout.\n\n### Define a grid\n```css\n.container {\n  display: grid;\n  grid-template-columns: 200px 200px 200px;  /* three fixed columns */\n  gap: 16px;\n}\n```\n\n### The fr unit — flexible fractions\n```css\n.container {\n  display: grid;\n  grid-template-columns: 1fr 2fr 1fr;  /* side columns half the middle */\n}\n```\nThe `fr` unit divides remaining space by ratio — much more flexible than pixels.\n\n### repeat() and auto-fit\n```css\n.grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n}\n```\n`repeat(auto-fit, minmax(200px, 1fr))` is the magic responsive pattern — it makes as many 200px+ columns as fit, and wraps automatically.\n\n### Rows and area placement\n```css\n.grid {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  grid-template-rows: auto auto;\n}\n.item { grid-column: 1 / 3; }   /* spans both columns */\n```\n\n### Alignment\n```css\n.grid {\n  place-items: center;   /* centers items in their cells */\n}\n```\n\n### Grid vs Flexbox\n- **Flexbox**: one direction at a time (row *or* column) — great for components\n- **Grid**: both directions — great for page layout\n\nUse them together: Grid for the overall page, Flexbox inside each cell.",
+    "codeSnippets": [
+      {
+        "language": "css",
+        "code": ".grid {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 12px;\n}",
+        "output": "Two equal columns with a 12px gap."
+      }
+    ],
+    "exercise": {
+      "instruction": "Make .grid a CSS grid: display grid, three equal columns using 1fr, a 16px gap, and center items with place-items: center.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Grid</title>\n  <style>\n    .grid {\n\n    }\n    .item { background: #f97316; color: white; padding: 20px; text-align: center; }\n  </style>\n</head>\n<body>\n  <div class=\"grid\">\n    <div class=\"item\">A</div>\n    <div class=\"item\">B</div>\n    <div class=\"item\">C</div>\n    <div class=\"item\">D</div>\n    <div class=\"item\">E</div>\n    <div class=\"item\">F</div>\n  </div>\n</body>\n</html>",
+      "required": ["display: grid", "grid-template-columns: 1fr 1fr 1fr", "gap: 16px", "place-items: center"],
+      "hints": [
+        "Hint 1: .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; place-items: center; }",
+        "Hint 2: Change the number of columns to see items reflow.",
+        "Hint 3: The items stay centered inside their cells."
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What does the fr unit represent?",
+        "options": ["A fixed pixel size", "A flexible fraction of the remaining space", "A percentage"],
+        "correct": 1
+      },
+      {
+        "question": "Grid is best for what kind of layout?",
+        "options": ["Single-line toolbars", "Two-dimensional page layout", "Animated text"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "css-06-animations",
+    "unlocks": ["css-06-animations"]
+  }
+}

@@ -94,7 +94,7 @@ export default function CoverLetter() {
         {!resumeId ? (
           <div className="card">
             <h2 className="text-xl font-display font-bold text-text-primary mb-4">Upload Your Resume</h2>
-            <div className="border-2 border-dashed border-gray-200 rounded-lg p-8 text-center">
+            <div className="border-2 border-dashed border-brand-primary/10 rounded-lg p-8 text-center">
               <input
                 type="file"
                 accept=".pdf"
@@ -105,7 +105,7 @@ export default function CoverLetter() {
               <label htmlFor="cl-upload" className="cursor-pointer">
                 <Mail className="mx-auto text-gray-400 mb-3" size={40} />
                 <p className="text-gray-400">Click to upload PDF resume</p>
-                <p className="text-sm text-gray-500 mt-1">Max 5MB</p>
+                <p className="text-sm text-brand-muted mt-1">Max 5MB</p>
               </label>
             </div>
           </div>
@@ -115,7 +115,7 @@ export default function CoverLetter() {
               <button
                 onClick={() => setActiveTab("cover-letter")}
                 className={`flex-1 py-3 rounded-lg font-semibold transition-colors ${
-                  activeTab === "cover-letter" ? "bg-cyber-blue text-space-void" : "bg-space-panel border border-gray-200 text-gray-500"
+                  activeTab === "cover-letter" ? "bg-cyber-blue text-space-void" : "bg-space-panel border border-brand-primary/10 text-brand-muted"
                 }`}
               >
                 Cover Letter
@@ -123,7 +123,7 @@ export default function CoverLetter() {
               <button
                 onClick={() => setActiveTab("linkedin")}
                 className={`flex-1 py-3 rounded-lg font-semibold transition-colors ${
-                  activeTab === "linkedin" ? "bg-cyber-blue text-space-void" : "bg-space-panel border border-gray-200 text-gray-500"
+                  activeTab === "linkedin" ? "bg-cyber-blue text-space-void" : "bg-space-panel border border-brand-primary/10 text-brand-muted"
                 }`}
               >
                 LinkedIn About
@@ -133,7 +133,7 @@ export default function CoverLetter() {
             {activeTab === "cover-letter" && !coverLetter && (
               <div className="card">
                 <h2 className="text-xl font-display font-bold text-text-primary mb-4">Generate Cover Letter</h2>
-                <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 mb-4">
+                <div className="bg-surface-base border border-brand-primary/10 rounded-lg p-3 mb-4">
                   <p className="text-xs font-mono text-gray-400">
                     Resume uploaded: <span className="text-text-primary">{resumeText.substring(0, 80)}...</span>
                   </p>
@@ -181,7 +181,7 @@ export default function CoverLetter() {
                     {copied ? "Copied!" : "Copy"}
                   </button>
                 </div>
-                <pre className="whitespace-pre-wrap text-xs font-mono text-gray-700 bg-gray-50 border border-gray-200 p-4 rounded-lg max-h-[500px] overflow-y-auto">
+                <pre className="whitespace-pre-wrap text-xs font-mono text-brand-primary bg-surface-base border border-brand-primary/10 p-4 rounded-lg max-h-[500px] overflow-y-auto">
                   {coverLetter}
                 </pre>
                 <div className="flex gap-4 mt-4">
@@ -198,7 +198,7 @@ export default function CoverLetter() {
             {activeTab === "linkedin" && !linkedinAbout && (
               <div className="card">
                 <h2 className="text-xl font-display font-bold text-text-primary mb-4">Generate LinkedIn About Section</h2>
-                <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 mb-4">
+                <div className="bg-surface-base border border-brand-primary/10 rounded-lg p-3 mb-4">
                   <p className="text-xs font-mono text-gray-400">
                     Resume uploaded: <span className="text-text-primary">{resumeText.substring(0, 80)}...</span>
                   </p>
@@ -237,7 +237,7 @@ export default function CoverLetter() {
                     {copied ? "Copied!" : "Copy"}
                   </button>
                 </div>
-                <pre className="whitespace-pre-wrap text-xs font-mono text-gray-700 bg-gray-50 border border-gray-200 p-4 rounded-lg max-h-[300px] overflow-y-auto">
+                <pre className="whitespace-pre-wrap text-xs font-mono text-brand-primary bg-surface-base border border-brand-primary/10 p-4 rounded-lg max-h-[300px] overflow-y-auto">
                   {linkedinAbout}
                 </pre>
                 <div className="flex gap-4 mt-4">

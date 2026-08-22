@@ -1,0 +1,48 @@
+{
+  "id": "python-03-strings",
+  "track": "python",
+  "title": "Strings in Action",
+  "section": "Python Basics",
+  "order": 3,
+  "type": "lesson",
+  "duration": "9 min",
+  "xp": 15,
+  "content": {
+    "theory": "Strings hold text. You can create them with single or double quotes:\n\n```python\ncity = 'Delhi'\ncountry = \"India\"\n```\n\nStrings have useful **methods** — functions that belong to the string:\n\n```python\ntext = \"Hello, World\"\nprint(text.upper())     # HELLO, WORLD\nprint(text.lower())     # hello, world\nprint(text.strip())     # removes surrounding spaces\nprint(text.replace(\"World\", \"Python\"))  # Hello, Python\nprint(len(text))        # 12 — length of the string\n```\n\n**Slicing** lets you grab parts of a string using `[start:end]`:\n\n```python\nprint(text[0:5])   # Hello\nprint(text[7:])    # World\nprint(text[-5:])   # World (last 5 chars)\n```\n\n**Concatenation** joins strings with `+`:\n\n```python\nfirst = \"Sam\"\nlast = \"Lee\"\nfull = first + \" \" + last\n```\n\n`len()` works on strings — but returns the number of characters, so `len(\"hello\")` is `5`.",
+    "codeSnippets": [
+      {
+        "language": "python",
+        "code": "word = \"python\"\nprint(word.upper())\nprint(len(word))",
+        "output": "PYTHON\n6"
+      }
+    ],
+    "exercise": {
+      "instruction": "Create a string 'phrase' equal to '  coding rocks  '. Print its length, then print the phrase with leading/trailing spaces removed and uppercased (as 'CODING ROCKS').",
+      "starterCode": "",
+      "language": "python",
+      "expected": "15\nCODING ROCKS",
+      "required": ["phrase =", ".strip()", ".upper()"],
+      "hints": [
+        "Hint 1: phrase = \"  coding rocks  \"",
+        "Hint 2: print(len(phrase)) → 15",
+        "Hint 3: print(phrase.strip().upper()) → CODING ROCKS"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What does \"abc\".upper() return?",
+        "options": ["\"abc\"", "\"ABC\"", "\"Abc\""],
+        "correct": 1
+      },
+      {
+        "question": "What does len(\"hello\") return?",
+        "options": ["4", "5", "6"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "python-04-conditionals",
+    "unlocks": ["python-04-conditionals"]
+  }
+}

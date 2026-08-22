@@ -52,7 +52,7 @@ const STATUS_COLORS = {
   scheduled: "bg-cyber-blue/10 text-cyber-blue border-cyber-blue/30",
   in_progress: "bg-cyber-orange/10 text-cyber-orange border-cyber-orange/30",
   completed: "bg-cyber-green/10 text-cyber-green border-cyber-green/30",
-  cancelled: "bg-gray-500/10 text-gray-400 border-gray-500/30",
+  cancelled: "bg-surface-card/30 text-brand-muted border-brand-primary/10",
   no_show: "bg-cyber-red/10 text-cyber-red border-cyber-red/30",
 };
 
@@ -91,6 +91,8 @@ export default function InterviewBooking() {
   const [showBookingForm, setShowBookingForm] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [bookingError, setBookingError] = useState(null);
 
   const [formData, setFormData] = useState({
     type: "technical",
@@ -143,7 +145,7 @@ export default function InterviewBooking() {
   }, [formData.date, formData.type]);
 
   const handleBook = async () => {
-    if (!formData.date || !formData.time) {
+    if (!formData.date || !formData.time || submitting) {
       return;
     }
 
@@ -157,6 +159,8 @@ export default function InterviewBooking() {
       notes: formData.notes,
     };
 
+    setSubmitting(true);
+    setBookingError(null);
     try {
       const res = await api.booking.bookInterview(payload);
       setShowConfirmModal(false);
@@ -173,6 +177,13 @@ export default function InterviewBooking() {
       await loadData();
     } catch (err) {
       console.error("Booking failed:", err);
+      const detail = err?.message || "Failed to book the interview. Please try again.";
+      setBookingError(detail);
+      if (err?.status === 429 || detail === "Duplicate request") {
+        await loadData();
+      }
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -245,10 +256,10 @@ export default function InterviewBooking() {
         >
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h1 className="text-3xl font-display font-extrabold text-text-primary">
+              <h1 className="text-3xl font-display font-extrabold text-white">
                 Mock Interview <span className="text-brand-sky">Booking</span>
               </h1>
-              <p className="text-text-secondary mt-1">Schedule, attend, and review AI-powered mock interviews</p>
+              <p className="text-brand-secondary mt-1">Schedule, attend, and review AI-powered mock interviews</p>
             </div>
             <button
               onClick={() => setShowBookingForm(!showBookingForm)}
@@ -263,7 +274,7 @@ export default function InterviewBooking() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
               <motion.div
                 whileHover={{ scale: 1.02 }}
-                className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm"
+                className="rounded-2xl border border-brand-primary/10 bg-surface-card/30 p-5"
               >
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-10 h-10 rounded-xl bg-cyber-blue/10 flex items-center justify-center">
@@ -271,12 +282,12 @@ export default function InterviewBooking() {
                   </div>
                   <span className="text-[11px] font-mono uppercase tracking-[0.15em] text-text-light">Total Booked</span>
                 </div>
-                <div className="text-2xl font-display font-bold text-text-primary">{stats.total_booked}</div>
+                <div className="text-2xl font-display font-bold text-white">{stats.total_booked}</div>
               </motion.div>
 
               <motion.div
                 whileHover={{ scale: 1.02 }}
-                className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm"
+                className="rounded-2xl border border-brand-primary/10 bg-surface-card/30 p-5"
               >
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-10 h-10 rounded-xl bg-cyber-green/10 flex items-center justify-center">
@@ -284,12 +295,12 @@ export default function InterviewBooking() {
                   </div>
                   <span className="text-[11px] font-mono uppercase tracking-[0.15em] text-text-light">Completed</span>
                 </div>
-                <div className="text-2xl font-display font-bold text-text-primary">{stats.completed}</div>
+                <div className="text-2xl font-display font-bold text-white">{stats.completed}</div>
               </motion.div>
 
               <motion.div
                 whileHover={{ scale: 1.02 }}
-                className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm"
+                className="rounded-2xl border border-brand-primary/10 bg-surface-card/30 p-5"
               >
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-10 h-10 rounded-xl bg-cyber-yellow/10 flex items-center justify-center">
@@ -297,12 +308,12 @@ export default function InterviewBooking() {
                   </div>
                   <span className="text-[11px] font-mono uppercase tracking-[0.15em] text-text-light">Avg Score</span>
                 </div>
-                <div className="text-2xl font-display font-bold text-text-primary">{stats.avg_score.toFixed(1)}</div>
+                <div className="text-2xl font-display font-bold text-white">{stats.avg_score.toFixed(1)}</div>
               </motion.div>
 
               <motion.div
                 whileHover={{ scale: 1.02 }}
-                className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm"
+                className="rounded-2xl border border-brand-primary/10 bg-surface-card/30 p-5"
               >
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-10 h-10 rounded-xl bg-cyber-orange/10 flex items-center justify-center">
@@ -310,7 +321,7 @@ export default function InterviewBooking() {
                   </div>
                   <span className="text-[11px] font-mono uppercase tracking-[0.15em] text-text-light">Streak</span>
                 </div>
-                <div className="text-2xl font-display font-bold text-text-primary">{stats.streak_days}d</div>
+                <div className="text-2xl font-display font-bold text-white">{stats.streak_days}d</div>
               </motion.div>
             </div>
           )}
@@ -322,9 +333,9 @@ export default function InterviewBooking() {
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.3 }}
-                className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm mb-8 overflow-hidden"
+                className="rounded-2xl border border-brand-primary/10 bg-surface-card/30 p-6 mb-8 overflow-hidden"
               >
-                <h3 className="text-lg font-display font-bold text-text-primary mb-6">Schedule a Mock Interview</h3>
+                <h3 className="text-lg font-display font-bold text-white mb-6">Schedule a Mock Interview</h3>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
@@ -332,7 +343,7 @@ export default function InterviewBooking() {
                     <select
                       value={formData.type}
                       onChange={(e) => setFormData((prev) => ({ ...prev, type: e.target.value }))}
-                      className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-text-primary focus:outline-none focus:border-brand-sky/50 focus:ring-1 focus:ring-brand-sky/20 transition-all"
+                      className="w-full rounded-xl border border-brand-primary/10 bg-surface-card/30 px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-sky/50 focus:ring-1 focus:ring-brand-sky/20 transition-all"
                     >
                       {INTERVIEW_TYPES.map((t) => (
                         <option key={t.id} value={t.id}>{t.label}</option>
@@ -350,7 +361,7 @@ export default function InterviewBooking() {
                           className={`flex-1 py-2.5 rounded-xl text-sm font-medium border transition-all ${
                             formData.duration_minutes === d.id
                               ? "border-brand-sky bg-brand-sky/10 text-brand-sky"
-                              : "border-white/10 bg-white/5 text-text-secondary hover:border-brand-sky/30"
+                              : "border-brand-primary/10 bg-surface-card/30 text-brand-secondary hover:border-brand-sky/30"
                           }`}
                         >
                           {d.label}
@@ -366,19 +377,19 @@ export default function InterviewBooking() {
                       value={formData.date}
                       onChange={(e) => setFormData((prev) => ({ ...prev, date: e.target.value, time: "" }))}
                       min={new Date().toISOString().split("T")[0]}
-                      className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-text-primary focus:outline-none focus:border-brand-sky/50 focus:ring-1 focus:ring-brand-sky/20 transition-all"
+                      className="w-full rounded-xl border border-brand-primary/10 bg-surface-card/30 px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-sky/50 focus:ring-1 focus:ring-brand-sky/20 transition-all"
                     />
                   </div>
 
                   <div>
                     <label className="block text-[11px] font-mono uppercase tracking-[0.15em] text-text-light mb-2">Time</label>
                     {slotsLoading ? (
-                      <div className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-text-light">Loading slots...</div>
+                      <div className="w-full rounded-xl border border-brand-primary/10 bg-surface-card/30 px-4 py-3 text-sm text-text-light">Loading slots...</div>
                     ) : availableSlots.length > 0 ? (
                       <select
                         value={formData.time}
                         onChange={(e) => setFormData((prev) => ({ ...prev, time: e.target.value }))}
-                        className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-text-primary focus:outline-none focus:border-brand-sky/50 focus:ring-1 focus:ring-brand-sky/20 transition-all"
+                        className="w-full rounded-xl border border-brand-primary/10 bg-surface-card/30 px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-sky/50 focus:ring-1 focus:ring-brand-sky/20 transition-all"
                       >
                         <option value="">Select a time slot</option>
                         {availableSlots
@@ -391,7 +402,7 @@ export default function InterviewBooking() {
                       <select
                         value={formData.time}
                         onChange={(e) => setFormData((prev) => ({ ...prev, time: e.target.value }))}
-                        className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-text-primary focus:outline-none focus:border-brand-sky/50 focus:ring-1 focus:ring-brand-sky/20 transition-all"
+                        className="w-full rounded-xl border border-brand-primary/10 bg-surface-card/30 px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-sky/50 focus:ring-1 focus:ring-brand-sky/20 transition-all"
                       >
                         <option value="">Select a time</option>
                         {Array.from({ length: 11 }, (_, i) => {
@@ -408,7 +419,7 @@ export default function InterviewBooking() {
                     <select
                       value={formData.company_target}
                       onChange={(e) => setFormData((prev) => ({ ...prev, company_target: e.target.value }))}
-                      className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-text-primary focus:outline-none focus:border-brand-sky/50 focus:ring-1 focus:ring-brand-sky/20 transition-all"
+                      className="w-full rounded-xl border border-brand-primary/10 bg-surface-card/30 px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-sky/50 focus:ring-1 focus:ring-brand-sky/20 transition-all"
                     >
                       <option value="">None</option>
                       {COMPANIES.map((c) => (
@@ -422,7 +433,7 @@ export default function InterviewBooking() {
                     <select
                       value={formData.role_target}
                       onChange={(e) => setFormData((prev) => ({ ...prev, role_target: e.target.value }))}
-                      className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-text-primary focus:outline-none focus:border-brand-sky/50 focus:ring-1 focus:ring-brand-sky/20 transition-all"
+                      className="w-full rounded-xl border border-brand-primary/10 bg-surface-card/30 px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-sky/50 focus:ring-1 focus:ring-brand-sky/20 transition-all"
                     >
                       <option value="">None</option>
                       {ROLES.map((r) => (
@@ -438,12 +449,12 @@ export default function InterviewBooking() {
                       onChange={(e) => setFormData((prev) => ({ ...prev, notes: e.target.value }))}
                       rows={3}
                       placeholder="Add any notes or focus areas for this interview..."
-                      className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-text-primary focus:outline-none focus:border-brand-sky/50 focus:ring-1 focus:ring-brand-sky/20 transition-all resize-none"
+                      className="w-full rounded-xl border border-brand-primary/10 bg-surface-card/30 px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-sky/50 focus:ring-1 focus:ring-brand-sky/20 transition-all resize-none"
                     />
                   </div>
                 </div>
 
-                <div className="flex justify-end gap-3 mt-6 pt-4 border-t border-white/5">
+                <div className="flex justify-end gap-3 mt-6 pt-4 border-t border-brand-primary/5">
                   <button
                     onClick={() => {
                       setShowBookingForm(false);
@@ -458,7 +469,7 @@ export default function InterviewBooking() {
                       });
                       setSelectedSlot(null);
                     }}
-                    className="px-5 py-2.5 rounded-xl border border-white/10 bg-white/5 text-sm font-medium text-text-secondary hover:text-text-primary transition-colors"
+                    className="px-5 py-2.5 rounded-xl border border-brand-primary/10 bg-surface-card/30 text-sm font-medium text-brand-secondary hover:text-white transition-colors"
                   >
                     Cancel
                   </button>
@@ -491,34 +502,34 @@ export default function InterviewBooking() {
                 initial={{ scale: 0.95, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.95, opacity: 0 }}
-                className="rounded-2xl border border-white/10 bg-surface-card p-6 max-w-md w-full mx-4 shadow-soft-xl"
+                className="rounded-2xl border border-brand-primary/10 bg-surface-card p-6 max-w-md w-full mx-4 shadow-soft-xl"
                 onClick={(e) => e.stopPropagation()}
               >
-                <h3 className="text-lg font-display font-bold text-text-primary mb-4">Confirm Booking</h3>
+                <h3 className="text-lg font-display font-bold text-white mb-4">Confirm Booking</h3>
 
                 <div className="space-y-3 mb-6">
                   <div className="flex justify-between text-sm">
                     <span className="text-text-light">Type</span>
-                    <span className="text-text-primary font-medium">{formData.type.replace("_", " ")}</span>
+                    <span className="text-white font-medium">{formData.type.replace("_", " ")}</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-text-light">Date & Time</span>
-                    <span className="text-text-primary font-medium">{formattedDate} at {formData.time}</span>
+                    <span className="text-white font-medium">{formattedDate} at {formData.time}</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-text-light">Duration</span>
-                    <span className="text-text-primary font-medium">{formData.duration_minutes} minutes</span>
+                    <span className="text-white font-medium">{formData.duration_minutes} minutes</span>
                   </div>
                   {formData.company_target && (
                     <div className="flex justify-between text-sm">
                       <span className="text-text-light">Company</span>
-                      <span className="text-text-primary font-medium">{formData.company_target}</span>
+                      <span className="text-white font-medium">{formData.company_target}</span>
                     </div>
                   )}
                   {formData.role_target && (
                     <div className="flex justify-between text-sm">
                       <span className="text-text-light">Role</span>
-                      <span className="text-text-primary font-medium">{formData.role_target}</span>
+                      <span className="text-white font-medium">{formData.role_target}</span>
                     </div>
                   )}
                 </div>
@@ -526,30 +537,37 @@ export default function InterviewBooking() {
                 <div className="flex gap-3">
                   <button
                     onClick={() => setShowConfirmModal(false)}
-                    className="flex-1 px-4 py-2.5 rounded-xl border border-white/10 bg-white/5 text-sm font-medium text-text-secondary hover:text-text-primary transition-colors"
+                    disabled={submitting}
+                    className="flex-1 px-4 py-2.5 rounded-xl border border-brand-primary/10 bg-surface-card/30 text-sm font-medium text-brand-secondary hover:text-white transition-colors disabled:opacity-50"
                   >
                     Back
                   </button>
                   <button
                     onClick={handleBook}
-                    className="flex-1 btn-primary px-4 py-2.5 text-sm flex items-center justify-center gap-2"
+                    disabled={submitting}
+                    className="flex-1 btn-primary px-4 py-2.5 text-sm flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     <CheckCircle2 size={14} />
-                    Confirm Booking
+                    {submitting ? "Booking..." : "Confirm Booking"}
                   </button>
                 </div>
+                {bookingError && (
+                  <div className="mt-3 rounded-lg border border-cyber-red/30 bg-cyber-red/10 px-3 py-2 text-xs text-cyber-red">
+                    {bookingError}
+                  </div>
+                )}
               </motion.div>
             </motion.div>
           )}
 
-          <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden">
-            <div className="flex border-b border-white/5">
+          <div className="rounded-2xl border border-brand-primary/10 bg-surface-card/30 overflow-hidden">
+            <div className="flex border-b border-brand-primary/5">
               <button
                 onClick={() => setActiveTab("book")}
                 className={`flex-1 px-6 py-4 text-sm font-medium transition-colors ${
                   activeTab === "book"
                     ? "text-brand-sky border-b-2 border-brand-sky bg-brand-sky/5"
-                    : "text-text-light hover:text-text-primary"
+                    : "text-text-light hover:text-white"
                 }`}
               >
                 Upcoming ({bookings.length})
@@ -559,7 +577,7 @@ export default function InterviewBooking() {
                 className={`flex-1 px-6 py-4 text-sm font-medium transition-colors ${
                   activeTab === "history"
                     ? "text-brand-sky border-b-2 border-brand-sky bg-brand-sky/5"
-                    : "text-text-light hover:text-text-primary"
+                    : "text-text-light hover:text-white"
                 }`}
               >
                 History
@@ -571,7 +589,7 @@ export default function InterviewBooking() {
                 {bookings.length === 0 ? (
                   <div className="text-center py-12">
                     <CalendarClock size={48} className="mx-auto text-text-light/30 mb-4" />
-                    <p className="text-text-secondary text-sm">No upcoming interviews</p>
+                    <p className="text-brand-secondary text-sm">No upcoming interviews</p>
                     <button
                       onClick={() => {
                         setShowBookingForm(true);
@@ -601,7 +619,7 @@ export default function InterviewBooking() {
                                 <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider border ${STATUS_COLORS[booking.status] || STATUS_COLORS.scheduled}`}>
                                   {booking.status}
                                 </span>
-                                <span className="text-sm font-medium text-text-primary">{booking.type?.replace("_", " ")}</span>
+                                <span className="text-sm font-medium text-white">{booking.type?.replace("_", " ")}</span>
                               </div>
                               <div className="flex items-center gap-4 mt-1 text-xs text-text-light">
                                 <span className="flex items-center gap-1"><Calendar size={12} />{booking.scheduled_at ? new Date(booking.scheduled_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : ""}</span>
@@ -636,7 +654,7 @@ export default function InterviewBooking() {
               </div>
             ) : (
               <div className="p-6">
-                <div className="flex items-center gap-2 mb-4 border-b border-white/5 pb-4">
+                <div className="flex items-center gap-2 mb-4 border-b border-brand-primary/5 pb-4">
                   {["completed", "cancelled", "no_show", "all"].map((tab) => (
                     <button
                       key={tab}
@@ -644,7 +662,7 @@ export default function InterviewBooking() {
                       className={`px-4 py-2 rounded-lg text-xs font-mono uppercase tracking-wider transition-colors ${
                         historyTab === tab
                           ? "bg-brand-sky/10 text-brand-sky border border-brand-sky/20"
-                          : "text-text-light hover:text-text-primary"
+                          : "text-text-light hover:text-white"
                       }`}
                     >
                       {tab === "all" ? "All" : tab.replace("_", " ")}
@@ -654,7 +672,7 @@ export default function InterviewBooking() {
 
                 {history.length === 0 ? (
                   <div className="text-center py-8">
-                    <p className="text-text-secondary text-sm">No history found</p>
+                    <p className="text-brand-secondary text-sm">No history found</p>
                   </div>
                 ) : (
                   <div className="space-y-3">
@@ -665,7 +683,7 @@ export default function InterviewBooking() {
                         className="rounded-xl border border-white/8 bg-white/3 p-4 flex flex-col sm:flex-row sm:items-center gap-4"
                       >
                         <div className="flex items-center gap-4 flex-1 min-w-0">
-                            <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10">
+                            <div className="w-10 h-10 rounded-xl bg-surface-card/30 flex items-center justify-center border border-brand-primary/10">
                               {(() => {
                                 const IconComp = STATUS_ICONS[booking.status];
                                 return IconComp ? <IconComp size={16} /> : <Bell size={16} />;
@@ -673,7 +691,7 @@ export default function InterviewBooking() {
                             </div>
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2 flex-wrap">
-                              <span className="text-sm font-medium text-text-primary">{booking.type?.replace("_", " ")}</span>
+                              <span className="text-sm font-medium text-white">{booking.type?.replace("_", " ")}</span>
                               <ScoreBadge score={booking.overall_score} />
                             </div>
                             <div className="flex items-center gap-3 mt-1 text-xs text-text-light">
@@ -692,7 +710,7 @@ export default function InterviewBooking() {
                                     api.booking.getBookingDetail(booking.id || booking.booking_id);
                                   }
                                 }}
-                                className="px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 text-xs font-medium text-text-secondary hover:text-text-primary transition-colors"
+                                className="px-3 py-1.5 rounded-lg border border-brand-primary/10 bg-surface-card/30 text-xs font-medium text-brand-secondary hover:text-white transition-colors"
                               >
                                 Review
                               </button>
@@ -715,7 +733,7 @@ export default function InterviewBooking() {
                                 api.booking.getBookingDetail(booking.id || booking.booking_id);
                               }
                             }}
-                            className="px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 text-xs font-medium text-text-secondary hover:text-text-primary transition-colors"
+                            className="px-3 py-1.5 rounded-lg border border-brand-primary/10 bg-surface-card/30 text-xs font-medium text-brand-secondary hover:text-white transition-colors"
                           >
                             View
                           </button>

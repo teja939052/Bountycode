@@ -1,0 +1,48 @@
+{
+  "id": "java-06-arrays",
+  "track": "java",
+  "title": "Arrays",
+  "section": "Java Basics",
+  "order": 6,
+  "type": "lesson",
+  "duration": "11 min",
+  "xp": 20,
+  "content": {
+    "theory": "An **array** holds a fixed number of same-typed values. Two ways to create one:\n\n```java\nint[] scores = new int[4];           // array of 4 ints, all 0\nString[] names = {\"Ada\", \"Alan\", \"Linus\"};  // with values\n```\n\nThe **length is fixed** once created — you can't add items. `length` is a property (no parentheses):\n\n```java\nSystem.out.println(names.length);   // 3\n```\n\nAccess and set by index — Java is 0-based:\n\n```java\nscores[0] = 95;\nSystem.out.println(scores[0]);     // 95\nSystem.out.println(names[1]);       // Alan\nSystem.out.println(names[names.length - 1]);  // last item\n```\n\nLoop through with an index or the enhanced for-each:\n\n```java\nfor (int i = 0; i < scores.length; i++) {\n    System.out.println(scores[i]);\n}\n\nfor (String name : names) {\n    System.out.println(name);\n}\n```\n\nWatch out: accessing `scores[10]` when the array has only 4 items throws an `ArrayIndexOutOfBoundsException`.\n\n`ArrayList` (from `java.util`) is the growable alternative — but arrays are the foundation, so master them first.",
+    "codeSnippets": [
+      {
+        "language": "java",
+        "code": "int[] nums = {10, 20, 30};\nint sum = 0;\nfor (int n : nums) {\n    sum += n;\n}\nSystem.out.println(sum);",
+        "output": "60"
+      }
+    ],
+    "exercise": {
+      "instruction": "Create a String[] 'colors' with values 'red', 'green', 'blue'. Print colors[0] and the array length.",
+      "starterCode": "public class Main {\n    public static void main(String[] args) {\n\n    }\n}",
+      "language": "java",
+      "expected": "red\n3",
+      "required": ["String[] colors", "red", "green", "blue", "colors[0]", ".length"],
+      "hints": [
+        "Hint 1: String[] colors = {\"red\", \"green\", \"blue\"};",
+        "Hint 2: System.out.println(colors[0]);",
+        "Hint 3: System.out.println(colors.length);"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What is the index of the last item in a 5-element array?",
+        "options": ["5", "4", "length"],
+        "correct": 1
+      },
+      {
+        "question": "Which statement is true about arrays?",
+        "options": ["They can grow automatically", "Their length is fixed", "They hold mixed types"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "java-07-methods",
+    "unlocks": ["java-07-methods"]
+  }
+}

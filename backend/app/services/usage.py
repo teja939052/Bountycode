@@ -1,7 +1,9 @@
 from datetime import datetime, timezone
+import asyncio
 from app.database import users_collection
 from app.config import get_settings
 from bson import ObjectId
+from app.services.email import send_email, limit_reached_email
 
 settings = get_settings()
 
@@ -16,6 +18,7 @@ async def check_and_reset_monthly_usage(user: dict) -> dict:
             {"_id": ObjectId(user["id"])},
             {"$set": {"monthly_reset_date": now}},
         )
+        user["monthly_reset_date"] = now
         return user
 
     if user.get("plan") in ("pro", "lifetime"):
@@ -36,6 +39,7 @@ async def check_and_reset_monthly_usage(user: dict) -> dict:
                     "company_mocks_used": 0,
                     "predictions_used": 0,
                     "question_bank_used": 0,
+                    "streak_repairs_used": 0,
                     "monthly_reset_date": now,
                 }
             },
@@ -47,6 +51,7 @@ async def check_and_reset_monthly_usage(user: dict) -> dict:
         user["company_mocks_used"] = 0
         user["predictions_used"] = 0
         user["question_bank_used"] = 0
+        user["streak_repairs_used"] = 0
         user["monthly_reset_date"] = now
 
     return user
@@ -66,6 +71,7 @@ def can_use_feature(user: dict, feature: str) -> tuple[bool, str]:
         "predictor": getattr(settings, "FREE_TIER_PREDICTOR_LIMIT", 3),
         "question_bank": getattr(settings, "FREE_TIER_QUESTION_BANK_LIMIT", 5),
         "interview_booking": getattr(settings, "FREE_TIER_INTERVIEW_BOOKING_LIMIT", 3),
+        "streak_repair": getattr(settings, "FREE_TIER_STREAK_REPAIRS", 1),
     }
 
     used_keys = {
@@ -77,6 +83,7 @@ def can_use_feature(user: dict, feature: str) -> tuple[bool, str]:
         "predictor": "predictions_used",
         "question_bank": "question_bank_used",
         "interview_booking": "interview_bookings_used",
+        "streak_repair": "streak_repairs_used",
     }
 
     limit = limits.get(feature, 0)
@@ -99,13 +106,53 @@ async def mark_feature_used(user_id: str, feature: str) -> None:
         "predictor": "predictions_used",
         "question_bank": "question_bank_used",
         "interview_booking": "interview_bookings_used",
+        "streak_repair": "streak_repairs_used",
     }
     key = used_keys.get(feature)
-    if key:
-        await users_collection.update_one(
-            {"_id": ObjectId(user_id)},
-            {"$inc": {key: 1}},
-        )
+    if not key:
+        return
+    await users_collection.update_one(
+        {"_id": ObjectId(user_id)},
+        {"$inc": {key: 1}},
+    )
+
+    # Lifecycle upsell: the instant a free user hits their limit is the
+    # highest-intent conversion moment. Email them once per 2-day cooldown so
+    # we don't spam on repeated attempts (routes block further use anyway).
+    _LIMITS = {
+        "interview": settings.FREE_TIER_INTERVIEW_LIMIT,
+        "resume": settings.FREE_TIER_RESUME_LIMIT,
+        "aptitude": getattr(settings, "FREE_TIER_APTITUDE_LIMIT", 5),
+        "cover_letter": getattr(settings, "FREE_TIER_COVER_LETTER_LIMIT", 3),
+        "company_mock": getattr(settings, "FREE_TIER_COMPANY_MOCK_LIMIT", 1),
+        "predictor": getattr(settings, "FREE_TIER_PREDICTOR_LIMIT", 3),
+        "question_bank": getattr(settings, "FREE_TIER_QUESTION_BANK_LIMIT", 5),
+        "interview_booking": getattr(settings, "FREE_TIER_INTERVIEW_BOOKING_LIMIT", 3),
+        "streak_repair": getattr(settings, "FREE_TIER_STREAK_REPAIRS", 1),
+    }
+    limit = _LIMITS.get(feature)
+    if not limit:
+        return
+    user = await users_collection.find_one(
+        {"_id": ObjectId(user_id)},
+        {"plan": 1, "email": 1, "name": 1, "last_limit_email": 1, key: 1},
+    )
+    if not user or user.get("plan") in ("pro", "lifetime", "trial"):
+        return
+    if user.get(key, 0) >= limit:
+        last = user.get("last_limit_email")
+        now = datetime.now(timezone.utc)
+        if last is None or (now - last).total_seconds() > 2 * 86400:
+            try:
+                asyncio.create_task(
+                    send_email(user.get("email"), *limit_reached_email(user.get("name", ""), feature))
+                )
+                await users_collection.update_one(
+                    {"_id": ObjectId(user_id)},
+                    {"$set": {"last_limit_email": now}},
+                )
+            except Exception:
+                pass
 
 
 def get_usage_stats(user: dict) -> dict:

@@ -1,0 +1,31 @@
+export const motion = {
+  durations: {
+    instant: "0ms",
+    fast: "150ms",
+    normal: "200ms",
+    slow: "300ms",
+    slower: "500ms",
+    slowest: "700ms",
+  },
+  easings: {
+    linear: "linear",
+    easeIn: "cubic-bezier(0.4, 0, 1, 1)",
+    easeOut: "cubic-bezier(0, 0, 0.2, 1)",
+    easeInOut: "cubic-bezier(0.4, 0, 0.2, 1)",
+    bounce: "cubic-bezier(0.34, 1.56, 0.64, 1)",
+    spring: "cubic-bezier(0.34, 1.56, 0.64, 1)",
+  },
+  transitions: {
+    instant: "all 0ms linear",
+    fast: "all 150ms cubic-bezier(0, 0, 0.2, 1)",
+    normal: "all 200ms cubic-bezier(0, 0, 0.2, 1)",
+    slow: "all 300ms cubic-bezier(0, 0, 0.2, 1)",
+    slower: "all 500ms cubic-bezier(0, 0, 0.2, 1)",
+    bounce: "all 300ms cubic-bezier(0.34, 1.56, 0.64, 1)",
+    transform: "transform 200ms cubic-bezier(0, 0, 0.2, 1)",
+    color: "color 200ms cubic-bezier(0, 0, 0.2, 1), background-color 200ms cubic-bezier(0, 0, 0.2, 1), border-color 200ms cubic-bezier(0, 0, 0.2, 1)",
+    opacity: "opacity 200ms cubic-bezier(0, 0, 0.2, 1)",
+    scale: "transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1)",
+  },
+  prefersReducedMotion: "(prefers-reduced-motion: reduce)",
+};

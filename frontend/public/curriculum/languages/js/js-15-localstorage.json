@@ -1,0 +1,56 @@
+{
+  "id": "js-15-localstorage",
+  "track": "javascript",
+  "title": "localStorage & Persistence",
+  "section": "JavaScript Advanced",
+  "order": 15,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "Refresh a page and all your variables vanish. **localStorage** fixes that: it persists data on the user's device across page loads and browser restarts, making it the go-to tool for small apps like preferences, theme choices, and note lists.\n\n### The three core methods\n```js\nlocalStorage.setItem(\"theme\", \"dark\");   // save\nconst theme = localStorage.getItem(\"theme\"); // read → \"dark\"\nlocalStorage.removeItem(\"theme\");          // delete\n```\nValues are **always strings**. Save a number and it comes back as a string — a classic gotcha.\n\n### Storing complex data\nBecause localStorage only stores strings, you need `JSON.stringify` to save arrays and objects, and `JSON.parse` to read them back:\n```js\nconst notes = [\"buy milk\", \"study js\"];\nlocalStorage.setItem(\"notes\", JSON.stringify(notes));\n\nconst saved = JSON.parse(localStorage.getItem(\"notes\"));\nconsole.log(saved.length);   // 2\n```\nThis stringify/parse round-trip is the pattern behind every localStorage-powered app.\n\n### Safe reads\nIf the key was never set, `getItem` returns `null` — and `JSON.parse(null)` is `null`, not an array. Always provide a default:\n```js\nconst notes = JSON.parse(localStorage.getItem(\"notes\")) || [];\n```\n\n### Limits and friends\nlocalStorage holds roughly **5MB** per origin and only strings. It is synchronous and blocks briefly, so don't store huge data or secrets there — anyone can read it from DevTools. **sessionStorage** is the sibling with the same API, but it clears when the tab closes — handy for temporary state like a draft.\n\nThe golden rule: **save on change, load on start**. Persist the array after every mutation, and on page load read it back and render it. Forget to parse on read, or stringify on write, and you'll get \"[object Object]\" in your UI.",
+    "codeSnippets": [
+      {
+        "language": "javascript",
+        "code": "const notes = [\"buy milk\", \"study js\"];\nlocalStorage.setItem(\"notes\", JSON.stringify(notes));\nconst saved = JSON.parse(localStorage.getItem(\"notes\"));\nconsole.log(saved.length);",
+        "output": "2"
+      },
+      {
+        "language": "javascript",
+        "code": "localStorage.setItem(\"theme\", \"dark\");\nconsole.log(localStorage.getItem(\"theme\"));",
+        "output": "dark"
+      }
+    ],
+    "exercise": {
+      "instruction": "Save the array [\"a\", \"b\", \"c\"] to localStorage under the key \"items\" using JSON.stringify. Then read it back with localStorage.getItem, parse it with JSON.parse, and set output.textContent to the parsed array's length. Expected output: 3.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<body>\n  <p id=\"output\"></p>\n  <script>\n\n  </script>\n</body>\n</html>",
+      "required": ["localStorage.setItem", "\"items\"", "JSON.stringify", "localStorage.getItem", "JSON.parse", ".length", "3"],
+      "hints": [
+        "Hint 1: localStorage.setItem(\"items\", JSON.stringify([\"a\", \"b\", \"c\"]));",
+        "Hint 2: const parsed = JSON.parse(localStorage.getItem(\"items\"));",
+        "Hint 3: document.getElementById(\"output\").textContent = parsed.length;"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What does localStorage store?",
+        "options": ["Any JavaScript value", "Only strings", "Only objects"],
+        "correct": 1
+      },
+      {
+        "question": "What is the standard way to save an array?",
+        "options": ["localStorage.setItem(\"k\", myArray)", "localStorage.push(myArray)", "localStorage.setItem(\"k\", JSON.stringify(myArray))"],
+        "correct": 2
+      },
+      {
+        "question": "What does getItem return when a key is missing?",
+        "options": ["undefined", "null", "\"\""],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "js-16-project-notes-app",
+    "unlocks": ["js-16-project-notes-app"]
+  }
+}

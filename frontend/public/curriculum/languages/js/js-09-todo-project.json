@@ -1,0 +1,46 @@
+{
+  "id": "js-09-todo-project",
+  "track": "javascript",
+  "title": "Project: Interactive To-Do List",
+  "section": "JavaScript Projects",
+  "order": 9,
+  "type": "project",
+  "duration": "20 min",
+  "xp": 40,
+  "content": {
+    "theory": "Final JavaScript project: a working **to-do list** — the classic first interactive app. It combines DOM, events, arrays, and functions.\n\n### The plan\n1. Read the value from an input field\n2. On form submit, add the task to a list\n3. Render the list by creating `<li>` elements\n4. Clear the input so the user can type the next task\n\n### Creating elements dynamically\n```js\nconst li = document.createElement(\"li\");\nli.textContent = task;\nlist.appendChild(li);\n```\n\n### Reading input\n```js\nconst input = document.querySelector(\"#task-input\");\nconst task = input.value;\n```\n\n### Resetting the input after adding\n```js\ninput.value = \"\";   // clear the field\ninput.focus();      // put the cursor back\n```\n\n### The full flow\n```js\nconst form = document.querySelector(\"#todo-form\");\nconst list = document.querySelector(\"#task-list\");\n\nform.addEventListener(\"submit\", (event) => {\n  event.preventDefault();              // no page reload\n  const input = document.querySelector(\"#task-input\");\n  const task = input.value.trim();\n  if (!task) return;                    // ignore empty\n\n  const li = document.createElement(\"li\");\n  li.textContent = task;\n  list.appendChild(li);\n\n  input.value = \"\";\n  input.focus();\n});\n```\n\nKey ideas: `event.preventDefault()` stops the reload, `trim()` removes stray spaces, and the empty check prevents blank tasks. This same flow powers hundreds of real apps.",
+    "codeSnippets": [
+      {
+        "language": "javascript",
+        "code": "const li = document.createElement(\"li\");\nli.textContent = \"practice\";\nlist.appendChild(li);",
+        "output": "Adds a new list item to the #task-list element."
+      }
+    ],
+    "exercise": {
+      "instruction": "Complete the to-do app: attach a submit listener to #todo-form that preventDefaults, reads #task-input, trims it, skips empty values, creates an li with the task text, appends it to #task-list, then clears and refocuses the input.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<body>\n  <form id=\"todo-form\">\n    <input id=\"task-input\" placeholder=\"Add a task\">\n    <button type=\"submit\">Add</button>\n  </form>\n  <ul id=\"task-list\"></ul>\n  <script>\n    const form = document.querySelector(\"#todo-form\");\n    const list = document.querySelector(\"#task-list\");\n\n  </script>\n</body>\n</html>",
+      "required": ["addEventListener", "\"submit\"", "event.preventDefault()", "#task-input", ".value", ".trim()", "createElement(\"li\")", "appendChild", "input.value = \"\""],
+      "hints": [
+        "Hint 1: form.addEventListener(\"submit\", (event) => { ... });",
+        "Hint 2: Inside: event.preventDefault(); const input = document.querySelector(\"#task-input\"); const task = input.value.trim(); if (!task) return;",
+        "Hint 3: const li = document.createElement(\"li\"); li.textContent = task; list.appendChild(li); input.value = \"\"; input.focus();"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Why call event.preventDefault() on submit?",
+        "options": ["To stop the page reloading", "To validate the input", "To clear the list"],
+        "correct": 0
+      },
+      {
+        "question": "What does trim() do?",
+        "options": ["Cuts the string in half", "Removes whitespace from both ends", "Converts to lowercase"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "js-10-higher-order-functions",
+    "unlocks": ["js-10-higher-order-functions"]
+  }
+}

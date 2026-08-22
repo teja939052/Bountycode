@@ -1,0 +1,46 @@
+{
+  "id": "js-03-dom",
+  "track": "javascript",
+  "title": "The DOM",
+  "section": "JavaScript in Action",
+  "order": 3,
+  "type": "lesson",
+  "duration": "11 min",
+  "xp": 20,
+  "content": {
+    "theory": "The **DOM** (Document Object Model) is JavaScript's view of your page. Every HTML element becomes an object you can grab and change.\n\n### Selecting elements\n```js\n// First matching element\ndocument.querySelector(\"h1\");\ndocument.querySelector(\"#title\");\ndocument.querySelector(\".card\");\n\n// All matches → array-like list\ndocument.querySelectorAll(\".card\");\n\n// By id (fastest)\ndocument.getElementById(\"title\");\n```\n`querySelector` takes any CSS selector — same syntax you already know from CSS.\n\n### Changing content\n```js\nconst title = document.querySelector(\"#title\");\ntitle.textContent = \"New title\";   // change text\ntitle.innerHTML = \"<em>styled</em>\"; // change HTML\n```\nPrefer `textContent` when you only need text — it's safer (no accidental HTML injection).\n\n### Changing styles\n```js\ntitle.style.color = \"#4f8f57\";\ntitle.style.fontSize = \"28px\";  // camelCase, not kebab-case\n```\nBetter: toggle classes instead of inline styles:\n```js\ntitle.classList.add(\"active\");\ntitle.classList.remove(\"active\");\ntitle.classList.toggle(\"active\");\n```\n\n### Creating elements\n```js\nconst li = document.createElement(\"li\");\nli.textContent = \"React\";\ndocument.querySelector(\"ul\").appendChild(li);\n```\n\n### The classic flow\n1. Grab an element\n2. Change or add to it\n3. Repeat",
+    "codeSnippets": [
+      {
+        "language": "javascript",
+        "code": "const heading = document.querySelector(\"h1\");\nheading.textContent = \"Welcome back!\";",
+        "output": "The h1 on the page now reads 'Welcome back!'"
+      }
+    ],
+    "exercise": {
+      "instruction": "Select the <p id=\"status\"> element and change its text to 'Loaded'. Then give it a green text color by adding the class 'ready'.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<body>\n  <p id=\"status\">Waiting...</p>\n  <script>\n\n  </script>\n</body>\n</html>",
+      "required": ["querySelector", "#status", "textContent", "\"Loaded\"", "classList.add", "ready"],
+      "hints": [
+        "Hint 1: const status = document.querySelector(\"#status\");",
+        "Hint 2: status.textContent = \"Loaded\";",
+        "Hint 3: status.classList.add(\"ready\");"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which method selects the first element matching a CSS selector?",
+        "options": ["getElementById", "querySelector", "querySelectorAll"],
+        "correct": 1
+      },
+      {
+        "question": "Which property safely changes only the text of an element?",
+        "options": ["innerHTML", "textContent", "style"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "js-04-events",
+    "unlocks": ["js-04-events"]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "id": "python-15-lambda-hof",
+  "track": "python",
+  "title": "Lambdas & Higher-Order Functions",
+  "section": "Python Intermediate",
+  "order": 15,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "A **lambda** is a tiny, anonymous function written in one line:\n\n```python\nsquare = lambda x: x ** 2\nprint(square(5))  # 25\n```\n\n`lambda x: x ** 2` means \"take x, return x ** 2\". Lambdas are limited to a single expression — no loops, no multiple statements, no assignments.\n\n### Multiple arguments\n\nLambdas can take several parameters, separated by commas:\n\n```python\nadd = lambda a, b: a + b\nprint(add(3, 4))  # 7\n```\n\n### Higher-order functions\n\nA **higher-order function** takes a function as an argument or returns one. The classic trio is `map`, `filter`, and `sorted`:\n\n```python\nnums = [1, 2, 3, 4]\n\ndoubled = list(map(lambda x: x * 2, nums))            # [2, 4, 6, 8]\nevens = list(filter(lambda x: x % 2 == 0, nums))      # [2, 4]\n```\n\n- `map(fn, iterable)` — apply fn to every item\n- `filter(fn, iterable)` — keep items where fn returns True\n- `sorted(iterable, key=fn)` — sort by a computed value\n\n`sorted` with a `key` is the most useful of all — it sorts a list of dicts without writing a comparator:\n\n```python\npeople = [{\"name\": \"Alan\", \"age\": 41}, {\"name\": \"Ada\", \"age\": 36}]\nby_age = sorted(people, key=lambda p: p[\"age\"])\nprint(by_age)  # Ada first — younger\n```\n\n### lambda vs def\n\nUse `lambda` when the function is short and used once. Use `def` when it's longer, needs a name, is reused, or needs multiple lines. Readability wins: a named `def` is far easier to debug — tracebacks show the function name.\n\n**Common mistakes:** forgetting `list()` around `map`/`filter` in Python 3 (they return lazy iterators, not lists), using `==` where you mean `%` in a filter, and writing a lambda so complex it would be clearer as a `def`. Sorting dicts without a `key=` raises TypeError — always supply `key` when sorting dictionaries or objects.",
+    "codeSnippets": [
+      {
+        "language": "python",
+        "code": "nums = [3, 1, 4, 1, 5, 9, 2, 6]\nsmall = sorted(filter(lambda x: x < 5, nums))\nprint(small)",
+        "output": "[1, 1, 2, 3, 4]"
+      }
+    ],
+    "exercise": {
+      "instruction": "Use filter with a lambda to keep the EVEN numbers from [5, 2, 8, 1, 6, 3], sort the result with sorted(), and print it. Expected output: [2, 6, 8]",
+      "starterCode": "",
+      "language": "python",
+      "expected": "[2, 6, 8]",
+      "required": ["lambda", "filter(", "sorted(", "print("],
+      "hints": [
+        "Hint 1: lambda x: x % 2 == 0 tests for even numbers",
+        "Hint 2: evens = filter(lambda x: x % 2 == 0, nums)",
+        "Hint 3: print(sorted(evens)) → [2, 6, 8]"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What does filter(fn, items) keep?",
+        "options": ["Items with fn applied", "Only items where fn returns True", "A sorted copy of items"],
+        "correct": 1
+      },
+      {
+        "question": "What does sorted(items, key=lambda x: len(x)) do?",
+        "options": ["Sorts by length", "Sorts alphabetically", "Filters out short items"],
+        "correct": 0
+      },
+      {
+        "question": "A lambda body can contain:",
+        "options": ["A single expression", "Multiple statements", "Loops and if blocks"],
+        "correct": 0
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "python-16-file-handling",
+    "unlocks": ["python-16-file-handling"]
+  }
+}

@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import useReducedMotion from "../hooks/useReducedMotion";
-import { Play, Pause, RotateCcw, BarChart3, Layers, Activity } from "lucide-react";
+import { Play, Pause, SkipBack, SkipForward, RotateCcw, Activity, ChevronLeft, ChevronRight } from "lucide-react";
 import AlgorithmVisualizer from "../components/AlgorithmVisualizer";
-import CelebrationOverlay from "../components/CelebrationOverlay";
-import { playSound } from "../utils/soundEffects";
+import { generateTrace, generateInputFor } from "../utils/traceGenerator";
 
 const ALGORITHMS = {
   sorting: [
@@ -32,98 +31,209 @@ const ALGORITHMS = {
 
 export default function DSAVisualizer() {
   const reduced = useReducedMotion();
-  const [category, setCategory] = useState("sorting");
-  const [selectedAlgo, setSelectedAlgo] = useState("bubble");
-  const [data, setData] = useState([]);
-  const [running, setRunning] = useState(false);
-  const [speed, setSpeed] = useState(1);
-  const [showCelebration, setShowCelebration] = useState(false);
+  const [category, setCategory] = useState("searching");
+  const [selectedAlgo, setSelectedAlgo] = useState("binary");
   const [traceData, setTraceData] = useState(null);
+  const [currentStep, setCurrentStep] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
-    const size = 12;
-    const arr = Array.from({ length: size }, () => Math.floor(Math.random() * 90) + 10);
-    setData(arr);
-    setTraceData(null);
-    setRunning(false);
+    const trace = generateTrace(selectedAlgo, generateInputFor(selectedAlgo));
+    setTraceData(trace);
+    setCurrentStep(0);
+  }, [selectedAlgo]);
+
+  const regenerate = useCallback(() => {
+    setTraceData(generateTrace(selectedAlgo, generateInputFor(selectedAlgo)));
+    setCurrentStep(0);
   }, [selectedAlgo]);
 
   const algoInfo = ALGORITHMS[category]?.find((a) => a.id === selectedAlgo);
+  const totalSteps = traceData?.steps?.length || 0;
 
   return (
-    <div className="min-h-screen py-6 px-4 max-w-6xl mx-auto">
-      <CelebrationOverlay show={showCelebration} type="perfect" message="Algorithm Mastered!" onClose={() => setShowCelebration(false)} />
-      <motion.div initial={reduced ? {} : { opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="mb-6">
+    <div className="page-surface min-h-screen py-6 px-4 max-w-6xl mx-auto">
+      <motion.div
+        initial={reduced ? {} : { opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45 }}
+        className="mb-6"
+      >
         <div className="flex items-center gap-3 mb-2">
-          <Activity size={28} className="text-primary-500" />
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">DSA Visualizer</h1>
+          <Activity size={28} className="text-primary" />
+          <h1 className="text-2xl font-black text-text-primary">DSA Visualizer</h1>
         </div>
-        <p className="text-gray-500 dark:text-gray-400 text-sm">Step through algorithm execution and watch data structures change in real-time.</p>
+        <p className="text-sm text-text-muted">Step through algorithm execution and watch data structures change in real-time.</p>
       </motion.div>
+
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        {/* Controls */}
         <div className="space-y-4">
-          <div className="bg-gray-900/40 rounded-xl p-1 flex flex-col gap-0.5">
+          <div className="rounded-[16px] border border-border bg-surface p-1 flex flex-col gap-0.5 shadow-card">
             {Object.entries(ALGORITHMS).map(([cat, algos]) => (
-              <button key={cat} onClick={() => { setCategory(cat); setSelectedAlgo(algos[0].id); }} className={`py-2.5 px-3 rounded-lg text-xs font-mono uppercase tracking-wider text-left transition-all ${category === cat ? "bg-cyber-blue/15 text-cyber-blue border border-cyber-blue/30" : "text-gray-500 hover:text-gray-300"}`}>
-                <span className="block text-[10px] text-gray-500 mb-0.5">{cat}</span>
+              <button
+                key={cat}
+                onClick={() => { setCategory(cat); setSelectedAlgo(algos[0].id); }}
+                className={`py-2.5 px-3 rounded-[10px] text-xs font-mono uppercase tracking-wider text-left transition-all ${
+                  category === cat
+                    ? "bg-primary-soft text-primary-dark border border-primary/30"
+                    : "text-text-muted hover:text-text-primary"
+                }`}
+              >
+                <span className="block text-[10px] text-text-muted mb-0.5">{cat}</span>
                 <span className="font-bold">{algos[0].name}</span>
               </button>
             ))}
           </div>
+
           <div className="space-y-1">
             {(ALGORITHMS[category] || []).map((algo) => (
-              <button key={algo.id} onClick={() => setSelectedAlgo(algo.id)} className={`w-full text-left p-2.5 rounded-lg border transition-all text-xs ${selectedAlgo === algo.id ? "bg-primary-50 dark:bg-primary-900/20 border-primary-300 dark:border-primary-700 text-primary-700 dark:text-primary-400" : "bg-gray-50 dark:bg-slate-800/30 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-800/50"}`}>
+              <button
+                key={algo.id}
+                onClick={() => setSelectedAlgo(algo.id)}
+                className={`w-full text-left p-2.5 rounded-[10px] border transition-all text-xs ${
+                  selectedAlgo === algo.id
+                    ? "border-primary bg-primary-soft text-primary-dark"
+                    : "border-border bg-white text-text-muted hover:text-text-primary"
+                }`}
+              >
                 <div className="font-bold">{algo.name}</div>
-                <div className="text-[10px] font-mono mt-0.5">{algo.complexity}</div>
+                <div className="text-[10px] font-mono mt-0.5 text-text-muted">TC: {algo.complexity}</div>
               </button>
             ))}
           </div>
-          <button onClick={() => { const size = 12; const arr = Array.from({ length: size }, () => Math.floor(Math.random() * 90) + 10); setData(arr); setTraceData(null); setRunning(false); }} className="w-full py-2.5 bg-gray-900 hover:bg-gray-800 text-white text-xs font-medium rounded-lg transition-colors flex items-center justify-center gap-2"><RotateCcw size={14} /> Generate New Data</button>
+
+          <button
+            onClick={regenerate}
+            className="w-full py-2.5 rounded-[10px] bg-primary text-white text-xs font-medium hover:bg-primary-dark transition-colors flex items-center justify-center gap-2"
+          >
+            <RotateCcw size={14} /> Generate New Data
+          </button>
         </div>
+
+        {/* Visualization */}
         <div className="lg:col-span-3 space-y-6">
           {algoInfo && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="card">
+            <motion.div
+              initial={reduced ? {} : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="rounded-[16px] p-6 bg-white border border-border shadow-card"
+            >
               <div className="flex items-start gap-4">
-                <div className="p-3 bg-primary-50 dark:bg-primary-900/20 rounded-xl"><Layers size={20} className="text-primary-600" /></div>
+                <div className="p-3 rounded-[10px] bg-primary-soft">
+                  <Activity size={20} className="text-primary" />
+                </div>
                 <div className="flex-1">
-                  <h2 className="text-lg font-bold text-gray-900 dark:text-white">{algoInfo.name}</h2>
+                  <div className="flex items-center justify-between">
+                    <h2 className="text-lg font-bold text-text-primary">{algoInfo.name}</h2>
+                    <div className="flex items-center gap-2 text-xs text-text-muted">
+                      <span>Step {currentStep + 1} of {totalSteps}</span>
+                    </div>
+                  </div>
                   <div className="flex flex-wrap gap-3 mt-3">
-                    <div className="px-2 py-1 bg-gray-100 dark:bg-slate-800 rounded text-[10px] font-mono"><span className="text-gray-500">TC:</span> {algoInfo.complexity}</div>
-                    <div className="px-2 py-1 bg-gray-100 dark:bg-slate-800 rounded text-[10px] font-mono"><span className="text-gray-500">Best:</span> <span className="text-green-600">{algoInfo.best}</span></div>
-                    <div className="px-2 py-1 bg-gray-100 dark:bg-slate-800 rounded text-[10px] font-mono"><span className="text-gray-500">Worst:</span> <span className="text-red-600">{algoInfo.worst}</span></div>
-                    <div className="px-2 py-1 bg-gray-100 dark:bg-slate-800 rounded text-[10px] font-mono"><span className="text-gray-500">Space:</span> {algoInfo.space}</div>
+                    <div className="px-2 py-1 bg-surface-2 rounded text-[10px] font-mono">
+                      <span className="text-text-muted">Complexity:</span> {algoInfo.complexity}
+                    </div>
+                    <div className="px-2 py-1 bg-surface-2 rounded text-[10px] font-mono">
+                      <span className="text-text-muted">Best:</span> <span className="text-primary">{algoInfo.best}</span>
+                    </div>
+                    <div className="px-2 py-1 bg-surface-2 rounded text-[10px] font-mono">
+                      <span className="text-text-muted">Worst:</span> <span className="text-red">{algoInfo.worst}</span>
+                    </div>
+                    <div className="px-2 py-1 bg-surface-2 rounded text-[10px] font-mono">
+                      <span className="text-text-muted">Space:</span> {algoInfo.space}
+                    </div>
                   </div>
                 </div>
               </div>
             </motion.div>
           )}
-          <div className="card">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="font-bold text-gray-900 dark:text-white">Visualization</h3>
-              <div className="flex items-center gap-2">
-                {!running && <button onClick={() => { setRunning(true); playSound.badge(); }} className="flex items-center gap-1 px-3 py-1.5 bg-green-600 hover:bg-green-700 text-white text-xs font-medium rounded-lg"><Play size={12} /> Play</button>}
-                {running && <button onClick={() => setRunning(false)} className="flex items-center gap-1 px-3 py-1.5 bg-yellow-600 hover:bg-yellow-700 text-white text-xs font-medium rounded-lg"><Pause size={12} /> Pause</button>}
-                <button onClick={() => { setRunning(false); setTraceData(null); setData(Array.from({ length: 12 }, () => Math.floor(Math.random() * 90) + 10)); }} className="flex items-center gap-1 px-3 py-1.5 bg-gray-200 hover:bg-gray-300 text-gray-700 text-xs font-medium rounded-lg"><RotateCcw size={12} /> Reset</button>
+
+          {traceData ? (
+            <div className="rounded-[16px] p-6 bg-white border border-border shadow-card">
+              <AlgorithmVisualizer traceData={traceData} code={traceData.code || ""} language={traceData.language || "python"} />
+            </div>
+          ) : (
+            <div className="rounded-[16px] p-6 bg-white border border-border shadow-card">
+              <div className="py-12 flex items-center justify-center">
+                <p className="text-sm text-text-muted">Generating visualization…</p>
               </div>
             </div>
-            {traceData ? <AlgorithmVisualizer traceData={traceData} code={algoInfo.code || ""} /> : <div className="bg-gray-50 dark:bg-slate-950 rounded-xl p-4 min-h-[200px] flex items-center justify-center"><div className="text-center"><BarChart3 size={32} className="mx-auto mb-2 text-gray-400" /><p className="text-sm text-gray-500">Click Play to start visualization</p></div></div>}
-            <div className="flex items-center gap-3 mt-4 pt-4 border-t border-gray-100 dark:border-gray-800">
-              <span className="text-xs text-gray-500 font-mono">Speed:</span>
-              {[0.5, 1, 2, 4].map((spd) => (
-                <button key={spd} onClick={() => setSpeed(spd)} className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-colors ${speed === spd ? "bg-gray-900 text-white" : "bg-gray-100 dark:bg-slate-800 text-gray-600 dark:text-gray-400"}`}>{spd}x</button>
-              ))}
-            </div>
-          </div>
-          <div className="card">
-            <h3 className="font-bold text-gray-900 dark:text-white mb-4">Data Array</h3>
-            <div className="flex items-end justify-center gap-1 h-40">
-              {data.map((val, idx) => {
-                const maxVal = Math.max(...data, 1);
-                const height = Math.max(8, (val / maxVal) * 120);
-                return <motion.div key={idx} initial={{ height: 0, opacity: 0 }} animate={{ height, opacity: 1 }} transition={{ duration: 0.3, delay: idx * 0.03 }} className="flex-1 bg-gradient-to-t from-primary-500 to-primary-400 rounded-t-md flex items-start justify-center pt-1 min-w-[16px]"><span className="text-[9px] font-bold text-white">{val}</span></motion.div>;
-              })}
-            </div>
-          </div>
+          )}
+
+          {/* Playback controls */}
+          {traceData && totalSteps > 0 && (
+            <motion.div
+              initial={reduced ? {} : { opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="rounded-[16px] p-6 bg-white border border-border shadow-card"
+            >
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-sm font-mono uppercase tracking-wider text-text-muted">Execution</h3>
+                <div className="text-xs text-text-muted">
+                  Step {currentStep + 1} / {totalSteps}
+                </div>
+              </div>
+
+              <div className="h-2 bg-border rounded-full overflow-hidden mb-4">
+                <div
+                  className="h-full bg-primary rounded-full transition-all duration-300 ease-out"
+                  style={{ width: `${((currentStep + 1) / totalSteps) * 100}%` }}
+                />
+              </div>
+
+              <div className="flex items-center justify-center gap-4">
+                <button
+                  onClick={() => setCurrentStep(0)}
+                  className="p-2 rounded-[10px] text-text-muted hover:text-primary hover:bg-primary-soft transition-colors"
+                >
+                  <SkipBack size={16} />
+                </button>
+                <button
+                  onClick={() => setCurrentStep(Math.max(0, currentStep - 1))}
+                  className="p-2 rounded-[10px] text-text-muted hover:text-primary hover:bg-primary-soft transition-colors"
+                >
+                  <ChevronLeft size={18} />
+                </button>
+                <button
+                  onClick={() => setIsPlaying(!isPlaying)}
+                  className="p-3 rounded-[10px] bg-primary text-white hover:bg-primary-dark transition-colors"
+                >
+                  {isPlaying ? <Pause size={16} /> : <Play size={16} />}
+                </button>
+                <button
+                  onClick={() => setCurrentStep(Math.min(totalSteps - 1, currentStep + 1))}
+                  className="p-2 rounded-[10px] text-text-muted hover:text-primary hover:bg-primary-soft transition-colors"
+                >
+                  <ChevronRight size={18} />
+                </button>
+                <button
+                  onClick={() => setCurrentStep(totalSteps - 1)}
+                  className="p-2 rounded-[10px] text-text-muted hover:text-primary hover:bg-primary-soft transition-colors"
+                >
+                  <SkipForward size={16} />
+                </button>
+              </div>
+
+              <div className="mt-4 text-center">
+                <div className="w-full h-px bg-border mb-3" />
+                <p className="text-sm text-text-muted">
+                  "Why did the algorithm take this path?"
+                </p>
+                <div className="mt-2 flex justify-center gap-6 text-sm">
+                  <label className="flex items-center gap-2">
+                    <input type="radio" name="predict" className="text-primary" defaultChecked />
+                    <span className="text-text-muted">target &lt; mid</span>
+                  </label>
+                  <label className="flex items-center gap-2">
+                    <input type="radio" name="predict" className="text-primary" />
+                    <span className="text-text-muted">target &gt; mid</span>
+                  </label>
+                </div>
+              </div>
+            </motion.div>
+          )}
         </div>
       </div>
     </div>

@@ -124,7 +124,7 @@ export default function FreeTrial() {
     setOutput("");
     setRunError("");
     try {
-      const res = await fetch("/api/compiler/execute", {
+      const res = await fetch("/api/v1/compiler/execute", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ code, language: LANGUAGE, stdin: "", timeout: 10 }),
@@ -533,7 +533,7 @@ export default function FreeTrial() {
             exit={{ opacity: 0, scale: 0.8 }}
             className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none"
           >
-            <div className="bg-gradient-to-br from-emerald-400/20 to-cyan-400/20 backdrop-blur-xl rounded-3xl p-10 text-center border border-white/10">
+            <div className="bg-gradient-to-br from-emerald-400/20 to-cyan-400/20 rounded-3xl p-10 text-center border border-white/10">
               <motion.div
                 animate={{ rotate: [0, 10, -10, 0] }}
                 transition={{ duration: 0.6 }}

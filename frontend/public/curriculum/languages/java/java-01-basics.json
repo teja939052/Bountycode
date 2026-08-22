@@ -1,0 +1,47 @@
+{
+  "id": "java-01-basics",
+  "track": "java",
+  "title": "Hello, Java!",
+  "section": "Java Basics",
+  "order": 1,
+  "type": "lesson",
+  "duration": "9 min",
+  "xp": 15,
+  "content": {
+    "theory": "Java is a **statically typed**, compiled language — every variable has a type known before the program runs. It powers Android, enterprise systems, and millions of backend servers.\n\nEvery Java program starts in a `main` method. Here's the classic first program:\n\n```java\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, world!\");\n    }\n}\n```\n\nBreaking it down:\n\n- `public class Main` — every file has a class; the name must match the file name\n- `public static void main(String[] args)` — the entry point Java looks for\n- `System.out.println(...)` — prints a line to the console\n- **Every statement ends with a semicolon `;`**\n- `{ }` define blocks — the opening/closing braces of class and method\n\n`println` adds a newline; `print` does not:\n\n```java\nSystem.out.print(\"Hi \");\nSystem.out.print(\"there\");\nSystem.out.println(\"!\");   // Hi there!\n```",
+    "codeSnippets": [
+      {
+        "language": "java",
+        "code": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, Java!\");\n    }\n}",
+        "output": "Hello, Java!"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write a complete Java program with a Main class and main method that prints 'Welcome to Java!' using System.out.println.",
+      "starterCode": "public class Main {\n    public static void main(String[] args) {\n\n    }\n}",
+      "language": "java",
+      "expected": "Welcome to Java!",
+      "required": ["System.out.println", "Welcome to Java!"],
+      "hints": [
+        "Hint 1: Add the print inside main's { }",
+        "Hint 2: System.out.println(\"Welcome to Java!\");"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What is the entry point of a Java program?",
+        "options": ["public static void main(String[] args)", "start()", "run()"],
+        "correct": 0
+      },
+      {
+        "question": "How does a Java statement end?",
+        "options": ["With a newline", "With a semicolon", "With a period"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "java-02-variables",
+    "unlocks": ["java-02-variables"]
+  }
+}

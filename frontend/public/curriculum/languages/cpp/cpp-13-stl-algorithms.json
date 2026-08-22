@@ -1,0 +1,53 @@
+{
+  "id": "cpp-13-stl-algorithms",
+  "track": "cpp",
+  "title": "STL Algorithms",
+  "section": "C++ Intermediate",
+  "order": 13,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "Hand-rolled loops are error-prone: off-by-one bounds, duplicated logic, and subtle bugs. The **Standard Template Library (STL)** replaces them with battle-tested algorithms in `<algorithm>` and `<numeric>`.\n\n### sort\n\n```cpp\n#include <algorithm>\n#include <vector>\n\nstd::vector<int> nums = {3, 1, 4, 1, 5};\nstd::sort(nums.begin(), nums.end());   // 1 1 3 4 5\n```\n\n`sort` takes two **iterators**: `begin()` is the first element and `end()` is one past the last. It sorts in place with O(n log n) worst-case complexity — far better than the O(n²) bubble sort you might write by hand.\n\n### find\n\n```cpp\nauto it = std::find(nums.begin(), nums.end(), 4);\nif (it != nums.end()) {\n    std::cout << \"found at index \" << (it - nums.begin());\n}\n```\n\n`find` returns an iterator to the first match, or `end()` if nothing matched. Comparing the result against `end()` is the standard \"did I find it?\" idiom.\n\n### accumulate, min_element, max_element\n\n```cpp\n#include <numeric>\n\nint total = std::accumulate(nums.begin(), nums.end(), 0);\nint lo = *std::min_element(nums.begin(), nums.end());\nint hi = *std::max_element(nums.begin(), nums.end());\n```\n\n`accumulate` starts with the third argument (the initial value `0`) and folds the range into it — that's a sum. `min_element` and `max_element` return iterators, so dereference with `*` to read the value.\n\n### Lambdas with sort\n\nFor custom ordering, pass a **lambda** as a third argument:\n\n```cpp\nstd::sort(nums.begin(), nums.end(),\n          [](int a, int b) { return a > b; });   // descending\n```\n\n### Why STL over raw loops\n\nSTL algorithms are correct (tested by millions of programs), self-documenting (the name says what they do), and safe (no manual bounds). When a loop is just \"do this to every element\", the algorithm is faster to write and faster to read — and leaves less room for off-by-one mistakes.",
+    "codeSnippets": [
+      {
+        "language": "cpp",
+        "code": "#include <iostream>\n#include <vector>\n#include <algorithm>\n\nint main() {\n    std::vector<int> nums = {3, 1, 4, 1, 5};\n    std::sort(nums.begin(), nums.end());\n    for (int n : nums) {\n        std::cout << n << \" \";\n    }\n    std::cout << std::endl;\n    return 0;\n}",
+        "output": "1 1 3 4 5"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write the program: include <vector> and <algorithm>. Create std::vector<int> nums = {3, 1, 4, 1, 5, 9, 2}, sort it ascending with std::sort(nums.begin(), nums.end()), then print each number on its own line using a range-based for loop.",
+      "starterCode": "#include <iostream>\n\nint main() {\n\n    return 0;\n}",
+      "language": "cpp",
+      "expected": "1\n1\n2\n3\n4\n5\n9",
+      "required": ["#include <algorithm>", "#include <vector>", "std::sort(nums.begin(), nums.end())", "for (int n : nums)"],
+      "hints": [
+        "Hint 1: #include <algorithm> and #include <vector> at the top.",
+        "Hint 2: std::sort(nums.begin(), nums.end()); sorts ascending.",
+        "Hint 3: for (int n : nums) { std::cout << n << std::endl; }"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What does end() represent?",
+        "options": ["The last element", "One past the last element", "The first element"],
+        "correct": 1
+      },
+      {
+        "question": "How do you test whether std::find succeeded?",
+        "options": ["The result is not equal to end()", "The result is not null", "The result is zero"],
+        "correct": 0
+      },
+      {
+        "question": "Which header provides std::accumulate?",
+        "options": ["<algorithm>", "<numeric>", "<vector>"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "cpp-14-std-map",
+    "unlocks": ["cpp-14-std-map"]
+  }
+}

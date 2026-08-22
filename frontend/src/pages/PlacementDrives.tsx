@@ -54,7 +54,7 @@ export default function PlacementDrives() {
             </div>
             <div>
               <h1 className="text-3xl font-bold dark:text-white">Placement Drives</h1>
-              <p className="text-gray-600 dark:text-gray-400">Companies you're eligible for and likely to clear</p>
+              <p className="text-brand-secondary dark:text-gray-400">Companies you're eligible for and likely to clear</p>
             </div>
           </div>
         </motion.div>
@@ -62,13 +62,13 @@ export default function PlacementDrives() {
         {/* Stats bar */}
         <div className="grid grid-cols-3 gap-3 mb-6">
           {[
-            { label: "Total Drives", value: drives.length, color: "text-gray-600 dark:text-gray-400" },
+            { label: "Total Drives", value: drives.length, color: "text-brand-secondary dark:text-gray-400" },
             { label: "Eligible", value: eligibleCount, color: "text-green-600" },
             { label: "Likely to Clear", value: likelyCount, color: "text-emerald-600" },
           ].map((s, i) => (
             <AnimatedCard key={s.label} delay={i * 0.05} className="card text-center">
               <p className={`text-2xl font-bold ${s.color}`}>{s.value}</p>
-              <p className="text-xs text-gray-500">{s.label}</p>
+              <p className="text-xs text-brand-muted">{s.label}</p>
             </AnimatedCard>
           ))}
         </div>
@@ -86,7 +86,7 @@ export default function PlacementDrives() {
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                 filter === f.key
                   ? "bg-primary-600 text-white"
-                  : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200"
+                  : "bg-surface-card/50 dark:bg-gray-800 text-brand-secondary dark:text-gray-400 hover:bg-surface-card/50"
               }`}
             >
               {f.label}
@@ -98,15 +98,15 @@ export default function PlacementDrives() {
           <div className="space-y-3">
             {Array.from({ length: 4 }).map((_, i) => (
               <div key={i} className="card animate-pulse">
-                <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/2 mb-2" />
-                <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-1/3" />
+                <div className="h-4 bg-surface-card/50 dark:bg-gray-700 rounded w-1/2 mb-2" />
+                <div className="h-3 bg-surface-card/50 dark:bg-gray-700 rounded w-1/3" />
               </div>
             ))}
           </div>
         ) : visibleDrives.length === 0 ? (
           <div className="card text-center py-12">
-            <GraduationCap size={48} className="mx-auto text-gray-300 dark:text-gray-600 mb-4" />
-            <p className="text-gray-500 dark:text-gray-400">No drives match your filter</p>
+            <GraduationCap size={48} className="mx-auto text-brand-secondary dark:text-brand-secondary mb-4" />
+            <p className="text-brand-muted dark:text-gray-400">No drives match your filter</p>
           </div>
         ) : (
           <div className="space-y-4">
@@ -122,7 +122,7 @@ export default function PlacementDrives() {
                   <div>
                     <div className="flex items-center gap-2 mb-1">
                       <h3 className="font-bold text-lg dark:text-white">{drive.company}</h3>
-                      <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400">
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-surface-card/50 dark:bg-gray-700 text-brand-secondary dark:text-gray-400">
                         {drive.tier}
                       </span>
                       {drive.likely_to_clear && (
@@ -131,17 +131,17 @@ export default function PlacementDrives() {
                         </span>
                       )}
                     </div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{drive.role}</p>
+                    <p className="text-sm text-brand-secondary dark:text-gray-400">{drive.role}</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-xs text-gray-500">Deadline</p>
-                    <p className={`text-sm font-bold ${drive.days_left <= 5 ? "text-red-600" : "text-gray-700 dark:text-gray-300"}`}>
+                    <p className="text-xs text-brand-muted">Deadline</p>
+                    <p className={`text-sm font-bold ${drive.days_left <= 5 ? "text-red-600" : "text-brand-primary dark:text-brand-secondary"}`}>
                       {drive.days_left} days
                     </p>
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-3 mb-3 text-sm text-gray-600 dark:text-gray-400">
+                <div className="flex flex-wrap gap-3 mb-3 text-sm text-brand-secondary dark:text-gray-400">
                   <span className="flex items-center gap-1"><MapPin size={14} /> {drive.location}</span>
                   <span className="flex items-center gap-1"><IndianRupee size={14} /> {drive.package_lpa} LPA</span>
                   {drive.eligibility?.min_cgpa && (
@@ -152,7 +152,7 @@ export default function PlacementDrives() {
                 {drive.match_reasons?.length > 0 && (
                   <div className="mb-3">
                     {drive.match_reasons.slice(0, 3).map((reason, ri) => (
-                      <div key={ri} className="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 mb-1">
+                      <div key={ri} className="flex items-center gap-2 text-xs text-brand-secondary dark:text-gray-400 mb-1">
                         {drive.eligible ? (
                           <CheckCircle size={12} className="text-green-500" />
                         ) : (
@@ -165,7 +165,7 @@ export default function PlacementDrives() {
                 )}
 
                 {drive.locked ? (
-                  <div className="flex items-center gap-2 text-sm text-gray-500">
+                  <div className="flex items-center gap-2 text-sm text-brand-muted">
                     <Lock size={14} />
                     Upgrade to Pro to unlock this drive alert
                   </div>

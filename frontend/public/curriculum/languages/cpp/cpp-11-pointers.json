@@ -1,0 +1,53 @@
+{
+  "id": "cpp-11-pointers",
+  "track": "cpp",
+  "title": "Pointers & Memory",
+  "section": "C++ Intermediate",
+  "order": 11,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "Everything in a running program lives at a **memory address**. Every variable occupies bytes in RAM, and `&variable` gives you the *address* of that variable. A **pointer** is a variable whose value is an address:\n\n```cpp\nint x = 42;\nint* p = &x;   // p stores the address of x\nstd::cout << *p << std::endl;   // 42 — dereference p\n```\n\n`int* p` reads as \"p is a pointer to int\". The `*` in front of the pointer *dereferences* it: it follows the stored address and gives you the value living there. So `*p` and `x` are the same variable — write `*p = 7` and `x` becomes 7.\n\n### Why pointers matter\n\nRaw arrays are why pointers exist in C. An array variable **decays** to a pointer to its first element when you pass it to a function, so `void sum(int* arr, int n)` silently accepts arrays. Pointers are also how you do **dynamic memory**: `new` returns a pointer to memory requested at runtime, which is the foundation of linked lists, trees, and hash tables. Modern C++ wraps this with smart pointers (`std::unique_ptr`) that free the memory automatically.\n\n### nullptr and safety\n\nA pointer can be *null* — it points to nothing. Initialize pointers (or set them to `nullptr`) and always check before dereferencing:\n\n```cpp\nint* p = nullptr;\nif (p) {              // false — safe check\n    std::cout << *p;\n}\n```\n\nDereferencing a null pointer is a crash, so the check matters.\n\n### Pointer vs reference\n\n| Feature | Pointer `int* p` | Reference `int& r` |\n|---|---|---|\n| Can be reassigned | Yes | No |\n| Can be null | Yes | No |\n| Explicit dereference | `*p` | None — implicit |\n\nA pointer is a separate variable holding an address; a reference is an alias that always refers to the same object. Use references by default in modern C++, and pointers when you need to express \"no object\" with `nullptr`.",
+    "codeSnippets": [
+      {
+        "language": "cpp",
+        "code": "#include <iostream>\n\nint main() {\n    int x = 42;\n    int* p = &x;\n    std::cout << *p << std::endl;\n    return 0;\n}",
+        "output": "42"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write the program: declare `int x = 42`, create a pointer `int* p = &x`, then print the value the pointer points to using `*p`.",
+      "starterCode": "#include <iostream>\n\nint main() {\n\n    return 0;\n}",
+      "language": "cpp",
+      "expected": "42",
+      "required": ["int x = 42", "int* p = &x", "*p"],
+      "hints": [
+        "Hint 1: Declare the variable first: int x = 42;",
+        "Hint 2: Create the pointer: int* p = &x; — the & takes the address of x",
+        "Hint 3: Print the pointed-to value: std::cout << *p << std::endl;"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What does &x give you?",
+        "options": ["The value of x", "The memory address of x", "A copy of x"],
+        "correct": 1
+      },
+      {
+        "question": "What does *p do?",
+        "options": ["Dereferences p to give the value at that address", "Takes the address of p", "Makes p null"],
+        "correct": 0
+      },
+      {
+        "question": "Why check a pointer against nullptr before dereferencing?",
+        "options": ["To make the program faster", "Dereferencing a null pointer crashes the program", "The compiler requires it"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "cpp-12-references",
+    "unlocks": ["cpp-12-references"]
+  }
+}

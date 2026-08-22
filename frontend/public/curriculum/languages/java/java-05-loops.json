@@ -1,0 +1,48 @@
+{
+  "id": "java-05-loops",
+  "track": "java",
+  "title": "Loops",
+  "section": "Java Basics",
+  "order": 5,
+  "type": "lesson",
+  "duration": "11 min",
+  "xp": 20,
+  "content": {
+    "theory": "Java's `for` loop packs initialization, condition, and update into one line:\n\n```java\nfor (int i = 0; i < 5; i++) {\n    System.out.println(i);   // 0 1 2 3 4\n}\n```\n\n- `int i = 0` — start value\n- `i < 5` — keep going while true\n- `i++` — add 1 each iteration\n\nThe `while` loop runs while a condition stays true:\n\n```java\nint count = 0;\nwhile (count < 3) {\n    System.out.println(\"Tick \" + count);\n    count++;\n}\n```\n\nThe **do-while** loop always runs at least once (condition checked after):\n\n```java\nint n = 10;\ndo {\n    System.out.println(n);\n    n++;\n} while (n < 3);   // prints 10 once, then stops\n```\n\nLoop controls:\n\n```java\nfor (int i = 0; i < 10; i++) {\n    if (i == 2) continue;   // skip\n    if (i == 5) break;      // stop entirely\n    System.out.println(i);\n}\n```\n\nCount **down** with `i--` and `>`:\n\n```java\nfor (int i = 3; i > 0; i--) {\n    System.out.println(i);   // 3 2 1\n}\n```",
+    "codeSnippets": [
+      {
+        "language": "java",
+        "code": "for (int i = 1; i <= 3; i++) {\n    System.out.println(\"Row \" + i);\n}",
+        "output": "Row 1\nRow 2\nRow 3"
+      }
+    ],
+    "exercise": {
+      "instruction": "Use a for loop that counts DOWN from 3 to 1 (i = 3; i > 0; i--) printing each number, then print 'Go!' after the loop.",
+      "starterCode": "public class Main {\n    public static void main(String[] args) {\n\n    }\n}",
+      "language": "java",
+      "expected": "3\n2\n1\nGo!",
+      "required": ["for (int i = 3", "i > 0", "i--", "System.out.println(i)", "Go!"],
+      "hints": [
+        "Hint 1: for (int i = 3; i > 0; i--) {",
+        "Hint 2: System.out.println(i);",
+        "Hint 3: After the loop: System.out.println(\"Go!\");"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What does i++ do?",
+        "options": ["Subtracts 1 from i", "Adds 1 to i", "Doubles i"],
+        "correct": 1
+      },
+      {
+        "question": "Which loop runs at least once?",
+        "options": ["for", "while", "do-while"],
+        "correct": 2
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "java-06-arrays",
+    "unlocks": ["java-06-arrays"]
+  }
+}

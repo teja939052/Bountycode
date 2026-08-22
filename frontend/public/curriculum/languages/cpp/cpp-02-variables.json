@@ -1,0 +1,48 @@
+{
+  "id": "cpp-02-variables",
+  "track": "cpp",
+  "title": "Variables & Types",
+  "section": "C++ Basics",
+  "order": 2,
+  "type": "lesson",
+  "duration": "10 min",
+  "xp": 15,
+  "content": {
+    "theory": "C++ variables declare a **type first**, just like Java:\n\n```cpp\nint age = 36;\ndouble height = 1.65;\nbool isStudent = true;\nchar grade = 'A';          // single quotes\nstd::string name = \"Ada\";  // from <string>\n```\n\nCommon types:\n\n| Type | Stores | Size |\n|------|--------|------|\n| `int` | whole numbers | 4 bytes |\n| `double` | decimals | 8 bytes |\n| `float` | decimals (less precise) | 4 bytes |\n| `bool` | true/false | 1 byte |\n| `char` | one character | 1 byte |\n| `std::string` | text | — |\n\nTo use `std::string`, add `#include <string>` at the top.\n\nTwo const-like keywords:\n\n- `const int MAX = 10;` — can't change (C-style, recommended)\n- `#define MAX 10` — preprocessor macro (older style)\n\nC++ is **strongly typed** — assigning a wrong type usually won't compile. Concatenate with `+`:\n\n```cpp\nstd::string msg = \"Score: \" + std::to_string(score);\n```",
+    "codeSnippets": [
+      {
+        "language": "cpp",
+        "code": "#include <iostream>\n#include <string>\n\nint main() {\n    std::string player = \"Zara\";\n    int score = 95;\n    std::cout << player << \" scored \" << score << std::endl;\n    return 0;\n}",
+        "output": "Zara scored 95"
+      }
+    ],
+    "exercise": {
+      "instruction": "Complete the program: declare an int 'level' = 3 and a std::string 'world' = \"Dungeon\", then print: Hero is at level 3 in Dungeon.",
+      "starterCode": "#include <iostream>\n#include <string>\n\nint main() {\n\n    return 0;\n}",
+      "language": "cpp",
+      "expected": "Hero is at level 3 in Dungeon",
+      "required": ["int level = 3", "std::string world", "Dungeon", "std::cout << \"Hero is at level \" << level"],
+      "hints": [
+        "Hint 1: int level = 3;",
+        "Hint 2: std::string world = \"Dungeon\";",
+        "Hint 3: std::cout << \"Hero is at level \" << level << \" in \" << world << std::endl;"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which keyword declares a value that can't change?",
+        "options": ["static", "const", "fixed"],
+        "correct": 1
+      },
+      {
+        "question": "What does a char store?",
+        "options": ["A whole number", "One character", "A whole sentence"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "cpp-03-strings",
+    "unlocks": ["cpp-03-strings"]
+  }
+}

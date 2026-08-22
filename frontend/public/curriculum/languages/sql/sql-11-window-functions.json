@@ -1,0 +1,56 @@
+{
+  "id": "sql-11-window-functions",
+  "track": "sql",
+  "title": "Window Functions",
+  "section": "Advanced SQL",
+  "order": 11,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "**Window functions** compute a value across a set of rows related to the current row — without collapsing those rows into one output row. That is the decisive difference from GROUP BY: GROUP BY reduces many rows to one; window functions preserve every row and attach the computed value to it. The sample dataset: `students(id, name, city, score, grade)` and `enrollments(student_id, class_id, grade)`.\n\n### ROW_NUMBER(), RANK(), DENSE_RANK()\n\n```sql\nSELECT name, score,\n  ROW_NUMBER() OVER (ORDER BY score DESC) AS rn,\n  RANK()       OVER (ORDER BY score DESC) AS rnk,\n  DENSE_RANK() OVER (ORDER BY score DESC) AS drnk\nFROM students;\n```\n\n| name | score | rn | rnk | drnk |\n|---|---|---|---|---|\n| Anil | 92 | 1 | 1 | 1 |\n| Riya | 92 | 2 | 1 | 1 |\n| Sam | 85 | 3 | 3 | 2 |\n\n`ROW_NUMBER()` always assigns unique positions; `RANK()` leaves gaps after ties; `DENSE_RANK()` never leaves gaps.\n\n### LAG() and LEAD()\n\n`LAG()` and `LEAD()` read the previous or next row's value — the foundation of day-over-day change:\n\n```sql\nSELECT name, score,\n  LAG(score) OVER (ORDER BY score) AS prev_score\nFROM students;\n```\n\nA change column is then `score - LAG(score) OVER (...)`.\n\n### Running totals with SUM() OVER\n\n```sql\nSELECT name, score,\n  SUM(score) OVER (ORDER BY score) AS running_total\nFROM students;\n```\n\nThe `OVER (ORDER BY ...)` turns an aggregate into a rolling computation ordered by that column.\n\n### PARTITION BY\n\n`PARTITION BY` splits rows into groups — conceptually like GROUP BY — but each row keeps its own partition's result:\n\n```sql\nSELECT city, name, score,\n  AVG(score) OVER (PARTITION BY city) AS city_avg\nFROM students;\n```\n\nForget `PARTITION BY` and every row gets the global ranking instead of a per-group one.\n\n### Window function vs GROUP BY\n\n| Window function | GROUP BY |\n|---|---|\n| One output row per input row | One output row per group |\n| Uses `OVER(...)` | Uses aggregate + grouping columns |\n| Rankings, running totals, row comparisons | Summaries and counts |\n\n### Common mistakes\n\n- Omitting `OVER()` entirely — every window function requires it.\n- Mixing window functions with non-grouped columns inside a GROUP BY query.\n- Forgetting `PARTITION BY` when you actually wanted per-group rankings.",
+    "codeSnippets": [
+      {
+        "language": "sql",
+        "code": "SELECT name, score,\n  RANK() OVER (ORDER BY score DESC) AS rnk\nFROM students;",
+        "output": "Each student ranked by score, with gaps after ties"
+      },
+      {
+        "language": "sql",
+        "code": "SELECT name, score,\n  SUM(score) OVER (ORDER BY score) AS running_total\nFROM students;",
+        "output": "A running total that grows as score increases"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write a query that ranks students within each city by score using a window function: select 'name', 'city' and 'score', then ROW_NUMBER() OVER (PARTITION BY city ORDER BY score DESC) aliased as 'rn', from 'students'.",
+      "starterCode": "",
+      "required": ["SELECT name, city, score", "ROW_NUMBER()", "PARTITION BY city", "ORDER BY score DESC", "FROM students"],
+      "hints": [
+        "Hint 1: SELECT name, city, score, ROW_NUMBER() OVER (",
+        "Hint 2: PARTITION BY city ORDER BY score DESC) AS rn",
+        "Hint 3: FROM students;"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What is the key difference between window functions and GROUP BY?",
+        "options": ["Rows are preserved, not collapsed", "Rows are collapsed into groups", "They only work on numeric data"],
+        "correct": 0
+      },
+      {
+        "question": "Which function leaves gaps in ranking after ties?",
+        "options": ["DENSE_RANK()", "RANK()", "ROW_NUMBER()"],
+        "correct": 1
+      },
+      {
+        "question": "Which clause splits rows into groups inside a window?",
+        "options": ["PARTITION BY", "GROUP BY", "DISTINCT"],
+        "correct": 0
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "sql-12-functions-case",
+    "unlocks": ["sql-12-functions-case"]
+  }
+}

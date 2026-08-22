@@ -1,0 +1,49 @@
+{
+  "id": "cpp-10-grading",
+  "track": "cpp",
+  "title": "Project: Grade Checker",
+  "section": "C++ Projects",
+  "order": 10,
+  "type": "project",
+  "duration": "18 min",
+  "xp": 40,
+  "content": {
+    "theory": "Final C++ project: a **grade checker** that turns a score into a letter grade, using functions.\n\nWrite a function `gradeOf` that returns a `char`:\n\n```cpp\nchar gradeOf(int score) {\n    if (score >= 90) return 'A';\n    if (score >= 80) return 'B';\n    if (score >= 70) return 'C';\n    if (score >= 60) return 'D';\n    return 'F';\n}\n```\n\nEarly returns mean each one exits immediately — no `else` needed.\n\nRead input with `std::cin`:\n\n```cpp\nint score;\nstd::cout << \"Enter score: \";\nstd::cin >> score;\n```\n\n`std::cin >>` reads input and stores it into the variable. Note: unlike `std::cout` which uses `<<`, `std::cin` uses `>>` (the arrows point the direction data flows).\n\nFull program:\n\n```cpp\n#include <iostream>\n\nchar gradeOf(int score) {\n    if (score >= 90) return 'A';\n    if (score >= 80) return 'B';\n    if (score >= 70) return 'C';\n    if (score >= 60) return 'D';\n    return 'F';\n}\n\nint main() {\n    int score;\n    std::cout << \"Enter score: \";\n    std::cin >> score;\n    std::cout << \"Grade: \" << gradeOf(score) << std::endl;\n    return 0;\n}\n```",
+    "codeSnippets": [
+      {
+        "language": "cpp",
+        "code": "char gradeOf(int score) {\n    if (score >= 90) return 'A';\n    if (score >= 80) return 'B';\n    if (score >= 70) return 'C';\n    if (score >= 60) return 'D';\n    return 'F';\n}\n\nstd::cout << gradeOf(85) << std::endl;   // B",
+        "output": "B"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write the full program: a gradeOf(int) function returning chars A/B/C/D/F (thresholds 90/80/70/60) using early returns, and in main read a score with std::cin >> score and print 'Grade: ' plus gradeOf(score).",
+      "starterCode": "#include <iostream>\n\nint main() {\n\n    return 0;\n}",
+      "language": "cpp",
+      "stdin": "85\n",
+      "expected": "Enter score: Grade: B",
+      "required": ["char gradeOf(int score)", "return 'A'", "return 'F'", "std::cin >> score", "Grade:", "gradeOf(score)"],
+      "hints": [
+        "Hint 1: char gradeOf(int score) { if (score >= 90) return 'A'; ... return 'F'; } — define before main",
+        "Hint 2: int score; std::cout << \"Enter score: \"; std::cin >> score;",
+        "Hint 3: std::cout << \"Grade: \" << gradeOf(score) << std::endl;"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which operator does std::cin use?",
+        "options": ["<<", ">>", "::"],
+        "correct": 1
+      },
+      {
+        "question": "Why are early returns useful here?",
+        "options": ["They print faster", "Each return exits immediately, avoiding nested else", "They're required in C++"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "cpp-11-pointers",
+    "unlocks": ["cpp-11-pointers"]
+  }
+}

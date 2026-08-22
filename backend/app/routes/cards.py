@@ -10,7 +10,7 @@ from bson import ObjectId
 from app.middleware.auth import get_current_user
 from app.database import (
     curated_questions_collection, solved_problems_collection,
-    cards_collection
+    cards_collection, gamification_collection
 )
 
 router = APIRouter(prefix="/api/v1/cards", tags=["cards"])
@@ -263,6 +263,13 @@ async def daily_draw(user=Depends(get_current_user)):
 
     rarity_config = RARITY_CONFIG[rarity]
 
+    # Credit card XP + coins to the gamification profile (rarity-scaled)
+    await gamification_collection.update_one(
+        {"user_id": user["id"]},
+        {"$inc": {"xp": rarity_config["xp_base"], "coins": rarity_config["xp_base"]}},
+        upsert=True,
+    )
+
     return {
         "already_drawn": False,
         "card": card,
@@ -356,6 +363,13 @@ async def fuse_cards(card_ids: list, user=Depends(get_current_user)):
 
     result = await collection.insert_one(new_card)
     new_card["id"] = str(result.inserted_id)
+
+    # Credit fusion XP + coins to the gamification profile (2x evolution bonus)
+    await gamification_collection.update_one(
+        {"user_id": user["id"]},
+        {"$inc": {"xp": new_rarity_config["xp_base"] * 2, "coins": new_rarity_config["xp_base"]}},
+        upsert=True,
+    )
 
     return {
         "card": new_card,

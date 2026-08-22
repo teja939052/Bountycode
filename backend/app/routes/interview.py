@@ -93,10 +93,16 @@ async def submit_answer(req: SubmitAnswer, user=Depends(get_current_user)):
 
     company = interview.get("company", "general")
     job_role = interview.get("job_role", "")
+    current_difficulty = interview.get("difficulty", "medium")
+    # Use the real question type sent by the client; follow-ups are behavioral
+    # (probing deeper). Previously this was always "mixed", which gave the
+    # evaluator no type-specific guidance.
+    qtype = "behavioral" if req.is_follow_up else (req.question_type or "technical")
 
     feedback = await evaluate_answer(
         req.question, req.answer, job_role,
-        company=company, question_type="behavioral" if req.is_follow_up else "mixed",
+        company=company, question_type=qtype,
+        difficulty=current_difficulty, time_taken=req.time_taken or 0,
     )
 
     score = feedback.get("score", 5)
@@ -109,14 +115,14 @@ async def submit_answer(req: SubmitAnswer, user=Depends(get_current_user)):
     qa_pair = {
         "question": req.question,
         "answer": req.answer,
-        "question_type": "follow_up" if req.is_follow_up else "primary",
-        "difficulty": interview.get("difficulty", "medium"),
+        "question_type": qtype,
+        "difficulty": current_difficulty,
         "score": score,
         "breakdown": breakdown,
         "feedback": feedback,
         "is_follow_up": req.is_follow_up,
         "company": company,
-        "time_taken": req.time_taken,
+        "time_taken": req.time_taken or 0,
     }
     await interviews_collection.update_one(
         {"_id": ObjectId(req.interview_id)},
@@ -257,10 +263,14 @@ async def get_result(interview_id: str, user=Depends(get_current_user)):
 
     all_strengths = []
     all_improvements = []
+    comm_scores = []
     for q in questions:
-        fb = q.get("feedback", {})
+        fb = q.get("feedback", {}) or {}
         all_strengths.extend(fb.get("strengths", [])[:1])
         all_improvements.extend(fb.get("improvements", [])[:1])
+        ca = fb.get("communication_analysis", {})
+        if isinstance(ca, dict) and "score" in ca:
+            comm_scores.append(ca["score"])
 
     readiness = min(100, max(0, int(avg_score * 10)))
 
@@ -275,6 +285,7 @@ async def get_result(interview_id: str, user=Depends(get_current_user)):
         "difficulty_progression": interview.get("difficulty_progression", []),
         "strength_areas": all_strengths[:5],
         "improvement_areas": all_improvements[:5],
+        "communication_score": round(sum(comm_scores) / len(comm_scores), 1) if comm_scores else None,
         "readiness_score": readiness,
     }
 

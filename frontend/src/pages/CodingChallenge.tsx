@@ -173,7 +173,7 @@ export default function CodingChallenge() {
               <Code className="text-cyber-green inline mr-2" size={28} />
               Coding <span className="text-cyber-green">Challenges</span>
             </h1>
-            <p className="text-gray-500 font-mono text-sm">
+            <p className="text-brand-dim font-mono text-sm">
               Company-specific problems with live AI feedback
             </p>
           </motion.div>
@@ -191,25 +191,25 @@ export default function CodingChallenge() {
               <button
                 onClick={() => setCompany("")}
                 className={`p-3 rounded-lg text-left transition-all border-2 ${
-                  !company ? "border-cyber-green bg-cyber-green/10" : "border-gray-200 hover:border-gray-600"
+                  !company ? "border-brand-primary/30 bg-brand-primary/10" : "border-brand-primary/20 hover:border-brand-primary/40"
                 }`}
               >
                 <p className="font-display font-bold text-text-primary text-sm">General</p>
-                <p className="text-xs font-mono text-gray-500">No company focus</p>
+                <p className="text-xs font-mono text-brand-dim">No company focus</p>
               </button>
               {COMPANIES.map((c) => (
                 <button
                   key={c.id}
                   onClick={() => setCompany(c.id)}
                   className={`p-3 rounded-lg text-left transition-all border-2 ${
-                    company === c.id ? "border-cyber-green bg-cyber-green/10" : "border-gray-200 hover:border-gray-600"
+                    company === c.id ? "border-brand-primary bg-brand-primary/10" : "border-brand-primary/20 hover:border-brand-primary/40"
                   }`}
                 >
                   <div className="flex items-center gap-2">
                     <div className={`w-6 h-6 rounded bg-gradient-to-br ${COMPANY_COLORS[c.id]} flex items-center justify-center text-white text-xs font-bold`}>{c.name[0]}</div>
                     <p className="font-display font-bold text-text-primary text-sm">{c.name}</p>
                   </div>
-                  <p className="text-xs font-mono text-gray-500 mt-1">{c.focus}</p>
+                  <p className="text-xs font-mono text-brand-dim mt-1">{c.focus}</p>
                 </button>
               ))}
             </div>
@@ -223,7 +223,7 @@ export default function CodingChallenge() {
                   key={topic.id}
                   onClick={() => setSelectedTopic(topic.id)}
                   className={`p-3 rounded-lg text-left transition-all border-2 ${
-                    selectedTopic === topic.id ? "border-cyber-green bg-cyber-green/10" : "border-gray-200 hover:border-gray-600"
+                    selectedTopic === topic.id ? "border-brand-primary bg-brand-primary/10" : "border-brand-primary/20 hover:border-brand-primary/40"
                   }`}
                 >
                   <p className="font-mono text-xs text-text-primary">{topic.name}</p>
@@ -240,7 +240,7 @@ export default function CodingChallenge() {
                   <button
                     key={d.id}
                     onClick={() => setDifficulty(d.id)}
-                    className={`px-4 py-2 rounded-lg font-mono text-xs transition-colors ${difficulty === d.id ? d.color : "bg-space-panel border border-gray-200 text-gray-500"}`}
+                    className={`px-4 py-2 rounded-lg font-mono text-xs transition-colors ${difficulty === d.id ? d.color : "bg-surface-card border border-brand-primary/20 text-brand-dim"}`}
                   >
                     {d.name}
                   </button>
@@ -256,7 +256,7 @@ export default function CodingChallenge() {
                     key={lang}
                     onClick={() => setLanguage(lang)}
                     className={`px-4 py-2 rounded-lg font-mono text-xs capitalize transition-colors ${
-                      language === lang ? "bg-green-500 text-white" : "bg-space-panel border border-gray-200 text-gray-500"
+                      language === lang ? "bg-brand-emerald text-white" : "bg-surface-card border border-brand-primary/20 text-brand-dim"
                     }`}
                   >
                     {lang}
@@ -300,16 +300,16 @@ export default function CodingChallenge() {
             {/* Problem Description */}
             <div className="card">
               <h3 className="font-display font-bold text-text-primary text-sm mb-3">Mission Brief</h3>
-              <p className="text-gray-600 font-mono text-xs whitespace-pre-wrap mb-4">{challenge.description}</p>
+              <p className="text-brand-secondary font-mono text-xs whitespace-pre-wrap mb-4">{challenge.description}</p>
 
               {challenge.examples?.length > 0 && (
                 <div className="mb-4">
-                  <p className="font-display font-bold text-text-primary text-xs mb-2">Test Cases:</p>
+                  <p className="font-display font-bold text-brand-primary text-xs mb-2">Test Cases:</p>
                   {challenge.examples.map((ex, i) => (
-                    <div key={i} className="bg-gray-50 border border-gray-200 rounded-lg p-3 mb-2 font-mono text-xs">
-                      <p><span className="text-cyber-blue">Input:</span> <span className="text-gray-300">{typeof ex === 'object' ? ex.input : ex}</span></p>
-                      {ex.output && <p><span className="text-cyber-green">Output:</span> <span className="text-gray-300">{ex.output}</span></p>}
-                      {ex.explanation && <p className="text-gray-500"><span className="text-cyber-yellow">Why:</span> {ex.explanation}</p>}
+                    <div key={i} className="bg-surface-card border border-brand-primary/10 rounded-lg p-3 mb-2 font-mono text-xs">
+                      <p><span className="text-brand-sky">Input:</span> <span className="text-brand-secondary">{typeof ex === 'object' ? ex.input : ex}</span></p>
+                      {ex.output && <p><span className="text-brand-emerald">Output:</span> <span className="text-brand-secondary">{ex.output}</span></p>}
+                      {ex.explanation && <p className="text-brand-dim"><span className="text-brand-gold">Why:</span> {ex.explanation}</p>}
                     </div>
                   ))}
                 </div>
@@ -317,22 +317,22 @@ export default function CodingChallenge() {
 
               {challenge.constraints?.length > 0 && (
                 <div className="mb-4">
-                  <p className="font-display font-bold text-text-primary text-xs mb-2">Constraints:</p>
-                  <ul className="text-xs font-mono text-gray-500">
+                  <p className="font-display font-bold text-brand-primary text-xs mb-2">Constraints:</p>
+                  <ul className="text-xs font-mono text-brand-dim">
                     {challenge.constraints.map((c, i) => <li key={i}>• {c}</li>)}
                   </ul>
                 </div>
               )}
 
               {/* Progressive Hints */}
-              <div className="border-t border-gray-200 pt-4 mt-4">
+              <div className="border-t border-brand-primary/10 pt-4 mt-4">
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="font-display font-bold text-text-primary text-sm flex items-center gap-2">
-                    <Lightbulb size={14} className="text-cyber-yellow" /> Navigation Beacons
-                    {hintLevel > 0 && <span className="text-[10px] font-mono text-gray-500">({hintLevel}/3)</span>}
+                  <h3 className="font-display font-bold text-brand-primary text-sm flex items-center gap-2">
+                    <Lightbulb size={14} className="text-brand-gold" /> Navigation Beacons
+                    {hintLevel > 0 && <span className="text-[10px] font-mono text-brand-dim">({hintLevel}/3)</span>}
                   </h3>
                   {hintLevel < 3 && (
-                    <button onClick={requestHint} className="text-xs font-mono text-cyber-yellow hover:underline flex items-center gap-1">
+                    <button onClick={requestHint} className="text-xs font-mono text-brand-gold hover:underline flex items-center gap-1">
                       <Lightbulb size={12} /> Beacon {hintLevel + 1}
                     </button>
                   )}
@@ -343,15 +343,15 @@ export default function CodingChallenge() {
                       key={i}
                       initial={reduced ? {} : { opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
-                      className="bg-cyber-yellow/5 border border-cyber-yellow/20 rounded-lg p-3 mb-2 text-xs font-mono"
+                      className="bg-brand-gold/5 border border-brand-gold/20 rounded-lg p-3 mb-2 text-xs font-mono"
                     >
-                      <span className="text-cyber-yellow font-bold">Level {h.level}: </span>
-                      <span className="text-gray-400">{h.text}</span>
+                      <span className="text-brand-gold font-bold">Level {h.level}: </span>
+                      <span className="text-brand-secondary">{h.text}</span>
                     </motion.div>
                   ))}
                 </AnimatePresence>
                 {hintLevel === 0 && (
-                  <p className="text-xs font-mono text-gray-600 italic">Stuck? Request navigation beacons for progressive hints.</p>
+                  <p className="text-xs font-mono text-brand-dim italic">Stuck? Request navigation beacons for progressive hints.</p>
                 )}
               </div>
             </div>
@@ -359,11 +359,11 @@ export default function CodingChallenge() {
             {/* Code Editor */}
             <div className="card">
               <div className="flex items-center justify-between mb-3">
-                <h3 className="font-display font-bold text-text-primary text-sm">Solution Module</h3>
-                <span className="text-[10px] font-mono text-gray-500 uppercase">{language}</span>
+                <h3 className="font-display font-bold text-brand-primary text-sm">Solution Module</h3>
+                <span className="text-[10px] font-mono text-brand-dim uppercase">{language}</span>
               </div>
               <textarea
-                className="w-full h-96 font-mono text-xs p-4 border border-gray-200 rounded-lg resize-none focus:ring-2 focus:ring-cyber-green/50 focus:border-cyber-green/50 bg-gray-50 text-gray-700"
+                className="w-full h-96 font-mono text-xs p-4 border border-brand-primary/10 rounded-lg resize-none focus:ring-2 focus:ring-brand-emerald/50 focus:border-brand-emerald/50 bg-surface-card text-brand-secondary"
                 placeholder={`// ${language} solution...`}
                 value={code}
                 onChange={(e) => setCode(e.target.value)}

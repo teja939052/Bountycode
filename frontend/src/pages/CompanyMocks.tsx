@@ -143,30 +143,30 @@ export default function CompanyMocks() {
     return (
       <div className="min-h-screen py-12 px-4">
         <div className="max-w-4xl mx-auto">
-          <Link to="/company-mocks" className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-primary-600 mb-6">
+          <Link to="/company-mocks" className="inline-flex items-center gap-1 text-sm text-brand-muted hover:text-primary-600 mb-6">
             <ArrowLeft size={16} /> All Mock Tests
           </Link>
 
           <AnimatedCard className="card mb-6">
             <div className="text-center mb-6">
               <h2 className="text-2xl font-bold dark:text-white">{result.company} Mock Test</h2>
-              <p className="text-gray-500">{result.paper_name}</p>
+              <p className="text-brand-muted">{result.paper_name}</p>
             </div>
 
             <div className="grid grid-cols-3 gap-4 mb-6">
               <div className="text-center">
                 <p className="text-3xl font-bold text-primary-600">{result.percentage}%</p>
-                <p className="text-sm text-gray-500">Score</p>
+                <p className="text-sm text-brand-muted">Score</p>
               </div>
               <div className="text-center">
                 <p className="text-3xl font-bold">{result.score}/{result.total}</p>
-                <p className="text-sm text-gray-500">Correct</p>
+                <p className="text-sm text-brand-muted">Correct</p>
               </div>
               <div className="text-center">
                 <p className={`text-3xl font-bold ${result.passed ? "text-green-600" : "text-red-600"}`}>
                   {result.passed ? "PASSED" : "FAILED"}
                 </p>
-                <p className="text-sm text-gray-500">Passing: {result.passing_score}%</p>
+                <p className="text-sm text-brand-muted">Passing: {result.passing_score}%</p>
               </div>
             </div>
 
@@ -175,9 +175,9 @@ export default function CompanyMocks() {
                 <h3 className="font-bold mb-3 dark:text-white">Section Breakdown</h3>
                 <div className="space-y-2">
                   {Object.entries(result.section_scores).map(([section, s]: [string, any]) => (
-                    <div key={section} className="flex items-center justify-between bg-gray-50 dark:bg-gray-700/50 rounded-lg px-4 py-2">
+                    <div key={section} className="flex items-center justify-between bg-surface-base dark:bg-gray-700/50 rounded-lg px-4 py-2">
                       <span className="capitalize text-sm font-medium dark:text-white">{section}</span>
-                      <span className="text-sm text-gray-600 dark:text-gray-400">
+                      <span className="text-sm text-brand-secondary dark:text-gray-400">
                         {s.correct}/{s.total} ({s.percentage}%)
                       </span>
                     </div>
@@ -208,11 +208,11 @@ export default function CompanyMocks() {
                   <Target size={18} className="text-primary-600" />
                   Gap Analysis
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{result.gap_analysis.headline}</p>
+                <p className="text-sm text-brand-secondary dark:text-gray-400 mb-4">{result.gap_analysis.headline}</p>
                 {result.gap_analysis.actions?.length > 0 && (
                   <div className="space-y-3">
                     {result.gap_analysis.actions.slice(0, 3).map((action, i) => (
-                      <div key={i} className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+                      <div key={i} className="bg-surface-card bg-surface-card rounded-lg p-4 border border-brand-primary/10 dark:border-brand-primary/10">
                         <div className="flex items-center justify-between mb-1">
                           <span className="font-semibold text-sm dark:text-white">{action.skill.replace("_", " ").toUpperCase()}</span>
                           <span className={`text-xs px-2 py-0.5 rounded-full ${
@@ -221,8 +221,8 @@ export default function CompanyMocks() {
                             "bg-yellow-100 text-yellow-700"
                           }`}>{action.priority}</span>
                         </div>
-                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">{action.action}</p>
-                        <div className="flex items-center gap-4 text-xs text-gray-500">
+                        <p className="text-sm text-brand-secondary dark:text-gray-400 mb-2">{action.action}</p>
+                        <div className="flex items-center gap-4 text-xs text-brand-muted">
                           <span>From {action.from_probability}% → {action.to_probability}%</span>
                           <span>+{action.projected_boost_pct}% boost</span>
                         </div>
@@ -249,10 +249,10 @@ export default function CompanyMocks() {
       <div className="min-h-screen py-12 px-4">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center justify-between mb-6">
-            <Link to="/company-mocks" className="text-sm text-gray-500 hover:text-primary-600">Exit Test</Link>
-            <div className="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 px-4 py-2 rounded-lg">
-              <Clock size={18} className="text-gray-500" />
-              <span className={`font-mono font-bold ${timeLeft < 60 ? "text-red-600" : "text-gray-700 dark:text-gray-300"}`}>
+            <Link to="/company-mocks" className="text-sm text-brand-muted hover:text-primary-600">Exit Test</Link>
+            <div className="flex items-center gap-2 bg-surface-card/50 bg-surface-card px-4 py-2 rounded-lg">
+              <Clock size={18} className="text-brand-muted" />
+              <span className={`font-mono font-bold ${timeLeft < 60 ? "text-red-600" : "text-brand-primary dark:text-gray-300"}`}>
                 {formatTime(timeLeft)}
               </span>
             </div>
@@ -260,7 +260,7 @@ export default function CompanyMocks() {
 
           <AnimatedCard className="card mb-6">
             <h2 className="text-xl font-bold dark:text-white mb-1">{activeTest.company} — {activeTest.paper_name}</h2>
-            <p className="text-sm text-gray-500">Question {Object.keys(answers).filter(k => answers[k]?.trim()).length} of {activeTest.total_questions} answered</p>
+            <p className="text-sm text-brand-muted">Question {Object.keys(answers).filter(k => answers[k]?.trim()).length} of {activeTest.total_questions} answered</p>
           </AnimatedCard>
 
           <div className="space-y-4">
@@ -278,7 +278,7 @@ export default function CompanyMocks() {
                     <div>
                       <div className="flex flex-wrap gap-2 mb-2">
                         <span className={`text-xs px-2 py-0.5 rounded-full ${TYPE_COLORS[q.type] || ""}`}>{q.type}</span>
-                        <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400">{q.difficulty}</span>
+                        <span className="text-xs px-2 py-0.5 rounded-full bg-surface-card/50 dark:bg-gray-700 text-brand-secondary dark:text-gray-400">{q.difficulty}</span>
                       </div>
                       <p className="font-medium dark:text-white">{q.question_title}</p>
                     </div>
@@ -293,7 +293,7 @@ export default function CompanyMocks() {
                           className={`text-left px-4 py-3 rounded-lg border-2 transition-colors text-sm ${
                             answers[idx] === opt
                               ? "border-primary-500 bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400"
-                              : "border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:text-gray-300"
+                              : "border-brand-primary/10 dark:border-brand-primary/10 hover:border-brand-primary/20 dark:text-gray-300"
                           }`}
                         >
                           {opt}
@@ -305,7 +305,7 @@ export default function CompanyMocks() {
                       value={answers[idx] || ""}
                       onChange={(e) => handleAnswer(idx, e.target.value)}
                       placeholder="Write your answer..."
-                      className="w-full ml-8 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 dark:text-white min-h-[100px] resize-y text-sm"
+                      className="w-full ml-8 px-4 py-3 border border-brand-primary/20 border-brand-primary/15 rounded-lg bg-surface-card bg-surface-card dark:text-white min-h-[100px] resize-y text-sm"
                     />
                   )}
                 </motion.div>
@@ -338,7 +338,7 @@ export default function CompanyMocks() {
             </div>
             <div>
               <h1 className="text-3xl font-bold dark:text-white">Company Mock Tests</h1>
-              <p className="text-gray-600 dark:text-gray-400">Timed papers that mirror real campus drives</p>
+              <p className="text-brand-secondary dark:text-gray-400">Timed papers that mirror real campus drives</p>
             </div>
           </div>
         </motion.div>
@@ -347,8 +347,8 @@ export default function CompanyMocks() {
           <div className="space-y-3">
             {Array.from({ length: 4 }).map((_, i) => (
               <div key={i} className="card animate-pulse">
-                <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/2 mb-2" />
-                <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-1/3" />
+                <div className="h-4 bg-surface-card/50 dark:bg-gray-700 rounded w-1/2 mb-2" />
+                <div className="h-3 bg-surface-card/50 dark:bg-gray-700 rounded w-1/3" />
               </div>
             ))}
           </div>
@@ -364,22 +364,22 @@ export default function CompanyMocks() {
                 <div className="flex items-start justify-between mb-3">
                   <div>
                     <h3 className="font-bold text-lg dark:text-white">{co.name}</h3>
-                    <p className="text-sm text-gray-500">{co.paper_name}</p>
+                    <p className="text-sm text-brand-muted">{co.paper_name}</p>
                   </div>
                   {co.locked && <Lock size={20} className="text-gray-400" />}
                 </div>
 
                 <div className="flex flex-wrap gap-2 mb-3">
-                  <span className={`text-xs px-2 py-1 rounded-full border ${TIER_COLORS[co.tier] || "bg-gray-100 text-gray-600"}`}>
+                  <span className={`text-xs px-2 py-1 rounded-full border ${TIER_COLORS[co.tier] || "bg-surface-card/50 text-brand-secondary"}`}>
                     {co.tier}
                   </span>
-                  <span className="text-xs px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400">
+                  <span className="text-xs px-2 py-1 rounded-full bg-surface-card/50 dark:bg-gray-700 text-brand-secondary dark:text-gray-400">
                     {co.duration_minutes} min
                   </span>
-                  <span className="text-xs px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400">
+                  <span className="text-xs px-2 py-1 rounded-full bg-surface-card/50 dark:bg-gray-700 text-brand-secondary dark:text-gray-400">
                     {co.question_count} questions
                   </span>
-                  <span className="text-xs px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400">
+                  <span className="text-xs px-2 py-1 rounded-full bg-surface-card/50 dark:bg-gray-700 text-brand-secondary dark:text-gray-400">
                     Pass: {co.passing_score}%
                   </span>
                 </div>
@@ -387,7 +387,7 @@ export default function CompanyMocks() {
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-gray-400">{co.bank_size} questions in bank</span>
                   {co.locked ? (
-                    <span className="text-xs text-gray-500 font-medium">Pro-only</span>
+                    <span className="text-xs text-brand-muted font-medium">Pro-only</span>
                   ) : (
                     <button onClick={() => handleStart(co.id)} className="btn-primary text-sm py-2">
                       Start Mock
@@ -408,7 +408,7 @@ export default function CompanyMocks() {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="font-semibold dark:text-white">{h.company}</p>
-                      <p className="text-xs text-gray-500">{h.paper_name} · {new Date(h.completed_at).toLocaleDateString()}</p>
+                      <p className="text-xs text-brand-muted">{h.paper_name} · {new Date(h.completed_at).toLocaleDateString()}</p>
                     </div>
                     <div className="text-right">
                       <p className={`font-bold ${h.passed ? "text-green-600" : "text-red-600"}`}>{h.percentage}%</p>

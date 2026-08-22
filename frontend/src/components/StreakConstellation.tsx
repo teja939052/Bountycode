@@ -1,5 +1,4 @@
 import { useRef, useEffect } from 'react';
-import gsap from 'gsap';
 
 const TOTAL_DAYS = 30;
 
@@ -27,20 +26,25 @@ export default function StreakConstellation({ streak = 0, longestStreak = 0, cla
     const stars = svgRef.current.querySelectorAll('.constellation-star');
     const lines = svgRef.current.querySelectorAll('.constellation-line');
 
-    gsap.set(stars, { opacity: 0, scale: 0 });
-    gsap.set(lines, { opacity: 0 });
+    lines.forEach((el, i) => {
+      el.style.opacity = '0';
+      el.style.animation = `fadeLine 0.3s ease-out ${0.2 + i * 0.015}s forwards`;
+    });
 
-    const tl = gsap.timeline({ delay: 0.2 });
-    tl.to(lines, { opacity: 1, duration: 0.3, stagger: 0.015, ease: 'power2.out' })
-      .to(stars, { opacity: 1, scale: 1, duration: 0.2, stagger: 0.03, ease: 'back.out(2)' }, '-=0.15');
-
-    return () => {
-      tl.kill();
-    };
+    stars.forEach((el, i) => {
+      el.style.opacity = '0';
+      el.style.transform = 'scale(0)';
+      el.style.transformOrigin = 'center';
+      el.style.animation = `fadeStar 0.2s cubic-bezier(0.34,1.56,0.64,1) ${0.05 + i * 0.03}s forwards`;
+    });
   }, [streak]);
 
   return (
     <div className={`relative ${className}`}>
+      <style>{`
+        @keyframes fadeLine { to { opacity: 1; } }
+        @keyframes fadeStar { to { opacity: 1; transform: scale(1); } }
+      `}</style>
       {/* Header */}
       <div className="flex items-center justify-between mb-3 px-1">
         <div>

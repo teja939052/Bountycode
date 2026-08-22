@@ -109,15 +109,15 @@ export default function BattlePass() {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-slate-950 text-white">
-        <div className="animate-pulse text-indigo-300">Loading Battle Pass...</div>
+      <div className="flex min-h-screen items-center justify-center bg-surface-base text-text-primary">
+        <div className="animate-pulse text-nature-blossom">Loading Battle Pass...</div>
       </div>
     );
   }
 
   const currentTier = track?.current_tier || 0;
-  const xpForNext = track?.xp_for_next || 50;
   const xpCurrent = track?.total_xp || 0;
+  const progressInTier = Math.min(100, ((xpCurrent % 50) / 50) * 100);
   const hasPremium = track?.has_premium || false;
   const dailyBonus = track?.daily_bonus_available || false;
   const streak = track?.daily_login_count || 0;
@@ -125,11 +125,11 @@ export default function BattlePass() {
   const allRewards = [...FREE_REWARDS, ...(hasPremium ? PREMIUM_REWARDS : [])];
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white px-4 py-8">
+    <div className="min-h-screen bg-surface-base text-text-primary px-4 py-8">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold">⚔️ Battle Pass</h1>
-          <p className="text-slate-400 mt-2">Earn XP daily, climb tiers, unlock exclusive rewards.</p>
+          <p className="text-text-muted mt-2">Earn XP daily, climb tiers, unlock exclusive rewards.</p>
         </div>
 
         {error && (
@@ -140,48 +140,48 @@ export default function BattlePass() {
 
         {/* Stats bar */}
         <div className="grid grid-cols-4 gap-3 mb-6">
-          <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-3 text-center">
-            <div className="text-2xl font-bold text-indigo-400">Tier {currentTier}</div>
-            <div className="text-xs text-slate-500">Current Tier</div>
+          <div className="bg-white border border-nature-leaf/20 rounded-xl p-3 text-center">
+            <div className="text-2xl font-bold text-nature-blossom">Tier {currentTier}</div>
+            <div className="text-xs text-text-muted">Current Tier</div>
           </div>
-          <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-3 text-center">
+          <div className="bg-white border border-nature-leaf/20 rounded-xl p-3 text-center">
             <div className="text-2xl font-bold text-amber-400">{xpCurrent} XP</div>
-            <div className="text-xs text-slate-500">Total XP</div>
+            <div className="text-xs text-text-muted">Total XP</div>
           </div>
-          <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-3 text-center">
+          <div className="bg-white border border-nature-leaf/20 rounded-xl p-3 text-center">
             <div className="text-2xl font-bold text-orange-400">{streak} 🔥</div>
-            <div className="text-xs text-slate-500">Day Streak</div>
+            <div className="text-xs text-text-muted">Day Streak</div>
           </div>
-          <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-3 text-center">
-            <div className="text-2xl font-bold text-purple-400">{track?.claimed || 0}</div>
-            <div className="text-xs text-slate-500">Claimed</div>
+          <div className="bg-white border border-nature-leaf/20 rounded-xl p-3 text-center">
+            <div className="text-2xl font-bold text-nature-blossom">{track?.claimed || 0}</div>
+            <div className="text-xs text-text-muted">Claimed</div>
           </div>
         </div>
 
         {/* XP Progress Bar */}
-        <div className="mb-6 bg-slate-800 rounded-full h-4 overflow-hidden">
+        <div className="mb-6 bg-[#E5E0D3] rounded-full h-4 overflow-hidden">
           <div
-            className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full transition-all duration-500"
-            style={{ width: `${Math.min(100, (xpCurrent / Math.max(1, xpForNext)) * 100)}%` }}
+            className="h-full bg-gradient-to-r from-[#4F8F57] to-[#7BB661] rounded-full transition-all duration-500"
+            style={{ width: `${progressInTier}%` }}
           />
         </div>
-        <p className="text-center text-xs text-slate-500 mb-6">
-          {xpCurrent} / {xpForNext} XP to next tier
+        <p className="text-center text-xs text-text-muted mb-6">
+          {Math.min(50, xpCurrent % 50)} / 50 XP in Tier {currentTier}
         </p>
 
         {/* Daily Login */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-6 bg-gradient-to-r from-amber-900/30 to-orange-900/30 border border-amber-500/30 rounded-2xl p-6"
+          className="mb-6 bg-gradient-to-r from-amber-100 to-orange-100 border border-amber-500/30 rounded-2xl p-6"
         >
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-xl font-bold text-amber-300 flex items-center gap-2">
+              <h2 className="text-xl font-bold text-amber-600 flex items-center gap-2">
                 <Calendar className="h-5 w-5" />
                 Daily Login
               </h2>
-              <p className="text-sm text-slate-400 mt-1">
+              <p className="text-sm text-text-muted mt-1">
                 {dailyBonus ? `+${25 + streak * 10} XP bonus today! Streak: ${streak} days` : "Check in daily to build your streak"}
               </p>
             </div>
@@ -199,13 +199,13 @@ export default function BattlePass() {
                 <div
                   key={day}
                   className={`h-8 w-8 rounded-lg flex items-center justify-center text-xs font-bold ${
-                    day <= streak ? "bg-amber-500 text-slate-900" : "bg-slate-800 text-slate-600"
+                    day <= streak ? "bg-amber-500 text-slate-900" : "bg-surface-card text-text-muted"
                   }`}
                 >
                   {day}
                 </div>
               ))}
-              <span className="text-xs text-slate-500 ml-2 self-center">
+              <span className="text-xs text-text-muted ml-2 self-center">
                 {streak}/7 days — +{streak * 10} bonus XP
               </span>
             </div>
@@ -217,15 +217,15 @@ export default function BattlePass() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="mb-6 bg-gradient-to-r from-purple-900/30 to-pink-900/30 border border-purple-500/30 rounded-2xl p-6 text-center"
+            className="mb-6 bg-gradient-to-r from-[#EDF5E6] to-[#D9EFCF] border border-nature-leaf/30 rounded-2xl p-6 text-center"
           >
-            <Crown className="h-8 w-8 text-purple-400 mx-auto mb-2" />
-            <h2 className="text-xl font-bold text-purple-300">Premium Battle Pass</h2>
-            <p className="text-sm text-slate-400 mt-1">Unlock 20 exclusive tiers with premium cosmetics and titles.</p>
+            <Crown className="h-8 w-8 text-nature-blossom mx-auto mb-2" />
+            <h2 className="text-xl font-bold text-nature-blossom">Premium Battle Pass</h2>
+            <p className="text-sm text-text-muted mt-1">Unlock 20 exclusive tiers with premium cosmetics and titles.</p>
             <button
               onClick={activatePremium}
               disabled={processing === "premium"}
-              className="mt-3 rounded-xl bg-purple-600 px-6 py-2 font-bold text-white hover:bg-purple-500 disabled:opacity-50"
+              className="mt-3 rounded-xl bg-nature-leaf px-6 py-2 font-bold text-white hover:bg-nature-moss disabled:opacity-50"
             >
               {processing === "premium" ? "Activating..." : "Activate Premium — Free"}
             </button>
@@ -234,28 +234,28 @@ export default function BattlePass() {
 
         {/* Reward Tiers */}
         <div className="mb-6">
-          <h2 className="text-xl font-bold text-slate-200 mb-4">Reward Tiers</h2>
+          <h2 className="text-xl font-bold text-text-primary mb-4">Reward Tiers</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {allRewards.map((r) => {
               const unlocked = r.tier <= currentTier;
-              const claimed = false;
+              const claimed = (track?.rewards || []).some((rw) => rw.tier === r.tier && rw.claimed);
               return (
                 <motion.div
                   key={r.tier}
                   className={`rounded-xl border p-3 text-center transition ${
                     unlocked
-                      ? "border-indigo-500/40 bg-indigo-900/20"
-                      : "border-slate-700/40 bg-slate-800/20 opacity-50"
+                      ? "border-nature-leaf/30 bg-surface-card"
+                      : "border-nature-leaf/20 bg-surface-card opacity-50"
                   }`}
                 >
                   <div className="text-2xl mb-1">{r.icon}</div>
-                  <div className="text-xs font-bold text-slate-300">Tier {r.tier}</div>
-                  <div className="text-xs text-slate-400 mt-1">{r.label}</div>
+                  <div className="text-xs font-bold text-text-secondary">Tier {r.tier}</div>
+                  <div className="text-xs text-text-muted mt-1">{r.label}</div>
                   {unlocked && !claimed && (
                     <button
                       onClick={() => claimReward(r.tier)}
                       disabled={processing === "claim-" + r.tier}
-                      className="mt-2 w-full rounded-lg bg-indigo-600 px-2 py-1 text-xs font-bold text-white hover:bg-indigo-500 disabled:opacity-50"
+                      className="mt-2 w-full rounded-lg bg-nature-leaf px-2 py-1 text-xs font-bold text-white hover:bg-nature-moss disabled:opacity-50"
                     >
                       {processing === "claim-" + r.tier ? "..." : "Claim"}
                     </button>
@@ -280,25 +280,25 @@ export default function BattlePass() {
               onClick={() => setLastReward(null)}
             >
               <motion.div
-                className="bg-slate-900 border-2 border-amber-400 rounded-3xl p-8 text-center max-w-sm mx-4 shadow-[0_0_60px_rgba(251,191,36,0.4)]"
+                className="bg-white border-2 border-amber-400 rounded-3xl p-8 text-center max-w-sm mx-4 shadow-[0_0_40px_rgba(127,182,97,0.35)]"
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="text-5xl mb-4">{lastReward.type === "daily" ? "🔥" : "🎉"}</div>
-                <h3 className="text-2xl font-bold text-amber-300 mb-2">
+                <h3 className="text-2xl font-bold text-amber-600 mb-2">
                   {lastReward.type === "daily" ? "Daily Bonus!" : "Tier Unlocked!"}
                 </h3>
                 {lastReward.xp && (
-                  <p className="text-lg text-white">+{lastReward.xp} XP</p>
+                  <p className="text-lg text-text-secondary">+{lastReward.xp} XP</p>
                 )}
                 {lastReward.streak && (
-                  <p className="text-sm text-amber-200">Streak: {lastReward.streak} days 🔥</p>
+                  <p className="text-sm text-amber-600">Streak: {lastReward.streak} days 🔥</p>
                 )}
                 {lastReward.tier && (
-                  <p className="text-sm text-indigo-300">Tier {lastReward.tier} reward claimed!</p>
+                  <p className="text-sm text-nature-blossom">Tier {lastReward.tier} reward claimed!</p>
                 )}
                 <button
                   onClick={() => setLastReward(null)}
-                  className="mt-6 w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl py-3 transition"
+                  className="mt-6 w-full bg-nature-leaf hover:bg-nature-moss text-white font-semibold rounded-xl py-3 transition"
                 >
                   Awesome
                 </button>

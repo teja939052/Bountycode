@@ -8,10 +8,11 @@ import logging
 from datetime import datetime, timezone
 from typing import Optional
 
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel
 
 from app.database import debug_logs_collection
+from app.middleware.auth import get_current_user
 
 logger = logging.getLogger(__name__)
 
@@ -54,8 +55,11 @@ async def log_client_error(report: ClientErrorReport):
 
 
 @router.get("/logs")
-async def list_debug_logs(limit: int = Query(50, ge=1, le=500)):
-    """Return recent client error logs (newest first)."""
+async def list_debug_logs(limit: int = Query(50, ge=1, le=500), user=Depends(get_current_user)):
+    """Return recent client error logs (newest first). Admin only."""
+    is_admin = user.get("role") == "admin" or user.get("is_admin") is True
+    if not is_admin:
+        raise HTTPException(status_code=403, detail="Admin access required")
     try:
         cursor = debug_logs_collection.find().sort("created_at", -1).limit(limit)
         logs = []

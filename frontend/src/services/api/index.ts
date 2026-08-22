@@ -3,8 +3,14 @@ import { interviewApi, mockInterviewApi, bookingApi } from "./interview.ts";
 import { resumeApi } from "./resume.ts";
 import { billingApi } from "./billing.ts";
 import { aptitudeApi } from "./aptitude.ts";
+import { behavioralApi } from "./behavioral.ts";
+import { hrApi } from "./hr.ts";
 
-export { cloudinaryImage, cloudinaryVideo, optimizeImage } from "../cloudinary.ts";
+export {
+  cloudinaryImage,
+  cloudinaryVideo,
+  optimizeImage,
+} from "../cloudinary.ts";
 import { codingApi, compilerApi } from "./coding.ts";
 import { questionsApi } from "./questions.ts";
 import { toolsApi, salaryApi } from "./tools.ts";
@@ -16,8 +22,28 @@ import { placementApi, indianPlacementApi } from "./placement.ts";
 import { systemDesignApi, systemDesignTestsApi } from "./systemDesign.ts";
 import { communityApi, dailyApi, learningApi } from "./community.ts";
 import { adaptiveApi, predictorApi, readinessApi } from "./adaptive.ts";
-import { mockInterviewApi as mockIntApi, personalDashboardApi, dsaFingerprintApi, battlesApi, scrimsApi, rankApi, projectGeneratorApi, mysteryBoxApi, energyApi, playlistsApi, discussionsApi, submissionsApi, featuresApi, visualizationsApi, distributionsApi, analyticsApi, aiDebuggerApi, conceptsApi } from "./misc.ts";
+import {
+  mockInterviewApi as mockIntApi,
+  personalDashboardApi,
+  dsaFingerprintApi,
+  battlesApi,
+  scrimsApi,
+  rankApi,
+  projectGeneratorApi,
+  mysteryBoxApi,
+  energyApi,
+  playlistsApi,
+  discussionsApi,
+  submissionsApi,
+  featuresApi,
+  visualizationsApi,
+  distributionsApi,
+  analyticsApi,
+  aiDebuggerApi,
+  conceptsApi,
+} from "./misc.ts";
 import { learningModulesApi } from "./learningModules.ts";
+import { studyApi } from "./study.ts";
 import { languagePathsApi } from "./languagePathsApi.ts";
 import { freeTrialApi } from "./freeTrial.ts";
 import { onboardingApi } from "./onboarding.ts";
@@ -25,10 +51,10 @@ import { showcaseApi } from "./showcase.ts";
 import { adminContentApi, assignmentsApi } from "./adminContent.ts";
 import { gameEventsApi } from "./gameEvents.ts";
 import { campusApi } from "./campus.ts";
+import { companyDirectoryApi } from "./companyDirectory.ts";
 import { worldApi } from "./world.ts";
 import { merchantApi } from "./merchant.ts";
 import { guildsApi } from "./guilds.ts";
-import { srsApi } from "./srs.ts";
 import { dungeonsApi } from "./dungeons.ts";
 import { collectionApi, eventsApi } from "./collectionEvents.ts";
 import { metricsApi } from "./metrics.ts";
@@ -44,7 +70,14 @@ import { battlePassApi } from "./battlePass.ts";
 import { referralSystemApi } from "./referralSystem.ts";
 import { guildCastleApi } from "./guildCastle.ts";
 import { chatApi } from "./chat.ts";
-import { seasonsApi } from "./seasons.ts";import { achievementsApi } from "./achievements.ts";
+import { gdApi } from "./gdRooms.ts";
+import { cgpaApi } from "./cgpa.ts";
+import { driveApi } from "./driveTracker.ts";
+import { peerReviewApi } from "./peerReview.ts";
+import { studySquadsApi } from "./studySquads.ts";
+import { reportCardApi } from "./reportCard.ts";
+import { seasonsApi } from "./seasons.ts";
+import { achievementsApi } from "./achievements.ts";
 import { tournamentsApi } from "./tournaments.ts";
 import { teamsApi } from "./teams.ts";
 import { referralApi } from "./referrals.ts";
@@ -54,6 +87,11 @@ import { campusPulseApi } from "./campusPulse.ts";
 import { trendingChallengesApi } from "./trendingChallenges.ts";
 import { flatApi } from "./flat.ts";
 import { flatOverrides } from "./flatOverrides.ts";
+import { friendsApi } from "./friends.ts";
+import { studyTimerApi } from "./studyTimer.ts";
+import { goalsApi } from "./goals.ts";
+import { themesApi } from "./themes.ts";
+import { bountyApi } from "./bounty.ts";
 
 const api = {
   auth: authApi,
@@ -63,6 +101,8 @@ const api = {
   resume: resumeApi,
   billing: billingApi,
   aptitude: aptitudeApi,
+  behavioral: behavioralApi,
+  hr: hrApi,
   coding: codingApi,
   compiler: compilerApi,
   questions: questionsApi,
@@ -105,6 +145,7 @@ const api = {
   aiDebugger: aiDebuggerApi,
   concepts: conceptsApi,
   learningModules: learningModulesApi,
+  study: studyApi,
   languagePaths: languagePathsApi,
   freeTrial: freeTrialApi,
   onboarding: onboardingApi,
@@ -113,6 +154,7 @@ const api = {
   assignments: assignmentsApi,
   gameEvents: gameEventsApi,
   campus: campusApi,
+  companyDirectory: companyDirectoryApi,
   world: worldApi,
   merchant: merchantApi,
   guilds: guildsApi,
@@ -129,6 +171,12 @@ const api = {
   newspaper: newspaperApi,
   steam: steamApi,
   chat: chatApi,
+  gd: gdApi,
+  cgpa: cgpaApi,
+  driveTracker: driveApi,
+  peerReview: peerReviewApi,
+  studySquads: studySquadsApi,
+  reportCard: reportCardApi,
   wheel: luckyWheelApi,
   pass: battlePassApi,
   achievements: achievementsApi,
@@ -140,17 +188,32 @@ const api = {
   campusPulse: campusPulseApi,
   trendingChallenges: trendingChallengesApi,
   getMe: () => authApi.getMe(),
-  register: (...args) => authApi.register.apply(authApi, args),
-  login: (...args) => authApi.login.apply(authApi, args),
-  logout: (...args) => authApi.logout.apply(authApi, args),
-  updateProfile: (...args) => authApi.updateProfile.apply(authApi, args),
-  changePassword: (...args) => authApi.changePassword.apply(authApi, args),
-  forgotPassword: (...args) => authApi.forgotPassword.apply(authApi, args),
-  resetPassword: (...args) => authApi.resetPassword.apply(authApi, args),
-  onboardingStatus: (...args) => authApi.onboardingStatus.apply(authApi, args),
-  onboardingComplete: (...args) => authApi.onboardingComplete.apply(authApi, args),
+  register: (...args: Parameters<typeof authApi.register>) =>
+    authApi.register.apply(authApi, args),
+  login: (...args: Parameters<typeof authApi.login>) =>
+    authApi.login.apply(authApi, args),
+  logout: (...args: Parameters<typeof authApi.logout>) =>
+    authApi.logout.apply(authApi, args),
+  updateProfile: (...args: Parameters<typeof authApi.updateProfile>) =>
+    authApi.updateProfile.apply(authApi, args),
+  changePassword: (...args: Parameters<typeof authApi.changePassword>) =>
+    authApi.changePassword.apply(authApi, args),
+  forgotPassword: (...args: Parameters<typeof authApi.forgotPassword>) =>
+    authApi.forgotPassword.apply(authApi, args),
+  resetPassword: (...args: Parameters<typeof authApi.resetPassword>) =>
+    authApi.resetPassword.apply(authApi, args),
+  onboardingStatus: (...args: Parameters<typeof authApi.onboardingStatus>) =>
+    authApi.onboardingStatus.apply(authApi, args),
+  onboardingComplete: (
+    ...args: Parameters<typeof authApi.onboardingComplete>
+  ) => authApi.onboardingComplete.apply(authApi, args),
   ...flatApi,
   ...flatOverrides,
+  friends: friendsApi,
+  studyTimer: studyTimerApi,
+  goals: goalsApi,
+  themes: themesApi,
+  bounty: bountyApi,
 };
 
 export default api;
@@ -163,6 +226,8 @@ export {
   billingApi,
   aptitudeApi,
   codingApi,
+  behavioralApi,
+  hrApi,
   compilerApi,
   questionsApi,
   toolsApi,
@@ -202,9 +267,18 @@ export {
   aiDebuggerApi,
   conceptsApi,
   learningModulesApi,
+  studyApi,
   languagePathsApi,
   freeTrialApi,
   onboardingApi,
   timelineApi,
   chatApi,
+  peerReviewApi,
+  studySquadsApi,
+  friendsApi,
+  reportCardApi,
+  studyTimerApi,
+  goalsApi,
+  themesApi,
+  bountyApi,
 };

@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import gsap from 'gsap';
 
 const REWARD_POOL = [
   { type: 'xp', amount: 25, label: '+25 XP', rarity: 'common', emoji: '⚡', color: '#9CA3AF' },

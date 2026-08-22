@@ -1,0 +1,47 @@
+{
+  "id": "cpp-01-basics",
+  "track": "cpp",
+  "title": "Hello, C++!",
+  "section": "C++ Basics",
+  "order": 1,
+  "type": "lesson",
+  "duration": "9 min",
+  "xp": 15,
+  "content": {
+    "theory": "C++ is a **compiled**, statically typed language known for speed and control — it powers game engines, operating systems, and high-performance software.\n\nThe classic first program:\n\n```cpp\n#include <iostream>\n\nint main() {\n    std::cout << \"Hello, world!\" << std::endl;\n    return 0;\n}\n```\n\nBreaking it down:\n\n- `#include <iostream>` — imports input/output tools\n- `int main()` — the entry point; every program needs one\n- `std::cout << \"...\"` — prints text to the console\n- `std::endl` — ends the line (newline)\n- `return 0;` — signals the program ran successfully\n\n`cout` and `endl` live in the `std` namespace. You can skip the `std::` prefix by writing `using namespace std;` at the top — common in beginner code, though `std::` is considered better practice.\n\nMultiple values chain together with `<<`:\n\n```cpp\nstd::cout << \"Total: \" << 7 + 5 << std::endl;\n```",
+    "codeSnippets": [
+      {
+        "language": "cpp",
+        "code": "#include <iostream>\n\nint main() {\n    std::cout << \"Hello, C++!\" << std::endl;\n    return 0;\n}",
+        "output": "Hello, C++!"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write a complete C++ program: include iostream, define int main(), print 'Welcome to C++!' with std::cout, and return 0.",
+      "starterCode": "#include <iostream>\n\nint main() {\n\n    return 0;\n}",
+      "language": "cpp",
+      "expected": "Welcome to C++!",
+      "required": ["#include <iostream>", "int main()", "std::cout", "Welcome to C++!", "return 0"],
+      "hints": [
+        "Hint 1: Add the print between { and return 0;",
+        "Hint 2: std::cout << \"Welcome to C++!\" << std::endl;"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What does #include <iostream> do?",
+        "options": ["Creates a class", "Imports input/output tools", "Defines main"],
+        "correct": 1
+      },
+      {
+        "question": "Which keyword starts the entry point?",
+        "options": ["main", "start", "run"],
+        "correct": 0
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "cpp-02-variables",
+    "unlocks": ["cpp-02-variables"]
+  }
+}

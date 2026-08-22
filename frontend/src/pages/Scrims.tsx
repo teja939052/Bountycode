@@ -151,7 +151,7 @@ export default function Scrims() {
               exit={{ height: 0, opacity: 0 }}
               className="overflow-hidden mb-6"
             >
-              <div className="p-4 rounded-2xl border border-slate-700/60 bg-slate-800/40 backdrop-blur-sm">
+              <div className="p-4 rounded-2xl border border-slate-700/60 bg-slate-800/40">
                 <div className="flex flex-wrap items-center gap-3">
                   <div className="flex items-center gap-2">
                     <span className="text-xs font-mono uppercase tracking-wider text-slate-500">Topic</span>

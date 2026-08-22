@@ -100,14 +100,14 @@ export default function AdaptivePath() {
             <Brain className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-gray-800">Adaptive Learning Path</h1>
+            <h1 className="text-2xl font-bold text-white">Adaptive Learning Path</h1>
             <p className="text-sm text-gray-500">Personalized just for you based on your skills & progress</p>
           </div>
         </div>
         <button
           onClick={() => fetchAll(true)}
           disabled={refreshing}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/60 border border-gray-200 text-gray-600 hover:bg-white hover:text-gray-800 transition-all disabled:opacity-50 text-sm"
+          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-surface-card/90 border border-brand-primary/10 text-brand-secondary hover:bg-white hover:text-white transition-all disabled:opacity-50 text-sm"
         >
           <RefreshCw className={`w-4 h-4 ${refreshing ? "animate-spin" : ""}`} />
           Refresh
@@ -172,7 +172,7 @@ function ReadinessCard({ readiness }: any) {
   const bgColor = Object.entries(levelColors).find(([key]) => readiness.readiness_level.startsWith(key.split(" ")[0]))?.[1] || "from-gray-400 to-slate-500";
 
   return (
-    <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="rounded-2xl bg-gradient-to-r from-white/70 to-white/40 backdrop-blur-sm border border-gray-200/60 p-6">
+    <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="rounded-2xl bg-gradient-to-r from-white/70 to-white/40 border border-brand-primary/10 p-6">
       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
         <div className="relative">
           <svg className="w-24 h-24 sm:w-28 sm:h-28" viewBox="0 0 120 120">
@@ -199,10 +199,10 @@ function ReadinessCard({ readiness }: any) {
         </div>
         <div className="flex-1 space-y-2">
           <div className="flex items-center gap-2">
-            <h2 className="text-xl font-bold text-gray-800">Interview Readiness</h2>
+            <h2 className="text-xl font-bold text-white">Interview Readiness</h2>
             <span className={`px-3 py-1 rounded-full text-xs font-semibold text-white bg-gradient-to-r ${bgColor}`}>{readiness.readiness_level}</span>
           </div>
-          <div className="flex flex-wrap gap-3 text-sm text-gray-600">
+          <div className="flex flex-wrap gap-3 text-sm text-brand-secondary">
             <span>🎯 {readiness.coverage_pct}% domain coverage</span>
             <span>💪 {readiness.strong_domains_count} strong domains</span>
             <span>⚠️ {readiness.weak_areas_count} weak areas</span>
@@ -210,7 +210,7 @@ function ReadinessCard({ readiness }: any) {
           {readiness.category_scores && (
             <div className="flex flex-wrap gap-2 mt-2">
               {Object.entries(readiness.category_scores).filter(([, s]: any) => s > 0).map(([cat, score]: [string, any]) => (
-                <span key={cat} className="px-2.5 py-1 rounded-lg bg-white/60 border border-gray-200 text-xs font-medium text-gray-700">
+                <span key={cat} className="px-2.5 py-1 rounded-lg bg-surface-card/90 border border-brand-primary/10 text-xs font-medium text-brand-primary">
                   {cat.charAt(0).toUpperCase() + cat.slice(1)}: {score}/100
                 </span>
               ))}
@@ -224,7 +224,7 @@ function ReadinessCard({ readiness }: any) {
 
 function TabNav({ activeTab, onTabChange, tabs }: any) {
   return (
-    <div className="flex gap-1 p-1 rounded-2xl bg-white/40 border border-gray-200/60 overflow-x-auto">
+    <div className="flex gap-1 p-1 rounded-2xl bg-surface-card/70 border border-brand-primary/10 overflow-x-auto">
       {tabs.map((tab) => {
         const Icon = tab.icon;
         return (
@@ -233,8 +233,8 @@ function TabNav({ activeTab, onTabChange, tabs }: any) {
             onClick={() => onTabChange(tab.id)}
             className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all whitespace-nowrap ${
               activeTab === tab.id
-                ? "bg-white shadow-sm text-gray-800 border border-gray-200"
-                : "text-gray-500 hover:text-gray-700 hover:bg-white/40"
+                ? "bg-surface-card shadow-lg text-white border border-brand-primary/10"
+                : "text-gray-500 hover:text-brand-primary hover:bg-surface-card/70"
             }`}
           >
             <Icon className="w-4 h-4" />
@@ -252,21 +252,21 @@ function OverviewTab({ skills, weakAreas, dailyPlan, readiness, recommendations 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
       {/* Today's Plan */}
-      <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="lg:col-span-2 rounded-2xl bg-white/60 backdrop-blur-sm border border-gray-200/60 p-5 space-y-4">
+      <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="lg:col-span-2 rounded-2xl bg-surface-card/90 border border-brand-primary/10 p-5 space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Clock className="w-5 h-5 text-brand-lavender" />
-            <h3 className="font-semibold text-gray-800">Today's Plan</h3>
+            <h3 className="font-semibold text-white">Today's Plan</h3>
           </div>
           {dailyPlan && (
             <span className="text-xs text-gray-500">{dailyPlan.total_estimated_minutes} min • {dailyPlan.task_count} tasks</span>
           )}
         </div>
         {dailyPlan?.tasks?.slice(0, 3).map((task, i) => (
-          <div key={task.id || i} className="flex items-start gap-3 p-3 rounded-xl bg-white/60 border border-gray-100">
+          <div key={task.id || i} className="flex items-start gap-3 p-3 rounded-xl bg-surface-card/90 border border-gray-100">
             <span className="text-xl">{TASK_EMOJIS[task.type] || "📌"}</span>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-gray-800">{task.title}</p>
+              <p className="text-sm font-medium text-white">{task.title}</p>
               <div className="flex items-center gap-2 mt-1">
                 <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
                   task.type === "warmup" ? "bg-amber-100 text-amber-700" :
@@ -291,10 +291,10 @@ function OverviewTab({ skills, weakAreas, dailyPlan, readiness, recommendations 
       {/* Weak Areas + Stats */}
       <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-4">
         {/* Weak Areas */}
-        <div className="rounded-2xl bg-white/60 backdrop-blur-sm border border-gray-200/60 p-5 space-y-3">
+        <div className="rounded-2xl bg-surface-card/90 border border-brand-primary/10 p-5 space-y-3">
           <div className="flex items-center gap-2">
             <Target className="w-5 h-5 text-brand-coral" />
-            <h3 className="font-semibold text-gray-800">Weak Areas</h3>
+            <h3 className="font-semibold text-white">Weak Areas</h3>
           </div>
           {topWeak.length === 0 ? (
             <p className="text-sm text-gray-500">No weak areas detected! Keep it up 🎉</p>
@@ -303,7 +303,7 @@ function OverviewTab({ skills, weakAreas, dailyPlan, readiness, recommendations 
               <div key={area.domain_id || i} className="flex items-center gap-3 p-2.5 rounded-xl bg-white/50 border border-gray-100">
                 <span className="text-lg">{area.emoji}</span>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-gray-800">{area.name}</p>
+                  <p className="text-sm font-medium text-white">{area.name}</p>
                   <div className="flex items-center gap-2 mt-0.5">
                     <div className="flex-1 h-1.5 rounded-full bg-gray-200 overflow-hidden">
                       <motion.div
@@ -323,10 +323,10 @@ function OverviewTab({ skills, weakAreas, dailyPlan, readiness, recommendations 
 
         {/* Quick Stats */}
         {readiness && (
-          <div className="rounded-2xl bg-white/60 backdrop-blur-sm border border-gray-200/60 p-5 space-y-3">
+          <div className="rounded-2xl bg-surface-card/90 border border-brand-primary/10 p-5 space-y-3">
             <div className="flex items-center gap-2">
               <TrendingUp className="w-5 h-5 text-emerald-500" />
-              <h3 className="font-semibold text-gray-800">Quick Stats</h3>
+              <h3 className="font-semibold text-white">Quick Stats</h3>
             </div>
             <div className="grid grid-cols-2 gap-2">
               {[
@@ -335,7 +335,7 @@ function OverviewTab({ skills, weakAreas, dailyPlan, readiness, recommendations 
                 { label: "Attempts", value: skills?.total_attempts || 0, color: "text-blue-500" },
                 { label: "Correct", value: skills?.total_correct || 0, color: "text-green-500" },
               ].map((stat) => (
-                <div key={stat.label} className="p-2.5 rounded-xl bg-white/60 border border-gray-100 text-center">
+                <div key={stat.label} className="p-2.5 rounded-xl bg-surface-card/90 border border-gray-100 text-center">
                   <p className={`text-lg font-bold ${stat.color}`}>{stat.value}</p>
                   <p className="text-xs text-gray-500">{stat.label}</p>
                 </div>
@@ -354,10 +354,10 @@ function DailyPlanTab({ plan, onCompleteTask, selectedTask, onSelectTask }: any)
   return (
     <div className="space-y-4">
       {/* Plan Header */}
-      <div className="rounded-2xl bg-gradient-to-r from-brand-lavender/10 to-brand-sky/10 backdrop-blur-sm border border-gray-200/60 p-5">
+      <div className="rounded-2xl bg-gradient-to-r from-brand-lavender/10 to-brand-sky/10 border border-brand-primary/10 p-5">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="font-semibold text-gray-800">{plan.date}</h3>
+            <h3 className="font-semibold text-white">{plan.date}</h3>
             <p className="text-sm text-gray-500">Streak: {plan.streak} days • Level {plan.level} • {plan.total_estimated_minutes} minutes</p>
           </div>
           <span className="text-xs text-gray-500">{plan.task_count} tasks</span>
@@ -365,7 +365,7 @@ function DailyPlanTab({ plan, onCompleteTask, selectedTask, onSelectTask }: any)
         {plan.focus_areas?.length > 0 && (
           <div className="flex flex-wrap gap-2 mt-3">
             {plan.focus_areas.map((area, i) => (
-              <span key={i} className="flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium bg-white/60 border border-gray-200 text-gray-700">
+              <span key={i} className="flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium bg-surface-card/90 border border-brand-primary/10 text-brand-primary">
                 {area.emoji} {area.name}
               </span>
             ))}
@@ -379,7 +379,7 @@ function DailyPlanTab({ plan, onCompleteTask, selectedTask, onSelectTask }: any)
           <motion.div
             key={task.id || i}
             initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
-            className="rounded-2xl bg-white/60 backdrop-blur-sm border border-gray-200/60 p-4 hover:bg-white/80 transition-colors cursor-pointer"
+            className="rounded-2xl bg-surface-card/90 border border-brand-primary/10 p-4 hover:bg-white/80 transition-colors cursor-pointer"
             onClick={() => onSelectTask(selectedTask === i ? null : i)}
           >
             <div className="flex items-start gap-4">
@@ -389,14 +389,14 @@ function DailyPlanTab({ plan, onCompleteTask, selectedTask, onSelectTask }: any)
                 task.type === "problem" ? "bg-violet-100" :
                 task.type === "challenge" ? "bg-red-100" :
                 task.type === "project" ? "bg-emerald-100" :
-                "bg-gray-100"
+                "bg-surface-card/50"
               }`}>
                 {TASK_EMOJIS[task.type] || "📌"}
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-start justify-between gap-2">
                   <div>
-                    <p className="font-medium text-gray-800">{task.title}</p>
+                    <p className="font-medium text-white">{task.title}</p>
                     {task.domain_id && (
                       <p className="text-xs text-gray-500 mt-0.5">{task.domain_id.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase())}</p>
                     )}
@@ -414,7 +414,7 @@ function DailyPlanTab({ plan, onCompleteTask, selectedTask, onSelectTask }: any)
                   <span className="flex items-center gap-1"><Zap className="w-3 h-3 text-brand-gold" />+{task.xp_reward} XP</span>
                 </div>
                 {selectedTask === i && task.description && (
-                  <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} className="mt-2 text-sm text-gray-600 bg-gray-50 rounded-lg p-3">
+                  <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} className="mt-2 text-sm text-brand-secondary bg-surface-base rounded-lg p-3">
                     {task.description}
                   </motion.p>
                 )}
@@ -442,14 +442,14 @@ function SkillsTab({ skills, weakAreas }: any) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
       {/* Skill Bars */}
-      <div className="rounded-2xl bg-white/60 backdrop-blur-sm border border-gray-200/60 p-5">
-        <h3 className="font-semibold text-gray-800 mb-4">All Skills</h3>
+      <div className="rounded-2xl bg-surface-card/90 border border-brand-primary/10 p-5">
+        <h3 className="font-semibold text-white mb-4">All Skills</h3>
         <div className="space-y-3">
           {sortedSkills.map(([id, skill]) => (
             <div key={id} className="space-y-1">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 min-w-0">
-                  <span className="text-sm font-medium text-gray-800 truncate">{id.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase())}</span>
+                  <span className="text-sm font-medium text-white truncate">{id.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase())}</span>
                   {weakIds.has(id) && <AlertCircle className="w-3.5 h-3.5 text-brand-coral shrink-0" />}
                 </div>
                 <span className="text-xs font-medium text-gray-500 shrink-0">{skill.score}% · {skill.mastery_label}</span>
@@ -472,18 +472,18 @@ function SkillsTab({ skills, weakAreas }: any) {
 
       {/* Weak Areas Detail */}
       <div className="space-y-4">
-        <div className="rounded-2xl bg-white/60 backdrop-blur-sm border border-gray-200/60 p-5">
-          <h3 className="font-semibold text-gray-800 mb-4">⚠️ Priority Weak Areas</h3>
+        <div className="rounded-2xl bg-surface-card/90 border border-brand-primary/10 p-5">
+          <h3 className="font-semibold text-white mb-4">⚠️ Priority Weak Areas</h3>
           {(weakAreas || []).length === 0 ? (
             <p className="text-sm text-gray-500">No weak areas found!</p>
           ) : (
             <div className="space-y-3">
               {weakAreas.map((area, i) => (
-                <div key={area.domain_id || i} className="p-3 rounded-xl bg-white/60 border border-gray-100">
+                <div key={area.domain_id || i} className="p-3 rounded-xl bg-surface-card/90 border border-gray-100">
                   <div className="flex items-center gap-2">
                     <span className="text-lg">{area.emoji}</span>
                     <div>
-                      <p className="text-sm font-medium text-gray-800">{area.name}</p>
+                      <p className="text-sm font-medium text-white">{area.name}</p>
                       <p className="text-xs text-gray-500">Score: {area.score}% · {area.mastery_label} · {area.accuracy}% accuracy</p>
                     </div>
                   </div>
@@ -495,13 +495,13 @@ function SkillsTab({ skills, weakAreas }: any) {
         </div>
 
         {/* Mastery Legend */}
-        <div className="rounded-2xl bg-white/60 backdrop-blur-sm border border-gray-200/60 p-5">
-          <h3 className="font-semibold text-gray-800 mb-3">Mastery Levels</h3>
+        <div className="rounded-2xl bg-surface-card/90 border border-brand-primary/10 p-5">
+          <h3 className="font-semibold text-white mb-3">Mastery Levels</h3>
           <div className="space-y-1.5">
             {["untouched", "beginner", "learning", "practicing", "competent", "proficient", "master"].map((level) => (
               <div key={level} className="flex items-center gap-2 text-xs">
                 <div className="w-3 h-3 rounded-full" style={{ backgroundColor: MASTERY_COLORS[level] }} />
-                <span className="text-gray-700 capitalize">{level}</span>
+                <span className="text-brand-primary capitalize">{level}</span>
               </div>
             ))}
           </div>
@@ -516,10 +516,10 @@ function LearningPathTab({ path }: any) {
 
   return (
     <div className="space-y-4">
-      <div className="rounded-2xl bg-gradient-to-r from-brand-lavender/10 to-brand-sky/10 backdrop-blur-sm border border-gray-200/60 p-5">
+      <div className="rounded-2xl bg-gradient-to-r from-brand-lavender/10 to-brand-sky/10 border border-brand-primary/10 p-5">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="font-semibold text-gray-800">
+            <h3 className="font-semibold text-white">
               {path.total_weeks}-Week Learning Path
             </h3>
             <p className="text-sm text-gray-500">{path.total_hours} hours total · Current: {path.current_level} ({path.current_score}%)</p>
@@ -543,12 +543,12 @@ function LearningPathTab({ path }: any) {
               <span className="text-xs font-bold text-brand-lavender">{week.week}</span>
             </div>
 
-            <div className="rounded-2xl bg-white/60 backdrop-blur-sm border border-gray-200/60 p-4 hover:bg-white/80 transition-colors">
+            <div className="rounded-2xl bg-surface-card/90 border border-brand-primary/10 p-4 hover:bg-white/80 transition-colors">
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-center gap-2 min-w-0">
                   <span className="text-lg shrink-0">{week.emoji}</span>
                   <div>
-                    <p className="font-semibold text-gray-800">{week.title}</p>
+                    <p className="font-semibold text-white">{week.title}</p>
                     <p className="text-xs text-gray-500">{week.goal} · ~{week.estimated_hours}h</p>
                   </div>
                 </div>
@@ -560,10 +560,10 @@ function LearningPathTab({ path }: any) {
                 }`}>{week.phase}</span>
               </div>
               <details className="mt-3">
-                <summary className="text-xs text-gray-500 cursor-pointer hover:text-gray-700">View daily plan</summary>
+                <summary className="text-xs text-gray-500 cursor-pointer hover:text-brand-primary">View daily plan</summary>
                 <ul className="mt-2 space-y-1">
                   {week.daily_plan?.map((day, di) => (
-                    <li key={di} className="flex items-center gap-2 text-xs text-gray-600">
+                    <li key={di} className="flex items-center gap-2 text-xs text-brand-secondary">
                       <CheckCircle2 className="w-3 h-3 text-gray-300" />
                       {day}
                     </li>
@@ -584,11 +584,11 @@ function RecommendationsTab({ recommendations }: any) {
   return (
     <div className="space-y-4">
       {recommendations.career_insight && (
-        <div className="rounded-2xl bg-gradient-to-r from-brand-lavender/10 to-brand-sky/10 backdrop-blur-sm border border-gray-200/60 p-5">
+        <div className="rounded-2xl bg-gradient-to-r from-brand-lavender/10 to-brand-sky/10 border border-brand-primary/10 p-5">
           <div className="flex items-start gap-3">
             <Sparkles className="w-5 h-5 text-brand-gold shrink-0 mt-0.5" />
             <div>
-              <p className="text-sm text-gray-700 italic">{recommendations.career_insight}</p>
+              <p className="text-sm text-brand-primary italic">{recommendations.career_insight}</p>
               {recommendations.next_milestone && (
                 <p className="text-xs text-gray-500 mt-1">Next milestone: {recommendations.next_milestone}</p>
               )}
@@ -601,7 +601,7 @@ function RecommendationsTab({ recommendations }: any) {
         {recommendations.recommendations?.map((rec, i) => (
           <motion.div
             key={i} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}
-            className="rounded-2xl bg-white/60 backdrop-blur-sm border border-gray-200/60 p-5 hover:bg-white/80 transition-colors"
+            className="rounded-2xl bg-surface-card/90 border border-brand-primary/10 p-5 hover:bg-white/80 transition-colors"
           >
             <div className="flex items-start gap-3">
               <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-lg ${
@@ -611,18 +611,18 @@ function RecommendationsTab({ recommendations }: any) {
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-start justify-between gap-2">
-                  <p className="font-semibold text-gray-800">{rec.title}</p>
+                  <p className="font-semibold text-white">{rec.title}</p>
                   <span className={`shrink-0 px-2 py-0.5 rounded-full text-xs font-medium ${
                     rec.impact === "high" ? "bg-red-100 text-red-700" :
                     rec.impact === "medium" ? "bg-amber-100 text-amber-700" :
                     "bg-blue-100 text-blue-700"
                   }`}>{rec.impact}</span>
                 </div>
-                <p className="text-sm text-gray-600 mt-1">{rec.description}</p>
+                <p className="text-sm text-brand-secondary mt-1">{rec.description}</p>
                 {rec.concrete_action && (
-                  <div className="mt-2 p-2.5 rounded-lg bg-gray-50 border border-gray-100">
-                    <p className="text-xs font-medium text-gray-700">Action:</p>
-                    <p className="text-sm text-gray-600">{rec.concrete_action}</p>
+                  <div className="mt-2 p-2.5 rounded-lg bg-surface-base border border-gray-100">
+                    <p className="text-xs font-medium text-brand-primary">Action:</p>
+                    <p className="text-sm text-brand-secondary">{rec.concrete_action}</p>
                   </div>
                 )}
                 {rec.estimated_hours && (
@@ -670,7 +670,7 @@ function ErrorState({ error, onRetry }: any) {
 
 function EmptyState({ message }: any) {
   return (
-    <div className="rounded-2xl bg-white/40 border border-gray-200/60 p-8 text-center">
+    <div className="rounded-2xl bg-surface-card/70 border border-brand-primary/10 p-8 text-center">
       <Compass className="w-12 h-12 text-gray-300 mx-auto mb-4" />
       <p className="text-gray-500">{message}</p>
     </div>

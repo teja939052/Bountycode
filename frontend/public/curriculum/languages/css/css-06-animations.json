@@ -1,0 +1,46 @@
+{
+  "id": "css-06-animations",
+  "track": "css",
+  "title": "Transitions & Animations",
+  "section": "Styling with CSS",
+  "order": 6,
+  "type": "lesson",
+  "duration": "13 min",
+  "xp": 25,
+  "content": {
+    "theory": "Motion makes interfaces feel alive. CSS has two tools: **transitions** (smooth changes between states) and **keyframe animations** (multi-step motion).\n\n### Transitions — smooth a property change\n```css\n.button {\n  background: #4f8f57;\n  transition: background 0.3s ease, transform 0.2s ease;\n}\n.button:hover {\n  background: #3a7342;\n  transform: scale(1.05);   /* grows slightly */\n}\n```\n- `transition: [property] [duration] [timing] [delay]`\n- Only the **listed properties** animate\n- Triggered by a state change (hover, focus, class toggles)\n\n### Transforms\n```css\n.element {\n  transform: rotate(45deg);\n  transform: translateX(20px);   /* move */\n  transform: scale(1.5);          /* grow */\n}\n```\n`transform` doesn't reflow the layout — it's cheap and smooth.\n\n### Keyframes — multi-step animation\n```css\n@keyframes bounce {\n  0%   { transform: translateY(0); }\n  50%  { transform: translateY(-20px); }\n  100% { transform: translateY(0); }\n}\n\n.badge {\n  animation: bounce 1s ease-in-out infinite;\n}\n```\n\n### Animation shorthand\n```css\nanimation: name duration timing delay iteration-count;\nanimation: bounce 1s ease 0s infinite;\n```\n\n### Accessibility\nRespect users who prefer reduced motion:\n```css\n@media (prefers-reduced-motion: reduce) {\n  .badge { animation: none; }\n}\n```\n\nRule of thumb: use transitions for hover/press feedback, keyframes for ongoing attention-grabbing motion — and keep it subtle.",
+    "codeSnippets": [
+      {
+        "language": "css",
+        "code": "@keyframes pop {\n  0% { transform: scale(1); }\n  50% { transform: scale(1.2); }\n  100% { transform: scale(1); }\n}",
+        "output": "A scale pulse that loops with animation: pop 0.6s ease infinite;"
+      }
+    ],
+    "exercise": {
+      "instruction": "Style the button: add a transition on background and transform (0.3s ease), and on hover change the background to #3a7342 and transform to scale(1.1).",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Animations</title>\n  <style>\n    .button {\n      background: #4f8f57;\n      color: white;\n      padding: 12px 24px;\n      border: none;\n      border-radius: 9999px;\n      cursor: pointer;\n\n    }\n    .button:hover {\n\n    }\n  </style>\n</head>\n<body>\n  <button class=\"button\">Hover me</button>\n</body>\n</html>",
+      "required": ["transition:", "background", "transform", "0.3s", ".button:hover", "scale(1.1)"],
+      "hints": [
+        "Hint 1: .button { ... transition: background 0.3s ease, transform 0.3s ease; }",
+        "Hint 2: .button:hover { background: #3a7342; transform: scale(1.1); }",
+        "Hint 3: Hover the button in the preview to see it grow."
+      ]
+    },
+    "quiz": [
+      {
+        "question": "When do transitions run?",
+        "options": ["Continuously forever", "When a property changes (e.g. hover)", "Only on page load"],
+        "correct": 1
+      },
+      {
+        "question": "Which at-rule defines multi-step animations?",
+        "options": ["@media", "@keyframes", "@import"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "css-07-card-project",
+    "unlocks": ["css-07-card-project"]
+  }
+}

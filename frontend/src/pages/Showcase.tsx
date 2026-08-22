@@ -12,13 +12,13 @@ import Skeleton from "../components/ui/Skeleton";
 const LANGUAGES = ["python", "javascript", "typescript", "java", "cpp", "c", "go", "rust", "sql", "html"];
 
 const LANGUAGE_COLORS = {
-  python: "border-emerald-500/30 bg-emerald-500/10 text-emerald-400",
+  python: "border-brand-primary/20 bg-brand-primary/10 text-brand-primary",
   javascript: "border-amber-500/30 bg-amber-500/10 text-amber-400",
   typescript: "border-sky-500/30 bg-sky-500/10 text-sky-400",
   java: "border-orange-500/30 bg-orange-500/10 text-orange-400",
-  cpp: "border-blue-500/30 bg-blue-500/10 text-blue-400",
+  cpp: "border-brand-primary/20 bg-brand-primary/10 text-brand-primary",
   c: "border-violet-500/30 bg-violet-500/10 text-violet-400",
-  go: "border-cyan-500/30 bg-cyan-500/10 text-cyan-400",
+  go: "border-brand-primary/20 bg-brand-secondary/10 text-brand-secondary",
   rust: "border-rose-500/30 bg-rose-500/10 text-rose-400",
   sql: "border-fuchsia-500/30 bg-fuchsia-500/10 text-fuchsia-400",
   html: "border-red-500/30 bg-red-500/10 text-red-400",
@@ -107,16 +107,16 @@ export default function Showcase() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
             <h1 className="text-3xl font-display font-bold text-white flex items-center gap-3">
-              <Code2 className="w-8 h-8 text-emerald-400" />
+              <Code2 className="w-8 h-8 text-brand-primary" />
               Project Showcase
             </h1>
-            <p className="text-slate-400 mt-1">
+            <p className="text-brand-muted mt-1">
               Share your code snippets, get peer reviews, and level up.
             </p>
           </div>
           <button
             onClick={openPublish}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500/20 to-indigo-500/20 border border-emerald-500/40 text-emerald-300 text-sm font-medium hover:border-emerald-400/70 hover:bg-emerald-500/10 transition-all"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500/20 to-indigo-500/20 border border-emerald-500/40 text-brand-primary text-sm font-medium hover:border-emerald-400/70 hover:bg-brand-primary/10 transition-all"
           >
             <Plus className="w-4 h-4" />
             Publish Project
@@ -131,13 +131,13 @@ export default function Showcase() {
               exit={{ opacity: 0, y: -8 }}
               className="flex flex-wrap items-center gap-2 mb-8"
             >
-              <Hash className="w-4 h-4 text-slate-500" />
+              <Hash className="w-4 h-4 text-brand-muted" />
               <button
                 onClick={() => setActiveTag("")}
                 className={`px-3 py-1 rounded-full text-xs font-mono border transition-all ${
                   activeTag === ""
-                    ? "border-emerald-500/50 bg-emerald-500/15 text-emerald-300"
-                    : "border-white/10 bg-white/5 text-slate-400 hover:text-slate-200"
+                    ? "border-emerald-500/50 bg-emerald-500/15 text-brand-primary"
+                    : "border-brand-primary/10 bg-surface-card/30 text-brand-muted hover:text-slate-200"
                 }`}
               >
                 All
@@ -148,8 +148,8 @@ export default function Showcase() {
                   onClick={() => setActiveTag(tag === activeTag ? "" : tag)}
                   className={`px-3 py-1 rounded-full text-xs font-mono border transition-all ${
                     activeTag === tag
-                      ? "border-emerald-500/50 bg-emerald-500/15 text-emerald-300"
-                      : "border-white/10 bg-white/5 text-slate-400 hover:text-slate-200"
+                      ? "border-emerald-500/50 bg-emerald-500/15 text-brand-primary"
+                      : "border-brand-primary/10 bg-surface-card/30 text-brand-muted hover:text-slate-200"
                   }`}
                 >
                   {tag}
@@ -168,7 +168,7 @@ export default function Showcase() {
         {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <div key={i} className="rounded-2xl border border-brand-primary/10 bg-surface-card/30 p-5">
                 <Skeleton className="h-4 w-3/4 mb-3" />
                 <Skeleton className="h-3 w-full mb-2" />
                 <Skeleton className="h-3 w-2/3 mb-4" />
@@ -183,8 +183,8 @@ export default function Showcase() {
         ) : projects.length === 0 ? (
           <div className="text-center py-20">
             <Search className="w-16 h-16 mx-auto text-slate-600 mb-4" />
-            <h3 className="text-lg font-semibold text-slate-300 mb-2">No projects found</h3>
-            <p className="text-slate-500 text-sm">Be the first to publish a project for this tag.</p>
+            <h3 className="text-lg font-semibold text-brand-secondary mb-2">No projects found</h3>
+            <p className="text-brand-muted text-sm">Be the first to publish a project for this tag.</p>
           </div>
         ) : (
           <>
@@ -196,10 +196,10 @@ export default function Showcase() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: idx * 0.05 }}
                   onClick={() => navigate(`/showcase/${project.id}`)}
-                  className="group relative text-left rounded-2xl border border-white/10 bg-white/5 p-5 hover:border-emerald-500/40 hover:bg-white/[0.07] transition-all duration-300"
+                  className="group relative text-left rounded-2xl border border-brand-primary/10 bg-surface-card/30 p-5 hover:border-emerald-500/40 hover:bg-white/[0.07] transition-all duration-300"
                 >
                   <div className="flex items-start justify-between gap-3 mb-3">
-                    <h3 className="text-base font-semibold text-slate-100 group-hover:text-emerald-300 transition-colors line-clamp-1">
+                    <h3 className="text-base font-semibold text-slate-100 group-hover:text-brand-primary transition-colors line-clamp-1">
                       {project.title}
                     </h3>
                     <span className={`shrink-0 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-medium border ${languageColor(project.language)}`}>
@@ -207,11 +207,11 @@ export default function Showcase() {
                     </span>
                   </div>
 
-                  <p className="text-xs text-slate-500 line-clamp-2 mb-3 leading-relaxed">
+                  <p className="text-xs text-brand-muted line-clamp-2 mb-3 leading-relaxed">
                     {project.description}
                   </p>
 
-                  <pre className="text-[11px] leading-relaxed font-mono text-slate-400 bg-black/30 border border-white/10 rounded-lg p-3 mb-4 line-clamp-5 overflow-hidden whitespace-pre-wrap">
+                  <pre className="text-[11px] leading-relaxed font-mono text-brand-muted bg-black/30 border border-brand-primary/10 rounded-lg p-3 mb-4 line-clamp-5 overflow-hidden whitespace-pre-wrap">
                     {project.code_preview || "// no preview"}
                   </pre>
 
@@ -223,7 +223,7 @@ export default function Showcase() {
                     ))}
                   </div>
 
-                  <div className="flex items-center gap-4 text-xs text-slate-500">
+                  <div className="flex items-center gap-4 text-xs text-brand-muted">
                     <span className="flex items-center gap-1.5">
                       <User className="w-3.5 h-3.5" />
                       {project.author_name}
@@ -250,17 +250,17 @@ export default function Showcase() {
                 <button
                   disabled={page <= 1}
                   onClick={() => setPage(p => p - 1)}
-                  className="flex items-center gap-1 px-4 py-2 rounded-xl border border-white/10 bg-white/5 text-sm text-slate-300 disabled:opacity-40 hover:border-emerald-500/40 transition-all"
+                  className="flex items-center gap-1 px-4 py-2 rounded-xl border border-brand-primary/10 bg-surface-card/30 text-sm text-brand-secondary disabled:opacity-40 hover:border-emerald-500/40 transition-all"
                 >
                   <ChevronLeft className="w-4 h-4" /> Prev
                 </button>
-                <span className="text-sm text-slate-500">
+                <span className="text-sm text-brand-muted">
                   Page {page} of {totalPages}
                 </span>
                 <button
                   disabled={page >= totalPages}
                   onClick={() => setPage(p => p + 1)}
-                  className="flex items-center gap-1 px-4 py-2 rounded-xl border border-white/10 bg-white/5 text-sm text-slate-300 disabled:opacity-40 hover:border-emerald-500/40 transition-all"
+                  className="flex items-center gap-1 px-4 py-2 rounded-xl border border-brand-primary/10 bg-surface-card/30 text-sm text-brand-secondary disabled:opacity-40 hover:border-emerald-500/40 transition-all"
                 >
                   Next <ChevronRight className="w-4 h-4" />
                 </button>
@@ -284,16 +284,16 @@ export default function Showcase() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               onClick={e => e.stopPropagation()}
-              className="rounded-3xl border border-white/10 bg-slate-900 p-6 sm:p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+              className="rounded-3xl border border-brand-primary/10 bg-slate-900 p-6 sm:p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
             >
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-display font-bold text-white flex items-center gap-2">
-                  <Sparkles className="w-5 h-5 text-emerald-400" />
+                  <Sparkles className="w-5 h-5 text-brand-primary" />
                   Publish Project
                 </h2>
                 <button
                   onClick={() => setShowPublish(false)}
-                  className="p-2 rounded-lg text-slate-500 hover:text-slate-200 hover:bg-white/5"
+                  className="p-2 rounded-lg text-brand-muted hover:text-slate-200 hover:bg-surface-card/30"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -301,58 +301,58 @@ export default function Showcase() {
 
               <div className="space-y-4">
                 <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-slate-500 mb-1.5">Title</label>
+                  <label className="block text-xs font-mono uppercase tracking-wider text-brand-muted mb-1.5">Title</label>
                   <input
                     type="text"
                     value={form.title}
                     onChange={e => setForm({ ...form, title: e.target.value })}
                     placeholder="e.g. Real-time chat with WebSockets"
-                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/20 transition-all"
+                    className="w-full rounded-xl border border-brand-primary/10 bg-surface-card/30 px-4 py-2.5 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/20 transition-all"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-slate-500 mb-1.5">Description</label>
+                  <label className="block text-xs font-mono uppercase tracking-wider text-brand-muted mb-1.5">Description</label>
                   <textarea
                     value={form.description}
                     onChange={e => setForm({ ...form, description: e.target.value })}
                     placeholder="What does this project do?"
                     rows={2}
-                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/20 transition-all resize-none"
+                    className="w-full rounded-xl border border-brand-primary/10 bg-surface-card/30 px-4 py-2.5 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/20 transition-all resize-none"
                   />
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-slate-500 mb-1.5">Language</label>
+                    <label className="block text-xs font-mono uppercase tracking-wider text-brand-muted mb-1.5">Language</label>
                     <select
                       value={form.language}
                       onChange={e => setForm({ ...form, language: e.target.value })}
-                      className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-emerald-500/50"
+                      className="w-full rounded-xl border border-brand-primary/10 bg-surface-card/30 px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-emerald-500/50"
                     >
                       {LANGUAGES.map(l => <option key={l} value={l}>{l}</option>)}
                     </select>
                   </div>
                   <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-slate-500 mb-1.5">Tags (comma-separated)</label>
+                    <label className="block text-xs font-mono uppercase tracking-wider text-brand-muted mb-1.5">Tags (comma-separated)</label>
                     <input
                       type="text"
                       value={form.tags}
                       onChange={e => setForm({ ...form, tags: e.target.value })}
                       placeholder="react, websockets, realtime"
-                      className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/20 transition-all"
+                      className="w-full rounded-xl border border-brand-primary/10 bg-surface-card/30 px-4 py-2.5 text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/20 transition-all"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-slate-500 mb-1.5">Code</label>
+                  <label className="block text-xs font-mono uppercase tracking-wider text-brand-muted mb-1.5">Code</label>
                   <textarea
                     value={form.code}
                     onChange={e => setForm({ ...form, code: e.target.value })}
                     placeholder="Paste your code snippet..."
                     rows={10}
-                    className="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm font-mono text-emerald-200 placeholder-slate-600 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/20 transition-all resize-y"
+                    className="w-full rounded-xl border border-brand-primary/10 bg-black/30 px-4 py-3 text-sm font-mono text-emerald-200 placeholder-slate-600 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/20 transition-all resize-y"
                   />
                 </div>
 
@@ -365,7 +365,7 @@ export default function Showcase() {
                 <div className="flex justify-end gap-3 pt-2">
                   <button
                     onClick={() => setShowPublish(false)}
-                    className="px-5 py-2.5 rounded-xl border border-white/10 bg-white/5 text-sm font-medium text-slate-300 hover:text-slate-100 transition-colors"
+                    className="px-5 py-2.5 rounded-xl border border-brand-primary/10 bg-surface-card/30 text-sm font-medium text-brand-secondary hover:text-slate-100 transition-colors"
                   >
                     Cancel
                   </button>

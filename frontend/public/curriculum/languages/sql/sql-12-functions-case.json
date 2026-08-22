@@ -1,0 +1,56 @@
+{
+  "id": "sql-12-functions-case",
+  "track": "sql",
+  "title": "String, Date & CASE Functions",
+  "section": "Advanced SQL",
+  "order": 12,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "SQL ships a rich library of **scalar functions** — string, date, and conditional functions that act on one value at a time and return one value. They are the standard tools for cleaning text, working with dates, and labeling data inside SELECT lists and WHERE clauses. The sample dataset: `students(id, name, city, score, grade)` and `enrollments(student_id, class_id, grade)`.\n\n### String functions\n\n```sql\nSELECT UPPER(name), LOWER(city), LENGTH(name),\n  CONCAT(name, ' from ', city)\nFROM students;\n\nSELECT SUBSTRING(name, 1, 3) FROM students;   -- first 3 characters\n```\n\n`UPPER`/`LOWER` normalize text for comparisons and clean reporting; `LENGTH` returns the character count; `CONCAT` glues strings together; `SUBSTRING(str, start, len)` slices out part of a value.\n\n### Date functions\n\n```sql\nSELECT CURRENT_DATE, YEAR(CURRENT_DATE), MONTH(CURRENT_DATE);\nSELECT DATE_ADD(CURRENT_DATE, INTERVAL 7 DAY);\nSELECT DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH);\n```\n\nStore dates in DATE/DATETIME columns and always slice them with date functions rather than string surgery — comparing a string to a DATE column silently misbehaves in many databases.\n\n### CASE WHEN THEN END\n\n`CASE` is SQL's if/else. It evaluates each `WHEN` in order and returns the first `THEN` that matches:\n\n```sql\nSELECT name, score,\n  CASE WHEN score >= 85 THEN 'Distinction'\n       WHEN score >= 60 THEN 'Pass'\n       ELSE 'Fail' END AS result\nFROM students;\n```\n\nWithout an `ELSE`, non-matching rows come back as `NULL`, so add `ELSE` whenever every row needs a label.\n\n### COALESCE and NULLIF\n\n```sql\nSELECT COALESCE(middle_name, '') FROM students;  -- first non-NULL\nSELECT score / NULLIF(total, 0) FROM ...;        -- no divide-by-zero\n```\n\n`COALESCE(a, b, ...)` returns the first non-NULL argument — the standard fallback for missing data. `NULLIF(x, y)` returns NULL when the two values are equal, the classic guard against division by zero.\n\n### Common mistakes\n\n- Comparing a DATE column against a string instead of using date functions.\n- `CASE` with `WHEN` clauses but no `ELSE`, so unmatched rows silently become NULL.\n- Using `=` with NULL instead of `IS NULL` or `COALESCE`.\n- Calling string functions on numeric columns without a cast.",
+    "codeSnippets": [
+      {
+        "language": "sql",
+        "code": "SELECT name,\n  CASE WHEN score >= 85 THEN 'Distinction'\n       WHEN score >= 60 THEN 'Pass'\n       ELSE 'Fail' END AS result\nFROM students;",
+        "output": "Each student labeled Distinction, Pass, or Fail"
+      },
+      {
+        "language": "sql",
+        "code": "SELECT UPPER(name) AS shout, LENGTH(name) AS len\nFROM students;",
+        "output": "Uppercased name and its character length per row"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write a query that shows each student's name uppercased with UPPER(name) and a CASE-based 'result' column that labels score >= 85 as 'Top' and everything else as 'Other', from 'students'.",
+      "starterCode": "",
+      "required": ["SELECT UPPER(name)", "CASE WHEN", "score >= 85", "THEN 'Top'", "END AS", "FROM students"],
+      "hints": [
+        "Hint 1: SELECT UPPER(name), CASE WHEN score >= 85 THEN 'Top'",
+        "Hint 2: ELSE 'Other' END AS result",
+        "Hint 3: FROM students;"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which function returns the first non-NULL value from its arguments?",
+        "options": ["COALESCE()", "NULLIF()", "ISNULL()"],
+        "correct": 0
+      },
+      {
+        "question": "What does CASE WHEN ... THEN ... ELSE ... END let you do?",
+        "options": ["Apply conditional logic per row", "Loop over rows", "Aggregate rows into groups"],
+        "correct": 0
+      },
+      {
+        "question": "Which of these normalizes text to uppercase?",
+        "options": ["LENGTH()", "CONCAT()", "UPPER()"],
+        "correct": 2
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "sql-13-transactions-design",
+    "unlocks": ["sql-13-transactions-design"]
+  }
+}

@@ -4,7 +4,7 @@ Rooms:
   - global                      : everyone
   - guild:{guild_id}            : guild members only (defensive if `guilds` missing)
   - college:{college_name}      : users with a matching campus profile
-  - dm:{friend_id}              : anyone can DM anyone
+  - dm:{peer_id}                : friends only, canonical `_{a}_{b}` room key
 
 Messages persist to a single TTL-bounded collection (7 days). Live delivery
 happens over WebSocket `/api/v1/chat/ws?token=...` with per-room fan-out; the
@@ -22,6 +22,7 @@ from app.database import (
     get_db,
     chat_messages_collection,
     campus_profiles_collection,
+    friends_collection,
 )
 
 router = APIRouter(prefix="/api/v1/chat", tags=["Chat"])
@@ -126,27 +127,61 @@ async def _college_room_allowed(user, college_name: str) -> bool:
     return bool(mine) and mine == target
 
 
-async def _assert_room_access(user, room_type: str, room_id: Optional[str]):
+async def _assert_room_access(user, room_type: str, room_id: Optional[str]) -> Optional[str]:
+    """Validate the user may access a room and return the canonical room id.
+
+    `global`/`guild`/`college` rooms pass the id through. `dm` rooms are
+    friend-only and are normalized to a deterministic sorted-pair key so both
+    sides of a conversation share one room regardless of who initiated.
+    """
     room_type = (room_type or "").lower().strip()
     if room_type == "global":
-        return
+        return room_id
     if room_type == "guild":
         if not room_id:
             raise HTTPException(status_code=400, detail="guild room requires room_id (guild id)")
         if not await _guild_room_allowed(user, room_id):
             raise HTTPException(status_code=403, detail="You are not a member of this guild")
-        return
+        return room_id
     if room_type == "college":
         if not room_id:
             raise HTTPException(status_code=400, detail="college room requires room_id (college name)")
         if not await _college_room_allowed(user, room_id):
             raise HTTPException(status_code=403, detail="Join this college first to chat")
-        return
+        return room_id
     if room_type == "dm":
         if not room_id:
             raise HTTPException(status_code=400, detail="dm room requires room_id (friend user id)")
-        return
+        return await _normalize_dm_room(user, room_id)
     raise HTTPException(status_code=400, detail=f"Unknown room type: {room_type}")
+
+
+async def _is_dm_friend(user_id: str, peer_id: str) -> bool:
+    if user_id == peer_id:
+        return False
+    lo, hi = sorted([user_id, peer_id])
+    doc = await friends_collection().find_one({"user_ids": [lo, hi]})
+    return doc is not None
+
+
+async def _normalize_dm_room(user, room_id: str) -> str:
+    """Resolve a dm room to its canonical `_<a>_<b>` key, enforcing friendship."""
+    canonical = room_id
+    if room_id.startswith("_"):
+        parts = [p for p in room_id.split("_") if p]
+        if len(parts) != 2:
+            raise HTTPException(status_code=400, detail="Invalid dm room id")
+        a, b = parts[0], parts[1]
+        if user["id"] not in (a, b):
+            raise HTTPException(status_code=403, detail="Not a participant in this dm room")
+        canonical = f"_{a}_{b}"
+    else:
+        peer = room_id
+        if not await _is_dm_friend(user["id"], peer):
+            raise HTTPException(status_code=403, detail="You can only dm friends — add them first")
+        a, b = sorted([user["id"], peer])
+        canonical = f"_{a}_{b}"
+    return canonical
 
 
 async def _persist_and_broadcast(user, room_type: str, room_id: Optional[str], text: str, emoji: str) -> dict:
@@ -178,7 +213,7 @@ async def send_message(req: ChatSendRequest, user=Depends(get_current_user)):
     if not text and not emoji:
         raise HTTPException(status_code=400, detail="Message cannot be empty")
 
-    await _assert_room_access(user, room_type, room_id)
+    room_id = await _assert_room_access(user, room_type, room_id)
     return await _persist_and_broadcast(user, room_type, room_id, text, emoji)
 
 
@@ -206,7 +241,7 @@ async def chat_websocket(
         return
 
     try:
-        await _assert_room_access(user, room_type, room_id)
+        room_id = await _assert_room_access(user, room_type, room_id)
     except HTTPException as e:
         await websocket.close(code=4403)
         return
@@ -263,6 +298,7 @@ async def get_messages(
     user=Depends(get_current_user),
 ):
     room_type = (room_type or "").lower().strip()
+    room_id = await _assert_room_access(user, room_type, room_id)
     query = {"room_type": room_type, "room_id": room_id or ""}
 
     if after_id:
@@ -362,8 +398,7 @@ async def add_reaction(message_id: str, req: ReactionRequest, user=Depends(get_c
         raise HTTPException(status_code=404, detail="Message not found")
 
     room_type = msg.get("room_type")
-    room_id = msg.get("room_id")
-    await _assert_room_access(user, room_type, room_id)
+    room_id = await _assert_room_access(user, room_type, msg.get("room_id"))
 
     reaction_key = f"reactions.{emoji}"
     await chat_messages_collection().update_one(
@@ -381,7 +416,7 @@ async def add_reaction(message_id: str, req: ReactionRequest, user=Depends(get_c
 @router.post("/mark-read")
 async def mark_read(req: ReadReceiptRequest, user=Depends(get_current_user)):
     room_type = (req.room_type or "").lower().strip()
-    room_id = _clean(req.room_id, 100)
+    room_id = await _assert_room_access(user, room_type, _clean(req.room_id, 100))
 
     await chat_messages_collection().update_many(
         {"room_type": room_type, "room_id": room_id, "user_id": {"$ne": user["id"]}, "read_by": {"$ne": user["id"]}},
@@ -394,9 +429,7 @@ async def mark_read(req: ReadReceiptRequest, user=Depends(get_current_user)):
 @router.post("/typing")
 async def send_typing(req: TypingRequest, user=Depends(get_current_user)):
     room_type = (req.room_type or "").lower().strip()
-    room_id = _clean(req.room_id, 100)
-
-    await _assert_room_access(user, room_type, room_id)
+    room_id = await _assert_room_access(user, room_type, _clean(req.room_id, 100))
 
     typing_payload = {
         "type": "typing",
@@ -416,6 +449,7 @@ async def search_messages(
     user=Depends(get_current_user),
 ):
     room_type = (room_type or "").lower().strip()
+    room_id = await _assert_room_access(user, room_type, _clean(room_id, 100))
     query = {"room_type": room_type, "room_id": room_id or "", "text": {"$regex": q, "$options": "i"}}
 
     cursor = chat_messages_collection().find(query).sort("_id", -1).limit(limit)
@@ -456,7 +490,7 @@ async def create_room(req: CreateRoomRequest, user=Depends(get_current_user)):
     if room_type in ("guild", "college", "dm") and not room_id:
         raise HTTPException(status_code=400, detail=f"{room_type} room requires room_id")
 
-    await _assert_room_access(user, room_type, room_id)
+    room_id = await _assert_room_access(user, room_type, room_id)
 
     return {
         "room_type": room_type,
@@ -475,7 +509,7 @@ async def leave_room(req: ReadReceiptRequest, user=Depends(get_current_user)):
     if room_type == "global":
         raise HTTPException(status_code=400, detail="Cannot leave the global room")
 
-    await _assert_room_access(user, room_type, room_id)
+    room_id = await _assert_room_access(user, room_type, _clean(req.room_id, 100))
 
     return {"room_type": room_type, "room_id": room_id, "left": True}
 
@@ -483,9 +517,7 @@ async def leave_room(req: ReadReceiptRequest, user=Depends(get_current_user)):
 @router.get("/rooms/{room_type}/{room_id}/members")
 async def room_members(room_type: str, room_id: str, user=Depends(get_current_user)):
     room_type = (room_type or "").lower().strip()
-    room_id = _clean(room_id, 100)
-
-    await _assert_room_access(user, room_type, room_id)
+    room_id = await _assert_room_access(user, room_type, _clean(room_id, 100))
 
     pipeline = [
         {"$match": {"room_type": room_type, "room_id": room_id}},
@@ -512,6 +544,7 @@ async def message_stats(
     user=Depends(get_current_user),
 ):
     room_type = (room_type or "").lower().strip()
+    room_id = await _assert_room_access(user, room_type, _clean(room_id, 100))
     query = {"room_type": room_type, "room_id": room_id or ""}
 
     total = await chat_messages_collection().count_documents(query)

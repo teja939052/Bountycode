@@ -9,7 +9,7 @@ import secrets
 import logging
 
 logger = logging.getLogger(__name__)
-router = APIRouter(prefix="/api/v1/campus", tags=["campus-wars"])
+router = APIRouter(prefix="/api/v1/campus-wars", tags=["campus-wars"])
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # Weekly Challenge Templates (rotate weekly)

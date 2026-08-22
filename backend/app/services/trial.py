@@ -9,6 +9,7 @@ from typing import Dict, Any
 from bson import ObjectId
 from app.database import users_collection, trials_collection
 from app.config import get_settings
+from app.services.email import send_email, trial_started_email
 
 settings = get_settings()
 TRIAL_DAYS = 7
@@ -35,6 +36,16 @@ async def start_trial(user_id: str) -> Dict[str, Any]:
         "created_at": now,
     }
     await trials_collection.insert_one(trial_doc)
+
+    user = await users_collection.find_one({"_id": ObjectId(user_id)}, {"email": 1, "name": 1})
+    if user:
+        try:
+            import asyncio
+            asyncio.create_task(
+                send_email(user.get("email"), *trial_started_email(user.get("name", ""), TRIAL_DAYS))
+            )
+        except Exception:
+            pass
 
     return {
         "status": "trial_started",
@@ -63,6 +74,14 @@ async def check_trial_status(user_id: str) -> Dict[str, Any]:
             {"_id": ObjectId(user_id)},
             {"$set": {"plan": "free"}},
         )
+        # Win-back: trial just expired — the hottest moment to convert.
+        try:
+            if user.get("email"):
+                asyncio.create_task(
+                    send_email(user.get("email"), *trial_expired_email(user.get("name", "")))
+                )
+        except Exception:
+            pass
         return {"active": False, "plan": "free", "expired": True}
 
     remaining = (end - now).total_seconds() / 86400
@@ -80,3 +99,14 @@ async def cancel_trial(user_id: str) -> Dict[str, Any]:
         {"$set": {"plan": "free"}, "$unset": {"trial_end": "", "trial_start": ""}},
     )
     return {"status": "trial_cancelled", "plan": "free"}
+
+
+async def mark_trial_converted(user_id: str) -> None:
+    """Mark any trial records for this user as converted (used at purchase)."""
+    try:
+        await trials_collection.update_many(
+            {"user_id": user_id, "converted": {"$ne": True}},
+            {"$set": {"converted": True, "converted_at": datetime.now(timezone.utc)}},
+        )
+    except Exception:
+        pass

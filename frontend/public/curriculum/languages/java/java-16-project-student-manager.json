@@ -1,0 +1,53 @@
+{
+  "id": "java-16-project-student-manager",
+  "track": "java",
+  "title": "Project: Student Manager",
+  "section": "Java Intermediate",
+  "order": 16,
+  "type": "project",
+  "duration": "18 min",
+  "xp": 40,
+  "content": {
+    "theory": "Project time. A **Student Manager** brings together the pieces you've learned: a class to model data, an `ArrayList` to hold many students, and a `HashMap` when you need to find a student by name fast.\n\nStart with the data model — a small class with a constructor:\n\n```java\nclass Student {\n    String name;\n    int score;\n\n    Student(String name, int score) {\n        this.name = name;\n        this.score = score;\n    }\n}\n```\n\nStore many students in a collection. An `ArrayList<Student>` keeps the order you enrolled them:\n\n```java\nArrayList<Student> students = new ArrayList<>();\nstudents.add(new Student(\"Ada\", 90));\nstudents.add(new Student(\"Linus\", 80));\n```\n\n### Add, list, search\n\n**Add** is one `add()` call. **List** is a for-each loop:\n\n```java\nfor (Student s : students) {\n    System.out.println(s.name + \": \" + s.score);\n}\n```\n\n**Search by name** is linear — walk the list comparing `name`. When the list grows, swap in a `HashMap<String, Student>` keyed by name and lookups become instant:\n\n```java\nHashMap<String, Student> byName = new HashMap<>();\nfor (Student s : students) {\n    byName.put(s.name, s);\n}\nSystem.out.println(byName.get(\"Ada\").score);   // 90\n```\n\nThis *class + ArrayList + HashMap* pattern is everywhere: catalogs, rosters, leaderboards. It's worth getting fluent in it.\n\n### Computing an average\n\nTo average the scores, accumulate into a `double` and divide by `students.size()`:\n\n```java\ndouble total = 0;\nfor (Student s : students) {\n    total += s.score;\n}\ndouble avg = total / students.size();\nSystem.out.println(avg);\n```\n\nWatch the types: `total` is a `double`, so integer division never truncates the average.\n\n### Design notes\n\nKeep the `Student` fields simple, prefer `size()` over `length`, and always iterate with for-each so you can't step past the end. This mirrors how real CRUD apps are built: model the record, store the collection, provide add/list/search, then derive statistics.",
+    "codeSnippets": [
+      {
+        "language": "java",
+        "code": "ArrayList<Student> students = new ArrayList<>();\nstudents.add(new Student(\"Ada\", 90));\nstudents.add(new Student(\"Linus\", 80));\n\ndouble total = 0;\nfor (Student s : students) total += s.score;\ndouble avg = total / students.size();\nSystem.out.println(avg);",
+        "output": "85.0"
+      }
+    ],
+    "exercise": {
+      "instruction": "Define class Student with a String field 'name', an int field 'score', and a constructor Student(String name, int score) that sets both (use this.name = name; this.score = score;). In main, create an ArrayList<Student> named 'students', add new Student(\"Ada\", 90) and new Student(\"Linus\", 80). Compute the average score: accumulate into a double 'total' inside a for-each loop over 'students', divide by students.size(), and print it on its own line. Expected output: 85.0",
+      "starterCode": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n\n    }\n}",
+      "language": "java",
+      "expected": "85.0",
+      "required": ["class Student", "int score", "Student(String name", "this.name = name", "ArrayList<Student>", "new Student(\"Ada\", 90)", "for (Student s", "students.size()", "avg"],
+      "hints": [
+        "Hint 1: class Student { String name; int score; Student(String name, int score) { this.name = name; this.score = score; } }",
+        "Hint 2: ArrayList<Student> students = new ArrayList<>(); students.add(new Student(\"Ada\", 90)); students.add(new Student(\"Linus\", 80));",
+        "Hint 3: double total = 0; for (Student s : students) { total += s.score; } double avg = total / students.size(); System.out.println(avg);"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Why use an ArrayList<Student> instead of a Student[] array?",
+        "options": ["Arrays can't hold objects", "ArrayList resizes dynamically and iterates cleanly", "Arrays are always slower"],
+        "correct": 1
+      },
+      {
+        "question": "What type does an ArrayList<Student> store?",
+        "options": ["Student objects", "Strings", "ints"],
+        "correct": 0
+      },
+      {
+        "question": "Which call gives the number of students in the list?",
+        "options": ["students.length", "students.size()", "students.count()"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": null,
+    "unlocks": []
+  }
+}

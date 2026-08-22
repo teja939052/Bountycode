@@ -1,0 +1,45 @@
+{
+  "id": "sql-04-aggregates",
+  "track": "sql",
+  "title": "Aggregate Functions",
+  "section": "SQL Queries",
+  "order": 4,
+  "type": "lesson",
+  "duration": "10 min",
+  "xp": 20,
+  "content": {
+    "theory": "**Aggregate functions** summarize many rows into one value — the workhorses of data analysis.\n\n```sql\nSELECT COUNT(*) FROM students;       -- 3 (number of rows)\nSELECT COUNT(name) FROM students;    -- counts non-NULL names\nSELECT SUM(score) FROM students;     -- 255 (total)\nSELECT AVG(score) FROM students;     -- 85.0 (average)\nSELECT MAX(score) FROM students;     -- 92\nSELECT MIN(score) FROM students;     -- 78\n```\n\nTypical pattern — aggregate with a filter:\n\n```sql\nSELECT AVG(score) FROM students\nWHERE city = 'Delhi';\n```\n\nMultiple aggregates in one query:\n\n```sql\nSELECT COUNT(*), AVG(score), MAX(score)\nFROM students;\n```\n\nTwo important rules:\n\n- Aggregate functions ignore `NULL` values (except `COUNT(*)`)\n- When you mix an aggregate with plain columns, the plain columns usually need to be grouped (next lesson) — otherwise it's invalid in most databases\n\nCount distinct values:\n\n```sql\nSELECT COUNT(DISTINCT city) FROM students;   -- 2\n```",
+    "codeSnippets": [
+      {
+        "language": "sql",
+        "code": "SELECT COUNT(*) AS total, AVG(score) AS avg_score\nFROM students;",
+        "output": "total: 3, avg_score: 85.0"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write a query that counts the number of rows in 'students' and averages the 'score' column in one query.",
+      "starterCode": "",
+      "required": ["COUNT(", "AVG(score)", "FROM students"],
+      "hints": [
+        "Hint 1: SELECT COUNT(*), AVG(score)",
+        "Hint 2: FROM students;"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which function finds the highest value?",
+        "options": ["TOP()", "MAX()", "HIGHEST()"],
+        "correct": 1
+      },
+      {
+        "question": "What do aggregate functions do?",
+        "options": ["Add a column", "Summarize many rows into one value", "Delete rows"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "sql-05-group-by",
+    "unlocks": ["sql-05-group-by"]
+  }
+}

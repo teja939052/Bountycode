@@ -87,7 +87,12 @@ async def complete_step(req: CompleteStepRequest, user=Depends(get_current_user)
         {"_id": ObjectId(user["id"])},
         {
             "$addToSet": {"onboarding_quest.completed_steps": req.step_id},
-            "$set": {"onboarding_quest.last_active": datetime.now(timezone.utc)},
+            "$set": {
+                "onboarding_quest.last_active": datetime.now(timezone.utc),
+                # Unlock the app once the user engages with the quest — the
+                # OnboardingGuard reads this legacy flag.
+                "onboarding.completed": True,
+            },
         },
         upsert=True,
     )
@@ -107,6 +112,15 @@ async def onboarding_status(user=Depends(get_current_user)):
     total_steps = len(QUEST_STEPS)
     overall_progress = int((len(completed_steps) / total_steps) * 100) if total_steps > 0 else 0
     is_complete = len(completed_steps) >= total_steps
+
+    # Backfill for users who completed quest steps before the legacy flag was
+    # synced — keeps the OnboardingGuard from trapping them in a redirect loop.
+    legacy_completed = (db_user or {}).get("onboarding", {}).get("completed", False)
+    if completed_steps and not legacy_completed:
+        await users_collection.update_one(
+            {"_id": ObjectId(user["id"])},
+            {"$set": {"onboarding.completed": True}},
+        )
 
     return {
         "completed_steps": completed_steps,

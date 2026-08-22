@@ -1,0 +1,53 @@
+{
+  "id": "java-13-exceptions",
+  "track": "java",
+  "title": "Exception Handling",
+  "section": "Java Intermediate",
+  "order": 13,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "Your code will fail at runtime — that's guaranteed. Java's **exceptions** give you a structured way to detect the failure, respond to it, and keep the program alive instead of crashing with a stack trace.\n\n### try / catch / finally\n\n```java\ntry {\n    int n = Integer.parseInt(\"abc\");\n    System.out.println(\"Parsed: \" + n);\n} catch (NumberFormatException e) {\n    System.out.println(\"Invalid number\");\n}\n```\n\nWhen the code inside `try` throws, execution jumps straight to the matching `catch` block — the `System.out.println` inside `try` is skipped. The `finally` block, when present, runs **no matter what** — exception or not — which makes it perfect for cleanup like closing files.\n\n### Checked vs unchecked\n\nJava splits exceptions into two camps:\n\n| Kind | Checked by compiler? | Examples |\n|---|---|---|\n| Checked | Yes — you must handle or declare them | `IOException`, `SQLException` |\n| Unchecked | No — runtime exceptions | `NumberFormatException`, `ArithmeticException`, `NullPointerException` |\n\nMethods that throw checked exceptions must declare them with **`throws`** in the signature. Unchecked exceptions (subclasses of `RuntimeException`) can be caught or ignored — the compiler won't force you.\n\n### Throwing your own\n\nUse **`throw`** to raise an exception yourself when your method receives bad input:\n\n```java\nstatic void setAge(int age) {\n    if (age < 0) {\n        throw new IllegalArgumentException(\"Age cannot be negative\");\n    }\n}\n```\n\n`IllegalArgumentException` is the idiomatic way to reject invalid arguments. For bigger projects you can define your own exception class by extending `Exception` or `RuntimeException` — the same rules then apply.\n\n### Common mistakes\n\n- Catching too broadly (`catch (Exception e)`) and swallowing the error — the bug hides and nothing gets logged.\n- Forgetting that code after the throwing line inside `try` never runs.\n- Confusing `throws` (declare in the signature) with `throw` (raise an exception now).",
+    "codeSnippets": [
+      {
+        "language": "java",
+        "code": "try {\n    int n = Integer.parseInt(\"abc\");\n    System.out.println(\"Parsed: \" + n);\n} catch (NumberFormatException e) {\n    System.out.println(\"Invalid number\");\n} finally {\n    System.out.println(\"Done\");\n}",
+        "output": "Invalid number\nDone"
+      }
+    ],
+    "exercise": {
+      "instruction": "In a try block, parse the string \"abc\" with Integer.parseInt(\"abc\"). In the matching catch (NumberFormatException e) block, print exactly \"Invalid number\". The parse throws, so only the catch block's print runs.",
+      "starterCode": "public class Main {\n    public static void main(String[] args) {\n\n    }\n}",
+      "language": "java",
+      "expected": "Invalid number",
+      "required": ["try {", "Integer.parseInt(\"abc\")", "catch (NumberFormatException", "\"Invalid number\""],
+      "hints": [
+        "Hint 1: try { int n = Integer.parseInt(\"abc\"); }",
+        "Hint 2: } catch (NumberFormatException e) { System.out.println(\"Invalid number\"); }",
+        "Hint 3: Integer.parseInt throws NumberFormatException for \"abc\", so the try block never finishes its print."
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which exception does Integer.parseInt throw for bad input?",
+        "options": ["IOException", "NumberFormatException", "OutOfMemoryError"],
+        "correct": 1
+      },
+      {
+        "question": "Which keyword raises an exception yourself?",
+        "options": ["throws", "throw", "try"],
+        "correct": 1
+      },
+      {
+        "question": "Which block always runs whether or not an exception is thrown?",
+        "options": ["catch", "try", "finally"],
+        "correct": 2
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "java-14-inheritance",
+    "unlocks": ["java-14-inheritance"]
+  }
+}

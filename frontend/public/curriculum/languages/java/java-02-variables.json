@@ -1,0 +1,48 @@
+{
+  "id": "java-02-variables",
+  "track": "java",
+  "title": "Variables & Types",
+  "section": "Java Basics",
+  "order": 2,
+  "type": "lesson",
+  "duration": "10 min",
+  "xp": 15,
+  "content": {
+    "theory": "Java variables **declare a type first**:\n\n```java\nint age = 36;\ndouble height = 1.65;\nboolean isStudent = true;\nString name = \"Ada\";\nchar grade = 'A';   // single quotes for chars\n```\n\nPrimitive types vs objects:\n\n| Type | Kind | Stores |\n|------|------|--------|\n| `int` | primitive | whole numbers |\n| `double` | primitive | decimals |\n| `boolean` | primitive | true/false |\n| `char` | primitive | one character |\n| `String` | object | text |\n\n**Naming conventions**: variables use camelCase (`studentCount`), class names use PascalCase (`StudentCount`).\n\nA variable that never changes can be marked `final` (Java's `const`):\n\n```java\nfinal double PI = 3.14159;\n```\n\nConcatenate text with `+`:\n\n```java\nString greeting = \"Hi, \" + name + \"!\";\nSystem.out.println(greeting);\n```\n\nUnlike Python, you can't mix incompatible types silently — `int + String` works (it concatenates), but `int + boolean` does not compile.",
+    "codeSnippets": [
+      {
+        "language": "java",
+        "code": "int score = 95;\nString player = \"Zara\";\nSystem.out.println(player + \" scored \" + score);",
+        "output": "Zara scored 95"
+      }
+    ],
+    "exercise": {
+      "instruction": "In the main method, declare an int 'level' with value 3 and a String 'world' with value 'Dungeon'. Print: Hero is at level 3 in Dungeon using + concatenation.",
+      "starterCode": "public class Main {\n    public static void main(String[] args) {\n\n    }\n}",
+      "language": "java",
+      "expected": "Hero is at level 3 in Dungeon",
+      "required": ["int level = 3", "String world", "Dungeon", "System.out.println", "level"],
+      "hints": [
+        "Hint 1: int level = 3;",
+        "Hint 2: String world = \"Dungeon\";",
+        "Hint 3: System.out.println(\"Hero is at level \" + level + \" in \" + world);"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which keyword marks a variable that can't be reassigned?",
+        "options": ["const", "static", "final"],
+        "correct": 2
+      },
+      {
+        "question": "What type stores a single character?",
+        "options": ["String", "char", "byte"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "java-03-strings",
+    "unlocks": ["java-03-strings"]
+  }
+}

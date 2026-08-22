@@ -39,7 +39,7 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
   copyDetails = () => {
     const text = `${this.state.error?.stack || this.state.error?.message || ""}\n\n${this.state.errorInfo?.componentStack || ""}`;
     try {
-      navigator.clipboard.writeText(text);
+      void navigator.clipboard?.writeText(text);
     } catch {}
   };
 
@@ -79,7 +79,9 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
               <button
                 onClick={() => {
                   this.setState({ hasError: false, error: null, errorInfo: null });
-                  window.location.reload();
+                  if (typeof window !== "undefined") {
+                    window.location.reload();
+                  }
                 }}
                 className="btn-primary inline-flex items-center justify-center gap-2"
               >

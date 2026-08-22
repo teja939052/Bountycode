@@ -3,11 +3,13 @@ Multiplayer Coding Battles — CodinGame-style matchmaking, timed competitions,
 and three battle modes (fastest, shortest, reverse). Polling-based (no WebSocket).
 """
 from datetime import datetime, timezone, timedelta
+import json
 import random
-from fastapi import APIRouter, Depends, HTTPException, Query
+import secrets
+from fastapi import APIRouter, Depends, HTTPException, Query, WebSocket, WebSocketDisconnect
 from typing import Optional
 from bson import ObjectId
-from app.middleware.auth import get_current_user
+from app.middleware.auth import get_current_user, get_current_user_ws
 from app.database import battles_collection, users_collection
 
 router = APIRouter(prefix="/api/v1/battles", tags=["battles"])
@@ -337,6 +339,34 @@ _queued_users = {}  # user_id -> { mode, difficulty, language, joined_at }
 _matched_users = {}  # user_id -> battle_id (for matched users to discover via poll)
 
 
+# ─── Live WebSocket layer ────────────────────────────────────────────────
+# battle_id -> set of connected websockets (in-memory only, no DB writes).
+# Live broadcasts are sanitized: lines-of-code + submit status, NEVER code.
+
+_battle_connections: dict[str, set[WebSocket]] = {}
+
+
+def _battle_room(battle_id: str) -> set[WebSocket]:
+    return _battle_connections.setdefault(battle_id, set())
+
+
+async def _broadcast_battle(battle_id: str, message: dict, exclude: Optional[WebSocket] = None):
+    """Fan a battle update out to every socket in the room (optionally excluding one)."""
+    payload = json.dumps(message)
+    dead = []
+    for ws in list(_battle_room(battle_id)):
+        if ws == exclude:
+            continue
+        try:
+            await ws.send_text(payload)
+        except Exception:
+            dead.append(ws)
+    for ws in dead:
+        _battle_room(battle_id).discard(ws)
+    if not _battle_room(battle_id):
+        _battle_connections.pop(battle_id, None)
+
+
 # ─── Routes ────────────────────────────────────────────────────────────
 
 @router.post("/queue")
@@ -503,7 +533,174 @@ async def get_battle_leaderboard(limit: int = Query(20, ge=1, le=100)):
         }},
         {"$sort": {"wins": -1}},
         {"$limit": limit},
-    ]
+]
+    
+# ─── Challenge endpoints ─────────────────────────────────────────────────────
+# A challenge battle allows user A to create a timed challenge that user B can accept.
+# The challenge lives in the battles collection with status="challenge" until accepted.
+
+async def _create_challenge_battle(creator_id: str, mode: str, difficulty: str, language: str) -> dict:
+    problem = _select_problem(difficulty, mode)
+    now = datetime.now(timezone.utc)
+    expires_at = now + timedelta(hours=24)
+    token = secrets.token_urlsafe(8)
+    battle = {
+        "player1_id": ObjectId(creator_id),
+        "player2_id": None,
+        "status": "challenge",
+        "challenge_token": token,
+        "mode": mode,
+        "difficulty": difficulty,
+        "language": language,
+        "problem": problem,
+        "player1_code": None,
+        "player2_code": None,
+        "player1_score": None,
+        "player2_score": None,
+        "player1_time_ms": None,
+        "player2_time_ms": None,
+        "winner_id": None,
+        "created_at": now,
+        "started_at": None,
+        "completed_at": None,
+        "time_limit_seconds": 900,
+        "expires_at": expires_at,
+    }
+    result = await battles_collection().insert_one(battle)
+    battle["_id"] = result.inserted_id
+    return battle
+
+@router.post("/challenge")
+async def create_challenge(
+    mode: str = Query(..., regex="^(fastest|shortest|reverse)$"),
+    difficulty: str = Query(..., regex="^(easy|medium|hard)$"),
+    language: str = Query(..., min_length=1, max_length=20),
+    user=Depends(get_current_user),
+):
+    """Create a challenge battle. Returns a token/link that the opponent can accept."""
+    creator_id = user["id"]
+    battle = await _create_challenge_battle(creator_id, mode, difficulty, language)
+    token = battle["challenge_token"]
+    return {
+        "battle_id": str(battle["_id"]),
+        "challenge_token": token,
+        "challenge_url": f"https://placementpro.live/battle/{token}",
+        "mode": battle["mode"],
+        "difficulty": battle["difficulty"],
+        "problem_title": battle["problem"]["title"],
+        "expires_in_hours": 24,
+    }
+
+
+@router.get("/challenge/{token}")
+async def get_challenge(token: str, user=Depends(get_current_user)):
+    """Get a challenge battle by token. Returns details if still valid."""
+    collection = battles_collection()
+    battle = await collection.find_one({"challenge_token": token})
+    if not battle:
+        raise HTTPException(status_code=404, detail="Challenge not found or expired")
+    if battle.get("expires_at") and datetime.now(timezone.utc) > battle["expires_at"]:
+        await collection.update_one({"challenge_token": token}, {"$set": {"status": "expired"}})
+        raise HTTPException(status_code=410, detail="Challenge expired")
+    opponent_name = ""
+    if battle.get("player2_id"):
+        opp = await users_collection().find_one({"_id": battle["player2_id"]})
+        opponent_name = opp.get("name", "Unknown") if opp else "Unknown"
+    creator_name = user.get("name") if user else "Unknown"
+    return {
+        "battle_id": str(battle["_id"]),
+        "status": battle["status"],
+        "mode": battle["mode"],
+        "difficulty": battle["difficulty"],
+        "language": battle["language"],
+        "problem_title": battle["problem"]["title"],
+        "creator_name": creator_name,
+        "opponent_name": opponent_name,
+        "expires_at": battle.get("expires_at"),
+        "player2_id": str(battle["player2_id"]) if battle.get("player2_id") else None,
+    }
+
+
+@router.post("/challenge/{token}/accept")
+async def accept_challenge(token: str, user=Depends(get_current_user)):
+    """Accept a challenge battle. Makes you player2 in the new in-progress battle."""
+    collection = battles_collection()
+    battle = await collection.find_one({"challenge_token": token})
+    if not battle:
+        raise HTTPException(status_code=404, detail="Challenge not found")
+    if battle.get("status") != "challenge":
+        raise HTTPException(status_code=400, detail="Challenge not active or already handled")
+    if battle.get("expires_at") and datetime.now(timezone.utc) > battle["expires_at"]:
+        await collection.update_one({"challenge_token": token}, {"$set": {"status": "expired"}})
+        raise HTTPException(status_code=410, detail="Challenge expired")
+    if battle["player1_id"] == ObjectId(user["id"]):
+        raise HTTPException(status_code=400, detail="You cannot accept your own challenge")
+    # If already in progress (someone already accepted), return it
+    if battle.get("status") == "in_progress" and battle.get("player2_id"):
+        battle = await collection.find_one({"challenge_token": token})
+        uid = user["id"]
+        p1_id = str(battle["player1_id"])
+        p2_id = str(battle["player2_id"])
+        my_key = "1" if uid == p2_id else "2"
+        opp_key = "2" if uid == p2_id else "1"
+        my_score = battle.get(f"player{my_key}_score")
+        opp_score = battle.get(f"player{opp_key}_score")
+        my_submitted = battle.get(f"player{my_key}_score") is not None
+        opp_submitted = battle.get(f"player{opp_key}_score") is not None
+        return {
+            "battle_id": str(battle["_id"]),
+            "status": "in_progress",
+            "mode": battle["mode"],
+            "difficulty": battle["difficulty"],
+            "problem": battle["problem"],
+            "my_score": my_score,
+            "opponent_score": opp_score,
+            "my_submitted": my_submitted,
+            "opponent_submitted": opp_submitted,
+            "time_limit_seconds": battle["time_limit_seconds"],
+            "expires_at": battle.get("expires_at"),
+            "my_submitted": my_submitted,
+            "opponent_submitted": opp_submitted,
+        }
+    # Set this user as player2
+    now = datetime.now(timezone.utc)
+    await collection.update_one(
+        {"challenge_token": token},
+        {"$set": {
+            "player2_id": ObjectId(user["id"]),
+            "status": "in_progress",
+            "started_at": now,
+            "challenge_token": None,
+        }},
+    )
+    battle = await collection.find_one({"challenge_token": token})
+    uid = user["id"]
+    p1_id = str(battle["player1_id"])
+    p2_id = str(battle["player2_id"])
+    is_p1 = uid == p1_id
+    my_key = "1" if is_p1 else "2"
+    opp_key = "2" if is_p1 else "1"
+    my_score = battle.get(f"player{my_key}_score")
+    opp_score = battle.get(f"player{opp_key}_score")
+    my_submitted = battle.get(f"player{my_key}_score") is not None
+    opp_submitted = battle.get(f"player{opp_key}_score") is not None
+    opp_user = await users_collection().find_one({"_id": ObjectId(battle["player1_id"])})
+    opp_name = opp_user.get("name", "Unknown") if opp_user else "Unknown"
+    return {
+        "battle_id": str(battle["_id"]),
+        "status": "in_progress",
+        "mode": battle["mode"],
+        "difficulty": battle["difficulty"],
+        "problem": battle["problem"],
+        "my_score": my_score,
+        "opponent_score": opp_score,
+        "my_submitted": my_submitted,
+        "opponent_submitted": opp_submitted,
+        "opponent_name": opp_name,
+        "time_limit_seconds": battle["time_limit_seconds"],
+        "time_remaining_seconds": max(0, battle["time_limit_seconds"] - int((now - battle["started_at"]).total_seconds())) if battle.get("started_at") else battle["time_limit_seconds"],
+        "time_limit_seconds": battle["time_limit_seconds"],
+    }
     leaderboard = []
     async for doc in collection.aggregate(pipeline):
         uid = doc["_id"]
@@ -592,6 +789,20 @@ async def submit_code(
             {"_id": b_oid},
             {"$set": {"status": "completed", "completed_at": now, "winner_id": winner_id}},
         )
+
+    await _broadcast_battle(battle_id, {
+        "type": "battle_update",
+        "data": {
+            "user_id": uid,
+            "submitted": True,
+            "score": score,
+            "passed": passed,
+            "total": total,
+            "status": battle["status"],
+            "winner_id": str(winner_id) if winner_id else None,
+            "opponent_done": p2_done if uid == p1_id else p1_done,
+        },
+    })
 
     return {
         "passed": passed,
@@ -683,4 +894,111 @@ async def surrender_battle(battle_id: str, user=Depends(get_current_user)):
         {"$set": {"status": "completed", "completed_at": now, "winner_id": winner_id}},
     )
 
+    await _broadcast_battle(battle_id, {
+        "type": "battle_update",
+        "data": {
+            "user_id": uid,
+            "surrendered": True,
+            "status": "completed",
+            "winner_id": str(winner_id),
+        },
+    })
+
     return {"status": "completed", "winner_id": str(winner_id), "surrender": True}
+
+
+@router.websocket("/ws")
+async def battle_websocket(
+    websocket: WebSocket,
+    battle_id: str = Query(...),
+    token: Optional[str] = Query(None),
+):
+    """Live battle socket.
+
+    Connect to `ws://host/api/v1/battles/ws?battle_id=<id>` (token also accepted
+    from the `pp_token` cookie). Sanitized real-time updates only — opponents see
+    lines-of-code + submit status, NEVER code content.
+
+    Client may send:
+      - {"type":"ping"}            -> {"type":"pong"}
+      - {"type":"progress","lines":42}  -> broadcast to room (excludes sender)
+    """
+    try:
+        user = await get_current_user_ws(websocket, token)
+    except HTTPException:
+        await websocket.close(code=4401)
+        return
+
+    try:
+        b_oid = ObjectId(battle_id)
+    except Exception:
+        await websocket.close(code=4400)
+        return
+
+    collection = battles_collection()
+    battle = await collection.find_one({"_id": b_oid})
+    if not battle:
+        await websocket.close(code=4404)
+        return
+
+    uid = user["id"]
+    p1_id = str(battle["player1_id"])
+    p2_id = str(battle["player2_id"])
+    if uid not in (p1_id, p2_id):
+        await websocket.close(code=4403)
+        return
+
+    await websocket.accept()
+
+    is_p1 = uid == p1_id
+    opp_key = "2" if is_p1 else "1"
+
+    # Send a fresh snapshot on join so reconnects re-sync instantly.
+    await websocket.send_text(json.dumps({
+        "type": "sync",
+        "data": {
+            "battle_id": battle_id,
+            "status": battle["status"],
+            "opponent_submitted": battle.get(f"player{opp_key}_score") is not None,
+            "opponent_score": battle.get(f"player{opp_key}_score"),
+            "winner_id": str(battle["winner_id"]) if battle.get("winner_id") else None,
+        },
+    }))
+
+    _battle_room(battle_id).add(websocket)
+    try:
+        while True:
+            raw = await websocket.receive_text()
+            try:
+                msg = json.loads(raw)
+            except Exception:
+                msg = {}
+            mtype = msg.get("type")
+            if mtype == "ping":
+                await websocket.send_text(json.dumps({"type": "pong"}))
+                continue
+            if mtype == "progress":
+                try:
+                    lines = max(0, min(5000, int(msg.get("lines") or 0)))
+                except (TypeError, ValueError):
+                    continue
+                await _broadcast_battle(battle_id, {
+                    "type": "progress",
+                    "data": {
+                        "user_id": uid,
+                        "name": user.get("name", "Anonymous"),
+                        "lines": lines,
+                    },
+                }, exclude=websocket)
+    except WebSocketDisconnect:
+        pass
+    except Exception:
+        pass
+    finally:
+        _battle_room(battle_id).discard(websocket)
+        if not _battle_room(battle_id):
+            _battle_connections.pop(battle_id, None)
+        await _broadcast_battle(battle_id, {
+            "type": "opponent_left",
+            "data": {"user_id": uid},
+        }, exclude=websocket)

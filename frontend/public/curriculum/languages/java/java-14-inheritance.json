@@ -1,0 +1,53 @@
+{
+  "id": "java-14-inheritance",
+  "track": "java",
+  "title": "Inheritance & Overriding",
+  "section": "Java Intermediate",
+  "order": 14,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "Java classes form a hierarchy. **Inheritance** lets a new class (**subclass**) take on the fields and methods of an existing class (**superclass**) and then add or change behavior. The subclass is an \"is-a\" version of the parent.\n\n```java\nclass Animal {\n    void speak() {\n        System.out.println(\"Some sound\");\n    }\n}\n\nclass Dog extends Animal {\n    @Override\n    void speak() {\n        System.out.println(\"Woof\");\n    }\n}\n```\n\n`Dog extends Animal` says Dog inherits everything from Animal, and its `speak()` **overrides** the parent's version.\n\n### @Override and super\n\nThe `@Override` annotation tells the compiler \"I intend to replace the parent's method.\" If you misspell the signature, the compiler errors instead of silently adding a new method — that annotation saves you from a classic bug. Inside the subclass you can still reach the parent's version with `super`:\n\n```java\n@Override\nvoid speak() {\n    super.speak();     // parent's version first\n    System.out.println(\"Woof\");\n}\n```\n\n### protected and visibility\n\n`private` members are invisible to subclasses; `protected` members are visible to subclasses (and the same package); `public` members are visible everywhere. Use `protected` when you want a child to reuse a parent field directly.\n\n### Polymorphism in one line\n\nA parent reference can hold a child object:\n\n```java\nAnimal pet = new Dog();\npet.speak();   // prints \"Woof\" — the real object wins\n```\n\nThe method called is decided by the **actual object** at runtime, not the reference type. That's polymorphism, and it's why you can write one method that accepts `Animal` and it works for every subclass.\n\n### When to inherit\n\nUse inheritance for a genuine \"is-a\" relationship with shared behavior. Don't reach for it just to reuse a method — **composition** (an object holding another object) is usually the better default, since deep hierarchies get brittle fast. Ask: \"is a Dog an Animal?\" If yes, `extends` is fair. If it's \"has a\" — a Dog *has* a Tail — use a field instead.",
+    "codeSnippets": [
+      {
+        "language": "java",
+        "code": "class Animal { void speak() { System.out.println(\"Some sound\"); } }\n\nclass Dog extends Animal {\n    @Override\n    void speak() {\n        super.speak();\n        System.out.println(\"Woof\");\n    }\n}\n\nAnimal pet = new Dog();\npet.speak();",
+        "output": "Some sound\nWoof"
+      }
+    ],
+    "exercise": {
+      "instruction": "Define class Animal with a method void speak() that prints \"Some sound\". Define class Dog extends Animal that overrides speak() — include the @Override annotation — and prints \"Woof\". In main, create a Dog with new Dog(), call speak() on it, and it must print \"Woof\".",
+      "starterCode": "public class Main {\n    public static void main(String[] args) {\n\n    }\n}",
+      "language": "java",
+      "expected": "Woof",
+      "required": ["class Animal", "void speak()", "class Dog extends Animal", "@Override", "System.out.println(\"Woof\")", "new Dog"],
+      "hints": [
+        "Hint 1: class Animal { void speak() { System.out.println(\"Some sound\"); } }",
+        "Hint 2: class Dog extends Animal { @Override void speak() { System.out.println(\"Woof\"); } }",
+        "Hint 3: In main: Dog d = new Dog(); d.speak();"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which keyword makes a class inherit from another?",
+        "options": ["implements", "extends", "inherits"],
+        "correct": 1
+      },
+      {
+        "question": "What does @Override do?",
+        "options": ["Makes a method private", "Tells the compiler this method replaces a parent method", "Creates a new class"],
+        "correct": 1
+      },
+      {
+        "question": "Animal a = new Dog(); a.speak(); — whose speak() runs?",
+        "options": ["Animal's", "Dog's", "Neither — compile error"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "java-15-interfaces",
+    "unlocks": ["java-15-interfaces"]
+  }
+}

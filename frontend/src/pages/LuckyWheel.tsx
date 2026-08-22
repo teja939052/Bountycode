@@ -95,11 +95,11 @@ export default function LuckyWheel() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white px-4 py-8">
+    <div className="min-h-screen bg-surface-base text-text-primary px-4 py-8">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold">{"🎡 Daily Lucky Wheel"}</h1>
-          <p className="text-slate-400 mt-2">
+          <p className="text-text-muted mt-2">
             One free spin every day. Stack XP, coins, cards and rare loot.
           </p>
         </div>
@@ -121,7 +121,7 @@ export default function LuckyWheel() {
 
               {/* Rotating wheel */}
               <div
-                className="absolute inset-0 rounded-full border-[6px] border-slate-700 shadow-[0_0_40px_rgba(16,185,129,0.25)]"
+                className="absolute inset-0 rounded-full border-[6px] border-nature-leaf/20 shadow-[0_0_40px_rgba(79,143,87,0.25)]"
                 style={{
                   background: "conic-gradient(from 0deg, " + gradient + ")",
                   transition: spinning ? "transform 3.2s cubic-bezier(0.16, 1, 0.3, 1)" : "none",
@@ -151,7 +151,7 @@ export default function LuckyWheel() {
                   <button
                     onClick={spin}
                     disabled={!canSpin || spinning}
-                    className={"w-24 h-24 rounded-full flex items-center justify-center text-sm font-bold tracking-wide shadow-xl transition border-4 " + (canSpin && !spinning ? "bg-emerald-500 hover:bg-emerald-400 text-emerald-950 border-white/20 animate-pulse" : "bg-slate-700 text-slate-400 border-slate-600 cursor-not-allowed")}
+                    className={"w-24 h-24 rounded-full flex items-center justify-center text-sm font-bold tracking-wide shadow-xl transition border-4 " + (canSpin && !spinning ? "bg-emerald-500 hover:bg-emerald-400 text-emerald-950 border-white/20 animate-pulse" : "bg-[#E5E0D3] text-text-muted border-nature-leaf/30 cursor-not-allowed")}
                   >
                     {spinning ? "Spinning..." : canSpin ? "SPIN" : "Done"}
                   </button>
@@ -162,27 +162,27 @@ export default function LuckyWheel() {
             {/* Spin status */}
             <div className="mt-8 text-center">
               <p className="text-sm font-semibold">
-                Spins today: <span className="text-emerald-400">{canSpin ? "1/1" : "0/1"}</span>
+                Spins today: <span className="text-nature-blossom">{canSpin ? "1/1" : "0/1"}</span>
               </p>
               {!canSpin && remaining > 0 && (
-                <p className="text-slate-400 text-sm mt-1">
+                <p className="text-text-muted text-sm mt-1">
                   {"Come back tomorrow — wheel resets daily · "}
-                  <span className="text-amber-300 font-mono">{fmtCountdown(remaining)}</span>
+                  <span className="text-amber-600 font-mono">{fmtCountdown(remaining)}</span>
                 </p>
               )}
               {!canSpin && remaining === 0 && (
-                <p className="text-slate-400 text-sm mt-1">{"Come back tomorrow — wheel resets daily"}</p>
+                <p className="text-text-muted text-sm mt-1">{"Come back tomorrow — wheel resets daily"}</p>
               )}
               {lastReward && (
-                <p className="text-slate-400 text-sm mt-1">Last reward: {lastReward}</p>
+                <p className="text-text-muted text-sm mt-1">Last reward: {lastReward}</p>
               )}
             </div>
           </div>
 
           {/* Reward legend + stats */}
           <div className="md:col-span-2 space-y-6">
-            <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-5">
-              <h2 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-3">
+            <div className="bg-white border border-nature-leaf/20 rounded-2xl p-5">
+              <h2 className="text-sm font-bold text-text-secondary uppercase tracking-wider mb-3">
                 Rewards
               </h2>
               <ul className="space-y-2">
@@ -190,28 +190,28 @@ export default function LuckyWheel() {
                   <li key={r.id} className="flex items-center justify-between text-sm">
                     <span className="flex items-center gap-2">
                       <span>{r.emoji}</span>
-                      <span className="text-slate-200">{r.label}</span>
+                      <span className="text-text-secondary">{r.label}</span>
                     </span>
-                    <span className="text-slate-500 text-xs">{r.weight}%</span>
+                    <span className="text-text-muted text-xs">{r.weight}%</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-5">
-              <h2 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-3">
+            <div className="bg-white border border-nature-leaf/20 rounded-2xl p-5">
+              <h2 className="text-sm font-bold text-text-secondary uppercase tracking-wider mb-3">
                 Your Stats
               </h2>
               <div className="grid grid-cols-2 gap-3">
-                <div className="bg-slate-800/60 rounded-xl p-3 text-center">
-                  <p className="text-2xl font-bold text-emerald-400">{stats.total_spins}</p>
-                  <p className="text-xs text-slate-400">Total spins</p>
+                <div className="bg-surface-card rounded-xl p-3 text-center">
+                  <p className="text-2xl font-bold text-nature-blossom">{stats.total_spins}</p>
+                  <p className="text-xs text-text-muted">Total spins</p>
                 </div>
-                <div className="bg-slate-800/60 rounded-xl p-3 text-center">
-                  <p className="text-2xl font-bold text-amber-300 truncate">
+                <div className="bg-surface-card rounded-xl p-3 text-center">
+                  <p className="text-2xl font-bold text-amber-600 truncate">
                     {stats.best_reward ? stats.best_reward.replace(" (24h)", "") : "—"}
                   </p>
-                  <p className="text-xs text-slate-400">Best reward</p>
+                  <p className="text-xs text-text-muted">Best reward</p>
                 </div>
               </div>
               {stats.total_spins > 0 && Object.keys(stats.reward_counts || {}).length > 0 && (
@@ -220,8 +220,8 @@ export default function LuckyWheel() {
                     .sort((a, b) => b[1] - a[1])
                     .map(([label, count]) => (
                       <li key={label} className="flex justify-between text-sm">
-                        <span className="text-slate-300">{label}</span>
-                        <span className="text-slate-400">{count}{"×"}</span>
+                        <span className="text-text-secondary">{label}</span>
+                        <span className="text-text-muted">{count}{"×"}</span>
                       </li>
                     ))}
                 </ul>
@@ -245,7 +245,7 @@ export default function LuckyWheel() {
               initial={{ scale: 0.5, y: 40 }}
               animate={{ scale: 1, y: 0 }}
               transition={{ type: "spring", damping: 12 }}
-              className="bg-slate-900 border border-emerald-500/40 rounded-3xl p-10 text-center max-w-sm w-full mx-4 shadow-[0_0_60px_rgba(16,185,129,0.3)]"
+              className="bg-white border border-nature-leaf/30 rounded-3xl p-10 text-center max-w-sm w-full mx-4 shadow-[0_0_60px_rgba(79,143,87,0.25)]"
               onClick={(e) => e.stopPropagation()}
             >
               <motion.div
@@ -267,9 +267,9 @@ export default function LuckyWheel() {
                   {s}
                 </motion.span>
               ))}
-              <h3 className="text-2xl font-bold text-emerald-300 mb-2">You won!</h3>
-              <p className="text-lg font-semibold text-white">{result.reward}</p>
-              <p className="text-slate-400 text-sm mt-2">{result.message}</p>
+              <h3 className="text-2xl font-bold text-nature-blossom mb-2">You won!</h3>
+              <p className="text-lg font-semibold text-text-primary">{result.reward}</p>
+              <p className="text-text-muted text-sm mt-2">{result.message}</p>
               <button
                 onClick={() => setResult(null)}
                 className="mt-6 w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-xl py-3 transition"

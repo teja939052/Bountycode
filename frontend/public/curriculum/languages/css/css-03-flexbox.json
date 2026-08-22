@@ -1,0 +1,46 @@
+{
+  "id": "css-03-flexbox",
+  "track": "css",
+  "title": "Flexbox Layout",
+  "section": "Styling with CSS",
+  "order": 3,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 20,
+  "content": {
+    "theory": "Flexbox is the modern way to arrange items in a row or column — and center them without hacks.\n\n### Make a container flex\n```css\n.container {\n  display: flex;\n}\n```\nIts children become **flex items** laid out in a row by default.\n\n### Main axis & direction\n```css\n.flex-row { display: flex; flex-direction: row; }        /* left → right */\n.flex-col { display: flex; flex-direction: column; }     /* top → bottom */\n```\n\n### Justify & align\n- `justify-content` → positions items along the **main axis**\n- `align-items` → positions items along the **cross axis**\n\n```css\n.container {\n  display: flex;\n  justify-content: center;   /* center horizontally (row) */\n  align-items: center;       /* center vertically (row) */\n}\n```\nThat single snippet is the classic \"perfectly center a box\" recipe.\n\n### Spacing options\n```css\njustify-content: flex-start;    /* default, left */\njustify-content: center;        /* grouped center */\njustify-content: space-between; /* first & last at edges, equal gaps */\njustify-content: space-around;  /* equal space around each */\njustify-content: space-evenly;  /* fully even gaps */\n```\n\n### Grow to fill\n```css\n.item { flex: 1; }   /* each item takes equal share */\n```\n\n### Gap (modern, simple)\n```css\n.container { display: flex; gap: 16px; }\n```\n`gap` adds spacing between items without fiddly margins.",
+    "codeSnippets": [
+      {
+        "language": "css",
+        "code": ".nav {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}",
+        "output": "A navbar with brand on the left and links on the right, vertically centered."
+      }
+    ],
+    "exercise": {
+      "instruction": "Style .row so its three .box children sit in a row, evenly spaced with space-between, and vertically centered. Add a 12px gap.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Flex</title>\n  <style>\n    .row {\n\n    }\n    .box { width: 60px; height: 60px; background: #3b82f6; }\n  </style>\n</head>\n<body>\n  <div class=\"row\">\n    <div class=\"box\"></div>\n    <div class=\"box\"></div>\n    <div class=\"box\"></div>\n  </div>\n</body>\n</html>",
+      "required": [".row {", "display: flex", "justify-content: space-between", "align-items: center", "gap: 12px"],
+      "hints": [
+        "Hint 1: Set display: flex; to enable flexbox.",
+        "Hint 2: Use justify-content: space-between; to spread the boxes out.",
+        "Hint 3: Add align-items: center; and gap: 12px;."
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which property centers items along the cross axis?",
+        "options": ["justify-content", "align-items", "flex-direction"],
+        "correct": 1
+      },
+      {
+        "question": "Which value spreads items to the edges with equal gaps?",
+        "options": ["space-between", "center", "flex-start"],
+        "correct": 0
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "css-04-responsive",
+    "unlocks": ["css-04-responsive"]
+  }
+}

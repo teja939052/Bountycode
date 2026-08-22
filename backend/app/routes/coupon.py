@@ -7,6 +7,12 @@ from app.services.coupon import create_coupon, validate_coupon, apply_coupon as 
 router = APIRouter(prefix="/api/v1/coupon", tags=["coupon"])
 
 
+async def require_admin(user=Depends(get_current_user)):
+    if user.get("role") == "admin" or user.get("is_admin") is True:
+        return user
+    raise HTTPException(status_code=403, detail="Admin access required")
+
+
 class CreateCouponRequest(BaseModel):
     code: str
     discount_type: str
@@ -30,7 +36,7 @@ async def apply_coupon_endpoint(req: ApplyCouponRequest, user=Depends(get_curren
 
 
 @router.post("/admin/create")
-async def create_coupon_admin(req: CreateCouponRequest, user=Depends(get_current_user)):
+async def create_coupon_admin(req: CreateCouponRequest, admin=Depends(require_admin)):
     result = await create_coupon(
         code=req.code,
         discount_type=req.discount_type,

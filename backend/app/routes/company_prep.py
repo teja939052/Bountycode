@@ -7,6 +7,7 @@ from app.middleware.auth import get_current_user
 from app.services.ai import generate_behavioral_question, generate_interview_tips, generate_coding_challenge
 from app.services.usage import check_and_reset_monthly_usage, can_use_feature
 from app.config import get_settings
+from app.services.response_cache import cached
 from bson import ObjectId
 
 router = APIRouter(prefix="/api/v1/company", tags=["company-prep"])
@@ -182,6 +183,7 @@ def _build_prep_modules(company_key: str, company_info: dict) -> list:
 
 
 @router.get("/companies")
+@cached(ttl=3600, key_prefix="company")
 async def get_companies():
     return {
         "companies": [
@@ -250,6 +252,7 @@ async def get_coding_challenge(req: CodingChallengeRequest, user=Depends(get_cur
 
 
 @router.get("/{company}/guide")
+@cached(ttl=3600, key_prefix="company")
 async def get_company_guide(company: str, user=Depends(get_current_user)):
     company_info = TOP_COMPANIES.get(company.lower())
 

@@ -1,0 +1,46 @@
+{
+  "id": "js-07-array-methods",
+  "track": "javascript",
+  "title": "Array Methods",
+  "section": "JavaScript in Action",
+  "order": 7,
+  "type": "lesson",
+  "duration": "13 min",
+  "xp": 25,
+  "content": {
+    "theory": "Modern JavaScript rarely uses manual `for` loops on arrays — it uses **array methods** that transform data in one readable line.\n\n### map — transform every item\n```js\nconst nums = [1, 2, 3];\nconst doubled = nums.map(n => n * 2);\nconsole.log(doubled);   // [2, 4, 6]\n```\n\n### filter — keep matching items\n```js\nconst nums = [1, 2, 3, 4, 5];\nconst evens = nums.filter(n => n % 2 === 0);\nconsole.log(evens);     // [2, 4]\n```\n\n### find — first matching item (or undefined)\n```js\nconst firstBig = nums.find(n => n > 3);   // 4\n```\n\n### reduce — boil the array down to one value\n```js\nconst sum = nums.reduce((total, n) => total + n, 0);\nconsole.log(sum);   // 15\n```\n\n### every / some — test the whole array\n```js\nnums.every(n => n > 0);   // true — all positive\nnums.some(n => n > 10);   // false\n```\n\n### includes — does it contain X?\n```js\n[1, 2, 3].includes(2);   // true\n```\n\n### Chaining — compose steps left to right\n```js\nconst result = nums\n  .filter(n => n % 2 === 0)   // [2, 4]\n  .map(n => n * 10)           // [20, 40]\n  .reduce((a, b) => a + b, 0) // 60\nconsole.log(result);   // 60\n```\n\nThese methods **return new arrays** — they never mutate the original. That functional style is the backbone of React and modern frameworks.",
+    "codeSnippets": [
+      {
+        "language": "javascript",
+        "code": "const nums = [1, 2, 3, 4];\nconst evens = nums.filter(n => n % 2 === 0);\nconsole.log(evens);",
+        "output": "[2, 4]"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write a script: create 'nums' = [1, 2, 3, 4, 5, 6]. Use .filter to keep only even numbers, then .map to double them, then set output.textContent to the resulting array (join with ', '). Expected: '4, 8, 12'.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<body>\n  <p id=\"output\"></p>\n  <script>\n    const nums = [1, 2, 3, 4, 5, 6];\n\n  </script>\n</body>\n</html>",
+      "required": [".filter(", "n % 2 === 0", ".map(", "* 2", ".join(\", \")", "4, 8, 12"],
+      "hints": [
+        "Hint 1: const evens = nums.filter(n => n % 2 === 0);",
+        "Hint 2: const doubled = evens.map(n => n * 2);",
+        "Hint 3: document.querySelector(\"#output\").textContent = doubled.join(\", \");"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What does map() return?",
+        "options": ["The original array", "A new array with each item transformed", "A single number"],
+        "correct": 1
+      },
+      {
+        "question": "What does filter() keep?",
+        "options": ["Items where the callback returns true", "Only the first item", "Every item"],
+        "correct": 0
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "js-08-objects",
+    "unlocks": ["js-08-objects"]
+  }
+}

@@ -22,7 +22,7 @@ export default function MyProgress() {
     setLoading(true);
     try {
       const [statsData, recentData] = await Promise.all([
-        api.getQuestionStats().catch(() => null),
+        api.questions.getStats().catch(() => null),
         api.getRecentAnswers(10).catch(() => ({ answers: [] })),
       ]);
       setStats(statsData);
@@ -60,7 +60,7 @@ export default function MyProgress() {
             </div>
             <div>
               <h1 className="text-3xl font-bold dark:text-white">My Progress</h1>
-              <p className="text-gray-600 dark:text-gray-400">Track your question bank performance</p>
+              <p className="text-brand-secondary dark:text-gray-400">Track your question bank performance</p>
             </div>
           </div>
         </motion.div>
@@ -96,10 +96,10 @@ export default function MyProgress() {
                 {strongAreas.map((area) => (
                   <div key={area.topic}>
                     <div className="flex justify-between text-sm mb-1">
-                      <span className="text-gray-700 dark:text-gray-300">{area.topic}</span>
+                      <span className="text-brand-primary dark:text-brand-secondary">{area.topic}</span>
                       <span className="font-medium text-green-600">{area.avg_score}/10</span>
                     </div>
-                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                    <div className="w-full bg-surface-card/50 dark:bg-gray-700 rounded-full h-2">
                       <div
                         className="bg-green-500 h-2 rounded-full"
                         style={{ width: `${area.avg_score * 10}%` }}
@@ -125,10 +125,10 @@ export default function MyProgress() {
                 {weakAreas.map((area) => (
                   <div key={area.topic}>
                     <div className="flex justify-between text-sm mb-1">
-                      <span className="text-gray-700 dark:text-gray-300">{area.topic}</span>
+                      <span className="text-brand-primary dark:text-brand-secondary">{area.topic}</span>
                       <span className="font-medium text-orange-600">{area.avg_score}/10</span>
                     </div>
-                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                    <div className="w-full bg-surface-card/50 dark:bg-gray-700 rounded-full h-2">
                       <div
                         className="bg-orange-500 h-2 rounded-full"
                         style={{ width: `${area.avg_score * 10}%` }}
@@ -151,7 +151,7 @@ export default function MyProgress() {
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
               {companyStats.map((cs) => (
-                <div key={cs.company} className="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3">
+                <div key={cs.company} className="bg-surface-base dark:bg-gray-700/50 rounded-lg p-3">
                   <p className="font-semibold text-sm dark:text-white">{cs.company}</p>
                   <p className="text-lg font-bold text-primary-600">{cs.avg_score}/10</p>
                   <p className="text-xs text-gray-400">{cs.count} questions</p>
@@ -202,7 +202,7 @@ export default function MyProgress() {
         {/* CTA */}
         {totalAttempted === 0 && (
           <AnimatedCard className="card text-center py-12">
-            <TrendingUp size={48} className="mx-auto text-gray-300 dark:text-gray-600 mb-4" />
+            <TrendingUp size={48} className="mx-auto text-brand-secondary dark:text-brand-secondary mb-4" />
             <h3 className="text-xl font-bold mb-2 dark:text-white">Start Practicing</h3>
             <p className="text-gray-500 dark:text-gray-400 mb-6">Answer questions from the question bank to see your progress here</p>
             <Link

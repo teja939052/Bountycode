@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { useParams, useLocation, useNavigate, Link } from "react-router-dom";
 import api from "../services/api";
 import Spinner from "../components/ui/Spinner";
+import SuccessGlow from "../components/SuccessGlow";
 import CelebrationOverlay from "../components/CelebrationOverlay";
 import XPPopup from "../components/XPPopup";
 import { motion, AnimatePresence } from "framer-motion";
@@ -59,6 +60,7 @@ export default function InterviewSession() {
   const [company, setCompany] = useState(initialState.company || "general");
   const [companyStyle, setCompanyStyle] = useState(initialState.companyStyle || "");
   const [isFollowUp, setIsFollowUp] = useState(false);
+  const [questionType, setQuestionType] = useState(initialState.questionType || "technical");
   const [reaction, setReaction] = useState(null);
   const [showReaction, setShowReaction] = useState(false);
   const [timer, setTimer] = useState(0);
@@ -66,24 +68,36 @@ export default function InterviewSession() {
   const [xpData, setXpData] = useState(null);
   const [showXP, setShowXP] = useState(false);
   const [error, setError] = useState("");
+  const [glowBurst, setGlowBurst] = useState(0);
   const [initialized, setInitialized] = useState(!!initialState.question);
+  const [isActiveInterview, setIsActiveInterview] = useState(false);
 
   const timerRef = useRef(null);
   const answerStartTime = useRef(Date.now());
 
   useEffect(() => {
     timerRef.current = setInterval(() => setTimer((p) => p + 1), 1000);
-    return () => clearInterval(timerRef.current);
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
   }, []);
+
+  useEffect(() => {
+    setTimer(0);
+    answerStartTime.current = Date.now();
+  }, [question]);
 
   useEffect(() => {
     if (!initialState.question && interviewId) {
       const loadInterview = async () => {
         try {
-          const data = await api.get(`/api/interview/${interviewId}/result`);
+          const data = await api.get(`/api/v1/interview/${interviewId}/result`);
           if (data.questions?.length > 0 && (data.total_questions >= 20 || data.questions.length >= 20)) {
             setResult(data);
             setFinished(true);
+          } else if (data.questions?.length > 0 && data.questions.length < 20) {
+            setIsActiveInterview(true);
+            setQuestion(data.questions[data.questions.length - 1].question);
+            setScore(data.overall_score || 0);
+            setQuestionCount(data.questions.length);
           }
           setInitialized(true);
         } catch {
@@ -94,8 +108,8 @@ export default function InterviewSession() {
       loadInterview();
     } else {
       setInitialized(true);
+      if (initialState.question) setIsActiveInterview(true);
     }
-    return () => { if (timerRef.current) clearInterval(timerRef.current); };
   }, [interviewId, initialState.question]);
 
   const triggerReaction = useCallback((type) => {
@@ -114,7 +128,7 @@ export default function InterviewSession() {
 
     try {
       const data = await api.post("/api/v1/interview/answer", {
-        interview_id: interviewId, question, answer, time_taken: timeTaken, is_follow_up: isFollowUp,
+        interview_id: interviewId, question, answer, time_taken: timeTaken, is_follow_up: isFollowUp, question_type: questionType,
       });
 
       setFeedback(data.feedback);
@@ -122,8 +136,12 @@ export default function InterviewSession() {
       setReaction(null);
       triggerReaction(data.reaction);
 
+      if (data.current_score >= 7) {
+        setGlowBurst(b => b + 1);
+      }
+
       if (data.finished) {
-        const resultData = await api.get(`/api/interview/${interviewId}/result`);
+        const resultData = await api.get(`/api/v1/interview/${interviewId}/result`);
         setResult(resultData);
         setFinished(true);
         clearInterval(timerRef.current);
@@ -140,6 +158,7 @@ export default function InterviewSession() {
         setTips(data.next_tips || "");
         setDifficulty(data.next_difficulty || difficulty);
         setIsFollowUp(data.is_follow_up || false);
+        setQuestionType(data.next_question_type || questionType);
         setQuestionCount(data.questions_answered + 1);
         setAnswer("");
         setFeedback(null);
@@ -187,7 +206,7 @@ export default function InterviewSession() {
           >
             <span className="section-subheader mb-3 block">Mission Complete</span>
             <h1 className="section-header text-3xl mb-2">Engagement <span className="text-cyber-blue">Terminated</span></h1>
-            <p className="text-gray-500 font-mono text-sm mb-6">
+             <p className="text-brand-secondary font-mono text-sm mb-6">
               {result.job_role} — {result.company === "general" ? "General" : result.company?.charAt(0).toUpperCase() + result.company?.slice(1)}
             </p>
 
@@ -201,7 +220,7 @@ export default function InterviewSession() {
                 {Object.entries(result.score_breakdown).map(([key, val]: [string, any]) => (
                   <div key={key} className="bg-space-panel border border-space-border rounded-lg p-3">
                     <p className="text-2xl font-display font-bold text-text-primary">{val}</p>
-                    <p className="text-xs font-mono text-gray-500 capitalize">{key.replace("_", " ")}</p>
+                    <p className="text-xs font-mono text-brand-secondary capitalize">{key.replace("_", " ")}</p>
                   </div>
                 ))}
               </div>
@@ -213,6 +232,12 @@ export default function InterviewSession() {
                 <span className="font-mono text-sm text-cyber-blue">Readiness: {result.readiness_score}%</span>
               </div>
             )}
+            {result.communication_score != null && (
+              <div className="mt-2 inline-flex items-center gap-2 bg-cyber-purple/10 border border-cyber-purple/20 px-4 py-2 rounded-full">
+                <MessageSquare size={14} className="text-cyber-purple" />
+                <span className="font-mono text-sm text-cyber-purple">Communication: {result.communication_score}/100</span>
+              </div>
+            )}
           </motion.div>
 
           <div className="grid sm:grid-cols-2 gap-4 mb-8">
@@ -221,23 +246,23 @@ export default function InterviewSession() {
                 <h3 className="font-display font-bold text-cyber-green text-sm mb-2 flex items-center gap-2">
                   <CheckCircle2 size={16} /> Strengths
                 </h3>
-                <ul className="space-y-1">
-                  {result.strength_areas.map((s, i) => (
-                    <li key={i} className="text-xs font-mono text-gray-400">{s}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            {result.improvement_areas?.length > 0 && (
-              <div className="card border-cyber-orange/20 bg-cyber-orange/5">
-                <h3 className="font-display font-bold text-cyber-orange text-sm mb-2 flex items-center gap-2">
-                  <AlertCircle size={16} /> Areas to Improve
-                </h3>
-                <ul className="space-y-1">
-                  {result.improvement_areas.map((s, i) => (
-                    <li key={i} className="text-xs font-mono text-gray-400">{s}</li>
-                  ))}
-                </ul>
+                 <ul className="space-y-1">
+                   {result.strength_areas.map((s, i) => (
+                     <li key={i} className="text-xs font-mono text-brand-secondary">{s}</li>
+                   ))}
+                 </ul>
+               </div>
+             )}
+             {result.improvement_areas?.length > 0 && (
+               <div className="card border-brand-accent/20 bg-brand-accent/5">
+                 <h3 className="font-display font-bold text-brand-accent text-sm mb-2 flex items-center gap-2">
+                   <AlertCircle size={16} /> Areas to Improve
+                 </h3>
+                  <ul className="space-y-1">
+                    {result.improvement_areas.map((s, i) => (
+                      <li key={i} className="text-xs font-mono text-brand-secondary">{s}</li>
+                    ))}
+                  </ul>
               </div>
             )}
           </div>
@@ -279,22 +304,22 @@ export default function InterviewSession() {
                   </div>
                   <span className={`text-sm font-display font-bold px-3 py-1 rounded-full shrink-0 border ${getScoreColor(q.score)}`}>{q.score}/10</span>
                 </div>
-                <p className="text-gray-500 font-mono text-xs mb-3">Your answer: {q.answer}</p>
+                 <p className="text-brand-secondary font-mono text-xs mb-3">Your answer: {q.answer}</p>
 
                 {q.feedback && (
                   <div className="bg-space-panel border border-space-border rounded-lg p-4 text-xs space-y-2 font-mono">
-                    {q.feedback.strengths?.length > 0 && (
-                      <div><span className="text-cyber-green">Strengths: </span><span className="text-gray-400">{q.feedback.strengths.join(", ")}</span></div>
-                    )}
-                    {q.feedback.improvements?.length > 0 && (
-                      <div><span className="text-cyber-orange">Improve: </span><span className="text-gray-400">{q.feedback.improvements.join(", ")}</span></div>
-                    )}
-                    {q.feedback.better_answer && (
-                      <details className="mt-2">
-                        <summary className="text-gray-400 cursor-pointer hover:text-text-primary">See improved answer</summary>
-                        <p className="text-gray-400 mt-2 bg-space-void p-3 rounded-lg border border-space-border">{q.feedback.better_answer}</p>
-                      </details>
-                    )}
+                     {q.feedback.strengths?.length > 0 && (
+                       <div><span className="text-brand-emerald">Strengths: </span><span className="text-brand-secondary">{q.feedback.strengths.join(", ")}</span></div>
+                     )}
+                     {q.feedback.improvements?.length > 0 && (
+                       <div><span className="text-brand-coral">Improve: </span><span className="text-brand-secondary">{q.feedback.improvements.join(", ")}</span></div>
+                     )}
+                     {q.feedback.better_answer && (
+                       <details className="mt-2">
+                         <summary className="text-brand-secondary cursor-pointer hover:text-brand-primary">See improved answer</summary>
+                         <p className="text-brand-secondary mt-2 bg-surface-base p-3 rounded-lg border border-surface-border">{q.feedback.better_answer}</p>
+                       </details>
+                     )}
                   </div>
                 )}
               </motion.div>
@@ -315,6 +340,7 @@ export default function InterviewSession() {
   // LIVE INTERVIEW SCREEN
   return (
     <div className="min-h-screen py-12 px-4">
+      <SuccessGlow burst={glowBurst} color="#4F8F57" />
       <CelebrationOverlay show={showCelebration} type="confetti" message="Great Interview!" />
       <div className="max-w-3xl mx-auto">
         {/* Header */}
@@ -334,7 +360,7 @@ export default function InterviewSession() {
           </div>
           <div className="flex items-center gap-4">
             <span className={`text-[10px] px-2 py-1 rounded-full font-mono ${DIFFICULTY_COLORS[difficulty] || DIFFICULTY_COLORS.medium}`}>{difficulty}</span>
-            <div className="flex items-center gap-1 text-sm font-mono text-gray-400">
+                 <div className="flex items-center gap-1 text-sm font-mono text-brand-secondary">
               <Clock size={12} /> {formatTime(timer)}
             </div>
             <div className="flex items-center gap-1 text-sm font-display font-bold text-cyber-blue">
@@ -382,7 +408,7 @@ export default function InterviewSession() {
               <span className="text-4xl">{reaction.emoji}</span>
               <div>
                 <p className={`font-display font-bold ${reaction.color}`}>{reaction.label}</p>
-                <p className="text-xs font-mono text-gray-500">Score: {score.toFixed(1)}/10</p>
+                 <p className="text-xs font-mono text-brand-secondary">Score: {score.toFixed(1)}/10</p>
               </div>
             </motion.div>
           )}
@@ -403,7 +429,7 @@ export default function InterviewSession() {
                 {feedback.breakdown && Object.keys(feedback.breakdown).length > 0 && (
                   <div className="flex gap-2 ml-auto">
                     {Object.entries(feedback.breakdown).map(([k, v]: [string, any]) => (
-                      <span key={k} className="text-[10px] bg-space-panel border border-space-border px-2 py-1 rounded-full font-mono text-gray-400">{k.replace("_", " ")}: {v}</span>
+                       <span key={k} className="text-[10px] bg-surface-card border border-surface-border px-2 py-1 rounded-full font-mono text-brand-secondary">{k.replace("_", " ")}: {v}</span>
                     ))}
                   </div>
                 )}
@@ -414,10 +440,15 @@ export default function InterviewSession() {
               {feedback.improvements?.slice(0, 2).map((s, i) => (
                 <p key={i} className="text-cyber-orange text-xs font-mono">💡 {s}</p>
               ))}
+              {feedback.score < 7 && (
+                <p className="text-xs font-mono text-brand-secondary mt-3 italic">
+                  This one's tricky — most students need 2-3 attempts before it clicks. Your next try is the one that counts.
+                </p>
+              )}
               {feedback.better_answer && (
                 <details className="mt-3">
-                  <summary className="text-xs font-mono text-gray-400 cursor-pointer hover:text-text-primary">See improved answer</summary>
-                  <p className="text-xs font-mono text-gray-400 mt-2 bg-space-void p-3 rounded-lg border border-space-border">{feedback.better_answer}</p>
+                   <summary className="text-xs font-mono text-brand-secondary cursor-pointer hover:text-brand-primary">See improved answer</summary>
+                   <p className="text-xs font-mono text-brand-secondary mt-2 bg-surface-base p-3 rounded-lg border border-surface-border">{feedback.better_answer}</p>
                 </details>
               )}
             </motion.div>
@@ -434,13 +465,13 @@ export default function InterviewSession() {
         >
           <div className="flex items-center gap-2 mb-2">
             <MessageSquare size={14} className="text-cyber-blue" />
-            <span className="text-[10px] uppercase tracking-widest font-mono text-gray-500">
+             <span className="text-[10px] uppercase tracking-widest font-mono text-brand-dim">
               {isFollowUp ? "Follow-up" : "Interview Query"}
             </span>
           </div>
           <p className="font-display font-bold text-text-primary text-lg">{question}</p>
           {tips && (
-            <p className="text-xs font-mono text-gray-500 mt-2 italic">💡 Hint: {tips}</p>
+             <p className="text-xs font-mono text-brand-secondary mt-2 italic">💡 Hint: {tips}</p>
           )}
         </motion.div>
 

@@ -1,0 +1,53 @@
+{
+  "id": "java-12-hashmap",
+  "track": "java",
+  "title": "HashMap",
+  "section": "Java Intermediate",
+  "order": 12,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "An `ArrayList` answers \"what's at index 3?\" quickly, but \"where is value X?\" is slow — it scans every element. When your data is naturally **key-value pairs** — a student's name and their score, a product ID and its stock — a **HashMap** gives you near-instant lookups by key.\n\n```java\nimport java.util.*;\n\nHashMap<String, Integer> scores = new HashMap<>();\nscores.put(\"Ada\", 92);\nscores.put(\"Linus\", 87);\nSystem.out.println(scores.get(\"Linus\"));   // 87\n```\n\n### Why it's fast\n\nA `HashMap` derives an `int` **hash code** from each key's content and uses it to pick a bucket, so finding a key is O(1) on average instead of a linear scan. That's the WHY behind the name: it maps keys to values using hashing.\n\n### The key methods\n\n| Method | What it does |\n|---|---|\n| `put(k, v)` | Insert, or **overwrite** if `k` already exists |\n| `get(k)` | The value for `k`, or `null` if missing |\n| `remove(k)` | Delete the entry for `k` |\n| `containsKey(k)` | True if the key is present |\n| `keySet()` | All keys, for iteration |\n| `entrySet()` | All key-value pairs |\n| `getOrDefault(k, fallback)` | The value, or `fallback` when the key is missing |\n\n### Two traps\n\n1. **`put` overwrites.** Calling `put(\"Ada\", 92)` then `put(\"Ada\", 95)` leaves a single entry with 95 — a common source of \"lost data\" bugs when you meant to accumulate.\n2. **Order is not guaranteed.** `HashMap` does *not* remember insertion order, so never rely on `keySet()` or `entrySet()` printing entries in the order you added them. If insertion order matters use `LinkedHashMap`; if sorted order matters use `TreeMap`.\n\n### HashMap vs ArrayList\n\nUse an `ArrayList` when position matters and you work by index. Use a `HashMap` when you look things up by a **unique key**, handle missing keys with `containsKey`/`getOrDefault`, and want one name mapped to one value.",
+    "codeSnippets": [
+      {
+        "language": "java",
+        "code": "import java.util.*;\n\nHashMap<String, Integer> scores = new HashMap<>();\nscores.put(\"Ada\", 92);\nscores.put(\"Linus\", 87);\nscores.put(\"Ada\", 95);                    // overwrites 92\n\nSystem.out.println(scores.get(\"Ada\"));    // 95\nSystem.out.println(scores.getOrDefault(\"Grace\", 0));  // 0",
+        "output": "95\n0"
+      }
+    ],
+    "exercise": {
+      "instruction": "Create a HashMap<String, Integer> named 'scores'. Put \"Ada\" with 92 and \"Linus\" with 87. Then put \"Ada\" again with 95 — this overwrites the old value. Print 'Ada: ' plus scores.get(\"Ada\"), then 'Linus: ' plus scores.get(\"Linus\"), then 'Size: ' plus scores.size(), each on its own line.",
+      "starterCode": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n\n    }\n}",
+      "language": "java",
+      "expected": "Ada: 95\nLinus: 87\nSize: 2",
+      "required": ["import java.util", "HashMap<String, Integer>", "scores.put(\"Ada\", 92)", "scores.put(\"Ada\", 95)", "scores.get(\"Ada\")", "scores.size()"],
+      "hints": [
+        "Hint 1: HashMap<String, Integer> scores = new HashMap<>();",
+        "Hint 2: Put \"Ada\" with 92, \"Linus\" with 87, then scores.put(\"Ada\", 95) to overwrite.",
+        "Hint 3: System.out.println(\"Ada: \" + scores.get(\"Ada\")); System.out.println(\"Linus: \" + scores.get(\"Linus\")); System.out.println(\"Size: \" + scores.size());"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which method checks whether a key already exists?",
+        "options": ["hasKey()", "containsKey()", "keyExists()"],
+        "correct": 1
+      },
+      {
+        "question": "What happens when you put() an existing key?",
+        "options": ["A duplicate entry is added", "The old value is overwritten", "Nothing"],
+        "correct": 1
+      },
+      {
+        "question": "When should you prefer a HashMap over an ArrayList?",
+        "options": ["When you look things up by a unique key", "When item order matters", "When you only store numbers"],
+        "correct": 0
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "java-13-exceptions",
+    "unlocks": ["java-13-exceptions"]
+  }
+}

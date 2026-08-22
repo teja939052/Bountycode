@@ -283,21 +283,21 @@ export default function Dungeons() {
     : 0;
 
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen bg-surface-base">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-3xl font-display font-bold text-white flex items-center gap-3">
-              <Swords className="w-8 h-8 text-emerald-400" />
+            <h1 className="text-3xl font-display font-bold text-text-primary flex items-center gap-3">
+              <Swords className="w-8 h-8 text-brand-primary" />
               Guilds & Dungeons
             </h1>
-            <p className="text-slate-400 mt-1">
+            <p className="text-text-muted mt-1">
               Build a guild, wage wars, and conquer company boss dungeons.
             </p>
           </div>
           {user && (
-            <span className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs font-mono text-slate-300">
-              <Shield className="w-3.5 h-3.5 text-emerald-400" />
+            <span className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-nature-leaf/20 bg-surface-card text-xs font-mono text-text-secondary">
+              <Shield className="w-3.5 h-3.5 text-brand-primary" />
               {user.name}
             </span>
           )}
@@ -313,8 +313,8 @@ export default function Dungeons() {
                 onClick={() => setTab(tabDef.key)}
                 className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium border transition-all ${
                   active
-                    ? "border-indigo-500/50 bg-indigo-500/15 text-indigo-200"
-                    : "border-white/10 bg-white/5 text-slate-400 hover:text-slate-200 hover:border-white/20"
+                    ? "border-nature-leaf/30 bg-nature-bark text-nature-blossom"
+                    : "border-nature-leaf/20 bg-surface-card text-text-muted hover:text-text-primary hover:border-nature-leaf/30"
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -325,7 +325,7 @@ export default function Dungeons() {
         </div>
 
         {error && (
-          <div className="mb-6 rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-300">
+          <div className="mb-6 rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-600">
             {error}
           </div>
         )}
@@ -340,23 +340,23 @@ export default function Dungeons() {
               transition={{ duration: 0.2 }}
             >
               {!user ? (
-                <div className="rounded-2xl border border-white/10 bg-white/5 py-16 text-center text-slate-400">
-                  <LogIn className="w-10 h-10 mx-auto mb-3 text-indigo-400" />
+                <div className="rounded-2xl border border-nature-leaf/20 bg-white py-16 text-center text-text-muted">
+                  <LogIn className="w-10 h-10 mx-auto mb-3 text-nature-blossom" />
                   Sign in to join a guild.
                 </div>
               ) : guildLoading ? (
-                <div className="rounded-2xl border border-white/10 bg-white/5 flex items-center justify-center py-16 text-slate-500">
+                <div className="rounded-2xl border border-nature-leaf/20 bg-white flex items-center justify-center py-16 text-text-muted">
                   <Loader2 className="w-6 h-6 animate-spin mr-2" />
                   Loading guild...
                 </div>
               ) : !guild ? (
                 <div className="grid md:grid-cols-2 gap-6">
-                  <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-                    <h2 className="text-lg font-display font-semibold text-white flex items-center gap-2 mb-1">
-                      <Shield className="w-5 h-5 text-emerald-400" />
+                  <div className="rounded-2xl border border-nature-leaf/20 bg-white p-6">
+                    <h2 className="text-lg font-display font-semibold text-text-primary flex items-center gap-2 mb-1">
+                      <Shield className="w-5 h-5 text-brand-primary" />
                       Create a Guild
                     </h2>
-                    <p className="text-sm text-slate-400 mb-5">
+                    <p className="text-sm text-text-muted mb-5">
                       Found your own guild and invite teammates with a join code.
                     </p>
                     <input
@@ -364,24 +364,24 @@ export default function Dungeons() {
                       onChange={(e) => setCreateName(e.target.value)}
                       onKeyDown={(e) => { if (e.key === "Enter") handleCreate(); }}
                       placeholder="Guild name"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950/60 border border-white/10 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/30 transition-all mb-4"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-surface-card border border-nature-leaf/20 text-sm text-text-primary placeholder-text-muted focus:outline-none focus:border-nature-leaf focus:ring-1 focus:ring-nature-leaf/30 transition-all mb-4"
                     />
                     <button
                       onClick={handleCreate}
                       disabled={busy || !createName.trim()}
-                      className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-indigo-500 text-sm font-semibold text-slate-950 disabled:opacity-40 hover:from-emerald-400 hover:to-indigo-400 transition-all"
+                      className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-[#4F8F57] to-[#7BB661] text-sm font-semibold text-white disabled:opacity-40 hover:from-[#3F7A47] hover:to-[#6BA95C] transition-all"
                     >
                       {busy ? <Loader2 className="w-4 h-4 animate-spin" /> : <Shield className="w-4 h-4" />}
                       Create Guild
                     </button>
                   </div>
 
-                  <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-                    <h2 className="text-lg font-display font-semibold text-white flex items-center gap-2 mb-1">
-                      <Users className="w-5 h-5 text-indigo-400" />
+                  <div className="rounded-2xl border border-nature-leaf/20 bg-white p-6">
+                    <h2 className="text-lg font-display font-semibold text-text-primary flex items-center gap-2 mb-1">
+                      <Users className="w-5 h-5 text-nature-blossom" />
                       Join a Guild
                     </h2>
-                    <p className="text-sm text-slate-400 mb-5">
+                    <p className="text-sm text-text-muted mb-5">
                       Enter a 6-character code shared by your friends.
                     </p>
                     <input
@@ -390,12 +390,12 @@ export default function Dungeons() {
                       onKeyDown={(e) => { if (e.key === "Enter") handleJoin(); }}
                       placeholder="XXXXXX"
                       maxLength={6}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950/60 border border-white/10 text-sm font-mono uppercase text-white placeholder-gray-600 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/30 transition-all mb-4"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-surface-card border border-nature-leaf/20 text-sm font-mono uppercase text-text-primary placeholder-text-muted focus:outline-none focus:border-nature-leaf focus:ring-1 focus:ring-nature-leaf/30 transition-all mb-4"
                     />
                     <button
                       onClick={handleJoin}
                       disabled={busy || joinCode.trim().length !== 6}
-                      className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-white/10 bg-white/5 text-sm font-semibold text-slate-200 disabled:opacity-40 hover:border-indigo-500/40 hover:text-indigo-300 transition-all"
+                      className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-nature-leaf/20 bg-surface-card text-sm font-semibold text-text-primary disabled:opacity-40 hover:border-[#4F8F57] hover:text-nature-blossom transition-all"
                     >
                       <UserPlus className="w-4 h-4" />
                       Join with Code
@@ -404,18 +404,18 @@ export default function Dungeons() {
                 </div>
               ) : (
                 <div className="space-y-6">
-                  <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-indigo-500/15 via-white/5 to-emerald-500/15 p-6 sm:p-8">
+                  <div className="rounded-2xl border border-nature-leaf/20 bg-gradient-to-br from-[#EDF5E6] via-white to-[#EDF5E6] p-6 sm:p-8">
                     <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-6">
                       <div className="flex items-center gap-4">
-                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500/30 to-indigo-500/30 border border-white/10 flex items-center justify-center">
-                          <Shield className="w-7 h-7 text-emerald-400" />
+                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#D9EFCF] to-[#EDF5E6] border border-nature-leaf/20 flex items-center justify-center">
+                          <Shield className="w-7 h-7 text-brand-primary" />
                         </div>
                         <div>
-                          <h2 className="text-2xl font-display font-bold text-white flex items-center gap-2">
+                          <h2 className="text-2xl font-display font-bold text-text-primary flex items-center gap-2">
                             {guild.name}
                             {guild.owner_id === user.id && <Crown className="w-4 h-4 text-amber-400" />}
                           </h2>
-                          <p className="text-xs font-mono text-slate-400 mt-1">
+                          <p className="text-xs font-mono text-text-muted mt-1">
                             Level {guild.level} · {levelTitle(guild.level)} · {guild.member_count} members
                           </p>
                         </div>
@@ -423,25 +423,25 @@ export default function Dungeons() {
                       <div className="flex flex-col items-start sm:items-end gap-2">
                         <button
                           onClick={() => copyCode(guild.code)}
-                          className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/10 bg-slate-950/60 text-xs font-mono text-emerald-300 hover:border-emerald-500/40 transition-all"
+                          className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-nature-leaf/20 bg-surface-card text-xs font-mono text-brand-primary hover:border-nature-leaf/30 transition-all"
                         >
                           <Copy className="w-3.5 h-3.5" />
                           {guild.code}
                         </button>
-                        <span className="text-xs text-slate-500">Your rank: #{guild.rank}</span>
+                        <span className="text-xs text-text-muted">Your rank: #{guild.rank}</span>
                       </div>
                     </div>
                     <div className="mt-6">
                       <div className="mb-2 flex items-center justify-between text-sm font-mono">
-                        <span className="text-slate-400">Guild XP</span>
-                        <span className="text-white">
+                        <span className="text-text-muted">Guild XP</span>
+                        <span className="text-text-primary">
                           {guild.xp.toLocaleString()}{" "}
-                          <span className="text-slate-500">/ {nextThreshold(guild.xp).toLocaleString()}</span>
+                          <span className="text-text-muted">/ {nextThreshold(guild.xp).toLocaleString()}</span>
                         </span>
                       </div>
-                      <div className="h-3 rounded-full bg-slate-900 border border-white/10 overflow-hidden">
+                      <div className="h-3 rounded-full bg-[#E5E0D3] border border-nature-leaf/20 overflow-hidden">
                         <motion.div
-                          className="h-full rounded-full bg-gradient-to-r from-emerald-500 via-emerald-400 to-indigo-400"
+                          className="h-full rounded-full bg-gradient-to-r from-[#4F8F57] via-[#5FA966] to-[#7BB661]"
                           initial={{ width: 0 }}
                           animate={{ width: `${xpProgress(guild.xp)}%` }}
                           transition={{ type: "spring", stiffness: 60, damping: 20 }}
@@ -451,12 +451,12 @@ export default function Dungeons() {
                   </div>
 
                   <div className="grid lg:grid-cols-2 gap-6">
-                    <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-                      <h3 className="flex items-center gap-2 text-lg font-display font-semibold text-white mb-1">
+                    <div className="rounded-2xl border border-nature-leaf/20 bg-white p-6">
+                      <h3 className="flex items-center gap-2 text-lg font-display font-semibold text-text-primary mb-1">
                         <Zap className="w-5 h-5 text-amber-400" />
                         Contribute XP
                       </h3>
-                      <p className="text-sm text-slate-400 mb-5">
+                      <p className="text-sm text-text-muted mb-5">
                         Power your guild toward the next tier.
                       </p>
                       <div className="flex flex-wrap gap-2">
@@ -465,18 +465,18 @@ export default function Dungeons() {
                             key={amount}
                             onClick={() => handleContribute(amount)}
                             disabled={busy}
-                            className="flex items-center gap-1 px-4 py-2.5 rounded-xl border border-white/10 bg-slate-950/60 text-sm font-semibold text-slate-200 disabled:opacity-40 hover:border-emerald-500/40 hover:text-emerald-300 transition-all"
+                            className="flex items-center gap-1 px-4 py-2.5 rounded-xl border border-nature-leaf/20 bg-surface-card text-sm font-semibold text-text-primary disabled:opacity-40 hover:border-nature-leaf/30 hover:text-brand-primary transition-all"
                           >
-                            <Flame className="w-4 h-4 text-emerald-400" />
+                            <Flame className="w-4 h-4 text-brand-primary" />
                             +{amount}
                           </button>
                         ))}
                       </div>
                     </div>
 
-                    <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-                      <h3 className="flex items-center gap-2 text-lg font-display font-semibold text-white mb-4">
-                        <Users className="w-5 h-5 text-indigo-400" />
+                    <div className="rounded-2xl border border-nature-leaf/20 bg-white p-6">
+                      <h3 className="flex items-center gap-2 text-lg font-display font-semibold text-text-primary mb-4">
+                        <Users className="w-5 h-5 text-nature-blossom" />
                         Members
                       </h3>
                       <div className="space-y-2 max-h-72 overflow-y-auto pr-1">
@@ -485,20 +485,20 @@ export default function Dungeons() {
                             key={m.user_id}
                             className={`flex items-center justify-between px-4 py-2.5 rounded-xl border transition-colors ${
                               m.user_id === user.id
-                                ? "border-emerald-500/30 bg-emerald-500/10"
-                                : "border-white/5 bg-white/[0.03]"
+                                ? "border-brand-primary/20 bg-brand-primary/10"
+                                : "border-[#EDEAE0] bg-surface-card"
                             }`}
                           >
                             <div className="flex items-center gap-3">
-                              <span className="w-6 text-center text-sm font-mono text-slate-500">
+                              <span className="w-6 text-center text-sm font-mono text-text-muted">
                                 {i === 0 ? <Crown className="w-4 h-4 inline text-amber-400" /> : i + 1}
                               </span>
-                              <span className="text-sm text-slate-200">{m.name}</span>
+                              <span className="text-sm text-text-secondary">{m.name}</span>
                               {m.user_id === user.id && (
-                                <span className="text-[10px] font-mono text-emerald-400">you</span>
+                                <span className="text-[10px] font-mono text-brand-primary">you</span>
                               )}
                             </div>
-                            <span className="text-sm font-mono text-emerald-400">
+                            <span className="text-sm font-mono text-brand-primary">
                               {(m.xp_contributed || 0).toLocaleString()} XP
                             </span>
                           </div>
@@ -507,14 +507,14 @@ export default function Dungeons() {
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-                    <h3 className="flex items-center gap-2 text-lg font-display font-semibold text-white mb-4">
+                  <div className="rounded-2xl border border-nature-leaf/20 bg-white p-6">
+                    <h3 className="flex items-center gap-2 text-lg font-display font-semibold text-text-primary mb-4">
                       <Trophy className="w-5 h-5 text-amber-400" />
                       Guild Leaderboard
                     </h3>
                     <div className="space-y-2">
                       {leaderboard.length === 0 ? (
-                        <p className="text-sm text-slate-500 py-6 text-center">
+                        <p className="text-sm text-text-muted py-6 text-center">
                           No guilds yet. Be the first!
                         </p>
                       ) : (
@@ -523,10 +523,10 @@ export default function Dungeons() {
                             key={entry.id}
                             className={`flex items-center justify-between px-4 py-2.5 rounded-xl border transition-colors ${
                               entry.id === guild?.id
-                                ? "border-emerald-500/30 bg-emerald-500/10"
+                                ? "border-brand-primary/20 bg-brand-primary/10"
                                 : i < 3
-                                ? "border-white/15 bg-white/10"
-                                : "border-white/5 bg-white/[0.03]"
+                                ? "border-nature-leaf/20 bg-surface-card"
+                                : "border-[#EDEAE0] bg-white"
                             }`}
                           >
                             <div className="flex items-center gap-3">
@@ -534,18 +534,18 @@ export default function Dungeons() {
                                 {i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : `${i + 1}`}
                               </span>
                               <div>
-                                <div className="text-sm text-slate-200 flex items-center gap-2">
+                                <div className="text-sm text-text-secondary flex items-center gap-2">
                                   {entry.name}
                                   {entry.id === guild?.id && (
-                                    <span className="text-[10px] font-mono text-emerald-400">your guild</span>
+                                    <span className="text-[10px] font-mono text-brand-primary">your guild</span>
                                   )}
                                 </div>
-                                <div className="text-[10px] font-mono text-slate-500">
+                                <div className="text-[10px] font-mono text-text-muted">
                                   Lv {entry.level} · {levelTitle(entry.level)}
                                 </div>
                               </div>
                             </div>
-                            <span className="text-sm font-mono text-emerald-400">
+                            <span className="text-sm font-mono text-brand-primary">
                               {entry.xp.toLocaleString()} XP
                             </span>
                           </div>
@@ -567,13 +567,13 @@ export default function Dungeons() {
               transition={{ duration: 0.2 }}
             >
               {!user ? (
-                <div className="rounded-2xl border border-white/10 bg-white/5 py-16 text-center text-slate-400">
-                  <LogIn className="w-10 h-10 mx-auto mb-3 text-indigo-400" />
+                <div className="rounded-2xl border border-nature-leaf/20 bg-white py-16 text-center text-text-muted">
+                  <LogIn className="w-10 h-10 mx-auto mb-3 text-nature-blossom" />
                   Sign in to wage guild wars.
                 </div>
               ) : !guild ? (
-                <div className="rounded-2xl border border-white/10 bg-white/5 py-16 text-center text-slate-400">
-                  <Swords className="w-10 h-10 mx-auto mb-3 text-indigo-400" />
+                <div className="rounded-2xl border border-nature-leaf/20 bg-white py-16 text-center text-text-muted">
+                  <Swords className="w-10 h-10 mx-auto mb-3 text-nature-blossom" />
                   Join or create a guild to start waging wars.
                 </div>
               ) : (
@@ -584,22 +584,22 @@ export default function Dungeons() {
                       animate={{ scale: 1, opacity: 1 }}
                       className={`rounded-2xl border p-6 flex items-center gap-4 ${
                         warResult.winner_id === guild.id
-                          ? "border-emerald-500/40 bg-emerald-500/10"
+                          ? "border-nature-leaf/30 bg-brand-primary/10"
                           : warResult.winner_id
                           ? "border-rose-500/30 bg-rose-500/10"
-                          : "border-white/10 bg-white/5"
+                          : "border-nature-leaf/20 bg-white"
                       }`}
                     >
-                      <PartyPopper className={`w-8 h-8 shrink-0 ${warResult.winner_id ? "text-emerald-400" : "text-slate-400"}`} />
+                      <PartyPopper className={`w-8 h-8 shrink-0 ${warResult.winner_id ? "text-brand-primary" : "text-text-muted"}`} />
                       <div>
-                        <h3 className="text-lg font-display font-semibold text-white">
+                        <h3 className="text-lg font-display font-semibold text-text-primary">
                           {warResult.winner_id === guild.id
                             ? "Your guild won the war!"
                             : warResult.winner_id
                             ? "Your guild lost the war."
                             : "The war ended in a draw."}
                         </h3>
-                        <p className="text-sm text-slate-400 mt-1">
+                        <p className="text-sm text-text-muted mt-1">
                           {warResult.xp_awarded > 0
                             ? `Winning guild earned +${warResult.xp_awarded} XP.`
                             : "No XP awarded for a draw."}
@@ -609,13 +609,13 @@ export default function Dungeons() {
                   )}
 
                   {war ? (
-                    <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-rose-500/10 via-white/5 to-indigo-500/10 p-6 sm:p-8">
+                    <div className="rounded-2xl border border-nature-leaf/20 bg-gradient-to-br from-[#FDF1F0] via-white to-[#EDF5E6] p-6 sm:p-8">
                       <div className="flex items-center justify-between mb-6">
-                        <h3 className="text-lg font-display font-semibold text-white flex items-center gap-2">
+                        <h3 className="text-lg font-display font-semibold text-text-primary flex items-center gap-2">
                           <Swords className="w-5 h-5 text-rose-400" />
                           Active Guild War
                         </h3>
-                        <span className="flex items-center gap-2 text-xs font-mono text-slate-400">
+                        <span className="flex items-center gap-2 text-xs font-mono text-text-muted">
                           <TimerIcon />
                           {warOver ? "War ended" : formatRemaining(war.end)}
                         </span>
@@ -623,33 +623,33 @@ export default function Dungeons() {
 
                       <div className="flex items-center justify-between gap-4 mb-2">
                         <div className="flex-1">
-                          <div className="text-sm font-semibold text-white mb-1">
+                          <div className="text-sm font-semibold text-text-primary mb-1">
                             {warMySide === "challenger" ? war.challenger_name : war.defender_name}
-                            <span className="ml-2 text-[10px] font-mono text-emerald-400">you</span>
+                            <span className="ml-2 text-[10px] font-mono text-brand-primary">you</span>
                           </div>
-                          <div className="text-2xl font-mono font-bold text-emerald-400">{myPoints}</div>
+                          <div className="text-2xl font-mono font-bold text-brand-primary">{myPoints}</div>
                         </div>
-                        <div className="text-xs font-mono text-slate-500 shrink-0">VS</div>
+                        <div className="text-xs font-mono text-text-muted shrink-0">VS</div>
                         <div className="flex-1 text-right">
-                          <div className="text-sm font-semibold text-white mb-1">
+                          <div className="text-sm font-semibold text-text-primary mb-1">
                             {warMySide === "challenger" ? war.defender_name : war.challenger_name}
                           </div>
-                          <div className="text-2xl font-mono font-bold text-indigo-400">{theirPoints}</div>
+                          <div className="text-2xl font-mono font-bold text-nature-blossom">{theirPoints}</div>
                         </div>
                       </div>
 
                       <div className="grid grid-cols-2 gap-3 mb-6">
-                        <div className="h-3 rounded-full bg-slate-900 border border-white/10 overflow-hidden">
+                        <div className="h-3 rounded-full bg-[#E5E0D3] border border-nature-leaf/20 overflow-hidden">
                           <motion.div
-                            className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-emerald-400"
+                            className="h-full rounded-full bg-gradient-to-r from-[#4F8F57] to-[#7BB661]"
                             initial={{ width: 0 }}
                             animate={{ width: `${Math.min(100, (myPoints / WAR_CAP) * 100)}%` }}
                             transition={{ type: "spring", stiffness: 60, damping: 20 }}
                           />
                         </div>
-                        <div className="h-3 rounded-full bg-slate-900 border border-white/10 overflow-hidden">
+                        <div className="h-3 rounded-full bg-[#E5E0D3] border border-nature-leaf/20 overflow-hidden">
                           <motion.div
-                            className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-indigo-400 ml-auto"
+                            className="h-full rounded-full bg-gradient-to-r from-[#4F8F57] to-[#7BB661] ml-auto"
                             initial={{ width: 0 }}
                             animate={{ width: `${Math.min(100, (theirPoints / WAR_CAP) * 100)}%` }}
                             transition={{ type: "spring", stiffness: 60, damping: 20 }}
@@ -659,13 +659,13 @@ export default function Dungeons() {
 
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                         <div className="flex items-center gap-2">
-                          <span className="text-xs font-mono text-slate-500 mr-1">Score</span>
+                          <span className="text-xs font-mono text-text-muted mr-1">Score</span>
                           {SCORE_OPTIONS.map((amount) => (
                             <button
                               key={amount}
                               onClick={() => handleScore(amount)}
                               disabled={scoreBusy || warOver}
-                              className="px-3 py-2 rounded-xl border border-white/10 bg-slate-950/60 text-sm font-semibold text-slate-200 disabled:opacity-40 hover:border-emerald-500/40 hover:text-emerald-300 transition-all"
+                              className="px-3 py-2 rounded-xl border border-nature-leaf/20 bg-surface-card text-sm font-semibold text-text-primary disabled:opacity-40 hover:border-nature-leaf/30 hover:text-brand-primary transition-all"
                             >
                               +{amount}
                             </button>
@@ -674,7 +674,7 @@ export default function Dungeons() {
                         <button
                           onClick={handleResolve}
                           disabled={resolving || !warOver}
-                          className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-500 to-emerald-500 text-sm font-semibold text-white disabled:opacity-40 hover:from-indigo-400 hover:to-emerald-400 transition-all"
+                          className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#4F8F57] to-[#7BB661] text-sm font-semibold text-white disabled:opacity-40 hover:from-[#3F7A47] hover:to-[#6BA95C] transition-all"
                         >
                           {resolving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Trophy className="w-4 h-4" />}
                           {warOver ? "Resolve War" : `Resolves in ${formatRemaining(war.end)}`}
@@ -682,20 +682,20 @@ export default function Dungeons() {
                       </div>
                     </div>
                   ) : (
-                    <div className="rounded-2xl border border-white/10 bg-white/5 p-6 text-center text-slate-400">
-                      <Swords className="w-8 h-8 mx-auto mb-2 text-slate-500" />
+                    <div className="rounded-2xl border border-nature-leaf/20 bg-white p-6 text-center text-text-muted">
+                      <Swords className="w-8 h-8 mx-auto mb-2 text-text-muted" />
                       No active war. Challenge a guild below!
                     </div>
                   )}
 
-                  <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-                    <h3 className="flex items-center gap-2 text-lg font-display font-semibold text-white mb-4">
+                  <div className="rounded-2xl border border-nature-leaf/20 bg-white p-6">
+                    <h3 className="flex items-center gap-2 text-lg font-display font-semibold text-text-primary mb-4">
                       <Medal className="w-5 h-5 text-amber-400" />
                       Challenge a Guild
                     </h3>
                     <div className="space-y-2">
                       {leaderboard.filter((g) => g.id !== guild.id).length === 0 ? (
-                        <p className="text-sm text-slate-500 py-6 text-center">
+                        <p className="text-sm text-text-muted py-6 text-center">
                           No rival guilds yet.
                         </p>
                       ) : (
@@ -704,15 +704,15 @@ export default function Dungeons() {
                           .map((entry, i) => (
                             <div
                               key={entry.id}
-                              className="flex items-center justify-between px-4 py-3 rounded-xl border border-white/5 bg-white/[0.03]"
+                              className="flex items-center justify-between px-4 py-3 rounded-xl border border-[#EDEAE0] bg-white"
                             >
                               <div className="flex items-center gap-3">
-                                <span className="w-8 text-center text-sm font-mono text-slate-500">
+                                <span className="w-8 text-center text-sm font-mono text-text-muted">
                                   {i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : `${i + 1}`}
                                 </span>
                                 <div>
-                                  <div className="text-sm text-slate-200">{entry.name}</div>
-                                  <div className="text-[10px] font-mono text-slate-500">
+                                  <div className="text-sm text-text-secondary">{entry.name}</div>
+                                  <div className="text-[10px] font-mono text-text-muted">
                                     Lv {entry.level} · {entry.xp.toLocaleString()} XP
                                   </div>
                                 </div>
@@ -720,7 +720,7 @@ export default function Dungeons() {
                               <button
                                 onClick={() => handleChallenge(entry.id)}
                                 disabled={busy || !!war}
-                                className="flex items-center gap-2 px-4 py-2 rounded-xl border border-rose-500/30 bg-rose-500/10 text-xs font-semibold text-rose-300 disabled:opacity-40 hover:border-rose-500/60 hover:text-rose-200 transition-all"
+                                className="flex items-center gap-2 px-4 py-2 rounded-xl border border-rose-500/30 bg-rose-500/10 text-xs font-semibold text-rose-600 disabled:opacity-40 hover:border-rose-500/60 hover:text-rose-700 transition-all"
                               >
                                 <Swords className="w-3.5 h-3.5" />
                                 Challenge
@@ -744,7 +744,7 @@ export default function Dungeons() {
               transition={{ duration: 0.2 }}
             >
               {dungeonLoading ? (
-                <div className="rounded-2xl border border-white/10 bg-white/5 flex items-center justify-center py-16 text-slate-500">
+                <div className="rounded-2xl border border-nature-leaf/20 bg-white flex items-center justify-center py-16 text-text-muted">
                   <Loader2 className="w-6 h-6 animate-spin mr-2" />
                   Loading dungeons...
                 </div>
@@ -757,21 +757,21 @@ export default function Dungeons() {
                     return (
                       <div
                         key={d.id}
-                        className="rounded-2xl border border-white/10 bg-white/5 p-5 flex flex-col"
+                        className="rounded-2xl border border-nature-leaf/20 bg-white p-5 flex flex-col"
                       >
                         <div className="flex items-center gap-3 mb-4">
-                          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500/25 to-indigo-500/25 border border-white/10 flex items-center justify-center text-2xl">
+                          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#D9EFCF] to-[#EDF5E6] border border-nature-leaf/20 flex items-center justify-center text-2xl">
                             {d.emoji}
                           </div>
                           <div className="flex-1">
-                            <h3 className="text-lg font-display font-bold text-white">{d.company}</h3>
-                            <span className="inline-flex items-center gap-1 mt-0.5 text-[10px] font-mono text-indigo-300">
+                            <h3 className="text-lg font-display font-bold text-text-primary">{d.company}</h3>
+                            <span className="inline-flex items-center gap-1 mt-0.5 text-[10px] font-mono text-nature-blossom">
                               <Gift className="w-3 h-3" />
                               {d.reward_chest}
                             </span>
                           </div>
                           {isCompleted && (
-                            <span className="flex items-center gap-1 px-2 py-1 rounded-full border border-emerald-500/40 bg-emerald-500/10 text-[10px] font-mono text-emerald-300">
+                            <span className="flex items-center gap-1 px-2 py-1 rounded-full border border-nature-leaf/30 bg-brand-primary/10 text-[10px] font-mono text-brand-primary">
                               <CheckCircle2 className="w-3 h-3" />
                               Cleared
                             </span>
@@ -789,15 +789,15 @@ export default function Dungeons() {
                                 key={i}
                                 className={`flex items-center gap-3 px-3 py-2.5 rounded-xl border transition-colors ${
                                   done
-                                    ? "border-emerald-500/20 bg-emerald-500/5"
+                                    ? "border-nature-leaf/30 bg-brand-primary/5"
                                     : current
-                                    ? "border-indigo-500/40 bg-indigo-500/10"
+                                    ? "border-nature-leaf/30 bg-nature-bark"
                                     : ready
-                                    ? "border-white/15 bg-white/5"
-                                    : "border-white/5 bg-white/[0.02]"
+                                    ? "border-nature-leaf/20 bg-surface-card"
+                                    : "border-[#EDEAE0] bg-surface-base"
                                 }`}
                               >
-                                <span className={`shrink-0 ${done ? "text-emerald-400" : current ? "text-indigo-400" : "text-slate-600"}`}>
+                                <span className={`shrink-0 ${done ? "text-brand-primary" : current ? "text-nature-blossom" : "text-text-muted"}`}>
                                   {done ? (
                                     <CheckCircle2 className="w-4 h-4" />
                                   ) : current || ready ? (
@@ -806,10 +806,10 @@ export default function Dungeons() {
                                     <Lock className="w-4 h-4" />
                                   )}
                                 </span>
-                                <Icon className={`w-3.5 h-3.5 shrink-0 ${done ? "text-emerald-400/70" : current ? "text-indigo-400" : "text-slate-600"}`} />
+                                <Icon className={`w-3.5 h-3.5 shrink-0 ${done ? "text-brand-primary/70" : current ? "text-nature-blossom" : "text-text-muted"}`} />
                                 <div className="flex-1 min-w-0">
-                                  <div className="text-xs font-semibold text-slate-200 truncate">{stage.title}</div>
-                                  <div className="text-[10px] font-mono text-slate-500">
+                                  <div className="text-xs font-semibold text-text-secondary truncate">{stage.title}</div>
+                                  <div className="text-[10px] font-mono text-text-muted">
                                     Stage {i + 1} · {stage.type}
                                   </div>
                                 </div>
@@ -819,12 +819,12 @@ export default function Dungeons() {
                         </div>
 
                         {isCompleted ? (
-                          <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-center">
-                            <div className="text-sm font-semibold text-emerald-300 flex items-center justify-center gap-2">
+                          <div className="rounded-xl border border-brand-primary/20 bg-brand-primary/10 px-4 py-3 text-center">
+                            <div className="text-sm font-semibold text-brand-primary flex items-center justify-center gap-2">
                               <PartyPopper className="w-4 h-4" />
                               Dungeon conquered! +150 XP
                             </div>
-                            <div className="text-[11px] font-mono text-emerald-400/70 mt-0.5">
+                            <div className="text-[11px] font-mono text-brand-primary/70 mt-0.5">
                               {d.reward_chest} unlocked
                             </div>
                           </div>
@@ -832,7 +832,7 @@ export default function Dungeons() {
                           <button
                             onClick={() => handleAdvance(d.id, run.current_stage)}
                             disabled={busy}
-                            className="w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-indigo-500 text-sm font-semibold text-slate-950 disabled:opacity-40 hover:from-emerald-400 hover:to-indigo-400 transition-all"
+                            className="w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#4F8F57] to-[#7BB661] text-sm font-semibold text-white disabled:opacity-40 hover:from-[#3F7A47] hover:to-[#6BA95C] transition-all"
                           >
                             {busy ? <Loader2 className="w-4 h-4 animate-spin" /> : <ChevronRight className="w-4 h-4" />}
                             Advance Stage {run.current_stage + 1} of 5
@@ -841,7 +841,7 @@ export default function Dungeons() {
                           <button
                             onClick={() => handleStart(d.id)}
                             disabled={busy || !!activeRun}
-                            className="w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl border border-white/10 bg-white/5 text-sm font-semibold text-slate-200 disabled:opacity-40 hover:border-indigo-500/40 hover:text-indigo-300 transition-all"
+                            className="w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl border border-nature-leaf/20 bg-surface-card text-sm font-semibold text-text-primary disabled:opacity-40 hover:border-[#4F8F57] hover:text-nature-blossom transition-all"
                           >
                             <Play className="w-4 h-4" />
                             Start Dungeon
@@ -853,7 +853,7 @@ export default function Dungeons() {
                 </div>
               )}
 
-              <div className="mt-8 flex items-center justify-center gap-2 text-xs text-slate-500 font-mono">
+              <div className="mt-8 flex items-center justify-center gap-2 text-xs text-text-muted font-mono">
                 <Crosshair className="w-3.5 h-3.5" />
                 Clear all 5 stages to unlock each company chest · +150 XP per dungeon
               </div>

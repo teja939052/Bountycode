@@ -107,7 +107,7 @@ export default function Onboarding() {
         >
           <button
             onClick={dismiss}
-            className="absolute top-4 right-4 text-gray-500 hover:text-gray-300 transition-colors"
+            className="absolute top-4 right-4 text-gray-100 hover:text-cyan-100 transition-colors"
           >
             <X size={20} />
           </button>
@@ -123,7 +123,7 @@ export default function Onboarding() {
               <Icon size={32} className={current.color} />
             </motion.div>
             <h2 className="text-xl font-display font-bold text-text-primary mb-2">{current.title}</h2>
-            <p className="text-gray-400 font-mono text-sm leading-relaxed">{current.description}</p>
+            <p className="text-gray-100 font-mono text-sm leading-relaxed">{current.description}</p>
           </div>
 
           {/* Progress dots */}
@@ -144,7 +144,7 @@ export default function Onboarding() {
             {step > 0 && (
               <button
                 onClick={prev}
-                className="flex items-center gap-1 px-4 py-2.5 text-gray-400 hover:text-gray-200 font-mono text-sm transition-colors"
+                className="flex items-center gap-1 px-4 py-2.5 text-gray-100 hover:text-gray-200 font-mono text-sm transition-colors"
               >
                 <ArrowLeft size={14} /> Back
               </button>
@@ -165,7 +165,7 @@ export default function Onboarding() {
           {current.action && (
             <button
               onClick={() => handleAction(current.action.to)}
-              className="w-full mt-3 text-xs font-mono text-gray-500 hover:text-cyber-blue transition-colors"
+              className="w-full mt-3 text-xs font-mono text-gray-100 hover:text-cyan-100 transition-colors"
             >
               Skip to {current.action.label} →
             </button>

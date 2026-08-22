@@ -41,8 +41,8 @@ def _calculate_progress(module: dict, progress: Optional[dict]) -> float:
     return 0.0
 
 
-def _get_module_progress(user_id: str, module_id: str) -> Optional[dict]:
-    return user_learning_progress_collection().find_one({
+async def _get_module_progress(user_id: str, module_id: str) -> Optional[dict]:
+    return await user_learning_progress_collection().find_one({
         "user_id": user_id,
         "module_id": module_id,
     })
@@ -86,7 +86,7 @@ async def list_modules(
 
     modules_with_progress = []
     for module in modules:
-        progress = _get_module_progress(user_id, str(module["_id"]))
+        progress = await _get_module_progress(user_id, str(module["_id"]))
         pct = _calculate_progress(module, progress)
         modules_with_progress.append({
             **_serialize_module(module),
@@ -108,7 +108,7 @@ async def get_module(module_id: str, user=Depends(get_current_user)):
         raise HTTPException(status_code=404, detail="Module not found")
 
     user_id = user["id"]
-    progress = _get_module_progress(user_id, module_id)
+    progress = await _get_module_progress(user_id, module_id)
 
     await user_learning_progress_collection().update_one(
         {"user_id": user_id, "module_id": module_id},
@@ -178,7 +178,7 @@ async def start_module(module_id: str, user=Depends(get_current_user)):
         upsert=True,
     )
 
-    progress = _get_module_progress(user_id, module_id)
+    progress = await _get_module_progress(user_id, module_id)
 
     return {
         "success": True,
@@ -208,7 +208,7 @@ async def complete_step(module_id: str, step_number: int, user=Depends(get_curre
         raise HTTPException(status_code=400, detail="Invalid step number")
 
     user_id = user["id"]
-    progress = _get_module_progress(user_id, module_id)
+    progress = await _get_module_progress(user_id, module_id)
 
     if not progress:
         raise HTTPException(status_code=404, detail="Module progress not found — start the module first")
@@ -347,7 +347,7 @@ async def get_recommendations(
 
     recommendations = []
     for module in modules:
-        progress = _get_module_progress(user_id, str(module["_id"]))
+        progress = await _get_module_progress(user_id, str(module["_id"]))
         pct = _calculate_progress(module, progress)
         recommendations.append({
             **_serialize_module(module),

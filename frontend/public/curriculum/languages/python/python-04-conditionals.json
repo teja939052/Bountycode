@@ -1,0 +1,48 @@
+{
+  "id": "python-04-conditionals",
+  "track": "python",
+  "title": "Making Decisions",
+  "section": "Python Basics",
+  "order": 4,
+  "type": "lesson",
+  "duration": "10 min",
+  "xp": 20,
+  "content": {
+    "theory": "Programs make decisions with **if/elif/else**. The indentation is important — it defines what belongs inside each branch:\n\n```python\nscore = 85\n\nif score >= 90:\n    print(\"A grade\")\nelif score >= 80:\n    print(\"B grade\")\nelse:\n    print(\"Keep practicing\")\n```\n\n**Comparison operators:**\n\n| Operator | Meaning |\n|----------|---------|\n| `==` | equal to |\n| `!=` | not equal to |\n| `>` `<` `>=` `<=` | greater / less than |\n\n**Logical operators** combine conditions:\n\n```python\nage = 20\nhas_id = True\n\nif age >= 18 and has_id:\n    print(\"Allowed in\")\n\nif age < 13 or age > 60:\n    print(\"Special discount\")\n```\n\nNote `==` checks equality while `=` assigns. Getting these mixed up is the most common beginner bug.",
+    "codeSnippets": [
+      {
+        "language": "python",
+        "code": "temp = 30\nif temp > 25:\n    print(\"Hot day\")\nelse:\n    print(\"Cool day\")",
+        "output": "Hot day"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write code that prints 'Eligible' if a variable 'age' is 18 or older, else prints 'Minor'.",
+      "starterCode": "age = 20",
+      "language": "python",
+      "expected": "Eligible",
+      "required": ["if age >= 18", "Eligible", "else", "Minor"],
+      "hints": [
+        "Hint 1: if age >= 18:",
+        "Hint 2: print(\"Eligible\") inside the if",
+        "Hint 3: else: print(\"Minor\")"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which operator checks if two values are equal?",
+        "options": ["=", "==", "==="],
+        "correct": 1
+      },
+      {
+        "question": "What must follow if/elif/else blocks?",
+        "options": ["A semicolon", "Correct indentation", "A return statement"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "python-05-loops",
+    "unlocks": ["python-05-loops"]
+  }
+}

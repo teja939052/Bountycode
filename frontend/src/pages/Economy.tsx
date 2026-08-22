@@ -113,13 +113,13 @@ export default function Economy() {
         </button>
         <button
           onClick={() => setActiveTab("inventory")}
-          className={`px-4 py-2 rounded-lg text-sm font-medium ${activeTab === "inventory" ? "bg-indigo-600 text-white" : "bg-gray-100 text-gray-700"}`}
+          className={`px-4 py-2 rounded-lg text-sm font-medium ${activeTab === "inventory" ? "bg-indigo-600 text-white" : "bg-surface-card/50 text-brand-primary"}`}
         >
           Inventory ({inventory.length})
         </button>
         <button
           onClick={() => setActiveTab("shop")}
-          className={`px-4 py-2 rounded-lg text-sm font-medium ${activeTab === "shop" ? "bg-indigo-600 text-white" : "bg-gray-100 text-gray-700"}`}
+          className={`px-4 py-2 rounded-lg text-sm font-medium ${activeTab === "shop" ? "bg-indigo-600 text-white" : "bg-surface-card/50 text-brand-primary"}`}
         >
           Shop
         </button>
@@ -130,13 +130,13 @@ export default function Economy() {
           {shopItems.map(([itemId, item]) => (
             <div
               key={itemId}
-              className={`bg-white border rounded-xl p-4 ${inventory.includes(itemId) ? "border-green-300" : "border-gray-200"}`}
+              className={`bg-surface-card border rounded-xl p-4 ${inventory.includes(itemId) ? "border-green-300" : "border-brand-primary/10"}`}
             >
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-2xl">{item.emoji}</span>
                 <div>
                   <h3 className="font-semibold text-sm">{item.name}</h3>
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 capitalize">
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-surface-card/50 text-brand-secondary capitalize">
                     {item.rarity}
                   </span>
                 </div>
@@ -167,7 +167,7 @@ export default function Economy() {
       )}
 
       {activeTab === "inventory" && (
-        <div className="bg-white border border-gray-200 rounded-xl p-6">
+        <div className="bg-surface-card border border-brand-primary/10 rounded-xl p-6">
           {inventory.length === 0 ? (
             <div className="text-center py-8 text-gray-400">
               <div className="text-4xl mb-4">🎒</div>
@@ -179,7 +179,7 @@ export default function Economy() {
                 const item = shopItems.find(([id]) => id === itemId)?.[1];
                 if (!item) return null;
                 return (
-                  <div key={itemId} className="bg-gray-50 border border-gray-200 rounded-xl p-4">
+                  <div key={itemId} className="bg-surface-base border border-brand-primary/10 rounded-xl p-4">
                     <div className="flex items-center gap-3">
                       <span className="text-2xl">{item.emoji}</span>
                       <div>

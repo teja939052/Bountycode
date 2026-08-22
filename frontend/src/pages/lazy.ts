@@ -1,13 +1,16 @@
 import { lazy } from "react";
 
 const routeImportFns = {
-  Landing: () => import("./Landing"),
+  CurriculumHub: () => import("./CurriculumHub"),
+  LearnTrack: () => import("./LearnTrack"),
+  LearnLesson: () => import("./LearnLesson"),
   Login: () => import("./Login"),
   Register: () => import("./Register"),
   Dashboard: () => import("./Dashboard"),
   Interview: () => import("./Interview"),
   InterviewSession: () => import("./InterviewSession"),
   ResumeBuilder: () => import("./ResumeBuilder"),
+  ResumeStudio: () => import("./ResumeStudio"),
   ATSOptimizer: () => import("./ATSOptimizer"),
   AptitudeTest: () => import("./AptitudeTest"),
   CoverLetter: () => import("./CoverLetter"),
@@ -17,6 +20,7 @@ const routeImportFns = {
   CodingChallenge: () => import("./CodingChallenge"),
   SalaryBenchmark: () => import("./SalaryBenchmark"),
   Pricing: () => import("./Pricing"),
+  PlacementCalendar: () => import("./PlacementCalendar"),
   NotFound: () => import("./NotFound"),
   Settings: () => import("./Settings"),
   History: () => import("./History"),
@@ -47,13 +51,15 @@ const routeImportFns = {
   LearningHub: () => import("./LearningHub"),
   LanguageJourney: () => import("./LanguageJourney"),
   LessonView: () => import("./LessonView"),
+  StudyLibrary: () => import("./StudyLibrary"),
   AdminDashboard: () => import("./AdminDashboard"),
   Topics: () => import("./Topics"),
   TopicProblems: () => import("./TopicProblems"),
   CardCollection: () => import("./CardCollection"),
   PersonalDashboard: () => import("./PersonalDashboard"),
   AdaptivePath: () => import("./AdaptivePath"),
-  LearningModules: () => import("./LearningModules"),
+   LearningModules: () => import("./LearningModules"),
+   LearningModule: () => import("./LearningModule"),
   ProblemOfTheDay: () => import("./ProblemOfTheDay"),
   DailyChallenge: () => import("./DailyChallenge"),
   DSAVisualizer: () => import("./DSAVisualizer"),
@@ -64,9 +70,10 @@ const routeImportFns = {
   CommandCenter: () => import("./CommandCenter"),
   CompareVisualizer: () => import("./CompareVisualizer"),
   Community: () => import("./Community"),
-  Scrims: () => import("./Scrims"),
-  BattleArena: () => import("./BattleArena"),
-  RankProfile: () => import("./RankProfile"),
+   Scrims: () => import("./Scrims"),
+   BattleArena: () => import("./BattleArena"),
+   RankProfile: () => import("./RankProfile"),
+   RoleSelector: () => import("./RoleSelector"),
   ProjectGenerator: () => import("./ProjectGenerator"),
   LanguageLearning: () => import("./LanguageLearning"),
   OnboardingQuest: () => import("./OnboardingQuest"),
@@ -93,16 +100,30 @@ const routeImportFns = {
   CampusConnect: () => import("./CampusConnect"),
   CampusWars: () => import("./CampusWars"),
   Newspaper: () => import("./Newspaper"),
+  StudentDashboard: () => import("./StudentDashboard"),
   SteamProfile: () => import("./SteamProfile"),
    LuckyWheel: () => import("./LuckyWheel"),
    Chat: () => import("./Chat"),
+   GDRoom: () => import("./GDRoom"),
+   CGPASimulator: () => import("./CGPASimulator"),
+   DriveTracker: () => import("./DriveTracker"),
+   PeerReview: () => import("./PeerReview"),
+   StudySquads: () => import("./StudySquads"),
+   PrepReportCard: () => import("./PrepReportCard"),
   BattlePass: () => import("./BattlePass"),
-   Guilds: () => import("./Guilds"),
+  StudyTimer: () => import("./StudyTimer"),
+  Guilds: () => import("./Guilds"),
   GuildCastle: () => import("./GuildCastle"),
   ShareCard: () => import("./ShareCard"),
   CampusPulse: () => import("./CampusPulse"),
   TrendingChallenges: () => import("./TrendingChallenges"),
-   SeasonalEvents: () => import("./SeasonalEvents"),
+    SeasonalEvents: () => import("./SeasonalEvents"),
+    BossAssessment: () => import("./BossAssessment"),
+    MissionView: () => import("./MissionView"),
+    BountyPage: () => import("./BountyPage"),
+    JobReadiness: () => import("./JobReadiness"),
+    CapabilityWorlds: () => import("./CapabilityWorlds"),
+    CapabilityMission: () => import("./CapabilityMission"),
 };
 
 const preload = {};
@@ -117,18 +138,48 @@ for (const [name, importFn] of Object.entries(routeImportFns)) {
 
 export { preload };
 
-window.addEventListener("load", () => {
-  const idleRoutes = ["Dashboard", "LearningHub", "TowerDashboard", "QuestionBank"];
-  idleRoutes.forEach(name => preload[name]?.());
-});
+const IDLE_PRELOAD_ROUTES = [
+  "Dashboard",
+  "Login",
+  "Register",
+  "Pricing",
+  "Interview",
+  "QuestionBank",
+  "ResumeBuilder",
+  "ATSOptimizer",
+  "AptitudeTest",
+  "SystemDesign",
+  "CompanyPrep",
+  "CodingChallenge",
+  "TowerDashboard",
+  "LearningHub",
+  "Compiler",
+  "Community",
+];
 
-const Landing = lazy(() => import("./Landing"));
+function scheduleIdlePreload() {
+  const preloadAll = () => {
+    IDLE_PRELOAD_ROUTES.forEach(name => preload[name]?.());
+  };
+  if (typeof window.requestIdleCallback === "function") {
+    window.requestIdleCallback(preloadAll, { timeout: 4000 });
+  } else {
+    setTimeout(preloadAll, 2500);
+  }
+}
+
+window.addEventListener("load", scheduleIdlePreload);
+
 const Login = lazy(() => import("./Login"));
+const CurriculumHub = lazy(() => import("./CurriculumHub"));
+const LearnTrack = lazy(() => import("./LearnTrack"));
+const LearnLesson = lazy(() => import("./LearnLesson"));
 const Register = lazy(() => import("./Register"));
 const Dashboard = lazy(() => import("./Dashboard"));
 const Interview = lazy(() => import("./Interview"));
 const InterviewSession = lazy(() => import("./InterviewSession"));
 const ResumeBuilder = lazy(() => import("./ResumeBuilder"));
+const ResumeStudio = lazy(() => import("./ResumeStudio"));
 const ATSOptimizer = lazy(() => import("./ATSOptimizer"));
 const AptitudeTest = lazy(() => import("./AptitudeTest"));
 const CoverLetter = lazy(() => import("./CoverLetter"));
@@ -138,6 +189,7 @@ const CompanyPrep = lazy(() => import("./CompanyPrep"));
 const CodingChallenge = lazy(() => import("./CodingChallenge"));
 const SalaryBenchmark = lazy(() => import("./SalaryBenchmark"));
 const Pricing = lazy(() => import("./Pricing"));
+const PlacementCalendar = lazy(() => import("./PlacementCalendar"));
 const NotFound = lazy(() => import("./NotFound"));
 const Settings = lazy(() => import("./Settings"));
 const History = lazy(() => import("./History"));
@@ -168,13 +220,16 @@ const ResumeATS = lazy(() => import("./ResumeATS"));
 const LearningHub = lazy(() => import("./LearningHub"));
 const LanguageJourney = lazy(() => import("./LanguageJourney"));
 const LessonView = lazy(() => import("./LessonView"));
+const StudyLibrary = lazy(() => import("./StudyLibrary"));
 const AdminDashboard = lazy(() => import("./AdminDashboard"));
 const Topics = lazy(() => import("./Topics"));
 const TopicProblems = lazy(() => import("./TopicProblems"));
 const CardCollection = lazy(() => import("./CardCollection"));
 const PersonalDashboard = lazy(() => import("./PersonalDashboard"));
+const StudentDashboard = lazy(() => import("./StudentDashboard"));
 const AdaptivePath = lazy(() => import("./AdaptivePath"));
 const LearningModules = lazy(() => import("./LearningModules"));
+const LearningModule = lazy(() => import("./LearningModule"));
 const ProblemOfTheDay = lazy(() => import('./ProblemOfTheDay'));
 const DailyChallenge = lazy(() => import('./DailyChallenge'));
 const DSAVisualizer = lazy(() => import('./DSAVisualizer'));
@@ -188,6 +243,7 @@ const Community = lazy(() => import('./Community'));
 const Scrims = lazy(() => import('./Scrims'));
 const BattleArena = lazy(() => import('./BattleArena'));
 const RankProfile = lazy(() => import('./RankProfile'));
+const RoleSelector = lazy(() => import('./RoleSelector'));
 const ProjectGenerator = lazy(() => import('./ProjectGenerator'));
 const LanguageLearning = lazy(() => import('./LanguageLearning'));
 const OnboardingQuest = lazy(() => import('./OnboardingQuest'));
@@ -211,10 +267,27 @@ const Journey = lazy(() => import('./Journey'));
 const Economy = lazy(() => import('./Economy'));
 const RetentionAdmin = lazy(() => import('./RetentionAdmin'));
 const CareerRpg = lazy(() => import('./CareerRpg'));
+const BehavioralPractice = lazy(() => import('./BehavioralPractice'));
+const CompanyDirectory = lazy(() => import('./CompanyDirectory'));
+const Concepts = lazy(() => import('./Concepts'));
+const Quests = lazy(() => import('./Quests'));
+const ReadinessScore = lazy(() => import('./ReadinessScore'));
+const MysteryBoxPage = lazy(() => import('./MysteryBoxPage'));
+const SkillMasteryPage = lazy(() => import('./SkillMasteryPage'));
+const EnergyPage = lazy(() => import('./EnergyPage'));
+const FriendsPage = lazy(() => import('./FriendsPage'));
+const GoalsPage = lazy(() => import('./GoalsPage'));
+const DiscussionsPage = lazy(() => import('./DiscussionsPage'));
 const CollegeNetwork = lazy(() => import('./CollegeNetwork'));
 const Newspaper = lazy(() => import('./Newspaper'));
 const SteamProfile = lazy(() => import('./SteamProfile'));
 const Chat = lazy(() => import('./Chat'));
+const GDRoom = lazy(() => import('./GDRoom'));
+const CGPASimulator = lazy(() => import('./CGPASimulator'));
+const DriveTracker = lazy(() => import('./DriveTracker'));
+const PeerReview = lazy(() => import('./PeerReview'));
+const StudySquads = lazy(() => import('./StudySquads'));
+const PrepReportCard = lazy(() => import('./PrepReportCard'));
 const Guilds = lazy(() => import('./Guilds'));
 const GuildCastle = lazy(() => import('./GuildCastle'));
 const ShareCard = lazy(() => import('./ShareCard'));
@@ -222,14 +295,32 @@ const CampusPulse = lazy(() => import('./CampusPulse'));
 const TrendingChallenges = lazy(() => import('./TrendingChallenges'));
 const LuckyWheel = lazy(() => import('./LuckyWheel'));
 const BattlePass = lazy(() => import('./BattlePass'));
+const StudyTimer = lazy(() => import('./StudyTimer'));
+const StudyGoals = lazy(() => import('./StudyGoals'));
+const Home = lazy(() => import('./Home'));
+const Prepare = lazy(() => import('./Prepare'));
+const Practice = lazy(() => import('./Practice'));
+const Compete = lazy(() => import('./Compete'));
+const Career = lazy(() => import('./Career'));
+const ThemesPage = lazy(() => import('./CustomThemes'));
 const CampusConnect = lazy(() => import('./CampusConnect'));
 const AchievementChains = lazy(() => import('./AchievementChains'));
+const HealthDashboard = lazy(() => import('./HealthDashboard'));
 const ReferralGamification = lazy(() => import('./ReferralGamification'));
 const SeasonalEvents = lazy(() => import('./SeasonalEvents'));
 const SkillTrees = lazy(() => import('./SkillTrees'));
 const TeamCompetitions = lazy(() => import('./TeamCompetitions'));
 const Tournaments = lazy(() => import('./Tournaments'));
+const BossAssessment = lazy(() => import('./BossAssessment'));
+const MissionView = lazy(() => import('./MissionView'));
+const BountyPage = lazy(() => import('./BountyPage'));
+const JobReadiness = lazy(() => import('./JobReadiness'));
+const CapabilityWorlds = lazy(() => import('./CapabilityWorlds'));
+const CapabilityMission = lazy(() => import('./CapabilityMission'));
 export {
+  CurriculumHub,
+  LearnTrack,
+  LearnLesson,
   CompareVisualizer,
   Community,
   ProblemOfTheDay,
@@ -240,13 +331,13 @@ export {
   AIMentor,
   BattleArena,
   RankProfile,
-  Landing,
   Login,
   Register,
   Dashboard,
   Interview,
   InterviewSession,
   ResumeBuilder,
+  ResumeStudio,
   ATSOptimizer,
   AptitudeTest,
   CoverLetter,
@@ -256,6 +347,7 @@ export {
   CodingChallenge,
   SalaryBenchmark,
   Pricing,
+  PlacementCalendar,
   NotFound,
   Settings,
   History,
@@ -286,23 +378,27 @@ export {
   LearningHub,
   LanguageJourney,
   LessonView,
+  StudyLibrary,
   AdminDashboard,
   Topics,
   TopicProblems,
   CardCollection,
   PersonalDashboard,
+  StudentDashboard,
   AdaptivePath,
   LearningModules,
+  LearningModule,
   CodePlayground,
   CommandCenter,
-   Scrims,
-   ProjectGenerator,
-   LanguageLearning,
-  OnboardingQuest,
-  InterviewBooking,
-  Referral,
-  InterviewReplay,
-  FreeTrial,
+    Scrims,
+    ProjectGenerator,
+    LanguageLearning,
+    OnboardingQuest,
+    InterviewBooking,
+    Referral,
+    InterviewReplay,
+    FreeTrial,
+    RoleSelector,
   Showcase,
   ShowcaseDetail,
   PwaSetup,
@@ -324,17 +420,49 @@ export {
    SteamProfile,
    LuckyWheel,
    BattlePass,
+   StudyTimer,
+   StudyGoals,
+   ThemesPage,
    CampusConnect,
    Chat,
+   GDRoom,
+   CGPASimulator,
+   DriveTracker,
+   PeerReview,
+   StudySquads,
+   PrepReportCard,
    Guilds,
   GuildCastle,
   ShareCard,
   CampusPulse,
   TrendingChallenges,
    SeasonalEvents,
-   AchievementChains,
-    Tournaments,
-    TeamCompetitions,
-    ReferralGamification,
-    SkillTrees,
+    AchievementChains,
+     Tournaments,
+     TeamCompetitions,
+     ReferralGamification,
+     SkillTrees,
+      HealthDashboard,
+      BossAssessment,
+      MissionView,
+        BountyPage,
+        JobReadiness,
+        CapabilityWorlds,
+        CapabilityMission,
+        Home,
+     Prepare,
+     Practice,
+     Compete,
+      Career,
+      BehavioralPractice,
+      CompanyDirectory,
+      Concepts,
+      Quests,
+      ReadinessScore,
+      MysteryBoxPage,
+      SkillMasteryPage,
+      EnergyPage,
+      FriendsPage,
+      GoalsPage,
+      DiscussionsPage,
 };

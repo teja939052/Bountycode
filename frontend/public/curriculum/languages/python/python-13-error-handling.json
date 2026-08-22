@@ -1,0 +1,53 @@
+{
+  "id": "python-13-error-handling",
+  "track": "python",
+  "title": "Error Handling (try / except)",
+  "section": "Python Intermediate",
+  "order": 13,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "Programs crash with **exceptions** — `ZeroDivisionError`, `KeyError`, `ValueError`, `TypeError`. Instead of letting them stop your app, you can **catch** them with `try` / `except`:\n\n```python\ntry:\n    number = int(\"42a\")  # raises ValueError\nexcept ValueError:\n    print(\"Not a valid number\")\n```\n\nThe code in `try` runs first. If an error of the caught type is raised, the matching `except` block takes over and the program keeps running.\n\n### Anatomy of a try block\n\n- `try:` — the risky code\n- `except SomeError:` — runs only when that error occurs\n- `else:` — runs only when NO error occurred (optional)\n- `finally:` — always runs, even on success or failure (optional)\n\n```python\ntry:\n    x = int(\"10\")\n    result = 10 / x\nexcept ZeroDivisionError:\n    print(\"Cannot divide by zero\")\nelse:\n    print(\"All good:\", result)\nfinally:\n    print(\"Done\")\n```\n\n### Catch the specific error\n\nCatching the exact exception type matters. `except Exception` (or a bare `except:`) swallows *every* error — including bugs you didn't expect — which makes them impossible to find later. Prefer the narrowest type that fits:\n\n```python\ntry:\n    data = {\"name\": \"Ada\"}\n    print(data[\"age\"])\nexcept KeyError:\n    print(\"Missing key\")\n```\n\n### The exception object and raise\n\nBind the exception to a variable to inspect its message:\n\n```python\ntry:\n    print(1 / 0)\nexcept ZeroDivisionError as e:\n    print(\"Caught:\", e)  # Caught: division by zero\n```\n\nYou can also **raise** errors deliberately to signal invalid input:\n\n```python\ndef withdraw(balance, amount):\n    if amount > balance:\n        raise ValueError(\"Insufficient funds\")\n    return balance - amount\n```\n\n### The debugging pattern\n\nA quick mental checklist when something throws: (1) what *exact type* is the error, (2) on which line, (3) is the value the wrong type, missing, or out of range? Wrap only the code that might fail — don't wrap your whole program in one giant `try` and lose all trace of where things broke.\n\n**Common mistakes:** catching `Exception` and swallowing the error silently (`except: pass`), catching `ValueError` when the real error is a `KeyError`, and trying to `except` around a typo'd variable — a `NameError` will not be caught by `except ValueError`. A bare `except:` also catches `KeyboardInterrupt` and `SystemExit`, which can make Ctrl+C behave badly.",
+    "codeSnippets": [
+      {
+        "language": "python",
+        "code": "try:\n    print(int(\"abc\"))\nexcept ValueError:\n    print(\"Invalid number\")",
+        "output": "Invalid number"
+      }
+    ],
+    "exercise": {
+      "instruction": "Wrap int(\"abc\") in a try/except that catches ValueError and prints 'Invalid number'. Expected output: Invalid number",
+      "starterCode": "",
+      "language": "python",
+      "expected": "Invalid number",
+      "required": ["try:", "except", "ValueError", "int(\"abc\")", "print(\"Invalid number\")"],
+      "hints": [
+        "Hint 1: put the risky call inside try:",
+        "Hint 2: except ValueError: handles only that error",
+        "Hint 3: try: num = int(\"abc\") except ValueError: print(\"Invalid number\")"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What exception does 1 / 0 raise?",
+        "options": ["ValueError", "ZeroDivisionError", "TypeError"],
+        "correct": 1
+      },
+      {
+        "question": "When does the else block run?",
+        "options": ["When the except runs", "When no error occurred", "Always"],
+        "correct": 1
+      },
+      {
+        "question": "Why avoid a bare except:?",
+        "options": ["It's slower", "It hides unexpected errors and catches KeyboardInterrupt", "It can't catch any errors"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "python-14-modules-imports",
+    "unlocks": ["python-14-modules-imports"]
+  }
+}

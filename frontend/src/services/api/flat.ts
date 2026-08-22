@@ -8,11 +8,20 @@ import { interviewApi } from "./interview.ts";
 import { codingApi } from "./coding.ts";
 
 export const flatApi = {
-  get: (...args) => adminContentApi.get.apply(adminContentApi, args),
-  getRecommendations: (...args) => adaptiveApi.getRecommendations.apply(adaptiveApi, args),
-  getSemanticATS: (...args) => enhancedApi.getSemanticATS.apply(enhancedApi, args),
-  getDailyDrill: (...args) => studentApi.getDailyDrill.apply(studentApi, args),
-  submitDrill: (...args) => studentApi.submitDrill.apply(studentApi, args),
-  startInterviewV2: (...args) => interviewApi.startInterviewV2.apply(interviewApi, args),
-  getTopics: (...args) => codingApi.getTopics.apply(codingApi, args),
+  get: (...args: Parameters<typeof adminContentApi.get>) =>
+    adminContentApi.get.apply(adminContentApi, args),
+  getRecommendations: (
+    ...args: Parameters<typeof adaptiveApi.getRecommendations>
+  ) => adaptiveApi.getRecommendations.apply(adaptiveApi, args),
+  getSemanticATS: (...args: Parameters<typeof enhancedApi.getSemanticATS>) =>
+    enhancedApi.getSemanticATS.apply(enhancedApi, args),
+  getDailyDrill: (...args: Parameters<typeof studentApi.getDailyDrill>) =>
+    studentApi.getDailyDrill.apply(studentApi, args),
+  submitDrill: (...args: Parameters<typeof studentApi.submitDrill>) =>
+    studentApi.submitDrill.apply(studentApi, args),
+  startInterviewV2: (
+    ...args: Parameters<typeof interviewApi.startInterviewV2>
+  ) => interviewApi.startInterviewV2.apply(interviewApi, args),
+  getTopics: (...args: Parameters<typeof codingApi.getTopics>) =>
+    codingApi.getTopics.apply(codingApi, args),
 };

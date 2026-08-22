@@ -1,0 +1,46 @@
+{
+  "id": "html-02-text-formatting",
+  "track": "html",
+  "title": "Text & Formatting",
+  "section": "Fundamentals",
+  "order": 2,
+  "type": "lesson",
+  "duration": "8 min",
+  "xp": 15,
+  "content": {
+    "theory": "Text is the heart of most pages. HTML gives you tags to structure it — not to style it (that's CSS's job), but to give each piece of text a **meaning**.\n\n### Headings\nSix levels of heading, from `<h1>` (most important) down to `<h6>`:\n\n```html\n<h1>Page title</h1>\n<h2>Section title</h2>\n<h3>Sub-section</h3>\n```\n\nUse exactly one `<h1>` per page — search engines use it to understand your page.\n\n### Paragraphs\n`<p>` wraps a paragraph of text. The browser adds spacing around it automatically:\n\n```html\n<p>This is one paragraph.</p>\n<p>This is another paragraph.</p>\n```\n\n### Emphasis\n- `<strong>` makes text bold and signals *importance*\n- `<em>` makes text italic and signals *emphasis*\n\n```html\n<p><strong>Warning:</strong> handle with <em>care</em>.</p>\n```\n\n### Line breaks\n`<br>` forces a line break. It is a void element — it has no closing tag:\n\n```html\n<p>Line one<br>Line two</p>\n```\n\n### Inline vs block\nBlock elements (`<p>`, `<h1>`) start on a new line and take full width. Inline elements (`<strong>`, `<em>`, `<a>`) flow within the text.",
+    "codeSnippets": [
+      {
+        "language": "html",
+        "code": "<h2>Today's Menu</h2>\n<p>Start with a <strong>fresh salad</strong> and a <em>zesty</em> dressing.</p>",
+        "output": "A sub-heading followed by a paragraph with bold and italic words."
+      }
+    ],
+    "exercise": {
+      "instruction": "Add an <h2> called 'About Me' and a paragraph underneath with the word 'coding' inside a <strong> tag.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<head>\n  <title>About</title>\n</head>\n<body>\n\n</body>\n</html>",
+      "required": ["<h2>", "About Me", "</h2>", "<p>", "<strong>", "coding", "</strong>"],
+      "hints": [
+        "Hint 1: Start with <h2>About Me</h2>.",
+        "Hint 2: Add a <p> paragraph after the heading.",
+        "Hint 3: Wrap the word 'coding' as <strong>coding</strong>."
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which tag should be used for the most important heading on a page?",
+        "options": ["<h6>", "<h1>", "<strong>"],
+        "correct": 1
+      },
+      {
+        "question": "Which tag is a void element (no closing tag)?",
+        "options": ["<p>", "<em>", "<br>"],
+        "correct": 2
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "html-03-lists",
+    "unlocks": ["html-03-lists"]
+  }
+}

@@ -16,6 +16,7 @@ class SubmitAnswer(BaseModel):
     answer: str
     time_taken: int = 0
     is_follow_up: bool = False
+    question_type: Optional[str] = None
 
 
 class QuestionFeedback(BaseModel):

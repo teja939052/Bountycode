@@ -1,0 +1,56 @@
+{
+  "id": "js-13-async-basics",
+  "track": "javascript",
+  "title": "Asynchronous JavaScript",
+  "section": "JavaScript Advanced",
+  "order": 13,
+  "type": "lesson",
+  "duration": "13 min",
+  "xp": 25,
+  "content": {
+    "theory": "JavaScript runs on a single thread, so it cannot block while waiting for a timer or a network request. Instead, it uses the **event loop**: synchronous code runs first, and asynchronous tasks (timers, network calls, user events) are queued and executed later, after the current call stack empties.\n\n### setTimeout — the async intro\n```js\nconsole.log(\"start\");\nsetTimeout(() => console.log(\"inside timer\"), 0);\nconsole.log(\"end\");\n// start\n// end\n// inside timer\n```\nEven with a 0ms delay, \"inside timer\" prints last — the callback is queued for later. This is why the order can feel surprising.\n\n### From callbacks to promises\nCallback nesting gets ugly fast. A **Promise** represents a value that isn't available yet. It starts **pending**, then settles into either **fulfilled** (resolved with a value) or **rejected** (an error).\n```js\nconst promise = new Promise((resolve, reject) => {\n  setTimeout(() => resolve(\"Done\"), 500);\n});\npromise.then((value) => console.log(value));   // Done\n```\n`.then()` runs when the promise fulfills; `.catch()` runs when it rejects.\n\n### async / await — the modern idiom\n```js\nasync function run() {\n  const value = await promise;\n  console.log(value);   // Done\n}\n```\nMark a function `async`, then `await` any promise inside it. The code reads top-to-bottom like synchronous code, but never blocks the main thread. Remember: `await` only works inside `async` functions — using it elsewhere is a SyntaxError.\n\n### Why async matters\nFetching data from an API, waiting on a timer, reading a file — these all take time you shouldn't waste blocking the UI. Async JS keeps apps responsive: `fetch(...)` returns a promise, `await` unpacks it. Common mistake: forgetting `await`, so you log a Promise object instead of its value. Ask yourself: is this a promise? Then await it.",
+    "codeSnippets": [
+      {
+        "language": "javascript",
+        "code": "const promise = new Promise((resolve) => {\n  resolve(\"Done\");\n});\npromise.then((value) => console.log(value));",
+        "output": "Done"
+      },
+      {
+        "language": "javascript",
+        "code": "async function run() {\n  const value = await Promise.resolve(\"Hello\");\n  return value;\n}\nrun().then(console.log);",
+        "output": "Hello"
+      }
+    ],
+    "exercise": {
+      "instruction": "Create a Promise that resolves to \"Done\". Call .then() on it, and inside the then callback set output.textContent to the resolved value. Expected output: Done.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<body>\n  <p id=\"output\"></p>\n  <script>\n    const promise = new Promise((resolve) => {\n      resolve(\"Done\");\n    });\n\n  </script>\n</body>\n</html>",
+      "required": ["new Promise", ".then(", "=>", "resolve", "\"Done\"", "textContent"],
+      "hints": [
+        "Hint 1: promise.then((value) => { ... });",
+        "Hint 2: The then callback receives the resolved value as its parameter.",
+        "Hint 3: Inside: document.getElementById(\"output\").textContent = value;"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "A promise that has not resolved or rejected is...",
+        "options": ["fulfilled", "pending", "canceled"],
+        "correct": 1
+      },
+      {
+        "question": "What does await do?",
+        "options": ["Pauses the entire program", "Unpacks a promise's value inside an async function", "Creates a new promise"],
+        "correct": 1
+      },
+      {
+        "question": "Why does setTimeout(() => ..., 0) still run last?",
+        "options": ["0ms isn't a valid delay", "The callback is queued on the event loop until the stack is empty", "Timers always need at least 1ms"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "js-14-fetch-api",
+    "unlocks": ["js-14-fetch-api"]
+  }
+}

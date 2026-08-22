@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import api from "../services/api";
+import PracticeConsole from "../components/learning/PracticeConsole";
 import {
   ArrowLeft, CheckCircle, Lock, ChevronRight, ArrowRight,
-  Code, Clock, Building2
+  Code, Clock, Building2, Terminal
 } from "lucide-react";
 import StaggerContainer, { StaggerItem } from "../components/motion/StaggerContainer";
 import useReducedMotion from "../hooks/useReducedMotion";
 import useAuthStore from "../store/authStore";
+import { GROUP_META, topicGroup } from "../utils/topicGroups";
 
 const DIFFICULTY_COLORS = {
   easy: "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400",
@@ -18,10 +20,12 @@ const DIFFICULTY_COLORS = {
 
 export default function TopicProblems() {
   const { topic } = useParams();
+  const navigate = useNavigate();
   const { user } = useAuthStore();
   const [problems, setProblems] = useState([]);
   const [topicData, setTopicData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [consoleOpen, setConsoleOpen] = useState(true);
   const reduced = useReducedMotion();
   const isPro = user?.plan === "pro" || user?.plan === "lifetime";
 
@@ -33,7 +37,7 @@ export default function TopicProblems() {
     setLoading(true);
     try {
       const data = await api.getTopicProblems(topic);
-      setProblems(data.problems || []);
+      setProblems(data.questions || data.problems || []);
       setTopicData(data);
     } catch (err) {
       console.error("Failed to load problems:", err);
@@ -43,7 +47,7 @@ export default function TopicProblems() {
   };
 
   const handleSolve = (problemId) => {
-    window.location.href = `/solve/${problemId}`;
+    navigate(`/solve/${problemId}`);
   };
 
   if (loading) {
@@ -83,12 +87,20 @@ export default function TopicProblems() {
         >
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold dark:text-white mb-1">{topic}</h1>
+              <div className="flex items-center gap-3 mb-1 flex-wrap">
+                <h1 className="text-3xl font-bold dark:text-white">{topic}</h1>
+                <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold border ${GROUP_META[topicGroup(topic)].tag}`}>
+                  {topicGroup(topic) === "data_structure" && "Data Structure"}
+                  {topicGroup(topic) === "algorithm" && "Algorithm"}
+                  {topicGroup(topic) === "pattern" && "Pattern"}
+                  {topicGroup(topic) === "career" && "Career & Aptitude"}
+                </span>
+              </div>
               <p className="text-gray-600 dark:text-gray-400">
-                {topicData?.total || 0} problems · {topicData?.solved_count || 0} solved
+                {topicData?.total || problems.length || 0} problems{topicData?.solved_count ? ` · ${topicData.solved_count} solved` : ""}
               </p>
             </div>
-            {topicData && topicData.total > 0 && (
+            {topicData?.solved_count > 0 && (
               <div className="text-right">
                 <div className="text-2xl font-bold text-primary-600">
                   {Math.round(((topicData.solved_count || 0) / topicData.total) * 100)}%
@@ -97,7 +109,7 @@ export default function TopicProblems() {
               </div>
             )}
           </div>
-          {topicData && topicData.total > 0 && (
+          {topicData?.solved_count > 0 && (
             <div className="mt-4 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
               <motion.div
                 className="h-full rounded-full bg-gradient-to-r from-primary-500 to-primary-600"
@@ -106,6 +118,37 @@ export default function TopicProblems() {
                   width: `${((topicData.solved_count || 0) / topicData.total) * 100}%`,
                 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
+              />
+            </div>
+          )}
+        </motion.div>
+
+        {/* Inline Practice Console */}
+        <motion.div
+          className="mb-6"
+          initial={reduced ? {} : { opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.05 }}
+        >
+          <button
+            onClick={() => setConsoleOpen((v) => !v)}
+            className="w-full flex items-center justify-between gap-2 glass rounded-t-2xl border border-white/10 border-b-0 px-4 py-3 hover:bg-white/5 transition-colors"
+          >
+            <span className="flex items-center gap-2 text-sm font-mono uppercase tracking-[0.2em] text-gray-400">
+              <Terminal size={15} className="text-cyber-green" />
+              Practice Console
+            </span>
+            <span className="text-xs text-gray-500">
+              {consoleOpen ? "Collapse" : "Test your code right here"}
+            </span>
+          </button>
+          {consoleOpen && (
+            <div className="rounded-b-2xl">
+              <PracticeConsole
+                height={260}
+                hideTitle
+                title="Practice Console"
+                onResult={() => {}}
               />
             </div>
           )}
@@ -140,7 +183,7 @@ export default function TopicProblems() {
                       <span className={`px-2 py-0.5 rounded-full ${DIFFICULTY_COLORS[problem.difficulty] || ""}`}>
                         {problem.difficulty}
                       </span>
-                      {problem.company?.slice(0, 2).map((c) => (
+                      {(problem.companies || problem.company)?.slice(0, 2).map((c) => (
                         <span key={c} className="flex items-center gap-1">
                           <Building2 size={10} />
                           {c}

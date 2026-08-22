@@ -14,6 +14,10 @@ export function ThemeProvider({ children }) {
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
+    /* Vibe tuning: re-theme the accent curve for mobile-first learning.
+       `learn` emphasizes calm greens/cyan so problem solving feels focused. */
+    const vibe = localStorage.getItem("vibe") || "learn";
+    document.documentElement.setAttribute("data-vibe", vibe);
   }, [theme]);
 
   const value = { theme, setTheme, themes: THEMES };

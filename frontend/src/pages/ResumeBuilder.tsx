@@ -3,16 +3,23 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import api from "../services/api";
 import Spinner from "../components/ui/Spinner";
-import { Upload, FileText, Download } from "lucide-react";
+import { Upload, FileText, Download, Wand2, Copy, Check } from "lucide-react";
 
 export default function ResumeBuilder() {
-  const [mode, setMode] = useState(null);
-  const [file, setFile] = useState(null);
+  const [mode, setMode] = useState<string | null>(null);
+  const [file, setFile] = useState<File | null>(null);
   const [analysis, setAnalysis] = useState(null);
   const [resumeId, setResumeId] = useState(null);
   const [resumeText, setResumeText] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const [bulletRole, setBulletRole] = useState("");
+  const [bulletsInput, setBulletsInput] = useState("");
+  const [bulletResults, setBulletResults] = useState([]);
+  const [improving, setImproving] = useState(false);
+  const [bulletError, setBulletError] = useState("");
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
   const [form, setForm] = useState({
     name: "",
@@ -71,6 +78,41 @@ export default function ResumeBuilder() {
     } catch (err) {
       alert("Export failed: " + err.message);
     }
+  };
+
+  const handleImproveBullets = async () => {
+    const bullets = bulletsInput.split("\n").map((b) => b.trim()).filter(Boolean);
+    if (!bullets.length) {
+      setBulletError("Paste at least one bullet point.");
+      return;
+    }
+    setImproving(true);
+    setBulletError("");
+    setBulletResults([]);
+    try {
+      const data = await api.improveBullets(bullets, bulletRole.trim());
+      setBulletResults(data.improvements || []);
+    } catch (err: any) {
+      setBulletError(err.message || "Improvement failed. Free tier allows 3 per day.");
+    }
+    setImproving(false);
+  };
+
+  const copyBullet = async (text: string, index: number) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopiedIndex(index);
+      setTimeout(() => setCopiedIndex(null), 1500);
+    } catch {}
+  };
+
+  const copyAllBullets = async () => {
+    const all = bulletResults.map((r: any) => r.improved).join("\n");
+    try {
+      await navigator.clipboard.writeText(all);
+      setCopiedIndex(-1);
+      setTimeout(() => setCopiedIndex(null), 1500);
+    } catch {}
   };
 
   const getScoreColor = (score) => {
@@ -188,6 +230,16 @@ export default function ResumeBuilder() {
                 Fill in your details. AI will write a professional resume for you.
               </p>
             </button>
+            <button
+              onClick={() => setMode("improve")}
+              className="card text-left hover:shadow-lg transition-shadow border-2 border-transparent hover:border-cyber-green/40 sm:col-span-2"
+            >
+              <Wand2 className="text-cyber-green mb-3" size={32} />
+              <h3 className="section-header text-lg mb-2">Bullet Improver</h3>
+              <p className="text-sm text-gray-400">
+                Paste weak resume bullets. AI rewrites them with strong action verbs, metrics, and impact.
+              </p>
+            </button>
           </div>
         )}
 
@@ -198,7 +250,7 @@ export default function ResumeBuilder() {
               <input
                 type="file"
                 accept=".pdf"
-                onChange={(e) => setFile(e.target.files[0])}
+                onChange={(e) => setFile(e.target.files?.[0] || null)}
                 className="hidden"
                 id="resume-upload"
               />
@@ -401,6 +453,95 @@ export default function ResumeBuilder() {
                   Back
                 </button>
               </div>
+            </div>
+          </div>
+        )}
+
+        {mode === "improve" && !improving && (
+          <div className="card">
+            <h2 className="section-header text-xl mb-1">Bullet Improver</h2>
+            <p className="text-sm text-gray-400 mb-6">
+              One bullet per line. Free tier allows 3 improvements per day — Pro is unlimited.
+            </p>
+
+            {bulletError && (
+              <div className="bg-cyber-red/10 border border-cyber-red/20 text-cyber-red px-4 py-3 rounded-lg mb-4 text-center font-mono text-sm">
+                {bulletError}
+              </div>
+            )}
+
+            <div className="space-y-4">
+              <div>
+                <label className="block text-xs font-mono uppercase tracking-wider text-gray-400 mb-1.5">Target Role (optional)</label>
+                <input
+                  className="input"
+                  value={bulletRole}
+                  onChange={(e) => setBulletRole(e.target.value)}
+                  placeholder="e.g. Backend Engineer, SDE-2"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-mono uppercase tracking-wider text-gray-400 mb-1.5">Your Bullets</label>
+                <textarea
+                  className="input min-h-[140px] font-mono text-sm"
+                  value={bulletsInput}
+                  onChange={(e) => setBulletsInput(e.target.value)}
+                  placeholder={"- Worked on the backend\n- Helped with the API\n- Responsible for testing"}
+                />
+              </div>
+
+              <div className="flex gap-4">
+                <button onClick={handleImproveBullets} disabled={!bulletsInput.trim()} className="btn-primary flex-1">
+                  <Wand2 size={16} className="inline mr-1.5 -mt-0.5" /> Improve Bullets
+                </button>
+                <button onClick={() => setMode(null)} className="btn-ghost">
+                  Back
+                </button>
+              </div>
+
+              {bulletResults.length > 0 && (
+                <div className="pt-4 space-y-4">
+                  <div className="flex items-center justify-between">
+                    <p className="font-mono text-xs uppercase tracking-wider text-gray-400">Improvements</p>
+                    <button
+                      onClick={copyAllBullets}
+                      className="text-xs text-cyber-green font-mono hover:underline flex items-center gap-1"
+                    >
+                      {copiedIndex === -1 ? <Check size={13} /> : <Copy size={13} />}
+                      {copiedIndex === -1 ? "All copied" : "Copy all"}
+                    </button>
+                  </div>
+                  {bulletResults.map((r, i) => (
+                    <div key={i} className="bg-space-void rounded-lg p-4 space-y-3">
+                      <div>
+                        <p className="text-[10px] font-mono uppercase tracking-wider text-gray-500 mb-1">Before</p>
+                        <p className="text-sm text-gray-400">{r.original}</p>
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-mono uppercase tracking-wider text-cyber-green mb-1">After</p>
+                        <p className="text-sm text-gray-200 leading-relaxed">{r.improved}</p>
+                      </div>
+                      {(r.action_verbs?.length > 0 || r.metric_added?.length > 0) && (
+                        <div className="flex flex-wrap gap-2 pt-1">
+                          {(r.action_verbs || []).slice(0, 3).map((v, vi) => (
+                            <span key={`v${vi}`} className="px-2 py-0.5 text-[11px] rounded bg-cyber-green/10 text-cyber-green">{v}</span>
+                          ))}
+                          {(r.metric_added || []).slice(0, 3).map((m, mi) => (
+                            <span key={`m${mi}`} className="px-2 py-0.5 text-[11px] rounded bg-cyber-blue/10 text-cyber-blue">{m}</span>
+                          ))}
+                        </div>
+                      )}
+                      <button
+                        onClick={() => copyBullet(r.improved, i)}
+                        className="text-xs text-cyber-green font-mono hover:underline flex items-center gap-1"
+                      >
+                        {copiedIndex === i ? <Check size={13} /> : <Copy size={13} />}
+                        {copiedIndex === i ? "Copied" : "Copy improved bullet"}
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         )}

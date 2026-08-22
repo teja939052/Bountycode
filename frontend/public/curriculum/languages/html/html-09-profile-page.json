@@ -1,0 +1,35 @@
+{
+  "id": "html-09-profile-page",
+  "track": "html",
+  "title": "Project: Personal Profile Page",
+  "section": "Fundamentals",
+  "order": 9,
+  "type": "project",
+  "duration": "15 min",
+  "xp": 40,
+  "content": {
+    "theory": "Build a personal profile page — the page every developer has. It proves you can lay out a full semantic document.\n\n### Sections to include\n1. **Header** — your name as `<h1>`\n2. **About** — a paragraph about yourself\n3. **Skills** — an unordered list\n4. **Social links** — links to LinkedIn / GitHub\n5. **Footer** — copyright line\n\n### Layout skeleton\n```html\n<header>\n  <h1>Your Name</h1>\n  <p>Student · Aspiring Software Engineer</p>\n</header>\n\n<main>\n  <section>\n    <h2>About Me</h2>\n    <p>...</p>\n  </section>\n  <section>\n    <h2>Skills</h2>\n    <ul><li>...</li></ul>\n  </section>\n  <section>\n    <h2>Find Me</h2>\n    <a href=\"https://linkedin.com/in/...\">LinkedIn</a>\n    <a href=\"https://github.com/...\">GitHub</a>\n  </section>\n</main>\n\n<footer>© 2026 Your Name</footer>\n```\n\n### Pro tips\n- One `<h1>` only\n- Use `<section>` for each chunk with its own `<h2>`\n- Give images an `alt` if you include one",
+    "codeSnippets": [
+      {
+        "language": "html",
+        "code": "<section>\n  <h2>Skills</h2>\n  <ul>\n    <li>HTML</li>\n    <li>Python</li>\n  </ul>\n</section>",
+        "output": "A section titled 'Skills' with a two-item list."
+      }
+    ],
+    "exercise": {
+      "instruction": "Create your own profile page. Must include: a <header> with your name as an <h1>, a <main> with at least two <section> blocks (each with an <h2>), an unordered <ul> of at least 2 skills, and a <footer>.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<head>\n  <title>My Profile</title>\n</head>\n<body>\n\n</body>\n</html>",
+      "required": ["<header>", "<h1>", "</header>", "<main>", "<section>", "<h2>", "</section>", "<ul>", "<li>", "</li>", "<footer>", "</footer>", "</main>"],
+      "hints": [
+        "Hint 1: Start with <header><h1>Your Name</h1></header>.",
+        "Hint 2: Inside <main>, add at least two <section> blocks, each with its own <h2>.",
+        "Hint 3: Put skills in a <ul> and end with <footer>.</footer>"
+      ]
+    },
+    "quiz": []
+  },
+  "completion": {
+    "nextLesson": "html-10-registration-page",
+    "unlocks": ["html-10-registration-page"]
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "id": "css-12-project-landing-page",
+  "track": "css",
+  "title": "Project: Product Landing Page",
+  "section": "Advanced CSS",
+  "order": 12,
+  "type": "project",
+  "duration": "18 min",
+  "xp": 40,
+  "content": {
+    "theory": "Time to combine everything — variables, flexbox, grid, positioning, and pseudo-elements — into a real **product landing page**. A landing page has one job: convince the visitor to click the button, so every visual decision serves clarity and trust.\n\n### The hero section\nA hero is the full-width first impression: a bold headline, a supporting line, and a call-to-action button. Build it as a centered flex column so it adapts to any screen height:\n\n```css\n.hero {\n  min-height: 80vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  text-align: center;\n}\n```\nFlexbox is the right tool here because the hero is a single stack centered in both axes — a one-directional component.\n\n### Buttons that feel alive\n```css\n.btn {\n  background: var(--accent);\n  transition: transform 0.2s ease, box-shadow 0.2s ease;\n}\n.btn:hover {\n  transform: translateY(-2px);\n  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);\n}\n```\nTransitions turn an instant state change into a smooth one. A `0.2s` ease feels snappy and responsive — long transitions feel sluggish.\n\n### The features grid\n```css\n.features {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));\n  gap: 24px;\n}\n```\nThis one-liner is responsive without a single media query: columns shrink until they hit 240px, then wrap onto a new row. Grid handles the two-dimensional layout; flexbox and variables handle the details inside each card.\n\n### Decorative pseudo-elements\n```css\n.feature-card {\n  position: relative;\n}\n.feature-card::before {\n  content: '';\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 4px;\n  background: var(--accent);\n}\n```\nAn absolutely positioned `::before` (anchored by the `relative` card) draws a colored accent bar across each card's top edge — visual polish with zero extra HTML.\n\n### Media queries for fine-tuning\nGrid absorbs most of the responsiveness, but a media query lets you tune typography and padding at small widths:\n\n```css\n@media (max-width: 600px) {\n  .hero h1 { font-size: 1.75rem; }\n  .hero { padding: 32px 16px; }\n}\n```\n\n### Checklist before you submit\n- CSS variables for colors and spacing (theming)\n- Flexbox for hero centering\n- Grid + `repeat(auto-fit, minmax(...))` for the features row\n- `:hover` + `transition` on the button\n- Responsive columns that wrap automatically\n\nBuild the hero first, then the features grid, then polish the interactions — the same order you'd build a real product page.",
+    "codeSnippets": [
+      {
+        "language": "css",
+        "code": ".hero {\n  min-height: 80vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  text-align: center;\n}",
+        "output": "A centered, full-viewport hero that scales to any screen."
+      },
+      {
+        "language": "css",
+        "code": ".features {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));\n  gap: 24px;\n}",
+        "output": "Responsive feature cards that wrap automatically below 240px per column."
+      }
+    ],
+    "exercise": {
+      "instruction": "Complete the landing page: center .hero as a flex column with align-items: center and justify-content: center. Give the button a :hover rule that transitions the background to a brighter color over 0.2s. Make .features a grid with grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) and a 24px gap.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Product Landing Page</title>\n  <style>\n    :root {\n      --main-color: #6d28d9;\n      --accent: #f97316;\n      --spacing: 24px;\n    }\n    * { margin: 0; box-sizing: border-box; }\n    body { font-family: 'Segoe UI', Roboto, Arial, sans-serif; }\n    .hero {\n      min-height: 80vh;\n      background: var(--main-color);\n      color: white;\n      padding: 48px;\n      text-align: center;\n\n    }\n    .hero h1 { font-size: 3rem; margin-bottom: 16px; }\n    .hero p { max-width: 480px; margin-bottom: 32px; opacity: 0.9; }\n    .btn {\n      background: var(--accent);\n      color: white;\n      border: none;\n      padding: 14px 32px;\n      border-radius: 9999px;\n      font-size: 1rem;\n      cursor: pointer;\n    }\n    .btn:hover {\n\n    }\n    .features {\n      padding: 48px;\n      max-width: 960px;\n      margin: 0 auto;\n\n    }\n    .feature-card {\n      position: relative;\n      padding: 32px;\n      border: 1px solid #e5e7eb;\n      border-radius: 12px;\n      background: white;\n      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);\n    }\n    .feature-card h3 { margin-bottom: 8px; color: var(--main-color); }\n  </style>\n</head>\n<body>\n  <section class=\"hero\">\n    <h1>Build Faster with CSS</h1>\n    <p>Everything you learned — variables, flexbox, grid, and polish — in one production-ready page.</p>\n    <button class=\"btn\">Get Started</button>\n  </section>\n  <section class=\"features\">\n    <div class=\"feature-card\">\n      <h3>Instant Theming</h3>\n      <p>Colors and spacing come from CSS variables.</p>\n    </div>\n    <div class=\"feature-card\">\n      <h3>Responsive by Default</h3>\n      <p>Columns wrap themselves with auto-fit.</p>\n    </div>\n    <div class=\"feature-card\">\n      <h3>Polished Interactions</h3>\n      <p>Hover states transition smoothly.</p>\n    </div>\n  </section>\n</body>\n</html>",
+      "required": ["display: flex", "align-items: center", "justify-content: center", ":hover", "transition", "repeat(auto-fit, minmax"],
+      "hints": [
+        "Hint 1: .hero { display: flex; flex-direction: column; align-items: center; justify-content: center; }",
+        "Hint 2: .btn:hover { background: #fb923c; transition: background 0.2s ease; }",
+        "Hint 3: .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What makes repeat(auto-fit, minmax(240px, 1fr)) responsive without media queries?",
+        "options": ["columns shrink until 240px, then wrap onto new rows", "it hides columns on small screens", "it counts pixels with JavaScript"],
+        "correct": 0
+      },
+      {
+        "question": "Why add a transition to the :hover state?",
+        "options": ["transitions are required for hover to work", "transitions animate the change smoothly instead of snapping", "transitions make the page load faster"],
+        "correct": 1
+      },
+      {
+        "question": "Why is flexbox the right tool for the hero section?",
+        "options": ["the hero is a single centered column stack", "heroes need two-dimensional grid layout", "flexbox ignores text alignment"],
+        "correct": 0
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": null,
+    "unlocks": []
+  }
+}

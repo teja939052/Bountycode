@@ -1,0 +1,104 @@
+/* ── PlacementPro Design System ──────────────────────────────────────────
+   Light natural-light EdTech aesthetic.
+   Canvas #F7FAF7, Surface #FFFFFF, Surface 2 #F0F7F1, Border #E3EBE4
+   Text #17211B, Text muted #68736B
+   Primary (progress/action): #22C55E / #16A34A / #DCFCE7
+   Blue (technical/assessment): #3B82F6
+   Gold (achievement/reward): #F59E0B
+   Purple (advanced/rare): #8B5CF6
+   Red (error/danger): #EF4444
+   ──────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Base palette */
+  --pp-canvas: #F7FAF7;
+  --pp-surface: #FFFFFF;
+  --pp-surface-2: #F0F7F1;
+  --pp-border: #E3EBE4;
+  --pp-text: #17211B;
+  --pp-text-muted: #68736B;
+
+  /* Primary (green — progress, action, mastery) */
+  --pp-primary: #22C55E;
+  --pp-primary-dark: #16A34A;
+  --pp-primary-soft: #DCFCE7;
+  --pp-primary-hover: #16A34A;
+
+  /* Blue (technical, assessment, analytics) */
+  --pp-blue: #3B82F6;
+  --pp-blue-soft: #DBEAFE;
+
+  /* Gold (achievement, boss, reward) */
+  --pp-gold: #F59E0B;
+  --pp-gold-soft: #FEF3C7;
+
+  /* Purple (advanced, rare content) */
+  --pp-purple: #8B5CF6;
+  --pp-purple-soft: #EDE9FE;
+
+  /* Red (error, failed test, danger) */
+  --pp-red: #EF4444;
+  --pp-red-soft: #FEE2E2;
+
+  /* Shadows — very subtle */
+  --pp-shadow-card: 0 1px 3px rgba(17, 33, 27, 0.04), 0 2px 8px rgba(17, 33, 27, 0.02);
+  --pp-shadow-elevated: 0 4px 16px rgba(17, 33, 27, 0.06), 0 8px 30px rgba(17, 33, 27, 0.04);
+  --pp-shadow-modal: 0 20px 60px rgba(17, 33, 27, 0.12);
+
+  /* Border radius */
+  --pp-radius-card: 16px;
+  --pp-radius-button: 10px;
+  --pp-radius-input: 10px;
+  --pp-radius-badge: 8px;
+  --pp-radius-pill: 9999px;
+
+  /* Spacing scale */
+  --pp-space-xs: 0.5rem;
+  --pp-space-sm: 0.75rem;
+  --pp-space-md: 1rem;
+  --pp-space-lg: 1.25rem;
+  --pp-space-xl: 1.5rem;
+  --pp-space-2xl: 2rem;
+  --pp-space-3xl: 3rem;
+
+  /* Animation durations */
+  --pp-transition-fast: 150ms ease;
+  --pp-transition-normal: 250ms ease;
+  --pp-transition-slow: 400ms ease;
+  --pp-celebration-duration: 600ms ease;
+
+  /* Legacy compatibility — map old theme vars to new */
+  --bg-base: var(--pp-canvas);
+  --bg-card: var(--pp-surface);
+  --text-primary: var(--pp-text);
+  --text-muted: var(--pp-text-muted);
+}
+
+/* ── Theme-aware surface classes (legacy compat) ── */
+[data-theme] .bg-surface-base {
+  background-color: var(--bg-base, var(--pp-canvas));
+}
+[data-theme] .bg-surface-card {
+  background-color: var(--bg-card, var(--pp-surface));
+}
+[data-theme] .bg-surface-base\/50 {
+  background-color: color-mix(in srgb, var(--pp-canvas) 50%, transparent);
+}
+[data-theme] .bg-surface-card\/50 {
+  background-color: color-mix(in srgb, var(--pp-surface) 50%, transparent);
+}
+[data-theme] .bg-surface-card\/70 {
+  background-color: color-mix(in srgb, var(--pp-surface) 70%, transparent);
+}
+[data-theme] .bg-surface-card\/80 {
+  background-color: color-mix(in srgb, var(--pp-surface) 80%, transparent);
+}
+[data-theme] .bg-surface-card\/90 {
+  background-color: color-mix(in srgb, var(--pp-surface) 90%, transparent);
+}
+[data-theme] .bg-surface-card\/95 {
+  background-color: color-mix(in srgb, var(--pp-surface) 95%, transparent);
+}
+[data-theme] .bg-surface-card\/30 {
+  background-color: color-mix(in srgb, var(--pp-surface) 30%, transparent);
+}

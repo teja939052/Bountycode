@@ -1,0 +1,53 @@
+{
+  "id": "cpp-15-inheritance",
+  "track": "cpp",
+  "title": "Inheritance & Polymorphism",
+  "section": "C++ Intermediate",
+  "order": 15,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "**Inheritance** lets one class build on another. `class Dog : public Animal` creates a `Dog` that has everything `Animal` has, plus its own additions — the \"is-a\" relationship. A Dog *is an* Animal.\n\n```cpp\n#include <iostream>\n\nclass Animal {\npublic:\n    virtual void speak() { }\n};\n\nclass Dog : public Animal {\npublic:\n    void speak() override { std::cout << \"Woof\" << std::endl; }\n};\n```\n\nThe `virtual` keyword marks the base method as polymorphic: calls are resolved at **runtime** based on the object's actual type, not the declared type.\n\n### virtual + override\n\n`virtual` enables runtime dispatch. `override` (C++11) is a compile-time promise that the derived method really overrides a virtual in a base class — if you misspell it (`speek`) or get the signature wrong, the compiler refuses to build, catching errors early.\n\n```cpp\nAnimal* a = new Dog();\na->speak();   // Woof — runtime dispatch\n```\n\nThis is **polymorphism**: one interface, many behaviors.\n\n### protected members\n\nMembers declared `protected` are private to the outside world but accessible to derived classes — the middle ground between `private` (nobody else) and `public` (everyone):\n\n```cpp\nclass Animal {\nprotected:\n    int age;\npublic:\n    virtual void speak() = 0;   // pure virtual — Animal becomes abstract\n};\n```\n\nA **pure virtual** function (trailing `= 0`) makes the class abstract: you can't instantiate `Animal` anymore, only concrete subclasses like `Dog`.\n\n### Virtual destructors\n\nIf a class is meant to be derived from, give it a **virtual destructor**: `virtual ~Animal() {}`. Deleting a `Dog` through an `Animal*` pointer then runs `Dog`'s destructor too. Without it, the derived part of the object leaks resources. Polymorphism powers game engines, GUI frameworks, and compilers: one container of `Animal*` can hold dogs, cats, and birds, and one call to `speak()` does the right thing for each.",
+    "codeSnippets": [
+      {
+        "language": "cpp",
+        "code": "#include <iostream>\n\nclass Animal {\npublic:\n    virtual void speak() { }\n};\n\nclass Dog : public Animal {\npublic:\n    void speak() override { std::cout << \"Woof\" << std::endl; }\n};\n\nint main() {\n    Dog d;\n    d.speak();\n    return 0;\n}",
+        "output": "Woof"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write the program: a class Animal with a public virtual void speak() { } (empty body), then a class Dog : public Animal whose void speak() override prints \"Woof\". In main create Dog d and call d.speak().",
+      "starterCode": "#include <iostream>\n\nint main() {\n\n    return 0;\n}",
+      "language": "cpp",
+      "expected": "Woof",
+      "required": ["class Animal", "virtual void speak()", "class Dog : public Animal", "override"],
+      "hints": [
+        "Hint 1: class Animal { public: virtual void speak() { } };",
+        "Hint 2: class Dog : public Animal { public: void speak() override { std::cout << \"Woof\" << std::endl; } };",
+        "Hint 3: In main: Dog d; d.speak();"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What does class Dog : public Animal mean?",
+        "options": ["Dog is the base class of Animal", "Dog inherits from Animal", "Dog is an instance of Animal"],
+        "correct": 1
+      },
+      {
+        "question": "What does override do?",
+        "options": ["Makes a method virtual", "Checks the derived method truly overrides a virtual base method", "Hides the base method completely"],
+        "correct": 1
+      },
+      {
+        "question": "Why use a virtual destructor in a base class?",
+        "options": ["To make the class abstract", "So derived destructors run when deleting through a base pointer", "It's required for every class"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "cpp-16-project-contact-manager",
+    "unlocks": ["cpp-16-project-contact-manager"]
+  }
+}

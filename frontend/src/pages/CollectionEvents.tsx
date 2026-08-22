@@ -9,10 +9,10 @@ import useAuthStore from "../store/authStore";
 import useTrack from "../hooks/useTrack";
 
 const RARITY_COLORS = {
-  common: "text-slate-300 border-slate-400/40 bg-slate-400/10",
-  rare: "text-indigo-300 border-indigo-400/40 bg-indigo-400/10",
-  epic: "text-purple-300 border-purple-400/40 bg-purple-400/10",
-  legendary: "text-amber-300 border-amber-400/40 bg-amber-400/10",
+  common: "text-text-secondary border-nature-leaf/20 bg-surface-card",
+  rare: "text-nature-blossom border-nature-leaf/30 bg-surface-card",
+  epic: "text-nature-blossom border-nature-leaf/30 bg-surface-card",
+  legendary: "text-amber-600 border-amber-400/40 bg-amber-400/10",
 };
 
 const TABS = [
@@ -157,21 +157,21 @@ export default function CollectionEvents() {
   const complete = collection?.complete || false;
 
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen bg-surface-base">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-3xl font-display font-bold text-white flex items-center gap-3">
-              <Sparkles className="w-8 h-8 text-emerald-400" />
+            <h1 className="text-3xl font-display font-bold text-text-primary flex items-center gap-3">
+              <Sparkles className="w-8 h-8 text-brand-primary" />
               Collection &amp; Events
             </h1>
-            <p className="text-slate-400 mt-1">
+            <p className="text-text-muted mt-1">
               Collect company cards, chase global goals, and get lucky.
             </p>
           </div>
           {user && (
-            <span className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs font-mono text-slate-300">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+            <span className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-nature-leaf/20 bg-surface-card text-xs font-mono text-text-secondary">
+              <CheckCircle2 className="w-3.5 h-3.5 text-brand-primary" />
               {user.name}
             </span>
           )}
@@ -187,8 +187,8 @@ export default function CollectionEvents() {
                 onClick={() => setActiveTab(tab.key)}
                 className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium border transition-all ${
                   active
-                    ? "border-emerald-500/50 bg-emerald-500/15 text-emerald-200"
-                    : "border-white/10 bg-white/5 text-slate-400 hover:text-slate-200 hover:border-white/20"
+                    ? "border-nature-leaf/30 bg-brand-primary/15 text-nature-blossom"
+                    : "border-nature-leaf/20 bg-surface-card text-text-muted hover:text-text-secondary hover:border-nature-leaf/20"
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -199,7 +199,7 @@ export default function CollectionEvents() {
         </div>
 
         {error && (
-          <div className="mb-6 rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-300">
+          <div className="mb-6 rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-600">
             {error}
           </div>
         )}
@@ -214,31 +214,31 @@ export default function CollectionEvents() {
               transition={{ duration: 0.2 }}
             >
               {collectionLoading || !collection ? (
-                <div className="rounded-2xl border border-white/10 bg-white/5 flex items-center justify-center py-20 text-slate-500">
+                <div className="rounded-2xl border border-nature-leaf/20 bg-white flex items-center justify-center py-20 text-text-muted">
                   <Loader2 className="w-6 h-6 animate-spin mr-2" />
                   Loading collection...
                 </div>
               ) : (
                 <div>
-                  <div className="rounded-2xl border border-white/10 bg-white/5 p-6 mb-6">
+                  <div className="rounded-2xl border border-nature-leaf/20 bg-white p-6 mb-6">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3">
-                      <h2 className="flex items-center gap-2 text-lg font-display font-semibold text-white">
+                      <h2 className="flex items-center gap-2 text-lg font-display font-semibold text-text-primary">
                         <Trophy className="w-5 h-5 text-amber-400" />
                         Company Card Collection
                       </h2>
-                      <span className="text-sm font-mono text-slate-400">
+                      <span className="text-sm font-mono text-text-muted">
                         {ownedCount} / {collection.cards?.length || 6} collected
                       </span>
                     </div>
-                    <div className="h-4 rounded-full bg-slate-900 border border-white/10 overflow-hidden">
+                    <div className="h-4 rounded-full bg-[#E5E0D3] border border-nature-leaf/20 overflow-hidden">
                       <motion.div
-                        className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-indigo-500"
+                        className="h-full rounded-full bg-gradient-to-r from-[#4F8F57] to-[#7BB661]"
                         initial={{ width: "0%" }}
                         animate={{ width: `${completion}%` }}
                         transition={{ type: "spring", stiffness: 60, damping: 20 }}
                       />
                     </div>
-                    <p className="text-right text-xs font-mono text-slate-500 mt-2">
+                    <p className="text-right text-xs font-mono text-text-muted mt-2">
                       {completion}% complete
                     </p>
                   </div>
@@ -254,25 +254,25 @@ export default function CollectionEvents() {
                           whileHover={{ y: -4 }}
                           className={`rounded-2xl border p-5 transition-all ${
                             owned
-                              ? "border-emerald-500/60 bg-emerald-500/10 shadow-[0_0_24px_rgba(16,185,129,0.35)]"
-                              : "border-white/10 bg-white/5"
+                              ? "border-[#7BB661] bg-brand-primary/10 shadow-[0_0_24px_rgba(79,143,87,0.25)]"
+                              : "border-nature-leaf/20 bg-white"
                           }`}
                         >
                           <div className="flex items-start justify-between mb-4">
                             <div
                               className={`w-12 h-12 rounded-2xl border flex items-center justify-center text-2xl ${
                                 owned
-                                  ? "border-emerald-400/40 bg-emerald-400/10"
-                                  : "border-white/10 bg-slate-950/60 grayscale opacity-60"
+                                  ? "border-nature-leaf/30 bg-nature-bark"
+                                  : "border-nature-leaf/20 bg-surface-card grayscale opacity-60"
                               }`}
                             >
-                              {owned ? card.emoji : <Lock className="w-5 h-5 text-slate-500" />}
+                              {owned ? card.emoji : <Lock className="w-5 h-5 text-text-muted" />}
                             </div>
                             <span
                               className={`px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider border ${
                                 owned
                                   ? RARITY_COLORS[card.rarity] || RARITY_COLORS.common
-                                  : "text-slate-500 border-white/10 bg-white/5"
+                                  : "text-text-muted border-nature-leaf/20 bg-surface-card"
                               }`}
                             >
                               {card.rarity}
@@ -280,16 +280,16 @@ export default function CollectionEvents() {
                           </div>
                           <h3
                             className={`font-display font-bold text-lg mb-1 ${
-                              owned ? "text-emerald-300" : "text-slate-400"
+                              owned ? "text-brand-primary" : "text-text-muted"
                             }`}
                           >
                             {card.company}
                           </h3>
-                          <p className={`text-xs leading-relaxed mb-4 ${owned ? "text-slate-300" : "text-slate-500"}`}>
+                          <p className={`text-xs leading-relaxed mb-4 ${owned ? "text-text-secondary" : "text-text-muted"}`}>
                             {card.description}
                           </p>
                           {owned ? (
-                            <span className="flex items-center gap-1.5 text-xs font-mono text-emerald-400">
+                            <span className="flex items-center gap-1.5 text-xs font-mono text-brand-primary">
                               <CheckCircle2 className="w-4 h-4" />
                               Collected · +25 XP
                             </span>
@@ -297,7 +297,7 @@ export default function CollectionEvents() {
                             <button
                               onClick={() => handleEarn(card.id)}
                               disabled={!user || collectingId === card.id}
-                              className="flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 bg-white/5 text-xs font-semibold text-slate-300 hover:border-emerald-500/40 hover:text-emerald-300 disabled:opacity-40 transition-all"
+                              className="flex items-center gap-2 px-4 py-2 rounded-xl border border-nature-leaf/20 bg-surface-card text-xs font-semibold text-text-secondary hover:border-[#7BB661] hover:text-brand-primary disabled:opacity-40 transition-all"
                             >
                               {collectingId === card.id ? (
                                 <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -312,17 +312,17 @@ export default function CollectionEvents() {
                     })}
                   </div>
 
-                  <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-emerald-500/10 via-white/5 to-indigo-500/10 p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="rounded-2xl border border-nature-leaf/20 bg-gradient-to-br from-[#EDF5E6] via-[#FAFAF6] to-[#EDF5E6] p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
-                      <h3 className="flex items-center gap-2 text-base font-display font-semibold text-white mb-1">
+                      <h3 className="flex items-center gap-2 text-base font-display font-semibold text-text-primary mb-1">
                         <Award className="w-4 h-4 text-amber-400" />
                         Collection Completion Reward
                       </h3>
-                      <p className="text-sm text-slate-400">
+                      <p className="text-sm text-text-muted">
                         Own all 6 company cards to claim{" "}
-                        <span className="font-mono text-amber-300">+500 XP</span>
+                        <span className="font-mono text-amber-600">+500 XP</span>
                         {collection.date_first_completed && (
-                          <span className="block text-xs text-slate-500 mt-1">
+                          <span className="block text-xs text-text-muted mt-1">
                             First completed:{" "}
                             {new Date(collection.date_first_completed).toLocaleDateString()}
                           </span>
@@ -334,7 +334,7 @@ export default function CollectionEvents() {
                         <motion.div
                           initial={{ scale: 0.9, opacity: 0 }}
                           animate={{ scale: 1, opacity: 1 }}
-                          className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-emerald-500/40 bg-emerald-500/10 text-sm font-mono text-emerald-300"
+                          className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-brand-primary/30 bg-brand-primary/10 text-sm font-mono text-brand-primary"
                         >
                           <PartyPopper className="w-4 h-4" />
                           Reward claimed
@@ -343,7 +343,7 @@ export default function CollectionEvents() {
                         <button
                           onClick={handleClaim}
                           disabled={!user || claiming}
-                          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-indigo-500 text-sm font-semibold text-slate-950 hover:from-emerald-400 hover:to-indigo-400 disabled:opacity-40 transition-all"
+                            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#4F8F57] to-[#7BB661] text-sm font-semibold text-white hover:from-[#3F7A47] hover:to-[#4F8F57] disabled:opacity-40 transition-all"
                         >
                           {claiming ? (
                             <Loader2 className="w-4 h-4 animate-spin" />
@@ -354,7 +354,7 @@ export default function CollectionEvents() {
                         </button>
                       )
                     ) : (
-                      <span className="flex items-center gap-2 text-xs font-mono text-slate-500">
+                      <span className="flex items-center gap-2 text-xs font-mono text-text-muted">
                         <Lock className="w-3.5 h-3.5" />
                         Collect all 6 cards to unlock
                       </span>
@@ -374,14 +374,14 @@ export default function CollectionEvents() {
               transition={{ duration: 0.2 }}
             >
               {eventsLoading ? (
-                <div className="rounded-2xl border border-white/10 bg-white/5 flex items-center justify-center py-20 text-slate-500">
+                <div className="rounded-2xl border border-nature-leaf/20 bg-white flex items-center justify-center py-20 text-text-muted">
                   <Loader2 className="w-6 h-6 animate-spin mr-2" />
                   Loading events...
                 </div>
               ) : (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-indigo-500/15 via-white/5 to-emerald-500/15 p-6">
-                    <h3 className="flex items-center gap-2 text-sm font-mono uppercase tracking-wider text-indigo-300 mb-4">
+                  <div className="rounded-2xl border border-nature-leaf/20 bg-gradient-to-br from-[#EDF5E6] via-[#FAFAF6] to-[#EDF5E6] p-6">
+                    <h3 className="flex items-center gap-2 text-sm font-mono uppercase tracking-wider text-nature-blossom mb-4">
                       <Zap className="w-4 h-4" />
                       Active Random Event
                     </h3>
@@ -389,23 +389,23 @@ export default function CollectionEvents() {
                       <div className="flex items-start gap-4">
                         <div className="text-5xl">{randomEvent.emoji}</div>
                         <div>
-                          <h2 className="text-xl font-display font-bold text-white mb-1">
+                          <h2 className="text-xl font-display font-bold text-text-primary mb-1">
                             {randomEvent.name}
                           </h2>
-                          <p className="text-sm text-slate-300 mb-2">{randomEvent.effect}</p>
-                          <p className="text-xs font-mono text-slate-500">
+                          <p className="text-sm text-text-secondary mb-2">{randomEvent.effect}</p>
+                          <p className="text-xs font-mono text-text-muted">
                             Expires{" "}
                             {new Date(randomEvent.expires_at).toLocaleTimeString()}
                           </p>
                         </div>
                       </div>
                     ) : (
-                      <p className="text-sm text-slate-500">No active event.</p>
+                      <p className="text-sm text-text-muted">No active event.</p>
                     )}
                   </div>
 
-                  <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-                    <h3 className="flex items-center gap-2 text-sm font-mono uppercase tracking-wider text-emerald-300 mb-4">
+                  <div className="rounded-2xl border border-nature-leaf/20 bg-white p-6">
+                    <h3 className="flex items-center gap-2 text-sm font-mono uppercase tracking-wider text-brand-primary mb-4">
                       <CalendarDays className="w-4 h-4" />
                       Upcoming Festival
                     </h3>
@@ -414,13 +414,13 @@ export default function CollectionEvents() {
                         <div className="flex items-start gap-4 mb-3">
                           <div className="text-5xl">{festival.emoji}</div>
                           <div>
-                            <h2 className="text-xl font-display font-bold text-white mb-1">
+                            <h2 className="text-xl font-display font-bold text-text-primary mb-1">
                               {festival.name}
                             </h2>
-                            <p className="text-sm text-slate-300 mb-2">
+                            <p className="text-sm text-text-secondary mb-2">
                               {festival.date_range}
                             </p>
-                            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-amber-400/40 bg-amber-400/10 text-xs font-mono text-amber-300">
+                            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-amber-400/40 bg-amber-400/10 text-xs font-mono text-amber-600">
                               <Rocket className="w-3.5 h-3.5" />
                               {festival.bonus_multiplier}x XP boost
                             </span>
@@ -428,12 +428,12 @@ export default function CollectionEvents() {
                         </div>
                       </div>
                     ) : (
-                      <p className="text-sm text-slate-500">No upcoming festival.</p>
+                      <p className="text-sm text-text-muted">No upcoming festival.</p>
                     )}
                   </div>
 
-                  <div className="rounded-2xl border border-white/10 bg-white/5 p-6 lg:col-span-2">
-                    <h3 className="flex items-center gap-2 text-sm font-mono uppercase tracking-wider text-emerald-300 mb-4">
+                  <div className="rounded-2xl border border-nature-leaf/20 bg-white p-6 lg:col-span-2">
+                    <h3 className="flex items-center gap-2 text-sm font-mono uppercase tracking-wider text-brand-primary mb-4">
                       <Globe2 className="w-4 h-4" />
                       Global Research Event
                     </h3>
@@ -441,33 +441,33 @@ export default function CollectionEvents() {
                       <div>
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
                           <div>
-                            <h2 className="text-lg font-display font-semibold text-white flex items-center gap-2">
+                            <h2 className="text-lg font-display font-semibold text-text-primary flex items-center gap-2">
                               <span>{research.emoji}</span>
                               {research.title}
                             </h2>
-                            <p className="text-xs text-slate-500 mt-1">
+                            <p className="text-xs text-text-muted mt-1">
                               Community goal reward:{" "}
-                              <span className="text-amber-300 font-mono">
+                              <span className="text-amber-600 font-mono">
                                 {research.reward_name}
                               </span>
                             </p>
                           </div>
-                          <span className="text-sm font-mono text-slate-300">
+                          <span className="text-sm font-mono text-text-secondary">
                             {Number(research.contribution || 0).toLocaleString()}{" "}
-                            <span className="text-slate-500">
+                            <span className="text-text-muted">
                               / {Number(research.goal || 0).toLocaleString()}
                             </span>
                           </span>
                         </div>
-                        <div className="h-4 rounded-full bg-slate-900 border border-white/10 overflow-hidden mb-3">
+                        <div className="h-4 rounded-full bg-[#E5E0D3] border border-nature-leaf/20 overflow-hidden mb-3">
                           <motion.div
-                            className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-indigo-500"
+                            className="h-full rounded-full bg-gradient-to-r from-[#4F8F57] to-[#7BB661]"
                             initial={{ width: "0%" }}
                             animate={{ width: `${Math.min(100, research.progress_percent || 0)}%` }}
                             transition={{ type: "spring", stiffness: 60, damping: 20 }}
                           />
                         </div>
-                        <p className="text-right text-xs font-mono text-slate-500 mb-5">
+                        <p className="text-right text-xs font-mono text-text-muted mb-5">
                           {research.progress_percent}% complete
                         </p>
                         <div className="flex flex-wrap items-center gap-3">
@@ -476,12 +476,12 @@ export default function CollectionEvents() {
                             min={1}
                             value={contributeAmount}
                             onChange={(e) => setContributeAmount(Number(e.target.value))}
-                            className="w-32 px-3.5 py-2.5 rounded-xl bg-slate-950/60 border border-white/10 text-sm text-white focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/30"
+                            className="w-32 px-3.5 py-2.5 rounded-xl bg-white border border-nature-leaf/20 text-sm text-text-primary focus:outline-none focus:border-nature-leaf/50 focus:ring-1 focus:ring-nature-leaf/30"
                           />
                           <button
                             onClick={handleContribute}
                             disabled={!user || contributing || contributeAmount < 1}
-                            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-indigo-500 text-sm font-semibold text-slate-950 hover:from-emerald-400 hover:to-indigo-400 disabled:opacity-40 transition-all"
+                          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#4F8F57] to-[#7BB661] text-sm font-semibold text-white hover:from-[#3F7A47] hover:to-[#4F8F57] disabled:opacity-40 transition-all"
                           >
                             {contributing ? (
                               <Loader2 className="w-4 h-4 animate-spin" />
@@ -491,36 +491,36 @@ export default function CollectionEvents() {
                             {user ? "Contribute" : "Sign in to contribute"}
                           </button>
                           {!user && (
-                            <span className="text-xs text-slate-500">
+                            <span className="text-xs text-text-muted">
                               Research is public — sign in to contribute.
                             </span>
                           )}
                         </div>
                       </div>
                     ) : (
-                      <p className="text-sm text-slate-500">No active research event.</p>
+                      <p className="text-sm text-text-muted">No active research event.</p>
                     )}
                   </div>
 
-                  <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-amber-500/10 via-white/5 to-emerald-500/10 p-6 lg:col-span-2">
+                  <div className="rounded-2xl border border-nature-leaf/20 bg-gradient-to-br from-[#F6F3EA] via-[#FAFAF6] to-[#EDF5E6] p-6 lg:col-span-2">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                       <div>
-                        <h3 className="flex items-center gap-2 text-sm font-mono uppercase tracking-wider text-amber-300 mb-2">
+                        <h3 className="flex items-center gap-2 text-sm font-mono uppercase tracking-wider text-amber-600 mb-2">
                           <Cpu className="w-4 h-4" />
                           Golden Compiler Easter Egg
                         </h3>
-                        <p className="text-sm text-slate-300">
+                        <p className="text-sm text-text-secondary">
                           Every compile has a{" "}
-                          <span className="font-mono text-amber-300">2% chance</span> of
+                          <span className="font-mono text-amber-600">2% chance</span> of
                           summoning the legendary{" "}
-                          <span className="text-amber-200">Golden Compiler</span> for +500 XP.
+                          <span className="text-amber-600">Golden Compiler</span> for +500 XP.
                         </p>
                         {luckyResult && (
                           <div
                             className={`mt-3 px-4 py-2.5 rounded-xl border text-sm font-mono ${
                               luckyResult.lucky
-                                ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-300"
-                                : "border-white/10 bg-white/5 text-slate-400"
+                                ? "border-brand-primary/30 bg-brand-primary/10 text-brand-primary"
+                                : "border-nature-leaf/20 bg-surface-card text-text-muted"
                             }`}
                           >
                             {luckyResult.message}
@@ -530,7 +530,7 @@ export default function CollectionEvents() {
                       <button
                         onClick={handleLucky}
                         disabled={!user || luckyRolling}
-                        className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-sm font-bold text-slate-950 hover:from-amber-400 hover:to-orange-400 disabled:opacity-40 transition-all"
+                        className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-sm font-bold text-text-primary hover:from-amber-400 hover:to-orange-400 disabled:opacity-40 transition-all"
                       >
                         {luckyRolling ? (
                           <Loader2 className="w-4 h-4 animate-spin" />
@@ -547,7 +547,7 @@ export default function CollectionEvents() {
           )}
         </AnimatePresence>
 
-        <div className="mt-10 flex items-center justify-center gap-2 text-xs text-slate-500 font-mono">
+        <div className="mt-10 flex items-center justify-center gap-2 text-xs text-text-muted font-mono">
           <Sparkles className="w-3.5 h-3.5" />
           Random events reset hourly · Festivals rotate monthly
         </div>

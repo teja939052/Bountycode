@@ -190,21 +190,21 @@ export default function GameEvents() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen bg-surface-base">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-3xl font-display font-bold text-white flex items-center gap-3">
-              <Gamepad2 className="w-8 h-8 text-emerald-400" />
+            <h1 className="text-3xl font-display font-bold text-text-primary flex items-center gap-3">
+              <Gamepad2 className="w-8 h-8 text-nature-blossom" />
               Game Events
             </h1>
-            <p className="text-slate-400 mt-1">
+            <p className="text-brand-muted mt-1">
               Community boss raids, seasonal grinds, and combo streaks.
             </p>
           </div>
           {user && (
-            <span className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs font-mono text-slate-300">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+            <span className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-brand-primary/10 bg-surface-card/30 text-xs font-mono text-brand-secondary">
+              <ShieldCheck className="w-3.5 h-3.5 text-nature-blossom" />
               {user.name}
             </span>
           )}
@@ -220,8 +220,8 @@ export default function GameEvents() {
                 onClick={() => setActiveTab(tab.key)}
                 className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium border transition-all ${
                   active
-                    ? "border-indigo-500/50 bg-indigo-500/15 text-indigo-200"
-                    : "border-white/10 bg-white/5 text-slate-400 hover:text-slate-200 hover:border-white/20"
+                    ? "border-nature-leaf/30 bg-surface-card text-nature-blossom"
+                    : "border-brand-primary/10 bg-surface-card/30 text-brand-muted hover:text-text-secondary hover:border-nature-leaf/20"
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -232,7 +232,7 @@ export default function GameEvents() {
         </div>
 
         {error && (
-          <div className="mb-6 rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-300">
+          <div className="mb-6 rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-600">
             {error}
           </div>
         )}
@@ -246,9 +246,9 @@ export default function GameEvents() {
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.2 }}
             >
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-8">
+              <div className="rounded-2xl border border-brand-primary/10 bg-surface-card/30 p-6 sm:p-8">
                 {bossLoading || !boss ? (
-                  <div className="flex items-center justify-center py-16 text-slate-500">
+                  <div className="flex items-center justify-center py-16 text-brand-muted">
                     <Loader2 className="w-6 h-6 animate-spin mr-2" />
                     Loading boss...
                   </div>
@@ -256,50 +256,50 @@ export default function GameEvents() {
                   <div>
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
                       <div className="flex items-center gap-4">
-                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-rose-500/30 to-indigo-500/30 border border-white/10 flex items-center justify-center">
+                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-rose-500/30 to-[#4F8F57]/30 border border-brand-primary/10 flex items-center justify-center">
                           <Skull className="w-7 h-7 text-rose-400" />
                         </div>
                         <div>
-                          <h2 className="text-xl font-display font-bold text-white flex items-center gap-2">
+                          <h2 className="text-xl font-display font-bold text-text-primary flex items-center gap-2">
                             {boss.name}
                             <Crosshair className="w-4 h-4 text-rose-400" />
                           </h2>
-                          <p className="text-xs font-mono text-slate-400 mt-0.5">
+                          <p className="text-xs font-mono text-brand-muted mt-0.5">
                             {boss.date} · ends {new Date(boss.ends_at).toLocaleTimeString()}
                           </p>
                         </div>
                       </div>
                       {lastDamage && !boss.defeated && (
-                        <span className="text-sm font-mono text-emerald-400">
+                        <span className="text-sm font-mono text-nature-blossom">
                           +{lastDamage} dealt
                         </span>
                       )}
                     </div>
 
                     <div className="mb-2 flex items-center justify-between text-sm font-mono">
-                      <span className="text-slate-400">Community HP</span>
-                      <span className="text-white">
+                      <span className="text-brand-muted">Community HP</span>
+                      <span className="text-text-primary">
                         {formatHp(boss.hp_remaining)}{" "}
-                        <span className="text-slate-500">/ {formatHp(boss.hp_total)}</span>
+                        <span className="text-brand-muted">/ {formatHp(boss.hp_total)}</span>
                       </span>
                     </div>
-                    <div className="h-4 rounded-full bg-slate-900 border border-white/10 overflow-hidden mb-2">
+                    <div className="h-4 rounded-full bg-[#E5E0D3] border border-brand-primary/10 overflow-hidden mb-2">
                       <motion.div
-                        className="h-full rounded-full bg-gradient-to-r from-rose-500 via-indigo-500 to-emerald-400"
+                        className="h-full rounded-full bg-gradient-to-r from-rose-500 via-[#4F8F57] to-[#7BB661]"
                         initial={{ width: "100%" }}
                         animate={{ width: `${Math.max(0, Math.min(100, boss.percent))}%` }}
                         transition={{ type: "spring", stiffness: 60, damping: 20 }}
                       />
                     </div>
-                    <p className="text-right text-xs font-mono text-slate-500 mb-6">
+                    <p className="text-right text-xs font-mono text-brand-muted mb-6">
                       {boss.percent}% remaining
                     </p>
 
                     <div className="flex flex-wrap items-center justify-between gap-4">
-                      <div className="flex items-center gap-2 text-sm text-slate-300">
+                      <div className="flex items-center gap-2 text-sm text-brand-secondary">
                         <Flame className="w-4 h-4 text-orange-400" />
                         Your damage today:{" "}
-                        <span className="font-mono text-white">
+                        <span className="font-mono text-text-primary">
                           {formatHp(boss.today_player_damage || 0)}
                         </span>
                       </div>
@@ -307,7 +307,7 @@ export default function GameEvents() {
                         <button
                           onClick={handleAttack}
                           disabled={!user || attacking}
-                          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-rose-500 to-indigo-500 text-sm font-semibold text-white disabled:opacity-40 hover:from-rose-400 hover:to-indigo-400 transition-all"
+                          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-rose-500 to-[#4F8F57] text-sm font-semibold text-white disabled:opacity-40 hover:from-rose-400 hover:to-[#3F7A47] transition-all"
                         >
                           {attacking ? (
                             <Loader2 className="w-4 h-4 animate-spin" />
@@ -322,19 +322,19 @@ export default function GameEvents() {
                           animate={{ scale: 1, opacity: 1 }}
                           className="flex items-center gap-4"
                         >
-                          <span className="px-3 py-1.5 rounded-full border border-emerald-500/40 bg-emerald-500/10 text-emerald-300 text-xs font-mono">
+                          <span className="px-3 py-1.5 rounded-full border border-nature-leaf/30 bg-nature-bark text-nature-blossom text-xs font-mono">
                             Defeated! +100 XP
                           </span>
                           {claimed ? (
-                            <span className="flex items-center gap-2 text-sm text-slate-400">
-                              <Gift className="w-4 h-4 text-emerald-400" />
+                            <span className="flex items-center gap-2 text-sm text-brand-muted">
+                              <Gift className="w-4 h-4 text-nature-blossom" />
                               Reward claimed
                             </span>
                           ) : (
                             <button
                               onClick={handleClaim}
                               disabled={!user || claiming}
-                              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-indigo-500 text-sm font-semibold text-slate-950 disabled:opacity-40 hover:from-emerald-400 hover:to-indigo-400 transition-all"
+                              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#4F8F57] to-[#7BB661] text-sm font-semibold text-white disabled:opacity-40 hover:from-[#3F7A47] hover:to-[#4F8F57] transition-all"
                             >
                               {claiming ? (
                                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -362,66 +362,66 @@ export default function GameEvents() {
               transition={{ duration: 0.2 }}
             >
               {seasonLoading ? (
-                <div className="rounded-2xl border border-white/10 bg-white/5 flex items-center justify-center py-16 text-slate-500">
+                <div className="rounded-2xl border border-brand-primary/10 bg-surface-card/30 flex items-center justify-center py-16 text-brand-muted">
                   <Loader2 className="w-6 h-6 animate-spin mr-2" />
                   Loading season...
                 </div>
               ) : season ? (
                 <div className="space-y-6">
-                  <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-indigo-500/15 via-white/5 to-emerald-500/15 p-6 sm:p-8">
+                  <div className="rounded-2xl border border-brand-primary/10 bg-gradient-to-br from-[#EDF5E6] via-[#FAFAF6] to-[#EDF5E6] p-6 sm:p-8">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                       <div className="flex items-center gap-4">
                         <div className="text-5xl">{themeEmoji(season.theme)}</div>
                         <div>
-                          <div className="flex items-center gap-2 text-xs font-mono text-indigo-300 mb-1">
+                          <div className="flex items-center gap-2 text-xs font-mono text-nature-blossom mb-1">
                             <Crown className="w-3.5 h-3.5" />
                             Current Season
                           </div>
-                          <h2 className="text-2xl font-display font-bold text-white">
+                          <h2 className="text-2xl font-display font-bold text-text-primary">
                             {season.name}
                           </h2>
-                          <p className="text-slate-400 mt-1 text-sm">
+                          <p className="text-brand-muted mt-1 text-sm">
                             <CalendarDays className="w-4 h-4 inline mr-1" />
                             {formatDate(season.start_date)} → {formatDate(season.end_date)}
                           </p>
                         </div>
                       </div>
                       <div className="flex gap-3">
-                        <div className="rounded-xl border border-indigo-500/30 bg-indigo-500/10 px-4 py-3 text-center">
-                          <div className="text-[10px] uppercase tracking-wider text-indigo-300 font-mono">
+                        <div className="rounded-xl border border-nature-leaf/30 bg-surface-card px-4 py-3 text-center">
+                          <div className="text-[10px] uppercase tracking-wider text-nature-blossom font-mono">
                             Exclusive Card
                           </div>
-                          <div className="text-sm text-white font-medium mt-1">
+                          <div className="text-sm text-text-primary font-medium mt-1">
                             {season.exclusive_card}
                           </div>
                         </div>
-                        <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-center">
-                          <div className="text-[10px] uppercase tracking-wider text-emerald-300 font-mono">
+                        <div className="rounded-xl border border-nature-leaf/30 bg-nature-bark px-4 py-3 text-center">
+                          <div className="text-[10px] uppercase tracking-wider text-nature-blossom font-mono">
                             Badge
                           </div>
-                          <div className="text-sm text-white font-medium mt-1">
+                          <div className="text-sm text-text-primary font-medium mt-1">
                             {season.badge}
                           </div>
                         </div>
                       </div>
                     </div>
                     {user && (
-                      <div className="mt-6 pt-4 border-t border-white/10 flex items-center gap-2 text-sm text-slate-300">
-                        <TrendingUp className="w-4 h-4 text-emerald-400" />
+                      <div className="mt-6 pt-4 border-t border-brand-primary/10 flex items-center gap-2 text-sm text-brand-secondary">
+                        <TrendingUp className="w-4 h-4 text-nature-blossom" />
                         Your season XP:{" "}
-                        <span className="font-mono text-white">{formatHp(seasonXp)}</span>
+                        <span className="font-mono text-text-primary">{formatHp(seasonXp)}</span>
                       </div>
                     )}
                   </div>
 
-                  <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-                    <h3 className="flex items-center gap-2 text-lg font-display font-semibold text-white mb-4">
+                  <div className="rounded-2xl border border-brand-primary/10 bg-surface-card/30 p-6">
+                    <h3 className="flex items-center gap-2 text-lg font-display font-semibold text-text-primary mb-4">
                       <Medal className="w-5 h-5 text-amber-400" />
                       Season Leaderboard
                     </h3>
                     <div className="space-y-2">
                       {leaderboard.length === 0 ? (
-                        <p className="text-sm text-slate-500 py-8 text-center">
+                        <p className="text-sm text-brand-muted py-8 text-center">
                           No points earned yet this season.
                         </p>
                       ) : (
@@ -430,22 +430,22 @@ export default function GameEvents() {
                             key={entry.user_id}
                             className={`flex items-center justify-between px-4 py-2.5 rounded-xl border transition-colors ${
                               i < 3
-                                ? "border-white/15 bg-white/10"
-                                : "border-white/5 bg-white/[0.03]"
+                                ? "border-nature-leaf/30 bg-surface-card"
+                                : "border-nature-leaf/20 bg-white"
                             }`}
                           >
                             <div className="flex items-center gap-3">
                               <span className="w-8 text-center text-sm font-mono">
                                 {medalFor(i)}
                               </span>
-                              <span className="text-sm text-slate-200">
+                              <span className="text-sm text-text-secondary">
                                 {entry.user_name}
                               </span>
                               {i === 0 && (
                                 <Crown className="w-3.5 h-3.5 text-amber-400" />
                               )}
                             </div>
-                            <span className="text-sm font-mono text-emerald-400">
+                            <span className="text-sm font-mono text-nature-blossom">
                               {formatHp(entry.xp)} XP
                             </span>
                           </div>
@@ -455,7 +455,7 @@ export default function GameEvents() {
                   </div>
                 </div>
               ) : (
-                <div className="rounded-2xl border border-white/10 bg-white/5 py-16 text-center text-slate-500">
+                <div className="rounded-2xl border border-brand-primary/10 bg-surface-card/30 py-16 text-center text-brand-muted">
                   Failed to load season.
                 </div>
               )}
@@ -471,23 +471,23 @@ export default function GameEvents() {
               transition={{ duration: 0.2 }}
             >
               {!user ? (
-                <div className="rounded-2xl border border-white/10 bg-white/5 py-16 text-center text-slate-400">
+                <div className="rounded-2xl border border-brand-primary/10 bg-surface-card/30 py-16 text-center text-brand-muted">
                   Sign in to track your combo streak.
                 </div>
               ) : comboLoading ? (
-                <div className="rounded-2xl border border-white/10 bg-white/5 flex items-center justify-center py-16 text-slate-500">
+                <div className="rounded-2xl border border-brand-primary/10 bg-surface-card/30 flex items-center justify-center py-16 text-brand-muted">
                   <Loader2 className="w-6 h-6 animate-spin mr-2" />
                   Loading combo...
                 </div>
               ) : (
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-8">
+                <div className="rounded-2xl border border-brand-primary/10 bg-surface-card/30 p-6 sm:p-8">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8">
                     <div>
-                      <h2 className="text-lg font-display font-semibold text-white flex items-center gap-2 mb-1">
+                      <h2 className="text-lg font-display font-semibold text-text-primary flex items-center gap-2 mb-1">
                         <Zap className="w-5 h-5 text-amber-400" />
                         Combo Streak
                       </h2>
-                      <p className="text-sm text-slate-400">
+                      <p className="text-sm text-brand-muted">
                         Chain correct answers to build your multiplier.
                       </p>
                     </div>
@@ -497,10 +497,10 @@ export default function GameEvents() {
                       animate={{ scale: 1, opacity: 1 }}
                       className={`w-24 h-24 rounded-2xl border-2 flex flex-col items-center justify-center font-mono ${
                         combo.multiplier >= 4
-                          ? "border-amber-400/60 bg-amber-500/15 text-amber-300"
+                          ? "border-amber-400/60 bg-amber-500/15 text-amber-600"
                           : combo.multiplier >= 2
-                          ? "border-emerald-400/60 bg-emerald-500/15 text-emerald-300"
-                          : "border-white/15 bg-white/5 text-slate-300"
+                          ? "border-nature-leaf/30 bg-nature-bark text-nature-blossom"
+                          : "border-nature-leaf/20 bg-white text-brand-secondary"
                       }`}
                     >
                       <span className="text-3xl font-bold">x{combo.multiplier}</span>
@@ -511,27 +511,27 @@ export default function GameEvents() {
                   </div>
 
                   <div className="grid grid-cols-2 gap-4 mb-8">
-                    <div className="rounded-xl border border-white/10 bg-slate-950/50 p-4 text-center">
-                      <div className="text-3xl font-mono font-bold text-white">
+                    <div className="rounded-xl border border-brand-primary/10 bg-white p-4 text-center">
+                      <div className="text-3xl font-mono font-bold text-text-primary">
                         {combo.consecutive}
                       </div>
-                      <div className="text-xs text-slate-400 mt-1 font-mono">
+                      <div className="text-xs text-brand-muted mt-1 font-mono">
                         CONSECUTIVE
                       </div>
                     </div>
-                    <div className="rounded-xl border border-white/10 bg-slate-950/50 p-4 text-center">
-                      <div className="text-3xl font-mono font-bold text-indigo-300">
+                    <div className="rounded-xl border border-brand-primary/10 bg-white p-4 text-center">
+                      <div className="text-3xl font-mono font-bold text-nature-blossom">
                         {combo.best}
                       </div>
-                      <div className="text-xs text-slate-400 mt-1 font-mono">BEST</div>
+                      <div className="text-xs text-brand-muted mt-1 font-mono">BEST</div>
                     </div>
                   </div>
 
-                  <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4 mb-6 text-center">
-                    <p className="text-sm text-slate-300 font-mono">
+                  <div className="rounded-xl border border-brand-primary/10 bg-surface-card p-4 mb-6 text-center">
+                    <p className="text-sm text-brand-secondary font-mono">
                       +{Math.max(0, 10 * (combo.multiplier - 1))} bonus XP at current multiplier
                     </p>
-                    <p className="text-xs text-slate-500 mt-1">
+                    <p className="text-xs text-brand-muted mt-1">
                       Every 3 correct answers raises the multiplier up to x5.
                     </p>
                   </div>
@@ -539,14 +539,14 @@ export default function GameEvents() {
                   <div className="flex gap-3">
                     <button
                       onClick={() => handleCombo(true)}
-                      className="flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 text-sm font-semibold text-slate-950 hover:from-emerald-400 hover:to-emerald-500 transition-all"
+                      className="flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-[#4F8F57] to-[#3F7A47] text-sm font-semibold text-white hover:from-[#3F7A47] hover:to-[#4F8F57] transition-all"
                     >
                       <ShieldCheck className="w-4 h-4" />
                       Correct
                     </button>
                     <button
                       onClick={() => handleCombo(false)}
-                      className="flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-white/10 bg-white/5 text-sm font-semibold text-slate-300 hover:border-rose-500/40 hover:text-rose-300 transition-all"
+                      className="flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-brand-primary/10 bg-surface-card/30 text-sm font-semibold text-brand-secondary hover:border-rose-500/40 hover:text-rose-600 transition-all"
                     >
                       <Skull className="w-4 h-4" />
                       Wrong
@@ -558,7 +558,7 @@ export default function GameEvents() {
           )}
         </AnimatePresence>
 
-        <div className="mt-10 flex items-center justify-center gap-2 text-xs text-slate-500 font-mono">
+        <div className="mt-10 flex items-center justify-center gap-2 text-xs text-brand-muted font-mono">
           <ArrowRight className="w-3.5 h-3.5" />
           Game events reset daily · Season resets monthly
         </div>

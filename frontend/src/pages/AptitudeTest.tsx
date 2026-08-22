@@ -4,7 +4,7 @@ import api from "../services/api";
 import Spinner from "../components/ui/Spinner";
 import CelebrationOverlay from "../components/CelebrationOverlay";
 import { motion } from "framer-motion";
-import { Brain, Clock, CheckCircle, XCircle, ArrowRight, Zap, BookOpen, Puzzle, Search } from "lucide-react";
+import { Brain, Clock, CheckCircle, XCircle, ArrowRight, BookOpen, Puzzle, Search } from "lucide-react";
 
 const CATEGORY_GROUPS = [
   {
@@ -161,7 +161,7 @@ export default function AptitudeTest() {
               <Brain className="text-cyber-purple inline mr-2" size={28} />
               Aptitude <span className="text-cyber-purple">Diagnostics</span>
             </h1>
-            <p className="text-gray-500 font-mono text-sm">
+            <p className="text-brand-muted font-mono text-sm">
               Campus placement prep with AI-generated questions
             </p>
           </motion.div>
@@ -183,7 +183,7 @@ export default function AptitudeTest() {
                       key={cat.id}
                       onClick={() => setCategory(cat.id)}
                       className={`card text-left transition-all border-2 ${
-                        category === cat.id ? "border-cyber-purple bg-cyber-purple/10" : "border-transparent hover:border-gray-200"
+                        category === cat.id ? "border-cyber-purple bg-cyber-purple/10" : "border-transparent hover:border-brand-primary/10"
                       }`}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -191,7 +191,7 @@ export default function AptitudeTest() {
                     >
                       <span className="text-2xl mb-1 block">{cat.icon}</span>
                       <h3 className={`font-display font-bold text-sm ${group.color}`}>{cat.name}</h3>
-                      <p className="text-[10px] font-mono text-gray-500 mt-1">{cat.desc}</p>
+                      <p className="text-[10px] font-mono text-brand-muted mt-1">{cat.desc}</p>
                     </motion.button>
                   ))}
                 </div>
@@ -207,14 +207,14 @@ export default function AptitudeTest() {
                   <button
                     key={d.id}
                     onClick={() => setDifficulty(d.id)}
-                    className={`px-4 py-2 rounded-lg font-mono text-xs transition-colors ${difficulty === d.id ? d.color : "bg-gray-100 border border-gray-200 text-gray-500"}`}
+                    className={`px-4 py-2 rounded-lg font-mono text-xs transition-colors ${difficulty === d.id ? d.color : "bg-surface-card/50 border border-brand-primary/10 text-brand-muted"}`}
                   >
                     {d.name}
                   </button>
                 ))}
               </div>
               <div className="flex items-center justify-between">
-              <p className="text-xs font-mono text-gray-500">{QUESTION_COUNT} questions • ~{QUESTION_COUNT} minutes</p>
+              <p className="text-xs font-mono text-brand-muted">{QUESTION_COUNT} questions • ~{QUESTION_COUNT} minutes</p>
                 <button onClick={startTest} disabled={loading} className="btn-primary flex items-center gap-2">
                   {loading ? <Spinner size="sm" className="text-space-void" /> : "Initiate Diagnostics"}
                   <ArrowRight size={16} />
@@ -240,7 +240,7 @@ export default function AptitudeTest() {
             </div>
           </div>
 
-          <div className="w-full bg-gray-100 rounded-full h-1.5 mb-8 border border-gray-200">
+          <div className="w-full bg-surface-card/50 rounded-full h-1.5 mb-8 border border-brand-primary/10">
             <div className="bg-gradient-to-r from-cyber-purple to-cyber-blue h-1.5 rounded-full transition-all duration-300" style={{ width: `${((currentQ + 1) / questions.length) * 100}%` }} />
           </div>
 
@@ -275,7 +275,7 @@ export default function AptitudeTest() {
                   className={`w-full text-left p-4 rounded-lg border-2 transition-all font-mono text-sm ${
                     answers[currentQ] === idx
                       ? "border-cyber-purple bg-cyber-purple/10 text-text-primary"
-                      : "border-gray-200 hover:border-gray-500 text-gray-400 hover:text-text-primary"
+                      : "border-brand-primary/10 hover:border-brand-primary/20 text-gray-400 hover:text-text-primary"
                   } ${answerFeedback !== null ? "cursor-not-allowed opacity-70" : ""}`}
                 >
                   <span className="font-bold text-cyber-blue">{String.fromCharCode(65 + idx)}.</span> {option}
@@ -303,10 +303,10 @@ export default function AptitudeTest() {
             }`}>
               {result.percentage}%
             </div>
-            <p className="text-gray-500 font-mono text-sm mt-3">
+            <p className="text-brand-muted font-mono text-sm mt-3">
               {result.score}/{result.total_questions} correct
             </p>
-            <p className="text-xs font-mono text-gray-600 mt-1">Time: {formatTime(result.time_taken)}</p>
+            <p className="text-xs font-mono text-brand-secondary mt-1">Time: {formatTime(result.time_taken)}</p>
           </div>
 
           <div className="grid sm:grid-cols-2 gap-4 mb-6">
@@ -346,7 +346,7 @@ export default function AptitudeTest() {
                 <div className="text-xs font-mono space-y-1">
                   <p className="text-gray-400">Your answer: {q.options[q.your_answer] || "Not answered"}</p>
                   {!q.is_correct && <p className="text-cyber-green">Correct: {q.options[q.correct_answer]}</p>}
-                  <p className="text-gray-600 italic">{q.explanation}</p>
+                  <p className="text-brand-secondary italic">{q.explanation}</p>
                 </div>
               </div>
             ))}

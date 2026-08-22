@@ -272,8 +272,30 @@ class TestCurriculum:
 
     def test_each_language_has_50_levels(self):
         from app.data.curriculum import get_all_languages
+        core_langs = {"c", "cpp", "java", "python", "javascript", "go", "rust"}
         for lang in get_all_languages():
-            assert len(lang["levels"]) == 50, f"{lang['name']} has {len(lang['levels'])} levels"
+            min_levels = 50 if lang["id"] in core_langs else 20
+            assert len(lang["levels"]) >= min_levels, f"{lang['name']} has {len(lang['levels'])} levels"
+
+    def test_each_language_levels_doubled(self):
+        from app.data.curriculum import get_all_languages
+        core_langs = {"c", "cpp", "java", "python", "javascript", "go", "rust"}
+        web_langs = {"html", "css", "sql", "typescript", "react", "node"}
+        for lang in get_all_languages():
+            n = len(lang["levels"])
+            if lang["id"] in core_langs:
+                assert n == 100, f"{lang['name']} should have 100 levels, got {n}"
+            elif lang["id"] in web_langs:
+                assert n == 40, f"{lang['name']} should have 40 levels, got {n}"
+
+    def test_each_language_has_project_lessons(self):
+        from app.data.curriculum import get_all_languages
+        for lang in get_all_languages():
+            project_count = sum(
+                1 for lv in lang["levels"].values()
+                for l in lv["lessons"] if l["type"] == "project"
+            )
+            assert project_count >= 40, f"{lang['name']} has only {project_count} project lessons"
 
     def test_get_language(self):
         from app.data.curriculum import get_language

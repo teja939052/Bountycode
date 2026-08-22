@@ -235,6 +235,10 @@ async def get_lesson_detail(
             "name": level["name"],
             "emoji": level.get("emoji", ""),
             "color": level.get("color", "#fff"),
+            "description": level.get("description", ""),
+            "interview_prep": level.get("interview_prep", []),
+            "career_mapping": level.get("career_mapping", []),
+            "capstone_challenge": level.get("capstone_challenge", ""),
         },
         "content": content,
     }

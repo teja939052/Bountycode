@@ -72,12 +72,12 @@ export default function ReferralGamification() {
           Unlock bonus tiers for even more rewards!
         </p>
         <div className="flex items-center gap-3">
-          <div className="bg-white/20 rounded-lg px-4 py-2 font-mono text-lg">
+          <div className="bg-surface-card/70 rounded-lg px-4 py-2 font-mono text-lg">
             {referralStatus?.referral_code || "PP------"}
           </div>
           <button
             onClick={handleCopyCode}
-            className="px-4 py-2 bg-white/20 text-white rounded-lg text-sm font-medium hover:bg-white/30"
+            className="px-4 py-2 bg-surface-card/70 text-white rounded-lg text-sm font-medium hover:bg-surface-card/30"
           >
             {copied ? "✓ Copied!" : "Copy Code"}
           </button>
@@ -85,17 +85,17 @@ export default function ReferralGamification() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-white border border-gray-200 rounded-xl p-5 text-center">
+        <div className="bg-surface-card border border-brand-primary/10 rounded-xl p-5 text-center">
           <div className="text-3xl mb-2">👥</div>
           <div className="text-2xl font-bold text-indigo-600">{referralStatus?.total_referrals || 0}</div>
           <div className="text-sm text-gray-500">Total Referrals</div>
         </div>
-        <div className="bg-white border border-gray-200 rounded-xl p-5 text-center">
+        <div className="bg-surface-card border border-brand-primary/10 rounded-xl p-5 text-center">
           <div className="text-3xl mb-2">⭐</div>
           <div className="text-2xl font-bold text-amber-600">{referralStatus?.total_xp_earned || 0}</div>
           <div className="text-sm text-gray-500">XP Earned</div>
         </div>
-        <div className="bg-white border border-gray-200 rounded-xl p-5 text-center">
+        <div className="bg-surface-card border border-brand-primary/10 rounded-xl p-5 text-center">
           <div className="text-3xl mb-2">🏆</div>
           <div className="text-2xl font-bold text-green-600">{referralStatus?.tier || "none"}</div>
           <div className="text-sm text-gray-500">Current Tier</div>
@@ -114,7 +114,7 @@ export default function ReferralGamification() {
           return (
             <div
               key={t.tier}
-              className={`bg-white border rounded-xl p-4 flex items-center justify-between ${isUnlocked ? "border-green-300" : "border-gray-200 opacity-60"}`}
+              className={`bg-surface-card border rounded-xl p-4 flex items-center justify-between ${isUnlocked ? "border-green-300" : "border-brand-primary/10 opacity-60"}`}
             >
               <div className="flex items-center gap-3">
                 <span className="text-2xl">{isUnlocked ? "✅" : "🔒"}</span>

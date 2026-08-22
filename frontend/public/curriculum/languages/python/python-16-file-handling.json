@@ -1,0 +1,53 @@
+{
+  "id": "python-16-file-handling",
+  "track": "python",
+  "title": "File Handling",
+  "section": "Python Intermediate",
+  "order": 16,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "Reading and writing files is how programs persist data between runs. The core function is `open(path, mode)`, which returns a file object. Modes tell Python what you want to do:\n\n| Mode | Meaning |\n|---|---|\n| `\"r\"` | read (default) — error if the file is missing |\n| `\"w\"` | write — creates or overwrites the file |\n| `\"a\"` | append — adds to the end of an existing file |\n\n```python\nwith open(\"notes.txt\", \"w\") as f:\n    f.write(\"Hello file!\\n\")\n\nwith open(\"notes.txt\", \"r\") as f:\n    print(f.read())\n```\n\n### The `with` statement\n\nThe `with` block is a **context manager**: it opens the file and guarantees it is closed when the block ends — even if an error happens. Always use `with`, never bare `open()` plus manual `.close()`.\n\nReading text back uses three common methods:\n\n```python\nwith open(\"notes.txt\") as f:\n    content = f.read()       # whole file as one string\n    f.seek(0)                # rewind to the start\n    lines = f.readlines()    # list of lines\n```\n\n`readlines()` splits on line breaks and keeps the `\\n` at the end of each line — call `.strip()` if you don't want it.\n\n### csv and json modules\n\nComma-separated data is everywhere, and the standard library handles it:\n\n```python\nimport csv\nwith open(\"data.csv\", \"w\", newline=\"\") as f:\n    writer = csv.writer(f)\n    writer.writerow([\"name\", \"score\"])\n    writer.writerow([\"ada\", 95])\n```\n\nDictionaries convert to and from JSON with two lines:\n\n```python\nimport json\ndata = {\"name\": \"Ada\", \"score\": 95}\nwith open(\"data.json\", \"w\") as f:\n    json.dump(data, f)\nwith open(\"data.json\") as f:\n    loaded = json.load(f)\n```\n\n### What if the file is missing?\n\n`open(\"missing.txt\")` raises `FileNotFoundError`. Handle it with try/except, or check first with `os.path.exists(path)`.\n\n**Common mistakes:** opening in `\"w\"` and wiping a file you meant to append to, forgetting `newline=\"\"` with `csv.writer` (Windows adds stray blank lines), and leaving files open because you skipped `with`.\n\n### Files in the sandbox\n\nThis grading environment does not persist files between runs. `io.StringIO` lets you practice every reading pattern on an in-memory string — it behaves like an open text file but needs no disk.",
+    "codeSnippets": [
+      {
+        "language": "python",
+        "code": "import io\ndata = io.StringIO(\"apple\\nbanana\\n\")\nfor line in data:\n    print(line.strip())",
+        "output": "apple\nbanana"
+      }
+    ],
+    "exercise": {
+      "instruction": "Use io.StringIO to create an in-memory file containing 'a', 'b', and 'c' on separate lines. Loop over data.readlines(), strip each line, and print it. Expected output: a, b, c on separate lines.",
+      "starterCode": "import io\n",
+      "language": "python",
+      "expected": "a\nb\nc",
+      "required": ["io.StringIO(", "readlines", ".strip()", "print("],
+      "hints": [
+        "Hint 1: data = io.StringIO(\"a\\nb\\nc\") — \\n means a new line",
+        "Hint 2: for line in data.readlines():",
+        "Hint 3: print(line.strip()) removes the trailing newline"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which mode overwrites an existing file?",
+        "options": ["\"r\"", "\"w\"", "\"a\""],
+        "correct": 1
+      },
+      {
+        "question": "Why prefer 'with open(...) as f'?",
+        "options": ["It's faster", "It automatically closes the file", "It prevents file locks"],
+        "correct": 1
+      },
+      {
+        "question": "What happens when you read a missing file?",
+        "options": ["Returns None", "Raises FileNotFoundError", "Creates it empty"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "python-17-project-inventory",
+    "unlocks": ["python-17-project-inventory"]
+  }
+}

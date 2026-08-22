@@ -1,0 +1,53 @@
+{
+  "id": "python-17-project-inventory",
+  "track": "python",
+  "title": "Project: Inventory Tracker",
+  "section": "Python Intermediate",
+  "order": 17,
+  "type": "project",
+  "duration": "20 min",
+  "xp": 40,
+  "content": {
+    "theory": "Your capstone project: an **Inventory Tracker**. An inventory is a mapping of item name to quantity — a perfect job for a dictionary:\n\n```python\ninventory = {\"apple\": 5, \"banana\": 3}\n```\n\nEvery feature is a small function over that dict.\n\n### Add stock\n\nAdding to an existing item should **accumulate**, not overwrite:\n\n```python\ndef add_item(name, qty):\n    inventory[name] = inventory.get(name, 0) + qty\n```\n\n`dict.get(name, 0)` returns 0 when the item is new and the current quantity otherwise — one line that handles both cases correctly.\n\n### Remove stock\n\nDecrement, but never go below zero:\n\n```python\ndef remove_item(name, qty):\n    if name in inventory:\n        inventory[name] = max(0, inventory[name] - qty)\n        if inventory[name] == 0:\n            del inventory[name]\n    else:\n        print(f\"{name} not in stock\")\n```\n\n### Update and report\n\n```python\ndef total():\n    return sum(inventory.values())\n\nfor item, qty in inventory.items():\n    print(f\"{item}: {qty}\")\n```\n\n`sum(inventory.values())` totals every quantity in one call. `items()` yields `(key, value)` pairs ready for display.\n\n### Why this design works\n\n- Each function owns one job (add, remove, report) — easy to test and reuse\n- The dict makes lookups instant and impossible to have duplicate keys\n- Guard clauses (`name in inventory`) keep crashes out\n- In a real app the menu would be a `while True` loop with `input()`, but the core logic stays identical\n\n**Stretch ideas:** log every change to a list, print a low-stock warning, or sort the report by name. That is real engineering — small, pure functions over one data structure.",
+    "codeSnippets": [
+      {
+        "language": "python",
+        "code": "inventory = {\"apple\": 5, \"banana\": 3}\ndef add_item(name, qty):\n    inventory[name] = inventory.get(name, 0) + qty\nadd_item(\"apple\", 4)\nprint(inventory)",
+        "output": "{'apple': 9, 'banana': 3}"
+      }
+    ],
+    "exercise": {
+      "instruction": "Define add_item(name, qty) that accumulates into the global 'inventory' dict, and total() that returns sum(inventory.values()). Then call add_item('apple', 5), add_item('banana', 3), add_item('apple', 4) and print(total()). Expected output: 12",
+      "starterCode": "inventory = {}\n",
+      "language": "python",
+      "expected": "12",
+      "required": ["def add_item", "inventory.get(", "def total", "sum(inventory.values())", "print(total())"],
+      "hints": [
+        "Hint 1: add_item accumulates: inventory[name] = inventory.get(name, 0) + qty",
+        "Hint 2: total() returns sum(inventory.values())",
+        "Hint 3: after the three calls, inventory is {'apple': 9, 'banana': 3}, so total() is 12"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What does inventory.get(name, 0) return for a new item?",
+        "options": ["None", "0", "Raises KeyError"],
+        "correct": 1
+      },
+      {
+        "question": "What does sum(inventory.values()) do?",
+        "options": ["Sums all quantities", "Counts the number of items", "Sorts the inventory"],
+        "correct": 0
+      },
+      {
+        "question": "When removing stock, why use max(0, current - qty)?",
+        "options": ["To round the number", "To prevent negative quantities", "To make it faster"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": null,
+    "unlocks": []
+  }
+}

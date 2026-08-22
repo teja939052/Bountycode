@@ -1,4 +1,9 @@
-"""Async-safe circuit breaker with configurable thresholds."""
+"""Async-safe circuit breaker with configurable thresholds.
+
+Implements the circuit breaker pattern to prevent cascading failures in
+external service calls. Tracks consecutive failures and opens the circuit
+after a threshold is reached, allowing recovery after a cooldown period.
+"""
 import asyncio
 import time
 import logging
@@ -7,6 +12,14 @@ logger = logging.getLogger(__name__)
 
 
 class CircuitBreaker:
+    """Thread-safe async circuit breaker for protecting external calls.
+
+    Args:
+        name: Human-readable identifier for logging and metrics.
+        threshold: Number of consecutive failures before opening the circuit.
+        recovery_time: Cooldown seconds before allowing a half-open request.
+    """
+
     def __init__(self, name: str, threshold: int = 5, recovery_time: float = 60.0):
         self.name = name
         self._threshold = threshold
@@ -59,8 +72,14 @@ class CircuitBreaker:
         }
 
     async def allow_request(self) -> bool:
-        """Check if a request is allowed. Returns True if the circuit is closed
-        or has recovered from an open state (half-open)."""
+        """Check if a request is allowed.
+
+        Returns True if the circuit is closed, or if enough time has passed
+        since the last failure to attempt recovery (half-open state).
+
+        Returns:
+            bool: True if the request should proceed, False if the circuit is open.
+        """
         async with self._lock:
             if not self._is_open:
                 return True
@@ -73,7 +92,13 @@ class CircuitBreaker:
             return False
 
     async def record_failure(self) -> None:
-        """Record a failure. Opens the circuit if the threshold is reached."""
+        """Record a failure.
+
+        Increments the failure counter. Opens the circuit if the threshold is reached.
+
+        Raises:
+            None directly, but logs a warning when the circuit opens.
+        """
         async with self._lock:
             self._failures += 1
             self._last_failure_time = time.time()
@@ -84,7 +109,10 @@ class CircuitBreaker:
                 )
 
     async def record_success(self) -> None:
-        """Record a success. Resets failures and closes the circuit."""
+        """Record a success.
+
+        Resets the failure counter and closes the circuit.
+        """
         async with self._lock:
             self._failures = 0
             self._is_open = False

@@ -1,11 +1,11 @@
-import { useState, useEffect, useCallback, useRef } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import api from "../services/api";
 import ProblemDetail from "../components/ProblemDetail";
-import Compiler from "../pages/Compiler";
+import LeetCodeEditorPanel from "../components/leetcode/LeetCodeEditorPanel";
 import useReducedMotion from "../hooks/useReducedMotion";
-import { Clock, Pause, Play, RotateCcw, ChevronDown } from "lucide-react";
+import { ChevronDown, Clock, Code2, FileText, Pause, Play, RotateCcw } from "lucide-react";
 
 const TIMER_PRESETS = [
   { label: "15 min", seconds: 900 },
@@ -14,24 +14,32 @@ const TIMER_PRESETS = [
   { label: "60 min", seconds: 3600 },
 ];
 
+function formatTime(seconds: number) {
+  const mins = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  return `${mins}:${secs.toString().padStart(2, "0")}`;
+}
+
 export default function SolveProblem() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [problem, setProblem] = useState(null);
-  const [loading, setLoading] = useState(true);
   const reduced = useReducedMotion();
+
+  const [problem, setProblem] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [mobileTab, setMobileTab] = useState<"problem" | "code">("problem");
 
   const [timerActive, setTimerActive] = useState(false);
   const [timerSeconds, setTimerSeconds] = useState(1800);
   const [timerInitial, setTimerInitial] = useState(1800);
   const [timerPaused, setTimerPaused] = useState(false);
   const [showTimerMenu, setShowTimerMenu] = useState(false);
-  const timerRef = useRef(null);
-  const startTimeRef = useRef(null);
-  const pausedRemainingRef = useRef(null);
+  const timerRef = useRef<number | null>(null);
+  const pausedRemainingRef = useRef<number | null>(null);
 
   useEffect(() => {
     const load = async () => {
+      setLoading(true);
       try {
         const data = await api.getQuestionFull(id);
         setProblem(data);
@@ -46,24 +54,23 @@ export default function SolveProblem() {
 
   useEffect(() => {
     return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
+      if (timerRef.current) window.clearInterval(timerRef.current);
     };
   }, []);
 
-  const startTimer = useCallback((seconds) => {
+  const startTimer = useCallback((seconds: number) => {
     setTimerSeconds(seconds);
     setTimerInitial(seconds);
     setTimerActive(true);
     setTimerPaused(false);
     setShowTimerMenu(false);
-    startTimeRef.current = Date.now();
     pausedRemainingRef.current = null;
 
-    if (timerRef.current) clearInterval(timerRef.current);
-    timerRef.current = setInterval(() => {
+    if (timerRef.current) window.clearInterval(timerRef.current);
+    timerRef.current = window.setInterval(() => {
       setTimerSeconds((prev) => {
         if (prev <= 1) {
-          clearInterval(timerRef.current);
+          if (timerRef.current) window.clearInterval(timerRef.current);
           return 0;
         }
         return prev - 1;
@@ -73,182 +80,170 @@ export default function SolveProblem() {
 
   const togglePause = useCallback(() => {
     if (timerPaused) {
-      const remaining = pausedRemainingRef.current || timerSeconds;
+      const remaining = pausedRemainingRef.current ?? timerSeconds;
       setTimerSeconds(remaining);
       setTimerPaused(false);
-      startTimeRef.current = Date.now() - (timerInitial - remaining) * 1000;
-      timerRef.current = setInterval(() => {
+      if (timerRef.current) window.clearInterval(timerRef.current);
+      timerRef.current = window.setInterval(() => {
         setTimerSeconds((prev) => {
           if (prev <= 1) {
-            clearInterval(timerRef.current);
+            if (timerRef.current) window.clearInterval(timerRef.current);
             return 0;
           }
           return prev - 1;
         });
       }, 1000);
-    } else {
-      pausedRemainingRef.current = timerSeconds;
-      setTimerPaused(true);
-      if (timerRef.current) clearInterval(timerRef.current);
+      return;
     }
-  }, [timerPaused, timerSeconds, timerInitial]);
+
+    pausedRemainingRef.current = timerSeconds;
+    setTimerPaused(true);
+    if (timerRef.current) window.clearInterval(timerRef.current);
+  }, [timerPaused, timerSeconds]);
 
   const resetTimer = useCallback(() => {
-    if (timerRef.current) clearInterval(timerRef.current);
+    if (timerRef.current) window.clearInterval(timerRef.current);
     setTimerActive(false);
     setTimerSeconds(timerInitial);
     setTimerPaused(false);
-    startTimeRef.current = null;
     pausedRemainingRef.current = null;
   }, [timerInitial]);
 
-  const formatTime = (s) => {
-    const m = Math.floor(s / 60);
-    const sec = s % 60;
-    return `${m}:${sec.toString().padStart(2, "0")}`;
-  };
-
-  const pct = timerActive ? ((timerInitial - timerSeconds) / timerInitial) * 100 : 0;
-  const isLow = timerSeconds <= 300 && timerActive;
-  const isCritical = timerSeconds <= 60 && timerActive;
-
   if (loading) {
     return (
-      <div className="h-[calc(100vh-64px)] flex items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600" />
+      <div className="min-h-[calc(100vh-64px)] flex items-center justify-center bg-brand-bg">
+        <div className="h-10 w-10 animate-spin rounded-full border-2 border-brand-primary/20 border-t-brand-primary" />
       </div>
     );
   }
 
   if (!problem) {
     return (
-      <div className="h-[calc(100vh-64px)] flex items-center justify-center">
-        <div className="text-center">
-          <p className="text-gray-400 mb-2">Problem not found</p>
-          <a href="/question-bank" className="text-cyber-blue hover:underline text-sm">Back to Question Bank</a>
+      <div className="min-h-[calc(100vh-64px)] flex items-center justify-center bg-brand-bg px-4">
+        <div className="rounded-3xl border border-brand-primary/10 bg-white px-6 py-8 text-center shadow-soft-lg">
+          <p className="text-sm font-semibold text-text-primary">Problem not found</p>
+          <button
+            onClick={() => navigate("/question-bank")}
+            className="mt-3 rounded-full bg-brand-primary px-4 py-2 text-xs font-semibold text-white"
+          >
+            Back to Question Bank
+          </button>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="h-[calc(100vh-64px)] flex flex-col">
-      {/* Timer Bar */}
-      <div className="shrink-0 border-b border-space-border bg-space-panel/80 backdrop-blur-sm px-4 py-2">
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => navigate("/question-bank")}
-              className="text-xs font-mono text-gray-500 hover:text-cyber-blue transition-colors"
-            >
-              ← Back
-            </button>
-            <span className="text-xs font-mono text-gray-600 truncate max-w-[200px]">
-              {problem.title || problem.question_title || "Problem"}
-            </span>
-          </div>
-
-          <div className="flex items-center gap-2">
-            {!timerActive ? (
-              <div className="relative">
-                <button
-                  onClick={() => setShowTimerMenu(!showTimerMenu)}
-                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-space-border hover:border-cyber-blue/40 text-xs font-mono text-gray-400 hover:text-cyber-blue transition-all"
-                >
-                  <Clock size={14} />
-                  <span>Start Timer</span>
-                  <ChevronDown size={12} />
-                </button>
-                <AnimatePresence>
-                  {showTimerMenu && (
-                    <>
-                      <div className="fixed inset-0 z-30" onClick={() => setShowTimerMenu(false)} />
-                      <motion.div
-                        initial={{ opacity: 0, y: -4 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -4 }}
-                        className="absolute right-0 top-full mt-1 z-40 bg-gray-900 border border-gray-700 rounded-lg shadow-xl py-1 min-w-[140px]"
-                      >
-                        {TIMER_PRESETS.map((p) => (
-                          <button
-                            key={p.seconds}
-                            onClick={() => startTimer(p.seconds)}
-                            className="w-full px-3 py-2 text-xs font-mono text-gray-300 hover:bg-gray-800 hover:text-cyber-blue text-left transition-colors"
-                          >
-                            {p.label}
-                          </button>
-                        ))}
-                      </motion.div>
-                    </>
-                  )}
-                </AnimatePresence>
+    <div className="min-h-[calc(100vh-64px)] bg-[radial-gradient(circle_at_top,rgba(79,143,87,0.06),transparent_34%),linear-gradient(180deg,#FAFAF6_0%,#F4EFE4_100%)]">
+      <div className="mx-auto flex min-h-[calc(100vh-64px)] max-w-[1600px] flex-col px-3 py-3 md:px-4 md:py-4">
+        <div className="sticky top-0 z-20 mb-3 rounded-2xl border border-brand-primary/10 bg-white/90 px-3 py-2 shadow-soft backdrop-blur md:px-4">
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex min-w-0 items-center gap-3">
+              <button
+                onClick={() => navigate("/question-bank")}
+                className="rounded-full border border-brand-primary/10 bg-brand-bg px-3 py-1.5 text-xs font-semibold text-brand-muted transition-colors hover:text-text-primary"
+              >
+                Back
+              </button>
+              <div className="min-w-0">
+                <div className="text-[10px] font-mono uppercase tracking-[0.24em] text-brand-muted">Problem</div>
+                <h1 className="truncate text-sm font-semibold text-text-primary md:text-base">
+                  {problem.title || problem.question_title || "Problem"}
+                </h1>
               </div>
-            ) : (
-              <div className="flex items-center gap-2">
-                {/* Timer display */}
-                <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border font-mono text-sm font-bold transition-all ${
-                  isCritical
-                    ? "border-red-500/50 bg-red-500/10 text-red-400 animate-pulse"
-                    : isLow
-                    ? "border-yellow-500/50 bg-yellow-500/10 text-yellow-400"
-                    : "border-cyber-blue/30 bg-cyber-blue/10 text-cyber-blue"
-                }`}>
-                  <Clock size={14} className={isCritical ? "animate-spin" : ""} />
-                  <span className="tabular-nums">{formatTime(timerSeconds)}</span>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2">
+              {!timerActive ? (
+                <div className="relative">
+                  <button
+                    onClick={() => setShowTimerMenu((prev) => !prev)}
+                    className="inline-flex items-center gap-2 rounded-full border border-brand-primary/10 bg-brand-bg px-3 py-2 text-xs font-semibold text-brand-muted transition-colors hover:text-text-primary"
+                  >
+                    <Clock size={14} />
+                    Start timer
+                    <ChevronDown size={12} />
+                  </button>
+                  <AnimatePresence>
+                    {showTimerMenu && (
+                      <>
+                        <div className="fixed inset-0 z-30" onClick={() => setShowTimerMenu(false)} />
+                        <motion.div
+                          initial={{ opacity: 0, y: -4 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -4 }}
+                          className="absolute right-0 top-full z-40 mt-2 min-w-[160px] rounded-2xl border border-brand-primary/10 bg-white p-1 shadow-soft-lg"
+                        >
+                          {TIMER_PRESETS.map((preset) => (
+                            <button
+                              key={preset.seconds}
+                              onClick={() => startTimer(preset.seconds)}
+                              className="block w-full rounded-xl px-3 py-2 text-left text-xs font-medium text-brand-muted transition-colors hover:bg-brand-bg hover:text-text-primary"
+                            >
+                              {preset.label}
+                            </button>
+                          ))}
+                        </motion.div>
+                      </>
+                    )}
+                  </AnimatePresence>
                 </div>
-
-                {/* Progress ring */}
-                <svg className="w-8 h-8 -rotate-90" viewBox="0 0 36 36">
-                  <circle cx="18" cy="18" r="15" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-700" />
-                  <circle
-                    cx="18" cy="18" r="15" fill="none"
-                    stroke={isCritical ? "#ef4444" : isLow ? "#eab308" : "#4CC9F0"}
-                    strokeWidth="2"
-                    strokeDasharray={`${pct * 0.942} 100`}
-                    strokeLinecap="round"
-                    className="transition-all duration-1000"
-                  />
-                </svg>
-
-                <button
-                  onClick={togglePause}
-                  className="p-1.5 rounded-lg border border-space-border hover:border-gray-500 text-gray-400 hover:text-text-primary transition-all"
-                >
-                  {timerPaused ? <Play size={14} /> : <Pause size={14} />}
-                </button>
-                <button
-                  onClick={resetTimer}
-                  className="p-1.5 rounded-lg border border-space-border hover:border-gray-500 text-gray-400 hover:text-text-primary transition-all"
-                >
-                  <RotateCcw size={14} />
-                </button>
-              </div>
-            )}
+              ) : (
+                <div className="flex items-center gap-2 rounded-full border border-brand-primary/10 bg-brand-bg px-3 py-1.5 text-xs font-semibold">
+                  <Clock size={14} className="text-brand-secondary" />
+                  <span className="tabular-nums text-brand-secondary">{formatTime(timerSeconds)}</span>
+                  <button onClick={togglePause} className="rounded-full bg-white p-1 text-brand-muted transition-colors hover:text-text-primary">
+                    {timerPaused ? <Play size={12} /> : <Pause size={12} />}
+                  </button>
+                  <button onClick={resetTimer} className="rounded-full bg-white p-1 text-brand-muted transition-colors hover:text-text-primary">
+                    <RotateCcw size={12} />
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Main Content */}
-      <div className="flex flex-col md:flex-row flex-1 overflow-hidden">
-        {/* Left Panel: Problem Description */}
-        <motion.div
-          className="w-full md:w-1/2 overflow-y-auto border-b md:border-b-0 md:border-r border-space-border"
-          initial={reduced ? {} : { opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <ProblemDetail problemId={id} problem={problem} />
-        </motion.div>
+        <div className="md:hidden mb-3 flex gap-2 rounded-2xl border border-brand-primary/10 bg-white/90 p-1 shadow-soft">
+          <button
+            onClick={() => setMobileTab("problem")}
+            className={`flex flex-1 items-center justify-center gap-2 rounded-xl px-3 py-2 text-xs font-semibold transition-colors ${
+              mobileTab === "problem" ? "bg-brand-primary text-white" : "text-brand-muted"
+            }`}
+          >
+            <FileText size={13} />
+            Problem
+          </button>
+          <button
+            onClick={() => setMobileTab("code")}
+            className={`flex flex-1 items-center justify-center gap-2 rounded-xl px-3 py-2 text-xs font-semibold transition-colors ${
+              mobileTab === "code" ? "bg-brand-primary text-white" : "text-brand-muted"
+            }`}
+          >
+            <Code2 size={13} />
+            Code
+          </button>
+        </div>
 
-        {/* Right Panel: Compiler */}
-        <motion.div
-          className="w-full md:w-1/2 flex flex-col"
-          initial={reduced ? {} : { opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.3, delay: 0.1 }}
-        >
-          <Compiler problemId={id} problem={problem} />
-        </motion.div>
+        <div className="grid min-h-0 flex-1 gap-3 lg:grid-cols-[1.02fr_0.98fr]">
+          <motion.div
+            className={`${mobileTab === "code" ? "hidden md:block" : "block"} min-h-0 overflow-hidden rounded-3xl border border-brand-primary/10 bg-white shadow-soft-lg`}
+            initial={reduced ? {} : { opacity: 0, x: -12 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.25 }}
+          >
+            <ProblemDetail problemId={id} problem={problem} />
+          </motion.div>
+
+          <motion.div
+            className={`${mobileTab === "problem" ? "hidden md:block" : "block"} min-h-0 overflow-hidden`}
+            initial={reduced ? {} : { opacity: 0, x: 12 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.25 }}
+          >
+            <LeetCodeEditorPanel problemId={id} problem={problem} onSolved={() => setMobileTab("code")} />
+          </motion.div>
+        </div>
       </div>
     </div>
   );

@@ -1,0 +1,56 @@
+{
+  "id": "sql-10-ctes",
+  "track": "sql",
+  "title": "CTEs (Common Table Expressions)",
+  "section": "Advanced SQL",
+  "order": 10,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "**CTEs** (Common Table Expressions) let you name a subquery and reference it like a table in the rest of the statement. Written with the `WITH` clause, they turn dense nested queries into readable, step-by-step logic. The sample dataset: `students(id, name, city, score, grade)`, `teachers(id, name, subject)`, `classes(id, subject, teacher_id)`, and `enrollments(student_id, class_id, grade)`.\n\n### Basic WITH clause\n\n```sql\nWITH high_scorers AS (\n  SELECT * FROM students WHERE score >= 85\n)\nSELECT name, city FROM high_scorers;\n```\n\nThe CTE `high_scorers` lives only for the duration of this one statement — it is not a stored table.\n\n### Multiple CTEs\n\nSeparate CTEs with a comma, and later CTEs can reference earlier ones, letting you build a pipeline:\n\n```sql\nWITH class_counts AS (\n  SELECT class_id, COUNT(*) AS enrolled\n  FROM enrollments GROUP BY class_id\n),\ntop_classes AS (\n  SELECT * FROM class_counts ORDER BY enrolled DESC LIMIT 3\n)\nSELECT * FROM top_classes;\n```\n\n### CTE vs inline subquery\n\n| CTE | Inline subquery |\n|---|---|\n| Named and reusable within the statement | Anonymous |\n| Reads top-down, easy to debug | Reads inside-out |\n| Can be recursive | Cannot |\n\nMost databases may inline the CTE into the plan rather than materialize it, so a CTE is primarily a readability and maintainability tool — not a guaranteed cache. Use it to name steps and to avoid repeating the same subquery three times.\n\n### Recursive CTEs (brief)\n\nA recursive CTE calls itself to walk tree and hierarchy data — org charts, file folders, category trees:\n\n```sql\nWITH RECURSIVE nums(n) AS (\n  SELECT 1\n  UNION ALL\n  SELECT n + 1 FROM nums WHERE n < 5\n)\nSELECT n FROM nums;\n```\n\nThe base case produces the first row; the recursive part keeps adding rows until the stopping condition ends the loop.\n\n### Common mistakes\n\n- Forgetting the comma between multiple CTEs — the classic syntax error.\n- Defining a CTE and never referencing it (harmless but confusing).\n- Using aggregates in a CTE's SELECT without GROUP BY and expecting per-group values.\n- Recursive CTEs without a terminating `WHERE` condition — an infinite loop.",
+    "codeSnippets": [
+      {
+        "language": "sql",
+        "code": "WITH class_counts AS (\n  SELECT class_id, COUNT(*) AS enrolled\n  FROM enrollments\n  GROUP BY class_id\n)\nSELECT * FROM class_counts;",
+        "output": "One row per class_id with its enrollment count"
+      },
+      {
+        "language": "sql",
+        "code": "WITH RECURSIVE nums(n) AS (\n  SELECT 1\n  UNION ALL\n  SELECT n + 1 FROM nums WHERE n < 5\n)\nSELECT n FROM nums;",
+        "output": "1, 2, 3, 4, 5"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write a CTE named 'class_counts' that counts enrollments per class: select 'class_id' and COUNT(*) from 'enrollments' grouped by 'class_id'. Then select all columns from the CTE.",
+      "starterCode": "",
+      "required": ["WITH class_counts", "COUNT(*)", "GROUP BY class_id", "FROM enrollments", "FROM class_counts"],
+      "hints": [
+        "Hint 1: WITH class_counts AS (SELECT class_id, COUNT(*) AS enrolled",
+        "Hint 2: FROM enrollments GROUP BY class_id)",
+        "Hint 3: SELECT * FROM class_counts;"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which keyword starts a CTE?",
+        "options": ["AS", "LET", "WITH"],
+        "correct": 2
+      },
+      {
+        "question": "How are multiple CTEs separated?",
+        "options": ["A second WITH", "A semicolon", "A comma"],
+        "correct": 2
+      },
+      {
+        "question": "What is a recursive CTE useful for?",
+        "options": ["Replacing indexes", "Faster JOINs", "Walking tree and hierarchy data"],
+        "correct": 2
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "sql-11-window-functions",
+    "unlocks": ["sql-11-window-functions"]
+  }
+}

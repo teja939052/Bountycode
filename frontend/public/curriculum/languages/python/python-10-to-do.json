@@ -1,0 +1,48 @@
+{
+  "id": "python-10-to-do",
+  "track": "python",
+  "title": "Project: To-Do List",
+  "section": "Python Projects",
+  "order": 10,
+  "type": "project",
+  "duration": "20 min",
+  "xp": 40,
+  "content": {
+    "theory": "Final Python project: a **to-do list manager**. This combines lists, loops, conditionals, and functions into one app.\n\nDesign three functions that operate on a shared list:\n\n```python\ntasks = []\n\ndef add_task(task):\n    tasks.append(task)\n    print(f\"Added: {task}\")\n\ndef list_tasks():\n    for i, task in enumerate(tasks, start=1):\n        print(f\"{i}. {task}\")\n\ndef remove_task(index):\n    if 1 <= index <= len(tasks):\n        removed = tasks.pop(index - 1)\n        print(f\"Removed: {removed}\")\n    else:\n        print(\"Invalid index\")\n```\n\nKey ideas:\n\n- `enumerate(tasks, start=1)` gives each item a 1-based number\n- `tasks.pop(index - 1)` removes by position (lists are 0-based, users think in 1-based)\n- Guard the index so an out-of-range pop doesn't crash the app\n- `pass` inside a `while True` menu lets you loop until the user quits:\n\n```python\nwhile True:\n    action = input(\"add/list/remove/quit: \")\n    if action == \"quit\":\n        break\n```\n\nThis small app is the pattern behind dozens of real products.",
+    "codeSnippets": [
+      {
+        "language": "python",
+        "code": "tasks = [\"study\"]\ntasks.append(\"practice\")\nfor i, t in enumerate(tasks, start=1):\n    print(i, t)",
+        "output": "1 study\n2 practice"
+      }
+    ],
+    "exercise": {
+      "instruction": "Build a to-do list: a 'tasks' list, an add_task(task) that appends to it, a list_tasks() that prints '1. task' lines with enumerate starting at 1, and a while True menu with 'quit' that breaks.",
+      "starterCode": "tasks = []\n",
+      "language": "python",
+      "stdin": "add\ndo homework\nlist\nquit\n",
+      "required": ["def add_task", ".append(", "def list_tasks", "enumerate(", "start=1", "while True", "quit", "break"],
+      "hints": [
+        "Hint 1: def add_task(task): tasks.append(task)",
+        "Hint 2: def list_tasks(): for i, task in enumerate(tasks, start=1): print(f\"{i}. {task}\")",
+        "Hint 3: while True: action = input(...); if action == \"quit\": break"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Why use enumerate(tasks, start=1) instead of range(len(tasks))?",
+        "options": ["It's faster", "It gives the item and a 1-based index", "It sorts the list"],
+        "correct": 1
+      },
+      {
+        "question": "What does tasks.pop(0) do?",
+        "options": ["Removes the first item", "Removes the last item", "Clears the list"],
+        "correct": 0
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "python-11-tuples-sets",
+    "unlocks": ["python-11-tuples-sets"]
+  }
+}

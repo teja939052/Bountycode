@@ -1,49 +1,75 @@
 import { requestWithRetry as request } from "./request.ts";
+import type { CompanyProfile } from "./types.ts";
+
 export const companyPrepApi = {
-  getCompanies() {
+  getCompanies(): Promise<{ companies: string[] }> {
     return request("/api/v1/company/companies");
   },
 
-  getBehavioralQuestion(company, role) {
+  getBehavioralQuestion(
+    company: string,
+    role: string,
+  ): Promise<{ question: string; category?: string; follow_ups?: string[] }> {
     return request("/api/v1/company/behavioral", {
       method: "POST",
       body: JSON.stringify({ company, role }),
     });
   },
 
-  getInterviewTips(company, role, roundType) {
+  getInterviewTips(
+    company: string,
+    role: string,
+    roundType: string,
+  ): Promise<{
+    tips: string[];
+    faqs?: Array<{ question: string; answer: string }>;
+  }> {
     return request("/api/v1/company/tips", {
       method: "POST",
       body: JSON.stringify({ company, role, round_type: roundType }),
     });
   },
 
-  getGuide(company) {
-    return request(`/api/v1/company/${company}/guide`);
+  getGuide(company: string): Promise<CompanyProfile> {
+    return request(`/api/v1/company/${encodeURIComponent(company)}/guide`);
   },
 };
 
 export const companyMocksApi = {
-  getCompanies() {
+  getCompanies(): Promise<{ companies: string[] }> {
     return request("/api/v1/company-mocks/companies");
   },
 
-  getConfig(companyId) {
-    return request(`/api/v1/company-mocks/${companyId}/config`);
+  getConfig(companyId: string): Promise<Record<string, unknown>> {
+    return request(
+      `/api/v1/company-mocks/${encodeURIComponent(companyId)}/config`,
+    );
   },
 
-  start(companyId, roundName = null) {
-    return request(`/api/v1/company-mocks/${companyId}/start`, {
-      method: "POST",
-      body: JSON.stringify({ round_name: roundName }),
-    });
+  start(
+    companyId: string,
+    roundName: string | null = null,
+  ): Promise<{ session_id: string; questions?: unknown[] }> {
+    return request(
+      `/api/v1/company-mocks/${encodeURIComponent(companyId)}/start`,
+      {
+        method: "POST",
+        body: JSON.stringify({ round_name: roundName }),
+      },
+    );
   },
 
-  getStatus(sessionId) {
-    return request(`/api/v1/company-mocks/${sessionId}/status`);
+  getStatus(
+    sessionId: string,
+  ): Promise<{ status: string; completed?: boolean; current_round?: string }> {
+    return request(
+      `/api/v1/company-mocks/${encodeURIComponent(sessionId)}/status`,
+    );
   },
 
-  getResults(sessionId) {
-    return request(`/api/v1/company-mocks/${sessionId}/results`);
+  getResults(sessionId: string): Promise<Record<string, unknown>> {
+    return request(
+      `/api/v1/company-mocks/${encodeURIComponent(sessionId)}/results`,
+    );
   },
 };

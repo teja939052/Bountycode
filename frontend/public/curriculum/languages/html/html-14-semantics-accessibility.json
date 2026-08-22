@@ -1,0 +1,51 @@
+{
+  "id": "html-14-semantics-accessibility",
+  "track": "html",
+  "title": "Semantics, SEO & Accessibility",
+  "section": "Advanced HTML",
+  "order": 14,
+  "type": "lesson",
+  "duration": "13 min",
+  "xp": 30,
+  "content": {
+    "theory": "A semantic web page describes its own structure. `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<aside>`, and `<footer>` tell browsers, search engines, and screen readers what each block *means* — a job that a wall of `<div>`s cannot do. This is the difference between **div soup** (mysterious boxes) and a document whose outline makes sense.\n\n### Sections with meaning\n\n| Element | Meaning |\n|---|---|\n| `<header>` | Top of a page or section: logo, title, tagline |\n| `<nav>` | Navigation links |\n| `<main>` | The one unique core content block per page |\n| `<section>` | A themed group of content (usually with a heading) |\n| `<article>` | A self-contained piece: blog post, comment, card |\n| `<aside>` | Related-but-secondary content: sidebar, ad, footnote |\n| `<footer>` | Bottom: copyright, links, contact info |\n\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"description\" content=\"PlacementPro helps students crack campus placements with AI mock interviews.\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>PlacementPro</title>\n</head>\n<body>\n  <header><h1>PlacementPro</h1></header>\n  <nav><a href=\"#main\">Skip to content</a></nav>\n  <main id=\"main\">\n    <section>\n      <h2>Mock Interviews</h2>\n      <p>Practice with AI.</p>\n    </section>\n  </main>\n  <aside>Quick tip of the day</aside>\n  <footer>© 2026 PlacementPro</footer>\n</body>\n</html>\n```\n\n### The lang attribute and the head\n\nThe **lang** attribute on `<html>` tells screen readers and search engines which language the page is in — with it missing, assistive tech may read an English page with the wrong accent. The `<head>` also carries two SEO-critical tags: the **meta description** (the blurb under your search result) and the **viewport** meta, which makes pages render correctly on phones.\n\n### Heading hierarchy\n\nHeadings are the outline of your page — and an accessibility navigation tool: screen reader users jump heading-to-heading like skimming a table of contents. Start at `<h1>` and do not skip levels (`<h1>` → `<h2>` → `<h3>`, never `<h1>` → `<h4>`). Choose headings by **rank**, not by visual size — the size is CSS's job.\n\n### ARIA: a safety net, not a primary plan\n\nNative HTML (labels, headings, alt text, semantic elements) covers ~90% of accessibility. **ARIA** fills the gaps: `aria-label` names an element that has no visible text, and `aria-describedby` points to a longer description.\n\n```html\n<button aria-label=\"Close dialog\">×</button>\n<input type=\"email\" aria-describedby=\"email-hint\">\n<p id=\"email-hint\">We never share your email.</p>\n```\n\nThe Web Content Accessibility Guidelines (**WCAG**) define what 'accessible' means: perceivable, operable, understandable, and robust. The practical shortcut: use the right element, label everything, keep a logical order, and test with a keyboard and a screen reader.\n\n### Skip links\n\nKeyboard users do not want to tab through every nav link on every page. A **skip link** — a link that jumps to `<main id=\"main\">` — is placed first on the page and is visually hidden until focused.\n\n```html\n<a class=\"skip-link\" href=\"#main\">Skip to main content</a>\n```\n\n### Div soup symptoms\n\n- Five nested `<div class=\"header header-2\">` instead of one `<header>`\n- Every block a plain `<div>` — no landmarks for screen readers\n- Heading levels scattered (`<h3>` before `<h2>`)\n- `<br>` stacked after `<br>` doing the work of margins (CSS's job)\n\nWhen a page's landmarks, headings, and labels read like an outline, humans, search engines, and assistive tech all understand it. That is the entire point of the HTML semantic layer.",
+    "codeSnippets": [
+      {
+        "language": "html",
+        "code": "<header><h1>PlacementPro</h1></header>\n<nav>\n  <a href=\"#main\">Skip to content</a>\n</nav>\n<main id=\"main\">\n  <section>\n    <h2>Mock Interviews</h2>\n    <p>Practice with AI.</p>\n  </section>\n</main>\n<footer>© 2026 PlacementPro</footer>",
+        "output": "A semantic page skeleton: header, nav with skip link, main with a section, and footer."
+      }
+    ],
+    "exercise": {
+      "instruction": "Build a semantic page skeleton. In the <head>, add a meta description tag (meta name=\"description\"). In the <body>, add a <header> with an h1, a <nav> with a link to #main, a <main> containing a <section> with an h2, and a <footer>.",
+      "starterCode": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <title>My Semantic Page</title>\n</head>\n<body>\n\n</body>\n</html>",
+      "required": ["meta name=\"description\"", "<header>", "<nav>", "<main>", "<section>", "<footer>"],
+      "hints": [
+        "Hint 1: Add <meta name=\"description\" content=\"...\"> inside the head.",
+        "Hint 2: Structure the body as <header>, <nav>, <main>, <footer>.",
+        "Hint 3: Put at least one <section> with an <h2> inside <main>."
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which element marks the one unique main content block of a page?",
+        "options": ["<article>", "<main>", "<section>"],
+        "correct": 1
+      },
+      {
+        "question": "Why must headings never skip levels?",
+        "options": ["Because CSS will break", "Because screen reader users navigate by heading outline and skipping destroys it", "Because the browser refuses to render them"],
+        "correct": 1
+      },
+      {
+        "question": "What does aria-label provide?",
+        "options": ["A visible label next to a form field", "An accessible name for elements with no visible text", "A style class for buttons"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": null,
+    "unlocks": []
+  }
+}

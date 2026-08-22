@@ -1,0 +1,46 @@
+{
+  "id": "sql-06-joins",
+  "track": "sql",
+  "title": "Joining Tables",
+  "section": "SQL Queries",
+  "order": 6,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 20,
+  "content": {
+    "theory": "Real data lives across many tables. **JOINs** combine them. Consider:\n\n`students`: id, name, score  and  `courses`: student_id, course\n\n`INNER JOIN` keeps only rows that match in **both** tables:\n\n```sql\nSELECT students.name, courses.course\nFROM students\nINNER JOIN courses ON students.id = courses.student_id;\n```\n\n`ON` states how the tables relate — here the student's `id` matches the course's `student_id`.\n\nThe `LEFT JOIN` keeps **all rows from the left table**, with `NULL` where there's no match:\n\n```sql\nSELECT students.name, courses.course\nFROM students\nLEFT JOIN courses ON students.id = courses.student_id;\n```\n\nEvery student appears even if they haven't enrolled in a course.\n\nTable aliases shorten long names:\n\n```sql\nSELECT s.name, c.course\nFROM students AS s\nINNER JOIN courses AS c ON s.id = c.student_id;\n```\n\nA JOIN with a filter:\n\n```sql\nSELECT s.name, c.course\nFROM students AS s\nINNER JOIN courses AS c ON s.id = c.student_id\nWHERE c.course = 'Math';\n```\n\nThe syntax order to remember:\n\n`SELECT … FROM a INNER JOIN b ON a.id = b.a_id WHERE …`",
+    "codeSnippets": [
+      {
+        "language": "sql",
+        "code": "SELECT s.name, c.course\nFROM students AS s\nINNER JOIN courses AS c ON s.id = c.student_id;",
+        "output": "Each student with each course they're enrolled in"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write a query joining 'students' (alias s) with 'courses' (alias c) using INNER JOIN ON s.id = c.student_id, selecting s.name and c.course.",
+      "starterCode": "",
+      "required": ["SELECT s.name, c.course", "FROM students", "AS s", "INNER JOIN courses", "AS c", "ON s.id = c.student_id"],
+      "hints": [
+        "Hint 1: SELECT s.name, c.course",
+        "Hint 2: FROM students AS s",
+        "Hint 3: INNER JOIN courses AS c ON s.id = c.student_id;"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What does INNER JOIN keep?",
+        "options": ["Only matching rows from both tables", "All rows from the left table", "All rows from both tables"],
+        "correct": 0
+      },
+      {
+        "question": "Which JOIN keeps all left-table rows even without a match?",
+        "options": ["INNER JOIN", "LEFT JOIN", "RIGHT JOIN"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "sql-07-write-data",
+    "unlocks": ["sql-07-write-data"]
+  }
+}

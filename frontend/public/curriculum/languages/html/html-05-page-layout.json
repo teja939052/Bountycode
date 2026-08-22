@@ -1,0 +1,46 @@
+{
+  "id": "html-05-page-layout",
+  "track": "html",
+  "title": "Page Layout & Semantics",
+  "section": "Fundamentals",
+  "order": 5,
+  "type": "lesson",
+  "duration": "10 min",
+  "xp": 20,
+  "content": {
+    "theory": "Every real page has a common skeleton: a header, some navigation, main content, and a footer. HTML5 gives you **semantic tags** that describe these regions — better for screen readers, SEO, and other developers than sprinkling `<div>` everywhere.\n\n### The classic layout\n```html\n<body>\n  <header>\n    <nav>Links go here</nav>\n  </header>\n  <main>\n    <article>Main content</article>\n    <aside>Sidebar</aside>\n  </main>\n  <footer>Copyright info</footer>\n</body>\n```\n\n### Semantic tags\n| Tag | Purpose |\n|-----|---------|\n| `<header>` | Top banner — logo, title, nav |\n| `<nav>` | Navigation links |\n| `<main>` | The dominant content of the page |\n| `<section>` | A themed chunk of content |\n| `<article>` | A self-contained piece (blog post, card) |\n| `<aside>` | Tangential content (sidebar, ads) |\n| `<footer>` | Bottom info — contact, copyright |\n\n### Sectioning\n```html\n<section>\n  <h2>Why Learn HTML?</h2>\n  <p>It is the backbone of every web page.</p>\n</section>\n```\n\nUse `<section>` to group related content and give each section its own heading. A `<div>` is still useful as a pure styling container — semantics are about *meaning*, not about never using `div`.\n\n### Rules of thumb\n- One `<main>` per page\n- One `<h1>` per page\n- Use the right tag for the job before reaching for `<div>`",
+    "codeSnippets": [
+      {
+        "language": "html",
+        "code": "<header>\n  <h1>PlacementPro</h1>\n  <nav><a href=\"#\">Home</a> <a href=\"#\">Courses</a></nav>\n</header>",
+        "output": "A banner with a title and two navigation links."
+      }
+    ],
+    "exercise": {
+      "instruction": "Build a page with a <header> containing the heading 'My Blog', a <main> with one <section> titled 'First Post', and a <footer> with the text '© 2026'.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<head>\n  <title>My Blog</title>\n</head>\n<body>\n\n</body>\n</html>",
+      "required": ["<header>", "<h1>My Blog</h1>", "</header>", "<main>", "<section>", "<h2>First Post</h2>", "</section>", "</main>", "<footer>", "© 2026", "</footer>"],
+      "hints": [
+        "Hint 1: Start with <header><h1>My Blog</h1></header>.",
+        "Hint 2: Add <main> then a <section> with an <h2>First Post</h2>.",
+        "Hint 3: Close main, then add <footer>© 2026</footer>."
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which tag represents the dominant content of a page?",
+        "options": ["<div>", "<main>", "<section>"],
+        "correct": 1
+      },
+      {
+        "question": "Which semantic tag should hold navigation links?",
+        "options": ["<nav>", "<aside>", "<footer>"],
+        "correct": 0
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "html-06-forms-part1",
+    "unlocks": ["html-06-forms-part1"]
+  }
+}

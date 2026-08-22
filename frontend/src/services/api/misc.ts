@@ -310,6 +310,25 @@ export const analyticsApi = {
   getInsights() {
     return request("/api/v1/analytics/insights");
   },
+
+  getAdminUsers(params: Record<string, any> = {}) {
+    const qs = new URLSearchParams(
+      Object.entries(params).filter(([, v]) => v !== undefined && v !== null && v !== "")
+    ).toString();
+    return request(`/api/v1/analytics/admin/users${qs ? `?${qs}` : ""}`);
+  },
+
+  getAdminGeo() {
+    return request("/api/v1/analytics/admin/geo");
+  },
+
+  getAdminRetention() {
+    return request("/api/v1/analytics/admin/retention");
+  },
+
+  getAdminRevenue() {
+    return request("/api/v1/revenue/summary");
+  },
 };
 
 export const aiDebuggerApi = {

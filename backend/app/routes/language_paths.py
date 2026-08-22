@@ -5,6 +5,8 @@ from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel, Field
 from typing import List, Optional, Dict, Any
 from datetime import datetime
+
+from app.utils.timeutil import utcnow
 from app.middleware.auth import get_current_user
 from app.database import get_db
 from app.models.user import UserInDB
@@ -161,8 +163,8 @@ async def get_language_progress(
             xp=0,
             completed_modules=[],
             completed_levels=[],
-            started_at=datetime.utcnow(),
-            last_activity=datetime.utcnow()
+            started_at=utcnow(),
+            last_activity=utcnow()
         )
         await db.language_progress.insert_one(progress.dict())
     return LanguageProgress(**progress)
@@ -198,14 +200,14 @@ async def complete_module(
             "xp": 0,
             "completed_modules": [],
             "completed_levels": [],
-            "started_at": datetime.utcnow(),
-            "last_activity": datetime.utcnow()
+            "started_at": utcnow(),
+            "last_activity": utcnow()
         }
     
     if module_id not in progress["completed_modules"]:
         progress["completed_modules"].append(module_id)
         progress["xp"] += xp_gained
-        progress["last_activity"] = datetime.utcnow()
+        progress["last_activity"] = utcnow()
         
         # Check if user leveled up
         new_level = min(progress["xp"] // 100 + 1, 100)

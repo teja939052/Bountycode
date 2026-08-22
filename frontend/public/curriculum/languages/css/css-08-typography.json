@@ -1,0 +1,56 @@
+{
+  "id": "css-08-typography",
+  "track": "css",
+  "title": "Typography & Web Fonts",
+  "section": "Advanced CSS",
+  "order": 8,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "Typography defines the voice of your page. Good **font choices** and **spacing** make content effortless to read; bad ones make even great copy feel amateur. The core tool is the **font-family stack** — a comma-separated list the browser walks down until it finds a font that is actually installed on the machine:\n\n```css\nbody {\n  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n}\n```\nIf the user is on Windows they get Segoe UI; on Android the browser falls through to Roboto; on anything else it ends at Arial or the generic `sans-serif`. Always end a stack with a generic family (`serif`, `sans-serif`, `monospace`) so the browser always has a final answer.\n\n### font-size units\n`px` is absolute — it ignores the user's browser zoom and font-size preferences. `em` is relative to the **parent** element's font size, which compounds: a `1.5em` element inside a `1.5em` element is effectively `2.25em` of the root. `rem` is relative to the **root** element (`<html>`, default 16px), so it is predictable at every nesting depth:\n\n| Unit | Relative to | Gotcha |\n|------|------------|--------|\n| px | nothing | ignores browser zoom preferences |\n| em | the parent | compounds with nesting |\n| rem | the root element | stable and predictable |\n\nRule of thumb: `px` for borders, `rem` for font sizes and spacing.\n\n### line-height & letter-spacing\n`line-height` sets the vertical rhythm of a paragraph — `1.5–1.7` is the comfortable reading range for body text. Set it as a **unitless number** so it scales automatically with whatever font-size the text inherits. `letter-spacing` adds air between characters; `0.5px` on headings or `2px` on uppercase labels is a common designer trick for a premium feel.\n\n### font-weight & web fonts\n`font-weight` runs from `100` (thin) to `900` (black); `400` is normal and `700` bold. Browsers *synthesize* missing weights by faux-bolding, which looks bad — better to load real weights, e.g. from Google Fonts:\n\n```css\n@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');\n```\n`@import` must be the very first rule in the stylesheet. A `<link>` tag in the `<head>` is faster because it does not block parsing as long, so prefer `<link>` in production.\n\n### text-align\n`text-align: left/center/right/justify` controls how lines sit inside their box. `justify` stretches every line to full width and can create ugly \"rivers\" of white space in narrow columns — reserve it for print. Center-align short headings, but keep body copy left-aligned: centered paragraphs are hard to scan.\n\nCommon mistakes: mixing `em` in deeply nested components (the compounding surprise), forgetting the generic family at the end of a stack, and setting `line-height` in `px` so it never scales. Build your type scale in `rem` from the start — it survives zoom, accessibility settings, and responsive breakpoints without rewrites.",
+    "codeSnippets": [
+      {
+        "language": "css",
+        "code": "body {\n  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;\n  font-size: 1rem;\n  line-height: 1.6;\n}",
+        "output": "Readable base typography that inherits to every element."
+      },
+      {
+        "language": "css",
+        "code": ".badge {\n  font-size: 0.75rem;\n  letter-spacing: 2px;\n  text-transform: uppercase;\n  font-weight: 600;\n}",
+        "output": "A small uppercase label with wide tracking — a classic tag style."
+      }
+    ],
+    "exercise": {
+      "instruction": "Style the .prose paragraph: give it a font-family stack of 'Georgia', 'Times New Roman', serif, a font-size of 1.25rem, line-height 1.6, and letter-spacing 0.5px. Then make the h1 bold (font-weight: 700) and centered with text-align: center.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Typography</title>\n  <style>\n    h1 {\n\n    }\n    .prose {\n\n    }\n  </style>\n</head>\n<body>\n  <h1>Why Typography Matters</h1>\n  <p class=\"prose\">Typography is 90% of web design. The right font stack, size, and spacing turn a block of text into something people actually want to read. Reading comfort comes from rhythm, not decoration.</p>\n  <p class=\"prose\">Notice how this second paragraph inherits the same styling — a well-built type system scales without extra work.</p>\n</body>\n</html>",
+      "required": ["font-family", "1.25rem", "line-height: 1.6", "letter-spacing: 0.5px", "font-weight: 700", "text-align: center"],
+      "hints": [
+        "Hint 1: h1 { font-weight: 700; text-align: center; }",
+        "Hint 2: .prose { font-family: 'Georgia', 'Times New Roman', serif; font-size: 1.25rem; line-height: 1.6; letter-spacing: 0.5px; }",
+        "Hint 3: 1.25rem = 20px at the default 16px root — try changing it to feel the difference."
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Why is rem preferred over em for font sizes?",
+        "options": ["rem scales with the parent element", "rem is relative to the root element, so it stays predictable at any depth", "rem is always exactly 16px"],
+        "correct": 1
+      },
+      {
+        "question": "Which of these is the best line-height for body text?",
+        "options": ["1.6", "0.8", "3.5"],
+        "correct": 0
+      },
+      {
+        "question": "A font-family stack is...",
+        "options": ["a list of fallbacks the browser tries in order", "a list of sizes for the same font", "a way to embed images as fonts"],
+        "correct": 0
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "css-09-positioning",
+    "unlocks": ["css-09-positioning"]
+  }
+}

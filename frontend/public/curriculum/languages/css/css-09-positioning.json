@@ -1,0 +1,56 @@
+{
+  "id": "css-09-positioning",
+  "track": "css",
+  "title": "Positioning & z-index",
+  "section": "Advanced CSS",
+  "order": 9,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "Every element starts as `position: static` — it flows normally down the document, and `top`, `right`, `bottom`, and `left` have **no effect** on it. Static is the default, which is why you almost never type it explicitly. Real control begins with the other four values.\n\n### relative\n```css\n.box {\n  position: relative;\n  top: 10px;\n  left: 20px;\n}\n```\n`relative` keeps the element in the normal flow but nudges it from its original spot using offsets. Crucially, it becomes a **positioning anchor** — it establishes a containing block for any absolutely positioned descendants.\n\n### absolute\n```css\n.badge {\n  position: absolute;\n  top: 0;\n  right: 0;\n}\n```\n`absolute` removes the element from the flow entirely (it no longer reserves space, so siblings may overlap it) and positions it relative to the **nearest positioned ancestor** — that is, the closest ancestor with `relative`, `absolute`, `fixed`, or `sticky`. If no ancestor is positioned, it anchors to the page root (`<html>`). This makes it the workhorse for badges, tooltips, and corner overlays. The classic pattern is wrapping the absolute element in a `relative` parent so the offsets apply to a predictable box.\n\n### fixed and sticky\n```css\n.nav { position: fixed; top: 0; width: 100%; }\n.aside { position: sticky; top: 12px; }\n```\n`fixed` pins an element to the **viewport** — it never moves when you scroll, ideal for navbars and floating action buttons (add padding to the page so it doesn't cover content). `sticky` is the hybrid: it scrolls with the page normally, but sticks as soon as it reaches its `top` value, staying put while you scroll past it. Sticky is the best choice for section headers and table headers that should remain visible.\n\n### z-index & stacking contexts\nWhen positioned elements overlap, they stack in DOM order by default — but you control the visual order with `z-index`: a higher number wins. `z-index` only works on **positioned** elements (and flex/grid items). Any element with a `z-index`, `opacity`, or `transform` also creates a **stacking context** that traps its children's z-index values inside it, so a modal at `z-index: 9999` nested inside a `z-index: 1` container still loses. Keep overlays at `10`, modals at `100`, and leave everything else at 0.\n\n### When to use which\n\n| Property | Use for |\n|----------|---------|\n| relative | nudging + anchoring absolutely positioned children |\n| absolute | badges, tooltips, overlays inside a relative wrapper |\n| fixed | viewport-pinned navbars, floating buttons |\n| sticky | headers that stick after scrolling past them |\n\nMost positioning bugs come from forgetting that `absolute` needs a positioned ancestor — if your badge lands in the wrong corner, walk up the DOM and check where its anchor chain starts.",
+    "codeSnippets": [
+      {
+        "language": "css",
+        "code": ".card {\n  position: relative;\n}\n.card .badge {\n  position: absolute;\n  top: 0;\n  right: 0;\n}",
+        "output": "A badge pinned to the top-right corner of its card."
+      },
+      {
+        "language": "css",
+        "code": ".sidebar {\n  position: sticky;\n  top: 16px;\n}",
+        "output": "The sidebar scrolls normally, then sticks 16px from the top of the viewport."
+      }
+    ],
+    "exercise": {
+      "instruction": "Anchor the .badge to the top-right corner of its .box. Make .box position: relative, then give .badge position: absolute with top: 0 and right: 0. Finally give .badge a z-index of 10 so it always sits above overlapping content.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Positioning</title>\n  <style>\n    .box {\n      width: 240px;\n      height: 140px;\n      margin: 40px auto;\n      background: #eef2ff;\n      border: 2px dashed #6366f1;\n\n    }\n    .badge {\n      background: #6d28d9;\n      color: white;\n      padding: 4px 10px;\n      border-radius: 9999px;\n      font-size: 12px;\n\n    }\n    .blocker {\n      width: 260px;\n      height: 30px;\n      margin: -30px auto 0;\n      background: #f87171;\n      position: relative;\n      z-index: 5;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"box\">\n    <span class=\"badge\">NEW</span>\n  </div>\n  <div class=\"blocker\"></div>\n  <p>Notice how the badge corners exactly with .box — not the page.</p>\n</body>\n</html>",
+      "required": ["position: relative", "position: absolute", "top: 0", "right: 0", "z-index: 10"],
+      "hints": [
+        "Hint 1: .box needs position: relative so it becomes the anchor.",
+        "Hint 2: .badge { position: absolute; top: 0; right: 0; z-index: 10; }",
+        "Hint 3: Without the anchor, the badge would snap to the top-right of the page."
+      ]
+    },
+    "quiz": [
+      {
+        "question": "An absolutely positioned element anchors to...",
+        "options": ["the page root if no positioned ancestor exists", "always its direct parent element", "the viewport"],
+        "correct": 0
+      },
+      {
+        "question": "Which position value pins an element to the viewport so it never scrolls?",
+        "options": ["relative", "sticky", "fixed"],
+        "correct": 2
+      },
+      {
+        "question": "z-index only affects...",
+        "options": ["all elements equally", "positioned elements (and flex/grid items)", "only fixed elements"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "css-10-pseudo-classes",
+    "unlocks": ["css-10-pseudo-classes"]
+  }
+}

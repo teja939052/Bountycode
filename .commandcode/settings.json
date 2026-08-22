@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Shell(python -m compileall app/services/gamification.py app/routes/gamification.py 2 >& 1)",
+      "Shell(npx tsc --noEmit 2 >& 1)",
+      "powershell",
+      "Shell(python -c import ast; ast.parse(open('app/routes/study_timer.py').read()); ast.parse(open('app/main.py').read()); print('PARSE OK'))",
+      "Shell(npm:*)",
+      "Shell(python -m compileall app/middleware/auth.py app/routes/auth.py app/routes/goals.py app/routes/cards.py app/routes/mystery_box.py app/routes/study_timer.py app/main.py 2 >& 1)",
+      "Shell(findstr:*)",
+      "Shell(python -c import py_compile; [py_compile.compile(f, doraise=True) for f in ['app/middleware/auth.py','app/routes/auth.py','app/routes/goals.py','app/routes/cards.py','app/routes/study_timer.py','app/routes/mystery_box.py','app/main.py']]; print('BACKEND COMPILE OK'))",
+      "Shell(python -c from app.main import app; print('APP IMPORT OK') 2 >& 1)",
+      "Shell(python -c from app.main import app; from app.routes.themes import router; from app.routes.goals import router as g; from app.middleware.auth import create_refresh_token, _finalize_user, _admin_emails, PasswordValidator; print('BACKEND OK - all auth + routes importable') 2 >& 1)",
+      "Shell(if:*)",
+      "Shell(-not:*)",
+      "Shell(Test-Path:*)",
+      "Shell({:*)",
+      "Shell(else:*)",
+      "Shell(python -c import py_compile; py_compile.compile('app/services/ai_interview.py', doraise=True); print('ai_interview.py COMPILE OK'))",
+      "Shell(python -c from app.main import app; from app.services.ai_interview import evaluate_answer, generate_interview_question, FIRST_BANK_QUESTIONS, DIFFICULTY_WEIGHTS, COMPANY_RUBRIC_WEIGHTS; print('BACKEND OK - interview engine hot-swapped') 2 >& 1)",
+      "Shell(python -m compileall app/services/ai_interview.py app/routes/interview.py app/models/interview.py app/routes/themes.py app/middleware/auth.py app/routes/auth.py 2 >& 1)",
+      "Shell(python -c from app.main import app; from app.services.ai_interview import evaluate_answer, generate_interview_question, COMPANY_RUBRIC_WEIGHTS, FIRST_BANK_QUESTIONS; print('BACKEND OK') 2 >& 1)",
+      "Shell()"
+    ],
+    "deny": [],
+    "defaultMode": "default"
+  }
+}

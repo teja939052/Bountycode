@@ -1,0 +1,46 @@
+{
+  "id": "html-04-images-content",
+  "track": "html",
+  "title": "Images & Content",
+  "section": "Fundamentals",
+  "order": 4,
+  "type": "lesson",
+  "duration": "9 min",
+  "xp": 20,
+  "content": {
+    "theory": "Pages come alive with images, links, and embedded content.\n\n### Images\nUse the `<img>` tag. It is a **void element** — no closing tag — and has two essential attributes:\n\n```html\n<img src=\"photo.jpg\" alt=\"A sunset over the sea\">\n```\n\n- `src` = the image URL or file path\n- `alt` = a text description. It shows if the image fails to load and is read aloud by screen readers. **Never skip `alt`.**\n\n### Links\nThe `<a>` (anchor) tag creates a hyperlink:\n\n```html\n<a href=\"https://example.com\" target=\"_blank\">Visit Example</a>\n```\n\n- `href` = destination URL\n- `target=\"_blank\"` = open in a new tab\n\n### Images as links\nWrap an `<a>` around an `<img>` to make the image clickable:\n\n```html\n<a href=\"/profile\">\n  <img src=\"avatar.png\" alt=\"My avatar\">\n</a>\n```\n\n### More content tags\n- `<figure>` + `<figcaption>` → image with a caption\n- `<video>` + `<source>` → embedded video\n- `<iframe>` → embed another page (YouTube, maps)\n- `<blockquote>` → quoted text\n\n```html\n<figure>\n  <img src=\"map.png\" alt=\"Route map\">\n  <figcaption>Our hiking route</figcaption>\n</figure>\n```",
+    "codeSnippets": [
+      {
+        "language": "html",
+        "code": "<a href=\"https://developer.mozilla.org\" target=\"_blank\">\n  Read the docs\n</a>",
+        "output": "A blue underlined link that opens in a new tab."
+      }
+    ],
+    "exercise": {
+      "instruction": "Add an image of a dog using the src 'dog.jpg' and an alt text 'A happy dog'. Then turn it into a link that points to 'https://example.com'.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Pets</title>\n</head>\n<body>\n  <h2>My Dog</h2>\n\n</body>\n</html>",
+      "required": ["<a href=\"https://example.com\"", "<img", "src=\"dog.jpg\"", "alt=\"A happy dog\"", "</a>"],
+      "hints": [
+        "Hint 1: Start with an anchor: <a href=\"https://example.com\">.",
+        "Hint 2: Inside it, add <img src=\"dog.jpg\" alt=\"A happy dog\">.",
+        "Hint 3: Close with </a> after the image tag."
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What is the purpose of the alt attribute?",
+        "options": ["To style the image", "A text fallback read by screen readers", "To set the image width"],
+        "correct": 1
+      },
+      {
+        "question": "Which attribute sets a link's destination?",
+        "options": ["src", "url", "href"],
+        "correct": 2
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "html-05-page-layout",
+    "unlocks": ["html-05-page-layout"]
+  }
+}

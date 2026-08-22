@@ -1,0 +1,56 @@
+{
+  "id": "css-10-pseudo-classes",
+  "track": "css",
+  "title": "Pseudo-classes & Pseudo-elements",
+  "section": "Advanced CSS",
+  "order": 10,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "Pseudo-classes select an element in a **particular state** — the single colon targets conditions the HTML alone cannot express. The most famous is `:hover`, which applies while the pointer is over an element:\n\n```css\na:hover { color: #2563eb; }\n```\nPseudo-classes let you build interactivity and pattern styling without adding classes to the markup.\n\n### :focus & :focus-visible\n`:focus` matches any focused element, whether it received focus from a mouse click, a Tab press, or a script. Keyboard users *need* a visible focus indicator, but many designers find a focus ring ugly after a mouse click — that's exactly what `:focus-visible` is for: it only matches when focus came from the **keyboard or an assistive device**. Use `:focus-visible` for subtle outlines, but always keep some visible focus indication for accessibility.\n\n### Structural pseudo-classes\n```css\nli:first-child { font-weight: 700; }\nli:last-child { border-bottom: none; }\nli:nth-child(2) { background: #f3f4f6; }\nli:nth-child(odd) { background: #eef2ff; }\n```\n`:nth-child()` accepts formulas like `2n+1` plus the keywords `odd` and `even` — perfect for zebra-striping tables and lists. Note that `:nth-child` counts *all* siblings; `:nth-of-type` counts only siblings with the same tag.\n\n### :not()\n```css\np:not(.intro) { color: #444; }\n```\n`:not()` inverts a selector — it matches everything that is *not* the argument. Modern browsers support selector lists, so `:not(.a, .b)` works too, letting you exclude several cases in one rule.\n\n### Pseudo-elements ::before and ::after\nPseudo-**classes** select states; pseudo-**elements** (double colon) generate fake children. `::before` inserts content at the very start of an element, `::after` at the very end — and both **require the `content` property**, otherwise nothing renders:\n\n```css\nli::before {\n  content: '> ';\n  color: #6d28d9;\n}\n```\nPseudo-elements are ideal for decorative icons, arrows, quotes, and labels — visual detail with zero extra HTML.\n\n### Attribute selectors\n```css\ninput[type='email'] { border-color: #10b981; }\na[href^='https']::after { content: ' 🔗'; }\n```\n`[attr=value]` matches exactly, `[attr^=]` starts-with, `[attr$=]` ends-with, and `[attr*=]` contains — handy for styling input variants and flagging external links.\n\nThe common mistakes: adding `:hover` styling but forgetting the focused state for keyboard users, and writing a `::before`/`::after` without `content` (it then silently never renders).",
+    "codeSnippets": [
+      {
+        "language": "css",
+        "code": "li:nth-child(odd) {\n  background: #eef2ff;\n}\nli::before {\n  content: '> ';\n  color: #6d28d9;\n}",
+        "output": "Zebra stripes on odd rows plus a purple arrow before every item."
+      },
+      {
+        "language": "css",
+        "code": ".btn:focus-visible {\n  outline: 2px solid #2563eb;\n  outline-offset: 2px;\n}",
+        "output": "A visible outline only for keyboard/assistive focus, not mouse clicks."
+      }
+    ],
+    "exercise": {
+      "instruction": "Style the list: give odd list items (li:nth-child(odd)) a background of #eef2ff, add a ::before with content \"> \" and color #6d28d9 to every li, and make the button text turn blue with a :hover rule.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Pseudo-classes</title>\n  <style>\n    ul {\n      list-style: none;\n      padding: 0;\n      width: 260px;\n    }\n    li {\n      padding: 8px 12px;\n\n    }\n    li::before {\n\n    }\n    .btn {\n      margin-top: 12px;\n      padding: 8px 16px;\n      border: 2px solid #2563eb;\n      border-radius: 6px;\n    }\n    .btn:hover {\n\n    }\n  </style>\n</head>\n<body>\n  <ul>\n    <li>Learn CSS</li>\n    <li>Practice flexbox</li>\n    <li>Build components</li>\n    <li>Ship projects</li>\n    <li>Get hired</li>\n  </ul>\n  <button class=\"btn\">Hover me</button>\n</body>\n</html>",
+      "required": [":nth-child(odd)", "background: #eef2ff", "::before", "content: \"> \"", ":hover"],
+      "hints": [
+        "Hint 1: li:nth-child(odd) { background: #eef2ff; } stripes every other row.",
+        "Hint 2: li::before { content: '> '; color: #6d28d9; } — content is mandatory.",
+        "Hint 3: .btn:hover { color: #2563eb; } gives a clear interactive signal."
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What is the difference between :focus and :focus-visible?",
+        "options": [":focus-visible only matches keyboard or assistive focus", ":focus-visible matches every kind of focus", "They are the same thing"],
+        "correct": 0
+      },
+      {
+        "question": "::before creates content...",
+        "options": ["inside the element after its children", "at the start of the element — but only renders when content is set", "as a separate element in the DOM"],
+        "correct": 1
+      },
+      {
+        "question": ":nth-child(odd) selects...",
+        "options": ["the 2nd, 4th, 6th... children", "the 1st, 3rd, 5th... children", "children with an odd width"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "css-11-css-variables",
+    "unlocks": ["css-11-css-variables"]
+  }
+}

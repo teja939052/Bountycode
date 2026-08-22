@@ -94,8 +94,8 @@ export default function CampusWars() {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-slate-950 text-white">
-        <div className="animate-pulse text-indigo-300">Loading Campus Wars...</div>
+      <div className="flex min-h-screen items-center justify-center bg-surface-base text-text-primary">
+        <div className="animate-pulse text-nature-blossom">Loading Campus Wars...</div>
       </div>
     );
   }
@@ -104,11 +104,11 @@ export default function CampusWars() {
   const earnedBadges = badges.filter((b) => b.earned);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white px-4 py-8">
+    <div className="min-h-screen bg-surface-base text-text-primary px-4 py-8">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold">⚔️ Campus Wars</h1>
-          <p className="text-slate-400 mt-2">Weekly college challenges, daily quests, and badge battles.</p>
+          <p className="text-text-muted mt-2">Weekly college challenges, daily quests, and badge battles.</p>
         </div>
 
         {error && (
@@ -121,20 +121,20 @@ export default function CampusWars() {
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          className="mb-8 bg-gradient-to-r from-indigo-900/40 to-purple-900/40 border border-indigo-500/30 rounded-2xl p-6 text-center"
+          className="mb-8 bg-gradient-to-r from-[#EDF5E6] to-[#D9EFCF] border border-nature-leaf/30 rounded-2xl p-6 text-center"
         >
           <div className="text-5xl mb-2">{myRank.icon}</div>
-          <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-400">
+          <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-orange-500">
             {myRank.rank}
           </h2>
-          <p className="text-slate-300 mt-1">College: {user?.college || "Not set"}</p>
-          <p className="text-slate-400 text-sm">
+          <p className="text-text-secondary mt-1">College: {user?.college || "Not set"}</p>
+          <p className="text-text-muted text-sm">
             XP: {userProgress?.xp || 0} | Badges: {earnedBadges.length}/{badges.length}
           </p>
         </motion.div>
 
         {/* Tabs */}
-        <div className="mb-6 border-b border-slate-800">
+        <div className="mb-6 border-b border-[#EDEAE0]">
           <nav className="flex gap-6">
             {[
               { key: "daily", label: "Daily Quests", icon: Calendar },
@@ -148,8 +148,8 @@ export default function CampusWars() {
                   onClick={() => setActiveTab(t.key)}
                   className={"flex items-center gap-2 pb-3 px-1 text-sm font-medium transition " +
                     (activeTab === t.key
-                      ? "text-indigo-400 border-b-2 border-indigo-500"
-                      : "text-slate-500 hover:text-slate-300")}
+                      ? "text-nature-blossom border-b-2 border-[#4F8F57]"
+                      : "text-text-muted hover:text-text-secondary")}
                 >
                   <Icon className="h-4 w-4" />
                   {t.label}
@@ -174,18 +174,18 @@ export default function CampusWars() {
                 return (
                   <motion.div
                     key={q.id}
-                    className="bg-slate-900/60 border border-slate-800 rounded-xl p-5 flex items-center justify-between"
+                    className="bg-white border border-nature-leaf/20 rounded-xl p-5 flex items-center justify-between"
                   >
                     <div className="flex items-center gap-4">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600/20">
-                        <CheckCircle className="h-5 w-5 text-indigo-400" />
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-surface-card">
+                        <CheckCircle className="h-5 w-5 text-nature-blossom" />
                       </div>
                       <div>
-                        <h3 className="font-bold text-slate-200">{q.title}</h3>
-                        <p className="text-sm text-slate-400">{q.desc}</p>
+                        <h3 className="font-bold text-text-primary">{q.title}</h3>
+                        <p className="text-sm text-text-muted">{q.desc}</p>
                         <div className="flex items-center gap-3 mt-1">
-                          <span className="text-xs text-amber-300">+{q.xp} XP</span>
-                          <span className="text-xs text-yellow-300">+{q.coins} 🪙</span>
+                          <span className="text-xs text-amber-600">+{q.xp} XP</span>
+                          <span className="text-xs text-yellow-600">+{q.coins} 🪙</span>
                         </div>
                       </div>
                     </div>
@@ -194,10 +194,10 @@ export default function CampusWars() {
                       disabled={claimed || processingQuest}
                       className={"rounded-lg px-4 py-2 font-semibold text-sm transition " +
                         (claimed
-                          ? "bg-slate-700 text-slate-500 cursor-not-allowed"
+                          ? "bg-surface-card text-text-muted cursor-not-allowed"
                           : processingQuest
-                          ? "bg-slate-700 text-slate-400 cursor-wait"
-                          : "bg-indigo-600 text-white hover:bg-indigo-500")}
+                          ? "bg-surface-card text-text-muted cursor-wait"
+                          : "bg-nature-leaf text-white hover:bg-nature-moss")}
                     >
                       {claimed ? "Claimed" : processingQuest ? "..." : "Claim"}
                     </button>
@@ -221,30 +221,30 @@ export default function CampusWars() {
                 return (
                   <motion.div
                     key={ch.id}
-                    className="bg-slate-900/60 border border-slate-800 rounded-xl p-5"
+                    className="bg-white border border-nature-leaf/20 rounded-xl p-5"
                   >
                     <div className="flex items-start justify-between mb-3">
                       <div>
-                        <h3 className="font-bold text-slate-200 flex items-center gap-2">
+                        <h3 className="font-bold text-text-primary flex items-center gap-2">
                           <Flame className="h-4 w-4 text-amber-400" />
                           {ch.title}
                         </h3>
-                        <span className="text-xs text-slate-500">Tier {ch.tier} challenge</span>
+                        <span className="text-xs text-text-muted">Tier {ch.tier} challenge</span>
                       </div>
                       <span className={`text-xs font-bold px-2 py-1 rounded ${
                         claimed
-                          ? "bg-green-500/20 text-green-300"
+                          ? "bg-green-500/20 text-green-600"
                           : canClaim
-                          ? "bg-amber-500/20 text-amber-300"
-                          : "bg-slate-700 text-slate-500"
+                          ? "bg-amber-500/20 text-amber-600"
+                          : "bg-surface-card text-text-muted"
                       }`}>
                         {claimed ? "CLAIMED" : canClaim ? "AVAILABLE" : "LOCKED"}
                       </span>
                     </div>
-                    <p className="text-sm text-slate-300 mb-3">{ch.desc}</p>
+                    <p className="text-sm text-text-secondary mb-3">{ch.desc}</p>
                     <div className="flex flex-wrap gap-2">
                       {ch.rewards.map((r, i) => (
-                        <span key={i} className="text-xs px-2 py-1 bg-slate-800 rounded">
+                        <span key={i} className="text-xs px-2 py-1 bg-surface-card rounded">
                           {r.type === "coins" ? `${r.amount} 🪙` :
                            r.type === "xp_boost_2x_24h" ? "2x XP (24h)" :
                            r.type === "badge" ? `Badge: ${r.id}` :
@@ -276,8 +276,8 @@ export default function CampusWars() {
               className="space-y-6"
             >
               <div className="flex justify-between items-center">
-                <h2 className="text-xl font-bold text-slate-200">Earned Badges</h2>
-                <span className="text-sm text-slate-400">{earnedBadges.length} / {badges.length} collected</span>
+                <h2 className="text-xl font-bold text-text-primary">Earned Badges</h2>
+                <span className="text-sm text-text-muted">{earnedBadges.length} / {badges.length} collected</span>
               </div>
               <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-4">
                 {badges.map((b) => {
@@ -288,14 +288,14 @@ export default function CampusWars() {
                     <motion.div
                       key={b.id}
                       className={"rounded-xl p-2 text-center " +
-                        (b.earned ? "bg-gradient-to-br " + color : "bg-slate-800/40 border border-slate-700")}
+                        (b.earned ? "bg-gradient-to-br " + color : "bg-surface-card border border-nature-leaf/20")}
                       animate={{ rotate: b.earned ? [0, 5, -5, 0] : 0 }}
                       transition={{ duration: 0.3 }}
                     >
                       <div className="text-2xl mb-1">
                         {b.earned ? "✨" : "🔒"}
                       </div>
-                      <span className="text-xs text-slate-300 block truncate">
+                      <span className="text-xs text-text-secondary block truncate">
                         {b.tier === 3 ? "🥇" : b.tier === 2 ? "🥈" : "🥉"} {b.name.split(" ")[0]}
                       </span>
                     </motion.div>
@@ -318,14 +318,14 @@ export default function CampusWars() {
             onClick={() => setLastReward(null)}
           >
             <motion.div
-              className="bg-slate-900 border-2 border-yellow-400 rounded-3xl p-8 text-center max-w-sm mx-4 shadow-[0_0_60px_rgba(250,204,21,0.5)]"
+              className="bg-white border-2 border-yellow-400 rounded-3xl p-8 text-center max-w-sm mx-4 shadow-[0_0_40px_rgba(127,182,97,0.35)]"
               onClick={(e) => e.stopPropagation()}
             >
               <motion.div animate={{ scale: [1, 1.2, 1] }} className="text-6xl mb-4">
                 {lastReward.type === "daily" ? "🎁" : "🏆"}
               </motion.div>
-              <h3 className="text-2xl font-bold text-yellow-300 mb-2">{lastReward.title}</h3>
-              <div className="space-y-2 text-slate-300">
+              <h3 className="text-2xl font-bold text-yellow-600 mb-2">{lastReward.title}</h3>
+              <div className="space-y-2 text-text-secondary">
                 {lastReward.xp && <p>⚡ +{lastReward.xp} XP</p>}
                 {lastReward.coins && <p>🪙 +{lastReward.coins} Coins</p>}
                 {lastReward.rewards && lastReward.rewards.map((r, i) => (

@@ -1,6 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import gsap from 'gsap';
 import api from '../services/api';
 import { Card } from '../components/ui/Card';
 
@@ -69,17 +68,10 @@ export default function MonthlyContests() {
   const [contests, setContests] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('active');
-  const gridRef = useRef(null);
 
   useEffect(() => {
     loadContests();
   }, []);
-
-  useEffect(() => {
-    if (!loading && gridRef.current) {
-      gsap.fromTo(gridRef.current.children, { opacity: 0, y: 20 }, { opacity: 1, y: 0, stagger: 0.08, duration: 0.4, ease: 'power2.out' });
-    }
-  }, [loading, activeTab]);
 
   const loadContests = async () => {
     setLoading(true);
@@ -134,7 +126,13 @@ export default function MonthlyContests() {
             ))}
           </div>
         ) : (
-          <div ref={gridRef} className="grid sm:grid-cols-2 gap-4">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }}
+            key={activeTab}
+            className="grid sm:grid-cols-2 gap-4"
+          >
             {filtered.map((contest) => {
               const sc = STATUS_COLORS[contest.status] || STATUS_COLORS.ended;
               return (
@@ -196,7 +194,7 @@ export default function MonthlyContests() {
                 </Card>
               );
             })}
-          </div>
+          </motion.div>
         )}
 
         {filtered.length === 0 && !loading && (

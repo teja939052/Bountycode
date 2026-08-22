@@ -1,4 +1,9 @@
-"""Unified retry + circuit breaker wrapper for external calls."""
+"""Unified retry + circuit breaker wrapper for external calls.
+
+Provides call_with_resilience(), which wraps an async callable with exponential
+backoff retry logic and circuit breaker integration. Supports both CircuitBreaker
+objects and plain dicts for breaker state.
+"""
 import asyncio
 import logging
 import time
@@ -8,12 +13,29 @@ logger = logging.getLogger(__name__)
 
 
 def _breaker_get(breaker, key, default=None):
+    """Get a value from a circuit breaker object or dict.
+
+    Args:
+        breaker: CircuitBreaker instance or dict with breaker state.
+        key: Attribute/key name to retrieve.
+        default: Value to return if the key is not found.
+
+    Returns:
+        Any: The breaker's value for the given key.
+    """
     if isinstance(breaker, dict):
         return breaker.get(key, default)
     return getattr(breaker, key, default)
 
 
 def _breaker_set(breaker, key, value):
+    """Set a value on a circuit breaker object or dict.
+
+    Args:
+        breaker: CircuitBreaker instance or dict with breaker state.
+        key: Attribute/key name to set.
+        value: Value to assign.
+    """
     if isinstance(breaker, dict):
         breaker[key] = value
     else:
@@ -41,6 +63,13 @@ async def call_with_resilience(
         base_delay: Base delay in seconds; doubles each attempt (exponential backoff).
         metrics: Optional RequestMetrics instance.
         *args, **kwargs: Positional and keyword arguments forwarded to func.
+
+    Returns:
+        Any: The return value of `func` on success.
+
+    Raises:
+        Exception: The last exception raised by `func` after all retries are exhausted,
+            or if the circuit breaker is open and recovery time has not elapsed.
     """
     last_error = None
     for attempt in range(max_retries + 1):

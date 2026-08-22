@@ -26,7 +26,7 @@ export default function ChallengePacks() {
   const loadChallenges = async () => {
     setLoading(true); setError(null);
     try {
-      const data = await api.browseQuestions({ type: "coding", limit: 50 });
+      const data = await api.browseQuestions({ type: "coding", limit: 100 });
       const enhanced = (data.questions || data.problems || []).map((q) => ({
         ...q,
         title: q.question_title || q.title,
@@ -70,17 +70,17 @@ export default function ChallengePacks() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#0a0a0f]">
+      <div className="min-h-screen flex items-center justify-center bg-surface-base">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 border-4 border-purple-500/30 border-t-purple-500 rounded-full animate-spin" />
-          <span className="text-sm font-mono text-slate-400">Opening packs...</span>
+          <div className="w-12 h-12 border-4 border-nature-leaf/30 border-t-[#4F8F57] rounded-full animate-spin" />
+          <span className="text-sm font-mono text-text-muted">Opening packs...</span>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-slate-100">
+    <div className="min-h-screen bg-surface-base text-text-primary">
       <div className="max-w-7xl mx-auto px-4 py-8">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -88,14 +88,14 @@ export default function ChallengePacks() {
           className="mb-8"
         >
           <div className="flex items-center gap-3 mb-3">
-            <div className="p-3 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl border border-purple-500/30">
-              <Sword className="w-7 h-7 text-purple-400" />
+<div className="p-3 bg-gradient-to-br from-[#D9EFCF] to-[#EDF5E6] rounded-2xl border border-nature-leaf/30">
+          <Sword className="w-7 h-7 text-nature-blossom" />
             </div>
             <div>
-              <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
+              <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#2E6B35] via-[#4F8F57] to-[#7BB661] bg-clip-text text-transparent">
                 Challenge Packs
               </h1>
-              <p className="text-slate-400 text-sm mt-1">
+              <p className="text-text-muted text-sm mt-1">
                 Collect, solve, and master coding challenges — trading card style
               </p>
             </div>
@@ -104,15 +104,15 @@ export default function ChallengePacks() {
 
         {/* Filters */}
         <div className="flex flex-wrap items-center gap-3 mb-8">
-          <div className="flex items-center gap-1.5 bg-slate-900 border border-slate-800 rounded-xl p-1">
+          <div className="flex items-center gap-1.5 bg-white border border-nature-leaf/20 rounded-xl p-1">
             {RARITY_FILTERS.map((r) => (
               <button
                 key={r}
                 onClick={() => setRarityFilter(r)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                   rarityFilter === r
-                    ? "bg-purple-600 text-white shadow-lg shadow-purple-600/20"
-                    : "text-slate-400 hover:text-slate-200"
+? "bg-nature-leaf text-white shadow-lg shadow-[#4F8F57]/20"
+            : "text-text-muted hover:text-text-primary"
                 }`}
               >
                 {r === "all" ? "All" : r.charAt(0).toUpperCase() + r.slice(1)}
@@ -120,7 +120,7 @@ export default function ChallengePacks() {
             ))}
           </div>
 
-          <div className="flex items-center gap-1.5 bg-slate-900 border border-slate-800 rounded-xl p-1">
+          <div className="flex items-center gap-1.5 bg-white border border-nature-leaf/20 rounded-xl p-1">
             {DIFFICULTY_FILTERS.map((d) => (
               <button
                 key={d}
@@ -128,7 +128,7 @@ export default function ChallengePacks() {
                 className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                   difficultyFilter === d
                     ? "bg-amber-600 text-white shadow-lg shadow-amber-600/20"
-                    : "text-slate-400 hover:text-slate-200"
+                    : "text-text-muted hover:text-text-primary"
                 }`}
               >
                 {d === "all" ? "All" : d.charAt(0).toUpperCase() + d.slice(1)}
@@ -138,27 +138,27 @@ export default function ChallengePacks() {
 
           <div className="flex-1 min-w-[200px] max-w-xs">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
               <input
                 type="text"
                 placeholder="Search challenges..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-slate-900 border border-slate-800 rounded-xl py-2 pl-10 pr-4 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-purple-500/50 transition-colors"
+                className="w-full bg-white border border-nature-leaf/20 rounded-xl py-2 pl-10 pr-4 text-sm text-text-primary placeholder-text-muted focus:outline-none focus:border-nature-leaf/60 transition-colors"
               />
             </div>
           </div>
 
-          <div className="flex items-center gap-1 bg-slate-900 border border-slate-800 rounded-xl p-1">
+          <div className="flex items-center gap-1 bg-white border border-nature-leaf/20 rounded-xl p-1">
             <button
               onClick={() => setViewMode("grid")}
-              className={`p-2 rounded-lg transition-all ${viewMode === "grid" ? "bg-slate-800 text-white" : "text-slate-500 hover:text-slate-300"}`}
+              className={`p-2 rounded-lg transition-all ${viewMode === "grid" ? "bg-nature-leaf text-white" : "text-text-muted hover:text-text-secondary"}`}
             >
               <Grid3x3 className="w-4 h-4" />
             </button>
             <button
               onClick={() => setViewMode("list")}
-              className={`p-2 rounded-lg transition-all ${viewMode === "list" ? "bg-slate-800 text-white" : "text-slate-500 hover:text-slate-300"}`}
+              className={`p-2 rounded-lg transition-all ${viewMode === "list" ? "bg-nature-leaf text-white" : "text-text-muted hover:text-text-secondary"}`}
             >
               <List className="w-4 h-4" />
             </button>
@@ -167,21 +167,21 @@ export default function ChallengePacks() {
 
         {/* Stats bar */}
         <div className="flex items-center justify-between mb-6 text-sm">
-          <span className="text-slate-400">
-            <span className="font-bold text-white">{filtered.length}</span> challenges
+          <span className="text-text-muted">
+            <span className="font-bold text-text-primary">{filtered.length}</span> challenges
             {filtered.length !== challenges.length && (
-              <span className="text-slate-500"> (filtered from {challenges.length})</span>
+              <span className="text-text-muted"> (filtered from {challenges.length})</span>
             )}
           </span>
-          <div className="flex items-center gap-3 text-xs text-slate-500">
+          <div className="flex items-center gap-3 text-xs text-text-muted">
             <span className="flex items-center gap-1">
-              <span className="w-2 h-2 rounded-full bg-slate-600" /> Common
+              <span className="w-2 h-2 rounded-full bg-[#9CA3AF]" /> Common
             </span>
             <span className="flex items-center gap-1">
               <span className="w-2 h-2 rounded-full bg-emerald-500" /> Rare
             </span>
             <span className="flex items-center gap-1">
-              <span className="w-2 h-2 rounded-full bg-purple-500" /> Epic
+              <span className="w-2 h-2 rounded-full bg-nature-leaf" /> Epic
             </span>
             <span className="flex items-center gap-1">
               <span className="w-2 h-2 rounded-full bg-amber-500" /> Legendary
@@ -211,26 +211,26 @@ export default function ChallengePacks() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: idx * 0.03 }}
                 onClick={() => setSelectedChallenge(challenge)}
-                className="flex items-center gap-4 bg-slate-900/80 border border-slate-800 rounded-xl p-4 hover:bg-slate-800/80 hover:border-slate-700 transition-all cursor-pointer"
+                className="flex items-center gap-4 bg-white border border-nature-leaf/20 rounded-2xl p-4 hover:bg-surface-base hover:border-nature-leaf/30 transition-all cursor-pointer"
               >
                 <div className="text-2xl">{challenge.icon || "⚔️"}</div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-medium text-sm text-white truncate">{challenge.title}</h3>
-                  <p className="text-xs text-slate-500 truncate">{challenge.description || challenge.topic || ""}</p>
+                  <h3 className="font-medium text-sm text-text-primary truncate">{challenge.title}</h3>
+                  <p className="text-xs text-text-muted truncate">{challenge.description || challenge.topic || ""}</p>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
-                    challenge.rarity === "legendary" ? "bg-amber-700/30 text-amber-400" :
-                    challenge.rarity === "rare" ? "bg-blue-700/30 text-blue-400" :
-                    challenge.rarity === "epic" ? "bg-purple-700/30 text-purple-400" :
-                    "bg-slate-700/30 text-slate-400"
+                    challenge.rarity === "legendary" ? "bg-[#FCEFD8] text-nature-sun" :
+                    challenge.rarity === "rare" ? "bg-[#E8F1FA] text-nature-sky" :
+                    challenge.rarity === "epic" ? "bg-nature-bark text-nature-blossom" :
+                    "bg-surface-card text-text-muted"
                   }`}>
                     {challenge.rarity}
                   </span>
                   <span className={`px-2 py-0.5 rounded text-[10px] font-mono ${
-                    challenge.difficulty === "hard" ? "text-red-400 bg-red-900/20" :
-                    challenge.difficulty === "medium" ? "text-amber-400 bg-amber-900/20" :
-                    "text-emerald-400 bg-emerald-900/20"
+                    challenge.difficulty === "hard" ? "text-red-600 bg-red-100" :
+                    challenge.difficulty === "medium" ? "text-nature-sun bg-amber-100" :
+                    "text-nature-blossom bg-emerald-100"
                   }`}>
                     {challenge.difficulty}
                   </span>
@@ -242,12 +242,12 @@ export default function ChallengePacks() {
 
         {filtered.length === 0 && (
           <div className="text-center py-20">
-            <Sword className="w-12 h-12 mx-auto text-slate-700 mb-4" />
-            <p className="text-slate-500 text-sm">No challenges match your filters.</p>
-            <button
-              onClick={() => { setRarityFilter("all"); setDifficultyFilter("all"); setSearchQuery(""); }}
-              className="mt-4 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-sm transition-colors"
-            >
+<Sword className="w-12 h-12 mx-auto text-[#C5C0B2] mb-4" />
+          <p className="text-text-muted text-sm">No challenges match your filters.</p>
+          <button
+            onClick={() => { setRarityFilter("all"); setDifficultyFilter("all"); setSearchQuery(""); }}
+            className="mt-4 px-4 py-2 bg-white hover:bg-surface-card text-text-secondary border border-nature-leaf/20 rounded-lg text-sm transition-colors"
+          >
               Clear Filters
             </button>
           </div>
@@ -266,45 +266,45 @@ export default function ChallengePacks() {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             onClick={(e) => e.stopPropagation()}
-            className="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-lg max-h-[80vh] overflow-y-auto shadow-2xl p-6"
+            className="bg-white border border-nature-leaf/20 rounded-2xl w-full max-w-lg max-h-[80vh] overflow-y-auto shadow-2xl p-6"
           >
             <div className="flex items-start gap-4 mb-4">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center text-3xl shrink-0">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#D9EFCF] to-[#EDF5E6] flex items-center justify-center text-3xl shrink-0">
                 {selectedChallenge.icon || "⚔️"}
               </div>
               <div className="flex-1 min-w-0">
-                <h2 className="text-xl font-bold text-white">{selectedChallenge.title}</h2>
+                <h2 className="text-xl font-bold text-text-primary">{selectedChallenge.title}</h2>
                 <div className="flex flex-wrap items-center gap-2 mt-2">
                   <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase ${
-                    selectedChallenge.rarity === "legendary" ? "bg-amber-700/30 text-amber-400 border border-amber-500/30" :
-                    selectedChallenge.rarity === "epic" ? "bg-purple-700/30 text-purple-400 border border-purple-500/30" :
-                    selectedChallenge.rarity === "rare" ? "bg-blue-700/30 text-blue-400 border border-blue-500/30" :
-                    "bg-slate-700/30 text-slate-400 border border-slate-600/30"
+                    selectedChallenge.rarity === "legendary" ? "bg-[#FCEFD8] text-nature-sun border border-amber-500/30" :
+                    selectedChallenge.rarity === "epic" ? "bg-nature-bark text-nature-blossom border border-nature-leaf/30" :
+                    selectedChallenge.rarity === "rare" ? "bg-[#E8F1FA] text-nature-sky border border-blue-500/30" :
+                    "bg-surface-card text-text-muted border border-nature-leaf/20"
                   }`}>
                     {selectedChallenge.rarity}
                   </span>
                   <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono border ${
-                    selectedChallenge.difficulty === "hard" ? "text-red-400 bg-red-900/20 border-red-500/30" :
-                    selectedChallenge.difficulty === "medium" ? "text-amber-400 bg-amber-900/20 border-amber-500/30" :
-                    "text-emerald-400 bg-emerald-900/20 border-emerald-500/30"
+                    selectedChallenge.difficulty === "hard" ? "text-red-600 bg-red-100 border-red-500/30" :
+                    selectedChallenge.difficulty === "medium" ? "text-nature-sun bg-amber-100 border-amber-500/30" :
+                    "text-nature-blossom bg-emerald-100 border-emerald-500/30"
                   }`}>
                     {selectedChallenge.difficulty}
                   </span>
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-indigo-900/20 text-indigo-400 border border-indigo-500/30 flex items-center gap-1">
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-nature-bark text-nature-blossom border border-nature-leaf/30 flex items-center gap-1">
                     <Zap className="w-3 h-3" /> +{selectedChallenge.xp_reward} XP
                   </span>
                 </div>
               </div>
             </div>
 
-            <div className="prose prose-sm prose-invert max-w-none text-slate-300 mb-6">
+            <div className="prose prose-sm max-w-none text-text-secondary mb-6">
               {selectedChallenge.statement || selectedChallenge.description || "Solve this coding challenge to earn XP and collect this card."}
             </div>
 
             {selectedChallenge.tags && selectedChallenge.tags.length > 0 && (
               <div className="flex flex-wrap gap-2 mb-6">
                 {selectedChallenge.tags.map((tag) => (
-                  <span key={tag} className="px-2.5 py-1 rounded-lg bg-slate-800 text-[11px] text-slate-300 font-mono border border-slate-700/50">
+                  <span key={tag} className="px-2.5 py-1 rounded-lg bg-surface-card text-[11px] text-text-secondary font-mono border border-nature-leaf/20">
                     {tag}
                   </span>
                 ))}
@@ -314,14 +314,14 @@ export default function ChallengePacks() {
             <div className="flex items-center gap-3">
               <Link
                 to={selectedChallenge.id ? `/solve/${selectedChallenge.id}` : "/compiler"}
-                className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white rounded-xl font-medium text-sm transition-all shadow-lg shadow-purple-600/20"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-[#4F8F57] to-[#7BB661] hover:from-[#3F7A47] hover:to-[#4F8F57] text-white rounded-xl font-medium text-sm transition-all shadow-lg shadow-[#4F8F57]/20"
                 onClick={() => setSelectedChallenge(null)}
               >
                 <Sparkles className="w-4 h-4" /> Solve Challenge
               </Link>
               <button
                 onClick={() => setSelectedChallenge(null)}
-                className="px-4 py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-sm transition-colors"
+                className="px-4 py-3 bg-white hover:bg-surface-card text-text-secondary border border-nature-leaf/20 rounded-xl text-sm transition-colors"
               >
                 Close
               </button>

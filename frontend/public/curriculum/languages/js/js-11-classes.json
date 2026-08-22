@@ -1,0 +1,56 @@
+{
+  "id": "js-11-classes",
+  "track": "javascript",
+  "title": "ES6 Classes",
+  "section": "JavaScript Advanced",
+  "order": 11,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "Before ES6, JavaScript built objects with constructor functions and `prototype`. The `class` syntax (ES6) gives you the same behavior with a cleaner, more familiar shape. A class is a **blueprint** for objects: define it once, then create many instances with `new`.\n\n### Basic class syntax\n```js\nclass Animal {\n  constructor(name) {\n    this.name = name;\n  }\n  speak() {\n    return this.name + \" makes a sound\";\n  }\n}\n\nconst dog = new Animal(\"Rex\");\nconsole.log(dog.speak());   // Rex makes a sound\n```\nThe `constructor` runs once when you call `new Animal(...)` and sets up the instance. Methods live on the class and are shared by every instance.\n\n### Getters and setters\n```js\nclass Circle {\n  constructor(radius) {\n    this.radius = radius;\n  }\n  get area() {\n    return Math.PI * this.radius * this.radius;\n  }\n}\nconsole.log(new Circle(2).area);   // accessed like a property, no () call\n```\n`get` exposes computed values as plain properties — call `circle.area`, not `circle.area()`.\n\n### Inheritance with extends and super\n```js\nclass Dog extends Animal {\n  constructor(name, breed) {\n    super(name);        // call the parent constructor first\n    this.breed = breed;\n  }\n  speak() {\n    return this.name + \" barks\";\n  }\n}\n```\n`extends` makes `Dog` inherit everything from `Animal`. `super(name)` calls the parent constructor — and you MUST call it before using `this` in a subclass. Overriding `speak()` lets the child replace the parent's behavior.\n\n### Static methods\n```js\nclass MathUtils {\n  static add(a, b) {\n    return a + b;\n  }\n}\nconsole.log(MathUtils.add(2, 3));   // 5\n```\n`static` methods belong to the class itself, not to instances — call them on `MathUtils`, not on an instance.\n\nA common mistake: forgetting `super()` in a subclass constructor, which throws a ReferenceError. Another: treating classes like those in Java or C# — JavaScript classes are still prototype-based under the hood, just with sugar on top. Remember `new` before the class name; calling `Animal(\"Rex\")` without `new` throws a TypeError.",
+    "codeSnippets": [
+      {
+        "language": "javascript",
+        "code": "class Animal {\n  constructor(name) {\n    this.name = name;\n  }\n  speak() {\n    return this.name + \" makes a sound\";\n  }\n}\nconst dog = new Animal(\"Rex\");\nconsole.log(dog.speak());",
+        "output": "Rex makes a sound"
+      },
+      {
+        "language": "javascript",
+        "code": "class Dog extends Animal {\n  speak() {\n    return this.name + \" barks\";\n  }\n}\nconsole.log(new Dog(\"Rex\").speak());",
+        "output": "Rex barks"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write a class Animal with a constructor(name) that stores this.name, and a speak() method returning this.name + \" makes a sound\". Then create a class Dog that extends Animal and overrides speak() to return this.name + \" barks\". Instantiate a Dog with the name \"Rex\" and set output.textContent to the result of dog.speak(). Expected: Rex barks.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<body>\n  <p id=\"output\"></p>\n  <script>\n    class Animal {\n      constructor(name) {\n        this.name = name;\n      }\n      speak() {\n        return this.name + \" makes a sound\";\n      }\n    }\n\n  </script>\n</body>\n</html>",
+      "required": ["class Dog", "extends Animal", "super(", "this.name", "barks", "new Dog", "textContent", "Rex barks"],
+      "hints": [
+        "Hint 1: class Dog extends Animal { constructor(name) { super(name); } speak() { return this.name + \" barks\"; } }",
+        "Hint 2: const dog = new Dog(\"Rex\");",
+        "Hint 3: document.getElementById(\"output\").textContent = dog.speak();"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What does the constructor method do?",
+        "options": ["Runs when a new instance is created with new", "Runs every time a method is called", "Deletes the instance"],
+        "correct": 0
+      },
+      {
+        "question": "Why must a subclass call super()?",
+        "options": ["It's optional, just for style", "To run the parent constructor and set up this before using it", "To create a new array"],
+        "correct": 1
+      },
+      {
+        "question": "How do you access a getter called area?",
+        "options": ["obj.area()", "obj.getArea()", "obj.area"],
+        "correct": 2
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "js-12-error-handling",
+    "unlocks": ["js-12-error-handling"]
+  }
+}

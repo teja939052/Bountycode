@@ -8,7 +8,7 @@
     "allowJs": true,
     "checkJs": false,
     "allowImportingTsExtensions": true,
-    "strict": false,
+    "strict": true,
     "noEmit": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -16,6 +16,9 @@
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "useDefineForClassFields": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
     "types": ["node"]
   },
   "include": ["src", "vite.config.js"]

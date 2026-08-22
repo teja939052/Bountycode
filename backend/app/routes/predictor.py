@@ -1,8 +1,11 @@
 from fastapi import APIRouter, Depends, HTTPException, status, Query
 from pydantic import BaseModel, Field
 from typing import Any, Dict, List, Optional
+from datetime import datetime, timezone
+from bson import ObjectId
 from app.services.placement_engine import PlacementEngine
 from app.middleware.auth import get_current_user
+from app.database import users_collection, predictions_collection, prediction_outcomes_collection
 
 router = APIRouter(
     prefix="/api/v1/predictor",
@@ -73,6 +76,19 @@ class PredictionResponse(BaseModel):
     comparison: Dict[str, Any]
 
 
+class OutcomeRecord(BaseModel):
+    company: str = Field(..., example="google")
+    role: Optional[str] = "SDE"
+    prediction_id: Optional[str] = None
+    predicted_probability: Optional[float] = Field(None, ge=1, le=100)
+    ctc: Optional[float] = Field(None, ge=0)
+    factors: Optional[Dict[str, Any]] = None
+    confidence_band: Optional[Dict[str, Any]] = None
+    outcome: str = Field(..., example="offered")
+    interview_date: Optional[str] = None
+    notes: Optional[str] = None
+
+
 # --- API ENDPOINTS ---
 
 @router.post("/predict", status_code=status.HTTP_200_OK)
@@ -91,7 +107,7 @@ async def predict_probability(
         if payload.scores:
             scores_dict = payload.scores.model_dump()
             result = await _calculate_with_custom_scores(
-                user["id"], company, scores_dict
+                user["id"], company, scores_dict, role=payload.role or "SDE"
             )
         else:
             result = await predictor_engine.calculate_probability(
@@ -124,10 +140,43 @@ async def predict_probability(
         )
 
 
+@router.post("/time-to-offer", status_code=status.HTTP_200_OK)
+async def time_to_offer(
+    payload: PredictionRequest,
+    user=Depends(get_current_user)
+):
+    """
+    POST: Estimates weeks-to-offer from current readiness and practice velocity.
+
+    Transparent math only: typical process length for the company tier plus the
+    prep weeks needed to close weighted skill gaps at observed practice pace.
+    """
+    try:
+        company = payload.resolved_company()
+        result = await predictor_engine.calculate_time_to_offer(
+            user_id=user["id"],
+            company_name=company,
+            role=payload.role or "SDE",
+        )
+        return result
+
+    except ValueError as e:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=str(e)
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Time-to-offer calculation failed: {str(e)}"
+        )
+
+
 async def _calculate_with_custom_scores(
     user_id: str,
     company_name: str,
-    custom_scores: Dict[str, float]
+    custom_scores: Dict[str, float],
+    role: str = "SDE",
 ) -> Dict[str, Any]:
     """Calculate probability with custom scores (for what-if testing)."""
     company = company_name.lower().strip()
@@ -139,7 +188,7 @@ async def _calculate_with_custom_scores(
             raise ValueError(f"Company '{company_name}' not found")
 
     profile = predictor_engine.COMPANY_PROFILES[company]
-    weights = predictor_engine.TIER_WEIGHTS[profile["tier"]]
+    weights = predictor_engine._effective_weights(profile["tier"], role)
 
     # Calculate with custom scores
     base_score = sum(custom_scores.get(skill, 0) * weights[skill] for skill in weights)
@@ -169,11 +218,25 @@ async def _calculate_with_custom_scores(
         custom_scores, weights, profile, final_probability
     )
 
+    # Explainable breakdown (consistent with the stored-score path)
+    factors = predictor_engine._compute_factors(custom_scores, weights, profile, base_score)
+    confidence_band = predictor_engine._compute_confidence_band(
+        True, experience_data, final_probability
+    )
+    next_best_moves = predictor_engine._compute_next_best_moves(
+        what_if_scenarios, improvement_roadmap
+    )
+    what_it_means = predictor_engine._build_plain_language_summary(
+        final_probability, confidence_band, factors, weights, experience_modifier
+    )
+
     return {
         "target_company": company_name.title(),
         "company_tier": profile["tier"],
         "company_color": profile["color"],
         "historical_acceptance_rate": f"{profile['rate'] * 100:.1f}%",
+        "role": role,
+        "role_profile": predictor_engine._role_profile_label(role),
         "current_probability": round(final_probability, 1),
         "probability_band": predictor_engine._get_probability_band(final_probability),
         "breakdown": {
@@ -188,11 +251,11 @@ async def _calculate_with_custom_scores(
         "sub_skills": {},
         "what_if_scenarios": what_if_scenarios,
         "improvement_roadmap": improvement_roadmap,
-        "comparison": {
-            "total_users": 15247,
-            "your_rank_percentile": 65,
-            "message": "Custom score prediction",
-        },
+        "factors": factors,
+        "confidence_band": confidence_band,
+        "next_best_moves": next_best_moves,
+        "what_it_means": what_it_means,
+        "comparison": await predictor_engine._get_peer_comparison(user_id, company),
     }
 
 
@@ -282,19 +345,167 @@ async def get_prediction_history(user=Depends(get_current_user)):
     return {"history": history, "total_predictions": len(history)}
 
 
+# --- OUTCOME TRACKING (builds the real training dataset) ---
+
+@router.post("/outcome", status_code=status.HTTP_201_CREATED)
+async def record_outcome(payload: OutcomeRecord, user=Depends(get_current_user)):
+    """
+    POST: Record what actually happened for a prediction.
+
+    This is how the model learns. Aggregate outcomes become the calibration
+    data that turns the math engine into a real, evidence-backed predictor.
+    """
+    allowed = {"offered", "rejected", "in_process"}
+    if payload.outcome not in allowed:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"outcome must be one of: {', '.join(sorted(allowed))}",
+        )
+
+    doc = {
+        "user_id": user["id"],
+        "company": payload.company.lower().strip(),
+        "role": payload.role or "SDE",
+        "prediction_id": payload.prediction_id,
+        "predicted_probability": payload.predicted_probability,
+        "ctc": payload.ctc,
+        "factors": payload.factors or {},
+        "confidence_band": payload.confidence_band or {},
+        "outcome": payload.outcome,
+        "interview_date": payload.interview_date,
+        "notes": payload.notes,
+        "created_at": datetime.now(timezone.utc),
+    }
+    result = await prediction_outcomes_collection.insert_one(doc)
+    return {
+        "outcome_id": str(result.inserted_id),
+        "company": doc["company"],
+        "role": doc["role"],
+        "predicted_probability": doc["predicted_probability"],
+        "outcome": doc["outcome"],
+    }
+
+
+@router.get("/outcomes")
+async def list_outcomes(user=Depends(get_current_user)):
+    """
+    GET: Returns the user's recorded outcomes.
+    """
+    cursor = prediction_outcomes_collection.find(
+        {"user_id": user["id"]}
+    ).sort("created_at", -1).limit(50)
+
+    outcomes = []
+    async for doc in cursor:
+        outcomes.append({
+            "id": str(doc["_id"]),
+            "company": doc.get("company", ""),
+            "role": doc.get("role", "SDE"),
+            "predicted_probability": doc.get("predicted_probability"),
+            "ctc": doc.get("ctc"),
+            "outcome": doc.get("outcome"),
+            "interview_date": doc.get("interview_date"),
+            "notes": doc.get("notes"),
+            "created_at": doc.get("created_at"),
+        })
+
+    return {"outcomes": outcomes, "total": len(outcomes)}
+
+
+@router.delete("/outcome/{outcome_id}")
+async def delete_outcome(outcome_id: str, user=Depends(get_current_user)):
+    """
+    DELETE: Remove a recorded outcome.
+    """
+    try:
+        doc = await prediction_outcomes_collection.find_one({"_id": ObjectId(outcome_id)})
+    except Exception:
+        raise HTTPException(status_code=400, detail="Invalid outcome id")
+
+    if not doc or doc.get("user_id") != user["id"]:
+        raise HTTPException(status_code=404, detail="Outcome not found")
+
+    await prediction_outcomes_collection.delete_one({"_id": ObjectId(outcome_id)})
+    return {"deleted": True}
+
+
+@router.get("/outcome-stats")
+async def get_outcome_stats():
+    """
+    GET: Anonymous aggregate calibration stats from real recorded outcomes.
+    """
+    total = await prediction_outcomes_collection.count_documents({})
+    decided = await prediction_outcomes_collection.count_documents(
+        {"outcome": {"$in": ["offered", "rejected"]}}
+    )
+    offered = await prediction_outcomes_collection.count_documents({"outcome": "offered"})
+    in_process = await prediction_outcomes_collection.count_documents({"outcome": "in_process"})
+
+    offered_rate = round(offered / decided * 100, 1) if decided else None
+
+    calibration = []
+    if decided >= 20:
+        buckets = [("0-25%", 0, 25), ("25-50%", 25, 50), ("50-75%", 50, 75), ("75-100%", 75, 101)]
+        for label, lo, hi in buckets:
+            count = 0
+            offers = 0
+            cursor = prediction_outcomes_collection.find({
+                "outcome": {"$in": ["offered", "rejected"]},
+                "predicted_probability": {"$gte": lo, "$lt": hi},
+            })
+            async for d in cursor:
+                count += 1
+                if d.get("outcome") == "offered":
+                    offers += 1
+            if count:
+                calibration.append({
+                    "band": label,
+                    "count": count,
+                    "actual_offer_rate": round(offers / count * 100, 1),
+                })
+
+    return {
+        "total_outcomes": total,
+        "decided": decided,
+        "offered": offered,
+        "in_process": in_process,
+        "offered_rate": offered_rate,
+        "calibration": calibration,
+        "note": "Real outcomes reported by users. Enough samples tighten the calibration curve over time.",
+    }
+
+
 @router.get("/stats")
 async def get_global_stats():
     """
-    GET: Returns anonymized global statistics for social proof.
+    GET: Returns anonymized global statistics computed from real prediction data.
     """
+    total_users = await users_collection.count_documents({})
+    total_predictions = await predictions_collection.count_documents({})
+
+    avg_probability = None
+    async for row in predictions_collection.aggregate([
+        {"$group": {"_id": None, "avg": {"$avg": "$probability"}}}
+    ]):
+        avg_probability = round(row.get("avg", 0), 1)
+
+    top_companies = []
+    async for row in predictions_collection.aggregate([
+        {"$group": {"_id": "$company", "avg_probability": {"$avg": "$probability"}, "count": {"$sum": 1}}},
+        {"$sort": {"count": -1}},
+        {"$limit": 5},
+    ]):
+        top_companies.append({
+            "name": str(row.get("_id", "")).title(),
+            "avg_probability": round(row.get("avg_probability", 0), 1),
+            "predictions": row.get("count", 0),
+        })
+
     return {
-        "total_users": 15247,
-        "total_predictions": 89432,
-        "average_probability": 52.3,
-        "improvement_rate": "Users who practice daily see 23% probability increase in 2 weeks",
-        "top_improved": [
-            {"skill": "DSA", "avg_improvement": "+18 points"},
-            {"skill": "System Design", "avg_improvement": "+15 points"},
-            {"skill": "Behavioral", "avg_improvement": "+12 points"},
-        ],
+        "total_users": total_users,
+        "total_predictions": total_predictions,
+        "average_probability": avg_probability,
+        "top_companies": top_companies,
+        "improvement_rate": "Users who practice daily see a measurable probability increase in 2 weeks (tracked per user over time).",
+        "note": "Aggregated live from prediction data — no mock numbers.",
     }

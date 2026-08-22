@@ -1,0 +1,48 @@
+{
+  "id": "java-03-strings",
+  "track": "java",
+  "title": "Strings & Methods",
+  "section": "Java Basics",
+  "order": 3,
+  "type": "lesson",
+  "duration": "10 min",
+  "xp": 15,
+  "content": {
+    "theory": "`String` is an object, so it has built-in **methods** — actions you call on it with `.method()`:\n\n```java\nString text = \"Hello, World\";\n\nSystem.out.println(text.length());         // 12\nSystem.out.println(text.toUpperCase());    // HELLO, WORLD\nSystem.out.println(text.toLowerCase());    // hello, world\nSystem.out.println(text.trim());           // removes surrounding spaces\nSystem.out.println(text.charAt(0));        // H\nSystem.out.println(text.substring(0, 5));  // Hello\nSystem.out.println(text.indexOf(\"World\")); // 7\n```\n\n**Important gotcha:** strings are immutable — methods like `toUpperCase()` return a *new* string rather than changing the original:\n\n```java\nString name = \"sam\";\nname.toUpperCase();        // does nothing useful — result discarded\nString fixed = name.toUpperCase();  // correct: store the result\n```\n\nCompare strings with `.equals()` — never `==` (that compares references, not content):\n\n```java\nif (password.equals(\"secret\")) { ... }\n```\n\n**Escape sequences**: `\\n` (newline), `\\t` (tab), `\\\"` (quote).",
+    "codeSnippets": [
+      {
+        "language": "java",
+        "code": "String msg = \"  java rules  \";\nSystem.out.println(msg.trim().toUpperCase());",
+        "output": "JAVA RULES"
+      }
+    ],
+    "exercise": {
+      "instruction": "Create a String 'language' with value 'Java'. Print its length, then print it in lowercase.",
+      "starterCode": "public class Main {\n    public static void main(String[] args) {\n\n    }\n}",
+      "language": "java",
+      "expected": "4\njava",
+      "required": ["String language", "Java", ".length()", ".toLowerCase()"],
+      "hints": [
+        "Hint 1: String language = \"Java\";",
+        "Hint 2: System.out.println(language.length()); → 4",
+        "Hint 3: System.out.println(language.toLowerCase()); → java"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Why should you use .equals() instead of == for strings?",
+        "options": ["It's faster", "== compares references, not content", "== doesn't exist in Java"],
+        "correct": 1
+      },
+      {
+        "question": "What does \"abc\".toUpperCase() return?",
+        "options": ["\"abc\"", "\"ABC\"", "null"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "java-04-conditionals",
+    "unlocks": ["java-04-conditionals"]
+  }
+}

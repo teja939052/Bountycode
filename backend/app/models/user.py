@@ -1,11 +1,13 @@
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, EmailStr, Field, field_serializer
 from typing import Optional
 from datetime import datetime
+
+from app.utils.timeutil import utcnow
 
 
 class UserCreate(BaseModel):
     email: EmailStr
-    password: str = Field(min_length=6)
+    password: str = Field(min_length=8)
     name: str = Field(min_length=1)
 
 
@@ -37,12 +39,11 @@ class UserInDB(BaseModel):
     monthly_reset_date: Optional[datetime] = None
     daily_usage: dict = {}
     all_time_usage: dict = {}
-    created_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=utcnow)
 
-    class Config:
-        json_encoders = {
-            datetime: lambda v: v.isoformat() if v else None,
-        }
+    @field_serializer("created_at")
+    def _serialize_created_at(self, v: datetime) -> str:
+        return v.isoformat() if v else None
 
 
 class UpdateProfileRequest(BaseModel):
@@ -52,4 +53,4 @@ class UpdateProfileRequest(BaseModel):
 
 class ChangePasswordRequest(BaseModel):
     current_password: str
-    new_password: str = Field(min_length=6)
+    new_password: str = Field(min_length=8)

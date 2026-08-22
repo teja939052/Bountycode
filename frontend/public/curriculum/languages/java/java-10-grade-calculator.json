@@ -1,0 +1,49 @@
+{
+  "id": "java-10-grade-calculator",
+  "track": "java",
+  "title": "Project: Grade Calculator",
+  "section": "Java Projects",
+  "order": 10,
+  "type": "project",
+  "duration": "18 min",
+  "xp": 40,
+  "content": {
+    "theory": "Final Java project: a **grade calculator** that turns a score into a letter grade using a method.\n\nWrite a reusable method `gradeOf` that returns a `String`:\n\n```java\nstatic String gradeOf(int score) {\n    if (score >= 90) return \"A\";\n    if (score >= 80) return \"B\";\n    if (score >= 70) return \"C\";\n    if (score >= 60) return \"D\";\n    return \"F\";\n}\n```\n\nNote the early-return pattern — each `return` exits immediately, so you don't need `else`.\n\nTo read input from the user, use `Scanner` from `java.util`:\n\n```java\nimport java.util.Scanner;\n\nScanner scanner = new Scanner(System.in);\nSystem.out.print(\"Enter score: \");\nint score = scanner.nextInt();\n```\n\nCombine it all in main:\n\n```java\nimport java.util.Scanner;\n\npublic class Main {\n    static String gradeOf(int score) {\n        if (score >= 90) return \"A\";\n        if (score >= 80) return \"B\";\n        if (score >= 70) return \"C\";\n        if (score >= 60) return \"D\";\n        return \"F\";\n    }\n\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n        System.out.print(\"Enter score: \");\n        int score = scanner.nextInt();\n        System.out.println(\"Grade: \" + gradeOf(score));\n    }\n}\n```",
+    "codeSnippets": [
+      {
+        "language": "java",
+        "code": "static String gradeOf(int score) {\n    if (score >= 90) return \"A\";\n    if (score >= 80) return \"B\";\n    if (score >= 70) return \"C\";\n    if (score >= 60) return \"D\";\n    return \"F\";\n}\n\nSystem.out.println(gradeOf(85));   // B",
+        "output": "B"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write the full program: import java.util.Scanner, define gradeOf(int) using early returns (A/B/C/D/F thresholds at 90/80/70/60), and in main read a score with Scanner's nextInt() and print 'Grade: ' plus gradeOf(score).",
+      "starterCode": "import java.util.Scanner;\n\npublic class Main {\n\n    public static void main(String[] args) {\n\n    }\n}",
+      "language": "java",
+      "stdin": "85\n",
+      "expected": "Enter score: Grade: B",
+      "required": ["import java.util.Scanner", "static String gradeOf", "return \"A\"", "return \"F\"", "new Scanner", "nextInt()", "Grade:", "gradeOf(score)"],
+      "hints": [
+        "Hint 1: static String gradeOf(int score) { if (score >= 90) return \"A\"; ... return \"F\"; }",
+        "Hint 2: Scanner scanner = new Scanner(System.in);",
+        "Hint 3: int score = scanner.nextInt(); System.out.println(\"Grade: \" + gradeOf(score));"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What does the early-return pattern let you avoid?",
+        "options": ["Semicolons", "Nested if/else chains", "Import statements"],
+        "correct": 1
+      },
+      {
+        "question": "Which method reads an integer from a Scanner?",
+        "options": ["nextLine()", "nextInt()", "readInt()"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "java-11-arraylist",
+    "unlocks": ["java-11-arraylist"]
+  }
+}

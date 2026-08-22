@@ -1,0 +1,48 @@
+{
+  "id": "cpp-04-conditionals",
+  "track": "cpp",
+  "title": "Making Decisions",
+  "section": "C++ Basics",
+  "order": 4,
+  "type": "lesson",
+  "duration": "10 min",
+  "xp": 20,
+  "content": {
+    "theory": "C++ conditionals look like Java's — `if` / `else if` / `else`:\n\n```cpp\nint score = 85;\n\nif (score >= 90) {\n    std::cout << \"A grade\" << std::endl;\n} else if (score >= 80) {\n    std::cout << \"B grade\" << std::endl;\n} else {\n    std::cout << \"Keep practicing\" << std::endl;\n}\n```\n\nOperators: `==` (equal), `!=` (not equal), `>`, `<`, `>=`, `<=`.\n\nLogical operators use words, like Java:\n\n```cpp\nint age = 20;\nbool hasId = true;\n\nif (age >= 18 && hasId) {\n    std::cout << \"Allowed in\" << std::endl;\n}\n\nif (age < 13 || age > 60) {\n    std::cout << \"Special discount\" << std::endl;\n}\n\nif (!hasId) {\n    std::cout << \"Need an ID\" << std::endl;\n}\n```\n\nThe **switch** statement is a clean alternative when comparing one value against many constants:\n\n```cpp\nint day = 2;\nswitch (day) {\n    case 1: std::cout << \"Mon\"; break;\n    case 2: std::cout << \"Tue\"; break;\n    default: std::cout << \"Other\";\n}\n```\n\nDon't forget `break;` in each case — without it, execution *falls through* to the next case.",
+    "codeSnippets": [
+      {
+        "language": "cpp",
+        "code": "int temp = 30;\nif (temp > 25) {\n    std::cout << \"Hot day\" << std::endl;\n} else {\n    std::cout << \"Cool day\" << std::endl;\n}",
+        "output": "Hot day"
+      }
+    ],
+    "exercise": {
+      "instruction": "In main, declare int 'age' = 20. If age >= 18 and age < 65 print 'Adult'; else if age >= 65 print 'Senior'; else print 'Minor'.",
+      "starterCode": "#include <iostream>\n\nint main() {\n\n    return 0;\n}",
+      "language": "cpp",
+      "expected": "Adult",
+      "required": ["int age = 20", "if (age >= 18", "&&", "Adult", "else if (age >= 65", "Senior", "Minor"],
+      "hints": [
+        "Hint 1: int age = 20;",
+        "Hint 2: if (age >= 18 && age < 65) std::cout << \"Adult\";",
+        "Hint 3: else if (age >= 65) std::cout << \"Senior\"; else std::cout << \"Minor\";"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which operator means AND in C++?",
+        "options": ["and", "&&", "&"],
+        "correct": 1
+      },
+      {
+        "question": "What happens if you forget break in a switch case?",
+        "options": ["Compile error", "Execution falls through to the next case", "Nothing"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "cpp-05-loops",
+    "unlocks": ["cpp-05-loops"]
+  }
+}

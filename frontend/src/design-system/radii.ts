@@ -1,0 +1,15 @@
+export const radii = {
+  none: 0,
+  xs: 4,
+  sm: 8,
+  md: 10,
+  lg: 16,
+  xl: 24,
+  "2xl": 32,
+  full: 9999,
+  pill: 9999,
+  card: 16,
+  button: 10,
+  input: 10,
+  badge: 9999,
+};

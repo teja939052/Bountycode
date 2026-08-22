@@ -1,0 +1,56 @@
+{
+  "id": "css-11-css-variables",
+  "track": "css",
+  "title": "CSS Custom Properties (Variables)",
+  "section": "Advanced CSS",
+  "order": 11,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "CSS **custom properties** — commonly called CSS variables — let you store a value once and reuse it everywhere. Change one line and the entire design updates in place. Define them with `--name` and read them with `var()`:\n\n```css\n:root {\n  --main-color: #6366f1;\n  --spacing: 16px;\n}\n.card {\n  background: var(--main-color);\n  padding: var(--spacing);\n}\n```\n`:root` is the highest scope (the document root element), so variables defined there cascade to every element on the page.\n\n### var() and fallbacks\n```css\n.badge {\n  background: var(--brand-color, #e11d48);\n}\n```\nThe second argument to `var()` is a **fallback**, used when the variable is undefined or invalid. Fallbacks are essential for progressive enhancement and for shared components whose parent may or may not define a variable.\n\n### Scoped overrides\nCustom properties cascade like any other declaration, so you can redefine a variable in a narrower scope and everything below it picks up the new value:\n\n```css\n.card { --accent: #2563eb; }\n.card.danger { --accent: #dc2626; }\n```\nA `.card.danger` renders red, a plain `.card` renders blue — one variable, two themes, zero duplicated rules.\n\n### calc() with variables\n```css\n.card {\n  padding: calc(var(--spacing) * 2);\n  width: calc(100% - var(--spacing));\n}\n```\n`calc()` lets you do arithmetic on sizes and colors — and it composes with variables, so derived values update automatically whenever the variable changes. That is how design systems derive spacing scales from a single base value.\n\n### Why theming is easier\nDark mode is the classic win. Define every color as a variable, then override the whole set under a scope:\n\n```css\n:root { --bg: #ffffff; --text: #111827; }\n[data-theme='dark'] { --bg: #0f172a; --text: #f8fafc; }\nbody { background: var(--bg); color: var(--text); }\n```\nFlip the `data-theme` attribute on `<html>` and the entire app re-themes instantly — no per-component edits, no `!important` overrides.\n\nCommon mistakes: defining a variable inside an element that only covers part of the tree (custom properties inherit *downward*), relying on a variable with no fallback when it might be undefined, and trying to use them where older browsers demand a literal value (like keyframe animation names). Use variables for colors, spacing, radii, and typography — not for values you never intend to change.",
+    "codeSnippets": [
+      {
+        "language": "css",
+        "code": ":root {\n  --main-color: #6366f1;\n  --spacing: 16px;\n}\n.card {\n  background: var(--main-color);\n  padding: var(--spacing);\n}",
+        "output": "A card that re-themes everywhere the moment --main-color changes."
+      },
+      {
+        "language": "css",
+        "code": ".card {\n  padding: calc(var(--spacing) * 2);\n  width: calc(100% - var(--spacing));\n}",
+        "output": "Derived sizes computed from one base spacing variable."
+      }
+    ],
+    "exercise": {
+      "instruction": "Define two variables in :root: --main-color: #6366f1 and --spacing: 16px. Then on .card apply background: var(--main-color) and padding: var(--spacing), and give the h2 color: var(--main-color) so it matches the card.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<head>\n  <title>CSS Variables</title>\n  <style>\n    :root {\n\n    }\n    body {\n      font-family: Arial, sans-serif;\n      padding: 24px;\n    }\n    .card {\n      border-radius: 12px;\n\n    }\n    h2 {\n      margin: 0;\n\n    }\n    p {\n      margin: 8px 0 0;\n      color: #374151;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"card\">\n    <h2>Branded Card</h2>\n    <p>Its background, padding, and heading color all come from one source of truth.</p>\n  </div>\n  <div class=\"card\">\n    <h2>Second Card</h2>\n    <p>Change --main-color in :root and every card updates at once.</p>\n  </div>\n</body>\n</html>",
+      "required": [":root", "--main-color", "--spacing", "var(--main-color)", "var(--spacing)"],
+      "hints": [
+        "Hint 1: :root { --main-color: #6366f1; --spacing: 16px; }",
+        "Hint 2: .card { background: var(--main-color); padding: var(--spacing); }",
+        "Hint 3: h2 { color: var(--main-color); } — try editing the variable to see every use change."
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Where do you define global CSS variables?",
+        "options": ["inside a single component rule", "in :root so they cascade to everything", "only inside a media query"],
+        "correct": 1
+      },
+      {
+        "question": "What does var(--brand, red) do if --brand is undefined?",
+        "options": ["the declaration is ignored", "it uses the fallback value red", "it throws a parse error"],
+        "correct": 1
+      },
+      {
+        "question": "CSS variables are great for theming because...",
+        "options": ["redefining a variable in a scope updates every place that uses it at once", "they make CSS run faster than hardcoded values", "they let you write JavaScript in stylesheets"],
+        "correct": 0
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "css-12-project-landing-page",
+    "unlocks": ["css-12-project-landing-page"]
+  }
+}

@@ -7,57 +7,48 @@ import {
   Menu,
   X,
   Settings,
-  Trophy,
-  Flame,
   ChevronDown,
-  Zap,
   BookOpen,
-  Shield,
-  Compass,
   Code2,
   Sparkles,
-  Layers,
-  GraduationCap,
-  Calendar,
-  BarChart3,
+  LayoutDashboard,
   MessageSquare,
-  Share2,
-  Video,
+  Leaf,
+  Calendar,
+  Trophy,
+  Briefcase,
+  Gamepad2,
+  Castle,
+  Users,
   Swords,
+  Layers,
   Award,
-  Wand2,
-} from "lucide-react";
+  Globe,
+  Coins,
+  Library,
+  Gift,
+  Shield,
+  Brain,
+  Timer,
+  TreeDeciduous,
+  MessageCircle,
+  Building2,
+  Lightbulb,
+  ScrollText,
+  Target,
+  Zap,
+   UserPlus,
+ } from "lucide-react";
 
+/* Primary IA — exactly 5 top-level destinations (Material/Apple guideline).
+   Everything else lives in the "More" menu so users build a fast mental map.
+   Resume/ATS/Cover Letter appear ONLY under Career (no duplication). */
 const PRIMARY_LINKS: NavItem[] = [
-  { to: "/hub", label: "Hub" },
-  { to: "/learn", label: "Learn", icon: BookOpen },
-  { to: "/modules", label: "Modules", icon: GraduationCap },
-  { to: "/problems", label: "Practice", icon: Code2 },
-  { to: "/interview-booking", label: "Book Interview", icon: Calendar },
-  { to: "/interview", label: "Interview" },
-  { to: "/daily-drill", label: "Drill", icon: Flame },
-  { to: "/daily-challenge", label: "30 Days", icon: Flame },
-  { to: "/challenge-packs", label: "Packs", icon: Sparkles },
-  { to: "/journeys", label: "Journeys", icon: Compass },
-  { to: "/dsa-visualizer", label: "DSA Viz", icon: BarChart3 },
-  { to: "/visualize/compare", label: "Compare", icon: Share2 },
-  { to: "/playground", label: "Playground", icon: Code2 },
-  { to: "/ai-mentor", label: "AI Mentor", icon: MessageSquare },
-  { to: "/community", label: "Community", icon: MessageSquare },
-  { to: "/scrims", label: "Scrims", icon: Video },
-  { to: "/battles", label: "Battles", icon: Swords },
-  { to: "/rank", label: "Rank", icon: Award },
-  { to: "/project-generator", label: "AI Build", icon: Wand2 },
-];
-
-const TOOL_LINKS: NavItem[] = [
-  { to: "/resume-ats", label: "Resume & ATS", icon: Layers },
-  { to: "/system-design", label: "System Design", icon: Compass },
-  { to: "/company-prep", label: "Company Intel", icon: Shield },
-  { to: "/aptitude", label: "Aptitude", icon: GraduationCap },
-  { to: "/salary-benchmark", label: "Salary Benchmark", icon: Trophy },
-  { to: "/predictor", label: "Placement Predictor", icon: Sparkles },
-  { to: "/tower", label: "Placement Tower", icon: Trophy },
+  { to: "/hub", label: "Home", icon: LayoutDashboard },
+  { to: "/prepare", label: "Prepare", icon: BookOpen },
+  { to: "/practice", label: "Practice", icon: Code2 },
+  { to: "/compete", label: "Compete", icon: Trophy },
+  { to: "/career", label: "Career", icon: Briefcase },
 ];
 
 export default function Navbar() {
@@ -66,103 +57,158 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [toolsOpen, setToolsOpen] = useState(false);
 
+  const isAdmin = user?.is_admin || user?.role === "admin" || user?.plan === "pro" || user?.plan === "lifetime";
+
+  const MORE_GROUPS: NavGroup[] = [
+    {
+      label: "Your Journey",
+      items: [
+        { to: "/journey", label: "Journey", icon: Gamepad2 },
+        { to: "/tower", label: "Tower", icon: Castle },
+        { to: "/guilds", label: "Guilds", icon: Users },
+        { to: "/dungeons", label: "Dungeons", icon: Swords },
+        { to: "/collection", label: "Collection", icon: Library },
+        { to: "/cards", label: "Cards", icon: Layers },
+        { to: "/achievements", label: "Achievements", icon: Award },
+        { to: "/world", label: "World", icon: Globe },
+        { to: "/economy", label: "Economy", icon: Coins },
+        { to: "/wheel", label: "Lucky Wheel", icon: Gift },
+        { to: "/battle-pass", label: "Battle Pass", icon: Shield },
+      ],
+    },
+    {
+      label: "Tools & Community",
+      items: [
+        { to: "/community", label: "Community", icon: MessageSquare },
+        { to: "/discussions", label: "Discussions", icon: MessageCircle },
+        { to: "/friends", label: "Friends", icon: UserPlus },
+        { to: "/ai-mentor", label: "AI Mentor", icon: Brain },
+        { to: "/project-generator", label: "Project Generator", icon: Sparkles },
+        { to: "/concepts", label: "Concepts", icon: Lightbulb },
+        { to: "/behavioral-practice", label: "Behavioral Practice", icon: ScrollText },
+        { to: "/company-directory", label: "Company Directory", icon: Building2 },
+        { to: "/study-timer", label: "Study Timer", icon: Timer },
+        { to: "/placement-calendar", label: "Placement Calendar", icon: Calendar },
+        { to: "/settings", label: "Settings", icon: Settings },
+      ],
+    },
+    {
+      label: "Progress",
+      items: [
+        { to: "/quests", label: "Quests", icon: ScrollText },
+        { to: "/goals", label: "Goals", icon: Target },
+        { to: "/readiness", label: "Readiness Score", icon: Zap },
+        { to: "/skill-mastery", label: "Skill Mastery", icon: Lightbulb },
+        { to: "/energy", label: "Energy", icon: Zap },
+        { to: "/mystery-box", label: "Mystery Box", icon: Gift },
+      ],
+    },
+  ];
+
   const handleLogout = async () => {
     await logout();
     navigate("/");
   };
 
   return (
-<nav className="sticky top-0 z-50 border-b border-white/60 bg-white/75 backdrop-blur-2xl shadow-sm" role="navigation" aria-label="Main navigation">
-       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-sky/70 to-transparent" />
-       <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-brand-sky focus:text-white focus:rounded-lg">Skip to main content</a>
-       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-         <div className="flex h-16 items-center justify-between gap-4">
-           <Link to="/" className="flex items-center gap-3 group shrink-0" aria-label="PlacementPro home">
-             <div className="h-10 w-10 rounded-2xl bg-gradient-to-br from-brand-sky via-brand-lavender to-brand-coral flex items-center justify-center shadow-soft-md transition-transform duration-300 group-hover:scale-105" aria-hidden="true">
-               <Zap size={18} className="text-white" />
-             </div>
-             <div className="leading-tight">
-               <div className="text-lg font-display font-extrabold tracking-tight text-text-primary">
-                 Placement<span className="text-brand-sky">Pro</span>
-               </div>
-               <div className="text-[10px] font-mono uppercase tracking-[0.28em] text-text-light">
-                 Gameified Career Arena
-               </div>
-             </div>
-           </Link>
+    <nav className="sticky top-0 z-50 border-b border-transparent bg-transparent" role="navigation" aria-label="Main navigation">
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-brand-primary focus:text-white focus:rounded-lg">Skip to main content</a>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between gap-4">
+          <Link to="/" className="flex items-center gap-3 group shrink-0" aria-label="PlacementPro home">
+            <div className="relative">
+              <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-nature-leaf/40 to-nature-blossom/40 blur-md opacity-70 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
+              <div className="relative h-10 w-10 rounded-2xl bg-gradient-to-br from-nature-leaf via-nature-moss to-nature-blossom flex items-center justify-center shadow-[0_8px_20px_-8px_rgba(45,130,110,0.4)] transition-transform duration-300 group-hover:scale-105">
+                <Leaf size={18} className="text-white" />
+              </div>
+            </div>
+            <div className="leading-tight">
+              <div className="text-lg font-display font-extrabold tracking-tight text-text-primary">
+                PlacementPro
+              </div>
+              <div className="text-[10px] font-mono uppercase tracking-[0.28em] text-text-muted">
+                Placement Prep Platform
+              </div>
+            </div>
+          </Link>
 
-           <div className="hidden lg:flex items-center gap-1" role="menubar">
-             {user ? (
-               <>
-                 {PRIMARY_LINKS.map((item) => (
-                   <NavLink key={item.to} to={item.to} icon={item.icon} role="menuitem">
-                     {item.label}
-                   </NavLink>
-                 ))}
+          <div className="hidden lg:flex items-center gap-1" role="menubar">
+            {user ? (
+              <>
+                {PRIMARY_LINKS.map((item) => (
+                  <NavLink key={item.to} to={item.to} icon={item.icon} role="menuitem">
+                    {item.label}
+                  </NavLink>
+                ))}
 
-                 <div className="relative ml-1" role="none">
-                   <button
+                 <button
                      onClick={() => setToolsOpen((prev) => !prev)}
                      aria-haspopup="true"
                      aria-expanded={toolsOpen}
-                     className="quest-chip hover:border-brand-sky/40 hover:text-brand-sky transition-all"
+                     className="rounded-full border border-brand-primary/30 bg-brand-primary/10 px-4 py-2 text-sm font-medium text-brand-primary transition-all hover:bg-brand-primary/20 hover:border-brand-primary/50"
                    >
-                     Systems
+                     More
                      <ChevronDown size={12} className={`transition-transform ${toolsOpen ? "rotate-180" : ""}`} aria-hidden="true" />
                    </button>
 
                    {toolsOpen && (
                      <>
                        <div className="fixed inset-0 z-10" onClick={() => setToolsOpen(false)} aria-hidden="true" />
-                       <div className="absolute right-0 mt-3 w-72 rounded-2xl border border-white/70 bg-white/95 p-2 shadow-soft-lg z-20" role="menu" aria-label="Tools menu">
-                         {TOOL_LINKS.map((item) => (
-                           <DropdownLink key={item.to} to={item.to} onClick={() => setToolsOpen(false)} icon={item.icon} role="menuitem">
-                             {item.label}
-                           </DropdownLink>
+                       <div className="absolute right-0 mt-3 w-96 rounded-2xl border border-gray-200 bg-white/95 p-3 shadow-lg z-20 backdrop-blur" role="menu" aria-label="More menu">
+                       <div className="grid grid-cols-1 gap-4">
+                         {MORE_GROUPS.map((group) => (
+                           <div key={group.label}>
+                             <div className="px-3 pb-1 text-[10px] font-mono uppercase tracking-[0.22em] text-text-muted">{group.label}</div>
+                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
+                               {group.items.map((item) => (
+                                 <DropdownLink key={item.to} to={item.to} onClick={() => setToolsOpen(false)} icon={item.icon} role="menuitem">
+                                   {item.label}
+                                 </DropdownLink>
+                               ))}
+                             </div>
+                           </div>
                          ))}
-                         <div className="my-2 h-px bg-gray-100" role="separator" />
-                         <DropdownLink to="/history" onClick={() => setToolsOpen(false)} role="menuitem">Mission Log</DropdownLink>
-                         <DropdownLink to="/settings" onClick={() => setToolsOpen(false)} role="menuitem">Settings</DropdownLink>
                        </div>
-                     </>
-                   )}
-                 </div>
+                       </div>
+                      </>
+                    )}
 
-                 <Link to="/problems?random=true" className="ml-2 inline-flex items-center gap-2 rounded-full border border-brand-sky/20 bg-brand-sky/10 px-4 py-2 text-sm font-medium text-brand-sky transition-all hover:bg-brand-sky/20 hover:border-brand-sky/30" aria-label="Quick practice - random question">
-                   <Sparkles size={14} aria-hidden="true" />
-                   Quick Practice
-                 </Link>
+                    <Link to="/problems?random=true" className="ml-2 inline-flex items-center gap-2 rounded-full border border-brand-primary/30 bg-brand-primary/10 px-4 py-2 text-sm font-medium text-brand-primary transition-all hover:bg-brand-primary/20 hover:border-brand-primary/50" aria-label="Quick practice - random question">
+                      <Sparkles size={14} aria-hidden="true" />
+                      Quick Practice
+                    </Link>
 
-                 <div className="ml-3 flex items-center gap-3 rounded-full border border-gray-200 bg-white px-3 py-1.5 shadow-sm" aria-label="User menu">
-                   <div className="hidden xl:flex flex-col text-right">
-                     <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-text-light">Signed in as</span>
-                     <span className="max-w-[140px] truncate text-sm font-medium text-text-secondary">{user.name}</span>
-                   </div>
-                   <span className="rounded-full border border-brand-coral/20 bg-brand-coral-pale px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.2em] text-brand-coral" aria-label={`Plan: ${user.plan}`}>
-                     {user.plan}
-                   </span>
-                   <Link to="/settings" className="text-text-light transition-colors hover:text-brand-coral" aria-label="Settings">
-                     <Settings size={17} />
-                   </Link>
-                   <button onClick={handleLogout} className="text-text-light transition-colors hover:text-error" aria-label="Logout">
-                     <LogOut size={17} />
-                   </button>
-                 </div>
-               </>
+                    <div className="ml-3 flex items-center gap-3 rounded-full border border-gray-200 bg-white/80 px-3 py-1.5 shadow-sm" aria-label="User menu">
+                  <div className="hidden xl:flex flex-col text-right">
+                    <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-text-muted">Signed in as</span>
+                    <span className="max-w-[140px] truncate text-sm font-medium text-text-primary">{user.name}</span>
+                  </div>
+                  <span className="rounded-full border border-brand-primary/30 bg-brand-primary/10 px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.2em] text-brand-primary" aria-label={`Plan: ${user.plan}`}>
+                    {user.plan}
+                  </span>
+                  <Link to="/settings" className="text-text-muted transition-colors hover:text-brand-primary" aria-label="Settings">
+                    <Settings size={17} />
+                  </Link>
+                  <button onClick={handleLogout} className="text-text-muted transition-colors hover:text-error" aria-label="Logout">
+                    <LogOut size={17} />
+                  </button>
+                </div>
+              </>
              ) : (
-               <>
-                 <Link to="/login" className="px-3 py-2 text-sm font-medium text-text-light transition-colors hover:text-text-primary" aria-label="Login">
-                   Login
-                 </Link>
-                 <Link to="/register" className="btn-primary px-5 py-2.5 text-sm" aria-label="Start free trial">
-                   Start Free
-                 </Link>
-               </>
-             )}
-           </div>
+              <>
+                <Link to="/login" className="px-3 py-2 text-sm font-medium text-text-muted transition-colors hover:text-text-primary" aria-label="Login">
+                  Login
+                </Link>
+                <Link to="/register" className="rounded-xl bg-brand-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-brand-primary/90 transition-colors" aria-label="Start free trial">
+                  Start Free
+                </Link>
+              </>
+            )}
+          </div>
 
-          <button
-            className="lg:hidden inline-flex items-center justify-center rounded-xl border border-gray-200 bg-white/80 p-2 text-text-secondary shadow-sm"
+
+<button
+            className="lg:hidden inline-flex items-center justify-center rounded-xl border border-gray-200 bg-white/80 p-2 text-text-muted shadow-sm"
             onClick={() => setMobileOpen((prev) => !prev)}
             aria-label="Toggle menu"
           >
@@ -172,18 +218,15 @@ export default function Navbar() {
 
         {mobileOpen && (
           <div className="lg:hidden pb-4">
-            <div className="rounded-3xl border border-white/70 bg-white/95 p-3 shadow-soft-lg">
+            <div className="rounded-3xl border border-gray-200 bg-white/95 p-3 shadow-lg backdrop-blur">
               {user ? (
                 <>
-                  <div className="mb-3 rounded-2xl bg-gradient-to-r from-brand-sky/10 via-brand-lavender/10 to-brand-coral/10 p-4">
-                    <div className="text-[10px] font-mono uppercase tracking-[0.28em] text-text-light">Command Deck</div>
+                  <div className="mb-3 rounded-2xl bg-gradient-to-r from-brand-primary/10 via-brand-secondary/10 to-brand-tertiary/10 p-4">
+                    <div className="text-[10px] font-mono uppercase tracking-[0.28em] text-text-muted">Account</div>
                     <div className="mt-1 text-lg font-display font-bold text-text-primary">{user.name}</div>
                     <div className="mt-2 flex items-center gap-2">
-                      <span className="rounded-full border border-brand-coral/20 bg-brand-coral-pale px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.2em] text-brand-coral">
+                      <span className="rounded-full border border-brand-primary/30 bg-brand-primary/10 px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.2em] text-brand-primary">
                         {user.plan}
-                      </span>
-                      <span className="rounded-full border border-brand-sky/20 bg-brand-sky/10 px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.2em] text-brand-sky">
-                        Quick Practice
                       </span>
                     </div>
                   </div>
@@ -196,20 +239,21 @@ export default function Navbar() {
                     ))}
                   </div>
 
-                  <div className="my-3 h-px bg-gray-100" />
-
-                  <div className="grid grid-cols-1 gap-2">
-                    {TOOL_LINKS.map((item) => (
-                      <MobileLink key={item.to} to={item.to} onClick={() => setMobileOpen(false)} icon={item.icon}>
-                        {item.label}
-                      </MobileLink>
-                    ))}
-                    <MobileLink to="/history" onClick={() => setMobileOpen(false)}>Mission Log</MobileLink>
-                    <MobileLink to="/settings" onClick={() => setMobileOpen(false)}>Settings</MobileLink>
-                  </div>
+                  {MORE_GROUPS.map((group) => (
+                    <div key={group.label}>
+                      <div className="px-1 pb-1 pt-4 text-[10px] font-mono uppercase tracking-[0.22em] text-text-muted">{group.label}</div>
+                      <div className="grid grid-cols-1 gap-2">
+                        {group.items.map((item) => (
+                          <MobileLink key={item.to} to={item.to} onClick={() => setMobileOpen(false)} icon={item.icon}>
+                            {item.label}
+                          </MobileLink>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
 
                   <div className="mt-3 flex gap-2">
-                    <button onClick={handleLogout} className="flex-1 rounded-xl border border-red-200 bg-red-50 px-4 py-2.5 text-sm font-medium text-error">
+                    <button onClick={handleLogout} className="flex-1 rounded-xl border border-error/20 bg-error/10 px-4 py-2.5 text-sm font-medium text-error">
                       Logout
                     </button>
                   </div>
@@ -244,12 +288,17 @@ interface NavItem {
   icon?: LucideIcon;
 }
 
+interface NavGroup {
+  label: string;
+  items: NavItem[];
+}
+
 function NavLink({ to, children, icon: Icon, role }: NavLinkProps) {
   return (
     <Link
       to={to}
       role={role}
-      className="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-text-light transition-all hover:bg-brand-sky/10 hover:text-brand-sky"
+      className="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-text-muted transition-all duration-200 hover:bg-brand-primary/10 hover:text-brand-primary"
     >
       {Icon ? <Icon size={14} /> : null}
       {children}
@@ -263,9 +312,9 @@ function DropdownLink({ to, children, onClick, icon: Icon, role }: NavLinkProps)
       to={to}
       onClick={onClick}
       role={role}
-      className="flex items-center gap-2 rounded-xl px-3 py-2.5 text-sm text-text-secondary transition-colors hover:bg-brand-sky/10 hover:text-brand-sky"
+      className="flex items-center gap-2 rounded-xl px-3 py-2.5 text-sm text-text-secondary transition-colors hover:bg-brand-primary/10 hover:text-brand-primary"
     >
-      {Icon ? <Icon size={14} className="text-brand-sky" /> : null}
+      {Icon ? <Icon size={14} className="text-brand-primary" /> : null}
       {children}
     </Link>
   );
@@ -278,8 +327,8 @@ function MobileLink({ to, children, onClick, primary, icon: Icon }: NavLinkProps
       onClick={onClick}
       className={`flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
         primary
-          ? "bg-brand-sky text-white shadow-soft-md"
-          : "border border-gray-200 bg-white text-text-secondary hover:border-brand-sky/30 hover:bg-brand-sky/10 hover:text-brand-sky"
+          ? "rounded-xl bg-brand-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-brand-primary/90 transition-colors"
+          : "border border-gray-200 bg-white/80 text-text-secondary hover:border-brand-primary/40 hover:bg-brand-primary/10 hover:text-brand-primary"
       }`}
     >
       {Icon ? <Icon size={14} /> : null}

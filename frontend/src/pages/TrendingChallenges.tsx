@@ -61,14 +61,14 @@ export default function TrendingChallenges() {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-slate-950 text-white">
-        <div className="animate-pulse text-indigo-300">Loading Trending...</div>
+      <div className="flex min-h-screen items-center justify-center bg-surface-base text-text-primary">
+        <div className="animate-pulse text-nature-blossom">Loading Trending...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white px-4 py-8">
+    <div className="min-h-screen bg-surface-base text-text-primary px-4 py-8">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold">
@@ -76,11 +76,11 @@ export default function TrendingChallenges() {
               Trending Challenges
             </span>
           </h1>
-          <p className="text-slate-400 mt-2">
+          <p className="text-text-muted mt-2">
             What's hot right now. Don't miss out — FOMO is real.
           </p>
           {campus && (
-            <p className="text-sm text-indigo-300 mt-1">
+            <p className="text-sm text-nature-blossom mt-1">
               📍 {campus}
             </p>
           )}
@@ -91,15 +91,15 @@ export default function TrendingChallenges() {
           <div className="flex justify-center gap-6 mb-8">
             <div className="text-center">
               <div className="text-2xl font-bold text-amber-400">{stats.today_engaged || 0}</div>
-              <div className="text-xs text-slate-500">Today Engaged</div>
+              <div className="text-xs text-text-muted">Today Engaged</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-emerald-400">{stats.total_engaged || 0}</div>
-              <div className="text-xs text-slate-500">Total Engaged</div>
+              <div className="text-2xl font-bold text-nature-blossom">{stats.total_engaged || 0}</div>
+              <div className="text-xs text-text-muted">Total Engaged</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-rose-400">{stats.daily_limit - (stats.today_engaged || 0)}</div>
-              <div className="text-xs text-slate-500">Remaining Today</div>
+              <div className="text-xs text-text-muted">Remaining Today</div>
             </div>
           </div>
         )}
@@ -118,14 +118,14 @@ export default function TrendingChallenges() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: idx * 0.1 }}
-              className="rounded-2xl border border-slate-700 bg-slate-900/60 p-5 hover:border-indigo-500/50 transition-all"
+              className="rounded-2xl border border-nature-leaf/20 bg-white p-5 hover:border-[#7BB661] transition-all"
             >
               <div className="flex items-start justify-between mb-3">
                 <div className="flex items-center gap-2">
                   <span className="text-2xl">{item.icon}</span>
                   <div>
-                    <h3 className="font-bold text-slate-200">{item.name}</h3>
-                    <p className="text-xs text-slate-500">{item.description}</p>
+                    <h3 className="font-bold text-text-primary">{item.name}</h3>
+                    <p className="text-xs text-text-muted">{item.description}</p>
                   </div>
                 </div>
                 <span className={`text-xs font-bold px-2 py-1 rounded-full ${difficultyColor(item.difficulty)}`}>
@@ -133,13 +133,13 @@ export default function TrendingChallenges() {
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4 text-xs text-slate-400">
+                <div className="flex items-center gap-4 text-xs text-text-muted">
                   <span className="flex items-center gap-1">
                     <Star className="h-3 w-3 text-amber-400" />
                     {item.participants || 0} solving
                   </span>
                   <span className="flex items-center gap-1">
-                    <TrendingUp className="h-3 w-3 text-emerald-400" />
+                    <TrendingUp className="h-3 w-3 text-nature-blossom" />
                     {item.score || 0} pts
                   </span>
                   <span className="flex items-center gap-1">
@@ -150,7 +150,7 @@ export default function TrendingChallenges() {
                 <button
                   onClick={() => handleEngage(item.question_id)}
                   disabled={engaging === item.question_id}
-                  className="rounded-lg bg-indigo-600 px-4 py-2 text-xs font-bold text-white hover:bg-indigo-500 disabled:opacity-50 flex items-center gap-1"
+                  className="rounded-lg bg-nature-leaf px-4 py-2 text-xs font-bold text-white hover:bg-nature-moss disabled:opacity-50 flex items-center gap-1"
                 >
                   {engaging === item.question_id ? (
                     <RefreshCw className="h-3 w-3 animate-spin" />
@@ -165,7 +165,7 @@ export default function TrendingChallenges() {
         </div>
 
         {feed.length === 0 && !loading && (
-          <p className="text-center text-slate-500 mt-8">
+          <p className="text-center text-text-muted mt-8">
             No trending challenges right now. Check back soon!
           </p>
         )}

@@ -10,8 +10,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY backend/ .
-COPY backend/.env.example .env
+COPY backend/ app/
+COPY .env.example .env
 
 EXPOSE 8000
 

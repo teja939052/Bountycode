@@ -1,0 +1,46 @@
+{
+  "id": "css-04-responsive",
+  "track": "css",
+  "title": "Responsive Design Basics",
+  "section": "Styling with CSS",
+  "order": 4,
+  "type": "lesson",
+  "duration": "10 min",
+  "xp": 20,
+  "content": {
+    "theory": "Responsive design means your page looks good on a phone, a tablet, and a monitor — without a separate site per device.\n\n### 1. Media queries\nThe core tool. You write rules that only apply above (or below) a certain screen width:\n```css\n/* Base: phone styles */\n.card { width: 100%; }\n\n/* 640px and wider: tablet+ */\n@media (min-width: 640px) {\n  .card { width: 50%; }\n}\n\n/* 1024px and wider: desktop */\n@media (min-width: 1024px) {\n  .card { width: 33.333%; }\n}\n```\nDesign for the phone first, then add breakpoints as the screen grows — this is **mobile-first**.\n\n### 2. Fluid units\nUse units that scale instead of fixed pixels:\n```css\n.container {\n  width: 90%;      /* % of parent */\n  max-width: 1200px; /* but never wider than 1200px */\n}\nbody { font-size: clamp(16px, 2vw, 24px); }\n```\n`clamp(min, preferred, max)` makes text scale smoothly.\n\n### 3. Flexible layout\n```css\n.grid {\n  display: flex;\n  flex-wrap: wrap;\n}\n.grid > * {\n  flex: 1 1 250px;  /* grow, shrink, base 250px */\n}\n```\nItems reflow onto new lines automatically when space runs out.\n\n### 4. Images\n```css\nimg {\n  max-width: 100%;  /* never overflow its container */\n  height: auto;     /* keep aspect ratio */\n}\n```\n\n### 5. Mobile meta tag\nMake sure the phone uses real width (not a scaled desktop):\n```html\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n```",
+    "codeSnippets": [
+      {
+        "language": "css",
+        "code": "@media (min-width: 768px) {\n  .row { display: flex; }\n}",
+        "output": "The row becomes horizontal only on screens 768px and wider."
+      }
+    ],
+    "exercise": {
+      "instruction": "Make .grid responsive: by default it stacks (block). At min-width 640px it becomes a flex row with gap 16px, and each .item gets flex: 1 1 200px. Add the viewport meta tag to the head.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Responsive</title>\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <style>\n    .grid {\n\n    }\n    @media (min-width: 640px) {\n\n    }\n    .item { background: #8b5cf6; height: 80px; }\n  </style>\n</head>\n<body>\n  <div class=\"grid\">\n    <div class=\"item\"></div>\n    <div class=\"item\"></div>\n    <div class=\"item\"></div>\n  </div>\n</body>\n</html>",
+      "required": ["@media (min-width: 640px)", ".grid {", "display: flex", "gap: 16px", "flex: 1 1 200px"],
+      "hints": [
+        "Hint 1: Inside the media query, set .grid { display: flex; gap: 16px; }.",
+        "Hint 2: Add .grid .item { flex: 1 1 200px; } so items share the row.",
+        "Hint 3: Keep the default block layout outside the media query for phones."
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What does a media query do?",
+        "options": ["Plays audio on hover", "Applies styles only in certain conditions", "Compresses images"],
+        "correct": 1
+      },
+      {
+        "question": "Which is the mobile-first approach?",
+        "options": ["Base = phone, media queries widen up", "Base = desktop, media queries shrink", "Separate sites per device"],
+        "correct": 0
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "css-05-grid",
+    "unlocks": ["css-05-grid"]
+  }
+}

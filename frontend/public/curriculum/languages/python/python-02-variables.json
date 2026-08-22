@@ -1,0 +1,48 @@
+{
+  "id": "python-02-variables",
+  "track": "python",
+  "title": "Variables & Data Types",
+  "section": "Python Basics",
+  "order": 2,
+  "type": "lesson",
+  "duration": "10 min",
+  "xp": 15,
+  "content": {
+    "theory": "A **variable** is a named box that stores a value. In Python you don't declare a type — you just assign:\n\n```python\nname = \"Ada\"\nage = 36\nheight = 1.65\nis_student = True\n```\n\nThe main **data types**:\n\n| Type | Example | Meaning |\n|------|---------|---------|\n| `str` | `\"hello\"` | Text |\n| `int` | `42` | Whole number |\n| `float` | `3.14` | Decimal |\n| `bool` | `True` / `False` | True or false |\n\nVariable names must start with a letter or underscore, can't contain spaces, and are **case-sensitive** (`Age` ≠ `age`).\n\nYou can combine variables with **f-strings** for clean output:\n\n```python\ngreeting = f\"{name} is {age} years old\"\nprint(greeting)\n```\n\nThe `f` before the quotes means *format* — `{name}` gets replaced by the value.",
+    "codeSnippets": [
+      {
+        "language": "python",
+        "code": "city = \"Mumbai\"\npopulation = 20_000_000\nprint(f\"{city}: {population} people\")",
+        "output": "Mumbai: 20000000 people"
+      }
+    ],
+    "exercise": {
+      "instruction": "Create a variable 'language' with the value 'Python' and a variable 'year' with the value 2026. Then print: I learn Python in 2026 using an f-string.",
+      "starterCode": "",
+      "language": "python",
+      "expected": "I learn Python in 2026",
+      "required": ["language =", "Python", "year =", "2026", "f\"", "{language}", "{year}"],
+      "hints": [
+        "Hint 1: language = \"Python\"",
+        "Hint 2: year = 2026",
+        "Hint 3: print(f\"I learn {language} in {year}\")"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What type is 3.14?",
+        "options": ["int", "float", "str"],
+        "correct": 1
+      },
+      {
+        "question": "What does the f in f-strings stand for?",
+        "options": ["final", "format", "fast"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "python-03-strings",
+    "unlocks": ["python-03-strings"]
+  }
+}

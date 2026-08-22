@@ -1,0 +1,53 @@
+{
+  "id": "cpp-14-std-map",
+  "track": "cpp",
+  "title": "std::map & std::pair",
+  "section": "C++ Intermediate",
+  "order": 14,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "A `std::map` stores **key–value pairs** and keeps them sorted by key. It's C++'s answer to a Python dict or a Java TreeMap, and it's implemented as a **red–black tree**, so lookup, insert, and erase all run in O(log n).\n\n```cpp\n#include <map>\n#include <string>\n\nstd::map<std::string, int> scores;\nscores[\"alice\"] = 3;   // operator[] inserts the key if missing\nscores[\"bob\"] = 5;\n```\n\n### operator[] vs insert\n\n`scores[\"alice\"] = 3` inserts the key if it doesn't exist, then assigns. `insert` inserts *only if the key is absent* and never overwrites:\n\n```cpp\nscores.insert({\"carol\", 2});\nscores.insert({\"carol\", 9});   // ignored — carol is still 2\n```\n\n### Looking things up\n\n```cpp\nauto it = scores.find(\"bob\");\nif (it != scores.end()) {\n    std::cout << it->first << \": \" << it->second;   // bob: 5\n}\n```\n\n`find` returns an iterator to the entry, or `end()` when the key is missing. Each entry is a `std::pair<const Key, Value>`: `.first` is the key and `.second` is the value. Be careful — `operator[]` on a missing key *inserts a default value*, so prefer `find` or `count` when you only want to check existence.\n\n### Iterating in sorted order\n\nMap iteration walks keys in **sorted order**, so printing a map is deterministic:\n\n```cpp\nfor (const auto& entry : scores) {\n    std::cout << entry.first << \": \" << entry.second << std::endl;\n}\n```\n\nWith C++17 you can use **structured bindings** for the same loop: `for (const auto& [name, score] : scores)`.\n\n### When to use map vs vector\n\nUse a `std::vector` when you need fast indexed access (`nums[i]`) or want to preserve insertion order. Use a `std::map` when you look things up **by key** — counting word frequencies, storing settings, tracking a score per player — especially when sorted traversal is a bonus.",
+    "codeSnippets": [
+      {
+        "language": "cpp",
+        "code": "#include <iostream>\n#include <map>\n#include <string>\n\nint main() {\n    std::map<std::string, int> scores;\n    scores[\"alice\"] = 3;\n    scores[\"bob\"] = 5;\n    scores[\"bob\"]++;\n    for (const auto& entry : scores) {\n        std::cout << entry.first << \": \" << entry.second << std::endl;\n    }\n    return 0;\n}",
+        "output": "alice: 3\nbob: 6"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write the program: include <map> and <string>. Create std::map<std::string, int> scores; set scores[\"alice\"] = 3 and scores[\"bob\"] = 5, then increment bob with scores[\"bob\"]++. Finally iterate with a range-based for loop printing entry.first << \": \" << entry.second on its own line.",
+      "starterCode": "#include <iostream>\n\nint main() {\n\n    return 0;\n}",
+      "language": "cpp",
+      "expected": "alice: 3\nbob: 6",
+      "required": ["#include <map>", "scores[\"bob\"]++", "entry.first", "entry.second"],
+      "hints": [
+        "Hint 1: std::map<std::string, int> scores; scores[\"alice\"] = 3; scores[\"bob\"] = 5;",
+        "Hint 2: Increment: scores[\"bob\"]++;",
+        "Hint 3: for (const auto& entry : scores) { std::cout << entry.first << \": \" << entry.second << std::endl; }"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "How does std::map order its keys?",
+        "options": ["In insertion order", "Sorted by key", "In reverse order"],
+        "correct": 1
+      },
+      {
+        "question": "What is each entry in a map?",
+        "options": ["A std::pair<const Key, Value>", "Two separate vectors", "A single int"],
+        "correct": 0
+      },
+      {
+        "question": "Why might operator[] be wrong for existence checks?",
+        "options": ["It's slow", "It inserts a default value when the key is missing", "It only works for string keys"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "cpp-15-inheritance",
+    "unlocks": ["cpp-15-inheritance"]
+  }
+}

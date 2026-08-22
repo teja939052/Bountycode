@@ -7,7 +7,7 @@ from app.database import get_db, gamification_collection, users_collection
 import logging, secrets, asyncio
 
 logger = logging.getLogger(__name__)
-router = APIRouter(prefix="/api/v1/campus", tags=["campus-connect"])
+router = APIRouter(prefix="/api/v1/campus-connect", tags=["campus-connect"])
 
 # ┃ Indian college list for scoped matchmaking
 INDIAN_COLLEGES = [

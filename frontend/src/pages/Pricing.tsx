@@ -15,7 +15,11 @@ function detectCountry() {
   return "US";
 }
 
-function getPlans(isIndia) {
+function getPlans(isIndia, prices) {
+  const usdAmt = (id, fb) => (prices && prices[id] && prices[id].usd != null ? prices[id].usd : fb);
+  const inrAmt = (id, fb) => (prices && prices[id] && prices[id].inr != null ? prices[id].inr : fb);
+  const usd = (id, fb) => `$${usdAmt(id, fb)}`;
+  const inr = (id, fb) => `₹${inrAmt(id, fb)}`;
   return [
     {
       id: "free",
@@ -38,10 +42,10 @@ function getPlans(isIndia) {
     {
       id: "pro",
       name: "Commander",
-      price: isIndia ? "₹99" : "$19",
-      priceINR: isIndia ? "₹99/mo" : "$19/mo",
-      priceUsd: "$19/mo",
-      priceInr: "₹99/mo",
+      price: isIndia ? inr("pro", 99) : usd("pro", 19),
+      priceINR: isIndia ? `${inr("pro", 99)}/mo` : `${usd("pro", 19)}/mo`,
+      priceUsd: `${usd("pro", 19)}/mo`,
+      priceInr: `${inr("pro", 99)}/mo`,
       period: "/month",
       desc: "Cancel anytime. Instant access.",
       features: [
@@ -62,101 +66,101 @@ function getPlans(isIndia) {
       className: "card-glow border-2 border-cyber-blue/40 relative",
       badge: "Commander",
     },
-    {
-      id: "yearly",
-      name: "Strategist",
-      price: isIndia ? "₹499" : "$49",
-      priceINR: isIndia ? "₹499/yr" : "$49/yr",
-      priceUsd: "$49/yr",
-      priceInr: "₹499/yr",
-      period: "/year",
-      desc: isIndia ? "Save ₹689/yr vs monthly!" : "Save $179/yr vs monthly!",
-      features: [
-        "Everything in Pro",
-        isIndia ? "Just ₹41/month (save 59%)" : "$4.08/month (save 78%)",
-        "Unlimited all features",
-        "Company-specific placement prep",
-        "53 companies with real patterns",
-        "576+ curated DSA/aptitude questions",
-        "All future updates included",
-        "Priority support",
-      ],
-      cta: "Get Yearly — Best Deal",
-      className: "card-pro relative",
-      badge: "Best Value",
-    },
-    {
-      id: "lifetime",
-      name: "Admiral",
-      price: isIndia ? "₹499" : "$49",
-      priceINR: isIndia ? "₹499 one-time" : "$49 one-time",
-      priceUsd: "$49 one-time",
-      priceInr: "₹499 one-time",
-      period: "one-time",
-      desc: "Pay once. Use forever.",
-      features: [
-        "Everything in Pro",
-        "One-time payment — never billed again",
-        "Lifetime access to all current features",
-        "All future updates included",
-        "Priority support",
-      ],
-      cta: "Get Lifetime",
-      className: "card-pro",
-      badge: "Forever",
-    },
-    {
-      id: "team",
-      name: "Command Squad",
-      price: isIndia ? "₹2,499" : "$29",
-      priceINR: isIndia ? "₹2,499/mo" : "$29/mo",
-      priceUsd: "$29/mo",
-      priceInr: "₹2,499/mo",
-      period: "/month per seat",
-      desc: "5–50 seats. Perfect for teams.",
-      icon: Users,
-      features: [
-        "Everything in Pro",
-        "5–50 team members",
-        "Team dashboard & analytics",
-        "Bulk invitations",
-        "Custom roles & permissions",
-        "Usage analytics per member",
-        "All future updates included",
-        "Priority support",
-      ],
-      cta: "Get Team Plan",
-      className: "card-pro relative",
-      badge: "Teams",
-    },
-    {
-      id: "enterprise",
-      name: "Executive Suite",
-      price: isIndia ? "₹8,299" : "$99",
-      priceINR: isIndia ? "₹8,299/mo" : "$99/mo",
-      priceUsd: "$99/mo",
-      priceInr: "₹8,299/mo",
-      period: "/month per seat",
-      desc: "Unlimited seats. White-label. API access.",
-      icon: Building2,
-      features: [
-        "Everything in Team",
-        "Unlimited seats (10+)",
-        "White-label platform",
-        "API access for integrations",
-        "Custom branding & SSO",
-        "Dedicated account manager",
-        "24/7 priority support",
-        "SLA guarantee",
-        "Custom training for team",
-      ],
-      cta: "Contact Sales",
-      className: "card-pro relative",
-      badge: "Enterprise",
-      isEnterprise: true,
-    },
-  ];
-}
+      {
+        id: "yearly",
+        name: "Strategist",
+        price: isIndia ? inr("yearly", 499) : usd("yearly", 99),
+        priceINR: isIndia ? `${inr("yearly", 499)}/yr` : `${usd("yearly", 99)}/yr`,
+        priceUsd: `${usd("yearly", 99)}/yr`,
+        priceInr: `${inr("yearly", 499)}/yr`,
+        period: "/year",
+        desc: isIndia ? "Save ₹689/yr vs monthly!" : "Save $129/yr vs monthly!",
+        features: [
+          "Everything in Pro",
+          isIndia ? "Just ₹42/month (save 58%)" : "$8.25/month (save 57%)",
+          "Unlimited all features",
+          "Company-specific placement prep",
+          "53 companies with real patterns",
+          "576+ curated DSA/aptitude questions",
+          "All future updates included",
+          "Priority support",
+        ],
+        cta: "Get Yearly — Best Deal",
+        className: "card-pro relative",
+        badge: "Best Value",
+      },
+      {
+        id: "lifetime",
+        name: "Admiral",
+        price: isIndia ? inr("lifetime", 1499) : usd("lifetime", 149),
+        priceINR: isIndia ? `${inr("lifetime", 1499)} one-time` : `${usd("lifetime", 149)} one-time`,
+        priceUsd: `${usd("lifetime", 149)} one-time`,
+        priceInr: `${inr("lifetime", 1499)} one-time`,
+        period: "one-time",
+        desc: "Pay once. Use forever.",
+        features: [
+          "Everything in Pro",
+          "One-time payment — never billed again",
+          "Lifetime access to all current features",
+          "All future updates included",
+          "Priority support",
+        ],
+        cta: "Get Lifetime",
+        className: "card-pro",
+        badge: "Forever",
+      },
+      {
+        id: "team",
+        name: "Command Squad",
+        price: isIndia ? inr("team", 12250) : usd("team", 145),
+        priceINR: isIndia ? `${inr("team", 12250)}/mo` : `${usd("team", 145)}/mo`,
+        priceUsd: `${usd("team", 145)}/mo`,
+        priceInr: `${inr("team", 12250)}/mo`,
+        period: "/month per seat",
+        desc: "5–50 seats. Perfect for teams.",
+        icon: Users,
+        features: [
+          "Everything in Pro",
+          "5–50 team members",
+          "Team dashboard & analytics",
+          "Bulk invitations",
+          "Custom roles & permissions",
+          "Usage analytics per member",
+          "All future updates included",
+          "Priority support",
+        ],
+        cta: "Get Team Plan",
+        className: "card-pro relative",
+        badge: "Teams",
+      },
+      {
+        id: "enterprise",
+        name: "Executive Suite",
+        price: isIndia ? inr("enterprise", 66392) : usd("enterprise", 99),
+        priceINR: isIndia ? `${inr("enterprise", 66392)}/mo` : `${usd("enterprise", 99)}/mo`,
+        priceUsd: `${usd("enterprise", 99)}/mo`,
+        priceInr: `${inr("enterprise", 66392)}/mo`,
+        period: "/month per seat",
+        desc: "Unlimited seats. White-label. API access.",
+        icon: Building2,
+        features: [
+          "Everything in Team",
+          "Unlimited seats (10+)",
+          "White-label platform",
+          "API access for integrations",
+          "Custom branding & SSO",
+          "Dedicated account manager",
+          "24/7 priority support",
+          "SLA guarantee",
+          "Custom training for team",
+        ],
+        cta: "Contact Sales",
+        className: "card-pro relative",
+        badge: "Enterprise",
+        isEnterprise: true,
+      },
+    ];
+  }
 
 export default function Pricing() {
   const { user } = useAuthStore();
@@ -174,9 +178,24 @@ export default function Pricing() {
   const [couponApplied, setCouponApplied] = useState(false);
   const [couponDiscount, setCouponDiscount] = useState(0);
   const [couponError, setCouponError] = useState("");
+  const [serverPrices, setServerPrices] = useState<any>(null);
 
   const isIndia = country === "IN";
-  const plans = getPlans(isIndia);
+
+  // Prices are the single source of truth from the backend (billing.py PRICING).
+  // If the fetch fails we fall back to the hardcoded values below.
+  useEffect(() => {
+    let active = true;
+    api.getPlans().then((res) => {
+      if (!active || !res?.plans) return;
+      const map: Record<string, any> = {};
+      res.plans.forEach((p) => { map[p.id] = p; });
+      setServerPrices(map);
+    }).catch(() => {});
+    return () => { active = false; };
+  }, []);
+
+  const plans = getPlans(isIndia, serverPrices);
 
   const handleCheckout = async (planId, seats = 1) => {
     if (!user) {
@@ -428,7 +447,7 @@ export default function Pricing() {
               <button
                 onClick={() => {
                   if (plan.id === "free") {
-                    navigate(user ? "/dashboard" : "/register");
+                    navigate(user ? "/hub" : "/register");
                   } else if (plan.id === "enterprise") {
                     navigate("/enterprise-contact");
                   } else {
@@ -451,7 +470,7 @@ export default function Pricing() {
           <div className="text-center mt-6 bg-space-panel/80 border border-space-border rounded-xl p-4 max-w-md mx-auto">
             <p className="text-xs font-mono text-cyber-blue mb-1">🇮🇳 India Student Special</p>
             <p className="text-xs font-mono text-gray-400">
-              Lifetime plan at just <span className="text-text-primary font-bold">₹499 one-time</span> — less than 2 months of coffee!
+              Lifetime plan at just <span className="text-text-primary font-bold">₹1,499 one-time</span> — less than 2 months of coffee!
             </p>
           </div>
         )}

@@ -8,6 +8,15 @@
     <link rel="manifest" href="/manifest.webmanifest" />
     <title>PlacementPro</title>
     <meta name="description" content="AI-powered placement preparation. Practice interviews, build resumes, and optimize for ATS." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Press+Start+2P&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" /></noscript>
     <script>
       // Local dev/preview must never be controlled by a service worker: a stale
       // SW (e.g. from a production build) serves old cached bundles and breaks
@@ -26,13 +35,21 @@
     <style>
       html, body { background: #F4EFE8; }
     </style>
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER"></script>
+    <!-- Google Analytics (only loads when a real Measurement ID is configured) -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-PLACEHOLDER', { send_page_view: false });
+      var GA_MEASUREMENT_ID = "G-PLACEHOLDER";
+      if (GA_MEASUREMENT_ID !== "G-PLACEHOLDER" && location.hostname !== "localhost") {
+        (function () {
+          var s = document.createElement("script");
+          s.async = true;
+          s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_MEASUREMENT_ID;
+          document.head.appendChild(s);
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag("js", new Date());
+          gtag("config", GA_MEASUREMENT_ID, { send_page_view: false });
+        })();
+      }
     </script>
   </head>
   <body class="antialiased">

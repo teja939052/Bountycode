@@ -1,0 +1,46 @@
+{
+  "id": "sql-03-order-limit",
+  "track": "sql",
+  "title": "Sorting & Limiting",
+  "section": "SQL Queries",
+  "order": 3,
+  "type": "lesson",
+  "duration": "9 min",
+  "xp": 15,
+  "content": {
+    "theory": "Sort results with `ORDER BY` — by default ascending:\n\n```sql\nSELECT name, score FROM students\nORDER BY score;\n```\n\nSpecify the direction:\n\n```sql\nSELECT name, score FROM students\nORDER BY score DESC;    -- highest first\n\nSELECT name, score FROM students\nORDER BY score ASC;     -- lowest first (default)\n```\n\nSort by multiple columns — the first is primary:\n\n```sql\nSELECT name, city, score FROM students\nORDER BY city ASC, score DESC;\n```\n\n`LIMIT` cuts the result set:\n\n```sql\nSELECT name, score FROM students\nORDER BY score DESC\nLIMIT 3;                 -- top 3 scores\n```\n\nThis is the classic **leaderboard** pattern: order by the score, take the top N.\n\nCombine everything — `WHERE` runs first, then sorting, then limit:\n\n```sql\nSELECT name, score FROM students\nWHERE city = 'Delhi'\nORDER BY score DESC\nLIMIT 2;\n```\n\nClause order matters in SQL. The standard order is:\n\n`SELECT … FROM … WHERE … ORDER BY … LIMIT …`",
+    "codeSnippets": [
+      {
+        "language": "sql",
+        "code": "SELECT name, score FROM students\nORDER BY score DESC\nLIMIT 2;",
+        "output": "Priya 92 · Sara 85"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write a query that selects 'name' and 'score' from 'students', sorts by score from highest to lowest, and returns only the top 2 rows.",
+      "starterCode": "",
+      "required": ["SELECT name, score", "FROM students", "ORDER BY score DESC", "LIMIT 2"],
+      "hints": [
+        "Hint 1: SELECT name, score FROM students",
+        "Hint 2: ORDER BY score DESC",
+        "Hint 3: LIMIT 2;"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What does DESC mean?",
+        "options": ["Descending order", "Duplicate elimination", "Default sort"],
+        "correct": 0
+      },
+      {
+        "question": "Which clause comes first in a query?",
+        "options": ["LIMIT", "WHERE", "ORDER BY"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "sql-04-aggregates",
+    "unlocks": ["sql-04-aggregates"]
+  }
+}

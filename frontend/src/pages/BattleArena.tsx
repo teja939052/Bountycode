@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../services/api";
+import useBattleLive, { BattleLiveMessage } from "../hooks/useBattleLive";
+import useAuthStore from "../store/authStore";
 import {
   Sword, Swords, Timer, Trophy, Users, Code2,
   Target, Zap, SkipForward, ChevronRight, Clock,
   CheckCircle, XCircle, Loader2, ScrollText,
-  Medal, Star, BarChart3, History, UserCheck,
+  Medal, Star, BarChart3, History,
   Rocket, BrainCircuit,
 } from "lucide-react";
 
@@ -19,9 +21,13 @@ const LANGUAGES = ["python", "javascript", "typescript", "java", "cpp", "go", "r
 
 const TABS = ["arena", "history", "leaderboard"];
 
+const INITIAL_OPP_LIVE = { lines: 0, submitted: false, score: null, online: false, left: false };
+
 export default function BattleArena() {
   const { battleId: routeBattleId } = useParams();
   const navigate = useNavigate();
+  const { user: me } = useAuthStore();
+  const myUserId = me?.id || null;
   const [tab, setTab] = useState("arena");
   const [mode, setMode] = useState("fastest");
   const [difficulty, setDifficulty] = useState("easy");
@@ -36,14 +42,17 @@ export default function BattleArena() {
   const [history, setHistory] = useState([]);
   const [leaderboard, setLeaderboard] = useState([]);
   const [stats, setStats] = useState(null);
+  const [oppLive, setOppLive] = useState(INITIAL_OPP_LIVE);
   const pollRef = useRef(null);
   const battlePollRef = useRef(null);
+  const progressTimerRef = useRef(null);
 
   // Start matchmaking
   const findMatch = async () => {
     try {
       const data = await api.joinBattleQueue({ mode, difficulty, language });
       if (data.matched) {
+        setOppLive(INITIAL_OPP_LIVE);
         setBattleId(data.battle_id);
         setBattle(data.battle);
         setInQueue(false);
@@ -65,6 +74,7 @@ export default function BattleArena() {
       try {
         const data = await api.getBattleQueueStatus();
         if (data.matched) {
+          setOppLive(INITIAL_OPP_LIVE);
           setBattleId(data.battle_id);
           setInQueue(false);
           return;
@@ -153,8 +163,91 @@ export default function BattleArena() {
 
   const activeBattle = battle && battle.status === "in_progress";
 
+  // Live opponent feed (WebSocket). Sanitized: lines + submit status, no code.
+  const handleLiveMessage = useCallback((msg: BattleLiveMessage) => {
+    const d = msg.data || {};
+    if (msg.type === "sync") {
+      setOppLive((o) => ({
+        ...o,
+        online: true,
+        left: false,
+        submitted: !!d.opponent_submitted,
+        score: (d.opponent_score as number | null) ?? o.score,
+      }));
+      setBattle((prev) =>
+        prev
+          ? {
+              ...prev,
+              status: (d.status as string) || prev.status,
+              opponent_submitted: d.opponent_submitted ?? prev.opponent_submitted,
+              opponent_score: d.opponent_score ?? prev.opponent_score,
+              winner_id: d.winner_id || prev.winner_id,
+            }
+          : prev
+      );
+      return;
+    }
+    if (msg.type === "progress") {
+      if (myUserId && d.user_id === myUserId) return;
+      setOppLive((o) => ({
+        ...o,
+        online: true,
+        left: false,
+        lines: Number(d.lines) || o.lines,
+        submitted: !!d.submitted || o.submitted,
+      }));
+      return;
+    }
+    if (msg.type === "battle_update") {
+      const fromOpponent = myUserId ? d.user_id && d.user_id !== myUserId : false;
+      if (fromOpponent) {
+        setBattle((prev) =>
+          prev
+            ? {
+                ...prev,
+                opponent_submitted: true,
+                opponent_score: (d.score as number) ?? prev.opponent_score,
+              }
+            : prev
+        );
+        setOppLive((o) => ({
+          ...o,
+          submitted: true,
+          score: (d.score as number | null) ?? o.score,
+        }));
+      }
+      if (d.status === "completed") {
+        setBattle((prev) =>
+          prev ? { ...prev, status: "completed", winner_id: d.winner_id || prev.winner_id } : prev
+        );
+      }
+      return;
+    }
+    if (msg.type === "opponent_left") {
+      if (myUserId && d.user_id === myUserId) return;
+      setOppLive((o) => ({ ...o, online: false, left: true }));
+    }
+  }, [myUserId]);
+
+  const { status: liveStatus, send: sendLive } = useBattleLive({
+    battleId: activeBattle ? battleId : null,
+    onMessage: handleLiveMessage,
+  });
+
+  // Broadcast throttled lines-of-code progress while the battle is live.
+  useEffect(() => {
+    if (!activeBattle || !battleId) return;
+    if (progressTimerRef.current) clearTimeout(progressTimerRef.current);
+    progressTimerRef.current = setTimeout(() => {
+      sendLive({ type: "progress", lines: code.split("\n").length });
+    }, 800);
+    return () => {
+      if (progressTimerRef.current) clearTimeout(progressTimerRef.current);
+    };
+  }, [code, activeBattle, battleId, sendLive]);
+
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="page-surface mx-auto max-w-7xl px-4 py-6">
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
@@ -166,7 +259,7 @@ export default function BattleArena() {
         </div>
         {stats && (
           <div className="flex items-center gap-4 text-sm">
-            <div className="px-4 py-2 rounded-xl border border-white/60 bg-white/80">
+            <div className="rounded-xl border border-black/5 bg-white px-4 py-2 shadow-sm">
               <span className="text-text-light">W/L </span>
               <span className="font-bold text-green-600">{stats.wins}</span>
               <span className="text-text-light">/</span>
@@ -178,7 +271,7 @@ export default function BattleArena() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 mb-6 p-1 rounded-2xl bg-white/50 border border-white/60 w-fit">
+      <div className="mb-6 flex w-fit gap-1 rounded-2xl border border-black/5 bg-white/70 p-1 shadow-sm">
         {TABS.map((t) => (
           <button
             key={t}
@@ -201,7 +294,7 @@ export default function BattleArena() {
             <div className="grid lg:grid-cols-2 gap-8">
               {/* Queue Panel */}
               <div className="space-y-6">
-                <div className="p-6 rounded-2xl border border-white/60 bg-white/80 backdrop-blur-sm">
+                <div className="rounded-2xl border border-black/5 bg-white p-6 shadow-sm">
                   <h2 className="text-lg font-bold text-text-primary mb-4">Configure Battle</h2>
 
                   {/* Mode */}
@@ -214,7 +307,7 @@ export default function BattleArena() {
                         className={`p-3 rounded-xl border text-center transition-all ${
                           mode === m.id
                             ? "border-brand-sky bg-brand-sky/10 text-brand-sky"
-                            : "border-white/60 hover:border-brand-sky/30 text-text-secondary"
+                            : "border-black/5 hover:border-brand-sky/30 text-text-secondary"
                         }`}
                       >
                         <m.icon size={20} className="mx-auto mb-1" />
@@ -234,7 +327,7 @@ export default function BattleArena() {
                         className={`flex-1 p-2.5 rounded-xl border text-sm font-medium transition-all ${
                           difficulty === d
                             ? "border-brand-lavender bg-brand-lavender/10 text-brand-lavender"
-                            : "border-white/60 hover:border-brand-lavender/30 text-text-secondary"
+                            : "border-black/5 hover:border-brand-lavender/30 text-text-secondary"
                         }`}
                       >
                         {d.charAt(0).toUpperCase() + d.slice(1)}
@@ -247,7 +340,7 @@ export default function BattleArena() {
                   <select
                     value={language}
                     onChange={(e) => setLanguage(e.target.value)}
-                    className="w-full p-2.5 rounded-xl border border-white/60 bg-white text-sm"
+                    className="w-full rounded-xl border border-black/5 bg-white p-2.5 text-sm"
                   >
                     {LANGUAGES.map((l) => (
                       <option key={l} value={l}>{l.charAt(0).toUpperCase() + l.slice(1)}</option>
@@ -266,7 +359,7 @@ export default function BattleArena() {
 
               {/* Info Panel */}
               <div className="space-y-4">
-                <div className="p-6 rounded-2xl border border-white/60 bg-white/80">
+                <div className="rounded-2xl border border-black/5 bg-white p-6 shadow-sm">
                   <h2 className="text-lg font-bold text-text-primary mb-3 flex items-center gap-2">
                     <Rocket size={20} className="text-brand-coral" />
                     How It Works
@@ -290,7 +383,7 @@ export default function BattleArena() {
                     </li>
                   </ul>
                 </div>
-                <div className="p-6 rounded-2xl border border-white/60 bg-white/80">
+                <div className="rounded-2xl border border-black/5 bg-white p-6 shadow-sm">
                   <h2 className="text-lg font-bold text-text-primary mb-2 flex items-center gap-2">
                     <BarChart3 size={20} className="text-brand-lavender" />
                     Your Stats
@@ -337,7 +430,7 @@ export default function BattleArena() {
           {activeBattle && battle && (
             <div className="grid lg:grid-cols-2 gap-6">
               {/* Problem Panel */}
-              <div className="p-6 rounded-2xl border border-white/60 bg-white/80">
+              <div className="rounded-2xl border border-black/5 bg-white p-6 shadow-sm">
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="text-lg font-bold text-text-primary">{battle.problem?.title || "Loading..."}</h2>
                   <div className="flex items-center gap-2">
@@ -365,7 +458,7 @@ export default function BattleArena() {
                       <ScrollText size={14} /> Examples
                     </h3>
                     {battle.problem.examples.map((ex, i) => (
-                      <div key={i} className="mb-2 p-2 rounded-lg bg-gray-50 text-xs font-mono">
+                      <div key={i} className="mb-2 p-2 rounded-lg bg-surface-base text-xs font-mono">
                         <div>Input: {ex.input}</div>
                         <div>Output: {ex.output}</div>
                       </div>
@@ -377,32 +470,48 @@ export default function BattleArena() {
                 {battle.problem?.starter_code && (
                   <div className="mb-4">
                     <h3 className="text-sm font-semibold text-text-primary mb-2">Starter Code</h3>
-                    <pre className="p-3 rounded-xl bg-gray-900 text-green-400 text-xs overflow-x-auto">{battle.problem.starter_code}</pre>
+                    <pre className="overflow-x-auto rounded-xl bg-surface-base p-3 text-xs text-emerald-700">{battle.problem.starter_code}</pre>
                   </div>
                 )}
 
-                {/* Opponent Status */}
-                <div className="flex items-center justify-between p-3 rounded-xl border border-white/60 bg-white/50">
-                  <div className="flex items-center gap-2">
-                    <UserCheck size={16} className="text-text-light" />
-                    <span className="text-sm text-text-secondary">{battle.opponent_name || "Opponent"}</span>
+                {/* Opponent Status — live via WebSocket */}
+                <div className="rounded-xl border border-black/5 bg-white/70 p-3">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <span className={`w-2 h-2 rounded-full ${liveStatus === "open" ? "bg-green-500 animate-pulse" : "bg-gray-400"}`} />
+                      <span className="text-sm text-text-secondary">{battle.opponent_name || "Opponent"}</span>
+                      <span className="text-[9px] font-mono uppercase tracking-wider text-brand-sky">
+                        {liveStatus === "open" ? "Live" : liveStatus === "connecting" ? "Connecting" : "Offline"}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      {battle.opponent_submitted ? (
+                        <span className="flex items-center gap-1 text-xs text-green-600"><CheckCircle size={14} /> Submitted</span>
+                      ) : oppLive.left ? (
+                        <span className="flex items-center gap-1 text-xs text-gray-400"><XCircle size={14} /> Left</span>
+                      ) : (
+                        <span className="flex items-center gap-1 text-xs text-amber-600"><Loader2 size={14} className="animate-spin" /> Solving...</span>
+                      )}
+                      {battle.opponent_score !== null && battle.opponent_score !== undefined && (
+                        <span className="text-sm font-bold text-text-primary">{battle.opponent_score} pts</span>
+                      )}
+                    </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    {battle.opponent_submitted ? (
-                      <span className="flex items-center gap-1 text-xs text-green-600"><CheckCircle size={14} /> Submitted</span>
-                    ) : (
-                      <span className="flex items-center gap-1 text-xs text-amber-600"><Loader2 size={14} className="animate-spin" /> Solving...</span>
-                    )}
-                    {battle.opponent_score !== null && battle.opponent_score !== undefined && (
-                      <span className="text-sm font-bold text-text-primary">{battle.opponent_score} pts</span>
-                    )}
+                    <div className="flex-1 h-2 rounded-full bg-white/60 border border-white/70 overflow-hidden">
+                      <div
+                        className="h-full rounded-full transition-all duration-500 bg-gradient-to-r from-brand-sky to-brand-lavender"
+                        style={{ width: `${Math.min(100, (oppLive.lines / 40) * 100)}%` }}
+                      />
+                    </div>
+                    <span className="text-[10px] font-mono text-text-light w-16 text-right">{oppLive.lines} lines</span>
                   </div>
                 </div>
               </div>
 
               {/* Code Editor Panel */}
               <div className="space-y-4">
-                <div className="p-4 rounded-2xl border border-white/60 bg-white/80">
+                <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm">
                   <div className="flex items-center justify-between mb-3">
                     <h3 className="text-sm font-semibold text-text-primary flex items-center gap-1">
                       <Code2 size={16} /> Your Solution
@@ -414,7 +523,7 @@ export default function BattleArena() {
                   <textarea
                     value={code}
                     onChange={(e) => setCode(e.target.value)}
-                    className="w-full h-64 p-3 rounded-xl border border-white/60 bg-gray-900 text-green-400 text-sm font-mono resize-none focus:outline-none focus:ring-2 focus:ring-brand-sky/50"
+                    className="h-64 w-full resize-none rounded-xl border border-black/5 bg-surface-base p-3 font-mono text-sm text-emerald-700 focus:outline-none focus:ring-2 focus:ring-brand-sky/50"
                     placeholder="Write your code here..."
                     spellCheck={false}
                   />
@@ -467,7 +576,7 @@ export default function BattleArena() {
           {/* Completed Battle */}
           {battleId && !activeBattle && battle && (
             <div className="max-w-lg mx-auto text-center py-12">
-              {battle.winner_id === battle.my_score !== null && battle.my_submitted ? (
+              {battle.winner_id === myUserId && battle.my_submitted ? (
                 <div>
                   <Trophy size={64} className="mx-auto text-yellow-500 mb-4" />
                   <h2 className="text-2xl font-bold text-text-primary mb-2">You Won!</h2>
@@ -480,7 +589,7 @@ export default function BattleArena() {
               )}
               <p className="text-text-light">Your score: {battle.my_score} | Opponent: {battle.opponent_score}</p>
               <button
-                onClick={() => { setBattleId(null); setBattle(null); setCode(""); setResult(null); }}
+                onClick={() => { setBattleId(null); setBattle(null); setCode(""); setResult(null); setOppLive(INITIAL_OPP_LIVE); }}
                 className="mt-6 btn-primary px-8 py-3"
               >
                 Battle Again
@@ -492,14 +601,14 @@ export default function BattleArena() {
 
       {/* History Tab */}
       {tab === "history" && (
-        <div className="p-6 rounded-2xl border border-white/60 bg-white/80">
+        <div className="rounded-2xl border border-black/5 bg-white p-6 shadow-sm">
           <h2 className="text-lg font-bold text-text-primary mb-4">Battle History</h2>
           {history.length === 0 ? (
             <p className="text-text-light text-sm">No battles yet. Queue up and fight!</p>
           ) : (
             <div className="space-y-2">
               {history.map((b, i) => (
-                <div key={i} className="flex items-center justify-between p-3 rounded-xl border border-white/60 bg-white/50 hover:bg-white/80 transition-colors">
+                <div key={i} className="flex items-center justify-between rounded-xl border border-black/5 bg-white/70 p-3 transition-colors hover:bg-white">
                   <div className="flex items-center gap-3">
                     {b.won === true ? (
                       <Medal size={20} className="text-yellow-500" />
@@ -532,20 +641,20 @@ export default function BattleArena() {
 
       {/* Leaderboard Tab */}
       {tab === "leaderboard" && (
-        <div className="p-6 rounded-2xl border border-white/60 bg-white/80">
+        <div className="rounded-2xl border border-black/5 bg-white p-6 shadow-sm">
           <h2 className="text-lg font-bold text-text-primary mb-4">Battle Leaderboard</h2>
           {leaderboard.length === 0 ? (
             <p className="text-text-light text-sm">No rankings yet.</p>
           ) : (
             <div className="space-y-1">
               {leaderboard.map((entry, i) => (
-                <div key={i} className="flex items-center justify-between p-3 rounded-xl hover:bg-gray-50 transition-colors">
+                <div key={i} className="flex items-center justify-between rounded-xl p-3 transition-colors hover:bg-black/5">
                   <div className="flex items-center gap-3">
                     <span className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
                       i === 0 ? "bg-yellow-100 text-yellow-700" :
-                      i === 1 ? "bg-gray-100 text-gray-600" :
+                      i === 1 ? "bg-black/5 text-brand-secondary" :
                       i === 2 ? "bg-orange-100 text-orange-700" :
-                      "bg-gray-50 text-gray-500"
+                      "bg-black/5 text-brand-muted"
                     }`}>
                       {i + 1}
                     </span>

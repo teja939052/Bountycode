@@ -12,7 +12,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="w-full">
         {label && (
-          <label htmlFor={inputId} className="block text-xs font-mono uppercase tracking-wider text-gray-400 mb-1.5">
+          <label htmlFor={inputId} className="mb-1.5 block text-[11px] font-mono uppercase tracking-[0.2em] text-text-muted">
             {label}
           </label>
         )}
@@ -21,10 +21,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           id={inputId}
           aria-invalid={!!error}
           aria-describedby={error ? `${inputId}-error` : undefined}
-          className={`input ${error ? "!border-cyber-red" : ""} ${className}`}
+          className={`input ${error ? "!border-red-400 !ring-red-100" : ""} ${className}`}
           {...props}
         />
-        {error && <p id={`${inputId}-error`} className="mt-1 text-xs text-cyber-red font-mono" role="alert">{error}</p>}
+        {error && <p id={`${inputId}-error`} className="mt-1 text-xs text-red-500 font-mono" role="alert">{error}</p>}
       </div>
     );
   }

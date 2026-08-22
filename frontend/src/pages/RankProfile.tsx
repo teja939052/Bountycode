@@ -100,7 +100,7 @@ export default function RankProfile() {
           </div>
 
           {/* Honor Progress */}
-          <div className="p-6 rounded-2xl border border-white/60 bg-white/80">
+          <div className="p-6 rounded-2xl border border-brand-primary/20 bg-surface-card/90">
             <h3 className="text-sm font-semibold text-text-primary mb-4 flex items-center gap-2">
               <Star size={16} className="text-yellow-500" /> Honor Progress
             </h3>
@@ -108,7 +108,7 @@ export default function RankProfile() {
               <span className="text-4xl font-bold text-text-primary">{profile.honor}</span>
               <span className="text-text-light">honor</span>
             </div>
-            <div className="w-full h-3 rounded-full bg-gray-200 overflow-hidden mb-2">
+            <div className="w-full h-3 rounded-full bg-surface-card/50 overflow-hidden mb-2">
               <div
                 className="h-full rounded-full bg-gradient-to-r from-brand-sky to-brand-lavender transition-all duration-500"
                 style={{ width: `${Math.min(100, profile.progress_percent)}%` }}
@@ -125,7 +125,7 @@ export default function RankProfile() {
           </div>
 
           {/* Badge Collection */}
-          <div className="p-6 rounded-2xl border border-white/60 bg-white/80">
+          <div className="p-6 rounded-2xl border border-brand-primary/20 bg-surface-card/90">
             <h3 className="text-sm font-semibold text-text-primary mb-4 flex items-center gap-2">
               <Medal size={16} className="text-amber-500" /> Badges
               <span className="text-text-light font-normal">({profile.badge_count}/{profile.total_badges})</span>
@@ -139,7 +139,7 @@ export default function RankProfile() {
                     className={`p-3 rounded-xl border text-center transition-all ${
                       earned
                         ? "border-amber-200 bg-amber-50/50"
-                        : "border-white/60 bg-gray-50/50 opacity-40"
+                        : "border-brand-primary/20 bg-surface-base/50 opacity-40"
                     }`}
                     title={`${badge.name}: ${badge.description}`}
                   >
@@ -157,7 +157,7 @@ export default function RankProfile() {
         {/* Right Column — Leaderboard */}
         <div className="lg:col-span-2 space-y-6">
           {/* Honor Leaderboard */}
-          <div className="p-6 rounded-2xl border border-white/60 bg-white/80">
+          <div className="p-6 rounded-2xl border border-brand-primary/20 bg-surface-card/90">
             <h2 className="text-lg font-bold text-text-primary mb-4 flex items-center gap-2">
               <Trophy size={20} className="text-yellow-500" />
               Honor Leaderboard
@@ -173,17 +173,17 @@ export default function RankProfile() {
                       key={entry.user_id}
                       className={`flex items-center justify-between p-3 rounded-xl transition-colors ${
                         i === 0 ? "bg-yellow-50 border border-yellow-200" :
-                        i === 1 ? "bg-gray-50 border border-gray-200" :
+                        i === 1 ? "bg-surface-base border border-gray-200" :
                         i === 2 ? "bg-orange-50 border border-orange-200" :
-                        "hover:bg-gray-50"
+                        "hover:bg-surface-card"
                       }`}
                     >
                       <div className="flex items-center gap-3">
                         <span className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
                           i === 0 ? "bg-yellow-200 text-yellow-800" :
-                          i === 1 ? "bg-gray-200 text-gray-700" :
+                          i === 1 ? "bg-surface-card/50 text-brand-primary" :
                           i === 2 ? "bg-orange-200 text-orange-800" :
-                          "bg-gray-100 text-gray-500"
+                          "bg-surface-card/50 text-brand-muted"
                         }`}>
                           {entry.rank}
                         </span>
@@ -209,7 +209,7 @@ export default function RankProfile() {
                 <button
                   disabled={lbPage <= 1}
                   onClick={() => setLbPage((p) => Math.max(1, p - 1))}
-                  className="px-3 py-1.5 rounded-lg border border-white/60 text-sm disabled:opacity-40"
+                  className="px-3 py-1.5 rounded-lg border border-brand-primary/20 text-sm disabled:opacity-40"
                 >
                   Prev
                 </button>
@@ -217,7 +217,7 @@ export default function RankProfile() {
                 <button
                   disabled={lbPage >= Math.ceil(lbTotal / 20)}
                   onClick={() => setLbPage((p) => p + 1)}
-                  className="px-3 py-1.5 rounded-lg border border-white/60 text-sm disabled:opacity-40"
+                  className="px-3 py-1.5 rounded-lg border border-brand-primary/20 text-sm disabled:opacity-40"
                 >
                   Next
                 </button>
@@ -226,7 +226,7 @@ export default function RankProfile() {
           </div>
 
           {/* Honor Actions Reference */}
-          <div className="p-6 rounded-2xl border border-white/60 bg-white/80">
+          <div className="p-6 rounded-2xl border border-brand-primary/20 bg-surface-card/90">
             <h2 className="text-lg font-bold text-text-primary mb-4 flex items-center gap-2">
               <Zap size={20} className="text-amber-500" />
               Earn Honor
@@ -242,7 +242,7 @@ export default function RankProfile() {
                 { action: "Daily login", honor: 1, icon: Zap },
                 { action: "Create a scrim", honor: 10, icon: Shield },
               ].map((item, i) => (
-                <div key={i} className="flex items-center justify-between p-3 rounded-xl border border-white/60 bg-white/50">
+                <div key={i} className="flex items-center justify-between p-3 rounded-xl border border-brand-primary/20 bg-surface-card/70">
                   <div className="flex items-center gap-2">
                     <item.icon size={14} className="text-brand-sky" />
                     <span className="text-sm text-text-secondary">{item.action}</span>

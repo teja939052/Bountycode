@@ -1,6 +1,5 @@
-import { useRef, useCallback, useState, useEffect, type ReactNode, type MouseEvent } from "react";
+import { useRef, useCallback, useState, type ReactNode, type MouseEvent } from "react";
 import { motion } from "framer-motion";
-import gsap from "gsap";
 
 type Rarity = "common" | "uncommon" | "rare" | "epic" | "legendary" | "mythic";
 
@@ -155,23 +154,20 @@ export function Card({
   const innerRef = useRef(null);
   const config = rarityConfig[rarity] || rarityConfig.common;
   const [isHovered, setIsHovered] = useState(false);
+  const [tiltRotate, setTiltRotate] = useState({ rotateX: 0, rotateY: 0 });
+  const [scale, setScale] = useState(1);
 
   const handleMouseMove = useCallback(
     (e) => {
-      if (!tilt || !hoverEffect || disabled || !innerRef.current) return;
+      if (!tilt || !hoverEffect || disabled || !ref.current) return;
       const rect = ref.current.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * -8;
-      const rotateY = ((x - centerX) / centerX) * 8;
-      gsap.to(innerRef.current, {
-        rotateX,
-        rotateY,
-        duration: 0.15,
-        ease: 'power2.out',
-        transformPerspective: 800,
+      setTiltRotate({
+        rotateX: ((y - centerY) / centerY) * -8,
+        rotateY: ((x - centerX) / centerX) * 8,
       });
     },
     [tilt, hoverEffect, disabled]
@@ -179,46 +175,25 @@ export function Card({
 
   const handleMouseLeave = useCallback(() => {
     setIsHovered(false);
-    if (tilt && innerRef.current) {
-      gsap.to(innerRef.current, {
-        rotateX: 0,
-        rotateY: 0,
-        duration: 0.4,
-        ease: 'power2.out',
-      });
-    }
+    setTiltRotate({ rotateX: 0, rotateY: 0 });
+    setScale(1);
     if (particles && ref.current && config.particles > 0) {
       spawnParticles(ref.current, rarity, config.particles);
     }
-  }, [tilt, particles, rarity, config.particles]);
+  }, [particles, rarity, config.particles]);
 
   const handleMouseEnter = useCallback(() => {
     setIsHovered(true);
-    if (hoverEffect && ref.current) {
-      gsap.to(ref.current, {
-        scale: 1.02,
-        duration: 0.25,
-        ease: 'power2.out',
-      });
+    if (hoverEffect) {
+      setScale(1.02);
     }
   }, [hoverEffect]);
 
   const handleMouseUp = useCallback(() => {
-    if (hoverEffect && ref.current) {
-      gsap.to(ref.current, {
-        scale: isHovered ? 1.02 : 1,
-        duration: 0.2,
-        ease: 'power2.out',
-      });
+    if (hoverEffect) {
+      setScale(isHovered ? 1.02 : 1);
     }
   }, [hoverEffect, isHovered]);
-
-  useEffect(() => {
-    return () => {
-      if (innerRef.current) gsap.killTweensOf(innerRef.current);
-      if (ref.current) gsap.killTweensOf(ref.current);
-    };
-  }, []);
 
   return (
     <motion.div
@@ -240,13 +215,25 @@ export function Card({
         ${className}
       `}
       style={{
+        transform: `scale(${scale})`,
+        transformOrigin: 'center center',
+        transition: 'transform 0.2s ease, box-shadow 0.3s ease, border-color 0.3s ease',
         boxShadow: isHovered
           ? `0 8px 30px ${config.glowColor}, 0 0 1px ${config.borderColor}`
           : `0 2px 8px rgba(0,0,0,0.2)`,
         borderColor: isHovered ? config.borderColor : undefined,
       }}
     >
-      <div ref={innerRef} className="relative z-10" style={{ transformStyle: 'preserve-3d' }}>
+      <div
+        ref={innerRef}
+        className="relative z-10"
+        style={{
+          transformStyle: 'preserve-3d',
+          transform: `rotateX(${tiltRotate.rotateX}deg) rotateY(${tiltRotate.rotateY}deg)`,
+          transition: 'transform 0.15s ease-out',
+          willChange: 'transform',
+        }}
+      >
         {children}
       </div>
 
@@ -274,40 +261,8 @@ export function Card({
   );
 }
 
-export function CardGrid({ children, className = '', stagger = true }) {
+export function CardGrid({ children, className = '' }) {
   const ref = useRef(null);
-
-  useEffect(() => {
-    if (!stagger || !ref.current) return;
-    const cards = ref.current.children;
-    if (!cards.length) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            gsap.fromTo(
-              cards,
-              { opacity: 0, y: 24, scale: 0.95 },
-              {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                duration: 0.4,
-                stagger: 0.06,
-                ease: 'power2.out',
-                overwrite: true,
-              }
-            );
-            observer.disconnect();
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [stagger]);
 
   return (
     <div

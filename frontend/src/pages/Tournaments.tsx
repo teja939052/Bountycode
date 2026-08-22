@@ -112,19 +112,19 @@ export default function Tournaments() {
       )}
 
       {showCreate && (
-        <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-4">
+        <div className="bg-surface-card border border-brand-primary/10 rounded-xl p-6 space-y-4">
           <h2 className="text-lg font-semibold">Create Tournament</h2>
           <input
             type="text"
             placeholder="Tournament name"
             value={newTournamentName}
             onChange={(e) => setNewTournamentName(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+            className="w-full px-3 py-2 border border-brand-primary/20 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
           />
           <select
             value={selectedPreset}
             onChange={(e) => setSelectedPreset(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+            className="w-full px-3 py-2 border border-brand-primary/20 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
           >
             <option value="">Select a preset...</option>
             {presets.map((p) => (
@@ -141,7 +141,7 @@ export default function Tournaments() {
             >
               Create
             </button>
-            <button onClick={() => setShowCreate(false)} className="px-4 py-2 border border-gray-300 rounded-lg text-sm">
+            <button onClick={() => setShowCreate(false)} className="px-4 py-2 border border-brand-primary/20 rounded-lg text-sm">
               Cancel
             </button>
           </div>
@@ -152,7 +152,7 @@ export default function Tournaments() {
         <h2 className="text-lg font-semibold mb-4">⚡ Active Tournaments</h2>
         <div className="space-y-4">
           {activeTournaments.map((t) => (
-            <div key={t.tournament_id} className="bg-white border border-gray-200 rounded-xl p-5">
+            <div key={t.tournament_id} className="bg-surface-card border border-brand-primary/10 rounded-xl p-5">
               <div className="flex items-center gap-4 mb-3">
                 <span className="text-3xl">{t.emoji}</span>
                 <div className="flex-1">
@@ -200,7 +200,7 @@ export default function Tournaments() {
       {history && (
         <div>
           <h2 className="text-lg font-semibold mb-4">📊 Your Tournament History</h2>
-          <div className="bg-white border border-gray-200 rounded-xl p-5">
+          <div className="bg-surface-card border border-brand-primary/10 rounded-xl p-5">
             <div className="grid grid-cols-3 gap-4 text-center">
               <div>
                 <div className="text-2xl font-bold text-indigo-600">{history.total_tournaments || 0}</div>

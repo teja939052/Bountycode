@@ -1,7 +1,9 @@
+"""Mystery Box — random daily reward (coins, XP, streak freezes, Double XP)."""
 import random
 from datetime import datetime, timezone
+
 from fastapi import APIRouter, Depends, HTTPException
-from app.database import users_collection
+from app.database import gamification_collection
 from app.middleware.auth import get_current_user
 
 router = APIRouter(prefix="/api/v1/mystery-box", tags=["mystery-box"])
@@ -20,20 +22,24 @@ MYSTERY_BOX_REWARDS = [
     {"type": "badge", "label": "Lucky Adventurer", "emoji": "🍀", "rarity": "uncommon", "weight": 8},
 ]
 
+COOLDOWN_SECONDS = 3600  # 1 hour
+
+
 @router.post("/claim")
 async def claim_mystery_box(user=Depends(get_current_user)):
-    """Claim a random mystery box reward."""
-    last_claim = user.get("last_mystery_box_claim")
+    """Claim a random mystery box reward. One per hour cooldown."""
+    profile = await gamification_collection.find_one({"user_id": user["id"]})
+    if not profile:
+        profile = {}
+
+    last_claim = profile.get("last_mystery_box_claim")
     if last_claim:
-        if isinstance(last_claim, str):
-            from datetime import datetime as dt
-            last_claim = dt.fromisoformat(last_claim)
         elapsed = (datetime.now(timezone.utc) - last_claim).total_seconds()
-        if elapsed < 3600:
-            remaining = int(3600 - elapsed)
+        if elapsed < COOLDOWN_SECONDS:
+            remaining = int(COOLDOWN_SECONDS - elapsed)
             raise HTTPException(
                 status_code=400,
-                detail=f"Mystery box on cooldown. Come back in {remaining // 60} minutes!"
+                detail=f"Mystery box on cooldown. Come back in {remaining // 60} minutes!",
             )
 
     total_weight = sum(r["weight"] for r in MYSTERY_BOX_REWARDS)
@@ -46,31 +52,26 @@ async def claim_mystery_box(user=Depends(get_current_user)):
             chosen = reward
             break
 
+    # Apply reward to the gamification profile (where the tower reads coins/xp/etc.)
+    inc: dict = {}
+    set_ops: dict = {"last_mystery_box_claim": datetime.now(timezone.utc)}
     if chosen["type"] == "xp":
-        await users_collection.update_one(
-            {"_id": user["_id"]},
-            {"$inc": {"xp": chosen["amount"]}}
-        )
+        inc["xp"] = chosen["amount"]
     elif chosen["type"] == "coins":
-        await users_collection.update_one(
-            {"_id": user["_id"]},
-            {"$inc": {"coins": chosen["amount"]}}
-        )
+        inc["coins"] = chosen["amount"]
     elif chosen["type"] == "streak_freeze":
-        await users_collection.update_one(
-            {"_id": user["_id"]},
-            {"$inc": {"streak_freezes": chosen["amount"]}}
-        )
+        inc["streak_freezes"] = chosen["amount"]
     elif chosen["type"] == "double_xp":
-        await users_collection.update_one(
-            {"_id": user["_id"]},
-            {"$set": {"double_xp_active": True, "double_xp_expires": datetime.now(timezone.utc).isoformat()}}
-        )
+        # 24-hour double-XP window (read by record_practice)
+        expires = (datetime.now(timezone.utc).timestamp() + 86400)
+        set_ops["double_xp_expires"] = datetime.fromtimestamp(expires, tz=timezone.utc).isoformat()
 
-    await users_collection.update_one(
-        {"_id": user["_id"]},
-        {"$set": {"last_mystery_box_claim": datetime.now(timezone.utc)}}
-    )
+    update_doc: dict = {}
+    if inc:
+        update_doc["$inc"] = inc
+    if set_ops:
+        update_doc["$set"] = set_ops
+    await gamification_collection.update_one({"user_id": user["id"]}, update_doc, upsert=True)
 
     return {
         "reward": {

@@ -8,7 +8,7 @@ export default function Button({ children, variant = "primary", className = "", 
 
   return (
     <button
-      className={`${variants[variant]} ${className}`}
+      className={`${variants[variant]} inline-flex items-center justify-center gap-2 ${className}`}
       disabled={disabled}
       aria-disabled={disabled}
       {...props}

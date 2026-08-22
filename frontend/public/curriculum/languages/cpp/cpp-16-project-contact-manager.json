@@ -1,0 +1,54 @@
+{
+  "id": "cpp-16-project-contact-manager",
+  "track": "cpp",
+  "title": "Project: Contact Manager",
+  "section": "C++ Intermediate",
+  "order": 16,
+  "type": "project",
+  "duration": "18 min",
+  "xp": 40,
+  "content": {
+    "theory": "Final C++ project: a **contact manager**. It combines a `struct` for data, a `std::vector` for storage, and STL algorithms for sorting — the same shape as real-world inventory and booking systems.\n\n### struct Contact\n\nA `struct` is a class whose members are `public` by default, ideal for plain data groups:\n\n```cpp\nstruct Contact {\n    std::string name;\n    std::string phone;\n};\n```\n\n### Storing contacts\n\n```cpp\nstd::vector<Contact> contacts;\ncontacts.push_back({\"Alice\", \"555-0101\"});\ncontacts.push_back({\"Bob\", \"555-0102\"});\n```\n\n### Finding a contact\n\nSearch by scanning the vector and comparing names:\n\n```cpp\nstd::string target = \"Bob\";\nfor (const Contact& c : contacts) {\n    if (c.name == target) {\n        std::cout << c.phone << std::endl;\n    }\n}\n```\n\n### Sorting by name\n\n`std::sort` needs to know *how* to compare two `Contact` objects. Give it a lambda that compares `name`:\n\n```cpp\nstd::sort(contacts.begin(), contacts.end(),\n          [](const Contact& a, const Contact& b) {\n              return a.name < b.name;\n          });\n```\n\nAfter sorting, the vector is ordered alphabetically by name, ready to print or to binary-search.\n\n### Putting it together\n\nThe pattern — **struct for data, vector for collection, algorithm for operation** — is how real C++ programs are built. Data stays grouped (name and phone travel together), the collection grows and shrinks safely, and the standard algorithms guarantee correct ordering. Extend it later with a phone lookup, a delete, or file persistence, and you've built a genuine application.",
+    "codeSnippets": [
+      {
+        "language": "cpp",
+        "code": "#include <iostream>\n#include <string>\n#include <vector>\n#include <algorithm>\n\nstruct Contact {\n    std::string name;\n    std::string phone;\n};\n\nint main() {\n    std::vector<Contact> contacts;\n    contacts.push_back({\"Bob\", \"555-0102\"});\n    contacts.push_back({\"Alice\", \"555-0101\"});\n    std::sort(contacts.begin(), contacts.end(),\n              [](const Contact& a, const Contact& b) {\n                  return a.name < b.name;\n              });\n    for (const Contact& c : contacts) {\n        std::cout << c.name << std::endl;\n    }\n    return 0;\n}",
+        "output": "Alice\nBob"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write the program: define struct Contact with public std::string name and std::string phone. In main create std::vector<Contact> contacts and push_back Bob first ({\"Bob\", \"555-0102\"}) then Alice ({\"Alice\", \"555-0101\"}). Sort by name with std::sort and a lambda comparing a.name < b.name, then print each contact's name on its own line.",
+      "starterCode": "#include <iostream>\n\nint main() {\n\n    return 0;\n}",
+      "language": "cpp",
+      "expected": "Alice\nBob",
+      "required": ["struct Contact", "std::string name", "std::string phone", "std::sort", "a.name < b.name"],
+      "hints": [
+        "Hint 1: struct Contact { std::string name; std::string phone; };",
+        "Hint 2: contacts.push_back({\"Bob\", \"555-0102\"}); contacts.push_back({\"Alice\", \"555-0101\"});",
+        "Hint 3: std::sort(contacts.begin(), contacts.end(), [](const Contact& a, const Contact& b) { return a.name < b.name; });",
+        "Hint 4: for (const Contact& c : contacts) { std::cout << c.name << std::endl; }"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Why store a contact as a struct?",
+        "options": ["It keeps name and phone together as one unit", "Structs are faster than variables", "Vectors require structs"],
+        "correct": 0
+      },
+      {
+        "question": "Why pass a lambda to std::sort here?",
+        "options": ["To compare contacts by name", "To print the contacts", "To create a new vector"],
+        "correct": 0
+      },
+      {
+        "question": "Which header provides std::sort?",
+        "options": ["<vector>", "<algorithm>", "<string>"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": null,
+    "unlocks": []
+  }
+}

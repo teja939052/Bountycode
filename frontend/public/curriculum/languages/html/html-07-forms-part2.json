@@ -1,0 +1,46 @@
+{
+  "id": "html-07-forms-part2",
+  "track": "html",
+  "title": "Forms & Inputs (Part 2)",
+  "section": "Fundamentals",
+  "order": 7,
+  "type": "lesson",
+  "duration": "10 min",
+  "xp": 20,
+  "content": {
+    "theory": "Forms get powerful when you add **choice widgets** — radio buttons, checkboxes, dropdowns — and sensible validation.\n\n### Radio buttons (pick one)\n```html\n<input type=\"radio\" name=\"plan\" value=\"free\" id=\"plan-free\">\n<label for=\"plan-free\">Free</label>\n<input type=\"radio\" name=\"plan\" value=\"pro\" id=\"plan-pro\">\n<label for=\"plan-pro\">Pro</label>\n```\nAll radios with the **same `name`** belong to one group — only one can be selected.\n\n### Checkboxes (pick many)\n```html\n<input type=\"checkbox\" name=\"topics\" value=\"dsa\" id=\"t-dsa\">\n<label for=\"t-dsa\">DSA</label>\n<input type=\"checkbox\" name=\"topics\" value=\"aptitude\" id=\"t-apt\">\n<label for=\"t-apt\">Aptitude</label>\n```\n\n### Select dropdown\n```html\n<label for=\"level\">Experience</label>\n<select name=\"level\" id=\"level\">\n  <option value=\"beginner\">Beginner</option>\n  <option value=\"intermediate\">Intermediate</option>\n  <option value=\"advanced\">Advanced</option>\n</select>\n```\n\n### Required & defaults\n```html\n<input type=\"email\" name=\"email\" required>\n<input type=\"checkbox\" name=\"terms\" checked>\n```\n\n- `required` → the browser won't submit until it's filled\n- `checked` → pre-selected by default\n\n### Putting it together\n```html\n<form>\n  <label for=\"name\">Full name</label>\n  <input type=\"text\" id=\"name\" name=\"name\" required>\n\n  <p>Level</p>\n  <input type=\"radio\" name=\"level\" value=\"beginner\" id=\"l1\">\n  <label for=\"l1\">Beginner</label>\n\n  <button type=\"submit\">Register</button>\n</form>\n```",
+    "codeSnippets": [
+      {
+        "language": "html",
+        "code": "<select name=\"batch\">\n  <option value=\"2026\">2026</option>\n  <option value=\"2027\">2027</option>\n</select>",
+        "output": "A dropdown with two options."
+      }
+    ],
+    "exercise": {
+      "instruction": "Build a small registration form with: one email input named 'email' with the 'required' attribute, and two radio buttons named 'tier' with values 'free' and 'pro'.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Register</title>\n</head>\n<body>\n  <form>\n\n  </form>\n</body>\n</html>",
+      "required": ["<input", "type=\"email\"", "name=\"email\"", "required", "type=\"radio\"", "name=\"tier\"", "value=\"free\"", "value=\"pro\""],
+      "hints": [
+        "Hint 1: Add <input type=\"email\" name=\"email\" required>.",
+        "Hint 2: Add a radio: <input type=\"radio\" name=\"tier\" value=\"free\">.",
+        "Hint 3: Add a second radio with value=\"pro\" and the same name \"tier\"."
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What makes two radio buttons belong to the same group?",
+        "options": ["Same id", "Same name", "Same value"],
+        "correct": 1
+      },
+      {
+        "question": "Which attribute blocks submission until a field is filled?",
+        "options": ["required", "checked", "valid"],
+        "correct": 0
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "html-08-recipe-card",
+    "unlocks": ["html-08-recipe-card"]
+  }
+}

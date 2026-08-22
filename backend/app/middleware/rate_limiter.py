@@ -1,8 +1,14 @@
+"""Rate limiting middleware and utilities for PlacementPro.
+
+Provides IP-based rate limiting with optional Redis backend, login attempt
+tracking with lockout, and cleanup of expired in-memory entries.
+"""
 import time
 import logging
 from collections import defaultdict, deque
 from typing import Dict, Deque
 from fastapi import Request, HTTPException
+from starlette.responses import JSONResponse
 from starlette.middleware.base import BaseHTTPMiddleware
 from app.services.cache import cache
 from app.config import get_settings
@@ -14,8 +20,8 @@ RATE_LIMIT_WINDOW = 60  # seconds
 MAX_REQUESTS = settings.RATE_LIMIT_PER_MINUTE
 LOGIN_MAX_ATTEMPTS = settings.RATE_LIMIT_LOGIN_ATTEMPTS
 LOGIN_LOCKOUT_SECONDS = settings.RATE_LIMIT_LOGIN_LOCKOUT
-MAX_IP_ENTRIES = 10000
-MAX_EMAIL_ENTRIES = 1000
+MAX_IP_ENTRIES = 5000
+MAX_EMAIL_ENTRIES = 500
 
 # In-memory stores (will be replaced with Redis in distributed setup)
 login_attempts: Dict[str, Deque[float]] = defaultdict(lambda: deque(maxlen=LOGIN_MAX_ATTEMPTS + 1))
@@ -42,8 +48,16 @@ def _cleanup_request_counts():
 
 
 class RateLimiterMiddleware(BaseHTTPMiddleware):
-    """Rate limiting middleware with support for Redis (optional)."""
-    
+    """Rate limiting middleware with support for Redis (optional).
+
+    Limits requests per IP address within a sliding window. Skips health,
+    docs, and telemetry endpoints to preserve budget for critical paths.
+
+    Args:
+        app: Starlette/FastAPI application instance.
+        use_redis: Whether to attempt Redis-backed rate limiting.
+    """
+
     def __init__(self, app, use_redis: bool = False):
         super().__init__(app)
         self.use_redis = use_redis and settings.REDIS_URL
@@ -51,9 +65,16 @@ class RateLimiterMiddleware(BaseHTTPMiddleware):
             logger.info("Rate limiter using Redis backend")
         else:
             logger.info("Rate limiter using in-memory backend")
-    
+
     async def _check_redis_rate_limit(self, client_ip: str) -> bool:
-        """Check rate limit using Redis."""
+        """Check rate limit using Redis.
+
+        Args:
+            client_ip: Client IP address string.
+
+        Returns:
+            bool: True if the request is within the rate limit, False otherwise.
+        """
         try:
             key = f"rate_limit:{client_ip}"
             current = await cache.get("ratelimit", key)
@@ -72,7 +93,14 @@ class RateLimiterMiddleware(BaseHTTPMiddleware):
             return self._check_memory_rate_limit(client_ip)
     
     def _check_memory_rate_limit(self, client_ip: str) -> bool:
-        """Check rate limit using in-memory storage."""
+        """Check rate limit using in-memory storage.
+
+        Args:
+            client_ip: Client IP address string.
+
+        Returns:
+            bool: True if the request is within the rate limit, False otherwise.
+        """
         dq = request_counts[client_ip]
         _prune_deque(dq, RATE_LIMIT_WINDOW)
         if len(dq) >= MAX_REQUESTS:
@@ -82,7 +110,18 @@ class RateLimiterMiddleware(BaseHTTPMiddleware):
         return True
     
     async def dispatch(self, request: Request, call_next):
-        """Process request with rate limiting."""
+        """Process request with rate limiting.
+
+        Skips health, docs, telemetry, and debug endpoints to preserve budget.
+        Applies either Redis-backed or in-memory sliding window rate limiting.
+
+        Args:
+            request: Incoming FastAPI Request.
+            call_next: Next middleware/handler in the chain.
+
+        Returns:
+            Response: Downstream response, or 429 JSONResponse if rate limited.
+        """
         client_ip = request.client.host if request.client else "unknown"
         path = request.url.path
 
@@ -102,17 +141,24 @@ class RateLimiterMiddleware(BaseHTTPMiddleware):
             allowed = self._check_memory_rate_limit(client_ip)
 
         if not allowed:
-            raise HTTPException(
+            return JSONResponse(
                 status_code=429,
-                detail="Too many requests. Please try again in a minute.",
-                headers={"Retry-After": str(RATE_LIMIT_WINDOW)}
+                content={"detail": "Too many requests. Please try again in a minute."},
+                headers={"Retry-After": str(RATE_LIMIT_WINDOW)},
             )
 
         return await call_next(request)
 
 
 def check_login_rate_limit(email: str):
-    """Check if login attempts for an email exceed the limit."""
+    """Check if login attempts for an email exceed the limit.
+
+    Args:
+        email: Email address to check.
+
+    Raises:
+        HTTPException: 429 if the account is locked due to too many failed attempts.
+    """
     dq = login_attempts[email]
     _prune_deque(dq, LOGIN_LOCKOUT_SECONDS)
     if len(dq) >= LOGIN_MAX_ATTEMPTS:
@@ -126,7 +172,11 @@ def check_login_rate_limit(email: str):
 
 
 def record_login_failure(email: str):
-    """Record a failed login attempt."""
+    """Record a failed login attempt for an email.
+
+    Args:
+        email: Email address associated with the failed attempt.
+    """
     login_attempts[email].append(time.time())
     # Cleanup old entries to prevent memory leaks
     if len(login_attempts) > MAX_EMAIL_ENTRIES:
@@ -140,12 +190,23 @@ def record_login_failure(email: str):
 
 
 def clear_login_attempts(email: str):
-    """Clear login attempts for an email after successful login."""
+    """Clear login attempts for an email after successful login.
+
+    Args:
+        email: Email address to clear attempts for.
+    """
     login_attempts.pop(email, None)
 
 
 def get_rate_limit_status(email: str = None) -> dict:
-    """Get current rate limit status for monitoring."""
+    """Get current rate limit status for monitoring.
+
+    Args:
+        email: Optional email filter (currently unused, reserved for future use).
+
+    Returns:
+        dict: Summary of tracked IPs, login attempts, and per-IP/email counts.
+    """
     return {
         "total_ips": len(request_counts),
         "total_login_attempts": len(login_attempts),

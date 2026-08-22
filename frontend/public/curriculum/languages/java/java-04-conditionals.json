@@ -1,0 +1,48 @@
+{
+  "id": "java-04-conditionals",
+  "track": "java",
+  "title": "Making Decisions",
+  "section": "Java Basics",
+  "order": 4,
+  "type": "lesson",
+  "duration": "10 min",
+  "xp": 20,
+  "content": {
+    "theory": "Java uses `if` / `else if` / `else` — the syntax is similar to C-family languages:\n\n```java\nint score = 85;\n\nif (score >= 90) {\n    System.out.println(\"A grade\");\n} else if (score >= 80) {\n    System.out.println(\"B grade\");\n} else {\n    System.out.println(\"Keep practicing\");\n}\n```\n\nComparison operators: `==` (equal), `!=` (not equal), `>`, `<`, `>=`, `<=`.\n\nLogical operators use **words** (unlike Python's `and`/`or`):\n\n```java\nint age = 20;\nboolean hasId = true;\n\nif (age >= 18 && hasId) {\n    System.out.println(\"Allowed in\");\n}\n\nif (age < 13 || age > 60) {\n    System.out.println(\"Special discount\");\n}\n```\n\n- `&&` means AND — both must be true\n- `||` means OR — either can be true\n- `!` means NOT — flips a boolean\n\nOne-liner shortcut — the **ternary operator**:\n\n```java\nString result = (score >= 50) ? \"Pass\" : \"Fail\";\n```",
+    "codeSnippets": [
+      {
+        "language": "java",
+        "code": "int temp = 30;\nif (temp > 25) {\n    System.out.println(\"Hot day\");\n} else {\n    System.out.println(\"Cool day\");\n}",
+        "output": "Hot day"
+      }
+    ],
+    "exercise": {
+      "instruction": "In main, declare int 'age' = 20. If age >= 18 and age < 65 print 'Adult'; else if age >= 65 print 'Senior'; else print 'Minor'.",
+      "starterCode": "public class Main {\n    public static void main(String[] args) {\n\n    }\n}",
+      "language": "java",
+      "expected": "Adult",
+      "required": ["int age = 20", "if (age >= 18", "&&", "Adult", "else if (age >= 65", "Senior", "Minor"],
+      "hints": [
+        "Hint 1: int age = 20;",
+        "Hint 2: if (age >= 18 && age < 65) System.out.println(\"Adult\");",
+        "Hint 3: else if (age >= 65) System.out.println(\"Senior\"); else System.out.println(\"Minor\");"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which operator means AND in Java?",
+        "options": ["and", "&&", "&"],
+        "correct": 1
+      },
+      {
+        "question": "What does the ternary (condition) ? a : b do?",
+        "options": ["Loops until true", "Returns a if true, b if false", "Swaps a and b"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "java-05-loops",
+    "unlocks": ["java-05-loops"]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "id": "js-01-variables",
+  "track": "javascript",
+  "title": "Variables & Data Types",
+  "section": "JavaScript in Action",
+  "order": 1,
+  "type": "lesson",
+  "duration": "10 min",
+  "xp": 15,
+  "content": {
+    "theory": "JavaScript brings interactivity. It all starts with storing values in **variables**.\n\n### Declaring variables\n```js\nlet score = 0;\nconst name = \"Aarav\";\n```\n- `let` — a value that can change later\n- `const` — a value that cannot be reassigned (use this by default)\n\n`var` is old and rarely needed — prefer `let` and `const`.\n\n### Data types\n```js\nconst title = \"Placement Prep\";  // string (text)\nconst age = 21;                   // number\nconst passed = true;              // boolean\nconst skills = [\"DSA\", \"System Design\"];  // array (list)\nconst user = { name: \"Aarav\", plan: \"pro\" }; // object\nlet nothing;                      // undefined\n```\n\n### Using variables\n```js\nconst greeting = \"Hello\";\nconst name = \"Aarav\";\nconsole.log(greeting + \", \" + name + \"!\");   // Hello, Aarav!\nconsole.log(`${greeting}, ${name}!`);          // same, with template literals\n```\nBackticks (`` ` ``) create **template literals** — you drop variables in with `${...}`.\n\n### Numbers\n```js\nconst total = 10 + 5;      // 15\nconst half = total / 2;    // 7.5\nconst twice = total * 2;   // 30\n```\n\n### `typeof`\nCheck a value's type:\n```js\ntypeof 42;          // \"number\"\ntypeof \"hi\";        // \"string\"\n```",
+    "codeSnippets": [
+      {
+        "language": "javascript",
+        "code": "const name = \"Priya\";\nconst score = 85;\nconsole.log(`${name} scored ${score}%`);",
+        "output": "Priya scored 85%"
+      }
+    ],
+    "exercise": {
+      "instruction": "Create a const named 'topic' with the value 'JavaScript', a const named 'level' with the value 1, and log the message 'Studying JavaScript at level 1' using a template literal.",
+      "starterCode": "<script>\n\n</script>",
+      "required": ["const topic", "\"JavaScript\"", "const level", "1", "`", "${topic}", "${level}", "console.log"],
+      "hints": [
+        "Hint 1: const topic = \"JavaScript\";",
+        "Hint 2: const level = 1;",
+        "Hint 3: console.log(`Studying ${topic} at level ${level}`);"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which keyword should you use by default for a value that never changes?",
+        "options": ["let", "const", "var"],
+        "correct": 1
+      },
+      {
+        "question": "What will typeof 42 return?",
+        "options": ["\"number\"", "\"string\"", "42"],
+        "correct": 0
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "js-02-functions",
+    "unlocks": ["js-02-functions"]
+  }
+}

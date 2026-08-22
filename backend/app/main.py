@@ -1,18 +1,24 @@
 """Main FastAPI application with improved structure, logging, and error handling."""
 
+import importlib
+import json
 import logging
+import os
+import pkgutil
 import sys
 import time
 import asyncio
 import uuid
-import os
+from contextlib import asynccontextmanager
+from pathlib import Path
+
 try:
     import resource
     HAS_RESOURCE = True
 except ImportError:
     HAS_RESOURCE = False  # Windows
-from contextlib import asynccontextmanager
-from fastapi import FastAPI, HTTPException, Request, status
+
+from fastapi import FastAPI, HTTPException, Request, status, WebSocket, WebSocketDisconnect, Depends, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.responses import JSONResponse
@@ -26,6 +32,9 @@ from app.database import init_db, close_db, ping_db, get_client
 from app.services.cache import init_cache, cache
 from app.services.ai import close_http_client
 from app.services.analytics_service import refresh_rollups
+from app.services.job_queue import init_job_queue, close_job_queue, get_job_queue, Job, JobType
+from app.services.code_execution_worker import init_code_execution_worker, close_code_execution_worker
+from app.services.websocket_manager import get_connection_manager, WebSocketHandler, WSMessage, MessageType
 from app.services.structured_logging import (
     setup_structured_logging,
     request_id_var,
@@ -35,52 +44,67 @@ from app.services.structured_logging import (
 from app.services.request_metrics import metrics as request_metrics
 from app.services.circuit_breaker import ai_breaker, compiler_breaker
 from app.services.migrations import run_migrations
+from app.services.health_checker import init_health_checker
+from app.services.feature_flags import init_feature_flags
+from app.services.idempotency import init_idempotency_manager
+from app.services.indexing_strategy import create_all_indexes
 from app.middleware.rate_limiter import RateLimiterMiddleware
 from app.middleware.duplicate_guard import DuplicateRequestGuard
+from app.middleware.route_safety import RouteErrorHandlingMiddleware
+from app.middleware.auth import get_current_user_ws
+from app.services.audit_log import log_audit
 
-# Import all route modules
-from app.routes import (
-    auth, debug, interview, interview_feedback, interview_replay, referral_system, guild_castle, shareable_achievements, campus_pulse, trending_challenges, resume, billing, aptitude, cover_letter,
-    system_design, salary, company_prep, coding, gamification,
-    hook_model, free_practice, enhanced, student_features,
-    predictor, real_features, questions, questions_solve, company_conversion,
-    career_profile, practice, analytics, ai_feedback, enterprise,
-    trial, student_discount, profile_stats, compiler, problems,
-    mock_interview, personal_dashboard, readiness, ai_debugger, concepts,
-    daily_challenge, discussions, playlists, company_mocks,
-    cards, wizard, submissions, progress, features,
-    battles, visualizations, distributions, aptitude_tests,
-    system_design_tests, indian_placement, placement_questions,
-    dsa_fingerprint, energy, learning, analytics_admin,
-    adaptive_learning, learning_journeys, community, scrims,
-    rank, project_generator, learning_modules,
-    interview_booking, language_paths,
-    free_trial, onboarding,
-    showcase, admin_content,
-    game_events, campus, college_network,
-    steam_profile,
-    world, prestige, merchant,
-    guilds, dungeons,
-    collection, live_events,
-    metrics, economy, journey,
-    coupon, referral, revenue,
-    career_rpg,
-    newspaper,
-    timeline,
-    lucky_wheel,
-    chat,
-    seasons,
-    achievements,
-    tournaments,
-    teams,
-    economy,
-     referrals,
-     skill_trees,
-     battle_pass,
-campus_connect,
-    campus_wars,
-    spaced_repetition,
- )
+
+EXTRA_ROUTERS = {
+    "daily_challenge": ["challenge_router"],
+    "world": ["skill_router"],
+}
+
+
+def _register_routers(app: FastAPI) -> None:
+    """Auto-discover and register all route routers from app/routes/.
+
+    Scans the routes directory for modules containing a `router` attribute,
+    and includes them in the FastAPI app. Special multi-router modules are
+    handled via the EXTRA_ROUTERS mapping to ensure all sub-routers are
+    registered correctly.
+    """
+    routes_dir = Path(__file__).parent / "routes"
+    registered = []
+    failures = []
+
+    for module_info in pkgutil.iter_modules([str(routes_dir)]):
+        module_name = module_info.name
+
+        if module_name.startswith("_") or module_name == "__init__":
+            continue
+
+        try:
+            module = importlib.import_module(f"app.routes.{module_name}")
+        except Exception as exc:
+            failures.append((module_name, f"{type(exc).__name__}: {exc}"))
+            continue
+
+        router = getattr(module, "router", None)
+        if router is not None:
+            app.include_router(router)
+            registered.append(module_name)
+
+        for extra_attr in EXTRA_ROUTERS.get(module_name, []):
+            extra_router = getattr(module, extra_attr, None)
+            if extra_router is not None:
+                app.include_router(extra_router)
+                registered.append(f"{module_name}.{extra_attr}")
+
+    logger.info(f"Registered {len(registered)} routers: {', '.join(registered)}")
+
+    if failures:
+        details = "; ".join(f"{name} ({err})" for name, err in failures)
+        raise RuntimeError(
+            f"Failed to import {len(failures)} route module(s): {details}. "
+            "Refusing to start with silently missing endpoints."
+        )
+
 
 # Setup structured logging (JSON format with correlation IDs)
 setup_structured_logging()
@@ -137,21 +161,84 @@ async def lifespan(app: FastAPI):
                 logger.warning(f"Database init attempt {attempt + 1} failed: {e}")
                 await asyncio.sleep(2)
         
+        # Load question store into memory (seed files + MongoDB)
+        try:
+            from app.services import question_store
+            question_store.load_all()
+            await question_store.load_from_mongo()
+            logger.info("Question store loaded into memory")
+        except Exception as e:
+            logger.warning(f"Question store initialization failed: {e}")
+        
+        # Get database client for remaining initialization
+        db = get_client()[settings.DATABASE_NAME]
+        
         # Run schema migrations
         try:
             await run_migrations()
         except Exception as e:
-            logger.warning(f"Migration warning (non-fatal): {e}")
+            logger.warning(f"Migration failed (continuing in degraded mode): {e}")
+        
+        # Create database indexes for optimal query performance
+        try:
+            await create_all_indexes(db)
+            logger.info("Database indexes created successfully")
+        except Exception as e:
+            logger.warning(f"Index creation failed (non-fatal): {e}")
+        
+        # Initialize health checker
+        try:
+            await init_health_checker(db)
+            logger.info("Health checker initialized")
+        except Exception as e:
+            logger.warning(f"Health checker initialization failed: {e}")
+        
+        # Initialize feature flags
+        try:
+            await init_feature_flags(db)
+            logger.info("Feature flags initialized")
+        except Exception as e:
+            logger.warning(f"Feature flags initialization failed: {e}")
+        
+        # Initialize idempotency manager
+        try:
+            await init_idempotency_manager(db)
+            logger.info("Idempotency manager initialized")
+        except Exception as e:
+            logger.warning(f"Idempotency manager initialization failed: {e}")
         
         # Initialize cache
         redis_url = getattr(settings, 'REDIS_URL', '')
-        await init_cache(redis_url)
-        logger.info(f"Cache initialized (Redis: {'enabled' if redis_url else 'in-memory'})")
+        try:
+            await init_cache(redis_url)
+            logger.info(f"Cache initialized (Redis: {'enabled' if redis_url else 'in-memory'})")
+        except Exception as e:
+            logger.warning(f"Cache initialization failed, using in-memory fallback: {e}")
 
-        analytics_rollup_task = asyncio.create_task(_analytics_rollup_worker())
+        # Initialize job queue and worker for async code execution
+        try:
+            await init_job_queue()
+            await init_code_execution_worker()
+            logger.info("Job queue and code execution worker initialized")
+        except Exception as e:
+            logger.warning(f"Job queue initialization failed (will use sync execution): {e}")
+
+        # Initialize WebSocket manager
+        get_connection_manager()
+        logger.info("WebSocket manager initialized")
+
+        try:
+            analytics_rollup_task = asyncio.create_task(_analytics_rollup_worker())
+        except Exception as e:
+            logger.warning(f"Analytics rollup task could not be started: {e}")
 
         # Start periodic metrics flush (every 5 minutes)
-        await request_metrics.start_periodic_flush(300)
+        try:
+            await request_metrics.start_periodic_flush(300)
+        except Exception as e:
+            logger.warning(f"Metrics flush could not be started: {e}")
+        
+        logger.info("PlacementPro API startup complete - all services initialized")
 
         yield
         
@@ -161,17 +248,36 @@ async def lifespan(app: FastAPI):
     finally:
         # Shutdown: close all connections
         logger.info("Shutting down PlacementPro API...")
-        await request_metrics.stop_periodic_flush()
+        try:
+            await request_metrics.stop_periodic_flush()
+        except Exception as e:
+            logger.warning(f"Metrics flush shutdown failed: {e}")
+
         if analytics_rollup_task:
             analytics_rollup_task.cancel()
             try:
                 await analytics_rollup_task
             except asyncio.CancelledError:
                 pass
-        await close_http_client()
-        await close_db()
-        if cache.redis and cache.redis.client:
-            await cache.redis.disconnect()
+            except Exception as e:
+                logger.warning(f"Analytics rollup shutdown failed: {e}")
+
+        for label, closer in (
+            ("code execution worker", close_code_execution_worker),
+            ("job queue", close_job_queue),
+            ("AI HTTP client", close_http_client),
+            ("database", close_db),
+        ):
+            try:
+                await closer()
+            except Exception as e:
+                logger.warning(f"Shutdown step '{label}' failed: {e}")
+
+        try:
+            if cache.redis and cache.redis.client:
+                await cache.redis.disconnect()
+        except Exception as e:
+            logger.warning(f"Cache shutdown failed: {e}")
         logger.info("Shutdown complete")
 
 
@@ -263,9 +369,19 @@ async def general_exception_handler(request: Request, exc: Exception):
             request_id=request_id,
         ),
     )
+    # Surface the exception type + message so errors are diagnosable in the
+    # browser console without requiring a server-terminal read. Guarded so it
+    # never leaks secrets: only the class name + repr-length-capped message.
+    import traceback as _tb
+    debug = "PLACEEMEN_DEBUG" in os.environ
+    payload = _error_payload(request, 500, "An internal server error occurred")
+    if debug:
+        payload["error_type"] = exc.__class__.__name__
+        payload["error_detail"] = repr(exc)[:500]
+        payload["traceback"] = _tb.format_exc()[:2000]
     return JSONResponse(
         status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-        content=_error_payload(request, 500, "An internal server error occurred"),
+        content=payload,
     )
 
 
@@ -338,6 +454,10 @@ class RequestIdMiddleware(BaseHTTPMiddleware):
 # Middleware
 # ============================================================
 
+# Route safety middleware should wrap the rest of the stack so unexpected
+# exceptions become structured responses instead of tearing down requests.
+app.add_middleware(RouteErrorHandlingMiddleware)
+
 # Logging middleware
 app.add_middleware(LoggingMiddleware)
 
@@ -358,6 +478,42 @@ app.add_middleware(
 
 # Duplicate request guard (prevents double-clicks)
 app.add_middleware(DuplicateRequestGuard, dedup_window_ms=2000)
+
+
+class AuditLogMiddleware(BaseHTTPMiddleware):
+    """Log admin actions for audit trail."""
+
+    ADMIN_PREFIXES = ("/api/v1/admin", "/api/v1/assignments")
+
+    async def dispatch(self, request: Request, call_next):
+        path = request.url.path
+        is_admin = any(path.startswith(prefix) for prefix in self.ADMIN_PREFIXES)
+
+        if not is_admin:
+            return await call_next(request)
+
+        user = getattr(request.state, "user", None)
+        if user is None:
+            try:
+                from app.middleware.auth import get_current_user
+                user = await get_current_user(request)
+            except Exception:
+                user = None
+
+        response = await call_next(request)
+
+        if user:
+            await log_audit(
+                user_id=user.get("id", ""),
+                action=request.method,
+                resource=path,
+                ip_address=request.client.host if request.client else "unknown",
+            )
+
+        return response
+
+
+app.add_middleware(AuditLogMiddleware)
 
 # CORS middleware
 origins = [origin.strip() for origin in settings.CORS_ORIGINS.split(",") if origin.strip()]
@@ -381,118 +537,54 @@ app.add_middleware(
 # Routes
 # ============================================================
 
-# Include all route routers
-app.include_router(auth.router)
-app.include_router(debug.router)
-app.include_router(interview.router)
-app.include_router(resume.router)
-app.include_router(billing.router)
-app.include_router(aptitude.router)
-app.include_router(cover_letter.router)
-app.include_router(system_design.router)
-app.include_router(salary.router)
-app.include_router(company_prep.router)
-app.include_router(coding.router)
-app.include_router(gamification.router)
-app.include_router(hook_model.router)
-app.include_router(free_practice.router)
-app.include_router(enhanced.router)
-app.include_router(student_features.router)
-app.include_router(predictor.router)
-app.include_router(real_features.router)
-app.include_router(questions.router)
-app.include_router(company_conversion.router)
-app.include_router(career_profile.router)
-app.include_router(practice.router)
-app.include_router(analytics.router)
-app.include_router(ai_feedback.router)
-app.include_router(enterprise.router)
-app.include_router(trial.router)
-app.include_router(student_discount.router)
-app.include_router(profile_stats.router)
-app.include_router(compiler.router)
-app.include_router(problems.router)
-app.include_router(mock_interview.router)
-app.include_router(personal_dashboard.router)
-app.include_router(readiness.router)
-app.include_router(ai_debugger.router)
-app.include_router(concepts.router)
-app.include_router(daily_challenge.router)
-app.include_router(daily_challenge.challenge_router)
-app.include_router(discussions.router)
-app.include_router(playlists.router)
-app.include_router(company_mocks.router)
-app.include_router(cards.router)
-app.include_router(wizard.router)
-app.include_router(submissions.router)
-app.include_router(progress.router)
-app.include_router(features.router)
-app.include_router(battles.router)
-app.include_router(visualizations.router)
-app.include_router(distributions.router)
-app.include_router(aptitude_tests.router)
-app.include_router(system_design_tests.router)
-app.include_router(indian_placement.router)
-app.include_router(placement_questions.router)
-app.include_router(dsa_fingerprint.router)
-app.include_router(energy.router)
-app.include_router(learning.router)
-app.include_router(analytics_admin.router)
-app.include_router(adaptive_learning.router)
-app.include_router(learning_journeys.router)
-app.include_router(community.router)
-app.include_router(scrims.router)
-app.include_router(rank.router)
-app.include_router(project_generator.router)
-app.include_router(learning_modules.router)
-app.include_router(interview_booking.router)
-app.include_router(language_paths.router)
-app.include_router(showcase.router)
-app.include_router(admin_content.router)
-app.include_router(admin_content.assignments_router)
-app.include_router(game_events.router)
-app.include_router(campus.router)
-app.include_router(college_network.router)
-app.include_router(campus_connect.router)
-app.include_router(campus_wars.router)
-app.include_router(battle_pass.router)
-app.include_router(interview_feedback.router)
-app.include_router(interview_replay.router)
-app.include_router(referral_system.router)
-app.include_router(guild_castle.router)
-app.include_router(shareable_achievements.router)
-app.include_router(campus_pulse.router)
-app.include_router(trending_challenges.router)
-app.include_router(steam_profile.router)
-app.include_router(world.router)
-app.include_router(world.skill_router)
-app.include_router(prestige.router)
-app.include_router(merchant.router)
-app.include_router(guilds.router)
-app.include_router(dungeons.router)
-app.include_router(collection.router)
-app.include_router(live_events.router)
-app.include_router(metrics.router)
-app.include_router(economy.router)
-app.include_router(career_rpg.router)
-app.include_router(timeline.router)
-app.include_router(free_trial.router)
-app.include_router(onboarding.router)
-app.include_router(coupon.router)
-app.include_router(referral.router)
-app.include_router(revenue.router)
-app.include_router(newspaper.router)
-app.include_router(lucky_wheel.router)
-app.include_router(chat.router)
-app.include_router(seasons.router)
-app.include_router(achievements.router)
-app.include_router(tournaments.router)
-app.include_router(teams.router)
-app.include_router(economy.router)
-app.include_router(referrals.router)
-app.include_router(skill_trees.router)
-app.include_router(spaced_repetition.router)
-logger.info(f"Loaded {len(app.routes)} routes")
+_register_routers(app)
+
+
+# ============================================================
+# WebSocket Endpoint
+# ============================================================
+
+ws_manager = get_connection_manager()
+ws_handler = WebSocketHandler(ws_manager)
+
+
+@app.websocket("/ws")
+async def websocket_endpoint(websocket: WebSocket, token: str | None = Query(None)):
+    """WebSocket endpoint for real-time updates.
+
+    Connect with: ws://localhost:8000/ws?token=<JWT_TOKEN>
+    (token also accepted from the `pp_token` cookie — httpOnly, sent automatically)
+    """
+    try:
+        user = await get_current_user_ws(websocket, token)
+    except HTTPException:
+        await websocket.close(code=4001, reason="Authentication required")
+        return
+    if not user:
+        await websocket.close(code=4001, reason="Authentication required")
+        return
+
+    user_id = user["id"]
+    connected = await ws_manager.connect(websocket, user_id)
+    if not connected:
+        return
+
+    # Send auth success
+    await ws_manager.send_to_connection(websocket, WSMessage(
+        type=MessageType.AUTH_SUCCESS,
+        payload={"user_id": user_id, "message": "Connected to real-time updates"}
+    ))
+
+    try:
+        while True:
+            data = await websocket.receive_text()
+            await ws_handler.handle_message(websocket, data)
+    except WebSocketDisconnect:
+        pass
+    except Exception as e:
+        logger.error("WebSocket error", user_id=user_id, error=str(e))
+    finally:
+        ws_manager.disconnect(websocket)
 
 
 # ============================================================

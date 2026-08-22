@@ -92,3 +92,18 @@ backend/coverage.xml
 backend/.coverage
 backend/bandit-report.json
 backend/htmlcov/
+
+# Scratch / temp artifacts
+null
+err_seg.txt
+parsed_err_clean.txt
+d2.py
+d3.py
+d4.py
+d5.py
+d6.py
+d7.py
+d8.py
+test_bank.py
+sandbox-opencode.bat
+*.log

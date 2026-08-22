@@ -1,93 +1,187 @@
-import { requestWithRetry as request } from "./request.ts";
+import {
+  requestWithRetry as request,
+  type ApiRequestOptions,
+} from "./request.ts";
+import type {
+  StreakRepairResult,
+  GamificationProfile,
+  TowerData,
+  LeaderboardEntry,
+  SkillNode,
+  StartupState,
+  StreakStatus,
+  Badge,
+  PowerUp,
+  Challenge,
+} from "./types.ts";
+
+export type { StreakRepairResult };
+
 export const gamificationApi = {
-  getProfile() {
+  getProfile(): Promise<GamificationProfile> {
     return request("/api/v1/gamification/profile");
   },
 
-  recordActivity(activityType, score = 0, category = null, skill = null) {
-    const params = new URLSearchParams({ activity_type: activityType, score: score.toString() });
+  recordActivity(
+    activityType: string,
+    score = 0,
+    category: string | null = null,
+    skill: string | null = null,
+    metadata: Record<string, unknown> | null = null,
+  ): Promise<{ xp_earned: number; leveled_up?: boolean; new_level?: number }> {
+    const params = new URLSearchParams({
+      activity_type: activityType,
+      score: score.toString(),
+    });
     if (category) params.append("category", category);
     if (skill) params.append("skill", skill);
-    return request(`/api/v1/gamification/record?${params.toString()}`, {
-      method: "POST",
-    });
+    const opts: ApiRequestOptions = { method: "POST" };
+    if (metadata) opts.body = JSON.stringify(metadata);
+    return request(`/api/v1/gamification/record?${params.toString()}`, opts);
   },
 
-  getLeaderboard(limit = 10) {
+  getLeaderboard(
+    limit = 10,
+  ): Promise<{ entries: LeaderboardEntry[]; user_rank?: number }> {
     return request(`/api/v1/gamification/leaderboard?limit=${limit}`);
   },
 
-  getAllBadges() {
+  getAllBadges(): Promise<Badge[]> {
     return request("/api/v1/gamification/badges");
   },
 
-  getSkillGraph() {
+  getSkillGraph(): Promise<{ skills: SkillNode[]; categories?: string[] }> {
     return request("/api/v1/gamification/skills");
   },
 
-  getWeakAreas(topN = 5) {
+  getWeakAreas(topN = 5): Promise<SkillNode[]> {
     return request(`/api/v1/gamification/skills/weak?top_n=${topN}`);
   },
 
-  getReadinessScore(company = null) {
+  getReadinessScore(
+    company: string | null = null,
+  ): Promise<{ score: number; breakdown?: Record<string, number> }> {
     const params = company ? `?company=${company}` : "";
     return request(`/api/v1/gamification/skills/readiness${params}`);
   },
 
-  getTower() {
+  getTower(): Promise<TowerData> {
     return request("/api/v1/gamification/tower");
   },
 
-  getBoss(bossLevel) {
+  getForest(): Promise<Record<string, unknown>> {
+    return request("/api/v1/gamification/forest");
+  },
+
+  getBoss(bossLevel: number): Promise<Record<string, unknown>> {
     return request(`/api/v1/gamification/tower/boss/${bossLevel}`);
   },
 
-  defeatBoss(bossLevel, score) {
-    return request(`/api/v1/gamification/tower/boss/${bossLevel}/defeat?score=${score}`, {
-      method: "POST",
-    });
-  },
-
-  usePowerUp(powerUpId) {
-    return request(`/api/v1/gamification/tower/powerup/use?power_up_id=${powerUpId}`, {
-      method: "POST",
-    });
-  },
-
-  buyPowerUp(powerUpId) {
-    return request(`/api/v1/gamification/tower/powerup/buy?power_up_id=${powerUpId}`, {
-      method: "POST",
-    });
-  },
-
-  getPowerUps() {
-    return request("/api/v1/gamification/tower/powerups");
-  },
-
-  getChallenges() {
-    return request("/api/v1/gamification/tower/challenges");
-  },
-
-  claimChallenge(challengeType, challengeId) {
+  defeatBoss(
+    bossLevel: number,
+    score: number,
+  ): Promise<{ defeated?: boolean; reward?: Record<string, unknown> }> {
     return request(
-      `/api/v1/gamification/tower/challenges/claim?challenge_type=${challengeType}&challenge_id=${challengeId}`,
-      { method: "POST" }
+      `/api/v1/gamification/tower/boss/${bossLevel}/defeat?score=${score}`,
+      {
+        method: "POST",
+      },
     );
   },
 
-  getStreakFreezeStatus() {
+  usePowerUp(
+    powerUpId: string,
+  ): Promise<{ used?: boolean; effect?: Record<string, unknown> }> {
+    return request(
+      `/api/v1/gamification/tower/powerup/use?power_up_id=${powerUpId}`,
+      {
+        method: "POST",
+      },
+    );
+  },
+
+  buyPowerUp(
+    powerUpId: string,
+  ): Promise<{ purchased?: boolean; cost?: number }> {
+    return request(
+      `/api/v1/gamification/tower/powerup/buy?power_up_id=${powerUpId}`,
+      {
+        method: "POST",
+      },
+    );
+  },
+
+  getPowerUps(): Promise<PowerUp[]> {
+    return request("/api/v1/gamification/tower/powerups");
+  },
+
+  getChallenges(): Promise<{ challenges: Challenge[] }> {
+    return request("/api/v1/gamification/tower/challenges");
+  },
+
+  claimChallenge(
+    challengeType: string,
+    challengeId: string,
+  ): Promise<{ claimed?: boolean; reward?: Record<string, unknown> }> {
+    return request(
+      `/api/v1/gamification/tower/challenges/claim?challenge_type=${challengeType}&challenge_id=${challengeId}`,
+      { method: "POST" },
+    );
+  },
+
+  getStreakFreezeStatus(): Promise<Record<string, unknown>> {
     return request("/api/v1/gamification/tower/streak-freeze");
   },
 
-  buyStreakFreeze() {
-    return request("/api/v1/gamification/tower/streak-freeze/buy", { method: "POST" });
+  autoApplyStreakFreeze(): Promise<{ applied?: boolean }> {
+    return request("/api/v1/gamification/tower/streak-freeze/auto-apply", {
+      method: "POST",
+    });
   },
 
-  getDailyGoal() {
+  getStartupState(): Promise<StartupState> {
+    return request("/api/v1/gamification/startup");
+  },
+
+  getLeague(): Promise<Record<string, unknown>> {
+    return request("/api/v1/gamification/league");
+  },
+
+  buyStreakFreeze(): Promise<{ purchased?: boolean; cost?: number }> {
+    return request("/api/v1/gamification/tower/streak-freeze/buy", {
+      method: "POST",
+    });
+  },
+
+  getStreakRepairStatus(): Promise<StreakRepairResult> {
+    return request("/api/v1/gamification/tower/streak-repair");
+  },
+
+  buyStreakRepair(): Promise<StreakRepairResult> {
+    return request<StreakRepairResult>(
+      "/api/v1/gamification/tower/streak-repair/buy",
+      { method: "POST" },
+    );
+  },
+
+  getDailyGoal(): Promise<Record<string, unknown>> {
     return request("/api/v1/gamification/tower/daily-goal");
   },
 
-  getCardCollection(params: Record<string, any> = {}) {
+  claimDailyBonus(): Promise<{
+    claimed?: boolean;
+    reward?: Record<string, unknown>;
+  }> {
+    return request("/api/v1/gamification/daily-bonus", { method: "POST" });
+  },
+
+  getDailyBonusHistory(limit = 30): Promise<Record<string, unknown>> {
+    return request(`/api/v1/gamification/daily-bonus/history?limit=${limit}`);
+  },
+
+  getCardCollection(
+    params: Record<string, string> = {},
+  ): Promise<Record<string, unknown>> {
     const query = new URLSearchParams();
     Object.entries(params).forEach(([k, v]) => {
       if (v) query.set(k, v);
@@ -95,42 +189,66 @@ export const gamificationApi = {
     return request(`/api/v1/cards/collection?${query.toString()}`);
   },
 
-  getDailyDraw() {
+  getDailyDraw(): Promise<Record<string, unknown>> {
     return request("/api/v1/cards/daily-draw");
   },
 
-  fuseCards(cardIds) {
-    return request("/api/v1/cards/fuse", cardIds);
+  fuseCards(cardIds: string[]): Promise<Record<string, unknown>> {
+    return request("/api/v1/cards/fuse", {
+      method: "POST",
+      body: JSON.stringify(cardIds),
+    });
   },
 
-  toggleCardFavorite(cardId) {
+  toggleCardFavorite(cardId: string): Promise<{ favorited?: boolean }> {
     return request(`/api/v1/cards/favorite/${cardId}`, { method: "POST" });
   },
 
-  getCardStats() {
+  getCardStats(): Promise<Record<string, unknown>> {
     return request("/api/v1/cards/stats");
   },
 
-  getMissingCards() {
+  getMissingCards(): Promise<Record<string, unknown>> {
     return request("/api/v1/cards/missing");
   },
 
-  getWizardProfile() {
+  getWizardProfile(): Promise<Record<string, unknown>> {
     return request("/api/v1/wizard/profile");
   },
 
-  customizeWizard(updates) {
+  customizeWizard(
+    updates: Record<string, unknown>,
+  ): Promise<{ updated?: boolean }> {
     return request("/api/v1/wizard/customize", {
       method: "PUT",
       body: JSON.stringify(updates),
     });
   },
 
-  getWizardDialogue(situation) {
+  getWizardDialogue(
+    situation: string,
+  ): Promise<{ dialogue: string; options?: string[] }> {
     return request(`/api/v1/wizard/dialogue/${situation}`);
   },
 
-  getWizardLevels() {
+  getWizardLevels(): Promise<Record<string, unknown>> {
     return request("/api/v1/wizard/levels");
+  },
+
+  getNearbyLeaderboard(
+    radius = 5,
+    limit = 10,
+  ): Promise<{ entries: LeaderboardEntry[] }> {
+    const params = new URLSearchParams({
+      radius: String(radius),
+      limit: String(limit),
+    });
+    return request(
+      `/api/v1/gamification/leaderboard/nearby?${params.toString()}`,
+    );
+  },
+
+  getStreakStatus(): Promise<StreakStatus> {
+    return request("/api/v1/gamification/streak/status");
   },
 };

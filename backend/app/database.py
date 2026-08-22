@@ -1,3 +1,11 @@
+"""Async MongoDB database layer using Motor with lazy collection proxies.
+
+Provides:
+- Connection pooling via AsyncIOMotorClient
+- Lazy collection resolution to avoid import-time DB access
+- Index creation for 50+ collections
+- Connection health checking (ping)
+"""
 import logging
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
 from app.config import get_settings
@@ -15,25 +23,155 @@ class _LazyCollection:
     """Proxy that lazily resolves to a motor collection on first attribute access.
 
     Supports both `collection.find_one(...)` and `collection()` call styles.
+    Also supports `collection[key]`, `del collection[key]`, and `key in collection`.
+
+    Args:
+        name: The MongoDB collection name to proxy.
     """
     __slots__ = ("_name",)
+
+    _KNOWN_METHODS = frozenset({
+        "find_one", "find", "insert_one", "insert_many", "update_one", "update_many",
+        "replace_one", "delete_one", "delete_many", "count_documents",
+        "estimated_document_count", "aggregate", "watch", "bulk_write",
+        "create_index", "create_indexes", "drop_index", "drop_indexes",
+        "index_information", "list_indexes", "rename", "find_one_and_delete",
+        "find_one_and_replace", "find_one_and_update", "distinct",
+        "map_reduce", "group", "inline_map_reduce", "options",
+    })
 
     def __init__(self, name: str):
         object.__setattr__(self, "_name", name)
 
     def _resolve(self):
+        """Resolve the lazy proxy to the actual Motor collection.
+
+        Returns:
+            AsyncIOMotorCollection: The resolved collection from the current database.
+        """
         name = object.__getattribute__(self, "_name")
         return get_db()[name]
 
     def __getattr__(self, item):
-        return getattr(self._resolve(), item)
+        """Proxy attribute access to the underlying Motor collection.
+
+        Known Motor collection methods are validated upfront to catch typos.
+        Unknown attributes raise AttributeError with a helpful suggestion.
+
+        Args:
+            item: Attribute name to forward.
+
+        Returns:
+            Any: The attribute from the resolved collection.
+
+        Raises:
+            AttributeError: If the attribute is not found, with a typo suggestion.
+        """
+        if item in self._KNOWN_METHODS or item.startswith("_"):
+            return getattr(self._resolve(), item)
+
+        resolved = self._resolve()
+        if hasattr(resolved, item):
+            return getattr(resolved, item)
+
+        suggestions = [m for m in self._KNOWN_METHODS if m.startswith(item[:3]) and m != item]
+        suggestion = f" Did you mean {suggestions[0]}?" if suggestions else ""
+        raise AttributeError(
+            f"'{type(self).__name__}' object has no attribute '{item}'.{suggestion}"
+        )
+
+    def __setattr__(self, name, value):
+        """Prevent setting attributes on the proxy except for the internal name.
+
+        Args:
+            name: Attribute name.
+            value: Value to set.
+
+        Raises:
+            AttributeError: If trying to set any attribute other than '_name'.
+        """
+        if name == "_name":
+            object.__setattr__(self, "_name", value)
+        else:
+            raise AttributeError(f"Cannot set attribute '{name}' on _LazyCollection proxy")
 
     def __call__(self):
-        """Allow `collection()` — returns the underlying motor collection."""
+        """Allow `collection()` — returns the underlying motor collection.
+
+        Returns:
+            AsyncIOMotorCollection: The resolved Motor collection.
+        """
         return self._resolve()
+
+    def __getitem__(self, key):
+        """Support dictionary-style access to collection documents.
+
+        Args:
+            key: Document key or index.
+
+        Returns:
+            Any: The value at the given key in the collection.
+        """
+        return self._resolve()[key]
+
+    def __setitem__(self, key, value):
+        """Support dictionary-style assignment to collection documents.
+
+        Args:
+            key: Document key or index.
+            value: Value to set.
+        """
+        self._resolve()[key] = value
+
+    def __delitem__(self, key):
+        """Support dictionary-style deletion of collection documents.
+
+        Args:
+            key: Document key or index to delete.
+
+        Raises:
+            KeyError: If the key does not exist in the collection.
+        """
+        del self._resolve()[key]
+
+    def __contains__(self, key):
+        """Support `in` operator for collection membership checks.
+
+        Args:
+            key: Key or value to check for existence.
+
+        Returns:
+            bool: True if the key exists in the collection, False otherwise.
+        """
+        return key in self._resolve()
+
+    def __repr__(self):
+        """Return a human-readable representation of the lazy collection.
+
+        Returns:
+            str: Representation string including the collection name.
+        """
+        return f"<_LazyCollection '{object.__getattribute__(self, '_name')}'>"
+
+    def __dir__(self):
+        """Return available attributes including known Motor methods for IDE support.
+
+        Returns:
+            list: Sorted list of known method names plus standard Python attributes.
+        """
+        return sorted(set(super().__dir__()) | self._KNOWN_METHODS)
 
 
 def get_client() -> AsyncIOMotorClient:
+    """Get or create the singleton AsyncIOMotorClient instance.
+
+    Validates the existing client's I/O loop; recreates the client if the loop
+    is closed or the client was never initialized. Uses connection pool settings
+    from application config.
+
+    Returns:
+        AsyncIOMotorClient: The active Motor database client.
+    """
     global _client, _db
     if _client is not None:
         try:
@@ -61,6 +199,11 @@ def get_client() -> AsyncIOMotorClient:
 
 
 def get_db() -> AsyncIOMotorDatabase:
+    """Get or create the singleton AsyncIOMotorDatabase instance.
+
+    Returns:
+        AsyncIOMotorDatabase: The active Motor database handle.
+    """
     global _db
     client = get_client()
     if _db is None:
@@ -69,6 +212,14 @@ def get_db() -> AsyncIOMotorDatabase:
 
 
 def get_collection(name: str):
+    """Get a Motor collection by name, caching it for future calls.
+
+    Args:
+        name: The name of the MongoDB collection.
+
+    Returns:
+        AsyncIOMotorCollection: The requested collection handle.
+    """
     if name not in _collections:
         _collections[name] = get_db()[name]
     return _collections[name]
@@ -89,6 +240,7 @@ skill_graph_collection = _LazyCollection("skill_graphs")
 gamification_collection = _LazyCollection("gamification")
 usage_collection = _LazyCollection("usage_tracking")
 predictions_collection = _LazyCollection("predictions")
+prediction_outcomes_collection = _LazyCollection("prediction_outcomes")
 curated_questions_collection = _LazyCollection("curated_questions")
 question_answers_collection = _LazyCollection("question_answers")
 company_mock_tests_collection = _LazyCollection("company_mock_tests")
@@ -156,6 +308,12 @@ campus_winners_collection = _LazyCollection("campus_winners")
 newspaper_collection = _LazyCollection("newspaper")
 lucky_spins_collection = _LazyCollection("lucky_spins")
 chat_messages_collection = _LazyCollection("chat_messages")
+gd_rooms_collection = _LazyCollection("gd_rooms")
+gd_ratings_collection = _LazyCollection("gd_ratings")
+cgpa_calculations_collection = _LazyCollection("cgpa_calculations")
+drive_trackers_collection = _LazyCollection("drive_trackers")
+peer_reviews_collection = _LazyCollection("peer_reviews")
+study_squads_collection = _LazyCollection("study_squads")
 battle_pass_collection = _LazyCollection("battle_pass")
 achievements_collection = _LazyCollection("achievements")
 teams_collection = _LazyCollection("teams")
@@ -167,6 +325,13 @@ pulse_daily_collection = _LazyCollection("pulse_daily")
 trending_engagement_collection = _LazyCollection("trending_engagement")
 debug_logs_collection = _LazyCollection("debug_logs")
 srs_collection = _LazyCollection("srs_states")
+srs_cards_collection = _LazyCollection("srs_cards")
+audit_logs_collection = _LazyCollection("audit_logs")
+friend_requests_collection = _LazyCollection("friend_requests")
+friends_collection = _LazyCollection("friends")
+oa_sessions_collection = _LazyCollection("oa_sessions")
+integrity_events_collection = _LazyCollection("integrity_events")
+daily_quests_collection = _LazyCollection("daily_quests")
 
 
 async def init_db():
@@ -177,11 +342,20 @@ async def init_db():
         try:
             await collection.create_index(keys, **kwargs)
         except Exception as e:
-            if "already exists" in str(e).lower() or "IndexOptionsConflict" in str(e):
+            msg = str(e).lower()
+            if ("already exists" in msg
+                    or "indexoptionsconflict" in msg
+                    or "indexkeyspecsconflict" in msg
+                    or "same name" in msg):
                 pass  # Index exists with different options — safe to ignore
+            elif "duplicate key" in msg or "e11000" in msg:
+                logger.warning("Index build skipped due to duplicate key conflict: %s", e)
             else:
                 raise
 
+    # NOTE: uid index is managed separately via migrations.sparse_uid_index()
+    # to avoid E11000 conflict when all existing users have uid=null.
+    # Authentication uses email + password, not uid.
     await _safe_create_index(db["users"], "email", unique=True)
     await _safe_create_index(db["users"], "plan")
     await _safe_create_index(db["users"], "created_at")
@@ -270,6 +444,16 @@ async def init_db():
     await _safe_create_index(db["mock_tests"], "user_id")
     await _safe_create_index(db["mock_tests"], [("user_id", 1), ("created_at", -1)])
     await _safe_create_index(db["mock_tests"], "status")
+
+    # OA simulation sessions
+    await _safe_create_index(db["oa_sessions"], "user_id")
+    await _safe_create_index(db["oa_sessions"], [("user_id", 1), ("created_at", -1)])
+    await _safe_create_index(db["oa_sessions"], "status")
+    await _safe_create_index(db["oa_sessions"], [("user_id", 1), ("company", 1)])
+
+    # Integrity events (opt-in browser signals)
+    await _safe_create_index(db["integrity_events"], [("user_id", 1), ("session_id", 1)])
+    await _safe_create_index(db["integrity_events"], "created_at", expireAfterSeconds=60 * 60 * 24 * 30)
 
     await _safe_create_index(db["trials"], "user_id")
     await _safe_create_index(db["trials"], [("user_id", 1), ("status", 1)])
@@ -460,10 +644,46 @@ async def init_db():
     await _safe_create_index(db["debug_logs"], [("created_at", -1)])
     await _safe_create_index(db["debug_logs"], [("created_at", 1)], expireAfterSeconds=60 * 60 * 24 * 30)
 
+    # Audit logs — TTL 1 year for compliance
+    await _safe_create_index(db["audit_logs"], [("timestamp", -1)])
+    await _safe_create_index(db["audit_logs"], [("user_id", 1), ("timestamp", -1)])
+    await _safe_create_index(db["audit_logs"], [("action", 1), ("timestamp", -1)])
+
+    # Daily quests — adaptive quest engine (one doc per user per day)
+    await _safe_create_index(db["daily_quests"], "user_id")
+    await _safe_create_index(db["daily_quests"], [("user_id", 1), ("date", 1)], unique=True)
+    await _safe_create_index(db["daily_quests"], [("user_id", 1), ("date", -1)])
+    # TTL index: auto-cleanup quest docs older than 90 days
+    await _safe_create_index(db["daily_quests"], [("created_at", 1)], expireAfterSeconds=60 * 60 * 24 * 90)
+
+    # SRS cards — problem-based spaced repetition
+    await _safe_create_index(db["srs_cards"], "user_id")
+    await _safe_create_index(db["srs_cards"], [("user_id", 1), ("problem_id", 1)], unique=True)
+    await _safe_create_index(db["srs_cards"], [("user_id", 1), ("next_review", 1)])
+    await _safe_create_index(db["srs_cards"], [("user_id", 1), ("difficulty", 1)])
+    await _safe_create_index(db["srs_cards"], [("user_id", 1), ("next_review", 1), ("difficulty", 1)])
+
+    # Skill mastery — per-skill tracking
+    await _safe_create_index(db["skill_graphs"], [("user_id", 1), ("topic", 1), ("sub_topic", 1)], unique=True)
+    await _safe_create_index(db["skill_graphs"], [("user_id", 1), ("current_level", -1)])
+    await _safe_create_index(db["skill_graphs"], [("user_id", 1), ("last_practiced", -1)])
+
+    # Friend system — unique chat IDs + friend graph
+    await _safe_create_index(db["users"], "uid", unique=True, sparse=True)
+    await _safe_create_index(db["friend_requests"], [("from_id", 1), ("status", 1)])
+    await _safe_create_index(db["friend_requests"], [("to_id", 1), ("status", 1)])
+    await _safe_create_index(db["friend_requests"], [("created_at", -1)])
+    await _safe_create_index(db["friends"], [("user_ids", 1)])
+
     logger.info("Database indexes created successfully")
 
 
 async def close_db():
+    """Close the Motor client and reset all cached state.
+
+    Clears the client, database handle, and collection proxy cache.
+    Logs the closure for observability.
+    """
     global _client, _db
     if _client:
         _client.close()
@@ -474,6 +694,11 @@ async def close_db():
 
 
 async def ping_db() -> bool:
+    """Check database connectivity by sending an admin ping command.
+
+    Returns:
+        bool: True if the database responds to ping, False otherwise.
+    """
     try:
         client = get_client()
         await client.admin.command("ping")

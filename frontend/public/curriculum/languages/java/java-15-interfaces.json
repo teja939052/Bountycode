@@ -1,0 +1,53 @@
+{
+  "id": "java-15-interfaces",
+  "track": "java",
+  "title": "Interfaces & Abstraction",
+  "section": "Java Intermediate",
+  "order": 15,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "An **interface** is a contract: it lists *what* a class can do, without saying *how*. Classes that **implement** the interface promise to supply the method bodies. This lets unrelated classes share a common behavior and lets your code depend on the contract, not on a specific implementation.\n\n```java\ninterface Drawable {\n    void draw();\n}\n\nclass Circle implements Drawable {\n    public void draw() {\n        System.out.println(\"Drawing circle\");\n    }\n}\n```\n\nNotice the `public` on `Circle.draw()` — interface methods are implicitly `public abstract`, so the implementing method must be at least that visible.\n\n### Interface vs class\n\n| | Class | Interface |\n|---|---|---|\n| Can it have method bodies? | Yes | Only `default`/`static` methods |\n| Can it have fields? | Yes, any | Only `public static final` constants |\n| How many parents? | One superclass | Multiple interfaces |\n| What is it? | A blueprint | A contract |\n\n### Multiple interfaces\n\nA class has only *one* superclass but may implement **any number** of interfaces — Java's answer to multiple inheritance:\n\n```java\ninterface Drawable { void draw(); }\ninterface Audible { void play(); }\n\nclass Tv implements Drawable, Audible {\n    public void draw() { /* ... */ }\n    public void play() { /* ... */ }\n}\n```\n\n### default methods\n\nJava 8 let interfaces include `default` methods with a body, so you can evolve a contract without breaking every class that already implements it. The class inherits the default unless it overrides it.\n\n### When to use which\n\nInterfaces shine for **capabilities** (\"things that can draw\"), decoupling, and testing. Use an **abstract class** when several classes share actual state and half-implemented logic you want to reuse. A rule of thumb: prefer interfaces for behavior, and inheritance or composition for shared implementation. Keep public interfaces small — every new method forces all implementors to keep up.",
+    "codeSnippets": [
+      {
+        "language": "java",
+        "code": "interface Drawable {\n    void draw();\n}\n\nclass Circle implements Drawable {\n    public void draw() {\n        System.out.println(\"Drawing circle\");\n    }\n}\n\nDrawable shape = new Circle();\nshape.draw();",
+        "output": "Drawing circle"
+      }
+    ],
+    "exercise": {
+      "instruction": "Define interface Drawable with a single method declaration void draw();. Define class Circle implements Drawable whose public void draw() prints \"Drawing circle\". In main, create a Circle with new Circle(), call draw() on it, and it must print \"Drawing circle\".",
+      "starterCode": "public class Main {\n    public static void main(String[] args) {\n\n    }\n}",
+      "language": "java",
+      "expected": "Drawing circle",
+      "required": ["interface Drawable", "void draw();", "class Circle implements Drawable", "public void draw", "\"Drawing circle\"", "new Circle"],
+      "hints": [
+        "Hint 1: interface Drawable { void draw(); }",
+        "Hint 2: class Circle implements Drawable { public void draw() { System.out.println(\"Drawing circle\"); } }",
+        "Hint 3: In main: Drawable shape = new Circle(); shape.draw();"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "A class receives an interface's contract using which keyword?",
+        "options": ["extends", "implements", "inherits"],
+        "correct": 1
+      },
+      {
+        "question": "An interface method declared without a body is implicitly...",
+        "options": ["private", "public abstract", "static"],
+        "correct": 1
+      },
+      {
+        "question": "How many interfaces may a single class implement?",
+        "options": ["Exactly one", "None", "Multiple"],
+        "correct": 2
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "java-16-project-student-manager",
+    "unlocks": ["java-16-project-student-manager"]
+  }
+}

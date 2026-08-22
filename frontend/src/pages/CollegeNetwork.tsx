@@ -78,53 +78,53 @@ export default function CollegeNetwork() {
   };
 
   const statCard = (label, value) => (
-    <div className="bg-slate-800/60 rounded-xl p-4 text-center">
-      <div className="text-2xl font-bold text-emerald-400">{value}</div>
-      <div className="text-xs text-slate-400 uppercase tracking-wide mt-1">{label}</div>
+    <div className="bg-white border border-nature-leaf/20 rounded-xl p-4 text-center">
+      <div className="text-2xl font-bold text-nature-blossom">{value}</div>
+      <div className="text-xs text-text-muted uppercase tracking-wide mt-1">{label}</div>
     </div>
   );
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-950 text-white flex items-center justify-center">
-        <div className="text-slate-400 animate-pulse">Connecting to your college...</div>
+      <div className="min-h-screen bg-surface-base text-text-primary flex items-center justify-center">
+        <div className="text-text-muted animate-pulse">Connecting to your college...</div>
       </div>
     );
   }
 
   if (!profile) {
     return (
-      <div className="min-h-screen bg-slate-950 text-white flex items-center justify-center px-4">
+      <div className="min-h-screen bg-surface-base text-text-primary flex items-center justify-center px-4">
         <div className="w-full max-w-md">
           <h1 className="text-3xl font-bold text-center mb-1">Join Your College</h1>
-          <p className="text-slate-400 text-center mb-8">Compete with your college, branch and batch. Bring your friends.</p>
-          <div className="bg-slate-800/60 rounded-2xl p-6 space-y-4">
+          <p className="text-text-muted text-center mb-8">Compete with your college, branch and batch. Bring your friends.</p>
+          <div className="bg-white border border-nature-leaf/20 rounded-2xl p-6 space-y-4">
             <div>
-              <label className="text-xs text-slate-400 uppercase">College</label>
+              <label className="text-xs text-text-muted uppercase">College</label>
               <input
                 value={college}
                 onChange={(e) => setCollege(e.target.value)}
                 placeholder="e.g. VIT Vellore"
-                className="mt-1 w-full bg-slate-900 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-emerald-500"
+                className="mt-1 w-full bg-surface-card rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-emerald-500"
               />
             </div>
             <div>
-              <label className="text-xs text-slate-400 uppercase">Branch</label>
+              <label className="text-xs text-text-muted uppercase">Branch</label>
               <select
                 value={branch}
                 onChange={(e) => setBranch(e.target.value)}
-                className="mt-1 w-full bg-slate-900 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-emerald-500"
+                className="mt-1 w-full bg-surface-card rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-emerald-500"
               >
                 <option value="">Select branch</option>
                 {BRANCHES.map((b) => <option key={b} value={b}>{b}</option>)}
               </select>
             </div>
             <div>
-              <label className="text-xs text-slate-400 uppercase">Year</label>
+              <label className="text-xs text-text-muted uppercase">Year</label>
               <select
                 value={year}
                 onChange={(e) => setYear(e.target.value)}
-                className="mt-1 w-full bg-slate-900 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-emerald-500"
+                className="mt-1 w-full bg-surface-card rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-emerald-500"
               >
                 <option value="">Select year</option>
                 {YEARS.map((y) => <option key={y} value={y}>Year {y}</option>)}
@@ -152,12 +152,12 @@ export default function CollegeNetwork() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white px-4 py-8">
+    <div className="min-h-screen bg-surface-base text-text-primary px-4 py-8">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-6">
           <div>
             <h1 className="text-3xl font-bold">{profile.college}</h1>
-            <p className="text-slate-400">
+            <p className="text-text-muted">
               {profile.branch} · Year {profile.year}
             </p>
           </div>
@@ -167,7 +167,7 @@ export default function CollegeNetwork() {
                 key={t.id}
                 onClick={() => setTab(t.id)}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
-                  tab === t.id ? "bg-emerald-600 text-white" : "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                  tab === t.id ? "bg-emerald-600 text-white" : "bg-surface-card text-text-secondary hover:bg-[#EDEAE0]"
                 }`}
               >
                 {t.label}
@@ -186,8 +186,8 @@ export default function CollegeNetwork() {
         )}
 
         {tab === "leaderboard" && (
-          <div className="bg-slate-800/60 rounded-2xl overflow-hidden">
-            <div className="px-6 py-3 grid grid-cols-12 text-xs text-slate-400 uppercase tracking-wide border-b border-slate-700">
+          <div className="bg-white border border-nature-leaf/20 rounded-2xl overflow-hidden">
+            <div className="px-6 py-3 grid grid-cols-12 text-xs text-text-muted uppercase tracking-wide border-b border-[#EDEAE0]">
               <div className="col-span-1">#</div>
               <div className="col-span-5">Student</div>
               <div className="col-span-2">Branch</div>
@@ -195,64 +195,64 @@ export default function CollegeNetwork() {
               <div className="col-span-2 text-right">XP</div>
             </div>
             {leaderboard.map((s) => (
-              <div key={s.user_id} className={`px-6 py-3 grid grid-cols-12 items-center border-b border-slate-700/50 ${s.is_me ? "bg-emerald-900/30" : ""}`}>
-                <div className="col-span-1 font-bold text-slate-400">{s.rank}</div>
+              <div key={s.user_id} className={`px-6 py-3 grid grid-cols-12 items-center border-b border-[#EDEAE0] ${s.is_me ? "bg-surface-card" : ""}`}>
+                <div className="col-span-1 font-bold text-text-muted">{s.rank}</div>
                 <div className="col-span-5">
-                  {s.name} {s.is_me && <span className="text-emerald-400 text-xs">(you)</span>}
+                  {s.name} {s.is_me && <span className="text-nature-blossom text-xs">(you)</span>}
                 </div>
-                <div className="col-span-2 text-slate-400 text-sm">{s.branch}</div>
-                <div className="col-span-2 text-slate-400 text-sm">Y{s.year}</div>
-                <div className="col-span-2 text-right font-semibold text-emerald-400">{s.xp.toLocaleString()}</div>
+                <div className="col-span-2 text-text-muted text-sm">{s.branch}</div>
+                <div className="col-span-2 text-text-muted text-sm">Y{s.year}</div>
+                <div className="col-span-2 text-right font-semibold text-nature-blossom">{s.xp.toLocaleString()}</div>
               </div>
             ))}
-            {!leaderboard.length && <div className="px-6 py-10 text-center text-slate-500">No students yet — invite your batch!</div>}
+            {!leaderboard.length && <div className="px-6 py-10 text-center text-text-muted">No students yet — invite your batch!</div>}
           </div>
         )}
 
         {tab === "peers" && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {peers.map((p) => (
-              <div key={p.user_id} className="bg-slate-800/60 rounded-xl p-4">
+              <div key={p.user_id} className="bg-white border border-nature-leaf/20 rounded-xl p-4">
                 <div className="font-semibold">{p.name}</div>
-                <div className="text-sm text-slate-400">{p.branch} · Y{p.year}</div>
-                <div className="text-emerald-400 font-semibold mt-2">{p.xp.toLocaleString()} XP</div>
+                <div className="text-sm text-text-muted">{p.branch} · Y{p.year}</div>
+                <div className="text-nature-blossom font-semibold mt-2">{p.xp.toLocaleString()} XP</div>
               </div>
             ))}
-            {!peers.length && <div className="col-span-full text-center text-slate-500 py-10">No batchmates yet. Share the link!</div>}
+            {!peers.length && <div className="col-span-full text-center text-text-muted py-10">No batchmates yet. Share the link!</div>}
           </div>
         )}
 
         {tab === "feed" && (
           <div className="space-y-3">
             {feed.map((e) => (
-              <div key={e.id} className="bg-slate-800/60 rounded-xl px-5 py-4">
+              <div key={e.id} className="bg-white border border-nature-leaf/20 rounded-xl px-5 py-4">
                 <div className="flex items-center justify-between">
                   <span className="font-semibold">{e.name}</span>
-                  <span className="text-xs text-slate-500">{e.created_at ? new Date(e.created_at).toLocaleDateString() : ""}</span>
+                  <span className="text-xs text-text-muted">{e.created_at ? new Date(e.created_at).toLocaleDateString() : ""}</span>
                 </div>
-                <p className="text-slate-300 text-sm mt-1">{e.text}</p>
+                <p className="text-text-secondary text-sm mt-1">{e.text}</p>
               </div>
             ))}
-            {!feed.length && <div className="text-center text-slate-500 py-10">The campus feed is quiet — be the first story.</div>}
+            {!feed.length && <div className="text-center text-text-muted py-10">The campus feed is quiet — be the first story.</div>}
           </div>
         )}
 
         {tab === "cell" && cell && (
-          <div className="bg-slate-800/60 rounded-2xl p-6">
+          <div className="bg-white border border-nature-leaf/20 rounded-2xl p-6">
             <h2 className="text-xl font-bold mb-1">Placement Cell Overview</h2>
-            <p className="text-slate-400 text-sm mb-6">Snapshot of your college on PlacementPro</p>
+            <p className="text-text-muted text-sm mb-6">Snapshot of your college on PlacementPro</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
               {statCard("Students", cell.total_students || 0)}
               {statCard("Avg XP", cell.avg_xp || 0)}
               {statCard("Offers", cell.offers_count || 0)}
             </div>
             {cell.top_student && (
-              <div className="bg-emerald-900/30 rounded-xl p-4 flex items-center justify-between">
+              <div className="bg-surface-card rounded-xl p-4 flex items-center justify-between">
                 <div>
-                  <div className="text-xs text-slate-400 uppercase">Top Student</div>
+                  <div className="text-xs text-text-muted uppercase">Top Student</div>
                   <div className="font-bold text-lg">{cell.top_student.name}</div>
                 </div>
-                <div className="text-emerald-400 font-bold">{cell.top_student.xp.toLocaleString()} XP</div>
+                <div className="text-nature-blossom font-bold">{cell.top_student.xp.toLocaleString()} XP</div>
               </div>
             )}
           </div>

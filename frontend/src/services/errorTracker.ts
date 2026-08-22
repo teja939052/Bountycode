@@ -1,11 +1,13 @@
 const API_BASE = import.meta.env.VITE_API_URL || "";
 const MAX_KEEP = 50;
 const STORAGE_KEY = "pp_debug_errors";
+const IS_BROWSER = typeof window !== "undefined" && typeof document !== "undefined";
 
 let installed = false;
 let errors = [];
 
 function persist() {
+  if (!IS_BROWSER) return;
   try {
     localStorage.setItem(
       STORAGE_KEY,
@@ -19,7 +21,9 @@ function addError(entry) {
   if (errors.length > MAX_KEEP) errors.length = MAX_KEEP;
   persist();
   reportToBackend(entry);
-  window.dispatchEvent(new CustomEvent("pp-error-tracked", { detail: entry }));
+  setTimeout(() => {
+    window.dispatchEvent(new CustomEvent("pp-error-tracked", { detail: entry }));
+  }, 0);
 }
 
 function truncate(str, max) {
@@ -28,6 +32,7 @@ function truncate(str, max) {
 }
 
 async function reportToBackend(entry) {
+  if (!IS_BROWSER) return;
   try {
     await fetch(`${API_BASE}/api/v1/debug/log`, {
       method: "POST",
@@ -58,6 +63,7 @@ function getErrorLevel(err) {
 }
 
 export function trackError(error, component) {
+  if (!IS_BROWSER) return;
   const message = (error && error.message) || String(error || "Unknown error");
   addError({
     message,
@@ -75,12 +81,14 @@ export function getTrackedErrors() {
 
 export function clearTrackedErrors() {
   errors = [];
+  if (!IS_BROWSER) return;
   try {
     localStorage.removeItem(STORAGE_KEY);
   } catch {}
 }
 
 export function installGlobalErrorTracker() {
+  if (!IS_BROWSER) return;
   if (installed) return;
   installed = true;
 

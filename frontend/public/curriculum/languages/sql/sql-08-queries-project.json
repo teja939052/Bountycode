@@ -1,0 +1,46 @@
+{
+  "id": "sql-08-queries-project",
+  "track": "sql",
+  "title": "Project: Employee Analytics",
+  "section": "SQL Projects",
+  "order": 8,
+  "type": "project",
+  "duration": "18 min",
+  "xp": 40,
+  "content": {
+    "theory": "Time to combine everything. You're analyzing a company database with two tables:\n\n`employees` (id, name, department, salary) and `departments` (id, name)\n\nBuild these queries piece by piece.\n\n**1. Everyone in Engineering, sorted by salary:**\n\n```sql\nSELECT name, salary\nFROM employees\nWHERE department = 'Engineering'\nORDER BY salary DESC;\n```\n\n**2. Average salary per department:**\n\n```sql\nSELECT department, AVG(salary) AS avg_salary\nFROM employees\nGROUP BY department;\n```\n\n**3. Departments with high average salaries:**\n\n```sql\nSELECT department, AVG(salary) AS avg_salary\nFROM employees\nGROUP BY department\nHAVING AVG(salary) > 90000;\n```\n\n**4. Top 3 earners company-wide:**\n\n```sql\nSELECT name, salary\nFROM employees\nORDER BY salary DESC\nLIMIT 3;\n```\n\n**5. Employees with their department names (JOIN):**\n\n```sql\nSELECT e.name, d.name AS dept\nFROM employees AS e\nINNER JOIN departments AS d ON e.department = d.id;\n```\n\nEvery real analytics task is these five patterns in different combinations.",
+    "codeSnippets": [
+      {
+        "language": "sql",
+        "code": "SELECT department, AVG(salary) AS avg_salary\nFROM employees\nGROUP BY department\nHAVING AVG(salary) > 90000;",
+        "output": "Departments whose average salary exceeds 90000"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write the top-3-earners query: select 'name' and 'salary' from 'employees', order by salary descending, and limit to 3 rows.",
+      "starterCode": "",
+      "required": ["SELECT name, salary", "FROM employees", "ORDER BY salary DESC", "LIMIT 3"],
+      "hints": [
+        "Hint 1: SELECT name, salary",
+        "Hint 2: FROM employees",
+        "Hint 3: ORDER BY salary DESC LIMIT 3;"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which query finds each department's average salary?",
+        "options": ["GROUP BY department with AVG(salary)", "ORDER BY department", "A JOIN with no aggregate"],
+        "correct": 0
+      },
+      {
+        "question": "What filters groups (not rows)?",
+        "options": ["WHERE", "HAVING", "LIMIT"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "sql-09-subqueries",
+    "unlocks": ["sql-09-subqueries"]
+  }
+}

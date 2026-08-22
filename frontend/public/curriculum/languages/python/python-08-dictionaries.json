@@ -1,0 +1,48 @@
+{
+  "id": "python-08-dictionaries",
+  "track": "python",
+  "title": "Dictionaries",
+  "section": "Python Basics",
+  "order": 8,
+  "type": "lesson",
+  "duration": "11 min",
+  "xp": 20,
+  "content": {
+    "theory": "A **dictionary** maps keys to values — like a phonebook. It's created with curly braces:\n\n```python\nuser = {\n    \"name\": \"Ada\",\n    \"age\": 36,\n    \"city\": \"London\"\n}\n```\n\nAccess and modify values by key:\n\n```python\nprint(user[\"name\"])      # Ada\nuser[\"age\"] = 37\nuser[\"job\"] = \"Programmer\"   # adds a new key\n```\n\nSafely fetch values with `.get()` — it returns `None` (or a default) instead of crashing:\n\n```python\nprint(user.get(\"country\"))          # None\nprint(user.get(\"country\", \"Unknown\")) # Unknown\n```\n\nLoop over dictionaries:\n\n```python\nfor key in user:               # keys\n    print(key)\n\nfor key, value in user.items():  # key-value pairs\n    print(key, \"=\", value)\n```\n\nCheck for a key with `in`:\n\n```python\nif \"name\" in user:\n    print(\"Found\")\n```",
+    "codeSnippets": [
+      {
+        "language": "python",
+        "code": "scores = {\"math\": 90, \"science\": 85}\nscores[\"english\"] = 88\nfor subject, score in scores.items():\n    print(subject, score)",
+        "output": "math 90\nscience 85\nenglish 88"
+      }
+    ],
+    "exercise": {
+      "instruction": "Create a dict 'profile' with key 'name' (value 'Ali') and key 'level' (value 5). Add a key 'hp' with value 100. Print the hp value using print(profile['hp']).",
+      "starterCode": "",
+      "language": "python",
+      "expected": "100",
+      "required": ["profile = {", "\"name\"", "\"Ali\"", "\"level\"", "5", "\"hp\"", "100", "profile['hp']"],
+      "hints": [
+        "Hint 1: profile = {\"name\": \"Ali\", \"level\": 5}",
+        "Hint 2: profile[\"hp\"] = 100",
+        "Hint 3: print(profile['hp'])"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which syntax accesses the value for key 'age' in dict d?",
+        "options": ["d.age", "d[\"age\"]", "d(\"age\")"],
+        "correct": 1
+      },
+      {
+        "question": "What does .get() return when the key doesn't exist?",
+        "options": ["It raises an error", "None", "An empty string"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "python-09-number-game",
+    "unlocks": ["python-09-number-game"]
+  }
+}

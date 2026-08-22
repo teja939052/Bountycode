@@ -1,0 +1,48 @@
+{
+  "id": "cpp-03-strings",
+  "track": "cpp",
+  "title": "Strings",
+  "section": "C++ Basics",
+  "order": 3,
+  "type": "lesson",
+  "duration": "10 min",
+  "xp": 15,
+  "content": {
+    "theory": "`std::string` (from `<string>`) is the modern way to handle text in C++.\n\nCommon operations:\n\n```cpp\n#include <string>\n\nstd::string text = \"Hello, World\";\n\ntext.length()          // 12\ntext.size()            // 12 (same thing)\ntext[0]                // 'H' — access a character\ntext.append(\"!\")       // adds to the end\ntext += \"!\";           // same, simpler\ntext.substr(0, 5);     // \"Hello\"\ntext.find(\"World\");    // 7 (position, or std::string::npos if not found)\n```\n\nSome functions return a **new** string while others modify in place — `append` and `+=` modify, `substr` returns a copy.\n\nString vs char array: C++ also has `char` arrays (C-style strings), but `std::string` handles length and memory for you — always prefer it.\n\nTurn a string into a number with `std::stoi`:\n\n```cpp\nint n = std::stoi(\"42\");\n```\n\nCheck the size with `.size()` and remember it counts characters:\n\n```cpp\nstd::string name = \"Ada\";\nstd::cout << name.size();  // 3\n```",
+    "codeSnippets": [
+      {
+        "language": "cpp",
+        "code": "#include <iostream>\n#include <string>\n\nint main() {\n    std::string msg = \"hi\";\n    msg += \"!\";\n    std::cout << msg.size() << \" \" << msg << std::endl;\n    return 0;\n}",
+        "output": "3 hi!"
+      }
+    ],
+    "exercise": {
+      "instruction": "Complete the program: create std::string 'lang' = \"C++\". Print its length with .size(), then append \"!\" using += and print the new value.",
+      "starterCode": "#include <iostream>\n#include <string>\n\nint main() {\n\n    return 0;\n}",
+      "language": "cpp",
+      "expected": "3\nC++!",
+      "required": ["std::string lang", "C++", ".size()", "lang += \"!\""],
+      "hints": [
+        "Hint 1: std::string lang = \"C++\";",
+        "Hint 2: std::cout << lang.size() << std::endl; → 3",
+        "Hint 3: lang += \"!\"; std::cout << lang << std::endl; → C++!"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "How do you get the number of characters in a string?",
+        "options": [".length", ".size()", "count()"],
+        "correct": 1
+      },
+      {
+        "question": "What does += do to a string?",
+        "options": ["Replaces it", "Appends text to the end", "Deletes the last char"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "cpp-04-conditionals",
+    "unlocks": ["cpp-04-conditionals"]
+  }
+}

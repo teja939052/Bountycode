@@ -1,0 +1,35 @@
+{
+  "id": "html-08-recipe-card",
+  "track": "html",
+  "title": "Project: Recipe Card",
+  "section": "Fundamentals",
+  "order": 8,
+  "type": "project",
+  "duration": "15 min",
+  "xp": 40,
+  "content": {
+    "theory": "Time to combine everything: headings, lists, images, and links in one real page. You'll build a **recipe card** — the classic first HTML project.\n\n### Plan\n1. An `<h1>` with the recipe name\n2. A short intro paragraph\n3. An `<img>` of the dish\n4. An `<h2>` 'Ingredients' with an **unordered** list\n5. An `<h2>` 'Steps' with an **ordered** list\n6. A link to the full recipe\n\n### Structure to aim for\n```html\n<h1>Classic Margherita Pizza</h1>\n<p>A simple, delicious classic.</p>\n<img src=\"pizza.jpg\" alt=\"Margherita pizza\">\n\n<h2>Ingredients</h2>\n<ul>\n  <li>Dough</li>\n  <li>Tomato sauce</li>\n</ul>\n\n<h2>Steps</h2>\n<ol>\n  <li>Preheat the oven</li>\n  <li>Top the dough</li>\n</ol>\n\n<a href=\"https://example.com/full-recipe\">See the full recipe</a>\n```\n\nA **project** is judged by how well it comes together — not just whether it 'compiles'. Every part of the page should be real, semantic HTML.",
+    "codeSnippets": [
+      {
+        "language": "html",
+        "code": "<h1>Margherita Pizza</h1>\n<h2>Ingredients</h2>\n<ul><li>Dough</li><li>Cheese</li></ul>",
+        "output": "A heading, a sub-heading, and a bulleted ingredient list."
+      }
+    ],
+    "exercise": {
+      "instruction": "Build a complete recipe card for a dish of your choice. Include an h1 title, a short paragraph, an image (src=\"dish.jpg\"), an unordered ingredients list with at least 3 items, an ordered steps list with at least 2 items, and a link to the full recipe.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<head>\n  <title>My Recipe</title>\n</head>\n<body>\n\n</body>\n</html>",
+      "required": ["<h1>", "<img", "src=\"dish.jpg\"", "<ul>", "<li>", "</li>", "</ul>", "<ol>", "</ol>", "<a href"],
+      "hints": [
+        "Hint 1: Start with <h1> and a <p> introduction.",
+        "Hint 2: Add the image: <img src=\"dish.jpg\" alt=\"My dish\">.",
+        "Hint 3: Finish with a <ul> (ingredients), <ol> (steps), and an <a> link."
+      ]
+    },
+    "quiz": []
+  },
+  "completion": {
+    "nextLesson": "html-09-profile-page",
+    "unlocks": ["html-09-profile-page"]
+  }
+}

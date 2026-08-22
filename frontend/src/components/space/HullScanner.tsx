@@ -14,7 +14,7 @@ export default function HullScanner({ atsScore = 0, issues = [], keywords = [] }
   const sc = getScoreColor(atsScore);
 
   return (
-    <div className="relative rounded-xl bg-space-panel/80 backdrop-blur-sm border border-space-border overflow-hidden">
+    <div className="relative rounded-xl bg-space-panel/80 border border-space-border overflow-hidden">
       {/* Ambient grid */}
       <div className="absolute inset-0 ambient-grid opacity-20 pointer-events-none" />
 

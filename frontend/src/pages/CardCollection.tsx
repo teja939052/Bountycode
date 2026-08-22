@@ -1,6 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import gsap from 'gsap';
 import api from '../services/api';
 import { Card, CardGrid, CardSkeleton, getRarityEmoji, getRarityStars, getRarityColor } from '../components/ui/Card';
 import MysteryBox from '../components/MysteryBox';
@@ -13,13 +12,13 @@ import { Flame, Trophy, Star, Zap, Coins, Crown, Medal, Award, Gem, Rocket, Swor
 const RARITY_FILTERS = ['all', 'common', 'uncommon', 'rare', 'epic', 'legendary', 'mythic'];
 
 const RARITY_FILTER_COLORS = {
-  all: { active: 'bg-cyber-blue/20 text-cyber-blue border-cyber-blue/40', inactive: 'hover:bg-gray-50 text-gray-400' },
-  common: { active: 'bg-gray-500/20 text-gray-300 border-gray-500/40', inactive: 'hover:bg-gray-50 text-gray-400' },
-  uncommon: { active: 'bg-green-500/20 text-green-400 border-green-500/40', inactive: 'hover:bg-gray-50 text-gray-400' },
-  rare: { active: 'bg-blue-500/20 text-blue-400 border-blue-500/40', inactive: 'hover:bg-gray-50 text-gray-400' },
-  epic: { active: 'bg-purple-500/20 text-purple-400 border-purple-500/40', inactive: 'hover:bg-gray-50 text-gray-400' },
-  legendary: { active: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/40', inactive: 'hover:bg-gray-50 text-gray-400' },
-  mythic: { active: 'bg-pink-500/20 text-pink-400 border-pink-500/40', inactive: 'hover:bg-gray-50 text-gray-400' },
+  all: { active: 'bg-cyber-blue/20 text-cyber-blue border-cyber-blue/40', inactive: 'hover:bg-surface-card text-brand-muted' },
+  common: { active: 'bg-gray-500/20 text-gray-300 border-gray-500/40', inactive: 'hover:bg-surface-card text-brand-muted' },
+  uncommon: { active: 'bg-green-500/20 text-green-400 border-green-500/40', inactive: 'hover:bg-surface-card text-brand-muted' },
+  rare: { active: 'bg-blue-500/20 text-blue-400 border-blue-500/40', inactive: 'hover:bg-surface-card text-brand-muted' },
+  epic: { active: 'bg-purple-500/20 text-purple-400 border-purple-500/40', inactive: 'hover:bg-surface-card text-brand-muted' },
+  legendary: { active: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/40', inactive: 'hover:bg-surface-card text-brand-muted' },
+  mythic: { active: 'bg-pink-500/20 text-pink-400 border-pink-500/40', inactive: 'hover:bg-surface-card text-brand-muted' },
 };
 
 const RARITY_HEX = {
@@ -39,22 +38,10 @@ export default function CardCollection() {
   const [loading, setLoading] = useState(true);
   const [selectedCard, setSelectedCard] = useState(null);
   const [mysteryReward, setMysteryReward] = useState(null);
-  const headerRef = useRef(null);
-  const statsRef = useRef(null);
 
   useEffect(() => {
     loadData();
   }, [filter]);
-
-  useEffect(() => {
-    if (!loading && headerRef.current) {
-      gsap.fromTo(
-        headerRef.current.children,
-        { opacity: 0, y: -20 },
-        { opacity: 1, y: 0, stagger: 0.08, duration: 0.5, ease: 'power2.out' }
-      );
-    }
-  }, [loading]);
 
   const loadData = async () => {
     setLoading(true);
@@ -94,20 +81,33 @@ export default function CardCollection() {
     <div className="min-h-screen py-8 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div ref={headerRef} className="text-center mb-8">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ staggerChildren: 0.08 }}
+          className="text-center mb-8"
+        >
           <motion.h1
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
             className="text-3xl md:text-4xl font-display font-black uppercase tracking-wider"
           >
             <span className="bg-gradient-to-r from-cyber-blue via-cyber-purple to-pink-500 bg-clip-text text-transparent">
               Card Collection
             </span>
           </motion.h1>
-          <motion.p className="text-gray-500 font-mono text-sm mt-2">
+          <motion.p
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.08 }}
+            className="text-gray-500 font-mono text-sm mt-2"
+          >
             {stats
               ? `${stats.total_collected} / ${stats.total_available} collected — ${stats.completion_percentage}% complete`
               : 'Loading collection...'}
           </motion.p>
-        </div>
+        </motion.div>
 
         {/* Top Row: XP Bar + Mystery Box */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
@@ -116,15 +116,15 @@ export default function CardCollection() {
             <Card rarity="rare" hoverEffect={false} className="!p-4">
               <XPBar xp={profile?.xp || 0} />
               <div className="flex flex-wrap items-center gap-3 sm:gap-4 mt-3 pt-3 border-t border-gray-700/30">
-                <div className="flex items-center gap-1.5 text-xs text-gray-400">
+                <div className="flex items-center gap-1.5 text-xs text-brand-muted">
                   <span className="streak-fire">🔥</span>
                   <span className="font-mono">{profile?.streak || 0} day streak</span>
                 </div>
-                <div className="flex items-center gap-1.5 text-xs text-gray-400">
+                <div className="flex items-center gap-1.5 text-xs text-brand-muted">
                   <span>🏆</span>
                   <span className="font-mono">Best: {profile?.longest_streak || 0}</span>
                 </div>
-                <div className="flex items-center gap-1.5 text-xs text-gray-400">
+                <div className="flex items-center gap-1.5 text-xs text-brand-muted">
                   <span>🃏</span>
                   <span className="font-mono">{stats?.total_collected || 0} cards</span>
                 </div>
@@ -176,7 +176,7 @@ export default function CardCollection() {
                 <div className="text-base font-display font-bold" style={{ color }}>
                   {stats.rarity_breakdown[rarity] || 0}
                 </div>
-                <div className="text-[9px] font-mono text-gray-600 uppercase tracking-wider">
+                <div className="text-[9px] font-mono text-brand-secondary uppercase tracking-wider">
                   {rarity}
                 </div>
               </motion.div>
@@ -295,7 +295,7 @@ export default function CardCollection() {
                   <h2 className="text-lg font-display font-bold text-text-primary mb-1">
                     {selectedCard.problem_title}
                   </h2>
-                  <p className="text-sm font-mono text-gray-400 mb-3">{selectedCard.topic}</p>
+                  <p className="text-sm font-mono text-brand-muted mb-3">{selectedCard.topic}</p>
 
                   <div
                     className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider mb-3"

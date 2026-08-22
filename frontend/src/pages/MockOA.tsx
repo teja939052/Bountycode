@@ -237,7 +237,7 @@ function QuestionPalette({
           } else if (isAnswered) {
             btnClass += "bg-cyber-amber/20 text-cyber-amber border-cyber-amber/40";
           } else {
-            btnClass += "bg-space-panel text-gray-500 border-space-border hover:border-gray-500 hover:text-gray-300";
+            btnClass += "bg-white text-text-muted border-black/5 hover:border-gray-500 hover:text-text-primary";
           }
 
           return (
@@ -269,7 +269,7 @@ function QuestionPalette({
           <span className="font-mono text-[10px] text-gray-500">Answered</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded bg-space-panel border border-space-border" />
+          <div className="h-3 w-3 rounded border border-black/5 bg-black/5" />
           <span className="font-mono text-[10px] text-gray-500">Unattempted</span>
         </div>
       </div>
@@ -477,7 +477,7 @@ export default function MockOA() {
   // ═══════════════ SELECT SCREEN ═══════════════
   if (step === "select") {
     return (
-      <div className="min-h-screen py-12 px-4">
+      <div className="page-surface min-h-screen py-6 px-4">
         <CelebrationOverlay
           show={showCelebration}
           type="perfect"
@@ -519,7 +519,7 @@ export default function MockOA() {
                 className={`card text-left transition-all border-2 ${
                   selectedCompany === c.id
                     ? `border-${c.color} bg-${c.color}/10`
-                    : "border-transparent hover:border-space-border"
+                    : "border-transparent hover:border-black/5"
                 }`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -548,7 +548,7 @@ export default function MockOA() {
                   {c.sections.map((s) => (
                     <span
                       key={s}
-                      className="px-2 py-0.5 rounded bg-space-panel border border-space-border text-[10px] font-mono text-gray-400"
+                      className="rounded border border-black/5 bg-black/5 px-2 py-0.5 text-[10px] font-mono text-text-muted"
                     >
                       {s}
                     </span>
@@ -588,7 +588,7 @@ export default function MockOA() {
                     <select
                       value={customDuration}
                       onChange={(e) => setCustomDuration(Number(e.target.value))}
-                      className="bg-space-panel border border-space-border rounded-lg px-3 py-2 font-mono text-xs text-gray-300 focus:outline-none focus:border-cyber-blue/50"
+                      className="rounded-lg border border-black/5 bg-white px-3 py-2 font-mono text-xs text-text-secondary focus:border-cyber-blue/50 focus:outline-none"
                     >
                       {DURATION_OPTIONS.map((d) => (
                         <option key={d.value} value={d.value}>
@@ -634,7 +634,7 @@ export default function MockOA() {
     return (
       <div className="min-h-screen">
         {/* ── Top Section Bar ── */}
-        <div className="sticky top-0 z-30 bg-space-titanium/95 backdrop-blur-sm border-b border-space-border">
+        <div className="sticky top-0 z-30 border-b border-black/5 bg-white/95 backdrop-blur">
           <div className="max-w-7xl mx-auto px-4 py-2.5 flex items-center justify-between">
             <div className="flex items-center gap-4">
               <span className="font-display font-bold text-text-primary text-sm flex items-center gap-2">
@@ -661,7 +661,7 @@ export default function MockOA() {
             </div>
           </div>
           {/* Section Progress Bar */}
-          <div className="h-1 bg-space-panel">
+          <div className="h-1 bg-black/5">
             <div
               className="h-full bg-gradient-to-r from-cyber-blue to-cyber-purple transition-all duration-300"
               style={{
@@ -736,14 +736,14 @@ export default function MockOA() {
                           "border-cyber-red bg-cyber-red/5 text-cyber-red";
                       } else {
                         optClass +=
-                          "border-space-border bg-space-panel/50 text-gray-500 cursor-not-allowed";
+                          "border-black/5 bg-white/70 text-text-muted cursor-not-allowed";
                       }
                     } else if (isSelected) {
                       optClass +=
                         "border-cyber-blue bg-cyber-blue/10 text-text-primary shadow-cyber-blue";
                     } else {
                       optClass +=
-                        "border-space-border hover:border-gray-500 text-gray-400 hover:text-text-primary hover:bg-space-panel/50 cursor-pointer";
+                        "border-black/5 hover:border-gray-500 text-text-muted hover:text-text-primary hover:bg-black/5 cursor-pointer";
                     }
 
                     return (
@@ -858,7 +858,7 @@ export default function MockOA() {
                 onNavigate={navigateQuestion}
               />
 
-              <div className="border-t border-space-border pt-4">
+              <div className="border-t border-black/5 pt-4">
                 <p className="font-mono text-[10px] uppercase tracking-widest text-gray-500 mb-3">
                   Progress
                 </p>
@@ -884,7 +884,7 @@ export default function MockOA() {
                 </div>
               </div>
 
-              <div className="border-t border-space-border pt-4">
+              <div className="border-t border-black/5 pt-4">
                 <button
                   onClick={submitTest}
                   disabled={loading}
@@ -927,7 +927,7 @@ export default function MockOA() {
     const pct = result.percentage || 0;
 
     return (
-      <div className="min-h-screen py-12 px-4">
+      <div className="page-surface min-h-screen py-6 px-4">
         <CelebrationOverlay
           show={showCelebration}
           type="perfect"
@@ -1019,7 +1019,7 @@ export default function MockOA() {
                         {stats.correct}/{stats.total}
                       </span>
                     </div>
-                    <div className="w-full bg-space-panel rounded-full h-1.5 mb-3 border border-space-border">
+                    <div className="mb-3 h-1.5 w-full rounded-full border border-black/5 bg-black/5">
                       <div
                         className={`h-1.5 rounded-full transition-all duration-1000 ${
                           secPct >= 70
@@ -1080,7 +1080,7 @@ export default function MockOA() {
                         ? "border-cyber-green/15"
                         : sub
                         ? "border-cyber-red/15"
-                        : "border-space-border"
+                        : "border-black/5"
                     }`}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -1114,7 +1114,7 @@ export default function MockOA() {
                             <XCircle size={18} className="text-cyber-red" />
                           )
                         ) : (
-                          <span className="font-mono text-[10px] text-gray-600 px-2 py-0.5 bg-space-panel rounded">
+                          <span className="rounded bg-black/5 px-2 py-0.5 font-mono text-[10px] text-text-muted">
                             Skipped
                           </span>
                         )}
@@ -1135,12 +1135,12 @@ export default function MockOA() {
                           exit={{ height: 0, opacity: 0 }}
                           className="overflow-hidden"
                         >
-                          <div className="mt-4 pt-4 border-t border-space-border space-y-2">
+                          <div className="mt-4 space-y-2 border-t border-black/5 pt-4">
                             {q.options.map((opt, oi) => {
                               const isUserAnswer = userAns === oi;
                               const isCorrectAns =
                                 sub?.correct_answer === oi;
-                              let ringClass = "border-space-border ";
+                              let ringClass = "border-black/5 ";
                               if (isCorrectAns)
                                 ringClass += "border-cyber-green/40 bg-cyber-green/5 ";
                               if (isUserAnswer && !wasCorrect && !isCorrectAns)

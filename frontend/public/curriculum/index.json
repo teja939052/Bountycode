@@ -1,0 +1,930 @@
+{
+  "version": 1,
+  "tracks": [
+    {
+      "id": "cpp",
+      "title": "C++",
+      "icon": "Cpu",
+      "color": "#8B5CF6",
+      "difficulty": "beginner",
+      "tagline": "Speed and control — the language of systems and games.",
+      "sections": [
+        {
+          "id": "c-basics",
+          "title": "C++ Basics",
+          "lessons": [
+            {
+              "id": "cpp-01-basics",
+              "title": "Hello, C++!",
+              "type": "lesson",
+              "duration": "9 min",
+              "xp": 15
+            },
+            {
+              "id": "cpp-02-variables",
+              "title": "Variables & Types",
+              "type": "lesson",
+              "duration": "10 min",
+              "xp": 15
+            },
+            {
+              "id": "cpp-03-strings",
+              "title": "Strings",
+              "type": "lesson",
+              "duration": "10 min",
+              "xp": 15
+            },
+            {
+              "id": "cpp-04-conditionals",
+              "title": "Making Decisions",
+              "type": "lesson",
+              "duration": "10 min",
+              "xp": 20
+            },
+            {
+              "id": "cpp-05-loops",
+              "title": "Loops",
+              "type": "lesson",
+              "duration": "11 min",
+              "xp": 20
+            },
+            {
+              "id": "cpp-06-functions",
+              "title": "Functions",
+              "type": "lesson",
+              "duration": "11 min",
+              "xp": 20
+            },
+            {
+              "id": "cpp-07-arrays",
+              "title": "Arrays & Vectors",
+              "type": "lesson",
+              "duration": "11 min",
+              "xp": 20
+            },
+            {
+              "id": "cpp-08-classes",
+              "title": "Classes & Objects",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 20
+            }
+          ]
+        },
+        {
+          "id": "c-projects",
+          "title": "C++ Projects",
+          "lessons": [
+            {
+              "id": "cpp-09-fizzbuzz",
+              "title": "Project: FizzBuzz",
+              "type": "project",
+              "duration": "16 min",
+              "xp": 40
+            },
+            {
+              "id": "cpp-10-grading",
+              "title": "Project: Grade Checker",
+              "type": "project",
+              "duration": "18 min",
+              "xp": 40
+            }
+          ]
+        },
+        {
+          "id": "c-intermediate",
+          "title": "C++ Intermediate",
+          "lessons": [
+            {
+              "id": "cpp-11-pointers",
+              "title": "Pointers & Memory",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "cpp-12-references",
+              "title": "References & Pass-by-Reference",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "cpp-13-stl-algorithms",
+              "title": "STL Algorithms",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "cpp-14-std-map",
+              "title": "std::map & std::pair",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "cpp-15-inheritance",
+              "title": "Inheritance & Polymorphism",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "cpp-16-project-contact-manager",
+              "title": "Project: Contact Manager",
+              "type": "project",
+              "duration": "18 min",
+              "xp": 40
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "css",
+      "title": "CSS",
+      "icon": "Palette",
+      "color": "#3B82F6",
+      "difficulty": "beginner",
+      "tagline": "Bring pages to life — colors, layout, and responsive design.",
+      "sections": [
+        {
+          "id": "styling-with-css",
+          "title": "Styling with CSS",
+          "lessons": [
+            {
+              "id": "css-01-selectors",
+              "title": "CSS Basics & Selectors",
+              "type": "lesson",
+              "duration": "9 min",
+              "xp": 15
+            },
+            {
+              "id": "css-02-box-model",
+              "title": "The Box Model",
+              "type": "lesson",
+              "duration": "10 min",
+              "xp": 15
+            },
+            {
+              "id": "css-03-flexbox",
+              "title": "Flexbox Layout",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 20
+            },
+            {
+              "id": "css-04-responsive",
+              "title": "Responsive Design Basics",
+              "type": "lesson",
+              "duration": "10 min",
+              "xp": 20
+            },
+            {
+              "id": "css-05-grid",
+              "title": "CSS Grid Layout",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "css-06-animations",
+              "title": "Transitions & Animations",
+              "type": "lesson",
+              "duration": "13 min",
+              "xp": 25
+            }
+          ]
+        },
+        {
+          "id": "css-projects",
+          "title": "CSS Projects",
+          "lessons": [
+            {
+              "id": "css-07-card-project",
+              "title": "Project: Profile Card",
+              "type": "project",
+              "duration": "18 min",
+              "xp": 40
+            }
+          ]
+        },
+        {
+          "id": "advanced-css",
+          "title": "Advanced CSS",
+          "lessons": [
+            {
+              "id": "css-08-typography",
+              "title": "Typography & Web Fonts",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "css-09-positioning",
+              "title": "Positioning & z-index",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "css-10-pseudo-classes",
+              "title": "Pseudo-classes & Pseudo-elements",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "css-11-css-variables",
+              "title": "CSS Custom Properties (Variables)",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "css-12-project-landing-page",
+              "title": "Project: Product Landing Page",
+              "type": "project",
+              "duration": "18 min",
+              "xp": 40
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "html",
+      "title": "HTML",
+      "icon": "Code2",
+      "color": "#F97316",
+      "difficulty": "beginner",
+      "tagline": "Structure the web — from your first tag to full pages.",
+      "sections": [
+        {
+          "id": "fundamentals",
+          "title": "Fundamentals",
+          "lessons": [
+            {
+              "id": "html-01-basics",
+              "title": "HTML Basics & Syntax",
+              "type": "lesson",
+              "duration": "8 min",
+              "xp": 15
+            },
+            {
+              "id": "html-02-text-formatting",
+              "title": "Text & Formatting",
+              "type": "lesson",
+              "duration": "8 min",
+              "xp": 15
+            },
+            {
+              "id": "html-03-lists",
+              "title": "Working with Lists",
+              "type": "lesson",
+              "duration": "7 min",
+              "xp": 15
+            },
+            {
+              "id": "html-04-images-content",
+              "title": "Images & Content",
+              "type": "lesson",
+              "duration": "9 min",
+              "xp": 20
+            },
+            {
+              "id": "html-05-page-layout",
+              "title": "Page Layout & Semantics",
+              "type": "lesson",
+              "duration": "10 min",
+              "xp": 20
+            },
+            {
+              "id": "html-06-forms-part1",
+              "title": "Forms & Inputs (Part 1)",
+              "type": "lesson",
+              "duration": "10 min",
+              "xp": 20
+            },
+            {
+              "id": "html-07-forms-part2",
+              "title": "Forms & Inputs (Part 2)",
+              "type": "lesson",
+              "duration": "10 min",
+              "xp": 20
+            },
+            {
+              "id": "html-08-recipe-card",
+              "title": "Project: Recipe Card",
+              "type": "project",
+              "duration": "15 min",
+              "xp": 40
+            },
+            {
+              "id": "html-09-profile-page",
+              "title": "Project: Personal Profile Page",
+              "type": "project",
+              "duration": "15 min",
+              "xp": 40
+            },
+            {
+              "id": "html-10-registration-page",
+              "title": "Project: Event Registration Page",
+              "type": "project",
+              "duration": "15 min",
+              "xp": 40
+            }
+          ]
+        },
+        {
+          "id": "advanced-html",
+          "title": "Advanced HTML",
+          "lessons": [
+            {
+              "id": "html-11-tables",
+              "title": "Tables & Tabular Data",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "html-12-media-embedding",
+              "title": "Media: Images, Audio & Video",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "html-13-forms-advanced",
+              "title": "Advanced Forms & Validation",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "html-14-semantics-accessibility",
+              "title": "Semantics, SEO & Accessibility",
+              "type": "lesson",
+              "duration": "13 min",
+              "xp": 30
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "java",
+      "title": "Java",
+      "icon": "Coffee",
+      "color": "#F59E0B",
+      "difficulty": "beginner",
+      "tagline": "The classic OOP language behind Android and enterprise apps.",
+      "sections": [
+        {
+          "id": "java-basics",
+          "title": "Java Basics",
+          "lessons": [
+            {
+              "id": "java-01-basics",
+              "title": "Hello, Java!",
+              "type": "lesson",
+              "duration": "9 min",
+              "xp": 15
+            },
+            {
+              "id": "java-02-variables",
+              "title": "Variables & Types",
+              "type": "lesson",
+              "duration": "10 min",
+              "xp": 15
+            },
+            {
+              "id": "java-03-strings",
+              "title": "Strings & Methods",
+              "type": "lesson",
+              "duration": "10 min",
+              "xp": 15
+            },
+            {
+              "id": "java-04-conditionals",
+              "title": "Making Decisions",
+              "type": "lesson",
+              "duration": "10 min",
+              "xp": 20
+            },
+            {
+              "id": "java-05-loops",
+              "title": "Loops",
+              "type": "lesson",
+              "duration": "11 min",
+              "xp": 20
+            },
+            {
+              "id": "java-06-arrays",
+              "title": "Arrays",
+              "type": "lesson",
+              "duration": "11 min",
+              "xp": 20
+            },
+            {
+              "id": "java-07-methods",
+              "title": "Methods",
+              "type": "lesson",
+              "duration": "11 min",
+              "xp": 20
+            },
+            {
+              "id": "java-08-classes-objects",
+              "title": "Classes & Objects",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 20
+            }
+          ]
+        },
+        {
+          "id": "java-projects",
+          "title": "Java Projects",
+          "lessons": [
+            {
+              "id": "java-09-fizzbuzz",
+              "title": "Project: FizzBuzz",
+              "type": "project",
+              "duration": "16 min",
+              "xp": 40
+            },
+            {
+              "id": "java-10-grade-calculator",
+              "title": "Project: Grade Calculator",
+              "type": "project",
+              "duration": "18 min",
+              "xp": 40
+            }
+          ]
+        },
+        {
+          "id": "java-intermediate",
+          "title": "Java Intermediate",
+          "lessons": [
+            {
+              "id": "java-11-arraylist",
+              "title": "ArrayList & Collections",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "java-12-hashmap",
+              "title": "HashMap",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "java-13-exceptions",
+              "title": "Exception Handling",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "java-14-inheritance",
+              "title": "Inheritance & Overriding",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "java-15-interfaces",
+              "title": "Interfaces & Abstraction",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "java-16-project-student-manager",
+              "title": "Project: Student Manager",
+              "type": "project",
+              "duration": "18 min",
+              "xp": 40
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "javascript",
+      "title": "JavaScript",
+      "icon": "Braces",
+      "color": "#EAB308",
+      "difficulty": "beginner",
+      "tagline": "Make pages interactive — variables to events.",
+      "sections": [
+        {
+          "id": "javascript-in-action",
+          "title": "JavaScript in Action",
+          "lessons": [
+            {
+              "id": "js-01-variables",
+              "title": "Variables & Data Types",
+              "type": "lesson",
+              "duration": "10 min",
+              "xp": 15
+            },
+            {
+              "id": "js-02-functions",
+              "title": "Functions",
+              "type": "lesson",
+              "duration": "10 min",
+              "xp": 15
+            },
+            {
+              "id": "js-03-dom",
+              "title": "The DOM",
+              "type": "lesson",
+              "duration": "11 min",
+              "xp": 20
+            },
+            {
+              "id": "js-04-events",
+              "title": "Events & Interactivity",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 20
+            },
+            {
+              "id": "js-05-conditionals",
+              "title": "Conditionals & Logic",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 20
+            },
+            {
+              "id": "js-06-loops",
+              "title": "Loops & Iteration",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 20
+            },
+            {
+              "id": "js-07-array-methods",
+              "title": "Array Methods",
+              "type": "lesson",
+              "duration": "13 min",
+              "xp": 25
+            },
+            {
+              "id": "js-08-objects",
+              "title": "Objects & Destructuring",
+              "type": "lesson",
+              "duration": "13 min",
+              "xp": 25
+            }
+          ]
+        },
+        {
+          "id": "javascript-projects",
+          "title": "JavaScript Projects",
+          "lessons": [
+            {
+              "id": "js-09-todo-project",
+              "title": "Project: Interactive To-Do List",
+              "type": "project",
+              "duration": "20 min",
+              "xp": 40
+            }
+          ]
+        },
+        {
+          "id": "javascript-advanced",
+          "title": "JavaScript Advanced",
+          "lessons": [
+            {
+              "id": "js-10-higher-order-functions",
+              "title": "Higher-Order Functions & Callbacks",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "js-11-classes",
+              "title": "ES6 Classes",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "js-12-error-handling",
+              "title": "Error Handling & Debugging",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "js-13-async-basics",
+              "title": "Asynchronous JavaScript",
+              "type": "lesson",
+              "duration": "13 min",
+              "xp": 25
+            },
+            {
+              "id": "js-14-fetch-api",
+              "title": "Fetch & APIs",
+              "type": "lesson",
+              "duration": "13 min",
+              "xp": 25
+            },
+            {
+              "id": "js-15-localstorage",
+              "title": "localStorage & Persistence",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "js-16-project-notes-app",
+              "title": "Project: Notes App with localStorage",
+              "type": "project",
+              "duration": "20 min",
+              "xp": 40
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "python",
+      "title": "Python",
+      "icon": "Terminal",
+      "color": "#3776AB",
+      "difficulty": "beginner",
+      "tagline": "The friendliest language — perfect for your first program.",
+      "sections": [
+        {
+          "id": "python-basics",
+          "title": "Python Basics",
+          "lessons": [
+            {
+              "id": "python-01-basics",
+              "title": "Your First Program",
+              "type": "lesson",
+              "duration": "8 min",
+              "xp": 15
+            },
+            {
+              "id": "python-02-variables",
+              "title": "Variables & Data Types",
+              "type": "lesson",
+              "duration": "10 min",
+              "xp": 15
+            },
+            {
+              "id": "python-03-strings",
+              "title": "Strings in Action",
+              "type": "lesson",
+              "duration": "9 min",
+              "xp": 15
+            },
+            {
+              "id": "python-04-conditionals",
+              "title": "Making Decisions",
+              "type": "lesson",
+              "duration": "10 min",
+              "xp": 20
+            },
+            {
+              "id": "python-05-loops",
+              "title": "Repeating with Loops",
+              "type": "lesson",
+              "duration": "11 min",
+              "xp": 20
+            },
+            {
+              "id": "python-06-lists",
+              "title": "Lists",
+              "type": "lesson",
+              "duration": "11 min",
+              "xp": 20
+            },
+            {
+              "id": "python-07-functions",
+              "title": "Functions",
+              "type": "lesson",
+              "duration": "11 min",
+              "xp": 20
+            },
+            {
+              "id": "python-08-dictionaries",
+              "title": "Dictionaries",
+              "type": "lesson",
+              "duration": "11 min",
+              "xp": 20
+            }
+          ]
+        },
+        {
+          "id": "python-projects",
+          "title": "Python Projects",
+          "lessons": [
+            {
+              "id": "python-09-number-game",
+              "title": "Project: Guess the Number",
+              "type": "project",
+              "duration": "18 min",
+              "xp": 40
+            },
+            {
+              "id": "python-10-to-do",
+              "title": "Project: To-Do List",
+              "type": "project",
+              "duration": "20 min",
+              "xp": 40
+            }
+          ]
+        },
+        {
+          "id": "python-intermediate",
+          "title": "Python Intermediate",
+          "lessons": [
+            {
+              "id": "python-11-tuples-sets",
+              "title": "Tuples & Sets",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "python-12-comprehensions",
+              "title": "List Comprehensions",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "python-13-error-handling",
+              "title": "Error Handling (try / except)",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "python-14-modules-imports",
+              "title": "Modules & Imports",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "python-15-lambda-hof",
+              "title": "Lambdas & Higher-Order Functions",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "python-16-file-handling",
+              "title": "File Handling",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "python-17-project-inventory",
+              "title": "Project: Inventory Tracker",
+              "type": "project",
+              "duration": "20 min",
+              "xp": 40
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sql",
+      "title": "SQL",
+      "icon": "Database",
+      "color": "#06B6D4",
+      "difficulty": "beginner",
+      "tagline": "Query data like a pro — the language of databases.",
+      "sections": [
+        {
+          "id": "sql-queries",
+          "title": "SQL Queries",
+          "lessons": [
+            {
+              "id": "sql-01-select",
+              "title": "Reading Data with SELECT",
+              "type": "lesson",
+              "duration": "9 min",
+              "xp": 15
+            },
+            {
+              "id": "sql-02-where",
+              "title": "Filtering with WHERE",
+              "type": "lesson",
+              "duration": "10 min",
+              "xp": 15
+            },
+            {
+              "id": "sql-03-order-limit",
+              "title": "Sorting & Limiting",
+              "type": "lesson",
+              "duration": "9 min",
+              "xp": 15
+            },
+            {
+              "id": "sql-04-aggregates",
+              "title": "Aggregate Functions",
+              "type": "lesson",
+              "duration": "10 min",
+              "xp": 20
+            },
+            {
+              "id": "sql-05-group-by",
+              "title": "GROUP BY",
+              "type": "lesson",
+              "duration": "11 min",
+              "xp": 20
+            },
+            {
+              "id": "sql-06-joins",
+              "title": "Joining Tables",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 20
+            },
+            {
+              "id": "sql-07-write-data",
+              "title": "Writing Data",
+              "type": "lesson",
+              "duration": "10 min",
+              "xp": 20
+            }
+          ]
+        },
+        {
+          "id": "sql-projects",
+          "title": "SQL Projects",
+          "lessons": [
+            {
+              "id": "sql-08-queries-project",
+              "title": "Project: Employee Analytics",
+              "type": "project",
+              "duration": "18 min",
+              "xp": 40
+            }
+          ]
+        },
+        {
+          "id": "advanced-sql",
+          "title": "Advanced SQL",
+          "lessons": [
+            {
+              "id": "sql-09-subqueries",
+              "title": "Subqueries & Nested Queries",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "sql-10-ctes",
+              "title": "CTEs (Common Table Expressions)",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "sql-11-window-functions",
+              "title": "Window Functions",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "sql-12-functions-case",
+              "title": "String, Date & CASE Functions",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "sql-13-transactions-design",
+              "title": "Transactions, Constraints & Design",
+              "type": "lesson",
+              "duration": "12 min",
+              "xp": 25
+            },
+            {
+              "id": "sql-14-project-reporting",
+              "title": "Project: Sales Reporting",
+              "type": "project",
+              "duration": "18 min",
+              "xp": 40
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

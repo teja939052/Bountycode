@@ -1,0 +1,48 @@
+{
+  "id": "python-09-number-game",
+  "track": "python",
+  "title": "Project: Guess the Number",
+  "section": "Python Projects",
+  "order": 9,
+  "type": "project",
+  "duration": "18 min",
+  "xp": 40,
+  "content": {
+    "theory": "Time to combine everything you've learned into a real program: a **guess-the-number** game.\n\nWe'll use three new tools:\n\n- `import random` — Python's built-in randomness module\n- `random.randint(1, 20)` — returns a random whole number between 1 and 20\n- `input()` — waits for the user to type something and returns it as a **string**\n\nBecause `input()` returns a string, convert it to a number with `int()`:\n\n```python\nguess = input(\"Guess a number: \")\nguess_num = int(guess)\n```\n\nThe game logic:\n\n1. Pick a random secret number\n2. Let the player guess (turn the input into an int)\n3. Compare the guess to the secret — too high, too low, or correct\n4. If wrong, ask again (a while loop)\n5. Congratulate when they get it\n\nA classic structure:\n\n```python\nsecret = random.randint(1, 20)\nguess = 0\n\nwhile guess != secret:\n    guess = int(input(\"Guess a number 1-20: \"))\n    if guess < secret:\n        print(\"Too low!\")\n    elif guess > secret:\n        print(\"Too high!\")\n\nprint(\"You got it!\")\n```\n\nThe `while guess != secret` loop keeps asking until the player wins.",
+    "codeSnippets": [
+      {
+        "language": "python",
+        "code": "import random\nsecret = random.randint(1, 10)\nprint(\"Secret is somewhere between 1 and 10\")",
+        "output": "Secret is somewhere between 1 and 10 (random each run)"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write a complete guess-the-number game: import random, pick a secret with random.randint(1, 10), loop while the guess isn't the secret, tell the player 'Too low!' or 'Too high!', and print 'You got it!' when correct.",
+      "starterCode": "import random\n",
+      "language": "python",
+      "required": ["import random", "random.randint", "while", "int(input", "Too low", "Too high", "You got it"],
+      "hints": [
+        "Hint 1: secret = random.randint(1, 10)",
+        "Hint 2: guess = 0, then while guess != secret:",
+        "Hint 3: Inside: guess = int(input(\"Guess: \")) then if/elif comparing to secret",
+        "Hint 4: After the loop: print(\"You got it!\")"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What does input() always return?",
+        "options": ["An integer", "A string", "A boolean"],
+        "correct": 1
+      },
+      {
+        "question": "Which function converts a string to an integer?",
+        "options": ["str()", "float()", "int()"],
+        "correct": 2
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "python-10-to-do",
+    "unlocks": ["python-10-to-do"]
+  }
+}

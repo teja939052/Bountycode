@@ -1,0 +1,53 @@
+{
+  "id": "python-12-comprehensions",
+  "track": "python",
+  "title": "List Comprehensions",
+  "section": "Python Intermediate",
+  "order": 12,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "A **list comprehension** builds a new list in one expression instead of a multi-line loop:\n\n```python\n# old way\nsquares = []\nfor n in range(5):\n    squares.append(n ** 2)\n\n# comprehension\nsquares = [n ** 2 for n in range(5)]\nprint(squares)  # [0, 1, 4, 9, 16]\n```\n\nThe pattern is `[expression for item in iterable]` — the expression is evaluated once per item and each result lands in the new list.\n\nAdd an **if filter** to keep only some items:\n\n```python\nevens = [n for n in range(10) if n % 2 == 0]\nprint(evens)  # [0, 2, 4, 6, 8]\n```\n\nThe filter comes after the loop and reads naturally: \"build a list of n, for each n in range(10), if n is even\". You can transform and filter at the same time — `[n ** 2 for n in range(10) if n % 2 == 0]` squares only the evens.\n\n### Set and dict comprehensions\n\nSwap the brackets and the same idea works for sets and dicts:\n\n```python\nsquares = {n ** 2 for n in range(4)}        # set:  {0, 1, 4, 9}\nsquare_map = {n: n ** 2 for n in range(4)}  # dict: {0: 0, 1: 1, 2: 4, 3: 9}\n```\n\nA dict comprehension uses `key: value` in place of a plain expression.\n\n### Nested comprehensions\n\nYou can nest loops, but keep it short — the loops run left to right, matching nested `for` blocks:\n\n```python\npairs = [(x, y) for x in range(2) for y in range(2)]\nprint(pairs)  # [(0, 0), (0, 1), (1, 0), (1, 1)]\n```\n\n### When NOT to use one\n\nReadability beats cleverness. If the expression is complex or spans several logical steps, a regular `for` loop with a comment is clearer. A comprehension is the right tool when it fits on one line and reads naturally — \"squares of all even numbers\", not \"the flattened, transposed, filtered view of...\".\n\n**Common mistakes:** forgetting the expression part entirely (`for x in items` alone is a syntax error), filtering with `==` when you mean `%`, and building huge lists in memory when a generator expression `(x for x in ...)` would do the job lazily.",
+    "codeSnippets": [
+      {
+        "language": "python",
+        "code": "words = [\"apple\", \"kiwi\", \"banana\", \"fig\"]\nlong_words = [w.upper() for w in words if len(w) > 4]\nprint(long_words)",
+        "output": "['APPLE', 'BANANA']"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write a list comprehension that produces the squares of the EVEN numbers from 0 to 9, and print it. Expected output: [0, 4, 16, 36, 64]",
+      "starterCode": "",
+      "language": "python",
+      "expected": "[0, 4, 16, 36, 64]",
+      "required": ["for x in range(10)", "if x % 2 == 0", "x ** 2", "print("],
+      "hints": [
+        "Hint 1: Start with [x ** 2 for x in range(10) ...]",
+        "Hint 2: Add the filter: if x % 2 == 0",
+        "Hint 3: squares = [x ** 2 for x in range(10) if x % 2 == 0]; print(squares)"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What does [n * 2 for n in range(3)] produce?",
+        "options": ["[0, 2, 4]", "[2, 4, 6]", "[1, 2, 3]"],
+        "correct": 0
+      },
+      {
+        "question": "Which comprehension keeps only numbers greater than 5?",
+        "options": ["[n for n in nums if n > 5]", "[n if n > 5 for n in nums]", "[n > 5 for n in nums]"],
+        "correct": 0
+      },
+      {
+        "question": "What type does {n: n for n in range(3)} create?",
+        "options": ["A set", "A dict", "A tuple"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "python-13-error-handling",
+    "unlocks": ["python-13-error-handling"]
+  }
+}

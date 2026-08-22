@@ -10,21 +10,48 @@ from app.database import (
     users_collection,
 )
 from app.models.question import SubmitAnswer
+from app.services import question_store
 from app.services.ai import chat_completion, parse_json, assign_companies
 from app.services.gamification import record_practice
 from app.services.usage import check_and_reset_monthly_usage
 from app.services.code_executor import CodeExecutionEngine
+from app.services.job_queue import get_job_queue, Job, JobType
 from app.services.cache import cache
-from app.services import question_store
 from app.services.explanation_cache import get_or_create_explanation, get_cached_explanation
+from app.config import get_settings
 import random
 
-router = APIRouter(prefix="", tags=["question-solve"])
+router = APIRouter(prefix="/api/v1/questions", tags=["question-solve"])
 code_engine = CodeExecutionEngine()
+job_queue = get_job_queue()
+settings = get_settings()
 
 
 def _question_title(q: dict) -> str:
     return q.get("question") or q.get("question_title", "")
+
+
+def _normalize_constraints(constraints: Any) -> list:
+    """Normalize constraints (string or list) into a clean list of strings."""
+    if isinstance(constraints, str):
+        normalized = constraints.replace(",", "|").replace(";", "|").replace(" and ", "|")
+        return [p.strip() for p in normalized.split("|") if p.strip()]
+    if isinstance(constraints, list):
+        return [str(c).strip() for c in constraints if str(c).strip()]
+    return []
+
+
+def _cases_from_examples(examples: Any) -> list:
+    """Derive runnable test cases ({input, expected}) from problem examples."""
+    cases = []
+    for ex in examples or []:
+        if not isinstance(ex, dict):
+            continue
+        inp = ex.get("input") or ex.get("input_text") or ex.get("stdin") or ""
+        out = ex.get("output") or ex.get("expected") or ex.get("expected_output") or ex.get("output_text") or ""
+        if inp or out:
+            cases.append({"input": str(inp), "expected": str(out)})
+    return cases
 
 
 def _explain_compiler_error(error_message: str, source_code: str, language: str) -> str:
@@ -224,110 +251,102 @@ async def submit_code_for_question(
 
     code = payload.get("code", "")
     language = payload.get("language", "python")
+    async_mode = payload.get("async_mode", settings.DOCKER_SANDBOX_ENABLED)
     if not code.strip():
         raise HTTPException(status_code=400, detail="Code is required")
     if len(code) > 120000:
         raise HTTPException(status_code=400, detail="Code is too large")
 
     hidden_cases = question.get("hidden_test_cases", [])
+    derived_from_examples = False
     if not hidden_cases:
-        raise HTTPException(status_code=400, detail="No hidden test cases available for this problem")
+        hidden_cases = _cases_from_examples(question.get("examples", []))
+        derived_from_examples = True
+    if not hidden_cases:
+        raise HTTPException(
+            status_code=400,
+            detail="No test cases available for this problem. Try the practice/answer mode instead.",
+        )
 
     normalized_cases = [
         {
             "input": case.get("input", ""),
             "expected": case.get("expected", case.get("expected_output", "")),
-            "is_hidden": True,
+            "is_hidden": False if derived_from_examples else True,
         }
         for case in hidden_cases
     ]
-    execution_result = await code_engine.execute_against_test_cases(
-        source_code=code,
-        language=language,
-        test_cases=normalized_cases,
-    )
 
-    if not execution_result.get("success", False):
-        raw_error = execution_result.get("error", "Failed to execute test cases")
-        error_explanation = _explain_compiler_error(raw_error, code, language)
-        return JSONResponse(
-            status_code=400,
-            content={
-                "success": False,
-                "error": raw_error,
-                "error_explanation": error_explanation,
-            },
-        )
-
-    results = execution_result.get("results", [])
-    all_passed = execution_result.get("all_passed", False)
-    passed_count = execution_result.get("passed_count", 0)
-    total = execution_result.get("total_count", len(hidden_cases))
-    score = execution_result.get("score", 0)
-    summary = execution_result.get("summary", f"{passed_count}/{total} hidden test cases passed")
-
-    if all_passed:
-        await solved_problems_collection.update_one(
-            {"user_id": user["id"], "question_id": question_id},
-            {"$set": {
-                "user_id": user["id"],
-                "question_id": question_id,
+    if async_mode:
+        # Async execution via job queue
+        job = Job(
+            type=JobType.TEST_CASES,
+            payload={
                 "code": code,
                 "language": language,
-                "solved_at": datetime.now(timezone.utc),
-            }},
-            upsert=True,
+                "test_cases": normalized_cases,
+                "timeout": 10,
+            },
+            user_id=user["id"],
+            priority=5,
         )
-        xp_gained = 50
-        await record_practice(user["id"], "coding", score)
+        job_id = await job_queue.enqueue(job)
+        return {"job_id": job_id, "status": "queued", "async": True, "message": "Execution queued. Connect to WebSocket for real-time updates."}
     else:
-        xp_gained = 0
+        # Synchronous execution (legacy)
+        execution_result = await code_engine.execute_against_test_cases(
+            source_code=code,
+            language=language,
+            test_cases=normalized_cases,
+        )
 
-    return {
-        "success": True,
-        "all_passed": all_passed,
-        "passed_count": passed_count,
-        "total_count": total,
-        "score": score,
-        "summary": summary,
-        "results": results,
-        "xp_gained": xp_gained,
-        "solved": all_passed,
-    }
+        if not execution_result.get("success", False):
+            raw_error = execution_result.get("error", "Failed to execute test cases")
+            error_explanation = _explain_compiler_error(raw_error, code, language)
+            return JSONResponse(
+                status_code=400,
+                content={
+                    "success": False,
+                    "error": raw_error,
+                    "error_explanation": error_explanation,
+                },
+            )
 
+        results = execution_result.get("results", [])
+        all_passed = execution_result.get("all_passed", False)
+        passed_count = execution_result.get("passed_count", 0)
+        total = execution_result.get("total_count", len(hidden_cases))
+        score = execution_result.get("score", 0)
+        summary = execution_result.get("summary", f"{passed_count}/{total} test cases passed")
 
-@router.get("/{question_id}")
-async def get_question_detail(question_id: str, user=Depends(get_current_user)):
-    question = question_store.find_one({"id": question_id})
-    if not question:
-        raise HTTPException(status_code=404, detail="Question not found")
+        if all_passed:
+            await solved_problems_collection.update_one(
+                {"user_id": user["id"], "question_id": question_id},
+                {"$set": {
+                    "user_id": user["id"],
+                    "question_id": question_id,
+                    "code": code,
+                    "language": language,
+                    "solved_at": datetime.now(timezone.utc),
+                }},
+                upsert=True,
+            )
+            xp_gained = 50
+            await record_practice(user["id"], "coding", score)
+        else:
+            xp_gained = 0
 
-    q = dict(question)
-    plan = user.get("plan", "free")
-
-    visible_cases = question.get("visible_test_cases", [])
-    hidden_cases = question.get("hidden_test_cases", [])
-
-    q["statement"] = question.get("statement", question.get("question", ""))
-    q["examples"] = question.get("examples", [])
-    q["constraints"] = question.get("constraints", [])
-    q["visible_test_cases"] = visible_cases
-    q["hidden_test_cases"] = hidden_cases if plan in ("pro", "lifetime") else []
-    q["dsa_guide"] = question.get("dsa_guide", {"approach": "", "data_structures": [], "patterns": [], "tips": []})
-
-    hints = question.get("hints", [])
-    solved = await solved_problems_collection.find_one({
-        "user_id": user["id"],
-        "question_id": question_id,
-    })
-    if plan in ("pro", "lifetime") or solved:
-        q["hints"] = hints
-        q["solution"] = question.get("solution", {})
-    else:
-        q["hints"] = hints[:1] if hints else []
-        q["solution"] = {"locked": True, "message": "Solve this problem or upgrade to Pro to unlock the solution"}
-
-    return q
+        return {
+            "success": True,
+            "all_passed": all_passed,
+            "passed_count": passed_count,
+            "total_count": total,
+            "score": score,
+            "summary": summary,
+            "results": results,
+            "xp_gained": xp_gained,
+            "solved": all_passed,
+        }
 
 
 @router.get("/recent")
@@ -416,6 +435,42 @@ async def get_random_question(
         question["hints"] = hints[:1] if hints else []
 
     return {"question": question}
+
+
+@router.get("/{question_id}")
+async def get_question_detail(question_id: str, user=Depends(get_current_user)):
+    question = question_store.find_one({"id": question_id})
+    if not question:
+        raise HTTPException(status_code=404, detail="Question not found")
+
+    q = dict(question)
+    plan = user.get("plan", "free")
+
+    visible_cases = question.get("visible_test_cases", [])
+    hidden_cases = question.get("hidden_test_cases", [])
+    if not visible_cases:
+        visible_cases = _cases_from_examples(question.get("examples", []))
+
+    q["statement"] = question.get("statement", question.get("question", ""))
+    q["examples"] = question.get("examples", [])
+    q["constraints"] = _normalize_constraints(question.get("constraints"))
+    q["visible_test_cases"] = visible_cases
+    q["hidden_test_cases"] = hidden_cases if plan in ("pro", "lifetime") else []
+    q["dsa_guide"] = question.get("dsa_guide", {"approach": "", "data_structures": [], "patterns": [], "tips": []})
+
+    hints = question.get("hints", [])
+    solved = await solved_problems_collection.find_one({
+        "user_id": user["id"],
+        "question_id": question_id,
+    })
+    if plan in ("pro", "lifetime") or solved:
+        q["hints"] = hints
+        q["solution"] = question.get("solution", {})
+    else:
+        q["hints"] = hints[:1] if hints else []
+        q["solution"] = {"locked": True, "message": "Solve this problem or upgrade to Pro to unlock the solution"}
+
+    return q
 
 
 @router.post("/{question_id}/solution")

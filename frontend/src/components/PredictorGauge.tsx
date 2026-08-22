@@ -2,7 +2,15 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useSpring, useTransform } from "framer-motion";
 import useReducedMotion from "../hooks/useReducedMotion";
 
-export default function PredictorGauge({ probability = 0, size = 220 }) {
+export default function PredictorGauge({
+  probability = 0,
+  size = 220,
+  band = null,
+}: {
+  probability?: number;
+  size?: number;
+  band?: { range?: string; low?: number; high?: number } | null;
+}) {
   const reduced = useReducedMotion();
   const [mounted, setMounted] = useState(false);
   const springVal = useSpring(0, { stiffness: 60, damping: 20 });
@@ -89,6 +97,11 @@ export default function PredictorGauge({ probability = 0, size = 220 }) {
           {probability}%
         </motion.p>
         <p className="text-xs text-gray-500 dark:text-gray-400">Placement Probability</p>
+        {band && (
+          <p className="text-[11px] text-gray-400 dark:text-gray-500 mt-0.5">
+            Range {band.range}
+          </p>
+        )}
       </div>
     </div>
   );

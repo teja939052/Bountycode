@@ -1,0 +1,45 @@
+{
+  "id": "js-06-loops",
+  "track": "javascript",
+  "title": "Loops & Iteration",
+  "section": "JavaScript in Action",
+  "order": 6,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 20,
+  "content": {
+    "theory": "Loops repeat work. The three main ways:\n\n### for — run a known number of times\n```js\nfor (let i = 0; i < 5; i++) {\n  console.log(i);   // 0 1 2 3 4\n}\n```\n\n### while — run while a condition is true\n```js\nlet count = 0;\nwhile (count < 3) {\n  console.log(\"Tick\", count);\n  count++;\n}\n```\n\n### for...of — iterate over arrays (the modern default)\n```js\nconst fruits = [\"apple\", \"banana\", \"cherry\"];\nfor (const fruit of fruits) {\n  console.log(fruit);\n}\n```\n\n### forEach — array method with a callback\n```js\nfruits.forEach((fruit, index) => {\n  console.log(index, fruit);\n});\n```\n\n### Break and continue\n```js\nfor (let i = 0; i < 10; i++) {\n  if (i === 2) continue;   // skip to next iteration\n  if (i === 5) break;      // exit the loop entirely\n  console.log(i);\n}\n```\n\n### Looping a list of numbers\n```js\nconst nums = [10, 20, 30];\nlet sum = 0;\nfor (const n of nums) {\n  sum += n;\n}\nconsole.log(sum);   // 60\n```\n\nRule of thumb: prefer `for...of` for arrays, `for` with an index when you need the position.",
+    "codeSnippets": [
+      {
+        "language": "javascript",
+        "code": "for (let i = 1; i <= 3; i++) {\n  console.log(\"Row \" + i);\n}",
+        "output": "Row 1\nRow 2\nRow 3"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write a script: create an array 'colors' with 'red', 'green', 'blue'. Use a for...of loop to append each color to #output as a separate line (use textContent += color + '\\n').",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<body>\n  <pre id=\"output\"></pre>\n  <script>\n    const colors = [\"red\", \"green\", \"blue\"];\n\n  </script>\n</body>\n</html>",
+      "required": ["const colors", "red", "green", "blue", "for (const color of colors)", "textContent"],
+      "hints": [
+        "Hint 1: for (const color of colors) {",
+        "Hint 2: document.querySelector(\"#output\").textContent += color + \"\\n\";"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which loop is the modern default for arrays?",
+        "options": ["for...in", "for...of", "while"],
+        "correct": 1
+      },
+      {
+        "question": "What does break do?",
+        "options": ["Skips one iteration", "Exits the loop entirely", "Restarts the loop"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "js-07-array-methods",
+    "unlocks": ["js-07-array-methods"]
+  }
+}

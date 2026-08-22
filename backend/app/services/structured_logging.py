@@ -101,6 +101,29 @@ def new_request_id() -> str:
     return rid
 
 
+class _ContextLogger(logging.LoggerAdapter):
+    """Logger adapter that injects sanitized context kwargs into log records.
+
+    Usage: get_logger(__name__).info("msg", user_id="abc")
+    """
+
+    def process(self, msg, kwargs):
+        extra = kwargs.setdefault("extra", {})
+        for key in list(kwargs):
+            if key not in logging._nameToLevel and key != "extra":
+                extra[key] = redact_sensitive_data(kwargs.pop(key))
+        return msg, kwargs
+
+
+def get_logger(name: str) -> logging.LoggerAdapter:
+    """Return a structured-capable logger (LoggerAdapter) for the given name.
+
+    All extra kwargs passed to log methods are sanitized and attached to the
+    record so StructuredFormatter emits them under the `context` key.
+    """
+    return _ContextLogger(logging.getLogger(name), {})
+
+
 def log_context(**kwargs: Any) -> dict[str, Any]:
     """Build a sanitized logging context for structured logs."""
     return redact_sensitive_data(kwargs)

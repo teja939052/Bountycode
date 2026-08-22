@@ -508,6 +508,30 @@ npm run smoke                  # Smoke test (11 checks): pages render w/o crash 
 
 ---
 
+## Recent Improvements (August 2026)
+
+### Admin Analytics & Access Control (August 2026)
+- **Admin analytics endpoints enabled**: Added `/api/v1/analytics/admin/geo` and `/api/v1/analytics/admin/retention` for visitor IP breakdown and new/returning user retention stats
+- **Admin email access control**: Added `sridevi72901@gmail.com` to `ADMIN_EMAILS` config in `backend/app/config.py:63` — grants full admin access regardless of plan
+- **`is_admin` / `role` in user payload**: Modified `backend/app/middleware/auth.py:191-198` and `backend/app/routes/auth.py:174` to compute `is_admin = plan in ("pro", "lifetime") or email in ADMIN_EMAILS` — now flows to all protected routes
+- **`/api/v1/auth/me` returns admin status**: Now includes `is_admin: true` and `role: "admin"` for Pro/Lifetime/admin-email users
+- **Admin dashboard verified**: `/admin` page (AdminDashboard) loads real-time stats, visitor trends, geo breakdown, retention stats for admin users
+
+### Frontend Bug Fixes (August 2026)
+- **`ReferenceError: Rocket is not defined`**: Added missing `Rocket` import in `frontend/src/pages/StudentDashboard.tsx:9`
+- **`ReferenceError: ListChecks is not defined`**: Added missing `ListChecks` import in same file
+- **Onboarding text contrast**: Fixed dismiss button (`text-gray-100`), descriptions (`text-gray-100`), back button (`text-gray-100`), quick action links (`text-gray-100`) against `bg-black/60` backdrop in `Onboarding.tsx`
+
+### Security & Access Control
+- **Admin routes properly restricted**: All admin endpoints (`analytics_admin.py`, `admin_content.py`, `coupon.py`, `tiers.py`) check `user.get("role") == "admin" or user.get("is_admin") is True` — returns 403 for non-admin users
+- **ADMIN_EMAILS bypass**: Owner email `sridevi72901@gmail.com` granted admin access via config without requiring Pro/Lifetime plan
+
+### Verified Builds
+- **Backend**: `python -c "from app.main import app"` → `OK`
+- **Frontend**: `npm run build` → `✓ built in 27-35s` (zero errors)
+
+---
+
 ## Recent Improvements (July 2026)
 
 ### Critical Bug Fixes

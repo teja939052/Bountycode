@@ -1,10 +1,11 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import gsap from 'gsap';
 import api from '../services/api';
 import useAuthStore from '../store/authStore';
 import { Card, getRarityColor } from '../components/ui/Card';
 import XPBar from '../components/XPBar';
+import VirtualList from '../components/ui/VirtualList';
+import { LeaderboardRowSkeleton } from '../components/ui/Skeleton';
 
 const TIMEFRAMES = [
   { id: 'all', label: 'All Time', icon: '🏆' },
@@ -39,29 +40,17 @@ export default function Leaderboard() {
   const [myRank, setMyRank] = useState(null);
   const [loading, setLoading] = useState(true);
   const [timeframe, setTimeframe] = useState('all');
-  const podiumRef = useRef(null);
-  const listRef = useRef(null);
 
   useEffect(() => {
     loadLeaderboard();
   }, [timeframe]);
 
-  useEffect(() => {
-    if (leaderboard.length > 0 && podiumRef.current) {
-      gsap.fromTo(
-        podiumRef.current.children,
-        { opacity: 0, y: 30, scale: 0.9 },
-        { opacity: 1, y: 0, scale: 1, stagger: 0.12, duration: 0.5, ease: 'back.out(1.4)' }
-      );
-    }
-  }, [leaderboard, timeframe]);
-
   const loadLeaderboard = async () => {
     setLoading(true);
     try {
       const [lb, rank] = await Promise.all([
-        api.getLeaderboard(50).catch(() => ({ users: [] })),
-        api.getMyRank?.().catch(() => null),
+        api.gamification.getLeaderboard(50).catch(() => ({ users: [] })),
+        api.rankApi.getProfile().catch(() => null),
       ]);
       setLeaderboard(lb.users || lb || []);
       setMyRank(rank);
@@ -77,8 +66,15 @@ export default function Leaderboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="spinner-cyber" />
+      <div className="min-h-screen py-8 px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-8 animate-pulse">
+            <div className="h-4 bg-gray-700/40 rounded w-32 mx-auto mb-2" />
+            <div className="h-8 bg-gray-700/40 rounded w-48 mx-auto mb-2" />
+            <div className="h-3 bg-gray-700/30 rounded w-56 mx-auto" />
+          </div>
+          <LeaderboardRowSkeleton count={5} />
+        </div>
       </div>
     );
   }
@@ -121,7 +117,12 @@ export default function Leaderboard() {
 
         {/* Podium — top 3 */}
         {podium.length > 0 && (
-          <div ref={podiumRef} className="flex justify-center items-end gap-2 sm:gap-4 mb-8 sm:mb-10">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12 } } }}
+            className="flex justify-center items-end gap-2 sm:gap-4 mb-8 sm:mb-10"
+          >
             {/* 2nd place */}
             {podium[1] && (
               <PodiumCard entry={podium[1]} rank={2} height="h-24 sm:h-32" delay={0.1} />
@@ -134,8 +135,8 @@ export default function Leaderboard() {
             {podium[2] && (
               <PodiumCard entry={podium[2]} rank={3} height="h-20 sm:h-28" delay={0.2} />
             )}
-          </div>
-        )}
+            </motion.div>
+          )}
 
         {/* Your rank banner */}
         {myRank && (
@@ -173,91 +174,87 @@ export default function Leaderboard() {
             </p>
           </Card>
         ) : (
-          <div ref={listRef} className="space-y-1.5">
-            {leaderboard.map((entry, i) => {
+          <VirtualList
+            items={leaderboard}
+            height={Math.min(600, leaderboard.length * 56)}
+            itemHeight={56}
+            renderItem={(entry, i) => {
               const rank = i + 1;
               const isMe = entry.user_id === user?.id || entry.name === user?.name;
               const lt = getLevelTitle(entry.level || 1);
 
               return (
-                <motion.div
-                  key={entry.user_id || i}
-                  initial={{ opacity: 0, x: -12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: Math.min(i * 0.03, 0.6) }}
+                <div
+                  className={`
+                    flex items-center gap-2 sm:gap-4 px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border transition-all duration-200 mb-1.5
+                    ${isMe
+                      ? 'bg-cyber-blue/5 border-cyber-blue/30 shadow-[0_0_12px_rgba(76,201,240,0.08)]'
+                      : 'bg-gray-900/20 border-gray-700/20 hover:border-gray-600/30 hover:bg-gray-800/20'
+                    }
+                    ${rank <= 3 ? 'ring-1' : ''}
+                    ${rank === 1 ? 'ring-yellow-500/30' : rank === 2 ? 'ring-gray-400/20' : rank === 3 ? 'ring-amber-700/20' : ''}
+                  `}
                 >
-                  <div
-                    className={`
-                      flex items-center gap-2 sm:gap-4 px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border transition-all duration-200
-                      ${isMe
-                        ? 'bg-cyber-blue/5 border-cyber-blue/30 shadow-[0_0_12px_rgba(76,201,240,0.08)]'
-                        : 'bg-gray-900/20 border-gray-700/20 hover:border-gray-600/30 hover:bg-gray-800/20'
-                      }
-                      ${rank <= 3 ? 'ring-1' : ''}
-                      ${rank === 1 ? 'ring-yellow-500/30' : rank === 2 ? 'ring-gray-400/20' : rank === 3 ? 'ring-amber-700/20' : ''}
-                    `}
-                  >
-                    {/* Rank */}
-                    <div className="w-8 text-center shrink-0">
-                      {BADGE_ICONS[rank] ? (
-                        <span className="text-xl">{BADGE_ICONS[rank]}</span>
-                      ) : (
-                        <span className="text-sm font-mono font-bold text-gray-500">{rank}</span>
-                      )}
-                    </div>
-
-                    {/* Avatar */}
-                    <div
-                      className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center text-xs sm:text-sm font-bold text-white shrink-0"
-                      style={{
-                        background: `linear-gradient(135deg, ${lt.color}30, ${lt.color}15)`,
-                        border: `1px solid ${lt.color}40`,
-                      }}
-                    >
-                      {(entry.name || 'A')[0].toUpperCase()}
-                    </div>
-
-                    {/* Name + title */}
-                    <div className="flex-1 min-w-0">
-                      <p className={`text-sm font-semibold truncate ${isMe ? 'text-cyber-blue' : 'text-white'}`}>
-                        {entry.name || 'Anonymous'}
-                        {isMe && (
-                          <span className="text-[9px] ml-2 px-1.5 py-0.5 rounded bg-cyber-blue/20 text-cyber-blue font-mono">
-                            YOU
-                          </span>
-                        )}
-                      </p>
-                      <p className="text-[10px] font-mono" style={{ color: lt.color }}>
-                        {lt.title}
-                      </p>
-                    </div>
-
-                    {/* Level */}
-                    <div className="hidden sm:block text-center w-14 shrink-0">
-                      <span className="text-sm font-display font-bold" style={{ color: lt.color }}>
-                        {entry.level || 1}
-                      </span>
-                      <p className="text-[8px] font-mono text-gray-600 uppercase">Level</p>
-                    </div>
-
-                    {/* XP */}
-                    <div className="hidden sm:block text-center w-16 shrink-0">
-                      <span className="text-sm font-display font-bold text-white">
-                        {(entry.xp || 0).toLocaleString()}
-                      </span>
-                      <p className="text-[8px] font-mono text-gray-600 uppercase">XP</p>
-                    </div>
-
-                    {/* Streak */}
-                    <div className="hidden md:flex text-center w-12 shrink-0 items-center justify-center gap-1">
-                      <span className={entry.streak > 0 ? 'streak-fire' : ''}>🔥</span>
-                      <span className="text-sm font-bold text-white">{entry.streak || 0}</span>
-                    </div>
+                  {/* Rank */}
+                  <div className="w-8 text-center shrink-0">
+                    {BADGE_ICONS[rank] ? (
+                      <span className="text-xl">{BADGE_ICONS[rank]}</span>
+                    ) : (
+                      <span className="text-sm font-mono font-bold text-gray-500">{rank}</span>
+                    )}
                   </div>
-                </motion.div>
+
+                  {/* Avatar */}
+                  <div
+                    className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center text-xs sm:text-sm font-bold text-white shrink-0"
+                    style={{
+                      background: `linear-gradient(135deg, ${lt.color}30, ${lt.color}15)`,
+                      border: `1px solid ${lt.color}40`,
+                    }}
+                  >
+                    {(entry.name || 'A')[0].toUpperCase()}
+                  </div>
+
+                  {/* Name + title */}
+                  <div className="flex-1 min-w-0">
+                    <p className={`text-sm font-semibold truncate ${isMe ? 'text-cyber-blue' : 'text-white'}`}>
+                      {entry.name || 'Anonymous'}
+                      {isMe && (
+                        <span className="text-[9px] ml-2 px-1.5 py-0.5 rounded bg-cyber-blue/20 text-cyber-blue font-mono">
+                          YOU
+                        </span>
+                      )}
+                    </p>
+                    <p className="text-[10px] font-mono" style={{ color: lt.color }}>
+                      {lt.title}
+                    </p>
+                  </div>
+
+                  {/* Level */}
+                  <div className="hidden sm:block text-center w-14 shrink-0">
+                    <span className="text-sm font-display font-bold" style={{ color: lt.color }}>
+                      {entry.level || 1}
+                    </span>
+                    <p className="text-[8px] font-mono text-gray-600 uppercase">Level</p>
+                  </div>
+
+                  {/* XP */}
+                  <div className="hidden sm:block text-center w-16 shrink-0">
+                    <span className="text-sm font-display font-bold text-white">
+                      {(entry.xp || 0).toLocaleString()}
+                    </span>
+                    <p className="text-[8px] font-mono text-gray-600 uppercase">XP</p>
+                  </div>
+
+                  {/* Streak */}
+                  <div className="hidden md:flex text-center w-12 shrink-0 items-center justify-center gap-1">
+                    <span className={entry.streak > 0 ? 'streak-fire' : ''}>🔥</span>
+                    <span className="text-sm font-bold text-white">{entry.streak || 0}</span>
+                  </div>
+                </div>
               );
-            })}
-          </div>
+            }}
+          />
         )}
       </div>
     </div>

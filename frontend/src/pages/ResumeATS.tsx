@@ -102,7 +102,7 @@ function ScoreBar({ label, score, icon: Icon, delay = 0 }) {
 
   return (
     <motion.div
-      className="bg-space-void rounded-lg p-4 border border-space-border"
+      className="rounded-lg border border-black/5 bg-white p-4 shadow-sm"
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay }}
@@ -112,7 +112,7 @@ function ScoreBar({ label, score, icon: Icon, delay = 0 }) {
         <span className="text-xs font-mono uppercase tracking-wider text-gray-400">{label}</span>
         <span className={`ml-auto text-sm font-display font-bold ${c.text}`}>{score}/100</span>
       </div>
-      <div className="h-1.5 bg-space-border rounded-full overflow-hidden">
+      <div className="h-1.5 overflow-hidden rounded-full bg-black/5">
         <motion.div
           className={`h-full rounded-full ${c.bar}`}
           initial={{ width: 0 }}
@@ -313,7 +313,7 @@ export default function ResumeATS() {
   };
 
   return (
-    <div className="min-h-screen py-8 sm:py-12 px-4">
+    <div className="page-surface min-h-screen py-6 sm:py-10 px-4">
       <div className="max-w-4xl mx-auto">
         <motion.div
           className="text-center mb-8"
@@ -405,7 +405,7 @@ export default function ResumeATS() {
                         ? "border-cyber-blue bg-cyber-blue/5 shadow-cyber-blue"
                         : file
                         ? "border-cyber-green/40 bg-cyber-green/5"
-                        : "border-space-border hover:border-cyber-blue/30"
+                        : "border-black/5 hover:border-cyber-blue/30"
                     }`}
                   >
                     <input
@@ -485,7 +485,7 @@ export default function ResumeATS() {
                     <div>
                       <p className="text-[10px] font-mono uppercase tracking-wider text-gray-500 mb-2">Experience</p>
                       {form.experience.map((exp, i) => (
-                        <div key={i} className="bg-space-void rounded-lg p-3 space-y-2 mb-2 border border-space-border">
+                        <div key={i} className="mb-2 space-y-2 rounded-lg border border-black/5 bg-white p-3 shadow-sm">
                           <div className="grid sm:grid-cols-2 gap-2">
                             <input className="input" placeholder="Company" value={exp.company} onChange={(e) => { const n = [...form.experience]; n[i].company = e.target.value; setForm({ ...form, experience: n }); }} />
                             <input className="input" placeholder="Role" value={exp.role} onChange={(e) => { const n = [...form.experience]; n[i].role = e.target.value; setForm({ ...form, experience: n }); }} />
@@ -500,7 +500,7 @@ export default function ResumeATS() {
                     <div>
                       <p className="text-[10px] font-mono uppercase tracking-wider text-gray-500 mb-2">Education</p>
                       {form.education.map((edu, i) => (
-                        <div key={i} className="bg-space-void rounded-lg p-3 grid sm:grid-cols-3 gap-2 mb-2 border border-space-border">
+                        <div key={i} className="mb-2 grid gap-2 rounded-lg border border-black/5 bg-white p-3 shadow-sm sm:grid-cols-3">
                           <input className="input" placeholder="School" value={edu.school} onChange={(e) => { const n = [...form.education]; n[i].school = e.target.value; setForm({ ...form, education: n }); }} />
                           <input className="input" placeholder="Degree" value={edu.degree} onChange={(e) => { const n = [...form.education]; n[i].degree = e.target.value; setForm({ ...form, education: n }); }} />
                           <input className="input" placeholder="Year" value={edu.year} onChange={(e) => { const n = [...form.education]; n[i].year = e.target.value; setForm({ ...form, education: n }); }} />
@@ -761,7 +761,7 @@ export default function ResumeATS() {
                     <Eye size={14} className="text-cyber-blue" />
                     Optimized Resume
                   </h3>
-                  <pre className="whitespace-pre-wrap text-xs font-mono text-gray-400 bg-space-void border border-space-border p-4 rounded-lg max-h-[400px] overflow-y-auto leading-relaxed">
+                  <pre className="max-h-[400px] overflow-y-auto rounded-lg border border-black/5 bg-surface-base p-4 font-mono text-xs leading-relaxed text-text-secondary whitespace-pre-wrap">
                     {optimization.optimized_resume}
                   </pre>
                 </motion.div>

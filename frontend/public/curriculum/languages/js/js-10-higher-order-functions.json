@@ -1,0 +1,56 @@
+{
+  "id": "js-10-higher-order-functions",
+  "track": "javascript",
+  "title": "Higher-Order Functions & Callbacks",
+  "section": "JavaScript Advanced",
+  "order": 10,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "In JavaScript, **functions are values**. You can store a function in a variable, pass it to another function, and return it from a function. A function that takes or returns another function is called a **higher-order function**, and the function passed in is a **callback**. This idea sits at the heart of modern JS: event handlers, timers, and array methods are all built on it.\n\n### Functions as values\n```js\nconst greet = () => \"Hello!\";\nconsole.log(greet());   // Hello!\n```\n\n### Callbacks with setTimeout\n```js\nsetTimeout(() => {\n  console.log(\"3 seconds passed\");\n}, 3000);\n```\nThe arrow function is a callback — code that runs later, when the timer fires.\n\n### map / filter / reduce — the big three\n```js\nconst nums = [1, 2, 3, 4];\nconst doubled = nums.map(n => n * 2);        // [2, 4, 6, 8]\nconst evens = nums.filter(n => n % 2 === 0); // [2, 4]\nconst sum = nums.reduce((total, n) => total + n, 0); // 10\n```\n`map` transforms every item, `filter` keeps items that pass a test, and `reduce` boils the array down to a single value. Each one takes a callback.\n\n### Returning functions — closures\n```js\nfunction makeAdder(x) {\n  return (y) => x + y;\n}\nconst add5 = makeAdder(5);\nconsole.log(add5(3));   // 8\n```\n`add5` is a function returned by `makeAdder`. It remembers the `x` it was created with — that memory is called a **closure**, and it is the reason returning functions is so powerful.\n\n### Why this matters\nModern frameworks like React lean on higher-order patterns constantly: components take props (data), handlers are callbacks, and lists are rendered with `.map()`. Master the callback habit — always ask \"what function am I passing, and when will it be called?\" A common mistake is calling the function instead of passing it: `setTimeout(doThing(), 1000)` runs `doThing` immediately. Pass the reference, not the result: `setTimeout(doThing, 1000)`.",
+    "codeSnippets": [
+      {
+        "language": "javascript",
+        "code": "const nums = [1, 2, 3, 4];\nconst sum = nums.reduce((total, n) => total + n, 0);\nconsole.log(sum);",
+        "output": "10"
+      },
+      {
+        "language": "javascript",
+        "code": "function makeAdder(x) {\n  return (y) => x + y;\n}\nconst add5 = makeAdder(5);\nconsole.log(add5(3));",
+        "output": "8"
+      }
+    ],
+    "exercise": {
+      "instruction": "Declare 'nums' as [10, 20, 30, 40]. Use .reduce() with an arrow callback (total, n) => total + n and an initial value of 0 to compute the total, then set output.textContent to the number. Expected output: 100.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<body>\n  <p id=\"output\"></p>\n  <script>\n    const nums = [10, 20, 30, 40];\n\n  </script>\n</body>\n</html>",
+      "required": [".reduce(", "(total, n)", "=>", "total + n", ", 0)", "textContent", "100"],
+      "hints": [
+        "Hint 1: const total = nums.reduce((total, n) => total + n, 0);",
+        "Hint 2: The reduce callback takes (accumulator, currentValue) and returns the new accumulator.",
+        "Hint 3: document.getElementById(\"output\").textContent = total;"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What is a higher-order function?",
+        "options": ["A function that only does math", "A function that takes or returns another function", "A function with many parameters"],
+        "correct": 1
+      },
+      {
+        "question": "Which array method boils an array down to a single value?",
+        "options": [".map()", ".filter()", ".reduce()"],
+        "correct": 2
+      },
+      {
+        "question": "Why is this wrong: setTimeout(doThing(), 1000)?",
+        "options": ["The timeout is too short", "doThing() runs immediately instead of being passed as a callback", "setTimeout only accepts strings"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "js-11-classes",
+    "unlocks": ["js-11-classes"]
+  }
+}

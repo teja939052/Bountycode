@@ -839,8 +839,8 @@ async def complete_day(
         },
     )
 
-    # Record XP via gamification
-    await record_practice(uid, "daily_challenge_30day", total_xp_gained + extra_bonus)
+    # Record XP via gamification (also crosses global streak milestones)
+    practice_result = await record_practice(uid, "daily_challenge_30day", total_xp_gained + extra_bonus)
 
     result = {
         "day_completed": current_day,
@@ -855,6 +855,12 @@ async def complete_day(
     if extra_bonus:
         result["completion_bonus"] = extra_bonus
         result["badge_earned"] = "Placement Ready"
+
+    # Streak milestone chests granted inside record_practice (7/14/30/60/100 days)
+    milestone_rewards = practice_result.get("milestone", {})
+    if milestone_rewards:
+        result["milestone"] = milestone_rewards
+        result["new_streak"] = practice_result.get("new_streak", 0)
 
     return result
 

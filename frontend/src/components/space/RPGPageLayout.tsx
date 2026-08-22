@@ -9,7 +9,7 @@ export default function RPGPageLayout({
   gridVariant = "dots",
   showParticles = true,
   showGrid = true,
-  gradient = "from-indigo-900/20 via-slate-900/50 to-purple-900/20",
+  gradient = "from-emerald-50 via-amber-50 to-sky-50",
   className = "",
 }) {
   const reduced = useReducedMotion();
@@ -23,15 +23,15 @@ export default function RPGPageLayout({
   };
 
   return (
-    <div className={`relative min-h-screen ${className}`}>
+    <div className={`relative min-h-screen bg-[color:var(--bg-base,#f6f3ea)] ${className}`}>
       {/* Background layer */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className={`absolute inset-0 bg-gradient-to-br ${gradient}`} />
+        <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-90`} />
 
         {/* Grid overlay */}
         {showGrid && (
           <div
-            className="absolute inset-0 opacity-60"
+            className="absolute inset-0 opacity-35"
             style={{
               backgroundImage: gridStyles[gridVariant] || gridStyles.dots,
               backgroundSize: gridVariant === "hex" ? "48px 48px" : "32px 32px",
@@ -43,18 +43,18 @@ export default function RPGPageLayout({
         {!reduced && (
           <>
             <motion.div
-              className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-indigo-500/10 blur-3xl"
-              animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
+              className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-emerald-400/10 blur-3xl"
+              animate={{ scale: [1, 1.05, 1], opacity: [0.2, 0.35, 0.2] }}
               transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
             />
             <motion.div
-              className="absolute top-1/3 -right-32 w-80 h-80 rounded-full bg-purple-500/8 blur-3xl"
-              animate={{ scale: [1, 0.9, 1], opacity: [0.2, 0.4, 0.2] }}
+              className="absolute top-1/3 -right-32 w-80 h-80 rounded-full bg-sky-400/8 blur-3xl"
+              animate={{ scale: [1, 0.95, 1], opacity: [0.15, 0.28, 0.15] }}
               transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
             />
             <motion.div
-              className="absolute -bottom-32 left-1/3 w-96 h-96 rounded-full bg-cyan-500/8 blur-3xl"
-              animate={{ y: [0, -20, 0], opacity: [0.15, 0.3, 0.15] }}
+              className="absolute -bottom-32 left-1/3 w-96 h-96 rounded-full bg-amber-300/10 blur-3xl"
+              animate={{ y: [0, -12, 0], opacity: [0.12, 0.22, 0.12] }}
               transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
             />
 
@@ -64,7 +64,7 @@ export default function RPGPageLayout({
                 {Array.from({ length: 12 }).map((_, i) => (
                   <motion.div
                     key={i}
-                    className="absolute w-1 h-1 bg-indigo-400/30 rounded-sm"
+                    className="absolute w-1 h-1 bg-emerald-500/25 rounded-sm"
                     style={{
                       left: `${8 + (i * 7) % 85}%`,
                       top: `${12 + (i * 13) % 75}%`,
@@ -88,9 +88,9 @@ export default function RPGPageLayout({
 
         {/* Scanline overlay for retro feel */}
         <div
-          className="absolute inset-0 opacity-[0.015]"
+          className="absolute inset-0 opacity-[0.03]"
           style={{
-            backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px)",
+            backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(15,23,42,0.03) 2px, rgba(15,23,42,0.03) 4px)",
           }}
         />
       </div>

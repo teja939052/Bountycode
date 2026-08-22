@@ -1,144 +1,310 @@
+"""Placement Readiness Score — deterministic readiness calculation from user data.
+
+Provides GET /api/v1/readiness/score for full breakdown and
+GET /api/v1/readiness/company/{company} for company-specific analysis.
+All scoring is pure math — zero AI dependency.
 """
-Hiring Readiness Score — Predict when a student is ready for interviews.
-AI-powered analysis of skills, progress, and company-specific requirements.
-"""
-from datetime import datetime, timezone, timedelta
-from fastapi import APIRouter, Depends
+from datetime import datetime, timezone
+from fastapi import APIRouter, Depends, HTTPException
 from typing import Optional
 from app.middleware.auth import get_current_user
 from app.database import (
-    curated_questions_collection, solved_problems_collection,
-    question_answers_collection, skill_graph_collection,
-    gamification_collection
+    solved_problems_collection,
+    submissions_collection,
+    aptitude_tests_collection,
+    interviews_collection,
+    resumes_collection,
+    generated_projects_collection,
+    question_answers_collection,
+)
+from app.services.readiness_engine import (
+    calculate_readiness,
+    predict_readiness_date,
+    COMPANY_PROFILES,
 )
 
 router = APIRouter(prefix="/api/v1/readiness", tags=["readiness"])
 
-# Company readiness requirements (based on real interview data)
-COMPANY_REQUIREMENTS = {
-    "google": {
-        "min_solved": 300,
-        "min_medium": 150,
-        "min_hard": 50,
-        "min_skills": {"dsa": 80, "system_design": 70, "problem_solving": 85},
-        "focus_topics": ["Arrays", "Dynamic Programming", "Graphs", "Trees", "System Design"],
-        "interview_rounds": ["Online Assessment", "Technical Phone Screen", "Onsite (4-5 rounds)"],
-        "typical_timeline_weeks": 12,
-    },
-    "amazon": {
-        "min_solved": 250,
-        "min_medium": 120,
-        "min_hard": 40,
-        "min_skills": {"dsa": 75, "leadership": 80, "system_design": 65},
-        "focus_topics": ["Arrays", "Linked Lists", "Trees", "Dynamic Programming", "Leadership Principles"],
-        "interview_rounds": ["Online Assessment", "Technical Phone Screen", "Loop (5 rounds)"],
-        "typical_timeline_weeks": 10,
-    },
-    "microsoft": {
-        "min_solved": 200,
-        "min_medium": 100,
-        "min_hard": 30,
-        "min_skills": {"dsa": 70, "system_design": 60, "problem_solving": 75},
-        "focus_topics": ["Arrays", "Strings", "Trees", "Graphs", "System Design"],
-        "interview_rounds": ["Online Assessment", "Technical Phone Screen", "Onsite (3-4 rounds)"],
-        "typical_timeline_weeks": 8,
-    },
-    "tcs": {
-        "min_solved": 50,
-        "min_medium": 20,
-        "min_hard": 5,
-        "min_skills": {"dsa": 50, "aptitude": 60, "verbal": 50},
-        "focus_topics": ["Arrays", "Strings", "Basic Algorithms", "Aptitude"],
-        "interview_rounds": ["Online Aptitude", "Coding Test", "Technical Interview", "HR Round"],
-        "typical_timeline_weeks": 4,
-    },
-    "meta": {
-        "min_solved": 280,
-        "min_medium": 140,
-        "min_hard": 45,
-        "min_skills": {"dsa": 80, "system_design": 75, "coding": 85},
-        "focus_topics": ["Arrays", "Dynamic Programming", "Graphs", "System Design", "Behavioral"],
-        "interview_rounds": ["Technical Phone Screen", "Onsite (Coding + System Design + Behavioral)"],
-        "typical_timeline_weeks": 10,
-    },
-}
 
+async def _gather_dsa_data(uid: str) -> dict:
+    """Gather DSA performance data from solved_problems + curated_questions lookup."""
+    solved_col = solved_problems_collection()
 
-def calculate_readiness_score(user_stats, company=None):
-    """Calculate a 0-100 readiness score based on user stats and company requirements."""
-    if company and company.lower() in COMPANY_REQUIREMENTS:
-        req = COMPANY_REQUIREMENTS[company.lower()]
-    else:
-        # Generic requirements
-        req = {
-            "min_solved": 150,
-            "min_medium": 75,
-            "min_hard": 25,
-            "min_skills": {"dsa": 65, "system_design": 50, "problem_solving": 70},
-            "focus_topics": ["Arrays", "Trees", "Dynamic Programming"],
-            "typical_timeline_weeks": 8,
-        }
+    total_solved = await solved_col.count_documents({"user_id": uid})
 
-    scores = []
+    # Difficulty breakdown via aggregation with curated_questions join
+    diff_pipeline = [
+        {"$match": {"user_id": uid}},
+        {"$lookup": {
+            "from": "curated_questions",
+            "localField": "question_id",
+            "foreignField": "_id",
+            "as": "question",
+        }},
+        {"$unwind": {"path": "$question", "preserveNullAndEmptyArrays": True}},
+        {"$group": {
+            "_id": "$question.difficulty",
+            "count": {"$sum": 1},
+        }},
+    ]
+    diff_stats = {}
+    async for doc in solved_col.aggregate(diff_pipeline):
+        if doc["_id"]:
+            diff_stats[doc["_id"]] = doc["count"]
 
-    # Problem solving score (40% weight)
-    total_solved = user_stats.get("total_solved", 0)
-    medium_solved = user_stats.get("medium_solved", 0)
-    hard_solved = user_stats.get("hard_solved", 0)
+    # Topic breakdown
+    topic_pipeline = [
+        {"$match": {"user_id": uid}},
+        {"$lookup": {
+            "from": "curated_questions",
+            "localField": "question_id",
+            "foreignField": "_id",
+            "as": "question",
+        }},
+        {"$unwind": {"path": "$question", "preserveNullAndEmptyArrays": True}},
+        {"$group": {"_id": "$question.topic", "count": {"$sum": 1}}},
+    ]
+    unique_topics = set()
+    async for doc in solved_col.aggregate(topic_pipeline):
+        if doc["_id"]:
+            unique_topics.add(doc["_id"])
 
-    problem_score = min(100, (
-        (total_solved / max(req["min_solved"], 1) * 40) +
-        (medium_solved / max(req["min_medium"], 1) * 35) +
-        (hard_solved / max(req["min_hard"], 1) * 25)
-    ))
-    scores.append(("problem_solving", problem_score, 0.4))
+    # Accuracy from submissions
+    subs_col = submissions_collection()
+    total_subs = await subs_col.count_documents({"user_id": uid})
+    passed_subs = await subs_col.count_documents({"user_id": uid, "status": "passed"})
+    accuracy_rate = passed_subs / total_subs if total_subs > 0 else 0.0
 
-    # Skill scores (40% weight)
-    skill_scores = user_stats.get("skill_scores", {})
-    skill_components = []
-    for skill, min_score in req["min_skills"].items():
-        user_skill = skill_scores.get(skill, 0)
-        skill_components.append(min(100, user_skill / max(min_score, 1) * 100))
-    skill_avg = sum(skill_components) / len(skill_components) if skill_components else 50
-    scores.append(("skills", skill_avg, 0.4))
-
-    # Topic coverage score (20% weight)
-    topic_coverage = user_stats.get("topic_coverage", {})
-    topics_covered = sum(1 for t in req["focus_topics"] if topic_coverage.get(t, 0) > 0)
-    topic_score = (topics_covered / len(req["focus_topics"])) * 100
-    scores.append(("topics", topic_score, 0.2))
-
-    # Calculate weighted score
-    total_score = sum(score * weight for _, score, weight in scores)
-    return min(100, max(0, round(total_score, 1)))
-
-
-def predict_readiness_date(score, target_company):
-    """Predict when the user will be ready based on current score and company requirements."""
-    if target_company and target_company.lower() in COMPANY_REQUIREMENTS:
-        req = COMPANY_REQUIREMENTS[target_company.lower()]
-    else:
-        req = COMPANY_REQUIREMENTS["microsoft"]  # Default
-
-    typical_weeks = req["typical_timeline_weeks"]
-
-    if score >= 90:
-        weeks_remaining = max(1, typical_weeks * 0.1)
-    elif score >= 70:
-        weeks_remaining = max(2, typical_weeks * 0.3)
-    elif score >= 50:
-        weeks_remaining = max(4, typical_weeks * 0.5)
-    elif score >= 30:
-        weeks_remaining = max(6, typical_weeks * 0.7)
-    else:
-        weeks_remaining = typical_weeks
-
-    ready_date = datetime.now(timezone.utc) + timedelta(weeks=weeks_remaining)
     return {
-        "weeks_remaining": round(weeks_remaining),
-        "estimated_date": ready_date.strftime("%B %d, %Y"),
-        "confidence": "High" if score > 60 else "Medium" if score > 30 else "Low",
+        "total_solved": total_solved,
+        "easy": diff_stats.get("easy", 0),
+        "medium": diff_stats.get("medium", 0),
+        "hard": diff_stats.get("hard", 0),
+        "unique_topics": len(unique_topics),
+        "accuracy_rate": accuracy_rate,
     }
+
+
+async def _gather_aptitude_data(uid: str) -> dict:
+    """Gather aptitude test performance data."""
+    apt_col = aptitude_tests_collection()
+    pipeline = [
+        {"$match": {"user_id": uid, "status": "completed"}},
+        {"$group": {
+            "_id": "$category",
+            "avg_pct": {"$avg": "$percentage"},
+            "count": {"$sum": 1},
+            "latest_pct": {"$max": "$completed_at"},
+        }},
+        {"$sort": {"latest_pct": -1}},
+    ]
+
+    category_data = {}
+    total_count = 0
+    async for doc in apt_col.aggregate(pipeline):
+        cat = doc["_id"] or "general"
+        category_data[cat] = {"avg": doc.get("avg_pct", 0), "count": doc.get("count", 0)}
+        total_count += doc.get("count", 0)
+
+    # Recent percentages across all categories
+    recent_cursor = apt_col.find(
+        {"user_id": uid, "status": "completed"},
+        {"percentage": 1, "_id": 0},
+    ).sort("completed_at", -1).limit(10)
+    recent_pcts = [doc.get("percentage", 0) async for doc in recent_cursor]
+
+    overall_avg = sum(c["avg"] * c["count"] for c in category_data.values()) / total_count if total_count > 0 else 0
+
+    return {
+        "avg_percentage": overall_avg,
+        "test_count": total_count,
+        "category_count": len(category_data),
+        "recent_percentages": recent_pcts,
+    }
+
+
+async def _gather_cs_fundamentals_data(uid: str) -> dict:
+    """Gather CS fundamentals data from interview answers tagged with technical topics."""
+    ans_col = question_answers_collection()
+
+    pipeline = [
+        {"$match": {"user_id": uid}},
+        {"$group": {
+            "_id": None,
+            "count": {"$sum": 1},
+            "avg_score": {"$avg": "$score"},
+        }},
+    ]
+    total_data = {"cs_question_count": 0, "avg_score": 0.0}
+
+    async for doc in ans_col.aggregate(pipeline):
+        total_data["cs_question_count"] = doc.get("count", 0)
+        total_data["avg_score"] = doc.get("avg_score", 0.0)
+
+    # Topic-level scores from question_answers
+    topic_pipeline = [
+        {"$match": {"user_id": uid}},
+        {"$lookup": {
+            "from": "curated_questions",
+            "localField": "question_id",
+            "foreignField": "_id",
+            "as": "question",
+        }},
+        {"$unwind": {"path": "$question", "preserveNullAndEmptyArrays": True}},
+        {"$group": {
+            "_id": "$question.topic",
+            "avg_score": {"$avg": "$score"},
+            "count": {"$sum": 1},
+        }},
+    ]
+    topic_scores = {}
+    async for doc in ans_col.aggregate(topic_pipeline):
+        if doc["_id"]:
+            topic_scores[doc["_id"]] = doc.get("avg_score", 0)
+
+    return {
+        "cs_question_count": total_data["cs_question_count"],
+        "avg_score": total_data["avg_score"],
+        "topic_scores": topic_scores,
+    }
+
+
+async def _gather_coding_data(uid: str) -> dict:
+    """Gather coding submission performance data."""
+    subs_col = submissions_collection()
+    total = await subs_col.count_documents({"user_id": uid})
+    passed = await subs_col.count_documents({"user_id": uid, "status": "passed"})
+
+    # Language diversity
+    lang_pipeline = [
+        {"$match": {"user_id": uid}},
+        {"$group": {"_id": "$language"}},
+    ]
+    languages = set()
+    async for doc in subs_col.aggregate(lang_pipeline):
+        if doc["_id"]:
+            languages.add(doc["_id"])
+
+    # Recent success rate (last 20 submissions)
+    recent_cursor = subs_col.find(
+        {"user_id": uid},
+        {"status": 1, "_id": 0},
+    ).sort("submitted_at", -1).limit(20)
+    recent_statuses = [doc.get("status", "") async for doc in recent_cursor]
+    recent_passed = sum(1 for s in recent_statuses if s == "passed")
+    recent_rate = recent_passed / len(recent_statuses) if recent_statuses else 0.0
+
+    return {
+        "total_submissions": total,
+        "passed_submissions": passed,
+        "languages_used": len(languages),
+        "recent_success_rate": recent_rate,
+    }
+
+
+async def _gather_interview_data(uid: str) -> dict:
+    """Gather interview performance data."""
+    int_col = interviews_collection()
+
+    pipeline = [
+        {"$match": {"user_id": uid, "status": "completed"}},
+        {"$group": {
+            "_id": None,
+            "count": {"$sum": 1},
+            "avg_score": {"$avg": "$score_history"},
+        }},
+    ]
+    summary = {"completed_count": 0, "avg_score": 0.0}
+    async for doc in int_col.aggregate(pipeline):
+        summary["completed_count"] = doc.get("count", 0)
+        # avg_score from score_history arrays
+        all_scores = doc.get("avg_score", 0)
+        summary["avg_score"] = all_scores if isinstance(all_scores, (int, float)) else 0
+
+    # Get individual interview final scores for recent trend
+    cursor = int_col.find(
+        {"user_id": uid, "status": "completed"},
+        {"score_history": 1, "_id": 0},
+    ).sort("created_at", -1).limit(10)
+
+    recent_scores = []
+    async for doc in cursor:
+        scores = doc.get("score_history", [])
+        if scores:
+            recent_scores.append(sum(scores) / len(scores))
+
+    # Recalculate avg from individual docs if aggregate didn't work well
+    if recent_scores:
+        summary["avg_score"] = sum(recent_scores) / len(recent_scores)
+
+    return {
+        "completed_count": summary["completed_count"],
+        "avg_score": summary["avg_score"],
+        "recent_scores": recent_scores,
+        "company_breakdown": {},
+    }
+
+
+async def _gather_resume_data(uid: str) -> dict:
+    """Gather resume/ATS performance data."""
+    resume_col = resumes_collection()
+
+    pipeline = [
+        {"$match": {"user_id": uid}},
+        {"$group": {
+            "_id": None,
+            "count": {"$sum": 1},
+            "avg_ats": {"$avg": "$ats_score"},
+            "max_ats": {"$max": "$ats_score"},
+            "opt_count": {
+                "$sum": {"$cond": [{"$ne": ["$optimized_text", None]}, 1, 0]},
+            },
+        }},
+    ]
+    result = {"resume_count": 0, "avg_ats_score": 0.0, "best_ats_score": 0.0, "optimization_count": 0}
+    async for doc in resume_col.aggregate(pipeline):
+        result["resume_count"] = doc.get("count", 0)
+        result["avg_ats_score"] = doc.get("avg_ats", 0) or 0
+        result["best_ats_score"] = doc.get("max_ats", 0) or 0
+        result["optimization_count"] = doc.get("opt_count", 0)
+
+    return result
+
+
+async def _gather_project_data(uid: str) -> dict:
+    """Gather project generation data."""
+    proj_col = generated_projects_collection()
+
+    total = await proj_col.count_documents({"user_id": uid})
+
+    if total == 0:
+        return {"project_count": 0, "avg_file_count": 0.0, "with_tech_stack": 0, "reviewed_count": 0, "avg_review_score": 0.0}
+
+    pipeline = [
+        {"$match": {"user_id": uid}},
+        {"$project": {
+            "file_count": {"$size": {"$ifNull": ["$files", []]}},
+            "has_tech_stack": {"$gt": [{"$size": {"$ifNull": ["$tech_stack", []]}}, 0]},
+            "has_review": {"$gt": [{"$size": {"$ifNull": ["$review_score", []]}}, 0]},
+            "review_score": {"$avg": "$review_score"},
+        }},
+        {"$group": {
+            "_id": None,
+            "count": {"$sum": 1},
+            "avg_files": {"$avg": "$file_count"},
+            "with_stack": {"$sum": {"$cond": ["$has_tech_stack", 1, 0]}},
+            "reviewed": {"$sum": {"$cond": ["$has_review", 1, 0]}},
+            "avg_review": {"$avg": "$review_score"},
+        }},
+    ]
+    result = {"project_count": total, "avg_file_count": 0.0, "with_tech_stack": 0, "reviewed_count": 0, "avg_review_score": 0.0}
+    async for doc in proj_col.aggregate(pipeline):
+        result["avg_file_count"] = doc.get("avg_files", 0) or 0
+        result["with_tech_stack"] = doc.get("with_stack", 0)
+        result["reviewed_count"] = doc.get("reviewed", 0)
+        result["avg_review_score"] = doc.get("avg_review", 0) or 0
+
+    return result
 
 
 @router.get("/score")
@@ -146,176 +312,121 @@ async def get_readiness_score(
     company: Optional[str] = None,
     user=Depends(get_current_user),
 ):
-    """Get comprehensive hiring readiness score with timeline prediction."""
-    solved_col = solved_problems_collection()
-    answers_col = question_answers_collection()
-    skill_col = skill_graph_collection()
-    gam_col = gamification_collection()
+    """Get comprehensive placement readiness score with full breakdown.
+
+    Returns scores for 7 categories (dsa, aptitude, cs_fundamentals, coding,
+    interview, resume, projects) weighted into an overall score 0-100.
+    Optionally includes company-specific readiness assessment.
+    """
     uid = user["id"]
 
-    # Gather user stats
-    total_solved = await solved_col.count_documents({"user_id": uid})
+    # Gather all data in parallel-ish (sequential but batched)
+    dsa_data = await _gather_dsa_data(uid)
+    aptitude_data = await _gather_aptitude_data(uid)
+    cs_data = await _gather_cs_fundamentals_data(uid)
+    coding_data = await _gather_coding_data(uid)
+    interview_data = await _gather_interview_data(uid)
+    resume_data = await _gather_resume_data(uid)
+    project_data = await _gather_project_data(uid)
 
-    # Difficulty breakdown
-    diff_pipeline = [
-        {"$match": {"user_id": uid}},
-        {"$lookup": {
-            "from": "curated_questions",
-            "localField": "question_id",
-            "foreignField": "_id",
-            "as": "question"
-        }},
-        {"$unwind": "$question"},
-        {"$group": {"_id": "$question.difficulty", "count": {"$sum": 1}}}
-    ]
-    diff_stats = {}
-    async for doc in solved_col.aggregate(diff_pipeline):
-        diff_stats[doc["_id"]] = doc["count"]
+    result = calculate_readiness(
+        dsa_data=dsa_data,
+        aptitude_data=aptitude_data,
+        cs_data=cs_data,
+        coding_data=coding_data,
+        interview_data=interview_data,
+        resume_data=resume_data,
+        project_data=project_data,
+        company=company,
+    )
 
-    # Topic coverage
-    topic_pipeline = [
-        {"$match": {"user_id": uid}},
-        {"$lookup": {
-            "from": "curated_questions",
-            "localField": "question_id",
-            "foreignField": "_id",
-            "as": "question"
-        }},
-        {"$unwind": "$question"},
-        {"$group": {"_id": "$question.topic", "count": {"$sum": 1}, "avg_score": {"$avg": "$score"}}}
-    ]
-    topic_coverage = {}
-    async for doc in solved_col.aggregate(topic_pipeline):
-        topic_coverage[doc["_id"]] = {
-            "count": doc["count"],
-            "avg_score": doc.get("avg_score", 0),
-        }
-
-    # Skill scores from skill graph
-    skill_doc = await skill_col.find_one({"user_id": uid})
-    skill_scores = {}
-    if skill_doc and "categories" in skill_doc:
-        for cat, data in skill_doc["categories"].items():
-            skill_scores[cat] = data.get("score", 0)
-
-    # Gamification stats
-    gam_doc = await gam_col.find_one({"user_id": uid})
-    streak = gam_doc.get("streak", 0) if gam_doc else 0
-    xp = gam_doc.get("xp", 0) if gam_doc else 0
-
-    # Build user stats
-    user_stats = {
-        "total_solved": total_solved,
-        "easy_solved": diff_stats.get("easy", 0),
-        "medium_solved": diff_stats.get("medium", 0),
-        "hard_solved": diff_stats.get("hard", 0),
-        "skill_scores": skill_scores,
-        "topic_coverage": {k: v["count"] for k, v in topic_coverage.items()},
-        "streak": streak,
-        "xp": xp,
-    }
-
-    # Calculate readiness score
-    readiness_score = calculate_readiness_score(user_stats, company)
-
-    # Predict readiness date
-    prediction = predict_readiness_date(readiness_score, company)
-
-    # Generate improvement recommendations
-    recommendations = []
-    if company and company.lower() in COMPANY_REQUIREMENTS:
-        req = COMPANY_REQUIREMENTS[company.lower()]
-
-        # Check problem count
-        if total_solved < req["min_solved"]:
-            gap = req["min_solved"] - total_solved
-            recommendations.append({
-                "type": "problems",
-                "message": f"Solve {gap} more problems to meet {company.title()}'s requirements",
-                "priority": "high",
-                "target": req["min_solved"],
-                "current": total_solved,
-            })
-
-        # Check hard problems
-        if diff_stats.get("hard", 0) < req["min_hard"]:
-            gap = req["min_hard"] - diff_stats.get("hard", 0)
-            recommendations.append({
-                "type": "hard_problems",
-                "message": f"Solve {gap} more hard problems",
-                "priority": "high",
-                "target": req["min_hard"],
-                "current": diff_stats.get("hard", 0),
-            })
-
-        # Check skills
-        for skill, min_score in req["min_skills"].items():
-            user_skill = skill_scores.get(skill, 0)
-            if user_skill < min_score:
-                gap = min_score - user_skill
-                recommendations.append({
-                    "type": "skill",
-                    "message": f"Improve {skill} by {gap} points",
-                    "priority": "medium",
-                    "target": min_score,
-                    "current": user_skill,
-                })
-
-    # Company-specific readiness for all companies
-    company_readiness = {}
-    for comp_name, comp_req in COMPANY_REQUIREMENTS.items():
-        score = calculate_readiness_score(user_stats, comp_name)
-        company_readiness[comp_name] = {
-            "score": score,
-            "status": "Ready" if score >= 80 else "Almost Ready" if score >= 60 else "In Progress" if score >= 40 else "Needs Work",
-        }
+    prediction = predict_readiness_date(result.overall, company)
 
     return {
-        "readiness_score": readiness_score,
+        "overall": result.overall,
         "company": company or "general",
+        "categories": {
+            name: {
+                "score": cat.score,
+                "weight": cat.weight,
+                "details": cat.details,
+            }
+            for name, cat in result.categories.items()
+        },
+        "company_score": result.company_score,
+        "company_match": result.company_match,
+        "recommendations": result.recommendations,
         "prediction": prediction,
-        "recommendations": recommendations,
-        "company_readiness": company_readiness,
-        "stats": {
-            "total_solved": total_solved,
-            "easy": diff_stats.get("easy", 0),
-            "medium": diff_stats.get("medium", 0),
-            "hard": diff_stats.get("hard", 0),
-            "streak": streak,
-            "xp": xp,
-            "topics_mastered": sum(1 for v in topic_coverage.values() if v["count"] >= 10),
-            "total_topics": len(topic_coverage),
-        },
-        "score_breakdown": {
-            "problem_solving": round(user_stats["easy_solved"] / max(total_solved, 1) * 100),
-            "skills": round(sum(skill_scores.values()) / max(len(skill_scores), 1)),
-            "topic_coverage": round(len(topic_coverage) / 15 * 100),  # 15 topics max
-        },
+        "stats": result.stats,
     }
 
 
 @router.get("/company/{company_name}")
 async def get_company_readiness(company_name: str, user=Depends(get_current_user)):
-    """Get detailed readiness analysis for a specific company."""
-    req = COMPANY_REQUIREMENTS.get(company_name.lower())
-    if not req:
-        return {"error": f"Unknown company: {company_name}"}
+    """Get detailed readiness analysis for a specific company.
 
-    # Get main score
-    score_data = await get_readiness_score(company_name, user)
+    Returns the full readiness breakdown with company-specific weights,
+    gap analysis, and a prediction of when the user will be ready.
+    """
+    company_key = company_name.lower().strip()
+    profile = COMPANY_PROFILES.get(company_key)
+    if not profile:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Unknown company: {company_name}. Available: {', '.join(COMPANY_PROFILES.keys())}",
+        )
+
+    uid = user["id"]
+
+    dsa_data = await _gather_dsa_data(uid)
+    aptitude_data = await _gather_aptitude_data(uid)
+    cs_data = await _gather_cs_fundamentals_data(uid)
+    coding_data = await _gather_coding_data(uid)
+    interview_data = await _gather_interview_data(uid)
+    resume_data = await _gather_resume_data(uid)
+    project_data = await _gather_project_data(uid)
+
+    result = calculate_readiness(
+        dsa_data=dsa_data,
+        aptitude_data=aptitude_data,
+        cs_data=cs_data,
+        coding_data=coding_data,
+        interview_data=interview_data,
+        resume_data=resume_data,
+        project_data=project_data,
+        company=company_name,
+    )
+
+    prediction = predict_readiness_date(result.overall, company_name)
 
     return {
         "company": company_name,
         "requirements": {
-            "min_problems": req["min_solved"],
-            "min_medium": req["min_medium"],
-            "min_hard": req["min_hard"],
-            "focus_topics": req["focus_topics"],
-            "interview_rounds": req["interview_rounds"],
-            "typical_timeline": f"{req['typical_timeline_weeks']} weeks",
+            "min_problems": profile["min_solved"],
+            "min_medium": profile["min_medium"],
+            "min_hard": profile["min_hard"],
+            "min_skills": profile["min_skills"],
+            "focus_topics": profile["focus_topics"],
+            "interview_rounds": profile["interview_rounds"],
+            "typical_timeline": f"{profile['typical_timeline_weeks']} weeks",
         },
-        "your_stats": score_data["stats"],
-        "readiness_score": score_data["readiness_score"],
-        "prediction": score_data["prediction"],
-        "recommendations": score_data["recommendations"],
+        "your_stats": {
+            "total_problems": dsa_data.get("total_solved", 0),
+            "easy": dsa_data.get("easy", 0),
+            "medium": dsa_data.get("medium", 0),
+            "hard": dsa_data.get("hard", 0),
+            "aptitude_tests": aptitude_data.get("test_count", 0),
+            "interviews_completed": interview_data.get("completed_count", 0),
+            "submissions": coding_data.get("total_submissions", 0),
+            "resumes": resume_data.get("resume_count", 0),
+        },
+        "overall_score": result.overall,
+        "company_score": result.company_score,
+        "company_match": result.company_match,
+        "categories": {
+            name: {"score": cat.score, "details": cat.details}
+            for name, cat in result.categories.items()
+        },
+        "recommendations": result.recommendations,
+        "prediction": prediction,
     }

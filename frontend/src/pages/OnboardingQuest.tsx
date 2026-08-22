@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight, ArrowLeft, Check, ChevronRight, Star,
-  Crown, Gem,
+  Crown, Gem, Leaf, Target, Sparkles,
 } from "lucide-react";
-import ArcadeBackdrop from "../components/learning/ArcadeBackdrop";
 import useAuthStore from "../store/authStore";
 import api from "../services/api";
 import useReducedMotion from "../hooks/useReducedMotion";
+import { Button } from "../design-system/components";
 
 const QUEST_STEPS = [
   {
@@ -18,7 +18,7 @@ const QUEST_STEPS = [
     type: "navigation",
     action: "Select a language from the learning hub",
     target: "/learn/c",
-    icon: "\U0001f3af",
+    icon: "🎯",
     iconLabel: "🎯",
   },
   {
@@ -28,7 +28,7 @@ const QUEST_STEPS = [
     type: "action",
     action: "Open any lesson and click Run",
     target: "/free-trial",
-    icon: "\u2328\ufe0f",
+    icon: "⌨️",
     iconLabel: "⌨️",
   },
   {
@@ -38,7 +38,7 @@ const QUEST_STEPS = [
     type: "action",
     action: "Complete a lesson to earn XP",
     target: "/learn/c",
-    icon: "\u2b50",
+    icon: "⭐",
     iconLabel: "⭐",
   },
   {
@@ -48,7 +48,7 @@ const QUEST_STEPS = [
     type: "info",
     action: "Check your streak in the dashboard",
     target: "/dashboard",
-    icon: "\U0001f525",
+    icon: "🔥",
     iconLabel: "🔥",
   },
   {
@@ -58,7 +58,7 @@ const QUEST_STEPS = [
     type: "conversion",
     action: "Upgrade to Pro",
     target: "/pricing",
-    icon: "\U0001f680",
+    icon: "🚀",
     iconLabel: "🚀",
   },
 ];
@@ -156,11 +156,10 @@ export default function OnboardingQuest() {
 
   if (loading) {
     return (
-      <div className="relative min-h-screen flex items-center justify-center">
-        <ArcadeBackdrop variant="arcade" />
-        <div className="relative z-10 flex flex-col items-center gap-4">
-          <div className="w-10 h-10 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin" />
-          <p className="text-gray-400 font-mono text-sm">Loading your quest...</p>
+      <div className="min-h-screen flex items-center justify-center bg-background-primary">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-10 h-10 border-2 border-brand-primary border-t-transparent rounded-full animate-spin" />
+          <p className="text-text-secondary font-mono text-sm">Loading your journey...</p>
         </div>
       </div>
     );
@@ -172,27 +171,32 @@ export default function OnboardingQuest() {
   const progress = status?.overall_progress || Math.round(((currentStep) / totalSteps) * 100);
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center px-4 py-12">
-      <ArcadeBackdrop variant="candy" />
+    <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-background-primary">
+      {/* Subtle ambient nature */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-20 left-8 w-32 h-32 rounded-full bg-brand-mint/30 blur-3xl" />
+        <div className="absolute bottom-20 right-8 w-24 h-24 rounded-full bg-brand-mint/20 blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 rounded-full bg-brand-mint/10 blur-3xl" />
+      </div>
 
       <div className="relative z-10 w-full max-w-lg">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="glass rounded-2xl border border-white/10 overflow-hidden"
+          className="rounded-2xl border border-border-primary bg-background-surface shadow-soft-lg overflow-hidden"
         >
           {/* Progress bar */}
-          <div className="px-6 pt-5 pb-3">
+          <div className="px-6 pt-5 pb-3 border-b border-border-primary">
             <div className="flex items-center justify-between mb-3">
-              <span className="text-xs font-mono text-gray-500">
+              <span className="text-xs font-mono text-text-secondary uppercase tracking-wider">
                 Step {currentStep + 1} of {totalSteps}
               </span>
-              <span className="text-xs font-mono text-indigo-400">{progress}%</span>
+              <span className="text-xs font-mono text-brand-primary font-semibold">{progress}%</span>
             </div>
-            <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
+            <div className="w-full h-1.5 bg-background-secondary rounded-full overflow-hidden">
               <motion.div
-                className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"
+                className="h-full bg-gradient-to-r from-brand-primary to-brand-deep rounded-full"
                 initial={{ width: 0 }}
                 animate={{ width: `${progress}%` }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
@@ -208,7 +212,7 @@ export default function OnboardingQuest() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -30 }}
               transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="px-6 pb-6 space-y-6"
+              className="px-6 py-6 space-y-6"
             >
               {/* Icon */}
               <div className="text-center">
@@ -216,7 +220,7 @@ export default function OnboardingQuest() {
                   initial={{ scale: 0, rotate: -20 }}
                   animate={{ scale: 1, rotate: 0 }}
                   transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.1 }}
-                  className="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 border border-white/10 flex items-center justify-center text-4xl"
+                  className="w-20 h-20 mx-auto rounded-2xl bg-brand-mint border border-brand-primary/20 flex items-center justify-center text-4xl"
                 >
                   {step.iconLabel}
                 </motion.div>
@@ -224,10 +228,10 @@ export default function OnboardingQuest() {
 
               {/* Title & Description */}
               <div className="text-center">
-                <h2 className="text-2xl font-display font-bold text-white mb-2">
+                <h2 className="text-2xl font-display font-bold text-text-primary mb-2">
                   {step.title}
                 </h2>
-                <p className="text-sm text-gray-400 leading-relaxed">
+                <p className="text-sm text-text-secondary leading-relaxed max-w-md mx-auto">
                   {step.description}
                 </p>
               </div>
@@ -241,15 +245,15 @@ export default function OnboardingQuest() {
                       onClick={() => setSelectedLanguage(lang.id)}
                       className={`relative p-4 rounded-xl border-2 text-left transition-all ${
                         selectedLanguage === lang.id
-                          ? "border-indigo-500 bg-indigo-500/10 shadow-lg shadow-indigo-500/20"
-                          : "border-white/10 bg-white/5 hover:border-white/20"
+                          ? "border-brand-primary bg-brand-mint/30 shadow-glow"
+                          : "border-border-primary bg-background-surface hover:border-brand-primary/30 hover:bg-brand-mint/10"
                       }`}
                     >
                       <div className={`absolute inset-0 rounded-xl bg-gradient-to-br ${lang.color} opacity-10`} />
-                      <p className="relative text-lg font-bold text-white">{lang.label}</p>
-                      <p className="relative text-xs text-gray-400 mt-1">{lang.desc}</p>
+                      <p className="relative text-lg font-bold text-text-primary">{lang.label}</p>
+                      <p className="relative text-xs text-text-secondary mt-1">{lang.desc}</p>
                       {selectedLanguage === lang.id && (
-                        <Check size={16} className="absolute top-2 right-2 text-indigo-400" />
+                        <Check size={16} className="absolute top-2 right-2 text-brand-primary" />
                       )}
                     </button>
                   ))}
@@ -258,73 +262,65 @@ export default function OnboardingQuest() {
 
               {/* Action hint for non-conversion steps */}
               {step.type !== "conversion" && (
-                <div className="flex items-center gap-2 text-xs text-gray-500">
+                <div className="flex items-center gap-2 text-xs text-text-secondary">
                   <ChevronRight size={14} className="shrink-0" />
                   <span>{step.action}</span>
                 </div>
               )}
 
               {/* XP reward badge */}
-              <div className="flex items-center justify-center gap-2 text-sm">
-                <Star size={14} className="text-yellow-400" />
-                <span className="text-gray-400">+10 XP on completion</span>
+              <div className="flex items-center justify-center gap-2 text-sm text-text-secondary">
+                <Star size={14} className="text-semantic-xp" />
+                <span>+10 XP on completion</span>
               </div>
 
               {/* Action button */}
-              <button
+              <Button
                 onClick={() => handleCompleteStep(step)}
                 disabled={submitting || (step.id === "step-1" && !selectedLanguage)}
-                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm transition-all bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white shadow-lg shadow-indigo-500/20 disabled:opacity-40 disabled:cursor-not-allowed"
+                size="lg"
+                fullWidth
+                loading={submitting}
+                rightIcon={step.id === "step-5" ? <Crown size={16} /> : step.type === "action" ? <ArrowRight size={16} /> : <ArrowRight size={16} />}
               >
-                {submitting ? (
-                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                ) : step.id === "step-5" ? (
-                  <>
-                    <Crown size={16} />
-                    {step.action}
-                  </>
-                ) : step.type === "action" ? (
-                  <>
-                    {step.action}
-                    <ArrowRight size={16} />
-                  </>
-                ) : (
-                  <>
-                    Let's Go!
-                    <ArrowRight size={16} />
-                  </>
-                )}
-              </button>
+                {step.id === "step-5" ? step.action : step.type === "action" ? step.action : "Let's Go!"}
+              </Button>
 
               {/* Conversion pricing for step 5 */}
               {step.id === "step-5" && (
                 <div className="space-y-3 mt-2">
-                  <div className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10">
-                    <div>
-                      <p className="text-sm font-semibold text-white">Pro Monthly</p>
-                      <p className="text-xs text-gray-500">$9/month</p>
+                  <div className="p-4 rounded-xl border border-border-primary bg-background-surfaceSecondary">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-semibold text-text-primary">Pro Monthly</p>
+                        <p className="text-xs text-text-secondary">$9/month</p>
+                      </div>
+                      <span className="text-lg font-bold text-brand-primary">$9</span>
                     </div>
-                    <span className="text-lg font-bold text-cyan-400">$9</span>
                   </div>
-                  <div className="flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/30">
-                    <div>
-                      <p className="text-sm font-semibold text-white flex items-center gap-2">
-                        <Gem size={14} className="text-yellow-400" />
-                        Lifetime
-                      </p>
-                      <p className="text-xs text-gray-500">Lock in forever</p>
+                  <div className="p-4 rounded-xl border border-brand-primary/30 bg-brand-mint/20">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-semibold text-text-primary flex items-center gap-2">
+                          <Gem size={14} className="text-semantic-achievement" />
+                          Lifetime
+                        </p>
+                        <p className="text-xs text-text-secondary">Lock in forever</p>
+                      </div>
+                      <span className="text-lg font-bold text-semantic-achievement">$39</span>
                     </div>
-                    <span className="text-lg font-bold text-yellow-400">$39</span>
                   </div>
-                  <div className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10">
-                    <div>
-                      <p className="text-sm font-semibold text-white flex items-center gap-2">
-                        <Star size={14} className="text-emerald-400" />
-                        Student Discount
-                      </p>
-                      <p className="text-xs text-gray-500">50% off with .edu</p>
+                  <div className="p-4 rounded-xl border border-border-primary bg-background-surfaceSecondary">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-semibold text-text-primary flex items-center gap-2">
+                          <Star size={14} className="text-semantic-success" />
+                          Student Discount
+                        </p>
+                        <p className="text-xs text-text-secondary">50% off with .edu</p>
+                      </div>
+                      <span className="text-sm font-bold text-semantic-success">50% OFF</span>
                     </div>
-                    <span className="text-sm font-bold text-emerald-400">50% OFF</span>
                   </div>
                 </div>
               )}
@@ -332,23 +328,27 @@ export default function OnboardingQuest() {
           </AnimatePresence>
 
           {/* Bottom navigation */}
-          <div className="flex items-center justify-between px-6 py-4 border-t border-white/5">
+          <div className="flex items-center justify-between px-6 py-4 border-t border-border-primary bg-background-surfaceSecondary/50">
             {currentStep > 0 ? (
-              <button
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => setCurrentStep((s) => s - 1)}
-                className="flex items-center gap-1 text-sm text-gray-400 hover:text-white transition-colors"
+                leftIcon={<ArrowLeft size={14} />}
               >
-                <ArrowLeft size={14} /> Back
-              </button>
+                Back
+              </Button>
             ) : (
-              <div />
+              <div className="w-20" />
             )}
-            <button
+            <Button
+              variant="ghost"
+              size="sm"
               onClick={handleSkip}
-              className="text-xs font-mono text-gray-500 hover:text-gray-300 transition-colors"
+              className="text-xs font-mono"
             >
               Skip onboarding
-            </button>
+            </Button>
           </div>
         </motion.div>
       </div>

@@ -1,57 +1,74 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useParams, Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
-  ArrowLeft, CheckCircle2, Lock, Crown, Star, Zap,
-  ChevronRight
+  ArrowLeft, CheckCircle2, Crown, Lock, Star, ChevronRight,
+  Rocket, Terminal, X, Trophy,
 } from "lucide-react";
 import api from "../services/api";
 import Spinner from "../components/ui/Spinner";
 import ArcadeBackdrop from "../components/learning/ArcadeBackdrop";
+import PracticeConsole from "../components/learning/PracticeConsole";
+import CandyNode from "../components/candy/CandyNode";
+import CandyProgress from "../components/candy/CandyProgress";
+import { CANDY, candyRadial, candyGlow } from "../components/candy";
+import type { CandyColor } from "../components/candy";
+import { useMediaQuery } from "../hooks/useMediaQuery";
 
-function DifficultyStars({ difficulty }) {
-  return (
-    <div className="flex gap-0.5">
-      {[1, 2, 3].map(d => (
-        <Star key={d} size={10} className={d <= difficulty ? "text-yellow-400 fill-yellow-400" : "text-gray-600"} />
-      ))}
-    </div>
-  );
+/* ── Candy Crush palette (from the candy design system) ── */
+const LEVEL_COLORS: CandyColor[] = [
+  "strawberry", "grape", "lemon", "mint", "blueberry", "tangerine", "cherry", "gold",
+];
+
+function candyOf(i: number) {
+  return CANDY[LEVEL_COLORS[i % LEVEL_COLORS.length]];
 }
 
-function TypeBadge({ type }) {
-  const styles = {
-    theory: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-    practice: "bg-green-500/10 text-green-400 border-green-500/20",
-    quiz: "bg-purple-500/10 text-purple-400 border-purple-500/20",
-    challenge: "bg-orange-500/10 text-orange-400 border-orange-500/20",
-    project: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
-    boss: "bg-red-500/10 text-red-400 border-red-500/20",
-  };
-  const labels = {
+function TypeBadge({ type }: { type: string }) {
+  const labels: Record<string, string> = {
     theory: "Learn", practice: "Code", quiz: "Quiz",
     challenge: "Solve", project: "Build", boss: "Boss",
   };
+  const colors: Record<string, string> = {
+    theory: "bg-sky-500/15 text-sky-300 border-sky-400/25",
+    practice: "bg-emerald-500/15 text-emerald-300 border-emerald-400/25",
+    quiz: "bg-purple-500/15 text-purple-300 border-purple-400/25",
+    challenge: "bg-orange-500/15 text-orange-300 border-orange-400/25",
+    project: "bg-cyan-500/15 text-cyan-300 border-cyan-400/25",
+    boss: "bg-rose-500/15 text-rose-300 border-rose-400/25",
+  };
   return (
-    <span className={`text-[10px] px-1.5 py-0.5 rounded-full border font-mono ${styles[type] || styles.theory}`}>
+    <span className={`inline-block rounded-full border px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider ${colors[type] || colors.theory}`}>
       {labels[type] || type}
     </span>
   );
 }
 
+function DifficultyStars({ difficulty }: { difficulty: number }) {
+  return (
+    <div className="flex gap-0.5">
+      {[1, 2, 3].map((d) => (
+        <Star key={d} size={10} className={d <= difficulty ? "fill-amber-400 text-amber-400" : "text-white/25"} />
+      ))}
+    </div>
+  );
+}
+
 export default function LanguageJourney() {
   const { languageId } = useParams();
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const [expandedLevel, setExpandedLevel] = useState(null);
+  const [expandedLevel, setExpandedLevel] = useState<string | null>(null);
+  const [dockOpen, setDockOpen] = useState(false);
+  const currentRef = useRef<HTMLDivElement | null>(null);
+  const isMobile = useMediaQuery("(max-width: 640px)");
 
   useEffect(() => {
     setLoading(true);
-    api.get(`/api/learning/${languageId}/levels`)
-      .then(d => {
+    api.get(`/api/v1/learning/${languageId}/levels`)
+      .then((d) => {
         setData(d);
-        // Auto-expand first incomplete level
-        const incomplete = d.levels.find(l => l.progress_pct < 100);
+        const incomplete = d.levels.find((l: any) => l.progress_pct < 100);
         if (incomplete) setExpandedLevel(incomplete.id);
         else if (d.levels.length > 0) setExpandedLevel(d.levels[d.levels.length - 1].id);
       })
@@ -59,151 +76,313 @@ export default function LanguageJourney() {
       .finally(() => setLoading(false));
   }, [languageId]);
 
+  useEffect(() => {
+    if (data && currentRef.current) {
+      currentRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, [data]);
+
   if (loading) return <div className="min-h-screen flex items-center justify-center"><Spinner /></div>;
   if (!data) return <div className="min-h-screen flex items-center justify-center text-gray-400">Not found</div>;
 
-  const questTotals = data.levels.reduce(
-    (acc, level) => {
-      acc.practice += level.practice_lessons || 0;
-      acc.challenge += level.challenge_lessons || 0;
-      acc.project += level.project_lessons || 0;
-      return acc;
-    },
-    { practice: 0, challenge: 0, project: 0 }
-  );
+  const cols = isMobile ? 3 : 5;
+  const pitch = isMobile ? 96 : 114;
+  const rowPitch = isMobile ? 148 : 152;
+  const nodeSize = isMobile ? 70 : 84;
+  const nodeSizeClass = isMobile
+    ? "h-[70px] w-[70px]"
+    : "h-[84px] w-[84px]";
+
+  const levels = [...data.levels].sort((a: any, b: any) => a.order - b.order);
+  const rows = Math.max(1, Math.ceil(levels.length / cols));
+  const xOf = (col: number) => col * pitch + nodeSize / 2;
+  const yOf = (row: number) => row * rowPitch + nodeSize / 2 + 6;
+  const posOf = (i: number) => {
+    const row = Math.floor(i / cols);
+    const off = i % cols;
+    const col = row % 2 === 0 ? off : cols - 1 - off;
+    return { row, col, x: xOf(col), y: yOf(row) };
+  };
+  const boardW = (cols - 1) * pitch + nodeSize + 24;
+  const boardH = (rows - 1) * rowPitch + nodeSize + 96;
+
+  /* state derivation: completed → current (first incomplete) → locked */
+  const stateOf = (i: number): "completed" | "current" | "locked" => {
+    const l = levels[i];
+    if (l.progress_pct === 100) return "completed";
+    const prevDone = i === 0 ? true : levels[i - 1].progress_pct === 100;
+    return prevDone ? "current" : "locked";
+  };
+
+  const segments: { d: string; muted: boolean }[] = [];
+  for (let i = 0; i < levels.length - 1; i++) {
+    const a = posOf(i);
+    const b = posOf(i + 1);
+    const d =
+      a.row === b.row
+        ? `M ${a.x} ${a.y} L ${b.x} ${b.y}`
+        : `M ${a.x} ${a.y} L ${a.x} ${b.y} L ${b.x} ${b.y}`;
+    segments.push({ d, muted: stateOf(i + 1) === "locked" });
+  }
+
+  const expanded = levels.find((l: any) => l.id === expandedLevel);
+  const completedCount = levels.filter((l: any) => l.progress_pct === 100).length;
+  const totalXp = data.total_xp || 0;
+  const currentLevel = levels.find((_l: any, i: number) => stateOf(i) === "current");
 
   return (
-    <div className="relative min-h-screen px-4 py-8">
-      <ArcadeBackdrop variant={languageId === "python" ? "candy" : "dojo"} />
+    <div className={`relative min-h-screen px-3 py-8 md:px-4 ${dockOpen ? "pb-[440px]" : ""}`}>
+      <ArcadeBackdrop variant="candy" />
       <div className="relative z-10 mx-auto max-w-4xl">
-      {/* Header */}
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
-        <Link to="/learn" className="inline-flex items-center gap-2 text-gray-400 hover:text-text-primary transition-colors text-sm font-mono mb-4">
-          <ArrowLeft size={14} /> All Languages
-        </Link>
-        <div className="flex items-center gap-4">
-          <span className="text-4xl">{data.language.icon}</span>
-          <div>
-            <h1 className="text-3xl font-display font-black text-text-primary">{data.language.name}</h1>
-            <div className="flex items-center gap-4 mt-1">
-              <span className="text-sm font-mono text-gray-400">{data.total_xp} XP</span>
-              <span className="text-sm font-mono text-gray-400">
-                {data.levels.reduce((a, l) => a + l.lessons_completed, 0)} / {data.levels.reduce((a, l) => a + l.total_lessons, 0)} lessons
-              </span>
+        {/* Header */}
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
+          <Link to="/learn" className="mb-4 inline-flex items-center gap-2 font-mono text-sm text-white/50 transition-colors hover:text-white">
+            <ArrowLeft size={14} /> All Languages
+          </Link>
+          <div className="flex flex-wrap items-center gap-4">
+            <div
+              className="flex h-16 w-16 items-center justify-center rounded-3xl text-4xl shadow-xl"
+              style={{ background: candyRadial(LEVEL_COLORS[0]), boxShadow: candyGlow(LEVEL_COLORS[0]) }}
+            >
+              {data.language.icon}
             </div>
-            <div className="mt-3 flex flex-wrap gap-2">
-              <span className="quest-chip bg-brand-teal-pale text-brand-teal">{questTotals.practice} practice</span>
-              <span className="quest-chip bg-brand-lavender-pale text-brand-lavender">{questTotals.challenge} challenges</span>
-              <span className="quest-chip bg-brand-coral-pale text-brand-coral">{questTotals.project} projects</span>
-              <span className="quest-chip bg-white/10 text-white">{questTotals.practice + questTotals.challenge + questTotals.project} total quests</span>
+            <div className="min-w-0 flex-1">
+              <h1 className="font-display text-3xl font-black md:text-4xl">
+                <span className="candy-text">{data.language.name}</span>
+              </h1>
+              <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-sm text-white/60">
+                <span className="flex items-center gap-1"><Trophy size={13} className="text-amber-400" /> {totalXp} XP</span>
+                <span>{completedCount} / {levels.length} levels</span>
+                <span>
+                  {levels.reduce((a: number, l: any) => a + l.lessons_completed, 0)} / {levels.reduce((a: number, l: any) => a + l.total_lessons, 0)} lessons
+                </span>
+              </div>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <button
+                  onClick={() => setDockOpen((v) => !v)}
+                  className={`inline-flex items-center gap-2 rounded-xl border px-4 py-2 font-mono text-sm transition-all ${
+                    dockOpen
+                      ? "border-cyan-300/50 bg-cyan-400/25 text-cyan-200"
+                      : "border-cyan-300/30 bg-cyan-400/15 text-cyan-200 hover:bg-cyan-400/25"
+                  }`}
+                >
+                  {dockOpen ? <X size={14} /> : <Terminal size={14} />}
+                  {dockOpen ? "Close Practice" : "Open Practice"}
+                </button>
+                <Link
+                  to="/playground"
+                  className="inline-flex items-center gap-2 rounded-xl border border-fuchsia-300/30 bg-fuchsia-400/15 px-4 py-2 font-mono text-sm text-fuchsia-200 transition-all hover:bg-fuchsia-400/25"
+                >
+                  <Rocket size={14} /> Playground
+                </Link>
+              </div>
+              {currentLevel && (
+                <p className="mt-3 font-mono text-xs text-white/50">
+                  Next stop — <span className="font-bold text-white">{currentLevel.name}</span>
+                </p>
+              )}
             </div>
           </div>
-        </div>
-      </motion.div>
 
-      {/* Candy Crush Level Grid — Hexagonal Layout */}
-      <div className="relative">
-        {/* Vertical connector line */}
-        <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-green-500/30 via-yellow-500/30 to-red-500/30 -translate-x-1/2 hidden md:block" />
+          {/* Candy progress bar */}
+          <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+            <div className="flex items-center justify-between font-mono text-xs uppercase tracking-widest text-white/50">
+              <span>Campaign progress</span>
+              <span>{completedCount} / {levels.length} levels</span>
+            </div>
+            <div className="mt-2 flex h-2.5 w-full gap-1 overflow-hidden rounded-full bg-white/10 p-0.5 md:h-3">
+              {levels.map((l: any, i: number) => {
+                const s = stateOf(i);
+                const c = candyOf(i);
+                return (
+                  <div
+                    key={l.id}
+                    className={`h-full flex-1 rounded-full transition-all duration-700 ${s === "current" ? "animate-pulse" : ""}`}
+                    style={{
+                      background: s === "completed" ? `linear-gradient(90deg, ${c.base}, ${c.light})` : s === "locked" ? "rgba(255,255,255,0.06)" : `radial-gradient(circle at 40% 30%, ${c.light}, ${c.base})`,
+                      boxShadow: s === "completed" ? `0 0 10px ${c.base}88` : s === "current" ? `0 0 14px ${c.base}` : "none",
+                    }}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        </motion.div>
 
-        <div className="space-y-4 md:space-y-6">
-          {data.levels.map((level, i) => {
-            const isExpanded = expandedLevel === level.id;
-            const allDone = level.progress_pct === 100;
-            const hasProgress = level.progress_pct > 0;
-            const isLocked = !hasProgress && !allDone && i > 0 && data.levels[i - 1]?.progress_pct < 100;
+        {/* Candy Crush Map */}
+        <div className="relative mx-auto" style={{ width: boardW, height: boardH }}>
+          {/* soft candy depth blobs */}
+          <div className="pointer-events-none absolute inset-0">
+            <div className="absolute -left-10 top-1/4 h-48 w-48 rounded-full blur-3xl"
+              style={{ background: "radial-gradient(circle, rgba(255,107,107,0.30), transparent 70%)" }} />
+            <div className="absolute -right-8 top-1/3 h-52 w-52 rounded-full blur-3xl"
+              style={{ background: "radial-gradient(circle, rgba(132,94,194,0.28), transparent 70%)" }} />
+            <div className="absolute bottom-10 left-1/3 h-44 w-44 rounded-full blur-3xl"
+              style={{ background: "radial-gradient(circle, rgba(255,199,95,0.20), transparent 70%)" }} />
+          </div>
+          {/* dotted board */}
+          <div className="pointer-events-none absolute inset-0 opacity-40"
+            style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.10) 1px, transparent 1px)", backgroundSize: "26px 26px" }} />
 
+          {/* floating candy sparkles */}
+          <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+            <span className="candy-float absolute left-[6%] top-[4%] text-xl opacity-60" style={{ animationDelay: "0s" }}>🍬</span>
+            <span className="candy-float absolute right-[8%] top-[10%] text-lg opacity-50" style={{ animationDelay: "1.2s" }}>✨</span>
+            <span className="candy-float absolute left-[12%] top-[46%] text-lg opacity-40" style={{ animationDelay: "2.1s" }}>🌟</span>
+            <span className="candy-float absolute right-[10%] top-[58%] text-xl opacity-50" style={{ animationDelay: "0.6s" }}>🍭</span>
+            <span className="candy-float absolute left-[5%] top-[84%] text-lg opacity-40" style={{ animationDelay: "1.7s" }}>✨</span>
+            <span className="candy-float absolute right-[5%] top-[90%] text-xl opacity-50" style={{ animationDelay: "2.6s" }}>🍬</span>
+          </div>
+
+          {/* connectors — tight winding path with animated candy flow */}
+          <svg className="pointer-events-none absolute inset-0" width={boardW} height={boardH}>
+            {segments.map((seg, i) => {
+              const c = candyOf(i);
+              return (
+                <g key={i}>
+                  <path
+                    d={seg.d}
+                    fill="none"
+                    stroke={seg.muted ? "rgba(255,255,255,0.16)" : c.base}
+                    strokeWidth={seg.muted ? 3 : 6}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    opacity={seg.muted ? 1 : 0.9}
+                  />
+                  {!seg.muted && (
+                    <path
+                      className="candy-flow"
+                      d={seg.d}
+                      fill="none"
+                      stroke={c.light}
+                      strokeWidth={2}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeDasharray="12 12"
+                    />
+                  )}
+                </g>
+              );
+            })}
+          </svg>
+
+          {/* nodes */}
+          {levels.map((level: any, i: number) => {
+            const p = posOf(i);
+            const s = stateOf(i);
             return (
-              <motion.div key={level.id}
-                initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.05 }}>
-
-                {/* Level Node — Hexagonal style */}
-                <div className={`flex ${i % 2 === 0 ? "md:justify-start" : "md:justify-end"} justify-center`}>
-                  <button onClick={() => !isLocked && setExpandedLevel(isExpanded ? null : level.id)}
-                    disabled={isLocked}
-                    className={`relative group w-full md:w-96`}>
-                    <div className={`rounded-2xl border-2 p-4 transition-all duration-300 ${
-                      allDone
-                        ? "border-green-500/40 bg-green-500/[0.05] shadow-lg shadow-green-500/10"
-                        : hasProgress
-                        ? `${level.border || "border-cyber-blue/30"} bg-gradient-to-r ${level.bg || "from-cyber-blue/5 to-cyan-500/5"} shadow-lg`
-                        : isLocked
-                        ? "border-white/5 bg-white/[0.02] opacity-50 cursor-not-allowed"
-                        : "border-white/10 bg-white/[0.03] hover:border-cyber-blue/30 hover:shadow-lg hover:shadow-cyber-blue/5"
+              <div
+                key={level.id}
+                className="absolute -translate-x-1/2 -translate-y-1/2"
+                style={{ left: p.x, top: p.y }}
+              >
+                <motion.div
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.15 + i * 0.04, duration: 0.4, ease: "easeOut" }}
+                >
+                  <CandyNode
+                    number={i + 1}
+                    emoji={level.emoji}
+                    color={LEVEL_COLORS[i % LEVEL_COLORS.length]}
+                    state={s}
+                    milestone={(i + 1) % 5 === 0}
+                    className={nodeSizeClass}
+                    innerRef={s === "current" ? currentRef : undefined}
+                    onClick={() => {
+                      if (s === "locked") return;
+                      setExpandedLevel((cur) => (cur === level.id ? null : level.id));
+                    }}
+                  />
+                  <div className="mt-2 flex justify-center">
+                    <span className={`max-w-[96px] truncate text-center text-[10px] font-semibold md:text-[11px] ${
+                      s === "locked" ? "text-white/35" : s === "completed" ? "text-amber-200/90" : "text-white/80"
                     }`}>
-                      <div className="flex items-center gap-4">
-                        {/* Level Number Circle */}
-                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 text-lg font-display font-black ${
-                          allDone ? "bg-green-500/20 text-green-400" :
-                          hasProgress ? "bg-cyber-blue/20 text-cyber-blue" :
-                          isLocked ? "bg-white/5 text-gray-600" :
-                          "bg-white/10 text-gray-400 group-hover:bg-cyber-blue/10 group-hover:text-cyber-blue"
-                        }`}>
-                          {allDone ? <CheckCircle2 size={24} /> : isLocked ? <Lock size={18} /> : level.emoji || (i + 1)}
-                        </div>
-
-                        {/* Level Info */}
-                        <div className="flex-1 text-left">
-                          <div className="flex items-center gap-2">
-                            <span className="text-[10px] font-mono text-gray-500 uppercase">Level {i + 1}</span>
-                            {allDone && <span className="text-[10px] font-mono text-green-400">COMPLETE</span>}
-                          </div>
-                          <p className="font-display font-bold text-white text-sm">{level.name}</p>
-                          <p className="text-xs text-gray-500 font-mono">{level.total_lessons} lessons · {level.total_xp} XP</p>
-                        </div>
-
-                        {/* Progress */}
-                        <div className="text-right shrink-0">
-                          <div className="w-16 h-1.5 bg-white/5 rounded-full overflow-hidden mb-1">
-                            <div className={`h-full rounded-full transition-all duration-500 ${
-                              allDone ? "bg-green-500" : "bg-cyber-blue"
-                            }`} style={{ width: `${level.progress_pct}%` }} />
-                          </div>
-                          <span className="text-[10px] font-mono text-gray-500">{level.progress_pct}%</span>
-                        </div>
-                      </div>
-                    </div>
-                  </button>
-                </div>
-
-                {/* Expanded Lesson List */}
-                {isExpanded && (
-                  <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    className={`${i % 2 === 0 ? "md:ml-16 md:mr-auto" : "md:mr-16 md:ml-auto"} w-full md:w-96 mx-auto mt-2`}>
-                    <LessonPanel languageId={languageId} level={level} />
-                  </motion.div>
-                )}
-              </motion.div>
+                      {level.name}
+                    </span>
+                  </div>
+                </motion.div>
+              </div>
             );
           })}
         </div>
+
+        {/* Legend */}
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-mono text-xs text-white/50">
+          <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-full border-2 border-amber-300 bg-amber-400" /> Complete</span>
+          <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-full bg-rose-400" /> You are here</span>
+          <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-full bg-[#232331]" /> Locked</span>
+          <span className="flex items-center gap-1.5"><Crown size={12} className="text-amber-400" /> Milestone</span>
+        </div>
+
+        {/* Expanded level panel */}
+        <AnimatePresence>
+          {expanded && (
+            <motion.div
+              key={expanded.id}
+              initial={{ opacity: 0, y: 16, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 8 }}
+              className="mx-auto mt-8 w-full max-w-xl"
+            >
+              <LevelPanel languageId={languageId ?? ""} level={expanded} />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-      </div>
+
+      {/* Practice dock */}
+      <AnimatePresence>
+        {dockOpen && (
+          <motion.div
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "100%" }}
+            transition={{ type: "spring", damping: 26, stiffness: 260 }}
+            className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#12101f]/95 p-4 shadow-2xl backdrop-blur-md"
+          >
+            <div className="mx-auto max-w-6xl">
+              <PracticeConsole
+                language={languageId ?? "python"}
+                height={230}
+                title={`${data.language.name} — practice here`}
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {!dockOpen && (
+        <button
+          onClick={() => setDockOpen(true)}
+          className="fixed bottom-6 right-6 z-40 flex items-center gap-2 rounded-2xl border border-cyan-300/40 bg-[#12101f]/90 px-4 py-3 font-mono text-sm text-cyan-200 shadow-xl backdrop-blur-md transition-all hover:bg-[#1c1930]"
+          title="Open practice console"
+        >
+          <Terminal size={16} /> Practice
+        </button>
+      )}
     </div>
   );
 }
 
-function LessonPanel({ languageId, level }) {
-  const [lessons, setLessons] = useState([]);
+/* ── Expanded level: lesson list panel ── */
+function LevelPanel({ languageId, level }: { languageId: string; level: any }) {
+  const [lessons, setLessons] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const c = candyOf(0);
 
-  useEffect(() => {
+  const load = useCallback(() => {
     setLoading(true);
-    api.get(`/api/learning/${languageId}/${level.id}/lessons`)
-      .then(d => setLessons(d.lessons))
+    api.get(`/api/v1/learning/${languageId}/${level.id}/lessons`)
+      .then((d) => setLessons(d.lessons))
       .catch(console.error)
       .finally(() => setLoading(false));
   }, [languageId, level.id]);
 
-  if (loading) return <div className="p-4 glass rounded-xl"><Spinner /></div>;
-  if (!lessons.length) return null;
+  useEffect(() => { load(); }, [load]);
 
-  // Group lessons
-  const groups = [];
-  let current = null;
+  const groups: { type: string; lessons: any[] }[] = [];
+  let current: any = null;
   for (const l of lessons) {
     if (!current || current.type !== l.type) {
       current = { type: l.type, lessons: [] };
@@ -213,64 +392,103 @@ function LessonPanel({ languageId, level }) {
   }
 
   return (
-    <div className="glass rounded-xl p-4 space-y-3">
-      {groups.map((group, gi) => (
-        <div key={gi}>
-          <TypeBadge type={group.type} />
-          <div className="mt-2 space-y-1">
-            {group.lessons.map((lesson, li) => (
-              <LessonRow key={lesson.id} lesson={lesson} languageId={languageId} levelId={level.id} />
-            ))}
+    <div
+      className="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] shadow-2xl backdrop-blur-md"
+      style={{ boxShadow: `0 20px 60px -20px ${c.base}66` }}
+    >
+      {/* panel header */}
+      <div
+        className="flex items-center gap-3 px-5 py-4"
+        style={{ background: `linear-gradient(120deg, ${c.dark}, ${c.base} 60%, ${c.light})` }}
+      >
+        <span className="text-3xl">{level.emoji || "🍬"}</span>
+        <div className="min-w-0 flex-1">
+          <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-white/70">Level {level.order + 1}</p>
+          <h3 className="truncate font-display text-lg font-black text-white">{level.name}</h3>
+        </div>
+        <div className="text-right">
+          <div className="font-mono text-xs text-white/80">{level.progress_pct}%</div>
+          <div className="flex items-center gap-1 font-mono text-[10px] text-white/60">
+            <Trophy size={11} className="text-amber-200" /> {level.xp_earned} / {level.total_xp} XP
           </div>
         </div>
-      ))}
+      </div>
+
+      {/* candy progress fill */}
+      <div className="px-5 pb-4">
+        <CandyProgress
+          value={level.progress_pct}
+          color={LEVEL_COLORS[(level.order || 0) % LEVEL_COLORS.length]}
+          size="sm"
+          showPercent={false}
+        />
+      </div>
+
+      {loading ? (
+        <div className="p-6"><Spinner /></div>
+      ) : groups.length === 0 ? (
+        <div className="p-6 text-center font-mono text-sm text-white/40">No lessons yet</div>
+      ) : (
+        <div className="space-y-4 p-4">
+          {groups.map((group, gi) => (
+            <div key={gi}>
+              <TypeBadge type={group.type} />
+              <div className="mt-2 space-y-1.5">
+                {group.lessons.map((lesson) => (
+                  <LessonRow key={lesson.id} lesson={lesson} languageId={languageId} levelId={level.id} />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
 
-function LessonRow({ lesson, languageId, levelId }) {
+function LessonRow({ lesson, languageId, levelId }: { lesson: any; languageId: string; levelId: string }) {
   const isBoss = lesson.type === "boss";
   const isProject = lesson.type === "project";
 
   if (!lesson.unlocked) {
     return (
-      <div className="flex items-center gap-2 p-2 rounded-lg bg-white/[0.01] opacity-30">
-        <Lock size={12} className="text-gray-600 shrink-0" />
-        <span className="text-xs font-mono text-gray-600 truncate flex-1">{lesson.title}</span>
+      <div className="flex items-center gap-2 rounded-xl bg-white/[0.03] p-2.5 opacity-40">
+        <Lock size={13} className="shrink-0 text-white/50" />
+        <span className="flex-1 truncate font-mono text-xs text-white/50">{lesson.title}</span>
         <DifficultyStars difficulty={lesson.difficulty || 1} />
-        <span className="text-[10px] font-mono text-gray-600">+{lesson.xp}</span>
+        <span className="font-mono text-[10px] text-white/40">+{lesson.xp}</span>
       </div>
     );
   }
 
   return (
-    <Link to={`/learn/${languageId}/${levelId}/${lesson.id}`}>
-      <div className={`flex items-center gap-2 p-2 rounded-lg transition-all cursor-pointer group ${
-        lesson.completed
-          ? "bg-green-500/[0.05] hover:bg-green-500/10"
-          : isBoss
-          ? "bg-red-500/[0.05] hover:bg-red-500/10 border border-red-500/20"
-          : isProject
-          ? "bg-cyan-500/[0.05] hover:bg-cyan-500/10 border border-cyan-500/20"
-          : "hover:bg-cyber-blue/[0.05]"
-      }`}>
+    <Link to={`/learn/${languageId}/${levelId}/${lesson.id}`} className="group block">
+      <div
+        className={`flex items-center gap-2 rounded-xl p-2.5 transition-all ${
+          lesson.completed
+            ? "bg-emerald-400/10 ring-1 ring-emerald-300/20"
+            : isBoss
+            ? "bg-rose-500/10 ring-1 ring-rose-400/30"
+            : isProject
+            ? "bg-cyan-500/10 ring-1 ring-cyan-400/30"
+            : "bg-white/[0.05] ring-1 ring-white/10 hover:bg-white/[0.09] hover:ring-white/25"
+        }`}
+      >
         {lesson.completed ? (
-          <CheckCircle2 size={14} className="text-green-400 shrink-0" />
+          <CheckCircle2 size={15} className="shrink-0 text-emerald-300" />
         ) : isBoss ? (
-          <Crown size={14} className="text-red-400 shrink-0" />
+          <span className="shrink-0 text-sm">👑</span>
         ) : isProject ? (
-          <span className="text-sm shrink-0">🔨</span>
+          <span className="shrink-0 text-sm">🔨</span>
         ) : (
-          <span className="w-3.5 h-3.5 rounded-full border border-gray-600 shrink-0" />
+          <span className="h-3.5 w-3.5 shrink-0 rounded-full border-2 border-white/30" />
         )}
-        <span className={`text-xs font-mono truncate flex-1 ${
-          lesson.completed ? "text-green-300" : isBoss ? "text-red-300" : "text-gray-300"
-        }`}>
+        <span className={`flex-1 truncate font-mono text-xs ${lesson.completed ? "text-emerald-200" : isBoss ? "text-rose-200" : "text-white/85"}`}>
           {lesson.title}
         </span>
         <DifficultyStars difficulty={lesson.difficulty || 1} />
-        <span className="text-[10px] font-mono text-yellow-400/70 shrink-0">+{lesson.xp}</span>
-        <ChevronRight size={12} className="text-gray-600 group-hover:text-gray-400 shrink-0" />
+        <span className="shrink-0 font-mono text-[10px] text-amber-300/80">+{lesson.xp}</span>
+        <ChevronRight size={13} className="shrink-0 text-white/40 transition-transform group-hover:translate-x-0.5 group-hover:text-white" />
       </div>
     </Link>
   );

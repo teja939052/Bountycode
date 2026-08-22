@@ -1,0 +1,46 @@
+{
+  "id": "html-03-lists",
+  "track": "html",
+  "title": "Working with Lists",
+  "section": "Fundamentals",
+  "order": 3,
+  "type": "lesson",
+  "duration": "7 min",
+  "xp": 15,
+  "content": {
+    "theory": "Lists organize related items. HTML has three kinds:\n\n### Unordered lists (`<ul>`)\nItems get bullet points. Order doesn't matter:\n\n```html\n<ul>\n  <li>Coffee</li>\n  <li>Tea</li>\n</ul>\n```\n\n### Ordered lists (`<ol>`)\nItems get numbers. Order matters:\n\n```html\n<ol>\n  <li>Wash the rice</li>\n  <li>Boil water</li>\n</ol>\n```\n\nEach item is wrapped in `<li>` (list item). The browser handles the bullets or numbers — you never type them yourself.\n\n### Nested lists\nYou can put a list inside a list item:\n\n```html\n<ul>\n  <li>Fruits\n    <ul>\n      <li>Apple</li>\n      <li>Mango</li>\n    </ul>\n  </li>\n</ul>\n```\n\n### When to use which\n- **Steps, rankings, top-10s** → `<ol>` (order matters)\n- **Features, shopping lists, tags** → `<ul>` (order doesn't matter)\n- **Definitions (term → description)** → `<dl>`, `<dt>`, `<dd>`\n\nLists are block-level, so each list starts on a new line.",
+    "codeSnippets": [
+      {
+        "language": "html",
+        "code": "<ol>\n  <li>Preheat oven to 200°C</li>\n  <li>Bake for 25 minutes</li>\n</ol>",
+        "output": "A numbered two-step list."
+      }
+    ],
+    "exercise": {
+      "instruction": "Create an unordered list with three items: HTML, CSS, and JavaScript.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Skills</title>\n</head>\n<body>\n  <h2>My Skills</h2>\n\n</body>\n</html>",
+      "required": ["<ul>", "<li>HTML</li>", "<li>CSS</li>", "<li>JavaScript</li>", "</ul>"],
+      "hints": [
+        "Hint 1: Open with <ul> and close with </ul>.",
+        "Hint 2: Wrap each skill in its own <li> tag.",
+        "Hint 3: Place the list after the <h2> heading."
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which tag creates a numbered list?",
+        "options": ["<ul>", "<ol>", "<li>"],
+        "correct": 1
+      },
+      {
+        "question": "What tag wraps a single list item?",
+        "options": ["<li>", "<item>", "<ul>"],
+        "correct": 0
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "html-04-images-content",
+    "unlocks": ["html-04-images-content"]
+  }
+}

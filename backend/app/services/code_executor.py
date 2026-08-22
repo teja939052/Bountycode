@@ -12,6 +12,8 @@ from app.services.code_tracer import execute_with_trace, detect_algorithm_type
 
 
 from app.config import get_settings
+from app.services.local_sandbox import execute_local, LOCAL_LANGUAGES
+from app.services.remote_fallbacks import execute_remote_fallback
 
 
 class CodeExecutionEngine:
@@ -28,7 +30,11 @@ class CodeExecutionEngine:
         self._client: Optional[httpx.AsyncClient] = None
         self._client_lock = None
         self._semaphore = None
-        self._piston_url = get_settings().PISTON_API_URL
+        settings = get_settings()
+        self._piston_url = settings.PISTON_API_URL
+        self._piston_headers = (
+            {"Authorization": settings.PISTON_API_KEY} if settings.PISTON_API_KEY else {}
+        )
 
     SUPPORTED_LANGUAGES = {
         "python": {"language": "python", "version": "3.10.0", "extension": "py"},
@@ -283,7 +289,7 @@ func main() {
             semaphore = await self._get_semaphore()
 
             async with semaphore:
-                response = await client.post(self._piston_url, json=payload)
+                response = await client.post(self._piston_url, json=payload, headers=self._piston_headers)
 
                 if response.status_code != 200:
                     await self._record_failure()
@@ -293,9 +299,18 @@ func main() {
                         duration_ms=(time.perf_counter() - started) * 1000,
                         error=f"Piston API error: {response.status_code}",
                     )
+                    error_message = f"Piston API error: {response.status_code}"
+                    if response.status_code == 401 and not self._piston_headers:
+                        error_message = (
+                            "Piston API rejected the request (401). Set PISTON_API_KEY in backend/.env "
+                            "(get a free key from the Piston Discord server) or self-host Piston via Docker."
+                        )
+                    fallback = await self._try_fallback(language, code, stdin, timeout)
+                    if fallback:
+                        return fallback
                     return {
                         "success": False,
-                        "error": f"Piston API error: {response.status_code}",
+                        "error": error_message,
                     }
 
                 try:
@@ -308,6 +323,9 @@ func main() {
                         duration_ms=(time.perf_counter() - started) * 1000,
                         error="Invalid JSON from Piston",
                     )
+                    fallback = await self._try_fallback(language, code, stdin, timeout)
+                    if fallback:
+                        return fallback
                     return {
                         "success": False,
                         "error": "Piston API returned invalid JSON",
@@ -352,6 +370,9 @@ func main() {
         except httpx.TimeoutException:
             await self._record_failure()
             await request_metrics.record("compiler", "failure", duration_ms=(time.perf_counter() - started) * 1000, error="Timeout")
+            fallback = await self._try_fallback(language, code, stdin, timeout)
+            if fallback:
+                return fallback
             return {
                 "success": False,
                 "error": "Code execution timed out (possible infinite loop)",
@@ -360,6 +381,9 @@ func main() {
         except httpx.RequestError as e:
             await self._record_failure()
             await request_metrics.record("compiler", "failure", duration_ms=(time.perf_counter() - started) * 1000, error=str(e))
+            fallback = await self._try_fallback(language, code, stdin, timeout)
+            if fallback:
+                return fallback
             return {
                 "success": False,
                 "error": f"Network error: {str(e)}",
@@ -669,7 +693,13 @@ Provide 4 to 12 meaningful, educational execution steps. Focus on loop iteration
                     keepalive_expiry=30.0,
                 )
                 timeout = httpx.Timeout(10.0, connect=5.0)
-                self._client = httpx.AsyncClient(timeout=timeout, limits=limits, http2=True)
+                try:
+                    import h2  # noqa: F401
+
+                    http2 = True
+                except ImportError:
+                    http2 = False
+                self._client = httpx.AsyncClient(timeout=timeout, limits=limits, http2=http2)
         return self._client
 
     async def _get_semaphore(self) -> asyncio.Semaphore:
@@ -693,3 +723,30 @@ Provide 4 to 12 meaningful, educational execution steps. Focus on loop iteration
 
     async def _record_failure(self):
         await compiler_breaker.record_failure()
+
+    async def _try_fallback(self, language: str, code: str, stdin: str, timeout: int) -> Dict[str, Any]:
+        """Run code through free remote providers (Wandbox, Glot.io) then the local
+        sandbox when Piston is unavailable.
+
+        Chain: Wandbox -> Glot.io -> local sandbox. Remote providers are gated by
+        the USE_REMOTE_FALLBACKS flag; the local sandbox by USE_LOCAL_SANDBOX.
+        Returns {} when every hop fails so the caller surfaces the original error.
+        """
+        if get_settings().USE_REMOTE_FALLBACKS:
+            try:
+                remote = await execute_remote_fallback(language, code, stdin, timeout)
+                if remote:
+                    return remote
+            except Exception:
+                pass
+        if not get_settings().USE_LOCAL_SANDBOX:
+            return {}
+        if (language or "").lower() not in LOCAL_LANGUAGES:
+            return {}
+        try:
+            result = await execute_local(code, language, stdin, timeout)
+            if result.get("source") == "local_sandbox":
+                return result
+        except Exception:
+            return {}
+        return {}

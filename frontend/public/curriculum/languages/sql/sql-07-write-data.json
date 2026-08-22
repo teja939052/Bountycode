@@ -1,0 +1,46 @@
+{
+  "id": "sql-07-write-data",
+  "track": "sql",
+  "title": "Writing Data",
+  "section": "SQL Queries",
+  "order": 7,
+  "type": "lesson",
+  "duration": "10 min",
+  "xp": 20,
+  "content": {
+    "theory": "Reading data is only half the story — **INSERT**, **UPDATE**, and **DELETE** modify data.\n\nAdd a row with `INSERT`:\n\n```sql\nINSERT INTO students (name, city, score)\nVALUES ('Neha', 'Pune', 88);\n```\n\nColumn names first, then matching values. String values go in single quotes.\n\nChange existing rows with `UPDATE` — **always include a WHERE**:\n\n```sql\nUPDATE students\nSET score = 95\nWHERE name = 'Rohan';\n```\n\nWithout `WHERE`, the update hits **every row** — a classic disaster:\n\n```sql\n-- DANGEROUS: sets everyone's score to 95\nUPDATE students SET score = 95;\n```\n\nRemove rows with `DELETE` — same warning, **always use WHERE**:\n\n```sql\nDELETE FROM students\nWHERE name = 'Neha';\n```\n\nUpdate multiple columns at once:\n\n```sql\nUPDATE students\nSET city = 'Bengaluru', score = 90\nWHERE id = 2;\n```\n\nThe safety rule for life: every `UPDATE` and `DELETE` needs a `WHERE` that targets exactly what you mean.",
+    "codeSnippets": [
+      {
+        "language": "sql",
+        "code": "INSERT INTO students (name, city, score)\nVALUES ('Neha', 'Pune', 88);",
+        "output": "Adds one row: Neha · Pune · 88"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write an UPDATE statement that sets the 'score' to 95 in the 'students' table, but ONLY for the student named 'Rohan'.",
+      "starterCode": "",
+      "required": ["UPDATE students", "SET score = 95", "WHERE name = 'Rohan'"],
+      "hints": [
+        "Hint 1: UPDATE students",
+        "Hint 2: SET score = 95",
+        "Hint 3: WHERE name = 'Rohan';"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What happens if you UPDATE without a WHERE clause?",
+        "options": ["Nothing", "All rows are updated", "An error always occurs"],
+        "correct": 1
+      },
+      {
+        "question": "Which statement adds new rows?",
+        "options": ["INSERT INTO", "ADD ROW", "NEW"],
+        "correct": 0
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "sql-08-queries-project",
+    "unlocks": ["sql-08-queries-project"]
+  }
+}

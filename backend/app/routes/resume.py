@@ -35,11 +35,34 @@ async def semantic_ats_score(req: SemanticScoreRequest, user=Depends(get_current
     sections = section_scores(resume_text, jd)
     gaps = semantic_gaps(resume_text, jd)
     keyword = keyword_ats_score(resume_text, jd)
+    
+    # Build explainable breakdown
+    total_keywords = len(keyword.get("present_keywords", []) + keyword.get("missing_keywords", []))
+    keyword_match_pct = (len(keyword.get("present_keywords", [])) / total_keywords * 100) if total_keywords > 0 else 0
+    
+    # Section completeness based on standard headers found
+    found_headers = sections.get("found_headers", 0)
+    section_pct = (found_headers / 6) * 100  # 6 standard resume headers
+    
+    # Formatting score from the semantic analysis
+    formatting_score = sections.get("formatting", {}).get("score", 0) if sections else 0
+    
+    # Impact score from the overall semantic score
+    impact_score = overall.get("score", 0) if overall else 0
+    
     return {
-        "semantic": overall,
+        "ats_score": overall.get("overall_score", 0) if overall else 0,
+        "keyword_match_pct": round(keyword_match_pct),
+        "section_completeness_pct": round(section_pct),
+        "formatting_score": formatting_score,
+        "impact_score": impact_score,
+        "keyword_analysis": {
+            "present_keywords": keyword.get("present_keywords", [])[:10],
+            "missing_keywords": keyword.get("missing_keywords", [])[:10],
+            "total_jt_keywords": total_keywords,
+        },
         "section_scores": sections,
         "semantic_gaps": gaps,
-        "keyword_ats": keyword,
     }
 
 

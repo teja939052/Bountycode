@@ -62,22 +62,22 @@ export default function SeasonalEvents() {
         </div>
       )}
 
-      <div className="flex gap-2 border-b border-gray-200">
+      <div className="flex gap-2 border-b border-brand-primary/10">
         <button
           onClick={() => setActiveTab("current")}
-          className={`px-4 py-2 text-sm font-medium border-b-2 ${activeTab === "current" ? "border-indigo-500 text-indigo-600" : "border-transparent text-gray-500"}`}
+          className={`px-4 py-2 text-sm font-medium border-b-2 ${activeTab === "current" ? "border-indigo-500 text-indigo-600" : "border-transparent text-brand-muted"}`}
         >
           Current Event
         </button>
         <button
           onClick={() => setActiveTab("all")}
-          className={`px-4 py-2 text-sm font-medium border-b-2 ${activeTab === "all" ? "border-indigo-500 text-indigo-600" : "border-transparent text-gray-500"}`}
+          className={`px-4 py-2 text-sm font-medium border-b-2 ${activeTab === "all" ? "border-indigo-500 text-indigo-600" : "border-transparent text-brand-muted"}`}
         >
           All Seasons
         </button>
         <button
           onClick={() => setActiveTab("leaderboard")}
-          className={`px-4 py-2 text-sm font-medium border-b-2 ${activeTab === "leaderboard" ? "border-indigo-500 text-indigo-600" : "border-transparent text-gray-500"}`}
+          className={`px-4 py-2 text-sm font-medium border-b-2 ${activeTab === "leaderboard" ? "border-indigo-500 text-indigo-600" : "border-transparent text-brand-muted"}`}
         >
           Leaderboard
         </button>
@@ -105,11 +105,11 @@ export default function SeasonalEvents() {
                 return (
                   <div
                     key={quest.id}
-                    className={`bg-white border rounded-xl p-4 flex items-center justify-between ${completed ? "border-green-200 bg-green-50" : "border-gray-200"}`}
+                    className={`bg-surface-card border rounded-xl p-4 flex items-center justify-between ${completed ? "border-green-200 bg-green-50" : "border-brand-primary/10"}`}
                   >
                     <div>
                       <div className="font-medium">{quest.name}</div>
-                      <div className="text-sm text-gray-500">{quest.desc}</div>
+                      <div className="text-sm text-brand-muted">{quest.desc}</div>
                     </div>
                     <div className="flex items-center gap-3">
                       <span className="text-sm font-semibold text-indigo-600">+{quest.xp} XP</span>
@@ -154,7 +154,7 @@ export default function SeasonalEvents() {
           {allSeasons.map((season) => (
             <div
               key={season.key}
-              className={`bg-white border rounded-xl p-5 ${season.is_active ? "border-indigo-300 bg-indigo-50" : "border-gray-200 opacity-60"}`}
+              className={`bg-surface-card border rounded-xl p-5 ${season.is_active ? "border-indigo-300 bg-indigo-50" : "border-brand-primary/10 opacity-60"}`}
             >
               <div className="flex items-center gap-3 mb-3">
                 <span className="text-3xl">{season.emoji}</span>
@@ -165,7 +165,7 @@ export default function SeasonalEvents() {
                   )}
                 </div>
               </div>
-              <p className="text-sm text-gray-500 mb-3">{season.description}</p>
+              <p className="text-sm text-brand-muted mb-3">{season.description}</p>
               <div className="text-xs text-gray-400">
                 {new Date(season.start).toLocaleDateString()} — {new Date(season.end).toLocaleDateString()}
               </div>
@@ -175,22 +175,22 @@ export default function SeasonalEvents() {
       )}
 
       {activeTab === "leaderboard" && (
-        <div className="bg-white border border-gray-200 rounded-xl overflow-hidden">
+        <div className="bg-surface-card border border-brand-primary/10 rounded-xl overflow-hidden">
           <table className="w-full text-sm">
-            <thead className="bg-gray-50">
+            <thead className="bg-surface-base">
               <tr>
-                <th className="px-4 py-3 text-left font-semibold text-gray-600">Rank</th>
-                <th className="px-4 py-3 text-left font-semibold text-gray-600">User</th>
-                <th className="px-4 py-3 text-left font-semibold text-gray-600">Quests</th>
-                <th className="px-4 py-3 text-left font-semibold text-gray-600">Total XP</th>
+                <th className="px-4 py-3 text-left font-semibold text-brand-secondary">Rank</th>
+                <th className="px-4 py-3 text-left font-semibold text-brand-secondary">User</th>
+                <th className="px-4 py-3 text-left font-semibold text-brand-secondary">Quests</th>
+                <th className="px-4 py-3 text-left font-semibold text-brand-secondary">Total XP</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {currentSeason?.leaderboard?.map((entry) => (
-                <tr key={entry.user_id} className="hover:bg-gray-50">
+                <tr key={entry.user_id} className="hover:bg-surface-card">
                   <td className="px-4 py-3 font-bold">#{entry.rank}</td>
                   <td className="px-4 py-3 font-medium">{entry.name}</td>
-                  <td className="px-4 py-3 text-gray-600">{entry.quests_completed}</td>
+                  <td className="px-4 py-3 text-brand-secondary">{entry.quests_completed}</td>
                   <td className="px-4 py-3 font-semibold text-indigo-600">{entry.total_xp}</td>
                 </tr>
               ))}

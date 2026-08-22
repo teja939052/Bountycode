@@ -13,8 +13,8 @@ const ZONE_ICONS = {
 
 const ZONE_COLORS = {
   outer_wall: "border-amber-500 bg-amber-500/10",
-  inner_keep: "border-purple-500 bg-purple-500/10",
-  treasure_vault: "border-emerald-500 bg-emerald-500/10",
+  inner_keep: "border-nature-leaf/30 bg-surface-card",
+  treasure_vault: "border-nature-leaf/30 bg-nature-bark",
 };
 
 const CASTLE_ZONES = ["outer_wall", "inner_keep", "treasure_vault"];
@@ -129,30 +129,30 @@ export default function GuildCastle() {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-slate-950 text-white">
-        <div className="animate-pulse text-indigo-300">Loading Castle...</div>
+      <div className="flex min-h-screen items-center justify-center bg-surface-base text-text-primary">
+        <div className="animate-pulse text-nature-blossom">Loading Castle...</div>
       </div>
     );
   }
 
   if (!castle) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-slate-950 text-white">
-        <p className="text-slate-400">No castle found for this guild.</p>
+      <div className="flex min-h-screen items-center justify-center bg-surface-base text-text-primary">
+        <p className="text-text-muted">No castle found for this guild.</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white px-4 py-8">
+    <div className="min-h-screen bg-surface-base text-text-primary px-4 py-8">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold">🏰 Guild Castle</h1>
-          <p className="text-slate-400 mt-2">
+          <p className="text-text-muted mt-2">
             Defend your guild's castle. Attack rivals. Earn rewards.
           </p>
           {castle && (
-            <p className="text-sm text-indigo-300 mt-1">
+            <p className="text-sm text-nature-blossom mt-1">
               Guild: {castle.guild_name || guildId}
             </p>
           )}
@@ -168,7 +168,7 @@ export default function GuildCastle() {
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-4 bg-green-500/10 border border-green-500/30 rounded-lg py-2 text-green-300 text-sm"
+            className="text-center mb-4 bg-green-500/10 border border-green-500/30 rounded-lg py-2 text-green-700 text-sm"
           >
             {actionMsg}
           </motion.div>
@@ -190,17 +190,17 @@ export default function GuildCastle() {
                 className={`rounded-2xl border-2 p-5 ${ZONE_COLORS[zone]} ${isCritical ? 'animate-pulse border-red-500' : ''}`}
               >
                 <div className="text-3xl mb-2">{ZONE_ICONS[zone]}</div>
-                <h3 className="font-bold text-slate-200 capitalize">
+                <h3 className="font-bold text-text-primary capitalize">
                   {zone.replace('_', ' ')}
                 </h3>
                 <div className="mt-3 mb-2">
                   <div className="flex justify-between text-xs mb-1">
-                    <span className="text-slate-400">HP</span>
-                    <span className={isCritical ? "text-red-400" : "text-slate-300"}>
+                    <span className="text-text-muted">HP</span>
+                    <span className={isCritical ? "text-red-400" : "text-text-secondary"}>
                       {hp} / {maxHp}
                     </span>
                   </div>
-                  <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
+                  <div className="h-2 bg-[#E5E0D3] rounded-full overflow-hidden">
                     <div
                       className={`h-full rounded-full transition-all ${
                         isCritical ? 'bg-red-500' : hpPercent > 50 ? 'bg-green-500' : 'bg-amber-500'
@@ -209,12 +209,12 @@ export default function GuildCastle() {
                     />
                   </div>
                 </div>
-                <p className="text-xs text-slate-500 mb-3">Defense: {defense}</p>
+                <p className="text-xs text-text-muted mb-3">Defense: {defense}</p>
                 <div className="flex gap-2">
                   <button
                     onClick={() => handleDefend(zone)}
                     disabled={action === "defending"}
-                    className="flex-1 rounded-lg bg-indigo-600 px-3 py-2 text-xs font-bold text-white hover:bg-indigo-500 disabled:opacity-50"
+                    className="flex-1 rounded-lg bg-nature-leaf px-3 py-2 text-xs font-bold text-white hover:bg-nature-moss disabled:opacity-50"
                   >
                     {action === "defending" ? "..." : "🛡️ Defend"}
                   </button>
@@ -235,9 +235,9 @@ export default function GuildCastle() {
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-8 bg-slate-900/60 border border-slate-800 rounded-2xl p-6"
+          className="mb-8 bg-white border border-nature-leaf/20 rounded-2xl p-6"
         >
-          <h2 className="text-xl font-bold text-slate-200 mb-4 flex items-center gap-2">
+          <h2 className="text-xl font-bold text-text-primary mb-4 flex items-center gap-2">
             <Crown className="h-5 w-5 text-amber-400" />
             Castle Upgrades
           </h2>
@@ -249,12 +249,12 @@ export default function GuildCastle() {
               return (
                 <div
                   key={id}
-                  className="rounded-xl border border-slate-700 bg-slate-800/40 p-4"
+                  className="rounded-xl border border-nature-leaf/20 bg-surface-card p-4"
                 >
-                  <h3 className="font-bold text-slate-200">{upgrade.name}</h3>
-                  <p className="text-sm text-slate-400 mt-1">{upgrade.effect}</p>
+                  <h3 className="font-bold text-text-primary">{upgrade.name}</h3>
+                  <p className="text-sm text-text-muted mt-1">{upgrade.effect}</p>
                   <div className="flex items-center justify-between mt-3">
-                    <span className="text-xs text-slate-500">Level {level}</span>
+                    <span className="text-xs text-text-muted">Level {level}</span>
                     <button
                       onClick={() => handleUpgrade(id)}
                       disabled={!canAfford || action === "upgrading"}
@@ -273,10 +273,10 @@ export default function GuildCastle() {
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-8 bg-gradient-to-r from-green-900/30 to-emerald-900/30 border border-green-500/30 rounded-2xl p-6 text-center"
+          className="mb-8 bg-gradient-to-r from-[#EDF5E6] to-[#D9EFCF] border border-nature-leaf/30 rounded-2xl p-6 text-center"
         >
-          <h2 className="text-xl font-bold text-green-300 mb-2">Daily Castle Bonus</h2>
-          <p className="text-sm text-slate-400 mb-4">+30 XP, +15 coins daily for castle activity</p>
+          <h2 className="text-xl font-bold text-nature-blossom mb-2">Daily Castle Bonus</h2>
+          <p className="text-sm text-text-muted mb-4">+30 XP, +15 coins daily for castle activity</p>
           <button
             onClick={handleDailyBonus}
             disabled={action === "claiming"}
@@ -290,11 +290,11 @@ export default function GuildCastle() {
         <div className="flex justify-center gap-6 mb-8">
           <div className="text-center">
             <div className="text-2xl font-bold text-amber-400">{castle.resources?.coins || 0}</div>
-            <div className="text-xs text-slate-500">Guild Coins</div>
+            <div className="text-xs text-text-muted">Guild Coins</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-purple-400">{castle.resources?.gems || 0}</div>
-            <div className="text-xs text-slate-500">Guild Gems</div>
+            <div className="text-2xl font-bold text-nature-blossom">{castle.resources?.gems || 0}</div>
+            <div className="text-xs text-text-muted">Guild Gems</div>
           </div>
         </div>
       </div>

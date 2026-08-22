@@ -1,0 +1,53 @@
+{
+  "id": "python-14-modules-imports",
+  "track": "python",
+  "title": "Modules & Imports",
+  "section": "Python Intermediate",
+  "order": 14,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "Python ships with a huge standard library. Instead of writing everything from scratch, **import** modules that someone already wrote and tested:\n\n```python\nimport math\nimport random\nimport datetime\n\nprint(math.pi)                # 3.141592653589793\nprint(random.randint(1, 6))   # a random die roll\nprint(datetime.date.today())  # today's date\n```\n\n### The three import styles\n\n```python\nimport math              # then use math.sqrt(...)\nfrom math import pi      # then use pi directly\nimport math as m         # shorter alias: m.sqrt(...)\n```\n\n`from math import sqrt, pi` pulls specific names into your namespace. Aliasing (`as`) is handy for long names like `import pandas as pd`.\n\n```python\nfrom math import sqrt, pi\nprint(sqrt(16))  # 4.0\nprint(pi)        # 3.141592653589793\n```\n\n### Exploring a module\n\n`dir(module)` lists what a module provides; `help(module)` shows documentation:\n\n```python\nimport math\nprint([name for name in dir(math) if not name.startswith(\"_\")][:5])\n```\n\n### The `if __name__ == \"__main__\"` guard\n\nWhen a file runs directly, Python sets `__name__` to `\"__main__\"`. When it's imported, `__name__` is the module's name. The guard lets you write reusable code that only runs its demo when executed directly:\n\n```python\n# mymodule.py\ndef double(n):\n    return n * 2\n\nif __name__ == \"__main__\":\n    print(double(4))  # only runs when this file is run directly\n```\n\n### Installing packages\n\nThe standard library is just the beginning. `pip` installs third-party packages from PyPI:\n\n```bash\npip install requests\n```\n\nThen import them like any other module. Keep imports at the top of your file, use clear aliases, and import only what you need.\n\n**Common mistakes:** naming your own file `math.py` (it shadows the real module), forgetting the import and hitting `NameError: name 'math' is not defined`, and mixing import styles — `math.sqrt` and a bare `sqrt` don't coexist unless you use `from math import sqrt`.",
+    "codeSnippets": [
+      {
+        "language": "python",
+        "code": "from math import sqrt\nprint(sqrt(81))",
+        "output": "9.0"
+      }
+    ],
+    "exercise": {
+      "instruction": "Import the math module, then print math.sqrt(16). Expected output: 4.0",
+      "starterCode": "",
+      "language": "python",
+      "expected": "4.0",
+      "required": ["import math", "math.sqrt", "print("],
+      "hints": [
+        "Hint 1: import math at the top",
+        "Hint 2: math.sqrt(16) returns the square root",
+        "Hint 3: import math; print(math.sqrt(16)) → 4.0"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which import lets you use sqrt directly?",
+        "options": ["import math", "from math import sqrt", "import sqrt"],
+        "correct": 1
+      },
+      {
+        "question": "What is __name__ when a file runs directly?",
+        "options": ["main", "__main__", "The module name"],
+        "correct": 1
+      },
+      {
+        "question": "What does import math as m do?",
+        "options": ["Imports only m from math", "Renames math to m for the rest of the file", "Creates a copy of math"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "python-15-lambda-hof",
+    "unlocks": ["python-15-lambda-hof"]
+  }
+}

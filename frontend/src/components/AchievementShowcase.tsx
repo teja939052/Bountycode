@@ -1,6 +1,4 @@
-import { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import gsap from 'gsap';
 
 const BADGE_RARITY = {
   first_solve: { rarity: 'uncommon', color: '#22C55E', emoji: '🎯', title: 'First Blood' },
@@ -31,20 +29,18 @@ const GLOW_COLORS = {
 };
 
 export default function AchievementShowcase({ badges = [], maxDisplay = 8, showTitle = true }) {
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    if (containerRef.current) {
-      gsap.fromTo(
-        containerRef.current.children,
-        { opacity: 0, scale: 0.7, rotate: -8 },
-        { opacity: 1, scale: 1, rotate: 0, stagger: 0.06, duration: 0.4, ease: 'back.out(1.7)' }
-      );
-    }
-  }, [badges]);
-
   const displayBadges = badges.slice(0, maxDisplay);
   const remaining = badges.length - maxDisplay;
+
+  const containerVariants = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.06 } },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.7, rotate: -8 },
+    visible: { opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.4, ease: [0.34, 1.56, 0.64, 1] } },
+  };
 
   return (
     <div>
@@ -59,12 +55,19 @@ export default function AchievementShowcase({ badges = [], maxDisplay = 8, showT
         </div>
       )}
 
-      <div ref={containerRef} className="flex flex-wrap gap-3">
-        {displayBadges.map((badge, i) => {
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        key={badges.join(',')}
+        className="flex flex-wrap gap-3"
+      >
+        {displayBadges.map((badge) => {
           const info = BADGE_RARITY[badge] || { rarity: 'common', color: '#9CA3AF', emoji: '🏅', title: badge };
           return (
             <motion.div
               key={badge}
+              variants={itemVariants}
               whileHover={{ scale: 1.15, rotate: 5, zIndex: 10 }}
               className="relative flex flex-col items-center gap-1 cursor-pointer group"
             >
@@ -109,7 +112,7 @@ export default function AchievementShowcase({ badges = [], maxDisplay = 8, showT
             <p className="text-xs text-gray-500 font-mono">Complete activities to earn badges!</p>
           </div>
         )}
-      </div>
+      </motion.div>
     </div>
   );
 }

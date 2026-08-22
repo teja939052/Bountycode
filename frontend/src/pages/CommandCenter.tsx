@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import api from "../services/api";
 import useAuthStore from "../store/authStore";
 import useReducedMotion from "../hooks/useReducedMotion";
-import RPGPageLayout from "../components/space/RPGPageLayout";
 import DailyReward from "../components/DailyReward";
 import {
   Code2, Sword, Trophy, Bot, Route, Target,
@@ -16,10 +15,10 @@ import {
 } from "lucide-react";
 
 const QUICK_STATS = [
-  { label: "XP", icon: Zap, color: "text-amber-400", bg: "bg-amber-500/10" },
-  { label: "Streak", icon: Flame, color: "text-orange-400", bg: "bg-orange-500/10" },
-  { label: "Solved", icon: CheckCircle2, color: "text-emerald-400", bg: "bg-emerald-500/10" },
-  { label: "Level", icon: Crown, color: "text-purple-400", bg: "bg-purple-500/10" },
+  { label: "XP", icon: Zap, color: "text-amber-700", bg: "bg-amber-100" },
+  { label: "Streak", icon: Flame, color: "text-orange-600", bg: "bg-orange-100" },
+  { label: "Solved", icon: CheckCircle2, color: "text-emerald-700", bg: "bg-emerald-100" },
+  { label: "Level", icon: Crown, color: "text-purple-600", bg: "bg-purple-100" },
 ];
 
 const QUICK_ACTIONS = [
@@ -48,6 +47,12 @@ const RECENT_ACTIVITY = [
   { type: "interview", problem: "SDE Mock", xp: 50, time: "1d ago", color: "purple" },
 ];
 
+const RECENT_COLORS = {
+  emerald: { chip: "bg-emerald-100 border-emerald-200", text: "text-emerald-700" },
+  blue: { chip: "bg-sky-100 border-sky-200", text: "text-sky-700" },
+  purple: { chip: "bg-purple-100 border-purple-200", text: "text-purple-700" },
+};
+
 export default function CommandCenter() {
   const store = useAuthStore();
   const reduced = useReducedMotion();
@@ -65,9 +70,8 @@ export default function CommandCenter() {
           level: profile.level || 1,
         });
       } catch {
-        // Use auth store fallback
         const g = store.user?.gamification || {};
-        setStats({ xp: g.xp || 0, streak: g.streak || 0, solved: g.total_solved || 0, level: g.level || 1 });
+        setStats({ xp: Number(g.xp) || 0, streak: Number(g.streak) || 0, solved: Number(g.total_solved) || 0, level: Number(g.level) || 1 });
       } finally { setLoading(false); }
     };
     loadStats();
@@ -76,27 +80,25 @@ export default function CommandCenter() {
   const STAT_VALUES = [stats.xp, stats.streak, stats.solved, stats.level];
 
   return (
-    <RPGPageLayout theme="dark" gridVariant="dots" gradient="from-indigo-950/30 via-slate-950 to-purple-950/30">
+    <div className="relative min-h-screen">
       <div className="max-w-6xl mx-auto px-4 py-6 pb-24 md:pb-8">
-        {/* Welcome Header */}
         <motion.div initial={reduced ? {} : { opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl md:text-4xl font-bold text-white flex items-center gap-3">
+              <h1 className="text-2xl md:text-4xl font-bold text-text-primary flex items-center gap-3">
                 Command Center
-                <span className="text-base px-3 py-1 rounded-full bg-indigo-500/15 text-indigo-400 border border-indigo-500/30 font-mono text-xs">
+                <span className="text-base px-3 py-1 rounded-full bg-[#EEF5E7] text-nature-blossom border border-nature-bark font-mono text-xs">
                   Lv.{stats.level}
                 </span>
               </h1>
-              <p className="text-slate-400 text-sm mt-1">Your hub for coding and placement prep</p>
+              <p className="text-text-muted text-sm mt-1">Your hub for coding and placement prep</p>
             </div>
-            <Link to="/profile" className="hidden md:flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800/50 border border-slate-700/50 hover:border-slate-600/50 text-slate-300 text-sm transition-all">
+            <Link to="/profile" className="hidden md:flex items-center gap-2 px-4 py-2 rounded-xl bg-[#EEF5E7] border border-nature-bark hover:border-[#7BB661]/60 text-text-secondary text-sm transition-all">
               <User className="w-4 h-4" /> Profile
             </Link>
           </div>
         </motion.div>
 
-        {/* Quick Stats Row */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
           {QUICK_STATS.map((stat, idx) => {
             const val = loading ? "..." : STAT_VALUES[idx];
@@ -105,14 +107,14 @@ export default function CommandCenter() {
                 initial={reduced ? {} : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.07 }}
-                className="bg-slate-900/70 border border-slate-800/80 rounded-xl p-4 flex items-center gap-3 hover:border-slate-700/80 transition-colors"
+                className="bg-white border border-nature-leaf/20 rounded-2xl p-4 flex items-center gap-3 shadow-[0_1px_2px_rgba(31,41,55,0.04),0_10px_24px_-14px_rgba(31,41,55,0.12)]"
               >
-                <div className={`p-2.5 rounded-lg ${stat.bg} ${stat.color}`}>
+                <div className={`p-2.5 rounded-xl ${stat.bg} ${stat.color}`}>
                   <stat.icon className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-xl font-bold text-white font-mono">{val}</div>
-                  <div className="text-[10px] text-slate-500 font-medium uppercase tracking-wider">{stat.label}</div>
+                  <div className="text-xl font-bold text-text-primary font-mono">{val}</div>
+                  <div className="text-[10px] text-text-muted font-medium uppercase tracking-wider">{stat.label}</div>
                 </div>
               </motion.div>
             );
@@ -121,10 +123,9 @@ export default function CommandCenter() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 space-y-6">
-            {/* Quick Actions Grid */}
             <motion.div initial={reduced ? {} : { opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-              <h2 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4 flex items-center gap-2">
-                <Zap className="w-4 h-4 text-amber-400" /> Quick Actions
+              <h2 className="text-sm font-semibold text-text-muted uppercase tracking-wider mb-4 flex items-center gap-2">
+                <Zap className="w-4 h-4 text-amber-600" /> Quick Actions
               </h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {QUICK_ACTIONS.map((action, idx) => (
@@ -133,36 +134,35 @@ export default function CommandCenter() {
                       initial={reduced ? {} : { opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.2 + idx * 0.04 }}
-                      className="group bg-slate-900/60 border border-slate-800/60 rounded-xl p-4 hover:bg-slate-800/60 hover:border-slate-700/60 transition-all duration-200 hover:-translate-y-0.5"
+                      className="group bg-white border border-nature-leaf/20 rounded-2xl p-4 shadow-[0_1px_2px_rgba(31,41,55,0.04),0_10px_24px_-14px_rgba(31,41,55,0.10)] transition-all duration-150 hover:-translate-y-0.5 hover:border-[#7BB661]/50"
                     >
-                      <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${action.color} bg-opacity-20 flex items-center justify-center mb-3 shadow-lg`}>
+                      <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${action.color} flex items-center justify-center mb-3 shadow-lg`}>
                         <action.icon className="w-5 h-5 text-white" />
                       </div>
-                      <h3 className="font-semibold text-sm text-white group-hover:text-indigo-300 transition-colors">{action.label}</h3>
-                      <p className="text-[10px] text-slate-500 mt-0.5">{action.desc}</p>
+                      <h3 className="font-semibold text-sm text-text-primary group-hover:text-nature-blossom transition-colors">{action.label}</h3>
+                      <p className="text-[10px] text-text-muted mt-0.5">{action.desc}</p>
                     </motion.div>
                   </Link>
                 ))}
               </div>
             </motion.div>
 
-            {/* DSA Skill Progress */}
             <motion.div initial={reduced ? {} : { opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-              className="bg-slate-900/60 border border-slate-800/60 rounded-xl p-5">
+              className="bg-white border border-nature-leaf/20 rounded-2xl p-5 shadow-[0_1px_2px_rgba(31,41,55,0.04),0_10px_24px_-14px_rgba(31,41,55,0.10)]">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-sm font-semibold text-slate-300 flex items-center gap-2">
-                  <Brain className="w-4 h-4 text-indigo-400" /> DSA Fingerprint
+                <h2 className="text-sm font-semibold text-text-secondary flex items-center gap-2">
+                  <Brain className="w-4 h-4 text-nature-blossom" /> DSA Fingerprint
                 </h2>
-                <Link to="/fingerprint" className="text-xs text-indigo-400 hover:text-indigo-300 transition-colors">View all →</Link>
+                <Link to="/fingerprint" className="text-xs text-nature-blossom hover:text-nature-blossom transition-colors">View all →</Link>
               </div>
               <div className="space-y-3">
                 {DSA_DOMAINS.map((domain) => (
                   <div key={domain.name} className="space-y-1">
                     <div className="flex items-center justify-between text-xs">
-                      <span className="text-slate-400">{domain.name}</span>
-                      <span className="font-mono text-slate-500">{domain.progress}%</span>
+                      <span className="text-text-muted">{domain.name}</span>
+                      <span className="font-mono text-text-muted">{domain.progress}%</span>
                     </div>
-                    <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                    <div className="h-1.5 bg-[#EEF5E7] rounded-full overflow-hidden">
                       <motion.div
                         className={`h-full rounded-full bg-gradient-to-r ${domain.color}`}
                         initial={{ width: 0 }}
@@ -176,73 +176,71 @@ export default function CommandCenter() {
             </motion.div>
           </div>
 
-          {/* Right Sidebar */}
           <div className="space-y-5">
-            {/* Today's Progress */}
             <motion.div initial={reduced ? {} : { opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
-              className="bg-slate-900/60 border border-slate-800/60 rounded-xl p-5">
-              <h3 className="text-sm font-semibold text-slate-300 mb-4 flex items-center gap-2">
-                <Clock className="w-4 h-4 text-cyan-400" /> Today's Progress
+              className="bg-white border border-nature-leaf/20 rounded-2xl p-5 shadow-[0_1px_2px_rgba(31,41,55,0.04),0_10px_24px_-14px_rgba(31,41,55,0.10)]">
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 flex items-center gap-2">
+                <Clock className="w-4 h-4 text-nature-blossom" /> Today's Progress
               </h3>
               <div className="space-y-3">
-                <div className="flex items-center justify-between text-xs text-slate-400">
+                <div className="flex items-center justify-between text-xs text-text-muted">
                   <span>Daily goal</span>
-                  <span className="font-mono text-slate-500">0/5</span>
+                  <span className="font-mono text-text-muted">0/5</span>
                 </div>
-                <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
+                <div className="h-2 bg-[#EEF5E7] rounded-full overflow-hidden">
                   <motion.div initial={{ width: 0 }} animate={{ width: "0%" }}
-                    className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-blue-500" />
+                    className="h-full rounded-full bg-gradient-to-r from-[#4F8F57] to-[#7BB661]" />
                 </div>
-                <div className="text-center text-xs text-slate-500 pt-2">
-                  Complete 5 activities today for a <span className="text-amber-400 font-semibold">streak bonus</span>
+                <div className="text-center text-xs text-text-muted pt-2">
+                  Complete 5 activities today for a <span className="text-amber-600 font-semibold">streak bonus</span>
                 </div>
               </div>
             </motion.div>
 
-            {/* Daily Rewards */}
             <motion.div initial={reduced ? {} : { opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-              className="bg-slate-900/60 border border-slate-800/60 rounded-xl p-5">
+              className="bg-white border border-nature-leaf/20 rounded-2xl p-5 shadow-[0_1px_2px_rgba(31,41,55,0.04),0_10px_24px_-14px_rgba(31,41,55,0.10)]">
               <DailyReward currentDay={1} claimedDays={[]} onClaim={(d) => {}} />
             </motion.div>
 
-            {/* Recent Activity */}
             <motion.div initial={reduced ? {} : { opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 }}
-              className="bg-slate-900/60 border border-slate-800/60 rounded-xl p-5">
-              <h3 className="text-sm font-semibold text-slate-300 mb-4 flex items-center gap-2">
-                <TrendingUp className="w-4 h-4 text-emerald-400" /> Recent Activity
+              className="bg-white border border-nature-leaf/20 rounded-2xl p-5 shadow-[0_1px_2px_rgba(31,41,55,0.04),0_10px_24px_-14px_rgba(31,41,55,0.10)]">
+              <h3 className="text-sm font-semibold text-text-secondary mb-4 flex items-center gap-2">
+                <TrendingUp className="w-4 h-4 text-nature-blossom" /> Recent Activity
               </h3>
               <div className="space-y-3">
-                {RECENT_ACTIVITY.map((activity, i) => (
-                  <div key={i} className="flex items-center gap-3 text-xs">
-                    <div className={`w-7 h-7 rounded-lg bg-${activity.color}-500/10 border border-${activity.color}-500/20 flex items-center justify-center`}>
-                      {activity.type === "solved" ? <CheckCircle2 className={`w-3.5 h-3.5 text-${activity.color}-400`} /> :
-                       activity.type === "lesson" ? <BookOpen className={`w-3.5 h-3.5 text-${activity.color}-400`} /> :
-                       <Target className={`w-3.5 h-3.5 text-${activity.color}-400`} />}
+                {RECENT_ACTIVITY.map((activity, i) => {
+                  const tone = RECENT_COLORS[activity.color] || RECENT_COLORS.emerald;
+                  return (
+                    <div key={i} className="flex items-center gap-3 text-xs">
+                      <div className={`w-7 h-7 rounded-lg ${tone.chip} border flex items-center justify-center`}>
+                        {activity.type === "solved" ? <CheckCircle2 className={`w-3.5 h-3.5 ${tone.text}`} /> :
+                         activity.type === "lesson" ? <BookOpen className={`w-3.5 h-3.5 ${tone.text}`} /> :
+                         <Target className={`w-3.5 h-3.5 ${tone.text}`} />}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <span className="text-text-primary truncate block">{activity.problem}</span>
+                        <span className="text-text-muted font-mono">{activity.time}</span>
+                      </div>
+                      <span className="font-mono text-amber-600 font-medium">+{activity.xp}</span>
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <span className="text-slate-300 truncate block">{activity.problem}</span>
-                      <span className="text-slate-600 font-mono">{activity.time}</span>
-                    </div>
-                    <span className="font-mono text-amber-400 font-medium">+{activity.xp}</span>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </motion.div>
           </div>
         </div>
 
-        {/* Bottom Banner */}
         <motion.div initial={reduced ? {} : { opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}
-          className="mt-8 bg-gradient-to-r from-indigo-600/10 via-purple-600/10 to-pink-600/10 border border-indigo-500/20 rounded-2xl p-6 text-center">
-          <p className="text-sm text-slate-300 mb-3">
-            🚀 <span className="font-semibold text-white">Pro Tip:</span> Follow a <Link to="/journeys" className="text-indigo-400 hover:text-indigo-300 underline">Learning Journey</Link> to stay on track. Complete daily challenges to build your streak!
+          className="mt-8 bg-gradient-to-r from-[#EEF5E7]/80 via-[#FAFAF6] to-[#F5EEDD]/80 border border-nature-bark rounded-2xl p-6 text-center">
+          <p className="text-sm text-text-secondary mb-3">
+            <span className="font-semibold text-text-primary">Pro Tip:</span> Follow a <Link to="/journeys" className="text-nature-blossom hover:text-nature-blossom underline">Learning Journey</Link> to stay on track. Complete daily challenges to build your streak!
           </p>
-          <Link to="/journeys" className="inline-flex items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-sm font-medium transition-all shadow-lg shadow-indigo-600/20">
+          <Link to="/journeys" className="inline-flex items-center gap-2 px-5 py-2.5 bg-nature-leaf hover:bg-nature-moss text-white rounded-full text-sm font-medium transition-all shadow-[0_10px_24px_-10px_rgba(79,143,87,0.5)]">
             Explore Journeys <ArrowRight className="w-4 h-4" />
           </Link>
         </motion.div>
       </div>
-    </RPGPageLayout>
+    </div>
   );
 }
 

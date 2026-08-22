@@ -1,0 +1,51 @@
+{
+  "id": "html-11-tables",
+  "track": "html",
+  "title": "Tables & Tabular Data",
+  "section": "Advanced HTML",
+  "order": 11,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "Tables exist for one job: displaying **tabular data** — rows and columns of related values like leaderboards, price sheets, or scorecards. They are *not* for page layout. Wrapping your navbar in a `<table>` is a classic 1990s mistake: it makes pages rigid, harder to style, and nearly impossible for screen readers to navigate. Semantic HTML lets assistive tech announce a table properly, so choose real table markup for real data and modern CSS (Flexbox/Grid) for layout.\n\n### Anatomy of a table\n\nEvery table has an optional **caption**, a header block, a body, and an optional footer. Grouping rows with `<thead>`, `<tbody>`, and `<tfoot>` helps browsers render and scroll long tables and gives screen readers structure. Cells come in two flavours: `<th>` for **headings** and `<td>` for **data**.\n\n| Element | Purpose |\n|---|---|\n| `<caption>` | Visible title of the table |\n| `<thead>` | Header rows (usually with `<th>`) |\n| `<tbody>` | Main data rows |\n| `<tfoot>` | Summary / footer rows |\n\n```html\n<table>\n  <caption>Class A — Exam Scores</caption>\n  <thead>\n    <tr>\n      <th scope=\"col\">Student</th>\n      <th scope=\"col\">Score</th>\n      <th scope=\"col\">Grade</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th scope=\"row\">Aisha</th>\n      <td>92</td>\n      <td>A</td>\n    </tr>\n  </tbody>\n  <tfoot>\n    <tr>\n      <td>Average</td>\n      <td>87</td>\n      <td>B+</td>\n    </tr>\n  </tfoot>\n</table>\n```\n\n### Headings and the scope attribute\n\nNever write a table of bare `<td>` cells. A column of numbers with no headers is meaningless to everyone, and for screen readers it is a wall of unrelated values. Mark headers as `<th>` and tell assistive tech which direction they cover with `scope=\"col\"` (column heading) or `scope=\"row\"` (row heading). This is the difference between a data table a screen reader can navigate and a data table it cannot.\n\n### Merging cells\n\nReal data is rarely a perfect grid. Use **colspan** to stretch a cell across columns and **rowspan** to stretch it across rows — for example a 'Total' row spanning the whole width, or a company name spanning several product rows:\n\n```html\n<tr>\n  <td colspan=\"3\" class=\"total\">Total: $1,240</td>\n</tr>\n```\n\n### Common mistakes\n\n- Using `<table>` for layout instead of CSS Grid/Flexbox\n- Skipping `<th>` so headers are never announced\n- Forgetting `scope=`, which is what pairs headers with cells for screen readers\n- Omitting `<caption>` when the table needs a visible title\n- Forgetting the `</tr>` and `</table>` closing tags\n\nWhen your headings are semantic (`<th scope=\"col\">`) and your blocks are grouped (`<thead>`/`<tbody>`), you get the maximum accessibility, the cleanest styling hooks, and the best SEO signal for free.",
+    "codeSnippets": [
+      {
+        "language": "html",
+        "code": "<table>\n  <caption>Class A — Exam Scores</caption>\n  <thead>\n    <tr>\n      <th scope=\"col\">Student</th>\n      <th scope=\"col\">Score</th>\n      <th scope=\"col\">Grade</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th scope=\"row\">Aisha</th>\n      <td>92</td>\n      <td>A</td>\n    </tr>\n    <tr>\n      <th scope=\"row\">Ravi</th>\n      <td>78</td>\n      <td>B</td>\n    </tr>\n  </tbody>\n  <tfoot>\n    <tr>\n      <td colspan=\"3\">Average: 85</td>\n    </tr>\n  </tfoot>\n</table>",
+        "output": "A titled table with a header row, two data rows, and a footer row spanning all three columns."
+      }
+    ],
+    "exercise": {
+      "instruction": "Build a 3-column table inside the <body> with a caption reading 'Monthly Sales'. Use <thead> with a header row of three <th> cells, each with scope=\"col\" (Month, Revenue, Profit). Then add a <tbody> with at least two rows of <td> data. Don't forget the closing </table>.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Monthly Sales</title>\n</head>\n<body>\n  <table>\n\n  </table>\n</body>\n</html>",
+      "required": ["<table>", "<caption>", "<thead>", "<tbody>", "<th", "scope="],
+      "hints": [
+        "Hint 1: Start with <table> and give it a title using <caption>Monthly Sales</caption>.",
+        "Hint 2: Wrap header rows in <thead> and use <th scope=\"col\"> for each column heading.",
+        "Hint 3: Wrap data rows in <tbody> and use <td> for each value. Don't forget </table>."
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which element marks a cell as a heading?",
+        "options": ["<td>", "<th>", "<caption>"],
+        "correct": 1
+      },
+      {
+        "question": "What does scope=\"row\" tell a screen reader?",
+        "options": ["The heading covers its whole column", "The heading covers its whole row", "The cell should be ignored"],
+        "correct": 1
+      },
+      {
+        "question": "What is colspan used for?",
+        "options": ["To merge a cell across several columns", "To merge a cell across several rows", "To give a column a background colour"],
+        "correct": 0
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "html-12-media-embedding",
+    "unlocks": ["html-12-media-embedding"]
+  }
+}

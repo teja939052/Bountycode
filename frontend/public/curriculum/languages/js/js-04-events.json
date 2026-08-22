@@ -1,0 +1,46 @@
+{
+  "id": "js-04-events",
+  "track": "javascript",
+  "title": "Events & Interactivity",
+  "section": "JavaScript in Action",
+  "order": 4,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 20,
+  "content": {
+    "theory": "Events are how JavaScript reacts to the user — clicks, typing, hovering, submitting forms.\n\n### Listening to events\n```js\nconst button = document.querySelector(\"#btn\");\nbutton.addEventListener(\"click\", () => {\n  console.log(\"Button clicked!\");\n});\n```\n- The **event type**: `\"click\"`, `\"input\"`, `\"submit\"`, `\"mouseover\"`, etc.\n- The **handler**: a function that runs when the event fires\n\n### Common events\n| Event | Fires when |\n|-------|-----------|\n| `click` | Element is clicked |\n| `input` | A field's value changes |\n| `change` | A select/checkbox changes |\n| `submit` | A form is submitted |\n| `keydown` | A key is pressed |\n\n### Reading the event\n```js\ninput.addEventListener(\"input\", (event) => {\n  console.log(event.target.value);  // current typed text\n});\n```\n`event.target` is the element that fired the event.\n\n### A live counter\n```js\nlet count = 0;\nconst counter = document.querySelector(\"#count\");\n\ndocument.querySelector(\"#plus\").addEventListener(\"click\", () => {\n  count += 1;\n  counter.textContent = count;\n});\n```\n\n### Form submit\n```js\ndocument.querySelector(\"form\").addEventListener(\"submit\", (event) => {\n  event.preventDefault();   // stop the page reloading\n  const name = document.querySelector(\"#name\").value;\n  alert(`Hi, ${name}!`);\n});\n```\nAlways call `event.preventDefault()` in submit handlers unless you really want a page reload.",
+    "codeSnippets": [
+      {
+        "language": "javascript",
+        "code": "btn.addEventListener(\"click\", () => {\n  output.textContent = \"You clicked!\";\n});",
+        "output": "Clicking the button updates a paragraph's text."
+      }
+    ],
+    "exercise": {
+      "instruction": "When the button #btn is clicked, change the text of #output to 'You clicked me!'.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<body>\n  <button id=\"btn\">Click me</button>\n  <p id=\"output\"></p>\n  <script>\n\n  </script>\n</body>\n</html>",
+      "required": ["addEventListener", "\"click\"", "#btn", "#output", "textContent", "You clicked me!"],
+      "hints": [
+        "Hint 1: const btn = document.querySelector(\"#btn\");",
+        "Hint 2: btn.addEventListener(\"click\", () => { ... });",
+        "Hint 3: Inside, set document.querySelector(\"#output\").textContent = \"You clicked me!\";"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which method attaches an event handler?",
+        "options": ["addEventListener", "onEvent", "attachEvent"],
+        "correct": 0
+      },
+      {
+        "question": "What does event.preventDefault() do in a submit handler?",
+        "options": ["Stops the form from reloading the page", "Deletes the form", "Validates inputs"],
+        "correct": 0
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "js-05-conditionals",
+    "unlocks": ["js-05-conditionals"]
+  }
+}

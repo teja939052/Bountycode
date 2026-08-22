@@ -1,0 +1,46 @@
+{
+  "id": "css-02-box-model",
+  "track": "css",
+  "title": "The Box Model",
+  "section": "Styling with CSS",
+  "order": 2,
+  "type": "lesson",
+  "duration": "10 min",
+  "xp": 15,
+  "content": {
+    "theory": "Every element on a page is a rectangle. Understanding that box is the key to layout.\n\n### The four layers\n```\n┌──────────────────────────────┐\n│          margin (space)      │\n│  ┌────────────────────────┐  │\n│  │        border          │  │\n│  │  ┌──────────────────┐  │  │\n│  │  │    padding       │  │  │\n│  │  │  ┌────────────┐  │  │  │\n│  │  │  │  content   │  │  │  │\n│  │  │  └────────────┘  │  │  │\n│  │  └──────────────────┘  │  │\n│  └────────────────────────┘  │\n└──────────────────────────────┘\n```\n\n- **Content** — the text or image\n- **Padding** — space inside the border, around content\n- **Border** — the edge of the box\n- **Margin** — space outside the border, between elements\n\n### In code\n```css\n.card {\n  padding: 16px;          /* inside the border */\n  border: 1px solid #ddd;  /* the edge */\n  margin: 20px;            /* outside the border */\n}\n```\n\n### Shorthand\n```css\n/* All four sides */\nmargin: 10px;\n/* top/bottom, left/right */\nmargin: 10px 20px;\n/* top, right, bottom, left (clockwise) */\nmargin: 10px 20px 10px 20px;\n```\n\n### box-sizing\nBy default, `width` excludes padding and border, which makes sizing confusing. The fix:\n```css\n* {\n  box-sizing: border-box;\n}\n```\nNow `width: 100%` means *total* width, border included.\n\n### Debugging tip\nAdd a temporary outline to see an element's box:\n```css\n* { outline: 1px solid red; }\n```",
+    "codeSnippets": [
+      {
+        "language": "css",
+        "code": ".button {\n  padding: 12px 24px;\n  border: 2px solid #3b82f6;\n  margin: 8px;\n}",
+        "output": "A button with inner space, a blue border, and outer spacing."
+      }
+    ],
+    "exercise": {
+      "instruction": "Give the .box element: 20px of padding on all sides, a 2px solid teal border (#0d9488), and 10px 30px of margin (10px top/bottom, 30px left/right).",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Box</title>\n  <style>\n    .box {\n\n    }\n  </style>\n</head>\n<body>\n  <div class=\"box\">Content</div>\n</body>\n</html>",
+      "required": [".box {", "padding: 20px", "border: 2px solid #0d9488", "margin: 10px 30px"],
+      "hints": [
+        "Hint 1: Start with padding: 20px;.",
+        "Hint 2: Add border: 2px solid #0d9488;.",
+        "Hint 3: Finish with margin: 10px 30px;."
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which box layer is between content and border?",
+        "options": ["margin", "padding", "outline"],
+        "correct": 1
+      },
+      {
+        "question": "What does 'box-sizing: border-box' change?",
+        "options": ["Width includes padding and border", "Width excludes padding", "Margins collapse"],
+        "correct": 0
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "css-03-flexbox",
+    "unlocks": ["css-03-flexbox"]
+  }
+}

@@ -1,36 +1,56 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import { useEffect, Suspense, useState, useCallback, useRef } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
+import {
+  useEffect,
+  Suspense,
+  useState,
+  useCallback,
+  useRef,
+  lazy,
+} from "react";
 import useAuthStore from "./store/authStore";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ErrorBoundary from "./components/ErrorBoundary";
+import RouteErrorBoundary from "./components/RouteErrorBoundary";
+import FeatureErrorBoundary from "./components/FeatureErrorBoundary";
 import ProtectedRoute from "./components/ProtectedRoute";
 import OnboardingGuard from "./components/OnboardingGuard";
-import AuthLayout from "./components/AuthLayout";
-import Onboarding from "./components/Onboarding";
+import CustomCursor from "./components/CustomCursor";
 import { DashboardSkeleton } from "./components/ui/Skeleton";
-import { SpaceBackground } from "./components/space";
-import XPPopup from "./components/XPPopup";
-import CelebrationOverlay from "./components/CelebrationOverlay";
 import { ToastProvider } from "./components/Toast";
-import BottomNav from "./components/BottomNav";
+import { ThemeProvider } from "./components/ThemeProvider";
 import { JuiceProvider, useJuice } from "./juice/JuiceProvider";
-import SoundToggle from "./juice/SoundToggle";
-import AudioInitButton from "./juice/AudioInitButton";
+import Landing from "./pages/Landing";
+
+const AuthLayout = lazy(() => import("./components/AuthLayout"));
+const Onboarding = lazy(() => import("./components/Onboarding"));
+const XPPopup = lazy(() => import("./components/XPPopup"));
+const CelebrationOverlay = lazy(
+  () => import("./components/CelebrationOverlay"),
+);
+const BottomNav = lazy(() => import("./components/BottomNav"));
 
 import {
-  Landing,
   Login,
   Register,
   OnboardingQuest,
   Dashboard,
   Interview,
   InterviewSession,
-   InterviewBooking,
-   InterviewReplay,
+  InterviewBooking,
+  InterviewReplay,
   ResumeBuilder,
+  ResumeStudio,
   ATSOptimizer,
   Pricing,
+  RoleSelector,
+  PlacementCalendar,
   NotFound,
   BattleArena,
   CodePlayground,
@@ -70,6 +90,9 @@ import {
   DSAFingerprint,
   TowerDashboard,
   BattlePass,
+  StudyTimer,
+  StudyGoals,
+  ThemesPage,
   CampusConnect,
   CampusWars,
   ProblemOfTheDay,
@@ -80,30 +103,48 @@ import {
   LearningHub,
   LanguageJourney,
   LessonView,
+  StudyLibrary,
   AdminDashboard,
   Topics,
   TopicProblems,
   CardCollection,
   PersonalDashboard,
+  StudentDashboard,
   AdaptivePath,
    LearningModules,
+   LearningModule,
    ProjectGenerator,
-   LanguageLearning,
-   FreeTrial,
-   Showcase,
-   ShowcaseDetail,
-   PwaSetup,
-   AdminContent,
-   MyAssignments,
-    GameEvents,
-    Timeline,
-   WorldMap,
+  LanguageLearning,
+  CurriculumHub,
+  LearnTrack,
+  LearnLesson,
+  FreeTrial,
+  Showcase,
+  ShowcaseDetail,
+  PwaSetup,
+  AdminContent,
+  MyAssignments,
+  GameEvents,
+  Timeline,
+  WorldMap,
   AIMentor,
+  HealthDashboard,
   AchievementChains,
   CampusPulse,
   CareerRpg,
   ChallengePacks,
+  Home,
+  Prepare,
+  Practice,
+  Compete,
+  Career,
   Chat,
+  GDRoom,
+  CGPASimulator,
+  DriveTracker,
+  PeerReview,
+  StudySquads,
+  PrepReportCard,
   CollectionEvents,
   CollegeNetwork,
   CommandCenter,
@@ -126,7 +167,24 @@ import {
   TeamCompetitions,
   Tournaments,
   TrendingChallenges,
-  } from "./pages/lazy";
+  BehavioralPractice,
+  CompanyDirectory,
+  Concepts,
+  Quests,
+  ReadinessScore,
+  MysteryBoxPage,
+  SkillMasteryPage,
+  EnergyPage,
+  FriendsPage,
+  GoalsPage,
+  DiscussionsPage,
+  BossAssessment,
+  MissionView,
+  BountyPage,
+  JobReadiness,
+  CapabilityWorlds,
+  CapabilityMission,
+} from "./pages/lazy";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -152,185 +210,711 @@ function AnimatedRoutes() {
       <Route path="/" element={<Landing />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/role-selector" element={<RoleSelector />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/pricing" element={<Pricing />} />
       <Route path="/free-trial" element={<FreeTrial />} />
-      <Route path="/onboarding" element={<ProtectedRoute><OnboardingQuest /></ProtectedRoute>} />
+      <Route
+        path="/onboarding"
+        element={
+          <ProtectedRoute>
+            <OnboardingQuest />
+          </ProtectedRoute>
+        }
+      />
 
-      <Route element={<ProtectedRoute><OnboardingGuard><AuthLayout /></OnboardingGuard></ProtectedRoute>}>
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/journey" element={<ProtectedRoute><Journey /></ProtectedRoute>} />
-        <Route path="/hub" element={<CommandCenter />} />
-        <Route path="/interview" element={<Interview />} />
-        <Route path="/interview/:interviewId" element={<InterviewSession />} />
-        <Route path="/interview-booking" element={<InterviewBooking />} />
-        <Route path="/interview-replay/:interviewId" element={<InterviewReplay />} />
+      <Route
+        element={
+          <ProtectedRoute>
+            <OnboardingGuard>
+              <AuthLayout />
+            </OnboardingGuard>
+          </ProtectedRoute>
+        }
+      >
+        <Route path="/dashboard" element={<StudentDashboard />} />
+        <Route
+          path="/student-dashboard"
+          element={<Navigate to="/dashboard" replace />}
+        />
+        <Route
+          path="/my-dashboard"
+          element={<Navigate to="/dashboard" replace />}
+        />
+        <Route path="/home" element={<Home />} />
+        <Route path="/hub" element={<Home />} />
+        <Route path="/prepare" element={<Prepare />} />
+        <Route path="/practice" element={<Practice />} />
+        <Route path="/compete" element={<Compete />} />
+        <Route path="/career" element={<Career />} />
+        <Route
+          path="/analytics"
+          element={<Navigate to="/dashboard" replace />}
+        />
+        <Route path="/health" element={<Navigate to="/dashboard" replace />} />
+        <Route path="/learning" element={<Navigate to="/learn" replace />} />
+        <Route
+          path="/campus"
+          element={<Navigate to="/campus-wars" replace />}
+        />
+        <Route path="/journey" element={<CareerRpg />} />
+        <Route path="/boss/:bossId" element={<BossAssessment />} />
+        <Route path="/mission/:topic" element={<MissionView />} />
+        <Route path="/bounty" element={<BountyPage />} />
+        <Route path="/job-readiness" element={<JobReadiness />} />
+        <Route path="/capability-worlds" element={<CapabilityWorlds />} />
+        <Route path="/capability-mission/:worldId/:competencyId" element={<CapabilityMission />} />
+        <Route path="/behavioral-practice" element={<BehavioralPractice />} />
+        <Route path="/company-directory" element={<CompanyDirectory />} />
+        <Route path="/concepts" element={<Concepts />} />
+        <Route path="/quests" element={<Quests />} />
+        <Route path="/readiness" element={<ReadinessScore />} />
+        <Route path="/mystery-box" element={<MysteryBoxPage />} />
+        <Route path="/skill-mastery" element={<SkillMasteryPage />} />
+        <Route path="/energy" element={<EnergyPage />} />
+        <Route path="/friends" element={<FriendsPage />} />
+        <Route path="/goals" element={<GoalsPage />} />
+        <Route path="/discussions" element={<DiscussionsPage />} />
+
+        {/* Interview Routes */}
+        <Route
+          path="/interview"
+          element={
+            <FeatureErrorBoundary featureName="Interview">
+              <Interview />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/interview/:interviewId"
+          element={
+            <FeatureErrorBoundary featureName="Interview">
+              <InterviewSession />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/interview-booking"
+          element={
+            <FeatureErrorBoundary featureName="Interview">
+              <InterviewBooking />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/interview-replay/:interviewId"
+          element={
+            <FeatureErrorBoundary featureName="Interview">
+              <InterviewReplay />
+            </FeatureErrorBoundary>
+          }
+        />
+
         <Route path="/referral" element={<Referral />} />
-        <Route path="/resume" element={<ResumeBuilder />} />
-        <Route path="/ats" element={<ATSOptimizer />} />
-        <Route path="/aptitude" element={<AptitudeTest />} />
-        <Route path="/mock-oa" element={<MockOA />} />
-        <Route path="/cover-letter" element={<CoverLetter />} />
-        <Route path="/salary-negotiation" element={<SalaryNegotiation />} />
-        <Route path="/system-design" element={<SystemDesign />} />
-        <Route path="/company-prep" element={<CompanyPrep />} />
-        <Route path="/coding" element={<CodingChallenge />} />
-        <Route path="/salary-benchmark" element={<SalaryBenchmark />} />
+
+        {/* Career Routes */}
+        <Route
+          path="/resume"
+          element={
+            <FeatureErrorBoundary featureName="Resume">
+              <ResumeBuilder />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/resume-studio"
+          element={
+            <FeatureErrorBoundary featureName="Resume">
+              <ResumeStudio />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/ats"
+          element={
+            <FeatureErrorBoundary featureName="Resume">
+              <ATSOptimizer />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/cover-letter"
+          element={
+            <FeatureErrorBoundary featureName="Career">
+              <CoverLetter />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/salary-negotiation"
+          element={
+            <FeatureErrorBoundary featureName="Career">
+              <SalaryNegotiation />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/salary-benchmark"
+          element={
+            <FeatureErrorBoundary featureName="Career">
+              <SalaryBenchmark />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/career-profile"
+          element={
+            <FeatureErrorBoundary featureName="Career">
+              <CareerProfile />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/applications"
+          element={
+            <FeatureErrorBoundary featureName="Career">
+              <ApplicationTracker />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/resume-ats"
+          element={
+            <FeatureErrorBoundary featureName="Resume">
+              <ResumeATS />
+            </FeatureErrorBoundary>
+          }
+        />
+
+        {/* Assessment Routes */}
+        <Route
+          path="/aptitude"
+          element={
+            <FeatureErrorBoundary featureName="Assessment">
+              <AptitudeTest />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/mock-oa"
+          element={
+            <FeatureErrorBoundary featureName="Assessment">
+              <MockOA />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/coding"
+          element={
+            <FeatureErrorBoundary featureName="Assessment">
+              <CodingChallenge />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/daily-drill"
+          element={
+            <FeatureErrorBoundary featureName="Assessment">
+              <DailyDrill />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/daily-challenge"
+          element={
+            <FeatureErrorBoundary featureName="Assessment">
+              <DailyChallenge />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/daily-challenge/leaderboard"
+          element={
+            <FeatureErrorBoundary featureName="Assessment">
+              <DailyChallenge />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/company-mocks"
+          element={
+            <FeatureErrorBoundary featureName="Assessment">
+              <CompanyMocks />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/company-mocks/:testId"
+          element={
+            <FeatureErrorBoundary featureName="Assessment">
+              <CompanyMocks />
+            </FeatureErrorBoundary>
+          }
+        />
+
+        {/* System Design & Company Prep */}
+        <Route
+          path="/system-design"
+          element={
+            <FeatureErrorBoundary featureName="System Design">
+              <SystemDesign />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/company-prep"
+          element={
+            <FeatureErrorBoundary featureName="Company Prep">
+              <CompanyPrep />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/predictor"
+          element={
+            <FeatureErrorBoundary featureName="Assessment">
+              <Predictor />
+            </FeatureErrorBoundary>
+          }
+        />
 
         <Route path="/settings" element={<Settings />} />
         <Route path="/history" element={<History />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
-        <Route path="/daily-drill" element={<DailyDrill />} />
-        <Route path="/study-groups" element={<StudyGroups />} />
         <Route path="/contests" element={<MonthlyContests />} />
-        <Route path="/predictor" element={<Predictor />} />
 
-        <Route path="/question-bank" element={<QuestionBank />} />
-        <Route path="/question-bank/progress" element={<MyProgress />} />
-        <Route path="/question-bank/:questionId" element={<PracticeMode />} />
-        <Route path="/fingerprint" element={<DSAFingerprint />} />
-        <Route path="/tower" element={<TowerDashboard />} />
-        <Route path="/battle-pass" element={<BattlePass />} />
-        <Route path="/campus-connect" element={<CampusConnect />} />
-        <Route path="/campus-wars" element={<CampusWars />} />
-        <Route path="/journeys" element={<LearningJourneys />} />
-        <Route path="/challenge-packs" element={<ChallengePacks />} />
-        <Route path="/community" element={<Community />} />
-        <Route path="/ai-mentor" element={<AIMentor />} />
-        <Route path="/playground" element={<CodePlayground />} />
-        <Route path="/daily-challenge" element={<DailyChallenge />} />
-        <Route path="/daily-challenge/leaderboard" element={<DailyChallenge />} />
-        <Route path="/learn/modules" element={<LearningModules />} />
-        <Route path="/dsa-visualizer" element={<DSAVisualizer />} />
-        <Route path="/visualize/compare" element={<CompareVisualizer />} />
-        <Route path="/resume-ats" element={<ResumeATS />} />
-        <Route path="/mock-oa" element={<MockOA />} />
-        <Route path="/learn" element={<LearningHub />} />
-        <Route path="/learn/:languageId" element={<LanguageJourney />} />
-        <Route path="/learn/:languageId/:levelId/:lessonId" element={<LessonView />} />
+        {/* Question Bank Routes */}
+        <Route
+          path="/question-bank"
+          element={
+            <FeatureErrorBoundary featureName="Question Bank">
+              <QuestionBank />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/question-bank/progress"
+          element={
+            <FeatureErrorBoundary featureName="Question Bank">
+              <MyProgress />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/question-bank/:questionId"
+          element={
+            <FeatureErrorBoundary featureName="Question Bank">
+              <PracticeMode />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/problem-of-the-day"
+          element={
+            <FeatureErrorBoundary featureName="Question Bank">
+              <ProblemOfTheDay />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/problems"
+          element={
+            <FeatureErrorBoundary featureName="Question Bank">
+              <Topics />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/problems/:topic"
+          element={
+            <FeatureErrorBoundary featureName="Question Bank">
+              <TopicProblems />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/solve/:id"
+          element={
+            <FeatureErrorBoundary featureName="Question Bank">
+              <SolveProblem />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/compiler"
+          element={
+            <FeatureErrorBoundary featureName="Compiler">
+              <Compiler />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/playground"
+          element={
+            <FeatureErrorBoundary featureName="Compiler">
+              <CodePlayground />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/fingerprint"
+          element={
+            <FeatureErrorBoundary featureName="Question Bank">
+              <DSAFingerprint />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/challenge-packs"
+          element={
+            <FeatureErrorBoundary featureName="Question Bank">
+              <ChallengePacks />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/dsa-visualizer"
+          element={
+            <FeatureErrorBoundary featureName="Question Bank">
+              <DSAVisualizer />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/visualize/compare"
+          element={
+            <FeatureErrorBoundary featureName="Question Bank">
+              <CompareVisualizer />
+            </FeatureErrorBoundary>
+          }
+        />
 
-        <Route path="/company-mocks" element={<CompanyMocks />} />
-        <Route path="/company-mocks/:testId" element={<CompanyMocks />} />
-        <Route path="/alumni-experiences" element={<AlumniExperiences />} />
-        <Route path="/placement-drives" element={<PlacementDrives />} />
-        <Route path="/career-profile" element={<CareerProfile />} />
-        <Route path="/applications" element={<ApplicationTracker />} />
-        <Route path="/analytics" element={<Analytics />} />
-        <Route path="/enterprise" element={<Enterprise />} />
-        <Route path="/compiler" element={<Compiler />} />
-        <Route path="/solve/:id" element={<SolveProblem />} />
+        {/* Gamification Routes */}
+        <Route
+          path="/tower"
+          element={
+            <FeatureErrorBoundary featureName="Gamification">
+              <TowerDashboard />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route path="/battle-pass" element={<Navigate to="/tower" replace />} />
+        <Route path="/cards" element={<Navigate to="/tower" replace />} />
+        <Route path="/rank" element={<Navigate to="/tower" replace />} />
+        <Route
+          path="/achievements"
+          element={<Navigate to="/tower" replace />}
+        />
+        <Route path="/skill-trees" element={<Navigate to="/tower" replace />} />
+        <Route
+          path="/battles"
+          element={
+            <FeatureErrorBoundary featureName="Gamification">
+              <BattleArena />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/battles/:battleId"
+          element={
+            <FeatureErrorBoundary featureName="Gamification">
+              <BattleArena />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/wheel"
+          element={
+            <FeatureErrorBoundary featureName="Gamification">
+              <LuckyWheel />
+            </FeatureErrorBoundary>
+          }
+        />
 
-        {/* DSA Practice Routes */}
-        <Route path="/problems" element={<Topics />} />
-        <Route path="/problems/:topic" element={<TopicProblems />} />
+        {/* Learning Routes */}
+        <Route
+          path="/learn"
+          element={
+            <FeatureErrorBoundary featureName="Learning">
+              <LearningHub />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/learn/modules"
+          element={<Navigate to="/learn" replace />}
+        />
+        <Route
+          path="/learn/:languageId"
+          element={
+            <FeatureErrorBoundary featureName="Learning">
+              <LanguageLearning />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/learn/:languageId/:levelId/:lessonId"
+          element={
+            <FeatureErrorBoundary featureName="Learning">
+              <LessonView />
+            </FeatureErrorBoundary>
+          }
+        />
+         <Route
+          path="/modules"
+          element={
+            <FeatureErrorBoundary featureName="Learning">
+              <LearningModules />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/modules/:moduleId"
+          element={
+            <FeatureErrorBoundary featureName="Learning">
+              <LearningModule />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route path="/adaptive" element={<Navigate to="/learn" replace />} />
+        <Route path="/languages" element={<Navigate to="/learn" replace />} />
+        <Route
+          path="/languages/:languageId"
+          element={<Navigate to="/learn" replace />}
+        />
+        <Route path="/curriculum" element={<Navigate to="/learn" replace />} />
+        <Route
+          path="/curriculum/:trackId"
+          element={<Navigate to="/learn" replace />}
+        />
+        <Route
+          path="/curriculum/:trackId/:lessonId"
+          element={<Navigate to="/learn" replace />}
+        />
+        <Route
+          path="/scrims"
+          element={
+            <FeatureErrorBoundary featureName="Learning">
+              <Scrims />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/scrims/:scrimId"
+          element={
+            <FeatureErrorBoundary featureName="Learning">
+              <Scrims />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route path="/study" element={<Navigate to="/learn" replace />} />
 
-        {/* Card Collection */}
-        <Route path="/cards" element={<CardCollection />} />
+        {/* Study Tools */}
+        <Route
+          path="/study-timer"
+          element={
+            <FeatureErrorBoundary featureName="Study Tools">
+              <StudyTimer />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/study-goals"
+          element={
+            <FeatureErrorBoundary featureName="Study Tools">
+              <StudyGoals />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/ai-mentor"
+          element={
+            <FeatureErrorBoundary featureName="Study Tools">
+              <AIMentor />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/project-generator"
+          element={
+            <FeatureErrorBoundary featureName="Study Tools">
+              <ProjectGenerator />
+            </FeatureErrorBoundary>
+          }
+        />
 
         {/* Indian Placement Prep */}
-        <Route path="/indian-placement" element={<IndianPlacement />} />
+        <Route
+          path="/indian-placement"
+          element={
+            <FeatureErrorBoundary featureName="Placement">
+              <IndianPlacement />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/alumni-experiences"
+          element={
+            <FeatureErrorBoundary featureName="Placement">
+              <AlumniExperiences />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/placement-drives"
+          element={
+            <FeatureErrorBoundary featureName="Placement">
+              <PlacementDrives />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/placement-calendar"
+          element={
+            <FeatureErrorBoundary featureName="Placement">
+              <PlacementCalendar />
+            </FeatureErrorBoundary>
+          }
+        />
 
-        {/* Scrims — Scrimba-style screencasts */}
-        <Route path="/scrims" element={<Scrims />} />
-        <Route path="/scrims/:scrimId" element={<Scrims />} />
+        {/* Community Routes */}
+        <Route
+          path="/community"
+          element={
+            <FeatureErrorBoundary featureName="Community">
+              <Community />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/campus-connect"
+          element={<Navigate to="/community" replace />}
+        />
+        <Route
+          path="/campus-wars"
+          element={
+            <FeatureErrorBoundary featureName="Community">
+              <CampusWars />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/campus-pulse"
+          element={<Navigate to="/community" replace />}
+        />
+        <Route path="/college" element={<Navigate to="/community" replace />} />
+        <Route path="/chat" element={<Navigate to="/community" replace />} />
+        <Route path="/gd" element={<Navigate to="/community" replace />} />
+        <Route
+          path="/gd/:roomId"
+          element={<Navigate to="/community" replace />}
+        />
+        <Route
+          path="/peer-review"
+          element={<Navigate to="/community" replace />}
+        />
+        <Route
+          path="/study-groups"
+          element={<Navigate to="/community" replace />}
+        />
+        <Route
+          path="/study-squads"
+          element={<Navigate to="/community" replace />}
+        />
 
-        {/* Project Showcase Gallery */}
-        <Route path="/showcase" element={<Showcase />} />
-        <Route path="/showcase/:projectId" element={<ShowcaseDetail />} />
+        {/* Showcase */}
+        <Route
+          path="/showcase"
+          element={
+            <FeatureErrorBoundary featureName="Showcase">
+              <Showcase />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/showcase/:projectId"
+          element={
+            <FeatureErrorBoundary featureName="Showcase">
+              <ShowcaseDetail />
+            </FeatureErrorBoundary>
+          }
+        />
 
-        {/* PWA / Offline / Notifications */}
-        <Route path="/pwa" element={<ProtectedRoute><PwaSetup /></ProtectedRoute>} />
+        {/* PWA */}
+        <Route
+          path="/pwa"
+          element={
+            <ProtectedRoute>
+              <PwaSetup />
+            </ProtectedRoute>
+          }
+        />
 
-        {/* Admin Content Management */}
-        <Route path="/admin-content" element={<ProtectedRoute><AdminContent /></ProtectedRoute>} />
-
-        {/* My Assignments */}
-        <Route path="/my-assignments" element={<ProtectedRoute><MyAssignments /></ProtectedRoute>} />
-
-        {/* Game Events — Daily Boss, Seasons, Combo */}
-        <Route path="/game-events" element={<ProtectedRoute><GameEvents /></ProtectedRoute>} />
-
-        {/* Campus Wars — College Leaderboard */}
-        <Route path="/campus" element={<ProtectedRoute><CampusWars /></ProtectedRoute>} />
-
-        {/* Placement Timeline — contribution graph + milestones */}
-        <Route path="/timeline" element={<ProtectedRoute><Timeline /></ProtectedRoute>} />
-
-        {/* World Map + Skill Tree */}
-        <Route path="/world" element={<ProtectedRoute><WorldMap /></ProtectedRoute>} />
-
-        {/* Mystery Merchant + Prestige */}
-        <Route path="/merchant" element={<ProtectedRoute><Merchant /></ProtectedRoute>} />
-
-        {/* Guilds + Dungeons */}
-        <Route path="/guilds" element={<ProtectedRoute><Dungeons /></ProtectedRoute>} />
-        <Route path="/dungeons" element={<ProtectedRoute><Dungeons /></ProtectedRoute>} />
-
-        {/* Collection Book + Live Events */}
-        <Route path="/collection" element={<ProtectedRoute><CollectionEvents /></ProtectedRoute>} />
-
-        {/* Player Economy — Marketplace, Decks, Equipment, Crafting, Login */}
-        <Route path="/economy" element={<ProtectedRoute><Economy /></ProtectedRoute>} />
-
-        {/* Retention Analytics Admin */}
-        <Route path="/retention" element={<ProtectedRoute><RetentionAdmin /></ProtectedRoute>} />
-        {/* Career RPG — Role Ladder */}
-        <Route path="/career" element={<ProtectedRoute><CareerRpg /></ProtectedRoute>} />
-        {/* College Network — Campus Community */}
-        <Route path="/college" element={<ProtectedRoute><CollegeNetwork /></ProtectedRoute>} />
-        {/* Steam-Style Profile — Aggregate identity */}
-        <Route path="/profile/steam" element={<ProtectedRoute><SteamProfile /></ProtectedRoute>} />
-        {/* Placement Times — Daily Newspaper */}
-        <Route path="/newspaper" element={<ProtectedRoute><Newspaper /></ProtectedRoute>} />
-        {/* Real-time Chat */}
-        <Route path="/chat" element={<ProtectedRoute><Chat /></ProtectedRoute>} />
-        {/* Daily Lucky Wheel */}
-        <Route path="/wheel" element={<ProtectedRoute><LuckyWheel /></ProtectedRoute>} />
-        {/* Guilds — Team-based social gamification */}
-        <Route path="/guilds" element={<ProtectedRoute><Guilds /></ProtectedRoute>} />
-        {/* Guild Castle — Shared defense rooms */}
-        <Route path="/guilds/castle/:guildId" element={<ProtectedRoute><GuildCastle /></ProtectedRoute>} />
-        {/* Shareable Achievements — Viral share cards */}
-        <Route path="/share" element={<ProtectedRoute><ShareCard /></ProtectedRoute>} />
-        {/* Campus Pulse — Campus vs campus battles */}
-        <Route path="/campus-pulse" element={<ProtectedRoute><CampusPulse /></ProtectedRoute>} />
-        {/* Trending Challenges — Viral challenge feed */}
-        <Route path="/trending" element={<ProtectedRoute><TrendingChallenges /></ProtectedRoute>} />
-        {/* Seasonal Events */}
-        <Route path="/seasonal" element={<ProtectedRoute><SeasonalEvents /></ProtectedRoute>} />
-        {/* Achievement Chains */}
-        <Route path="/achievements" element={<ProtectedRoute><AchievementChains /></ProtectedRoute>} />
-        {/* Tournaments — Competitive brackets */}
-        <Route path="/tournaments" element={<ProtectedRoute><Tournaments /></ProtectedRoute>} />
-        {/* Team Competitions — College/Company teams */}
-        <Route path="/teams" element={<ProtectedRoute><TeamCompetitions /></ProtectedRoute>} />
-        {/* Referral Gamification */}
-        <Route path="/referrals" element={<ProtectedRoute><ReferralGamification /></ProtectedRoute>} />
-        {/* Skill Trees — Visual progression paths */}
-        <Route path="/skill-trees" element={<ProtectedRoute><SkillTrees /></ProtectedRoute>} />
-        {/* Battles — 1v1 Coding Battles */}
-        <Route path="/battles" element={<BattleArena />} />
-        <Route path="/battles/:battleId" element={<BattleArena />} />
-
-        {/* Rank — Honor & Kyu/Dan System */}
-        <Route path="/rank" element={<RankProfile />} />
-
-        {/* Personal Dashboard */}
-        <Route path="/my-dashboard" element={<PersonalDashboard />} />
-
-        {/* Adaptive Learning Path */}
-        <Route path="/adaptive" element={<AdaptivePath />} />
-
-         {/* AI Project Generator */}
-         <Route path="/project-generator" element={<ProjectGenerator />} />
-
-         {/* Language Learning Paths - 7 languages x 100 levels x 80 modules */}
-         <Route path="/languages" element={<LanguageLearning />} />
-         <Route path="/languages/:languageId" element={<LanguageLearning />} />
-
-         {/* Admin */}
+        {/* Admin */}
         <Route path="/admin" element={<AdminDashboard />} />
+        <Route
+          path="/admin-content"
+          element={<Navigate to="/admin" replace />}
+        />
+        <Route
+          path="/my-assignments"
+          element={<Navigate to="/dashboard" replace />}
+        />
+        <Route path="/retention" element={<Navigate to="/admin" replace />} />
+
+        {/* Gamification Hub Redirects */}
+        <Route path="/economy" element={<Navigate to="/tower" replace />} />
+        <Route path="/merchant" element={<Navigate to="/tower" replace />} />
+        <Route path="/game-events" element={<Navigate to="/tower" replace />} />
+        <Route path="/world" element={<Navigate to="/tower" replace />} />
+        <Route path="/guilds" element={<Navigate to="/tower" replace />} />
+        <Route path="/dungeons" element={<Navigate to="/tower" replace />} />
+        <Route path="/collection" element={<Navigate to="/tower" replace />} />
+        <Route path="/timeline" element={<Navigate to="/tower" replace />} />
+        <Route path="/newspaper" element={<Navigate to="/tower" replace />} />
+        <Route path="/share" element={<Navigate to="/tower" replace />} />
+        <Route path="/trending" element={<Navigate to="/tower" replace />} />
+        <Route path="/seasonal" element={<Navigate to="/tower" replace />} />
+        <Route
+          path="/guilds/castle/:guildId"
+          element={<Navigate to="/tower" replace />}
+        />
+        <Route path="/tournaments" element={<Navigate to="/tower" replace />} />
+        <Route path="/teams" element={<Navigate to="/tower" replace />} />
+        <Route path="/referrals" element={<Navigate to="/tower" replace />} />
+        <Route path="/themes" element={<Navigate to="/tower" replace />} />
+        <Route path="/daily-drill" element={<Navigate to="/tower" replace />} />
+        <Route
+          path="/profile/steam"
+          element={<Navigate to="/dashboard" replace />}
+        />
+
+        {/* Utility */}
+        <Route
+          path="/cgpa-simulator"
+          element={
+            <ProtectedRoute>
+              <CGPASimulator />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/drive-tracker"
+          element={
+            <ProtectedRoute>
+              <DriveTracker />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/report-card"
+          element={
+            <ProtectedRoute>
+              <PrepReportCard />
+            </ProtectedRoute>
+          }
+        />
       </Route>
 
       <Route path="*" element={<NotFound />} />
@@ -339,17 +923,26 @@ function AnimatedRoutes() {
 }
 
 function PageSuspense({ children }) {
-  return (
-    <Suspense fallback={<DashboardSkeleton />}>
-      {children}
-    </Suspense>
-  );
+  return <Suspense fallback={<DashboardSkeleton />}>{children}</Suspense>;
 }
 
 function AppContent() {
-  const { showXP, showLevelUp, showStreakCeremony, showBadgeUnlock, play } = useJuice();
-  const [xpPopup, setXpPopup] = useState({ show: false, xp: 0, level: 0, streak: 0, badges: [] });
-  const [celebration, setCelebration] = useState({ show: false, type: "confetti", title: "", subtitle: "", xp: 0 });
+  const { showXP, showLevelUp, showStreakCeremony, showBadgeUnlock, play } =
+    useJuice();
+  const [xpPopup, setXpPopup] = useState({
+    show: false,
+    xp: 0,
+    level: 0,
+    streak: 0,
+    badges: [],
+  });
+  const [celebration, setCelebration] = useState({
+    show: false,
+    type: "confetti",
+    title: "",
+    subtitle: "",
+    xp: 0,
+  });
   const [searchOpen, setSearchOpen] = useState(false);
   const searchInputRef = useRef(null);
 
@@ -358,7 +951,13 @@ function AppContent() {
     const handler = (e) => {
       const { xp, level, streak, badges } = e.detail || {};
       if (xp) {
-        setXpPopup({ show: true, xp, level: level || 0, streak: streak || 0, badges: badges || [] });
+        setXpPopup({
+          show: true,
+          xp,
+          level: level || 0,
+          streak: streak || 0,
+          badges: badges || [],
+        });
         showXP(xp, window.innerWidth / 2, window.innerHeight / 2);
         if (level) {
           setTimeout(() => showLevelUp(level), 300);
@@ -382,14 +981,14 @@ function AppContent() {
         subtitle: subtitle || "",
         xp: xp || 0,
       });
-      if (type === 'levelup') {
+      if (type === "levelup") {
         showLevelUp(title ? parseInt(title) : 1);
       }
-      if (type === 'streak') {
+      if (type === "streak") {
         showStreakCeremony(parseInt(subtitle) || 1);
       }
-      if (type === 'badge') {
-        showBadgeUnlock({ name: title, emoji: '🏅' });
+      if (type === "badge") {
+        showBadgeUnlock({ name: title, emoji: "🏅" });
       }
       if (xp) {
         showXP(xp, window.innerWidth / 2, window.innerHeight / 2);
@@ -420,36 +1019,42 @@ function AppContent() {
 
   return (
     <>
-      <AudioInitButton />
       <div className="min-h-screen flex flex-col relative">
-        <SpaceBackground />
+        <CustomCursor />
         <div className="relative z-10 flex flex-col min-h-screen">
           <Navbar />
-<main className="flex-1" id="main-content" role="main">
-             <PageSuspense>
-               <AnimatedRoutes />
-             </PageSuspense>
-           </main>
+          <main className="flex-1" id="main-content" role="main">
+            <PageSuspense>
+              <RouteErrorBoundary>
+                <AnimatedRoutes />
+              </RouteErrorBoundary>
+            </PageSuspense>
+          </main>
           <Footer />
-          <Onboarding />
-          <XPPopup
-            show={xpPopup.show}
-            xpGained={xpPopup.xp}
-            level={xpPopup.level}
-            streak={xpPopup.streak}
-            newBadges={xpPopup.badges}
-            onClose={() => setXpPopup(prev => ({ ...prev, show: false }))}
-          />
-          <CelebrationOverlay
-            show={celebration.show}
-            type={celebration.type}
-            title={celebration.title}
-            subtitle={celebration.subtitle}
-            xp={celebration.xp}
-            onClose={() => setCelebration(prev => ({ ...prev, show: false }))}
-          />
-          <SoundToggle />
-          <BottomNav />
+          <Suspense fallback={null}>
+            <Onboarding />
+            <XPPopup
+              show={xpPopup.show}
+              xpGained={xpPopup.xp}
+              level={xpPopup.level}
+              streak={xpPopup.streak}
+              newBadges={xpPopup.badges}
+              onClose={() => setXpPopup((prev) => ({ ...prev, show: false }))}
+            />
+            <CelebrationOverlay
+              show={celebration.show}
+              type={celebration.type}
+              title={celebration.title}
+              subtitle={celebration.subtitle}
+              xp={celebration.xp}
+              onClose={() =>
+                setCelebration((prev) => ({ ...prev, show: false }))
+              }
+            />
+          </Suspense>
+          <Suspense fallback={null}>
+            <BottomNav />
+          </Suspense>
         </div>
         <div className="h-16 md:hidden" />
       </div>
@@ -467,11 +1072,13 @@ export default function App() {
   return (
     <ErrorBoundary>
       <ToastProvider>
-      <JuiceProvider>
-      <Router>
-        <AppContent />
-      </Router>
-      </JuiceProvider>
+        <ThemeProvider>
+          <JuiceProvider>
+            <Router>
+              <AppContent />
+            </Router>
+          </JuiceProvider>
+        </ThemeProvider>
       </ToastProvider>
     </ErrorBoundary>
   );

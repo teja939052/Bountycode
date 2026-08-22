@@ -1,0 +1,35 @@
+{
+  "id": "html-10-registration-page",
+  "track": "html",
+  "title": "Project: Event Registration Page",
+  "section": "Fundamentals",
+  "order": 10,
+  "type": "project",
+  "duration": "15 min",
+  "xp": 40,
+  "content": {
+    "theory": "Capstone: combine layout **and** forms into a complete event registration page. This is exactly what real placement-drive pages look like.\n\n### Build it\n1. **Header** — event name + date\n2. **Description** — a short paragraph\n3. **Registration form** with:\n   - Full name (text, required)\n   - Email (email, required)\n   - College (text)\n   - Batch year (select with options)\n   - Topics of interest (checkboxes)\n   - Submit button\n\n### Reference\n```html\n<form action=\"/api/register\" method=\"post\">\n  <label for=\"fullname\">Full name</label>\n  <input type=\"text\" id=\"fullname\" name=\"fullname\" required>\n\n  <label for=\"email\">Email</label>\n  <input type=\"email\" id=\"email\" name=\"email\" required>\n\n  <label for=\"year\">Batch</label>\n  <select id=\"year\" name=\"year\">\n    <option value=\"2026\">2026</option>\n    <option value=\"2027\">2027</option>\n  </select>\n\n  <button type=\"submit\">Register</button>\n</form>\n```\n\n### Checklist\n- Every input has a matching `<label>`\n- Every field has a `name`\n- Required fields are marked `required`\n- The form is wrapped in semantic `<section>`s",
+    "codeSnippets": [
+      {
+        "language": "html",
+        "code": "<label for=\"email\">Email</label>\n<input type=\"email\" id=\"email\" name=\"email\" required>",
+        "output": "A labelled, required email field."
+      }
+    ],
+    "exercise": {
+      "instruction": "Build a complete event registration page. Header with the event name 'Hackathon 2026' as an h1. Then a form containing: a required text input named 'fullname' with label 'Full name', a required email input named 'email', a select named 'year' with at least 2 options, and a submit button labelled 'Register'.",
+      "starterCode": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Hackathon 2026</title>\n</head>\n<body>\n  <header>\n    <h1>Hackathon 2026</h1>\n  </header>\n  <main>\n    <form action=\"/api/register\" method=\"post\">\n\n    </form>\n  </main>\n</body>\n</html>",
+      "required": ["<input", "name=\"fullname\"", "required", "type=\"email\"", "name=\"email\"", "<select", "name=\"year\"", "<option", "</select>", "<button type=\"submit\">", "Register", "</button>"],
+      "hints": [
+        "Hint 1: Add a required text input: <input type=\"text\" name=\"fullname\" required> with a label.",
+        "Hint 2: Add an email input and a <select name=\"year\"> with two <option>s.",
+        "Hint 3: End with <button type=\"submit\">Register</button>."
+      ]
+    },
+    "quiz": []
+  },
+  "completion": {
+    "nextLesson": "html-11-tables",
+    "unlocks": ["html-11-tables"]
+  }
+}

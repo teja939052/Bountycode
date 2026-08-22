@@ -1,0 +1,47 @@
+{
+  "id": "java-08-classes-objects",
+  "track": "java",
+  "title": "Classes & Objects",
+  "section": "Java Basics",
+  "order": 8,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 20,
+  "content": {
+    "theory": "Java is an **object-oriented** language. A **class** is a blueprint; an **object** is an instance of it.\n\nDefine a class with fields (data) and methods (behavior):\n\n```java\nclass Player {\n    String name;\n    int hp;\n\n    void takeDamage(int amount) {\n        hp = hp - amount;\n    }\n}\n```\n\nCreate and use an object with `new`:\n\n```java\nPlayer hero = new Player();\nhero.name = \"Aria\";\nhero.hp = 100;\nhero.takeDamage(25);\nSystem.out.println(hero.hp);   // 75\n```\n\nA **constructor** sets up the object on creation — same name as the class:\n\n```java\nclass Player {\n    String name;\n    int hp;\n\n    Player(String n, int h) {\n        name = n;\n        hp = h;\n    }\n}\n\nPlayer hero = new Player(\"Aria\", 100);\n```\n\nEncapsulation: keep fields `private` and expose them through `public` **getters/setters** so you control how they're read and changed:\n\n```java\nclass Player {\n    private int hp;\n\n    public int getHp() {\n        return hp;\n    }\n\n    public void setHp(int value) {\n        hp = value;\n    }\n}\n```",
+    "codeSnippets": [
+      {
+        "language": "java",
+        "code": "class Cat {\n    String name;\n    Cat(String n) { name = n; }\n    void meow() { System.out.println(name + \" says meow\"); }\n}\n\n// in main:\nCat c = new Cat(\"Milo\");\nc.meow();",
+        "output": "Milo says meow"
+      }
+    ],
+    "exercise": {
+      "instruction": "Define a class 'Dog' with a String field 'name', a constructor Dog(String n) that sets name, and a method bark() that prints '<name> says woof'. In main, create Dog d = new Dog(\"Rex\") and call d.bark().",
+      "starterCode": "public class Main {\n    public static void main(String[] args) {\n\n    }\n}\n\n",
+      "language": "java",
+      "expected": "Rex says woof",
+      "required": ["class Dog", "String name", "Dog(String n)", "name = n", "bark()", "new Dog", "Rex", ".bark()"],
+      "hints": [
+        "Hint 1: class Dog { String name; Dog(String n) { name = n; } void bark() { System.out.println(name + \" says woof\"); } }",
+        "Hint 2: In main: Dog d = new Dog(\"Rex\"); d.bark();"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What does 'new' do?",
+        "options": ["Deletes an object", "Creates an object from a class", "Renames a class"],
+        "correct": 1
+      },
+      {
+        "question": "What is a constructor?",
+        "options": ["A method that deletes an object", "A special method that sets up an object on creation", "A variable that stores objects"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "java-09-fizzbuzz",
+    "unlocks": ["java-09-fizzbuzz"]
+  }
+}

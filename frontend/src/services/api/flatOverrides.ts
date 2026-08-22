@@ -1,111 +1,175 @@
-// Hand-mapped flat aliases for legacy `api.<name>(...)` calls whose target
-// method name differs from its namespace method (or never existed). Kept
-// separate from the auto-generated flat.js so it is auditable by hand.
+// Legacy flat aliases for backward-compatible `api.<name>(...)` calls.
+// New code should use the namespace-based API: `api.namespace.method(...)`.
 import { requestWithRetry } from "./request.ts";
-import { aptitudeApi } from "./aptitude.ts";
-import { adaptiveApi } from "./adaptive.ts";
-import { resumeApi } from "./resume.ts";
-import { codingApi, compilerApi } from "./coding.ts";
-import { questionsApi } from "./questions.ts";
-import { gamificationApi } from "./gamification.ts";
-import { communityApi, dailyApi } from "./community.ts";
-import { companyPrepApi, companyMocksApi } from "./companyPrep.ts";
-import { toolsApi, salaryApi } from "./tools.ts";
-import {
-  scrimsApi, rankApi, projectGeneratorApi, analyticsApi, aiDebuggerApi,
-  featuresApi, submissionsApi, dsaFingerprintApi,
-} from "./misc.ts";
-import { journeyApi } from "./journey.ts";
-import { systemDesignApi } from "./systemDesign.ts";
-import { placementApi, indianPlacementApi } from "./placement.ts";
-import { srsApi } from "./srs.ts";
-import { billingApi } from "./billing.ts";
-import { studentApi } from "./student.ts";
-import { guildsApi } from "./guilds.ts";
-import { enhancedApi } from "./enhanced.ts";
-import { dungeonsApi } from "./dungeons.ts";
+import type { PlanInfo } from "./types.ts";
 
 export const flatOverrides = {
   // ---- generic helper ----
-  post: (endpoint, body) => requestWithRetry(endpoint, { method: "POST", body: JSON.stringify(body) }),
+  get: (endpoint: string) => requestWithRetry(endpoint),
+  post: (endpoint: string, body: Record<string, unknown>) =>
+    requestWithRetry(endpoint, { method: "POST", body: JSON.stringify(body) }),
 
-  // ---- gamification ----
-  getGamificationProfile: (...a) => gamificationApi.getProfile.apply(gamificationApi, a),
-  getReadinessScore: (...a) => gamificationApi.getReadinessScore.apply(gamificationApi, a),
-  getSkillGraph: (...a) => gamificationApi.getSkillGraph.apply(gamificationApi, a),
-  getWeakAreas: (...a) => gamificationApi.getWeakAreas.apply(gamificationApi, a),
-  getDailyGoal: (...a) => gamificationApi.getDailyGoal.apply(gamificationApi, a),
-  getStreakFreezeStatus: (...a) => gamificationApi.getStreakFreezeStatus.apply(gamificationApi, a),
-  buyStreakFreeze: (...a) => gamificationApi.buyStreakFreeze.apply(gamificationApi, a),
-  getAllBadges: (...a) => gamificationApi.getAllBadges.apply(gamificationApi, a),
-  getTower: (...a) => gamificationApi.getTower.apply(gamificationApi, a),
-  getChallenges: (...a) => gamificationApi.getChallenges.apply(gamificationApi, a),
-  buyPowerUp: (...a) => gamificationApi.buyPowerUp.apply(gamificationApi, a),
-  usePowerUp: (...a) => gamificationApi.usePowerUp.apply(gamificationApi, a),
-  claimChallenge: (...a) => gamificationApi.claimChallenge.apply(gamificationApi, a),
-  getCardCollection: (...a) => gamificationApi.getCardCollection.apply(gamificationApi, a),
-  getCardStats: (...a) => gamificationApi.getCardStats.apply(gamificationApi, a),
-  getDailyDraw: (...a) => gamificationApi.getDailyDraw.apply(gamificationApi, a),
-  getLeaderboard: (...a) => gamificationApi.getLeaderboard.apply(gamificationApi, a),
+  // ---- questions / problem bank (convenience aliases) ----
+  browseQuestions: (params: Record<string, unknown> = {}) =>
+    requestWithRetry(
+      `/api/v1/questions/browse?${new URLSearchParams(params as Record<string, string>).toString()}`,
+    ),
+  getQuestionFull: (questionId: string) =>
+    requestWithRetry(`/api/v1/questions/${encodeURIComponent(questionId)}`),
+  isQuestionSolved: (questionId: string) =>
+    requestWithRetry(
+      `/api/v1/questions/${encodeURIComponent(questionId)}/solved`,
+    ),
+  getQuestionFilters: () => requestWithRetry("/api/v1/questions/filters"),
+  submitQuestionAnswer: (
+    questionId: string,
+    answer: string,
+    timeTaken: number | null = null,
+  ) =>
+    requestWithRetry("/api/v1/questions/answer", {
+      method: "POST",
+      body: JSON.stringify({
+        question_id: questionId,
+        answer,
+        time_taken: timeTaken,
+      }),
+    }),
+  submitQuestionCode: (questionId: string, payload: Record<string, unknown>) =>
+    requestWithRetry(
+      `/api/v1/questions/${encodeURIComponent(questionId)}/submit`,
+      {
+        method: "POST",
+        body: JSON.stringify(payload),
+      },
+    ),
+  getTopicProblems: (topic: string) =>
+    requestWithRetry(
+      `/api/v1/questions/browse?${new URLSearchParams({ topic, limit: "100" }).toString()}`,
+    ),
 
-  // ---- questions / problem bank ----
-  browseQuestions: (...a) => questionsApi.browse.apply(questionsApi, a),
-  getQuestionFull: (...a) => questionsApi.getFull.apply(questionsApi, a),
-  isQuestionSolved: (...a) => questionsApi.isSolved.apply(questionsApi, a),
-  getQuestionFilters: (...a) => questionsApi.getFilters.apply(questionsApi, a),
-  submitNewQuestion: (...a) => questionsApi.submitQuestion.apply(questionsApi, a),
-  upvoteQuestion: (...a) => questionsApi.upvote.apply(questionsApi, a),
-  getQuestionStats: (...a) => questionsApi.getStats.apply(questionsApi, a),
-  getRecentAnswers: (...a) => questionsApi.getRecent.apply(questionsApi, a),
-  submitQuestionAnswer: (...a) => questionsApi.submitAnswer.apply(questionsApi, a),
-  submitQuestionCode: (...a) => questionsApi.submitCode.apply(questionsApi, a),
-  getTopicProblems: (topic) => questionsApi.browse({ topic, limit: 50 }),
-  getAcceptanceRate: async (id) => {
-    const d = await questionsApi.getFull(id);
-    const anyD = d as Record<string, any>;
-    return anyD.acceptance_rate ?? anyD.acceptanceRate ?? null;
+  // ---- coding + compiler (convenience aliases) ----
+  getCodingTopics: () => requestWithRetry("/api/v1/coding/topics"),
+  startCodingChallengeV2: (payload: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/coding/start", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+  submitCodingAnswer: (payload: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/coding/submit", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+  getCodingSolution: (challengeId: string) =>
+    requestWithRetry(
+      `/api/v1/coding/${encodeURIComponent(challengeId)}/solution`,
+    ),
+  getCodingHint: (challengeId: string, hintLevel = 1) =>
+    requestWithRetry("/api/v1/coding/hint", {
+      method: "POST",
+      body: JSON.stringify({
+        challenge_id: challengeId,
+        hint_level: hintLevel,
+      }),
+    }),
+  getInterviewerReview: (challengeId: string, code: string, language: string) =>
+    requestWithRetry("/api/v1/coding/interviewer-review", {
+      method: "POST",
+      body: JSON.stringify({ challenge_id: challengeId, code, language }),
+    }),
+  executeCompilerCode: (payload: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/compiler/execute", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+  executeCompilerTestCases: (payload: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/compiler/execute-test-cases", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+  traceCompilerCode: (payload: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/compiler/trace", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+  getCompilerBoilerplate: (language: string, topics: string[] = []) =>
+    requestWithRetry("/api/v1/compiler/boilerplate", {
+      method: "POST",
+      body: JSON.stringify({ language, topics }),
+    }),
+
+  // ---- aptitude (convenience aliases) ----
+  startAptitudeTest: (payload: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/aptitude/start", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+  submitAptitudeAnswer: (payload: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/aptitude/answer", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+  completeAptitudeTest: (testId: string) =>
+    requestWithRetry(
+      `/api/v1/aptitude/${encodeURIComponent(testId)}/complete`,
+      {
+        method: "POST",
+      },
+    ),
+
+  // ---- resume (convenience aliases) ----
+  uploadResume: (file: File) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    return fetch("/api/v1/resume/upload", {
+      method: "POST",
+      credentials: "include",
+      body: formData,
+    }).then((r) => r.json());
   },
-  getSimilarProblems: (...a) => featuresApi.getSimilarProblems.apply(featuresApi, a),
-  getProblemSubmissions: (...a) => submissionsApi.getProblemSubmissions.apply(submissionsApi, a),
+  generateResume: (payload: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/resume/generate", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+  optimizeResume: (payload: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/resume/optimize", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+  exportResume: (resumeId: string) =>
+    requestWithRetry(
+      `/api/v1/resume/${encodeURIComponent(resumeId)}/export/docx`,
+    ),
+  getSemanticAtsScore: (payload: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/resume/semantic-score", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+  improveBullets: (bullets: string[], jobRole = "") =>
+    requestWithRetry("/api/v1/enhanced/resume/improve-bullets", {
+      method: "POST",
+      body: JSON.stringify({ bullets, job_role: jobRole }),
+    }),
 
-  // ---- coding + compiler ----
-  getCodingTopics: (...a) => codingApi.getTopics.apply(codingApi, a),
-  startCodingChallengeV2: (...a) => codingApi.startChallengeV2.apply(codingApi, a),
-  submitCodingAnswer: (...a) => codingApi.submitAnswer.apply(codingApi, a),
-  getCodingSolution: (...a) => codingApi.getSolution.apply(codingApi, a),
-  getCodingHint: (...a) => codingApi.getHint.apply(codingApi, a),
-  getInterviewerReview: (...a) => codingApi.getInterviewerReview.apply(codingApi, a),
-  executeCompilerCode: (...a) => compilerApi.executeCode.apply(compilerApi, a),
-  executeCompilerTestCases: (...a) => compilerApi.executeTestCases.apply(compilerApi, a),
-  traceCompilerCode: (...a) => compilerApi.traceCode.apply(compilerApi, a),
-  getCompilerBoilerplate: (...a) => compilerApi.getBoilerplate.apply(compilerApi, a),
-
-  // ---- aptitude ----
-  startAptitudeTest: (...a) => aptitudeApi.startTest.apply(aptitudeApi, a),
-  submitAptitudeAnswer: (...a) => aptitudeApi.submitAnswer.apply(aptitudeApi, a),
-  completeAptitudeTest: (...a) => aptitudeApi.completeTest.apply(aptitudeApi, a),
-
-  // ---- resume ----
-  uploadResume: (...a) => resumeApi.uploadResume.apply(resumeApi, a),
-  generateResume: (...a) => resumeApi.generateResume.apply(resumeApi, a),
-  optimizeResume: (...a) => resumeApi.optimizeResume.apply(resumeApi, a),
-  exportResume: (...a) => resumeApi.exportResume.apply(resumeApi, a),
-  getSemanticAtsScore: (...a) => resumeApi.semanticScore.apply(resumeApi, a),
-
-  // ---- adaptive learning ----
-  getSkillAssessment: (...a) => adaptiveApi.getSkillAssessment.apply(adaptiveApi, a),
-  getWeakAreasAdaptive: (...a) => adaptiveApi.getWeakAreas.apply(adaptiveApi, a),
-  getDailyPlan: (...a) => adaptiveApi.getDailyPlan.apply(adaptiveApi, a),
-  getReadinessScoreAdaptive: (...a) => adaptiveApi.getReadinessScore.apply(adaptiveApi, a),
-  getLearningPath: (...a) => adaptiveApi.getLearningPath.apply(adaptiveApi, a),
-  recordAdaptiveActivity: (...a) => adaptiveApi.recordActivity.apply(adaptiveApi, a),
+  // ---- adaptive learning (convenience aliases) ----
+  getSkillAssessment: () => requestWithRetry("/api/v1/adaptive/skills"),
+  getWeakAreasAdaptive: () => requestWithRetry("/api/v1/adaptive/weak-areas"),
+  getDailyPlan: () => requestWithRetry("/api/v1/adaptive/daily-plan"),
+  getReadinessScoreAdaptive: () =>
+    requestWithRetry("/api/v1/adaptive/readiness"),
+  getLearningPath: () => requestWithRetry("/api/v1/adaptive/learning-path"),
+  recordAdaptiveActivity: (payload: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/adaptive/activity", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
 
   // ---- analytics / admin ----
-  getAnalyticsOverview: (...a) => analyticsApi.getOverview.apply(analyticsApi, a),
-  getAnalyticsFunnel: (...a) => analyticsApi.getFunnel.apply(analyticsApi, a),
-  getAnalyticsSkills: (...a) => analyticsApi.getSkills.apply(analyticsApi, a),
-  getAnalyticsCompanies: (...a) => analyticsApi.getCompanies.apply(analyticsApi, a),
-  getAnalyticsInsights: (...a) => analyticsApi.getInsights.apply(analyticsApi, a),
+  getAnalyticsOverview: () => requestWithRetry("/api/v1/analytics/overview"),
+  getAnalyticsFunnel: () => requestWithRetry("/api/v1/analytics/funnel"),
+  getAnalyticsSkills: () => requestWithRetry("/api/v1/analytics/skills"),
+  getAnalyticsCompanies: () => requestWithRetry("/api/v1/analytics/companies"),
+  getAnalyticsInsights: () => requestWithRetry("/api/v1/analytics/insights"),
   getHealthStatus: () => requestWithRetry("/health"),
 
   // ---- progress / heatmap / streaks ----
@@ -117,155 +181,642 @@ export const flatOverrides = {
   getWeeklyGoal: () => requestWithRetry("/api/v1/progress/weekly-goal"),
 
   // ---- community feed + study groups + discussions ----
-  getFeedPosts: (page = 1, limit = 20) => requestWithRetry(`/api/v1/community/feed?page=${page}&limit=${limit}`),
-  createFeedPost: (body) => requestWithRetry("/api/v1/community/feed", { method: "POST", body: JSON.stringify(body) }),
-  likeFeedPost: (id) => requestWithRetry(`/api/v1/community/feed/${id}/like`, { method: "POST" }),
-  deleteFeedPost: (id) => requestWithRetry(`/api/v1/community/feed/${id}`, { method: "DELETE" }),
-  addFeedComment: (id, content) => requestWithRetry(`/api/v1/community/feed/${id}/comment`, { method: "POST", body: JSON.stringify({ content }) }),
-  getDiscussions: (...a) => communityApi.getDiscussions.apply(communityApi, a),
-  createDiscussion: (...a) => communityApi.createDiscussion.apply(communityApi, a),
-  getStudyGroups: (...a) => communityApi.getStudyGroups.apply(communityApi, a),
-  createStudyGroup: (...a) => communityApi.createStudyGroup.apply(communityApi, a),
-  joinStudyGroup: (...a) => communityApi.joinStudyGroup.apply(communityApi, a),
+  getFeedPosts: (page = 1, limit = 20) =>
+    requestWithRetry(`/api/v1/community/feed?page=${page}&limit=${limit}`),
+  createFeedPost: (body: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/community/feed", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+  likeFeedPost: (id: string) =>
+    requestWithRetry(`/api/v1/community/feed/${encodeURIComponent(id)}/like`, {
+      method: "POST",
+    }),
+  deleteFeedPost: (id: string) =>
+    requestWithRetry(`/api/v1/community/feed/${encodeURIComponent(id)}`, {
+      method: "DELETE",
+    }),
+  addFeedComment: (id: string, content: string) =>
+    requestWithRetry(
+      `/api/v1/community/feed/${encodeURIComponent(id)}/comment`,
+      {
+        method: "POST",
+        body: JSON.stringify({ content }),
+      },
+    ),
+  getDiscussions: (params: Record<string, string> = {}) =>
+    requestWithRetry(
+      `/api/v1/discussions${Object.keys(params).length ? `?${new URLSearchParams(params).toString()}` : ""}`,
+    ),
+  createDiscussion: (body: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/discussions", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+  getStudyGroups: () => requestWithRetry("/api/v1/hook/study-groups"),
+  createStudyGroup: (body: { name: string; description?: string }) =>
+    requestWithRetry("/api/v1/hook/study-groups/create", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+  joinStudyGroup: (groupId: string) =>
+    requestWithRetry(
+      `/api/v1/hook/study-groups/${encodeURIComponent(groupId)}/join`,
+      {
+        method: "POST",
+      },
+    ),
 
   // ---- company prep / mocks ----
-  getCompanies: (...a) => companyPrepApi.getCompanies.apply(companyPrepApi, a),
-  getCompanyGuide: (...a) => companyPrepApi.getGuide.apply(companyPrepApi, a),
-  getBehavioralQuestion: (...a) => companyPrepApi.getBehavioralQuestion.apply(companyPrepApi, a),
-  getMockCompanies: (...a) => companyMocksApi.getCompanies.apply(companyMocksApi, a),
-  getMockHistory: (...a) => questionsApi.getMockHistory.apply(questionsApi, a),
-  startMockTest: (...a) => questionsApi.startMockTest.apply(questionsApi, a),
-  completeMockTest: (...a) => questionsApi.completeMockTest.apply(questionsApi, a),
+  getCompanies: () => requestWithRetry("/api/v1/company/companies"),
+  getCompanyGuide: (companyId: string) =>
+    requestWithRetry(`/api/v1/company/${encodeURIComponent(companyId)}/guide`),
+  getBehavioralQuestion: (payload: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/company/behavioral", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+  getCompanyQuestions: (company: string) =>
+    requestWithRetry(
+      `/api/v1/questions/company/${encodeURIComponent(company)}`,
+    ),
+  getCompanyQuestionList: (
+    company: string,
+    category = "",
+    page: number = 1,
+    limit: number = 20,
+  ) =>
+    requestWithRetry(
+      `/api/v1/questions/company/${encodeURIComponent(company)}/questions?category=${encodeURIComponent(
+        category,
+      )}&page=${page}&limit=${limit}`,
+    ),
+  getMockCompanies: () => requestWithRetry("/api/v1/company-mocks/companies"),
+  getMockHistory: () => requestWithRetry("/api/v1/mock-interview/history"),
+  startMockTest: (payload: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/mock-interview/start", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+  completeMockTest: (sessionId: string) =>
+    requestWithRetry(
+      `/api/v1/mock-interview/${encodeURIComponent(sessionId)}/complete`,
+      {
+        method: "POST",
+      },
+    ),
 
-  // ---- 30-day daily challenge (separate router /api/v1/daily-challenge) ----
-  getDailyChallenge: (...a) => dailyApi.getChallenge.apply(dailyApi, a),
-  submitDailyChallenge: (...a) => dailyApi.submitChallenge.apply(dailyApi, a),
-  getDailyChallengeToday: () => requestWithRetry("/api/v1/daily-challenge/today"),
-  getDailyChallengeStatus: () => requestWithRetry("/api/v1/daily-challenge/status"),
-  getDailyChallengeProgress: () => requestWithRetry("/api/v1/daily-challenge/progress"),
-  getDailyChallengeLeaderboard: () => requestWithRetry("/api/v1/daily-challenge/leaderboard"),
-  enrollDailyChallenge: (path) => requestWithRetry(`/api/v1/daily-challenge/enroll?path=${encodeURIComponent(path)}`, { method: "POST" }),
-  completeDailyChallengeDay: (questIds) => requestWithRetry("/api/v1/daily-challenge/complete-day", { method: "POST", body: JSON.stringify({ quest_ids: questIds }) }),
+  // ---- 30-day daily challenge (separate router) ----
+  getDailyChallenge: () => requestWithRetry("/api/v1/daily/challenge"),
+  submitDailyChallenge: (payload: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/daily/challenge/submit", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+  getDailyChallengeToday: () => requestWithRetry("/api/v1/daily/challenge"),
+  getDailyChallengeStatus: () =>
+    requestWithRetry("/api/v1/daily/challenge/status"),
+  getDailyChallengeProgress: () =>
+    requestWithRetry("/api/v1/daily/challenge/progress"),
+  getDailyChallengeLeaderboard: () =>
+    requestWithRetry("/api/v1/daily/challenge/leaderboard"),
+  enrollDailyChallenge: (path: string) =>
+    requestWithRetry(
+      `/api/v1/daily/challenge/enroll?path=${encodeURIComponent(path)}`,
+      { method: "POST" },
+    ),
+  completeDailyChallengeDay: (questIds: string[]) =>
+    requestWithRetry("/api/v1/daily/challenge/complete-day", {
+      method: "POST",
+      body: JSON.stringify({ quest_ids: questIds }),
+    }),
 
   // ---- scrims ----
-  createScrim: (...a) => scrimsApi.create.apply(scrimsApi, a),
-  getScrims: (...a) => scrimsApi.get.apply(scrimsApi, a),
-  getScrim: (...a) => scrimsApi.getById.apply(scrimsApi, a),
-  likeScrim: (...a) => scrimsApi.like.apply(scrimsApi, a),
+  createScrim: (payload: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/scrims", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+  getScrims: (params: Record<string, string> = {}) =>
+    requestWithRetry(
+      `/api/v1/scrims${Object.keys(params).length ? `?${new URLSearchParams(params).toString()}` : ""}`,
+    ),
+  getScrim: (scrimId: string) =>
+    requestWithRetry(`/api/v1/scrims/${encodeURIComponent(scrimId)}`),
+  likeScrim: (scrimId: string) =>
+    requestWithRetry(`/api/v1/scrims/${encodeURIComponent(scrimId)}/like`, {
+      method: "POST",
+    }),
 
   // ---- system design ----
-  startSystemDesign: (...a) => systemDesignApi.start.apply(systemDesignApi, a),
-  submitSystemDesignAnswer: (...a) => systemDesignApi.submitAnswer.apply(systemDesignApi, a),
-  getSystemDesignResult: (...a) => systemDesignApi.getResult.apply(systemDesignApi, a),
+  startSystemDesign: (payload: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/system-design/start", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+  submitSystemDesignAnswer: (payload: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/system-design/answer", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+  getSystemDesignResult: (sessionId: string) =>
+    requestWithRetry(
+      `/api/v1/system-design/${encodeURIComponent(sessionId)}/result`,
+    ),
 
   // ---- rank ----
-  getRankProfile: (...a) => rankApi.getProfile.apply(rankApi, a),
-  getRankLeaderboard: (...a) => rankApi.get.apply(rankApi, a),
+  getRankProfile: () => requestWithRetry("/api/v1/rank/profile"),
+  getRankLeaderboard: () => requestWithRetry("/api/v1/rank/leaderboard"),
 
   // ---- career profile ----
   getCareerProfile: () => requestWithRetry("/api/v1/profile"),
-  updateCareerProfile: (body) => requestWithRetry("/api/v1/profile", { method: "PUT", body: JSON.stringify(body) }),
-  uploadResumeToProfile: (file) => {
+  updateCareerProfile: (body: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/profile", {
+      method: "PUT",
+      body: JSON.stringify(body),
+    }),
+  uploadResumeToProfile: (file: File) => {
     const formData = new FormData();
     formData.append("file", file);
-    return fetch("/api/v1/profile/upload-resume", { method: "POST", credentials: "include", body: formData }).then((r) => r.json());
+    return fetch("/api/v1/profile/upload-resume", {
+      method: "POST",
+      credentials: "include",
+      body: formData,
+    }).then((r) => r.json());
   },
-  addProfileSectionItem: (section, item) => requestWithRetry(`/api/v1/profile/sections/${section}/items`, { method: "POST", body: JSON.stringify(item) }),
-  removeProfileSectionItem: (section, index) => requestWithRetry(`/api/v1/profile/sections/${section}/items/${index}`, { method: "DELETE" }),
-  getProfileStats: () => requestWithRetry("/api/v1/profile/stats"),
+  addProfileSectionItem: (section: string, item: Record<string, unknown>) =>
+    requestWithRetry(
+      `/api/v1/profile/sections/${encodeURIComponent(section)}/items`,
+      {
+        method: "POST",
+        body: JSON.stringify(item),
+      },
+    ),
+  removeProfileSectionItem: (section: string, index: number) =>
+    requestWithRetry(
+      `/api/v1/profile/sections/${encodeURIComponent(section)}/items/${index}`,
+      { method: "DELETE" },
+    ),
+  getProfileStats: () =>
+    requestWithRetry("/api/v1/profile/stats") as Promise<{
+      level?: number;
+      xp?: number;
+      streak?: number;
+      total_solved?: number;
+      easy?: number;
+      medium?: number;
+      hard?: number;
+      [key: string]: unknown;
+    }>,
 
   // ---- application tracker (student) ----
-  createApplication: (...a) => studentApi.createApplication.apply(studentApi, a),
-  getApplicationPipeline: (...a) => studentApi.getApplicationPipeline.apply(studentApi, a),
-  updateApplicationStage: (...a) => studentApi.updateApplicationStage.apply(studentApi, a),
-  getApplicationStats: (...a) => studentApi.getApplicationStats.apply(studentApi, a),
-  deleteApplication: (...a) => studentApi.deleteApplication.apply(studentApi, a),
+  createApplication: (body: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/applications", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+  getApplicationPipeline: () =>
+    requestWithRetry("/api/v1/applications/pipeline"),
+  updateApplicationStage: (
+    applicationId: string,
+    stage: Record<string, unknown>,
+  ) =>
+    requestWithRetry(
+      `/api/v1/applications/${encodeURIComponent(applicationId)}/stage`,
+      {
+        method: "PUT",
+        body: JSON.stringify(stage),
+      },
+    ),
+  getApplicationStats: () => requestWithRetry("/api/v1/applications/stats"),
+  deleteApplication: (applicationId: string) =>
+    requestWithRetry(
+      `/api/v1/applications/${encodeURIComponent(applicationId)}`,
+      {
+        method: "DELETE",
+      },
+    ),
 
   // ---- battles ----
-  joinBattleQueue: (body) => requestWithRetry("/api/v1/battles/queue", { method: "POST", body: JSON.stringify(body || {}) }),
+  joinBattleQueue: (body: Record<string, unknown> = {}) =>
+    requestWithRetry("/api/v1/battles/queue", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
   getBattleQueueStatus: () => requestWithRetry("/api/v1/battles/queue/status"),
-  getBattleState: (id) => requestWithRetry(`/api/v1/battles/${id}`),
+  getBattleState: (id: string) =>
+    requestWithRetry(`/api/v1/battles/${encodeURIComponent(id)}`),
   getBattleHistory: () => requestWithRetry("/api/v1/battles/history"),
   getBattleLeaderboard: () => requestWithRetry("/api/v1/battles/leaderboard"),
-  submitBattleSolution: (id, body) => requestWithRetry(`/api/v1/battles/${id}/submit`, { method: "POST", body: JSON.stringify(body) }),
-  surrenderBattle: (id) => requestWithRetry(`/api/v1/battles/${id}/surrender`, { method: "POST" }),
+  submitBattleSolution: (id: string, body: Record<string, unknown>) =>
+    requestWithRetry(`/api/v1/battles/${encodeURIComponent(id)}/submit`, {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+  surrenderBattle: (id: string) =>
+    requestWithRetry(`/api/v1/battles/${encodeURIComponent(id)}/surrender`, {
+      method: "POST",
+    }),
 
   // ---- practice sessions ----
-  createPracticeSession: (body) => requestWithRetry("/api/v1/practice/session", { method: "POST", body: JSON.stringify(body || {}) }),
+  createPracticeSession: (body: Record<string, unknown> = {}) =>
+    requestWithRetry("/api/v1/practice/session", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
 
   // ---- enterprise ----
   getEnterpriseCohorts: () => requestWithRetry("/api/v1/enterprise/cohorts"),
-  createEnterpriseCohort: (body) => requestWithRetry("/api/v1/enterprise/cohorts", { method: "POST", body: JSON.stringify(body) }),
-  getCohortProgress: (id) => requestWithRetry(`/api/v1/enterprise/cohorts/${id}/progress`),
+  createEnterpriseCohort: (body: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/enterprise/cohorts", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+  getCohortProgress: (id: string) =>
+    requestWithRetry(
+      `/api/v1/enterprise/cohorts/${encodeURIComponent(id)}/progress`,
+    ),
 
   // ---- project generator ----
-  getProjectHistory: (...a) => projectGeneratorApi.getHistory.apply(projectGeneratorApi, a),
-  generateProject: (...a) => projectGeneratorApi.generate.apply(projectGeneratorApi, a),
-  reviewProject: (body) => requestWithRetry("/api/v1/projects/review", { method: "POST", body: JSON.stringify(body) }),
-  improveCode: (body) => requestWithRetry("/api/v1/projects/improve", { method: "POST", body: JSON.stringify(body) }),
-  saveProject: (body) => requestWithRetry("/api/v1/projects/save", { method: "POST", body: JSON.stringify(body) }),
-  getProject: (id) => requestWithRetry(`/api/v1/projects/${id}`),
+  getProjectHistory: () => requestWithRetry("/api/v1/projects/history"),
+  generateProject: (
+    description: string,
+    language?: string,
+    framework?: string,
+  ) =>
+    requestWithRetry("/api/v1/projects/generate", {
+      method: "POST",
+      body: JSON.stringify({ description, language, framework }),
+    }),
+  reviewProject: (body: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/projects/review", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+  improveCode: (body: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/projects/improve", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+  saveProject: (body: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/projects/save", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+  getProject: (id: string) =>
+    requestWithRetry(`/api/v1/projects/${encodeURIComponent(id)}`),
 
   // ---- billing / trial / discounts ----
-  createCheckout: (...a) => billingApi.createCheckout.apply(billingApi, a),
-  createLifetimeCheckout: (...a) => billingApi.createLifetimeCheckout.apply(billingApi, a),
-  createYearlyCheckout: (...a) => billingApi.createYearlyCheckout.apply(billingApi, a),
-  createTeamCheckout: (...a) => billingApi.createTeamCheckout.apply(billingApi, a),
-  createEnterpriseCheckout: (...a) => billingApi.createEnterpriseCheckout.apply(billingApi, a),
-  validateCoupon: (...a) => billingApi.validateCoupon.apply(billingApi, a),
-  getUsageStats: (...a) => billingApi.getStatus.apply(billingApi, a),
-  startTrial: (body) => requestWithRetry("/api/v1/trial/start", { method: "POST", body: JSON.stringify(body || {}) }),
-  verifyStudentDiscount: (body) => requestWithRetry("/api/v1/discount/student/verify", { method: "POST", body: JSON.stringify(body) }),
+  createCheckout: (country = "US", couponCode = "", seats = 1) =>
+    requestWithRetry("/api/v1/billing/checkout", {
+      method: "POST",
+      body: JSON.stringify({ country, coupon_code: couponCode, seats }),
+    }),
+  createLifetimeCheckout: (country = "US", couponCode = "") =>
+    requestWithRetry("/api/v1/billing/checkout/lifetime", {
+      method: "POST",
+      body: JSON.stringify({ country, coupon_code: couponCode }),
+    }),
+  createYearlyCheckout: (country = "US", couponCode = "") =>
+    requestWithRetry("/api/v1/billing/checkout/yearly", {
+      method: "POST",
+      body: JSON.stringify({ country, coupon_code: couponCode }),
+    }),
+  createTeamCheckout: (country = "US", seats = 5, couponCode = "") =>
+    requestWithRetry("/api/v1/billing/checkout/team", {
+      method: "POST",
+      body: JSON.stringify({ country, seats, coupon_code: couponCode }),
+    }),
+  createEnterpriseCheckout: (country = "US", seats = 10, couponCode = "") =>
+    requestWithRetry("/api/v1/billing/checkout/enterprise", {
+      method: "POST",
+      body: JSON.stringify({ country, seats, coupon_code: couponCode }),
+    }),
+  getPlans: () =>
+    requestWithRetry("/api/v1/billing/plans") as Promise<PlanInfo[]>,
+  validateCoupon: (code = "") =>
+    requestWithRetry("/api/v1/billing/coupon/validate", {
+      method: "POST",
+      body: JSON.stringify({ code }),
+    }),
+  getUsageStats: () =>
+    requestWithRetry("/api/v1/billing/status") as Promise<{
+      plan?: string;
+      features?: Record<
+        string,
+        { monthly_limit: number | string; monthly_used: number }
+      >;
+      [key: string]: unknown;
+    }>,
+  startTrial: (body: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/trial/start", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+  verifyStudentDiscount: (body: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/discount/student/verify", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
 
   // ---- salary + cover letter ----
-  generateCoverLetter: (...a) => toolsApi.generateCoverLetter.apply(toolsApi, a),
-  generateLinkedInAbout: (...a) => toolsApi.generateLinkedInAbout.apply(toolsApi, a),
-  getSalaryBenchmark: (...a) => salaryApi.getBenchmark.apply(salaryApi, a),
-  getSalaryNegotiationTips: (...a) => toolsApi.getSalaryNegotiationTips.apply(toolsApi, a),
+  generateCoverLetter: (
+    resumeId: string,
+    jobDescription: string,
+    companyName: string,
+  ) =>
+    requestWithRetry("/api/v1/tools/cover-letter", {
+      method: "POST",
+      body: JSON.stringify({
+        resume_id: resumeId,
+        job_description: jobDescription,
+        company_name: companyName,
+      }),
+    }),
+  generateLinkedInAbout: (resumeId: string, targetRole: string) =>
+    requestWithRetry("/api/v1/tools/linkedin-about", {
+      method: "POST",
+      body: JSON.stringify({ resume_id: resumeId, target_role: targetRole }),
+    }),
+  getSalaryBenchmark: (
+    jobTitle: string,
+    location: string,
+    company = "",
+    yearsExperience = 0,
+    level = "",
+  ) =>
+    requestWithRetry("/api/v1/salary/benchmark", {
+      method: "POST",
+      body: JSON.stringify({
+        job_title: jobTitle,
+        location,
+        company,
+        years_experience: yearsExperience,
+        level,
+      }),
+    }),
+  getSalaryNegotiationTips: (
+    jobTitle: string,
+    offeredSalary: number,
+    location: string,
+    yearsExperience = 0,
+    companySize = "",
+    benefits: string[] = [],
+  ) =>
+    requestWithRetry("/api/v1/tools/salary-negotiation", {
+      method: "POST",
+      body: JSON.stringify({
+        job_title: jobTitle,
+        offered_salary: offeredSalary,
+        location,
+        years_experience: yearsExperience,
+        company_size: companySize,
+        benefits,
+      }),
+    }),
 
   // ---- placement ----
-  getPlacementDrives: (...a) => placementApi.getPlacementDrives.apply(placementApi, a),
-  getSupportedCompanies: (...a) => placementApi.getSupportedCompanies.apply(placementApi, a),
-  getPredictionHistory: (...a) => placementApi.getPredictionHistory.apply(placementApi, a),
-  predictOffer: (...a) => placementApi.predictOffer.apply(placementApi, a),
-  getAlumniExperiences: (...a) => placementApi.getAlumniExperiences.apply(placementApi, a),
-  getIndianCompanies: (...a) => indianPlacementApi.getCompanies.apply(indianPlacementApi, a),
+  getPlacementDrives: () => requestWithRetry("/api/v1/placement/drives"),
+  getSupportedCompanies: () => requestWithRetry("/api/v1/predictor/companies"),
+  getPredictionHistory: () => requestWithRetry("/api/v1/predictor/history"),
+  predictOffer: (company: string, role = "SDE") =>
+    requestWithRetry("/api/v1/predictor/predict", {
+      method: "POST",
+      body: JSON.stringify({ company, role }),
+    }),
+  recordOutcome: (payload: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/predictor/outcome", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+  getOutcomes: () => requestWithRetry("/api/v1/predictor/outcomes"),
+  deleteOutcome: (id: string) =>
+    requestWithRetry(`/api/v1/predictor/outcome/${encodeURIComponent(id)}`, {
+      method: "DELETE",
+    }),
+  getOutcomeStats: () => requestWithRetry("/api/v1/predictor/outcome-stats"),
+  timeToOffer: (company: string, role = "SDE") =>
+    requestWithRetry("/api/v1/predictor/time-to-offer", {
+      method: "POST",
+      body: JSON.stringify({ company, role }),
+    }),
+  getAlumniExperiences: () => requestWithRetry("/api/v1/placement/alumni"),
+  getIndianCompanies: () =>
+    requestWithRetry("/api/v1/indian-placement/companies"),
 
   // ---- DSA fingerprint / skill profile ----
-  getSkillProfile: (...a) => dsaFingerprintApi.getSkillProfile.apply(dsaFingerprintApi, a),
-  getCompanyPredictions: (...a) => dsaFingerprintApi.getCompanyPredictions.apply(dsaFingerprintApi, a),
-  getCompanyFingerprint: (...a) => dsaFingerprintApi.getCompanyFingerprint.apply(dsaFingerprintApi, a),
+  getSkillProfile: () => requestWithRetry("/api/v1/fingerprint/skill-profile"),
+  getCompanyPredictions: () =>
+    requestWithRetry("/api/v1/fingerprint/company-predictions"),
+  getCompanyFingerprint: (companyId: string) =>
+    requestWithRetry(
+      `/api/v1/fingerprint/company/${encodeURIComponent(companyId)}`,
+    ),
 
   // ---- journeys ----
-  getLearningJourneys: (...a) => journeyApi.get.apply(journeyApi, a),
-  getJourneyDetail: (...a) => journeyApi.get.apply(journeyApi, a),
+  getLearningJourneys: () => requestWithRetry("/api/v1/learning/journeys"),
+  getJourneyDetail: (journeyId: string) =>
+    requestWithRetry(
+      `/api/v1/learning/journeys/${encodeURIComponent(journeyId)}`,
+    ),
 
   // ---- AI debugger ----
-  analyzeCode: (...a) => aiDebuggerApi.analyzeCode.apply(aiDebuggerApi, a),
-  creativeMind: (body) => requestWithRetry("/api/v1/enhanced/coding/creative-mind", { method: "POST", body: JSON.stringify(body) }),
+  analyzeCode: (payload: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/ai-debugger/analyze", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+  creativeMind: (body: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/enhanced/coding/creative-mind", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
 
   // ---- guilds ----
-  getMyRank: (...a) => guildsApi.getRank.apply(guildsApi, a),
+  getMyRank: () => requestWithRetry("/api/v1/guilds/rank"),
 
   // ---- spaced repetition ----
-  initializeSRS: (body) => requestWithRetry("/api/v1/srs/initialize", { method: "POST", body: JSON.stringify(body || {}) }),
-  reviewSRSConcept: (conceptId, grade) => requestWithRetry("/api/v1/srs/review", { method: "POST", body: JSON.stringify({ concept_id: conceptId, grade }) }),
-  getDueSRSCards: (limit = 20) => requestWithRetry(`/api/v1/srs/due?limit=${limit}`),
+  initializeSRS: (body: Record<string, unknown> = {}) =>
+    requestWithRetry("/api/v1/srs/initialize", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+  reviewSRSConcept: (conceptId: string, grade: number) =>
+    requestWithRetry("/api/v1/srs/review", {
+      method: "POST",
+      body: JSON.stringify({ concept_id: conceptId, grade }),
+    }),
+  getDueSRSCards: (limit = 20) =>
+    requestWithRetry(`/api/v1/srs/due?limit=${limit}`),
   getSRSStats: () => requestWithRetry("/api/v1/srs/stats"),
   getSRSConcepts: () => requestWithRetry("/api/v1/srs/concepts"),
-  getSRSForecast: (days = 30) => requestWithRetry(`/api/v1/srs/forecast?days=${days}`),
+  getSRSForecast: (days = 30) =>
+    requestWithRetry(`/api/v1/srs/forecast?days=${days}`),
 
   // ---- contests ----
-  getContests: () => communityApi.getActiveContests.apply(communityApi),
-  joinContest: (contestId) => communityApi.enterContest.apply(communityApi, [contestId, 0]),
+  getContests: () => requestWithRetry("/api/v1/hook/contests"),
+  joinContest: (contestId: string) =>
+    requestWithRetry(
+      `/api/v1/hook/contests/${encodeURIComponent(contestId)}/enter`,
+      {
+        method: "POST",
+      },
+    ),
+
+  // ---- cards / gamification (used by CardCollection) ----
+  getCardCollection: (params: Record<string, string> = {}) =>
+    requestWithRetry(
+      `/api/v1/cards/collection${Object.keys(params).length ? `?${new URLSearchParams(params).toString()}` : ""}`,
+    ),
+  getCardStats: () => requestWithRetry("/api/v1/cards/stats"),
+  getDailyDraw: () => requestWithRetry("/api/v1/cards/daily-draw"),
+  getGamificationProfile: () =>
+    requestWithRetry("/api/v1/gamification/profile"),
 
   // ---- dungeons ----
-  getDungeons: () => dungeonsApi.list.apply(dungeonsApi),
-  getDungeonDetail: (...a) => dungeonsApi.detail.apply(dungeonsApi, a),
-  startDungeon: (...a) => dungeonsApi.start.apply(dungeonsApi, a),
-  submitDungeonStage: (...a) => dungeonsApi.submit.apply(dungeonsApi, a),
-  getDungeonLeaderboard: (...a) => dungeonsApi.leaderboard.apply(dungeonsApi, a),
-  getDungeonHistory: (...a) => dungeonsApi.history.apply(dungeonsApi, a),
-  getDungeonChests: (...a) => dungeonsApi.chests.apply(dungeonsApi, a),
-  advanceDungeon: (dungeonId, stageIndex) => requestWithRetry(`/api/v1/dungeons/${dungeonId}/advance`, { method: "POST", body: JSON.stringify({ stage_index: stageIndex }) }),
+  getDungeons: () => requestWithRetry("/api/v1/dungeons"),
+  getDungeonDetail: (dungeonId: string) =>
+    requestWithRetry(`/api/v1/dungeons/${encodeURIComponent(dungeonId)}`),
+  startDungeon: (dungeonId: string, payload: Record<string, unknown> = {}) =>
+    requestWithRetry(
+      `/api/v1/dungeons/${encodeURIComponent(dungeonId)}/start`,
+      {
+        method: "POST",
+        body: JSON.stringify(payload),
+      },
+    ),
+  submitDungeonStage: (
+    dungeonId: string,
+    payload: Record<string, unknown> = {},
+  ) =>
+    requestWithRetry(
+      `/api/v1/dungeons/${encodeURIComponent(dungeonId)}/stage`,
+      {
+        method: "POST",
+        body: JSON.stringify(payload),
+      },
+    ),
+  getDungeonLeaderboard: (dungeonId: string) =>
+    requestWithRetry(
+      `/api/v1/dungeons/${encodeURIComponent(dungeonId)}/leaderboard`,
+    ),
+  getDungeonHistory: (dungeonId: string) =>
+    requestWithRetry(
+      `/api/v1/dungeons/${encodeURIComponent(dungeonId)}/history`,
+    ),
+  getDungeonChests: (dungeonId: string) =>
+    requestWithRetry(
+      `/api/v1/dungeons/${encodeURIComponent(dungeonId)}/chests`,
+    ),
+  advanceDungeon: (dungeonId: string, stageIndex: number) =>
+    requestWithRetry(
+      `/api/v1/dungeons/${encodeURIComponent(dungeonId)}/advance`,
+      {
+        method: "POST",
+        body: JSON.stringify({ stage_index: stageIndex }),
+      },
+    ),
+
+  // ---- question bank extras (missing legacy aliases) ----
+  getQuestionStats: () => requestWithRetry("/api/v1/questions/stats"),
+  submitNewQuestion: (body: Record<string, unknown>) =>
+    requestWithRetry("/api/v1/questions/submit", {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+  upvoteQuestion: (questionId: string, vote = 1) =>
+    requestWithRetry("/api/v1/questions/upvote", {
+      method: "POST",
+      body: JSON.stringify({ question_id: questionId, vote }),
+    }),
+  getRecentAnswers: (limit = 20) =>
+    requestWithRetry(`/api/v1/questions/recent?limit=${limit}`),
+  getRandomProblem: (params: Record<string, string> = {}) =>
+    requestWithRetry(
+      `/api/v1/features/random?${new URLSearchParams(params).toString()}`,
+    ),
+  getAcceptanceRate: (questionId: string) =>
+    requestWithRetry(
+      `/api/v1/features/problem/${encodeURIComponent(questionId)}/acceptance`,
+    ),
+  getSimilarProblems: (questionId: string, limit = 5) =>
+    requestWithRetry(
+      `/api/v1/features/problem/${encodeURIComponent(questionId)}/similar?limit=${limit}`,
+    ),
+
+  // ---- gamification extras (skill graph / streak freeze / daily goal) ----
+  getSkillGraph: () => requestWithRetry("/api/v1/gamification/skills"),
+  getWeakAreas: (topN = 5) =>
+    requestWithRetry(`/api/v1/gamification/skills/weak?top_n=${topN}`),
+  getReadinessScore: (company: string | null = null) =>
+    requestWithRetry(
+      `/api/v1/gamification/skills/readiness${company ? `?company=${company}` : ""}`,
+    ),
+  getStreakFreezeStatus: () =>
+    requestWithRetry("/api/v1/gamification/tower/streak-freeze"),
+  buyStreakFreeze: () =>
+    requestWithRetry("/api/v1/gamification/tower/streak-freeze/buy", {
+      method: "POST",
+    }),
+  getDailyGoal: () => requestWithRetry("/api/v1/gamification/tower/daily-goal"),
+  getAllBadges: () => requestWithRetry("/api/v1/gamification/badges"),
+  getHealth: () => requestWithRetry("/health"),
+
+  // ---- Friends ----
+  getMyUid: () => requestWithRetry("/api/v1/friends/uid"),
+  getFriendsOverview: () => requestWithRetry("/api/v1/friends/overview"),
+  sendFriendRequest: (uid: string) =>
+    requestWithRetry("/api/v1/friends/request", {
+      method: "POST",
+      body: JSON.stringify({ uid }),
+    }),
+  acceptFriendRequest: (id: string) =>
+    requestWithRetry(
+      `/api/v1/friends/requests/${encodeURIComponent(id)}/accept`,
+      { method: "POST" },
+    ),
+  declineFriendRequest: (id: string) =>
+    requestWithRetry(
+      `/api/v1/friends/requests/${encodeURIComponent(id)}/decline`,
+      { method: "POST" },
+    ),
+  cancelFriendRequest: (id: string) =>
+    requestWithRetry(
+      `/api/v1/friends/requests/${encodeURIComponent(id)}/cancel`,
+      { method: "POST" },
+    ),
+  removeFriend: (friendId: string) =>
+    requestWithRetry(`/api/v1/friends/${encodeURIComponent(friendId)}`, {
+      method: "DELETE",
+    }),
+  getFriendSuggestions: (q?: string, limit = 10) =>
+    requestWithRetry(
+      `/api/v1/friends/suggestions?${q ? `q=${encodeURIComponent(q)}&` : ""}limit=${limit}`,
+    ),
+
+  // ---- Battle challenges ----
+  createBattleChallenge: (mode: string, difficulty: string, language: string) =>
+    requestWithRetry("/api/v1/battles/challenge", {
+      method: "POST",
+      body: JSON.stringify({ mode, difficulty, language }),
+    }),
+  getBattleChallenge: (token: string) =>
+    requestWithRetry(`/api/v1/battles/challenge/${encodeURIComponent(token)}`),
+  acceptBattleChallenge: (token: string) =>
+    requestWithRetry(
+      `/api/v1/battles/challenge/${encodeURIComponent(token)}/accept`,
+      { method: "POST" },
+    ),
+
+  // ---- Squad join codes ----
+  getSquadJoinCode: (squadId: string) =>
+    requestWithRetry(
+      `/api/v1/study-squads/${encodeURIComponent(squadId)}/join-code`,
+      { method: "POST" },
+    ),
+  joinSquadByCode: (code: string) =>
+    requestWithRetry("/api/v1/study-squads/join-by-code", {
+      method: "POST",
+      body: JSON.stringify({ code }),
+    }),
 };

@@ -5,6 +5,7 @@ from typing import Optional
 from bson import ObjectId
 from app.database import get_db
 from app.middleware.auth import get_current_user
+from app.services.sanitizer import sanitize_text
 
 router = APIRouter(prefix="/api/v1/community", tags=["community"])
 
@@ -70,7 +71,7 @@ async def create_post(
         "user_id": user["id"],
         "user_name": user.get("name", "Anonymous"),
         "user_avatar": user.get("name", "A")[0].upper(),
-        "content": req.content,
+        "content": sanitize_text(req.content, max_length=10000),
         "type": req.type,
         "code": req.code,
         "language": req.language,
@@ -127,7 +128,7 @@ async def add_comment(post_id: str, req: AddCommentRequest, user=Depends(get_cur
         "id": str(ObjectId()),
         "user_id": user["id"],
         "user_name": user.get("name", "Anonymous"),
-        "content": req.content,
+        "content": sanitize_text(req.content, max_length=2000),
         "created_at": datetime.now(timezone.utc).isoformat(),
     }
     result = await db["community_posts"].update_one(

@@ -1,0 +1,53 @@
+{
+  "id": "cpp-12-references",
+  "track": "cpp",
+  "title": "References & Pass-by-Reference",
+  "section": "C++ Intermediate",
+  "order": 12,
+  "type": "lesson",
+  "duration": "12 min",
+  "xp": 25,
+  "content": {
+    "theory": "A **reference** is an alias for another variable. `int& ref = x` gives `x` a second name — change one and the other changes too:\n\n```cpp\nint x = 10;\nint& ref = x;\nref = 20;\nstd::cout << x << std::endl;   // 20\n```\n\nA reference can't be reassigned: once bound, it always names the same object. It can't be null either, which is a big reason references are safer than pointers.\n\n### Pass by value, reference, and const reference\n\nBy default C++ **copies** arguments into functions — *pass by value*:\n\n```cpp\nvoid doubleValue(int n) { n *= 2; }   // n is a copy — x stays untouched\nint x = 5;\ndoubleValue(x);\nstd::cout << x;   // 5\n```\n\nFor big objects a copy is expensive. **Pass by reference** avoids the copy and lets the function modify the original:\n\n```cpp\nvoid doubleValue(int& n) { n *= 2; }   // n IS x\ndoubleValue(x);\nstd::cout << x;   // 10\n```\n\nWhen you want to avoid the copy but must NOT modify, use a **const reference**: `void show(const std::string& s)`. The `const` is a compile-time promise the function won't change the argument. Rule of thumb: pass small built-in types by value, large objects by `const&`, and drop `const` only when you intend to modify.\n\n### Reference vs pointer\n\n| | Reference `int& r` | Pointer `int* p` |\n|---|---|---|\n| Alias or address | Alias | Stored address |\n| Can be null | No | Yes |\n| Can be reassigned | No | Yes |\n| Dereference syntax | None — direct | `*p` |\n\nThe classic use of references is a swap function. It needs real variables, not copies, so it takes `int& a, int& b`:\n\n```cpp\nvoid swap(int& a, int& b) {\n    int temp = a;\n    a = b;\n    b = temp;\n}\n```\n\nAfter `swap(x, y)`, the values genuinely swap — exactly what pass-by-value can never do.",
+    "codeSnippets": [
+      {
+        "language": "cpp",
+        "code": "#include <iostream>\n\nvoid swap(int& a, int& b) {\n    int temp = a;\n    a = b;\n    b = temp;\n}\n\nint main() {\n    int x = 3, y = 5;\n    swap(x, y);\n    std::cout << x << \" \" << y << std::endl;\n    return 0;\n}",
+        "output": "5 3"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write the program: a void function swap(int& a, int& b) that swaps two ints using a temporary variable. In main declare int x = 3 and int y = 5, call swap(x, y), then print x and y separated by a space.",
+      "starterCode": "#include <iostream>\n\nint main() {\n\n    return 0;\n}",
+      "language": "cpp",
+      "expected": "5 3",
+      "required": ["void swap(int& a, int& b)", "int temp", "swap(x, y)"],
+      "hints": [
+        "Hint 1: void swap(int& a, int& b) { int temp = a; a = b; b = temp; }",
+        "Hint 2: In main: int x = 3, y = 5; swap(x, y);",
+        "Hint 3: Print: std::cout << x << \" \" << y << std::endl;"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "What is a reference?",
+        "options": ["A copy of another variable", "An alias for another variable", "A pointer you dereference with *"],
+        "correct": 1
+      },
+      {
+        "question": "Why pass large objects by const reference?",
+        "options": ["To avoid copying and guarantee no modification", "Because const is faster to type", "Passing by value is illegal for large types"],
+        "correct": 0
+      },
+      {
+        "question": "What is a key difference between a reference and a pointer?",
+        "options": ["A reference can be null", "A reference can't be reassigned to name a different object", "A pointer always points to an int"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "cpp-13-stl-algorithms",
+    "unlocks": ["cpp-13-stl-algorithms"]
+  }
+}

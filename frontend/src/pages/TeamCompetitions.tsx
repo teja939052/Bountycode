@@ -112,7 +112,7 @@ export default function TeamCompetitions() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-gray-400 text-lg">Loading teams...</div>
+        <div className="text-brand-muted text-lg">Loading teams...</div>
       </div>
     );
   }
@@ -138,14 +138,14 @@ export default function TeamCompetitions() {
       )}
 
       {showCreate && (
-        <div className="bg-white border border-gray-200 rounded-xl p-6 space-y-4">
+        <div className="bg-surface-card border border-brand-primary/10 rounded-xl p-6 space-y-4">
           <h2 className="text-lg font-semibold">Create a Team</h2>
           <input
             type="text"
             placeholder="Team name"
             value={newTeamName}
             onChange={(e) => setNewTeamName(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+            className="w-full px-3 py-2 border border-brand-primary/20 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
           />
           <div className="flex gap-3">
             <button
@@ -155,7 +155,7 @@ export default function TeamCompetitions() {
             >
               Create
             </button>
-            <button onClick={() => setShowCreate(false)} className="px-4 py-2 border border-gray-300 rounded-lg text-sm">
+            <button onClick={() => setShowCreate(false)} className="px-4 py-2 border border-brand-primary/20 rounded-lg text-sm">
               Cancel
             </button>
           </div>
@@ -163,29 +163,29 @@ export default function TeamCompetitions() {
       )}
 
       {myTeam && (
-        <div className="bg-white border border-gray-200 rounded-xl p-6">
+        <div className="bg-surface-card border border-brand-primary/10 rounded-xl p-6">
           <div className="flex items-center gap-4 mb-4">
             <span className="text-4xl">{myTeam.emoji || "🏆"}</span>
             <div>
               <h2 className="text-xl font-bold">{myTeam.name}</h2>
-              <p className="text-sm text-gray-500">{myTeam.members_count || 1} members</p>
+              <p className="text-sm text-brand-muted">{myTeam.members_count || 1} members</p>
             </div>
             <span className="ml-auto px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-semibold capitalize">
               {myTeam.user_role}
             </span>
           </div>
           <div className="grid grid-cols-3 gap-4 mb-4">
-            <div className="text-center p-3 bg-gray-50 rounded-lg">
+            <div className="text-center p-3 bg-surface-base rounded-lg">
               <div className="text-2xl font-bold text-indigo-600">{myTeam.total_xp || 0}</div>
-              <div className="text-xs text-gray-500">Team XP</div>
+              <div className="text-xs text-brand-muted">Team XP</div>
             </div>
-            <div className="text-center p-3 bg-gray-50 rounded-lg">
+            <div className="text-center p-3 bg-surface-base rounded-lg">
               <div className="text-2xl font-bold text-green-600">{myTeam.wins || 0}</div>
-              <div className="text-xs text-gray-500">Wins</div>
+              <div className="text-xs text-brand-muted">Wins</div>
             </div>
-            <div className="text-center p-3 bg-gray-50 rounded-lg">
+            <div className="text-center p-3 bg-surface-base rounded-lg">
               <div className="text-2xl font-bold text-red-600">{myTeam.losses || 0}</div>
-              <div className="text-xs text-gray-500">Losses</div>
+              <div className="text-xs text-brand-muted">Losses</div>
             </div>
           </div>
           <div className="flex gap-3">
@@ -216,25 +216,25 @@ export default function TeamCompetitions() {
 
       <div>
         <h2 className="text-lg font-semibold mb-4">🏆 Team Leaderboard</h2>
-        <div className="bg-white border border-gray-200 rounded-xl overflow-hidden">
+        <div className="bg-surface-card border border-brand-primary/10 rounded-xl overflow-hidden">
           <table className="w-full text-sm">
-            <thead className="bg-gray-50">
+            <thead className="bg-surface-base">
               <tr>
-                <th className="px-4 py-3 text-left font-semibold text-gray-600">Rank</th>
-                <th className="px-4 py-3 text-left font-semibold text-gray-600">Team</th>
-                <th className="px-4 py-3 text-left font-semibold text-gray-600">Members</th>
-                <th className="px-4 py-3 text-left font-semibold text-gray-600">Total XP</th>
+                <th className="px-4 py-3 text-left font-semibold text-brand-secondary">Rank</th>
+                <th className="px-4 py-3 text-left font-semibold text-brand-secondary">Team</th>
+                <th className="px-4 py-3 text-left font-semibold text-brand-secondary">Members</th>
+                <th className="px-4 py-3 text-left font-semibold text-brand-secondary">Total XP</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {leaderboard.map((team) => (
-                <tr key={team.team_id} className="hover:bg-gray-50">
+                <tr key={team.team_id} className="hover:bg-surface-base">
                   <td className="px-4 py-3 font-bold">#{team.rank}</td>
                   <td className="px-4 py-3">
                     <span className="text-lg mr-2">{team.emoji}</span>
                     <span className="font-medium">{team.name}</span>
                   </td>
-                  <td className="px-4 py-3 text-gray-600">{team.members}</td>
+                  <td className="px-4 py-3 text-brand-secondary">{team.members}</td>
                   <td className="px-4 py-3 font-semibold text-indigo-600">{team.total_xp}</td>
                 </tr>
               ))}
@@ -245,22 +245,22 @@ export default function TeamCompetitions() {
 
       <div>
         <h2 className="text-lg font-semibold mb-4">🎓 College Leaderboard</h2>
-        <div className="bg-white border border-gray-200 rounded-xl overflow-hidden">
+        <div className="bg-surface-card border border-brand-primary/10 rounded-xl overflow-hidden">
           <table className="w-full text-sm">
-            <thead className="bg-gray-50">
+            <thead className="bg-surface-base">
               <tr>
-                <th className="px-4 py-3 text-left font-semibold text-gray-600">Rank</th>
-                <th className="px-4 py-3 text-left font-semibold text-gray-600">College</th>
-                <th className="px-4 py-3 text-left font-semibold text-gray-600">Members</th>
-                <th className="px-4 py-3 text-left font-semibold text-gray-600">Total XP</th>
+                <th className="px-4 py-3 text-left font-semibold text-brand-secondary">Rank</th>
+                <th className="px-4 py-3 text-left font-semibold text-brand-secondary">College</th>
+                <th className="px-4 py-3 text-left font-semibold text-brand-secondary">Members</th>
+                <th className="px-4 py-3 text-left font-semibold text-brand-secondary">Total XP</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {collegeLeaderboard.map((college) => (
-                <tr key={college.college} className="hover:bg-gray-50">
+                <tr key={college.college} className="hover:bg-surface-base">
                   <td className="px-4 py-3 font-bold">#{college.rank}</td>
                   <td className="px-4 py-3 font-medium">{college.college}</td>
-                  <td className="px-4 py-3 text-gray-600">{college.members}</td>
+                  <td className="px-4 py-3 text-brand-secondary">{college.members}</td>
                   <td className="px-4 py-3 font-semibold text-indigo-600">{college.total_xp}</td>
                 </tr>
               ))}
@@ -276,7 +276,7 @@ export default function TeamCompetitions() {
             {TEAM_PRESETS.map((team) => (
               <div
                 key={team.name}
-                className="bg-white border border-gray-200 rounded-xl p-4 hover:shadow-lg transition-shadow"
+                className="bg-surface-card border border-brand-primary/10 rounded-xl p-4 hover:shadow-lg transition-shadow"
               >
                 <div className="flex items-center gap-3 mb-2">
                   <span className="text-2xl">{team.emoji}</span>

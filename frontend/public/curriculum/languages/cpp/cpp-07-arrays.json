@@ -1,0 +1,48 @@
+{
+  "id": "cpp-07-arrays",
+  "track": "cpp",
+  "title": "Arrays & Vectors",
+  "section": "C++ Basics",
+  "order": 7,
+  "type": "lesson",
+  "duration": "11 min",
+  "xp": 20,
+  "content": {
+    "theory": "A C-style **array** holds a fixed number of same-typed values:\n\n```cpp\nint scores[4];                    // 4 ints, uninitialized\nint nums[] = {10, 20, 30};        // sized from initializer\n```\n\nAccess by index — 0-based:\n\n```cpp\nscores[0] = 95;\nstd::cout << nums[1] << std::endl;   // 20\nstd::cout << nums[2] << std::endl;   // 30\n```\n\n**Vectors** (from `<vector>`) are the modern growable alternative:\n\n```cpp\n#include <vector>\n\nstd::vector<int> v = {10, 20, 30};\nv.push_back(40);          // add to end → {10,20,30,40}\nv.size()                  // 4\nv[0]                      // 10\nv.pop_back();             // remove last\n```\n\nLoop over arrays and vectors the same way:\n\n```cpp\nfor (int n : nums) {\n    std::cout << n << std::endl;\n}\n```\n\nKey differences:\n\n| | Array | Vector |\n|--|-------|--------|\n| Size | fixed | growable |\n| Header | — | `<vector>` |\n| Methods | none | push_back, size, pop_back |\n\nThe classic C++ array bug: accessing `nums[5]` when the array has 3 items — no error, just garbage data or a crash.",
+    "codeSnippets": [
+      {
+        "language": "cpp",
+        "code": "#include <iostream>\n#include <vector>\n\nint main() {\n    std::vector<int> v = {1, 2, 3};\n    v.push_back(4);\n    std::cout << v.size() << std::endl;\n    return 0;\n}",
+        "output": "4"
+      }
+    ],
+    "exercise": {
+      "instruction": "Write the program: include <vector>, create std::vector<int> 'v' with {1, 2, 3}, push_back(4), then use a range-based for loop to print each value.",
+      "starterCode": "#include <iostream>\n#include <vector>\n\nint main() {\n\n    return 0;\n}",
+      "language": "cpp",
+      "expected": "1\n2\n3\n4",
+      "required": ["std::vector<int> v", "{1, 2, 3}", ".push_back(4)", "for (int n : v)"],
+      "hints": [
+        "Hint 1: std::vector<int> v = {1, 2, 3};",
+        "Hint 2: v.push_back(4);",
+        "Hint 3: for (int n : v) std::cout << n << std::endl;"
+      ]
+    },
+    "quiz": [
+      {
+        "question": "Which container can grow after creation?",
+        "options": ["Array", "Vector", "Both"],
+        "correct": 1
+      },
+      {
+        "question": "What does push_back do?",
+        "options": ["Removes the first item", "Adds an item to the end", "Clears the vector"],
+        "correct": 1
+      }
+    ]
+  },
+  "completion": {
+    "nextLesson": "cpp-08-classes",
+    "unlocks": ["cpp-08-classes"]
+  }
+}
