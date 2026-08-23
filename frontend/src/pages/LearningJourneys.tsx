@@ -91,7 +91,7 @@ export default function LearningJourneys() {
       <div className="min-h-screen flex items-center justify-center bg-surface-base">
         <div className="text-center">
           <p className="text-red-600 mb-4">{error}</p>
-          <button onClick={loadJourneys} className="px-4 py-2 bg-nature-leaf text-white rounded-lg text-sm">Retry</button>
+          <button onClick={loadJourneys} className="px-4 py-2 bg-nature-leaf text-text-primary rounded-lg text-sm">Retry</button>
         </div>
       </div>
     );
@@ -200,7 +200,7 @@ export default function LearningJourneys() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-surface-2 backdrop-blur-sm z-50 flex items-center justify-center p-4"
             onClick={closeDetail}
           >
             <motion.div
@@ -209,7 +209,7 @@ export default function LearningJourneys() {
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-white border border-nature-leaf/20 rounded-2xl w-full max-w-2xl max-h-[85vh] overflow-y-auto shadow-2xl"
+              className="bg-white border border-border rounded-2xl w-full max-w-2xl max-h-[85vh] overflow-y-auto shadow-2xl"
             >
               {detailLoading ? (
                 <div className="flex items-center justify-center py-20">
@@ -293,13 +293,13 @@ export default function LearningJourneys() {
                   <div className="mt-8 flex items-center gap-3">
                     <Link
                       to="/learn"
-                      className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-nature-leaf hover:bg-nature-moss text-white rounded-xl font-medium text-sm transition-colors"
+                      className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-nature-leaf hover:bg-nature-moss text-text-primary rounded-xl font-medium text-sm transition-colors"
                     >
                       Start Learning <ArrowRight className="w-4 h-4" />
                     </Link>
                     <button
                       onClick={closeDetail}
-                      className="px-4 py-3 bg-white hover:bg-surface-card text-text-secondary border border-nature-leaf/20 rounded-xl text-sm transition-colors"
+                      className="px-4 py-3 bg-white border-border hover:bg-surface-card text-text-secondary border-border rounded-xl text-sm transition-colors"
                     >
                       Close
                     </button>

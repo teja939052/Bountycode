@@ -246,15 +246,15 @@ export default function LearningHub() {
     <div className="relative min-h-screen px-4 py-6 md:py-8">
       <ArcadeBackdrop variant="arcade" />
       <div className="relative z-10 mx-auto max-w-7xl space-y-6">
-        <motion.section initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} className="hero-shell p-6 md:p-8 text-white">
+        <motion.section initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} className="hero-shell p-6 md:p-8 text-text-primary">
           <div className="relative z-10 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">
-              <span className="section-kicker border-white/10 bg-white/10 text-white">
+              <span className="section-kicker border-white/10 bg-white border-border/10 text-text-primary">
                 <BookOpen size={12} />
                 Learning hub
               </span>
-              <h1 className="mt-4 text-3xl font-black tracking-tight text-white md:text-5xl">
-                Master <span className="candy-text">13 coding campaigns</span> — languages & the full web stack
+              <h1 className="mt-4 text-3xl font-black tracking-tight text-text-primary md:text-5xl">
+                Master <span className="text-text-primary">13 coding campaigns</span> — languages & the full web stack
               </h1>
               <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-200 md:text-base">
                 Lessons, challenges, projects, and boss battles in one progression loop — from C and
@@ -283,7 +283,7 @@ export default function LearningHub() {
               <span className="quest-chip bg-brand-teal-pale text-brand-teal">{questTotals.practice} practice quests</span>
               <span className="quest-chip bg-brand-lavender-pale text-brand-lavender">{questTotals.challenge} challenge quests</span>
               <span className="quest-chip bg-brand-coral-pale text-brand-coral">{questTotals.project} project quests</span>
-              <span className="quest-chip bg-white/10 text-white">{questTotals.quest} total quests</span>
+              <span className="quest-chip bg-white border-border/10 text-text-primary">{questTotals.quest} total quests</span>
             </div>
           </div>
           <div className="arena-card p-5">
@@ -394,23 +394,23 @@ export default function LearningHub() {
                           {lang.icon}
                         </div>
                         {hasProgress && (
-                          <span className="rounded-full bg-white/25 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-white">
+                          <span className="rounded-full bg-white/25 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-text-primary">
                             In progress
                           </span>
                         )}
                       </div>
 
                       <h2 className="mt-4 font-display text-2xl font-black text-white">{lang.name}</h2>
-                      <p className="mt-2 flex-1 text-sm leading-6 text-white/85">{lang.description}</p>
+                      <p className="mt-2 flex-1 text-sm leading-6 text-text-primary/85">{lang.description}</p>
 
                       <div className="mt-4 flex flex-wrap gap-2">
-                        <span className="rounded-full bg-black/20 px-2.5 py-1 font-mono text-[10px] text-white/90">
+                        <span className="rounded-full bg-surface-2 px-2.5 py-1 font-mono text-[10px] text-white/90">
                           {lang.practice_lessons} practice
                         </span>
-                        <span className="rounded-full bg-black/20 px-2.5 py-1 font-mono text-[10px] text-white/90">
+                        <span className="rounded-full bg-surface-2 px-2.5 py-1 font-mono text-[10px] text-white/90">
                           {lang.challenge_lessons} challenges
                         </span>
-                        <span className="rounded-full bg-black/20 px-2.5 py-1 font-mono text-[10px] text-white/90">
+                        <span className="rounded-full bg-surface-2 px-2.5 py-1 font-mono text-[10px] text-white/90">
                           {lang.project_lessons} projects
                         </span>
                       </div>
@@ -466,13 +466,13 @@ export default function LearningHub() {
               <motion.div
                 animate={{ rotate: [0, 5, -5, 0], scale: [1, 1.05, 1] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-yellow-400 via-orange-400 to-red-500 text-white shadow-xl"
+                className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-yellow-400 via-orange-400 to-red-500 text-text-primary shadow-xl"
                 style={{ boxShadow: "0 0 30px rgba(255,215,0,0.4)" }}
               >
                 <Trophy size={22} />
               </motion.div>
               <div>
-                <h2 className="text-2xl font-display font-black text-white candy-text">Your Journey</h2>
+                <h2 className="text-2xl font-display font-black text-white text-text-primary">Your Journey</h2>
                 <p className="text-xs text-white/60 mt-0.5">100 levels of coding mastery — click any level to begin</p>
               </div>
             </div>
@@ -570,7 +570,7 @@ export default function LearningHub() {
               </div>
               <div className="rounded-3xl bg-brand-gold-pale p-5">
                 <div className="flex items-center gap-4">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-gold text-white">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-gold text-text-primary">
                     <Flame size={26} />
                   </div>
                   <div>
@@ -611,7 +611,7 @@ export default function LearningHub() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-white/10 bg-white/5 p-5">
+        <section className="rounded-2xl border border-white/10 bg-white border-border shadow-card p-5">
           <h2 className="text-lg font-display font-bold uppercase tracking-wider text-white mb-4">More Learning Paths</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
             {[
@@ -628,7 +628,7 @@ export default function LearningHub() {
               { to: "/playground", icon: Rocket, label: "Code Playground", color: "text-cyber-purple" },
               { to: "/scrims", icon: Play, label: "Scrims", color: "text-brand-sky" },
             ].map((item) => (
-              <Link key={item.label} to={item.to} className="group flex flex-col items-center gap-2 rounded-xl border border-white/10 bg-white/5 p-3 hover:bg-white/10 transition-all">
+              <Link key={item.label} to={item.to} className="group flex flex-col items-center gap-2 rounded-xl border border-white/10 bg-white border-border shadow-card p-3 hover:bg-white border-border/10 transition-all">
                 <item.icon size={18} className={`${item.color} group-hover:scale-110 transition-transform`} />
                 <span className="text-[10px] font-mono text-slate-300 text-center leading-tight group-hover:text-white transition-colors">{item.label}</span>
               </Link>
@@ -642,7 +642,7 @@ export default function LearningHub() {
 
 function StatChip({ label, value }: { label: string; value: any }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/10 px-3 py-4 text-center">
+    <div className="rounded-2xl border border-white/10 bg-white border-border/10 px-3 py-4 text-center">
       <div className="text-2xl font-black text-white">{value}</div>
       <div className="mt-1 text-[10px] font-mono uppercase tracking-[0.24em] text-slate-300">{label}</div>
     </div>

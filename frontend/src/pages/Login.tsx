@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Mail, Lock, Eye, EyeOff, LogIn, SignUp, RefreshCw } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff, LogIn, SignUp } from "lucide-react";
 import { LeavesBackground } from "../components/LeavesBackground";
-import { BrandLogo, BrandInitial } from "../components/BrandLogo";
+import { BrandLogo } from "../components/BrandLogo";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -20,9 +20,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--pp-canvas)] flex min-h-screen flex-col items-center justify-center p-4 relative">
-      <LeavesBackground />
-
+    <div className="min-h-screen bg-surface-base flex flex-col items-center justify-center p-4 relative">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-6 md:p-8 relative z-10">
         <div className="text-center mb-8">
           <BrandLogo size={40} />
@@ -33,7 +31,7 @@ export default function Login() {
         {/* Trust badges */}
         <div className="flex items-center justify-center gap-6 mb-6 text-xs text-gray-500">
           <span>✅ 50,000+ Students</span>
-          <span>⭐ 4.8/5 Rating</span>
+          <span>⭐ 4.8 rating</span>
           <span>🏆 3,000+ Offers</span>
         </div>
 
@@ -159,9 +157,8 @@ export default function Login() {
             <Link to="/register" className="text-green-600 font-medium hover:text-green-700">
               Register
             </Link>
-          </p>
-        </div>
-      </div>
-    </div>
+           </p>
+       </div>
+     </div>
   );
 }

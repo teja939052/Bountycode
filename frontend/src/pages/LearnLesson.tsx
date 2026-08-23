@@ -154,7 +154,7 @@ export default function LearnLesson() {
     return exercise.required.every((needle) => normalized.includes(needle.replace(/\s+/g, " ")));
   };
 
-  const handleCheck = async () => {
+const handleCheck = async () => {
     // Runnable tracks with an expected output get REAL output grading.
     if (RUNNABLE_TRACKS.includes(trackId) && exercise?.expected) {
       setRunning(true);
@@ -167,6 +167,7 @@ export default function LearnLesson() {
           timeout: 5,
         });
         const actual = (res?.stdout || res?.output || "").trim();
+        const actualStderr = (res?.stderr || "").trim();
         const expected = String(exercise.expected).trim();
         const normalized = (s) => s.replace(/\s+/g, " ").trim();
         const ok = normalized(actual) === normalized(expected);
@@ -175,17 +176,17 @@ export default function LearnLesson() {
           ok,
           text: actual || "(no output produced)",
           expected,
+          actualStderr,
+          mismatch: ok ? "" : `Expected: "${expected}"` + (actual !== expected ? `  Got: "${actual}"` : ""),
         });
       } catch (err) {
         setCheckResult(false);
-        setRunOutput({ ok: false, text: err?.message || "Run failed", expected: String(exercise.expected) });
-      } finally {
-        setRunning(false);
+        setRunOutput({ ok: false, text: err?.message || "Run failed", expected: String(exercise.expected), actualStderr: "", mismatch: "" });
       }
-      return;
+    } else {
+      const ok = allRequiredPassed();
+      setCheckResult(ok);
     }
-    const ok = allRequiredPassed();
-    setCheckResult(ok);
   };
 
   const handleHint = () => {
@@ -203,16 +204,18 @@ export default function LearnLesson() {
         stdin: exercise?.stdin || "",
         timeout: 5,
       });
+      const output = res?.output || res?.stdout || "";
+      const stderr = (res?.stderr || "").trim();
+      const compileError = res?.compile?.output || "";
       setRunOutput({
-        ok: !(res?.stderr || (res?.error && res?.error !== "Compilation failed")),
-        text:
-          res?.output ||
-          res?.stdout ||
-          res?.error ||
-          (res?.compile?.output ? res.compile.output : "No output"),
+        ok: !(stderr || (res?.error && res?.error !== "Compilation failed")),
+        text: output || (compileError ? `Compilation error: ${compileError}` : "No output"),
+        stderr,
+        compileError,
+        language: exerciseLanguage,
       });
     } catch (err) {
-      setRunOutput({ ok: false, text: err?.message || "Run failed" });
+      setRunOutput({ ok: false, text: err?.message || "Run failed", stderr: "", compileError: "" });
     } finally {
       setRunning(false);
     }

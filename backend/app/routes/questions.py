@@ -27,17 +27,32 @@ def _question_title(q: dict) -> str:
 
 
 def _explain_compiler_error(error_message: str, source_code: str, language: str) -> str:
+    """Enhanced compiler error explanation with line references when possible."""
+    import re
     error_lower = error_message.lower()
+    line_match = re.search(r"line (\d+)", error_message)
+    line_ref = f" (at line {line_match.group(1)})" if line_match else ""
     if "compile" in error_lower or "syntax" in error_lower:
-        return "Your code has a syntax error that stopped compilation before it could run. Check your syntax carefully."
+        return f"Syntax error{line_ref}. Your code could not be compiled. Common causes: missing colon, mismatched parentheses, incorrect indentation.{line_ref}"
     elif "timeout" in error_lower or "timelimit" in error_lower or "time limit" in error_lower:
-        return "Your code exceeded the time limit. Try a more efficient algorithm."
+        return f"Time limit exceeded{line_ref}. Your code took too long. Consider optimizing your algorithm or reducing input size."
     elif "memory" in error_lower or "mle" in error_lower or "out of memory" in error_lower:
-        return "Your code exceeded the memory limit. Try using less memory-intensive data structures."
+        return f"Memory limit exceeded{line_ref}. Your code used too much memory. Try using generators or more efficient data structures."
     elif "runtime" in error_lower or "exception" in error_lower or "error" in error_lower:
-        return "Your code crashed during execution. Check for division by zero, null references, or out-of-bounds access."
+        if "nameerror" in error_lower:
+            return f"Name error{line_ref}. You are using a variable or function that is not defined. Check spelling and imports."
+        elif "typemerror" in error_lower or "type error" in error_lower:
+            return f"Type error{line_ref}. You are trying to operate on incompatible types. Check your types and operators."
+        elif "zero division" in error_lower or "division by zero" in error_lower:
+            return f"Division by zero{line_ref}. You are dividing by zero. Add a check before dividing."
+        elif "index error" in error_lower or "out of range" in error_lower:
+            return f"Index error{line_ref}. You are accessing a list/tuple index that does not exist. Check your bounds."
+        elif "key error" in error_lower:
+            return f"Key error{line_ref}. You are accessing a dictionary key that does not exist. Use .get() or check existence first."
+        else:
+            return f"Runtime error{line_ref}. Your code crashed during execution. Check for edge cases, division by zero, or unexpected inputs.{line_ref}"
     else:
-        return "Your code failed to produce the expected output. Review your algorithm logic and edge cases."
+        return f"Execution failed{line_ref}. Your code did not produce the expected output. Review your algorithm logic and edge cases."
 
 
 def _is_correct_answer(user_ans: str, correct: str, q_type: str) -> bool:

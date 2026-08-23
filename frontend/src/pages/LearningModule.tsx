@@ -118,10 +118,10 @@ export default function LearningModule() {
           >
             ← Back
           </button>
-          {currentPhase !== "mastery" && (
+{currentPhase !== "mastery" && (
             <button
               onClick={completePhase}
-              className="px-6 py-3 rounded-[10px] bg-primary text-white font-medium text-sm transition-all hover:bg-primary-dark"
+              className="px-6 py-3 rounded-[10px] bg-primary text-text-primary font-medium text-sm transition-all hover:bg-primary-dark"
             >
               {currentPhase === "concept" ? "Start Predicting →" :
                currentPhase === "predict" ? "Run the Lab →" :
@@ -208,7 +208,7 @@ Input: [3, 5, 1, 7, 2], target = 8
 Expected output: ?`}
       </div>
 
-      <div className="mt-6 space-y-3">
+<div className="mt-6 space-y-3">
         <p className="text-sm text-text-muted">What does this return?</p>
         <div className="grid grid-cols-2 gap-3 text-sm">
           <label className="flex items-center gap-2 p-2 rounded-[10px] border border-border cursor-pointer hover:border-primary">
@@ -223,19 +223,15 @@ Expected output: ?`}
             <input type="radio" name="predict" className="text-primary" />
             <span className="text-text-muted">[1, 4]</span>
           </label>
-          <label className="flex items-center gap-2 p-2 rounded-[10px] border border-border cursor-pointer hover:border-primary">
-            <input type="radio" name="predict" className="text-primary" />
-            <span className="text-text-muted">[0, 3]</span>
-          </label>
         </div>
-      </div>
 
       <button
         onClick={onComplete}
-        className="mt-6 px-6 py-3 rounded-[10px] bg-primary text-white font-medium text-sm transition-all hover:bg-primary-dark"
+        className="mt-6 px-6 py-3 rounded-[10px] bg-primary text-text-primary font-medium text-sm transition-all hover:bg-primary-dark"
       >
         Run the Lab →
       </button>
+    </div>
     </div>
   );
 }
@@ -271,7 +267,7 @@ console.log(twoSum([3, 5, 1, 7, 2], 8));`);
         <button
           onClick={handleRun}
           disabled={isRunning}
-          className="px-4 py-2 rounded-[10px] bg-primary text-white text-sm font-medium hover:bg-primary-dark disabled:opacity-50 transition-colors flex items-center gap-2"
+          className="px-4 py-2 rounded-[10px] bg-primary text-text-primary text-sm font-medium hover:bg-primary-dark disabled:opacity-50 transition-colors flex items-center gap-2"
         >
           {isRunning ? <Pause size={14} /> : <Play size={14} />}
           {isRunning ? "Running..." : "Run"}
@@ -314,7 +310,7 @@ console.log(twoSum([3, 5, 1, 7, 2], 8));`);
 
       <button
         onClick={onComplete}
-        className="mt-6 px-6 py-3 rounded-[10px] bg-primary text-white font-medium text-sm transition-all hover:bg-primary-dark"
+        className="mt-6 px-6 py-3 rounded-[10px] bg-primary text-text-primary font-medium text-sm transition-all hover:bg-primary-dark"
       >
         Test Mastery →
       </button>
@@ -366,7 +362,7 @@ function MasteryPhase({ module, onComplete, isActive, reduced, completed }: Reco
       <div className="flex items-center justify-between">
         <button
           onClick={() => {}}
-          className="px-6 py-3 rounded-[10px] bg-primary text-white font-medium text-sm transition-all hover:bg-primary-dark"
+          className="px-6 py-3 rounded-[10px] bg-primary text-text-primary font-medium text-sm transition-all hover:bg-primary-dark"
         >
           {completed ? "Continue" : "Submit answer"}
         </button>

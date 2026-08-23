@@ -33,7 +33,7 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--pp-canvas)] flex min-h-screen flex-col items-center justify-center p-4 relative">
+    <div className="min-h-screen bg-surface-base flex flex-col items-center justify-center p-4 relative">
       <LeavesBackground />
 
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-6 md:p-8 relative z-10">
@@ -45,7 +45,7 @@ export default function Register() {
 
         <div className="flex items-center justify-center gap-6 mb-6 text-xs text-gray-500">
           <span>50,000+ Students</span>
-          <span>4.8/5 Rating</span>
+          <span>4.8 rating</span>
           <span>3,000+ Offers</span>
         </div>
 
@@ -195,6 +195,5 @@ export default function Register() {
         </p>
       </div>
     </div>
-  </div>
   );
 }
