@@ -173,7 +173,7 @@ export default function ShowcaseDetail() {
           className="rounded-2xl border border-brand-primary/10 bg-surface-card/30 p-6 mb-6"
         >
           <div className="flex items-start justify-between gap-4 mb-3">
-            <h1 className="text-2xl sm:text-3xl font-display font-bold text-white">{project.title}</h1>
+            <h1 className="text-2xl sm:text-3xl font-display font-bold text-text-primary">{project.title}</h1>
             <div className="flex items-center gap-2 shrink-0">
               <button
                 onClick={handleShare}
@@ -249,7 +249,7 @@ export default function ShowcaseDetail() {
             <span className="text-xs font-mono uppercase tracking-wider text-brand-muted">Code</span>
             <span className="text-xs font-mono text-brand-muted">{project.language}</span>
           </div>
-          <pre className="p-6 text-sm leading-relaxed font-mono text-emerald-200 bg-black/40 overflow-x-auto whitespace-pre">
+          <pre className="p-6 text-sm leading-relaxed font-mono text-emerald-200 bg-surface-2 border-border overflow-x-auto whitespace-pre">
             {project.code}
           </pre>
         </motion.div>
@@ -260,7 +260,7 @@ export default function ShowcaseDetail() {
           transition={{ delay: 0.1 }}
           className="rounded-2xl border border-brand-primary/10 bg-surface-card/30 p-6"
         >
-          <h2 className="text-lg font-display font-semibold text-white flex items-center gap-2 mb-5">
+          <h2 className="text-lg font-display font-semibold text-text-primary flex items-center gap-2 mb-5">
             <MessageSquare className="w-5 h-5 text-indigo-400" />
             Peer Reviews
             <span className="text-sm font-normal text-brand-muted">
@@ -288,7 +288,7 @@ export default function ShowcaseDetail() {
                 <button
                   onClick={handleReview}
                   disabled={submitting || !comment.trim() || rating < 1}
-                  className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-500 to-indigo-600 text-sm font-semibold text-white disabled:opacity-40 hover:from-indigo-400 hover:to-indigo-500 transition-all"
+                  className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-500 to-indigo-600 text-sm font-semibold text-text-primary disabled:opacity-40 hover:from-indigo-400 hover:to-indigo-500 transition-all"
                 >
                   {submitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Star className="w-4 h-4" />}
                   {submitting ? "Submitting..." : "Submit Review"}

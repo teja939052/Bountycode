@@ -90,7 +90,7 @@ export default function SkillMasteryPage() {
                   <span className="text-sm text-gray-300 font-mono truncate">{skill.topic}{skill.sub_topic ? ` > ${skill.sub_topic}` : ""}</span>
                   <span className="text-xs font-mono shrink-0 ml-2" style={{ color: skill.color || "#888" }}>{skill.level_name || skill.level}</span>
                 </div>
-                <div className="h-1 bg-white/5 rounded-full overflow-hidden mt-1">
+                <div className="h-1 bg-white border-border shadow-card rounded-full overflow-hidden mt-1">
                   <div className="h-full rounded-full" style={{ width: `${Math.min(100, (skill.accuracy || 0))}%`, backgroundColor: skill.color || "#666" }} />
                 </div>
                 <div className="flex gap-3 mt-1">

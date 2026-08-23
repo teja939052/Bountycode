@@ -283,7 +283,7 @@ export default function QuestionBank() {
        <div className="mx-auto max-w-4xl lg:max-w-6xl">
          {/* Header */}
          <motion.div className="mb-6" initial={reduced ? {} : { opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-           <div className="rounded-3xl border border-black/5 bg-white/90 p-4 sm:p-5 shadow-soft-lg">
+           <div className="rounded-3xl border border-black/5 bg-white border-border/90 p-4 sm:p-5 shadow-soft-lg">
              <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
                <div className="max-w-3xl">
                 <div className="inline-flex items-center gap-2 rounded-full border border-brand-sky/20 bg-brand-sky/10 px-3 py-1 text-[10px] font-mono uppercase tracking-[0.28em] text-brand-sky">
@@ -300,7 +300,7 @@ export default function QuestionBank() {
                   <button
                     onClick={handleRandomPractice}
                     disabled={randomLoading}
-                    className="inline-flex items-center gap-2 rounded-xl bg-brand-sky px-4 py-2.5 text-sm font-bold text-white shadow-soft-md transition-transform hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-60"
+                    className="inline-flex items-center gap-2 rounded-xl bg-brand-sky px-4 py-2.5 text-sm font-bold text-text-primary shadow-soft-md transition-transform hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-60"
                   >
                     {randomLoading ? <Zap size={14} className="animate-pulse" /> : <ArrowRight size={14} />}
                     Random solve
@@ -341,7 +341,7 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
 
         {dailyChallenge?.problem && (
           <motion.div
-            className="mb-6 overflow-hidden rounded-2xl border border-indigo-200/60 dark:border-indigo-900/50 bg-gradient-to-r from-indigo-600 via-cyan-600 to-emerald-500 text-white shadow-lg"
+            className="mb-6 overflow-hidden rounded-2xl border border-indigo-200/60 dark:border-indigo-900/50 bg-gradient-to-r from-indigo-600 via-cyan-600 to-emerald-500 text-text-primary shadow-lg"
             initial={reduced ? {} : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
           >
@@ -351,9 +351,9 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
                   <Sparkles size={22} />
                 </div>
                 <div className="min-w-0">
-                  <div className="text-[10px] font-mono uppercase tracking-[0.3em] text-white/70">Featured today</div>
+                  <div className="text-[10px] font-mono uppercase tracking-[0.3em] text-text-primary/70">Featured today</div>
                   <h2 className="mt-1 text-xl sm:text-2xl font-bold truncate">{dailyChallenge.problem.question_title || dailyChallenge.problem.question || "Today's Problem"}</h2>
-                  <p className="mt-2 text-sm text-white/85">
+                  <p className="mt-2 text-sm text-text-primary/85">
                     {dailyChallenge.config?.category} · {dailyChallenge.config?.focus} · {dailyChallenge.streak_bonus || 0} XP bonus
                   </p>
                 </div>
@@ -367,7 +367,7 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
                   <ArrowRight size={14} />
                 </Link>
                 {dailyChallenge.problem?.id && (
-                  <Link to={`/solve/${dailyChallenge.problem.id}`} className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-white/30 text-white font-semibold text-sm hover:bg-surface-card/10 transition-colors">
+                  <Link to={`/solve/${dailyChallenge.problem.id}`} className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-white/30 text-text-primary font-semibold text-sm hover:bg-surface-card/10 transition-colors">
                     Solve Now
                   </Link>
                 )}
@@ -413,7 +413,7 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
               {/* Difficulty distribution bar */}
               {difficultyDistribution && (
                 <div className="mt-4">
-                  <div className="flex h-2 overflow-hidden rounded-full bg-black/5">
+                  <div className="flex h-2 overflow-hidden rounded-full bg-surface-2">
                     {(difficultyDistribution.easy / difficultyDistribution.total * 100) > 0 && (
                       <div className="h-full bg-green-500" style={{ width: `${difficultyDistribution.easy / difficultyDistribution.total * 100}%` }} />
                     )}
@@ -518,7 +518,7 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
                 onClick={() => setCategory(f.key)}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all whitespace-nowrap border ${
                   category === f.key
-                    ? "bg-primary-600 text-white border-primary-600 shadow-sm"
+                    ? "bg-primary-600 text-text-primary border-primary-600 shadow-sm"
                     : `border-brand-primary/10 bg-surface-card text-brand-muted hover:bg-surface-card/70 dark:hover:bg-gray-700 ${meta?.tag || ""}`
                 }`}
               >
@@ -534,8 +534,8 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
               onClick={() => handleQuickFilter(f.key)}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all whitespace-nowrap ${
                 quickFilter === f.key
-                  ? "bg-primary-600 text-white shadow-sm"
-                  : "bg-white text-brand-muted hover:bg-black/5"
+                  ? "bg-primary-600 text-text-primary shadow-sm"
+                  : "bg-white text-brand-muted hover:bg-surface-2"
               }`}
             >
               {f.icon} <span className={f.key !== quickFilter && f.color ? f.color : ""}>{f.label}</span>
@@ -559,7 +559,7 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
           <div className="relative">
             <button
                onClick={() => setSortMenuOpen(!sortMenuOpen)}
-               className="flex items-center gap-2 rounded-lg bg-white px-3 py-3 font-medium text-brand-secondary text-brand-muted transition-colors hover:bg-black/5"
+               className="flex items-center gap-2 rounded-lg bg-white px-3 py-3 font-medium text-brand-secondary text-brand-muted transition-colors hover:bg-surface-2"
              >
                <ArrowUpDown size={16} />
                <span className="text-xs hidden sm:inline">{SORT_OPTIONS.find(s => s.key === sortBy)?.label || "Sort"}</span>
@@ -597,8 +597,8 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
             onClick={() => setShowFilters(!showFilters)}
             className={`flex items-center gap-2 px-4 py-3 rounded-lg font-medium transition-colors ${
               showFilters || activeFilters > 0
-                ? "bg-primary-600 text-white"
-                : "bg-white text-brand-secondary text-brand-muted hover:bg-black/5"
+                ? "bg-primary-600 text-text-primary"
+                : "bg-white text-brand-secondary text-brand-muted hover:bg-surface-2"
             }`}
           >
             <Filter size={18} />
@@ -682,7 +682,7 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
         {!showFilters && (
           <div className="flex flex-wrap gap-2 mb-6">
             {["TCS", "Infosys", "Google", "Amazon", "Microsoft", "Meta", "Wipro", "Uber"].map((c) => (
-              <button key={c} onClick={() => handleFilterChange("company", selected.company === c ? "" : c)} className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${selected.company === c ? "bg-primary-600 text-white" : "bg-white text-brand-secondary text-brand-muted hover:bg-black/5"}`}>
+              <button key={c} onClick={() => handleFilterChange("company", selected.company === c ? "" : c)} className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${selected.company === c ? "bg-primary-600 text-text-primary" : "bg-white text-brand-secondary text-brand-muted hover:bg-surface-2"}`}>
                 {c}
               </button>
             ))}
@@ -806,7 +806,7 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
             <button
               onClick={() => setPage(Math.max(1, page - 1))}
               disabled={page === 1}
-              className="p-2 rounded-lg text-brand-muted hover:bg-black/5 disabled:opacity-30"
+              className="p-2 rounded-lg text-brand-muted hover:bg-surface-2 disabled:opacity-30"
             >
               <ChevronLeft size={16} />
             </button>
@@ -827,8 +827,8 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
                   onClick={() => setPage(pageNum)}
                    className={`h-9 w-8 rounded-lg text-xs font-medium transition-colors ${
                      page === pageNum
-                       ? "bg-primary-600 text-white"
-                       : "text-brand-muted hover:bg-black/5"
+                       ? "bg-primary-600 text-text-primary"
+                       : "text-brand-muted hover:bg-surface-2"
                    }`}
                 >
                   {pageNum}
@@ -838,7 +838,7 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
             <button
               onClick={() => setPage(Math.min(pages, page + 1))}
               disabled={page === pages}
-              className="p-2 rounded-lg text-brand-muted hover:bg-black/5 disabled:opacity-30"
+              className="p-2 rounded-lg text-brand-muted hover:bg-surface-2 disabled:opacity-30"
             >
               <ChevronRight size={16} />
             </button>
@@ -853,7 +853,7 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
               <span className="text-sm font-medium text-brand-secondary text-brand-muted">Free Practice: {questionsPracticed}/{FREE_LIMIT} questions used</span>
               <Link to="/pricing" className="text-sm text-primary-600 hover:text-primary-700 font-medium">Upgrade to Pro →</Link>
             </div>
-            <div className="h-2 overflow-hidden rounded-full bg-black/5">
+            <div className="h-2 overflow-hidden rounded-full bg-surface-2">
               <div className={`h-full rounded-full transition-all ${reachedFreeLimit ? "bg-red-500" : "bg-primary-500"}`} style={{ width: `${Math.min(100, (questionsPracticed / FREE_LIMIT) * 100)}%` }} />
             </div>
             {reachedFreeLimit && <p className="text-xs text-red-500 mt-2">Free limit reached. Upgrade to Pro for unlimited practice.</p>}
@@ -863,7 +863,7 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
         {/* Paywall Modal */}
         <AnimatePresence>
           {showPaywall && (
-            <motion.div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setShowPaywall(false)}>
+            <motion.div className="fixed inset-0 z-50 flex items-center justify-center bg-surface-2 backdrop-blur-sm p-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setShowPaywall(false)}>
               <motion.div className="w-full max-w-md rounded-2xl bg-white p-8 text-center shadow-2xl" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }} onClick={(e) => e.stopPropagation()}>
                 <div className="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-2xl flex items-center justify-center mx-auto mb-4"><Lock size={32} className="text-primary-600" /></div>
                 <h2 className="text-2xl font-bold mb-2 dark:text-white">Free Limit Reached</h2>
@@ -873,8 +873,8 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
                   <p className="text-sm text-brand-secondary text-brand-muted">Unlimited questions · Full solutions · Company filters · Mock tests</p>
                 </div>
                 <div className="flex gap-3">
-                  <button onClick={() => setShowPaywall(false)} className="flex-1 rounded-lg bg-black/5 px-4 py-3 font-medium text-brand-secondary hover:bg-black/10">Later</button>
-                  <Link to="/pricing" className="flex-1 px-4 py-3 rounded-lg bg-primary-600 text-white font-medium hover:bg-primary-700 text-center" onClick={() => setShowPaywall(false)}>Upgrade to Pro</Link>
+                  <button onClick={() => setShowPaywall(false)} className="flex-1 rounded-lg bg-surface-2 px-4 py-3 font-medium text-brand-secondary hover:bg-surface-2">Later</button>
+                  <Link to="/pricing" className="flex-1 px-4 py-3 rounded-lg bg-primary-600 text-text-primary font-medium hover:bg-primary-700 text-center" onClick={() => setShowPaywall(false)}>Upgrade to Pro</Link>
                 </div>
               </motion.div>
             </motion.div>

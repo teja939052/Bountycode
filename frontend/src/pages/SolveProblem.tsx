@@ -124,7 +124,7 @@ export default function SolveProblem() {
           <p className="text-sm font-semibold text-text-primary">Problem not found</p>
           <button
             onClick={() => navigate("/question-bank")}
-            className="mt-3 rounded-full bg-brand-primary px-4 py-2 text-xs font-semibold text-white"
+            className="mt-3 rounded-full bg-brand-primary px-4 py-2 text-xs font-semibold text-text-primary"
           >
             Back to Question Bank
           </button>
@@ -136,7 +136,7 @@ export default function SolveProblem() {
   return (
     <div className="min-h-[calc(100vh-64px)] bg-[radial-gradient(circle_at_top,rgba(79,143,87,0.06),transparent_34%),linear-gradient(180deg,#FAFAF6_0%,#F4EFE4_100%)]">
       <div className="mx-auto flex min-h-[calc(100vh-64px)] max-w-[1600px] flex-col px-3 py-3 md:px-4 md:py-4">
-        <div className="sticky top-0 z-20 mb-3 rounded-2xl border border-brand-primary/10 bg-white/90 px-3 py-2 shadow-soft backdrop-blur md:px-4">
+        <div className="sticky top-0 z-20 mb-3 rounded-2xl border border-brand-primary/10 bg-white border-border/90 px-3 py-2 shadow-soft backdrop-blur md:px-4">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex min-w-0 items-center gap-3">
               <button
@@ -204,11 +204,11 @@ export default function SolveProblem() {
           </div>
         </div>
 
-        <div className="md:hidden mb-3 flex gap-2 rounded-2xl border border-brand-primary/10 bg-white/90 p-1 shadow-soft">
+        <div className="md:hidden mb-3 flex gap-2 rounded-2xl border border-brand-primary/10 bg-white border-border/90 p-1 shadow-soft">
           <button
             onClick={() => setMobileTab("problem")}
             className={`flex flex-1 items-center justify-center gap-2 rounded-xl px-3 py-2 text-xs font-semibold transition-colors ${
-              mobileTab === "problem" ? "bg-brand-primary text-white" : "text-brand-muted"
+              mobileTab === "problem" ? "bg-brand-primary text-text-primary" : "text-brand-muted"
             }`}
           >
             <FileText size={13} />
@@ -217,7 +217,7 @@ export default function SolveProblem() {
           <button
             onClick={() => setMobileTab("code")}
             className={`flex flex-1 items-center justify-center gap-2 rounded-xl px-3 py-2 text-xs font-semibold transition-colors ${
-              mobileTab === "code" ? "bg-brand-primary text-white" : "text-brand-muted"
+              mobileTab === "code" ? "bg-brand-primary text-text-primary" : "text-brand-muted"
             }`}
           >
             <Code2 size={13} />

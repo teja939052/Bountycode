@@ -58,7 +58,7 @@ export default function Newspaper() {
     return (
       <div className="min-h-screen bg-surface-base text-text-primary flex items-center justify-center flex-col gap-4">
         <p className="text-text-muted">The press is silent today.</p>
-        <button onClick={load} className="px-4 py-2 bg-emerald-600 text-white rounded-lg">Retry</button>
+        <button onClick={load} className="px-4 py-2 bg-emerald-600 text-text-primary rounded-lg">Retry</button>
       </div>
     );
   }
@@ -202,7 +202,7 @@ export default function Newspaper() {
           <button
             onClick={refresh}
             disabled={refreshing}
-            className="px-6 py-2 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 text-white rounded-lg text-sm font-semibold transition"
+            className="px-6 py-2 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 text-text-primary rounded-lg text-sm font-semibold transition"
           >
             {refreshing ? "Printing..." : "Reprint Today's Edition"}
           </button>

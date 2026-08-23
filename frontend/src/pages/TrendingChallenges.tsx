@@ -150,7 +150,7 @@ export default function TrendingChallenges() {
                 <button
                   onClick={() => handleEngage(item.question_id)}
                   disabled={engaging === item.question_id}
-                  className="rounded-lg bg-nature-leaf px-4 py-2 text-xs font-bold text-white hover:bg-nature-moss disabled:opacity-50 flex items-center gap-1"
+                  className="rounded-lg bg-nature-leaf px-4 py-2 text-xs font-bold text-text-primary hover:bg-nature-moss disabled:opacity-50 flex items-center gap-1"
                 >
                   {engaging === item.question_id ? (
                     <RefreshCw className="h-3 w-3 animate-spin" />

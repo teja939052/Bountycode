@@ -128,7 +128,7 @@ export default function Guilds() {
         {!myGuild && (
           <button
             onClick={() => setShowCreate(!showCreate)}
-            className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 text-sm font-medium"
+            className="px-4 py-2 bg-indigo-600 text-text-primary rounded-lg hover:bg-indigo-700 text-sm font-medium"
           >
             Create Guild
           </button>
@@ -165,7 +165,7 @@ export default function Guilds() {
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm h-20"
           />
           <div className="flex gap-3">
-            <button type="submit" disabled={loading} className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 text-sm font-medium disabled:opacity-50">
+            <button type="submit" disabled={loading} className="px-4 py-2 bg-indigo-600 text-text-primary rounded-lg hover:bg-indigo-700 text-sm font-medium disabled:opacity-50">
               {loading ? "Creating..." : "Create"}
             </button>
             <button type="button" onClick={() => setShowCreate(false)} className="px-4 py-2 border border-gray-300 rounded-lg text-sm">
@@ -270,7 +270,7 @@ export default function Guilds() {
                 <button
                   onClick={() => handleJoinGuild(guild.name)}
                   disabled={loading}
-                  className="w-full px-3 py-1.5 bg-indigo-600 text-white rounded-lg text-xs font-medium hover:bg-indigo-700 disabled:opacity-50"
+                  className="w-full px-3 py-1.5 bg-indigo-600 text-text-primary rounded-lg text-xs font-medium hover:bg-indigo-700 disabled:opacity-50"
                 >
                   {loading ? "Joining..." : "Join Guild"}
                 </button>

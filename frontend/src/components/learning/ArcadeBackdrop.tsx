@@ -28,7 +28,7 @@ const THEMES = {
 const SHAPES = [
   {
     className: "left-[5%] top-[12%] h-40 w-40 rounded-[2rem] rotate-12",
-    color: "bg-white/6 border-white/10",
+    color: "bg-white border-border/6 border-white/10",
     motion: { y: [0, -14, 0], x: [0, 8, 0], rotate: [12, 18, 12] },
   },
   {
@@ -84,7 +84,7 @@ export default function ArcadeBackdrop({ variant = "arcade", className = "" }: {
                 ease: "easeInOut",
               }}
             >
-              <div className="absolute inset-0 rounded-[inherit] bg-white/5" />
+              <div className="absolute inset-0 rounded-[inherit] bg-white border-border shadow-card" />
             </motion.div>
           ))}
         </div>

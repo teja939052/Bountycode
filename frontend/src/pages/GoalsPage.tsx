@@ -72,17 +72,17 @@ export default function GoalsPage() {
           className="glass rounded-xl p-4 mb-6">
           <div className="grid grid-cols-2 gap-3 mb-3">
             <input value={newTitle} onChange={e => setNewTitle(e.target.value)}
-              className="col-span-2 px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-sm text-gray-300 font-mono focus:outline-none"
+              className="col-span-2 px-3 py-2 rounded-lg bg-white border-border shadow-card border border-white/10 text-sm text-gray-300 font-mono focus:outline-none"
               placeholder="Goal title..." />
             <select value={newMetric} onChange={e => setNewMetric(e.target.value)}
-              className="px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-sm text-gray-400 font-mono focus:outline-none">
+              className="px-3 py-2 rounded-lg bg-white border-border shadow-card border border-white/10 text-sm text-gray-400 font-mono focus:outline-none">
               {METRICS.map(m => <option key={m} value={m}>{m.replace(/_/g, " ")}</option>)}
             </select>
             <input type="number" value={newTarget} onChange={e => setNewTarget(e.target.value)}
-              className="px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-sm text-gray-300 font-mono focus:outline-none"
+              className="px-3 py-2 rounded-lg bg-white border-border shadow-card border border-white/10 text-sm text-gray-300 font-mono focus:outline-none"
               placeholder="Target" />
             <input type="date" value={newDeadline} onChange={e => setNewDeadline(e.target.value)}
-              className="px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-sm text-gray-400 font-mono focus:outline-none" />
+              className="px-3 py-2 rounded-lg bg-white border-border shadow-card border border-white/10 text-sm text-gray-400 font-mono focus:outline-none" />
           </div>
           <div className="flex justify-end gap-2">
             <button onClick={() => setShowCreate(false)} className="px-4 py-2 rounded-lg text-sm font-mono text-gray-500">Cancel</button>
@@ -100,13 +100,13 @@ export default function GoalsPage() {
               transition={{ delay: i * 0.05 }}
               className={`glass rounded-xl p-5 ${g.completed ? "border-emerald-500/20" : ""}`}>
               <div className="flex items-center gap-4">
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${g.completed ? "bg-emerald-500/20" : "bg-white/5"}`}>
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${g.completed ? "bg-emerald-500/20" : "bg-white border-border shadow-card"}`}>
                   <Target size={18} className={g.completed ? "text-emerald-400" : "text-gray-500"} />
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className={`text-sm font-display font-bold ${g.completed ? "text-emerald-400" : "text-text-primary"}`}>{g.title}</h3>
                   <p className="text-[10px] font-mono text-gray-500 capitalize">{g.metric?.replace(/_/g, " ")} · {g.progress || 0}/{g.target}</p>
-                  <div className="h-1.5 bg-white/5 rounded-full overflow-hidden mt-2">
+                  <div className="h-1.5 bg-white border-border shadow-card rounded-full overflow-hidden mt-2">
                     <div className={`h-full rounded-full ${g.completed ? "bg-emerald-500" : "bg-brand-sky"}`} style={{ width: `${pct}%` }} />
                   </div>
                 </div>

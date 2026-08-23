@@ -115,7 +115,7 @@ export default function SteamProfile() {
         <Card className="relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-[#EDF5E6] via-transparent to-[#F3F0E8] pointer-events-none" />
           <div className="relative flex items-center gap-4">
-            <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#4F8F57] to-[#7BB661] flex items-center justify-center text-4xl font-black text-white shadow-lg">
+            <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#4F8F57] to-[#7BB661] flex items-center justify-center text-4xl font-black text-text-primary shadow-lg">
               {user.name ? user.name[0].toUpperCase() : "?"}
             </div>
             <div className="flex-1 min-w-0">

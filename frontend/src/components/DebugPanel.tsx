@@ -43,30 +43,30 @@ export default function DebugPanel() {
       <button
         onClick={() => setOpen((v) => !v)}
         title="Debug errors"
-        className="fixed bottom-20 right-4 z-[9999] flex h-10 w-10 items-center justify-center rounded-full border border-cyber-red/40 bg-black/70 text-cyber-red shadow-lg backdrop-blur transition hover:bg-cyber-red/20"
+        className="fixed bottom-20 right-4 z-[9999] flex h-10 w-10 items-center justify-center rounded-full border border-cyber-red/40 bg-surface-2 text-cyber-red shadow-lg backdrop-blur transition hover:bg-cyber-red/20"
       >
         <Bug size={18} />
         {unread > 0 && !open && (
-          <span className="absolute -top-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-cyber-red px-1 text-[10px] font-bold text-white">
+          <span className="absolute -top-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-cyber-red px-1 text-[10px] font-bold text-text-primary">
             {unread}
           </span>
         )}
       </button>
 
       {open && (
-        <div className="fixed bottom-36 right-4 z-[9999] flex max-h-[70vh] w-[420px] max-w-[calc(100vw-2rem)] flex-col rounded-xl border border-cyber-red/30 bg-black/90 shadow-2xl backdrop-blur">
+        <div className="fixed bottom-36 right-4 z-[9999] flex max-h-[70vh] w-[420px] max-w-[calc(100vw-2rem)] flex-col rounded-xl border border-cyber-red/30 bg-surface-2 shadow-2xl backdrop-blur">
           <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
             <div className="flex items-center gap-2 font-mono text-sm font-bold text-cyber-red">
-              <Bug size={16} /> Error Tracker <span className="text-white/40">({errors.length})</span>
+              <Bug size={16} /> Error Tracker <span className="text-text-primary/40">({errors.length})</span>
             </div>
             <div className="flex items-center gap-2">
-              <button onClick={() => { clearTrackedErrors(); refresh(); }} className="text-white/40 hover:text-white" title="Clear">
+              <button onClick={() => { clearTrackedErrors(); refresh(); }} className="text-text-primary/40 hover:text-white" title="Clear">
                 <Trash2 size={16} />
               </button>
-              <button onClick={refresh} className="text-white/40 hover:text-white" title="Refresh">
+              <button onClick={refresh} className="text-text-primary/40 hover:text-white" title="Refresh">
                 <RefreshCw size={16} />
               </button>
-              <button onClick={() => setOpen(false)} className="text-white/40 hover:text-white" title="Close">
+              <button onClick={() => setOpen(false)} className="text-text-primary/40 hover:text-white" title="Close">
                 <X size={16} />
               </button>
             </div>
@@ -74,23 +74,23 @@ export default function DebugPanel() {
 
           <div className="flex-1 overflow-y-auto p-3 space-y-2">
             {errors.length === 0 && (
-              <p className="font-mono text-xs text-white/40">No errors tracked yet. Any crash, rejected promise, or console.error will show here and post to /api/v1/debug/log.</p>
+              <p className="font-mono text-xs text-text-primary/40">No errors tracked yet. Any crash, rejected promise, or console.error will show here and post to /api/v1/debug/log.</p>
             )}
             {errors.map((err, i) => (
-              <div key={i} className="rounded-lg border border-white/10 bg-white/5 p-2">
+              <div key={i} className="rounded-lg border border-white/10 bg-white border-border shadow-card p-2">
                 <div className="flex items-start justify-between gap-2">
                   <div className="min-w-0">
                     <p className="break-words font-mono text-xs font-semibold text-cyber-red">{err.message}</p>
-                    <p className="mt-0.5 font-mono text-[10px] text-white/40">
+                    <p className="mt-0.5 font-mono text-[10px] text-text-primary/40">
                       {err.component} · {err.url} · {err.at}
                     </p>
                   </div>
-                  <button onClick={() => copyText(`${err.message}\n\n${err.stack || ""}`)} className="shrink-0 text-white/40 hover:text-white" title="Copy">
+                  <button onClick={() => copyText(`${err.message}\n\n${err.stack || ""}`)} className="shrink-0 text-text-primary/40 hover:text-white" title="Copy">
                     <Copy size={14} />
                   </button>
                 </div>
                 {err.stack && (
-                  <pre className="mt-1 max-h-32 overflow-y-auto whitespace-pre-wrap break-words font-mono text-[10px] leading-tight text-white/60">
+                  <pre className="mt-1 max-h-32 overflow-y-auto whitespace-pre-wrap break-words font-mono text-[10px] leading-tight text-text-primary/60">
                     {err.stack}
                   </pre>
                 )}

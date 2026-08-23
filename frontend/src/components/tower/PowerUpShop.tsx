@@ -70,7 +70,7 @@ export default function PowerUpShop({ coins = 0, owned = {}, onBuy, onUse }) {
                 <span className="text-2xl">{up.emoji}</span>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-display font-bold text-white">{up.name}</span>
+                    <span className="text-xs font-display font-bold text-text-primary">{up.name}</span>
                     <span className={`text-[8px] font-mono uppercase ${RARITY_TEXT[up.rarity]}`}>{up.rarity}</span>
                   </div>
                   <p className="text-[10px] font-mono text-gray-500">{up.description}</p>
@@ -101,7 +101,7 @@ export default function PowerUpShop({ coins = 0, owned = {}, onBuy, onUse }) {
               >
                 <span className="text-2xl">{up.emoji}</span>
                 <div className="flex-1">
-                  <span className="text-xs font-display font-bold text-white">{up.name}</span>
+                  <span className="text-xs font-display font-bold text-text-primary">{up.name}</span>
                   <p className="text-[10px] font-mono text-gray-500">{up.description}</p>
                 </div>
                 <div className="flex items-center gap-2">

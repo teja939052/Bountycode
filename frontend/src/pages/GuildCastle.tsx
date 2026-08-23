@@ -214,14 +214,14 @@ export default function GuildCastle() {
                   <button
                     onClick={() => handleDefend(zone)}
                     disabled={action === "defending"}
-                    className="flex-1 rounded-lg bg-nature-leaf px-3 py-2 text-xs font-bold text-white hover:bg-nature-moss disabled:opacity-50"
+                    className="flex-1 rounded-lg bg-nature-leaf px-3 py-2 text-xs font-bold text-text-primary hover:bg-nature-moss disabled:opacity-50"
                   >
                     {action === "defending" ? "..." : "🛡️ Defend"}
                   </button>
                   <button
                     onClick={() => handleAttack(zone)}
                     disabled={action === "attacking"}
-                    className="flex-1 rounded-lg bg-rose-600 px-3 py-2 text-xs font-bold text-white hover:bg-rose-500 disabled:opacity-50"
+                    className="flex-1 rounded-lg bg-rose-600 px-3 py-2 text-xs font-bold text-text-primary hover:bg-rose-500 disabled:opacity-50"
                   >
                     {action === "attacking" ? "..." : "⚔️ Attack"}
                   </button>
@@ -258,7 +258,7 @@ export default function GuildCastle() {
                     <button
                       onClick={() => handleUpgrade(id)}
                       disabled={!canAfford || action === "upgrading"}
-                      className="rounded-lg bg-amber-600 px-3 py-1 text-xs font-bold text-white hover:bg-amber-500 disabled:opacity-50"
+                      className="rounded-lg bg-amber-600 px-3 py-1 text-xs font-bold text-text-primary hover:bg-amber-500 disabled:opacity-50"
                     >
                       {action === "upgrading" ? "..." : `${upgrade.cost} 🪙`}
                     </button>
@@ -280,7 +280,7 @@ export default function GuildCastle() {
           <button
             onClick={handleDailyBonus}
             disabled={action === "claiming"}
-            className="rounded-xl bg-green-600 px-6 py-3 font-bold text-white hover:bg-green-500 disabled:opacity-50"
+            className="rounded-xl bg-green-600 px-6 py-3 font-bold text-text-primary hover:bg-green-500 disabled:opacity-50"
           >
             {action === "claiming" ? "Claiming..." : "Claim Daily Bonus"}
           </button>

@@ -134,7 +134,7 @@ export default function CollegeNetwork() {
             <button
               onClick={join}
               disabled={saving || !college || !branch || !year}
-              className="w-full bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 text-white font-semibold rounded-lg py-3 transition"
+              className="w-full bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 text-text-primary font-semibold rounded-lg py-3 transition"
             >
               {saving ? "Joining..." : "Join My College"}
             </button>
@@ -167,7 +167,7 @@ export default function CollegeNetwork() {
                 key={t.id}
                 onClick={() => setTab(t.id)}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
-                  tab === t.id ? "bg-emerald-600 text-white" : "bg-surface-card text-text-secondary hover:bg-[#EDEAE0]"
+                  tab === t.id ? "bg-emerald-600 text-text-primary" : "bg-surface-card text-text-secondary hover:bg-[#EDEAE0]"
                 }`}
               >
                 {t.label}

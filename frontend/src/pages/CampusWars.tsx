@@ -197,7 +197,7 @@ export default function CampusWars() {
                           ? "bg-surface-card text-text-muted cursor-not-allowed"
                           : processingQuest
                           ? "bg-surface-card text-text-muted cursor-wait"
-                          : "bg-nature-leaf text-white hover:bg-nature-moss")}
+                          : "bg-nature-leaf text-text-primary hover:bg-nature-moss")}
                     >
                       {claimed ? "Claimed" : processingQuest ? "..." : "Claim"}
                     </button>
@@ -314,7 +314,7 @@ export default function CampusWars() {
             initial={{ opacity: 0, scale: 0.3 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.3 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-surface-2 backdrop-blur-sm"
             onClick={() => setLastReward(null)}
           >
             <motion.div

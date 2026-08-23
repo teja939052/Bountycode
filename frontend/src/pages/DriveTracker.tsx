@@ -126,23 +126,23 @@ export default function DriveTracker() {
       {/* Stats */}
       {stats && (
         <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-8">
-          <div className="p-4 rounded-2xl border border-white/60 bg-white/80 text-center">
+          <div className="p-4 rounded-2xl border border-white/60 bg-white border-border/80 text-center">
             <div className="text-3xl font-extrabold text-text-primary">{stats.total}</div>
             <div className="text-[10px] font-mono uppercase tracking-wider text-text-light">Total Drives</div>
           </div>
-          <div className="p-4 rounded-2xl border border-white/60 bg-white/80 text-center">
+          <div className="p-4 rounded-2xl border border-white/60 bg-white border-border/80 text-center">
             <div className="text-3xl font-extrabold text-brand-sky">{stats.active}</div>
             <div className="text-[10px] font-mono uppercase tracking-wider text-text-light">Active</div>
           </div>
-          <div className="p-4 rounded-2xl border border-white/60 bg-white/80 text-center">
+          <div className="p-4 rounded-2xl border border-white/60 bg-white border-border/80 text-center">
             <div className="text-3xl font-extrabold text-green-600">{stats.offers}</div>
             <div className="text-[10px] font-mono uppercase tracking-wider text-text-light">Offers</div>
           </div>
-          <div className="p-4 rounded-2xl border border-white/60 bg-white/80 text-center">
+          <div className="p-4 rounded-2xl border border-white/60 bg-white border-border/80 text-center">
             <div className="text-3xl font-extrabold text-emerald-600">{stats.joined}</div>
             <div className="text-[10px] font-mono uppercase tracking-wider text-text-light">Joined</div>
           </div>
-          <div className="p-4 rounded-2xl border border-white/60 bg-white/80 text-center">
+          <div className="p-4 rounded-2xl border border-white/60 bg-white border-border/80 text-center">
             <div className="text-3xl font-extrabold text-brand-lavender">{stats.offer_rate}%</div>
             <div className="text-[10px] font-mono uppercase tracking-wider text-text-light">Offer Rate</div>
           </div>
@@ -151,7 +151,7 @@ export default function DriveTracker() {
 
       <div className="grid lg:grid-cols-3 gap-6">
         {/* Add drive */}
-        <div className="p-6 rounded-2xl border border-white/60 bg-white/80 space-y-4 h-fit">
+        <div className="p-6 rounded-2xl border border-white/60 bg-white border-border/80 space-y-4 h-fit">
           <h2 className="text-lg font-bold text-text-primary flex items-center gap-2">
             <Plus size={18} className="text-brand-sky" /> Track New Drive
           </h2>
@@ -213,13 +213,13 @@ export default function DriveTracker() {
           {loading ? (
             <div className="flex justify-center py-12"><Loader2 size={28} className="animate-spin text-brand-sky" /></div>
           ) : activeDrives.length === 0 && drives.filter((d) => d.status === "rejected").length === 0 ? (
-            <div className="p-6 rounded-2xl border border-white/60 bg-white/80 text-text-light text-sm">
+            <div className="p-6 rounded-2xl border border-white/60 bg-white border-border/80 text-text-light text-sm">
               No drives tracked yet. Add your first placement drive.
             </div>
           ) : (
             <>
               {activeDrives.map((d) => (
-                <div key={d.id} className="p-4 rounded-2xl border border-white/60 bg-white/80">
+                <div key={d.id} className="p-4 rounded-2xl border border-white/60 bg-white border-border/80">
                   <div className="flex items-center justify-between mb-3">
                     <div>
                       <div className="font-semibold text-text-primary">{d.company}</div>
@@ -260,7 +260,7 @@ export default function DriveTracker() {
                 <>
                   <div className="pt-4 text-sm font-semibold text-text-light uppercase tracking-wide">Rejected</div>
                   {drives.filter((d) => d.status === "rejected").map((d) => (
-                    <div key={d.id} className="p-3 rounded-xl border border-white/60 bg-white/50 flex items-center justify-between">
+                    <div key={d.id} className="p-3 rounded-xl border border-white/60 bg-white border-border/50 flex items-center justify-between">
                       <div>
                         <div className="text-sm font-medium text-text-primary flex items-center gap-2">
                           <XCircle size={14} className="text-red-400" /> {d.company}
@@ -279,7 +279,7 @@ export default function DriveTracker() {
 
           {/* Funnel */}
           {stats && stats.funnel?.length > 0 && (
-            <div className="mt-4 p-5 rounded-2xl border border-white/60 bg-white/80">
+            <div className="mt-4 p-5 rounded-2xl border border-white/60 bg-white border-border/80">
               <h3 className="text-sm font-bold text-text-primary mb-3 flex items-center gap-2">
                 <TrendingUp size={16} /> Funnel
               </h3>
@@ -287,7 +287,7 @@ export default function DriveTracker() {
                 {stats.funnel.map((f) => (
                   <div key={f.stage} className="flex items-center gap-2">
                     <span className="w-36 text-xs text-text-light shrink-0">{STAGE_LABELS[f.stage] || f.stage}</span>
-                    <div className="flex-1 h-4 rounded-full bg-white/60 border border-white/70 overflow-hidden">
+                    <div className="flex-1 h-4 rounded-full bg-white border-border/60 border border-white/70 overflow-hidden">
                       <div
                         className="h-full rounded-full bg-gradient-to-r from-brand-sky to-brand-lavender"
                         style={{ width: `${Math.min(100, f.rate)}%` }}

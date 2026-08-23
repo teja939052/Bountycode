@@ -128,7 +128,7 @@ export default function CampusPulse() {
         <div className="text-center mb-8">
           <button
             onClick={handleCreateBattle}
-            className="rounded-xl bg-gradient-to-r from-rose-500 to-pink-600 px-6 py-3 font-bold text-white hover:from-rose-400 hover:to-pink-500 flex items-center gap-2 mx-auto"
+            className="rounded-xl bg-gradient-to-r from-rose-500 to-pink-600 px-6 py-3 font-bold text-text-primary hover:from-rose-400 hover:to-pink-500 flex items-center gap-2 mx-auto"
           >
             <Sword className="h-5 w-5" />
             Start New Battle
@@ -183,13 +183,13 @@ export default function CampusPulse() {
                   <div className="flex gap-2">
                     <button
                       onClick={() => handleJoinBattle(battle._id)}
-                      className="flex-1 rounded-lg bg-nature-leaf px-3 py-2 text-xs font-bold text-white hover:bg-nature-moss"
+                      className="flex-1 rounded-lg bg-nature-leaf px-3 py-2 text-xs font-bold text-text-primary hover:bg-nature-moss"
                     >
                       Join Battle
                     </button>
                     <button
                       onClick={() => setSelectedBattle(battle)}
-                      className="flex-1 rounded-lg bg-[#6B7280] px-3 py-2 text-xs font-bold text-white hover:bg-[#4B5563]"
+                      className="flex-1 rounded-lg bg-[#6B7280] px-3 py-2 text-xs font-bold text-text-primary hover:bg-[#4B5563]"
                     >
                       View Scores
                     </button>
@@ -238,7 +238,7 @@ export default function CampusPulse() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4"
+              className="fixed inset-0 bg-surface-2 flex items-center justify-center z-50 p-4"
               onClick={() => setSelectedBattle(null)}
             >
               <motion.div
@@ -272,13 +272,13 @@ export default function CampusPulse() {
                 <div className="flex gap-3">
                   <button
                     onClick={() => handleSubmitAnswer(selectedBattle._id, true)}
-                    className="flex-1 rounded-lg bg-green-600 px-4 py-3 font-bold text-white hover:bg-green-500"
+                    className="flex-1 rounded-lg bg-green-600 px-4 py-3 font-bold text-text-primary hover:bg-green-500"
                   >
                     ✅ Correct
                   </button>
                   <button
                     onClick={() => handleSubmitAnswer(selectedBattle._id, false)}
-                    className="flex-1 rounded-lg bg-rose-600 px-4 py-3 font-bold text-white hover:bg-rose-500"
+                    className="flex-1 rounded-lg bg-rose-600 px-4 py-3 font-bold text-text-primary hover:bg-rose-500"
                   >
                     ❌ Wrong
                   </button>

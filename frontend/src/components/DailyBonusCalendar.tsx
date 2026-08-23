@@ -78,7 +78,7 @@ export default function DailyBonusCalendar({ dailyBonus, claiming, onClaim }) {
               title={entry ? `${date}: +${entry.xp} XP` : `${date}: no bonus`}
             >
               {entry && entry.xp > 0 && (
-                <CheckCircle size={8} className="text-white" />
+                <CheckCircle size={8} className="text-text-primary" />
               )}
             </motion.div>
           );

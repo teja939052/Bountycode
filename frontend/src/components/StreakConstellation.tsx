@@ -48,7 +48,7 @@ export default function StreakConstellation({ streak = 0, longestStreak = 0, cla
       {/* Header */}
       <div className="flex items-center justify-between mb-3 px-1">
         <div>
-          <h3 className="text-sm font-display font-bold text-white uppercase tracking-wider">
+          <h3 className="text-sm font-display font-bold text-text-primary uppercase tracking-wider">
             Streak Constellation
           </h3>
           <p className="text-[10px] font-mono text-gray-500 mt-0.5">

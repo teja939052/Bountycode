@@ -102,7 +102,7 @@ export default function Referral() {
               <div className="flex items-center gap-3">
                 <button
                   onClick={shareInvite}
-                  className="flex-1 rounded-lg bg-nature-leaf px-4 py-2 font-semibold text-white hover:bg-nature-moss flex items-center justify-center gap-2"
+                  className="flex-1 rounded-lg bg-nature-leaf px-4 py-2 font-semibold text-text-primary hover:bg-nature-moss flex items-center justify-center gap-2"
                 >
                   <Share2 className="h-4 w-4" />
                   Share Invite

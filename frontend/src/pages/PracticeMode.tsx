@@ -187,7 +187,7 @@ export default function PracticeMode() {
               <button
                 onClick={handleSubmit}
                 disabled={!answer.trim() || submitting}
-                className="flex items-center gap-2 bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 disabled:opacity-50 transition-colors"
+                className="flex items-center gap-2 bg-primary-600 text-text-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 disabled:opacity-50 transition-colors"
               >
                 {submitting ? (
                   <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white" />
@@ -215,7 +215,7 @@ export default function PracticeMode() {
                 feedback.score >= 7 ? "bg-gradient-to-r from-green-500 to-emerald-600" :
                 feedback.score >= 4 ? "bg-gradient-to-r from-yellow-500 to-orange-500" :
                 "bg-gradient-to-r from-red-500 to-pink-500"
-              } text-white`}>
+              } text-text-primary`}>
                 <motion.p
                   className="text-6xl font-bold mb-2"
                   initial={reduced ? {} : { scale: 0 }}
@@ -228,7 +228,7 @@ export default function PracticeMode() {
                   {feedback.score >= 8 ? "Excellent work!" : feedback.score >= 5 ? "Good attempt!" : "Keep practicing!"}
                 </p>
                 {feedback.xp_gained > 0 && (
-                  <p className="text-sm mt-2 text-white/80">+{feedback.xp_gained} XP earned</p>
+                  <p className="text-sm mt-2 text-text-primary/80">+{feedback.xp_gained} XP earned</p>
                 )}
               </div>
 
@@ -305,7 +305,7 @@ export default function PracticeMode() {
                 </button>
                 <Link
                   to="/question-bank"
-                  className="flex items-center gap-2 bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors"
+                  className="flex items-center gap-2 bg-primary-600 text-text-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors"
                 >
                   Next Question
                   <ArrowRight size={18} />

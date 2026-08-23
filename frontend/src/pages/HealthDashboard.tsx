@@ -62,7 +62,7 @@ export default function HealthDashboard() {
 
   return (
     <div className="max-w-4xl mx-auto p-6">
-      <h1 className="text-2xl font-bold text-white mb-6">System Health Dashboard</h1>
+      <h1 className="text-2xl font-bold text-text-primary mb-6">System Health Dashboard</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         <div className="bg-gray-800 rounded-lg p-4">
@@ -73,7 +73,7 @@ export default function HealthDashboard() {
         </div>
         <div className="bg-gray-800 rounded-lg p-4">
           <h2 className="text-sm text-gray-400 mb-1">Version</h2>
-          <span className="text-lg font-semibold text-white">{health.version}</span>
+          <span className="text-lg font-semibold text-text-primary">{health.version}</span>
         </div>
         <div className="bg-gray-800 rounded-lg p-4">
           <h2 className="text-sm text-gray-400 mb-1">Database</h2>
@@ -83,15 +83,15 @@ export default function HealthDashboard() {
         </div>
         <div className="bg-gray-800 rounded-lg p-4">
           <h2 className="text-sm text-gray-400 mb-1">Cache</h2>
-          <span className="text-lg font-semibold text-white">{health.cache.status}</span>
+          <span className="text-lg font-semibold text-text-primary">{health.cache.status}</span>
         </div>
         <div className="bg-gray-800 rounded-lg p-4">
           <h2 className="text-sm text-gray-400 mb-1">Memory</h2>
-          <span className="text-lg font-semibold text-white">{health.memory_mb.toFixed(1)} MB</span>
+          <span className="text-lg font-semibold text-text-primary">{health.memory_mb.toFixed(1)} MB</span>
         </div>
         <div className="bg-gray-800 rounded-lg p-4">
           <h2 className="text-sm text-gray-400 mb-1">Services</h2>
-          <span className="text-lg font-semibold text-white">{health.metrics.services.length}</span>
+          <span className="text-lg font-semibold text-text-primary">{health.metrics.services.length}</span>
         </div>
       </div>
 
@@ -99,14 +99,14 @@ export default function HealthDashboard() {
         <h2 className="text-sm text-gray-400 mb-3">Circuit Breakers</h2>
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <h3 className="text-white font-medium mb-1">AI</h3>
+            <h3 className="text-text-primary font-medium mb-1">AI</h3>
             <p className={`text-sm ${health.circuit_breakers.ai.is_open ? "text-red-400" : "text-green-400"}`}>
               {health.circuit_breakers.ai.is_open ? "OPEN" : "CLOSED"}
             </p>
             <p className="text-sm text-gray-500">Failures: {health.circuit_breakers.ai.failures}</p>
           </div>
           <div>
-            <h3 className="text-white font-medium mb-1">Compiler</h3>
+            <h3 className="text-text-primary font-medium mb-1">Compiler</h3>
             <p className={`text-sm ${health.circuit_breakers.compiler.is_open ? "text-red-400" : "text-green-400"}`}>
               {health.circuit_breakers.compiler.is_open ? "OPEN" : "CLOSED"}
             </p>

@@ -55,7 +55,7 @@ function BarChartViz({ data, activeIndices = [], comparing = [] }) {
             className={`min-w-[18px] rounded-t-md transition-colors ${
               isActive ? "bg-amber-400" : isComparing ? "bg-rose-400" : "bg-indigo-500"
             }`} title={`[${idx}] = ${val}`}>
-            <span className="text-[9px] text-white/80 font-mono w-full text-center block pt-1">{val}</span>
+            <span className="text-[9px] text-text-primary/80 font-mono w-full text-center block pt-1">{val}</span>
           </motion.div>
         );
       })}
@@ -337,7 +337,7 @@ function SortingViz({ data, activeIndices = [], sortedIndices = [], comparing = 
         else if (isActive) { bgClass = "bg-indigo-500"; borderClass = "border-indigo-400"; }
         return (
           <motion.div key={idx} layout
-            className={`w-5 rounded border transition-all ${bgClass} ${borderClass} flex items-end justify-center font-mono font-bold text-[9px] text-white`}
+            className={`w-5 rounded border transition-all ${bgClass} ${borderClass} flex items-end justify-center font-mono font-bold text-[9px] text-text-primary`}
             style={{ height: `${h}px` }}>
             {val}
           </motion.div>
@@ -446,7 +446,7 @@ export default function AlgorithmVisualizer({ traceData, code, language = "pytho
             <Sparkles className="w-5 h-5 animate-pulse" />
           </div>
           <div>
-            <h3 className="font-bold text-lg text-white flex items-center gap-2">
+            <h3 className="font-bold text-lg text-text-primary flex items-center gap-2">
               Algorithm Visualizer
               <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono">
                 {totalSteps} steps
@@ -497,7 +497,7 @@ export default function AlgorithmVisualizer({ traceData, code, language = "pytho
           </button>
           <button onClick={() => setIsPlaying(!isPlaying)}
             className={`px-4 py-2 rounded-xl font-medium text-sm flex items-center gap-2 transition-all shadow-lg ${
-              isPlaying ? "bg-amber-500/20 text-amber-300 border border-amber-500/40" : "bg-indigo-600 hover:bg-indigo-500 text-white shadow-indigo-600/25"
+              isPlaying ? "bg-amber-500/20 text-amber-300 border border-amber-500/40" : "bg-indigo-600 hover:bg-indigo-500 text-text-primary shadow-indigo-600/25"
             }`}>
             {isPlaying ? <><Pause className="w-4 h-4" /> Pause</> : <><Play className="w-4 h-4 fill-current" /> Play</>}
           </button>
@@ -517,7 +517,7 @@ export default function AlgorithmVisualizer({ traceData, code, language = "pytho
         <div className="flex items-center gap-1.5 text-xs font-mono bg-slate-900 border border-slate-800 p-1 rounded-xl">
           {[0.5, 1, 2, 4].map(spd => (
             <button key={spd} onClick={() => setSpeed(spd)}
-              className={`px-2.5 py-1 rounded-lg transition-colors ${speed === spd ? "bg-indigo-600 text-white font-bold" : "text-slate-400 hover:text-slate-200"}`}>
+              className={`px-2.5 py-1 rounded-lg transition-colors ${speed === spd ? "bg-indigo-600 text-text-primary font-bold" : "text-slate-400 hover:text-slate-200"}`}>
               {spd}x
             </button>
           ))}

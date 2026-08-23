@@ -256,7 +256,7 @@ export default function InterviewBooking() {
         >
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h1 className="text-3xl font-display font-extrabold text-white">
+              <h1 className="text-3xl font-display font-extrabold text-text-primary">
                 Mock Interview <span className="text-brand-sky">Booking</span>
               </h1>
               <p className="text-brand-secondary mt-1">Schedule, attend, and review AI-powered mock interviews</p>
@@ -282,7 +282,7 @@ export default function InterviewBooking() {
                   </div>
                   <span className="text-[11px] font-mono uppercase tracking-[0.15em] text-text-light">Total Booked</span>
                 </div>
-                <div className="text-2xl font-display font-bold text-white">{stats.total_booked}</div>
+                <div className="text-2xl font-display font-bold text-text-primary">{stats.total_booked}</div>
               </motion.div>
 
               <motion.div
@@ -295,7 +295,7 @@ export default function InterviewBooking() {
                   </div>
                   <span className="text-[11px] font-mono uppercase tracking-[0.15em] text-text-light">Completed</span>
                 </div>
-                <div className="text-2xl font-display font-bold text-white">{stats.completed}</div>
+                <div className="text-2xl font-display font-bold text-text-primary">{stats.completed}</div>
               </motion.div>
 
               <motion.div
@@ -308,7 +308,7 @@ export default function InterviewBooking() {
                   </div>
                   <span className="text-[11px] font-mono uppercase tracking-[0.15em] text-text-light">Avg Score</span>
                 </div>
-                <div className="text-2xl font-display font-bold text-white">{stats.avg_score.toFixed(1)}</div>
+                <div className="text-2xl font-display font-bold text-text-primary">{stats.avg_score.toFixed(1)}</div>
               </motion.div>
 
               <motion.div
@@ -321,7 +321,7 @@ export default function InterviewBooking() {
                   </div>
                   <span className="text-[11px] font-mono uppercase tracking-[0.15em] text-text-light">Streak</span>
                 </div>
-                <div className="text-2xl font-display font-bold text-white">{stats.streak_days}d</div>
+                <div className="text-2xl font-display font-bold text-text-primary">{stats.streak_days}d</div>
               </motion.div>
             </div>
           )}
@@ -335,7 +335,7 @@ export default function InterviewBooking() {
                 transition={{ duration: 0.3 }}
                 className="rounded-2xl border border-brand-primary/10 bg-surface-card/30 p-6 mb-8 overflow-hidden"
               >
-                <h3 className="text-lg font-display font-bold text-white mb-6">Schedule a Mock Interview</h3>
+                <h3 className="text-lg font-display font-bold text-text-primary mb-6">Schedule a Mock Interview</h3>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
@@ -343,7 +343,7 @@ export default function InterviewBooking() {
                     <select
                       value={formData.type}
                       onChange={(e) => setFormData((prev) => ({ ...prev, type: e.target.value }))}
-                      className="w-full rounded-xl border border-brand-primary/10 bg-surface-card/30 px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-sky/50 focus:ring-1 focus:ring-brand-sky/20 transition-all"
+                      className="w-full rounded-xl border border-brand-primary/10 bg-surface-card/30 px-4 py-3 text-sm text-text-primary focus:outline-none focus:border-brand-sky/50 focus:ring-1 focus:ring-brand-sky/20 transition-all"
                     >
                       {INTERVIEW_TYPES.map((t) => (
                         <option key={t.id} value={t.id}>{t.label}</option>
@@ -377,7 +377,7 @@ export default function InterviewBooking() {
                       value={formData.date}
                       onChange={(e) => setFormData((prev) => ({ ...prev, date: e.target.value, time: "" }))}
                       min={new Date().toISOString().split("T")[0]}
-                      className="w-full rounded-xl border border-brand-primary/10 bg-surface-card/30 px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-sky/50 focus:ring-1 focus:ring-brand-sky/20 transition-all"
+                      className="w-full rounded-xl border border-brand-primary/10 bg-surface-card/30 px-4 py-3 text-sm text-text-primary focus:outline-none focus:border-brand-sky/50 focus:ring-1 focus:ring-brand-sky/20 transition-all"
                     />
                   </div>
 
@@ -389,7 +389,7 @@ export default function InterviewBooking() {
                       <select
                         value={formData.time}
                         onChange={(e) => setFormData((prev) => ({ ...prev, time: e.target.value }))}
-                        className="w-full rounded-xl border border-brand-primary/10 bg-surface-card/30 px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-sky/50 focus:ring-1 focus:ring-brand-sky/20 transition-all"
+                        className="w-full rounded-xl border border-brand-primary/10 bg-surface-card/30 px-4 py-3 text-sm text-text-primary focus:outline-none focus:border-brand-sky/50 focus:ring-1 focus:ring-brand-sky/20 transition-all"
                       >
                         <option value="">Select a time slot</option>
                         {availableSlots
@@ -402,7 +402,7 @@ export default function InterviewBooking() {
                       <select
                         value={formData.time}
                         onChange={(e) => setFormData((prev) => ({ ...prev, time: e.target.value }))}
-                        className="w-full rounded-xl border border-brand-primary/10 bg-surface-card/30 px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-sky/50 focus:ring-1 focus:ring-brand-sky/20 transition-all"
+                        className="w-full rounded-xl border border-brand-primary/10 bg-surface-card/30 px-4 py-3 text-sm text-text-primary focus:outline-none focus:border-brand-sky/50 focus:ring-1 focus:ring-brand-sky/20 transition-all"
                       >
                         <option value="">Select a time</option>
                         {Array.from({ length: 11 }, (_, i) => {
@@ -419,7 +419,7 @@ export default function InterviewBooking() {
                     <select
                       value={formData.company_target}
                       onChange={(e) => setFormData((prev) => ({ ...prev, company_target: e.target.value }))}
-                      className="w-full rounded-xl border border-brand-primary/10 bg-surface-card/30 px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-sky/50 focus:ring-1 focus:ring-brand-sky/20 transition-all"
+                      className="w-full rounded-xl border border-brand-primary/10 bg-surface-card/30 px-4 py-3 text-sm text-text-primary focus:outline-none focus:border-brand-sky/50 focus:ring-1 focus:ring-brand-sky/20 transition-all"
                     >
                       <option value="">None</option>
                       {COMPANIES.map((c) => (
@@ -433,7 +433,7 @@ export default function InterviewBooking() {
                     <select
                       value={formData.role_target}
                       onChange={(e) => setFormData((prev) => ({ ...prev, role_target: e.target.value }))}
-                      className="w-full rounded-xl border border-brand-primary/10 bg-surface-card/30 px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-sky/50 focus:ring-1 focus:ring-brand-sky/20 transition-all"
+                      className="w-full rounded-xl border border-brand-primary/10 bg-surface-card/30 px-4 py-3 text-sm text-text-primary focus:outline-none focus:border-brand-sky/50 focus:ring-1 focus:ring-brand-sky/20 transition-all"
                     >
                       <option value="">None</option>
                       {ROLES.map((r) => (
@@ -449,7 +449,7 @@ export default function InterviewBooking() {
                       onChange={(e) => setFormData((prev) => ({ ...prev, notes: e.target.value }))}
                       rows={3}
                       placeholder="Add any notes or focus areas for this interview..."
-                      className="w-full rounded-xl border border-brand-primary/10 bg-surface-card/30 px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-sky/50 focus:ring-1 focus:ring-brand-sky/20 transition-all resize-none"
+                      className="w-full rounded-xl border border-brand-primary/10 bg-surface-card/30 px-4 py-3 text-sm text-text-primary focus:outline-none focus:border-brand-sky/50 focus:ring-1 focus:ring-brand-sky/20 transition-all resize-none"
                     />
                   </div>
                 </div>
@@ -495,7 +495,7 @@ export default function InterviewBooking() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
+              className="fixed inset-0 z-50 flex items-center justify-center bg-surface-2 backdrop-blur-sm"
               onClick={() => setShowConfirmModal(false)}
             >
               <motion.div
@@ -505,31 +505,31 @@ export default function InterviewBooking() {
                 className="rounded-2xl border border-brand-primary/10 bg-surface-card p-6 max-w-md w-full mx-4 shadow-soft-xl"
                 onClick={(e) => e.stopPropagation()}
               >
-                <h3 className="text-lg font-display font-bold text-white mb-4">Confirm Booking</h3>
+                <h3 className="text-lg font-display font-bold text-text-primary mb-4">Confirm Booking</h3>
 
                 <div className="space-y-3 mb-6">
                   <div className="flex justify-between text-sm">
                     <span className="text-text-light">Type</span>
-                    <span className="text-white font-medium">{formData.type.replace("_", " ")}</span>
+                    <span className="text-text-primary font-medium">{formData.type.replace("_", " ")}</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-text-light">Date & Time</span>
-                    <span className="text-white font-medium">{formattedDate} at {formData.time}</span>
+                    <span className="text-text-primary font-medium">{formattedDate} at {formData.time}</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-text-light">Duration</span>
-                    <span className="text-white font-medium">{formData.duration_minutes} minutes</span>
+                    <span className="text-text-primary font-medium">{formData.duration_minutes} minutes</span>
                   </div>
                   {formData.company_target && (
                     <div className="flex justify-between text-sm">
                       <span className="text-text-light">Company</span>
-                      <span className="text-white font-medium">{formData.company_target}</span>
+                      <span className="text-text-primary font-medium">{formData.company_target}</span>
                     </div>
                   )}
                   {formData.role_target && (
                     <div className="flex justify-between text-sm">
                       <span className="text-text-light">Role</span>
-                      <span className="text-white font-medium">{formData.role_target}</span>
+                      <span className="text-text-primary font-medium">{formData.role_target}</span>
                     </div>
                   )}
                 </div>
@@ -608,7 +608,7 @@ export default function InterviewBooking() {
                         <motion.div
                           key={booking.id || booking.booking_id}
                           whileHover={{ scale: 1.005 }}
-                          className="rounded-xl border border-white/8 bg-white/3 p-5 flex flex-col sm:flex-row sm:items-center gap-4"
+                          className="rounded-xl border border-white/8 bg-white border-border/3 p-5 flex flex-col sm:flex-row sm:items-center gap-4"
                         >
                           <div className="flex items-center gap-4 flex-1 min-w-0">
                             <div className={`w-12 h-12 rounded-xl flex items-center justify-center border ${STATUS_COLORS[booking.status] || STATUS_COLORS.scheduled}`}>
@@ -619,7 +619,7 @@ export default function InterviewBooking() {
                                 <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider border ${STATUS_COLORS[booking.status] || STATUS_COLORS.scheduled}`}>
                                   {booking.status}
                                 </span>
-                                <span className="text-sm font-medium text-white">{booking.type?.replace("_", " ")}</span>
+                                <span className="text-sm font-medium text-text-primary">{booking.type?.replace("_", " ")}</span>
                               </div>
                               <div className="flex items-center gap-4 mt-1 text-xs text-text-light">
                                 <span className="flex items-center gap-1"><Calendar size={12} />{booking.scheduled_at ? new Date(booking.scheduled_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : ""}</span>
@@ -680,7 +680,7 @@ export default function InterviewBooking() {
                       <motion.div
                         key={booking.id || booking.booking_id}
                         whileHover={{ scale: 1.005 }}
-                        className="rounded-xl border border-white/8 bg-white/3 p-4 flex flex-col sm:flex-row sm:items-center gap-4"
+                        className="rounded-xl border border-white/8 bg-white border-border/3 p-4 flex flex-col sm:flex-row sm:items-center gap-4"
                       >
                         <div className="flex items-center gap-4 flex-1 min-w-0">
                             <div className="w-10 h-10 rounded-xl bg-surface-card/30 flex items-center justify-center border border-brand-primary/10">
@@ -691,7 +691,7 @@ export default function InterviewBooking() {
                             </div>
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2 flex-wrap">
-                              <span className="text-sm font-medium text-white">{booking.type?.replace("_", " ")}</span>
+                              <span className="text-sm font-medium text-text-primary">{booking.type?.replace("_", " ")}</span>
                               <ScoreBadge score={booking.overall_score} />
                             </div>
                             <div className="flex items-center gap-3 mt-1 text-xs text-text-light">

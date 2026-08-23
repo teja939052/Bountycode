@@ -269,7 +269,7 @@ export default function Journey() {
                         ? "border-[#4F8F57]/60 bg-surface-card shadow-[0_0_24px_rgba(79,143,87,0.15)]"
                         : isUnlocked
                         ? "border-[#4F8F57]/40 bg-white"
-                        : "border-nature-leaf/20 bg-white/70"
+                        : "border-nature-leaf/20 bg-white border-border/70"
                     } ${revealed ? "" : "journey-fog"}`}
                   >
                     {isCurrent && (
@@ -343,7 +343,7 @@ export default function Journey() {
                           <button
                             onClick={() => handleMove(region)}
                             disabled={moving === region.id}
-                            className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold transition-all bg-gradient-to-r from-[#4F8F57] to-[#7BB661] text-white hover:opacity-90 shadow-[0_0_16px_rgba(79,143,87,0.3)] disabled:opacity-60"
+                            className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold transition-all bg-gradient-to-r from-[#4F8F57] to-[#7BB661] text-text-primary hover:opacity-90 shadow-[0_0_16px_rgba(79,143,87,0.3)] disabled:opacity-60"
                           >
                             {moving === region.id ? (
                               <span className="spinner-border spinner-border-sm" />
@@ -460,7 +460,7 @@ export default function Journey() {
                         <button
                           onClick={() => handleComplete(idx)}
                           disabled={busyQuest === idx}
-                          className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold bg-gradient-to-r from-[#4F8F57] to-[#7BB661] text-white hover:opacity-90 disabled:opacity-60 whitespace-nowrap"
+                          className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold bg-gradient-to-r from-[#4F8F57] to-[#7BB661] text-text-primary hover:opacity-90 disabled:opacity-60 whitespace-nowrap"
                         >
                           {busyQuest === idx ? (
                             <span className="spinner-border spinner-border-sm" />

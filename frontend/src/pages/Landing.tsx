@@ -165,7 +165,7 @@ export default function Landing() {
                   )}
 
                   {i === JOURNEY_STEPS.length - 1 && (
-                    <span className="mt-2 rounded-full bg-primary px-3 py-0.5 text-[10px] font-semibold text-white">
+                    <span className="mt-2 rounded-full bg-primary px-3 py-0.5 text-[10px] font-semibold text-text-primary">
                       The goal
                     </span>
                   )}
@@ -338,7 +338,7 @@ export default function Landing() {
           </p>
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link to="/role-selector">
-              <button className="px-8 py-3 rounded-[10px] bg-primary text-white font-medium text-sm tracking-wide transition-all hover:bg-primary-dark hover:shadow-[0_4px_16px_rgba(255,215,0,0.25)]">
+              <button className="px-8 py-3 rounded-[10px] bg-primary text-text-primary font-medium text-sm tracking-wide transition-all hover:bg-primary-dark hover:shadow-[0_4px_16px_rgba(255,215,0,0.25)]">
                 Start free &rarr;
               </button>
             </Link>

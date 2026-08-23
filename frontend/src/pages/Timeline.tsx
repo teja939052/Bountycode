@@ -264,7 +264,7 @@ export default function Timeline() {
               <p className="text-red-400">{error}</p>
               <button
                 onClick={load}
-                className="mt-3 px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-sm transition-colors"
+                className="mt-3 px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-text-primary rounded-lg text-sm transition-colors"
               >
                 Retry
               </button>

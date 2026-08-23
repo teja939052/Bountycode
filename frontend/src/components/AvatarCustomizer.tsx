@@ -164,7 +164,7 @@ export default function AvatarCustomizer({ open, onClose, onSave, currentAvatar 
 
     return (
       <div
-        className={`${sizeClass} ${shapeClass} bg-gradient-to-br ${bg.class} ${borderStyle.class} flex items-center justify-center text-white font-bold ${textSizeClass}`}
+        className={`${sizeClass} ${shapeClass} bg-gradient-to-br ${bg.class} ${borderStyle.class} flex items-center justify-center text-text-primary font-bold ${textSizeClass}`}
       >
         {mode === "initials" && (
           <span className="select-none">{initials.slice(0, 2).toUpperCase()}</span>
@@ -195,7 +195,7 @@ export default function AvatarCustomizer({ open, onClose, onSave, currentAvatar 
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
-          <div className="fixed inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} />
+          <div className="fixed inset-0 bg-surface-2 backdrop-blur-sm" onClick={onClose} />
 
           <motion.div
             className="relative w-full max-w-lg bg-gray-900 border border-gray-700/50 rounded-2xl shadow-2xl overflow-hidden"
@@ -206,7 +206,7 @@ export default function AvatarCustomizer({ open, onClose, onSave, currentAvatar 
           >
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-700/50">
-              <h2 className="text-lg font-bold text-white pixel-font tracking-wider">
+              <h2 className="text-lg font-bold text-text-primary pixel-font tracking-wider">
                 ⚔️ Avatar Customization
               </h2>
               <button
@@ -321,7 +321,7 @@ export default function AvatarCustomizer({ open, onClose, onSave, currentAvatar 
                         maxLength={2}
                         value={initials}
                         onChange={(e) => setInitials(e.target.value.toUpperCase())}
-                        className="w-full px-4 py-2 bg-gray-800 border border-gray-700/50 rounded-lg text-white text-center text-xl font-bold tracking-widest focus:outline-none focus:border-indigo-500/50"
+                        className="w-full px-4 py-2 bg-gray-800 border border-gray-700/50 rounded-lg text-text-primary text-center text-xl font-bold tracking-widest focus:outline-none focus:border-indigo-500/50"
                         placeholder="U"
                       />
                     </div>
@@ -422,7 +422,7 @@ export default function AvatarCustomizer({ open, onClose, onSave, currentAvatar 
               <button
                 type="button"
                 onClick={handleSave}
-                className="px-5 py-2 rounded-lg text-sm font-medium text-white bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-400 hover:to-purple-400 transition-all flex items-center gap-2"
+                className="px-5 py-2 rounded-lg text-sm font-medium text-text-primary bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-400 hover:to-purple-400 transition-all flex items-center gap-2"
               >
                 <Check size={14} />
                 Save Avatar

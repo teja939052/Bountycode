@@ -135,7 +135,7 @@ export default function StudySquads() {
     <button
       onClick={onClick}
       className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-colors ${
-        active ? "bg-brand-sky text-white" : "bg-white/70 border border-white/70 text-text-light hover:text-text-primary"
+        active ? "bg-brand-sky text-text-primary" : "bg-white border-border/70 border border-white/70 text-text-light hover:text-text-primary"
       }`}
     >
       {label}
@@ -161,7 +161,7 @@ export default function StudySquads() {
       ) : (
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Profile setup */}
-          <div className="p-6 rounded-2xl border border-white/60 bg-white/80 space-y-4 h-fit">
+          <div className="p-6 rounded-2xl border border-white/60 bg-white border-border/80 space-y-4 h-fit">
             <h2 className="text-lg font-bold text-text-primary flex items-center gap-2">
               <Target size={18} className="text-brand-sky" /> Your Squad Profile
             </h2>
@@ -233,17 +233,17 @@ export default function StudySquads() {
                 <span className="text-xs font-normal text-text-light">by tag + schedule overlap</span>
               </h2>
               {!me ? (
-                <div className="p-6 rounded-2xl border border-white/60 bg-white/80 text-text-light text-sm">
+                <div className="p-6 rounded-2xl border border-white/60 bg-white border-border/80 text-text-light text-sm">
                   Fill in your profile on the left to see compatible study partners.
                 </div>
               ) : matches.length === 0 ? (
-                <div className="p-6 rounded-2xl border border-white/60 bg-white/80 text-text-light text-sm">
+                <div className="p-6 rounded-2xl border border-white/60 bg-white border-border/80 text-text-light text-sm">
                   No matches yet — try adding more goals and topics.
                 </div>
               ) : (
                 <div className="grid md:grid-cols-2 gap-3">
                   {matches.map((m) => (
-                    <div key={m.user_id} className="p-4 rounded-2xl border border-white/60 bg-white/80">
+                    <div key={m.user_id} className="p-4 rounded-2xl border border-white/60 bg-white border-border/80">
                       <div className="flex items-start justify-between mb-2">
                         <div>
                           <div className="font-semibold text-text-primary">{m.user_name}</div>
@@ -282,7 +282,7 @@ export default function StudySquads() {
                 </h2>
                 <div className="space-y-2">
                   {invites.received.map((i) => (
-                    <div key={i.id} className="p-3 rounded-xl border border-white/60 bg-white/80 flex items-center justify-between">
+                    <div key={i.id} className="p-3 rounded-xl border border-white/60 bg-white border-border/80 flex items-center justify-between">
                       <div>
                         <span className="font-medium text-text-primary">{i.from_name}</span>{" "}
                         <span className="text-xs text-text-light">invited you</span>
@@ -290,7 +290,7 @@ export default function StudySquads() {
                       </div>
                       {i.status === "pending" && (
                         <div className="flex gap-2">
-                          <button onClick={() => handleInviteAction(i.id, true)} className="px-3 py-1.5 rounded-lg bg-green-500 text-white text-xs font-semibold flex items-center gap-1">
+                          <button onClick={() => handleInviteAction(i.id, true)} className="px-3 py-1.5 rounded-lg bg-green-500 text-text-primary text-xs font-semibold flex items-center gap-1">
                             <Check size={13} /> Accept
                           </button>
                           <button onClick={() => handleInviteAction(i.id, false)} className="px-3 py-1.5 rounded-lg border border-red-200 text-red-600 text-xs font-semibold flex items-center gap-1">
@@ -301,7 +301,7 @@ export default function StudySquads() {
                     </div>
                   ))}
                   {invites.sent.map((i) => (
-                    <div key={i.id} className="p-3 rounded-xl border border-white/60 bg-white/50 flex items-center justify-between">
+                    <div key={i.id} className="p-3 rounded-xl border border-white/60 bg-white border-border/50 flex items-center justify-between">
                       <span className="text-sm text-text-primary">Invited <span className="font-medium">{i.to_name}</span></span>
                       <span className={`text-[10px] uppercase tracking-wide font-semibold ${i.status === "accepted" ? "text-green-600" : i.status === "declined" ? "text-red-500" : "text-amber-600"}`}>
                         {i.status}
@@ -324,7 +324,7 @@ export default function StudySquads() {
                       key={s.id}
                       onClick={() => setActiveSquad(s)}
                       className={`px-3 py-1.5 rounded-xl text-xs font-semibold ${
-                        activeSquad?.id === s.id ? "bg-brand-sky text-white" : "bg-white/80 border border-white/60 text-text-light"
+                        activeSquad?.id === s.id ? "bg-brand-sky text-text-primary" : "bg-white border-border/80 border border-white/60 text-text-light"
                       }`}
                     >
                       {s.name}
@@ -332,13 +332,13 @@ export default function StudySquads() {
                   ))}
                 </div>
                 {activeSquad && (
-                  <div className="p-4 rounded-2xl border border-white/60 bg-white/80">
+                  <div className="p-4 rounded-2xl border border-white/60 bg-white border-border/80">
                     <div className="h-56 overflow-y-auto space-y-2 mb-3">
                       {messages.length === 0 ? (
                         <div className="text-center py-8 text-text-light text-sm">No messages yet — say hi!</div>
                       ) : (
                         messages.map((m) => (
-                          <div key={m.id} className="p-2.5 rounded-xl bg-white/70 border border-white/70">
+                          <div key={m.id} className="p-2.5 rounded-xl bg-white border-border/70 border border-white/70">
                             <div className="text-[11px] font-semibold text-brand-sky">{m.user_name}</div>
                             <div className="text-sm text-text-primary">{m.text}</div>
                           </div>
@@ -353,7 +353,7 @@ export default function StudySquads() {
                         placeholder="Message your squad…"
                         className="flex-1 p-2.5 rounded-xl border border-white/60 bg-white text-sm"
                       />
-                      <button onClick={handleSend} disabled={sending || !draft.trim()} className="px-4 rounded-xl bg-brand-sky text-white text-sm font-semibold flex items-center gap-1 disabled:opacity-50">
+                      <button onClick={handleSend} disabled={sending || !draft.trim()} className="px-4 rounded-xl bg-brand-sky text-text-primary text-sm font-semibold flex items-center gap-1 disabled:opacity-50">
                         {sending ? <Loader2 size={15} className="animate-spin" /> : <Send size={15} />} Send
                       </button>
                     </div>

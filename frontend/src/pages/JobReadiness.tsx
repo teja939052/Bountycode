@@ -79,7 +79,7 @@ export default function JobReadiness() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0a0e17] via-[#0d1525] to-[#0f172a] text-white">
+    <div className="min-h-screen bg-gradient-to-br from-[#0a0e17] via-[#0d1525] to-[#0f172a] text-text-primary">
       <div className="max-w-7xl mx-auto px-4 py-8">
         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-10">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400 text-sm mb-4">
@@ -115,7 +115,7 @@ export default function JobReadiness() {
           {tabs.map(tab => (
             <button key={tab.id} onClick={() => setActiveTab(tab.id)}
               className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap transition-all ${
-                activeTab === tab.id ? 'bg-white/10 text-white shadow-lg shadow-white/5' : 'text-gray-400 hover:text-white hover:bg-white/5'
+                activeTab === tab.id ? 'bg-white border-border/10 text-text-primary shadow-lg shadow-white/5' : 'text-gray-400 hover:text-white hover:bg-white border-border shadow-card'
               }`}>
               <tab.icon className="w-4 h-4" />
               {tab.label}
@@ -133,7 +133,7 @@ export default function JobReadiness() {
                 <div className="relative">
                   <textarea value={jdText} onChange={e => setJdText(e.target.value)}
                     placeholder="Paste the full job description here... We extract skills, match you to a role, and build your plan."
-                    className="w-full h-48 bg-white/5 border border-white/10 rounded-xl p-4 text-white placeholder-gray-500 resize-none focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 transition-all" />
+                    className="w-full h-48 bg-white border-border shadow-card border border-white/10 rounded-xl p-4 text-text-primary placeholder-gray-500 resize-none focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 transition-all" />
                   <button onClick={handleAnalyzeJD} disabled={jdText.length < 20 || loading}
                     className="absolute bottom-4 right-4 px-5 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 disabled:opacity-40 disabled:cursor-not-allowed rounded-lg font-medium text-sm transition-all flex items-center gap-2">
                     {loading ? <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> : <Sparkles className="w-4 h-4" />}
@@ -144,20 +144,20 @@ export default function JobReadiness() {
 
               {jdResult && (
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-                  className="mb-10 p-6 bg-white/5 border border-white/10 rounded-2xl">
+                  className="mb-10 p-6 bg-white border-border shadow-card border border-white/10 rounded-2xl">
                   <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-emerald-400" /> JD Analysis Complete
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                    <div className="p-4 bg-white/5 rounded-xl text-center">
+                    <div className="p-4 bg-white border-border shadow-card rounded-xl text-center">
                       <div className="text-3xl font-bold text-cyan-400">{(jdResult.jd_analysis as Record<string, unknown>)?.skill_count || 0}</div>
                       <div className="text-sm text-gray-400">Skills Detected</div>
                     </div>
-                    <div className="p-4 bg-white/5 rounded-xl text-center">
+                    <div className="p-4 bg-white border-border shadow-card rounded-xl text-center">
                       <div className="text-3xl font-bold text-emerald-400">{(jdResult.jd_analysis as Record<string, unknown>)?.category_count || 0}</div>
                       <div className="text-sm text-gray-400">Categories</div>
                     </div>
-                    <div className="p-4 bg-white/5 rounded-xl text-center">
+                    <div className="p-4 bg-white border-border shadow-card rounded-xl text-center">
                       <div className="text-3xl font-bold text-purple-400">{String(jdResult.readiness || 0)}%</div>
                       <div className="text-sm text-gray-400">Your Readiness</div>
                     </div>
@@ -186,7 +186,7 @@ export default function JobReadiness() {
                     <motion.button key={role.id} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
                       onClick={() => { setSelectedRole(role.id); handleSetTarget(role.id); setActiveTab('gaps'); }}
                       className={`p-5 rounded-xl border text-left transition-all ${
-                        selectedRole === role.id ? 'bg-purple-500/10 border-purple-500/30' : 'bg-white/5 border-white/10 hover:border-white/20'
+                        selectedRole === role.id ? 'bg-purple-500/10 border-purple-500/30' : 'bg-white border-border shadow-card border-white/10 hover:border-white/20'
                       }`}>
                       <div className="text-2xl mb-2">{role.icon}</div>
                       <div className="font-semibold">{role.title}</div>
@@ -237,7 +237,7 @@ function RoleSelector({ roles, selected, onSelect }: { roles: RoleInfo[]; select
       {roles.map(r => (
         <button key={r.id} onClick={() => onSelect(r.id)}
           className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm whitespace-nowrap transition-all ${
-            selected === r.id ? 'bg-white/10 text-white border border-white/20' : 'text-gray-400 hover:text-white hover:bg-white/5 border border-transparent'
+            selected === r.id ? 'bg-white border-border/10 text-text-primary border border-white/20' : 'text-gray-400 hover:text-white hover:bg-white border-border shadow-card border border-transparent'
           }`}>
           <span>{r.icon}</span> {r.title}
         </button>
@@ -259,7 +259,7 @@ function GapView({ data, onStartMission }: { data: Record<string, unknown>; onSt
 
   return (
     <div>
-      <div className="flex items-center gap-8 mb-8 p-6 bg-white/5 border border-white/10 rounded-2xl">
+      <div className="flex items-center gap-8 mb-8 p-6 bg-white border-border shadow-card border border-white/10 rounded-2xl">
         <div className="relative w-32 h-32 flex-shrink-0">
           <svg className="w-full h-full -rotate-90" viewBox="0 0 120 120">
             <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="8" />
@@ -294,7 +294,7 @@ function GapView({ data, onStartMission }: { data: Record<string, unknown>; onSt
 
           return (
             <motion.div key={String(gap.category)} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}
-              className="p-4 bg-white/5 border border-white/10 rounded-xl">
+              className="p-4 bg-white border-border shadow-card border border-white/10 rounded-xl">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-3">
                   <div className={`w-2 h-2 rounded-full ${dotColor}`} />
@@ -307,7 +307,7 @@ function GapView({ data, onStartMission }: { data: Record<string, unknown>; onSt
                   <span>{target}</span>
                 </div>
               </div>
-              <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+              <div className="h-2 bg-white border-border shadow-card rounded-full overflow-hidden">
                 <motion.div className="h-full rounded-full" style={{ backgroundColor: barColor }}
                   initial={{ width: 0 }}
                   animate={{ width: `${Math.min(100, (current / target) * 100)}%` }}
@@ -317,7 +317,7 @@ function GapView({ data, onStartMission }: { data: Record<string, unknown>; onSt
                 <div className="mt-2 flex flex-wrap gap-1.5">
                   {topics.map((topic) => (
                     <button key={topic} onClick={() => onStartMission(topic)}
-                      className="px-2.5 py-1 bg-white/5 hover:bg-white/10 rounded-md text-xs text-gray-300 hover:text-white transition-colors">
+                      className="px-2.5 py-1 bg-white border-border shadow-card hover:bg-white border-border/10 rounded-md text-xs text-gray-300 hover:text-white transition-colors">
                       {topic.replace(/_/g, ' ')}
                     </button>
                   ))}
@@ -346,7 +346,7 @@ function CurriculumView({ data }: { data: Record<string, unknown> }) {
           { label: 'Done', value: String(completed.length), color: 'text-purple-400' },
           { label: 'Est. Weeks', value: `~${String(stats.estimated_weeks || 0)}`, color: 'text-amber-400' },
         ].map(s => (
-          <div key={s.label} className="p-4 bg-white/5 border border-white/10 rounded-xl text-center">
+          <div key={s.label} className="p-4 bg-white border-border shadow-card border border-white/10 rounded-xl text-center">
             <div className={`text-2xl font-bold ${s.color}`}>{s.value}</div>
             <div className="text-xs text-gray-400">{s.label}</div>
           </div>
@@ -378,7 +378,7 @@ function CurriculumView({ data }: { data: Record<string, unknown> }) {
           {remaining.map((item, i) => (
             <motion.a key={i} href={String(item.mission_link)}
               initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }}
-              className="flex items-center gap-3 p-4 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 hover:border-white/20 transition-all group">
+              className="flex items-center gap-3 p-4 bg-white border-border shadow-card border border-white/10 rounded-xl hover:bg-white border-border/10 hover:border-white/20 transition-all group">
               <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold ${
                 item.priority === 'high' ? 'bg-red-500/20 text-red-400' : 'bg-amber-500/20 text-amber-400'
               }`}>{i + 1}</div>
@@ -457,15 +457,15 @@ function CompanyDetailView({ data, loading, onBack }: { data: Record<string, unk
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <div className="p-5 bg-white/5 border border-white/10 rounded-xl text-center">
+        <div className="p-5 bg-white border-border shadow-card border border-white/10 rounded-xl text-center">
           <div className="text-3xl font-bold text-emerald-400">{String(data.overall_readiness)}%</div>
           <div className="text-sm text-gray-400">Overall Readiness</div>
         </div>
-        <div className="p-5 bg-white/5 border border-white/10 rounded-xl text-center">
+        <div className="p-5 bg-white border-border shadow-card border border-white/10 rounded-xl text-center">
           <div className="text-3xl font-bold text-cyan-400">{String(data.company_readiness)}%</div>
           <div className="text-sm text-gray-400">Company Match</div>
         </div>
-        <div className="p-5 bg-white/5 border border-white/10 rounded-xl text-center">
+        <div className="p-5 bg-white border-border shadow-card border border-white/10 rounded-xl text-center">
           <div className="text-xl font-bold text-purple-400">{String(prediction.weeks || '~?')} weeks</div>
           <div className="text-sm text-gray-400">Est. to Ready</div>
         </div>
@@ -480,7 +480,7 @@ function CompanyDetailView({ data, loading, onBack }: { data: Record<string, unk
             const gap = Number(skill.gap) || 0;
             const met = Boolean(skill.met);
             return (
-              <div key={String(skill.category)} className="p-4 bg-white/5 border border-white/10 rounded-xl">
+              <div key={String(skill.category)} className="p-4 bg-white border-border shadow-card border border-white/10 rounded-xl">
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-3">
                     <div className={`w-2 h-2 rounded-full ${met ? 'bg-emerald-400' : 'bg-red-400'}`} />
@@ -493,7 +493,7 @@ function CompanyDetailView({ data, loading, onBack }: { data: Record<string, unk
                     {!met && <span className="ml-2 text-red-400 text-xs">-{gap} gap</span>}
                   </div>
                 </div>
-                <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+                <div className="h-2 bg-white border-border shadow-card rounded-full overflow-hidden">
                   <motion.div className="h-full rounded-full" style={{ backgroundColor: met ? '#10b981' : '#ef4444' }}
                     initial={{ width: 0 }} animate={{ width: `${Math.min(100, (current / required) * 100)}%` }}
                     transition={{ duration: 1, delay: 0.2 }} />
@@ -505,7 +505,7 @@ function CompanyDetailView({ data, loading, onBack }: { data: Record<string, unk
       </div>
 
       {recommendations.length > 0 && (
-        <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
+        <div className="p-6 bg-white border-border shadow-card border border-white/10 rounded-2xl">
           <h3 className="text-lg font-semibold mb-3">Recommendations</h3>
           <ul className="space-y-2">
             {recommendations.map((rec, i) => (

@@ -119,7 +119,7 @@ export default function Navbar() {
             <div className="relative">
               <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-nature-leaf/40 to-nature-blossom/40 blur-md opacity-70 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
               <div className="relative h-10 w-10 rounded-2xl bg-gradient-to-br from-nature-leaf via-nature-moss to-nature-blossom flex items-center justify-center shadow-[0_8px_20px_-8px_rgba(45,130,110,0.4)] transition-transform duration-300 group-hover:scale-105">
-                <Leaf size={18} className="text-white" />
+                <Leaf size={18} className="text-text-primary" />
               </div>
             </div>
             <div className="leading-tight">
@@ -154,7 +154,7 @@ export default function Navbar() {
                    {toolsOpen && (
                      <>
                        <div className="fixed inset-0 z-10" onClick={() => setToolsOpen(false)} aria-hidden="true" />
-                       <div className="absolute right-0 mt-3 w-96 rounded-2xl border border-gray-200 bg-white/95 p-3 shadow-lg z-20 backdrop-blur" role="menu" aria-label="More menu">
+                       <div className="absolute right-0 mt-3 w-96 rounded-2xl border border-gray-200 bg-white border-border/95 p-3 shadow-lg z-20 backdrop-blur" role="menu" aria-label="More menu">
                        <div className="grid grid-cols-1 gap-4">
                          {MORE_GROUPS.map((group) => (
                            <div key={group.label}>
@@ -178,7 +178,7 @@ export default function Navbar() {
                       Quick Practice
                     </Link>
 
-                    <div className="ml-3 flex items-center gap-3 rounded-full border border-gray-200 bg-white/80 px-3 py-1.5 shadow-sm" aria-label="User menu">
+                    <div className="ml-3 flex items-center gap-3 rounded-full border border-gray-200 bg-white border-border/80 px-3 py-1.5 shadow-sm" aria-label="User menu">
                   <div className="hidden xl:flex flex-col text-right">
                     <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-text-muted">Signed in as</span>
                     <span className="max-w-[140px] truncate text-sm font-medium text-text-primary">{user.name}</span>
@@ -199,7 +199,7 @@ export default function Navbar() {
                 <Link to="/login" className="px-3 py-2 text-sm font-medium text-text-muted transition-colors hover:text-text-primary" aria-label="Login">
                   Login
                 </Link>
-                <Link to="/register" className="rounded-xl bg-brand-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-brand-primary/90 transition-colors" aria-label="Start free trial">
+                <Link to="/register" className="rounded-xl bg-brand-primary px-5 py-2.5 text-sm font-medium text-text-primary hover:bg-brand-primary/90 transition-colors" aria-label="Start free trial">
                   Start Free
                 </Link>
               </>
@@ -208,7 +208,7 @@ export default function Navbar() {
 
 
 <button
-            className="lg:hidden inline-flex items-center justify-center rounded-xl border border-gray-200 bg-white/80 p-2 text-text-muted shadow-sm"
+            className="lg:hidden inline-flex items-center justify-center rounded-xl border border-gray-200 bg-white border-border/80 p-2 text-text-muted shadow-sm"
             onClick={() => setMobileOpen((prev) => !prev)}
             aria-label="Toggle menu"
           >
@@ -218,7 +218,7 @@ export default function Navbar() {
 
         {mobileOpen && (
           <div className="lg:hidden pb-4">
-            <div className="rounded-3xl border border-gray-200 bg-white/95 p-3 shadow-lg backdrop-blur">
+            <div className="rounded-3xl border border-gray-200 bg-white border-border/95 p-3 shadow-lg backdrop-blur">
               {user ? (
                 <>
                   <div className="mb-3 rounded-2xl bg-gradient-to-r from-brand-primary/10 via-brand-secondary/10 to-brand-tertiary/10 p-4">
@@ -327,8 +327,8 @@ function MobileLink({ to, children, onClick, primary, icon: Icon }: NavLinkProps
       onClick={onClick}
       className={`flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
         primary
-          ? "rounded-xl bg-brand-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-brand-primary/90 transition-colors"
-          : "border border-gray-200 bg-white/80 text-text-secondary hover:border-brand-primary/40 hover:bg-brand-primary/10 hover:text-brand-primary"
+          ? "rounded-xl bg-brand-primary px-5 py-2.5 text-sm font-medium text-text-primary hover:bg-brand-primary/90 transition-colors"
+          : "border border-gray-200 bg-white border-border/80 text-text-secondary hover:border-brand-primary/40 hover:bg-brand-primary/10 hover:text-brand-primary"
       }`}
     >
       {Icon ? <Icon size={14} /> : null}

@@ -492,7 +492,7 @@ export default function LearningModules() {
                               {step.language ? `${step.language} — ` : ""}Code
                             </span>
                           </div>
-                          <pre className="bg-gray-900 text-gray-100 rounded-xl p-4 text-sm font-mono overflow-x-auto leading-relaxed">
+                          <pre className="bg-surface-2 text-text-primary rounded-xl p-4 text-sm font-mono overflow-x-auto leading-relaxed">
                             <code>{step.code_snippet}</code>
                           </pre>
                         </div>

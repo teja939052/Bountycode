@@ -26,15 +26,15 @@ export default function CandyProgress({
   return (
     <div className={`w-full ${className}`}>
       {label && (
-        <div className="mb-1.5 flex items-center justify-between font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-white/60">
+        <div className="mb-1.5 flex items-center justify-between font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-text-primary/60">
           <span>{label}</span>
           {showPercent && (
-            <span className="font-black text-white">{Math.round(pct)}%</span>
+            <span className="font-black text-text-primary">{Math.round(pct)}%</span>
           )}
         </div>
       )}
       <div
-        className={`relative w-full overflow-hidden rounded-full bg-black/35 shadow-inner ${
+        className={`relative w-full overflow-hidden rounded-full bg-surface-2 shadow-inner ${
           size === "sm" ? "h-2.5" : "h-3.5"
         }`}
       >

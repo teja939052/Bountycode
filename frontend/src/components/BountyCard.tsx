@@ -84,7 +84,7 @@ export default function BountyCard({ user, size = "medium", showStats = true }: 
             </div>
           )}
         </div>
-        <h3 className={`${s.name} font-bold text-white mt-3 tracking-wide text-center`}>{user.name}</h3>
+        <h3 className={`${s.name} font-bold text-text-primary mt-3 tracking-wide text-center`}>{user.name}</h3>
         <p className="text-[10px] font-medium uppercase tracking-wider mt-0.5"
           style={{ color }}>
           &ldquo;{user.display_title || user.tier?.title}&rdquo;
@@ -93,20 +93,20 @@ export default function BountyCard({ user, size = "medium", showStats = true }: 
 
       {/* Stats */}
       {showStats && (
-        <div className="relative px-4 py-3 bg-black/30 border-t border-amber-700/30">
+        <div className="relative px-4 py-3 bg-surface-2 border-t border-amber-700/30">
           <div className="grid grid-cols-2 gap-x-3 gap-y-1.5 text-[11px]">
             <div className="flex justify-between">
               <span className="text-amber-400/50">LVL</span>
-              <span className="text-white font-semibold">{user.level}</span>
+              <span className="text-text-primary font-semibold">{user.level}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-amber-400/50">🔥</span>
-              <span className="text-white font-semibold">{user.streak}d</span>
+              <span className="text-text-primary font-semibold">{user.streak}d</span>
             </div>
             {user.categories && Object.entries(user.categories).slice(0, 4).map(([k, v]) => (
               <div key={k} className="flex justify-between">
                 <span className="text-amber-400/50">{CATEGORY_ICONS[k] || "•"} {k.slice(0, 4)}</span>
-                <span className="text-white font-semibold">{Math.round(v)}%</span>
+                <span className="text-text-primary font-semibold">{Math.round(v)}%</span>
               </div>
             ))}
           </div>

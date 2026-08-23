@@ -156,7 +156,7 @@ export default function DailyChallenge() {
         <div className="max-w-4xl mx-auto">
           <motion.div initial={reduced ? {} : { opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="text-center">
             <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-brand-sky via-brand-lavender to-brand-coral flex items-center justify-center mx-auto mb-6 shadow-soft-lg">
-              <Gamepad2 size={40} className="text-white" />
+              <Gamepad2 size={40} className="text-text-primary" />
             </div>
             <h1 className="text-4xl md:text-5xl font-display font-extrabold tracking-tight text-text-primary mb-3">
               30 Days to <span className="text-brand-sky">Offer</span>
@@ -218,7 +218,7 @@ export default function DailyChallenge() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4"
+              className="fixed inset-0 z-50 flex items-center justify-center bg-surface-2 border-border backdrop-blur-sm p-4"
               onClick={() => setShowEnrollModal(false)}
             >
               <motion.div
@@ -299,7 +299,7 @@ export default function DailyChallenge() {
           <div>
             <div className="flex items-center gap-3 mb-2 justify-center md:justify-start">
               <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-sky via-brand-lavender to-brand-coral flex items-center justify-center shadow-soft-md">
-                <Gamepad2 size={24} className="text-white" />
+                <Gamepad2 size={24} className="text-text-primary" />
               </div>
               <div>
                 <h1 className="text-3xl md:text-4xl font-display font-extrabold tracking-tight text-text-primary">
@@ -371,7 +371,7 @@ export default function DailyChallenge() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center gap-2 px-5 py-3 rounded-2xl font-medium text-sm transition-all ${
                   activeTab === tab.id
-                    ? "bg-brand-sky text-white shadow-soft-md"
+                    ? "bg-brand-sky text-text-primary shadow-soft-md"
                     : "bg-surface-card border border-brand-primary/10 text-brand-secondary hover:border-brand-sky/30"
                 }`}
               >
@@ -420,9 +420,9 @@ export default function DailyChallenge() {
         </div>
 
         {error && (
-          <div className="fixed bottom-6 right-6 bg-error text-white px-6 py-3 rounded-2xl shadow-soft-lg text-sm">
+          <div className="fixed bottom-6 right-6 bg-error text-text-primary px-6 py-3 rounded-2xl shadow-soft-lg text-sm">
             {error}
-            <button onClick={() => setError(null)} className="ml-3 text-white/70 hover:text-white">✕</button>
+            <button onClick={() => setError(null)} className="ml-3 text-text-primary/70 hover:text-white">✕</button>
           </div>
         )}
       </div>
@@ -535,7 +535,7 @@ function TodayQuestTab({
               disabled={!allDone || completing}
               className={`px-8 py-4 rounded-2xl font-display font-bold text-lg transition-all ${
                 allDone
-                  ? "bg-gradient-to-r from-brand-sky to-brand-lavender text-white shadow-soft-md hover:shadow-soft-lg"
+                  ? "bg-gradient-to-r from-brand-sky to-brand-lavender text-text-primary shadow-soft-md hover:shadow-soft-lg"
                   : "bg-surface-card/50 text-gray-300 cursor-not-allowed"
               }`}
             >
@@ -561,7 +561,7 @@ function TodayQuestTab({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-surface-2 border-border backdrop-blur-sm p-4"
             onClick={onCloseBehavioral}
           >
             <motion.div
@@ -626,9 +626,9 @@ function ProgressTab({ progress, reduced }) {
                 className={`aspect-square rounded-lg flex items-center justify-center text-[10px] font-mono font-bold transition-all ${
                   colorMap[day.status] || "bg-surface-card/50"
                 } ${
-                  day.status === "current" ? "ring-2 ring-brand-sky ring-offset-1 text-white" : ""
+                  day.status === "current" ? "ring-2 ring-brand-sky ring-offset-1 text-text-primary" : ""
                 } ${
-                  day.status === "completed" ? "text-white" : day.status === "missed" ? "text-white" : "text-brand-secondary"
+                  day.status === "completed" ? "text-text-primary" : day.status === "missed" ? "text-text-primary" : "text-brand-secondary"
                 }`}
               >
                 {day.day}
@@ -687,9 +687,9 @@ function LeaderboardTab({ leaderboard, reduced }) {
               }`}
             >
               <span className={`w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold font-mono ${
-                i === 0 ? "bg-yellow-400 text-white" :
-                i === 1 ? "bg-gray-400 text-white" :
-                i === 2 ? "bg-orange-400 text-white" :
+                i === 0 ? "bg-yellow-400 text-text-primary" :
+                i === 1 ? "bg-gray-400 text-text-primary" :
+                i === 2 ? "bg-orange-400 text-text-primary" :
                 "bg-surface-card/50 text-brand-secondary"
               }`}>
                 {i + 1}
@@ -722,7 +722,7 @@ function MentorCard({ mentorName, todayData }) {
     <div className="card p-5 border border-white/60">
       <div className="flex items-center gap-3 mb-3">
         <div className="w-12 h-12 rounded-full bg-gradient-to-br from-brand-sky to-brand-lavender flex items-center justify-center">
-          <User size={20} className="text-white" />
+          <User size={20} className="text-text-primary" />
         </div>
         <div>
           <p className="text-xs text-brand-secondary font-mono">Your Mentor</p>
@@ -821,7 +821,7 @@ function StreakMilestoneModal({ rewards, onClose }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-surface-2 border-border backdrop-blur-sm p-4"
       onClick={onClose}
     >
       <motion.div
@@ -866,7 +866,7 @@ function StreakMilestoneModal({ rewards, onClose }) {
 
           <button
             onClick={onClose}
-            className="w-full px-4 py-3 rounded-2xl bg-gradient-to-r from-amber-400 to-orange-500 text-white font-display font-bold text-sm shadow-soft-md hover:shadow-soft-lg transition-shadow"
+            className="w-full px-4 py-3 rounded-2xl bg-gradient-to-r from-amber-400 to-orange-500 text-text-primary font-display font-bold text-sm shadow-soft-md hover:shadow-soft-lg transition-shadow"
           >
             Claim & keep going
           </button>

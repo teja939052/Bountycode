@@ -41,7 +41,7 @@ function CategoryPill({ categoryId, name, icon, color, active, onClick }) {
       onClick={onClick}
       className={`flex items-center gap-2 rounded-xl border px-3 py-2 text-sm font-mono transition-all ${
         active
-          ? "border-white/40 bg-white/10 text-white"
+          ? "border-white/40 bg-white border-border/10 text-text-primary"
           : "border-brand-primary/10 bg-white/[0.03] text-text-light hover:border-white/25 hover:bg-white/[0.06]"
       }`}
     >
@@ -59,7 +59,7 @@ function ArticleCard({ article, onOpen }) {
       <button onClick={() => onOpen(article.id)} className="block h-full w-full text-left">
         <div className="arena-card flex h-full flex-col p-5">
           <div className="flex items-center justify-between gap-2">
-            <span className={`rounded-full border px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider ${CATEGORY_COLORS[cat] || "border-white/20 bg-white/5 text-text-light"}`}>
+            <span className={`rounded-full border px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider ${CATEGORY_COLORS[cat] || "border-white/20 bg-white border-border shadow-card text-text-light"}`}>
               {cat.replace("-", " & ")}
             </span>
             <span className="flex items-center gap-1 text-[10px] font-mono text-text-light">
@@ -153,7 +153,7 @@ function QuizBlock({ quiz }) {
               )}
             </div>
             {revealed[qi] && q.explanation && (
-              <p className="mt-3 rounded-xl border border-white/5 bg-black/30 p-3 text-xs leading-6 text-text-secondary">
+              <p className="mt-3 rounded-xl border border-white/5 bg-surface-2 p-3 text-xs leading-6 text-text-secondary">
                 <Lightbulb size={12} className="mr-1 inline text-brand-gold" />
                 {q.explanation}
               </p>
@@ -215,7 +215,7 @@ function ArticleModal({ article, onClose }) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/70 p-4 backdrop-blur-sm md:py-12"
+        className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-surface-2 p-4 backdrop-blur-sm md:py-12"
         onClick={onClose}
       >
         <motion.div
@@ -234,7 +234,7 @@ function ArticleModal({ article, onClose }) {
           </button>
 
           <div className="flex flex-wrap items-center gap-2 pr-8">
-            <span className={`rounded-full border px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider ${CATEGORY_COLORS[article.category] || "border-white/20 bg-white/5 text-text-light"}`}>
+            <span className={`rounded-full border px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider ${CATEGORY_COLORS[article.category] || "border-white/20 bg-white border-border shadow-card text-text-light"}`}>
               {article.category.replace("-", " & ")}
             </span>
             <span className={`rounded-full border px-2 py-0.5 text-[10px] font-mono uppercase ${LEVEL_STYLES[article.level] || LEVEL_STYLES.beginner}`}>
@@ -245,7 +245,7 @@ function ArticleModal({ article, onClose }) {
             </span>
           </div>
 
-          <h1 className="mt-4 text-2xl font-display font-black text-white md:text-3xl">{article.title}</h1>
+          <h1 className="mt-4 text-2xl font-display font-black text-text-primary md:text-3xl">{article.title}</h1>
           <p className="mt-3 text-sm leading-7 text-text-muted md:text-base">{article.summary}</p>
 
           <div className="mt-6 space-y-6">
@@ -351,14 +351,14 @@ export default function StudyLibrary() {
     <div className="relative min-h-screen px-4 py-6 md:py-8">
       <ArcadeBackdrop variant="arcade" />
       <div className="relative z-10 mx-auto max-w-7xl space-y-6">
-        <motion.section initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} className="hero-shell p-6 md:p-8 text-white">
+        <motion.section initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} className="hero-shell p-6 md:p-8 text-text-primary">
           <div className="relative z-10 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">
-              <span className="section-kicker border-brand-primary/10 bg-white/10 text-white">
+              <span className="section-kicker border-brand-primary/10 bg-white border-border/10 text-text-primary">
                 <Compass size={12} />
                 Study library
               </span>
-              <h1 className="mt-4 text-3xl font-black tracking-tight text-white md:text-5xl">
+              <h1 className="mt-4 text-3xl font-black tracking-tight text-text-primary md:text-5xl">
                 In-depth guides that go beyond the tutorials
               </h1>
               <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-200 md:text-base">
@@ -374,7 +374,7 @@ export default function StudyLibrary() {
                   value={query}
                   onChange={handleSearch}
                   placeholder="Search topics — 'closures', 'joins', 'grid'..."
-                  className="w-full rounded-xl border border-white/15 bg-white/5 py-3 pl-10 pr-4 text-sm text-white placeholder:text-slate-400 focus:border-cyber-blue focus:outline-none"
+                  className="w-full rounded-xl border border-white/15 bg-white border-border shadow-card py-3 pl-10 pr-4 text-sm text-text-primary placeholder:text-slate-400 focus:border-cyber-blue focus:outline-none"
                 />
               </div>
             </div>

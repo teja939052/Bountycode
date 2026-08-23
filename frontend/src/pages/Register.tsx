@@ -154,7 +154,7 @@ export default function Register() {
           <button
             type="submit"
             disabled={loading || !isPasswordValid || !name || !email || !password || !confirmPassword}
-            className="w-full py-3 bg-green-600 text-white font-medium rounded-xl hover:bg-green-700 transition-all shadow-lg shadow-green-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            className="w-full py-3 bg-green-600 text-text-primary font-medium rounded-xl hover:bg-green-700 transition-all shadow-lg shadow-green-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
             {loading ? (
               <>

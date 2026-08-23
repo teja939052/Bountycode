@@ -157,7 +157,7 @@ export default function ShareCard() {
                 className={`h-32 bg-gradient-to-br ${TEMPLATE_COLORS[card.template || "victory"]} flex items-center justify-center relative`}
               >
                 <div className="text-5xl">{TEMPLATE_ICONS[card.template || "victory"]}</div>
-                <div className="absolute top-3 right-3 bg-black/30 rounded-full px-2 py-1 text-xs text-white">
+                <div className="absolute top-3 right-3 bg-surface-2 rounded-full px-2 py-1 text-xs text-text-primary">
                   {card.achievement_type?.replace("_", " ")}
                 </div>
               </div>
@@ -169,14 +169,14 @@ export default function ShareCard() {
                 <div className="flex gap-2 mt-3">
                   <button
                     onClick={() => handleCopyLink(card.card_url)}
-                    className="flex-1 rounded-lg bg-nature-leaf px-3 py-2 text-xs font-bold text-white hover:bg-nature-moss flex items-center justify-center gap-1"
+                    className="flex-1 rounded-lg bg-nature-leaf px-3 py-2 text-xs font-bold text-text-primary hover:bg-nature-moss flex items-center justify-center gap-1"
                   >
                     {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
                     {copied ? "Copied!" : "Copy Link"}
                   </button>
                   <button
                     onClick={() => handleShare(card._id)}
-                    className="flex-1 rounded-lg bg-green-600 px-3 py-2 text-xs font-bold text-white hover:bg-green-500 flex items-center justify-center gap-1"
+                    className="flex-1 rounded-lg bg-green-600 px-3 py-2 text-xs font-bold text-text-primary hover:bg-green-500 flex items-center justify-center gap-1"
                   >
                     <Share2 className="h-3 w-3" />
                     Share

@@ -206,7 +206,7 @@ export default function Leaderboard() {
 
                   {/* Avatar */}
                   <div
-                    className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center text-xs sm:text-sm font-bold text-white shrink-0"
+                    className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center text-xs sm:text-sm font-bold text-text-primary shrink-0"
                     style={{
                       background: `linear-gradient(135deg, ${lt.color}30, ${lt.color}15)`,
                       border: `1px solid ${lt.color}40`,
@@ -217,7 +217,7 @@ export default function Leaderboard() {
 
                   {/* Name + title */}
                   <div className="flex-1 min-w-0">
-                    <p className={`text-sm font-semibold truncate ${isMe ? 'text-cyber-blue' : 'text-white'}`}>
+                    <p className={`text-sm font-semibold truncate ${isMe ? 'text-cyber-blue' : 'text-text-primary'}`}>
                       {entry.name || 'Anonymous'}
                       {isMe && (
                         <span className="text-[9px] ml-2 px-1.5 py-0.5 rounded bg-cyber-blue/20 text-cyber-blue font-mono">
@@ -240,7 +240,7 @@ export default function Leaderboard() {
 
                   {/* XP */}
                   <div className="hidden sm:block text-center w-16 shrink-0">
-                    <span className="text-sm font-display font-bold text-white">
+                    <span className="text-sm font-display font-bold text-text-primary">
                       {(entry.xp || 0).toLocaleString()}
                     </span>
                     <p className="text-[8px] font-mono text-gray-600 uppercase">XP</p>
@@ -249,7 +249,7 @@ export default function Leaderboard() {
                   {/* Streak */}
                   <div className="hidden md:flex text-center w-12 shrink-0 items-center justify-center gap-1">
                     <span className={entry.streak > 0 ? 'streak-fire' : ''}>🔥</span>
-                    <span className="text-sm font-bold text-white">{entry.streak || 0}</span>
+                    <span className="text-sm font-bold text-text-primary">{entry.streak || 0}</span>
                   </div>
                 </div>
               );
@@ -275,7 +275,7 @@ function PodiumCard({ entry, rank, height, delay }) {
       className={`flex flex-col items-center ${isTop ? 'order-2' : rank === 2 ? 'order-1' : 'order-3'}`}
     >
       {/* Name */}
-      <p className={`text-sm font-bold text-white mb-1 ${isTop ? 'text-base' : ''}`}>
+      <p className={`text-sm font-bold text-text-primary mb-1 ${isTop ? 'text-base' : ''}`}>
         {entry.name || 'Anonymous'}
       </p>
       <p className="text-[10px] font-mono mb-2" style={{ color }}>

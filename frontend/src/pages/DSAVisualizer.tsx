@@ -105,7 +105,7 @@ export default function DSAVisualizer() {
 
           <button
             onClick={regenerate}
-            className="w-full py-2.5 rounded-[10px] bg-primary text-white text-xs font-medium hover:bg-primary-dark transition-colors flex items-center justify-center gap-2"
+            className="w-full py-2.5 rounded-[10px] bg-primary text-text-primary text-xs font-medium hover:bg-primary-dark transition-colors flex items-center justify-center gap-2"
           >
             <RotateCcw size={14} /> Generate New Data
           </button>
@@ -198,7 +198,7 @@ export default function DSAVisualizer() {
                 </button>
                 <button
                   onClick={() => setIsPlaying(!isPlaying)}
-                  className="p-3 rounded-[10px] bg-primary text-white hover:bg-primary-dark transition-colors"
+                  className="p-3 rounded-[10px] bg-primary text-text-primary hover:bg-primary-dark transition-colors"
                 >
                   {isPlaying ? <Pause size={16} /> : <Play size={16} />}
                 </button>

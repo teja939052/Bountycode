@@ -100,9 +100,9 @@ export default function ProblemDetail({ problemId: propId, problem: propProblem 
     return (
       <div className="h-full overflow-y-auto bg-[color:var(--bg-base,#f6f3ea)] p-4 sm:p-6">
         <div className="animate-pulse space-y-3 rounded-3xl border border-black/5 bg-white p-4 shadow-sm sm:p-6">
-          <div className="h-6 w-2/3 rounded bg-black/5" />
-          <div className="h-4 w-1/3 rounded bg-black/5" />
-          <div className="h-32 rounded-2xl bg-black/5" />
+          <div className="h-6 w-2/3 rounded bg-surface-2" />
+          <div className="h-4 w-1/3 rounded bg-surface-2" />
+          <div className="h-32 rounded-2xl bg-surface-2" />
         </div>
       </div>
     );
@@ -139,7 +139,7 @@ export default function ProblemDetail({ problemId: propId, problem: propProblem 
 
   return (
     <div className="h-full overflow-y-auto bg-[color:var(--bg-base,#f6f3ea)]">
-      <div className="sticky top-0 z-10 flex items-center gap-0 border-b border-black/5 bg-white/90 px-3 backdrop-blur sm:px-4">
+      <div className="sticky top-0 z-10 flex items-center gap-0 border-b border-black/5 bg-white border-border/90 px-3 backdrop-blur sm:px-4">
         {TABS.map((tab) => (
           <button
             key={tab.id}
@@ -247,7 +247,7 @@ export default function ProblemDetail({ problemId: propId, problem: propProblem 
             {topics.length > 0 && (
               <div className="flex flex-wrap gap-1.5">
                 {topics.map((topic, i) => (
-                  <span key={i} className="rounded-full border border-black/5 bg-black/5 px-2 py-1 text-[10px] text-text-secondary">
+                  <span key={i} className="rounded-full border border-black/5 bg-surface-2 px-2 py-1 text-[10px] text-text-secondary">
                     {topic}
                   </span>
                 ))}
@@ -461,9 +461,9 @@ export default function ProblemDetail({ problemId: propId, problem: propProblem 
                 <h3 className="mb-3 text-sm font-semibold text-text-primary">Similar Problems</h3>
                 <div className="space-y-1.5">
                   {similarProblems.map((sp, i) => (
-                    <Link key={i} to={`/solve/${sp.id}`} className="group flex items-center justify-between rounded-lg px-2 py-1.5 transition-colors hover:bg-black/5">
+                    <Link key={i} to={`/solve/${sp.id}`} className="group flex items-center justify-between rounded-lg px-2 py-1.5 transition-colors hover:bg-surface-2">
                       <div className="flex items-center gap-2">
-                        <span className={`rounded px-1.5 py-0.5 text-[10px] ${DIFFICULTY_STYLES[sp.difficulty] || "text-text-muted bg-black/5 border border-black/5"}`}>
+                        <span className={`rounded px-1.5 py-0.5 text-[10px] ${DIFFICULTY_STYLES[sp.difficulty] || "text-text-muted bg-surface-2 border border-black/5"}`}>
                           {sp.difficulty?.charAt(0).toUpperCase()}
                         </span>
                         <span className="text-xs text-text-secondary group-hover:text-text-primary">
@@ -520,7 +520,7 @@ export default function ProblemDetail({ problemId: propId, problem: propProblem 
             <button
               onClick={handlePostDiscussion}
               disabled={submittingDiscussion || !discussionContent.trim()}
-              className="rounded-lg bg-nature-leaf px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-nature-moss disabled:opacity-50"
+              className="rounded-lg bg-nature-leaf px-3 py-1.5 text-xs font-medium text-text-primary transition-colors hover:bg-nature-moss disabled:opacity-50"
             >
               {submittingDiscussion ? "Posting..." : "Post"}
             </button>

@@ -258,7 +258,7 @@ const handleCheck = async () => {
 
   return (
     <div className="min-h-screen bg-surface-base text-text-primary">
-      <div className="sticky top-0 z-20 border-b border-[#E5E7EB] bg-white/90 backdrop-blur">
+      <div className="sticky top-0 z-20 border-b border-[#E5E7EB] bg-white border-border/90 backdrop-blur">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-4 py-3">
           <div className="flex items-center gap-3">
             <Link
@@ -354,7 +354,7 @@ const handleCheck = async () => {
               <div className="mt-3 flex flex-wrap items-center gap-2">
                 <button
                   onClick={handleCheck}
-                  className="rounded-full bg-nature-leaf px-5 py-2 text-sm font-bold text-white transition-colors hover:bg-nature-moss"
+                  className="rounded-full bg-nature-leaf px-5 py-2 text-sm font-bold text-text-primary transition-colors hover:bg-nature-moss"
                 >
                   Check answer
                 </button>
@@ -362,7 +362,7 @@ const handleCheck = async () => {
                   <button
                     onClick={handleRun}
                     disabled={running}
-                    className="rounded-full bg-[#1F2937] px-5 py-2 text-sm font-bold text-white transition-colors hover:bg-[#374151] disabled:opacity-60"
+                    className="rounded-full bg-[#1F2937] px-5 py-2 text-sm font-bold text-text-primary transition-colors hover:bg-[#374151] disabled:opacity-60"
                   >
                     {running ? "Running…" : "Run code"}
                   </button>
@@ -471,7 +471,7 @@ const handleCheck = async () => {
             {lesson.completion?.nextLesson ? (
               <button
                 onClick={markComplete}
-                className="flex items-center gap-2 rounded-full bg-[#1F2937] px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-[#374151]"
+                className="flex items-center gap-2 rounded-full bg-[#1F2937] px-6 py-3 text-sm font-bold text-text-primary transition-colors hover:bg-[#374151]"
               >
                 {justCompleted ? "Completed!" : "Complete lesson"}
                 <ArrowRight size={16} />
@@ -479,7 +479,7 @@ const handleCheck = async () => {
             ) : (
               <button
                 onClick={markComplete}
-                className="rounded-full bg-nature-leaf px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-nature-moss"
+                className="rounded-full bg-nature-leaf px-6 py-3 text-sm font-bold text-text-primary transition-colors hover:bg-nature-moss"
               >
                 {justCompleted ? "Finished!" : "Finish track"}
               </button>
@@ -520,7 +520,7 @@ const handleCheck = async () => {
                     <button
                       onClick={handleRun}
                       disabled={running}
-                      className="rounded-full bg-nature-leaf px-3 py-1 text-xs font-bold text-white hover:bg-nature-moss disabled:opacity-60"
+                      className="rounded-full bg-nature-leaf px-3 py-1 text-xs font-bold text-text-primary hover:bg-nature-moss disabled:opacity-60"
                     >
                       {running ? "Running…" : "Run"}
                     </button>

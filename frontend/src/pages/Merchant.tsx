@@ -157,7 +157,7 @@ export default function Merchant() {
               className="relative rounded-2xl border border-nature-leaf/20 bg-white p-5 flex flex-col"
             >
               {item.discount_pct > 0 && (
-                <span className="absolute -top-2.5 -right-2 px-2.5 py-1 rounded-lg bg-rose-500 text-white text-[10px] font-bold shadow-lg shadow-rose-500/30">
+                <span className="absolute -top-2.5 -right-2 px-2.5 py-1 rounded-lg bg-rose-500 text-text-primary text-[10px] font-bold shadow-lg shadow-rose-500/30">
                   {item.discount_pct}% OFF
                 </span>
               )}
@@ -181,7 +181,7 @@ export default function Merchant() {
                 className={`mt-4 w-full flex items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-semibold transition-all ${
                   item.purchased
                     ? "bg-[#E5E0D3] text-text-muted cursor-not-allowed"
-                    : "bg-gradient-to-r from-[#4F8F57] to-[#7BB661] text-white hover:opacity-90 disabled:opacity-50"
+                    : "bg-gradient-to-r from-[#4F8F57] to-[#7BB661] text-text-primary hover:opacity-90 disabled:opacity-50"
                 }`}
               >
                 {item.purchased ? (
@@ -266,7 +266,7 @@ export default function Merchant() {
             <button
               onClick={() => setConfirmReset(true)}
               disabled={!nextReq || prestiging}
-              className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#4F8F57] to-[#7BB661] text-white px-6 py-3 text-sm font-semibold hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+              className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#4F8F57] to-[#7BB661] text-text-primary px-6 py-3 text-sm font-semibold hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
             >
               <RefreshCcw className={`w-4 h-4 ${prestiging ? "animate-spin" : ""}`} />
               {level === 0 ? "Start Prestige" : `Prestige to ${nextReq?.level ?? ""}`}
@@ -290,7 +290,7 @@ export default function Merchant() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm px-4"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-surface-2 backdrop-blur-sm px-4"
             onClick={() => setConfirmReset(false)}
           >
             <motion.div
@@ -320,7 +320,7 @@ export default function Merchant() {
                 <button
                   onClick={handlePrestige}
                   disabled={prestiging}
-                  className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#4F8F57] to-[#7BB661] px-5 py-2.5 text-sm font-semibold text-white hover:opacity-90 disabled:opacity-50 transition-all"
+                  className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#4F8F57] to-[#7BB661] px-5 py-2.5 text-sm font-semibold text-text-primary hover:opacity-90 disabled:opacity-50 transition-all"
                 >
                   {prestiging ? (
                     <>

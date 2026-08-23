@@ -137,7 +137,7 @@ export default function CommandCenter() {
                       className="group bg-white border border-nature-leaf/20 rounded-2xl p-4 shadow-[0_1px_2px_rgba(31,41,55,0.04),0_10px_24px_-14px_rgba(31,41,55,0.10)] transition-all duration-150 hover:-translate-y-0.5 hover:border-[#7BB661]/50"
                     >
                       <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${action.color} flex items-center justify-center mb-3 shadow-lg`}>
-                        <action.icon className="w-5 h-5 text-white" />
+                        <action.icon className="w-5 h-5 text-text-primary" />
                       </div>
                       <h3 className="font-semibold text-sm text-text-primary group-hover:text-nature-blossom transition-colors">{action.label}</h3>
                       <p className="text-[10px] text-text-muted mt-0.5">{action.desc}</p>
@@ -235,7 +235,7 @@ export default function CommandCenter() {
           <p className="text-sm text-text-secondary mb-3">
             <span className="font-semibold text-text-primary">Pro Tip:</span> Follow a <Link to="/journeys" className="text-nature-blossom hover:text-nature-blossom underline">Learning Journey</Link> to stay on track. Complete daily challenges to build your streak!
           </p>
-          <Link to="/journeys" className="inline-flex items-center gap-2 px-5 py-2.5 bg-nature-leaf hover:bg-nature-moss text-white rounded-full text-sm font-medium transition-all shadow-[0_10px_24px_-10px_rgba(79,143,87,0.5)]">
+          <Link to="/journeys" className="inline-flex items-center gap-2 px-5 py-2.5 bg-nature-leaf hover:bg-nature-moss text-text-primary rounded-full text-sm font-medium transition-all shadow-[0_10px_24px_-10px_rgba(79,143,87,0.5)]">
             Explore Journeys <ArrowRight className="w-4 h-4" />
           </Link>
         </motion.div>

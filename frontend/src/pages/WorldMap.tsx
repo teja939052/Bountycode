@@ -287,7 +287,7 @@ export default function WorldMap() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0f0d] text-white py-6 px-4">
+    <div className="min-h-screen bg-[#0a0f0d] text-text-primary py-6 px-4">
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}
@@ -305,7 +305,7 @@ export default function WorldMap() {
               {unlockedSet.size}/{regions.length} regions
             </span>
             {nextRegion && (
-              <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-400">
+              <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border-border shadow-card border border-white/10 text-gray-400">
                 <Flag size={12} />
                 Next: {nextRegion.name}
               </span>
@@ -325,7 +325,7 @@ export default function WorldMap() {
               className={`flex items-center gap-2 px-5 py-2.5 rounded-xl border text-sm font-semibold transition-all ${
                 activeTab === tab.id
                   ? 'border-[#4F8F57]/60 bg-[#4F8F57]/15 text-[#7BB661] shadow-[0_0_20px_rgba(79,143,87,0.2)]'
-                  : 'border-white/10 bg-white/5 text-gray-400 hover:text-white hover:border-white/20'
+                  : 'border-white/10 bg-white border-border shadow-card text-gray-400 hover:text-white hover:border-white/20'
               }`}
             >
               <tab.icon size={16} />
@@ -339,7 +339,7 @@ export default function WorldMap() {
             <motion.div key="map" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}>
               {/* Progress bar */}
               {nextRegion && (
-                <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur p-5 mb-8">
+                <div className="rounded-2xl border border-white/10 bg-white border-border shadow-card backdrop-blur p-5 mb-8">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-xs font-mono uppercase tracking-wider text-gray-500">
                       Progress to {nextRegion.emoji} {nextRegion.name}
@@ -348,7 +348,7 @@ export default function WorldMap() {
                       {mapData.total_xp.toLocaleString()} / {nextRegion.xp_required_to_unlock.toLocaleString()} XP
                     </span>
                   </div>
-                  <div className="h-3 rounded-full bg-white/5 overflow-hidden">
+                  <div className="h-3 rounded-full bg-white border-border shadow-card overflow-hidden">
                     <motion.div
                       className="h-full rounded-full bg-gradient-to-r from-[#4F8F57] to-[#7BB661]"
                       initial={{ width: 0 }}
@@ -363,8 +363,8 @@ export default function WorldMap() {
                       disabled={!canAdvance || advancing}
                       className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
                         canAdvance
-                          ? 'bg-gradient-to-r from-[#4F8F57] to-[#7BB661] text-white hover:opacity-90 shadow-[0_0_24px_rgba(79,143,87,0.35)]'
-                          : 'bg-white/5 text-gray-500 cursor-not-allowed border border-white/10'
+                          ? 'bg-gradient-to-r from-[#4F8F57] to-[#7BB661] text-text-primary hover:opacity-90 shadow-[0_0_24px_rgba(79,143,87,0.35)]'
+                          : 'bg-white border-border shadow-card text-gray-500 cursor-not-allowed border border-white/10'
                       }`}
                     >
                       {advancing ? (
@@ -523,18 +523,18 @@ export default function WorldMap() {
                     initial={{ opacity: 0, y: 20, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 20, scale: 0.95 }}
-                    className="mt-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur p-6"
+                    className="mt-6 rounded-2xl border border-white/10 bg-white border-border shadow-card backdrop-blur p-6"
                   >
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex items-center gap-4">
                         <div className="text-5xl">{selectedRegion.emoji}</div>
                         <div>
-                          <h3 className="text-xl font-bold text-white">{selectedRegion.name}</h3>
+                          <h3 className="text-xl font-bold text-text-primary">{selectedRegion.name}</h3>
                           <p className="text-sm text-gray-400 mt-1 max-w-md">{selectedRegion.description}</p>
                         </div>
                       </div>
                       <button onClick={() => setSelectedRegion(null)}
-                              className="p-2 rounded-lg text-gray-500 hover:text-white hover:bg-white/10 transition-all">
+                              className="p-2 rounded-lg text-gray-500 hover:text-white hover:bg-white border-border/10 transition-all">
                         <X size={18} />
                       </button>
                     </div>
@@ -546,12 +546,12 @@ export default function WorldMap() {
                       <span className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full ${
                         unlockedSet.has(selectedRegion.id)
                           ? 'bg-[#4F8F57]/10 border border-[#4F8F57]/30 text-[#7BB661]'
-                          : 'bg-white/5 border border-white/10 text-gray-400'
+                          : 'bg-white border-border shadow-card border border-white/10 text-gray-400'
                       }`}>
                         {unlockedSet.has(selectedRegion.id) ? <Unlock size={12} /> : <Lock size={12} />}
                         {unlockedSet.has(selectedRegion.id) ? 'Unlocked' : `${selectedRegion.xp_required_to_unlock.toLocaleString()} XP needed`}
                       </span>
-                      <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-400">
+                      <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border-border shadow-card border border-white/10 text-gray-400">
                         <Star size={12} />
                         Region {selectedRegion.order}
                       </span>
@@ -572,12 +572,12 @@ export default function WorldMap() {
                         isCurrent
                           ? 'border-[#4F8F57]/40 bg-[#4F8F57]/10'
                           : isUnlocked
-                          ? 'border-white/10 bg-white/5 hover:bg-white/10'
+                          ? 'border-white/10 bg-white border-border shadow-card hover:bg-white border-border/10'
                           : 'border-white/5 bg-white/[0.02] opacity-60'
                       }`}>
                       <div className="flex items-center gap-2 mb-2">
                         <span className="text-xl">{region.emoji}</span>
-                        <span className="text-sm font-semibold text-white">{region.name}</span>
+                        <span className="text-sm font-semibold text-text-primary">{region.name}</span>
                         {isCurrent && <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#4F8F57]/20 text-[#7BB661]">HERE</span>}
                       </div>
                       <p className="text-xs text-gray-500 line-clamp-2">{region.description}</p>
@@ -589,9 +589,9 @@ export default function WorldMap() {
           ) : (
             /* ── Skill Tree Tab ── */
             <motion.div key="skill" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}>
-              <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur p-5 mb-6 flex items-center justify-between">
+              <div className="rounded-2xl border border-white/10 bg-white border-border shadow-card backdrop-blur p-5 mb-6 flex items-center justify-between">
                 <div>
-                  <h3 className="font-semibold text-white">Skill Tree</h3>
+                  <h3 className="font-semibold text-text-primary">Skill Tree</h3>
                   <p className="text-xs text-gray-500 mt-1 font-mono">
                     {unlockedNodes.size}/{treeData?.nodes?.length || 0} skills learned
                   </p>
@@ -602,7 +602,7 @@ export default function WorldMap() {
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur p-4 overflow-x-auto">
+              <div className="rounded-2xl border border-white/10 bg-white border-border shadow-card backdrop-blur p-4 overflow-x-auto">
                 <SkillTreeSVG
                   nodes={treeData?.nodes || []}
                   unlockedNodes={unlockedNodes}

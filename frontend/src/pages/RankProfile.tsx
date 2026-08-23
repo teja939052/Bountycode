@@ -93,7 +93,7 @@ export default function RankProfile() {
         {/* Left Column — Rank Card */}
         <div className="lg:col-span-1 space-y-6">
           {/* Rank Badge */}
-          <div className={`p-6 rounded-2xl bg-gradient-to-br ${gradient} text-white shadow-lg text-center`}>
+          <div className={`p-6 rounded-2xl bg-gradient-to-br ${gradient} text-text-primary shadow-lg text-center`}>
             <div className="text-6xl font-black mb-2">{profile.rank_number}</div>
             <div className="text-lg font-bold uppercase tracking-widest">{profile.rank_type}</div>
             <div className="text-sm opacity-80 mt-1">{profile.rank_title}</div>

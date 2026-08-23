@@ -57,7 +57,7 @@ export default function DailyReward({ currentDay = 1, claimedDays = [], onClaim 
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h3 className="text-sm font-display font-bold text-white uppercase tracking-wider">
+          <h3 className="text-sm font-display font-bold text-text-primary uppercase tracking-wider">
             Daily Login Rewards
           </h3>
           <p className="text-[10px] font-mono text-gray-500 mt-0.5">

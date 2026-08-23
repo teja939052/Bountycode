@@ -373,7 +373,7 @@ export default function GDRoom() {
         {inRoom && (
           <button
             onClick={() => { setView("lobby"); setRoomId(null); setRoom(null); setMessages([]); }}
-            className="px-4 py-2 rounded-xl border border-white/60 text-sm font-medium flex items-center gap-2 hover:bg-white/60"
+            className="px-4 py-2 rounded-xl border border-white/60 text-sm font-medium flex items-center gap-2 hover:bg-white border-border/60"
           >
             <DoorOpen size={16} /> Leave Room
           </button>
@@ -387,7 +387,7 @@ export default function GDRoom() {
       {view === "lobby" && (
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Create room */}
-          <div className="p-6 rounded-2xl border border-white/60 bg-white/80 space-y-4">
+          <div className="p-6 rounded-2xl border border-white/60 bg-white border-border/80 space-y-4">
             <h2 className="text-lg font-bold text-text-primary flex items-center gap-2">
               <Plus size={18} className="text-brand-sky" /> Create Room
             </h2>
@@ -465,12 +465,12 @@ export default function GDRoom() {
               <ListChecks size={18} className="text-brand-lavender" /> Open Rooms
             </h2>
             {rooms.length === 0 ? (
-              <div className="p-6 rounded-2xl border border-white/60 bg-white/80 text-text-light text-sm">
+              <div className="p-6 rounded-2xl border border-white/60 bg-white border-border/80 text-text-light text-sm">
                 No open rooms yet. Create one and share the code!
               </div>
             ) : (
               rooms.map((r) => (
-                <div key={r.room_id} className="p-5 rounded-2xl border border-white/60 bg-white/80 hover:bg-white transition-colors">
+                <div key={r.room_id} className="p-5 rounded-2xl border border-white/60 bg-white border-border/80 hover:bg-white transition-colors">
                   <div className="flex items-center justify-between">
                     <div>
                       <div className="text-base font-semibold text-text-primary">{r.topic}</div>
@@ -499,7 +499,7 @@ export default function GDRoom() {
       {view === "room" && room && (
         <div className="space-y-6">
           {/* Room header */}
-          <div className="p-6 rounded-2xl border border-white/60 bg-white/80">
+          <div className="p-6 rounded-2xl border border-white/60 bg-white border-border/80">
             <div className="flex items-center justify-between flex-wrap gap-4">
               <div>
                 <h2 className="text-xl font-bold text-text-primary">{room.topic}</h2>
@@ -556,7 +556,7 @@ export default function GDRoom() {
                     </button>
                   ))}
                   {timerEndAt && (
-                    <button onClick={() => handleTimer(60)} className="px-2.5 py-1 rounded-lg border border-white/60 text-xs font-medium text-text-secondary hover:bg-white/60">
+                    <button onClick={() => handleTimer(60)} className="px-2.5 py-1 rounded-lg border border-white/60 text-xs font-medium text-text-secondary hover:bg-white border-border/60">
                       Reset
                     </button>
                   )}
@@ -567,12 +567,12 @@ export default function GDRoom() {
 
           <div className="grid lg:grid-cols-3 gap-6">
             {/* Participants */}
-            <div className="p-5 rounded-2xl border border-white/60 bg-white/80 space-y-3">
+            <div className="p-5 rounded-2xl border border-white/60 bg-white border-border/80 space-y-3">
               <h3 className="text-sm font-bold text-text-primary flex items-center gap-2">
                 <Users size={16} /> Participants
               </h3>
               {room.participants?.map((p) => (
-                <div key={p.user_id} className="flex items-center justify-between p-2.5 rounded-xl border border-white/60 bg-white/50">
+                <div key={p.user_id} className="flex items-center justify-between p-2.5 rounded-xl border border-white/60 bg-white border-border/50">
                   <div className="flex items-center gap-2">
                     {speaking[p.user_id] ? (
                       <Mic size={16} className="text-green-600 animate-pulse" />
@@ -595,7 +595,7 @@ export default function GDRoom() {
                 <button
                   onClick={() => toggleSpeak(!speaking[myId])}
                   className={`w-full px-3 py-2 rounded-xl text-sm font-medium flex items-center justify-center gap-2 border ${
-                    speaking[myId] ? "bg-green-50 border-green-200 text-green-700" : "border-white/60 text-text-secondary hover:bg-white/60"
+                    speaking[myId] ? "bg-green-50 border-green-200 text-green-700" : "border-white/60 text-text-secondary hover:bg-white border-border/60"
                   }`}
                 >
                   {speaking[myId] ? <Mic size={16} /> : <MicOff size={16} />}
@@ -605,7 +605,7 @@ export default function GDRoom() {
             </div>
 
             {/* Chat */}
-            <div className="lg:col-span-2 p-5 rounded-2xl border border-white/60 bg-white/80 flex flex-col" style={{ minHeight: "420px" }}>
+            <div className="lg:col-span-2 p-5 rounded-2xl border border-white/60 bg-white border-border/80 flex flex-col" style={{ minHeight: "420px" }}>
               <h3 className="text-sm font-bold text-text-primary flex items-center gap-2 mb-3">
                 <MessageSquare size={16} /> Discussion
               </h3>
@@ -619,7 +619,7 @@ export default function GDRoom() {
                     className={`flex ${m.user_id === myId ? "justify-end" : "justify-start"}`}
                   >
                     <div className={`max-w-[80%] p-2.5 rounded-xl text-sm ${
-                      m.user_id === myId ? "bg-brand-sky/10 text-text-primary" : "bg-white/60 border border-white/70 text-text-secondary"
+                      m.user_id === myId ? "bg-brand-sky/10 text-text-primary" : "bg-white border-border/60 border border-white/70 text-text-secondary"
                     }`}>
                       {m.user_id !== myId && <div className="text-[11px] font-semibold text-text-light mb-0.5">{m.name}</div>}
                       {m.text}
@@ -646,7 +646,7 @@ export default function GDRoom() {
 
           {/* Peer ratings */}
           {ratingPeers.length > 0 && (
-            <div className="p-6 rounded-2xl border border-white/60 bg-white/80">
+            <div className="p-6 rounded-2xl border border-white/60 bg-white border-border/80">
               <h3 className="text-lg font-bold text-text-primary mb-4 flex items-center gap-2">
                 <Star size={18} className="text-yellow-500" /> Rate Your Peers
               </h3>
@@ -654,7 +654,7 @@ export default function GDRoom() {
                 {ratingPeers.map((p) => {
                   const r = ratings[p.user_id] || { clarity: 3, listening: 3, initiative: 3, comment: "" };
                   return (
-                    <div key={p.user_id} className="p-4 rounded-xl border border-white/60 bg-white/50">
+                    <div key={p.user_id} className="p-4 rounded-xl border border-white/60 bg-white border-border/50">
                       <div className="text-sm font-semibold text-text-primary mb-3">{p.name}</div>
                       <div className="grid sm:grid-cols-3 gap-4 mb-3">
                         {RUBRIC.map((rub) => (
@@ -698,13 +698,13 @@ export default function GDRoom() {
 
           {/* Scores */}
           {room.status === "completed" && scores && (
-            <div className="p-6 rounded-2xl border border-white/60 bg-white/80">
+            <div className="p-6 rounded-2xl border border-white/60 bg-white border-border/80">
               <h3 className="text-lg font-bold text-text-primary mb-4 flex items-center gap-2">
                 <Trophy size={18} className="text-yellow-500" /> Room Scores
               </h3>
               <div className="space-y-2">
                 {scores.map((s, i) => (
-                  <div key={s.user_id} className="flex items-center justify-between p-3 rounded-xl border border-white/60 bg-white/50">
+                  <div key={s.user_id} className="flex items-center justify-between p-3 rounded-xl border border-white/60 bg-white border-border/50">
                     <div className="flex items-center gap-3">
                       <span className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold bg-surface-base text-brand-muted">{i + 1}</span>
                       <div>
@@ -733,11 +733,11 @@ export default function GDRoom() {
           )}
 
           {/* Share code */}
-          <div className="p-4 rounded-2xl border border-white/60 bg-white/50 flex items-center justify-between">
+          <div className="p-4 rounded-2xl border border-white/60 bg-white border-border/50 flex items-center justify-between">
             <div className="text-sm text-text-light">
               Share this room with friends — code <span className="font-mono font-bold text-brand-sky">{room.room_id}</span>
             </div>
-            <button onClick={copyCode} className="px-3 py-1.5 rounded-lg border border-white/60 text-xs font-medium flex items-center gap-1.5 hover:bg-white/60">
+            <button onClick={copyCode} className="px-3 py-1.5 rounded-lg border border-white/60 text-xs font-medium flex items-center gap-1.5 hover:bg-white border-border/60">
               {copied ? <Check size={13} className="text-green-600" /> : <Copy size={13} />} {copied ? "Copied" : "Copy ID"}
             </button>
           </div>

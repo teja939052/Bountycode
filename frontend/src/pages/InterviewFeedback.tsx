@@ -173,7 +173,7 @@ export default function InterviewFeedback({ interviewId, onSubmitSuccess }) {
       <button
         onClick={handleSubmit}
         disabled={loading || Object.values(scores).some((v) => v === 0)}
-        className="mt-6 w-full rounded-xl bg-indigo-600 px-6 py-3 font-semibold text-white shadow hover:bg-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed transition flex items-center justify-center gap-2"
+        className="mt-6 w-full rounded-xl bg-indigo-600 px-6 py-3 font-semibold text-text-primary shadow hover:bg-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed transition flex items-center justify-center gap-2"
       >
         {loading ? (
           <>

@@ -315,7 +315,7 @@ export default function PlacementCalendar() {
       </div>
 
       {selected && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70" onClick={closeCompany}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface-2" onClick={closeCompany}>
           <div className="card max-w-2xl w-full max-h-[88vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
               <div className="sticky top-0 bg-space-panel/95 backdrop-blur flex items-start justify-between mb-4 p-4 -m-4 mb-4 border-b border-space-border">
               <div>

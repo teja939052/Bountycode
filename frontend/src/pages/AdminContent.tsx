@@ -51,7 +51,7 @@ function Modal({ title, onClose, children, wide = false }: {
 }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} />
+      <div className="absolute inset-0 bg-surface-2 backdrop-blur-sm" onClick={onClose} />
       <motion.div
         initial={{ opacity: 0, scale: 0.96, y: 12 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -241,7 +241,7 @@ export default function AdminContent() {
             </div>
             <button
               onClick={() => setContentModal({ mode: "create" })}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-nature-leaf hover:bg-nature-moss text-white text-sm font-semibold transition-all">
+              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-nature-leaf hover:bg-nature-moss text-text-primary text-sm font-semibold transition-all">
               <Plus size={16} />
               New Module
             </button>
@@ -307,7 +307,7 @@ export default function AdminContent() {
             <p className="text-sm font-mono text-text-muted">{assignments.length} assignments</p>
             <button
               onClick={() => setAssignmentModal(true)}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-nature-leaf hover:bg-nature-moss text-white text-sm font-semibold transition-all">
+              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-nature-leaf hover:bg-nature-moss text-text-primary text-sm font-semibold transition-all">
               <Plus size={16} />
               New Assignment
             </button>
@@ -474,7 +474,7 @@ export default function AdminContent() {
                         </div>
                         <button
                           onClick={() => handleGrade(s)}
-                          className="mt-6 flex items-center gap-2 px-4 py-2.5 rounded-xl bg-brand-primary/90 hover:bg-brand-primary text-white text-sm font-semibold transition-all">
+                          className="mt-6 flex items-center gap-2 px-4 py-2.5 rounded-xl bg-brand-primary/90 hover:bg-brand-primary text-text-primary text-sm font-semibold transition-all">
                           <CheckCircle2 size={15} />
                           Grade
                         </button>
@@ -497,7 +497,7 @@ function TabButton({ active, onClick, icon: Icon, label }: any) {
       onClick={onClick}
       className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-mono transition-all ${
         active
-          ? "bg-nature-leaf text-white shadow-lg shadow-[#4F8F57]/20"
+          ? "bg-nature-leaf text-text-primary shadow-lg shadow-[#4F8F57]/20"
           : "text-text-muted hover:text-text-primary hover:bg-surface-card"
       }`}>
       <Icon size={15} />
@@ -563,7 +563,7 @@ function ContentForm({ initial, onSave, onCancel }: any) {
         <button type="button" onClick={onCancel} className="px-4 py-2.5 rounded-xl bg-surface-card border border-nature-leaf/20 text-text-secondary text-sm font-mono hover:text-text-primary transition-all">
           Cancel
         </button>
-        <button type="submit" className="px-4 py-2.5 rounded-xl bg-nature-leaf hover:bg-nature-moss text-white text-sm font-semibold transition-all">
+        <button type="submit" className="px-4 py-2.5 rounded-xl bg-nature-leaf hover:bg-nature-moss text-text-primary text-sm font-semibold transition-all">
           {initial ? "Save Changes" : "Create Module"}
         </button>
       </div>
@@ -634,7 +634,7 @@ function AssignmentForm({ contentOptions, onSave, onCancel }: any) {
         <button type="button" onClick={onCancel} className="px-4 py-2.5 rounded-xl bg-surface-card border border-nature-leaf/20 text-text-secondary text-sm font-mono hover:text-text-primary transition-all">
           Cancel
         </button>
-        <button type="submit" disabled={saving} className="px-4 py-2.5 rounded-xl bg-brand-primary/90 hover:bg-brand-primary text-white text-sm font-semibold transition-all disabled:opacity-50">
+        <button type="submit" disabled={saving} className="px-4 py-2.5 rounded-xl bg-brand-primary/90 hover:bg-brand-primary text-text-primary text-sm font-semibold transition-all disabled:opacity-50">
           {saving ? "Creating..." : "Create Assignment"}
         </button>
       </div>

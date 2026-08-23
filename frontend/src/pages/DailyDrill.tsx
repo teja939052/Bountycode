@@ -140,7 +140,7 @@ export default function DailyDrill() {
             <motion.button
               onClick={handleSubmit}
               disabled={!allAnswered || submitting}
-              className="w-full bg-primary-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
+              className="w-full bg-primary-600 text-text-primary py-4 rounded-xl font-bold text-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
               whileHover={reduced ? {} : { scale: 1.01 }}
               whileTap={reduced ? {} : { scale: 0.99 }}
             >
@@ -193,7 +193,7 @@ export default function DailyDrill() {
                 )}
                 <button
                   onClick={loadDrill}
-                  className="inline-flex items-center gap-2 bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors"
+                  className="inline-flex items-center gap-2 bg-primary-600 text-text-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors"
                 >
                   <RotateCcw size={18} />
                   Try Another Drill

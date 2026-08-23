@@ -37,7 +37,7 @@ function formatXp(n: number) {
 
 function GlowBar({ pct, color }: { pct: number; color: string }) {
   return (
-    <div className="h-2.5 rounded-full bg-black/20 border border-white/10 overflow-hidden">
+    <div className="h-2.5 rounded-full bg-surface-2 border border-white/10 overflow-hidden">
       <motion.div
         className="h-full rounded-full"
         initial={{ width: 0 }}
@@ -51,12 +51,12 @@ function GlowBar({ pct, color }: { pct: number; color: string }) {
 
 function StatCard({ icon: Icon, label, value, color }: any) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/5 p-4 flex items-center gap-3">
+    <div className="rounded-2xl border border-white/10 bg-white border-border shadow-card p-4 flex items-center gap-3">
       <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: `${color}22`, border: `1px solid ${color}44` }}>
         <Icon className="w-5 h-5" style={{ color }} />
       </div>
       <div>
-        <p className="text-lg font-bold text-white">{value}</p>
+        <p className="text-lg font-bold text-text-primary">{value}</p>
         <p className="text-[10px] font-mono text-gray-400 uppercase tracking-wider">{label}</p>
       </div>
     </div>
@@ -80,8 +80,8 @@ function RankTab({ data }: any) {
           </div>
           <div className="flex-1">
             <div className="flex flex-wrap items-center gap-3">
-              <h2 className="text-2xl sm:text-3xl font-display font-bold text-white">{rank.title}</h2>
-              <span className="px-3 py-1 rounded-full text-xs font-mono font-bold text-white border"
+              <h2 className="text-2xl sm:text-3xl font-display font-bold text-text-primary">{rank.title}</h2>
+              <span className="px-3 py-1 rounded-full text-xs font-mono font-bold text-text-primary border"
                 style={{ borderColor: `${rank.color}66`, background: `${rank.color}33` }}>
                 LEVEL {level}
               </span>
@@ -162,14 +162,14 @@ function QuestsTab({ data, onCompleteStep }: any) {
       {data.map((chain: any) => (
         <motion.div key={chain.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
           className={`rounded-2xl border p-5 transition-all ${chain.unlocked
-            ? "border-white/10 bg-white/5 hover:border-green-500/30"
+            ? "border-white/10 bg-white border-border shadow-card hover:border-green-500/30"
             : "border-white/5 bg-white/[0.02] opacity-60"
           }`}>
           <div className="flex items-start gap-4 mb-4">
             <div className="text-3xl">{chain.icon}</div>
             <div className="flex-1">
               <div className="flex items-center gap-2">
-                <h4 className="text-sm font-bold text-white">{chain.title}</h4>
+                <h4 className="text-sm font-bold text-text-primary">{chain.title}</h4>
                 {!chain.unlocked && <Lock className="w-3.5 h-3.5 text-gray-500" />}
                 {chain.is_complete && <CheckCircle2 className="w-4 h-4 text-green-400" />}
               </div>
@@ -188,10 +188,10 @@ function QuestsTab({ data, onCompleteStep }: any) {
                 const stepKey = `${chain.id}_${step.id}`;
                 const done = chain.completed_steps > 0 && false;
                 return (
-                  <div key={step.id} className="flex items-center gap-3 px-3 py-2 rounded-xl bg-black/20 border border-white/5">
+                  <div key={step.id} className="flex items-center gap-3 px-3 py-2 rounded-xl bg-surface-2 border border-white/5">
                     <CircleDot className="w-4 h-4 text-gray-500 shrink-0" />
                     <div className="flex-1 min-w-0">
-                      <p className="text-xs text-white font-medium truncate">{step.title}</p>
+                      <p className="text-xs text-text-primary font-medium truncate">{step.title}</p>
                       <p className="text-[10px] text-gray-500">{step.description}</p>
                     </div>
                     {!chain.is_complete && chain.unlocked && (
@@ -220,7 +220,7 @@ function BossesTab({ data }: any) {
       {data.map((boss: any) => (
         <motion.div key={boss.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
           className={`rounded-2xl border p-5 transition-all ${boss.unlocked
-            ? "border-white/10 bg-white/5 hover:border-red-500/30 cursor-pointer"
+            ? "border-white/10 bg-white border-border shadow-card hover:border-red-500/30 cursor-pointer"
             : "border-white/5 bg-white/[0.02] opacity-60"
           }`}
           onClick={() => boss.unlocked && navigate(`/boss/${boss.id}`)}>
@@ -228,7 +228,7 @@ function BossesTab({ data }: any) {
             <div className="text-3xl">{boss.icon}</div>
             <div className="flex-1">
               <div className="flex items-center gap-2">
-                <h4 className="text-sm font-bold text-white">{boss.name}</h4>
+                <h4 className="text-sm font-bold text-text-primary">{boss.name}</h4>
                 {boss.defeated && <CheckCircle2 className="w-4 h-4 text-green-400" />}
                 {!boss.unlocked && <Lock className="w-3.5 h-3.5 text-gray-500" />}
               </div>
@@ -257,7 +257,7 @@ function DungeonsTab({ data }: any) {
       {data.map((d: any) => (
         <motion.div key={d.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
           className={`rounded-2xl border p-5 transition-all ${d.unlocked
-            ? "border-white/10 bg-white/5 hover:border-amber-500/30 cursor-pointer"
+            ? "border-white/10 bg-white border-border shadow-card hover:border-amber-500/30 cursor-pointer"
             : "border-white/5 bg-white/[0.02] opacity-60"
           }`}
           onClick={() => d.unlocked && navigate(`/dungeon/${d.id}`)}>
@@ -265,7 +265,7 @@ function DungeonsTab({ data }: any) {
             <div className="text-3xl">{d.icon}</div>
             <div className="flex-1">
               <div className="flex items-center gap-2">
-                <h4 className="text-sm font-bold text-white">{d.name}</h4>
+                <h4 className="text-sm font-bold text-text-primary">{d.name}</h4>
                 {d.cleared && <CheckCircle2 className="w-4 h-4 text-green-400" />}
                 {!d.unlocked && <Lock className="w-3.5 h-3.5 text-gray-500" />}
               </div>
@@ -295,7 +295,7 @@ function CollectionsTab({ data }: any) {
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
               <span className="text-lg">{coll.icon}</span>
-              <h4 className="text-sm font-bold text-white">{coll.name}</h4>
+              <h4 className="text-sm font-bold text-text-primary">{coll.name}</h4>
             </div>
             <span className="text-[10px] font-mono text-gray-500">{coll.earned_count}/{coll.total_count}</span>
           </div>
@@ -304,11 +304,11 @@ function CollectionsTab({ data }: any) {
             {coll.items.map((item: any) => (
               <div key={item.id}
                 className={`rounded-xl border p-3 text-center transition-all ${item.earned
-                  ? "border-white/15 bg-white/5"
+                  ? "border-white/15 bg-white border-border shadow-card"
                   : "border-white/5 bg-white/[0.02] opacity-40"
                 }`}>
                 <div className="text-2xl mb-1">{item.icon}</div>
-                <p className="text-[10px] font-bold text-white truncate">{item.name}</p>
+                <p className="text-[10px] font-bold text-text-primary truncate">{item.name}</p>
                 <span className="inline-block mt-1 px-2 py-0.5 rounded-full text-[8px] font-mono font-bold uppercase"
                   style={{ color: RARITY_COLORS[item.rarity] || "#999", background: `${RARITY_COLORS[item.rarity] || "#999"}22` }}>
                   {item.rarity}
@@ -399,10 +399,10 @@ export default function CareerRpg() {
   if (loading) {
     return (
       <div className="min-h-screen bg-black px-4 py-8 max-w-5xl mx-auto">
-        <Skeleton className="h-10 w-64 mb-3 bg-white/5" />
-        <Skeleton className="h-5 w-96 mb-8 bg-white/5" />
+        <Skeleton className="h-10 w-64 mb-3 bg-white border-border shadow-card" />
+        <Skeleton className="h-5 w-96 mb-8 bg-white border-border shadow-card" />
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
-          {Array.from({ length: 4 }).map((_, i) => <Skeleton key={i} className="h-20 rounded-2xl bg-white/5" />)}
+          {Array.from({ length: 4 }).map((_, i) => <Skeleton key={i} className="h-20 rounded-2xl bg-white border-border shadow-card" />)}
         </div>
       </div>
     );
@@ -422,14 +422,14 @@ export default function CareerRpg() {
     <div className="min-h-screen bg-black px-4 py-6 sm:py-10 max-w-5xl mx-auto">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
-          <h1 className="text-3xl font-display font-black text-white flex items-center gap-3">
+          <h1 className="text-3xl font-display font-black text-text-primary flex items-center gap-3">
             <Crown className="w-8 h-8 text-amber-400" />
             Career RPG
           </h1>
           <p className="text-gray-400 mt-1 text-sm">Level up. Defeat bosses. Claim your placement.</p>
         </div>
         <button onClick={() => { loadProfile(); loadTab(tab); }}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm font-medium hover:bg-white/10 transition-all">
+          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border-border shadow-card border border-white/10 text-text-primary text-sm font-medium hover:bg-white border-border/10 transition-all">
           <RefreshCw className="w-4 h-4" /> Refresh
         </button>
       </div>
@@ -442,7 +442,7 @@ export default function CareerRpg() {
             <button key={t.key} onClick={() => setTab(t.key)}
               className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-mono font-medium whitespace-nowrap transition-all ${
                 tab === t.key
-                  ? "bg-white/10 text-white border border-white/15"
+                  ? "bg-white border-border/10 text-text-primary border border-white/15"
                   : "text-gray-500 hover:text-gray-300 border border-transparent"
               }`}>
               <Icon className="w-4 h-4" />

@@ -99,7 +99,7 @@ export default function Tournaments() {
         <h1 className="text-3xl font-bold text-gray-900">🏟️ Tournaments</h1>
         <button
           onClick={() => setShowCreate(!showCreate)}
-          className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 text-sm font-medium"
+          className="px-4 py-2 bg-indigo-600 text-text-primary rounded-lg hover:bg-indigo-700 text-sm font-medium"
         >
           Create Tournament
         </button>
@@ -137,7 +137,7 @@ export default function Tournaments() {
             <button
               onClick={handleCreateTournament}
               disabled={loading || !newTournamentName}
-              className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700 disabled:opacity-50"
+              className="px-4 py-2 bg-indigo-600 text-text-primary rounded-lg text-sm font-medium hover:bg-indigo-700 disabled:opacity-50"
             >
               Create
             </button>
@@ -170,21 +170,21 @@ export default function Tournaments() {
                 <button
                   onClick={() => handleJoinTournament(t.tournament_id)}
                   disabled={loading}
-                  className="px-3 py-1.5 bg-indigo-600 text-white rounded-lg text-xs font-medium hover:bg-indigo-700 disabled:opacity-50"
+                  className="px-3 py-1.5 bg-indigo-600 text-text-primary rounded-lg text-xs font-medium hover:bg-indigo-700 disabled:opacity-50"
                 >
                   Join
                 </button>
                 <button
                   onClick={() => handleSubmitResult(t.tournament_id, "opponent_1", "win")}
                   disabled={loading}
-                  className="px-3 py-1.5 bg-green-600 text-white rounded-lg text-xs font-medium hover:bg-green-700 disabled:opacity-50"
+                  className="px-3 py-1.5 bg-green-600 text-text-primary rounded-lg text-xs font-medium hover:bg-green-700 disabled:opacity-50"
                 >
                   Submit Win
                 </button>
                 <button
                   onClick={() => handleSubmitResult(t.tournament_id, "opponent_1", "loss")}
                   disabled={loading}
-                  className="px-3 py-1.5 bg-red-600 text-white rounded-lg text-xs font-medium hover:bg-red-700 disabled:opacity-50"
+                  className="px-3 py-1.5 bg-red-600 text-text-primary rounded-lg text-xs font-medium hover:bg-red-700 disabled:opacity-50"
                 >
                   Submit Loss
                 </button>

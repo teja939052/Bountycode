@@ -24,7 +24,7 @@ export default function StreakConstellation({ streak = 0, maxStreak = 30 }) {
             Practice Streak //
           </span>
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl font-display font-black text-white">
+            <span className="text-3xl font-display font-black text-text-primary">
               {streak}
             </span>
             <span className="text-xs font-mono text-gray-500">days</span>

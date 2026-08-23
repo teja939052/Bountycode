@@ -97,10 +97,10 @@ export default function AdaptivePath() {
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand-lavender to-brand-sky flex items-center justify-center shadow-lg">
-            <Brain className="w-6 h-6 text-white" />
+            <Brain className="w-6 h-6 text-text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-white">Adaptive Learning Path</h1>
+            <h1 className="text-2xl font-bold text-text-primary">Adaptive Learning Path</h1>
             <p className="text-sm text-gray-500">Personalized just for you based on your skills & progress</p>
           </div>
         </div>
@@ -199,8 +199,8 @@ function ReadinessCard({ readiness }: any) {
         </div>
         <div className="flex-1 space-y-2">
           <div className="flex items-center gap-2">
-            <h2 className="text-xl font-bold text-white">Interview Readiness</h2>
-            <span className={`px-3 py-1 rounded-full text-xs font-semibold text-white bg-gradient-to-r ${bgColor}`}>{readiness.readiness_level}</span>
+            <h2 className="text-xl font-bold text-text-primary">Interview Readiness</h2>
+            <span className={`px-3 py-1 rounded-full text-xs font-semibold text-text-primary bg-gradient-to-r ${bgColor}`}>{readiness.readiness_level}</span>
           </div>
           <div className="flex flex-wrap gap-3 text-sm text-brand-secondary">
             <span>🎯 {readiness.coverage_pct}% domain coverage</span>
@@ -233,7 +233,7 @@ function TabNav({ activeTab, onTabChange, tabs }: any) {
             onClick={() => onTabChange(tab.id)}
             className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all whitespace-nowrap ${
               activeTab === tab.id
-                ? "bg-surface-card shadow-lg text-white border border-brand-primary/10"
+                ? "bg-surface-card shadow-lg text-text-primary border border-brand-primary/10"
                 : "text-gray-500 hover:text-brand-primary hover:bg-surface-card/70"
             }`}
           >
@@ -256,7 +256,7 @@ function OverviewTab({ skills, weakAreas, dailyPlan, readiness, recommendations 
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Clock className="w-5 h-5 text-brand-lavender" />
-            <h3 className="font-semibold text-white">Today's Plan</h3>
+            <h3 className="font-semibold text-text-primary">Today's Plan</h3>
           </div>
           {dailyPlan && (
             <span className="text-xs text-gray-500">{dailyPlan.total_estimated_minutes} min • {dailyPlan.task_count} tasks</span>
@@ -266,7 +266,7 @@ function OverviewTab({ skills, weakAreas, dailyPlan, readiness, recommendations 
           <div key={task.id || i} className="flex items-start gap-3 p-3 rounded-xl bg-surface-card/90 border border-gray-100">
             <span className="text-xl">{TASK_EMOJIS[task.type] || "📌"}</span>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-white">{task.title}</p>
+              <p className="text-sm font-medium text-text-primary">{task.title}</p>
               <div className="flex items-center gap-2 mt-1">
                 <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
                   task.type === "warmup" ? "bg-amber-100 text-amber-700" :
@@ -294,16 +294,16 @@ function OverviewTab({ skills, weakAreas, dailyPlan, readiness, recommendations 
         <div className="rounded-2xl bg-surface-card/90 border border-brand-primary/10 p-5 space-y-3">
           <div className="flex items-center gap-2">
             <Target className="w-5 h-5 text-brand-coral" />
-            <h3 className="font-semibold text-white">Weak Areas</h3>
+            <h3 className="font-semibold text-text-primary">Weak Areas</h3>
           </div>
           {topWeak.length === 0 ? (
             <p className="text-sm text-gray-500">No weak areas detected! Keep it up 🎉</p>
           ) : (
             topWeak.map((area, i) => (
-              <div key={area.domain_id || i} className="flex items-center gap-3 p-2.5 rounded-xl bg-white/50 border border-gray-100">
+              <div key={area.domain_id || i} className="flex items-center gap-3 p-2.5 rounded-xl bg-white border-border/50 border border-gray-100">
                 <span className="text-lg">{area.emoji}</span>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-white">{area.name}</p>
+                  <p className="text-sm font-medium text-text-primary">{area.name}</p>
                   <div className="flex items-center gap-2 mt-0.5">
                     <div className="flex-1 h-1.5 rounded-full bg-gray-200 overflow-hidden">
                       <motion.div
@@ -326,7 +326,7 @@ function OverviewTab({ skills, weakAreas, dailyPlan, readiness, recommendations 
           <div className="rounded-2xl bg-surface-card/90 border border-brand-primary/10 p-5 space-y-3">
             <div className="flex items-center gap-2">
               <TrendingUp className="w-5 h-5 text-emerald-500" />
-              <h3 className="font-semibold text-white">Quick Stats</h3>
+              <h3 className="font-semibold text-text-primary">Quick Stats</h3>
             </div>
             <div className="grid grid-cols-2 gap-2">
               {[
@@ -357,7 +357,7 @@ function DailyPlanTab({ plan, onCompleteTask, selectedTask, onSelectTask }: any)
       <div className="rounded-2xl bg-gradient-to-r from-brand-lavender/10 to-brand-sky/10 border border-brand-primary/10 p-5">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="font-semibold text-white">{plan.date}</h3>
+            <h3 className="font-semibold text-text-primary">{plan.date}</h3>
             <p className="text-sm text-gray-500">Streak: {plan.streak} days • Level {plan.level} • {plan.total_estimated_minutes} minutes</p>
           </div>
           <span className="text-xs text-gray-500">{plan.task_count} tasks</span>
@@ -379,7 +379,7 @@ function DailyPlanTab({ plan, onCompleteTask, selectedTask, onSelectTask }: any)
           <motion.div
             key={task.id || i}
             initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
-            className="rounded-2xl bg-surface-card/90 border border-brand-primary/10 p-4 hover:bg-white/80 transition-colors cursor-pointer"
+            className="rounded-2xl bg-surface-card/90 border border-brand-primary/10 p-4 hover:bg-white border-border/80 transition-colors cursor-pointer"
             onClick={() => onSelectTask(selectedTask === i ? null : i)}
           >
             <div className="flex items-start gap-4">
@@ -396,7 +396,7 @@ function DailyPlanTab({ plan, onCompleteTask, selectedTask, onSelectTask }: any)
               <div className="flex-1 min-w-0">
                 <div className="flex items-start justify-between gap-2">
                   <div>
-                    <p className="font-medium text-white">{task.title}</p>
+                    <p className="font-medium text-text-primary">{task.title}</p>
                     {task.domain_id && (
                       <p className="text-xs text-gray-500 mt-0.5">{task.domain_id.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase())}</p>
                     )}
@@ -443,13 +443,13 @@ function SkillsTab({ skills, weakAreas }: any) {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
       {/* Skill Bars */}
       <div className="rounded-2xl bg-surface-card/90 border border-brand-primary/10 p-5">
-        <h3 className="font-semibold text-white mb-4">All Skills</h3>
+        <h3 className="font-semibold text-text-primary mb-4">All Skills</h3>
         <div className="space-y-3">
           {sortedSkills.map(([id, skill]) => (
             <div key={id} className="space-y-1">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 min-w-0">
-                  <span className="text-sm font-medium text-white truncate">{id.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase())}</span>
+                  <span className="text-sm font-medium text-text-primary truncate">{id.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase())}</span>
                   {weakIds.has(id) && <AlertCircle className="w-3.5 h-3.5 text-brand-coral shrink-0" />}
                 </div>
                 <span className="text-xs font-medium text-gray-500 shrink-0">{skill.score}% · {skill.mastery_label}</span>
@@ -473,7 +473,7 @@ function SkillsTab({ skills, weakAreas }: any) {
       {/* Weak Areas Detail */}
       <div className="space-y-4">
         <div className="rounded-2xl bg-surface-card/90 border border-brand-primary/10 p-5">
-          <h3 className="font-semibold text-white mb-4">⚠️ Priority Weak Areas</h3>
+          <h3 className="font-semibold text-text-primary mb-4">⚠️ Priority Weak Areas</h3>
           {(weakAreas || []).length === 0 ? (
             <p className="text-sm text-gray-500">No weak areas found!</p>
           ) : (
@@ -483,7 +483,7 @@ function SkillsTab({ skills, weakAreas }: any) {
                   <div className="flex items-center gap-2">
                     <span className="text-lg">{area.emoji}</span>
                     <div>
-                      <p className="text-sm font-medium text-white">{area.name}</p>
+                      <p className="text-sm font-medium text-text-primary">{area.name}</p>
                       <p className="text-xs text-gray-500">Score: {area.score}% · {area.mastery_label} · {area.accuracy}% accuracy</p>
                     </div>
                   </div>
@@ -496,7 +496,7 @@ function SkillsTab({ skills, weakAreas }: any) {
 
         {/* Mastery Legend */}
         <div className="rounded-2xl bg-surface-card/90 border border-brand-primary/10 p-5">
-          <h3 className="font-semibold text-white mb-3">Mastery Levels</h3>
+          <h3 className="font-semibold text-text-primary mb-3">Mastery Levels</h3>
           <div className="space-y-1.5">
             {["untouched", "beginner", "learning", "practicing", "competent", "proficient", "master"].map((level) => (
               <div key={level} className="flex items-center gap-2 text-xs">
@@ -519,7 +519,7 @@ function LearningPathTab({ path }: any) {
       <div className="rounded-2xl bg-gradient-to-r from-brand-lavender/10 to-brand-sky/10 border border-brand-primary/10 p-5">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="font-semibold text-white">
+            <h3 className="font-semibold text-text-primary">
               {path.total_weeks}-Week Learning Path
             </h3>
             <p className="text-sm text-gray-500">{path.total_hours} hours total · Current: {path.current_level} ({path.current_score}%)</p>
@@ -543,12 +543,12 @@ function LearningPathTab({ path }: any) {
               <span className="text-xs font-bold text-brand-lavender">{week.week}</span>
             </div>
 
-            <div className="rounded-2xl bg-surface-card/90 border border-brand-primary/10 p-4 hover:bg-white/80 transition-colors">
+            <div className="rounded-2xl bg-surface-card/90 border border-brand-primary/10 p-4 hover:bg-white border-border/80 transition-colors">
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-center gap-2 min-w-0">
                   <span className="text-lg shrink-0">{week.emoji}</span>
                   <div>
-                    <p className="font-semibold text-white">{week.title}</p>
+                    <p className="font-semibold text-text-primary">{week.title}</p>
                     <p className="text-xs text-gray-500">{week.goal} · ~{week.estimated_hours}h</p>
                   </div>
                 </div>
@@ -601,7 +601,7 @@ function RecommendationsTab({ recommendations }: any) {
         {recommendations.recommendations?.map((rec, i) => (
           <motion.div
             key={i} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}
-            className="rounded-2xl bg-surface-card/90 border border-brand-primary/10 p-5 hover:bg-white/80 transition-colors"
+            className="rounded-2xl bg-surface-card/90 border border-brand-primary/10 p-5 hover:bg-white border-border/80 transition-colors"
           >
             <div className="flex items-start gap-3">
               <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-lg ${
@@ -611,7 +611,7 @@ function RecommendationsTab({ recommendations }: any) {
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-start justify-between gap-2">
-                  <p className="font-semibold text-white">{rec.title}</p>
+                  <p className="font-semibold text-text-primary">{rec.title}</p>
                   <span className={`shrink-0 px-2 py-0.5 rounded-full text-xs font-medium ${
                     rec.impact === "high" ? "bg-red-100 text-red-700" :
                     rec.impact === "medium" ? "bg-amber-100 text-amber-700" :
@@ -660,7 +660,7 @@ function ErrorState({ error, onRetry }: any) {
         <AlertCircle className="w-12 h-12 text-red-400 mx-auto mb-4" />
         <h3 className="text-lg font-semibold text-red-800 mb-2">Failed to load</h3>
         <p className="text-sm text-red-600 mb-4">{error}</p>
-        <button onClick={onRetry} className="px-4 py-2 rounded-xl bg-red-600 text-white text-sm font-medium hover:bg-red-700 transition-colors">
+        <button onClick={onRetry} className="px-4 py-2 rounded-xl bg-red-600 text-text-primary text-sm font-medium hover:bg-red-700 transition-colors">
           Try Again
         </button>
       </div>

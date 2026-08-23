@@ -38,7 +38,7 @@ export default function CandyButton({
       whileTap={disabled ? undefined : { scale: 0.95 }}
       onClick={onClick}
       disabled={disabled}
-      className={`candy-btn relative inline-flex items-center justify-center gap-2 overflow-hidden font-bold text-white shadow-lg ${sizes[size]} ${
+      className={`candy-btn relative inline-flex items-center justify-center gap-2 overflow-hidden font-bold text-text-primary shadow-lg ${sizes[size]} ${
         disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer"
       } ${className}`}
       style={{

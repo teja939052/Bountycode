@@ -53,7 +53,7 @@ export default function LearnTrack() {
 
   return (
     <div className="min-h-screen bg-surface-base text-text-primary">
-      <div className="sticky top-0 z-20 border-b border-[#E5E7EB] bg-white/90 backdrop-blur">
+      <div className="sticky top-0 z-20 border-b border-[#E5E7EB] bg-white border-border/90 backdrop-blur">
         <div className="mx-auto flex max-w-[900px] items-center justify-between gap-4 px-4 py-3">
           <div className="flex items-center gap-3">
             <Link

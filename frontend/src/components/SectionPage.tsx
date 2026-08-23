@@ -32,7 +32,7 @@ export default function SectionPage({
         <div className="relative">
           <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-brand-primary/30 to-brand-tertiary/30 blur-md opacity-70" aria-hidden="true" />
           <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-primary via-brand-deep to-brand-tertiary shadow-soft-md">
-            <TitleIcon size={22} className="text-white" />
+            <TitleIcon size={22} className="text-text-primary" />
           </div>
         </div>
         <div>

@@ -111,7 +111,7 @@ export default function ChallengePacks() {
                 onClick={() => setRarityFilter(r)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                   rarityFilter === r
-? "bg-nature-leaf text-white shadow-lg shadow-[#4F8F57]/20"
+? "bg-nature-leaf text-text-primary shadow-lg shadow-[#4F8F57]/20"
             : "text-text-muted hover:text-text-primary"
                 }`}
               >
@@ -127,7 +127,7 @@ export default function ChallengePacks() {
                 onClick={() => setDifficultyFilter(d)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                   difficultyFilter === d
-                    ? "bg-amber-600 text-white shadow-lg shadow-amber-600/20"
+                    ? "bg-amber-600 text-text-primary shadow-lg shadow-amber-600/20"
                     : "text-text-muted hover:text-text-primary"
                 }`}
               >
@@ -152,13 +152,13 @@ export default function ChallengePacks() {
           <div className="flex items-center gap-1 bg-white border border-nature-leaf/20 rounded-xl p-1">
             <button
               onClick={() => setViewMode("grid")}
-              className={`p-2 rounded-lg transition-all ${viewMode === "grid" ? "bg-nature-leaf text-white" : "text-text-muted hover:text-text-secondary"}`}
+              className={`p-2 rounded-lg transition-all ${viewMode === "grid" ? "bg-nature-leaf text-text-primary" : "text-text-muted hover:text-text-secondary"}`}
             >
               <Grid3x3 className="w-4 h-4" />
             </button>
             <button
               onClick={() => setViewMode("list")}
-              className={`p-2 rounded-lg transition-all ${viewMode === "list" ? "bg-nature-leaf text-white" : "text-text-muted hover:text-text-secondary"}`}
+              className={`p-2 rounded-lg transition-all ${viewMode === "list" ? "bg-nature-leaf text-text-primary" : "text-text-muted hover:text-text-secondary"}`}
             >
               <List className="w-4 h-4" />
             </button>
@@ -259,7 +259,7 @@ export default function ChallengePacks() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-surface-2 backdrop-blur-sm z-50 flex items-center justify-center p-4"
           onClick={() => setSelectedChallenge(null)}
         >
           <motion.div
@@ -314,7 +314,7 @@ export default function ChallengePacks() {
             <div className="flex items-center gap-3">
               <Link
                 to={selectedChallenge.id ? `/solve/${selectedChallenge.id}` : "/compiler"}
-                className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-[#4F8F57] to-[#7BB661] hover:from-[#3F7A47] hover:to-[#4F8F57] text-white rounded-xl font-medium text-sm transition-all shadow-lg shadow-[#4F8F57]/20"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-[#4F8F57] to-[#7BB661] hover:from-[#3F7A47] hover:to-[#4F8F57] text-text-primary rounded-xl font-medium text-sm transition-all shadow-lg shadow-[#4F8F57]/20"
                 onClick={() => setSelectedChallenge(null)}
               >
                 <Sparkles className="w-4 h-4" /> Solve Challenge

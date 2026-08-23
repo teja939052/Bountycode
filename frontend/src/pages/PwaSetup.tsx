@@ -185,7 +185,7 @@ export default function PwaSetup() {
               ) : deferredPrompt ? (
                 <button
                   onClick={handleInstall}
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-nature-leaf hover:bg-nature-moss text-white text-sm font-semibold transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-nature-leaf hover:bg-nature-moss text-text-primary text-sm font-semibold transition-colors"
                 >
                   <Download size={16} /> Install App
                 </button>

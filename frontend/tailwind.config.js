@@ -17,6 +17,7 @@ export default {
         },
         text: {
           DEFAULT: "#17211B",
+          primary: "#17211B",
           muted: "#68736B",
           light: "#68736B",
           inverse: "#FFFFFF",
@@ -157,7 +158,7 @@ export default {
     { pattern: /from-(primary|blue|gold|purple|red|amber)(-(DEFAULT|dark|soft))?/ },
     { pattern: /to-(primary|blue|gold|purple|red|amber)(-(DEFAULT|dark|soft))?/ },
     { pattern: /bg-(canvas|surface|border|text|navy|smoke|pearl)(-(DEFAULT|2|muted|light|inverse|900|800))?(\/\d+)?/ },
-    { pattern: /text-(canvas|surface|border|text|navy|smoke|pearl|cream)(-(DEFAULT|2|muted|light|inverse|900|100))?/ },
+    { pattern: /text-(canvas|surface|border|text|navy|smoke|pearl|cream)(-(DEFAULT|2|primary|muted|light|inverse|900|100))?/ },
     { pattern: /border-(canvas|surface|border|text|navy|smoke|pearl)(-(DEFAULT|2|muted|light|inverse))?(\/\d+)?/ },
   ],
   plugins: [],

@@ -271,7 +271,7 @@ export default function BattleArena() {
       </div>
 
       {/* Tabs */}
-      <div className="mb-6 flex w-fit gap-1 rounded-2xl border border-black/5 bg-white/70 p-1 shadow-sm">
+      <div className="mb-6 flex w-fit gap-1 rounded-2xl border border-black/5 bg-white border-border/70 p-1 shadow-sm">
         {TABS.map((t) => (
           <button
             key={t}
@@ -475,7 +475,7 @@ export default function BattleArena() {
                 )}
 
                 {/* Opponent Status — live via WebSocket */}
-                <div className="rounded-xl border border-black/5 bg-white/70 p-3">
+                <div className="rounded-xl border border-black/5 bg-white border-border/70 p-3">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
                       <span className={`w-2 h-2 rounded-full ${liveStatus === "open" ? "bg-green-500 animate-pulse" : "bg-gray-400"}`} />
@@ -498,7 +498,7 @@ export default function BattleArena() {
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="flex-1 h-2 rounded-full bg-white/60 border border-white/70 overflow-hidden">
+                    <div className="flex-1 h-2 rounded-full bg-white border-border/60 border border-white/70 overflow-hidden">
                       <div
                         className="h-full rounded-full transition-all duration-500 bg-gradient-to-r from-brand-sky to-brand-lavender"
                         style={{ width: `${Math.min(100, (oppLive.lines / 40) * 100)}%` }}
@@ -608,7 +608,7 @@ export default function BattleArena() {
           ) : (
             <div className="space-y-2">
               {history.map((b, i) => (
-                <div key={i} className="flex items-center justify-between rounded-xl border border-black/5 bg-white/70 p-3 transition-colors hover:bg-white">
+                <div key={i} className="flex items-center justify-between rounded-xl border border-black/5 bg-white border-border/70 p-3 transition-colors hover:bg-white">
                   <div className="flex items-center gap-3">
                     {b.won === true ? (
                       <Medal size={20} className="text-yellow-500" />
@@ -648,13 +648,13 @@ export default function BattleArena() {
           ) : (
             <div className="space-y-1">
               {leaderboard.map((entry, i) => (
-                <div key={i} className="flex items-center justify-between rounded-xl p-3 transition-colors hover:bg-black/5">
+                <div key={i} className="flex items-center justify-between rounded-xl p-3 transition-colors hover:bg-surface-2">
                   <div className="flex items-center gap-3">
                     <span className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
                       i === 0 ? "bg-yellow-100 text-yellow-700" :
-                      i === 1 ? "bg-black/5 text-brand-secondary" :
+                      i === 1 ? "bg-surface-2 text-brand-secondary" :
                       i === 2 ? "bg-orange-100 text-orange-700" :
-                      "bg-black/5 text-brand-muted"
+                      "bg-surface-2 text-brand-muted"
                     }`}>
                       {i + 1}
                     </span>

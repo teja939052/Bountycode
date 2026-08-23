@@ -207,7 +207,7 @@ export default function MyProgress() {
             <p className="text-gray-500 dark:text-gray-400 mb-6">Answer questions from the question bank to see your progress here</p>
             <Link
               to="/question-bank"
-              className="inline-flex items-center gap-2 bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors"
+              className="inline-flex items-center gap-2 bg-primary-600 text-text-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors"
             >
               Open Question Bank <ArrowRight size={18} />
             </Link>

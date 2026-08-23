@@ -151,7 +151,7 @@ export default function MonthlyContests() {
                     )}
                   </div>
 
-                  <h3 className="text-lg font-display font-bold text-white mb-1">{contest.title}</h3>
+                  <h3 className="text-lg font-display font-bold text-text-primary mb-1">{contest.title}</h3>
                   <p className="text-xs text-gray-400 mb-4">{contest.description}</p>
 
                   <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-[10px] font-mono text-gray-500 mb-4">

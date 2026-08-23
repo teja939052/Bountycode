@@ -106,7 +106,7 @@ export default function ChallengePackCard({
 
           {/* Title */}
           <div className="text-center">
-            <h3 className={`font-bold text-sm text-white leading-tight ${compact ? "truncate" : ""}`}>
+            <h3 className={`font-bold text-sm text-text-primary leading-tight ${compact ? "truncate" : ""}`}>
               {challenge.title || challenge.question_title || "Challenge"}
             </h3>
             <p className={`text-[10px] text-slate-500 mt-0.5 ${compact ? "truncate" : "line-clamp-2"}`}>
@@ -148,7 +148,7 @@ export default function ChallengePackCard({
                 w-full py-2 rounded-lg text-xs font-bold tracking-wider uppercase transition-all duration-200
                 ${solved
                   ? "bg-emerald-600/20 text-emerald-400 border border-emerald-600/30"
-                  : "bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/20"
+                  : "bg-indigo-600 hover:bg-indigo-500 text-text-primary shadow-lg shadow-indigo-600/20"
                 }
               `}
             >

@@ -225,7 +225,7 @@ export default function BattlePass() {
             <button
               onClick={activatePremium}
               disabled={processing === "premium"}
-              className="mt-3 rounded-xl bg-nature-leaf px-6 py-2 font-bold text-white hover:bg-nature-moss disabled:opacity-50"
+              className="mt-3 rounded-xl bg-nature-leaf px-6 py-2 font-bold text-text-primary hover:bg-nature-moss disabled:opacity-50"
             >
               {processing === "premium" ? "Activating..." : "Activate Premium — Free"}
             </button>
@@ -255,7 +255,7 @@ export default function BattlePass() {
                     <button
                       onClick={() => claimReward(r.tier)}
                       disabled={processing === "claim-" + r.tier}
-                      className="mt-2 w-full rounded-lg bg-nature-leaf px-2 py-1 text-xs font-bold text-white hover:bg-nature-moss disabled:opacity-50"
+                      className="mt-2 w-full rounded-lg bg-nature-leaf px-2 py-1 text-xs font-bold text-text-primary hover:bg-nature-moss disabled:opacity-50"
                     >
                       {processing === "claim-" + r.tier ? "..." : "Claim"}
                     </button>
@@ -276,7 +276,7 @@ export default function BattlePass() {
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.5 }}
-              className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
+              className="fixed inset-0 z-50 flex items-center justify-center bg-surface-2 backdrop-blur-sm"
               onClick={() => setLastReward(null)}
             >
               <motion.div
@@ -298,7 +298,7 @@ export default function BattlePass() {
                 )}
                 <button
                   onClick={() => setLastReward(null)}
-                  className="mt-6 w-full bg-nature-leaf hover:bg-nature-moss text-white font-semibold rounded-xl py-3 transition"
+                  className="mt-6 w-full bg-nature-leaf hover:bg-nature-moss text-text-primary font-semibold rounded-xl py-3 transition"
                 >
                   Awesome
                 </button>

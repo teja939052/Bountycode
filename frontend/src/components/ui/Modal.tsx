@@ -9,7 +9,7 @@ export default function Modal({ isOpen, onClose, title, children }) {
       <div className="relative w-full max-w-2xl overflow-hidden rounded-3xl border border-black/5 bg-[color:var(--bg-card,#fff)] shadow-[0_30px_80px_rgba(15,23,42,0.25)] max-h-[88vh]">
         <div className="flex items-center justify-between gap-3 border-b border-black/5 px-4 py-3 sm:px-6">
           <h2 id="modal-title" className="text-base font-semibold text-text-primary sm:text-lg">{title}</h2>
-          <button onClick={onClose} className="rounded-full p-2 text-text-muted transition-colors hover:bg-black/5 hover:text-text-primary" aria-label="Close dialog">
+          <button onClick={onClose} className="rounded-full p-2 text-text-muted transition-colors hover:bg-surface-2 hover:text-text-primary" aria-label="Close dialog">
             <X size={18} />
           </button>
         </div>

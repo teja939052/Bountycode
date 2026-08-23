@@ -74,8 +74,8 @@ export default function SkillTrees() {
   if (loading) {
     return (
       <div className="min-h-screen bg-black px-4 py-8 max-w-5xl mx-auto">
-        <Skeleton className="h-10 w-64 mb-3 bg-white/5" />
-        <Skeleton className="h-96 w-full rounded-2xl bg-white/5" />
+        <Skeleton className="h-10 w-64 mb-3 bg-white border-border shadow-card" />
+        <Skeleton className="h-96 w-full rounded-2xl bg-white border-border shadow-card" />
       </div>
     );
   }
@@ -85,7 +85,7 @@ export default function SkillTrees() {
       <div className="flex items-center gap-3 mb-6">
         <Map className="w-6 h-6 text-green-400" />
         <div>
-          <h1 className="text-2xl font-display font-black text-white">Code Realm</h1>
+          <h1 className="text-2xl font-display font-black text-text-primary">Code Realm</h1>
           <p className="text-xs text-gray-500">Master each topic to unlock the next. Click to start a mission.</p>
         </div>
       </div>
@@ -149,12 +149,12 @@ export default function SkillTrees() {
             <motion.button key={node.id} onClick={() => unlocked && navigate(`/mission/${node.id}`)}
               whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
               className={`rounded-xl border p-3 text-left transition-all ${unlocked
-                ? "border-white/10 bg-white/5 hover:border-green-500/30"
+                ? "border-white/10 bg-white border-border shadow-card hover:border-green-500/30"
                 : "border-white/5 bg-white/[0.02] opacity-40"
               }`}>
               <div className="flex items-center gap-2 mb-1">
-                <span className="text-sm font-bold text-white">{node.icon}</span>
-                <span className="text-xs font-medium text-white truncate">{node.name}</span>
+                <span className="text-sm font-bold text-text-primary">{node.icon}</span>
+                <span className="text-xs font-medium text-text-primary truncate">{node.name}</span>
                 {!unlocked && <Lock className="w-3 h-3 text-gray-600 ml-auto shrink-0" />}
               </div>
               {m.total_attempts > 0 && (

@@ -136,12 +136,12 @@ export default function TowerDashboard() {
     : 0;
 
   return (
-    <div className="min-h-screen bg-[#050a08] text-white">
+    <div className="min-h-screen bg-[#050a08] text-text-primary">
       <div className="max-w-6xl mx-auto px-4 py-6">
 
         {/* ── Header: Player Plate ── */}
         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}
-          className="relative rounded-2xl border border-white/10 bg-white/5 backdrop-blur p-5 mb-6 overflow-hidden">
+          className="relative rounded-2xl border border-white/10 bg-white border-border shadow-card backdrop-blur p-5 mb-6 overflow-hidden">
           {/* Background glow */}
           <div className="absolute inset-0 pointer-events-none" style={{
             background: `radial-gradient(ellipse at 30% 50%, ${zoneColors.glow} 0%, transparent 60%)`
@@ -153,14 +153,14 @@ export default function TowerDashboard() {
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-1">
                 <span className="text-xl">{emoji}</span>
-                <h1 className="text-lg font-display font-black text-white">{title}</h1>
+                <h1 className="text-lg font-display font-black text-text-primary">{title}</h1>
               </div>
               <p className="text-xs font-mono text-gray-500 mb-2">
                 {currentZone.emoji} {currentZone.name} · Level {tower.level}
               </p>
               {/* XP Bar */}
               <div className="flex items-center gap-3">
-                <div className="flex-1 h-2.5 rounded-full bg-white/5 overflow-hidden">
+                <div className="flex-1 h-2.5 rounded-full bg-white border-border shadow-card overflow-hidden">
                   <motion.div
                     className="h-full rounded-full"
                     style={{ background: `linear-gradient(90deg, ${zoneColors.from}, ${zoneColors.to})` }}
@@ -184,7 +184,7 @@ export default function TowerDashboard() {
               ].map((s) => (
                 <div key={s.label} className="text-center px-2">
                   <s.icon size={14} className={`${s.color} mx-auto mb-0.5`} />
-                  <div className="text-xs font-bold text-white">{s.value}</div>
+                  <div className="text-xs font-bold text-text-primary">{s.value}</div>
                   <div className="text-[8px] font-mono text-gray-600">{s.label}</div>
                 </div>
               ))}
@@ -193,7 +193,7 @@ export default function TowerDashboard() {
         </motion.div>
 
         {/* ── Tabs ── */}
-        <div className="flex gap-1 mb-6 bg-white/5 rounded-xl p-1 overflow-x-auto">
+        <div className="flex gap-1 mb-6 bg-white border-border shadow-card rounded-xl p-1 overflow-x-auto">
           {[
             { id: 'tower', label: 'Tower', icon: Crown },
             { id: 'forest', label: 'Forest', icon: Trees },
@@ -390,7 +390,7 @@ export default function TowerDashboard() {
                   const completed = tower.level > zone.levelMax;
                   return (
                     <div key={zone.name} className={`text-center rounded-lg p-2 border transition-all ${
-                      inZone ? 'border-white/20 bg-white/10' : completed ? 'border-white/5 bg-white/[0.02]' : 'border-transparent opacity-40'
+                      inZone ? 'border-white/20 bg-white border-border/10' : completed ? 'border-white/5 bg-white/[0.02]' : 'border-transparent opacity-40'
                     }`}>
                       <span className="text-lg">{zone.emoji}</span>
                       <p className="text-[8px] font-mono text-gray-500 mt-1 leading-tight">{zone.levelMin}-{zone.levelMax}</p>
@@ -450,7 +450,7 @@ export default function TowerDashboard() {
                     { to: '/leaderboard', icon: Trophy, label: 'Leaderboard' },
                   ].map((item) => (
                     <Link key={item.label} to={item.to}
-                      className="flex flex-col items-center gap-1.5 rounded-xl border border-white/5 bg-white/[0.02] p-3 hover:bg-white/5 transition-all">
+                      className="flex flex-col items-center gap-1.5 rounded-xl border border-white/5 bg-white/[0.02] p-3 hover:bg-white border-border shadow-card transition-all">
                       <item.icon size={16} className="text-gray-500" />
                       <span className="text-[9px] font-mono text-gray-500 text-center">{item.label}</span>
                     </Link>
@@ -478,7 +478,7 @@ export default function TowerDashboard() {
           {activeTab === 'challenges' && challenges && (
             <motion.div key="challenges" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}>
               <div className="space-y-4">
-                <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur p-5">
+                <div className="rounded-2xl border border-white/10 bg-white border-border shadow-card backdrop-blur p-5">
                   <h3 className="text-xs font-mono uppercase tracking-widest text-gray-400 mb-3">Weekly Challenges</h3>
                   <div className="space-y-2">
                     {challenges.weekly?.map((ch: any) => (
@@ -489,7 +489,7 @@ export default function TowerDashboard() {
                     )}
                   </div>
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur p-5">
+                <div className="rounded-2xl border border-white/10 bg-white border-border shadow-card backdrop-blur p-5">
                   <h3 className="text-xs font-mono uppercase tracking-widest text-gray-400 mb-3">Monthly Challenges</h3>
                   <div className="space-y-2">
                     {challenges.monthly?.map((ch: any) => (
@@ -524,7 +524,7 @@ function ChallengeRow({ challenge, type, onClaim }: { challenge: any; type: stri
       <div className="flex-1 min-w-0">
         <p className="text-xs font-mono text-gray-300 truncate">{challenge.name}</p>
         <div className="flex items-center gap-2 mt-1">
-          <div className="flex-1 h-1.5 rounded bg-white/5 overflow-hidden">
+          <div className="flex-1 h-1.5 rounded bg-white border-border shadow-card overflow-hidden">
             <div className="h-full rounded bg-emerald-500 transition-all" style={{ width: `${progress}%` }} />
           </div>
           <span className="text-[9px] font-mono text-gray-500">{challenge.progress || 0}/{challenge.target}</span>

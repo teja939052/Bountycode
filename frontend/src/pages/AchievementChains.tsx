@@ -130,7 +130,7 @@ export default function AchievementChains() {
                     {!isCompleted && (
                       <button
                         onClick={() => handleCompleteStep(step.id, chain.key)}
-                        className="px-3 py-1 bg-indigo-600 text-white rounded-lg text-xs font-medium hover:bg-indigo-700"
+                        className="px-3 py-1 bg-indigo-600 text-text-primary rounded-lg text-xs font-medium hover:bg-indigo-700"
                       >
                         Complete
                       </button>

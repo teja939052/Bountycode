@@ -79,7 +79,7 @@ export default function ResumeStudio() {
               <div className="flex flex-col items-center">
                 <div className={`w-10 h-10 rounded-[10px] flex items-center justify-center transition-all ${
                   isActive
-                    ? "bg-primary text-white"
+                    ? "bg-primary text-text-primary"
                     : isCompleted
                     ? "bg-primary-soft text-primary"
                     : "bg-surface-2 text-text-muted"
@@ -201,7 +201,7 @@ export default function ResumeStudio() {
               <button
                 onClick={handleAnalyze}
                 disabled={!resumeText.trim() || loading}
-                className="mt-6 w-full px-6 py-3 rounded-[10px] bg-primary text-white font-medium transition-all hover:bg-primary-dark disabled:opacity-50"
+                className="mt-6 w-full px-6 py-3 rounded-[10px] bg-primary text-text-primary font-medium transition-all hover:bg-primary-dark disabled:opacity-50"
               >
                 {loading ? "Analyzing..." : "Analyze & Continue"}
               </button>
@@ -254,7 +254,7 @@ export default function ResumeStudio() {
               <button
                 onClick={handleOptimize}
                 disabled={loading}
-                className="w-full px-6 py-3 rounded-[10px] bg-primary text-white font-medium transition-all hover:bg-primary-dark"
+                className="w-full px-6 py-3 rounded-[10px] bg-primary text-text-primary font-medium transition-all hover:bg-primary-dark"
               >
                 {loading ? "Optimizing..." : "Optimize Resume →"}
               </button>
@@ -280,7 +280,7 @@ export default function ResumeStudio() {
                 </div>
                 <button
                   onClick={handleExport}
-                  className="px-6 py-3 rounded-[10px] bg-primary text-white font-medium transition-all hover:bg-primary-dark"
+                  className="px-6 py-3 rounded-[10px] bg-primary text-text-primary font-medium transition-all hover:bg-primary-dark"
                 >
                   <FileDown size={14} className="inline mr-2" /> Export Resume
                 </button>
@@ -299,7 +299,7 @@ export default function ResumeStudio() {
               <div className="flex justify-center gap-3">
                 <button
                   onClick={() => api.resume.exportResume("current", "docx")}
-                  className="px-6 py-3 rounded-[10px] bg-primary text-white font-medium transition-all hover:bg-primary-dark flex items-center gap-2"
+                  className="px-6 py-3 rounded-[10px] bg-primary text-text-primary font-medium transition-all hover:bg-primary-dark flex items-center gap-2"
                 >
                   <FileDown size={14} /> DOCX
                 </button>

@@ -33,7 +33,7 @@ export default function DiscussionsPage() {
           <a key={q.id || i} href={`/solve/${q.id}`}
             className="block glass rounded-xl p-4 hover:border-brand-sky/20 transition-all group">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-xs font-mono text-gray-500 shrink-0">
+              <div className="w-8 h-8 rounded-lg bg-white border-border shadow-card flex items-center justify-center text-xs font-mono text-gray-500 shrink-0">
                 {i + 1}
               </div>
               <div className="flex-1 min-w-0">

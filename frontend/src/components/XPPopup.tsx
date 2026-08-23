@@ -30,7 +30,7 @@ export default function XPPopup({ show, xpGained, level, streak, newBadges = [],
           exit={reduced ? { opacity: 0 } : { opacity: 0, y: 50, scale: 0.8 }}
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
         >
-          <div className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white rounded-2xl shadow-2xl px-6 py-4 flex items-center gap-4">
+          <div className="bg-gradient-to-r from-yellow-500 to-orange-500 text-text-primary rounded-2xl shadow-2xl px-6 py-4 flex items-center gap-4">
             <motion.div
               initial={reduced ? {} : { scale: 0, rotate: -180 }}
               animate={{ scale: 1, rotate: 0 }}
@@ -64,7 +64,7 @@ export default function XPPopup({ show, xpGained, level, streak, newBadges = [],
 
             {newBadges.length > 0 && (
               <motion.div
-                className="flex items-center gap-1 bg-white/20 rounded-full px-3 py-1"
+                className="flex items-center gap-1 bg-white border-border/20 rounded-full px-3 py-1"
                 initial={reduced ? {} : { scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", delay: 0.5 }}

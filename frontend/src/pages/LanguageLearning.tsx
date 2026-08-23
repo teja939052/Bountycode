@@ -90,7 +90,7 @@ export default function LanguageLearning() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0a0f16] via-[#111827] to-[#1a233b] text-white">
+    <div className="min-h-screen bg-gradient-to-b from-[#0a0f16] via-[#111827] to-[#1a233b] text-text-primary">
       <div className="max-w-7xl mx-auto px-4 py-8">
 
         {/* Language Selector Header */}
@@ -106,8 +106,8 @@ export default function LanguageLearning() {
                   onClick={() => handleSetLanguage(lang.id)}
                   className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-mono transition-all ${
                     activeLanguage === lang.id
-                      ? 'bg-white/20 text-white border border-white/30'
-                      : 'text-gray-400 hover:text-white hover:bg-white/10'
+                      ? 'bg-white border-border/20 text-text-primary border border-white/30'
+                      : 'text-gray-400 hover:text-white hover:bg-white border-border/10'
                   }`}
                 >
                   <span className="text-xl">{lang.icon}</span>
@@ -128,16 +128,16 @@ export default function LanguageLearning() {
               exit={{ opacity: 0, scale: 0.9, x: -10 }}
               className={`rounded-2xl border transition-all ${
                 activeLanguage === lang.id
-                  ? 'border-white/20 text-white border border-white/30'
-                  : 'text-gray-400 hover:text-white hover:bg-white/10'
+                  ? 'border-white/20 text-text-primary border border-white/30'
+                  : 'text-gray-400 hover:text-white hover:bg-white border-border/10'
               }`}>
               <div className="p-4 text-center">
                 <span className="text-3xl">{lang.icon}</span>
-                <h3 className="mt-2 text-lg font-medium text-white">{lang.name}</h3>
+                <h3 className="mt-2 text-lg font-medium text-text-primary">{lang.name}</h3>
                 <p className="text-xs text-gray-400 mt-1 line-clamp-2">{lang.description}</p>
                 <div className="mt-2">
                   <span className="text-xs text-gray-500">Levels</span>
-                  <span className="text-sm font-medium text-white">{progress.total}/80</span>
+                  <span className="text-sm font-medium text-text-primary">{progress.total}/80</span>
                 </div>
               </div>
             </motion.div>
@@ -145,7 +145,7 @@ export default function LanguageLearning() {
         </div>
 
         {/* Current Learning Area */}
-        <div className="bg-white/5 backdrop-blur rounded-2xl p-6 mb-8">
+        <div className="bg-white border-border shadow-card backdrop-blur rounded-2xl p-6 mb-8">
           <div className="flex items-center justify-between mb-4">
             <div>
               <h2 className="text-xl font-bold"> {language.name} — {level.emoji} {level.name}</h2>
@@ -157,7 +157,7 @@ export default function LanguageLearning() {
               <span className="text-gray-400">/ {progress.xp + 500} </span>
             </div>
           </div>
-          <div className="h-4 rounded-full bg-white/10 overflow-hidden">
+          <div className="h-4 rounded-full bg-white border-border/10 overflow-hidden">
             <div
               className="h-full rounded-full bg-gradient-to-r from-[color] to-[color2] rounded-full transition-all"
               style={{
@@ -173,11 +173,11 @@ export default function LanguageLearning() {
         </div>
 
         {/* Practice Console with lesson */}
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur p-6">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="rounded-2xl border border-white/10 bg-white border-border shadow-card backdrop-blur p-6">
           <ArcadeBackdrop className="h-48 rounded-t-xl">
             <div className="flex items-end justify-between p-4">
               <div>
-                <h3 className="font-medium text-white">{lessonContent.title}</h3>
+                <h3 className="font-medium text-text-primary">{lessonContent.title}</h3>
                 <p className="text-xs text-gray-400">{language.name} — {level.name}</p>
               </div>
               <button onClick={() => setShowLessonModal(false)} className="p-2 rounded-lg text-gray-400 hover:text-white transition-all">
@@ -211,7 +211,7 @@ export default function LanguageLearning() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               className="rounded-xl border p-3 text-center transition-all ${
-                progress.completed > i ? 'border-emerald-500/30 bg-emerald-500/5' : 'border-white/5 bg-white/0'
+                progress.completed > i ? 'border-emerald-500/30 bg-emerald-500/5' : 'border-white/5 bg-white border-border/0'
               }">
                 <span className="text-xl mb-1">{i < 3 ? "1️⃣" : i < 6 ? "2️⃣" : "3️⃣"}</span>
                 <p className="text-xs text-gray-400 line-clamp-1">{topic}</p>
@@ -224,10 +224,10 @@ export default function LanguageLearning() {
         <div className="grid grid-cols-2 gap-3 mb-8">
           <div>
             <p className="text-xs text-gray-400 uppercase tracking-widest">Daily Goal</p>
-            <div className="mt-2 h-2 rounded-full bg-white/10 overflow-hidden">
+            <div className="mt-2 h-2 rounded-full bg-white border-border/10 overflow-hidden">
               <div className="h-full rounded-full bg-emerald-500 transition-all" style={{ width: `${dailyGoal.completed / dailyGoal.target * 100}%` }} />
             </div>
-            <p className="text-xs text-white mt-1">{dailyGoal.completed}/{dailyGoal.target} lessons</p>
+            <p className="text-xs text-text-primary mt-1">{dailyGoal.completed}/{dailyGoal.target} lessons</p>
           </div>
           <div>
             <p className="text-xs text-gray-400 uppercase tracking-widest">Streak</p>
@@ -240,7 +240,7 @@ export default function LanguageLearning() {
 
         {/* C-Specific Section */}
         {activeLanguage === "c" && (
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mt-8 p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mt-8 p-6 rounded-2xl border border-white/10 bg-white border-border shadow-card backdrop-blur">
             <h3 className="text-lg font-bold mb-3">🎯 C Programming — Free Trial</h3>
             <p className="text-gray-400 mb-4">
               Write your first C program and run it in under 30 seconds. No setup required.
@@ -273,7 +273,7 @@ export default function LanguageLearning() {
           <div className="flex items-center gap-3">
             <Flag size={14} className="text-yellow-400" />
             <div>
-              <p className="font-medium text-white">Keep Learning</p>
+              <p className="font-medium text-text-primary">Keep Learning</p>
               <p className="text-xs text-gray-400">Maintain your streak for multiplier bonuses</p>
             </div>
           </div>

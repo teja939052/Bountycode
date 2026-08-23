@@ -19,7 +19,7 @@ export default function LevelUpCelebration({ oldLevel, newLevel, visible, onClos
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[90] flex items-center justify-center bg-black/80 backdrop-blur-sm"
+          className="fixed inset-0 z-[90] flex items-center justify-center bg-surface-2 backdrop-blur-sm"
           onClick={onClose}
         >
           {/* Burst particles */}
@@ -66,7 +66,7 @@ export default function LevelUpCelebration({ oldLevel, newLevel, visible, onClos
 
             {/* Level Up text */}
             <motion.h2
-              className="text-3xl sm:text-4xl font-display font-black text-white mb-2"
+              className="text-3xl sm:text-4xl font-display font-black text-text-primary mb-2"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.3 }}

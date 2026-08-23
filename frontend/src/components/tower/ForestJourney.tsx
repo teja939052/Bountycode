@@ -49,7 +49,7 @@ function MetricChip({ icon, label, value, tint }: { icon: React.ReactNode; label
   return (
     <div className="bg-gray-900/60 border border-gray-700/25 rounded-xl p-3 text-center">
       <div className={`flex items-center justify-center gap-1 mb-1 ${tint}`}>{icon}</div>
-      <div className="text-sm font-display font-bold text-white">{value}</div>
+      <div className="text-sm font-display font-bold text-text-primary">{value}</div>
       <div className="text-[9px] font-mono text-gray-500 uppercase tracking-wider">{label}</div>
     </div>
   );
@@ -93,7 +93,7 @@ const ForestJourney = memo(function ForestJourney({
             <p className="text-[9px] font-mono uppercase tracking-widest mb-1" style={{ color: zone.color }}>
               Current Forest Zone
             </p>
-            <h2 className="text-lg sm:text-xl font-display font-black text-white leading-tight">
+            <h2 className="text-lg sm:text-xl font-display font-black text-text-primary leading-tight">
               {zone.name}
             </h2>
             <p className="text-[10px] font-mono text-gray-400 mt-0.5">
@@ -171,7 +171,7 @@ const ForestJourney = memo(function ForestJourney({
             ⛈ Seasonal Storm Brewing
           </p>
           <div className="text-5xl mb-2">{storm.emoji}</div>
-          <h3 className="text-lg font-display font-black text-white">{storm.name}</h3>
+          <h3 className="text-lg font-display font-black text-text-primary">{storm.name}</h3>
           <p className="text-[10px] font-mono text-gray-400 mt-1">
             Clear {zone.name} to face the storm · your roots are tested at level{' '}
             {(forest.zone_index + 1) * 10}

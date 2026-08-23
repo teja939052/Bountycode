@@ -80,7 +80,7 @@ export default function SystemDesign() {
                   className={`p-4 rounded-xl text-left transition-all border ${difficulty === d.id ? 'shadow-lg' : 'border-gray-700/30 hover:border-gray-600/40'}`}
                   style={difficulty === d.id ? { borderColor: d.color, boxShadow: `0 0 15px ${d.color}15`, background: `${d.color}08` } : {}}>
                   <span className="text-xl mb-1 block">{d.emoji}</span>
-                  <p className="font-semibold text-sm text-white">{d.name}</p>
+                  <p className="font-semibold text-sm text-text-primary">{d.name}</p>
                   <p className="text-[10px] text-gray-500 font-mono mt-0.5">{d.desc}</p>
                 </button>
               ))}
@@ -119,7 +119,7 @@ export default function SystemDesign() {
               </span>
               <span className="text-[10px] font-mono text-gray-500">{question.topic}</span>
             </div>
-            <h2 className="text-lg font-display font-bold text-white mb-4">{question.question}</h2>
+            <h2 className="text-lg font-display font-bold text-text-primary mb-4">{question.question}</h2>
             {question.hints?.length > 0 && (
               <div className="bg-yellow-950/20 border border-yellow-500/20 rounded-lg p-3 mb-3">
                 <p className="text-[10px] font-mono font-bold text-yellow-400 uppercase tracking-wider mb-2">Hints</p>
@@ -177,7 +177,7 @@ export default function SystemDesign() {
         <div className="max-w-4xl mx-auto">
           <Card rarity="legendary" hoverEffect={false} className="text-center py-10">
             <div className="text-4xl mb-3">🏗️</div>
-            <h1 className="text-2xl font-display font-bold text-white mb-4">Session Complete!</h1>
+            <h1 className="text-2xl font-display font-bold text-text-primary mb-4">Session Complete!</h1>
             <div className="w-24 h-24 rounded-full flex items-center justify-center text-3xl font-display font-black mx-auto mb-4"
               style={{ color: result.overall_score >= 7 ? '#22C55E' : result.overall_score >= 5 ? '#EAB308' : '#EF4444', background: result.overall_score >= 7 ? 'rgba(34,197,94,0.1)' : result.overall_score >= 5 ? 'rgba(234,179,8,0.1)' : 'rgba(239,68,68,0.1)', border: `2px solid ${result.overall_score >= 7 ? 'rgba(34,197,94,0.3)' : result.overall_score >= 5 ? 'rgba(234,179,8,0.3)' : 'rgba(239,68,68,0.3)'}` }}>
               {result.overall_score}

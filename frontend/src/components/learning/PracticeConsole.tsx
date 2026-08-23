@@ -89,7 +89,7 @@ export default function PracticeConsole({
 
   return (
     <div className="overflow-hidden rounded-2xl border border-brand-primary/10 bg-surface-card/95 shadow-soft-lg">
-      <div className="flex flex-col gap-3 border-b border-brand-primary/10 bg-white/70 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-3 border-b border-brand-primary/10 bg-white border-border/70 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
         <span className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.22em] text-brand-muted">
           <Code2 size={13} className="text-brand-secondary" />
           {hideTitle ? "Practice" : title}

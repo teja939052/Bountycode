@@ -358,7 +358,7 @@ export default function LearningHub() {
                   </div>
                   <div>
                     <p className="text-[10px] font-mono uppercase tracking-[0.28em] text-cyber-purple">Study library</p>
-                    <h2 className="mt-1 font-display text-xl font-black text-white md:text-2xl">
+                    <h2 className="mt-1 font-display text-xl font-black text-text-primary md:text-2xl">
                       In-depth guides that go deeper than W3Schools
                     </h2>
                     <p className="mt-2 max-w-xl text-sm leading-6 text-slate-200">
@@ -390,55 +390,55 @@ export default function LearningHub() {
                   <Link to={`/learn/${lang.id}`} className="block h-full">
                     <CandyCard color={color} hover={false} shine className="h-full p-5" contentClassName="flex h-full flex-col">
                       <div className="flex items-start justify-between gap-3">
-                        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/25 text-4xl shadow-lg backdrop-blur-sm transition-transform group-hover:scale-110">
+                        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white border-border/25 text-4xl shadow-lg backdrop-blur-sm transition-transform group-hover:scale-110">
                           {lang.icon}
                         </div>
                         {hasProgress && (
-                          <span className="rounded-full bg-white/25 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-text-primary">
+                          <span className="rounded-full bg-white border-border/25 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-text-primary">
                             In progress
                           </span>
                         )}
                       </div>
 
-                      <h2 className="mt-4 font-display text-2xl font-black text-white">{lang.name}</h2>
+                      <h2 className="mt-4 font-display text-2xl font-black text-text-primary">{lang.name}</h2>
                       <p className="mt-2 flex-1 text-sm leading-6 text-text-primary/85">{lang.description}</p>
 
                       <div className="mt-4 flex flex-wrap gap-2">
-                        <span className="rounded-full bg-surface-2 px-2.5 py-1 font-mono text-[10px] text-white/90">
+                        <span className="rounded-full bg-surface-2 px-2.5 py-1 font-mono text-[10px] text-text-primary/90">
                           {lang.practice_lessons} practice
                         </span>
-                        <span className="rounded-full bg-surface-2 px-2.5 py-1 font-mono text-[10px] text-white/90">
+                        <span className="rounded-full bg-surface-2 px-2.5 py-1 font-mono text-[10px] text-text-primary/90">
                           {lang.challenge_lessons} challenges
                         </span>
-                        <span className="rounded-full bg-surface-2 px-2.5 py-1 font-mono text-[10px] text-white/90">
+                        <span className="rounded-full bg-surface-2 px-2.5 py-1 font-mono text-[10px] text-text-primary/90">
                           {lang.project_lessons} projects
                         </span>
                       </div>
 
                       <div className="mb-4 mt-4 grid grid-cols-3 gap-2 border-t border-white/20 pt-4">
                         <div>
-                          <div className="text-lg font-display font-black text-white">{lang.levels?.length ?? lang.total_lessons}</div>
-                          <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/70">tiles</div>
+                          <div className="text-lg font-display font-black text-text-primary">{lang.levels?.length ?? lang.total_lessons}</div>
+                          <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-primary/70">tiles</div>
                         </div>
                         <div>
-                          <div className="text-lg font-display font-black text-white">{lang.total_xp}</div>
-                          <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/70">XP</div>
+                          <div className="text-lg font-display font-black text-text-primary">{lang.total_xp}</div>
+                          <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-primary/70">XP</div>
                         </div>
                         <div>
-                          <div className="text-lg font-display font-black text-white">{lang.progress_pct}%</div>
-                          <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/70">done</div>
+                          <div className="text-lg font-display font-black text-text-primary">{lang.progress_pct}%</div>
+                          <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-primary/70">done</div>
                         </div>
                       </div>
 
                       <div className="mt-auto flex items-center gap-3">
                         <div className="min-w-0 flex-1">
-                          <div className="flex justify-between font-mono text-[10px] text-white/80">
+                          <div className="flex justify-between font-mono text-[10px] text-text-primary/80">
                             <span>{lang.lessons_completed} / {lang.total_lessons} lessons</span>
                             <span>{lang.progress_pct}%</span>
                           </div>
                           <CandyProgress value={lang.progress_pct} color={color} size="sm" showPercent={false} className="mt-1" />
                         </div>
-                        <ChevronRight size={18} className="shrink-0 text-white/70 transition-transform group-hover:translate-x-1" />
+                        <ChevronRight size={18} className="shrink-0 text-text-primary/70 transition-transform group-hover:translate-x-1" />
                       </div>
                     </CandyCard>
                   </Link>
@@ -472,8 +472,8 @@ export default function LearningHub() {
                 <Trophy size={22} />
               </motion.div>
               <div>
-                <h2 className="text-2xl font-display font-black text-white text-text-primary">Your Journey</h2>
-                <p className="text-xs text-white/60 mt-0.5">100 levels of coding mastery — click any level to begin</p>
+                <h2 className="text-2xl font-display font-black text-text-primary text-text-primary">Your Journey</h2>
+                <p className="text-xs text-text-primary/60 mt-0.5">100 levels of coding mastery — click any level to begin</p>
               </div>
             </div>
 
@@ -497,18 +497,18 @@ export default function LearningHub() {
           {/* Journey stats */}
           <div className="mt-8 grid grid-cols-3 gap-3">
             <div className="candy-glass-light rounded-xl p-3 text-center">
-              <div className="text-lg font-black text-white">{Math.min(100, Math.floor((data.user_xp || 0) / 100) + 1)}</div>
-              <div className="text-[10px] font-mono uppercase tracking-wider text-white/50">Current Level</div>
+              <div className="text-lg font-black text-text-primary">{Math.min(100, Math.floor((data.user_xp || 0) / 100) + 1)}</div>
+              <div className="text-[10px] font-mono uppercase tracking-wider text-text-primary/50">Current Level</div>
             </div>
             <div className="candy-glass-light rounded-xl p-3 text-center">
               <div className="text-lg font-black text-yellow-300">{data.user_xp || 0} XP</div>
-              <div className="text-[10px] font-mono uppercase tracking-wider text-white/50">Total XP</div>
+              <div className="text-[10px] font-mono uppercase tracking-wider text-text-primary/50">Total XP</div>
             </div>
             <div className="candy-glass-light rounded-xl p-3 text-center">
               <div className="text-lg font-black text-green-300">
                 {(() => { const lvls = generateLevelMap(data.languages, data.user_xp || 0); return lvls.filter(l => l.status === "mastered" || l.status === "completed").length || 0; })()}
               </div>
-              <div className="text-[10px] font-mono uppercase tracking-wider text-white/50">Completed</div>
+              <div className="text-[10px] font-mono uppercase tracking-wider text-text-primary/50">Completed</div>
             </div>
           </div>
           </div>
@@ -587,7 +587,7 @@ export default function LearningHub() {
         </section>
 
         <section className="rounded-2xl border border-cyber-purple/20 bg-cyber-purple/5 p-5">
-          <h2 className="text-lg font-display font-bold uppercase tracking-wider text-white mb-4">Discover More</h2>
+          <h2 className="text-lg font-display font-bold uppercase tracking-wider text-text-primary mb-4">Discover More</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
             {[
               { to: "/world", icon: Globe, label: "World Map", color: "text-cyber-green" },
@@ -612,7 +612,7 @@ export default function LearningHub() {
         </section>
 
         <section className="rounded-2xl border border-white/10 bg-white border-border shadow-card p-5">
-          <h2 className="text-lg font-display font-bold uppercase tracking-wider text-white mb-4">More Learning Paths</h2>
+          <h2 className="text-lg font-display font-bold uppercase tracking-wider text-text-primary mb-4">More Learning Paths</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
             {[
               { to: "/interview", icon: Play, label: "Mock Interviews", color: "text-brand-lavender" },
@@ -643,7 +643,7 @@ export default function LearningHub() {
 function StatChip({ label, value }: { label: string; value: any }) {
   return (
     <div className="rounded-2xl border border-white/10 bg-white border-border/10 px-3 py-4 text-center">
-      <div className="text-2xl font-black text-white">{value}</div>
+      <div className="text-2xl font-black text-text-primary">{value}</div>
       <div className="mt-1 text-[10px] font-mono uppercase tracking-[0.24em] text-slate-300">{label}</div>
     </div>
   );

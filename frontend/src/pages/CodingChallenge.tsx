@@ -206,7 +206,7 @@ export default function CodingChallenge() {
                   }`}
                 >
                   <div className="flex items-center gap-2">
-                    <div className={`w-6 h-6 rounded bg-gradient-to-br ${COMPANY_COLORS[c.id]} flex items-center justify-center text-white text-xs font-bold`}>{c.name[0]}</div>
+                    <div className={`w-6 h-6 rounded bg-gradient-to-br ${COMPANY_COLORS[c.id]} flex items-center justify-center text-text-primary text-xs font-bold`}>{c.name[0]}</div>
                     <p className="font-display font-bold text-text-primary text-sm">{c.name}</p>
                   </div>
                   <p className="text-xs font-mono text-brand-dim mt-1">{c.focus}</p>
@@ -256,7 +256,7 @@ export default function CodingChallenge() {
                     key={lang}
                     onClick={() => setLanguage(lang)}
                     className={`px-4 py-2 rounded-lg font-mono text-xs capitalize transition-colors ${
-                      language === lang ? "bg-brand-emerald text-white" : "bg-surface-card border border-brand-primary/20 text-brand-dim"
+                      language === lang ? "bg-brand-emerald text-text-primary" : "bg-surface-card border border-brand-primary/20 text-brand-dim"
                     }`}
                   >
                     {lang}
@@ -287,7 +287,7 @@ export default function CodingChallenge() {
             <div className="flex items-center gap-3">
               <h2 className="font-display font-bold text-text-primary text-lg">{challenge.title}</h2>
               {company && (
-                <span className={`px-3 py-1 rounded-full text-[10px] font-mono bg-gradient-to-r ${COMPANY_COLORS[company]} text-white`}>{company}</span>
+                <span className={`px-3 py-1 rounded-full text-[10px] font-mono bg-gradient-to-r ${COMPANY_COLORS[company]} text-text-primary`}>{company}</span>
               )}
             </div>
             <div className="flex items-center gap-4">

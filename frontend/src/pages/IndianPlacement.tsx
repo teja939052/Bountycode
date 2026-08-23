@@ -128,7 +128,7 @@ export default function IndianPlacement() {
                     >
                       <div className="text-center">
                         <div className="text-3xl mb-2">{c.icon}</div>
-                        <h3 className="font-display font-bold text-sm text-white mb-1">{c.name}</h3>
+                        <h3 className="font-display font-bold text-sm text-text-primary mb-1">{c.name}</h3>
                         <p className="text-[10px] font-mono text-cyber-green mb-2">{c.package}</p>
                         <p className="text-[9px] font-mono text-gray-500 mb-2">{c.exam_pattern}</p>
                         <div className="flex flex-wrap gap-1 justify-center">
@@ -250,7 +250,7 @@ export default function IndianPlacement() {
                   <Card rarity="legendary" hoverEffect={false}>
                     <div className="text-center py-6">
                       <div className="text-4xl mb-3">🎯</div>
-                      <h3 className="text-lg font-display font-bold text-white mb-2">Start Mock Test</h3>
+                      <h3 className="text-lg font-display font-bold text-text-primary mb-2">Start Mock Test</h3>
                       <p className="text-xs text-gray-400 mb-4 max-w-md mx-auto">
                         Simulate the actual {company?.name || selected} placement test with real patterns,
                         timed sections, and scoring.
@@ -310,7 +310,7 @@ function ExamPatternTab({ detail }) {
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
                   <span className="text-lg">{SECTION_ICONS[section.name] || '📋'}</span>
-                  <span className="font-display font-bold text-sm text-white">{section.name}</span>
+                  <span className="font-display font-bold text-sm text-text-primary">{section.name}</span>
                 </div>
                 <div className="flex items-center gap-3 text-[10px] font-mono text-gray-500">
                   <span>{section.questions} Q</span>
@@ -521,7 +521,7 @@ function MockTestView({ data }) {
       <Card rarity="legendary" hoverEffect={false}>
         <div className="text-center py-8">
           <div className="text-5xl mb-4">🎉</div>
-          <h3 className="text-xl font-display font-bold text-white mb-2">Mock Test Complete!</h3>
+          <h3 className="text-xl font-display font-bold text-text-primary mb-2">Mock Test Complete!</h3>
           <p className="text-sm text-gray-400 mb-4">{data.company} Placement Mock</p>
 
           {/* Score Cards */}
@@ -643,7 +643,7 @@ function MockTestView({ data }) {
       <Card rarity="rare" hoverEffect={false}>
         {isCoding ? (
           <div>
-            <h3 className="text-sm font-display font-bold text-white mb-2">{question.question_title || question.statement || 'Coding Problem'}</h3>
+            <h3 className="text-sm font-display font-bold text-text-primary mb-2">{question.question_title || question.statement || 'Coding Problem'}</h3>
             <p className="text-xs text-gray-400 font-mono mb-4">{question.statement || 'Implement the solution.'}</p>
             {question.examples?.map((ex, i) => (
               <div key={i} className="p-2 rounded-lg bg-gray-800/50 border border-gray-700/20 mb-2 text-[10px] font-mono text-gray-400">

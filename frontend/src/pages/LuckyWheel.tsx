@@ -139,7 +139,7 @@ export default function LuckyWheel() {
                       style={{ transform: "translateY(" + -WHEEL_SIZE * 0.36 + "px)" }}
                     >
                       <span className="block text-xl leading-tight drop-shadow">{r.emoji}</span>
-                      <span className="block text-[9px] font-semibold text-white/95 leading-tight px-1">
+                      <span className="block text-[9px] font-semibold text-text-primary/95 leading-tight px-1">
                         {r.label}
                       </span>
                     </div>
@@ -238,7 +238,7 @@ export default function LuckyWheel() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-surface-2 backdrop-blur-sm"
             onClick={() => setResult(null)}
           >
             <motion.div
@@ -272,7 +272,7 @@ export default function LuckyWheel() {
               <p className="text-text-muted text-sm mt-2">{result.message}</p>
               <button
                 onClick={() => setResult(null)}
-                className="mt-6 w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-xl py-3 transition"
+                className="mt-6 w-full bg-emerald-600 hover:bg-emerald-500 text-text-primary font-semibold rounded-xl py-3 transition"
               >
                 Awesome
               </button>

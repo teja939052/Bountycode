@@ -112,7 +112,7 @@ function ScoreBar({ label, score, icon: Icon, delay = 0 }) {
         <span className="text-xs font-mono uppercase tracking-wider text-gray-400">{label}</span>
         <span className={`ml-auto text-sm font-display font-bold ${c.text}`}>{score}/100</span>
       </div>
-      <div className="h-1.5 overflow-hidden rounded-full bg-black/5">
+      <div className="h-1.5 overflow-hidden rounded-full bg-surface-2">
         <motion.div
           className={`h-full rounded-full ${c.bar}`}
           initial={{ width: 0 }}

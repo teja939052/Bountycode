@@ -109,14 +109,14 @@ export default function StudyGoals() {
           </div>
           <button
             onClick={() => setShowCreate(true)}
-            className="px-4 py-2 rounded-xl bg-brand-sky text-white font-bold flex items-center gap-2 hover:bg-brand-sky/90 transition"
+            className="px-4 py-2 rounded-xl bg-brand-sky text-text-primary font-bold flex items-center gap-2 hover:bg-brand-sky/90 transition"
           >
             <Plus size={16} /> New Goal
           </button>
         </header>
 
         {showCreate && (
-          <div className="rounded-2xl border border-black/5 bg-white/70 p-6 mb-6">
+          <div className="rounded-2xl border border-black/5 bg-white border-border/70 p-6 mb-6">
             <h2 className="text-lg font-bold text-text-primary mb-4">New Goal</h2>
             <div className="space-y-4">
               <input
@@ -158,13 +158,13 @@ export default function StudyGoals() {
               <button
                 onClick={createGoal}
                 disabled={submitting}
-                className="px-4 py-2 rounded-xl bg-brand-sky text-white font-bold text-sm hover:bg-brand-sky/90 transition disabled:opacity-50 flex items-center gap-2"
+                className="px-4 py-2 rounded-xl bg-brand-sky text-text-primary font-bold text-sm hover:bg-brand-sky/90 transition disabled:opacity-50 flex items-center gap-2"
               >
                 {submitting ? "Saving..." : <><Save size={14} /> Save Goal</>}
               </button>
               <button
                 onClick={() => setShowCreate(false)}
-                className="px-4 py-2 rounded-xl border border-black/5 text-text-secondary text-sm hover:bg-black/5 transition"
+                className="px-4 py-2 rounded-xl border border-black/5 text-text-secondary text-sm hover:bg-surface-2 transition"
               >
                 Cancel
               </button>
@@ -189,7 +189,7 @@ export default function StudyGoals() {
                   className={`rounded-xl border p-4 transition ${
                     done
                       ? "border-green-200 bg-green-50"
-                      : "border-black/5 bg-white/70 hover:bg-white"
+                      : "border-black/5 bg-white border-border/70 hover:bg-white"
                   }`}
                 >
                   <div className="flex items-center justify-between mb-2">

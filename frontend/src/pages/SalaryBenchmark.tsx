@@ -78,7 +78,7 @@ export default function SalaryBenchmark() {
         ) : (
           <div className="space-y-4">
             <Card rarity="legendary" hoverEffect={false} className="text-center">
-              <h2 className="text-xl font-display font-bold text-white mb-1">{benchmark.job_title}</h2>
+              <h2 className="text-xl font-display font-bold text-text-primary mb-1">{benchmark.job_title}</h2>
               <p className="text-xs font-mono text-gray-500">{benchmark.location}</p>
             </Card>
 

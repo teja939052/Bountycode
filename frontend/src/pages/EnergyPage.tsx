@@ -52,7 +52,7 @@ export default function EnergyPage() {
       <div className="glass rounded-2xl p-8 text-center mb-6">
         <div className="relative w-40 h-40 mx-auto mb-4">
           <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="42" stroke="currentColor" strokeWidth="8" fill="none" className="text-white/5" />
+            <circle cx="50" cy="50" r="42" stroke="currentColor" strokeWidth="8" fill="none" className="text-text-primary/5" />
             <circle cx="50" cy="50" r="42" stroke="currentColor" strokeWidth="8" fill="none"
               className="text-amber-400" strokeDasharray={`${pct * 2.64} 264`} strokeLinecap="round" />
           </svg>

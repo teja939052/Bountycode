@@ -212,7 +212,7 @@ export default function MyAssignments() {
                               <button
                                 onClick={() => handleSubmit(a)}
                                 disabled={submitting[a.id]}
-                                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-nature-leaf hover:bg-nature-moss text-white text-sm font-semibold transition-all disabled:opacity-50">
+                                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-nature-leaf hover:bg-nature-moss text-text-primary text-sm font-semibold transition-all disabled:opacity-50">
                                 {submitting[a.id] ? <Loader2 size={15} className="animate-spin" /> : <Send size={15} />}
                                 {status === "submitted" ? "Resubmit" : "Submit Answer"}
                               </button>

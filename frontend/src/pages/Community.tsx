@@ -197,7 +197,7 @@ export default function Community() {
             { to: "/daily-challenge", icon: Target, label: "Daily Challenge", color: "bg-brand-coral/10 text-brand-coral border-brand-coral/20" },
             { to: "/question-bank", icon: BookOpen, label: "Practice", color: "bg-brand-lavender/10 text-brand-lavender border-brand-lavender/20" },
           ].map((nav) => (
-            <Link key={nav.label} to={nav.to} className={`flex items-center gap-2 rounded-xl border p-3 hover:bg-white/50 transition-colors ${nav.color}`}>
+            <Link key={nav.label} to={nav.to} className={`flex items-center gap-2 rounded-xl border p-3 hover:bg-white border-border/50 transition-colors ${nav.color}`}>
               <nav.icon size={16} />
               <span className="text-xs font-bold">{nav.label}</span>
             </Link>
@@ -245,7 +245,7 @@ export default function Community() {
             <button
               onClick={handleCreatePost}
               disabled={posting || !newContent.trim()}
-              className="px-5 py-2 bg-nature-leaf hover:bg-nature-moss disabled:bg-[#E5E0D3] disabled:text-text-muted text-white rounded-xl text-sm font-medium transition-colors flex items-center gap-2"
+              className="px-5 py-2 bg-nature-leaf hover:bg-nature-moss disabled:bg-[#E5E0D3] disabled:text-text-muted text-text-primary rounded-xl text-sm font-medium transition-colors flex items-center gap-2"
             >
               {posting ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
               Post
@@ -303,7 +303,7 @@ export default function Community() {
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#4F8F57] to-[#7BB661] flex items-center justify-center text-white font-bold text-sm shadow-lg">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#4F8F57] to-[#7BB661] flex items-center justify-center text-text-primary font-bold text-sm shadow-lg">
                         {post.user_avatar || post.user_name?.[0] || "?"}
                       </div>
                       <div>
@@ -405,7 +405,7 @@ export default function Community() {
                               <button
                                 onClick={() => handleComment(post.id)}
                                 disabled={submittingComment[post.id] || !commentTexts[post.id]?.trim()}
-                                className="p-2 bg-nature-leaf hover:bg-nature-moss disabled:bg-[#E5E0D3] disabled:text-text-muted text-white rounded-lg transition-colors"
+                                className="p-2 bg-nature-leaf hover:bg-nature-moss disabled:bg-[#E5E0D3] disabled:text-text-muted text-text-primary rounded-lg transition-colors"
                               >
                                 {submittingComment[post.id] ? (
                                   <Loader2 size={14} className="animate-spin" />

@@ -70,7 +70,7 @@ export default function CurriculumHub() {
                 className="group flex flex-col rounded-3xl border border-[#E5E7EB] bg-white p-6 shadow-[0_1px_2px_rgba(31,41,55,0.04)] transition-all hover:-translate-y-0.5 hover:shadow-lg"
               >
                 <div
-                  className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl text-white"
+                  className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl text-text-primary"
                   style={{ backgroundColor: color }}
                 >
                   <Icon size={24} />

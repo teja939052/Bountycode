@@ -311,7 +311,7 @@ export default function ProjectGenerator() {
                 <button
                   onClick={handleGenerate}
                   disabled={!description.trim() || loading}
-                  className="mt-5 w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-brand-sky to-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:from-blue-600 hover:to-brand-sky disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="mt-5 w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-brand-sky to-blue-600 px-6 py-3 text-sm font-semibold text-text-primary shadow-lg transition-all hover:from-blue-600 hover:to-brand-sky disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {loading ? <Spinner /> : <Wand2 size={18} />}
                   {loading ? "Generating..." : "Generate Project"}
@@ -471,7 +471,7 @@ export default function ProjectGenerator() {
                 <button
                   onClick={handleRunReview}
                   disabled={reviewLoading}
-                  className="mt-4 w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-500 to-green-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:from-green-600 hover:to-emerald-500 disabled:opacity-50"
+                  className="mt-4 w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-500 to-green-600 px-6 py-3 text-sm font-semibold text-text-primary shadow-lg transition-all hover:from-green-600 hover:to-emerald-500 disabled:opacity-50"
                 >
                   {reviewLoading ? <Spinner /> : <CheckCircle2 size={18} />}
                   {reviewLoading ? "Reviewing..." : "Run Review"}
@@ -493,7 +493,7 @@ export default function ProjectGenerator() {
                       <span className={`text-3xl font-bold ${scoreColor(reviewResult.score)}`}>{reviewResult.score}</span>
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold text-white">Code Quality Score</h3>
+                      <h3 className="text-lg font-bold text-text-primary">Code Quality Score</h3>
                       <p className="text-sm text-brand-muted">
                         {reviewResult.score >= 80 ? "Great shape! Minor improvements." :
                          reviewResult.score >= 50 ? "Decent — some areas need work." :
@@ -643,7 +643,7 @@ export default function ProjectGenerator() {
                   <button
                     onClick={handleImprove}
                     disabled={improveLoading}
-                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-purple-500 to-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:from-indigo-600 hover:to-purple-500 disabled:opacity-50"
+                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-purple-500 to-indigo-600 px-6 py-3 text-sm font-semibold text-text-primary shadow-lg transition-all hover:from-indigo-600 hover:to-purple-500 disabled:opacity-50"
                   >
                     {improveLoading ? <Spinner /> : <Sparkles size={18} />}
                     {improveLoading ? "Improving..." : "Improve Code"}
@@ -677,7 +677,7 @@ export default function ProjectGenerator() {
                     </div>
                     <div className="p-4">
                       <div className="text-[10px] font-semibold uppercase tracking-wider text-emerald-500 mb-2">Improved</div>
-                      <pre className="text-xs font-mono leading-relaxed text-white whitespace-pre-wrap h-[360px] overflow-y-auto">
+                      <pre className="text-xs font-mono leading-relaxed text-text-primary whitespace-pre-wrap h-[360px] overflow-y-auto">
                         {improveResult.improved_code || "No improvements generated"}
                       </pre>
                     </div>
@@ -710,7 +710,7 @@ export default function ProjectGenerator() {
                           setImproveResult(null);
                         }
                       }}
-                      className="flex items-center gap-1.5 rounded-lg bg-brand-sky px-4 py-2 text-xs font-semibold text-white hover:bg-blue-600 transition-colors"
+                      className="flex items-center gap-1.5 rounded-lg bg-brand-sky px-4 py-2 text-xs font-semibold text-text-primary hover:bg-blue-600 transition-colors"
                     >
                       <CheckCircle2 size={14} />
                       Apply Changes

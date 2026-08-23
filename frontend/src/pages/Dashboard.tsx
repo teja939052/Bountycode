@@ -76,7 +76,7 @@ export default function Dashboard() {
           <p className="text-sm text-text-muted mb-4">Something went wrong loading your data.</p>
           <button
             onClick={() => refetch()}
-            className="px-6 py-2 rounded-[10px] bg-primary text-white text-sm font-medium transition-all hover:bg-primary-dark"
+            className="px-6 py-2 rounded-[10px] bg-primary text-text-primary text-sm font-medium transition-all hover:bg-primary-dark"
           >
             Retry
           </button>

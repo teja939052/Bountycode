@@ -69,7 +69,7 @@ export default function StreakFreezeModal({ open, onClose }: StreakFreezeModalPr
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-surface-2 border-border backdrop-blur-sm p-4"
           onClick={onClose}
         >
           <motion.div
@@ -82,7 +82,7 @@ export default function StreakFreezeModal({ open, onClose }: StreakFreezeModalPr
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center gap-3">
                 <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center shadow-soft-md">
-                  <Snowflake size={22} className="text-white" />
+                  <Snowflake size={22} className="text-text-primary" />
                 </div>
                 <div>
                   <h3 className="text-lg font-display font-bold text-text-primary leading-tight">Streak Freeze</h3>
@@ -132,7 +132,7 @@ export default function StreakFreezeModal({ open, onClose }: StreakFreezeModalPr
             <button
               onClick={handleBuy}
               disabled={buying}
-              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-gradient-to-r from-sky-500 to-blue-600 text-white font-display font-bold text-sm disabled:opacity-50 shadow-soft-md hover:shadow-soft-lg transition-shadow"
+              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-gradient-to-r from-sky-500 to-blue-600 text-text-primary font-display font-bold text-sm disabled:opacity-50 shadow-soft-md hover:shadow-soft-lg transition-shadow"
             >
               {buying ? (
                 <span className="flex items-center gap-2">

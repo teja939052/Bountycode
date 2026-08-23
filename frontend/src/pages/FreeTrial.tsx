@@ -225,7 +225,7 @@ export default function FreeTrial() {
           className="flex items-center justify-between mb-8"
         >
           <div>
-            <h1 className="text-2xl font-black text-white flex items-center gap-2">
+            <h1 className="text-2xl font-black text-text-primary flex items-center gap-2">
               <Rocket className="text-cyan-400" size={24} />
               Free Trial
             </h1>
@@ -260,7 +260,7 @@ export default function FreeTrial() {
                         ? "bg-cyan-500/20 border border-cyan-500/30"
                         : isCompleted
                         ? "bg-emerald-500/10 border border-emerald-500/20"
-                        : "bg-white/5 border border-white/5 opacity-50 cursor-not-allowed"
+                        : "bg-white border-border shadow-card border border-white/5 opacity-50 cursor-not-allowed"
                     }`}
                   >
                     <div className="flex items-center gap-3">
@@ -272,7 +272,7 @@ export default function FreeTrial() {
                         <BookOpen size={16} className="text-gray-600 shrink-0" />
                       )}
                       <div className="min-w-0">
-                        <p className={`text-sm font-medium truncate ${isActive ? "text-white" : isCompleted ? "text-emerald-300" : "text-gray-500"}`}>
+                        <p className={`text-sm font-medium truncate ${isActive ? "text-text-primary" : isCompleted ? "text-emerald-300" : "text-gray-500"}`}>
                           {lesson.title}
                         </p>
                         <p className="text-[10px] font-mono text-gray-600 mt-0.5">{lesson.xp} XP</p>
@@ -299,14 +299,14 @@ export default function FreeTrial() {
                       <BookOpen size={16} />
                     </div>
                     <div>
-                      <h2 className="text-lg font-bold text-white">{currentLesson?.title}</h2>
+                      <h2 className="text-lg font-bold text-text-primary">{currentLesson?.title}</h2>
                       <p className="text-xs font-mono text-gray-500">
                         Lesson {progress.currentLesson + 1} of {lessons.length}
                       </p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-mono text-gray-500 bg-white/5 px-3 py-1 rounded-lg">
+                    <span className="text-xs font-mono text-gray-500 bg-white border-border shadow-card px-3 py-1 rounded-lg">
                       +{currentLesson?.xp} XP
                     </span>
                   </div>
@@ -511,7 +511,7 @@ export default function FreeTrial() {
                   {!progress.completedLessons.includes(currentLesson?.id) && (
                     <button
                       onClick={handleMarkComplete}
-                      className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold px-6 py-3 rounded-xl hover:from-cyan-400 hover:to-blue-400 transition-all"
+                      className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-text-primary font-semibold px-6 py-3 rounded-xl hover:from-cyan-400 hover:to-blue-400 transition-all"
                     >
                       <CheckCircle2 size={16} />
                       Mark Complete
@@ -540,7 +540,7 @@ export default function FreeTrial() {
               >
                 <Trophy size={64} className="text-yellow-400 mx-auto mb-4" />
               </motion.div>
-              <p className="text-2xl font-bold text-white mb-2">Lesson Complete!</p>
+              <p className="text-2xl font-bold text-text-primary mb-2">Lesson Complete!</p>
               <p className="text-sm text-gray-300">+{currentLesson?.xp} XP earned</p>
             </div>
           </motion.div>
@@ -553,7 +553,7 @@ export default function FreeTrial() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface-2 backdrop-blur-sm"
           >
             <motion.div
               initial={{ opacity: 0, y: 40, scale: 0.95 }}
@@ -569,7 +569,7 @@ export default function FreeTrial() {
                 >
                   <Sparkles size={48} className="text-yellow-400 mb-4" />
                 </motion.div>
-                <h2 className="text-2xl font-black text-white mt-2">You completed all 3 free lessons!</h2>
+                <h2 className="text-2xl font-black text-text-primary mt-2">You completed all 3 free lessons!</h2>
                 <p className="text-gray-400 mt-2 text-sm">You just scratched the surface — here's what's next</p>
               </div>
 
@@ -603,11 +603,11 @@ export default function FreeTrial() {
                   <h3 className="text-xs font-mono uppercase tracking-wider text-gray-500 mb-2">Pricing</h3>
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-400">Pro Monthly</span>
-                    <span className="text-white font-bold">{conversionData.pricing.pro_monthly}</span>
+                    <span className="text-text-primary font-bold">{conversionData.pricing.pro_monthly}</span>
                   </div>
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-400">Lifetime Access</span>
-                    <span className="text-white font-bold">{conversionData.pricing.lifetime}</span>
+                    <span className="text-text-primary font-bold">{conversionData.pricing.lifetime}</span>
                   </div>
                   <div className="flex items-center justify-between text-sm bg-amber-500/10 rounded-lg p-2 px-3 border border-amber-500/20">
                     <span className="text-amber-400">Student Discount</span>
@@ -623,7 +623,7 @@ export default function FreeTrial() {
               <div className="flex flex-col gap-3 mb-4">
                 <button
                   onClick={() => navigate("/register")}
-                  className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold px-8 py-4 rounded-xl hover:from-cyan-400 hover:to-blue-400 transition-all"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-text-primary font-bold px-8 py-4 rounded-xl hover:from-cyan-400 hover:to-blue-400 transition-all"
                 >
                   <Rocket size={18} />
                   Create Free Account

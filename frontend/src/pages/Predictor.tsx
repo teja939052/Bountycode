@@ -184,7 +184,7 @@ export default function Predictor() {
             <button
               type="submit"
               disabled={loading || !selectedCompany}
-              className="w-full bg-primary-600 text-white py-3 rounded-lg font-bold hover:bg-primary-700 disabled:opacity-50 transition-colors flex items-center justify-center gap-2"
+              className="w-full bg-primary-600 text-text-primary py-3 rounded-lg font-bold hover:bg-primary-700 disabled:opacity-50 transition-colors flex items-center justify-center gap-2"
             >
               {loading ? (
                 <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white" />
@@ -276,7 +276,7 @@ export default function Predictor() {
                 </AnimatedCard>
               )}
 
-              <div className="card bg-gradient-to-r from-primary-600 to-primary-700 text-white">
+              <div className="card bg-gradient-to-r from-primary-600 to-primary-700 text-text-primary">
                 <div className="text-center">
                   <p className="text-primary-100 mb-1">Predicted CTC</p>
                   <p className="text-5xl font-bold mb-2">
@@ -417,7 +417,7 @@ export default function Predictor() {
                         onClick={() => setOutcomeForm((f) => ({ ...f, outcome: key }))}
                         className={`px-3 py-2 text-sm font-medium flex items-center gap-1.5 transition-colors ${
                           outcomeForm.outcome === key
-                            ? "bg-primary-600 text-white"
+                            ? "bg-primary-600 text-text-primary"
                             : "bg-surface-card dark:bg-gray-800 text-brand-secondary dark:text-gray-300 hover:bg-primary-100 dark:hover:bg-gray-700"
                         }`}
                       >
@@ -435,7 +435,7 @@ export default function Predictor() {
                   <button
                     type="submit"
                     disabled={savingOutcome}
-                    className="px-4 py-2 rounded-lg bg-primary-600 text-white text-sm font-bold hover:bg-primary-700 disabled:opacity-50 transition-colors"
+                    className="px-4 py-2 rounded-lg bg-primary-600 text-text-primary text-sm font-bold hover:bg-primary-700 disabled:opacity-50 transition-colors"
                   >
                     {savingOutcome ? "Saving..." : "Log outcome"}
                   </button>
@@ -559,7 +559,7 @@ export default function Predictor() {
                   <button
                     onClick={handleTimeToOffer}
                     disabled={timeToOfferLoading}
-                    className="px-4 py-2 rounded-lg bg-primary-600 text-white text-sm font-bold hover:bg-primary-700 disabled:opacity-50 transition-colors"
+                    className="px-4 py-2 rounded-lg bg-primary-600 text-text-primary text-sm font-bold hover:bg-primary-700 disabled:opacity-50 transition-colors"
                   >
                     {timeToOfferLoading ? "Estimating..." : timeToOffer ? "Re-estimate" : "Estimate"}
                   </button>

@@ -164,7 +164,7 @@ export default function BossAssessment() {
           </div>
 
           <button onClick={() => setPhase("fight")}
-            className="px-8 py-3 rounded-xl bg-red text-white font-bold text-sm hover:brightness-110 transition-all">
+            className="px-8 py-3 rounded-xl bg-red text-text-primary font-bold text-sm hover:brightness-110 transition-all">
             <Swords className="w-4 h-4 inline mr-2" /> Enter Battle
           </button>
         </motion.div>
@@ -235,7 +235,7 @@ export default function BossAssessment() {
               {!result ? (
                 <>
                   <button onClick={() => simulateChallenge(currentChallenge)}
-                    className="flex-1 px-4 py-2.5 rounded-xl bg-primary text-white text-sm font-medium hover:bg-primary-dark transition-all">
+                    className="flex-1 px-4 py-2.5 rounded-xl bg-primary text-text-primary text-sm font-medium hover:bg-primary-dark transition-all">
                     Submit
                   </button>
                   <button onClick={skipChallenge}
@@ -245,7 +245,7 @@ export default function BossAssessment() {
                 </>
               ) : (
                 <button onClick={nextChallenge}
-                  className="flex-1 px-4 py-2.5 rounded-xl bg-primary text-white text-sm font-medium hover:bg-primary-dark transition-all">
+                  className="flex-1 px-4 py-2.5 rounded-xl bg-primary text-text-primary text-sm font-medium hover:bg-primary-dark transition-all">
                   {currentChallenge < boss.challenges.length - 1 ? "Next Challenge" : "View Results"}
                 </button>
               )}

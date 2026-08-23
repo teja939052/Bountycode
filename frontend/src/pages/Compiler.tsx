@@ -610,7 +610,7 @@ export default function Compiler({ problemId, problem }: { problemId?: string; p
       <CelebrationOverlay show={showCelebration} type="perfect" message="Problem Solved!" onClose={() => setShowCelebration(false)} />
 
       {/* Top Bar */}
-      <div className="flex items-center justify-between border-b border-black/5 bg-white/90 px-3 py-2 backdrop-blur">
+      <div className="flex items-center justify-between border-b border-black/5 bg-white border-border/90 px-3 py-2 backdrop-blur">
           <div className="flex items-center gap-2">
             <span className="text-xs font-mono text-brand-dim">main.{currentLang?.id === "cpp" ? "cpp" : currentLang?.id || "txt"}</span>
             {problemId && <span className="text-[10px] text-brand-dim">#{problemId.slice(-6)}</span>}
@@ -628,7 +628,7 @@ export default function Compiler({ problemId, problem }: { problemId?: string; p
             </span>
           )}
           {isProblemMode && (
-            <div className="flex items-center gap-1.5 rounded-md bg-black/5 px-2 py-1 text-xs font-mono">
+            <div className="flex items-center gap-1.5 rounded-md bg-surface-2 px-2 py-1 text-xs font-mono">
               <Timer size={12} className={timerRunning ? "text-brand-emerald" : "text-brand-dim"} />
               <span className={timerRunning ? "text-brand-emerald" : "text-brand-dim"}>{formatTime(elapsed)}</span>
               <button onClick={() => setTimerRunning(false)} className="text-brand-dim hover:text-brand-accent">
@@ -655,7 +655,7 @@ export default function Compiler({ problemId, problem }: { problemId?: string; p
             <button
               onClick={() => setViewMode("editor")}
               className={`px-2 py-0.5 text-xs font-medium rounded-md transition-colors ${
-                viewMode === "editor" ? "bg-brand-primary text-white font-bold" : "text-brand-dim hover:text-brand-primary"
+                viewMode === "editor" ? "bg-brand-primary text-text-primary font-bold" : "text-brand-dim hover:text-brand-primary"
               }`}
             >
               Code Editor
@@ -666,7 +666,7 @@ export default function Compiler({ problemId, problem }: { problemId?: string; p
                 else setViewMode("visualizer");
               }}
               className={`px-2 py-0.5 text-xs font-medium rounded-md transition-colors flex items-center gap-1 ${
-                viewMode === "visualizer" ? "bg-brand-primary text-white font-bold" : "text-brand-dim hover:text-brand-primary"
+                viewMode === "visualizer" ? "bg-brand-primary text-text-primary font-bold" : "text-brand-dim hover:text-brand-primary"
               }`}
             >
               <Sparkles size={11} className="text-brand-lavender animate-pulse" />
@@ -677,25 +677,25 @@ export default function Compiler({ problemId, problem }: { problemId?: string; p
           <select value={language} onChange={(e) => setLanguage(e.target.value)} className="max-w-[100px] rounded border border-black/5 bg-white px-2 py-1 text-xs text-brand-secondary focus:outline-none sm:max-w-none">
             {langs.map((l) => <option key={l.id} value={l.id}>{l.icon} {l.name}</option>)}
           </select>
-          <button onClick={handleRun} disabled={loading} className="flex items-center gap-1 px-2 sm:px-2.5 py-1 bg-brand-emerald hover:bg-brand-emerald-dark disabled:opacity-50 text-white text-xs font-medium rounded transition-colors">
+          <button onClick={handleRun} disabled={loading} className="flex items-center gap-1 px-2 sm:px-2.5 py-1 bg-brand-emerald hover:bg-brand-emerald-dark disabled:opacity-50 text-text-primary text-xs font-medium rounded transition-colors">
             {loading ? <Loader size={11} className="animate-spin" /> : <><Play size={11} /> <span className="hidden sm:inline">Run</span></>}
           </button>
-          <button onClick={handleTraceCode} disabled={traceLoading} className="flex items-center gap-1 px-2 sm:px-2.5 py-1 bg-brand-lavender hover:bg-brand-lavender-dark disabled:opacity-50 text-white text-xs font-medium rounded transition-colors shadow-brand-lavender/30">
+          <button onClick={handleTraceCode} disabled={traceLoading} className="flex items-center gap-1 px-2 sm:px-2.5 py-1 bg-brand-lavender hover:bg-brand-lavender-dark disabled:opacity-50 text-text-primary text-xs font-medium rounded transition-colors shadow-brand-lavender/30">
             {traceLoading ? <Loader size={11} className="animate-spin" /> : <><Sparkles size={11} /> <span className="hidden sm:inline">Visualize</span></>}
           </button>
-          <button onClick={handleCreativeMind} disabled={creativeLoading} className="flex items-center gap-1 px-2 sm:px-2.5 py-1 bg-brand-rose hover:bg-brand-rose-dark disabled:opacity-50 text-white text-xs font-medium rounded transition-colors shadow-brand-rose/30">
+          <button onClick={handleCreativeMind} disabled={creativeLoading} className="flex items-center gap-1 px-2 sm:px-2.5 py-1 bg-brand-rose hover:bg-brand-rose-dark disabled:opacity-50 text-text-primary text-xs font-medium rounded transition-colors shadow-brand-rose/30">
             {creativeLoading ? <Loader size={11} className="animate-spin" /> : <><WandSparkles size={11} /> <span className="hidden sm:inline">Creative</span></>}
           </button>
           <button
             onClick={handleLoadBoilerplate}
              disabled={boilerplateLoading}
-             className="flex items-center gap-1 px-2 sm:px-2.5 py-1 bg-brand-gold hover:bg-brand-gold-dark disabled:opacity-50 text-white text-xs font-medium rounded transition-colors"
+             className="flex items-center gap-1 px-2 sm:px-2.5 py-1 bg-brand-gold hover:bg-brand-gold-dark disabled:opacity-50 text-text-primary text-xs font-medium rounded transition-colors"
              title={problemTopics.length > 0 ? `Load starter for ${starterProblemType}` : "Load default starter code"}
            >
              {boilerplateLoading ? <Loader size={11} className="animate-spin" /> : <><BookOpen size={11} /> <span className="hidden sm:inline">Starter</span></>}
            </button>
            {problemId && (
-             <button onClick={handleSubmit} disabled={loading} className="flex items-center gap-1 px-2 sm:px-2.5 py-1 bg-brand-primary hover:brand-primary-dark disabled:opacity-50 text-white text-xs font-medium rounded transition-colors">
+             <button onClick={handleSubmit} disabled={loading} className="flex items-center gap-1 px-2 sm:px-2.5 py-1 bg-brand-primary hover:brand-primary-dark disabled:opacity-50 text-text-primary text-xs font-medium rounded transition-colors">
               {loading ? <Loader size={11} className="animate-spin" /> : <><Send size={11} /> <span className="hidden sm:inline">Submit</span></>}
             </button>
           )}
@@ -868,7 +868,7 @@ text-brand-dim hover:text-brand-primary" title="Fullscreen">
             )}
             <div className="flex-1" />
             {activeTab === "testcases" && (
-               <button onClick={handleRunTestCases} disabled={loading} className="mr-2 px-2.5 py-1 bg-brand-emerald hover:bg-brand-emerald-dark disabled:opacity-50 text-white text-[11px] font-medium rounded transition-colors flex items-center gap-1">
+               <button onClick={handleRunTestCases} disabled={loading} className="mr-2 px-2.5 py-1 bg-brand-emerald hover:bg-brand-emerald-dark disabled:opacity-50 text-text-primary text-[11px] font-medium rounded transition-colors flex items-center gap-1">
                 {loading ? <Loader size={10} className="animate-spin" /> : <Play size={10} />} Run All
               </button>
             )}
@@ -887,7 +887,7 @@ text-brand-dim hover:text-brand-primary" title="Fullscreen">
                    <button
                      onClick={handleCreativeMind}
                      disabled={creativeLoading}
-                     className="px-3 py-1.5 rounded-lg bg-brand-rose hover:bg-brand-rose-dark disabled:opacity-50 text-white text-xs font-medium flex items-center gap-2"
+                     className="px-3 py-1.5 rounded-lg bg-brand-rose hover:bg-brand-rose-dark disabled:opacity-50 text-text-primary text-xs font-medium flex items-center gap-2"
                   >
                     {creativeLoading ? <Loader size={11} className="animate-spin" /> : <WandSparkles size={11} />}
                     Refresh coach
@@ -905,7 +905,7 @@ text-brand-dim hover:text-brand-primary" title="Fullscreen">
                       onClick={() => setCreativeMode(mode.id)}
                        className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
                          creativeMode === mode.id
-                           ? "bg-brand-rose text-white"
+                           ? "bg-brand-rose text-text-primary"
                            : "bg-brand-primary/5 text-brand-dim hover:text-brand-primary border border-brand-primary/10"
                        }`}
                     >
@@ -1251,7 +1251,7 @@ text-brand-dim hover:text-brand-primary" title="Fullscreen">
       {/* Keyboard shortcuts modal */}
       <AnimatePresence>
         {showShortcuts && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center bg-black/60" onClick={() => setShowShortcuts(false)}>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center bg-surface-2" onClick={() => setShowShortcuts(false)}>
              <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} className="bg-surface-card border border-surface-border rounded-xl p-6 max-w-md w-full mx-4 shadow-soft-lg" onClick={(e) => e.stopPropagation()}>
                <div className="flex items-center justify-between mb-4">
                  <h3 className="text-sm font-bold text-brand-primary">Keyboard Shortcuts</h3>

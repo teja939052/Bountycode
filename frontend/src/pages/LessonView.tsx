@@ -121,7 +121,7 @@ function QuizCard({ quiz, onAnswer, answered }) {
       <p className="text-sm font-mono text-brand-secondary mb-4">{quiz.question}</p>
       <div className="space-y-2">
         {quiz.options.map((opt, i) => {
-          let btnStyle = "bg-surface-card/30 border-brand-primary/10 text-brand-secondary hover:bg-white/10";
+          let btnStyle = "bg-surface-card/30 border-brand-primary/10 text-brand-secondary hover:bg-white border-border/10";
           if (showResult) {
             if (i === quiz.correct) btnStyle = "bg-green-500/20 border-green-500/30 text-green-400";
             else if (i === selected && !isCorrect) btnStyle = "bg-red-500/20 border-red-500/30 text-red-400";
@@ -369,16 +369,16 @@ export default function LessonView() {
         <div className="relative z-10 flex flex-wrap items-center gap-3">
           <span className="text-2xl">{level.emoji || "🍬"}</span>
           <div className="min-w-0 flex-1">
-            <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-white/80">Learning campaign</p>
-            <p className="truncate font-display text-sm font-bold text-white">{level.name}</p>
+            <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-text-primary/80">Learning campaign</p>
+            <p className="truncate font-display text-sm font-bold text-text-primary">{level.name}</p>
           </div>
           {completed ? (
-            <span className="flex items-center gap-1 rounded-full bg-white/25 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-white">
+            <span className="flex items-center gap-1 rounded-full bg-white border-border/25 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-text-primary">
               <CheckCircle2 size={12} /> Done
             </span>
           ) : (
             <Link to={`/learn/${languageId}`}
-              className="flex items-center gap-1 rounded-full bg-black/25 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-white transition-colors hover:bg-black/40">
+              className="flex items-center gap-1 rounded-full bg-surface-2 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-text-primary transition-colors hover:bg-surface-2 border-border">
               View map <ArrowRight size={11} />
             </Link>
           )}
@@ -558,7 +558,7 @@ export default function LessonView() {
                   <div className="flex items-center gap-2 flex-wrap">
                     {exercise.starter_code && (
                       <button onClick={() => loadStarter(exercise)} disabled={running}
-                        className="flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-card/30 border border-brand-primary/10 text-brand-secondary text-sm font-mono hover:bg-white/10 transition-all disabled:opacity-50">
+                        className="flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-card/30 border border-brand-primary/10 text-brand-secondary text-sm font-mono hover:bg-white border-border/10 transition-all disabled:opacity-50">
                         <Code size={14} /> Load starter code
                       </button>
                     )}
@@ -928,7 +928,7 @@ export default function LessonView() {
       <AnimatePresence>
         {showCelebrate && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="fixed inset-0 flex items-center justify-center bg-black/70 z-50 p-4"
+            className="fixed inset-0 flex items-center justify-center bg-surface-2 z-50 p-4"
             onClick={() => setShowCelebrate(false)}>
             <motion.div initial={{ scale: 0.7, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.7, opacity: 0 }} transition={{ type: "spring", damping: 15 }}
@@ -938,7 +938,7 @@ export default function LessonView() {
                 className="text-5xl mb-4">
                 {isBoss ? "👑" : lesson.type === "project" ? "🔨" : "🎉"}
               </motion.div>
-              <h2 className="text-2xl font-display font-black text-white mb-2">
+              <h2 className="text-2xl font-display font-black text-text-primary mb-2">
                 {isBoss ? "Boss Defeated!" : isProject ? "Project Complete!" : "Lesson Complete!"}
               </h2>
               <p className="text-brand-muted text-sm font-mono mb-4">{lesson.title}</p>

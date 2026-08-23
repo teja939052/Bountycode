@@ -124,7 +124,7 @@ export default function TeamCompetitions() {
         {!myTeam && (
           <button
             onClick={() => setShowCreate(!showCreate)}
-            className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 text-sm font-medium"
+            className="px-4 py-2 bg-indigo-600 text-text-primary rounded-lg hover:bg-indigo-700 text-sm font-medium"
           >
             Create Team
           </button>
@@ -151,7 +151,7 @@ export default function TeamCompetitions() {
             <button
               onClick={handleCreateTeam}
               disabled={loading || !newTeamName}
-              className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700 disabled:opacity-50"
+              className="px-4 py-2 bg-indigo-600 text-text-primary rounded-lg text-sm font-medium hover:bg-indigo-700 disabled:opacity-50"
             >
               Create
             </button>
@@ -285,7 +285,7 @@ export default function TeamCompetitions() {
                 <button
                   onClick={() => handleJoinTeam(team.name)}
                   disabled={loading}
-                  className="w-full px-3 py-1.5 bg-indigo-600 text-white rounded-lg text-xs font-medium hover:bg-indigo-700 disabled:opacity-50"
+                  className="w-full px-3 py-1.5 bg-indigo-600 text-text-primary rounded-lg text-xs font-medium hover:bg-indigo-700 disabled:opacity-50"
                 >
                   Join Team
                 </button>

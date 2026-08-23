@@ -15,7 +15,7 @@ function StatCard({ icon: Icon, label, value, sub, color = "text-brand-sky", del
       transition={{ delay }}
       className="glass rounded-xl p-4">
       <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
+        <div className="w-10 h-10 rounded-lg bg-white border-border shadow-card flex items-center justify-center shrink-0">
           <Icon size={18} className={color} />
         </div>
         <div className="min-w-0">
@@ -46,7 +46,7 @@ function MiniBarChart({ data = [], maxVal, color = "sky" }: any) {
         const h = Math.max((val / max) * 100, 2);
         return (
           <div key={i} className="flex-1 flex flex-col items-center gap-1 group relative">
-            <div className="w-full bg-white/5 rounded-t" style={{ height: `${h}%` }}>
+            <div className="w-full bg-white border-border shadow-card rounded-t" style={{ height: `${h}%` }}>
               <div className={`w-full ${barColor} rounded-t opacity-70 group-hover:opacity-100 transition-opacity`} style={{ height: "100%" }} />
             </div>
             <span className="absolute -top-5 text-[8px] font-mono text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">{val}</span>
@@ -137,7 +137,7 @@ export default function AdminDashboard() {
             <p className="text-sm text-gray-500 font-mono mt-1">Real-time platform intelligence</p>
           </div>
           <button onClick={handleRefresh} disabled={refreshing}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-gray-400 text-sm font-mono hover:text-text-primary transition-all">
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white border-border shadow-card border border-white/10 text-gray-400 text-sm font-mono hover:text-text-primary transition-all">
             <RefreshCw size={14} className={refreshing ? "animate-spin" : ""} />
             Refresh
           </button>
@@ -159,7 +159,7 @@ export default function AdminDashboard() {
           <button key={t.key} onClick={() => setTab(t.key)}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-mono transition-all whitespace-nowrap ${
               tab === t.key
-                ? "bg-white/10 text-text-primary border border-white/10"
+                ? "bg-white border-border/10 text-text-primary border border-white/10"
                 : "text-gray-500 hover:text-gray-300"
             }`}>
             <t.icon size={14} />
@@ -236,7 +236,7 @@ export default function AdminDashboard() {
                     return (
                       <div key={i} className="flex items-center gap-2 text-[10px] font-mono">
                         <span className="w-6 text-gray-600">{String(i).padStart(2, "0")}</span>
-                        <div className="flex-1 h-1.5 bg-white/5 rounded-full overflow-hidden">
+                        <div className="flex-1 h-1.5 bg-white border-border shadow-card rounded-full overflow-hidden">
                           <div className="h-full bg-yellow-500/40 rounded-full" style={{ width: `${(val / hourlyMax) * 100}%` }} />
                         </div>
                         <span className="w-8 text-right text-gray-500">{val}</span>
@@ -337,7 +337,7 @@ export default function AdminDashboard() {
                       <td className="py-2.5 px-3 font-mono text-gray-600 text-xs">{i + 1}</td>
                       <td className="py-2.5 px-3">
                         <div className="flex items-center gap-2">
-                          <div className="w-7 h-7 rounded-full bg-white/5 flex items-center justify-center text-[10px] font-mono text-gray-400">
+                          <div className="w-7 h-7 rounded-full bg-white border-border shadow-card flex items-center justify-center text-[10px] font-mono text-gray-400">
                             {(u.name || u.email || "?")[0].toUpperCase()}
                           </div>
                           <div className="min-w-0">
@@ -384,7 +384,7 @@ export default function AdminDashboard() {
                 const pct = Math.round((p.views / maxViews) * 100);
                 return (
                   <div key={i} className="flex items-center gap-3 p-3 rounded-lg bg-white/[0.02] hover:bg-white/[0.04] transition-colors">
-                    <span className="w-7 h-7 rounded-full bg-white/5 flex items-center justify-center text-[10px] font-mono text-gray-500 shrink-0">
+                    <span className="w-7 h-7 rounded-full bg-white border-border shadow-card flex items-center justify-center text-[10px] font-mono text-gray-500 shrink-0">
                       {i + 1}
                     </span>
                     <div className="flex-1 min-w-0">
@@ -392,7 +392,7 @@ export default function AdminDashboard() {
                         <span className="text-sm font-mono text-gray-300 truncate">{p.path || p._id}</span>
                         <span className="text-xs font-mono text-brand-sky shrink-0 ml-2">{p.views} views</span>
                       </div>
-                      <div className="h-1 bg-white/5 rounded-full overflow-hidden">
+                      <div className="h-1 bg-white border-border shadow-card rounded-full overflow-hidden">
                         <div className="h-full bg-brand-sky/40 rounded-full" style={{ width: `${pct}%` }} />
                       </div>
                     </div>
@@ -421,7 +421,7 @@ export default function AdminDashboard() {
                 const colors = ["text-brand-sky", "text-brand-teal", "text-amber-400", "text-emerald-400", "text-brand-lavender"];
                 return (
                   <div key={i} className="flex items-center gap-3 p-3 rounded-lg bg-white/[0.02] hover:bg-white/[0.04] transition-colors">
-                    <span className={`w-7 h-7 rounded-full bg-white/5 flex items-center justify-center text-[10px] font-mono shrink-0 ${colors[i % colors.length]}`}>
+                    <span className={`w-7 h-7 rounded-full bg-white border-border shadow-card flex items-center justify-center text-[10px] font-mono shrink-0 ${colors[i % colors.length]}`}>
                       {i + 1}
                     </span>
                     <div className="flex-1 min-w-0">
@@ -429,7 +429,7 @@ export default function AdminDashboard() {
                         <span className="text-sm font-mono text-gray-300 truncate">{f.feature || f._id}</span>
                         <span className="text-xs font-mono text-amber-400 shrink-0 ml-2">{f.uses} uses</span>
                       </div>
-                      <div className="h-1 bg-white/5 rounded-full overflow-hidden">
+                      <div className="h-1 bg-white border-border shadow-card rounded-full overflow-hidden">
                         <div className="h-full bg-amber-500/40 rounded-full" style={{ width: `${pct}%` }} />
                       </div>
                     </div>
@@ -458,7 +458,7 @@ export default function AdminDashboard() {
                   const pct = Math.round((g.visits / maxVisits) * 100);
                   return (
                     <div key={i} className="flex items-center gap-3 p-3 rounded-lg bg-white/[0.02]">
-                      <span className="w-7 h-7 rounded-full bg-white/5 flex items-center justify-center text-[10px] font-mono text-gray-500 shrink-0">
+                      <span className="w-7 h-7 rounded-full bg-white border-border shadow-card flex items-center justify-center text-[10px] font-mono text-gray-500 shrink-0">
                         {i + 1}
                       </span>
                       <div className="flex-1 min-w-0">
@@ -466,7 +466,7 @@ export default function AdminDashboard() {
                           <span className="text-sm font-mono text-gray-300">{g.ip || g._id || "unknown"}</span>
                           <span className="text-xs font-mono text-brand-teal shrink-0 ml-2">{g.visits} visits</span>
                         </div>
-                        <div className="h-1 bg-white/5 rounded-full overflow-hidden">
+                        <div className="h-1 bg-white border-border shadow-card rounded-full overflow-hidden">
                           <div className="h-full bg-brand-teal/40 rounded-full" style={{ width: `${pct}%` }} />
                         </div>
                       </div>
@@ -512,7 +512,7 @@ export default function AdminDashboard() {
 function EmptyState({ text }: { text: string }) {
   return (
     <div className="flex flex-col items-center justify-center py-12 text-center">
-      <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-4">
+      <div className="w-16 h-16 rounded-2xl bg-white border-border shadow-card flex items-center justify-center mb-4">
         <BarChart3 size={24} className="text-gray-600" />
       </div>
       <p className="text-sm text-gray-500 font-mono">{text}</p>

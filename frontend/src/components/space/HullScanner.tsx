@@ -24,7 +24,7 @@ export default function HullScanner({ atsScore = 0, issues = [], keywords = [] }
           <span className="text-[10px] font-mono text-cyber-blue/70 tracking-widest uppercase block">
             Hull Structural Diagnostic
           </span>
-          <h3 className="text-lg font-display font-bold text-white tracking-tight">
+          <h3 className="text-lg font-display font-bold text-text-primary tracking-tight">
             ATS Compatibility Scan
           </h3>
         </div>

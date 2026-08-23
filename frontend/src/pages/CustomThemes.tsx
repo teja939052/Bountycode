@@ -108,8 +108,8 @@ export default function CustomThemes() {
                   </div>
                 </div>
                 {locked && (
-                  <div className="absolute inset-0 rounded-xl bg-black/40 flex items-center justify-center">
-                    <Lock size={24} className="text-white/70" />
+                  <div className="absolute inset-0 rounded-xl bg-surface-2 border-border flex items-center justify-center">
+                    <Lock size={24} className="text-text-primary/70" />
                   </div>
                 )}
               </button>
@@ -117,7 +117,7 @@ export default function CustomThemes() {
           })}
         </div>
 
-        <div className="mt-8 rounded-xl border border-gray-200 bg-white/50 p-4">
+        <div className="mt-8 rounded-xl border border-gray-200 bg-white border-border/50 p-4">
           <h3 className="font-bold text-text-primary mb-2">Current theme</h3>
           <p className="text-sm text-text-secondary">
             <span className="font-medium text-brand-primary">{themeStore.mode}</span> · Applied across the app and persisted to your account.

@@ -140,7 +140,7 @@ export default function CGPASimulator() {
         </div>
       </div>
 
-      <div className="flex gap-1 mb-6 p-1 rounded-2xl bg-white/50 border border-white/60 w-fit">
+      <div className="flex gap-1 mb-6 p-1 rounded-2xl bg-white border-border/50 border border-white/60 w-fit">
         {TABS.map((t) => (
           <button
             key={t.key}
@@ -161,7 +161,7 @@ export default function CGPASimulator() {
 
       {tab === "calculate" && (
         <div className="space-y-6">
-          <div className="p-6 rounded-2xl border border-white/60 bg-white/80">
+          <div className="p-6 rounded-2xl border border-white/60 bg-white border-border/80">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-bold text-text-primary">Your Semesters</h2>
               <button onClick={addSemester} className="px-3 py-2 rounded-xl border border-brand-sky/40 text-brand-sky text-sm font-medium hover:bg-brand-sky/5 flex items-center gap-1">
@@ -170,7 +170,7 @@ export default function CGPASimulator() {
             </div>
 
             {semesters.map((sem, si) => (
-              <div key={si} className="mb-4 p-4 rounded-xl border border-white/60 bg-white/50">
+              <div key={si} className="mb-4 p-4 rounded-xl border border-white/60 bg-white border-border/50">
                 <div className="flex items-center justify-between mb-3">
                   <input
                     value={sem.name}
@@ -230,10 +230,10 @@ export default function CGPASimulator() {
           </div>
 
           {calcResult && (
-            <div className="p-6 rounded-2xl border border-white/60 bg-white/80 space-y-4">
+            <div className="p-6 rounded-2xl border border-white/60 bg-white border-border/80 space-y-4">
               <div className="flex items-center justify-between">
                 <h2 className="text-lg font-bold text-text-primary">Result</h2>
-                <button onClick={handleSaveCalc} disabled={saved} className="px-3 py-2 rounded-xl border border-white/60 text-sm font-medium flex items-center gap-1.5 hover:bg-white/60 disabled:opacity-50">
+                <button onClick={handleSaveCalc} disabled={saved} className="px-3 py-2 rounded-xl border border-white/60 text-sm font-medium flex items-center gap-1.5 hover:bg-white border-border/60 disabled:opacity-50">
                   {saved ? <CheckCircle size={15} className="text-green-600" /> : <Save size={15} />} {saved ? "Saved" : "Save"}
                 </button>
               </div>
@@ -253,7 +253,7 @@ export default function CGPASimulator() {
               </div>
               <div className="space-y-2">
                 {calcResult.semesters.map((s, i) => (
-                  <div key={i} className="flex items-center justify-between p-3 rounded-xl border border-white/60 bg-white/50">
+                  <div key={i} className="flex items-center justify-between p-3 rounded-xl border border-white/60 bg-white border-border/50">
                     <div>
                       <div className="text-sm font-medium text-text-primary">{s.name}</div>
                       <div className="text-[11px] text-text-light">{s.credits} credits · {s.grade_points} grade points</div>
@@ -269,7 +269,7 @@ export default function CGPASimulator() {
 
       {tab === "target" && (
         <div className="grid lg:grid-cols-2 gap-6">
-          <div className="p-6 rounded-2xl border border-white/60 bg-white/80 space-y-4">
+          <div className="p-6 rounded-2xl border border-white/60 bg-white border-border/80 space-y-4">
             <h2 className="text-lg font-bold text-text-primary flex items-center gap-2">
               <Target size={18} className="text-brand-coral" /> What-if Planning
             </h2>
@@ -323,10 +323,10 @@ export default function CGPASimulator() {
           </div>
 
           {targetResult && (
-            <div className="p-6 rounded-2xl border border-white/60 bg-white/80 space-y-4">
+            <div className="p-6 rounded-2xl border border-white/60 bg-white border-border/80 space-y-4">
               <div className="flex items-center justify-between">
                 <h2 className="text-lg font-bold text-text-primary">Path to {targetResult.target_cgpa}</h2>
-                <button onClick={handleSaveTarget} disabled={saved} className="px-3 py-2 rounded-xl border border-white/60 text-sm font-medium flex items-center gap-1.5 hover:bg-white/60 disabled:opacity-50">
+                <button onClick={handleSaveTarget} disabled={saved} className="px-3 py-2 rounded-xl border border-white/60 text-sm font-medium flex items-center gap-1.5 hover:bg-white border-border/60 disabled:opacity-50">
                   {saved ? <CheckCircle size={15} className="text-green-600" /> : <Save size={15} />} {saved ? "Saved" : "Save"}
                 </button>
               </div>
@@ -347,7 +347,7 @@ export default function CGPASimulator() {
                 <div className="space-y-1">
                   {targetResult.breakdown.map((b) => (
                     <div key={b.grade} className={`flex items-center justify-between p-2.5 rounded-xl border text-sm ${
-                      b.hits_target ? "border-green-200 bg-green-50" : "border-white/60 bg-white/50"
+                      b.hits_target ? "border-green-200 bg-green-50" : "border-white/60 bg-white border-border/50"
                     }`}>
                       <div className="flex items-center gap-2">
                         <span className="w-8 h-8 rounded-lg bg-surface-base flex items-center justify-center font-bold text-text-primary">{b.grade}</span>
@@ -367,14 +367,14 @@ export default function CGPASimulator() {
       )}
 
       {tab === "history" && (
-        <div className="p-6 rounded-2xl border border-white/60 bg-white/80">
+        <div className="p-6 rounded-2xl border border-white/60 bg-white border-border/80">
           <h2 className="text-lg font-bold text-text-primary mb-4">Saved Calculations</h2>
           {history.length === 0 ? (
             <p className="text-text-light text-sm">Nothing saved yet. Run a calculation and hit Save.</p>
           ) : (
             <div className="space-y-2">
               {history.map((h) => (
-                <div key={h.id} className="flex items-center justify-between p-3 rounded-xl border border-white/60 bg-white/50">
+                <div key={h.id} className="flex items-center justify-between p-3 rounded-xl border border-white/60 bg-white border-border/50">
                   <div>
                     <div className="text-sm font-medium text-text-primary">{h.title}</div>
                     <div className="text-[11px] text-text-light">
@@ -386,7 +386,7 @@ export default function CGPASimulator() {
                       if (h.kind === "target") { setTargetResult(h.result); setTab("target"); }
                       else { setCalcResult(h.result); setTab("calculate"); }
                     }}
-                    className="px-3 py-1.5 rounded-lg border border-white/60 text-xs font-medium hover:bg-white/60"
+                    className="px-3 py-1.5 rounded-lg border border-white/60 text-xs font-medium hover:bg-white border-border/60"
                   >
                     View
                   </button>

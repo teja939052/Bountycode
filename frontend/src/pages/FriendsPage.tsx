@@ -70,7 +70,7 @@ export default function FriendsPage() {
         <p className="text-[10px] font-mono text-gray-500 uppercase tracking-wider mb-2">Find a friend</p>
         <div className="flex gap-2">
           <input value={lookupEmail} onChange={e => setLookupEmail(e.target.value)} onKeyDown={e => e.key === "Enter" && lookup()}
-            className="flex-1 px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-sm text-gray-300 font-mono focus:outline-none focus:border-brand-teal/40"
+            className="flex-1 px-3 py-2 rounded-lg bg-white border-border shadow-card border border-white/10 text-sm text-gray-300 font-mono focus:outline-none focus:border-brand-teal/40"
             placeholder="Email or name..." />
           <button onClick={lookup} className="px-4 py-2 rounded-lg bg-brand-teal/20 text-brand-teal text-sm font-mono hover:bg-brand-teal/30 transition-all">
             <Search size={14} />
@@ -78,7 +78,7 @@ export default function FriendsPage() {
         </div>
         {lookupResult && lookupResult.user_id && (
           <div className="mt-3 flex items-center gap-3 p-3 rounded-lg bg-white/[0.02]">
-            <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-xs font-mono text-gray-400">
+            <div className="w-8 h-8 rounded-full bg-white border-border shadow-card flex items-center justify-center text-xs font-mono text-gray-400">
               {(lookupResult.name || "?")[0]}
             </div>
             <span className="text-sm text-gray-300">{lookupResult.name}</span>
@@ -96,7 +96,7 @@ export default function FriendsPage() {
           <div className="space-y-2">
             {data.received.map((r: any) => (
               <div key={r.id} className="flex items-center gap-3 p-2 rounded-lg bg-white/[0.02]">
-                <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-xs font-mono text-gray-400">
+                <div className="w-8 h-8 rounded-full bg-white border-border shadow-card flex items-center justify-center text-xs font-mono text-gray-400">
                   {(r.from_name || "?")[0]}
                 </div>
                 <span className="text-sm text-gray-300">{r.from_name}</span>

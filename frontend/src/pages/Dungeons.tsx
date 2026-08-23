@@ -369,7 +369,7 @@ export default function Dungeons() {
                     <button
                       onClick={handleCreate}
                       disabled={busy || !createName.trim()}
-                      className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-[#4F8F57] to-[#7BB661] text-sm font-semibold text-white disabled:opacity-40 hover:from-[#3F7A47] hover:to-[#6BA95C] transition-all"
+                      className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-[#4F8F57] to-[#7BB661] text-sm font-semibold text-text-primary disabled:opacity-40 hover:from-[#3F7A47] hover:to-[#6BA95C] transition-all"
                     >
                       {busy ? <Loader2 className="w-4 h-4 animate-spin" /> : <Shield className="w-4 h-4" />}
                       Create Guild
@@ -674,7 +674,7 @@ export default function Dungeons() {
                         <button
                           onClick={handleResolve}
                           disabled={resolving || !warOver}
-                          className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#4F8F57] to-[#7BB661] text-sm font-semibold text-white disabled:opacity-40 hover:from-[#3F7A47] hover:to-[#6BA95C] transition-all"
+                          className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#4F8F57] to-[#7BB661] text-sm font-semibold text-text-primary disabled:opacity-40 hover:from-[#3F7A47] hover:to-[#6BA95C] transition-all"
                         >
                           {resolving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Trophy className="w-4 h-4" />}
                           {warOver ? "Resolve War" : `Resolves in ${formatRemaining(war.end)}`}
@@ -832,7 +832,7 @@ export default function Dungeons() {
                           <button
                             onClick={() => handleAdvance(d.id, run.current_stage)}
                             disabled={busy}
-                            className="w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#4F8F57] to-[#7BB661] text-sm font-semibold text-white disabled:opacity-40 hover:from-[#3F7A47] hover:to-[#6BA95C] transition-all"
+                            className="w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#4F8F57] to-[#7BB661] text-sm font-semibold text-text-primary disabled:opacity-40 hover:from-[#3F7A47] hover:to-[#6BA95C] transition-all"
                           >
                             {busy ? <Loader2 className="w-4 h-4 animate-spin" /> : <ChevronRight className="w-4 h-4" />}
                             Advance Stage {run.current_stage + 1} of 5

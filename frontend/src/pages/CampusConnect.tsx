@@ -162,7 +162,7 @@ export default function CampusConnect() {
           >
             <button
               onClick={generateInvite}
-              className="flex items-center justify-center gap-2 rounded-xl bg-nature-leaf px-6 py-3 font-semibold text-white shadow hover:bg-nature-moss"
+              className="flex items-center justify-center gap-2 rounded-xl bg-nature-leaf px-6 py-3 font-semibold text-text-primary shadow hover:bg-nature-moss"
             >
               <Share2 className="h-5 w-5" />
               Generate Invite Link
@@ -194,7 +194,7 @@ export default function CampusConnect() {
               </code>
               <button
                 onClick={copyInvite}
-                className="rounded-lg bg-nature-leaf px-3 py-2 text-sm text-white hover:bg-nature-moss"
+                className="rounded-lg bg-nature-leaf px-3 py-2 text-sm text-text-primary hover:bg-nature-moss"
                 title="Copy link"
               >
                 <Copy className="h-4 w-4" />

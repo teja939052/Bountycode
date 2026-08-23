@@ -46,7 +46,7 @@ export default function HoloPanel({
               </span>
             )}
             {title && (
-              <h3 className="text-lg font-display font-bold text-white tracking-tight">
+              <h3 className="text-lg font-display font-bold text-text-primary tracking-tight">
                 {title}
               </h3>
             )}

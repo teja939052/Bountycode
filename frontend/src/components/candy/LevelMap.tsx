@@ -82,20 +82,20 @@ const LevelNode = memo(function LevelNode({
     >
       <div className="absolute inset-0 rounded-2xl candy-gloss pointer-events-none" />
 
-      {level.status === "locked" && <div className="absolute inset-0 rounded-2xl bg-black/60 backdrop-blur-[1px]" />}
+      {level.status === "locked" && <div className="absolute inset-0 rounded-2xl bg-surface-2 backdrop-blur-[1px]" />}
 
       <div className="relative z-10 flex flex-col items-center gap-0.5">
-        <span className="text-white/90" style={{ fontSize: level.status === "locked" ? 12 : 16 }}>
+        <span className="text-text-primary/90" style={{ fontSize: level.status === "locked" ? 12 : 16 }}>
           {level.icon || <config.icon size={level.status === "locked" ? 12 : 16} />}
         </span>
-        <span className="text-[8px] font-black text-white/90 leading-none">{level.level}</span>
+        <span className="text-[8px] font-black text-text-primary/90 leading-none">{level.level}</span>
         {level.stars !== undefined && level.status !== "locked" && (
           <div className="flex gap-0.5">
             {[1, 2, 3].map((star) => (
               <Star
                 key={star}
                 size={6}
-                className={star <= level.stars ? "text-yellow-300 fill-yellow-300" : "text-white/20"}
+                className={star <= level.stars ? "text-yellow-300 fill-yellow-300" : "text-text-primary/20"}
               />
             ))}
           </div>
@@ -109,7 +109,7 @@ const LevelNode = memo(function LevelNode({
       )}
 
       {level.title && isInteractive && (
-        <span className="absolute -bottom-7 left-1/2 -translate-x-1/2 z-30 whitespace-nowrap text-[9px] font-bold text-white/90 bg-black/70 px-2 py-0.5 rounded-full backdrop-blur-md border border-white/10">
+        <span className="absolute -bottom-7 left-1/2 -translate-x-1/2 z-30 whitespace-nowrap text-[9px] font-bold text-text-primary/90 bg-surface-2 px-2 py-0.5 rounded-full backdrop-blur-md border border-white/10">
           {level.title}
         </span>
       )}
@@ -187,7 +187,7 @@ const LevelMap = memo(function LevelMap({ levels, onLevelClick, currentLevel, cl
       <div ref={containerRef} className={className}>
         <div className="grid gap-2" style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}>
           {levels.map((level) => (
-            <div key={level.level} className="aspect-square rounded-2xl bg-white/5" />
+            <div key={level.level} className="aspect-square rounded-2xl bg-white border-border shadow-card" />
           ))}
         </div>
       </div>
@@ -241,7 +241,7 @@ const LevelMap = memo(function LevelMap({ levels, onLevelClick, currentLevel, cl
         {Object.entries(STATUS_CONFIG).map(([status, config]) => {
           const Icon = config.icon;
           return (
-            <div key={status} className="flex items-center gap-1.5 text-white/50">
+            <div key={status} className="flex items-center gap-1.5 text-text-primary/50">
               <div
                 className="h-2.5 w-2.5 rounded-full"
                 style={{ background: candyGradient(config.color), boxShadow: `0 0 6px ${config.glow}` }}

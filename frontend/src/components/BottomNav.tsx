@@ -84,12 +84,12 @@ export default function BottomNav() {
   return (
     <>
       {moreOpen && (
-        <div className="fixed inset-0 z-40 flex flex-col justify-end bg-black/30" onClick={() => setMoreOpen(false)}>
+        <div className="fixed inset-0 z-40 flex flex-col justify-end bg-surface-2" onClick={() => setMoreOpen(false)}>
           <motion.div
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="rounded-t-3xl border-t border-gray-200 bg-white/95 p-4 pb-2 safe-area-bottom"
+            className="rounded-t-3xl border-t border-gray-200 bg-white border-border/95 p-4 pb-2 safe-area-bottom"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="mx-auto mb-3 h-1 w-10 rounded-full bg-gray-300" />

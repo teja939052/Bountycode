@@ -133,7 +133,7 @@ function LevelUpContent({ title, subtitle, xp, onClose, reduced }) {
         </motion.div>
 
         <motion.h1
-          className="text-5xl md:text-7xl font-black text-white pixel-font tracking-wider text-center"
+          className="text-5xl md:text-7xl font-black text-text-primary pixel-font tracking-wider text-center"
           style={{ textShadow: "0 0 40px rgba(99,102,241,0.6), 0 0 80px rgba(99,102,241,0.3)" }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -149,7 +149,7 @@ function LevelUpContent({ title, subtitle, xp, onClose, reduced }) {
           transition={{ delay: 0.8 }}
         >
           <span className="text-4xl">🏆</span>
-          <span className="text-3xl font-bold text-white">{subtitle || "New Level Reached!"}</span>
+          <span className="text-3xl font-bold text-text-primary">{subtitle || "New Level Reached!"}</span>
         </motion.div>
 
         {xp > 0 && (
@@ -199,7 +199,7 @@ function BadgeContent({ title, subtitle, reduced }) {
         </motion.div>
 
         <motion.h1
-          className="text-4xl md:text-5xl font-black text-white pixel-font text-center"
+          className="text-4xl md:text-5xl font-black text-text-primary pixel-font text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
@@ -251,7 +251,7 @@ function SolveContent({ title, subtitle, xp, reduced }) {
         </motion.div>
 
         <motion.h1
-          className="text-4xl md:text-5xl font-black text-white text-center"
+          className="text-4xl md:text-5xl font-black text-text-primary text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
@@ -270,7 +270,7 @@ function SolveContent({ title, subtitle, xp, reduced }) {
 
         {title && (
           <motion.p
-            className="text-lg text-white/70 text-center max-w-md"
+            className="text-lg text-text-primary/70 text-center max-w-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7 }}
@@ -341,7 +341,7 @@ function StreakContent({ title, subtitle, xp, reduced }) {
         </motion.div>
 
         <motion.h1
-          className="text-5xl md:text-7xl font-black text-white pixel-font text-center"
+          className="text-5xl md:text-7xl font-black text-text-primary pixel-font text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
@@ -411,7 +411,7 @@ function AchievementContent({ title, subtitle, xp, reduced }) {
         </motion.div>
 
         <motion.h1
-          className="text-4xl md:text-5xl font-black text-white text-center"
+          className="text-4xl md:text-5xl font-black text-text-primary text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
@@ -430,7 +430,7 @@ function AchievementContent({ title, subtitle, xp, reduced }) {
 
         {subtitle && (
           <motion.p
-            className="text-lg text-white/60 text-center max-w-md"
+            className="text-lg text-text-primary/60 text-center max-w-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7 }}
@@ -532,7 +532,7 @@ export default function CelebrationOverlay({
               </motion.div>
               {title && (
                 <motion.p
-                  className="text-center text-xl font-bold text-white mt-4 drop-shadow-lg"
+                  className="text-center text-xl font-bold text-text-primary mt-4 drop-shadow-lg"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
@@ -573,7 +573,7 @@ export default function CelebrationOverlay({
           />
 
           <motion.button
-            className="absolute top-6 right-6 z-50 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+            className="absolute top-6 right-6 z-50 w-10 h-10 rounded-full bg-white border-border/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-text-primary hover:bg-white border-border/20 transition-colors"
             onClick={handleClose}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -585,7 +585,7 @@ export default function CelebrationOverlay({
           </motion.button>
 
           <motion.p
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/30 text-sm pixel-font"
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 text-text-primary/30 text-sm pixel-font"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.5 }}

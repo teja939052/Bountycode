@@ -51,7 +51,7 @@ export default function PwaInstallPrompt() {
         <div className="flex items-start justify-between mb-2">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
-              <Download size={16} className="text-white" />
+              <Download size={16} className="text-text-primary" />
             </div>
             <p className="text-sm font-semibold text-text-primary">Install PlacementPro</p>
           </div>
@@ -64,7 +64,7 @@ export default function PwaInstallPrompt() {
         </p>
         <button
           onClick={handleInstall}
-          className="w-full py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold transition-colors"
+          className="w-full py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-text-primary text-sm font-semibold transition-colors"
         >
           Install App
         </button>

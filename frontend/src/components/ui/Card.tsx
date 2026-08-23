@@ -401,7 +401,7 @@ export function BattleCard({ opponent, onChallenge, status = 'ready' }) {
   return (
     <Card rarity="rare" compact hoverEffect onClick={status === 'ready' ? onChallenge : undefined}>
       <div className="flex items-center gap-4">
-        <div className="w-11 h-11 rounded-full bg-gradient-to-br from-cyber-blue to-cyber-purple flex items-center justify-center text-lg font-bold text-white shrink-0">
+        <div className="w-11 h-11 rounded-full bg-gradient-to-br from-cyber-blue to-cyber-purple flex items-center justify-center text-lg font-bold text-text-primary shrink-0">
           {(opponent.name || 'P')[0]}
         </div>
         <div className="flex-1 min-w-0">

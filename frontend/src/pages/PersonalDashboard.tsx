@@ -53,7 +53,7 @@ function getLevelTitle(level) {
   return LEVEL_TITLES[0];
 }
 
-const cardCls = "bg-white/90 border border-black/10 rounded-xl p-4 sm:p-5 shadow-sm";
+const cardCls = "bg-white border-border/90 border border-black/10 rounded-xl p-4 sm:p-5 shadow-sm";
 
 function humanize(str) {
   return (str || "")
@@ -340,7 +340,7 @@ export default function PersonalDashboard() {
       <div className="page-surface min-h-screen py-12 px-4">
         <div className="max-w-6xl mx-auto space-y-4">
           {Array.from({ length: 5 }).map((_, i) => (
-            <div key={i} className="h-32 bg-white/80 rounded-xl animate-pulse border border-black/5 shadow-sm" />
+            <div key={i} className="h-32 bg-white border-border/80 rounded-xl animate-pulse border border-black/5 shadow-sm" />
           ))}
         </div>
       </div>
@@ -365,7 +365,7 @@ export default function PersonalDashboard() {
             <span className={`ml-2 inline-block px-2 py-0.5 rounded-full text-[10px] font-medium capitalize ${
               planBadge === "pro" || planBadge === "lifetime"
                 ? "bg-amber-500/10 text-amber-400 border border-amber-500/20"
-                : "bg-black/5 text-brand-secondary border border-black/10"
+                : "bg-surface-2 text-brand-secondary border border-black/10"
             }`}>
               {planBadge}
             </span>
@@ -379,7 +379,7 @@ export default function PersonalDashboard() {
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djItSDJ2LTJoMzRtMC00SDJ2MmgzNHptMC00SDJ2MmgzNHptMC00SDJ2MmgzNHoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-30" />
           <div className="relative flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-center gap-3 sm:gap-4">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/20 rounded-2xl flex items-center justify-center shrink-0">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white border-border/20 rounded-2xl flex items-center justify-center shrink-0">
                 <span className="text-xl sm:text-2xl font-bold">{level}</span>
               </div>
               <div className="min-w-0 flex-1">
@@ -390,7 +390,7 @@ export default function PersonalDashboard() {
                 <div className="text-xs sm:text-sm text-text-primary/70 mt-0.5">
                   {xp.toLocaleString()} XP · {xpSpan > 0 ? `${xpSpan.toLocaleString()} XP to Level ${level + 1}` : "Max level"}
                 </div>
-                <div className="w-32 sm:w-48 h-1.5 bg-white/20 rounded-full mt-2 overflow-hidden">
+                <div className="w-32 sm:w-48 h-1.5 bg-white border-border/20 rounded-full mt-2 overflow-hidden">
                   <div className="h-full bg-white rounded-full transition-all duration-500" style={{ width: `${xpPct}%` }} />
                 </div>
               </div>
@@ -518,7 +518,7 @@ export default function PersonalDashboard() {
                 {planFocus.length > 0 && (
                   <div className="flex flex-wrap gap-2 mb-3">
                     {planFocus.map((f, i) => (
-                      <span key={i} className="px-2.5 py-1 rounded-full text-[10px] bg-black/5 border border-black/10 text-brand-secondary" style={{ color: f.color }}>
+                      <span key={i} className="px-2.5 py-1 rounded-full text-[10px] bg-surface-2 border border-black/10 text-brand-secondary" style={{ color: f.color }}>
                         {f.emoji} {f.name} · {f.score}/10 · {f.mastery_label}
                       </span>
                     ))}
@@ -526,7 +526,7 @@ export default function PersonalDashboard() {
                 )}
                 <div className="space-y-2">
                   {planTasks.slice(0, 4).map((t, i) => (
-                    <div key={t.id || i} className="flex items-center gap-3 p-2.5 rounded-lg bg-black/5 border border-black/5">
+                    <div key={t.id || i} className="flex items-center gap-3 p-2.5 rounded-lg bg-surface-2 border border-black/5">
                       <span className="text-lg shrink-0">{t.emoji || "📘"}</span>
                       <div className="flex-1 min-w-0">
                         <div className="text-xs font-medium text-text-primary truncate">{t.title}</div>
@@ -549,7 +549,7 @@ export default function PersonalDashboard() {
                 <SectionHeader icon={<Sparkles size={14} />} title="Recommendations" subtitle="Personalized based on your recent performance" />
                 <div className="space-y-2">
                   {pdRecs.map((r, i) => (
-                    <Link key={i} to={mapAction(r.action)} className="flex items-start gap-3 p-2.5 rounded-lg hover:bg-black/5 transition-colors group">
+                    <Link key={i} to={mapAction(r.action)} className="flex items-start gap-3 p-2.5 rounded-lg hover:bg-surface-2 transition-colors group">
                       <span className={`mt-0.5 w-1.5 h-1.5 rounded-full shrink-0 ${
                         r.priority === "high" ? "bg-red-500" : r.priority === "medium" ? "bg-yellow-500" : "bg-green-500"
                       }`} />
@@ -581,7 +581,7 @@ export default function PersonalDashboard() {
                 <SectionHeader icon={<Activity size={14} />} title="Recent Activity" subtitle="Your latest solved problems" />
                 <div className="space-y-2">
                   {pdActivity.slice(0, 5).map((a, i) => (
-                    <div key={i} className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-black/5 transition-colors">
+                    <div key={i} className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-surface-2 transition-colors">
                       <span className={`shrink-0 ${a.is_correct ? "text-green-400" : "text-red-400"}`}>
                         {a.is_correct ? <CheckCircle size={14} /> : <FileText size={14} />}
                       </span>
@@ -856,7 +856,7 @@ export default function PersonalDashboard() {
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: i * 0.03 }}
                       className={`relative p-3 rounded-xl border text-center cursor-default group ${
-                        isEarned ? "bg-white border-black/10" : "bg-black/5 border-black/5 opacity-50"
+                        isEarned ? "bg-white border-black/10" : "bg-surface-2 border-black/5 opacity-50"
                       }`}
                     >
                       <div className="text-2xl mb-1">{badge.icon}</div>
@@ -877,7 +877,7 @@ export default function PersonalDashboard() {
               {leaderboard.slice(0, 5).map((entry, i) => {
                 const isMe = entry.user_id === user?.id;
                 return (
-                  <div key={i} className={`flex items-center gap-3 p-2.5 rounded-lg ${isMe ? "bg-cyber-blue/10 border border-cyber-blue/20" : "hover:bg-black/5"}`}>
+                  <div key={i} className={`flex items-center gap-3 p-2.5 rounded-lg ${isMe ? "bg-cyber-blue/10 border border-cyber-blue/20" : "hover:bg-surface-2"}`}>
                     <div className={`w-6 text-center text-xs font-bold ${i === 0 ? "text-yellow-400" : i === 1 ? "text-gray-400" : i === 2 ? "text-amber-500" : "text-gray-500"}`}>
                       {i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : `#${i + 1}`}
                     </div>
@@ -914,7 +914,7 @@ export default function PersonalDashboard() {
               { to: "/learn", label: "Learning Hub", icon: <BookOpen size={18} />, color: "from-pink-500 to-rose-500" },
             ].map((link, i) => (
               <Link key={i} to={link.to}
-                className="group p-4 bg-white/90 border border-black/10 rounded-xl hover:border-black/15 hover:bg-black/5 transition-all shadow-sm"
+                className="group p-4 bg-white border-border/90 border border-black/10 rounded-xl hover:border-black/15 hover:bg-surface-2 transition-all shadow-sm"
               >
                 <div className={`inline-flex p-2 rounded-lg bg-gradient-to-br ${link.color} text-text-primary mb-2 group-hover:scale-110 transition-transform`}>
                   {link.icon}

@@ -116,7 +116,7 @@ export default function StudentDashboard() {
           <p className="text-sm text-text-muted mb-4">{error}</p>
           <button
             onClick={() => window.location.reload()}
-            className="px-6 py-2 rounded-[10px] bg-primary text-white text-sm font-medium hover:bg-primary-dark transition-colors"
+            className="px-6 py-2 rounded-[10px] bg-primary text-text-primary text-sm font-medium hover:bg-primary-dark transition-colors"
           >
             <RotateCw size={14} className="inline mr-2" />
             Retry

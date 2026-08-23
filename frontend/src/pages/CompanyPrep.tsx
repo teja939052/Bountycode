@@ -93,7 +93,7 @@ export default function CompanyPrep() {
                     <Card rarity={i < 3 ? 'rare' : 'common'} hoverEffect onClick={() => loadGuide(company.id)}>
                       <div className="text-center">
                         <div className="text-3xl mb-2">{COMPANY_ICONS[company.id] || '🏢'}</div>
-                        <h3 className="font-display font-bold text-sm text-white mb-2">{company.name}</h3>
+                        <h3 className="font-display font-bold text-sm text-text-primary mb-2">{company.name}</h3>
                         <div className="flex flex-wrap gap-1 justify-center mb-2">
                           {(company.focus_areas || []).slice(0, 3).map((area, j) => (
                             <span key={j} className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-gray-800 text-gray-400">{area}</span>
@@ -228,7 +228,7 @@ export default function CompanyPrep() {
             ) : activeTab === 'behavioral' && behavioral ? (
               <Card rarity="epic" hoverEffect={false}>
                 <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-purple-500/15 text-purple-400 mb-3 inline-block">{behavioral.category}</span>
-                <h3 className="text-lg font-display font-bold text-white mb-4">{behavioral.question}</h3>
+                <h3 className="text-lg font-display font-bold text-text-primary mb-4">{behavioral.question}</h3>
 
                 <div className="bg-gray-800/50 rounded-lg p-3 mb-4 border border-gray-700/30">
                   <p className="text-[10px] font-mono font-bold text-gray-400 uppercase tracking-wider mb-1">What the interviewer looks for</p>

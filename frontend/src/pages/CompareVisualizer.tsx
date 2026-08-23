@@ -72,12 +72,12 @@ function ComparisonCard({ comparison, index, onClick }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.08, duration: 0.4 }}
       onClick={() => onClick(comparison)}
-      className="group relative overflow-hidden rounded-2xl border border-black/10 bg-white/90 p-5 text-left transition-all duration-300 hover:border-indigo-500/40 hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.12)] shadow-sm card-rpg"
+      className="group relative overflow-hidden rounded-2xl border border-black/10 bg-white border-border/90 p-5 text-left transition-all duration-300 hover:border-indigo-500/40 hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.12)] shadow-sm card-rpg"
     >
       <div className={`absolute inset-0 bg-gradient-to-br ${grad} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
       <div className="relative z-10 flex flex-col gap-3">
         <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-xl bg-black/5 border border-black/5 text-indigo-500 group-hover:scale-110 transition-transform duration-300">
+          <div className="p-2.5 rounded-xl bg-surface-2 border border-black/5 text-indigo-500 group-hover:scale-110 transition-transform duration-300">
             <Icon className="w-5 h-5" />
           </div>
           <div className="flex-1 min-w-0">
@@ -95,7 +95,7 @@ function ComparisonCard({ comparison, index, onClick }) {
 
 function StatsRow({ label, value1, value2, color1 = "text-cyan-400", color2 = "text-purple-400" }) {
   return (
-    <div className="flex items-center justify-between py-2 px-3 rounded-lg bg-black/5 border border-black/10">
+    <div className="flex items-center justify-between py-2 px-3 rounded-lg bg-surface-2 border border-black/10">
       <span className="text-xs text-brand-secondary font-mono w-20 shrink-0">{label}</span>
       <div className="flex items-center gap-4 flex-1 justify-center">
         <span className={`text-xs font-mono font-bold ${color1}`}>{value1}</span>
@@ -259,7 +259,7 @@ export default function CompareVisualizer() {
           {loading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="h-32 rounded-2xl bg-white/75 border border-black/5 shadow-sm animate-pulse" />
+                <div key={i} className="h-32 rounded-2xl bg-white border-border/75 border border-black/5 shadow-sm animate-pulse" />
               ))}
             </div>
           ) : (
@@ -279,7 +279,7 @@ export default function CompareVisualizer() {
             {/* Back + Title Bar */}
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div className="flex items-center gap-3">
-                <button onClick={handleBack} className="p-2 rounded-xl bg-white border border-black/10 hover:bg-black/5 text-text-primary transition-colors shadow-sm">
+                <button onClick={handleBack} className="p-2 rounded-xl bg-white border border-black/10 hover:bg-surface-2 text-text-primary transition-colors shadow-sm">
                   <ArrowLeft className="w-4 h-4" />
                 </button>
                 <div>
@@ -292,7 +292,7 @@ export default function CompareVisualizer() {
             {detailLoading ? (
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {[1, 2].map(i => (
-                  <div key={i} className="h-64 rounded-2xl bg-white/75 border border-black/5 shadow-sm animate-pulse" />
+                  <div key={i} className="h-64 rounded-2xl bg-white border-border/75 border border-black/5 shadow-sm animate-pulse" />
                 ))}
               </div>
             ) : detail ? (
@@ -301,7 +301,7 @@ export default function CompareVisualizer() {
                 <motion.div
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="relative overflow-hidden rounded-2xl border border-black/10 bg-white/90 p-5 shadow-sm card-rpg"
+                  className="relative overflow-hidden rounded-2xl border border-black/10 bg-white border-border/90 p-5 shadow-sm card-rpg"
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/8 via-purple-500/5 to-transparent pointer-events-none" />
                   <div className="relative z-10 flex flex-col gap-4">
@@ -332,13 +332,13 @@ export default function CompareVisualizer() {
                 <motion.div
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="flex flex-wrap items-center justify-between gap-3 p-3 rounded-xl bg-white/90 border border-black/10 shadow-sm"
+                  className="flex flex-wrap items-center justify-between gap-3 p-3 rounded-xl bg-white border-border/90 border border-black/10 shadow-sm"
                 >
                   <div className="flex items-center gap-2">
-                    <button onClick={handleResetAll} className="p-2 rounded-lg bg-white border border-black/10 hover:bg-black/5 text-text-primary transition-colors" title="Reset All">
+                    <button onClick={handleResetAll} className="p-2 rounded-lg bg-white border border-black/10 hover:bg-surface-2 text-text-primary transition-colors" title="Reset All">
                       <RotateCcw className="w-4 h-4" />
                     </button>
-                    <button onClick={handlePlayAll} className="px-4 py-2 rounded-xl font-medium text-xs flex items-center gap-2 transition-all bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/25">
+                    <button onClick={handlePlayAll} className="px-4 py-2 rounded-xl font-medium text-xs flex items-center gap-2 transition-all bg-indigo-600 hover:bg-indigo-500 text-text-primary shadow-lg shadow-indigo-600/25">
                       <Play className="w-3.5 h-3.5 fill-current" /> Play Both
                     </button>
                   </div>
@@ -347,7 +347,7 @@ export default function CompareVisualizer() {
                     <div className="flex items-center gap-1 bg-white border border-black/10 rounded-lg p-0.5 shadow-sm">
                       {speedOptions.map(spd => (
                         <button key={spd} onClick={() => handleSpeedChange(spd)}
-                          className="px-2.5 py-1 rounded-md text-[11px] font-mono text-brand-secondary hover:text-text-primary hover:bg-black/5 transition-colors">
+                          className="px-2.5 py-1 rounded-md text-[11px] font-mono text-brand-secondary hover:text-text-primary hover:bg-surface-2 transition-colors">
                           {spd}x
                         </button>
                       ))}
@@ -367,7 +367,7 @@ export default function CompareVisualizer() {
                     {algo1Trace ? (
                       <AlgorithmVisualizer traceData={algo1Trace} code={algo1Trace.code} language={algo1Trace.language} />
                     ) : (
-                      <div className="h-40 rounded-2xl bg-white/80 border border-black/5 flex items-center justify-center text-brand-muted text-xs shadow-sm">
+                      <div className="h-40 rounded-2xl bg-white border-border/80 border border-black/5 flex items-center justify-center text-brand-muted text-xs shadow-sm">
                         No trace data available
                       </div>
                     )}
@@ -383,7 +383,7 @@ export default function CompareVisualizer() {
                     {algo2Trace ? (
                       <AlgorithmVisualizer traceData={algo2Trace} code={algo2Trace.code} language={algo2Trace.language} />
                     ) : (
-                      <div className="h-40 rounded-2xl bg-white/80 border border-black/5 flex items-center justify-center text-brand-muted text-xs shadow-sm">
+                      <div className="h-40 rounded-2xl bg-white border-border/80 border border-black/5 flex items-center justify-center text-brand-muted text-xs shadow-sm">
                         No trace data available
                       </div>
                     )}

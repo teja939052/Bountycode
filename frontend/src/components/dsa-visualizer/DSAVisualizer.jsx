@@ -287,7 +287,7 @@ export default function DSAVisualizer() {
                 <button
                   onClick={togglePlay}
                   className={`px-4 py-2 rounded text-sm font-medium transition-colors ${
-                    isPlaying ? "bg-red-500 text-white" : "bg-blue-500 text-white"
+                    isPlaying ? "bg-red-500 text-text-primary" : "bg-blue-500 text-text-primary"
                   }`}
                 >
                   {isPlaying ? "Pause" : "Play Auto"}
@@ -337,19 +337,19 @@ export default function DSAVisualizer() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <button
               onClick={() => setArrayValues([...arrayData.reverse])}
-              className="flex-1 py-2 rounded bg-blue-500 text-white text-sm hover:bg-blue-600 transition-colors"
+              className="flex-1 py-2 rounded bg-blue-500 text-text-primary text-sm hover:bg-blue-600 transition-colors"
             >
               Reverse
             </button>
             <button
               onClick={() => setArrayValues([...arrayData.random])}
-              className="flex-1 py-2 rounded bg-green-500 text-white text-sm hover:bg-green-600 transition-colors"
+              className="flex-1 py-2 rounded bg-green-500 text-text-primary text-sm hover:bg-green-600 transition-colors"
             >
               Random
             </button>
             <button
               onClick={() => setArrayValues([...arrayData.sorted])}
-              className="flex-1 py-2 rounded bg-purple-500 text-white text-sm hover:bg-purple-600 transition-colors"
+              className="flex-1 py-2 rounded bg-purple-500 text-text-primary text-sm hover:bg-purple-600 transition-colors"
             >
               Sorted
             </button>

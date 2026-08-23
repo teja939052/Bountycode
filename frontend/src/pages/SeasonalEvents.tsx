@@ -85,7 +85,7 @@ export default function SeasonalEvents() {
 
       {activeTab === "current" && currentSeason && (
         <div className="space-y-6">
-          <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-6 text-white">
+          <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-6 text-text-primary">
             <div className="text-4xl mb-2">{currentSeason.season?.emoji}</div>
             <h2 className="text-2xl font-bold mb-2">{currentSeason.season?.name}</h2>
             <p className="text-indigo-100 mb-4">{currentSeason.season?.description}</p>
@@ -118,7 +118,7 @@ export default function SeasonalEvents() {
                       ) : (
                         <button
                           onClick={() => handleCompleteQuest(quest.id)}
-                          className="px-3 py-1 bg-indigo-600 text-white rounded-lg text-xs font-medium hover:bg-indigo-700"
+                          className="px-3 py-1 bg-indigo-600 text-text-primary rounded-lg text-xs font-medium hover:bg-indigo-700"
                         >
                           Complete
                         </button>

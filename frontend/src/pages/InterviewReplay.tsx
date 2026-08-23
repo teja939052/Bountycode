@@ -104,7 +104,7 @@ export default function InterviewReplay({ interviewId }: any = {}) {
             <button
               onClick={handlePlay}
               disabled={!replay?.trace?.length}
-              className="rounded-lg bg-indigo-600 px-3 py-1 text-sm font-medium text-white hover:bg-indigo-500 disabled:opacity-50"
+              className="rounded-lg bg-indigo-600 px-3 py-1 text-sm font-medium text-text-primary hover:bg-indigo-500 disabled:opacity-50"
             >
               <Play className="h-4 w-4 inline mr-1" />
               Play
@@ -187,7 +187,7 @@ export default function InterviewReplay({ interviewId }: any = {}) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-surface-2 backdrop-blur-sm"
             onClick={() => setShowStats(false)}
           >
             <motion.div
@@ -201,7 +201,7 @@ export default function InterviewReplay({ interviewId }: any = {}) {
               <div className="space-y-3">
                 <div className="flex justify-between">
                   <span className="text-slate-400">Submissions</span>
-                  <span className="font-bold text-white">{stats.total_submissions}</span>
+                  <span className="font-bold text-text-primary">{stats.total_submissions}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-slate-400">Compile Errors</span>
@@ -224,7 +224,7 @@ export default function InterviewReplay({ interviewId }: any = {}) {
               </div>
               <button
                 onClick={() => setShowStats(false)}
-                className="mt-6 w-full rounded-lg bg-indigo-600 py-2 font-semibold text-white hover:bg-indigo-500"
+                className="mt-6 w-full rounded-lg bg-indigo-600 py-2 font-semibold text-text-primary hover:bg-indigo-500"
               >
                 Close
               </button>

@@ -75,7 +75,7 @@ export default function StudyGroups() {
               className="mb-6 overflow-hidden"
             >
               <Card rarity="rare" hoverEffect={false}>
-                <h3 className="font-display font-bold text-sm uppercase tracking-wider text-white mb-4">
+                <h3 className="font-display font-bold text-sm uppercase tracking-wider text-text-primary mb-4">
                   Create a Study Group
                 </h3>
                 <form onSubmit={handleCreate} className="space-y-3">
@@ -152,7 +152,7 @@ export default function StudyGroups() {
                       {group.is_private ? '🔒' : '🌐'}
                     </div>
                     <div className="min-w-0">
-                      <h3 className="font-semibold text-sm text-white truncate">{group.name}</h3>
+                      <h3 className="font-semibold text-sm text-text-primary truncate">{group.name}</h3>
                       <p className="text-[10px] font-mono text-gray-500">
                         {group.members?.length || 0} members
                       </p>

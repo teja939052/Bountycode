@@ -187,7 +187,7 @@ export default function StudyTimer() {
               value={custom}
               onChange={(e) => setCustom(Math.max(1, Math.min(480, Number(e.target.value))))}
               disabled={isRunning}
-              className="w-20 rounded-xl border border-black/5 bg-white/5 px-2 py-1 text-sm font-mono"
+              className="w-20 rounded-xl border border-black/5 bg-white border-border shadow-card px-2 py-1 text-sm font-mono"
             />
           </div>
         )}
@@ -202,7 +202,7 @@ export default function StudyTimer() {
             {!activeSession ? (
               <button
                 onClick={startSession}
-                className="px-8 py-3 rounded-xl bg-brand-sky text-white font-bold flex items-center gap-2 hover:bg-brand-sky/90 transition"
+                className="px-8 py-3 rounded-xl bg-brand-sky text-text-primary font-bold flex items-center gap-2 hover:bg-brand-sky/90 transition"
               >
                 <Play size={18} /> Start Session
               </button>
@@ -217,7 +217,7 @@ export default function StudyTimer() {
                 </button>
                 <button
                   onClick={reset}
-                  className="px-6 py-3 rounded-xl border border-black/5 text-text-secondary font-bold flex items-center gap-2 hover:bg-black/5 transition"
+                  className="px-6 py-3 rounded-xl border border-black/5 text-text-secondary font-bold flex items-center gap-2 hover:bg-surface-2 transition"
                 >
                   <RotateCcw size={18} /> Reset
                 </button>
@@ -248,7 +248,7 @@ function Stat({ icon, label, value, color }: { icon: any; label: string; value: 
   return (
     <div className="bg-gray-900/40 border border-gray-700/20 rounded-xl p-3 text-center">
       <div className={`flex items-center justify-center gap-1 mb-1 ${color}`}>{icon}</div>
-      <div className="text-xl font-display font-bold text-white">{value}</div>
+      <div className="text-xl font-display font-bold text-text-primary">{value}</div>
       <div className="text-[9px] font-mono text-gray-500">{label}</div>
     </div>
   );

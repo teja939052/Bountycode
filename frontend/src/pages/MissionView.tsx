@@ -170,8 +170,8 @@ export default function MissionView() {
   if (loading) {
     return (
       <div className="min-h-screen bg-black px-4 py-8 max-w-4xl mx-auto">
-        <Skeleton className="h-10 w-64 mb-3 bg-white/5" />
-        <Skeleton className="h-60 w-full rounded-2xl bg-white/5" />
+        <Skeleton className="h-10 w-64 mb-3 bg-white border-border shadow-card" />
+        <Skeleton className="h-60 w-full rounded-2xl bg-white border-border shadow-card" />
       </div>
     );
   }
@@ -181,9 +181,9 @@ export default function MissionView() {
       <div className="min-h-screen bg-black flex items-center justify-center px-4">
         <div className="text-center max-w-md">
           <p className="text-6xl mb-4">🔮</p>
-          <h2 className="text-2xl font-display font-black text-white mb-2">Mission Not Found</h2>
+          <h2 className="text-2xl font-display font-black text-text-primary mb-2">Mission Not Found</h2>
           <p className="text-gray-400 text-sm mb-4">This mission hasn't been unlocked yet.</p>
-          <button onClick={() => navigate("/journey")} className="px-4 py-2 rounded-xl bg-white/10 text-white text-sm border border-white/10 hover:bg-white/15 transition-all">
+          <button onClick={() => navigate("/journey")} className="px-4 py-2 rounded-xl bg-white border-border/10 text-text-primary text-sm border border-white/10 hover:bg-white border-border/15 transition-all">
             Back to Career RPG
           </button>
         </div>
@@ -219,7 +219,7 @@ export default function MissionView() {
           return (
             <button key={l.key} onClick={() => i <= layer && setLayer(i)}
               className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-[10px] font-mono transition-all ${
-                i === layer ? "text-white border border-white/15 bg-white/10" :
+                i === layer ? "text-text-primary border border-white/15 bg-white border-border/10" :
                 i < layer ? "text-green-400 border border-green-500/20 bg-green-500/5" :
                 "text-gray-600 border border-white/5 bg-transparent"
               }`}>
@@ -242,7 +242,7 @@ export default function MissionView() {
                   <BookOpen className="w-6 h-6 text-blue-400" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-display font-black text-white">{mission.layers.story.title}</h2>
+                  <h2 className="text-xl font-display font-black text-text-primary">{mission.layers.story.title}</h2>
                   <p className="text-xs text-gray-400">Mission Briefing</p>
                 </div>
               </div>
@@ -265,7 +265,7 @@ export default function MissionView() {
                   <Lightbulb className="w-6 h-6 text-purple-400" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-display font-black text-white">{mission.layers.concept.title}</h2>
+                  <h2 className="text-xl font-display font-black text-text-primary">{mission.layers.concept.title}</h2>
                   <p className="text-xs text-gray-400">Core Concept</p>
                 </div>
               </div>
@@ -273,14 +273,14 @@ export default function MissionView() {
                 {mission.layers.concept.explanation}
               </div>
               {mission.layers.concept.visualization && (
-                <div className="rounded-xl border border-purple-500/20 bg-black/40 p-4 mb-6 font-mono text-xs text-purple-300 whitespace-pre">
+                <div className="rounded-xl border border-purple-500/20 bg-surface-2 border-border p-4 mb-6 font-mono text-xs text-purple-300 whitespace-pre">
                   {mission.layers.concept.visualization}
                 </div>
               )}
               {mission.layers.concept.examples.map((ex, i) => (
-                <div key={i} className="rounded-xl border border-white/10 bg-white/5 p-4 mb-3">
+                <div key={i} className="rounded-xl border border-white/10 bg-white border-border shadow-card p-4 mb-3">
                   <code className="text-xs text-green-400 font-mono block mb-2">{ex.code}</code>
-                  <p className="text-[10px] font-mono text-gray-500">Output: <span className="text-white">{ex.output}</span></p>
+                  <p className="text-[10px] font-mono text-gray-500">Output: <span className="text-text-primary">{ex.output}</span></p>
                   <p className="text-[10px] text-gray-400 mt-1">{ex.explanation}</p>
                 </div>
               ))}
@@ -299,7 +299,7 @@ export default function MissionView() {
                     {(() => { const I = INTERACTION_ICONS[currentChallenge.type] || Target; return <I className="w-5 h-5" style={{ color: INTERACTION_COLORS[currentChallenge.type] }} />; })()}
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold text-white">{currentChallenge.prompt}</h3>
+                    <h3 className="text-sm font-bold text-text-primary">{currentChallenge.prompt}</h3>
                     <p className="text-[10px] font-mono" style={{ color: INTERACTION_COLORS[currentChallenge.type] }}>{currentChallenge.type.replace("_", " ")}</p>
                   </div>
                 </div>
@@ -307,7 +307,7 @@ export default function MissionView() {
               </div>
 
               {currentChallenge.code && (
-                <div className="rounded-xl border border-white/10 bg-black/40 p-4 mb-4 font-mono text-xs text-green-400 whitespace-pre">{currentChallenge.code}</div>
+                <div className="rounded-xl border border-white/10 bg-surface-2 border-border p-4 mb-4 font-mono text-xs text-green-400 whitespace-pre">{currentChallenge.code}</div>
               )}
 
               {!showResult ? (
@@ -315,7 +315,7 @@ export default function MissionView() {
                   <input value={userAnswer} onChange={(e) => setUserAnswer(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && userAnswer.trim() && submitInteract(userAnswer.trim().toLowerCase() === currentChallenge.answer.toLowerCase())}
                     placeholder="Your answer..."
-                    className="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-sm text-white placeholder-gray-600 font-mono focus:outline-none focus:border-white/25 transition-all mb-4" />
+                    className="w-full bg-surface-2 border-border border border-white/10 rounded-xl p-3 text-sm text-text-primary placeholder-gray-600 font-mono focus:outline-none focus:border-white/25 transition-all mb-4" />
 
                   <div className="flex gap-3">
                     <button onClick={() => userAnswer.trim() && submitInteract(userAnswer.trim().toLowerCase() === currentChallenge.answer.toLowerCase())}
@@ -324,7 +324,7 @@ export default function MissionView() {
                       Submit
                     </button>
                     <button onClick={requestHint} disabled={hintLevel >= 3}
-                      className="px-4 py-2.5 rounded-xl bg-white/5 text-gray-400 text-sm border border-white/5 hover:text-white transition-all disabled:opacity-30">
+                      className="px-4 py-2.5 rounded-xl bg-white border-border shadow-card text-gray-400 text-sm border border-white/5 hover:text-white transition-all disabled:opacity-30">
                       <Lightbulb className="w-4 h-4" /> {hintLevel > 0 && <span className="text-[10px] ml-1">{hintLevel}/3</span>}
                     </button>
                   </div>
@@ -343,7 +343,7 @@ export default function MissionView() {
                   </div>
                   <p className="text-xs text-gray-400 mb-4">{currentChallenge.explanation}</p>
                   <button onClick={nextInteract}
-                    className="w-full py-2.5 rounded-xl bg-white/10 text-white text-sm font-medium border border-white/10 hover:bg-white/15 transition-all flex items-center justify-center gap-2">
+                    className="w-full py-2.5 rounded-xl bg-white border-border/10 text-text-primary text-sm font-medium border border-white/10 hover:bg-white border-border/15 transition-all flex items-center justify-center gap-2">
                     {interactIdx < mission.layers.interact.challenges.length - 1 ? "Next Challenge" : "Start Coding"}
                     <ArrowRight className="w-4 h-4" />
                   </button>
@@ -360,7 +360,7 @@ export default function MissionView() {
                   <Code2 className="w-6 h-6 text-green-400" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-display font-black text-white">Code Challenge</h2>
+                  <h2 className="text-xl font-display font-black text-text-primary">Code Challenge</h2>
                   <p className="text-xs text-gray-400">Write real code · {Math.floor(timer / 60)}:{String(timer % 60).padStart(2, "0")}</p>
                 </div>
               </div>
@@ -397,11 +397,11 @@ export default function MissionView() {
               </div>
 
               {mission.layers.code.tests.length > 0 && (
-                <div className="rounded-xl border border-white/10 bg-white/5 p-3 mb-4">
+                <div className="rounded-xl border border-white/10 bg-white border-border shadow-card p-3 mb-4">
                   <p className="text-[10px] font-mono text-gray-500 mb-1">TEST CASES</p>
                   {mission.layers.code.tests.map((t, i) => (
                     <div key={i} className="text-[11px] font-mono text-gray-400">
-                      Input: <span className="text-white">{t.input || "(none)"}</span> → Expected: <span className="text-green-400">{t.expected}</span>
+                      Input: <span className="text-text-primary">{t.input || "(none)"}</span> → Expected: <span className="text-green-400">{t.expected}</span>
                     </div>
                   ))}
                 </div>
@@ -413,7 +413,7 @@ export default function MissionView() {
                   Take Mastery Trial <Trophy className="w-4 h-4" />
                 </button>
                 <button onClick={requestHint} disabled={hintLevel >= 3}
-                  className="px-4 py-2.5 rounded-xl bg-white/5 text-gray-400 text-sm border border-white/5 hover:text-white transition-all">
+                  className="px-4 py-2.5 rounded-xl bg-white border-border shadow-card text-gray-400 text-sm border border-white/5 hover:text-white transition-all">
                   <Lightbulb className="w-4 h-4" />
                 </button>
               </div>
@@ -427,7 +427,7 @@ export default function MissionView() {
                 <div className="flex items-center gap-3">
                   <div className="text-3xl">⚔️</div>
                   <div>
-                    <h3 className="text-sm font-bold text-white">{mission.layers.mastery.boss_name}</h3>
+                    <h3 className="text-sm font-bold text-text-primary">{mission.layers.mastery.boss_name}</h3>
                     <p className="text-[10px] font-mono text-gray-500">Mastery Trial · {masteryIdx + 1}/{mission.layers.mastery.challenges.length}</p>
                   </div>
                 </div>
@@ -439,7 +439,7 @@ export default function MissionView() {
                   const r = masteryResults[i];
                   return (
                     <div key={i} className={`h-1.5 flex-1 rounded-full transition-all ${
-                      r ? (r.correct ? "bg-green-500" : "bg-red-500") : (i === masteryIdx ? "bg-white" : "bg-white/10")
+                      r ? (r.correct ? "bg-green-500" : "bg-red-500") : (i === masteryIdx ? "bg-white" : "bg-white border-border/10")
                     }`} />
                   );
                 })}
@@ -447,16 +447,16 @@ export default function MissionView() {
 
               <AnimatePresence mode="wait">
                 <motion.div key={masteryIdx} initial={{ opacity: 0, x: 15 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -15 }}>
-                  <p className="text-sm text-white mb-3">{currentBoss.prompt}</p>
+                  <p className="text-sm text-text-primary mb-3">{currentBoss.prompt}</p>
                   {currentBoss.code && (
-                    <div className="rounded-xl border border-white/10 bg-black/40 p-3 mb-4 font-mono text-xs text-green-400 whitespace-pre">{currentBoss.code}</div>
+                    <div className="rounded-xl border border-white/10 bg-surface-2 border-border p-3 mb-4 font-mono text-xs text-green-400 whitespace-pre">{currentBoss.code}</div>
                   )}
                   {!showResult ? (
                     <>
                       <input value={userAnswer} onChange={(e) => setUserAnswer(e.target.value)}
                         onKeyDown={(e) => e.key === "Enter" && userAnswer.trim() && submitBoss(userAnswer.trim().toLowerCase().includes(currentBoss.answer.toLowerCase()))}
                         placeholder="Your answer..."
-                        className="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-sm text-white placeholder-gray-600 font-mono focus:outline-none focus:border-white/25 transition-all mb-3" />
+                        className="w-full bg-surface-2 border-border border border-white/10 rounded-xl p-3 text-sm text-text-primary placeholder-gray-600 font-mono focus:outline-none focus:border-white/25 transition-all mb-3" />
                       <button onClick={() => userAnswer.trim() && submitBoss(userAnswer.trim().toLowerCase().includes(currentBoss.answer.toLowerCase()))}
                         disabled={!userAnswer.trim()}
                         className="w-full py-2.5 rounded-xl bg-red-500/20 text-red-400 text-sm font-medium border border-red-500/30 hover:bg-red-500/30 transition-all disabled:opacity-30">
@@ -469,7 +469,7 @@ export default function MissionView() {
                         {resultCorrect ? "Hit!" : `Answer: ${currentBoss.answer}`}
                       </div>
                       <button onClick={nextBoss}
-                        className="w-full py-2.5 rounded-xl bg-white/10 text-white text-sm font-medium border border-white/10 hover:bg-white/15 transition-all">
+                        className="w-full py-2.5 rounded-xl bg-white border-border/10 text-text-primary text-sm font-medium border border-white/10 hover:bg-white border-border/15 transition-all">
                         {masteryIdx < mission.layers.mastery.challenges.length - 1 ? "Next Challenge" : "View Results"}
                       </button>
                     </motion.div>

@@ -80,7 +80,7 @@ export default function InterviewSelect() {
              <div key={s} className="flex items-center gap-2">
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-display font-bold ${
                   step === s ? "bg-nature-blossom text-nature-ink" :
-                  ["company", "type", "start"].indexOf(step) > i ? "bg-nature-moss text-white" :
+                  ["company", "type", "start"].indexOf(step) > i ? "bg-nature-moss text-text-primary" :
                   "bg-nature-stone border border-nature-leaf/30 text-text-muted"
                 }`}>
                   {["company", "type", "start"].indexOf(step) > i ? "✓" : i + 1}
@@ -118,7 +118,7 @@ export default function InterviewSelect() {
                    whileHover={reduced ? {} : { scale: 1.02 }}
                    whileTap={reduced ? {} : { scale: 0.98 }}
                  >
-                   <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${company.color} flex items-center justify-center text-white font-bold text-sm mb-3`}>
+                   <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${company.color} flex items-center justify-center text-text-primary font-bold text-sm mb-3`}>
                      {company.icon}
                    </div>
                    <p className="font-display font-bold text-text-primary">{company.name}</p>

@@ -79,7 +79,7 @@ export default function StreakRepairModal({ open, onClose }: StreakRepairModalPr
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-surface-2 border-border backdrop-blur-sm p-4"
           onClick={onClose}
         >
           <motion.div
@@ -92,7 +92,7 @@ export default function StreakRepairModal({ open, onClose }: StreakRepairModalPr
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center gap-3">
                 <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-orange-400 to-red-600 flex items-center justify-center shadow-md">
-                  <Flame size={22} className="text-white" />
+                  <Flame size={22} className="text-text-primary" />
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-text-primary leading-tight">Streak Repair</h3>
@@ -147,7 +147,7 @@ export default function StreakRepairModal({ open, onClose }: StreakRepairModalPr
             <button
               onClick={handleBuy}
               disabled={buying}
-              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-gradient-to-r from-orange-500 to-red-600 text-white font-bold text-sm disabled:opacity-50 shadow-md"
+              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-gradient-to-r from-orange-500 to-red-600 text-text-primary font-bold text-sm disabled:opacity-50 shadow-md"
             >
               {buying ? (
                 <span className="flex items-center gap-2">

@@ -469,7 +469,7 @@ export default function Chat() {
           </div>
           <div className="flex items-center gap-3">
             {totalUnread > 0 && (
-              <span className="rounded-full bg-red-600 px-2 py-0.5 text-xs font-bold text-white">
+              <span className="rounded-full bg-red-600 px-2 py-0.5 text-xs font-bold text-text-primary">
                 {totalUnread} unread
               </span>
             )}
@@ -522,17 +522,17 @@ export default function Chat() {
               <button onClick={() => setShowRoomInfo(false)} className="text-text-muted hover:text-text-secondary text-sm">✕</button>
             </div>
             <div className="flex gap-3 mb-3">
-              <button onClick={handleLoadRoomStats} className="px-3 py-1.5 bg-nature-leaf text-white rounded-lg text-xs font-medium hover:bg-nature-moss">
+              <button onClick={handleLoadRoomStats} className="px-3 py-1.5 bg-nature-leaf text-text-primary rounded-lg text-xs font-medium hover:bg-nature-moss">
                 Load Stats
               </button>
-              <button onClick={handleLoadRoomMembers} className="px-3 py-1.5 bg-nature-leaf text-white rounded-lg text-xs font-medium hover:bg-nature-moss">
+              <button onClick={handleLoadRoomMembers} className="px-3 py-1.5 bg-nature-leaf text-text-primary rounded-lg text-xs font-medium hover:bg-nature-moss">
                 Members
               </button>
-              <button onClick={handleMarkRead} className="px-3 py-1.5 bg-green-600 text-white rounded-lg text-xs font-medium hover:bg-green-700">
+              <button onClick={handleMarkRead} className="px-3 py-1.5 bg-green-600 text-text-primary rounded-lg text-xs font-medium hover:bg-green-700">
                 Mark Read
               </button>
               {room.type !== "global" && (
-                <button onClick={handleLeaveRoom} className="px-3 py-1.5 bg-red-600 text-white rounded-lg text-xs font-medium hover:bg-red-700">
+                <button onClick={handleLeaveRoom} className="px-3 py-1.5 bg-red-600 text-text-primary rounded-lg text-xs font-medium hover:bg-red-700">
                   Leave
                 </button>
               )}
@@ -577,13 +577,13 @@ export default function Chat() {
               onClick={() => switchTab(t.key)}
               className={`rounded-full px-4 py-1.5 text-sm font-medium transition ${
                 tab === t.key
-                  ? "bg-nature-leaf text-white shadow"
+                  ? "bg-nature-leaf text-text-primary shadow"
                   : "bg-white text-text-secondary hover:bg-surface-card border border-nature-leaf/20"
               }`}
             >
               {t.label}
               {unreadCounts[`${t.key}:`] > 0 && (
-                <span className="ml-1 rounded-full bg-red-600 px-1.5 py-0.5 text-xs text-white">
+                <span className="ml-1 rounded-full bg-red-600 px-1.5 py-0.5 text-xs text-text-primary">
                   {unreadCounts[`${t.key}:`]}
                 </span>
               )}
@@ -606,7 +606,7 @@ export default function Chat() {
               >
                 {roomLabel(r.room_type, r.room_id)}
                 {unreadCounts[`${r.room_type}:${r.room_id || ""}`] > 0 && (
-                  <span className="ml-1 rounded-full bg-red-600 px-1 py-0.5 text-xs text-white">
+                  <span className="ml-1 rounded-full bg-red-600 px-1 py-0.5 text-xs text-text-primary">
                     {unreadCounts[`${r.room_type}:${r.room_id || ""}`]}
                   </span>
                 )}
@@ -656,7 +656,7 @@ export default function Chat() {
                 {myUid ? (
                   <div className="flex items-center gap-2">
                     <span className="font-medium text-sm">Your chat ID:</span>
-                    <span className="monospace bg-white/80 px-2 py-1 rounded text-sm">{myUid}</span>
+                    <span className="monospace bg-white border-border/80 px-2 py-1 rounded text-sm">{myUid}</span>
                     <button
                       onClick={() => {
                         navigator.clipboard.writeText(myUid);
@@ -698,14 +698,14 @@ export default function Chat() {
                       {received.map((req) => (
                         <div
                           key={req.id}
-                          className="p-2 rounded bg-white/80 border border-white/60"
+                          className="p-2 rounded bg-white border-border/80 border border-white/60"
                         >
                           <span className="font-medium text-primary">
                             {req.from_name}</span> invited you
                           <div className="flex gap-2 mt-1">
                             <button
                               onClick={() => acceptRequest(req.id)}
-                              className="px-2 py-1 rounded bg-green-500 text-white text-xs"
+                              className="px-2 py-1 rounded bg-green-500 text-text-primary text-xs"
                             >
                               Accept
                             </button>
@@ -721,7 +721,7 @@ export default function Chat() {
                       {sent.map((req) => (
                         <div
                           key={req.id}
-                          className="p-2 rounded bg-white/50 text-xs"
+                          className="p-2 rounded bg-white border-border/50 text-xs"
                         >
                           <span className="font-medium">Invited {req.to_name}</span> — {req.status}
                         </div>
@@ -765,7 +765,7 @@ export default function Chat() {
                           });
                       }}
                       disabled={addingFriend}
-                      className="px-4 py-2 rounded-lg bg-nature-leaf text-white text-sm font-medium hover:bg-nature-moss disabled:opacity-50"
+                      className="px-4 py-2 rounded-lg bg-nature-leaf text-text-primary text-sm font-medium hover:bg-nature-moss disabled:opacity-50"
                     >
                       {addingFriend ? "Sending…" : "Add"}
                     </button>
@@ -816,7 +816,7 @@ export default function Chat() {
                   <div key={m.id} className={`flex ${own ? "justify-end" : "justify-start"}`}>
                     <div
                       className={`max-w-[75%] rounded-xl px-4 py-2 shadow ${
-                        own ? "bg-nature-leaf text-white" : "bg-white border border-nature-leaf/20 text-text-primary"
+                        own ? "bg-nature-leaf text-text-primary" : "bg-white border border-nature-leaf/20 text-text-primary"
                       }`}
                     >
                       {!own && (
@@ -824,7 +824,7 @@ export default function Chat() {
                       )}
                       {m.emoji && <div className="py-1 text-4xl leading-none">{m.emoji}</div>}
                       {m.text && <div className="whitespace-pre-wrap break-words text-sm">{m.text}</div>}
-                      <div className={`mt-1 text-right text-xs ${own ? "text-white/80" : "text-text-muted"}`}>
+                      <div className={`mt-1 text-right text-xs ${own ? "text-text-primary/80" : "text-text-muted"}`}>
                         {formatTime(m.created_at)}
                       </div>
                     </div>
@@ -912,7 +912,7 @@ export default function Chat() {
             <button
               onClick={handleSend}
               disabled={(!input.trim() && !emoji) || !room || sending}
-              className="rounded-xl bg-nature-leaf px-4 py-2 text-sm font-semibold text-white transition hover:bg-nature-moss disabled:cursor-not-allowed disabled:opacity-40"
+              className="rounded-xl bg-nature-leaf px-4 py-2 text-sm font-semibold text-text-primary transition hover:bg-nature-moss disabled:cursor-not-allowed disabled:opacity-40"
             >
               {sending ? "..." : "Send"}
             </button>

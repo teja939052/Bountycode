@@ -58,7 +58,7 @@ export default function Concepts() {
 
       {/* Detail Modal */}
       {selected && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60" onClick={() => setSelected(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface-2" onClick={() => setSelected(null)}>
           <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
             onClick={e => e.stopPropagation()}
             className="glass rounded-2xl p-6 max-w-lg w-full max-h-[80vh] overflow-y-auto">
@@ -66,10 +66,10 @@ export default function Concepts() {
             {selected.content && <div className="text-sm text-gray-400 whitespace-pre-wrap mb-4">{selected.content}</div>}
             {selected.explanation && <p className="text-sm text-gray-400 mb-4">{selected.explanation}</p>}
             {selected.code_example && (
-              <pre className="bg-black/30 rounded-lg p-4 text-xs font-mono text-emerald-400 overflow-x-auto mb-4">{selected.code_example}</pre>
+              <pre className="bg-surface-2 rounded-lg p-4 text-xs font-mono text-emerald-400 overflow-x-auto mb-4">{selected.code_example}</pre>
             )}
             <button onClick={() => setSelected(null)}
-              className="w-full py-2.5 rounded-xl bg-white/5 border border-white/10 text-sm font-mono text-gray-400 hover:text-text-primary transition-colors">
+              className="w-full py-2.5 rounded-xl bg-white border-border shadow-card border border-white/10 text-sm font-mono text-gray-400 hover:text-text-primary transition-colors">
               Close
             </button>
           </motion.div>

@@ -65,7 +65,7 @@ export default function SpaceBackground() {
                 ease: "easeInOut",
               }}
             >
-              <div className="absolute inset-0 rounded-[inherit] bg-white/5" />
+              <div className="absolute inset-0 rounded-[inherit] bg-white border-border shadow-card" />
             </motion.div>
           ))}
         </div>

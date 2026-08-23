@@ -57,16 +57,16 @@ export default function CompanyDirectory() {
         <div className="flex-1 min-w-[200px] relative">
           <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
           <input value={search} onChange={e => setSearch(e.target.value)} onKeyDown={e => e.key === "Enter" && searchCompanies()}
-            className="w-full pl-9 pr-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-sm text-gray-300 font-mono focus:outline-none focus:border-brand-sky/40"
+            className="w-full pl-9 pr-4 py-2.5 rounded-xl bg-white border-border shadow-card border border-white/10 text-sm text-gray-300 font-mono focus:outline-none focus:border-brand-sky/40"
             placeholder="Search companies..." />
         </div>
         <select value={selectedType} onChange={e => setSelectedType(e.target.value)}
-          className="px-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-sm text-gray-400 font-mono focus:outline-none">
+          className="px-3 py-2.5 rounded-xl bg-white border-border shadow-card border border-white/10 text-sm text-gray-400 font-mono focus:outline-none">
           <option value="">All Types</option>
           {(filters.types || []).map((t: string) => <option key={t} value={t}>{t}</option>)}
         </select>
         <select value={selectedTier} onChange={e => setSelectedTier(e.target.value)}
-          className="px-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-sm text-gray-400 font-mono focus:outline-none">
+          className="px-3 py-2.5 rounded-xl bg-white border-border shadow-card border border-white/10 text-sm text-gray-400 font-mono focus:outline-none">
           <option value="">All Tiers</option>
           {(filters.tiers || []).map((t: string) => <option key={t} value={t}>{t}</option>)}
         </select>
@@ -80,7 +80,7 @@ export default function CompanyDirectory() {
             onClick={() => setSelected(c)}
             className="glass rounded-xl p-5 cursor-pointer hover:border-brand-sky/20 transition-all group">
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-lg font-display font-black text-brand-sky">
+              <div className="w-10 h-10 rounded-xl bg-white border-border shadow-card flex items-center justify-center text-lg font-display font-black text-brand-sky">
                 {c.name?.[0] || "?"}
               </div>
               <div className="min-w-0">
@@ -99,12 +99,12 @@ export default function CompanyDirectory() {
 
       {/* Detail Modal */}
       {selected && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60" onClick={() => setSelected(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface-2" onClick={() => setSelected(null)}>
           <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
             onClick={e => e.stopPropagation()}
             className="glass rounded-2xl p-6 max-w-lg w-full max-h-[80vh] overflow-y-auto">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-xl font-display font-black text-brand-sky">
+              <div className="w-12 h-12 rounded-xl bg-white border-border shadow-card flex items-center justify-center text-xl font-display font-black text-brand-sky">
                 {selected.name?.[0]}
               </div>
               <div>
@@ -126,7 +126,7 @@ export default function CompanyDirectory() {
               </div>
             )}
             <button onClick={() => setSelected(null)}
-              className="w-full py-2.5 rounded-xl bg-white/5 border border-white/10 text-sm font-mono text-gray-400 hover:text-text-primary transition-colors">
+              className="w-full py-2.5 rounded-xl bg-white border-border shadow-card border border-white/10 text-sm font-mono text-gray-400 hover:text-text-primary transition-colors">
               Close
             </button>
           </motion.div>

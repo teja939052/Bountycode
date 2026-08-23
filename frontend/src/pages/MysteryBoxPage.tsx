@@ -56,7 +56,7 @@ export default function MysteryBoxPage() {
             </span>
           )}
           <button onClick={() => { setReward(null); }}
-            className="mt-6 px-6 py-2.5 rounded-xl bg-white/5 border border-white/10 text-sm font-mono text-gray-400 hover:text-text-primary transition-colors">
+            className="mt-6 px-6 py-2.5 rounded-xl bg-white border-border shadow-card border border-white/10 text-sm font-mono text-gray-400 hover:text-text-primary transition-colors">
             Close
           </button>
         </motion.div>
@@ -67,7 +67,7 @@ export default function MysteryBoxPage() {
           className="glass rounded-2xl p-8 text-center w-full">
           <p className="text-sm text-red-400 font-mono">{reward.error}</p>
           <button onClick={() => setReward(null)}
-            className="mt-4 px-6 py-2.5 rounded-xl bg-white/5 border border-white/10 text-sm font-mono text-gray-400 hover:text-text-primary transition-colors">
+            className="mt-4 px-6 py-2.5 rounded-xl bg-white border-border shadow-card border border-white/10 text-sm font-mono text-gray-400 hover:text-text-primary transition-colors">
             Try Again
           </button>
         </motion.div>

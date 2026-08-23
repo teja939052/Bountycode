@@ -269,7 +269,7 @@ function QuestionPalette({
           <span className="font-mono text-[10px] text-gray-500">Answered</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="h-3 w-3 rounded border border-black/5 bg-black/5" />
+          <div className="h-3 w-3 rounded border border-black/5 bg-surface-2" />
           <span className="font-mono text-[10px] text-gray-500">Unattempted</span>
         </div>
       </div>
@@ -548,7 +548,7 @@ export default function MockOA() {
                   {c.sections.map((s) => (
                     <span
                       key={s}
-                      className="rounded border border-black/5 bg-black/5 px-2 py-0.5 text-[10px] font-mono text-text-muted"
+                      className="rounded border border-black/5 bg-surface-2 px-2 py-0.5 text-[10px] font-mono text-text-muted"
                     >
                       {s}
                     </span>
@@ -634,7 +634,7 @@ export default function MockOA() {
     return (
       <div className="min-h-screen">
         {/* ── Top Section Bar ── */}
-        <div className="sticky top-0 z-30 border-b border-black/5 bg-white/95 backdrop-blur">
+        <div className="sticky top-0 z-30 border-b border-black/5 bg-white border-border/95 backdrop-blur">
           <div className="max-w-7xl mx-auto px-4 py-2.5 flex items-center justify-between">
             <div className="flex items-center gap-4">
               <span className="font-display font-bold text-text-primary text-sm flex items-center gap-2">
@@ -661,7 +661,7 @@ export default function MockOA() {
             </div>
           </div>
           {/* Section Progress Bar */}
-          <div className="h-1 bg-black/5">
+          <div className="h-1 bg-surface-2">
             <div
               className="h-full bg-gradient-to-r from-cyber-blue to-cyber-purple transition-all duration-300"
               style={{
@@ -736,14 +736,14 @@ export default function MockOA() {
                           "border-cyber-red bg-cyber-red/5 text-cyber-red";
                       } else {
                         optClass +=
-                          "border-black/5 bg-white/70 text-text-muted cursor-not-allowed";
+                          "border-black/5 bg-white border-border/70 text-text-muted cursor-not-allowed";
                       }
                     } else if (isSelected) {
                       optClass +=
                         "border-cyber-blue bg-cyber-blue/10 text-text-primary shadow-cyber-blue";
                     } else {
                       optClass +=
-                        "border-black/5 hover:border-gray-500 text-text-muted hover:text-text-primary hover:bg-black/5 cursor-pointer";
+                        "border-black/5 hover:border-gray-500 text-text-muted hover:text-text-primary hover:bg-surface-2 cursor-pointer";
                     }
 
                     return (
@@ -1019,7 +1019,7 @@ export default function MockOA() {
                         {stats.correct}/{stats.total}
                       </span>
                     </div>
-                    <div className="mb-3 h-1.5 w-full rounded-full border border-black/5 bg-black/5">
+                    <div className="mb-3 h-1.5 w-full rounded-full border border-black/5 bg-surface-2">
                       <div
                         className={`h-1.5 rounded-full transition-all duration-1000 ${
                           secPct >= 70
@@ -1114,7 +1114,7 @@ export default function MockOA() {
                             <XCircle size={18} className="text-cyber-red" />
                           )
                         ) : (
-                          <span className="rounded bg-black/5 px-2 py-0.5 font-mono text-[10px] text-text-muted">
+                          <span className="rounded bg-surface-2 px-2 py-0.5 font-mono text-[10px] text-text-muted">
                             Skipped
                           </span>
                         )}

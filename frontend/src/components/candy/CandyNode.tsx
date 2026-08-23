@@ -65,7 +65,7 @@ export default function CandyNode({
         {locked ? (
           <Lock
             size={size ? Math.max(18, Math.round(size * 0.28)) : 22}
-            className="mx-auto text-white/50"
+            className="mx-auto text-text-primary/50"
           />
         ) : (
           emoji ?? number
@@ -74,7 +74,7 @@ export default function CandyNode({
       <span
         className={`absolute -left-1 -top-1 z-20 flex h-6 w-6 items-center justify-center rounded-full border text-[11px] font-black shadow-md ${
           locked
-            ? "border-white/10 bg-[#232331] text-white/40"
+            ? "border-white/10 bg-[#232331] text-text-primary/40"
             : "border-white/60 bg-white text-[#1a1a24]"
         }`}
       >
@@ -99,7 +99,7 @@ export default function CandyNode({
         </span>
       )}
       {current && (
-        <span className="absolute -bottom-8 left-1/2 z-20 flex -translate-x-1/2 items-center gap-1 whitespace-nowrap rounded-full bg-gradient-to-r from-rose-500 to-amber-400 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-white shadow-xl ring-2 ring-white/40">
+        <span className="absolute -bottom-8 left-1/2 z-20 flex -translate-x-1/2 items-center gap-1 whitespace-nowrap rounded-full bg-gradient-to-r from-rose-500 to-amber-400 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-text-primary shadow-xl ring-2 ring-white/40">
           <Play size={10} className="fill-white" /> Play
         </span>
       )}
@@ -113,7 +113,7 @@ export default function CandyNode({
         transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
         className="relative"
       >
-        <div className="absolute -inset-2 animate-pulse rounded-full bg-white/15 blur-md" />
+        <div className="absolute -inset-2 animate-pulse rounded-full bg-white border-border/15 blur-md" />
         <div className="candy-spin absolute -inset-[7px] rounded-full border-2 border-dashed border-white/30" />
         {body}
       </motion.div>

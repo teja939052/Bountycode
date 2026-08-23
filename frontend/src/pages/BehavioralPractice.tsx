@@ -84,8 +84,8 @@ export default function BehavioralPractice() {
             <div>
               <h3 className="text-lg font-display font-bold text-text-primary">{question.title}</h3>
               <div className="flex flex-wrap gap-2 mt-2">
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/5 text-gray-400 capitalize">{question.category?.replace(/_/g, " ")}</span>
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/5 text-gray-400">{question.difficulty}</span>
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white border-border shadow-card text-gray-400 capitalize">{question.category?.replace(/_/g, " ")}</span>
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white border-border shadow-card text-gray-400">{question.difficulty}</span>
                 {question.companies?.slice(0, 3).map((c: string) => (
                   <span key={c} className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-brand-sky/10 text-brand-sky">{c}</span>
                 ))}

@@ -100,7 +100,7 @@ export default function MasteryRadar({ dimensions, overall, size = 200, showLabe
 
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div className="text-center">
-          <p className="text-2xl font-black text-white">{Math.round(overall)}%</p>
+          <p className="text-2xl font-black text-text-primary">{Math.round(overall)}%</p>
           <p className="text-[9px] font-mono text-gray-500 uppercase">Mastery</p>
         </div>
       </div>

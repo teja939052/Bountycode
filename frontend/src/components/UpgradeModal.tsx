@@ -11,7 +11,7 @@ export default function UpgradeModal({ isOpen, onClose, feature, benefit, plan =
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4" onClick={onClose}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-surface-2 backdrop-blur-sm p-4" onClick={onClose}>
           <motion.div
             className="bg-white dark:bg-gray-900 rounded-2xl p-6 max-w-md w-full shadow-2xl"
             initial={{ scale: 0.9, opacity: 0 }}

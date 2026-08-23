@@ -307,7 +307,7 @@ export default function GameEvents() {
                         <button
                           onClick={handleAttack}
                           disabled={!user || attacking}
-                          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-rose-500 to-[#4F8F57] text-sm font-semibold text-white disabled:opacity-40 hover:from-rose-400 hover:to-[#3F7A47] transition-all"
+                          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-rose-500 to-[#4F8F57] text-sm font-semibold text-text-primary disabled:opacity-40 hover:from-rose-400 hover:to-[#3F7A47] transition-all"
                         >
                           {attacking ? (
                             <Loader2 className="w-4 h-4 animate-spin" />
@@ -334,7 +334,7 @@ export default function GameEvents() {
                             <button
                               onClick={handleClaim}
                               disabled={!user || claiming}
-                              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#4F8F57] to-[#7BB661] text-sm font-semibold text-white disabled:opacity-40 hover:from-[#3F7A47] hover:to-[#4F8F57] transition-all"
+                              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#4F8F57] to-[#7BB661] text-sm font-semibold text-text-primary disabled:opacity-40 hover:from-[#3F7A47] hover:to-[#4F8F57] transition-all"
                             >
                               {claiming ? (
                                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -539,7 +539,7 @@ export default function GameEvents() {
                   <div className="flex gap-3">
                     <button
                       onClick={() => handleCombo(true)}
-                      className="flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-[#4F8F57] to-[#3F7A47] text-sm font-semibold text-white hover:from-[#3F7A47] hover:to-[#4F8F57] transition-all"
+                      className="flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-[#4F8F57] to-[#3F7A47] text-sm font-semibold text-text-primary hover:from-[#3F7A47] hover:to-[#4F8F57] transition-all"
                     >
                       <ShieldCheck className="w-4 h-4" />
                       Correct

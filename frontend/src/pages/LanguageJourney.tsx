@@ -48,7 +48,7 @@ function DifficultyStars({ difficulty }: { difficulty: number }) {
   return (
     <div className="flex gap-0.5">
       {[1, 2, 3].map((d) => (
-        <Star key={d} size={10} className={d <= difficulty ? "fill-amber-400 text-amber-400" : "text-white/25"} />
+        <Star key={d} size={10} className={d <= difficulty ? "fill-amber-400 text-amber-400" : "text-text-primary/25"} />
       ))}
     </div>
   );
@@ -136,7 +136,7 @@ export default function LanguageJourney() {
       <div className="relative z-10 mx-auto max-w-4xl">
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
-          <Link to="/learn" className="mb-4 inline-flex items-center gap-2 font-mono text-sm text-white/50 transition-colors hover:text-white">
+          <Link to="/learn" className="mb-4 inline-flex items-center gap-2 font-mono text-sm text-text-primary/50 transition-colors hover:text-white">
             <ArrowLeft size={14} /> All Languages
           </Link>
           <div className="flex flex-wrap items-center gap-4">
@@ -148,9 +148,9 @@ export default function LanguageJourney() {
             </div>
             <div className="min-w-0 flex-1">
               <h1 className="font-display text-3xl font-black md:text-4xl">
-                <span className="candy-text">{data.language.name}</span>
+                <span className="text-text-primary">{data.language.name}</span>
               </h1>
-              <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-sm text-white/60">
+              <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-sm text-text-primary/60">
                 <span className="flex items-center gap-1"><Trophy size={13} className="text-amber-400" /> {totalXp} XP</span>
                 <span>{completedCount} / {levels.length} levels</span>
                 <span>
@@ -177,20 +177,20 @@ export default function LanguageJourney() {
                 </Link>
               </div>
               {currentLevel && (
-                <p className="mt-3 font-mono text-xs text-white/50">
-                  Next stop — <span className="font-bold text-white">{currentLevel.name}</span>
+                <p className="mt-3 font-mono text-xs text-text-primary/50">
+                  Next stop — <span className="font-bold text-text-primary">{currentLevel.name}</span>
                 </p>
               )}
             </div>
           </div>
 
           {/* Candy progress bar */}
-          <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
-            <div className="flex items-center justify-between font-mono text-xs uppercase tracking-widest text-white/50">
+          <div className="mt-6 rounded-2xl border border-white/10 bg-white border-border shadow-card p-4 backdrop-blur-sm">
+            <div className="flex items-center justify-between font-mono text-xs uppercase tracking-widest text-text-primary/50">
               <span>Campaign progress</span>
               <span>{completedCount} / {levels.length} levels</span>
             </div>
-            <div className="mt-2 flex h-2.5 w-full gap-1 overflow-hidden rounded-full bg-white/10 p-0.5 md:h-3">
+            <div className="mt-2 flex h-2.5 w-full gap-1 overflow-hidden rounded-full bg-white border-border/10 p-0.5 md:h-3">
               {levels.map((l: any, i: number) => {
                 const s = stateOf(i);
                 const c = candyOf(i);
@@ -296,7 +296,7 @@ export default function LanguageJourney() {
                   />
                   <div className="mt-2 flex justify-center">
                     <span className={`max-w-[96px] truncate text-center text-[10px] font-semibold md:text-[11px] ${
-                      s === "locked" ? "text-white/35" : s === "completed" ? "text-amber-200/90" : "text-white/80"
+                      s === "locked" ? "text-text-primary/35" : s === "completed" ? "text-amber-200/90" : "text-text-primary/80"
                     }`}>
                       {level.name}
                     </span>
@@ -308,7 +308,7 @@ export default function LanguageJourney() {
         </div>
 
         {/* Legend */}
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-mono text-xs text-white/50">
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-mono text-xs text-text-primary/50">
           <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-full border-2 border-amber-300 bg-amber-400" /> Complete</span>
           <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-full bg-rose-400" /> You are here</span>
           <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-full bg-[#232331]" /> Locked</span>
@@ -403,12 +403,12 @@ function LevelPanel({ languageId, level }: { languageId: string; level: any }) {
       >
         <span className="text-3xl">{level.emoji || "🍬"}</span>
         <div className="min-w-0 flex-1">
-          <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-white/70">Level {level.order + 1}</p>
-          <h3 className="truncate font-display text-lg font-black text-white">{level.name}</h3>
+          <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-text-primary/70">Level {level.order + 1}</p>
+          <h3 className="truncate font-display text-lg font-black text-text-primary">{level.name}</h3>
         </div>
         <div className="text-right">
-          <div className="font-mono text-xs text-white/80">{level.progress_pct}%</div>
-          <div className="flex items-center gap-1 font-mono text-[10px] text-white/60">
+          <div className="font-mono text-xs text-text-primary/80">{level.progress_pct}%</div>
+          <div className="flex items-center gap-1 font-mono text-[10px] text-text-primary/60">
             <Trophy size={11} className="text-amber-200" /> {level.xp_earned} / {level.total_xp} XP
           </div>
         </div>
@@ -427,7 +427,7 @@ function LevelPanel({ languageId, level }: { languageId: string; level: any }) {
       {loading ? (
         <div className="p-6"><Spinner /></div>
       ) : groups.length === 0 ? (
-        <div className="p-6 text-center font-mono text-sm text-white/40">No lessons yet</div>
+        <div className="p-6 text-center font-mono text-sm text-text-primary/40">No lessons yet</div>
       ) : (
         <div className="space-y-4 p-4">
           {groups.map((group, gi) => (
@@ -453,10 +453,10 @@ function LessonRow({ lesson, languageId, levelId }: { lesson: any; languageId: s
   if (!lesson.unlocked) {
     return (
       <div className="flex items-center gap-2 rounded-xl bg-white/[0.03] p-2.5 opacity-40">
-        <Lock size={13} className="shrink-0 text-white/50" />
-        <span className="flex-1 truncate font-mono text-xs text-white/50">{lesson.title}</span>
+        <Lock size={13} className="shrink-0 text-text-primary/50" />
+        <span className="flex-1 truncate font-mono text-xs text-text-primary/50">{lesson.title}</span>
         <DifficultyStars difficulty={lesson.difficulty || 1} />
-        <span className="font-mono text-[10px] text-white/40">+{lesson.xp}</span>
+        <span className="font-mono text-[10px] text-text-primary/40">+{lesson.xp}</span>
       </div>
     );
   }
@@ -483,12 +483,12 @@ function LessonRow({ lesson, languageId, levelId }: { lesson: any; languageId: s
         ) : (
           <span className="h-3.5 w-3.5 shrink-0 rounded-full border-2 border-white/30" />
         )}
-        <span className={`flex-1 truncate font-mono text-xs ${lesson.completed ? "text-emerald-200" : isBoss ? "text-rose-200" : "text-white/85"}`}>
+        <span className={`flex-1 truncate font-mono text-xs ${lesson.completed ? "text-emerald-200" : isBoss ? "text-rose-200" : "text-text-primary/85"}`}>
           {lesson.title}
         </span>
         <DifficultyStars difficulty={lesson.difficulty || 1} />
         <span className="shrink-0 font-mono text-[10px] text-amber-300/80">+{lesson.xp}</span>
-        <ChevronRight size={13} className="shrink-0 text-white/40 transition-transform group-hover:translate-x-0.5 group-hover:text-white" />
+        <ChevronRight size={13} className="shrink-0 text-text-primary/40 transition-transform group-hover:translate-x-0.5 group-hover:text-white" />
       </div>
     </Link>
   );

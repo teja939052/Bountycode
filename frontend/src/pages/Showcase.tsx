@@ -106,7 +106,7 @@ export default function Showcase() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-3xl font-display font-bold text-white flex items-center gap-3">
+            <h1 className="text-3xl font-display font-bold text-text-primary flex items-center gap-3">
               <Code2 className="w-8 h-8 text-brand-primary" />
               Project Showcase
             </h1>
@@ -211,7 +211,7 @@ export default function Showcase() {
                     {project.description}
                   </p>
 
-                  <pre className="text-[11px] leading-relaxed font-mono text-brand-muted bg-black/30 border border-brand-primary/10 rounded-lg p-3 mb-4 line-clamp-5 overflow-hidden whitespace-pre-wrap">
+                  <pre className="text-[11px] leading-relaxed font-mono text-brand-muted bg-surface-2 border border-brand-primary/10 rounded-lg p-3 mb-4 line-clamp-5 overflow-hidden whitespace-pre-wrap">
                     {project.code_preview || "// no preview"}
                   </pre>
 
@@ -276,7 +276,7 @@ export default function Showcase() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 bg-surface-2 backdrop-blur-sm flex items-center justify-center p-4"
             onClick={() => setShowPublish(false)}
           >
             <motion.div
@@ -287,7 +287,7 @@ export default function Showcase() {
               className="rounded-3xl border border-brand-primary/10 bg-slate-900 p-6 sm:p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
             >
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-display font-bold text-white flex items-center gap-2">
+                <h2 className="text-xl font-display font-bold text-text-primary flex items-center gap-2">
                   <Sparkles className="w-5 h-5 text-brand-primary" />
                   Publish Project
                 </h2>
@@ -352,7 +352,7 @@ export default function Showcase() {
                     onChange={e => setForm({ ...form, code: e.target.value })}
                     placeholder="Paste your code snippet..."
                     rows={10}
-                    className="w-full rounded-xl border border-brand-primary/10 bg-black/30 px-4 py-3 text-sm font-mono text-emerald-200 placeholder-slate-600 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/20 transition-all resize-y"
+                    className="w-full rounded-xl border border-brand-primary/10 bg-surface-2 px-4 py-3 text-sm font-mono text-emerald-200 placeholder-slate-600 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/20 transition-all resize-y"
                   />
                 </div>
 

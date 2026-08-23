@@ -343,7 +343,7 @@ export default function CollectionEvents() {
                         <button
                           onClick={handleClaim}
                           disabled={!user || claiming}
-                            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#4F8F57] to-[#7BB661] text-sm font-semibold text-white hover:from-[#3F7A47] hover:to-[#4F8F57] disabled:opacity-40 transition-all"
+                            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#4F8F57] to-[#7BB661] text-sm font-semibold text-text-primary hover:from-[#3F7A47] hover:to-[#4F8F57] disabled:opacity-40 transition-all"
                         >
                           {claiming ? (
                             <Loader2 className="w-4 h-4 animate-spin" />
@@ -481,7 +481,7 @@ export default function CollectionEvents() {
                           <button
                             onClick={handleContribute}
                             disabled={!user || contributing || contributeAmount < 1}
-                          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#4F8F57] to-[#7BB661] text-sm font-semibold text-white hover:from-[#3F7A47] hover:to-[#4F8F57] disabled:opacity-40 transition-all"
+                          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#4F8F57] to-[#7BB661] text-sm font-semibold text-text-primary hover:from-[#3F7A47] hover:to-[#4F8F57] disabled:opacity-40 transition-all"
                           >
                             {contributing ? (
                               <Loader2 className="w-4 h-4 animate-spin" />

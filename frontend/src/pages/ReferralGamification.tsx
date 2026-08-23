@@ -65,7 +65,7 @@ export default function ReferralGamification() {
         </div>
       )}
 
-      <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-6 text-white">
+      <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-6 text-text-primary">
         <h2 className="text-xl font-bold mb-2">Invite Friends, Earn XP!</h2>
         <p className="text-indigo-100 mb-4">
           Share your referral code and earn {referralStatus?.rewards?.referral_bonus_xp || 100} XP for each friend who joins.
@@ -77,7 +77,7 @@ export default function ReferralGamification() {
           </div>
           <button
             onClick={handleCopyCode}
-            className="px-4 py-2 bg-surface-card/70 text-white rounded-lg text-sm font-medium hover:bg-surface-card/30"
+            className="px-4 py-2 bg-surface-card/70 text-text-primary rounded-lg text-sm font-medium hover:bg-surface-card/30"
           >
             {copied ? "✓ Copied!" : "Copy Code"}
           </button>
@@ -129,7 +129,7 @@ export default function ReferralGamification() {
                   <button
                     onClick={handleClaimBonus}
                     disabled={loading}
-                    className="mt-1 px-3 py-1 bg-green-600 text-white rounded-lg text-xs font-medium hover:bg-green-700"
+                    className="mt-1 px-3 py-1 bg-green-600 text-text-primary rounded-lg text-xs font-medium hover:bg-green-700"
                   >
                     Claim
                   </button>

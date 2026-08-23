@@ -115,8 +115,8 @@ export default function Topics() {
           <div className="space-y-4">
             {Array.from({ length: 6 }).map((_, i) => (
               <div key={i} className="card animate-pulse bg-white">
-                <div className="mb-2 h-6 w-1/3 rounded bg-black/5" />
-                <div className="h-4 w-1/2 rounded bg-black/5" />
+                <div className="mb-2 h-6 w-1/3 rounded bg-surface-2" />
+                <div className="h-4 w-1/2 rounded bg-surface-2" />
               </div>
             ))}
           </div>
@@ -168,7 +168,7 @@ export default function Topics() {
         >
           <div className="mb-2 flex items-center gap-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#4F8F57] to-[#7BB661]">
-              <BookOpen size={24} className="text-white" />
+              <BookOpen size={24} className="text-text-primary" />
             </div>
             <div>
               <h1 className="text-3xl font-bold text-text-primary">DSA Practice</h1>
@@ -194,7 +194,7 @@ export default function Topics() {
                 </span>
               </div>
             </div>
-            <div className="mb-3 h-3 overflow-hidden rounded-full bg-black/5">
+            <div className="mb-3 h-3 overflow-hidden rounded-full bg-surface-2">
               <motion.div
                 className="h-full rounded-full bg-gradient-to-r from-primary-500 to-primary-600"
                 initial={{ width: 0 }}
@@ -221,7 +221,7 @@ export default function Topics() {
               onClick={() => setActiveGroup(key)}
               className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-medium transition-all border ${
                 activeGroup === key
-                ? "bg-primary-600 text-white border-primary-600 shadow-lg shadow-primary-600/25"
+                ? "bg-primary-600 text-text-primary border-primary-600 shadow-lg shadow-primary-600/25"
                   : "bg-white text-brand-secondary border-black/5 hover:border-primary-400"
               }`}
             >
@@ -250,7 +250,7 @@ export default function Topics() {
               >
                 {/* Section header */}
                 <div className="flex items-center gap-3 mb-5">
-                  <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${meta.color} flex items-center justify-center text-white shadow-lg`}>
+                  <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${meta.color} flex items-center justify-center text-text-primary shadow-lg`}>
                     <Icon size={22} />
                   </div>
                   <div className="flex-1 min-w-0">
@@ -263,7 +263,7 @@ export default function Topics() {
                   </div>
                 </div>
                 {hasTopicProgress && (
-                    <div className="mb-5 h-1.5 overflow-hidden rounded-full bg-black/5">
+                    <div className="mb-5 h-1.5 overflow-hidden rounded-full bg-surface-2">
                     <div
                       className="h-full rounded-full bg-gradient-to-r from-primary-500 to-primary-600 transition-all duration-700"
                       style={{ width: `${stats.pct}%` }}
@@ -286,7 +286,7 @@ export default function Topics() {
                                 className="card h-full cursor-pointer group bg-white"
                           >
                             <div className="flex items-start justify-between mb-3">
-                              <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${colorClass} flex items-center justify-center text-white font-bold text-sm`}>
+                              <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${colorClass} flex items-center justify-center text-text-primary font-bold text-sm`}>
                                 {TOPIC_ICONS[topic.topic] || "XX"}
                               </div>
                               <ChevronRight
@@ -324,7 +324,7 @@ export default function Topics() {
                             {/* Progress bar */}
                             {hasTopicProgress && (
                               <>
-                                <div className="h-2 overflow-hidden rounded-full bg-black/5">
+                                <div className="h-2 overflow-hidden rounded-full bg-surface-2">
                                   <div
                                     className={`h-full rounded-full transition-all ${
                                       percentage >= 100

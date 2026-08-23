@@ -85,7 +85,7 @@ export default function PlacementDrives() {
               onClick={() => setFilter(f.key)}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                 filter === f.key
-                  ? "bg-primary-600 text-white"
+                  ? "bg-primary-600 text-text-primary"
                   : "bg-surface-card/50 dark:bg-gray-800 text-brand-secondary dark:text-gray-400 hover:bg-surface-card/50"
               }`}
             >

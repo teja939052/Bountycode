@@ -132,7 +132,7 @@ export default function TopicProblems() {
         >
           <button
             onClick={() => setConsoleOpen((v) => !v)}
-            className="w-full flex items-center justify-between gap-2 glass rounded-t-2xl border border-white/10 border-b-0 px-4 py-3 hover:bg-white/5 transition-colors"
+            className="w-full flex items-center justify-between gap-2 glass rounded-t-2xl border border-white/10 border-b-0 px-4 py-3 hover:bg-white border-border shadow-card transition-colors"
           >
             <span className="flex items-center gap-2 text-sm font-mono uppercase tracking-[0.2em] text-gray-400">
               <Terminal size={15} className="text-cyber-green" />

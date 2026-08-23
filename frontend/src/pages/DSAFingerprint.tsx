@@ -198,7 +198,7 @@ export default function DSAFingerprint() {
                       <div className="flex items-center gap-2">
                         <span className="text-lg">{pred.icon}</span>
                         <div>
-                          <h4 className="font-display font-bold text-xs text-white">{pred.company_name}</h4>
+                          <h4 className="font-display font-bold text-xs text-text-primary">{pred.company_name}</h4>
                           <p className="text-[9px] font-mono text-gray-500">{pred.package}</p>
                         </div>
                       </div>
@@ -250,7 +250,7 @@ export default function DSAFingerprint() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface-2 backdrop-blur-sm"
               onClick={() => { setSelectedCompany(null); setCompanyDetail(null); }}
             >
               <motion.div
@@ -265,7 +265,7 @@ export default function DSAFingerprint() {
                   <div className="flex items-center gap-3">
                     <span className="text-3xl">{companyDetail.icon}</span>
                     <div>
-                      <h2 className="text-lg font-display font-bold text-white">{companyDetail.company_name}</h2>
+                      <h2 className="text-lg font-display font-bold text-text-primary">{companyDetail.company_name}</h2>
                       <p className="text-xs font-mono text-gray-400">{companyDetail.exam_pattern}</p>
                     </div>
                   </div>
@@ -321,7 +321,7 @@ export default function DSAFingerprint() {
                       {companyDetail.gaps.map((gap, i) => (
                         <div key={i} className="p-3 rounded-lg bg-gray-800/40 border border-gray-700/30">
                           <div className="flex items-center justify-between mb-1">
-                            <span className="text-xs font-mono text-white">{gap.topic}</span>
+                            <span className="text-xs font-mono text-text-primary">{gap.topic}</span>
                             <span className={`text-[10px] font-mono px-2 py-0.5 rounded ${
                               gap.gap > 20 ? 'bg-red-500/15 text-red-400' : 'bg-yellow-500/15 text-yellow-400'
                             }`}>

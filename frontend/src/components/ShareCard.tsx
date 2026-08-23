@@ -42,19 +42,19 @@ export default function ShareCard({ user, stats, onClose }) {
         <div className="p-6 text-center border-b border-gray-700/20">
           <div className="flex items-center justify-center gap-2 mb-3">
             <div className="w-8 h-8 bg-gradient-to-br from-cyber-blue to-cyber-purple rounded-lg flex items-center justify-center">
-              <span className="text-white text-sm font-bold">⚡</span>
+              <span className="text-text-primary text-sm font-bold">⚡</span>
             </div>
-            <span className="text-sm font-display font-bold text-white tracking-wider">PLACEMENT<span className="text-cyber-blue">PRO</span></span>
+            <span className="text-sm font-display font-bold text-text-primary tracking-wider">PLACEMENT<span className="text-cyber-blue">PRO</span></span>
           </div>
 
           {/* Avatar + Name */}
           <div
-            className="w-16 h-16 rounded-xl mx-auto mb-3 flex items-center justify-center text-2xl font-display font-black text-white"
+            className="w-16 h-16 rounded-xl mx-auto mb-3 flex items-center justify-center text-2xl font-display font-black text-text-primary"
             style={{ background: `linear-gradient(135deg, ${levelColor.from}30, ${levelColor.to}20)`, border: `2px solid ${levelColor.from}40` }}
           >
             {(user?.name || 'U')[0].toUpperCase()}
           </div>
-          <h2 className="text-lg font-display font-bold text-white">{user?.name || 'User'}</h2>
+          <h2 className="text-lg font-display font-bold text-text-primary">{user?.name || 'User'}</h2>
           <p className="text-xs font-mono mt-1" style={{ color: levelColor.from }}>
             Level {level} · {levelColor.label}
           </p>

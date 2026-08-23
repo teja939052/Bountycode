@@ -137,12 +137,12 @@ export default function PeerReview() {
               key={t.key}
               onClick={() => { setTab(t.key); if (t.key === "queue") loadQueue(); }}
               className={`px-4 py-2 rounded-xl text-sm font-semibold flex items-center gap-2 transition-colors ${
-                tab === t.key ? "bg-brand-sky text-white shadow-sm" : "bg-white/80 border border-white/60 text-text-light hover:text-text-primary"
+                tab === t.key ? "bg-brand-sky text-text-primary shadow-sm" : "bg-white border-border/80 border border-white/60 text-text-light hover:text-text-primary"
               }`}
             >
               <Icon size={16} /> {t.label}
               {t.key === "queue" && queue.filter((i) => i.status === "pending").length > 0 && (
-                <span className="px-1.5 py-0.5 rounded-full bg-red-500 text-white text-[10px] font-bold">
+                <span className="px-1.5 py-0.5 rounded-full bg-red-500 text-text-primary text-[10px] font-bold">
                   {queue.filter((i) => i.status === "pending").length}
                 </span>
               )}
@@ -153,7 +153,7 @@ export default function PeerReview() {
 
       {tab === "submit" && (
         <div className="grid lg:grid-cols-2 gap-6">
-          <div className="p-6 rounded-2xl border border-white/60 bg-white/80 space-y-3 h-fit">
+          <div className="p-6 rounded-2xl border border-white/60 bg-white border-border/80 space-y-3 h-fit">
             <h2 className="text-lg font-bold text-text-primary flex items-center gap-2">
               <Code2 size={18} className="text-brand-sky" /> New Review Request
             </h2>
@@ -194,7 +194,7 @@ export default function PeerReview() {
               {saving ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />} Submit for Review
             </button>
           </div>
-          <div className="p-6 rounded-2xl border border-white/60 bg-white/80 text-sm text-text-light space-y-2 h-fit">
+          <div className="p-6 rounded-2xl border border-white/60 bg-white border-border/80 text-sm text-text-light space-y-2 h-fit">
             <h3 className="text-base font-bold text-text-primary mb-2">How it works</h3>
             <p>1. Submit a snippet — reviewers will rate clarity, correctness and style on 1–5.</p>
             <p>2. Claim items from the queue to review others. You can never review your own code.</p>
@@ -209,12 +209,12 @@ export default function PeerReview() {
           {loading ? (
             <div className="flex justify-center py-12"><Loader2 size={28} className="animate-spin text-brand-sky" /></div>
           ) : myItems.length === 0 ? (
-            <div className="p-6 rounded-2xl border border-white/60 bg-white/80 text-text-light text-sm">
+            <div className="p-6 rounded-2xl border border-white/60 bg-white border-border/80 text-text-light text-sm">
               You haven't submitted any code for review yet.
             </div>
           ) : (
             myItems.map((item) => (
-              <div key={item.id} className="p-5 rounded-2xl border border-white/60 bg-white/80">
+              <div key={item.id} className="p-5 rounded-2xl border border-white/60 bg-white border-border/80">
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
                     <span className="font-semibold text-text-primary">{item.title}</span>
@@ -234,7 +234,7 @@ export default function PeerReview() {
                 {(item.reviews || []).length > 0 ? (
                   <div className="space-y-3 mt-3">
                     {(item.reviews || []).map((r) => (
-                      <div key={r.id} className="p-3 rounded-xl border border-white/60 bg-white/60">
+                      <div key={r.id} className="p-3 rounded-xl border border-white/60 bg-white border-border/60">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-xs font-semibold text-text-primary">{r.reviewer_name}</span>
                           <span className="text-xs flex items-center gap-1">
@@ -269,12 +269,12 @@ export default function PeerReview() {
             {loading ? (
               <div className="flex justify-center py-12"><Loader2 size={28} className="animate-spin text-brand-sky" /></div>
             ) : queue.length === 0 ? (
-              <div className="p-6 rounded-2xl border border-white/60 bg-white/80 text-text-light text-sm">
+              <div className="p-6 rounded-2xl border border-white/60 bg-white border-border/80 text-text-light text-sm">
                 Queue is empty — check back soon or submit your own code.
               </div>
             ) : (
               queue.map((item) => (
-                <div key={item.id} className="p-4 rounded-2xl border border-white/60 bg-white/80">
+                <div key={item.id} className="p-4 rounded-2xl border border-white/60 bg-white border-border/80">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
                       <span className="font-semibold text-text-primary">{item.title}</span>
@@ -300,7 +300,7 @@ export default function PeerReview() {
             )}
           </div>
 
-          <div className="p-6 rounded-2xl border border-white/60 bg-white/80 h-fit sticky top-24">
+          <div className="p-6 rounded-2xl border border-white/60 bg-white border-border/80 h-fit sticky top-24">
             {!claimed ? (
               <div className="text-center py-10 text-text-light text-sm flex flex-col items-center gap-3">
                 <Users size={36} className="text-brand-sky" />

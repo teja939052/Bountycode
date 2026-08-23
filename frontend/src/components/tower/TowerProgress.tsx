@@ -33,7 +33,7 @@ const TowerProgress = memo(function TowerProgress({
       <div className="text-center mb-4">
         <div className="flex items-center justify-center gap-2 mb-1">
           <span className="text-2xl">{titleEmoji}</span>
-          <h2 className="text-lg sm:text-xl font-display font-black text-white">
+          <h2 className="text-lg sm:text-xl font-display font-black text-text-primary">
             Level {level}
           </h2>
         </div>

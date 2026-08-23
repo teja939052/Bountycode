@@ -66,7 +66,7 @@ export default class FeatureErrorBoundary extends Component<
             <div className="flex flex-col gap-2 sm:flex-row sm:justify-center">
               <button
                 onClick={this.handleReset}
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-primary px-5 py-2.5 text-sm font-bold text-white hover:bg-brand-primary/80 transition-colors"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-primary px-5 py-2.5 text-sm font-bold text-text-primary hover:bg-brand-primary/80 transition-colors"
               >
                 <RefreshCw size={14} />
                 Try again

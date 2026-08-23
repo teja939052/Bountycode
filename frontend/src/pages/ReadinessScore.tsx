@@ -37,7 +37,7 @@ export default function ReadinessScore() {
       <div className="flex gap-3 mb-6">
         <input value={company} onChange={e => setCompany(e.target.value)}
           onKeyDown={e => e.key === "Enter" && load(company)}
-          className="flex-1 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-sm text-gray-300 font-mono focus:outline-none focus:border-emerald-500/40"
+          className="flex-1 px-4 py-2.5 rounded-xl bg-white border-border shadow-card border border-white/10 text-sm text-gray-300 font-mono focus:outline-none focus:border-emerald-500/40"
           placeholder="Check readiness for a company (e.g., Google)..." />
         <button onClick={() => load(company)}
           className="px-5 py-2.5 rounded-xl bg-emerald-500/20 text-emerald-400 font-mono text-sm hover:bg-emerald-500/30 transition-all">
@@ -88,7 +88,7 @@ export default function ReadinessScore() {
                       <span className="text-sm text-gray-300 font-mono capitalize">{name.replace(/_/g, " ")}</span>
                       <span className="text-sm font-mono text-brand-sky">{cat.score || 0}%</span>
                     </div>
-                    <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+                    <div className="h-2 bg-white border-border shadow-card rounded-full overflow-hidden">
                       <div className="h-full bg-brand-sky/60 rounded-full" style={{ width: `${cat.score || 0}%` }} />
                     </div>
                     {cat.details && <p className="text-[10px] font-mono text-gray-600 mt-1">{cat.details}</p>}
