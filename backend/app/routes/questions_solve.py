@@ -286,6 +286,7 @@ async def submit_code_for_question(
                 "language": language,
                 "test_cases": normalized_cases,
                 "timeout": 10,
+                "function_name": question.get("function_name", "") or "",
             },
             user_id=user["id"],
             priority=5,
@@ -298,6 +299,7 @@ async def submit_code_for_question(
             source_code=code,
             language=language,
             test_cases=normalized_cases,
+            function_name=question.get("function_name", "") or "",
         )
 
         if not execution_result.get("success", False):

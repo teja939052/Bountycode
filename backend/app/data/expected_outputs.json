@@ -1,0 +1,170 @@
+{
+  "reverse-string": {
+    "slug": "reverse-string",
+    "status": "harness_error",
+    "error": "Failed to parse batch oracle output",
+    "expected_outputs": []
+  },
+  "fizzbuzz": {
+    "slug": "fizzbuzz",
+    "status": "harness_error",
+    "error": "Failed to parse batch oracle output",
+    "expected_outputs": []
+  },
+  "palindrome-check": {
+    "slug": "palindrome-check",
+    "status": "harness_error",
+    "error": "Failed to parse batch oracle output",
+    "expected_outputs": []
+  },
+  "two-sum": {
+    "slug": "two-sum",
+    "status": "harness_error",
+    "error": "Failed to parse batch oracle output",
+    "expected_outputs": []
+  },
+  "max-of-array": {
+    "slug": "max-of-array",
+    "status": "harness_error",
+    "error": "Failed to parse batch oracle output",
+    "expected_outputs": []
+  },
+  "factorial": {
+    "slug": "factorial",
+    "status": "harness_error",
+    "error": "Failed to parse batch oracle output",
+    "expected_outputs": []
+  },
+  "fibonacci": {
+    "slug": "fibonacci",
+    "status": "harness_error",
+    "error": "Failed to parse batch oracle output",
+    "expected_outputs": []
+  },
+  "anagram-check": {
+    "slug": "anagram-check",
+    "status": "harness_error",
+    "error": "Failed to parse batch oracle output",
+    "expected_outputs": []
+  },
+  "count-vowels": {
+    "slug": "count-vowels",
+    "status": "harness_error",
+    "error": "Failed to parse batch oracle output",
+    "expected_outputs": []
+  },
+  "array-sum": {
+    "slug": "array-sum",
+    "status": "harness_error",
+    "error": "Failed to parse batch oracle output",
+    "expected_outputs": []
+  },
+  "valid-parentheses": {
+    "slug": "valid-parentheses",
+    "status": "harness_error",
+    "error": "Failed to parse batch oracle output",
+    "expected_outputs": []
+  },
+  "binary-search": {
+    "slug": "binary-search",
+    "status": "harness_error",
+    "error": "Failed to parse batch oracle output",
+    "expected_outputs": []
+  },
+  "merge-intervals": {
+    "slug": "merge-intervals",
+    "status": "harness_error",
+    "error": "Failed to parse batch oracle output",
+    "expected_outputs": []
+  },
+  "group-anagrams": {
+    "slug": "group-anagrams",
+    "status": "harness_error",
+    "error": "Failed to parse batch oracle output",
+    "expected_outputs": []
+  },
+  "longest-substring-without-repeating-characters": {
+    "slug": "longest-substring-without-repeating-characters",
+    "status": "harness_error",
+    "error": "Failed to parse batch oracle output",
+    "expected_outputs": []
+  },
+  "product-of-array-except-self": {
+    "slug": "product-of-array-except-self",
+    "status": "harness_error",
+    "error": "Failed to parse batch oracle output",
+    "expected_outputs": []
+  },
+  "find-all-duplicates": {
+    "slug": "find-all-duplicates",
+    "status": "harness_error",
+    "error": "Failed to parse batch oracle output",
+    "expected_outputs": []
+  },
+  "container-with-most-water": {
+    "slug": "container-with-most-water",
+    "status": "harness_error",
+    "error": "Failed to parse batch oracle output",
+    "expected_outputs": []
+  },
+  "rotate-array": {
+    "slug": "rotate-array",
+    "status": "harness_error",
+    "error": "Failed to parse batch oracle output",
+    "expected_outputs": []
+  },
+  "valid-sudoku": {
+    "slug": "valid-sudoku",
+    "status": "harness_error",
+    "error": "Failed to parse batch oracle output",
+    "expected_outputs": []
+  },
+  "median-of-two-sorted-arrays": {
+    "slug": "median-of-two-sorted-arrays",
+    "status": "harness_error",
+    "error": "Failed to parse batch oracle output",
+    "expected_outputs": []
+  },
+  "trapping-rain-water": {
+    "slug": "trapping-rain-water",
+    "status": "harness_error",
+    "error": "Failed to parse batch oracle output",
+    "expected_outputs": []
+  },
+  "merge-k-sorted-lists": {
+    "slug": "merge-k-sorted-lists",
+    "status": "harness_error",
+    "error": "Failed to parse batch oracle output",
+    "expected_outputs": []
+  },
+  "longest-palindromic-substring": {
+    "slug": "longest-palindromic-substring",
+    "status": "harness_error",
+    "error": "Failed to parse batch oracle output",
+    "expected_outputs": []
+  },
+  "sliding-window-maximum": {
+    "slug": "sliding-window-maximum",
+    "status": "harness_error",
+    "error": "Failed to parse batch oracle output",
+    "expected_outputs": []
+  },
+  "minimum-window-substring": {
+    "slug": "minimum-window-substring",
+    "status": "harness_error",
+    "error": "Failed to parse batch oracle output",
+    "expected_outputs": []
+  },
+  "word-ladder": {
+    "slug": "word-ladder",
+    "status": "harness_error",
+    "error": "Failed to parse batch oracle output",
+    "expected_outputs": []
+  },
+  "largest-rectangle-in-histogram": {
+    "slug": "largest-rectangle-in-histogram",
+    "status": "harness_error",
+    "error": "Failed to parse batch oracle output",
+    "expected_outputs": []
+  }
+}

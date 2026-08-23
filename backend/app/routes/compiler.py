@@ -38,6 +38,7 @@ class ExecuteTestCasesRequest(BaseModel):
     test_cases: List[dict] = Field(default_factory=list, max_length=50)
     timeout: Optional[int] = Field(default=5, ge=1, le=30)
     async_mode: bool = Field(default=False, description="Run asynchronously via job queue")
+    function_name: str = Field(default="", max_length=64, description="Entry function for function-call grading")
 
     def model_post_init(self, __context) -> None:
         if self.language.lower() not in SUPPORTED_LANGUAGE_IDS:
@@ -120,6 +121,7 @@ async def execute_test_cases(req: ExecuteTestCasesRequest, user=Depends(get_curr
                 "language": req.language,
                 "test_cases": req.test_cases,
                 "timeout": timeout,
+                "function_name": req.function_name or "",
             },
             user_id=user["id"],
             priority=5,
@@ -132,6 +134,7 @@ async def execute_test_cases(req: ExecuteTestCasesRequest, user=Depends(get_curr
             source_code=req.code,
             language=req.language,
             test_cases=req.test_cases,
+            function_name=getattr(req, "function_name", "") or "",
         )
 
 

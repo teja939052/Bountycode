@@ -311,6 +311,7 @@ async def _score_code(item: SubmitOAItem, qdef: dict):
             source_code=item.answer,
             language=item.language or qdef.get("language", "python"),
             test_cases=tcs,
+            function_name=qdef.get("function_name", "") or "",
         )
     except Exception as e:
         return 0.0, {"error": str(e)}

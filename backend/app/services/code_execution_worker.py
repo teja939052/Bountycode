@@ -93,6 +93,64 @@ class CodeExecutionWorker:
 
         try:
             total = len(test_cases)
+
+            # ── Oracle path: one local sandbox run for ALL cases (zero API cost) ──
+            if (
+                not settings.DOCKER_SANDBOX_ENABLED
+                and language.lower() == "python"
+                and test_cases
+            ):
+                from app.services.local_sandbox import execute_local_python_batch
+
+                batch = await execute_local_python_batch(
+                    code,
+                    [tc.get("input", "") for tc in test_cases],
+                    timeout=10,
+                    function_name=payload.get("function_name", ""),
+                )
+                if batch.get("success") and not batch.get("compile_error"):
+                    results = []
+                    passed_count = 0
+                    for idx, ((ok, output), case) in enumerate(
+                        zip(batch["results"], test_cases)
+                    ):
+                        expected = case.get("expected", case.get("expected_output", ""))
+                        is_hidden = case.get("is_hidden", False)
+                        if ok:
+                            actual = self._normalize_text(output)
+                            passed = actual == self._normalize_text(expected)
+                        else:
+                            actual = output
+                            passed = False
+                        results.append({
+                            "test_case_index": idx + 1,
+                            "passed": passed,
+                            "is_hidden": is_hidden,
+                            "input": "" if is_hidden else case.get("input", ""),
+                            "expected": expected if not is_hidden else "[HIDDEN]",
+                            "actual": actual if not is_hidden else "[HIDDEN]",
+                            "error": None if ok else actual,
+                            "execution_time": 0,
+                        })
+                        if passed:
+                            passed_count += 1
+
+                    result = {
+                        "success": True,
+                        "all_passed": passed_count == total,
+                        "passed_count": passed_count,
+                        "total_count": total,
+                        "score": round(passed_count / total * 100, 1) if total > 0 else 0,
+                        "summary": f"{passed_count}/{total} Test Cases Passed",
+                        "results": results,
+                        "engine": "local_oracle_batch",
+                    }
+                    if job.user_id:
+                        await self.ws_manager.send_personal(job.user_id, WSEvents.job_progress(job.id, 95, "finalizing"))
+                        await self.ws_manager.send_personal(job.user_id, WSEvents.job_completed(job.id, result))
+                    return result
+                # Oracle unavailable → fall through to per-case path below.
+
             results = []
             passed_count = 0
 

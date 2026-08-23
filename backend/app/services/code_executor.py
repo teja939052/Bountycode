@@ -401,6 +401,7 @@ func main() {
         source_code: str,
         language: str,
         test_cases: List[Dict[str, str]],
+        function_name: str = "",
     ) -> Dict[str, Any]:
         """
         Execute code against multiple test cases in parallel using asyncio.gather.
@@ -419,6 +420,16 @@ func main() {
                 "error": f"Language '{language}' is not supported",
                 "supported_languages": list(self.SUPPORTED_LANGUAGES.keys()),
             }
+
+        # ── Oracle path: batch ALL test cases into ONE local sandbox run ──
+        # Zero Piston API calls for Python submissions (the default language).
+        if lang == "python":
+            oracle = await self._grade_python_batched(
+                source_code, test_cases, function_name=function_name or ""
+            )
+            if oracle is not None:
+                return oracle
+            # Oracle unavailable (no local interpreter etc.) → legacy per-case path.
 
         tc_semaphore = asyncio.Semaphore(6)
 
@@ -710,6 +721,83 @@ Provide 4 to 12 meaningful, educational execution steps. Focus on loop iteration
     @staticmethod
     def _normalize_text(value: str) -> str:
         return "\n".join(line.rstrip() for line in (value or "").strip().splitlines())
+
+    async def _grade_python_batched(
+        self,
+        source_code: str,
+        test_cases: List[Dict[str, str]],
+        function_name: str = "",
+    ) -> Optional[Dict[str, Any]]:
+        """Grade a Python submission against all test cases in ONE local
+        sandbox process. Returns the standard result dict, or None if the
+        local batch runner is unavailable (caller falls back to legacy path)."""
+        from app.services.local_sandbox import execute_local_python_batch
+
+        stdins = [tc.get("input", "") for tc in test_cases]
+        expecteds = [
+            tc.get("expected", tc.get("expected_output", "")) for tc in test_cases
+        ]
+
+        started = time.perf_counter()
+        batch = await execute_local_python_batch(
+            source_code, stdins, timeout=self.MAX_TIMEOUT, function_name=function_name
+        )
+        duration_ms = (time.perf_counter() - started) * 1000
+
+        if not batch.get("success"):
+            err = batch.get("error", "")
+            if "timed out" in err.lower():
+                # Real timeout → report as failed run, don't retry via Piston.
+                return {
+                    "success": False,
+                    "error": err,
+                }
+            return None  # infrastructure issue → let legacy path handle it
+
+        compile_error = batch.get("compile_error")
+        if compile_error:
+            return {
+                "success": False,
+                "error": compile_error,
+            }
+
+        per_case_ms = duration_ms / max(len(test_cases), 1)
+        results = []
+        for idx, ((ok, output), case) in enumerate(zip(batch["results"], test_cases)):
+            is_hidden = case.get("is_hidden", False)
+            expected = expecteds[idx]
+            if ok:
+                actual = self._normalize_text(output)
+                passed = actual == self._normalize_text(expected)
+            else:
+                actual = output
+                passed = False
+
+            results.append({
+                "test_case_index": idx + 1,
+                "passed": passed,
+                "is_hidden": is_hidden,
+                "input": stdins[idx] if not is_hidden else "[HIDDEN]",
+                "expected": expected if not is_hidden else "[HIDDEN]",
+                "actual": actual if not is_hidden else "[HIDDEN]",
+                "error": None if ok else actual,
+                "execution_time": round(per_case_ms / 1000, 4),
+            })
+
+        await request_metrics.record(
+            "compiler", "local_oracle", duration_ms=duration_ms
+        )
+        passed_count = sum(1 for r in results if r["passed"])
+        return {
+            "success": True,
+            "all_passed": passed_count == len(results),
+            "passed_count": passed_count,
+            "total_count": len(results),
+            "score": round(passed_count / len(results) * 100, 1) if results else 0,
+            "summary": f"{passed_count}/{len(results)} Test Cases Passed",
+            "results": results,
+            "engine": "local_oracle_batch",
+        }
 
     async def close(self):
         if self._client and not self._client.is_closed:

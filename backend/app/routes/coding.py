@@ -138,7 +138,8 @@ async def submit_coding_answer(req: SubmitCodingAnswer, user=Depends(get_current
     if test_cases and req.code.strip():
         try:
             test_results = await code_engine.execute_against_test_cases(
-                req.code, challenge.get("language", "python"), test_cases
+                req.code, challenge.get("language", "python"), test_cases,
+                function_name=challenge.get("function_name", "") or "",
             )
             score = test_results.get("score", 0)
         except Exception:

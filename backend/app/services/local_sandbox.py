@@ -20,11 +20,12 @@ Microsandbox, or a self-hosted Piston/Judge0 instance behind auth). See SANDBOX.
 from __future__ import annotations
 
 import asyncio
+import json
 import os
 import shutil
 import sys
 import tempfile
-from typing import Dict, Any, Tuple
+from typing import Dict, Any, List, Tuple
 from app.config import get_settings
 
 # Languages that have a safe local runner implementation.
@@ -144,6 +145,134 @@ async def _exec_python(code: str, stdin: str, timeout: int) -> Dict[str, Any]:
         "memory_usage": 0,
         "source": "local_sandbox",
     }
+
+
+# ── Batched oracle execution ────────────────────────────────────────────────
+# Runs user submission ONCE against ALL test cases inside a single sandboxed
+# process (stdin swapped per case, stdout captured per case). This is the
+# zero-cost judging path: no Piston API call, regardless of test-case count.
+#
+# Function-call mode: when FUNCTION_NAME is set and the submission defines
+# that function, each case's stdin is parsed as a Python-literal argument
+# tuple ("[2,7], 9" → args) and the function's return value is serialized
+# canonically (str bare, containers as compact JSON). This matches the
+# platform-wide question format where starter code defines a named function.
+
+_BATCH_RUNNER = (
+    "import ast, contextlib, io, json, sys\n"
+    "_USER_CODE = @@CODE@@\n"
+    "_CASES = json.loads(@@CASES@@)\n"
+    "_FUNC_NAME = @@FUNC@@\n"
+    "def _canon(v):\n"
+    "    if isinstance(v, str):\n"
+    "        return v\n"
+    "    if isinstance(v, bool):\n"
+    "        return str(v)\n"
+    "    if isinstance(v, (list, tuple)):\n"
+    "        return json.dumps([_canon(x) for x in v], separators=(',', ':'))\n"
+    "    if v is None:\n"
+    "        return 'None'\n"
+    "    return str(v)\n"
+    "_OUT = []\n"
+    "_NS = {'__name__': '__main__'}\n"
+    "try:\n"
+    "    exec(compile(_USER_CODE, '<submission>', 'exec'), _NS)\n"
+    "except BaseException as _e:\n"
+    "    sys.stdout.write('<<ORACLE_COMPILE>>' + ('%s: %s' % (type(_e).__name__, _e)))\n"
+    "    sys.exit(0)\n"
+    "_FN = _NS.get(_FUNC_NAME) if _FUNC_NAME else None\n"
+    "for _raw in _CASES:\n"
+    "    try:\n"
+    "        if _FN is not None:\n"
+    "            _args = ast.literal_eval('(' + _raw + ')') if _raw.strip() else ()\n"
+    "            if not isinstance(_args, tuple):\n"
+    "                _args = (_args,)\n"
+    "            _OUT.append([True, _canon(_FN(*_args))])\n"
+    "        else:\n"
+    "            _so = io.StringIO()\n"
+    "            _old_in = sys.stdin\n"
+    "            try:\n"
+    "                sys.stdin = io.StringIO(_raw)\n"
+    "                _g = dict(_NS)\n"
+    "                with contextlib.redirect_stdout(_so):\n"
+    "                    exec(compile(_USER_CODE, '<submission>', 'exec'), _g)\n"
+    "                _OUT.append([True, _so.getvalue()])\n"
+    "            finally:\n"
+    "                sys.stdin = _old_in\n"
+    "    except BaseException as _e:\n"
+    "        _OUT.append([False, '%s: %s' % (type(_e).__name__, _e)])\n"
+    "sys.stdout.write('<<ORACLE>>' + json.dumps(_OUT))\n"
+)
+
+
+async def execute_local_python_batch(
+    code: str,
+    stdins: List[str],
+    timeout: int = 10,
+    function_name: str = "",
+) -> Dict[str, Any]:
+    """Execute `code` once against every case in `stdins` inside one sandboxed
+    subprocess. Returns {"success": True, "results": [[ok, output], ...],
+    "compile_error": str|None} or {"success": False, "error": str}."""
+    settings = get_settings()
+    timeout = max(1, min(int(timeout or 10), settings.SANDBOX_TIMEOUT or 10))
+
+    runner = (
+        _BATCH_RUNNER
+        .replace("@@CODE@@", repr(code))
+        .replace("@@CASES@@", repr(json.dumps(stdins)))
+        .replace("@@FUNC@@", repr(function_name or ""))
+    )
+
+    try:
+        kwargs = {
+            "stdin": asyncio.subprocess.PIPE,
+            "stdout": asyncio.subprocess.PIPE,
+            "stderr": asyncio.subprocess.PIPE,
+            "env": {"PYTHONDONTWRITEBYTECODE": "1", "PYTHONNOUSERSITE": "1"},
+        }
+        if os.name != "nt":
+            kwargs["preexec_fn"] = _resource_preset
+        proc = await asyncio.create_subprocess_exec(
+            sys.executable, "-c", runner, **kwargs
+        )
+    except Exception as e:
+        return {"success": False, "error": f"Local batch runner unavailable: {e}"}
+
+    try:
+        stdout_b, stderr_b = await asyncio.wait_for(
+            proc.communicate(b""), timeout=timeout
+        )
+    except asyncio.TimeoutError:
+        proc.kill()
+        await proc.wait()
+        return {
+            "success": False,
+            "error": "Execution timed out (possible infinite loop)",
+        }
+
+    stdout = stdout_b.decode("utf-8", errors="replace")
+
+    compile_marker = "<<ORACLE_COMPILE>>"
+    if compile_marker in stdout:
+        return {
+            "success": True,
+            "results": [],
+            "compile_error": stdout.split(compile_marker, 1)[1][:500],
+        }
+
+    marker = stdout.find("<<ORACLE>>")
+    if marker == -1:
+        return {
+            "success": False,
+            "error": stderr.strip()[:500] or "Batch runner produced no results",
+        }
+    try:
+        results = json.loads(stdout[marker + len("<<ORACLE>>"):])
+    except ValueError:
+        return {"success": False, "error": "Failed to parse batch oracle output"}
+
+    return {"success": True, "results": results, "compile_error": None}
 
 
 async def _exec_js(code: str, stdin: str, timeout: int) -> Dict[str, Any]:
