@@ -35,37 +35,24 @@ def _canon(v) -> str:
     if isinstance(v, bool):
         return str(v)
     if isinstance(v, (list, tuple)):
-        return json.dumps([_canon(x) for x in v], separators=(",", ":"))
-    if v is None:
-        return "None"
-    return str(v)
+        return json.dumps(
+            [x.tolist() if hasattr(x, "tolist") else x for x in v],
+            separators=(",", ":"),
+        )
+    return json.dumps(v, separators=(",", ":"))
 
 
 async def grade_problem(slug: str, problem: dict, ref: dict) -> dict:
     cases = problem.get("test_cases", [])
-    code = ref["python"]
     stdins = [tc.get("input", "") for tc in cases]
 
-    harness = (
-        "import ast, json, sys\n"
-        "_CODE = " + repr(code) + "\n"
-        "_CASES = json.loads(" + repr(json.dumps(stdins)) + ")\n"
-        "exec(compile(_CODE, '<ref>', 'exec'), _NS := {'__name__': '__main__'})\n"
-        "_FN = _NS[" + repr(ref["function_name"]) + "]\n"
-        "_OUT = []\n"
-        "for _raw in _CASES:\n"
-        "    try:\n"
-        "        _args = ast.literal_eval('(' + _raw + ')') if _raw.strip() else ()\n"
-        "        if not isinstance(_args, tuple):\n"
-        "            _args = (_args,)\n"
-        "        _OUT.append([True, repr(_FN(*_args))])\n"
-        "    except BaseException as _e:\n"
-        "        _OUT.append([False, '%s: %s' % (type(_e).__name__, _e)])\n"
-        "sys.stdout.write('<<ORACLE>>' + json.dumps(_OUT))\n"
+    # Direct oracle call: one sandboxed process grades every case.
+    result = await execute_local_python_batch(
+        ref["python"],
+        stdins,
+        timeout=15,
+        function_name=ref["function_name"],
     )
-
-    # Reuse the sandbox subprocess machinery by embedding our harness AS the code
-    result = await execute_local_python_batch(harness, [""], timeout=15)
     if not result.get("success") or result.get("compile_error"):
         return {
             "slug": slug,
@@ -77,20 +64,11 @@ async def grade_problem(slug: str, problem: dict, ref: dict) -> dict:
     outputs = []
     for (ok, value), case in zip(result["results"], cases):
         authored = case.get("expected", "")
-        computed = ""
-        status = "error"
-        if ok:
-            import ast as _ast
-            try:
-                computed = _canon(_ast.literal_eval(value))
-                status = "match" if computed == authored else "mismatch"
-            except (ValueError, SyntaxError):
-                computed = value
-                status = "unparseable_return"
+        status = ("match" if value == authored else "mismatch") if ok else "error"
         outputs.append({
             "input": case.get("input", ""),
             "authored_expected": authored,
-            "computed_expected": computed,
+            "computed_expected": value,
             "status": status,
         })
 
@@ -135,7 +113,7 @@ async def main() -> int:
         elif res["status"] == "verified_with_corrections":
             matched += 1
             for d in res["diffs"]:
-                print(f"[fix]  {slug}: input={d['input']!r} authored={d['authored']!r} → canonical={d['canonical']!r}")
+                print(f"[fix]  {slug}: input={d['input']!r} authored={d['authored']!r} -> canonical={d['canonical']!r}")
         else:
             print(f"[FAIL] {slug}: {res.get('error', 'case errors')}")
 

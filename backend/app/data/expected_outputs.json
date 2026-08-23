@@ -1,170 +1,617 @@
 {
   "reverse-string": {
     "slug": "reverse-string",
-    "status": "harness_error",
-    "error": "Failed to parse batch oracle output",
-    "expected_outputs": []
+    "title": "Reverse String",
+    "function_name": "reverse_string",
+    "status": "ok",
+    "expected_outputs": [
+      {
+        "input": "\"hello\"",
+        "expected": "olleh"
+      },
+      {
+        "input": "\"racecar\"",
+        "expected": "racecar"
+      },
+      {
+        "input": "\"12345\"",
+        "expected": "54321"
+      }
+    ],
+    "diffs": []
   },
   "fizzbuzz": {
     "slug": "fizzbuzz",
-    "status": "harness_error",
-    "error": "Failed to parse batch oracle output",
-    "expected_outputs": []
+    "title": "FizzBuzz",
+    "function_name": "fizzbuzz",
+    "status": "ok",
+    "expected_outputs": [
+      {
+        "input": "5",
+        "expected": "[\"1\",\"2\",\"Fizz\",\"4\",\"Buzz\"]"
+      },
+      {
+        "input": "3",
+        "expected": "[\"1\",\"2\",\"Fizz\"]"
+      },
+      {
+        "input": "15",
+        "expected": "[\"1\",\"2\",\"Fizz\",\"4\",\"Buzz\",\"Fizz\",\"7\",\"8\",\"Fizz\",\"Buzz\",\"11\",\"Fizz\",\"13\",\"14\",\"FizzBuzz\"]"
+      }
+    ],
+    "diffs": []
   },
   "palindrome-check": {
     "slug": "palindrome-check",
-    "status": "harness_error",
-    "error": "Failed to parse batch oracle output",
-    "expected_outputs": []
+    "title": "Palindrome Check",
+    "function_name": "is_palindrome",
+    "status": "ok",
+    "expected_outputs": [
+      {
+        "input": "\"racecar\"",
+        "expected": "True"
+      },
+      {
+        "input": "\"hello\"",
+        "expected": "False"
+      },
+      {
+        "input": "\"A man a plan a canal Panama\"",
+        "expected": "True"
+      }
+    ],
+    "diffs": []
   },
   "two-sum": {
     "slug": "two-sum",
-    "status": "harness_error",
-    "error": "Failed to parse batch oracle output",
-    "expected_outputs": []
+    "title": "Two Sum",
+    "function_name": "two_sum",
+    "status": "ok",
+    "expected_outputs": [
+      {
+        "input": "[2,7,11,15], 9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "[3,2,4], 6",
+        "expected": "[1,2]"
+      },
+      {
+        "input": "[3,3], 6",
+        "expected": "[0,1]"
+      }
+    ],
+    "diffs": []
   },
   "max-of-array": {
     "slug": "max-of-array",
-    "status": "harness_error",
-    "error": "Failed to parse batch oracle output",
-    "expected_outputs": []
+    "title": "Max of Array",
+    "function_name": "max_of_array",
+    "status": "ok",
+    "expected_outputs": [
+      {
+        "input": "[1, 5, 3, 9, 2]",
+        "expected": "9"
+      },
+      {
+        "input": "[-5, -2, -10]",
+        "expected": "-2"
+      },
+      {
+        "input": "[100]",
+        "expected": "100"
+      }
+    ],
+    "diffs": []
   },
   "factorial": {
     "slug": "factorial",
-    "status": "harness_error",
-    "error": "Failed to parse batch oracle output",
-    "expected_outputs": []
+    "title": "Factorial",
+    "function_name": "factorial",
+    "status": "ok",
+    "expected_outputs": [
+      {
+        "input": "5",
+        "expected": "120"
+      },
+      {
+        "input": "0",
+        "expected": "1"
+      },
+      {
+        "input": "10",
+        "expected": "3628800"
+      }
+    ],
+    "diffs": []
   },
   "fibonacci": {
     "slug": "fibonacci",
-    "status": "harness_error",
-    "error": "Failed to parse batch oracle output",
-    "expected_outputs": []
+    "title": "Fibonacci",
+    "function_name": "fibonacci",
+    "status": "ok",
+    "expected_outputs": [
+      {
+        "input": "0",
+        "expected": "0"
+      },
+      {
+        "input": "1",
+        "expected": "1"
+      },
+      {
+        "input": "6",
+        "expected": "8"
+      },
+      {
+        "input": "10",
+        "expected": "55"
+      }
+    ],
+    "diffs": []
   },
   "anagram-check": {
     "slug": "anagram-check",
-    "status": "harness_error",
-    "error": "Failed to parse batch oracle output",
-    "expected_outputs": []
+    "title": "Anagram Check",
+    "function_name": "is_anagram",
+    "status": "ok",
+    "expected_outputs": [
+      {
+        "input": "('listen', 'silent')",
+        "expected": "True"
+      },
+      {
+        "input": "('hello', 'world')",
+        "expected": "False"
+      },
+      {
+        "input": "('anagram', 'nagaram')",
+        "expected": "True"
+      }
+    ],
+    "diffs": []
   },
   "count-vowels": {
     "slug": "count-vowels",
-    "status": "harness_error",
-    "error": "Failed to parse batch oracle output",
-    "expected_outputs": []
+    "title": "Count Vowels",
+    "function_name": "count_vowels",
+    "status": "ok",
+    "expected_outputs": [
+      {
+        "input": "'hello world'",
+        "expected": "3"
+      },
+      {
+        "input": "'AEIOU'",
+        "expected": "5"
+      },
+      {
+        "input": "'xyz'",
+        "expected": "0"
+      }
+    ],
+    "diffs": []
   },
   "array-sum": {
     "slug": "array-sum",
-    "status": "harness_error",
-    "error": "Failed to parse batch oracle output",
-    "expected_outputs": []
+    "title": "Array Sum",
+    "function_name": "array_sum",
+    "status": "ok",
+    "expected_outputs": [
+      {
+        "input": "[1, 2, 3, 4, 5]",
+        "expected": "15"
+      },
+      {
+        "input": "[-1, 0, 1]",
+        "expected": "0"
+      },
+      {
+        "input": "[42]",
+        "expected": "42"
+      }
+    ],
+    "diffs": []
   },
   "valid-parentheses": {
     "slug": "valid-parentheses",
-    "status": "harness_error",
-    "error": "Failed to parse batch oracle output",
-    "expected_outputs": []
+    "title": "Valid Parentheses",
+    "function_name": "is_valid_parentheses",
+    "status": "ok",
+    "expected_outputs": [
+      {
+        "input": "'()'",
+        "expected": "True"
+      },
+      {
+        "input": "'([)]'",
+        "expected": "False"
+      },
+      {
+        "input": "'{[]}'",
+        "expected": "True"
+      },
+      {
+        "input": "'('",
+        "expected": "False"
+      }
+    ],
+    "diffs": []
   },
   "binary-search": {
     "slug": "binary-search",
-    "status": "harness_error",
-    "error": "Failed to parse batch oracle output",
-    "expected_outputs": []
+    "title": "Binary Search",
+    "function_name": "binary_search",
+    "status": "ok",
+    "expected_outputs": [
+      {
+        "input": "([-1,0,3,5,9,12], 9)",
+        "expected": "4"
+      },
+      {
+        "input": "([-1,0,3,5,9,12], 2)",
+        "expected": "-1"
+      },
+      {
+        "input": "([5], 5)",
+        "expected": "0"
+      }
+    ],
+    "diffs": []
   },
   "merge-intervals": {
     "slug": "merge-intervals",
-    "status": "harness_error",
-    "error": "Failed to parse batch oracle output",
-    "expected_outputs": []
+    "title": "Merge Intervals",
+    "function_name": "merge_intervals",
+    "status": "ok",
+    "expected_outputs": [
+      {
+        "input": "[[1,3],[2,6],[8,10],[15,18]]",
+        "expected": "[[1,6],[8,10],[15,18]]"
+      },
+      {
+        "input": "[[1,4],[4,5]]",
+        "expected": "[[1,5]]"
+      },
+      {
+        "input": "[[1,4],[2,3]]",
+        "expected": "[[1,4]]"
+      }
+    ],
+    "diffs": []
   },
   "group-anagrams": {
     "slug": "group-anagrams",
-    "status": "harness_error",
-    "error": "Failed to parse batch oracle output",
-    "expected_outputs": []
+    "title": "Group Anagrams",
+    "function_name": "group_anagrams",
+    "status": "verified_with_corrections",
+    "expected_outputs": [
+      {
+        "input": "['eat','tea','tan','ate','nat','bat']",
+        "expected": "[[\"ate\",\"eat\",\"tea\"],[\"bat\"],[\"nat\",\"tan\"]]"
+      }
+    ],
+    "diffs": [
+      {
+        "input": "['eat','tea','tan','ate','nat','bat']",
+        "authored": "[['bat'],['nat','tan'],['ate','eat','tea']]",
+        "canonical": "[[\"ate\",\"eat\",\"tea\"],[\"bat\"],[\"nat\",\"tan\"]]"
+      }
+    ]
   },
   "longest-substring-without-repeating-characters": {
     "slug": "longest-substring-without-repeating-characters",
-    "status": "harness_error",
-    "error": "Failed to parse batch oracle output",
-    "expected_outputs": []
+    "title": "Longest Substring Without Repeating Characters",
+    "function_name": "length_of_longest_substring",
+    "status": "ok",
+    "expected_outputs": [
+      {
+        "input": "'abcabcbb'",
+        "expected": "3"
+      },
+      {
+        "input": "'bbbbb'",
+        "expected": "1"
+      },
+      {
+        "input": "'pwwkew'",
+        "expected": "3"
+      },
+      {
+        "input": "''",
+        "expected": "0"
+      }
+    ],
+    "diffs": []
   },
   "product-of-array-except-self": {
     "slug": "product-of-array-except-self",
-    "status": "harness_error",
-    "error": "Failed to parse batch oracle output",
-    "expected_outputs": []
+    "title": "Product of Array Except Self",
+    "function_name": "product_except_self",
+    "status": "ok",
+    "expected_outputs": [
+      {
+        "input": "[1,2,3,4]",
+        "expected": "[24,12,8,6]"
+      },
+      {
+        "input": "[-1,1,0,-3,3]",
+        "expected": "[0,0,9,0,0]"
+      }
+    ],
+    "diffs": []
   },
   "find-all-duplicates": {
     "slug": "find-all-duplicates",
-    "status": "harness_error",
-    "error": "Failed to parse batch oracle output",
-    "expected_outputs": []
+    "title": "Find All Duplicates",
+    "function_name": "find_duplicates",
+    "status": "ok",
+    "expected_outputs": [
+      {
+        "input": "[4,3,2,7,8,2,3,1]",
+        "expected": "[2,3]"
+      },
+      {
+        "input": "[1,1,2]",
+        "expected": "[1]"
+      },
+      {
+        "input": "[1,2,3]",
+        "expected": "[]"
+      }
+    ],
+    "diffs": []
   },
   "container-with-most-water": {
     "slug": "container-with-most-water",
-    "status": "harness_error",
-    "error": "Failed to parse batch oracle output",
-    "expected_outputs": []
+    "title": "Container With Most Water",
+    "function_name": "max_area",
+    "status": "ok",
+    "expected_outputs": [
+      {
+        "input": "[1,8,6,2,5,4,8,3,7]",
+        "expected": "49"
+      },
+      {
+        "input": "[1,1]",
+        "expected": "1"
+      },
+      {
+        "input": "[4,3,2,1,4]",
+        "expected": "16"
+      }
+    ],
+    "diffs": []
   },
   "rotate-array": {
     "slug": "rotate-array",
-    "status": "harness_error",
-    "error": "Failed to parse batch oracle output",
-    "expected_outputs": []
+    "title": "Rotate Array",
+    "function_name": "rotate_array",
+    "status": "ok",
+    "expected_outputs": [
+      {
+        "input": "([1,2,3,4,5,6,7], 3)",
+        "expected": "[5,6,7,1,2,3,4]"
+      },
+      {
+        "input": "([-1,-100,3,99], 2)",
+        "expected": "[3,99,-1,-100]"
+      }
+    ],
+    "diffs": []
   },
   "valid-sudoku": {
     "slug": "valid-sudoku",
-    "status": "harness_error",
-    "error": "Failed to parse batch oracle output",
-    "expected_outputs": []
+    "title": "Valid Sudoku",
+    "function_name": "is_valid_sudoku",
+    "status": "ok",
+    "expected_outputs": [
+      {
+        "input": "[['5','3','.','.','7','.','.','.','.'],['6','.','.','1','9','5','.','.','.'],['.','9','8','.','.','.','.','6','.'],['8','.','.','.','6','.','.','.','3'],['4','.','.','8','.','3','.','.','1'],['7','.','.','.','2','.','.','.','6'],['.','6','.','.','.','.','2','8','.'],['.','.','.','4','1','9','.','.','5'],['.','.','.','.','8','.','.','7','9']]",
+        "expected": "True"
+      }
+    ],
+    "diffs": []
   },
   "median-of-two-sorted-arrays": {
     "slug": "median-of-two-sorted-arrays",
-    "status": "harness_error",
-    "error": "Failed to parse batch oracle output",
-    "expected_outputs": []
+    "title": "Median of Two Sorted Arrays",
+    "function_name": "median_two_sorted",
+    "status": "ok",
+    "expected_outputs": [
+      {
+        "input": "([1,3], [2])",
+        "expected": "2.0"
+      },
+      {
+        "input": "([1,2], [3,4])",
+        "expected": "2.5"
+      },
+      {
+        "input": "([0,0], [0,0])",
+        "expected": "0.0"
+      }
+    ],
+    "diffs": []
   },
   "trapping-rain-water": {
     "slug": "trapping-rain-water",
-    "status": "harness_error",
-    "error": "Failed to parse batch oracle output",
-    "expected_outputs": []
+    "title": "Trapping Rain Water",
+    "function_name": "trapping_rain_water",
+    "status": "ok",
+    "expected_outputs": [
+      {
+        "input": "[0,1,0,2,1,0,1,3,2,1,2,1]",
+        "expected": "6"
+      },
+      {
+        "input": "[4,2,0,3,2,5]",
+        "expected": "9"
+      },
+      {
+        "input": "[1,0,1]",
+        "expected": "1"
+      }
+    ],
+    "diffs": []
   },
   "merge-k-sorted-lists": {
     "slug": "merge-k-sorted-lists",
-    "status": "harness_error",
-    "error": "Failed to parse batch oracle output",
-    "expected_outputs": []
+    "title": "Merge K Sorted Lists",
+    "function_name": "merge_k_lists",
+    "status": "ok",
+    "expected_outputs": [
+      {
+        "input": "[[1,4,5],[1,3,4],[2,6]]",
+        "expected": "[1,1,2,3,4,4,5,6]"
+      },
+      {
+        "input": "[[1,2],[3,4],[5,6]]",
+        "expected": "[1,2,3,4,5,6]"
+      }
+    ],
+    "diffs": []
   },
   "longest-palindromic-substring": {
     "slug": "longest-palindromic-substring",
-    "status": "harness_error",
-    "error": "Failed to parse batch oracle output",
-    "expected_outputs": []
+    "title": "Longest Palindromic Substring",
+    "function_name": "longest_palindrome",
+    "status": "verified_with_corrections",
+    "expected_outputs": [
+      {
+        "input": "'babad'",
+        "expected": "d"
+      },
+      {
+        "input": "'cbbd'",
+        "expected": "bb"
+      },
+      {
+        "input": "'a'",
+        "expected": "a"
+      },
+      {
+        "input": "'ac'",
+        "expected": "c"
+      }
+    ],
+    "diffs": [
+      {
+        "input": "'babad'",
+        "authored": "'bab'",
+        "canonical": "d"
+      },
+      {
+        "input": "'cbbd'",
+        "authored": "'bb'",
+        "canonical": "bb"
+      },
+      {
+        "input": "'a'",
+        "authored": "'a'",
+        "canonical": "a"
+      },
+      {
+        "input": "'ac'",
+        "authored": "'a'",
+        "canonical": "c"
+      }
+    ]
   },
   "sliding-window-maximum": {
     "slug": "sliding-window-maximum",
-    "status": "harness_error",
-    "error": "Failed to parse batch oracle output",
-    "expected_outputs": []
+    "title": "Sliding Window Maximum",
+    "function_name": "max_sliding_window",
+    "status": "ok",
+    "expected_outputs": [
+      {
+        "input": "([1,3,-1,-3,5,3,6,7], 3)",
+        "expected": "[3,3,5,5,6,7]"
+      },
+      {
+        "input": "([1], 1)",
+        "expected": "[1]"
+      },
+      {
+        "input": "([1,-1], 1)",
+        "expected": "[1,-1]"
+      }
+    ],
+    "diffs": []
   },
   "minimum-window-substring": {
     "slug": "minimum-window-substring",
-    "status": "harness_error",
-    "error": "Failed to parse batch oracle output",
-    "expected_outputs": []
+    "title": "Minimum Window Substring",
+    "function_name": "min_window",
+    "status": "verified_with_corrections",
+    "expected_outputs": [
+      {
+        "input": "('ADOBECODEBANC', 'ABC')",
+        "expected": "BANC"
+      },
+      {
+        "input": "('a', 'a')",
+        "expected": "a"
+      },
+      {
+        "input": "('a', 'aa')",
+        "expected": ""
+      }
+    ],
+    "diffs": [
+      {
+        "input": "('ADOBECODEBANC', 'ABC')",
+        "authored": "'BANC'",
+        "canonical": "BANC"
+      },
+      {
+        "input": "('a', 'a')",
+        "authored": "'a'",
+        "canonical": "a"
+      },
+      {
+        "input": "('a', 'aa')",
+        "authored": "''",
+        "canonical": ""
+      }
+    ]
   },
   "word-ladder": {
     "slug": "word-ladder",
-    "status": "harness_error",
-    "error": "Failed to parse batch oracle output",
-    "expected_outputs": []
+    "title": "Word Ladder",
+    "function_name": "word_ladder",
+    "status": "ok",
+    "expected_outputs": [
+      {
+        "input": "('hit', 'cog', ['hot','dot','dog','lot','log','cog'])",
+        "expected": "5"
+      },
+      {
+        "input": "('hit', 'cog', ['hot','dot','dog','lot','log'])",
+        "expected": "0"
+      }
+    ],
+    "diffs": []
   },
   "largest-rectangle-in-histogram": {
     "slug": "largest-rectangle-in-histogram",
-    "status": "harness_error",
-    "error": "Failed to parse batch oracle output",
-    "expected_outputs": []
+    "title": "Largest Rectangle in Histogram",
+    "function_name": "largest_rectangle",
+    "status": "ok",
+    "expected_outputs": [
+      {
+        "input": "[2,1,5,6,2,3]",
+        "expected": "10"
+      },
+      {
+        "input": "[2,4]",
+        "expected": "4"
+      },
+      {
+        "input": "[1,2,3,4,5]",
+        "expected": "9"
+      }
+    ],
+    "diffs": []
   }
 }

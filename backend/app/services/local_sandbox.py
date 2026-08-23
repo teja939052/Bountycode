@@ -155,8 +155,15 @@ async def _exec_python(code: str, stdin: str, timeout: int) -> Dict[str, Any]:
 # Function-call mode: when FUNCTION_NAME is set and the submission defines
 # that function, each case's stdin is parsed as a Python-literal argument
 # tuple ("[2,7], 9" → args) and the function's return value is serialized
-# canonically (str bare, containers as compact JSON). This matches the
-# platform-wide question format where starter code defines a named function.
+# canonically (str bare, bool Python-style, everything else compact JSON).
+# This matches the platform-wide question format where starter code defines
+# a named function.
+#
+# Canonical serialization contract (mirrored in scripts/precompute_expected_outputs.py):
+#   "hello"   -> hello           (top-level strings stay bare)
+#   True      -> True            (bools Python-style)
+#   [0, 1]    -> [0,1]           (containers compact JSON, numbers unquoted)
+#   ["a",1]   -> ["a",1]
 
 _BATCH_RUNNER = (
     "import ast, contextlib, io, json, sys\n"
@@ -168,19 +175,32 @@ _BATCH_RUNNER = (
     "        return v\n"
     "    if isinstance(v, bool):\n"
     "        return str(v)\n"
-    "    if isinstance(v, (list, tuple)):\n"
-    "        return json.dumps([_canon(x) for x in v], separators=(',', ':'))\n"
-    "    if v is None:\n"
-    "        return 'None'\n"
-    "    return str(v)\n"
+    "    def _j(x):\n"
+    "        if isinstance(x, tuple):\n"
+    "            return [_j(y) for y in x]\n"
+    "        if isinstance(x, list):\n"
+    "            return [_j(y) for y in x]\n"
+    "        return x\n"
+    "    return json.dumps(_j(v), separators=(',', ':'))\n"
     "_OUT = []\n"
     "_NS = {'__name__': '__main__'}\n"
+    # Compile-only precheck: catches SyntaxError without RUNNING the code,
+    # so interactive scripts don't die on empty stdin before the case loop.
     "try:\n"
-    "    exec(compile(_USER_CODE, '<submission>', 'exec'), _NS)\n"
+    "    compile(_USER_CODE, '<submission>', 'exec')\n"
     "except BaseException as _e:\n"
     "    sys.stdout.write('<<ORACLE_COMPILE>>' + ('%s: %s' % (type(_e).__name__, _e)))\n"
     "    sys.exit(0)\n"
-    "_FN = _NS.get(_FUNC_NAME) if _FUNC_NAME else None\n"
+    "_FN = None\n"
+    "if _FUNC_NAME:\n"
+    "    try:\n"
+    "        exec(compile(_USER_CODE, '<submission>', 'exec'), _NS)\n"
+    "        _FN = _NS.get(_FUNC_NAME)\n"
+    "        if _FN is None:\n"
+    "            raise NameError('function %s is not defined' % _FUNC_NAME)\n"
+    "    except BaseException as _e:\n"
+    "        sys.stdout.write('<<ORACLE_COMPILE>>' + ('%s: %s' % (type(_e).__name__, _e)))\n"
+    "        sys.exit(0)\n"
     "for _raw in _CASES:\n"
     "    try:\n"
     "        if _FN is not None:\n"
