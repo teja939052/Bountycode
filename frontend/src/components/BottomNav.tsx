@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { LayoutDashboard, BookOpen, Code2, MessageSquare, Menu, User, Trophy, Briefcase, Gamepad2, Castle, Users, Swords, Layers, Award, Globe, Coins, Library, Gift, Shield, Brain, Timer, Calendar, MessageCircle, Building2, Lightbulb, ScrollText, Target, Zap, UserPlus, type LucideIcon } from 'lucide-react';
+import { LayoutDashboard, BookOpen, Code2, MessageSquare, Menu, User, Trophy, Briefcase, Gamepad2, Castle, Users, Swords, Layers, Award, Coins, Library, Gift, Shield, Brain, Timer, Calendar, MessageCircle, Building2, Lightbulb, ScrollText, Target, Zap, UserPlus, MapPin, type LucideIcon } from 'lucide-react';
 import useAuthStore from '../store/authStore';
 import { useGamification } from '../hooks/useGamification';
 
@@ -26,6 +26,7 @@ const MORE_GROUPS: { label: string; items: NavItem[] }[] = [
   {
     label: 'Your Journey',
     items: [
+      { to: '/journey-map/origin', icon: MapPin, label: 'Bounty Map' },
       { to: '/journey', icon: Gamepad2, label: 'Journey' },
       { to: '/tower', icon: Castle, label: 'Tower' },
       { to: '/guilds', icon: Users, label: 'Guilds' },
@@ -33,7 +34,6 @@ const MORE_GROUPS: { label: string; items: NavItem[] }[] = [
       { to: '/collection', icon: Library, label: 'Collection' },
       { to: '/cards', icon: Layers, label: 'Cards' },
       { to: '/achievements', icon: Award, label: 'Achievements' },
-      { to: '/world', icon: Globe, label: 'World' },
       { to: '/economy', icon: Coins, label: 'Economy' },
       { to: '/wheel', icon: Gift, label: 'Lucky Wheel' },
       { to: '/battle-pass', icon: Shield, label: 'Battle Pass' },
@@ -84,29 +84,29 @@ export default function BottomNav() {
   return (
     <>
       {moreOpen && (
-        <div className="fixed inset-0 z-40 flex flex-col justify-end bg-surface-2" onClick={() => setMoreOpen(false)}>
+        <div className="fixed inset-0 z-40 flex flex-col justify-end bg-black/30" onClick={() => setMoreOpen(false)}>
           <motion.div
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="rounded-t-3xl border-t border-gray-200 bg-white border-border/95 p-4 pb-2 safe-area-bottom"
+            className="rounded-t-3xl border-t border-border bg-white p-4 pb-2 safe-area-bottom"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="mx-auto mb-3 h-1 w-10 rounded-full bg-gray-300" />
-            <div className="text-sm font-display font-bold text-text-primary">Browse everything</div>
+            <div className="mx-auto mb-3 h-1 w-10 rounded-full bg-border" />
+            <div className="text-sm font-display font-bold text-text">Browse everything</div>
             <div className="mt-2 max-h-[55vh] overflow-y-auto pb-4">
               {MORE_GROUPS.map((group) => (
                 <div key={group.label}>
-                  <div className="px-2 pb-1 pt-4 text-[10px] font-mono uppercase tracking-[0.22em] text-text-light">{group.label}</div>
+                  <div className="px-2 pb-1 pt-4 text-[10px] font-mono uppercase tracking-[0.22em] text-text-muted">{group.label}</div>
                   <div className="grid grid-cols-1 gap-1">
                     {group.items.map((item) => (
                       <Link
                         key={item.to}
                         to={item.to}
                         onClick={() => setMoreOpen(false)}
-                        className="flex items-center gap-2 rounded-xl px-3 py-2.5 text-sm text-text-secondary transition-colors hover:bg-brand-sky/10 hover:text-brand-sky"
+                        className="flex items-center gap-2 rounded-xl px-3 py-2.5 text-sm text-text transition-colors hover:bg-ocean-soft hover:text-ocean"
                       >
-                        <item.icon size={14} className="text-brand-sky" />
+                        <item.icon size={14} className="text-ocean" />
                         {item.label}
                       </Link>
                     ))}
@@ -118,21 +118,21 @@ export default function BottomNav() {
         </div>
       )}
 
-      <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden border-t border-white/60 bg-white shadow-[0_-4px_20px_rgba(11,16,32,0.06)] safe-area-bottom">
+      <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden border-t border-border bg-white shadow-[0_-4px_20px_rgba(17,33,27,0.06)] safe-area-bottom">
         {showLeague && (
           <Link
             to="/rank"
-            className="block border-b border-white/60"
-            style={{ background: `linear-gradient(90deg, ${tier.color}14, ${tier.color}08)` }}
+            className="block border-b border-border"
+            style={{ background: `${tier.color}10` }}
           >
             <div className="flex items-center justify-center gap-1.5 h-7 px-3 text-[10px] font-mono">
               <Trophy size={11} style={{ color: tier.color }} />
-              <span className="font-bold" style={{ color: tier.color }}>{tier.icon} {tier.name} League</span>
-              <span className="text-text-light">
+              <span className="font-bold" style={{ color: tier.color }}>{tier.name} League</span>
+              <span className="text-text-muted">
                 #{startup.rank} of {startup.of} · {startup.weekly_xp || 0} XP
               </span>
-              {startup.promoted_next_week && <span className="text-brand-emerald">↑ promoting</span>}
-              {startup.relegated_next_week && <span className="text-brand-coral">↓ relegation</span>}
+              {startup.promoted_next_week && <span className="text-primary-dark">&uarr; promoting</span>}
+              {startup.relegated_next_week && <span className="text-coral">&darr; relegation</span>}
             </div>
           </Link>
         )}
@@ -155,16 +155,16 @@ export default function BottomNav() {
               >
                 <div className="relative w-7 h-7 flex items-center justify-center">
                   <Icon size={18}
-                    className={`transition-colors duration-200 ${isActive && !isMore ? 'text-brand-sky' : 'text-text-light'}`}
+                    className={`transition-colors duration-200 ${isActive && !isMore ? 'text-primary-dark' : 'text-text-muted'}`}
                   />
                   {isActive && !isMore && (
                     <motion.div layoutId="bottomNavActive"
-                      className="absolute -bottom-1 w-5 h-0.5 rounded-full bg-brand-sky"
+                      className="absolute -bottom-1 w-5 h-0.5 rounded-full bg-primary"
                       transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                     />
                   )}
                 </div>
-                <span className={`text-[9px] font-mono tracking-wider mt-0.5 ${isActive && !isMore ? 'text-brand-sky font-semibold' : 'text-text-light'}`}>
+                <span className={`text-[9px] tracking-wider mt-0.5 ${isActive && !isMore ? 'text-primary-dark font-bold' : 'text-text-muted'}`}>
                   {label}
                 </span>
               </Link>

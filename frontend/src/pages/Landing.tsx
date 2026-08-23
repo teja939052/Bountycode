@@ -1,12 +1,31 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Search, Brain, Code2, Bug, Wrench, Shield, Lock, CheckCircle2, ArrowRight, Clock, Users, FileText, TrendingUp, MessageSquare } from "lucide-react";
+import {
+  Search,
+  Brain,
+  Code2,
+  Bug,
+  Wrench,
+  Shield,
+  ArrowRight,
+  Clock,
+  Users,
+  FileText,
+  TrendingUp,
+  MessageSquare,
+  Compass,
+} from "lucide-react";
 import useReducedMotion from "../hooks/useReducedMotion";
+import { PageShell } from "../design-system/PageShell";
+import { MentorAvatar } from "../design-system/Mentor";
+import { IslandNode, type NodeState } from "../design-system/JourneyMap";
+import { Button } from "../design-system/Button";
+import { Card } from "../design-system/Card";
 
 const JOURNEY_STEPS = [
   { label: "Foundations", sub: "Variables, types, conditions", pct: null, status: "done" as const },
-  { label: "Problem Solver", sub: "DSA through real scenarios", pct: 72, status: "active" as const },
-  { label: "Engineering", sub: "APIs, databases, scaling", pct: 31, status: "partial" as const },
+  { label: "Problem Solver", sub: "DSA through real scenarios", pct: 72, status: "in_progress" as const },
+  { label: "Engineering", sub: "APIs, databases, scaling", pct: 31, status: "available" as const },
   { label: "Interview", sub: "Mock OA, behavioral, system design", pct: null, status: "locked" as const },
   { label: "Job Ready", sub: "Prove it to employers", pct: null, status: "locked" as const },
 ];
@@ -21,53 +40,47 @@ const SIMULATION_LOOP = [
 ];
 
 const CORE_FEATURES = [
-  { icon: Code2, title: "DSA Practice", desc: "Curated problems with hidden tests, progressive hints, and company filters.", color: "blue" },
-  { icon: MessageSquare, title: "AI Mock Interviews", desc: "Company-specific questions with instant AI feedback after each round.", color: "primary" },
-  { icon: FileText, title: "Resume & ATS", desc: "Upload, get an honest ATS score, and rewrite bullets that pass.", color: "gold" },
-  { icon: TrendingUp, title: "Progress Tracking", desc: "Streaks, XP, and weak-area detection \u2014 always know what is next.", color: "primary" },
-  { icon: Users, title: "Company Prep", desc: "53+ company guides with patterns, behavioral questions, and experiences.", color: "purple" },
-];
+  { icon: Code2, title: "DSA Practice", desc: "Curated problems with hidden tests, progressive hints, and company filters.", tone: "tech" },
+  { icon: MessageSquare, title: "AI Mock Interviews", desc: "Company-specific questions with instant AI feedback after each round.", tone: "primary" },
+  { icon: FileText, title: "Resume & ATS", desc: "Upload, get an honest ATS score, and rewrite bullets that pass.", tone: "gold" },
+  { icon: TrendingUp, title: "Progress Tracking", desc: "Streaks, XP, and weak-area detection — always know what is next.", tone: "primary" },
+  { icon: Users, title: "Company Prep", desc: "53+ company guides with patterns, behavioral questions, and experiences.", tone: "rare" },
+] as const;
 
 const ROLE_CARDS = [
-  { id: "sde", title: "Software Developer", emoji: "\ud83d\udcbb", desc: "Full-stack SDE roles" },
-  { id: "data_analyst", title: "Data Analyst", emoji: "\ud83d\udcca", desc: "SQL, Python, dashboards" },
-  { id: "data_scientist", title: "Data Scientist", emoji: "\ud83e\udde0", desc: "ML, stats, models" },
-  { id: "qa", title: "QA Engineer", emoji: "\ud83d\udd0d", desc: "Testing, automation" },
-  { id: "devops", title: "DevOps Engineer", emoji: "\u2699\ufe0f", desc: "CI/CD, cloud, infra" },
-  { id: "pm", title: "Product Manager", emoji: "\ud83d\udccb", desc: "Strategy, execution" },
+  { id: "sde", title: "Software Developer", desc: "Full-stack SDE roles" },
+  { id: "data_analyst", title: "Data Analyst", desc: "SQL, Python, dashboards" },
+  { id: "data_scientist", title: "Data Scientist", desc: "ML, stats, models" },
+  { id: "qa", title: "QA Engineer", desc: "Testing, automation" },
+  { id: "devops", title: "DevOps Engineer", desc: "CI/CD, cloud, infra" },
+  { id: "pm", title: "Product Manager", desc: "Strategy, execution" },
 ];
 
-const STEP_ICONS = ["\ud83c\udf31", "\u2694\ufe0f", "\ud83c\udfd7\ufe0f", "\ud83c\udf99\ufe0f", "\ud83c\udfc6"];
+/** Map journey step status → IslandNode state. */
+const STEP_STATE: Record<string, NodeState> = {
+  done: "completed",
+  active: "in_progress",
+  partial: "in_progress",
+  available: "available",
+  in_progress: "in_progress",
+  locked: "locked",
+};
+
+/** Small SVG glyphs for journey steps — no emoji. */
+const STEP_GLYPHS = [
+  <svg key="0" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M5 10l7-7 7 7" stroke="#15803D" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+  <svg key="1" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 6l-5 6 5 6M16 6l5 6-5 6M13 4l-2 16" stroke="#15803D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+  <svg key="2" width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="8" width="18" height="12" rx="1.5" stroke="#5BA7A0" strokeWidth="2"/><path d="M9 8V5a2 2 0 012-2h2a2 2 0 012 2v3M3 13h18" stroke="#5BA7A0" strokeWidth="2"/></svg>,
+  <svg key="3" width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#EAB74D" strokeWidth="2"/><path d="M7 9h4M15 9l2 2M17 13h-4M9 15H7" stroke="#EAB74D" strokeWidth="1.8" strokeLinecap="round"/></svg>,
+  <svg key="4" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l2.4 5.4L20 9l-4 3.8L17 19l-5-2.8L7 19l1-6.2L4 9l5.6-.6L12 3z" fill="#EAB74D"/></svg>,
+];
 
 export default function Landing() {
   const reduced = useReducedMotion();
 
   return (
-    <div className="min-h-screen page-surface relative overflow-hidden">
-      {/* Subtle organic background texture */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-        {/* Topographic contour rings - top right */}
-        <svg className="absolute -top-20 -right-32 w-[600px] h-[600px] text-primary/[0.04]" viewBox="0 0 600 600" fill="none">
-          <path d="M300 50C400 50 550 150 550 300S400 550 300 550S50 400 50 300S150 50 300 50Z" stroke="currentColor" strokeWidth="1.5" />
-          <path d="M300 100C380 100 500 180 500 300S380 500 300 500S100 400 100 300S180 100 300 100Z" stroke="currentColor" strokeWidth="1" />
-          <path d="M300 160C350 160 440 220 440 300S350 440 300 440S160 370 160 300S220 160 300 160Z" stroke="currentColor" strokeWidth="0.8" />
-        </svg>
-        {/* Bottom left contour */}
-        <svg className="absolute -bottom-40 -left-20 w-[500px] h-[500px] text-primary/[0.03]" viewBox="0 0 500 500" fill="none">
-          <path d="M50 250C50 120 150 30 250 30S450 120 450 250S350 470 250 470S50 380 50 250Z" stroke="currentColor" strokeWidth="1.5" />
-          <path d="M80 250C80 140 170 60 250 60S420 140 420 250S330 440 250 440S80 360 80 250Z" stroke="currentColor" strokeWidth="1" />
-        </svg>
-        {/* Leaf silhouettes */}
-        <svg className="absolute top-40 right-8 w-20 h-20 text-primary/[0.05] rotate-12" viewBox="0 0 80 80" fill="currentColor">
-          <path d="M40 5C40 5 65 20 65 45C65 60 55 75 40 75C25 75 15 60 15 45C15 20 40 5 40 5Z" />
-          <path d="M40 20V65" stroke="white" strokeWidth="1" fill="none" />
-        </svg>
-        <svg className="absolute bottom-60 left-6 w-16 h-16 text-primary/[0.04] -rotate-12" viewBox="0 0 60 60" fill="currentColor">
-          <path d="M30 2C30 2 52 15 52 35C52 48 42 58 30 58C18 58 8 48 8 35C8 15 30 2 30 2Z" />
-        </svg>
-      </div>
-
-      <div className="relative mx-auto max-w-5xl px-4 py-24 md:py-32">
+    <PageShell theme="adventure">
+      <div className="mx-auto max-w-5xl px-4 py-20 md:py-28">
         {/* ═══ HERO ═══ */}
         <motion.div
           initial={reduced ? {} : { opacity: 0, y: 16 }}
@@ -75,104 +88,106 @@ export default function Landing() {
           transition={{ duration: 0.45 }}
           className="text-center"
         >
-          <h1 className="font-display text-4xl font-extrabold tracking-tight text-text-primary sm:text-5xl md:text-6xl">
+          <div className="mb-6 flex justify-center">
+            <div className="flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1.5 shadow-card">
+              <Compass size={16} className="text-ocean" />
+              <span className="text-xs font-bold uppercase tracking-wider text-text-muted">
+                The career adventure for engineers
+              </span>
+            </div>
+          </div>
+
+          <h1 className="font-display mx-auto max-w-3xl text-4xl font-extrabold tracking-tight text-text sm:text-5xl md:text-[3.4rem] md:leading-[1.08]">
             Know exactly what stands between you and your next job.
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-text-muted">
-            PlacementPro diagnoses your skills, builds your role-specific path, and trains you
-            through real coding missions, company OAs, interviews, and projects.
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-text-muted sm:text-lg">
+            PlacementPro diagnoses your skills, charts your course, and trains you through real
+            coding bounties, company OAs, interviews, and projects — one island at a time.
           </p>
 
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link to="/role-selector">
-              <motion.button
-                whileHover={reduced ? {} : { scale: 1.02 }}
-                whileTap={reduced ? {} : { scale: 0.98 }}
-                className="px-8 py-3 rounded-[10px] bg-primary text-navy font-bold text-sm tracking-wide transition-all hover:bg-primary-dark hover:shadow-[0_4px_16px_rgba(255,215,0,0.25)]"
-              >
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link to="/role-selector" className="w-full sm:w-auto">
+              <Button variant="primary" size="xl" fullWidth className="sm:w-auto">
                 Find my readiness
-              </motion.button>
+              </Button>
             </Link>
-            <Link to="/pricing">
-              <button className="px-8 py-3 rounded-[10px] border border-border text-text-muted hover:text-text-primary hover:bg-primary-soft transition-colors">
+            <Link to="/pricing" className="w-full sm:w-auto">
+              <Button variant="outline" size="xl" fullWidth className="sm:w-auto">
                 Explore the journey
-              </button>
+              </Button>
             </Link>
           </div>
         </motion.div>
 
-        {/* ═══ JOURNEY PATH ═══ */}
+        {/* ═══ BOUNTY MAP PREVIEW — the signature visual ═══ */}
         <motion.div
           initial={reduced ? {} : { opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.15 }}
-          className="mt-24"
+          className="mt-20"
         >
-          <h2 className="text-center font-display text-xl font-bold text-text-primary mb-2">
-            Your Path to Job Ready
-          </h2>
-          <p className="text-center text-sm text-text-muted mb-10">
-            A progression through real capabilities, not just topic checkboxes.
-          </p>
+          <Card pad="none" tone="bounty" className="overflow-hidden">
+            <div className="parchment-bg relative px-6 pb-8 pt-6 sm:px-10">
+              {/* Map corner flourishes */}
+              <span aria-hidden="true" className="absolute left-3 top-3 h-5 w-5 rounded-full border-2 border-dashed border-wood/30" />
+              <span aria-hidden="true" className="absolute right-3 top-3 h-5 w-5 rounded-full border-2 border-dashed border-wood/30" />
+              <span aria-hidden="true" className="absolute bottom-3 left-3 h-5 w-5 rounded-full border-2 border-dashed border-wood/30" />
+              <span aria-hidden="true" className="absolute bottom-3 right-3 h-5 w-5 rounded-full border-2 border-dashed border-wood/30" />
 
-          <div className="relative">
-            {/* Connector line (desktop) */}
-            <div className="absolute left-0 right-0 top-8 hidden md:block">
-              <div className="h-[2px] bg-border mx-8" />
-              <div className="absolute left-8 top-0 h-[2px] bg-primary/40" style={{ width: "35%" }} />
-            </div>
+              <p className="adventure-label mb-1">Your Voyage</p>
+              <h2 className="font-display text-center text-xl font-extrabold text-text sm:text-2xl">
+                Five islands between here and the offer
+              </h2>
+              <p className="mx-auto mt-2 max-w-md text-center text-sm text-text-muted">
+                A progression through real capabilities, not just topic checkboxes.
+              </p>
 
-            <div className="grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-3 md:grid-cols-5">
-              {JOURNEY_STEPS.map((step, i) => (
-                <div key={step.label} className="relative flex flex-col items-center text-center">
-                  <div
-                    className={`relative z-10 flex h-16 w-16 items-center justify-center rounded-[14px] text-2xl transition-all ${
-                      step.status === "done"
-                        ? "bg-primary/10 ring-2 ring-primary/30"
-                        : step.status === "active"
-                          ? "bg-primary/10 ring-2 ring-primary shadow-[0_0_20px_rgba(255,215,0,0.15)]"
-                          : step.status === "partial"
-                            ? "bg-primary-soft"
-                            : "bg-surface-2 opacity-50"
-                    }`}
+              {/* Islands on desktop; scrollable row on mobile */}
+              <div className="mt-8 overflow-x-auto pb-2">
+                <div className="relative flex min-w-[640px] items-start justify-between gap-2 px-4">
+                  {/* Dotted route behind islands */}
+                  <svg
+                    aria-hidden="true"
+                    className="pointer-events-none absolute left-6 right-6 top-8 hidden h-4 sm:block"
+                    preserveAspectRatio="none"
+                    viewBox="0 0 100 4"
                   >
-                    {step.status === "done" ? (
-                      <CheckCircle2 className="w-6 h-6 text-primary" />
-                    ) : step.status === "locked" ? (
-                      <Lock className="w-5 h-5 text-text-muted" />
-                    ) : (
-                      <span>{STEP_ICONS[i]}</span>
-                    )}
-                  </div>
+                    <line x1="0" y1="2" x2="100" y2="2" stroke="#A8754F" strokeWidth="0.6" strokeDasharray="2 2.4" opacity="0.55" />
+                  </svg>
 
-                  <p className="mt-3 text-sm font-semibold text-text-primary">{step.label}</p>
-                  <p className="text-xs text-text-muted mt-0.5">{step.sub}</p>
-
-                  {step.pct !== null && (
-                    <div className="mt-2 w-full max-w-[100px]">
-                      <div className="h-1.5 bg-border rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-primary rounded-full transition-all"
-                          style={{ width: `${step.pct}%` }}
-                        />
-                      </div>
-                      <p className="text-[11px] text-primary-dark font-medium mt-1">{step.pct}%</p>
+                  {JOURNEY_STEPS.map((step, i) => (
+                    <div key={step.label} className="relative z-10 flex flex-col items-center">
+                      <IslandNode
+                        state={STEP_STATE[step.status] ?? "locked"}
+                        title=""
+                        mastery={step.pct ?? undefined}
+                        icon={STEP_GLYPHS[i]}
+                        isBoss={i === JOURNEY_STEPS.length - 1}
+                      />
+                      {/* Replace node's internal label with richer card below */}
+                      <p className="mt-1 text-sm font-bold text-text">{step.label}</p>
+                      <p className="max-w-[110px] text-center text-[11px] leading-tight text-text-muted">{step.sub}</p>
+                      {step.pct !== null && (
+                        <p className="mt-0.5 text-[11px] font-bold text-ocean">{step.pct}% charted</p>
+                      )}
+                      {i === JOURNEY_STEPS.length - 1 && (
+                        <span className="badge-gold badge mt-1">The goal</span>
+                      )}
                     </div>
-                  )}
-
-                  {step.status === "locked" && (
-                    <span className="mt-2 text-[10px] text-text-muted">Locked</span>
-                  )}
-
-                  {i === JOURNEY_STEPS.length - 1 && (
-                    <span className="mt-2 rounded-full bg-primary px-3 py-0.5 text-[10px] font-semibold text-text-primary">
-                      The goal
-                    </span>
-                  )}
+                  ))}
                 </div>
-              ))}
+              </div>
+
+              {/* Mentor greeting strip */}
+              <div className="surface-bg mt-6 flex items-center gap-3 rounded-xl border border-border p-3 shadow-card sm:mx-8">
+                <MentorAvatar size={44} mood="welcome" />
+                <p className="text-xs leading-snug text-text-muted sm:text-sm">
+                  <span className="font-bold text-text">Captain Byte:</span>{" "}
+                  Every engineer's map looks different. Answer a few questions and I'll chart yours.
+                </p>
+              </div>
             </div>
-          </div>
+          </Card>
         </motion.div>
 
         {/* ═══ HOW IT WORKS — THE MISSION LOOP ═══ */}
@@ -182,58 +197,59 @@ export default function Landing() {
           transition={{ duration: 0.5, delay: 0.25 }}
           className="mt-24"
         >
-          <h2 className="text-center font-display text-xl font-bold text-text-primary mb-2">
-            Not a course. Missions.
+          <h2 className="text-center font-display text-xl font-extrabold text-text sm:text-2xl">
+            Not a course. Bounties.
           </h2>
-          <p className="text-center text-sm text-text-muted mb-10">
+          <p className="mx-auto mt-2 max-w-lg text-center text-sm text-text-muted">
             Every task follows a simulation loop: investigate, predict, build, break, debug, prove.
           </p>
 
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
+          <div className="mt-10 grid grid-cols-3 gap-4 md:grid-cols-6">
             {SIMULATION_LOOP.map((step, i) => (
-              <div key={step.label} className="flex flex-col items-center text-center group">
+              <div key={step.label} className="group flex flex-col items-center text-center">
                 <div className="relative">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-[10px] bg-surface-2 text-text-primary transition-colors group-hover:bg-primary-soft group-hover:text-primary-dark">
+                  <div className="surface-border flex h-12 w-12 items-center justify-center rounded-xl border bg-surface text-text transition-colors group-hover:border-primary/40 group-hover:bg-mint group-hover:text-primary-dark">
                     <step.icon size={20} strokeWidth={1.8} />
                   </div>
                   {i < SIMULATION_LOOP.length - 1 && (
-                    <ArrowRight className="hidden md:block absolute -right-3 top-1/2 -translate-y-1/2 w-3 h-3 text-text-muted/40" />
+                    <ArrowRight className="absolute -right-3 top-1/2 hidden h-3 w-3 -translate-y-1/2 text-text-muted/40 md:block" />
                   )}
                 </div>
-                <p className="mt-2 text-xs font-semibold text-text-primary">{step.label}</p>
-                <p className="text-[11px] text-text-muted leading-tight mt-0.5">{step.desc}</p>
+                <p className="mt-2 text-xs font-bold text-text">{step.label}</p>
+                <p className="mt-0.5 text-[11px] leading-tight text-text-muted">{step.desc}</p>
               </div>
             ))}
           </div>
         </motion.div>
 
-        {/* ═══ TODAY'S MISSION ═══ */}
+        {/* ═══ TODAY'S BOUNTY ═══ */}
         <motion.div
           initial={reduced ? {} : { opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
           className="mt-20"
         >
-          <h2 className="text-center font-display text-xl font-bold text-text-primary mb-2">
-            Today's Mission
+          <h2 className="text-center font-display text-xl font-extrabold text-text sm:text-2xl">
+            Today's Bounty
           </h2>
-          <p className="text-center text-sm text-text-muted mb-8">
+          <p className="mx-auto mt-2 max-w-lg text-center text-sm text-text-muted">
             A real task, not a toy problem.
           </p>
 
-          <Link to="/capability-worlds" className="block max-w-md mx-auto">
-            <div className="rounded-[16px] p-6 bg-white border border-border shadow-card transition-all duration-300 hover:border-primary/20 hover:shadow-card-hover cursor-pointer">
-              <div className="flex items-start justify-between">
+          <Link to="/capability-worlds" className="mx-auto mt-8 block max-w-md">
+            <Card interactive tone="bounty">
+              <div className="flex items-start justify-between gap-3">
                 <div>
-                  <p className="text-[11px] uppercase tracking-wider font-semibold text-primary-dark">Problem Solver</p>
-                  <h3 className="mt-1 text-base font-semibold text-text-primary">
+                  <span className="adventure-label">Problem Solver</span>
+                  <h3 className="font-display mt-2 text-base font-bold text-text">
                     Repair the broken registration system
                   </h3>
-                  <p className="mt-1.5 text-sm text-text-muted leading-relaxed">
-                    A user registration API is failing silently. Investigate the code, predict the root cause, and ship a fix that passes all test cases.
+                  <p className="mt-1.5 text-sm leading-relaxed text-text-muted">
+                    A user registration API is failing silently. Investigate the code, predict the
+                    root cause, and ship a fix that passes all test cases.
                   </p>
                 </div>
-                <div className="flex items-center gap-1 rounded-full bg-primary-soft px-2.5 py-1 text-xs font-semibold text-primary-dark whitespace-nowrap">
+                <div className="shrink-0 rounded-full bg-reward-soft px-2.5 py-1 text-xs font-extrabold text-wood">
                   +120 XP
                 </div>
               </div>
@@ -246,10 +262,10 @@ export default function Landing() {
                 <span>Intermediate</span>
               </div>
 
-              <div className="mt-4 flex items-center gap-1.5 text-sm font-medium text-primary-dark">
-                Start mission <ArrowRight size={14} />
+              <div className="mt-4 flex items-center gap-1.5 text-sm font-bold text-primary-dark">
+                Accept bounty <ArrowRight size={14} />
               </div>
-            </div>
+            </Card>
           </Link>
         </motion.div>
 
@@ -260,7 +276,7 @@ export default function Landing() {
           transition={{ duration: 0.5, delay: 0.35 }}
           className="mt-24"
         >
-          <h2 className="text-center font-display text-2xl font-bold text-text-primary sm:text-3xl">
+          <h2 className="text-center font-display text-2xl font-extrabold text-text sm:text-3xl">
             Everything included
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-center text-sm text-text-muted">
@@ -268,30 +284,22 @@ export default function Landing() {
           </p>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {CORE_FEATURES.map((feature) => (
-              <div
-                key={feature.title}
-                className="rounded-[16px] p-6 bg-white border border-border shadow-card transition-all duration-300 hover:border-primary/10"
-              >
-                <div
-                  className={`flex h-12 w-12 items-center justify-center rounded-[10px] mb-4 ${
-                    feature.color === "blue"
-                      ? "bg-blue-100 text-blue-600"
-                      : feature.color === "gold"
-                        ? "bg-gold-100 text-gold-700"
-                        : feature.color === "purple"
-                          ? "bg-purple-100 text-purple-600"
-                          : "bg-primary-soft text-primary-dark"
-                  }`}
-                >
-                  <feature.icon size={22} strokeWidth={1.8} />
-                </div>
-                <h3 className="font-display text-lg font-semibold text-text-primary">
-                  {feature.title}
-                </h3>
-                <p className="mt-2 text-sm text-text-muted">{feature.desc}</p>
-              </div>
-            ))}
+            {CORE_FEATURES.map((feature) => {
+              const toneClass =
+                feature.tone === "tech" ? "bg-tech-soft text-tech" :
+                feature.tone === "gold" ? "bg-reward-soft text-wood" :
+                feature.tone === "rare" ? "bg-rare-soft text-rare" :
+                "bg-primary-soft text-primary-dark";
+              return (
+                <Card key={feature.title}>
+                  <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl ${toneClass}`}>
+                    <feature.icon size={22} strokeWidth={1.8} />
+                  </div>
+                  <h3 className="font-display text-lg font-bold text-text">{feature.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-text-muted">{feature.desc}</p>
+                </Card>
+              );
+            })}
           </div>
         </motion.div>
 
@@ -302,21 +310,23 @@ export default function Landing() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="mt-24"
         >
-          <h2 className="text-center font-display text-2xl font-bold text-text-primary sm:text-3xl">
+          <h2 className="text-center font-display text-2xl font-extrabold text-text sm:text-3xl">
             What role are you targeting?
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-center text-sm text-text-muted">
-            Every path starts with your destination.
+            Every voyage starts with a destination.
           </p>
 
           <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3">
             {ROLE_CARDS.map((role) => (
               <Link key={role.id} to="/role-selector">
-                <div className="rounded-[14px] p-5 bg-white border border-border shadow-card transition-all duration-300 hover:border-primary/20 hover:shadow-card-hover cursor-pointer text-center">
-                  <span className="text-3xl">{role.emoji}</span>
-                  <p className="mt-3 text-sm font-semibold text-text-primary">{role.title}</p>
-                  <p className="text-xs text-text-muted mt-1">{role.desc}</p>
-                </div>
+                <Card interactive className="text-center">
+                  <div className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-sky-soft text-ocean">
+                    <Compass size={22} strokeWidth={1.8} />
+                  </div>
+                  <p className="text-sm font-bold text-text">{role.title}</p>
+                  <p className="mt-1 text-xs text-text-muted">{role.desc}</p>
+                </Card>
               </Link>
             ))}
           </div>
@@ -329,23 +339,23 @@ export default function Landing() {
           transition={{ duration: 0.5, delay: 0.45 }}
           className="mt-24 text-center"
         >
-          <h2 className="font-display text-3xl font-bold text-text-primary sm:text-4xl">
+          <h2 className="font-display text-3xl font-extrabold text-text sm:text-4xl">
             Ready to start your journey?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-sm text-text-muted">
-            Join thousands of students who landed offers at top companies.
-            Free to start \u2014 upgrade anytime.
+            Join thousands of students who landed offers at top companies. Free to start — upgrade
+            anytime.
           </p>
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link to="/role-selector">
-              <button className="px-8 py-3 rounded-[10px] bg-primary text-text-primary font-medium text-sm tracking-wide transition-all hover:bg-primary-dark hover:shadow-[0_4px_16px_rgba(255,215,0,0.25)]">
-                Start free &rarr;
-              </button>
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link to="/role-selector" className="w-full sm:w-auto">
+              <Button variant="primary" size="xl" fullWidth className="sm:w-auto">
+                Start free
+              </Button>
             </Link>
-            <Link to="/pricing">
-              <button className="px-8 py-3 rounded-[10px] border border-border text-text-primary font-medium text-sm hover:bg-primary-soft transition-colors">
+            <Link to="/pricing" className="w-full sm:w-auto">
+              <Button variant="outline" size="xl" fullWidth className="sm:w-auto">
                 See all plans
-              </button>
+              </Button>
             </Link>
           </div>
         </motion.div>
@@ -357,6 +367,6 @@ export default function Landing() {
           </p>
         </footer>
       </div>
-    </div>
+    </PageShell>
   );
 }

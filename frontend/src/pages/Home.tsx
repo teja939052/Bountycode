@@ -3,8 +3,22 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import useAuthStore from "../store/authStore";
 import { requestWithRetry as request } from "../services/api/request.ts";
-import { Target, Flame, ArrowRight, Leaf, Trophy, Code2, Briefcase, Zap, Star } from "lucide-react";
-import { Button, Card, ProgressBar } from "../design-system/components";
+import {
+  Target,
+  Flame,
+  ArrowRight,
+  Trophy,
+  Code2,
+  Briefcase,
+  Zap,
+  Star,
+  FileText,
+} from "lucide-react";
+import { PageShell } from "../design-system/PageShell";
+import { Card } from "../design-system/Card";
+import { Button } from "../design-system/Button";
+import { ReadinessRing, MasteryBar } from "../design-system/Progress";
+import { BountyCard } from "../design-system/JourneyMap";
 
 interface StudentState {
   readiness: number | null;
@@ -16,11 +30,11 @@ interface StudentState {
   next_mission?: { label: string; to: string; minutes: number; xp?: number } | null;
 }
 
-const RING_DEFS: { key: string; label: string; icon: React.ReactNode; color: string }[] = [
-  { key: "dsa", label: "DSA", icon: <Code2 size={20} />, color: "#16A34A" },
-  { key: "cs_fundamentals", label: "CS Fundamentals", icon: <Trophy size={20} />, color: "#3B82F6" },
-  { key: "interview", label: "Interview", icon: <Briefcase size={20} />, color: "#8B5CF6" },
-  { key: "resume", label: "Resume", icon: <Zap size={20} />, color: "#F59E0B" },
+const RING_DEFS: { key: string; label: string; icon: React.ReactNode; tone: "primary" | "tech" | "rare" | "gold"; color: string }[] = [
+  { key: "dsa", label: "DSA", icon: <Code2 size={18} />, tone: "primary", color: "#22C55E" },
+  { key: "cs_fundamentals", label: "CS Fundamentals", icon: <Trophy size={18} />, tone: "tech", color: "#4A90E2" },
+  { key: "interview", label: "Interview", icon: <Briefcase size={18} />, tone: "rare", color: "#8B6BD9" },
+  { key: "resume", label: "Resume", icon: <FileText size={18} />, tone: "gold", color: "#EAB74D" },
 ];
 
 const DEFAULT_MISSION = { label: "Start Today's Practice", to: "/practice", minutes: 15, xp: 50 };
@@ -59,7 +73,9 @@ export default function Home() {
         if (active) setLoading(false);
       }
     })();
-    return () => { active = false; };
+    return () => {
+      active = false;
+    };
   }, [storeUser?.name, storeUser?.level, storeUser?.streak, storeUser?.xp]);
 
   const s = state ?? {
@@ -83,134 +99,151 @@ export default function Home() {
   })();
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
-      <motion.div
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-        className="space-y-8"
-      >
-        {/* Header */}
-        <div>
-          <p className="text-sm font-medium text-text-secondary">
-            {greeting}, {firstName} 👋
-          </p>
-          <h1 className="mt-1 font-display text-3xl font-extrabold tracking-tight text-text-primary sm:text-4xl">
-            {readiness === null ? "Let's keep building." : `You're ${readiness}% placement ready.`}
-          </h1>
-        </div>
-
-        {/* Next Mission Card */}
+    <PageShell theme="adventure">
+      <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.1, duration: 0.4 }}
-          className="relative overflow-hidden rounded-2xl border border-brand-primary/20 bg-gradient-to-br from-brand-mint/30 via-background-surface to-brand-mint/30 p-6 shadow-soft-lg sm:p-8"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="space-y-8"
         >
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-primary/60 to-transparent" aria-hidden="true" />
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-brand-primary">
-            <Target size={14} /> Your next mission
+          {/* Header + readiness */}
+          <div className="flex flex-col-reverse items-start gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="adventure-label">{greeting}, {firstName}</p>
+              <h1 className="font-display mt-2 text-3xl font-extrabold tracking-tight text-text sm:text-4xl">
+                {readiness === null
+                  ? "Let's chart your course."
+                  : `You're ${readiness}% voyage ready.`}
+              </h1>
+            </div>
+            {readiness !== null && (
+              <div className="shrink-0 rounded-2xl border border-border bg-surface p-3 shadow-card">
+                <ReadinessRing value={readiness} size={92} />
+              </div>
+            )}
           </div>
-          <p className="mt-3 text-xl font-bold text-text-primary sm:text-2xl">{mission.label}</p>
-          <div className="mt-1 flex items-center gap-4 text-sm text-text-secondary">
-            <span>~{mission.minutes} minutes</span>
-            {mission.xp && <span className="flex items-center gap-1 text-xp font-mono">+{mission.xp} XP</span>}
-          </div>
-          <Button
-            asChild
-            size="lg"
-            className="mt-5"
-            rightIcon={<ArrowRight size={16} />}
+
+          {/* Next Bounty */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.1, duration: 0.4 }}
           >
-            <Link to={mission.to}>Start</Link>
-          </Button>
-        </motion.div>
+            <BountyCard
+              title={mission.label}
+              subtitle={`~${mission.minutes} minutes · today's bounty`}
+              difficulty="Medium"
+              reward={mission.xp}
+              topics={["Daily"]}
+              actionLabel="Accept Bounty"
+            >
+              <Link to={mission.to} className="btn btn-primary w-full justify-center py-2.5 text-sm font-bold">
+                <span className="flex items-center gap-1.5">
+                  Accept Bounty <ArrowRight size={15} />
+                </span>
+              </Link>
+            </BountyCard>
+          </motion.div>
 
-        {/* Skill Mastery Rings */}
-        <div className="space-y-6">
-          <div className="mb-3 px-1 text-xs font-mono uppercase tracking-wider text-text-secondary">Your journey</div>
-          {loading ? (
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-              {[1,2,3,4].map((i) => (
-                <div key={i} className="flex flex-col items-center rounded-2xl border border-border-primary bg-background-surfaceSecondary py-5 animate-pulse">
-                  <div className="w-24 h-24 rounded-full bg-background-secondary" />
-                  <span className="mt-2 text-sm font-medium text-text-secondary">Loading</span>
-                </div>
-              ))}
+          {/* Skill mastery */}
+          <div>
+            <div className="mb-3 flex items-center gap-2">
+              <Target size={15} className="text-ocean" />
+              <p className="text-xs font-bold uppercase tracking-wider text-text-muted">Your journey</p>
             </div>
-          ) : (
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-              {RING_DEFS.map((ring) => (
-                <Card variant="outlined" padding="md" className="flex flex-col items-center text-center hover:border-brand-primary/50 transition-colors" key={ring.key}>
-                  <div className="w-24 h-24 rounded-full flex items-center justify-center mb-3" style={{ background: `${ring.color}15` }}>
-                    <span style={{ color: ring.color }}>{ring.icon}</span>
+            {loading ? (
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+                {[1, 2, 3, 4].map((i) => (
+                  <div
+                    key={i}
+                    className="surface-border flex animate-pulse flex-col items-center rounded-2xl border bg-surface py-5"
+                  >
+                    <div className="mb-3 h-10 w-10 rounded-full bg-mint" />
+                    <div className="h-2 w-3/4 rounded-full bg-mint" />
                   </div>
-                  <ProgressBar
-                    value={s.categories[ring.key] ?? 0}
-                    size="xl"
-                    color="primary"
-                    showLabel
-                    className="w-full mb-2"
-                  />
-                  <p className="font-semibold text-text-primary">{ring.label}</p>
-                </Card>
-              ))}
-            </div>
-          )}
-        </div>
+                ))}
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+                {RING_DEFS.map((ring) => (
+                  <Card key={ring.key} pad="sm" interactive className="flex flex-col items-center text-center">
+                    <div
+                      className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl"
+                      style={{ backgroundColor: `${ring.color}18`, color: ring.color }}
+                    >
+                      {ring.icon}
+                    </div>
+                    <MasteryBar value={s.categories[ring.key] ?? 0} showValue={false} size="sm" tone={ring.tone} className="w-full" />
+                    <p className="mt-2 text-xs font-bold text-text">{ring.label}</p>
+                    <p className="text-[11px] font-semibold text-ocean">{Math.round(s.categories[ring.key] ?? 0)}%</p>
+                  </Card>
+                ))}
+              </div>
+            )}
+          </div>
 
-        {/* Stats Bar */}
-        <Card variant="outlined" padding="md" className="flex flex-col sm:flex-row items-center justify-center gap-6">
-          <div className="flex items-center gap-3 text-center sm:text-left">
-            <div className="w-10 h-10 rounded-full bg-xp/15 flex items-center justify-center">
-              <Flame size={20} className="text-xp" />
+          {/* Stats Bar */}
+          <Card className="flex flex-col items-center justify-center gap-6 sm:flex-row">
+            <div className="flex items-center gap-3 text-center sm:text-left">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-coral-soft">
+                <Flame size={20} className="text-coral" />
+              </div>
+              <div>
+                <p className="font-display text-2xl font-extrabold text-text">{s.streak}</p>
+                <p className="text-xs font-medium text-text-muted">Day Streak</p>
+              </div>
             </div>
-            <div>
-              <p className="text-2xl font-display font-bold text-text-primary">{s.streak}</p>
-              <p className="text-xs font-mono text-text-secondary">Day Streak</p>
+            <div className="surface-border h-px w-8 sm:h-8 sm:w-px" />
+            <div className="flex items-center gap-3 text-center sm:text-left">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-soft">
+                <Trophy size={20} className="text-primary-dark" />
+              </div>
+              <div>
+                <p className="font-display text-2xl font-extrabold text-text">Lv. {s.level}</p>
+                <p className="text-xs font-medium text-text-muted">Level</p>
+              </div>
             </div>
-          </div>
-          <div className="w-px h-8 bg-border-primary sm:hidden" />
-          <div className="flex items-center gap-3 text-center sm:text-left">
-            <div className="w-10 h-10 rounded-full bg-brand-mint/30 flex items-center justify-center">
-              <Trophy size={20} className="text-brand-primary" />
+            <div className="surface-border h-px w-8 sm:h-8 sm:w-px" />
+            <div className="flex items-center gap-3 text-center sm:text-left">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-reward-soft">
+                <Star size={20} className="text-reward" fill="#EAB74D" />
+              </div>
+              <div>
+                <p className="font-display text-2xl font-extrabold text-text">{s.xp.toLocaleString()}</p>
+                <p className="text-xs font-medium text-text-muted">Total XP</p>
+              </div>
             </div>
-            <div>
-              <p className="text-2xl font-display font-bold text-text-primary">Lv. {s.level}</p>
-              <p className="text-xs font-mono text-text-secondary">Level</p>
-            </div>
-          </div>
-          <div className="w-px h-8 bg-border-primary sm:hidden" />
-          <div className="flex items-center gap-3 text-center sm:text-left">
-            <div className="w-10 h-10 rounded-full bg-brand-mint/30 flex items-center justify-center">
-              <Star size={20} className="text-xp" />
-            </div>
-            <div>
-              <p className="text-2xl font-display font-bold text-text-primary">{s.xp.toLocaleString()}</p>
-              <p className="text-xs font-mono text-text-secondary">Total XP</p>
-            </div>
-          </div>
-        </Card>
+          </Card>
 
-        {/* Quick Actions */}
-        <div className="space-y-4">
-          <h3 className="text-sm font-mono uppercase tracking-wider text-text-secondary">Quick actions</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            <Button variant="outline" size="md" fullWidth asChild leftIcon={<Code2 size={16} />}>
-              <Link to="/practice">Practice</Link>
-            </Button>
-            <Button variant="outline" size="md" fullWidth asChild leftIcon={<Zap size={16} />}>
-              <Link to="/interview">Interview Prep</Link>
-            </Button>
-            <Button variant="outline" size="md" fullWidth asChild leftIcon={<Leaf size={16} />}>
-              <Link to="/learn/c">Learn</Link>
-            </Button>
-            <Button variant="outline" size="md" fullWidth asChild leftIcon={<Briefcase size={16} />}>
-              <Link to="/career">Career</Link>
-            </Button>
+          {/* Quick Actions */}
+          <div>
+            <h3 className="adventure-label mb-3">Quick actions</h3>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+              <Link to="/practice">
+                <Button variant="outline" fullWidth leftIcon={<Code2 size={16} />}>
+                  Practice
+                </Button>
+              </Link>
+              <Link to="/interview">
+                <Button variant="outline" fullWidth leftIcon={<Zap size={16} />}>
+                  Interview Prep
+                </Button>
+              </Link>
+              <Link to="/learn/c">
+                <Button variant="outline" fullWidth leftIcon={<Star size={16} />}>
+                  Learn
+                </Button>
+              </Link>
+              <Link to="/career">
+                <Button variant="outline" fullWidth leftIcon={<Briefcase size={16} />}>
+                  Career
+                </Button>
+              </Link>
+            </div>
           </div>
-        </div>
-      </motion.div>
-    </div>
+        </motion.div>
+      </div>
+    </PageShell>
   );
 }

@@ -314,6 +314,7 @@ const Tournaments = lazy(() => import('./Tournaments'));
 const BossAssessment = lazy(() => import('./BossAssessment'));
 const MissionView = lazy(() => import('./MissionView'));
 const Mission = lazy(() => import('./Mission'));
+const JourneyMapPage = lazy(() => import('./JourneyMapPage'));
 const BountyPage = lazy(() => import('./BountyPage'));
 const JobReadiness = lazy(() => import('./JobReadiness'));
 const CapabilityWorlds = lazy(() => import('./CapabilityWorlds'));
@@ -447,6 +448,7 @@ export {
 BossAssessment,
        MissionView,
          Mission,
+         JourneyMapPage,
          BountyPage,
         JobReadiness,
         CapabilityWorlds,

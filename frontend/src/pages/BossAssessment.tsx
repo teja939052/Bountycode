@@ -24,6 +24,22 @@ const DIFFICULTY_COLORS: Record<string, string> = {
   expert: "#A855F7",
 };
 
+/** SVG boss emblem — replaces emoji icons from remote data. */
+function BossEmblem({ size = 72 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" aria-hidden="true" className="mx-auto">
+      <path
+        d="M32 6l20 8v14c0 12-8 22-20 30C20 50 12 40 12 28V14l20-8z"
+        fill="#FDEDEC"
+        stroke="#E96A5B"
+        strokeWidth="3"
+        strokeLinejoin="round"
+      />
+      <path d="M24 26l16 12M40 26L24 38M32 22v20" stroke="#E96A5B" strokeWidth="3" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export default function BossAssessment() {
   const { bossId } = useParams<{ bossId: string }>();
   const navigate = useNavigate();
@@ -125,7 +141,7 @@ export default function BossAssessment() {
     return (
       <div className="min-h-screen page-surface flex items-center justify-center px-4">
         <div className="text-center max-w-md">
-          <div className="text-6xl mb-4">{boss.icon}</div>
+          <div className="mb-4"><BossEmblem /></div>
           <h2 className="text-2xl font-display font-black text-text-primary mb-2">{boss.name}</h2>
           <p className="text-text-muted text-sm mb-4">Reach Level {boss.unlock_level} to unlock this boss.</p>
           <button onClick={() => navigate("/journey")} className="px-4 py-2 rounded-xl bg-surface-2 text-text-primary text-sm border border-border hover:bg-primary-soft transition-all">
@@ -145,7 +161,7 @@ export default function BossAssessment() {
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
           className="rounded-3xl border border-red/20 bg-red-soft p-6 sm:p-8 text-center">
-          <div className="text-6xl mb-4">{boss.icon}</div>
+          <div className="mb-4"><BossEmblem /></div>
           <h1 className="text-3xl font-display font-black text-text-primary mb-2">{boss.name}</h1>
           <p className="text-text-muted text-sm mb-6">{boss.challenges?.length || 0} challenges await. Score {boss.pass_score}%+ to defeat.</p>
 
@@ -164,7 +180,7 @@ export default function BossAssessment() {
           </div>
 
           <button onClick={() => setPhase("fight")}
-            className="px-8 py-3 rounded-xl bg-red text-text-primary font-bold text-sm hover:brightness-110 transition-all">
+            className="px-8 py-3 rounded-xl bg-coral text-white font-bold text-sm hover:brightness-105 transition-all">
             <Swords className="w-4 h-4 inline mr-2" /> Enter Battle
           </button>
         </motion.div>
@@ -185,7 +201,7 @@ export default function BossAssessment() {
           </button>
           <div className="flex items-center gap-3 text-xs font-mono text-text-muted">
             <span>{currentChallenge + 1}/{boss.challenges.length}</span>
-            <span>{boss.icon}</span>
+            <Swords className="w-4 h-4 text-coral" />
           </div>
         </div>
 
@@ -220,7 +236,7 @@ export default function BossAssessment() {
               value={answers[currentChallenge] || ""}
               onChange={(e) => handleAnswer(currentChallenge, e.target.value)}
               placeholder="Type your answer here..."
-              className="w-full h-40 bg-surface-2 border border-border rounded-xl p-4 text-sm text-text-primary placeholder-text-muted font-mono resize-none focus:outline-none focus:border-white/25 transition-all"
+              className="w-full h-40 bg-surface-2 border border-border rounded-xl p-4 text-sm text-text-primary placeholder-text-muted font-mono resize-none focus:outline-none focus:border-primary transition-all"
               disabled={!!result}
             />
 
@@ -262,7 +278,15 @@ export default function BossAssessment() {
       <div className="min-h-screen page-surface px-4 py-8 max-w-3xl mx-auto flex items-center justify-center">
         <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
           className={`rounded-3xl border p-8 text-center max-w-md w-full ${won ? "border-primary/30 bg-primary-soft" : "border-red/20 bg-red-soft"}`}>
-          <div className="text-6xl mb-4">{won ? "🏆" : boss.icon}</div>
+          <div className="mb-4 flex justify-center">
+            {won ? (
+              <div className="treasure-seal h-20 w-20">
+                <Trophy size={36} />
+              </div>
+            ) : (
+              <BossEmblem size={80} />
+            )}
+          </div>
           <h2 className="text-2xl font-display font-black text-text-primary mb-2">
             {won ? "Boss Defeated!" : "Defeated..."}
           </h2>

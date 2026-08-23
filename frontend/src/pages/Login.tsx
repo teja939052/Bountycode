@@ -1,136 +1,165 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Mail, Lock, Eye, EyeOff, LogIn, SignUp } from "lucide-react";
-import { LeavesBackground } from "../components/LeavesBackground";
-import { BrandLogo } from "../components/BrandLogo";
+import { Link } from "react-router-dom";
+import { Mail, Lock, Eye, EyeOff, LogIn } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Login() {
-  const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [focusedField, setFocusedField] = useState<"email" | "password" | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    // TODO: actual auth logic
-    setLoading(false);
-    navigate("/dashboard");
+    setTimeout(() => setLoading(false), 1000);
   };
 
+  const isDisabled = !email || !password;
+
   return (
-    <div className="min-h-screen bg-surface-base flex flex-col items-center justify-center p-4 relative">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-6 md:p-8 relative z-10">
-        <div className="text-center mb-8">
-          <BrandLogo size={40} />
-          <h1 className="text-2xl font-bold text-gray-900 mt-3">PlacementPro</h1>
-          <p className="text-sm text-gray-500 mt-1">Your journey to job readiness</p>
-        </div>
-
-        {/* Trust badges */}
-        <div className="flex items-center justify-center gap-6 mb-6 text-xs text-gray-500">
-          <span>✅ 50,000+ Students</span>
-          <span>⭐ 4.8 rating</span>
-          <span>🏆 3,000+ Offers</span>
-        </div>
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">
-              Email
-            </label>
-            <div className="relative">
-              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all text-gray-900 placeholder-gray-400"
-                required
-              />
+    <div className="min-h-screen bg-surface-base flex items-center justify-center p-4">
+      <div className="w-full max-w-5xl bg-white rounded-3xl shadow-2xl overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+          {/* Left Side - Form */}
+          <div className="flex flex-col justify-center p-8 md:p-12">
+            <div className="mb-8 text-center lg:text-left">
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">PlacementPro</h1>
+              <p className="text-sm text-gray-500">Your journey to job readiness</p>
             </div>
-          </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">
-              Password
-            </label>
-            <div className="relative">
-              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-              <input
-                type={showPassword ? "text" : "password"}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter your password"
-                className="w-full pl-12 pr-12 py-3 border border-gray-200 rounded-xl focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all text-gray-900 placeholder-gray-400"
-                required
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 cursor-pointer"
+            <div className="mb-6 text-center lg:text-left">
+              <p className="text-xs text-gray-400 mb-2">Trusted by:</p>
+              <div className="flex flex-wrap justify-center lg:justify-start gap-4 text-xs text-gray-400">
+                <span>50,000+ Students</span>
+                <span>4.8 Rating</span>
+                <span>3,000+ Offers</span>
+              </div>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                  Email Address
+                </label>
+                <div className="relative group">
+                  <Mail
+                    className={`absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors ${
+                      focusedField === "email"
+                        ? "text-green-500"
+                        : "text-gray-300"
+                    }`}
+                  />
+                  <motion.input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    onFocus={() => setFocusedField("email")}
+                    onBlur={() => setFocusedField(null)}
+                    placeholder="Enter your email"
+                    className="w-full pl-12 pr-4 py-3.5 border-2 border-gray-100 rounded-xl focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all text-gray-900 placeholder-gray-400 text-base"
+                    required
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2 }}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                  Password
+                </label>
+                <div className="relative group">
+                  <Lock
+                    className={`absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors ${
+                      focusedField === "password"
+                        ? "text-green-500"
+                        : "text-gray-300"
+                    }`}
+                  />
+                  <motion.input
+                    type={showPassword ? "text" : "password"}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    onFocus={() => setFocusedField("password")}
+                    onBlur={() => setFocusedField(null)}
+                    placeholder="Enter your password"
+                    className="w-full pl-12 pr-12 py-3.5 border-2 border-gray-100 rounded-xl focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all text-gray-900 placeholder-gray-400 text-base"
+                    required
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 }}
+                  />
+                  <motion.button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 cursor-pointer transition-colors"
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    {showPassword ? (
+                      <EyeOff className="w-5 h-5" />
+                    ) : (
+                      <Eye className="w-5 h-5" />
+                    )}
+                  </motion.button>
+                </div>
+
+                <div className="flex items-center justify-between mt-2">
+                  <label className="flex items-center gap-2 text-sm text-gray-500 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      className="rounded border-gray-300 text-green-600 focus:ring-green-200"
+                    />
+                    Remember me
+                  </label>
+                  <Link
+                    to="/forgot-password"
+                    className="text-sm text-green-600 hover:text-green-700 transition-colors"
+                  >
+                    Forgot password?
+                  </Link>
+                </div>
+              </div>
+
+              <motion.button
+                type="submit"
+                disabled={loading || isDisabled}
+                className="w-full py-3.5 bg-green-600 text-white font-medium rounded-xl hover:bg-green-700 transition-all shadow-lg shadow-green-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-base"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
               >
-                {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-              </button>
-            </div>
+                {loading ? (
+                  <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                ) : (
+                  <LogIn className="w-5 h-5" />
+                )}
+                {loading ? "Logging in..." : "Login"}
+              </motion.button>
+            </form>
 
-            <div className="flex items-center justify-between mt-1.5">
-              <label className="flex items-center gap-2 text-sm text-gray-500 cursor-pointer">
-                <input
-                  type="checkbox"
-                  className="rounded border-gray-300 text-green-600 focus:ring-green-200"
-                />
-                Remember me
-              </label>
-              <Link
-                to="/forgot-password"
-                className="text-sm text-green-600 hover:text-green-700"
-              >
-                Forgot password?
-              </Link>
-            </div>
-          </div>
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full py-3 bg-green-600 text-text-primary font-medium rounded-xl hover:bg-green-700 transition-all shadow-lg shadow-green-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-          >
-            {loading ? (
-              <>
-                <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                Logging in...
-              </>
-              ) : (
-                <>
-                  <span className="text-lg">🌱</span>
-                  Login
-                </>
-              )}
-            </button>
-
-            {/* Google OAuth alternative */}
-            <div className="relative my-4">
+            <div className="relative my-6">
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-gray-200" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-4 bg-white text-gray-500">or</span>
+                <span className="px-4 bg-white text-gray-400">or</span>
               </div>
             </div>
 
-            <button
+            <motion.button
               type="button"
-              className="w-full flex items-center justify-center gap-2 border border-gray-200 rounded-xl py-2.5 hover:bg-gray-50 transition-all text-gray-700"
+              className="w-full flex items-center justify-center gap-3 border-2 border-gray-100 rounded-xl py-3 text-gray-700 hover:bg-gray-50 transition-all"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              whileHover={{ scale: 1.02 }}
             >
-              <svg
-                className="w-5 h-5"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-              >
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
                 <path
                   d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
                   fill="#4285F4"
@@ -149,16 +178,86 @@ export default function Login() {
                 />
               </svg>
               Continue with Google
-            </button>
-          </form>
+            </motion.button>
 
-          <p className="text-center text-sm text-gray-500 mt-6">
-            Don't have an account?{" "}
-            <Link to="/register" className="text-green-600 font-medium hover:text-green-700">
-              Register
-            </Link>
-           </p>
-       </div>
-     </div>
+            <p className="text-center text-sm text-gray-500 mt-6">
+              Don't have an account?{" "}
+              <Link
+                to="/register"
+                className="text-green-600 font-medium hover:text-green-700 transition-colors"
+              >
+                Register
+              </Link>
+            </p>
+          </div>
+
+          {/* Right Side - Animated Character */}
+          <div className="relative hidden lg:flex items-center justify-center bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
+            <div className="relative w-64 h-64">
+              <motion.div
+                className="absolute inset-0 flex items-center justify-center"
+                animate={{
+                  scale: focusedField ? 1.05 : 1,
+                }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              >
+                <motion.span
+                  className="text-9xl"
+                  animate={{
+                    rotate: focusedField === "password" ? [0, -5, 5, -5, 0] : 0,
+                    y: focusedField === "email" ? [0, -5, 0] : 0,
+                  }}
+                  transition={{
+                    duration: focusedField ? 0.5 : 6,
+                    repeat: focusedField ? 0 : Infinity,
+                    repeatType: "mirror",
+                    ease: "easeInOut",
+                  }}
+                >
+                  🌱
+                </motion.span>
+              </motion.div>
+
+              <AnimatePresence>
+                {focusedField === "email" && (
+                  <motion.div
+                    className="absolute -top-16 left-1/2 -translate-x-1/2 text-sm text-gray-600 bg-white/80 px-3 py-1 rounded-full shadow"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                  >
+                    Where should we send your reset link?
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              <AnimatePresence>
+                {focusedField === "password" && (
+                  <motion.div
+                    className="absolute -bottom-16 left-1/2 -translate-x-1/2 text-sm text-gray-600 bg-white/80 px-3 py-1 rounded-full shadow"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                  >
+                    Your secret is safe with us 🌱
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              <motion.div
+                className="absolute -bottom-8 left-0 right-0 flex justify-center"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+              >
+                <p className="text-sm text-gray-600">
+                  Enter your email and password to continue
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

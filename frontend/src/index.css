@@ -2,40 +2,80 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ══════════════════════════════════════════════════════════════════
+   BOUNTYCODE DESIGN SYSTEM V2
+   "A pirate-adventure career RPG on the surface,
+    serious engineering academy underneath."
+   ══════════════════════════════════════════════════════════════════ */
+
 @layer base {
   :root {
-    --pp-canvas: #FFFFFF;
+    /* ── Base Light System ── */
+    --pp-canvas: #F7FAF7;
     --pp-surface: #FFFFFF;
-    --pp-surface-2: #F8FAFC;
-    --pp-border: #E3EBE4;
-    --pp-text: #0A0E17;
-    --pp-text-muted: #6B7280;
-    --pp-primary: #FFD700;
-    --pp-primary-dark: #E6C200;
-    --pp-primary-soft: #FFEB99;
-    --pp-blue: #3B82F6;
-    --pp-blue-soft: #DBEAFE;
-    --pp-gold: #FFD700;
-    --pp-gold-soft: #FFEB99;
-    --pp-purple: #8B5CF6;
-    --pp-purple-soft: #EDE9FE;
-    --pp-red: #DC2626;
-    --pp-red-soft: #FEE2E2;
-    --pp-navy: #0A0E17;
-    --pp-smoke: #6B7280;
-    --pp-cream: #F5E6D3;
+    --pp-surface-2: #F0F7F1;
+    --pp-mint: #EAF7ED;
+    --pp-border: #DCE8DE;
 
-    --pp-shadow-card: 0 1px 3px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.02);
-    --pp-shadow-elevated: 0 4px 16px rgba(0, 0, 0, 0.06), 0 8px 30px rgba(0, 0, 0, 0.04);
-    --pp-shadow-modal: 0 20px 60px rgba(0, 0, 0, 0.12);
-    --pp-shadow-bounty: 0 4px 20px rgba(255, 215, 0, 0.2);
+    /* ── Text ── */
+    --pp-text: #17211B;
+    --pp-text-muted: #68736B;
 
+    /* ── Primary Green (accent, not background) ── */
+    --pp-primary: #22C55E;
+    --pp-primary-dark: #15803D;
+    --pp-primary-soft: #DCFCE7;
+
+    /* ── Adventure Palette ── */
+    --pp-ocean: #5BA7A0;
+    --pp-ocean-soft: #E0F2F1;
+    --pp-sky: #8BC9D5;
+    --pp-sky-soft: #E8F5FA;
+    --pp-sand: #E9D6A3;
+    --pp-sand-soft: #FDF6EB;
+    --pp-wood: #A8754F;
+    --pp-wood-soft: #F5EFE8;
+
+    /* ── Reward Gold ── */
+    --pp-reward-gold: #EAB74D;
+    --pp-reward-gold-soft: #FFF3D0;
+
+    /* ── Semantic ── */
+    --pp-tech: #4A90E2;
+    --pp-tech-soft: #E8F0FE;
+    --pp-boss-coral: #E96A5B;
+    --pp-boss-coral-soft: #FDEDEC;
+    --pp-rare-purple: #8B6BD9;
+    --pp-rare-purple-soft: #F3F0FA;
+
+    /* ── Legacy aliases (backward compat) ── */
+    --pp-blue: #4A90E2;
+    --pp-blue-soft: #E8F0FE;
+    --pp-gold: #EAB74D;
+    --pp-gold-soft: #FFF3D0;
+    --pp-purple: #8B6BD9;
+    --pp-purple-soft: #F3F0FA;
+    --pp-red: #E96A5B;
+    --pp-red-soft: #FDEDEC;
+    --pp-navy: #17211B;
+    --pp-smoke: #68736B;
+    --pp-cream: #FDF6EB;
+
+    /* ── Shadows ── */
+    --pp-shadow-card: 0 1px 3px rgba(17, 33, 27, 0.04), 0 2px 8px rgba(17, 33, 27, 0.02);
+    --pp-shadow-elevated: 0 4px 16px rgba(17, 33, 27, 0.06), 0 8px 30px rgba(17, 33, 27, 0.04);
+    --pp-shadow-modal: 0 20px 60px rgba(17, 33, 27, 0.12);
+    --pp-shadow-bounty: 0 4px 20px rgba(234, 183, 77, 0.25);
+    --pp-shadow-ocean: 0 4px 20px rgba(91, 167, 160, 0.15);
+
+    /* ── Radii ── */
     --pp-radius-card: 16px;
     --pp-radius-button: 10px;
     --pp-radius-input: 10px;
     --pp-radius-badge: 8px;
     --pp-radius-pill: 9999px;
 
+    /* ── Transitions ── */
     --pp-transition-fast: 150ms ease;
     --pp-transition-normal: 250ms ease;
     --pp-transition-slow: 400ms ease;
@@ -44,17 +84,19 @@
     --bg-card: var(--pp-surface);
     --text-primary: var(--pp-text);
     --text-muted: var(--pp-text-muted);
+
+    color-scheme: light;
   }
 
   * {
     scrollbar-width: thin;
-    scrollbar-color: rgba(255, 215, 0, 0.30) transparent;
+    scrollbar-color: rgba(34, 197, 94, 0.28) transparent;
   }
 
   *::-webkit-scrollbar { width: 6px; }
   *::-webkit-scrollbar-track { background: transparent; }
   *::-webkit-scrollbar-thumb {
-    background: rgba(255, 215, 0, 0.30);
+    background: rgba(34, 197, 94, 0.28);
     border-radius: 3px;
   }
 
@@ -70,7 +112,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: "Inter", system-ui, sans-serif;
+    font-family: "Manrope", "Inter", system-ui, sans-serif;
     color: var(--pp-text);
     letter-spacing: -0.015em;
     line-height: 1.25;
@@ -95,14 +137,19 @@
   }
 
   a {
-    color: var(--pp-primary);
+    color: var(--pp-primary-dark);
     text-decoration: none;
     transition: color var(--pp-transition-fast);
   }
 
-  a:hover { color: var(--pp-primary-dark); }
+  a:hover { color: var(--pp-primary); }
 
   button { font-family: inherit; }
+
+  ::selection {
+    background: rgba(34, 197, 94, 0.18);
+    color: var(--pp-text);
+  }
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
@@ -136,23 +183,26 @@
 .shadow-elevated { box-shadow: var(--pp-shadow-elevated); }
 .shadow-modal { box-shadow: var(--pp-shadow-modal); }
 
-/* ── Components ── */
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENTS
+   ══════════════════════════════════════════════════════════════════ */
+
 @layer components {
   .btn {
     @apply inline-flex items-center justify-center font-medium text-sm transition-all duration-150
            focus:outline-none focus:ring-2 focus:ring-offset-2
            disabled:opacity-50 disabled:pointer-events-none;
     border-radius: var(--pp-radius-button);
-    --tw-ring-color: rgba(255, 215, 0, 0.2);
+    --tw-ring-color: rgba(34, 197, 94, 0.2);
   }
 
   .btn-primary {
     @apply btn font-bold
-           hover:shadow-[0_4px_16px_rgba(255,215,0,0.25)]
+           hover:shadow-[0_4px_16px_rgba(34,197,94,0.25)]
            active:scale-[0.97];
     background-color: var(--pp-primary);
-    color: var(--pp-navy);
-    --tw-ring-color: rgba(230, 194, 0, 0.5);
+    color: #FFFFFF;
+    --tw-ring-color: rgba(21, 128, 61, 0.5);
   }
   .btn-primary:hover { background-color: var(--pp-primary-dark); }
 
@@ -161,33 +211,43 @@
            hover:bg-primary/10 hover:border-primary/50;
     border-color: var(--pp-primary);
     background-color: var(--pp-primary-soft);
-    color: var(--pp-navy);
-    --tw-ring-color: rgba(255, 215, 0, 0.3);
+    color: var(--pp-primary-dark);
+    --tw-ring-color: rgba(34, 197, 94, 0.3);
   }
 
   .btn-ghost {
-    @apply btn text-text-muted hover:text-primary hover:bg-primary-soft;
-    --tw-ring-color: rgba(255, 215, 0, 0.3);
+    @apply btn text-text-muted hover:text-primary-dark hover:bg-primary-soft;
+    --tw-ring-color: rgba(34, 197, 94, 0.3);
   }
 
   .btn-danger {
     @apply btn border border-red-500/25 text-red-600 bg-red-50
            hover:bg-red-100 hover:border-red-500/50;
-    --tw-ring-color: rgba(220, 38, 38, 0.5);
+    --tw-ring-color: rgba(233, 106, 91, 0.5);
   }
 
   .btn-pro {
     @apply btn font-bold hover:bg-primary-dark;
     background-color: var(--pp-primary-dark);
-    color: var(--pp-navy);
-    --tw-ring-color: rgba(255, 215, 0, 0.5);
+    color: #FFFFFF;
+    --tw-ring-color: rgba(34, 197, 94, 0.5);
   }
 
   .btn-outline {
     @apply btn border text-text-muted border-text-muted/20
-           hover:border-primary hover:text-navy hover:bg-primary-soft;
-    --tw-ring-color: rgba(255, 215, 0, 0.3);
+           hover:border-primary hover:text-text hover:bg-primary-soft;
+    --tw-ring-color: rgba(34, 197, 94, 0.3);
   }
+
+  .btn-adventure {
+    @apply btn font-bold
+           hover:shadow-[0_4px_16px_rgba(91,167,160,0.3)]
+           active:scale-[0.97];
+    background-color: var(--pp-ocean);
+    color: #FFFFFF;
+    --tw-ring-color: rgba(91, 167, 160, 0.5);
+  }
+  .btn-adventure:hover { filter: brightness(1.08); }
 
   .card {
     @apply p-6 transition-all duration-300;
@@ -219,6 +279,33 @@
     box-shadow: 0 4px 16px rgba(34, 197, 94, 0.10);
   }
 
+  /* Bounty card — parchment-tinted quest card */
+  .bounty-card {
+    border-radius: var(--pp-radius-card);
+    background-color: var(--pp-sand-soft);
+    border: 1px solid var(--pp-sand);
+    box-shadow: var(--pp-shadow-card);
+    position: relative;
+    overflow: hidden;
+  }
+  .bounty-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse at top left, rgba(234, 183, 77, 0.06), transparent 55%),
+      radial-gradient(ellipse at bottom right, rgba(168, 117, 79, 0.05), transparent 55%);
+  }
+
+  /* Boss card — intense coral accent */
+  .boss-card {
+    border-radius: var(--pp-radius-card);
+    background-color: var(--pp-surface);
+    border: 2px solid var(--pp-boss-coral);
+    box-shadow: var(--pp-shadow-card);
+  }
+
   .input {
     @apply w-full px-4 py-3 text-sm
            focus:outline-none focus:ring-2
@@ -237,39 +324,73 @@
   }
 
   .badge-primary { @apply badge; background-color: var(--pp-primary-soft); color: var(--pp-primary-dark); }
-  .badge-blue { @apply badge bg-blue-100 text-blue-700; }
-  .badge-gold { @apply badge; background-color: var(--pp-gold); color: var(--pp-navy); }
-  .badge-purple { @apply badge bg-purple-100 text-purple-700; }
-  .badge-red { @apply badge bg-red-100 text-red-700; }
+  .badge-ocean { @apply badge; background-color: var(--pp-ocean-soft); color: var(--pp-ocean); }
+  .badge-gold { @apply badge; background-color: var(--pp-reward-gold-soft); color: var(--pp-wood); }
+  .badge-purple { @apply badge; background-color: var(--pp-rare-purple-soft); color: var(--pp-rare-purple); }
+  .badge-red { @apply badge; background-color: var(--pp-boss-coral-soft); color: var(--pp-boss-coral); }
+  .badge-tech { @apply badge; background-color: var(--pp-tech-soft); color: var(--pp-tech); }
 
   .pill {
     @apply inline-flex items-center px-3 py-1 text-xs font-medium;
     border-radius: 9999px;
   }
   .pill-green { @apply pill; background-color: var(--pp-primary-soft); color: var(--pp-primary-dark); }
-  .pill-blue { @apply pill bg-blue-100 text-blue-700; }
+  .pill-blue { @apply pill; background-color: var(--pp-tech-soft); color: var(--pp-tech); }
 
   .progress-bar {
     @apply h-2 overflow-hidden;
     border-radius: 9999px;
-    background-color: var(--pp-border);
+    background-color: var(--pp-mint);
   }
   .progress-fill {
     @apply h-full transition-all duration-300 ease-out;
     border-radius: 9999px;
     background-color: var(--pp-primary);
   }
-  .progress-fill-blue {
+  .progress-fill-gold {
     @apply h-full transition-all duration-300 ease-out;
     border-radius: 9999px;
-    background-color: var(--pp-blue);
+    background-color: var(--pp-reward-gold);
+  }
+  .progress-fill-ocean {
+    @apply h-full transition-all duration-300 ease-out;
+    border-radius: 9999px;
+    background-color: var(--pp-ocean);
   }
 
+  /* Serious surfaces: compiler, OA, resume — no adventure chrome */
   .serious-mode {
     background-color: var(--pp-surface);
     color: var(--pp-text);
     border-radius: var(--pp-radius-card);
     border: 1px solid var(--pp-border);
+  }
+
+  /* Adventure section label — wooden sign style */
+  .adventure-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.375rem 0.875rem;
+    border-radius: 8px;
+    background-color: var(--pp-wood-soft);
+    border: 1px solid rgba(168, 117, 79, 0.25);
+    color: var(--pp-wood);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Treasure/seal marker for completed nodes */
+  .treasure-seal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background: radial-gradient(circle at 35% 35%, #F7D98B, var(--pp-reward-gold));
+    box-shadow: 0 1px 3px rgba(17, 33, 27, 0.15), inset 0 1px 1px rgba(255,255,255,0.6);
+    color: #7A5410;
   }
 
   .transition-fast { transition-duration: 150ms; }
@@ -283,19 +404,31 @@
   @keyframes scaleIn { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
 }
 
+/* ══════════════════════════════════════════════════════════════════
+   AMBIENT NATURE SYSTEM
+   Ambient nostalgia, not decoration spam.
+   - 3–8 leaves drifting (CSS only, no React state per frame)
+   - GPU-composited properties only (transform + opacity)
+   - deterministic pseudo-random positions via nth-child
+   - pauses when tab hidden, respects reduced-motion
+   ══════════════════════════════════════════════════════════════════ */
+
 @keyframes leafFall {
   0% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
+    transform: translate3d(0, -8vh, 0) rotate(0deg);
     opacity: 0;
   }
   8% {
     opacity: var(--leaf-opacity, 0.35);
   }
+  50% {
+    transform: translate3d(calc(var(--leaf-drift, 40px) * 0.6), 55vh, 0) rotate(calc(var(--leaf-spin, 360deg) * 0.5));
+  }
   92% {
     opacity: var(--leaf-opacity, 0.35);
   }
   100% {
-    transform: translate3d(var(--leaf-drift, 40px), 118vh, 0) rotate(var(--leaf-spin, 360deg));
+    transform: translate3d(var(--leaf-drift, 40px), 112vh, 0) rotate(var(--leaf-spin, 360deg));
     opacity: 0;
   }
 }
@@ -305,10 +438,61 @@
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   will-change: transform, opacity;
+  pointer-events: none;
+}
+
+/* Deterministic per-slot variation — no JS randomness needed */
+.ambient-nature .leaf-fall:nth-child(1) { left: 8%;  animation-duration: 14s; animation-delay: 0s;   --leaf-drift: 48px;  --leaf-spin: 320deg; --leaf-opacity: 0.32; }
+.ambient-nature .leaf-fall:nth-child(2) { left: 24%; animation-duration: 18s; animation-delay: -6s;  --leaf-drift: -36px; --leaf-spin: 280deg; --leaf-opacity: 0.26; }
+.ambient-nature .leaf-fall:nth-child(3) { left: 45%; animation-duration: 12s; animation-delay: -3s;  --leaf-drift: 60px;  --leaf-spin: 360deg; --leaf-opacity: 0.30; }
+.ambient-nature .leaf-fall:nth-child(4) { left: 63%; animation-duration: 20s; animation-delay: -11s; --leaf-drift: -44px; --leaf-spin: 240deg; --leaf-opacity: 0.22; }
+.ambient-nature .leaf-fall:nth-child(5) { left: 78%; animation-duration: 16s; animation-delay: -8s;  --leaf-drift: 38px;  --leaf-spin: 340deg; --leaf-opacity: 0.28; }
+.ambient-nature .leaf-fall:nth-child(6) { left: 90%; animation-duration: 22s; animation-delay: -14s; --leaf-drift: -52px; --leaf-spin: 300deg; --leaf-opacity: 0.20; }
+.ambient-nature .leaf-fall:nth-child(7) { left: 33%; animation-duration: 17s; animation-delay: -13s; --leaf-drift: 42px;  --leaf-spin: 260deg; --leaf-opacity: 0.24; }
+.ambient-nature .leaf-fall:nth-child(8) { left: 55%; animation-duration: 21s; animation-delay: -5s;  --leaf-drift: -40px; --leaf-spin: 310deg; --leaf-opacity: 0.18; }
+
+/* Pause everything when the tab is hidden */
+.ambient-paused .leaf-fall {
+  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .leaf-fall {
-    animation: none;
+    animation: none !important;
+    opacity: 0 !important;
   }
+}
+
+/* Map contour lines — faint organic path decoration for map pages */
+.map-contours {
+  background-image:
+    repeating-radial-gradient(
+      ellipse 120% 80% at 20% 30%,
+      transparent,
+      transparent 88px,
+      rgba(91, 167, 160, 0.05) 89px,
+      transparent 91px
+    ),
+    repeating-radial-gradient(
+      ellipse 100% 90% at 80% 70%,
+      transparent,
+      transparent 110px,
+      rgba(34, 197, 94, 0.04) 111px,
+      transparent 113px
+    );
+}
+
+/* Parchment texture for bounty/quest surfaces */
+.parchment-bg {
+  background-color: var(--pp-sand-soft);
+  background-image:
+    radial-gradient(ellipse at 20% 15%, rgba(234, 183, 77, 0.07), transparent 50%),
+    radial-gradient(ellipse at 85% 85%, rgba(168, 117, 79, 0.06), transparent 45%);
+}
+
+/* Dotted journey path connector */
+.journey-path {
+  background-image: linear-gradient(to bottom, var(--pp-ocean) 55%, transparent 45%);
+  background-size: 2px 10px;
+  background-repeat: repeat-y;
 }

@@ -4,6 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        // ============ BASE LIGHT SYSTEM ============
         canvas: {
           DEFAULT: "#F7FAF7",
         },
@@ -13,7 +14,7 @@ export default {
           hover: "#F0EDE6",
         },
         border: {
-          DEFAULT: "#E3EBE4",
+          DEFAULT: "#DCE8DE",
         },
         text: {
           DEFAULT: "#17211B",
@@ -22,12 +23,55 @@ export default {
           light: "#68736B",
           inverse: "#FFFFFF",
         },
+
+        // ============ PRIMARY GREEN (ACCENT, NOT BACKGROUND) ============
         primary: {
           DEFAULT: "#22C55E",
           dark: "#16A34A",
           soft: "#DCFCE7",
           hover: "#16A34A",
         },
+
+        // ============ ADVENTURE PALETTE ============
+        ocean: {
+          DEFAULT: "#5BA7A0",
+          soft: "#E0F2F1",
+        },
+        sky: {
+          DEFAULT: "#8BC9D5",
+          soft: "#E8F5FA",
+        },
+        sand: {
+          DEFAULT: "#E9D6A3",
+          soft: "#FDF6EB",
+        },
+        wood: {
+          DEFAULT: "#A8754F",
+          soft: "#F5EFE8",
+        },
+
+        // ============ REWARD GOLD ============
+        reward: {
+          DEFAULT: "#EAB74D",
+          soft: "#FFF3D0",
+          muted: "#E8B03D",
+        },
+
+        // ============ SEMANTIC ============
+        tech: {
+          DEFAULT: "#4A90E2",
+          soft: "#E8F0FE",
+        },
+        coral: {
+          DEFAULT: "#E96A5B",
+          soft: "#FDEDEC",
+        },
+        rare: {
+          DEFAULT: "#8B6BD9",
+          soft: "#F3F0FA",
+        },
+
+        // ============ LEGACY (kept for backward compat) ============
         blue: {
           DEFAULT: "#3B82F6",
           soft: "#DBEAFE",
@@ -49,7 +93,7 @@ export default {
         error: "#EF4444",
         info: "#3B82F6",
 
-        /* Bounty palette (used for accents, not primary) */
+        // ============ BOUNTY PALETTE (legacy, kept for compat) ============
         navy: {
           DEFAULT: "#0A0E17",
           50: "#E8EDF5",
@@ -100,12 +144,9 @@ export default {
         "primary": "0 4px 20px rgba(34, 197, 94, 0.12)",
         "primary-lg": "0 8px 40px rgba(34, 197, 94, 0.18)",
         "modal": "0 20px 60px rgba(17, 33, 27, 0.12)",
-        "coral": "0 4px 20px rgba(34, 197, 94, 0.12)",
-        "coral-lg": "0 8px 40px rgba(34, 197, 94, 0.18)",
-        "teal": "0 4px 20px rgba(34, 197, 94, 0.12)",
-        "teal-lg": "0 8px 40px rgba(34, 197, 94, 0.18)",
-        "navy": "0 4px 20px rgba(10, 14, 23, 0.12)",
-        "gold": "0 4px 20px rgba(245, 158, 11, 0.15)",
+        "ocean": "0 4px 20px rgba(91, 167, 160, 0.12)",
+        "coral": "0 4px 20px rgba(233, 106, 91, 0.15)",
+        "gold": "0 4px 20px rgba(234, 183, 77, 0.18)",
         "bounty": "0 0 40px rgba(255, 215, 0, 0.15)",
       },
       fontFamily: {
@@ -117,16 +158,31 @@ export default {
         "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         "spin-slow": "spin 20s linear infinite",
         "float": "float 6s ease-in-out infinite",
+        "float-slow": "float 8s ease-in-out infinite",
+        "float-gentle": "float 10s ease-in-out infinite",
         "fade-in": "fadeIn 0.5s ease-out",
         "slide-up": "slideUp 0.5s ease-out",
         "slide-down": "slideDown 0.3s ease-out",
         "scale-in": "scaleIn 0.3s ease-out",
         "glow-pulse": "glowPulse 3s ease-in-out infinite",
+        "drift": "drift 12s ease-in-out infinite",
+        "drift-slow": "drift 20s ease-in-out infinite",
+        "sway": "sway 6s ease-in-out infinite",
       },
       keyframes: {
         float: {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-8px)" },
+        },
+        drift: {
+          "0%, 100%": { transform: "translateX(0px) translateY(0px)" },
+          "25%": { transform: "translateX(10px) translateY(-5px)" },
+          "50%": { transform: "translateX(-5px) translateY(-10px)" },
+          "75%": { transform: "translateX(-10px) translateY(-5px)" },
+        },
+        sway: {
+          "0%, 100%": { transform: "rotate(-1deg)" },
+          "50%": { transform: "rotate(1deg)" },
         },
         fadeIn: {
           "0%": { opacity: "0" },
@@ -152,11 +208,11 @@ export default {
     },
   },
   safelist: [
-    { pattern: /bg-(primary|blue|gold|purple|red|success|warning|error|info)(-(DEFAULT|dark|soft|hover))?(\/\d+)?/ },
-    { pattern: /text-(primary|blue|gold|purple|red|success|warning|error|info)(-(DEFAULT|dark|soft|hover))?/ },
-    { pattern: /border-(primary|blue|gold|purple|red|success|warning|error|info)(-(DEFAULT|dark|soft|hover))?(\/\d+)?/ },
-    { pattern: /from-(primary|blue|gold|purple|red|amber)(-(DEFAULT|dark|soft))?/ },
-    { pattern: /to-(primary|blue|gold|purple|red|amber)(-(DEFAULT|dark|soft))?/ },
+    { pattern: /bg-(primary|ocean|sky|sand|wood|reward|tech|coral|rare|blue|gold|purple|red|success|warning|error|info)(-(DEFAULT|dark|soft|hover|muted))?(\/\d+)?/ },
+    { pattern: /text-(primary|ocean|sky|sand|wood|reward|tech|coral|rare|blue|gold|purple|red|success|warning|error|info)(-(DEFAULT|dark|soft|hover|muted))?/ },
+    { pattern: /border-(primary|ocean|sky|sand|wood|reward|tech|coral|rare|blue|gold|purple|red|success|warning|error|info)(-(DEFAULT|dark|soft|hover|muted))?(\/\d+)?/ },
+    { pattern: /from-(primary|ocean|sky|sand|wood|reward|tech|coral|rare|blue|gold|purple|red|amber)(-(DEFAULT|dark|soft))?/ },
+    { pattern: /to-(primary|ocean|sky|sand|wood|reward|tech|coral|rare|blue|gold|purple|amber)(-(DEFAULT|dark|soft))?/ },
     { pattern: /bg-(canvas|surface|border|text|navy|smoke|pearl)(-(DEFAULT|2|muted|light|inverse|900|800))?(\/\d+)?/ },
     { pattern: /text-(canvas|surface|border|text|navy|smoke|pearl|cream)(-(DEFAULT|2|primary|muted|light|inverse|900|100))?/ },
     { pattern: /border-(canvas|surface|border|text|navy|smoke|pearl)(-(DEFAULT|2|muted|light|inverse))?(\/\d+)?/ },

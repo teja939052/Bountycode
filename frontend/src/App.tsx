@@ -181,6 +181,7 @@ import {
   BossAssessment,
   MissionView,
   Mission,
+  JourneyMapPage,
   BountyPage,
   JobReadiness,
   CapabilityWorlds,
@@ -263,6 +264,8 @@ function AnimatedRoutes() {
         <Route path="/boss/:bossId" element={<BossAssessment />} />
         <Route path="/mission/:topic" element={<MissionView />} />
         <Route path="/mission/:worldId/:missionId" element={<Mission />} />
+        <Route path="/journey-map/:worldId" element={<JourneyMapPage />} />
+        <Route path="/world/:worldId" element={<JourneyMapPage />} />
         <Route path="/bounty" element={<BountyPage />} />
         <Route path="/job-readiness" element={<JobReadiness />} />
         <Route path="/capability-worlds" element={<CapabilityWorlds />} />

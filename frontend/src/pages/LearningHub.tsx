@@ -36,6 +36,8 @@ import CandyProgress from "../components/candy/CandyProgress";
 import LevelMap from "../components/candy/LevelMap";
 import type { CandyColor, LevelNode } from "../components/candy";
 import { useLearning } from "../hooks/useLearning";
+import { useLearningGuide } from "../hooks/useLearningGuide";
+import { Guide } from "../components/Guide";
 
 const QUICK_START = [
   {
@@ -195,6 +197,7 @@ function LeaderboardPreview({ leaderboard }: { leaderboard: any[] | null }) {
 
 export default function LearningHub() {
   const { data, leaderboard, isLoading, isError, refetch } = useLearning();
+  const { state: guideState, refetch: refetchGuide } = useLearningGuide("user_123");
 
   if (isLoading) {
     return (
@@ -636,6 +639,7 @@ export default function LearningHub() {
           </div>
         </section>
       </div>
+      <Guide state={guideState} />
     </div>
   );
 }

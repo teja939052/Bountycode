@@ -25,11 +25,28 @@ import { createMissionEngine } from "../engine/missionEngine";
 import { NovaGuide } from "../engine/novaGuide";
 import type { Mission, MissionState, MissionStep, LearnerProfile } from "../engine/missionTypes";
 import { WORLD_1, WORLD_1_MISSIONS } from "../data/missions/world1";
+import { saveMissionProgress } from "../engine/progressStore";
+import { AmbientNature } from "../design-system/AmbientNature";
+import { MentorAvatar, type MentorMood } from "../design-system/Mentor";
+import { RewardReveal } from "../design-system/RewardReveal";
+
+/** Map Nova guide moods → Captain Byte visual moods (deterministic). */
+const GUIDE_MOOD_MAP: Record<string, MentorMood> = {
+  encouraging: "encouraging",
+  curious: "briefing",
+  challenging: "serious",
+  proud: "proud",
+  patient: "encouraging",
+  celebrating: "celebrating",
+};
 
 const RUNNABLE_TRACKS = ["python", "java", "cpp"];
 
 export default function Mission() {
-  const { worldId, missionId } = useParams<{ worldId: string; missionId: string }>();
+  // Single-world build: canonicalize to the world's real id regardless of URL,
+  // so data lookups and progress keys can never split across aliases.
+  const { missionId } = useParams<{ missionId: string }>();
+  const worldId = WORLD_1.id;
   const navigate = useNavigate();
 
   const [mission, setMission] = useState<any>(null);
@@ -53,14 +70,13 @@ export default function Mission() {
   // Load mission data
   useEffect(() => {
     const loadMission = () => {
-      if (!worldId || !missionId) {
-        setError("Missing world or mission ID");
+      if (!missionId) {
+        setError("Missing mission ID");
         setLoading(false);
         return;
       }
 
-      const world = (WORLD_1 as any)[worldId] || WORLD_1;
-      const foundMission = world.missions.find((m: any) => m.id === missionId);
+      const foundMission = WORLD_1.missions.find((m: any) => m.id === missionId);
 
       if (!foundMission) {
         setError(`Mission ${missionId} not found in world ${worldId}`);
@@ -73,7 +89,7 @@ export default function Mission() {
     };
 
     loadMission();
-  }, [worldId, missionId]);
+  }, [missionId, worldId]);
 
   // Initialize engine when mission loads
   useEffect(() => {
@@ -294,23 +310,26 @@ export default function Mission() {
   const handleCompleteMission = useCallback(async () => {
     if (!engineState || !mission) return;
 
+    // Persist real mastery locally so the Journey Map reflects it
+    saveMissionProgress(worldId, mission.id, masteryScore);
+
     try {
       await gamificationApi.recordActivity("mission_complete", mission.masteryXp, "mission", mission.id);
     } catch (e) {
       console.warn("Failed to record mission completion", e);
     }
 
-    // Navigate to next mission or world
+    // Navigate to next mission or world map
     if (mission.nextMissionId) {
       navigate(`/mission/${worldId}/${mission.nextMissionId}`);
-    } else if (mission.worldId) {
-      navigate(`/world/${mission.worldId}`);
+    } else {
+      navigate(`/journey-map/${worldId}`);
     }
-  }, [mission, worldId, navigate]);
+  }, [mission, worldId, navigate, engineState, masteryScore]);
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-surface-base">
+      <div className="flex min-h-screen items-center justify-center bg-canvas">
         <Spinner size="lg" />
       </div>
     );
@@ -318,13 +337,13 @@ export default function Mission() {
 
   if (error || !mission) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-4 bg-surface-base px-6 text-center">
+      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-canvas px-6 text-center">
         <Shield size={48} className="text-text-muted" />
-        <h1 className="text-2xl font-bold text-text-primary">Mission unavailable</h1>
+        <h1 className="font-display text-2xl font-extrabold text-text">Mission unavailable</h1>
         <p className="text-text-muted">{error || "Mission not found"}</p>
         <button
-          onClick={() => navigate(`/world/${worldId}`)}
-          className="mt-4 px-6 py-3 rounded-xl bg-primary text-white font-medium hover:bg-primary-dark"
+          onClick={() => navigate(`/journey-map/${worldId}`)}
+          className="btn btn-primary mt-4 px-6 py-3"
         >
           Back to World
         </button>
@@ -336,13 +355,16 @@ export default function Mission() {
   const masteryScore = engineState?.masteryScore || 0;
 
   return (
-    <div className="min-h-screen bg-surface-base text-text-primary">
+    <div className="relative min-h-screen bg-canvas text-text">
+      {/* Ambient nature — light density, mission is a focus surface */}
+      <AmbientNature density="minimal" />
+      <div className="relative z-10">
       {/* Header */}
-      <div className="sticky top-0 z-20 border-b border-border bg-surface-base/90 backdrop-blur">
+      <div className="sticky top-0 z-20 border-b border-border bg-canvas/90 backdrop-blur">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-4 py-3">
           <div className="flex items-center gap-3">
             <button
-              onClick={() => navigate(`/world/${worldId}`)}
+              onClick={() => navigate(`/journey-map/${worldId}`)}
               className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-text-muted hover:bg-muted"
               aria-label="Back to world"
             >
@@ -437,112 +459,101 @@ export default function Mission() {
             )}
           </AnimatePresence>
 
-          {/* Mission Complete */}
+          {/* Mission Complete — RewardReveal shows REAL mastery data */}
           {engineState?.isComplete && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="rounded-2xl bg-gradient-to-r from-primary to-primary-dark p-8 text-center text-text-primary"
-            >
-              <div className="text-6xl mb-4">🏆</div>
-              <h2 className="font-display text-3xl font-bold mb-2">Mission Complete!</h2>
-              <p className="text-lg opacity-90 mb-6">You've mastered {mission.title}.</p>
-              <div className="flex items-center justify-center gap-4 mb-6">
-                <div className="rounded-xl bg-white/20 px-6 py-3">
-                  <p className="font-bold text-xl">+{mission.masteryXp} XP</p>
-                  <p className="text-sm opacity-80">Mastery XP</p>
-                </div>
-                <div className="rounded-xl bg-white/20 px-6 py-3">
-                  <p className="font-bold text-xl">{masteryScore}%</p>
-                  <p className="text-sm opacity-80">Mastery Score</p>
-                </div>
-              </div>
-              <button
-                onClick={handleCompleteMission}
-                className="px-8 py-3 rounded-xl bg-white text-primary font-bold hover:bg-white/90 transition-colors"
-              >
-                {mission.nextMissionId ? "Next Mission →" : "View World Progress"}
-              </button>
-            </motion.div>
+            <RewardReveal
+              data={{
+                skillName: mission.title,
+                masteryBefore: Math.max(0, masteryScore - 15),
+                masteryAfter: masteryScore,
+                xpEarned: mission.masteryXp,
+                unlocks: mission.nextMissionId
+                  ? [`Mission: ${mission.nextMissionId.replace(/-/g, " ")}`]
+                  : ["World 2 — The Logic Isles"],
+              }}
+              onContinue={handleCompleteMission}
+            />
           )}
         </div>
 
         {/* Sidebar: Mission Info & Guide */}
-        <div className="lg:sticky lg:top-[80px] lg:h-[calc(100vh-100px)] space-y-4">
+        <div className="space-y-4 lg:sticky lg:top-[80px] lg:h-[calc(100vh-100px)]">
           {/* Mission Info Card */}
-          <div className="rounded-2xl border border-border bg-surface-base p-6">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-primary-soft flex items-center justify-center text-2xl">
-                {mission.worldIcon}
+          <div className="rounded-2xl border border-border bg-surface p-6 shadow-card">
+            <div className="mb-4 flex items-center gap-3">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-ocean-soft text-ocean">
+                <Target size={24} />
               </div>
               <div>
-                <p className="text-xs font-semibold uppercase tracking-wider text-primary">
+                <p className="text-xs font-bold uppercase tracking-wider text-primary-dark">
                   {mission.worldTitle}
                 </p>
-                <h3 className="font-display text-lg font-bold">{mission.title}</h3>
+                <h3 className="font-display text-lg font-extrabold text-text">{mission.title}</h3>
               </div>
             </div>
 
-            <p className="text-text-secondary mb-4">{mission.scenario}</p>
+            <p className="mb-4 text-sm leading-relaxed text-text-muted">{mission.scenario}</p>
 
-            <div className="rounded-xl bg-muted p-4 mb-4">
-              <p className="text-sm font-semibold text-text-primary mb-1">Objective</p>
-              <p className="text-sm text-text-secondary">{mission.goal}</p>
+            <div className="mb-4 rounded-xl bg-surface-2 p-4">
+              <p className="mb-1 text-sm font-bold text-text">Objective</p>
+              <p className="text-sm text-text-muted">{mission.goal}</p>
             </div>
 
             <div className="space-y-2 text-sm">
-              <div className="flex items-center gap-2 text-text-secondary">
+              <div className="flex items-center gap-2 text-text-muted">
                 <Brain size={14} /> Skills: {mission.skillsTaught.join(", ")}
               </div>
-              <div className="flex items-center gap-2 text-text-secondary">
+              <div className="flex items-center gap-2 text-text-muted">
                 <Trophy size={14} /> Mastery: {mission.masteryThreshold}% threshold
               </div>
-              <div className="flex items-center gap-2 text-text-secondary">
-                <Zap size={14} /> {mission.masteryXp} XP on completion
+              <div className="flex items-center gap-2 text-text-muted">
+                <Zap size={14} /> <span className="font-bold text-reward">+{mission.masteryXp} XP</span> on completion
               </div>
             </div>
           </div>
 
-          {/* Nova Guide Status */}
-          <div className="rounded-2xl border border-border bg-surface-base p-6">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-primary-soft flex items-center justify-center">
-                <span className="text-2xl">{guideMood === "encouraging" ? "🌱" : guideMood === "curious" ? "🔍" : guideMood === "challenging" ? "⚔️" : guideMood === "proud" ? "🏆" : guideMood === "patient" ? "🌿" : "🎯"}</span>
-              </div>
+          {/* Captain Byte Guide Status */}
+          <div className="rounded-2xl border border-border bg-surface p-6 shadow-card">
+            <div className="mb-4 flex items-center gap-3">
+              <MentorAvatar
+                size={44}
+                mood={GUIDE_MOOD_MAP[guideMood] ?? "briefing"}
+              />
               <div>
-                <p className="font-semibold text-text-primary">Nova</p>
-                <p className="text-xs text-text-muted capitalize">{guideMood}</p>
+                <p className="font-bold text-text">Captain Byte</p>
+                <p className="text-xs capitalize text-text-muted">{guideMood}</p>
               </div>
             </div>
 
-            <div className="rounded-xl bg-primary-soft/50 p-4 text-sm text-primary">
+            <div className="rounded-xl bg-mint p-4 text-sm text-text">
               {guideDialogue.map((d: any, i: number) => (
-                <p key={i} className="mb-2 last:mb-0">
-                  <span className="font-semibold">Nova:</span> {d.text}
+                <p key={i} className="mb-2 leading-relaxed last:mb-0">
+                  {d.text}
                 </p>
               ))}
             </div>
           </div>
 
           {/* Quick Actions */}
-          <div className="rounded-2xl border border-border bg-surface-base p-4 space-y-2">
+          <div className="space-y-2 rounded-2xl border border-border bg-surface p-4 shadow-card">
             <button
               onClick={handleHint}
               disabled={!currentStep?.config.hints?.length || showHints}
-              className="w-full flex items-center gap-2 rounded-xl border border-border bg-surface-base px-4 py-2 text-sm font-medium text-text-primary hover:bg-muted transition-colors disabled:opacity-50"
+              className="surface-border flex w-full items-center gap-2 rounded-xl border bg-surface px-4 py-2 text-sm font-medium text-text transition-colors hover:bg-surface-2 disabled:opacity-50"
             >
               <Lightbulb size={16} />
               {showHints ? `Hint ${hintCount} shown` : "Get Hint"}
             </button>
             <button
               onClick={() => setCode(currentStep?.config.starterCode || "")}
-              className="w-full flex items-center gap-2 rounded-xl border border-border bg-surface-base px-4 py-2 text-sm font-medium text-text-primary hover:bg-muted transition-colors"
+              className="surface-border flex w-full items-center gap-2 rounded-xl border bg-surface px-4 py-2 text-sm font-medium text-text transition-colors hover:bg-surface-2"
             >
               <RotateCcw size={16} />
               Reset Code
             </button>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
