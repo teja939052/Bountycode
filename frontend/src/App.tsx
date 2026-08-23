@@ -180,6 +180,7 @@ import {
   DiscussionsPage,
   BossAssessment,
   MissionView,
+  Mission,
   BountyPage,
   JobReadiness,
   CapabilityWorlds,
@@ -261,6 +262,7 @@ function AnimatedRoutes() {
         <Route path="/journey" element={<CareerRpg />} />
         <Route path="/boss/:bossId" element={<BossAssessment />} />
         <Route path="/mission/:topic" element={<MissionView />} />
+        <Route path="/mission/:worldId/:missionId" element={<Mission />} />
         <Route path="/bounty" element={<BountyPage />} />
         <Route path="/job-readiness" element={<JobReadiness />} />
         <Route path="/capability-worlds" element={<CapabilityWorlds />} />

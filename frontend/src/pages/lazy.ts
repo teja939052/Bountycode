@@ -313,6 +313,7 @@ const TeamCompetitions = lazy(() => import('./TeamCompetitions'));
 const Tournaments = lazy(() => import('./Tournaments'));
 const BossAssessment = lazy(() => import('./BossAssessment'));
 const MissionView = lazy(() => import('./MissionView'));
+const Mission = lazy(() => import('./Mission'));
 const BountyPage = lazy(() => import('./BountyPage'));
 const JobReadiness = lazy(() => import('./JobReadiness'));
 const CapabilityWorlds = lazy(() => import('./CapabilityWorlds'));
@@ -443,9 +444,10 @@ export {
      ReferralGamification,
      SkillTrees,
       HealthDashboard,
-      BossAssessment,
-      MissionView,
-        BountyPage,
+BossAssessment,
+       MissionView,
+         Mission,
+         BountyPage,
         JobReadiness,
         CapabilityWorlds,
         CapabilityMission,
