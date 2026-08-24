@@ -166,6 +166,23 @@ export default function AptitudeTest() {
             </p>
           </motion.div>
 
+          {/* Mass Recruiter full exams */}
+          <Link
+            to="/mass-recruiter"
+            className="bounty-card mb-8 flex items-center gap-4 p-4 transition-transform hover:scale-[1.01]"
+          >
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-ocean/10 text-ocean">
+              <Clock size={22} />
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block font-bold text-text">Mass Recruiter Exams</span>
+              <span className="block text-sm text-text-muted">
+                Full NQT-style papers for TCS, Infosys, Wipro &amp; more — real sections, real timing, cutoff verdicts
+              </span>
+            </span>
+            <ArrowRight size={18} className="shrink-0 text-text-muted" />
+          </Link>
+
           {error && (
             <div className="bg-cyber-red/10 border border-cyber-red/20 text-cyber-red px-4 py-3 rounded-lg mb-6 text-center font-mono text-sm">{error}</div>
           )}

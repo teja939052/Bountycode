@@ -136,6 +136,7 @@ import {
   Home,
   Prepare,
   InterviewTerminal,
+  MassRecruiterExam,
   Practice,
   Compete,
   Career,
@@ -313,6 +314,14 @@ function AnimatedRoutes() {
           element={
             <FeatureErrorBoundary featureName="Interview">
               <InterviewTerminal />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/mass-recruiter"
+          element={
+            <FeatureErrorBoundary featureName="MassRecruiterExam">
+              <MassRecruiterExam />
             </FeatureErrorBoundary>
           }
         />
