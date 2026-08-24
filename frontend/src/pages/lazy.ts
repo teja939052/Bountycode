@@ -249,6 +249,7 @@ const LanguageLearning = lazy(() => import('./LanguageLearning'));
 const OnboardingQuest = lazy(() => import('./OnboardingQuest'));
 const InterviewBooking = lazy(() => import('./InterviewBooking'));
 const InterviewTerminal = lazy(() => import("./InterviewTerminal"));
+const MassRecruiterExam = lazy(() => import("./MassRecruiterExam"));
 const Referral = lazy(() => import('./Referral'));
 const InterviewReplay = lazy(() => import('./InterviewReplay'));
 const FreeTrial = lazy(() => import('./FreeTrial'));
@@ -399,6 +400,7 @@ export {
     OnboardingQuest,
     InterviewBooking,
     InterviewTerminal,
+    MassRecruiterExam,
     Referral,
     InterviewReplay,
     FreeTrial,
