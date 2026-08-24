@@ -74,6 +74,23 @@ export default function InterviewSelect() {
            </p>
         </motion.div>
 
+        {/* Conversational Interview Terminal */}
+        <button
+          onClick={() => navigate("/interview-terminal")}
+          className="bounty-card mb-8 flex w-full items-center gap-4 p-4 text-left transition-transform hover:scale-[1.01]"
+        >
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+            <MessageSquare size={22} />
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="block font-bold text-text">Interview Terminal</span>
+            <span className="block text-sm text-text-muted">
+              Free-form conversation with Captain Byte — service-deck rapid-fire or product-deck deep-dive
+            </span>
+          </span>
+          <ArrowRight size={18} className="shrink-0 text-text-muted" />
+        </button>
+
         {/* Step Indicator */}
         <div className="flex items-center justify-center gap-2 mb-8">
            {["company", "type", "start"].map((s, i) => (

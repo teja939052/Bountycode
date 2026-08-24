@@ -135,6 +135,7 @@ import {
   ChallengePacks,
   Home,
   Prepare,
+  InterviewTerminal,
   Practice,
   Compete,
   Career,
@@ -304,6 +305,14 @@ function AnimatedRoutes() {
           element={
             <FeatureErrorBoundary featureName="Interview">
               <InterviewBooking />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/interview-terminal"
+          element={
+            <FeatureErrorBoundary featureName="Interview">
+              <InterviewTerminal />
             </FeatureErrorBoundary>
           }
         />

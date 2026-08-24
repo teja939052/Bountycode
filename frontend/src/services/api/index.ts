@@ -92,10 +92,12 @@ import { studyTimerApi } from "./studyTimer.ts";
 import { goalsApi } from "./goals.ts";
 import { themesApi } from "./themes.ts";
 import { bountyApi } from "./bounty.ts";
+import { interviewChatApi } from "./interviewChat.ts";
 
 const api = {
   auth: authApi,
   interview: interviewApi,
+  interviewChat: interviewChatApi,
   mockInterview: mockInterviewApi,
   booking: bookingApi,
   resume: resumeApi,
@@ -220,6 +222,7 @@ export default api;
 export {
   authApi,
   interviewApi,
+  interviewChatApi,
   mockInterviewApi,
   bookingApi,
   resumeApi,
