@@ -94,6 +94,7 @@ import { themesApi } from "./themes.ts";
 import { bountyApi } from "./bounty.ts";
 import { interviewChatApi } from "./interviewChat.ts";
 import { massRecruiterApi } from "./massRecruiter.ts";
+import { grandLineApi } from "./grandLine.ts";
 
 const api = {
   auth: authApi,
@@ -105,6 +106,7 @@ const api = {
   billing: billingApi,
   aptitude: aptitudeApi,
   massRecruiter: massRecruiterApi,
+  grandLine: grandLineApi,
   behavioral: behavioralApi,
   hr: hrApi,
   coding: codingApi,
@@ -230,7 +232,8 @@ export {
   resumeApi,
   billingApi,
   aptitudeApi,
-  massRecruiterApi,  codingApi,
+  massRecruiterApi,
+  grandLineApi,  codingApi,
   behavioralApi,
   hrApi,
   compilerApi,

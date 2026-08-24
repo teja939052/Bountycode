@@ -137,6 +137,7 @@ import {
   Prepare,
   InterviewTerminal,
   MassRecruiterExam,
+  GrandLine,
   Practice,
   Compete,
   Career,
@@ -322,6 +323,14 @@ function AnimatedRoutes() {
           element={
             <FeatureErrorBoundary featureName="MassRecruiterExam">
               <MassRecruiterExam />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/grand-line"
+          element={
+            <FeatureErrorBoundary featureName="GrandLine">
+              <GrandLine />
             </FeatureErrorBoundary>
           }
         />

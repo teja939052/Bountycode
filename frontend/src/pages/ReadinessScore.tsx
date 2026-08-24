@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Target, TrendingUp, AlertTriangle, CheckCircle2, Building2 } from "lucide-react";
 import api from "../services/api";
@@ -32,6 +33,23 @@ export default function ReadinessScore() {
         </div>
         <h1 className="text-3xl font-display font-black text-text-primary">Interview Readiness</h1>
       </motion.div>
+
+      {/* Grand Line cross-fleet comparison */}
+      <Link
+        to="/grand-line"
+        className="bounty-card mb-6 flex items-center gap-4 p-4 transition-transform hover:scale-[1.01]"
+      >
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-reward/10 text-reward">
+          <Building2 size={22} />
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block font-bold text-text">Grand Line Assessment</span>
+          <span className="block text-sm text-text-muted">
+            Compare yourself across the whole recruiter fleet — gaps, focus hours, voyage plan
+          </span>
+        </span>
+        <span className="text-text-muted">→</span>
+      </Link>
 
       {/* Company Filter */}
       <div className="flex gap-3 mb-6">
