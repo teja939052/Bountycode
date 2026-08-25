@@ -212,6 +212,10 @@ export default function MassRecruiterExam() {
             <Link to="/pseudocode" className="font-semibold text-ocean underline">
               Pseudocode dry-run drills →
             </Link>
+            {" · "}
+            <Link to="/consuls-route" className="font-semibold text-ocean underline">
+              Big 4 Consul's Route →
+            </Link>
           </p>
         </div>
       </PageShell>

@@ -96,6 +96,7 @@ import { interviewChatApi } from "./interviewChat.ts";
 import { massRecruiterApi } from "./massRecruiter.ts";
 import { grandLineApi } from "./grandLine.ts";
 import { pseudocodeApi } from "./pseudocode.ts";
+import { bigFourApi } from "./bigFour.ts";
 
 const api = {
   auth: authApi,
@@ -109,6 +110,7 @@ const api = {
   massRecruiter: massRecruiterApi,
   grandLine: grandLineApi,
   pseudocode: pseudocodeApi,
+  bigFour: bigFourApi,
   behavioral: behavioralApi,
   hr: hrApi,
   coding: codingApi,
@@ -236,7 +238,8 @@ export {
   aptitudeApi,
   massRecruiterApi,
   grandLineApi,
-  pseudocodeApi,  codingApi,
+  pseudocodeApi,
+  bigFourApi,  codingApi,
   behavioralApi,
   hrApi,
   compilerApi,

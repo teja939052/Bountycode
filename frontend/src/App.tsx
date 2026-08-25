@@ -139,6 +139,7 @@ import {
   MassRecruiterExam,
   GrandLine,
   PseudocodeDrill,
+  ConsulsRoute,
   Practice,
   Compete,
   Career,
@@ -340,6 +341,14 @@ function AnimatedRoutes() {
           element={
             <FeatureErrorBoundary featureName="PseudocodeDrill">
               <PseudocodeDrill />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/consuls-route"
+          element={
+            <FeatureErrorBoundary featureName="ConsulsRoute">
+              <ConsulsRoute />
             </FeatureErrorBoundary>
           }
         />
