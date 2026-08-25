@@ -93,7 +93,107 @@ EXAM_CONFIGS: Dict[str, Dict] = {
             _section("Verbal Ability", "verbal", 12, 14),
         ],
     },
+    "tcs_nqt_full": {
+        "name": "TCS NQT Full Simulation",
+        "description": (
+            "The exact 190-minute gauntlet: Foundation (Part A) then Advanced "
+            "(Part B). LOCKED like the real thing - once you leave a question, "
+            "you cannot return."
+        ),
+        "cutoff_pct": 65,
+        "negative_marks": 0.0,
+        "xp_per_question": 10,
+        "locked": True,
+        "sections": [
+            {
+                "name": "Numerical Ability",
+                "category": "quantitative",
+                "questions": 15,
+                "minutes": 25,
+                "part": "Part A - Foundation",
+            },
+            {
+                "name": "Reasoning Ability",
+                "category": "logical",
+                "questions": 15,
+                "minutes": 25,
+                "part": "Part A - Foundation",
+            },
+            {
+                "name": "Verbal Ability",
+                "category": "verbal",
+                "questions": 12,
+                "minutes": 20,
+                "part": "Part A - Foundation",
+            },
+            {
+                "name": "Professional Email Writing",
+                "special": "email",
+                "minutes": 6,
+                "part": "Part A - Foundation",
+            },
+            {
+                "name": "Advanced Aptitude",
+                "category": "quantitative",
+                "questions": 10,
+                "difficulty": "hard",
+                "minutes": 24,
+                "part": "Part B - Advanced",
+            },
+            {
+                "name": "Advanced Coding",
+                "special": "coding",
+                "count": 2,
+                "minutes": 90,
+                "part": "Part B - Advanced",
+            },
+        ],
+    },
 }
+
+# Subjective/special task definitions for tcs_nqt_full.
+EMAIL_TASK_PROMPT = (
+    "You lead a four-member team delivering a module to a client on Friday. "
+    "On Wednesday evening you discover a defect that will push delivery back "
+    "by one full day.\n\n"
+    "Write a professional email to your project manager (Mr. Sharma) informing "
+    "them of the delay. Cover: what happened, the impact, your recovery plan, "
+    "and the revised commitment.\n\nKeep it between 120 and 180 words."
+)
+
+CODING_TASKS = [
+    {
+        "id_suffix": "c1",
+        "difficulty_label": "Easy-Medium (35 min)",
+        "prompt": (
+            "Rotate Array\n\n"
+            "Given an array arr[] of n integers and an integer k, rotate the "
+            "array to the right by k steps. n can be up to 10^5, k up to 10^9.\n\n"
+            "Example:\narr = [1,2,3,4,5,6,7], k = 3\nResult: [5,6,7,1,2,3,4]\n\n"
+            "Aim for O(n) time, O(1) extra space."
+        ),
+        "expected_approach": (
+            "Reversal algorithm: reverse whole array, then reverse first k and "
+            "last n-k segments. Or cyclic replacement."
+        ),
+    },
+    {
+        "id_suffix": "c2",
+        "difficulty_label": "Medium-Hard (55 min)",
+        "prompt": (
+            "Minimum Platforms\n\n"
+            "Given arrival[] and departure[] times of n trains (same day, "
+            "n up to 5*10^4), find the minimum number of platforms the station "
+            "needs so no train waits.\n\n"
+            "Example:\narr = [900, 940, 950, 1100, 1500, 1800]\ndep = [910, 1200, 1120, 1130, 1900, 2000]\nAnswer: 3\n\n"
+            "Aim for O(n log n) using sorting / two pointers."
+        ),
+        "expected_approach": (
+            "Sort arrivals and departures independently; sweep with two "
+            "pointers counting overlapping intervals; track the maximum."
+        ),
+    },
+]
 
 _POOL_ATTRS = [
     ("APTITUDE_PROBLEMS", "scripts.aptitude_problems"),
@@ -141,6 +241,112 @@ class StartExam(BaseModel):
     exam_id: str
 
 
+def _special_question(exam_id: str, special: str, idx: int = 0) -> Dict:
+    """Build a subjective task item (email writing / coding). No answer key."""
+    if special == "email":
+        return {
+            "id": f"{exam_id}-email-1",
+            "question": EMAIL_TASK_PROMPT,
+            "options": [],
+            "special": "email",
+            "category": "email",
+            "sub_category": "Professional Email Writing",
+            "difficulty": "medium",
+            "time_limit": 360,
+        }
+    task = CODING_TASKS[min(idx, len(CODING_TASKS) - 1)]
+    return {
+        "id": f"{exam_id}-{task['id_suffix']}",
+        "question": task["prompt"],
+        "options": [],
+        "special": "coding",
+        "expected_approach": task["expected_approach"],  # stripped from client copy
+        "difficulty_label": task["difficulty_label"],
+        "category": "coding",
+        "sub_category": f"Coding Task {idx + 1}",
+        "difficulty": "easy-medium" if idx == 0 else "hard",
+        "time_limit": 2100 if idx == 0 else 3300,
+    }
+
+
+def _sanitize_for_client(questions: List[Dict]) -> List[Dict]:
+    """Strip internal keys (grading hints) before sending to the client."""
+    return [
+        {k: v for k, v in q.items() if k != "expected_approach"}
+        for q in questions
+    ]
+
+
+async def _grade_special(
+    kind: str, prompt: str, response: str, expected: str = ""
+) -> Dict:
+    """Grade an email/coding task. AI rubric with deterministic fallback."""
+    text = (response or "").strip()
+    if not text:
+        return {"score": 0, "feedback": "Left blank."}
+
+    def _heuristic() -> Dict:
+        words = len(text.split())
+        if kind == "email":
+            ok = words >= 80 and any(
+                w in text.lower()
+                for w in ("regards", "sincerely", "thank", "apolog", "dear")
+            )
+            score = 65 if ok else 40
+            feedback = (
+                "Offline estimate: structure looks professional."
+                if ok
+                else "Offline estimate: add a greeting, apology/impact line, and sign-off."
+            )
+        else:
+            looks_like_code = len(text) > 150 and any(
+                w in text for w in ("for", "while", "def", "int", "return", "=")
+            )
+            score = 50 if looks_like_code else 25
+            feedback = (
+                "Offline estimate: code-like attempt recorded."
+                if looks_like_code
+                else "Offline estimate: submission too short to look like a solution."
+            )
+        return {"score": score, "feedback": feedback}
+
+    try:
+        from app.services.ai import chat_completion, parse_json
+
+        rubric = (
+            "You grade a TCS NQT professional-email-writing task. "
+            "Score professionalism, completeness (cause, impact, recovery plan, "
+            "revised commitment), tone, and word discipline."
+            if kind == "email"
+            else "You grade a TCS NQT advanced-coding submission written in plain "
+            "pseudocode/real code without execution. Score correctness of approach, "
+            "complexity awareness, and edge-case handling."
+        )
+        instruction = f"""{rubric}
+
+TASK GIVEN TO CANDIDATE:
+{prompt[:1500]}
+{('EXPECTED APPROACH: ' + expected[:400]) if expected else ''}
+
+CANDIDATE RESPONSE:
+{text[:3000]}
+
+Return STRICT JSON only:
+{{"score": <0-100 integer>, "feedback": "<one actionable sentence>"}}"""
+
+        raw = await chat_completion(
+            [{"role": "user", "content": instruction}],
+            use_cache=False,
+            temperature=0.2,
+            max_tokens=250,
+        )
+        data = parse_json(raw)
+        score = max(0, min(100, int(data.get("score") or 0)))
+        return {"score": score, "feedback": str(data.get("feedback", ""))[:400]}
+    except Exception:
+        return _heuristic()
+
+
 @router.get("/exams")
 async def list_exams():
     """Available company exam blueprints."""
@@ -160,6 +366,7 @@ async def list_exams():
             ],
             "negative_marks": cfg["negative_marks"],
             "cutoff_pct": cfg["cutoff_pct"],
+            "locked": bool(cfg.get("locked")),
         })
     return {"exams": exams}
 
@@ -178,36 +385,59 @@ async def start_exam(req: StartExam, user=Depends(get_current_user)):
 
     index_offset = 0
     for s_def in cfg["sections"]:
-        pool = _load_pool(s_def["category"])
-        n = min(s_def["questions"], len(pool))
-        picked = random.sample(pool, n) if n > 0 else []
-
+        special = s_def.get("special")
         start_idx = index_offset
-        for q in picked:
-            flat_questions.append({
-                "id": q["id"],
-                "question": q["question"],
-                "options": q["options"],
-                "category": q.get("category", s_def["category"]),
-                "sub_category": q.get("sub_category", ""),
-                "difficulty": q.get("difficulty", "medium"),
-                "time_limit": q.get("time_limit", 60),
-            })
-            question_ids.append(q["id"])
-            index_offset += 1
+        picked_ids: List[str] = []
+
+        if special:
+            count = s_def.get("count", 1)
+            for i in range(count):
+                q = _special_question(req.exam_id, special, i)
+                flat_questions.append(q)
+                question_ids.append(q["id"])
+                picked_ids.append(q["id"])
+                index_offset += 1
+            client_picked = []
+        else:
+            pool = _load_pool(s_def["category"])
+            want_difficulty = s_def.get("difficulty")
+            if want_difficulty:
+                hard_pool = [q for q in pool if q.get("difficulty") == want_difficulty]
+                if len(hard_pool) >= s_def["questions"]:
+                    pool = hard_pool
+            n = min(s_def["questions"], len(pool))
+            picked = random.sample(pool, n) if n > 0 else []
+
+            for q in picked:
+                flat_questions.append({
+                    "id": q["id"],
+                    "question": q["question"],
+                    "options": q["options"],
+                    "category": q.get("category", s_def["category"]),
+                    "sub_category": q.get("sub_category", ""),
+                    "difficulty": q.get("difficulty", "medium"),
+                    "time_limit": q.get("time_limit", 60),
+                })
+                question_ids.append(q["id"])
+                picked_ids.append(q["id"])
+                index_offset += 1
 
         section_meta.append({
             "name": s_def["name"],
-            "category": s_def["category"],
+            "category": s_def.get("category"),
+            "special": special,
+            "part": s_def.get("part", ""),
             "start_index": start_idx,
             "end_index": index_offset - 1,
-            "question_ids": [q["id"] for q in picked],
+            "question_ids": picked_ids,
         })
         sections_for_client.append({
             "name": s_def["name"],
+            "special": special,
+            "part": s_def.get("part", ""),
             "start_index": start_idx,
             "end_index": index_offset - 1,
-            "count": len(picked),
+            "count": index_offset - start_idx,
             "minutes": s_def["minutes"],
         })
 
@@ -224,6 +454,7 @@ async def start_exam(req: StartExam, user=Depends(get_current_user)):
         "config": "mass_recruiter",
         "config_name": cfg["name"],
         "exam_id": req.exam_id,
+        "locked": bool(cfg.get("locked")),
         "sections": section_meta,
         "negative_marks": cfg["negative_marks"],
         "cutoff_pct": cfg["cutoff_pct"],
@@ -249,13 +480,21 @@ async def start_exam(req: StartExam, user=Depends(get_current_user)):
         "test_id": test_id,
         "exam_id": req.exam_id,
         "exam_name": cfg["name"],
+        "locked": bool(cfg.get("locked")),
         "sections": sections_for_client,
-        "questions": flat_questions,
+        "questions": _sanitize_for_client(flat_questions),
         "total_questions": len(flat_questions),
         "total_minutes": total_minutes,
         "negative_marks": cfg["negative_marks"],
         "ends_at": ends_at.isoformat(),
-        "message": f"{cfg['name']} started — {len(flat_questions)} questions in {total_minutes} minutes.",
+        "message": (
+            f"{cfg['name']} started — {len(flat_questions)} questions in {total_minutes} minutes."
+            + (
+                " This paper is LOCKED: once you move past a question, you cannot return."
+                if cfg.get("locked")
+                else ""
+            )
+        ),
     }
 
 
@@ -286,6 +525,18 @@ async def record_answer(
             {"_id": t_oid}, {"$set": {"status": "timed_out"}}
         )
         raise HTTPException(status_code=400, detail="Time is up!")
+
+    # Locked (TCS NQT) mode: forward-only navigation.
+    if test.get("locked"):
+        existing_idx = [
+            a.get("question_index", -1) for a in test.get("answers", [])
+        ]
+        frontier = max(existing_idx) if existing_idx else -1
+        if question_index < frontier:
+            raise HTTPException(
+                status_code=400,
+                detail="This paper is LOCKED — you cannot return to an earlier question.",
+            )
 
     entry = {
         "question_index": question_index,
@@ -333,6 +584,7 @@ async def complete_exam(test_id: str, user=Depends(get_current_user)):
     wrong = 0
     skipped = 0
     section_stats: Dict[str, Dict] = {}
+    subjective: Dict[str, List[Dict]] = {}
     weak_areas: List[Dict] = []
 
     for idx, qid in enumerate(test["question_ids"]):
@@ -357,6 +609,34 @@ async def complete_exam(test_id: str, user=Depends(get_current_user)):
 
         ans = answers_by_index.get(idx)
         given = (ans or {}).get("answer")
+
+        # Subjective tasks (email / coding) are AI-graded, kept out of MCQ stats.
+        special = full_q.get("special")
+        if special:
+            if given is None or str(given).strip() == "":
+                skipped += 1
+                stats["skipped"] += 1
+                subjective.setdefault(sec_name, []).append({
+                    "label": full_q.get("sub_category", special),
+                    "score": 0,
+                    "feedback": "Left blank.",
+                })
+                continue
+            grade = await _grade_special(
+                special,
+                full_q.get("question", ""),
+                str(given),
+                full_q.get("expected_approach", "") if special == "coding" else "",
+            )
+            subjective.setdefault(sec_name, []).append({
+                "label": full_q.get(
+                    "difficulty_label", full_q.get("sub_category", special)
+                ),
+                "score": grade["score"],
+                "feedback": grade["feedback"],
+            })
+            continue
+
         if given is None or str(given).strip() == "":
             skipped += 1
             stats["skipped"] += 1
@@ -476,6 +756,13 @@ async def complete_exam(test_id: str, user=Depends(get_current_user)):
         "time_taken": round(time_taken),
         "xp_earned": xp_earned,
         "section_stats": section_stats,
+        "subjective": {
+            name: {
+                "avg_score": round(sum(g["score"] for g in items) / len(items)),
+                "items": items,
+            }
+            for name, items in subjective.items()
+        },
         "weak_areas": weak_areas[:8],
         "message": (
             f"Cleared the {cutoff:.0f}% cutoff."

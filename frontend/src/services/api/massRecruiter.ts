@@ -9,6 +9,7 @@ export interface ExamBlueprint {
   sections: { name: string; questions: number; minutes: number }[];
   negative_marks: number;
   cutoff_pct: number;
+  locked?: boolean;
 }
 
 export interface ExamQuestion {
@@ -18,10 +19,13 @@ export interface ExamQuestion {
   category: string;
   sub_category: string;
   difficulty: string;
+  special?: "email" | "coding" | null;
 }
 
 export interface ExamSectionWindow {
   name: string;
+  special?: string | null;
+  part?: string;
   start_index: number;
   end_index: number;
   count: number;
@@ -32,6 +36,7 @@ export interface ExamStart {
   test_id: string;
   exam_id: string;
   exam_name: string;
+  locked?: boolean;
   sections: ExamSectionWindow[];
   questions: ExamQuestion[];
   total_questions: number;
@@ -54,6 +59,7 @@ export interface ExamResult {
   total_questions: number;
   xp_earned: number;
   section_stats: Record<string, { correct: number; wrong: number; skipped: number; total: number }>;
+  subjective?: Record<string, { avg_score: number; items: { label: string; score: number; feedback: string }[] }>;
   weak_areas: { category: string; accuracy: number; solved: number; total: number }[];
   message: string;
 }

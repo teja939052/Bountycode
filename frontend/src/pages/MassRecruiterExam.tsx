@@ -176,7 +176,13 @@ export default function MassRecruiterExam() {
                 >
                   <div className="mb-1 flex items-center justify-between">
                     <span className="font-extrabold text-text">{bp.name}</span>
-                    <FileStack size={16} className="text-text-muted" />
+                    {bp.locked ? (
+                      <span className="rounded bg-reward/10 px-1.5 py-0.5 text-[10px] font-bold uppercase text-reward">
+                        Locked
+                      </span>
+                    ) : (
+                      <FileStack size={16} className="text-text-muted" />
+                    )}
                   </div>
                   <p className="text-sm text-text-muted">{bp.description}</p>
                   <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs font-semibold text-ocean">
@@ -215,6 +221,21 @@ export default function MassRecruiterExam() {
   if (phase === "runner" && exam) {
     const q: ExamQuestion | undefined = exam.questions[current];
     const lowTime = secondsLeft <= 120;
+    const locked = !!exam.locked;
+    const isSpecial = !!q?.special;
+
+    function goNext() {
+      if (!exam) return;
+      if (locked && !(answers[current] ?? "").trim()) {
+        if (
+          !window.confirm(
+            "This paper is LOCKED — once you leave, you cannot come back to this question. Leave it unanswered?",
+          )
+        )
+          return;
+      }
+      setCurrent(c => Math.min(exam.total_questions - 1, c + 1));
+    }
 
     return (
       <PageShell theme="focus">
@@ -227,6 +248,11 @@ export default function MassRecruiterExam() {
                 <p className="text-xs text-text-muted">
                   {answeredCount}/{exam.total_questions} answered
                   {activeSection ? ` · ${activeSection.name}` : ""}
+                  {locked && (
+                    <span className="ml-2 rounded bg-reward/10 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-reward">
+                      Locked · no going back
+                    </span>
+                  )}
                 </p>
               </div>
             </div>
@@ -243,42 +269,44 @@ export default function MassRecruiterExam() {
             </div>
           </header>
 
-          {/* question palette */}
+          {/* question palette (hidden on locked papers, like the real NQT) */}
           <div className="mb-4 flex gap-4">
-            <div className="hidden w-56 shrink-0 sm:block">
-              <div className="max-h-[60vh] overflow-y-auto rounded-xl border border-line bg-surface p-3">
-                {exam.sections.map(sec => (
-                  <div key={sec.name} className="mb-3 last:mb-0">
-                    <p className="mb-1.5 text-[11px] font-bold uppercase tracking-wider text-text-muted">
-                      {sec.name}
-                    </p>
-                    <div className="grid grid-cols-5 gap-1.5">
-                      {Array.from({ length: sec.count }, (_, i) => {
-                        const idx = sec.start_index + i;
-                        const state =
-                          idx === current
-                            ? "border-primary ring-2 ring-primary/30 bg-mint/60 text-text"
-                            : answers[idx]
-                              ? "border-primary/40 bg-primary/10 text-primary"
-                              : marked.has(idx)
-                                ? "border-reward/50 bg-reward/10 text-reward"
-                                : "border-line bg-canvas text-text-muted hover:border-primary/40";
-                        return (
-                          <button
-                            key={idx}
-                            onClick={() => setCurrent(idx)}
-                            aria-label={`Question ${idx + 1}`}
-                            className={`h-8 rounded-md border text-xs font-bold ${state}`}
-                          >
-                            {idx + 1}
-                          </button>
-                        );
-                      })}
+            {!locked && (
+              <div className="hidden w-56 shrink-0 sm:block">
+                <div className="max-h-[60vh] overflow-y-auto rounded-xl border border-line bg-surface p-3">
+                  {exam.sections.map(sec => (
+                    <div key={sec.name} className="mb-3 last:mb-0">
+                      <p className="mb-1.5 text-[11px] font-bold uppercase tracking-wider text-text-muted">
+                        {sec.name}
+                      </p>
+                      <div className="grid grid-cols-5 gap-1.5">
+                        {Array.from({ length: sec.count }, (_, i) => {
+                          const idx = sec.start_index + i;
+                          const state =
+                            idx === current
+                              ? "border-primary ring-2 ring-primary/30 bg-mint/60 text-text"
+                              : answers[idx]
+                                ? "border-primary/40 bg-primary/10 text-primary"
+                                : marked.has(idx)
+                                  ? "border-reward/50 bg-reward/10 text-reward"
+                                  : "border-line bg-canvas text-text-muted hover:border-primary/40";
+                          return (
+                            <button
+                              key={idx}
+                              onClick={() => setCurrent(idx)}
+                              aria-label={`Question ${idx + 1}`}
+                              className={`h-8 rounded-md border text-xs font-bold ${state}`}
+                            >
+                              {idx + 1}
+                            </button>
+                          );
+                        })}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* current question */}
             <div className="min-w-0 flex-1">
@@ -287,57 +315,95 @@ export default function MassRecruiterExam() {
                   <p className="text-xs font-bold uppercase tracking-wider text-text-muted">
                     Q{current + 1}
                     {q?.sub_category ? ` · ${q.sub_category}` : ""}
+                    {q?.special === "email" && " · type your email below"}
+                    {q?.special === "coding" && " · write your solution below"}
                   </p>
-                  <button
-                    onClick={toggleMark}
-                    className={`flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-semibold ${
-                      marked.has(current)
-                        ? "border-reward/50 bg-reward/10 text-reward"
-                        : "border-line text-text-muted hover:text-text"
-                    }`}
-                  >
-                    <Bookmark size={13} />
-                    {marked.has(current) ? "Marked" : "Mark for review"}
-                  </button>
+                  {!locked && (
+                    <button
+                      onClick={toggleMark}
+                      className={`flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-semibold ${
+                        marked.has(current)
+                          ? "border-reward/50 bg-reward/10 text-reward"
+                          : "border-line text-text-muted hover:text-text"
+                      }`}
+                    >
+                      <Bookmark size={13} />
+                      {marked.has(current) ? "Marked" : "Mark for review"}
+                    </button>
+                  )}
                 </div>
                 <p className="mb-5 whitespace-pre-wrap text-sm leading-relaxed text-text">
                   {q?.question}
                 </p>
-                <div className="space-y-2.5">
-                  {(q?.options ?? []).map(opt => {
-                    const selected = answers[current] === opt;
-                    return (
-                      <button
-                        key={opt}
-                        onClick={() => chooseOption(opt)}
-                        className={`w-full rounded-lg border px-3.5 py-2.5 text-left text-sm transition-colors ${
-                          selected
-                            ? "border-primary bg-mint/60 font-semibold text-text"
-                            : "border-line bg-canvas text-text hover:border-primary/40"
-                        }`}
-                      >
-                        {opt}
-                      </button>
-                    );
-                  })}
-                </div>
+                {isSpecial ? (
+                  <div>
+                    <textarea
+                      value={answers[current] ?? ""}
+                      onChange={e =>
+                        setAnswers(a => ({ ...a, [current]: e.target.value }))
+                      }
+                      onBlur={() =>
+                        persistAnswer(
+                          current,
+                          answers[current] ?? "",
+                          marked.has(current),
+                        )
+                      }
+                      rows={q?.special === "coding" ? 16 : 9}
+                      spellCheck={q?.special !== "coding"}
+                      placeholder={
+                        q?.special === "email"
+                          ? "Subject line, greeting, body, sign-off…"
+                          : "// Write your solution (any language or pseudocode)"
+                      }
+                      className={`w-full rounded-lg border border-line bg-canvas p-3 text-sm leading-relaxed text-text outline-none focus:border-primary/60 ${
+                        q?.special === "coding" ? "font-mono" : ""
+                      }`}
+                    />
+                    {q?.special === "email" && (
+                      <p className="mt-1.5 text-xs text-text-muted">
+                        {(answers[current] ?? "").trim().split(/\s+/).filter(Boolean).length} words — aim for 120–180.
+                      </p>
+                    )}
+                  </div>
+                ) : (
+                  <div className="space-y-2.5">
+                    {(q?.options ?? []).map(opt => {
+                      const selected = answers[current] === opt;
+                      return (
+                        <button
+                          key={opt}
+                          onClick={() => chooseOption(opt)}
+                          className={`w-full rounded-lg border px-3.5 py-2.5 text-left text-sm transition-colors ${
+                            selected
+                              ? "border-primary bg-mint/60 font-semibold text-text"
+                              : "border-line bg-canvas text-text hover:border-primary/40"
+                          }`}
+                        >
+                          {opt}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
 
               <div className="mt-4 flex items-center justify-between">
-                <Button
-                  variant="outline"
-                  disabled={current === 0}
-                  onClick={() => setCurrent(c => Math.max(0, c - 1))}
-                >
-                  <ArrowLeft size={14} /> Prev
-                </Button>
-                {current < exam.total_questions - 1 ? (
+                {locked ? (
+                  <span className="text-xs font-semibold text-text-muted">
+                    Forward only — answered screens are sealed.
+                  </span>
+                ) : (
                   <Button
-                    variant="primary"
-                    onClick={() =>
-                      setCurrent(c => Math.min(exam.total_questions - 1, c + 1))
-                    }
+                    variant="outline"
+                    disabled={current === 0}
+                    onClick={() => setCurrent(c => Math.max(0, c - 1))}
                   >
+                    <ArrowLeft size={14} /> Prev
+                  </Button>
+                )}
+                {current < exam.total_questions - 1 ? (
+                  <Button variant="primary" onClick={goNext}>
                     Next <ArrowRight size={14} />
                   </Button>
                 ) : (
@@ -412,6 +478,31 @@ export default function MassRecruiterExam() {
                 value={(s.correct / Math.max(s.total, 1)) * 100}
                 tone="ocean"
               />
+            ))}
+          </section>
+        )}
+
+        {result?.subjective && Object.keys(result.subjective).length > 0 && (
+          <section className="bounty-card mb-6 space-y-4 p-5">
+            <h2 className="text-xs font-bold uppercase tracking-widest text-text-muted">
+              Graded tasks (AI evaluated)
+            </h2>
+            {Object.entries(result.subjective).map(([name, group]) => (
+              <div key={name}>
+                <MasteryBar
+                  label={`${name} — avg ${group.avg_score}/100`}
+                  value={group.avg_score}
+                  tone="gold"
+                />
+                <ul className="mt-1.5 space-y-1">
+                  {group.items.map(item => (
+                    <li key={item.label} className="text-xs text-text-muted">
+                      <span className="font-bold text-text">{item.label}:</span>{" "}
+                      {item.score}/100 — {item.feedback}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
           </section>
         )}
