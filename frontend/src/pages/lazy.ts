@@ -251,6 +251,7 @@ const InterviewBooking = lazy(() => import('./InterviewBooking'));
 const InterviewTerminal = lazy(() => import("./InterviewTerminal"));
 const MassRecruiterExam = lazy(() => import("./MassRecruiterExam"));
 const GrandLine = lazy(() => import("./GrandLine"));
+const PseudocodeDrill = lazy(() => import("./PseudocodeDrill"));
 const Referral = lazy(() => import('./Referral'));
 const InterviewReplay = lazy(() => import('./InterviewReplay'));
 const FreeTrial = lazy(() => import('./FreeTrial'));
@@ -403,6 +404,7 @@ export {
     InterviewTerminal,
     MassRecruiterExam,
     GrandLine,
+    PseudocodeDrill,
     Referral,
     InterviewReplay,
     FreeTrial,

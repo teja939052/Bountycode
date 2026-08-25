@@ -202,9 +202,9 @@ export default function MassRecruiterExam() {
           )}
 
           <p className="mt-8 text-center text-sm text-text-muted">
-            Want untimed practice instead?{" "}
-            <Link to="/aptitude" className="font-semibold text-ocean underline">
-              Aptitude practice →
+            Infosys screen coming up?{" "}
+            <Link to="/pseudocode" className="font-semibold text-ocean underline">
+              Pseudocode dry-run drills →
             </Link>
           </p>
         </div>

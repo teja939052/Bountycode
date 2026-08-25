@@ -138,6 +138,7 @@ import {
   InterviewTerminal,
   MassRecruiterExam,
   GrandLine,
+  PseudocodeDrill,
   Practice,
   Compete,
   Career,
@@ -331,6 +332,14 @@ function AnimatedRoutes() {
           element={
             <FeatureErrorBoundary featureName="GrandLine">
               <GrandLine />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/pseudocode"
+          element={
+            <FeatureErrorBoundary featureName="PseudocodeDrill">
+              <PseudocodeDrill />
             </FeatureErrorBoundary>
           }
         />
