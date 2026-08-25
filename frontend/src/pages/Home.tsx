@@ -19,6 +19,7 @@ import { Card } from "../design-system/Card";
 import { Button } from "../design-system/Button";
 import { ReadinessRing, MasteryBar } from "../design-system/Progress";
 import { BountyCard } from "../design-system/JourneyMap";
+import DailyOrdersCard from "../components/dailyOrders/DailyOrdersCard";
 
 interface StudentState {
   readiness: number | null;
@@ -145,6 +146,9 @@ export default function Home() {
               </Link>
             </BountyCard>
           </motion.div>
+
+          {/* First Mate Orders — deadline-driven daily checklist */}
+          <DailyOrdersCard />
 
           {/* Skill mastery */}
           <div>
