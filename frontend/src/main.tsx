@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import "./styles/candy.css";
-import "./styles/candy.css";
 import { registerServiceWorker } from "./pwa";
 import { installGlobalErrorTracker } from "./services/errorTracker";
 
@@ -92,5 +91,20 @@ async function bootstrap() {
     renderFatalBootError(rootEl, error);
   }
 }
+
+/**
+ * Pause all CSS animations when the tab is hidden.
+ * Toggles `data-visible` on <html> so CSS can target `.sakura-petal` etc.
+ * Pure DOM — no React, no rAF, no re-renders.
+ */
+function applyVisibilityPause() {
+  const cls = "page-hidden";
+  const set = () => {
+    document.documentElement.classList.toggle(cls, document.hidden);
+  };
+  document.addEventListener("visibilitychange", set, { passive: true });
+  set(); // set initial state
+}
+applyVisibilityPause();
 
 void bootstrap();
