@@ -56,14 +56,14 @@ export default function Landing() {
       {/* ═══ THE SPRING PATH — hero as immersive world ═══ */}
       <section className="spring-hero relative overflow-hidden" style={{ background: "#F4FAF8" }}>
 
-        {/* ── Photographic environment ── */}
+        {/* ── Photographic environment — shifted low so sky owns the text zone ── */}
         <div
           className="absolute inset-0"
           aria-hidden="true"
           style={{
             backgroundImage: "url('https://images.unsplash.com/photo-1743309979269-af5d46d0c390?w=4096&q=100&fit=max&fm=jpg')",
             backgroundSize: "cover",
-            backgroundPosition: "center 35%",
+            backgroundPosition: "center 72%",
             backgroundRepeat: "no-repeat",
           }}
         />
@@ -89,6 +89,15 @@ export default function Landing() {
           aria-hidden="true"
           style={{
             background: "radial-gradient(ellipse 50% 40% at 78% 15%, rgba(255,240,200,0.18) 0%, transparent 70%)",
+          }}
+        />
+
+        {/* ── Light halo — soft readability glow behind the headline zone (static) ── */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          aria-hidden="true"
+          style={{
+            background: "radial-gradient(ellipse 46% 34% at 50% 44%, rgba(255,255,255,0.52) 0%, rgba(255,255,255,0.28) 45%, transparent 72%)",
           }}
         />
 
@@ -196,13 +205,36 @@ export default function Landing() {
               <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
                 <Link to="/role-selector">
                   <button className="hero-cta-primary inline-flex items-center gap-2 rounded-xl px-7 py-3.5 text-sm font-bold text-white shadow-lg transition-all hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]">
-                    Begin your journey
+                    Begin Chapter I
                     <ArrowRight size={15} />
                   </button>
                 </Link>
                 <Link to="/pricing" className="text-sm font-medium text-[#14201B]/50 hover:text-[#14201B]/80 transition-colors">
                   Explore how it works
                 </Link>
+              </div>
+
+              {/* Journey chips — the product, in four words */}
+              <div className="mt-9 flex items-center justify-center gap-2 flex-wrap" aria-label="How BountyCode works">
+                {[
+                  { n: "1", label: "Diagnose" },
+                  { n: "2", label: "Learn" },
+                  { n: "3", label: "Practice" },
+                  { n: "4", label: "Get Hired" },
+                ].map((chip, i) => (
+                  <span key={chip.n} className="flex items-center gap-2">
+                    <span
+                      className="inline-flex items-center gap-1.5 rounded-full border border-white/70 bg-white/55 px-3.5 py-1.5 text-xs font-semibold backdrop-blur-sm"
+                      style={{ color: "#14201B" }}
+                    >
+                      <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#22C55E] text-[10px] font-bold text-white">
+                        {chip.n}
+                      </span>
+                      {chip.label}
+                    </span>
+                    {i < 3 && <span className="text-[#14201B]/30 text-xs">→</span>}
+                  </span>
+                ))}
               </div>
             </motion.div>
           </div>
