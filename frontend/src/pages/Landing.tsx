@@ -1,348 +1,357 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
-  Search,
-  Brain,
   Code2,
-  Bug,
-  Wrench,
-  Shield,
-  ArrowRight,
-  Clock,
-  Users,
   FileText,
   TrendingUp,
+  Users,
   MessageSquare,
   Compass,
+  ArrowRight,
+  CheckCircle2,
+  Building2,
+  Star,
 } from "lucide-react";
 import useReducedMotion from "../hooks/useReducedMotion";
 import { PageShell } from "../design-system/PageShell";
-import { MentorAvatar } from "../design-system/Mentor";
-import { IslandNode, type NodeState } from "../design-system/JourneyMap";
 import { Button } from "../design-system/Button";
 import { Card } from "../design-system/Card";
+import { SakuraPetals } from "../components/SakuraPetals";
 
-const JOURNEY_STEPS = [
-  { label: "Foundations", sub: "Variables, types, conditions", pct: null, status: "done" as const },
-  { label: "Problem Solver", sub: "DSA through real scenarios", pct: 72, status: "in_progress" as const },
-  { label: "Engineering", sub: "APIs, databases, scaling", pct: 31, status: "available" as const },
-  { label: "Interview", sub: "Mock OA, behavioral, system design", pct: null, status: "locked" as const },
-  { label: "Job Ready", sub: "Prove it to employers", pct: null, status: "locked" as const },
-];
-
-const SIMULATION_LOOP = [
-  { icon: Search, label: "Investigate", desc: "Read the broken system" },
-  { icon: Brain, label: "Predict", desc: "Guess what is wrong" },
-  { icon: Code2, label: "Build", desc: "Write the fix" },
-  { icon: Bug, label: "Break", desc: "Find edge cases" },
-  { icon: Wrench, label: "Debug", desc: "Fix the bugs" },
-  { icon: Shield, label: "Prove", desc: "Pass hidden tests" },
+const ROLE_PATHS = [
+  { id: "sde", title: "Software Developer", desc: "Full-stack SDE roles", icon: Code2, color: "#22C55E" },
+  { id: "data_analyst", title: "Data Analyst", desc: "SQL, Python, dashboards", icon: TrendingUp, color: "#5BA7A0" },
+  { id: "data_scientist", title: "Data Scientist", desc: "ML, stats, models", icon: Star, color: "#8B6BD9" },
+  { id: "qa", title: "QA Engineer", desc: "Testing, automation", icon: CheckCircle2, color: "#EAB74D" },
 ];
 
 const CORE_FEATURES = [
-  { icon: Code2, title: "DSA Practice", desc: "Curated problems with hidden tests, progressive hints, and company filters.", tone: "tech" },
-  { icon: MessageSquare, title: "AI Mock Interviews", desc: "Company-specific questions with instant AI feedback after each round.", tone: "primary" },
-  { icon: FileText, title: "Resume & ATS", desc: "Upload, get an honest ATS score, and rewrite bullets that pass.", tone: "gold" },
-  { icon: TrendingUp, title: "Progress Tracking", desc: "Streaks, XP, and weak-area detection — always know what is next.", tone: "primary" },
-  { icon: Users, title: "Company Prep", desc: "53+ company guides with patterns, behavioral questions, and experiences.", tone: "rare" },
-] as const;
-
-const ROLE_CARDS = [
-  { id: "sde", title: "Software Developer", desc: "Full-stack SDE roles" },
-  { id: "data_analyst", title: "Data Analyst", desc: "SQL, Python, dashboards" },
-  { id: "data_scientist", title: "Data Scientist", desc: "ML, stats, models" },
-  { id: "qa", title: "QA Engineer", desc: "Testing, automation" },
-  { id: "devops", title: "DevOps Engineer", desc: "CI/CD, cloud, infra" },
-  { id: "pm", title: "Product Manager", desc: "Strategy, execution" },
+  { icon: Code2, title: "DSA Practice", desc: "Curated problems with hidden tests, progressive hints, and company filters." },
+  { icon: MessageSquare, title: "AI Mock Interviews", desc: "Company-specific questions with instant AI feedback after each round." },
+  { icon: FileText, title: "Resume & ATS", desc: "Upload, get an honest ATS score, and rewrite bullets that pass." },
+  { icon: TrendingUp, title: "Progress Tracking", desc: "Streaks, XP, and weak-area detection — always know what is next." },
+  { icon: Users, title: "Company Prep", desc: "53+ company guides with patterns, behavioral questions, and experiences." },
 ];
 
-/** Map journey step status → IslandNode state. */
-const STEP_STATE: Record<string, NodeState> = {
-  done: "completed",
-  active: "in_progress",
-  partial: "in_progress",
-  available: "available",
-  in_progress: "in_progress",
-  locked: "locked",
-};
-
-/** Small SVG glyphs for journey steps — no emoji. */
-const STEP_GLYPHS = [
-  <svg key="0" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M5 10l7-7 7 7" stroke="#15803D" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/></svg>,
-  <svg key="1" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 6l-5 6 5 6M16 6l5 6-5 6M13 4l-2 16" stroke="#15803D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>,
-  <svg key="2" width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="8" width="18" height="12" rx="1.5" stroke="#5BA7A0" strokeWidth="2"/><path d="M9 8V5a2 2 0 012-2h2a2 2 0 012 2v3M3 13h18" stroke="#5BA7A0" strokeWidth="2"/></svg>,
-  <svg key="3" width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#EAB74D" strokeWidth="2"/><path d="M7 9h4M15 9l2 2M17 13h-4M9 15H7" stroke="#EAB74D" strokeWidth="1.8" strokeLinecap="round"/></svg>,
-  <svg key="4" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l2.4 5.4L20 9l-4 3.8L17 19l-5-2.8L7 19l1-6.2L4 9l5.6-.6L12 3z" fill="#EAB74D"/></svg>,
+const COMPANIES = [
+  "Google", "Microsoft", "Amazon", "Meta", "Apple",
+  "TCS", "Infosys", "Wipro", "Flipkart", "Razorpay",
 ];
 
 export default function Landing() {
   const reduced = useReducedMotion();
 
   return (
-    <PageShell theme="adventure">
-      <div className="mx-auto max-w-5xl px-4 py-20 md:py-28">
-        {/* ═══ HERO ═══ */}
-        <motion.div
-          initial={reduced ? {} : { opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45 }}
-          className="text-center"
-        >
-          <div className="mb-6 flex justify-center">
-            <div className="flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1.5 shadow-card">
-              <Compass size={16} className="text-ocean" />
-              <span className="text-xs font-bold uppercase tracking-wider text-text-muted">
-                The career adventure for engineers
-              </span>
-            </div>
-          </div>
+    <PageShell theme="spring">
+      {/* Skip link for keyboard navigation */}
+      <a href="#main" className="skip-link absolute -top-4 left-6 z-50 inline-flex items-center gap-2 rounded-md border border-border bg-surface px-4 py-2 text-sm font-medium text-text-primary hover:bg-primary/10 transition-colors">
+        Skip to main content
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 10l5 5 5-5M12 15L3 9l9-9"/></svg>
+      </a>
 
-          <h1 className="font-display mx-auto max-w-3xl text-4xl font-extrabold tracking-tight text-text sm:text-5xl md:text-[3.4rem] md:leading-[1.08]">
-            Know exactly what stands between you and your next job.
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-text-muted sm:text-lg">
-            PlacementPro diagnoses your skills, charts your course, and trains you through real
-            coding bounties, company OAs, interviews, and projects — one island at a time.
-          </p>
+      {/* ═══ SAKURA PETALS — realistic falling cherry blossoms ═══ */}
+      <SakuraPetals density="hero" />
 
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link to="/role-selector" className="w-full sm:w-auto">
-              <Button variant="primary" size="xl" fullWidth className="sm:w-auto">
-                Find my readiness
-              </Button>
-            </Link>
-            <Link to="/pricing" className="w-full sm:w-auto">
-              <Button variant="outline" size="xl" fullWidth className="sm:w-auto">
-                Explore the journey
-              </Button>
-            </Link>
-          </div>
-        </motion.div>
+      {/* ═══ HERO — open spring morning, not a wall of trees ═══ */}
+      <section className="spring-hero min-h-[600px] relative">
+        {/* Warm white / extremely pale blue background with subtle sunrise gradient */}
+        <div
+          className="absolute inset-0 bg-white/95 from-amber-50 via-white to-amber-50 gradient-blur"
+          aria-hidden="true"
+        />
+        {/* Subtle film grain + sunlight bloom */}
+        <div
+          className="absolute inset-0 pointer-events-none overflow-hidden"
+          style={{
+            backgroundImage:
+              "url('data:image/svg+xml,%3Csvg viewBox=\"0 0 256 256\" xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%222%22 stitchTiles=%22stretch%22/%3E%3C/filter%3E%3Crect width=%22256%22 height=%22256%22 fill=%22%23ffffff%22 filter=%22url(%23noise)%22/%3E%3C/svg%22')",
+            opacity: 0.03,
+          }}
+        />
+        {/* Subtle branch silhouettes at peripheral edges only — muted brown, NOT lime green */}
+        <div
+          className="absolute top-0 left-0 right-0 h-96 md:h-[400px] overflow-hidden pointer-events-none"
+          style={{
+            backgroundImage:
+              "url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 120%22%3E%3Cpath fill=%22%235a2d11%22 opacity=%220.08%22 d=%22M20 60 C 40 10, 60 10, 80 60 C 100 10, 120 10, 140 60 C 160 10, 180 10, 200 60%22 /%3E%3C/svg%22')",
+          }}
+        />
 
-        {/* ═══ BOUNTY MAP PREVIEW — the signature visual ═══ */}
         <motion.div
           initial={reduced ? {} : { opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-          className="mt-20"
+          transition={{ duration: 0.6 }}
+          className="spring-hero-content relative z-10 max-w-3xl mx-auto px-4 w-full"
         >
-          <Card pad="none" tone="bounty" className="overflow-hidden">
-            <div className="parchment-bg relative px-6 pb-8 pt-6 sm:px-10">
-              {/* Map corner flourishes */}
-              <span aria-hidden="true" className="absolute left-3 top-3 h-5 w-5 rounded-full border-2 border-dashed border-wood/30" />
-              <span aria-hidden="true" className="absolute right-3 top-3 h-5 w-5 rounded-full border-2 border-dashed border-wood/30" />
-              <span aria-hidden="true" className="absolute bottom-3 left-3 h-5 w-5 rounded-full border-2 border-dashed border-wood/30" />
-              <span aria-hidden="true" className="absolute bottom-3 right-3 h-5 w-5 rounded-full border-2 border-dashed border-wood/30" />
-
-              <p className="adventure-label mb-1">Your Voyage</p>
-              <h2 className="font-display text-center text-xl font-extrabold text-text sm:text-2xl">
-                Five islands between here and the offer
-              </h2>
-              <p className="mx-auto mt-2 max-w-md text-center text-sm text-text-muted">
-                A progression through real capabilities, not just topic checkboxes.
-              </p>
-
-              {/* Islands on desktop; scrollable row on mobile */}
-              <div className="mt-8 overflow-x-auto pb-2">
-                <div className="relative flex min-w-[640px] items-start justify-between gap-2 px-4">
-                  {/* Dotted route behind islands */}
-                  <svg
-                    aria-hidden="true"
-                    className="pointer-events-none absolute left-6 right-6 top-8 hidden h-4 sm:block"
-                    preserveAspectRatio="none"
-                    viewBox="0 0 100 4"
-                  >
-                    <line x1="0" y1="2" x2="100" y2="2" stroke="#A8754F" strokeWidth="0.6" strokeDasharray="2 2.4" opacity="0.55" />
-                  </svg>
-
-                  {JOURNEY_STEPS.map((step, i) => (
-                    <div key={step.label} className="relative z-10 flex flex-col items-center">
-                      <IslandNode
-                        state={STEP_STATE[step.status] ?? "locked"}
-                        title=""
-                        mastery={step.pct ?? undefined}
-                        icon={STEP_GLYPHS[i]}
-                        isBoss={i === JOURNEY_STEPS.length - 1}
-                      />
-                      {/* Replace node's internal label with richer card below */}
-                      <p className="mt-1 text-sm font-bold text-text">{step.label}</p>
-                      <p className="max-w-[110px] text-center text-[11px] leading-tight text-text-muted">{step.sub}</p>
-                      {step.pct !== null && (
-                        <p className="mt-0.5 text-[11px] font-bold text-ocean">{step.pct}% charted</p>
-                      )}
-                      {i === JOURNEY_STEPS.length - 1 && (
-                        <span className="badge-gold badge mt-1">The goal</span>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Mentor greeting strip */}
-              <div className="surface-bg mt-6 flex items-center gap-3 rounded-xl border border-border p-3 shadow-card sm:mx-8">
-                <MentorAvatar size={44} mood="welcome" />
-                <p className="text-xs leading-snug text-text-muted sm:text-sm">
-                  <span className="font-bold text-text">Captain Byte:</span>{" "}
-                  Every engineer's map looks different. Answer a few questions and I'll chart yours.
-                </p>
-              </div>
-            </div>
-          </Card>
-        </motion.div>
-
-        {/* ═══ HOW IT WORKS — THE MISSION LOOP ═══ */}
-        <motion.div
-          initial={reduced ? {} : { opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.25 }}
-          className="mt-24"
-        >
-          <h2 className="text-center font-display text-xl font-extrabold text-text sm:text-2xl">
-            Not a course. Bounties.
-          </h2>
-          <p className="mx-auto mt-2 max-w-lg text-center text-sm text-text-muted">
-            Every task follows a simulation loop: investigate, predict, build, break, debug, prove.
-          </p>
-
-          <div className="mt-10 grid grid-cols-3 gap-4 md:grid-cols-6">
-            {SIMULATION_LOOP.map((step, i) => (
-              <div key={step.label} className="group flex flex-col items-center text-center">
-                <div className="relative">
-                  <div className="surface-border flex h-12 w-12 items-center justify-center rounded-xl border bg-surface text-text transition-colors group-hover:border-primary/40 group-hover:bg-mint group-hover:text-primary-dark">
-                    <step.icon size={20} strokeWidth={1.8} />
-                  </div>
-                  {i < SIMULATION_LOOP.length - 1 && (
-                    <ArrowRight className="absolute -right-3 top-1/2 hidden h-3 w-3 -translate-y-1/2 text-text-muted/40 md:block" />
-                  )}
-                </div>
-                <p className="mt-2 text-xs font-bold text-text">{step.label}</p>
-                <p className="mt-0.5 text-[11px] leading-tight text-text-muted">{step.desc}</p>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* ═══ TODAY'S BOUNTY ═══ */}
-        <motion.div
-          initial={reduced ? {} : { opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-20"
-        >
-          <h2 className="text-center font-display text-xl font-extrabold text-text sm:text-2xl">
-            Today's Bounty
-          </h2>
-          <p className="mx-auto mt-2 max-w-lg text-center text-sm text-text-muted">
-            A real task, not a toy problem.
-          </p>
-
-          <Link to="/capability-worlds" className="mx-auto mt-8 block max-w-md">
-            <Card interactive tone="bounty">
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <span className="adventure-label">Problem Solver</span>
-                  <h3 className="font-display mt-2 text-base font-bold text-text">
-                    Repair the broken registration system
-                  </h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-text-muted">
-                    A user registration API is failing silently. Investigate the code, predict the
-                    root cause, and ship a fix that passes all test cases.
-                  </p>
-                </div>
-                <div className="shrink-0 rounded-full bg-reward-soft px-2.5 py-1 text-xs font-extrabold text-wood">
-                  +120 XP
-                </div>
-              </div>
-
-              <div className="mt-4 flex items-center gap-4 text-xs text-text-muted">
-                <span className="flex items-center gap-1">
-                  <Clock size={13} /> 18 min
+          {/* Center section — open 60% atmospheric space */}
+          <div className="mx-auto w-full max-w-2xl">
+            <div className="mb-6 flex justify-center">
+              <div className="flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1.5 shadow-sm backdrop-blur-sm">
+                <Compass size={16} className="text-primary-soft" />
+                <span className="text-xs font-bold uppercase tracking-wider text-text-muted">
+                  The career adventure for engineers
                 </span>
-                <span>Programming</span>
-                <span>Intermediate</span>
               </div>
+            </div>
 
-              <div className="mt-4 flex items-center gap-1.5 text-sm font-bold text-primary-dark">
-                Accept bounty <ArrowRight size={14} />
-              </div>
-            </Card>
-          </Link>
-        </motion.div>
+            <h1 id="main" className="font-display text-4xl font-extrabold tracking-tight text-text sm:text-5xl md:text-[3.4rem] md:leading-[1.08]">
+              Know exactly what stands between you and your next job.
+            </h1>
+            <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-text-muted sm:text-lg">
+              BountyCode diagnoses your skills, charts your course, and trains you through real
+              coding bounties, company OAs, interviews, and projects — one island at a time.
+            </p>
 
-        {/* ═══ CORE FEATURES ═══ */}
-        <motion.div
-          initial={reduced ? {} : { opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.35 }}
-          className="mt-24"
-        >
-          <h2 className="text-center font-display text-2xl font-extrabold text-text sm:text-3xl">
-            Everything included
-          </h2>
-          <p className="mx-auto mt-3 max-w-xl text-center text-sm text-text-muted">
-            Six tools. One path to the offer.
-          </p>
+            <p className="mx-auto mt-2 max-w-xl text-sm text-text-muted">
+              -- Diagnose in 2 minutes | -- Real coding bounties, not theoretical quizzes | -- 53+ company guides | -- Free to start, upgrade anytime
+            </p>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {CORE_FEATURES.map((feature) => {
-              const toneClass =
-                feature.tone === "tech" ? "bg-tech-soft text-tech" :
-                feature.tone === "gold" ? "bg-reward-soft text-wood" :
-                feature.tone === "rare" ? "bg-rare-soft text-rare" :
-                "bg-primary-soft text-primary-dark";
-              return (
-                <Card key={feature.title}>
-                  <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl ${toneClass}`}>
-                    <feature.icon size={22} strokeWidth={1.8} />
-                  </div>
-                  <h3 className="font-display text-lg font-bold text-text">{feature.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-text-muted">{feature.desc}</p>
-                </Card>
-              );
-            })}
+            <div className="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Link to="/role-selector" className="w-full sm:w-auto">
+                <Button variant="primary" size="xl" fullWidth className="sm:w-auto">
+                  Find my readiness
+                </Button>
+              </Link>
+              <Link to="/pricing" className="w-full sm:w-auto">
+                <Button variant="outline" size="xl" fullWidth className="sm:w-auto">
+                  Explore the journey
+                </Button>
+              </Link>
+            </div>
           </div>
         </motion.div>
 
-        {/* ═══ ROLE SELECTION ═══ */}
+        {/* Subtle scroll indicator */}
         <motion.div
-          initial={reduced ? {} : { opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-24"
+          initial={reduced ? {} : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 0.5 }}
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10"
         >
-          <h2 className="text-center font-display text-2xl font-extrabold text-text sm:text-3xl">
-            What role are you targeting?
+          <div className="flex flex-col items-center gap-2 text-text-muted text-xs">
+            <span className="font-medium tracking-wide">Scroll to explore</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 5v14M19 12l-7 7-7-7" />
+            </svg>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* ═══ PATH CONNECTOR ═══ */}
+      <div className="relative h-24 bg-gradient-to-b from-[#FFF8F9] to-white">
+        <div className="spring-path absolute left-1/2 top-0 h-full -translate-x-1/2" />
+        <div className="spring-path-dot" style={{ top: "33%", left: "calc(50% - 4px)" }} />
+        <div className="spring-path-dot" style={{ top: "66%", left: "calc(50% - 4px)" }} />
+      </div>
+
+      {/* ═══ DISCOVER YOUR ROLE — Path branching ═══ */}
+      <motion.section
+        initial={reduced ? {} : { opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="spring-section spring-section-pink"
+      >
+        <div className="mx-auto max-w-5xl px-4">
+          <h2 className="text-center font-display text-2xl font-extrabold text-gray-900 sm:text-3xl">
+            Discover your role
           </h2>
-          <p className="mx-auto mt-3 max-w-xl text-center text-sm text-text-muted">
-            Every voyage starts with a destination.
+          <p className="mx-auto mt-3 max-w-xl text-center text-sm text-gray-500">
+            Every journey begins with a destination. Pick your path.
           </p>
 
-          <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3">
-            {ROLE_CARDS.map((role) => (
-              <Link key={role.id} to="/role-selector">
-                <Card interactive className="text-center">
-                  <div className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-sky-soft text-ocean">
-                    <Compass size={22} strokeWidth={1.8} />
+          <div className="mx-auto mt-12 grid max-w-3xl grid-cols-2 gap-6 sm:grid-cols-4">
+            {ROLE_PATHS.map((role, i) => (
+              <Link key={role.id} to="/role-selector" className="group">
+                <motion.div
+                  initial={reduced ? {} : { opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.15 + i * 0.08 }}
+                  className="role-path-card"
+                >
+                  <div
+                    className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110 group-hover:ring-primary/20 group-hover:border-primary/40"
+                    style={{ backgroundColor: `${role.color}12`, color: role.color }}
+                  >
+                    <role.icon size={26} strokeWidth={1.8} />
                   </div>
-                  <p className="text-sm font-bold text-text">{role.title}</p>
-                  <p className="mt-1 text-xs text-text-muted">{role.desc}</p>
-                </Card>
+                  <p className="text-sm font-bold text-gray-900">{role.title}</p>
+                  <p className="mt-1 text-xs text-gray-500">{role.desc}</p>
+                </motion.div>
               </Link>
             ))}
           </div>
-        </motion.div>
+        </div>
+      </motion.section>
 
-        {/* ═══ FINAL CTA ═══ */}
-        <motion.div
-          initial={reduced ? {} : { opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.45 }}
-          className="mt-24 text-center"
-        >
-          <h2 className="font-display text-3xl font-extrabold text-text sm:text-4xl">
+      {/* ═══ PATH CONTINUATION ═══ */}
+      <div className="relative h-16 bg-gradient-to-b from-white via-white to-white">
+        <div className="spring-path absolute left-1/2 top-0 h-full -translate-x-1/2" style={{ height: "100%" }} />
+      </div>
+
+      {/* ═══ EACH PATH = YOUR CURRICULUM ═══ */}
+      <motion.section
+        initial={reduced ? {} : { opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="spring-section spring-section-green"
+      >
+        <div className="mx-auto max-w-5xl px-4">
+          <h2 className="text-center font-display text-2xl font-extrabold text-gray-900 sm:text-3xl">
+            Each path becomes your curriculum
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl text-center text-sm text-gray-500">
+            Not a generic course. A personalized roadmap built from your role, your weak areas, and your target companies.
+          </p>
+
+          <div className="mx-auto mt-12 grid max-w-3xl gap-6 sm:grid-cols-3">
+            {CORE_FEATURES.slice(0, 3).map((feature, i) => (
+              <motion.div
+                key={feature.title}
+                initial={reduced ? {} : { opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.25 + i * 0.1 }}
+              >
+                <Card className="h-full">
+                  <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-green-50 text-green-600">
+                    <feature.icon size={22} strokeWidth={1.8} />
+                  </div>
+                  <h3 className="font-display text-lg font-bold text-gray-900">{feature.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-gray-500">{feature.desc}</p>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Journey progress visualization */}
+          <div className="mx-auto mt-12 max-w-2xl">
+            <div className="relative flex items-center justify-between">
+              {/* Background line */}
+              <div className="absolute left-0 right-0 top-1/2 h-0.5 -translate-y-1/2 bg-gradient-to-r from-pink-200 via-green-200 to-amber-200" />
+
+              {["Foundations", "Problem Solver", "Engineering", "Interview", "Job Ready"].map((step, i) => (
+                <div key={step} className="relative z-10 flex flex-col items-center">
+                  <div
+                    className={`flex h-10 w-10 items-center justify-center rounded-full border-2 text-xs font-bold ${
+                      i < 3
+                        ? "border-green-400 bg-green-50 text-green-700"
+                        : i === 3
+                        ? "border-amber-300 bg-amber-50 text-amber-700"
+                        : "border-gray-200 bg-gray-50 text-gray-400"
+                    }`}
+                  >
+                    {i < 3 ? (
+                      <CheckCircle2 size={18} />
+                    ) : i === 4 ? (
+                      <Star size={18} />
+                    ) : (
+                      i + 1
+                    )}
+                  </div>
+                  <p className="mt-2 text-[11px] font-medium text-gray-600 text-center max-w-[80px]">{step}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* ═══ PATH CONTINUATION ═══ */}
+      <div className="relative h-16 bg-gradient-to-b from-white via-white to-white">
+        <div className="spring-path absolute left-1/2 top-0 h-full -translate-x-1/2" style={{ height: "100%" }} />
+      </div>
+
+      {/* ═══ COMPANY PREPARATION ═══ */}
+      <motion.section
+        initial={reduced ? {} : { opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="spring-section"
+      >
+        <div className="mx-auto max-w-5xl px-4">
+          <h2 className="text-center font-display text-2xl font-extrabold text-gray-900 sm:text-3xl">
+            Prepare for the companies you want
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl text-center text-sm text-gray-500">
+            Company-specific patterns, behavioral questions, and real interview experiences.
+          </p>
+
+          <div className="mx-auto mt-10 flex flex-wrap justify-center gap-3">
+            {COMPANIES.map((company) => (
+              <Link
+                key={company}
+                to="/company-prep"
+                className="flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm transition-all hover:border-green-300 hover:shadow-md hover:-translate-y-0.5"
+              >
+                <Building2 size={14} className="text-gray-400" />
+                {company}
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-8 text-center">
+            <Link
+              to="/company-prep"
+              className="inline-flex items-center gap-2 text-sm font-bold text-green-600 hover:text-green-700"
+            >
+              View all 53+ company guides
+              <ArrowRight size={14} />
+            </Link>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* ═══ PATH CONTINUATION — transitions to gold ═══ */}
+      <div className="relative h-16 bg-gradient-to-b from-white via-white to-white">
+        <div className="spring-path absolute left-1/2 top-0 h-full -translate-x-1/2" style={{ height: "100%" }} />
+      </div>
+
+      {/* ═══ JOB READY — Achievement moment ═══ */}
+      <motion.section
+        initial={reduced ? {} : { opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.35 }}
+        className="spring-section spring-section-gold"
+      >
+        <div className="mx-auto max-w-3xl px-4 text-center">
+          <div className="gold-glow mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-amber-50 to-yellow-100 shadow-lg">
+            <Star size={36} className="text-amber-500" strokeWidth={1.5} />
+          </div>
+
+          <h2 className="font-display text-3xl font-extrabold text-gray-900 sm:text-4xl">
+            Job Ready
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-base text-gray-500">
+            You have completed the journey. Your skills are proven. Your resume is optimized.
+            Your interview performance is real. You are ready.
+          </p>
+
+          <div className="mx-auto mt-8 grid max-w-md grid-cols-3 gap-4">
+            {[
+              { label: "Problems Solved", value: "200+" },
+              { label: "Mock Interviews", value: "50+" },
+              { label: "Companies Covered", value: "53+" },
+            ].map((stat) => (
+              <div key={stat.label} className="rounded-xl border border-amber-200/60 bg-white/80 p-4 shadow-sm">
+                <p className="text-2xl font-extrabold text-amber-600">{stat.value}</p>
+                <p className="mt-1 text-xs text-gray-500">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* ═══ FINAL CTA ═══ */}
+      <motion.section
+        initial={reduced ? {} : { opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+        className="spring-section bg-white"
+      >
+        <div className="mx-auto max-w-3xl px-4 text-center">
+          <h2 className="font-display text-3xl font-extrabold text-gray-900 sm:text-4xl">
             Ready to start your journey?
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-sm text-text-muted">
+          <p className="mx-auto mt-4 max-w-xl text-sm text-gray-500">
             Join thousands of students who landed offers at top companies. Free to start — upgrade
             anytime.
           </p>
@@ -358,15 +367,15 @@ export default function Landing() {
               </Button>
             </Link>
           </div>
-        </motion.div>
+        </div>
+      </motion.section>
 
-        {/* ═══ FOOTER ═══ */}
-        <footer className="mt-20 border-t border-border pt-8">
-          <p className="text-center text-sm text-text-muted">
-            Built with care for your career. &copy; {new Date().getFullYear()} PlacementPro. All rights reserved.
-          </p>
-        </footer>
-      </div>
+      {/* ═══ FOOTER ═══ */}
+      <footer className="border-t border-gray-100 bg-white py-8">
+        <p className="text-center text-sm text-gray-400">
+          Built with care for your career. &copy; {new Date().getFullYear()} BountyCode. All rights reserved.
+        </p>
+      </footer>
     </PageShell>
   );
 }
