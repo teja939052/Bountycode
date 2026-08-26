@@ -61,25 +61,24 @@ export default function Landing() {
           className="absolute inset-0"
           aria-hidden="true"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1522383225653-ed111181a951?w=1920&q=80')",
+            backgroundImage: "url('https://images.unsplash.com/photo-1743309979269-af5d46d0c390?w=4096&q=100&fit=max&fm=jpg')",
             backgroundSize: "cover",
             backgroundPosition: "center 35%",
             backgroundRepeat: "no-repeat",
           }}
         />
 
-        {/* ── Atmospheric overlay — sky bleeds into content, photo shows through ── */}
+        {/* ── Minimal tint — photo should dominate ── */}
         <div
           className="absolute inset-0"
           aria-hidden="true"
           style={{
             background: `linear-gradient(
               180deg,
-              rgba(244,250,248,0.25) 0%,
-              rgba(244,250,248,0.35) 25%,
-              rgba(244,250,248,0.50) 50%,
-              rgba(244,250,248,0.70) 75%,
-              rgba(244,250,248,0.90) 100%
+              rgba(244,250,248,0.08) 0%,
+              rgba(244,250,248,0.12) 40%,
+              rgba(244,250,248,0.25) 70%,
+              rgba(244,250,248,0.55) 100%
             )`,
           }}
         />
