@@ -1,16 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from typing import Optional
-from app.middleware.auth import get_current_user
+from app.middleware.auth import get_current_user, require_admin
 from app.services.coupon import create_coupon, validate_coupon, apply_coupon as apply_coupon_service
 
 router = APIRouter(prefix="/api/v1/coupon", tags=["coupon"])
-
-
-async def require_admin(user=Depends(get_current_user)):
-    if user.get("role") == "admin" or user.get("is_admin") is True:
-        return user
-    raise HTTPException(status_code=403, detail="Admin access required")
 
 
 class CreateCouponRequest(BaseModel):

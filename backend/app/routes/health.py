@@ -1,11 +1,11 @@
 """Health check and monitoring endpoints for production monitoring."""
 
-from fastapi import APIRouter, Depends
-from app.middleware.auth import get_current_user
+from fastapi import APIRouter, Depends, HTTPException
+from app.middleware.auth import get_current_user, require_admin
 from app.services.health_checker import get_health_checker, init_health_checker
 from app.database import get_db
 
-router = APIRouter(prefix="/api/health", tags=["health"])
+router = APIRouter(prefix="/api/v1/health", tags=["health"])
 
 
 @router.get("/ping")
@@ -71,24 +71,19 @@ async def liveness():
 
 
 @router.get("/metrics")
-async def get_metrics(user=Depends(get_current_user)):
+async def get_metrics(admin=Depends(require_admin)):
     """Get system metrics (admin only)."""
-    # Check if user is admin
-    if not getattr(user, 'is_admin', False):
-        return {"error": "Unauthorized", "status": 403}
-
     try:
         checker = get_health_checker()
         health = await checker.full_health_check()
-        
-        # Add additional metrics
+
         return {
             "health": health,
             "timestamp": health.get("timestamp"),
             "system_status": health.get("status"),
         }
     except Exception as e:
-        return {"error": str(e), "status": 500}
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 @router.get("/dependencies")

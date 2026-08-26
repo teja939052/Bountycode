@@ -358,38 +358,6 @@ export function ProblemCard({ problem, solved = false, onClick }) {
   );
 }
 
-export function WizardCard({ item, selected, onSelect }) {
-  return (
-    <motion.div
-      whileHover={{ scale: 1.04 }}
-      whileTap={{ scale: 0.96 }}
-      onClick={() => onSelect(item.id)}
-      className={`
-        glass p-4 rounded-xl cursor-pointer transition-all duration-200 text-center
-        ${selected
-          ? 'border-2 border-cyber-blue shadow-[0_0_20px_rgba(76,201,240,0.2)]'
-          : 'border border-space-border hover:border-cyber-blue/30'
-        }
-      `}
-    >
-      <div className="text-3xl mb-2">{item.emoji || item.icon}</div>
-      <p className="font-medium text-sm">{item.name}</p>
-      {item.locked && (
-        <span className="text-[10px] text-gray-500 font-mono">🔒 Lv.{item.unlockLevel}</span>
-      )}
-      {selected && (
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          className="mt-1.5 text-cyber-blue text-xs font-mono"
-        >
-          ✓ Selected
-        </motion.div>
-      )}
-    </motion.div>
-  );
-}
-
 export function BattleCard({ opponent, onChallenge, status = 'ready' }) {
   const statusMap = {
     ready: { bg: 'bg-cyber-blue hover:bg-cyber-blue/80', label: '⚔️ Battle' },

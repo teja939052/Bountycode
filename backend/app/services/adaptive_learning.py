@@ -16,7 +16,7 @@ from app.database import (
     learning_progress_collection, skill_graph_collection,
     gamification_collection, curated_questions_collection
 )
-from app.services.ai import chat_completion, parse_json
+from app.services.ai_core import chat_completion, parse_json
 from app.services.cache import cache
 
 logger = logging.getLogger(__name__)

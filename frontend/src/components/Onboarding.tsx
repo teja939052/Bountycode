@@ -7,7 +7,7 @@ import useReducedMotion from "../hooks/useReducedMotion";
 const STEPS = [
   {
     icon: Rocket,
-    title: "Welcome to PlacementPro",
+    title: "Welcome to BountyCode",
     description: "Your AI-powered placement command center. Let's get you mission-ready in 30 seconds.",
     color: "text-cyber-blue",
     bg: "bg-cyber-blue/10",
@@ -40,14 +40,14 @@ const STEPS = [
   {
     icon: Trophy,
     title: "Climb the Tower",
-    description: "100 levels, 10 boss battles, power-ups, and a wizard that evolves with you. Your progress, visualized.",
+    description: "100 levels, 10 boss battles, power-ups, and a journey that evolves with you. Your progress, visualized.",
     color: "text-yellow-400",
     bg: "bg-yellow-400/10",
     action: { label: "Enter the Tower", to: "/tower" },
   },
 ];
 
-const STORAGE_KEY = "placementpro_onboarded";
+const STORAGE_KEY = "bountycode_onboarded";
 
 export default function Onboarding() {
   const [step, setStep] = useState(0);

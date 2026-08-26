@@ -77,16 +77,6 @@ class SoundEngine {
     setTimeout(() => this._playTone(1568, 0.2, 'sine', 0.2), 160);
   }
 
-  mysteryBoxOpen() {
-    this._playTone(400, 0.3, 'sawtooth', 0.15);
-    setTimeout(() => this._playTone(500, 0.3, 'sawtooth', 0.15), 200);
-    setTimeout(() => this._playTone(600, 0.3, 'sawtooth', 0.15), 400);
-    setTimeout(() => {
-      this._playTone(800, 0.5, 'square', 0.3);
-      this._playNoise(0.15, 0.3);
-    }, 600);
-  }
-
   streakFire() {
     this._playNoise(0.4, 0.2);
     setTimeout(() => this._playTone(200, 0.5, 'sawtooth', 0.15), 100);

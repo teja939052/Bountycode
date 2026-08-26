@@ -250,12 +250,14 @@ def set_auth_cookie(response: Response, token: str, max_age: int = None, cookie_
         max_age: Cookie max-age in seconds (defaults to JWT expiry days).
         cookie_name: Name of the cookie (default: 'pp_token').
     """
+    samesite = settings.COOKIE_SAMESITE.lower()
+    secure = samesite == "none" or settings.CORS_ORIGINS.split(",")[0].strip().startswith("https")
     response.set_cookie(
         key=cookie_name,
         value=token,
         httponly=True,
-        secure=settings.CORS_ORIGINS.split(",")[0].strip().startswith("https"),
-        samesite="lax",
+        secure=secure,
+        samesite=samesite,
         max_age=max_age or (settings.JWT_EXPIRY_DAYS * 86400),
         path="/",
     )
@@ -406,3 +408,23 @@ def require_plan(required_plan: str):
             )
         return user
     return dependency
+
+
+async def require_admin(user=Depends(get_current_user)):
+    """Dependency that enforces admin-only access.
+
+    Admin status is derived ONLY from ADMIN_EMAILS in config.
+    Subscription plan never grants admin rights.
+
+    Args:
+        user: Authenticated user dict from get_current_user dependency.
+
+    Returns:
+        Dict[str, Any]: Sanitized user document.
+
+    Raises:
+        HTTPException: 403 if the user is not an admin.
+    """
+    if user.get("role") == "admin" or user.get("is_admin") is True:
+        return user
+    raise HTTPException(status_code=403, detail="Admin access required")

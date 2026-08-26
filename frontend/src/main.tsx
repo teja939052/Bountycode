@@ -11,7 +11,7 @@ function renderBootShell(rootEl: HTMLElement) {
     <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#050816;color:#e5e7eb;font-family:system-ui,sans-serif;padding:24px;">
       <div style="max-width:32rem;text-align:center;">
         <div style="margin:0 auto 16px;height:56px;width:56px;border-radius:9999px;border:4px solid rgba(99,102,241,0.25);border-top-color:#6366f1;animation:spin 1s linear infinite;"></div>
-        <h1 style="margin:0 0 8px;font-size:1.5rem;line-height:2rem;">Loading PlacementPro</h1>
+        <h1 style="margin:0 0 8px;font-size:1.5rem;line-height:2rem;">Loading BountyCode</h1>
         <p style="margin:0;color:#9ca3af;">Preparing the app shell and safety rails...</p>
       </div>
     </div>

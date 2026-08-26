@@ -1,8 +1,6 @@
 import { create } from "zustand";
 import { authApi } from "../services/api/auth.ts";
-import { themesApi } from "../services/api/themes.ts";
-import { useThemeStore } from "../store/themeStore";
-import type { ThemeMode } from "../store/themeStore";
+import { API_BASE } from "../services/api/request.ts";
 import type { AuthUser } from "../services/api/types.ts";
 
 export interface AuthState {
@@ -35,12 +33,6 @@ const useAuthStore = create<AuthState>((set) => ({
     try {
       const user = await authApi.getMe();
       set({ user: user as AuthUser, loading: false });
-      try {
-        const themeRes = await themesApi.current();
-        useThemeStore.getState().setMode(themeRes.theme as ThemeMode);
-      } catch {
-        // anonymous / not logged in — ignore
-      }
     } catch (err) {
       if ((err as Error).message === "Session expired") {
         try {
@@ -58,7 +50,7 @@ const useAuthStore = create<AuthState>((set) => ({
 
   refreshToken: async () => {
     try {
-      const res = await fetch("/api/v1/auth/refresh", {
+      const res = await fetch(`${API_BASE}/api/v1/auth/refresh`, {
         method: "POST",
         credentials: "include",
       });

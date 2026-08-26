@@ -363,7 +363,7 @@ export const useThemeStore = create<ThemeState>()(
         set((state) => ({ mode: state.mode === mode ? "dark" : mode })),
     }),
     {
-      name: "placementpro-theme-v2",
+      name: "bountycode-theme-v2",
       partialize: (state) => ({ mode: state.mode }),
     }
   )

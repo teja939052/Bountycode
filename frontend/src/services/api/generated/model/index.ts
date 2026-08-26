@@ -110,7 +110,6 @@ export * from './createRoomRequestRoomId';
 export * from './createScrimApiV1ScrimsPostBody';
 export * from './createTeamApiV1TeamsCreatePostBody';
 export * from './createTournamentApiV1TournamentsCreatePostBody';
-export * from './customizeWizardApiV1WizardCustomizePutParams';
 export * from './dailyBonusHistoryApiV1GamificationDailyBonusHistoryGetParams';
 export * from './driveCreate';
 export * from './driveCreatePackageLpa';

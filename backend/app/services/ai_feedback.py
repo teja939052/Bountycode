@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import re
 from typing import Any, Dict, List, Optional
-from app.services.ai import chat_completion, parse_json
+from app.services.ai_core import chat_completion, parse_json
 
 
 _SENTENCE_PROMPT = """

@@ -2,7 +2,7 @@ from datetime import datetime, timezone
 from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel
 from typing import Optional
-from app.middleware.auth import get_current_user, require_plan
+from app.middleware.auth import get_current_user, require_plan, _admin_emails
 from app.config import get_settings
 from app.database import users_collection
 from bson import ObjectId
@@ -19,7 +19,6 @@ TIER_LIMITS = {
         "cover_letters_per_month": 3,
         "daily_compiler_runs": 20,
         "daily_ai_questions": 5,
-        "daily_mystery_boxes": 1,
         "problems_per_day": 10,
         "ai_mistakes_per_day": 3,
         "mock_interviews_per_month": 1,
@@ -35,7 +34,6 @@ TIER_LIMITS = {
         "cover_letters_per_month": 999,
         "daily_compiler_runs": 999,
         "daily_ai_questions": 999,
-        "daily_mystery_boxes": 3,
         "problems_per_day": 999,
         "ai_mistakes_per_day": 999,
         "mock_interviews_per_month": 999,
@@ -51,7 +49,6 @@ TIER_LIMITS = {
         "cover_letters_per_month": 999,
         "daily_compiler_runs": 999,
         "daily_ai_questions": 999,
-        "daily_mystery_boxes": 5,
         "problems_per_day": 999,
         "ai_mistakes_per_day": 999,
         "mock_interviews_per_month": 999,
@@ -108,7 +105,6 @@ def _get_remaining(user: dict, feature: str) -> dict:
     daily_features = [
         "daily_compiler_runs",
         "daily_ai_questions",
-        "daily_mystery_boxes",
         "problems_per_day",
         "ai_mistakes_per_day",
     ]
@@ -176,7 +172,6 @@ async def tier_status(user=Depends(get_current_user)):
             "cover_letters_per_month": _get_remaining(user, "cover_letters_per_month"),
             "daily_compiler_runs": _get_remaining(user, "daily_compiler_runs"),
             "daily_ai_questions": _get_remaining(user, "daily_ai_questions"),
-            "daily_mystery_boxes": _get_remaining(user, "daily_mystery_boxes"),
             "problems_per_day": _get_remaining(user, "problems_per_day"),
             "ai_mistakes_per_day": _get_remaining(user, "ai_mistakes_per_day"),
         },
@@ -242,7 +237,6 @@ async def check_access(req: AccessCheckRequest, user=Depends(get_current_user)):
     daily_features = {
         "compiler_runs": "daily_compiler_runs",
         "ai_questions": "daily_ai_questions",
-        "mystery_boxes": "daily_mystery_boxes",
         "problems": "problems_per_day",
         "ai_mistakes": "ai_mistakes_per_day",
     }
@@ -334,7 +328,6 @@ async def tier_pricing():
                     "Full learning modules (video + hints + solutions)",
                     "All company tags visible",
                     "Leaderboard access",
-                    "3 daily mystery boxes",
                 ],
             },
             "lifetime": {
@@ -346,7 +339,6 @@ async def tier_pricing():
                     "Everything in Pro",
                     "One-time payment, never billed again",
                     "Unlimited access forever",
-                    "5 daily mystery boxes",
                     "All future updates included",
                     "No recurring charges",
                 ],
@@ -364,7 +356,6 @@ async def tier_pricing():
                 "3 cover letters per month",
                 "20 daily compiler runs",
                 "5 daily AI questions",
-                "1 daily mystery box",
                 "Basic learning modules",
                 "Community access",
             ],
@@ -374,8 +365,8 @@ async def tier_pricing():
 
 @router.post("/reset-usage")
 async def reset_usage(user=Depends(get_current_user)):
-    if user.get("plan") != "lifetime":
-        if user.get("plan") != "pro" and user.get("email") not in (settings.ADMIN_EMAILS or ""):
+    if user.get("plan") not in ("pro", "lifetime"):
+        if user.get("email", "").lower() not in _admin_emails():
             raise HTTPException(status_code=403, detail="Admin access required")
 
     now = datetime.now(timezone.utc)
@@ -473,14 +464,6 @@ async def tier_usage(user=Depends(get_current_user)):
                 "limit": limits["daily_ai_questions"],
                 "remaining": max(0, limits["daily_ai_questions"] - today_usage.get("daily_ai_questions", 0))
                 if limits["daily_ai_questions"] < 999
-                else -1,
-                "unit": "per_day",
-            },
-            "mystery_boxes": {
-                "used": today_usage.get("daily_mystery_boxes", 0),
-                "limit": limits["daily_mystery_boxes"],
-                "remaining": max(0, limits["daily_mystery_boxes"] - today_usage.get("daily_mystery_boxes", 0))
-                if limits["daily_mystery_boxes"] < 999
                 else -1,
                 "unit": "per_day",
             },

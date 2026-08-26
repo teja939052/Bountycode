@@ -12,7 +12,7 @@
     "codeSnippets": [
       {
         "language": "html",
-        "code": "<header>\n  <h1>PlacementPro</h1>\n  <nav><a href=\"#\">Home</a> <a href=\"#\">Courses</a></nav>\n</header>",
+        "code": "<header>\n  <h1>BountyCode</h1>\n  <nav><a href=\"#\">Home</a> <a href=\"#\">Courses</a></nav>\n</header>",
         "output": "A banner with a title and two navigation links."
       }
     ],

@@ -1,5 +1,5 @@
 from typing import List, Dict
-from app.services.ai import chat_completion, parse_json
+from app.services.ai_core import chat_completion, parse_json
 
 
 async def evaluate_star_answer(

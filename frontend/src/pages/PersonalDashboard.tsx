@@ -9,7 +9,7 @@ import CelebrationOverlay from "../components/CelebrationOverlay";
 import StreakFreezeModal from "../components/StreakFreezeModal";
 import {
   Flame, Trophy, Target, TrendingUp, Zap, Award, BookOpen,
-  Code2, Brain, FileText, BarChart3, Clock, ChevronRight,
+  Code2, Brain, FileText, BarChart3, ChevronRight,
   CheckCircle, Star, Calendar, Rocket, Shield, Crown, Gem,
   Hash, Percent, Building2, Sparkles, Layers, Sword,
   Users, Coins, Timer, Activity, ArrowRight,
@@ -72,19 +72,6 @@ function formatDate(iso) {
   }
 }
 
-function formatCountdown(iso, nowMs) {
-  if (!iso) return "";
-  try {
-    const diff = new Date(iso).getTime() - nowMs;
-    if (diff <= 0) return "recharging…";
-    const h = Math.floor(diff / 3600000);
-    const m = Math.floor((diff % 3600000) / 60000);
-    return h > 0 ? `${h}h ${m}m` : `${m}m`;
-  } catch {
-    return "";
-  }
-}
-
 function mapAction(action) {
   if (!action) return "/question-bank";
   const m = action.match(/^\/problems\/(.+)$/);
@@ -136,8 +123,6 @@ export default function PersonalDashboard() {
   const [showAllBadges, setShowAllBadges] = useState(false);
   const [showCelebration, setShowCelebration] = useState(false);
   const [freezeOpen, setFreezeOpen] = useState(false);
-  const [now, setNow] = useState(Date.now());
-  const [bonusMsg, setBonusMsg] = useState(null);
 
   // Core progress
   const [overview, setOverview] = useState(null);
@@ -162,9 +147,6 @@ export default function PersonalDashboard() {
   const [profileReadiness, setProfileReadiness] = useState(null);
   const [companyMatches, setCompanyMatches] = useState(null);
 
-  // Live widgets
-  const [energy, setEnergy] = useState(null);
-
   // Slower endpoints (loaded in phase 2)
   const [tower, setTower] = useState(null);
   const [plan, setPlan] = useState(null);
@@ -174,12 +156,6 @@ export default function PersonalDashboard() {
   useEffect(() => {
     loadAll();
   }, []);
-
-  useEffect(() => {
-    if (!energy || energy.is_unlimited) return;
-    const t = setInterval(() => setNow(Date.now()), 30000);
-    return () => clearInterval(t);
-  }, [energy]);
 
   const loadAll = async () => {
     setLoading(true);
@@ -202,7 +178,6 @@ export default function PersonalDashboard() {
         api.gamification.getReadinessScore(),
         api.getProfileStats(),
         api.get("/api/v1/profile/readiness-score"),
-        api.energy.get(),
       ]);
 
       if (fast[0]?.status === "fulfilled") setOverview(fast[0].value);
@@ -221,7 +196,6 @@ export default function PersonalDashboard() {
       if (fast[13]?.status === "fulfilled") setGamReadiness(fast[13].value);
       if (fast[14]?.status === "fulfilled") setProfileStats(fast[14].value);
       if (fast[15]?.status === "fulfilled") setProfileReadiness(fast[15].value);
-      if (fast[16]?.status === "fulfilled") setEnergy(fast[16].value);
     } catch {} finally {
       setLoading(false);
     }
@@ -241,22 +215,6 @@ export default function PersonalDashboard() {
       if (slow[3]?.status === "fulfilled") setAnalyticsOverview(slow[3].value);
       if (slow[4]?.status === "fulfilled") setCompanyMatches(slow[4].value);
     } catch {}
-  };
-
-  const claimEnergyBonus = async () => {
-    setBonusMsg("Claiming…");
-    try {
-      const res = await api.post("/api/v1/energy/daily-bonus", {});
-      if (res?.added) {
-        setBonusMsg("Daily bonus collected! +6 energy ⚡");
-        if (res?.energy) setEnergy(res.energy);
-      } else {
-        setBonusMsg("Already collected today");
-      }
-    } catch {
-      setBonusMsg("Could not claim right now");
-    }
-    setTimeout(() => setBonusMsg(null), 3000);
   };
 
   // ─── Derived values ───
@@ -616,45 +574,6 @@ export default function PersonalDashboard() {
 
           {/* Right column */}
           <div className="lg:col-span-2 space-y-3 sm:space-y-4">
-            {/* Energy */}
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className={cardCls}>
-              <SectionHeader
-                icon={<Zap size={14} />}
-                title="Energy"
-                subtitle={energy?.is_unlimited ? "Unlimited for Pro/Lifetime members" : "Practice energy, recharges every 4h"}
-                action={bonusMsg ? <span className="text-[10px] text-amber-400">{bonusMsg}</span> : null}
-              />
-              {energy?.is_unlimited ? (
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-amber-400">
-                    <Rocket size={16} /> <span className="text-xs font-medium">Unlimited energy</span>
-                  </div>
-                  <span className="text-[10px] text-gray-500">∞</span>
-                </div>
-              ) : (
-                <div>
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="flex gap-1">
-                      {Array.from({ length: energy?.max || 10 }).map((_, i) => (
-                        <div key={i} className={`w-2.5 h-5 rounded-sm ${i < (energy?.energy || 0) ? "bg-amber-400" : "bg-gray-700"}`} />
-                      ))}
-                    </div>
-                    <span className="text-xs font-bold text-text-primary">{energy?.energy || 0}/{energy?.max || 10}</span>
-                  </div>
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-[10px] text-gray-500 flex items-center gap-1">
-                      <Clock size={10} /> Next recharge: <span className="text-gray-300">{formatCountdown(energy?.next_recharge, now)}</span>
-                    </span>
-                    <button onClick={claimEnergyBonus} disabled={!!bonusMsg}
-                      className="px-3 py-1.5 rounded-lg text-[10px] font-medium bg-amber-500/10 border border-amber-500/20 text-amber-400 hover:bg-amber-500/20 disabled:opacity-50 transition-colors"
-                    >
-                      +6 Daily Bonus
-                    </button>
-                  </div>
-                </div>
-              )}
-            </motion.div>
-
             {/* League */}
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 }} className={cardCls}>
               <SectionHeader

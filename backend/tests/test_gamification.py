@@ -12,7 +12,6 @@ from app.services.gamification import (
     STREAK_MULTIPLIERS,
     FOREST_ZONES,
     SEASONAL_STORMS,
-    WIZARD_OUTFITS,
     record_practice,
 )
 
@@ -210,22 +209,6 @@ class TestSeasonalStorms:
             assert "name" in storm
             assert "emoji" in storm
             assert "element" in storm
-
-
-class TestWizardOutfits:
-    """Tests for wizard outfit progression."""
-
-    def test_outfit_at_level_1(self):
-        assert 1 in WIZARD_OUTFITS
-
-    def test_outfit_at_level_100(self):
-        assert 100 in WIZARD_OUTFITS
-
-    def test_all_outfits_have_required_fields(self):
-        for level, outfit in WIZARD_OUTFITS.items():
-            assert "name" in outfit
-            assert "color" in outfit
-            assert "effect" in outfit
 
 
 class TestRecordPractice:

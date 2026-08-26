@@ -135,14 +135,6 @@ def test_tower_titles_exist():
     assert TOWER_TITLES[100] == ("God of Code", "👑")
 
 
-def test_wizard_outfits_exist():
-    from app.services.gamification import WIZARD_OUTFITS
-    assert 1 in WIZARD_OUTFITS
-    assert 100 in WIZARD_OUTFITS
-    assert "name" in WIZARD_OUTFITS[1]
-    assert "color" in WIZARD_OUTFITS[50]
-
-
 def test_calculate_stars():
     from app.services.gamification import calculate_stars
     assert calculate_stars(100, 30) >= calculate_stars(50, 120)

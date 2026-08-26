@@ -134,7 +134,7 @@ export async function requestWithRetry<T = any>(
 
         if (response.status === 401 && attempt === 0) {
           try {
-            await fetch("/api/v1/auth/refresh", {
+            await fetch(`${API_BASE}/api/v1/auth/refresh`, {
               method: "POST",
               credentials: "include",
             });

@@ -8,8 +8,7 @@ from datetime import datetime, timezone
 from fastapi import APIRouter, Depends
 from motor.motor_asyncio import AsyncIOMotorClientSession
 
-from app.middleware.auth import get_current_user
-from app.routes.analytics_admin import require_admin
+from app.middleware.auth import get_current_user, require_admin
 from app.database import users_collection, trials_collection
 
 router = APIRouter(prefix="/api/v1/revenue", tags=["Revenue"])
@@ -57,8 +56,6 @@ async def revenue_funnel(admin=Depends(require_admin)):
     trial_to_paid = round(trial_converted / trial_signups * 100, 1) if trial_signups else 0.0
     # Overall paying share of the user base.
     paying_share = round(paid_users / total_users * 100, 1) if total_users else 0.0
-
-    paying_share = round(paid_total / total_users * 100, 1) if total_users else 0.0
 
     return {
         "total_users": total_users,

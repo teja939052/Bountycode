@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import {
   BarChart3, Users, Eye, Activity, Clock, Globe,
   TrendingUp, RefreshCw, Zap, MapPin, UserCheck,
@@ -8,6 +9,7 @@ import {
 } from "lucide-react";
 import api from "../services/api";
 import Spinner from "../components/ui/Spinner";
+import useAuthStore from "../store/authStore";
 
 function StatCard({ icon: Icon, label, value, sub, color = "text-brand-sky", delay = 0 }: any) {
   return (
@@ -67,6 +69,16 @@ const TABS: { key: Tab; label: string; icon: any }[] = [
 ];
 
 export default function AdminDashboard() {
+  const { user } = useAuthStore();
+  const navigate = useNavigate();
+  const isAdmin = user?.is_admin || user?.role === "admin";
+
+  useEffect(() => {
+    if (!isAdmin) {
+      navigate("/dashboard", { replace: true });
+    }
+  }, [isAdmin, navigate]);
+
   const [tab, setTab] = useState<Tab>("overview");
   const [realtime, setRealtime] = useState<any>(null);
   const [visitors, setVisitors] = useState<any[]>([]);

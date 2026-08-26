@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { LayoutDashboard, BookOpen, Code2, MessageSquare, Menu, User, Trophy, Briefcase, Gamepad2, Castle, Users, Swords, Layers, Award, Coins, Library, Gift, Shield, Brain, Timer, Calendar, MessageCircle, Building2, Lightbulb, ScrollText, Target, Zap, UserPlus, MapPin, type LucideIcon } from 'lucide-react';
+import { LayoutDashboard, BookOpen, Code2, MessageSquare, Menu, Trophy, Briefcase, Castle, Brain, Calendar, type LucideIcon } from 'lucide-react';
 import useAuthStore from '../store/authStore';
 import { useGamification } from '../hooks/useGamification';
 
@@ -26,44 +26,18 @@ const MORE_GROUPS: { label: string; items: NavItem[] }[] = [
   {
     label: 'Your Journey',
     items: [
-      { to: '/journey-map/origin', icon: MapPin, label: 'Bounty Map' },
-      { to: '/journey', icon: Gamepad2, label: 'Journey' },
       { to: '/tower', icon: Castle, label: 'Tower' },
-      { to: '/guilds', icon: Users, label: 'Guilds' },
-      { to: '/dungeons', icon: Swords, label: 'Dungeons' },
-      { to: '/collection', icon: Library, label: 'Collection' },
-      { to: '/cards', icon: Layers, label: 'Cards' },
-      { to: '/achievements', icon: Award, label: 'Achievements' },
-      { to: '/economy', icon: Coins, label: 'Economy' },
-      { to: '/wheel', icon: Gift, label: 'Lucky Wheel' },
-      { to: '/battle-pass', icon: Shield, label: 'Battle Pass' },
     ],
   },
   {
     label: 'Tools & Community',
     items: [
       { to: '/community', icon: MessageSquare, label: 'Community' },
-      { to: '/discussions', icon: MessageCircle, label: 'Discussions' },
-      { to: '/friends', icon: UserPlus, label: 'Friends' },
       { to: '/ai-mentor', icon: Brain, label: 'AI Mentor' },
       { to: '/project-generator', icon: MessageSquare, label: 'Project Generator' },
       { to: '/concepts', icon: Lightbulb, label: 'Concepts' },
-      { to: '/behavioral-practice', icon: ScrollText, label: 'Behavioral Practice' },
-      { to: '/company-directory', icon: Building2, label: 'Company Directory' },
-      { to: '/study-timer', icon: Timer, label: 'Study Timer' },
       { to: '/placement-calendar', icon: Calendar, label: 'Placement Calendar' },
       { to: '/settings', icon: Menu, label: 'Settings' },
-    ],
-  },
-  {
-    label: 'Progress',
-    items: [
-      { to: '/quests', icon: ScrollText, label: 'Quests' },
-      { to: '/goals', icon: Target, label: 'Goals' },
-      { to: '/readiness', icon: Zap, label: 'Readiness Score' },
-      { to: '/skill-mastery', icon: Lightbulb, label: 'Skill Mastery' },
-      { to: '/energy', icon: Zap, label: 'Energy' },
-      { to: '/mystery-box', icon: Gift, label: 'Mystery Box' },
     ],
   },
 ];

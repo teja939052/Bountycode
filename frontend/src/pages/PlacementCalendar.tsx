@@ -22,7 +22,7 @@ type Company = {
 type CalEvent = { title: string; kind: string; companies: string[]; note: string };
 type CalendarData = Record<string, CalEvent[]>;
 
-// Maps a focus area to a concrete lesson label + the live PlacementPro page to practice it.
+// Maps a focus area to a concrete lesson label + the live BountyCode page to practice it.
 const FOCUS_LESSON_MAP: Record<string, { label: string; route: string }> = {
   dsa: { label: "Arrays, Strings & Recursion", route: "/coding-challenge" },
   "data structures": { label: "Linked Lists, Trees, Graphs", route: "/question-bank" },

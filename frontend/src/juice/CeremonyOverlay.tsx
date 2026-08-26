@@ -1,5 +1,4 @@
 import React from 'react';
-import MysteryBoxCeremony from './MysteryBoxCeremony';
 import LevelUpCeremony from './LevelUpCeremony';
 import StreakCeremony from './StreakCeremony';
 import BadgeCeremony from './BadgeCeremony';
@@ -8,16 +7,6 @@ import CardRevealCeremony from './CardRevealCeremony';
 export default function CeremonyOverlay({ ceremonies, onDismiss, play }) {
   return ceremonies.map((ceremony) => {
     switch (ceremony.type) {
-      case 'mysterybox':
-        return (
-          <MysteryBoxCeremony
-            key={ceremony.id}
-            reward={ceremony.data}
-            onDismiss={() => onDismiss(ceremony.id)}
-            play={play}
-          />
-        );
-
       case 'levelup':
         return (
           <LevelUpCeremony

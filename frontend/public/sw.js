@@ -1,4 +1,4 @@
-const CACHE_NAME = 'placementpro-v1';
+const CACHE_NAME = 'bountycode-v1';
 const STATIC_ASSETS = [
   '/',
   '/index.html',

@@ -38,6 +38,9 @@ class Settings(BaseSettings):
         case_sensitive=True,
     )
 
+    # API Versioning
+    API_VERSION: str = "v1"
+
     # MongoDB
     MONGODB_URL: str = os.getenv("MONGODB_URL", "mongodb://localhost:27017")
     DATABASE_NAME: str = "placementpro"
@@ -64,6 +67,11 @@ class Settings(BaseSettings):
     PAYPAL_CLIENT_SECRET: str = os.getenv("PAYPAL_CLIENT_SECRET", "")
     PAYPAL_MODE: str = os.getenv("PAYPAL_MODE", "sandbox")
     PAYPAL_WEBHOOK_ID: str = os.getenv("PAYPAL_WEBHOOK_ID", "")
+
+    # Google OAuth
+    GOOGLE_CLIENT_ID: str = os.getenv("GOOGLE_CLIENT_ID", "")
+    GOOGLE_CLIENT_SECRET: str = os.getenv("GOOGLE_CLIENT_SECRET", "")
+    GOOGLE_REDIRECT_URI: str = os.getenv("GOOGLE_REDIRECT_URI", "http://localhost:8000/api/v1/auth/google/callback")
     
     # Free tier limits
     FREE_TIER_INTERVIEW_LIMIT: int = 3
@@ -91,6 +99,9 @@ class Settings(BaseSettings):
     # CORS
     CORS_ORIGINS: str = os.getenv("CORS_ORIGINS", "http://localhost:5173,http://localhost:3000")
     CORS_ALLOW_CREDENTIALS: bool = True
+    # Auth cookie SameSite. Use "none" when the frontend is hosted on a
+    # different origin than the API (e.g. Vercel frontend + Render backend).
+    COOKIE_SAMESITE: str = os.getenv("COOKIE_SAMESITE", "lax")
     CORS_ALLOW_METHODS: list[str] = ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"]
     CORS_ALLOW_HEADERS: list[str] = [
         "Authorization",

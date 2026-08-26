@@ -17,7 +17,7 @@ export default function ShareCard({ user, stats, onClose }) {
         useCORS: true,
       });
       const link = document.createElement('a');
-      link.download = `placementpro-${user?.name || 'user'}-stats.png`;
+      link.download = `bountycode-${user?.name || 'user'}-stats.png`;
       link.href = canvas.toDataURL('image/png');
       link.click();
     } catch (err) {
@@ -26,9 +26,9 @@ export default function ShareCard({ user, stats, onClose }) {
   }, [user]);
 
   const handleShare = useCallback(async () => {
-    const text = `🚀 Level ${level} on PlacementPro! ${stats?.total_solved || 0} problems solved · ${stats?.streak || 0} day streak 🔥\n\n#PlacementPro #Coding #PlacementPrep`;
+    const text = `🚀 Level ${level} on BountyCode! ${stats?.total_solved || 0} problems solved · ${stats?.streak || 0} day streak 🔥\n\n#BountyCode #Coding #PlacementPrep`;
     if (navigator.share) {
-      try { await navigator.share({ text, title: 'My PlacementPro Stats' }); } catch {}
+      try { await navigator.share({ text, title: 'My BountyCode Stats' }); } catch {}
     } else {
       navigator.clipboard?.writeText(text);
     }
@@ -76,7 +76,7 @@ export default function ShareCard({ user, stats, onClose }) {
 
         {/* Bottom */}
         <div className="p-4 text-center border-t border-gray-700/20">
-          <p className="text-[9px] font-mono text-gray-600">placementpro.app · Power your placement prep</p>
+          <p className="text-[9px] font-mono text-gray-600">bountycode.in · Power your placement prep</p>
         </div>
       </div>
 

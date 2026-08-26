@@ -496,3 +496,260 @@
   background-size: 2px 10px;
   background-repeat: repeat-y;
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   SAKURA PETAL SYSTEM
+   Spring atmosphere for the landing page hero.
+   - CSS-only falling petals (GPU-composited)
+   - Deterministic per-slot variation
+   - Pauses when tab hidden, respects reduced-motion
+   ══════════════════════════════════════════════════════════════════ */
+
+@keyframes sakuraFall {
+  0% {
+    transform: translate3d(0, -8vh, 0) rotate(0deg) scale(1);
+    opacity: 0;
+  }
+  6% {
+    opacity: var(--petal-opacity, 0.6);
+  }
+  25% {
+    transform: translate3d(calc(var(--petal-drift, 30px) * 0.3), 28vh, 0) rotate(calc(var(--petal-spin, 180deg) * 0.3)) scale(0.95);
+  }
+  50% {
+    transform: translate3d(calc(var(--petal-drift, 30px) * 0.7), 58vh, 0) rotate(calc(var(--petal-spin, 180deg) * 0.6)) scale(0.9);
+    opacity: var(--petal-opacity, 0.6);
+  }
+  75% {
+    transform: translate3d(calc(var(--petal-drift, 30px) * 0.9), 85vh, 0) rotate(calc(var(--petal-spin, 180deg) * 0.85)) scale(0.85);
+  }
+  100% {
+    transform: translate3d(var(--petal-drift, 30px), 110vh, 0) rotate(var(--petal-spin, 180deg)) scale(0.8);
+    opacity: 0;
+  }
+}
+
+.sakura-petal-fall {
+  animation-name: sakuraFall;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+/* Deterministic per-slot positions — no JS randomness */
+.sakura-petals .sakura-petal-fall:nth-child(1)  { left: 5%;  animation-duration: 11s; animation-delay: 0s;    --petal-drift: 35px;  --petal-spin: 200deg; --petal-opacity: 0.55; }
+.sakura-petals .sakura-petal-fall:nth-child(2)  { left: 15%; animation-duration: 14s; animation-delay: -4s;   --petal-drift: -28px; --petal-spin: 160deg; --petal-opacity: 0.50; }
+.sakura-petals .sakura-petal-fall:nth-child(3)  { left: 25%; animation-duration: 9s;  animation-delay: -2s;   --petal-drift: 42px;  --petal-spin: 220deg; --petal-opacity: 0.60; }
+.sakura-petals .sakura-petal-fall:nth-child(4)  { left: 35%; animation-duration: 16s; animation-delay: -8s;   --petal-drift: -38px; --petal-spin: 140deg; --petal-opacity: 0.45; }
+.sakura-petals .sakura-petal-fall:nth-child(5)  { left: 45%; animation-duration: 12s; animation-delay: -5s;   --petal-drift: 30px;  --petal-spin: 190deg; --petal-opacity: 0.55; }
+.sakura-petals .sakura-petal-fall:nth-child(6)  { left: 55%; animation-duration: 18s; animation-delay: -10s;  --petal-drift: -45px; --petal-spin: 240deg; --petal-opacity: 0.40; }
+.sakura-petals .sakura-petal-fall:nth-child(7)  { left: 65%; animation-duration: 10s; animation-delay: -3s;   --petal-drift: 38px;  --petal-spin: 170deg; --petal-opacity: 0.50; }
+.sakura-petals .sakura-petal-fall:nth-child(8)  { left: 75%; animation-duration: 15s; animation-delay: -7s;   --petal-drift: -32px; --petal-spin: 210deg; --petal-opacity: 0.45; }
+.sakura-petals .sakura-petal-fall:nth-child(9)  { left: 82%; animation-duration: 13s; animation-delay: -6s;   --petal-drift: 26px;  --petal-spin: 150deg; --petal-opacity: 0.50; }
+.sakura-petals .sakura-petal-fall:nth-child(10) { left: 90%; animation-duration: 17s; animation-delay: -12s;  --petal-drift: -40px; --petal-spin: 230deg; --petal-opacity: 0.38; }
+.sakura-petals .sakura-petal-fall:nth-child(11) { left: 10%; animation-duration: 11s; animation-delay: -1s;   --petal-drift: 44px;  --petal-spin: 200deg; --petal-opacity: 0.52; }
+.sakura-petals .sakura-petal-fall:nth-child(12) { left: 30%; animation-duration: 19s; animation-delay: -14s;  --petal-drift: -36px; --petal-spin: 180deg; --petal-opacity: 0.42; }
+.sakura-petals .sakura-petal-fall:nth-child(13) { left: 50%; animation-duration: 12s; animation-delay: -9s;   --petal-drift: 34px;  --petal-spin: 200deg; --petal-opacity: 0.48; }
+.sakura-petals .sakura-petal-fall:nth-child(14) { left: 70%; animation-duration: 16s; animation-delay: -11s;  --petal-drift: -30px; --petal-spin: 160deg; --petal-opacity: 0.44; }
+.sakura-petals .sakura-petal-fall:nth-child(15) { left: 20%; animation-duration: 14s; animation-delay: -13s;  --petal-drift: 48px;  --petal-spin: 250deg; --petal-opacity: 0.36; }
+.sakura-petals .sakura-petal-fall:nth-child(16) { left: 60%; animation-duration: 20s; animation-delay: -15s;  --petal-drift: -42px; --petal-spin: 190deg; --petal-opacity: 0.34; }
+
+/* Pause when tab hidden */
+.sakura-paused .sakura-petal-fall {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sakura-petal-fall {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   SPRING JOURNEY — Landing page sections
+   ══════════════════════════════════════════════════════════════════ */
+
+.spring-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #FFF8F9;
+}
+
+.spring-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1522383225653-ed111181a951?w=1920&q=80');
+  background-size: cover;
+  background-position: center 40%;
+  background-repeat: no-repeat;
+}
+
+.spring-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 248, 249, 0.55) 0%,
+    rgba(255, 248, 249, 0.70) 40%,
+    rgba(255, 248, 249, 0.88) 100%
+  );
+}
+
+.spring-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 680px;
+  padding: 0 1.5rem;
+}
+
+/* The winding path connector between sections */
+.spring-path {
+  position: relative;
+  width: 2px;
+  margin: 0 auto;
+  background: linear-gradient(
+    to bottom,
+    #FFB7C5 0%,
+    #22C55E 40%,
+    #5BA7A0 70%,
+    #EAB74D 100%
+  );
+  border-radius: 1px;
+}
+
+.spring-path::before,
+.spring-path::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid;
+}
+
+.spring-path::before {
+  top: 0;
+  border-color: #FFB7C5;
+  background: #FFF8F9;
+}
+
+.spring-path::after {
+  bottom: 0;
+  border-color: #EAB74D;
+  background: #FFF8F9;
+}
+
+/* Path marker dots along the way */
+.spring-path-dot {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid #22C55E;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.15);
+}
+
+/* Section with sakura-tinted background */
+.spring-section {
+  position: relative;
+  padding: 5rem 1.5rem;
+}
+
+.spring-section-pink {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 248, 249, 0) 0%,
+    rgba(255, 183, 197, 0.06) 50%,
+    rgba(255, 248, 249, 0) 100%
+  );
+}
+
+.spring-section-green {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 248, 249, 0) 0%,
+    rgba(34, 197, 94, 0.04) 50%,
+    rgba(255, 248, 249, 0) 100%
+  );
+}
+
+.spring-section-gold {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 248, 249, 0) 0%,
+    rgba(234, 183, 77, 0.06) 50%,
+    rgba(255, 248, 249, 0) 100%
+  );
+}
+
+/* Role path cards */
+.role-path-card {
+  position: relative;
+  padding: 1.5rem;
+  border-radius: var(--pp-radius-card);
+  background: white;
+  border: 1px solid var(--pp-border);
+  box-shadow: var(--pp-shadow-card);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+}
+
+.role-path-card:hover {
+  border-color: #22C55E;
+  box-shadow: 0 8px 30px rgba(34, 197, 94, 0.12);
+  transform: translateY(-4px);
+}
+
+.role-path-card::after {
+  content: '';
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 24px;
+  background: linear-gradient(to bottom, var(--pp-border), transparent);
+}
+
+.role-path-card:last-child::after {
+  display: none;
+}
+
+/* Gold glow for achievement moments */
+@keyframes goldGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(234, 183, 77, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(234, 183, 77, 0.30), 0 0 60px rgba(234, 183, 77, 0.10);
+  }
+}
+
+.gold-glow {
+  animation: goldGlow 3s ease-in-out infinite;
+}
+
+/* Subtle path markers on the journey */
+.path-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}

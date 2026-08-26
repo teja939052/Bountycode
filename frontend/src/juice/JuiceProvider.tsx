@@ -63,20 +63,6 @@ export function JuiceProvider({ children }) {
     }
   }, [play, showFloatingText]);
 
-  const showMysteryBox = useCallback((reward) => {
-    play('mysteryBoxOpen');
-    const id = ++ceremonyIdRef.current;
-    setActiveCeremonies(prev => [...prev, {
-      id,
-      type: 'mysterybox',
-      data: reward,
-      duration: 4000,
-    }]);
-    setTimeout(() => {
-      setActiveCeremonies(prev => prev.filter(c => c.id !== id));
-    }, 4000);
-  }, [play]);
-
   const showStreakCeremony = useCallback((days) => {
     play('streakFire');
     const id = ++ceremonyIdRef.current;
@@ -140,7 +126,7 @@ export function JuiceProvider({ children }) {
   const value = {
     play,
     showFloatingText, showXP, showLevelUp,
-    showMysteryBox, showStreakCeremony, showBadgeUnlock, showCardReveal,
+    showStreakCeremony, showBadgeUnlock, showCardReveal,
     screenShake, screenFlash,
     dismissCeremony,
     soundEnabled: soundEngine.enabled,

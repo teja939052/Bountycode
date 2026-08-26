@@ -87,7 +87,7 @@ const DEFAULT_CODE_PROBLEM: Record<string, string> = {
   python: `import sys\n\n# Read all input from stdin\ndata = sys.stdin.read().strip().splitlines()\n# TODO: parse the input and print the answer\nprint("")`,
 };
 
-const CodeCache = {
+export const CodeCache = {
   getKey: (problemId: string | undefined, language: string) =>
     `pp_code_${problemId || "default"}_${language}`,
   save: (problemId: string | undefined, language: string, code: string) => {
@@ -119,7 +119,7 @@ function getDefaultCode(language: string, isProblemMode: boolean): string {
   return DEFAULT_CODE[language] || "";
 }
 
-function formatTime(seconds: number): string {
+export function formatTime(seconds: number): string {
   const h = Math.floor(seconds / 3600);
   const m = Math.floor((seconds % 3600) / 60);
   const s = Math.floor(seconds % 60);
@@ -128,14 +128,14 @@ function formatTime(seconds: number): string {
   return `${s}s`;
 }
 
-function formatMemory(bytes: number | null): string {
+export function formatMemory(bytes: number | null): string {
   if (!bytes) return "N/A";
   if (bytes < 1024) return `${bytes} B`;
   if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
-function parseErrorLine(message: string): number | null {
+export function parseErrorLine(message: string): number | null {
   if (!message) return null;
   const patterns = [
     /line (\d+)/i,
@@ -151,7 +151,7 @@ function parseErrorLine(message: string): number | null {
   return null;
 }
 
-function detectErrorType(
+export function detectErrorType(
   stderr: string | undefined,
   compileError: string | undefined,
   exitCode: number | undefined
@@ -163,7 +163,7 @@ function detectErrorType(
   return "runtime";
 }
 
-function normalizeTopics(problem: any): string[] {
+export function normalizeTopics(problem: any): string[] {
   if (!problem) return [];
   const topics = Array.isArray(problem.topics) ? problem.topics : [];
   const fallback = problem.topic ? [problem.topic] : [];
@@ -172,7 +172,7 @@ function normalizeTopics(problem: any): string[] {
     .filter(Boolean);
 }
 
-function getStarterProblemType(topics: string[]): string {
+export function getStarterProblemType(topics: string[]): string {
   const topicSet = new Set(topics.map((t) => t.toLowerCase()));
   if ([...topicSet].some((t) => t.includes("linked list") || t.includes("linked_list")))
     return "linked_list";

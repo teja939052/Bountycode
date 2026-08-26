@@ -1,4 +1,5 @@
 import { Zap } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -17,9 +18,9 @@ export default function Footer() {
             AI-powered placement preparation. A calm path to the offer.
           </p>
           <div className="flex gap-6 text-xs font-mono text-text-muted">
-            <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-nature-blossom transition-colors">Privacy</a>
-            <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-nature-blossom transition-colors">Terms</a>
-            <a href="mailto:support@placementpro.app" className="hover:text-nature-blossom transition-colors">Support</a>
+            <Link to="/privacy" className="hover:text-nature-blossom transition-colors">Privacy</Link>
+            <Link to="/terms" className="hover:text-nature-blossom transition-colors">Terms</Link>
+            <a href="mailto:support@bountycode.in" className="hover:text-nature-blossom transition-colors">Support</a>
           </div>
         </div>
       </div>
