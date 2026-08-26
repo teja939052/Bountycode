@@ -103,3 +103,12 @@ sandbox-opencode.bat
 *.pyc
 d[0-9]*.py
 test_bank.py
+
+# Package lock files (if not committed)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# OS files
+Thumbs.db
+Desktop.ini
