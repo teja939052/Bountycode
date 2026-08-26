@@ -15,7 +15,7 @@ export default function PwaInstallPrompt() {
     const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     const isStandalone = window.matchMedia("(display-mode: standalone)").matches;
 
-    if (!dismissed && !isStandalone && isMobile && visits >= 1) {
+    if (!dismissed && !isStandalone && isMobile && visits >= 1 && window.location.pathname !== "/") {
       setShow(true);
     }
 
