@@ -574,31 +574,18 @@
 .spring-hero {
   position: relative;
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
-  background-color: #FFF8F9;
+  background-color: #F4FAF8;
 }
 
 .spring-hero-bg {
   position: absolute;
   inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1522383225653-ed111181a951?w=1920&q=80');
-  background-size: cover;
-  background-position: center 40%;
-  background-repeat: no-repeat;
 }
 
 .spring-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 248, 249, 0.55) 0%,
-    rgba(255, 248, 249, 0.70) 40%,
-    rgba(255, 248, 249, 0.88) 100%
-  );
 }
 
 .spring-hero-content {
@@ -607,6 +594,18 @@
   text-align: center;
   max-width: 680px;
   padding: 0 1.5rem;
+}
+
+/* Hero CTA — BountyCode green */
+.hero-cta-primary {
+  background: linear-gradient(135deg, #22C55E 0%, #16A34A 100%);
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(34, 197, 94, 0.35), 0 1px 3px rgba(0,0,0,0.08);
+}
+.hero-cta-primary:hover {
+  background: linear-gradient(135deg, #16A34A 0%, #15803D 100%);
+  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.45), 0 2px 6px rgba(0,0,0,0.1);
 }
 
 /* The winding path connector between sections */
@@ -752,4 +751,45 @@
   border-radius: 50%;
   font-size: 1.1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   SAKURA PETALS — pure CSS animation, zero React re-renders
+   ══════════════════════════════════════════════════════════════════ */
+
+.sakura-petal {
+  animation: sakura-fall linear infinite;
+  will-change: transform, opacity;
+  transform-origin: center center;
+  pointer-events: none;
+}
+
+@keyframes sakura-fall {
+  0% {
+    transform: translateY(-5vh) translateX(0) rotate(var(--start-rot, 0deg));
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(105vh) translateX(var(--drift, 20px)) rotate(calc(var(--start-rot, 0deg) + 180deg));
+    opacity: 0;
+  }
+}
+
+/* Pause petals when tab is hidden — saves GPU cycles */
+@media (prefers-reduced-motion: reduce) {
+  .sakura-petal {
+    animation: none !important;
+    display: none;
+  }
+}
+
+/* Pause when page not visible (toggled by visibilitychange listener in main.tsx) */
+.page-hidden .sakura-petal {
+  animation-play-state: paused;
 }

@@ -6,7 +6,6 @@ import {
   TrendingUp,
   Users,
   MessageSquare,
-  Compass,
   ArrowRight,
   CheckCircle2,
   Building2,
@@ -43,102 +42,223 @@ export default function Landing() {
 
   return (
     <PageShell theme="spring">
-      {/* Skip link for keyboard navigation */}
-      <a href="#main" className="skip-link absolute -top-4 left-6 z-50 inline-flex items-center gap-2 rounded-md border border-border bg-surface px-4 py-2 text-sm font-medium text-text-primary hover:bg-primary/10 transition-colors">
-        Skip to main content
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 10l5 5 5-5M12 15L3 9l9-9"/></svg>
+      {/* Skip link — keyboard only, visually hidden until focused */}
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-6 focus:z-[100] focus:inline-flex focus:items-center focus:gap-2 focus:rounded-lg focus:border focus:border-gray-300 focus:bg-white/90 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-[#14201B] focus:shadow-lg focus:backdrop-blur-sm"
+      >
+        Skip to content
       </a>
 
-      {/* ═══ SAKURA PETALS — realistic falling cherry blossoms ═══ */}
+      {/* ═══ SAKURA PETALS — sparse, realistic ═══ */}
       <SakuraPetals density="hero" />
 
-      {/* ═══ HERO — open spring morning, not a wall of trees ═══ */}
-      <section className="spring-hero min-h-[600px] relative">
-        {/* Warm white / extremely pale blue background with subtle sunrise gradient */}
+      {/* ═══ THE SPRING PATH — hero as immersive world ═══ */}
+      <section className="spring-hero relative overflow-hidden" style={{ background: "#F4FAF8" }}>
+
+        {/* ── Photographic environment ── */}
         <div
-          className="absolute inset-0 bg-white/95 from-amber-50 via-white to-amber-50 gradient-blur"
+          className="absolute inset-0"
           aria-hidden="true"
-        />
-        {/* Subtle film grain + sunlight bloom */}
-        <div
-          className="absolute inset-0 pointer-events-none overflow-hidden"
           style={{
-            backgroundImage:
-              "url('data:image/svg+xml,%3Csvg viewBox=\"0 0 256 256\" xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%222%22 stitchTiles=%22stretch%22/%3E%3C/filter%3E%3Crect width=%22256%22 height=%22256%22 fill=%22%23ffffff%22 filter=%22url(%23noise)%22/%3E%3C/svg%22')",
-            opacity: 0.03,
-          }}
-        />
-        {/* Subtle branch silhouettes at peripheral edges only — muted brown, NOT lime green */}
-        <div
-          className="absolute top-0 left-0 right-0 h-96 md:h-[400px] overflow-hidden pointer-events-none"
-          style={{
-            backgroundImage:
-              "url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 120%22%3E%3Cpath fill=%22%235a2d11%22 opacity=%220.08%22 d=%22M20 60 C 40 10, 60 10, 80 60 C 100 10, 120 10, 140 60 C 160 10, 180 10, 200 60%22 /%3E%3C/svg%22')",
+            backgroundImage: "url('https://images.unsplash.com/photo-1522383225653-ed111181a951?w=1920&q=80')",
+            backgroundSize: "cover",
+            backgroundPosition: "center 35%",
+            backgroundRepeat: "no-repeat",
           }}
         />
 
-        <motion.div
-          initial={reduced ? {} : { opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="spring-hero-content relative z-10 max-w-3xl mx-auto px-4 w-full"
+        {/* ── Atmospheric overlay — sky bleeds into content, photo shows through ── */}
+        <div
+          className="absolute inset-0"
+          aria-hidden="true"
+          style={{
+            background: `linear-gradient(
+              180deg,
+              rgba(244,250,248,0.25) 0%,
+              rgba(244,250,248,0.35) 25%,
+              rgba(244,250,248,0.50) 50%,
+              rgba(244,250,248,0.70) 75%,
+              rgba(244,250,248,0.90) 100%
+            )`,
+          }}
+        />
+
+        {/* ── Sunlight — warm wash from upper right (static) ── */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          aria-hidden="true"
+          style={{
+            background: "radial-gradient(ellipse 50% 40% at 78% 15%, rgba(255,240,200,0.18) 0%, transparent 70%)",
+          }}
+        />
+
+        {/* ── Branch silhouettes — only at peripheral edges (static) ── */}
+        <div
+          className="absolute top-0 left-0 w-[28%] h-[65%] overflow-hidden pointer-events-none"
+          aria-hidden="true"
+          style={{ opacity: 0.10 }}
         >
-          {/* Center section — open 60% atmospheric space */}
-          <div className="mx-auto w-full max-w-2xl">
-            <div className="mb-6 flex justify-center">
-              <div className="flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1.5 shadow-sm backdrop-blur-sm">
-                <Compass size={16} className="text-primary-soft" />
-                <span className="text-xs font-bold uppercase tracking-wider text-text-muted">
-                  The career adventure for engineers
-                </span>
+          <svg viewBox="0 0 300 450" className="w-full h-full" style={{ transform: "scaleX(-1)" }}>
+            <path d="M0 0 C 25 70, 50 110, 35 180 C 28 230, 45 270, 70 310" stroke="#4a2510" strokeWidth="2.5" fill="none" opacity="0.7" />
+            <path d="M35 180 C 60 170, 85 160, 110 175" stroke="#4a2510" strokeWidth="1.8" fill="none" opacity="0.5" />
+            <path d="M70 310 C 85 300, 105 285, 130 300" stroke="#4a2510" strokeWidth="1.5" fill="none" opacity="0.4" />
+            <circle cx="110" cy="172" r="5" fill="#FFC8D6" opacity="0.45" />
+            <circle cx="106" cy="168" r="3" fill="#FFB7C5" opacity="0.35" />
+            <circle cx="114" cy="176" r="2.5" fill="#FFE4E8" opacity="0.25" />
+          </svg>
+        </div>
+
+        <div
+          className="absolute top-0 right-0 w-[28%] h-[65%] overflow-hidden pointer-events-none"
+          aria-hidden="true"
+          style={{ opacity: 0.10 }}
+        >
+          <svg viewBox="0 0 300 450" className="w-full h-full">
+            <path d="M300 0 C 275 70, 250 110, 265 180 C 272 230, 255 270, 230 310" stroke="#4a2510" strokeWidth="2.5" fill="none" opacity="0.7" />
+            <path d="M265 180 C 240 170, 215 160, 190 175" stroke="#4a2510" strokeWidth="1.8" fill="none" opacity="0.5" />
+            <path d="M230 310 C 215 300, 195 285, 170 300" stroke="#4a2510" strokeWidth="1.5" fill="none" opacity="0.4" />
+            <circle cx="190" cy="172" r="5" fill="#FFC8D6" opacity="0.45" />
+            <circle cx="194" cy="168" r="3" fill="#FFB7C5" opacity="0.35" />
+            <circle cx="186" cy="176" r="2.5" fill="#FFE4E8" opacity="0.25" />
+          </svg>
+        </div>
+
+        {/* ── Distant landscape / horizon — lower 25% (static) ── */}
+        <div
+          className="absolute bottom-0 left-0 right-0 pointer-events-none"
+          aria-hidden="true"
+          style={{ height: "28%" }}
+        >
+          {/* Ground fade into content */}
+          <div className="absolute inset-0" style={{
+            background: "linear-gradient(to top, rgba(244,250,248,0.95) 0%, rgba(244,250,248,0.6) 50%, transparent 100%)"
+          }} />
+          {/* Subtle rolling hills */}
+          <svg viewBox="0 0 1440 200" className="absolute bottom-0 w-full" preserveAspectRatio="none" style={{ height: "60%" }}>
+            <path d="M0 120 C 180 80, 360 100, 540 90 C 720 80, 900 95, 1080 85 C 1200 78, 1350 88, 1440 84 L 1440 200 L 0 200 Z" fill="rgba(160,185,160,0.10)" />
+            <path d="M0 140 C 240 115, 480 125, 720 118 C 960 112, 1200 120, 1440 115 L 1440 200 L 0 200 Z" fill="rgba(150,175,150,0.07)" />
+          </svg>
+        </div>
+
+        {/* ── Film grain ── */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          aria-hidden="true"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E")`,
+            opacity: 0.05,
+          }}
+        />
+
+        {/* ═══ CONTENT — sits within the environment ═══ */}
+        <div className="relative z-10 min-h-screen flex flex-col">
+          {/* Top bar — transparent, lets photo show through */}
+          <nav className="flex items-center justify-between px-6 py-4 md:px-12">
+            <Link to="/" className="flex items-center gap-2.5 group">
+              <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-[#22C55E] to-[#16A34A] flex items-center justify-center shadow-sm">
+                <img src="/assets/logo/bountycode-icon.svg" alt="" className="h-5 w-5" aria-hidden="true" />
               </div>
-            </div>
-
-            <h1 id="main" className="font-display text-4xl font-extrabold tracking-tight text-text sm:text-5xl md:text-[3.4rem] md:leading-[1.08]">
-              Know exactly what stands between you and your next job.
-            </h1>
-            <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-text-muted sm:text-lg">
-              BountyCode diagnoses your skills, charts your course, and trains you through real
-              coding bounties, company OAs, interviews, and projects — one island at a time.
-            </p>
-
-            <p className="mx-auto mt-2 max-w-xl text-sm text-text-muted">
-              -- Diagnose in 2 minutes | -- Real coding bounties, not theoretical quizzes | -- 53+ company guides | -- Free to start, upgrade anytime
-            </p>
-
-            <div className="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Link to="/role-selector" className="w-full sm:w-auto">
-                <Button variant="primary" size="xl" fullWidth className="sm:w-auto">
-                  Find my readiness
-                </Button>
+              <span className="text-sm font-bold tracking-tight text-[#14201B]">BountyCode</span>
+            </Link>
+            <div className="flex items-center gap-4">
+              <Link to="/login" className="text-sm font-medium text-[#14201B]/70 hover:text-[#14201B] transition-colors">
+                Log in
               </Link>
-              <Link to="/pricing" className="w-full sm:w-auto">
-                <Button variant="outline" size="xl" fullWidth className="sm:w-auto">
-                  Explore the journey
-                </Button>
+              <Link to="/register" className="text-sm font-bold text-white bg-[#22C55E] hover:bg-[#16A34A] px-4 py-2 rounded-lg transition-colors shadow-sm">
+                Get started
               </Link>
             </div>
-          </div>
-        </motion.div>
+          </nav>
 
-        {/* Subtle scroll indicator */}
-        <motion.div
-          initial={reduced ? {} : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.5 }}
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10"
-        >
-          <div className="flex flex-col items-center gap-2 text-text-muted text-xs">
-            <span className="font-medium tracking-wide">Scroll to explore</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 5v14M19 12l-7 7-7-7" />
-            </svg>
+          {/* Hero center — headline floats in the atmospheric space */}
+          <div className="flex-1 flex items-center justify-center px-6 pb-20">
+            <motion.div
+              initial={reduced ? {} : { opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="text-center max-w-2xl mx-auto"
+            >
+              <h1
+                id="main"
+                className="font-display text-[2.6rem] leading-[1.1] font-extrabold tracking-tight sm:text-5xl md:text-[3.5rem] md:leading-[1.06]"
+                style={{ color: "#14201B" }}
+              >
+                From your first line of code
+                <br />
+                to your first offer.
+              </h1>
+
+              <p className="mt-5 text-base sm:text-lg leading-relaxed max-w-xl mx-auto" style={{ color: "#14201B", opacity: 0.55 }}>
+                BountyCode builds your role-specific path, trains your weak skills, and puts you
+                through the coding challenges, company OAs and interviews that matter.
+              </p>
+
+              <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+                <Link to="/role-selector">
+                  <button className="hero-cta-primary inline-flex items-center gap-2 rounded-xl px-7 py-3.5 text-sm font-bold text-white shadow-lg transition-all hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]">
+                    Begin your journey
+                    <ArrowRight size={15} />
+                  </button>
+                </Link>
+                <Link to="/pricing" className="text-sm font-medium text-[#14201B]/50 hover:text-[#14201B]/80 transition-colors">
+                  Explore how it works
+                </Link>
+              </div>
+            </motion.div>
           </div>
-        </motion.div>
+
+          {/* ═══ JOURNEY PATH — the product, visualized in the landscape ═══ */}
+          <div className="relative pb-8" aria-hidden="true">
+            <div className="flex flex-col items-center">
+              {/* Journey milestones — vertical path fading into the horizon */}
+              {[
+                { label: "You are here", active: true },
+                { label: "Programming", active: false },
+                { label: "DSA", active: false },
+                { label: "Projects", active: false },
+                { label: "OA", active: false },
+                { label: "Interview", active: false },
+                { label: "Offer", milestone: true },
+              ].map((step, i) => (
+                <div key={step.label} className="flex flex-col items-center" style={{ opacity: 1 - i * 0.1 }}>
+                  {/* Dot */}
+                  <div
+                    className={`w-2 h-2 rounded-full ${
+                      step.active
+                        ? "bg-[#22C55E] shadow-[0_0_8px_rgba(34,197,94,0.4)]"
+                        : step.milestone
+                        ? "bg-[#D4A843] shadow-[0_0_8px_rgba(212,168,67,0.3)]"
+                        : "bg-[#14201B]/20"
+                    }`}
+                  />
+                  {/* Label */}
+                  <span
+                    className={`text-[10px] font-medium tracking-wide mt-1 mb-2 ${
+                      step.active
+                        ? "text-[#22C55E]"
+                        : step.milestone
+                        ? "text-[#D4A843]"
+                        : "text-[#14201B]/25"
+                    }`}
+                  >
+                    {step.label}
+                  </span>
+                  {/* Connecting line — except after last */}
+                  {i < 6 && (
+                    <div className="w-px h-3" style={{
+                      background: `linear-gradient(to bottom, rgba(20,32,27,${0.15 - i * 0.015}), transparent)`
+                    }} />
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* ═══ PATH CONNECTOR ═══ */}
-      <div className="relative h-24 bg-gradient-to-b from-[#FFF8F9] to-white">
+      <div className="relative h-24 bg-gradient-to-b from-[#F4FAF8] to-white">
         <div className="spring-path absolute left-1/2 top-0 h-full -translate-x-1/2" />
         <div className="spring-path-dot" style={{ top: "33%", left: "calc(50% - 4px)" }} />
         <div className="spring-path-dot" style={{ top: "66%", left: "calc(50% - 4px)" }} />
