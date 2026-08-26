@@ -2,9 +2,9 @@
 
 ## Project Overview
 
-**PlacementPro** is an AI-powered placement preparation platform targeting job seekers (students + experienced professionals). It offers **50+ core features** across placement prep, gamified learning, and career development.
+**PlacementPro** is an AI-powered placement preparation platform targeting job seekers (students + experienced professionals). It offers **40+ core features** across placement prep, gamified learning, and career development.
 
-### Core Features (15 Original + 35+ Expanded)
+### Core Features
 1. **AI Interviewer** — Mock interviews with AI that asks questions, evaluates answers, and gives feedback
 2. **System Design Practice** — System design interviews with AI evaluation of architecture, scalability, and trade-offs
 3. **Coding Challenges** — Timed coding problems with solutions and follow-up challenges
@@ -23,38 +23,47 @@
 16. **Mock Interviews** — Scheduled mock interviews with booking system
 17. **Career Profile** — User career profile with skills, experience, portfolio
 18. **Application Tracker** — Track job applications with status management
-19. **Placement Drives** — upcoming campus placement drives with deadlines and tiers
+19. **Placement Drives** — Upcoming campus placement drives with deadlines and tiers
 20. **Alumni Experiences** — Peer interview experiences and company insights
 21. **AI Debugger** — AI-powered code debugging and error explanation
 22. **DSA Fingerprint** — Personalized DSA skill assessment and gap analysis
 23. **Visualizations** — Algorithm visualizations (sorting, graph, DP, etc.)
-24. **Scrims** — Scrimba-style screencasts for learning
-25. **1v1 Battles** — Competitive coding battles with matchmaking queue
-26. **Community** — Study groups, discussions, peer accountability
-27. **Project Generator** — AI-generated complete projects from descriptions
-28. **Code Review** — AI-powered project code review with actionable feedback
-29. **Adaptive Learning** — AI-driven personalized learning paths
-30. **Rank System** — Honor/Kyu-Dan ranking system with leaderboards
-31. **Monthly Contests** — Competitive contests with prizes
-32. **Challenge Packs** — Curated problem packs by topic/difficulty
-33. **Energy System** — Daily energy for limiting practice sessions
-34. **Mystery Boxes** — Random rewards (XP, streak freeze, badges)
-35. **Onboarding Quest** — Guided onboarding with skill self-assessment
-36. **Free Practice** — 3-question quick interview, instant evaluations
-37. **Trial System** — Feature trials for Pro features
-38. **Student Discounts** — Discount codes for students
-39. **Enterprise** — Enterprise plan with admin dashboard
-40. **Analytics** — Admin analytics dashboard with metrics
-41. **AI Feedback** — Real-time AI-powered answer feedback
-42. **Concept Explanations** — Learn coding concepts at beginner/intermediate/expert levels
-43. **Language Learning Paths** — 7 languages x 100 levels x 80 modules
-44. **Learning Journeys** — Structured learning paths with progress tracking
-45. **Learning Modules** — Step-by-step coding lessons
-46. **Interview Booking** — Schedule mock interviews with specific companies
-47. **Company Mock Tests** — Company-specific mock test series
-48. **Distributions** — Salary distribution comparisons
-49. **Features** — Feature comparison and upsell
-50. **PWA** — Progressive Web App with install prompt
+24. **Community** — Study groups, discussions, peer accountability
+25. **Project Generator** — AI-generated complete projects from descriptions
+26. **Code Review** — AI-powered project code review with actionable feedback
+27. **Adaptive Learning** — AI-driven personalized learning paths
+28. **Monthly Contests** — Competitive contests with prizes
+29. **Challenge Packs** — Curated problem packs by topic/difficulty
+30. **Onboarding Quest** — Guided onboarding with skill self-assessment
+31. **Free Practice** — 3-question quick interview, instant evaluations
+32. **Trial System** — Feature trials for Pro features
+33. **Student Discounts** — Discount codes for students
+34. **Enterprise** — Enterprise plan with admin dashboard
+35. **Analytics** — Admin analytics dashboard with metrics
+36. **AI Feedback** — Real-time AI-powered answer feedback
+37. **Concept Explanations** — Learn coding concepts at beginner/intermediate/expert levels
+38. **Language Learning Paths** — 7 languages x 100 levels x 80 modules
+39. **Learning Journeys** — Structured learning paths with progress tracking
+40. **Learning Modules** — Step-by-step coding lessons
+41. **Interview Booking** — Schedule mock interviews with specific companies
+42. **Company Mock Tests** — Company-specific mock test series
+43. **Distributions** — Salary distribution comparisons
+44. **Features** — Feature comparison and upsell
+45. **PWA** — Progressive Web App with install prompt
+
+### Removed Features (August 2026 Cleanup)
+The following experimental/RPG-themed features were removed to reduce codebase bloat:
+- Guild system, dungeons, grand line, steam profile, newspaper, merchant, economy
+- Game events, guilds, world, skill trees, seasons, tournaments, teams, themes
+- Trending challenges, shareable achievements, career RPG, bounty, live events
+- Mission engine, hook model, cards, scrims, showcase, referrals, big four
+- Campus wars, campus connect, campus pulse, campus, college network
+- CGPA simulator, drive tracker, peer review, study squads, report card
+- Battles, quests, goals, friends, referral, collection, journey
+- Achievements, skill mastery, timeline, daily orders, invite, debug
+- Real features, mass recruiter, pseudocode, rank, job readiness
+- Energy system, mystery boxes, prestige, battle pass, wizard, lucky wheel
+- Chat, GD rooms, discussions, behavioral practice, company directory
 
 ## Target Users
 - **Indian students:** Campus placement preparation (TCS, Infosys, Wipro, etc.) with aptitude tests
@@ -71,15 +80,15 @@ Freemium (Free + Pro $9/mo + Lifetime $39 one-time). Free tier resets monthly wi
 ## Architecture
 
 ### Backend (FastAPI + MongoDB + Motor)
-- **65 route files** — 100+ API endpoints organized by feature
-- **51 service files** — Business logic, AI, execution, analytics
+- **82 route files** — 100+ API endpoints organized by feature
+- **82 service files** — Business logic, AI, execution, analytics
 - **50+ MongoDB collections** — Each feature has its own collection
 - **Async throughout** — All routes use `async def` with `motor` async driver
 
 ### Frontend (React 18 + Vite 5 + Tailwind 3)
-- **70 pages** (lazy-loaded with `React.lazy()` for code splitting)
-- **41 components** (UI, layout, gamification, animations)
-- **20+ API modules** aggregated in `services/api/index.js`
+- **91 pages** (lazy-loaded with `React.lazy()` for code splitting)
+- **94 components** (UI, layout, gamification, animations)
+- **39 API modules** aggregated in `services/api/index.ts`
 - **Zustand** for global auth state only
 - **Framer Motion** for page transitions and celebrations
 - **Monaco Editor** for code editing
@@ -89,7 +98,7 @@ Freemium (Free + Pro $9/mo + Lifetime $39 one-time). Free tier resets monthly wi
 - **4 fallback models** (Llama 3.1, Phi-3 Mini, DeepSeek) with circuit breaker protection
 - **In-memory + Redis caching** (1-hour TTL for AI responses)
 - **Retry logic** — 3 retries with exponential backoff
-- **1,827 lines** of AI prompts in `services/ai.py`
+- **AI prompts** in `services/ai.py` (split across domain-specific modules)
 
 ---
 
@@ -98,14 +107,14 @@ Freemium (Free + Pro $9/mo + Lifetime $39 one-time). Free tier resets monthly wi
 placementpro/
 ├── backend/
 │   ├── app/
-│   │   ├── main.py              # FastAPI app, lifespan, middleware, 65+ routers
+│   │   ├── main.py              # FastAPI app, lifespan, middleware, auto-discovers routes
 │   │   ├── config.py            # Pydantic Settings (all env vars, 50+ settings)
 │   │   ├── database.py          # Motor client, 50+ collection refs, init_db()
 │   │   ├── models/
 │   │   │   ├── user.py          # UserCreate, UserLogin, UserInDB
 │   │   │   ├── interview.py     # StartInterview, SubmitAnswer, QARecord
 │   │   │   └── resume.py        # GenerateResume, OptimizeRequest
-│   │   ├── routes/              # 65 route files
+│   │   ├── routes/              # 82 route files (auto-discovered by main.py)
 │   │   │   ├── auth.py          # Register, login, logout, onboarding
 │   │   │   ├── interview.py     # Interview flow with follow-ups
 │   │   │   ├── resume.py        # Upload, generate, optimize, export
@@ -120,18 +129,28 @@ placementpro/
 │   │   │   ├── salary.py        # Salary benchmark and comparison
 │   │   │   ├── cover_letter.py  # Cover letter generation
 │   │   │   ├── daily_challenge.py # Daily challenges with leaderboards
-│   │   │   ├── battles.py       # 1v1 coding battles
-│   │   │   ├── scrims.py        # Scrimba-style screencasts
 │   │   │   ├── community.py     # Study groups & discussions
-│   │   │   ├── adaptive.py      # Adaptive learning paths
+│   │   │   ├── adaptive_learning.py # Adaptive learning paths
 │   │   │   ├── predictor.py     # Interview prediction engine
 │   │   │   ├── readiness.py     # Interview readiness scoring
 │   │   │   ├── ai_debugger.py   # AI-powered code debugging
 │   │   │   ├── analytics.py     # User analytics
 │   │   │   ├── analytics_admin.py # Admin analytics dashboard
-│   │   │   ├── ... (40+ more route files)
-│   │   ├── services/            # 51 service files
-│   │   │   ├── ai.py            # ALL AI prompts + parse_json() + retry (1,827 lines)
+│   │   │   ├── invoices.py      # Invoice management
+│   │   │   └── ... (60+ more route files)
+│   │   ├── services/            # 82 service files
+│   │   │   ├── ai.py            # ALL AI prompts + parse_json() + retry
+│   │   │   ├── ai_core.py       # Core AI utilities
+│   │   │   ├── ai_interview.py  # Interview-specific AI
+│   │   │   ├── ai_resume.py     # Resume-specific AI
+│   │   │   ├── ai_behavioral.py # Behavioral interview AI
+│   │   │   ├── ai_coding.py     # Coding challenge AI
+│   │   │   ├── ai_feedback.py   # AI-powered answer feedback
+│   │   │   ├── ai_cover_letter.py # Cover letter AI
+│   │   │   ├── ai_project.py    # Project generation AI
+│   │   │   ├── ai_salary.py     # Salary analysis AI
+│   │   │   ├── ai_system_design.py # System design AI
+│   │   │   ├── ai_aptitude.py   # Aptitude test AI
 │   │   │   ├── code_executor.py # Piston API code execution engine
 │   │   │   ├── cache.py         # Unified cache (Redis → InMemory fallback)
 │   │   │   ├── circuit_breaker.py # Async CircuitBreaker for AI/compiler
@@ -139,30 +158,19 @@ placementpro/
 │   │   │   ├── gamification.py  # XP, levels, streaks, badges, tower, bosses
 │   │   │   ├── usage.py         # Monthly/daily usage tracking & limits
 │   │   │   ├── question_store.py # File-based question bank loader
-│   │   │   ├── database.py      # Database connection + collection refs
-│   │   │   ├── auth.py          # Auth middleware (JWT, cookies, plan gating)
-│   │   │   ├── rate_limiter.py  # IP rate limiting + login lockout
-│   │   │   ├── tier_middleware.py # Tier-based feature gating (free/pro/lifetime)
-│   │   │   ├── duplicate_guard.py # Duplicate request prevention
-│   │   │   ├── structured_logging.py # JSON logging with correlation IDs
-│   │   │   ├── request_metrics.py # Request metrics with MongoDB persistence
+│   │   │   ├── feature_flags.py # Feature flag system
+│   │   │   ├── invoice.py       # Invoice management
 │   │   │   ├── migrations.py    # Schema migration system
 │   │   │   ├── resume_parser.py # PyMuPDF PDF text extraction
 │   │   │   ├── export.py        # DOCX + PDF export (ATS-safe)
 │   │   │   ├── ats_semantic.py  # Semantic ATS scoring
 │   │   │   ├── ats_enhanced.py  # Enhanced ATS keyword scoring
 │   │   │   ├── resume_engine.py # Resume content generation
-│   │   │   ├── resume_enhanced.py # Enhanced resume analysis
 │   │   │   ├── behavioral_engine.py # Behavioral interview evaluation
 │   │   │   ├── behavioral_enhanced.py # Enhanced STAR method evaluation
 │   │   │   ├── placement_engine.py # Placement test engine
-│   │   │   ├── placement_predictor.py # Interview prediction
-│   │   │   ├── company_conversion.py # Company data conversion
-│   │   │   ├── interview_enhanced.py # Enhanced interview flow
 │   │   │   ├── coding_engine.py # Coding challenge engine
-│   │   │   ├── coding_enhanced.py # Enhanced coding with tracing
 │   │   │   ├── code_tracer.py   # Code execution tracing
-│   │   │   ├── ai_feedback.py   # AI-powered answer feedback
 │   │   │   ├── skill_assessment.py # DSA skill graph assessment
 │   │   │   ├── smart_prompts.py # Optimized AI prompts
 │   │   │   ├── anti_plagiarism.py # Plagiarism detection
@@ -170,20 +178,24 @@ placementpro/
 │   │   │   ├── real_ats.py      # Real ATS compatibility scoring
 │   │   │   ├── application_tracker.py # Job application tracking
 │   │   │   ├── career_profile.py # Career profile management
-│   │   │   ├── community.py     # Community features
 │   │   │   ├── social.py        # Social features
 │   │   │   ├── student_features.py # Student-specific features
-│   │   │   ├── enhanced.py      # Enhanced pro features
-│   │   │   ├── free_practice.py # Free practice mode
-│   │   │   ├── hook_model.py    # Gamification hook model
-│   │   │   ├── mystery_box.py   # Mystery box rewards
 │   │   │   ├── trial.py         # Feature trials
 │   │   │   ├── student_discount.py # Student discounts
 │   │   │   ├── enterprise.py    # Enterprise plan features
 │   │   │   ├── monetization.py  # Monetization logic
-│   │   │   ├── profiles/        # Profile sync integrations
-│   │   │   ├── learning/        # Learning path management
-│   │   │   └── ... (20+ more service files)
+│   │   │   ├── revenue.py       # Revenue tracking
+│   │   │   ├── coupon.py        # Coupon management
+│   │   │   ├── email.py         # Email service
+│   │   │   ├── health_checker.py # Health check service
+│   │   │   ├── docker_sandbox.py # Docker sandbox for code execution
+│   │   │   ├── local_sandbox.py # Local sandbox fallback
+│   │   │   ├── spaced_repetition.py # Spaced repetition learning
+│   │   │   ├── quest_engine.py  # Quest system engine
+│   │   │   ├── job_readiness.py # Job readiness scoring
+│   │   │   ├── audit_log.py     # Audit logging
+│   │   │   ├── websocket_manager.py # WebSocket connections
+│   │   │   └── ... (40+ more service files)
 │   │   └── middleware/
 │   │       ├── auth.py          # JWT creation/verification, httpOnly cookie
 │   │       ├── rate_limiter.py  # IP rate limiting + account lockout
@@ -195,100 +207,94 @@ placementpro/
 │   │   ├── data/                # Data files (curriculum, questions, etc.)
 │   │   ├── utils/               # Utility modules
 │   │   └── ...
+│   ├── scripts/                 # Seed/fix/test/utility scripts (consolidated from root)
 │   ├── requirements.txt
 │   └── .env.example
 ├── frontend/
 │   ├── src/
-│   │   ├── App.jsx              # Router + ErrorBoundary + 70+ lazy pages
-│   │   ├── main.jsx             # ReactDOM entry
-│   │   ├── index.css            # Tailwind base + custom animations (899 lines)
-│   │   ├── pages/               # 70+ page files (lazy-loaded)
-│   │   │   ├── Landing.jsx      # Hero, features, pricing, CTA
-│   │   │   ├── Dashboard.jsx    # Stats, usage, quick actions
-│   │   │   ├── Interview.jsx    # Role/company selection
-│   │   │   ├── InterviewSession.jsx # Live interview with feedback
-│   │   │   ├── InterviewBooking.jsx # Mock interview scheduling
-│   │   │   ├── ResumeBuilder.jsx # Upload or generate resume
-│   │   │   ├── ATSOptimizer.jsx # 3-step ATS optimization
-│   │   │   ├── AptitudeTest.jsx # Category select → timed test
-│   │   │   ├── CoverLetter.jsx  # Cover letter + LinkedIn generator
-│   │   │   ├── SalaryNegotiation.jsx # AI negotiation coaching
-│   │   │   ├── SalaryBenchmark.jsx # Market rate data
-│   │   │   ├── SystemDesign.jsx # System design practice
-│   │   │   ├── CompanyPrep.jsx  # Company-specific prep
-│   │   │   ├── CodingChallenge.jsx # Timed coding challenges
-│   │   │   ├── Compiler.jsx     # Monaco editor with Piston
-│   │   │   ├── SolveProblem.jsx # LeetCode-style two-column flow
-│   │   │   ├── QuestionBank.jsx # Browse/search problems
-│   │   │   ├── PracticeMode.jsx # Individual problem solving
-│   │   │   ├── DailyChallenge.jsx # Daily adaptive challenge
-│   │   │   ├── TowerDashboard.jsx # Gamification tower view
-│   │   │   ├── BattleArena.jsx  # 1v1 coding battles
-│   │   │   ├── MockOA.jsx       # Mock online assessment
-│   │   │   ├── AI Mentor.jsx    # AI mentor chat
-│   │   │   ├── LearningHub.jsx  # Learning paths hub
-│   │   │   ├── LanguageJourney.jsx # Language learning paths
-│   │   │   ├── LessonView.jsx   # Individual lesson viewer
-│   │   │   ├── LearningModules.jsx # Duolingo-style lessons
-│   │   │   ├── ProjectGenerator.jsx # AI project generation
-│   │   │   ├── DSAFingerprint.jsx # DSA skill assessment
-│   │   │   ├── DSAVisualizer.jsx # Algorithm visualizations
-│   │   │   ├── RankProfile.jsx  # Honor/Kyu-Dan rank system
-│   │   │   ├── AdminDashboard.jsx # Admin analytics
-│   │   │   ├── Community.jsx    # Community hub
-│   │   │   ├── Scrims.jsx       # Screencast viewer
-│   │   │   ├── MonthlyContests.jsx # Contest page
-│   │   │   ├── OnboardingQuest.jsx # Guided onboarding
-│   │   │   ├── PersonalDashboard.jsx # User personal dashboard
-│   │   │   ├── AdaptivePath.jsx # AI learning path
-│   │   │   ├── CardCollection.jsx # Gamification cards
-│   │   │   ├── IndianPlacement.jsx # Indian market prep
-│   │   │   ├── ... (30+ more pages)
-│   │   ├── components/          # 41 component files
-│   │   │   ├── Navbar.jsx       # Auth-aware navigation
-│   │   │   ├── Footer.jsx
-│   │   │   ├── ErrorBoundary.jsx
-│   │   │   ├── ProtectedRoute.jsx
-│   │   │   ├── ProfileSidebar.jsx
-│   │   │   ├── CelebrationOverlay.jsx
-│   │   │   ├── ActivityHeatmap.jsx
-│   │   │   ├── XPBar.jsx
-│   │   │   ├── XPPopup.jsx
-│   │   │   ├── Toast.jsx
-│   │   │   ├── Skeleton.jsx
-│   │   │   ├── SpaceBackground.jsx
-│   │   │   ├── RPGPageLayout.jsx
-│   │   │   ├── ChallengePackCard.jsx
-│   │   │   ├── MysteryBox.jsx
-│   │   │   ├── ScoreRing.jsx
-│   │   │   ├── StreakConstellation.jsx
-│   │   │   ├── BadgeCeremony.jsx
-│   │   │   ├── LevelUpCelebration.jsx
-│   │   │   ├── JuiceProvider.jsx # Gamification juice system
-│   │   │   ├── AudioInitButton.jsx
-│   │   │   ├── SoundToggle.jsx
-│   │   │   ├── ThemeToggle.jsx
-│   │   │   ├── UpgradePrompt.jsx
-│   │   │   ├── UsageBar.jsx
-│   │   │   ├── PredictorGauge.jsx
+│   │   ├── App.tsx              # Router + ErrorBoundary + 90+ lazy pages
+│   │   ├── main.tsx             # ReactDOM entry
+│   │   ├── index.css            # Tailwind base + custom animations
+│   │   ├── pages/               # 91 page files (lazy-loaded)
+│   │   │   ├── Landing.tsx      # Hero, features, pricing, CTA
+│   │   │   ├── Dashboard.tsx    # Stats, usage, quick actions
+│   │   │   ├── Interview.tsx    # Role/company selection
+│   │   │   ├── InterviewSession.tsx # Live interview with feedback
+│   │   │   ├── InterviewBooking.tsx # Mock interview scheduling
+│   │   │   ├── ResumeBuilder.tsx # Upload or generate resume
+│   │   │   ├── ATSOptimizer.tsx # 3-step ATS optimization
+│   │   │   ├── AptitudeTest.tsx # Category select → timed test
+│   │   │   ├── CoverLetter.tsx  # Cover letter + LinkedIn generator
+│   │   │   ├── SalaryNegotiation.tsx # AI negotiation coaching
+│   │   │   ├── SalaryBenchmark.tsx # Market rate data
+│   │   │   ├── SystemDesign.tsx # System design practice
+│   │   │   ├── CompanyPrep.tsx  # Company-specific prep
+│   │   │   ├── CodingChallenge.tsx # Timed coding challenges
+│   │   │   ├── Compiler.tsx     # Monaco editor with Piston
+│   │   │   ├── SolveProblem.tsx # LeetCode-style two-column flow
+│   │   │   ├── QuestionBank.tsx # Browse/search problems
+│   │   │   ├── PracticeMode.tsx # Individual problem solving
+│   │   │   ├── DailyChallenge.tsx # Daily adaptive challenge
+│   │   │   ├── TowerDashboard.tsx # Gamification tower view
+│   │   │   ├── MockOA.tsx       # Mock online assessment
+│   │   │   ├── AIMentor.tsx     # AI mentor chat
+│   │   │   ├── LearningHub.tsx  # Learning paths hub
+│   │   │   ├── LanguageJourney.tsx # Language learning paths
+│   │   │   ├── LessonView.tsx   # Individual lesson viewer
+│   │   │   ├── LearningModules.tsx # Duolingo-style lessons
+│   │   │   ├── ProjectGenerator.tsx # AI project generation
+│   │   │   ├── DSAFingerprint.tsx # DSA skill assessment
+│   │   │   ├── DSAVisualizer.tsx # Algorithm visualizations
+│   │   │   ├── AdminDashboard.tsx # Admin analytics
+│   │   │   ├── Community.tsx    # Community hub
+│   │   │   ├── MonthlyContests.tsx # Contest page
+│   │   │   ├── OnboardingQuest.tsx # Guided onboarding
+│   │   │   ├── PersonalDashboard.tsx # User personal dashboard
+│   │   │   ├── AdaptivePath.tsx # AI learning path
+│   │   │   ├── IndianPlacement.tsx # Indian market prep
+│   │   │   └── ... (60+ more pages)
+│   │   ├── components/          # 94 component files
+│   │   │   ├── Navbar.tsx       # Auth-aware navigation
+│   │   │   ├── Footer.tsx
+│   │   │   ├── ErrorBoundary.tsx
+│   │   │   ├── ProtectedRoute.tsx
+│   │   │   ├── CelebrationOverlay.tsx
+│   │   │   ├── ActivityHeatmap.tsx
+│   │   │   ├── XPBar.tsx
+│   │   │   ├── XPPopup.tsx
+│   │   │   ├── Toast.tsx
+│   │   │   ├── Skeleton.tsx
+│   │   │   ├── SpaceBackground.tsx
+│   │   │   ├── ChallengePackCard.tsx
+│   │   │   ├── ScoreRing.tsx
+│   │   │   ├── StreakConstellation.tsx
+│   │   │   ├── BadgeCeremony.tsx
+│   │   │   ├── LevelUpCelebration.tsx
+│   │   │   ├── JuiceProvider.tsx # Gamification juice system
+│   │   │   ├── CookieBanner.tsx
+│   │   │   ├── PwaInstallPrompt.tsx
+│   │   │   ├── NeuralNetworkBackground.tsx
 │   │   │   ├── ui/              # Button, Input, Card, Modal, Spinner, Skeleton
-│   │   │   ├── space/           # Space theme components
-│   │   │   ├── tower/           # Tower/gamification components
+│   │   │   ├── tower/           # Tower/gamification stubs (minimal)
 │   │   │   ├── motion/          # Framer Motion animations
 │   │   │   ├── emblems/         # Badge/emblem system
+│   │   │   ├── interactive/     # Interactive components
 │   │   │   └── learning/        # Learning module components
-│   │   ├── pages/lazy.js        # All lazy imports
-│   │   ├── services/api/        # 20+ API module files
-│   │   │   ├── index.js         # Aggregated API object
-│   │   │   ├── auth.js, interview.js, resume.js, billing.js, etc.
+│   │   ├── pages/lazy.ts        # All lazy imports
+│   │   ├── services/api/        # 39 API module files
+│   │   │   ├── index.ts         # Aggregated API object
+│   │   │   ├── auth.ts, interview.ts, resume.ts, billing.ts, etc.
 │   │   ├── store/
-│   │   │   └── authStore.js     # Zustand auth state
+│   │   │   └── authStore.ts     # Zustand auth state
 │   │   ├── hooks/               # Custom hooks
 │   │   └── utils/               # Helpers
-│   ├── package.json
-│   ├── vite.config.js           # Dev server + /api proxy
+│   ├── package.json             # placementpro-frontend
+│   ├── vite.config.ts           # Dev server + /api proxy
 │   ├── tailwind.config.js
-│   └── postcss.config.js
+│   ├── postcss.config.js
+│   └── vercel.json
+├── .github/workflows/ci.yml    # CI: typecheck + build
+├── Dockerfile                   # Python 3.12
 ├── FUTURE.md                    # $1M ARR scaling roadmap
 └── README.md
 ```
@@ -301,7 +307,7 @@ placementpro/
 - `POST /api/auth/register` → `{ email, password, name }` → `{ token, user }` + httpOnly cookie
 - `POST /api/auth/login` → `{ email, password }` → `{ token, user }` + httpOnly cookie
 - `POST /api/auth/logout` → clears httpOnly cookie
-- `GET /api/auth/me` → cookie-based auth → `{ id, email, name, plan, usage }`
+- `GET /api/auth/me` → cookie-based auth → `{ id, email, name, plan, usage, is_admin }`
 - `POST /api/auth/forgot-password` → sends reset token
 - `POST /api/auth/reset-password` → resets password with token
 - `POST /api/auth/update-profile` → updates name/email
@@ -403,7 +409,6 @@ placementpro/
 ### Practice & Community
 - `GET /api/practice/sessions` → practice session history
 - `GET /api/community/posts` → community discussions
-- `GET /api/scrims` → screencast library
 
 ---
 
@@ -420,6 +425,7 @@ placementpro/
 - **PDF validation** — Magic bytes check (`%PDF-`) before processing
 - **Password strength** — Min 8 chars, requires number + special character
 - **Tier gating** — Free/pro/lifetime feature limits enforced
+- **Secrets hygiene** — `.env` tracked in `.gitignore` via `*.env` + `.env.*` patterns; only `.env.example` committed
 
 ## AI Reliability
 - **In-memory + Redis caching** — AI responses cached for 1 hour
@@ -436,8 +442,6 @@ placementpro/
 - **Tower system** — Boss battles at levels 10, 20, 30... 100
 - **Power-ups** — Extra time, hint reveal, retry, double XP, skip boss, show answer
 - **Daily challenges** — Adaptive missions with leaderboards
-- **Mystery boxes** — Random rewards after activities
-- **1v1 Battles** — Competitive matchmaking queue
 
 ## Free Tier Limits (Monthly/Daily)
 | Feature | Free Limit | Pro/Lifetime |
@@ -451,7 +455,6 @@ placementpro/
 | Question bank/month | 5 | Unlimited |
 | Compiler runs/day | 20 | Unlimited |
 | AI questions/day | 5 | Unlimited |
-| Mystery boxes/day | 1 | 3-5 |
 | Problems solved/day | 10 | Unlimited |
 | Mock interviews/month | 1 | Unlimited |
 | Interview bookings/month | 3 | Unlimited |
@@ -460,15 +463,15 @@ placementpro/
 
 ## Known Issues (Fix Priority)
 
-### P0 — CRITICAL (Recently Fixed)
+### P0 — CRITICAL (Fixed)
 - [x] ~~`_check_circuit_breaker()` called without `await` in `chat_completion()`~~ → Fixed
 - [x] ~~`FALLBACK_MODELS` includes primary model redundantly~~ → Fixed
 - [x] ~~`circuit_breaker` undefined in `chat_completion()` (should be `ai_breaker`)~~ → Fixed
-- [x] ~~`call_with_resilience()` uses dict `.get()` on CircuitBreaker object~~ → Fixed with `_breaker_get`/`_breaker_set` helpers
+- [x] ~~`call_with_resilience()` uses dict `.get()` on CircuitBreaker object~~ → Fixed
 
 ### P1 — HIGH (Remaining)
-- [ ] No TypeScript on frontend — 70 pages with no type safety
-- [ ] `ai.py` is 1,621 lines — violates SRP, should be split by domain
+- [ ] `ai.py` is large — violates SRP, should be split by domain (partially done with ai_*.py modules)
+- [ ] Frontend is JavaScript/TSX — no strict TypeScript typing on all components
 
 ### P2 — MEDIUM (Remaining)
 - [ ] No API versioning at the app level — individual route files use `/api/v1/` prefix
@@ -478,7 +481,6 @@ placementpro/
 ### P3 — LOW (Remaining)
 - [ ] No email verification on signup
 - [ ] No audit log for admin actions
-- [ ] `index.css` has 796 lines with dead space/RPG theme animations
 - [ ] No health check dashboard UI
 - [ ] Monaco Editor not fully integrated in all flows
 
@@ -502,33 +504,43 @@ cd frontend
 npm install
 npm run dev                    # Vite dev server on port 5173
 npm run build                  # Production build
+npm run typecheck              # TypeScript type checking
 npm run smoke                  # Smoke test (11 checks): pages render w/o crash + auth + telemetry
-                               # Requires backend on :8000; auto-starts Vite if not running.
 ```
 
 ---
 
 ## Recent Improvements (August 2026)
 
-### Admin Analytics & Access Control (August 2026)
+### Major Codebase Cleanup
+- **Removed 60+ experimental/RPG features** — Deleted ~25,000 lines of dead code across backend routes, frontend pages, and API modules
+- **Deleted backend routes**: guild_castle, dungeons, grand_line, steam_profile, newspaper, merchant, economy, game_events, guilds, world, skill_trees, seasons, tournaments, teams, themes, trending_challenges, shareable_achievements, career_rpg, bounty, live_events, mission_engine, hook_model, cards, scrims, showcase, referrals, big_four, chat, gd_rooms, campus_wars, campus_connect, campus_pulse, campus, college_network, cgpa_simulator, drive_tracker, peer_review, study_squads, report_card, battles, quests, goals, friends, referral, collection, journey, achievements, skill_mastery, timeline, daily_orders, invite, debug, real_features, mass_recruiter, pseudocode, rank, job_readiness, energy, mystery_box, prestige, battle_pass, wizard, lucky_wheel
+- **Deleted frontend pages**: 65+ pages (Chat, GDRoom, CampusWars, CampusConnect, CampusPulse, CollegeNetwork, CGPASimulator, DriveTracker, PeerReview, StudySquads, PrepReportCard, BattleArena, Quests, GoalsPage, FriendsPage, Journey, CollectionEvents, AchievementChains, SkillMasteryPage, HealthDashboard, Referral, RetentionAdmin, ConsulsRoute, RoleSelector, InterviewTerminal, MassRecruiterExam, PseudocodeDrill, ReadinessScore, RankProfile, DiscussionsPage, BehavioralPractice, CompanyDirectory, JobReadiness, BattlePass, EnergyPage, LuckyWheel, MysteryBoxPage)
+- **Deleted API modules**: 45+ modules (chat, gdRooms, campus, campusPulse, collegeNetwork, cgpa, driveTracker, peerReview, studySquads, reportCard, goals, friends, collectionEvents, achievements, referralSystem, studyTimer, massRecruiter, pseudocode, bigFour, companyDirectory, interviewChat, journey, career, battlePass, luckyWheel)
+- **Cleaned cross-references**: lazy.ts, App.tsx, API index, Navbar, BottomNav, feature_flags.py, database.py, misc.ts, flatOverrides.ts, gamification.ts, authStore.ts
+- **Created minimal tower stubs**: `components/tower/` with minimal implementations for TowerDashboard compatibility
+
+### Infrastructure Fixes
+- **Dockerfile**: Updated from Python 3.11 → 3.12 (matches CI)
+- **CI**: Added `npm run typecheck` step before build
+- **Package rename**: `bountycode-frontend` → `placementpro-frontend`
+- **Scripts consolidated**: 30+ root-level scripts moved to `backend/scripts/` via `git mv`
+- **.gitignore cleaned**: Added patterns for `d*.py`, `test_bank.py`, `backend/app/data/invoices/`
+
+### Verified Builds
+- **Backend**: `python -m compileall app/ -q` → passes clean
+- **Frontend**: `npm run build` → ✓ built in ~42s (2108 modules transformed)
+
+### Admin Analytics & Access Control
 - **Admin analytics endpoints enabled**: Added `/api/v1/analytics/admin/geo` and `/api/v1/analytics/admin/retention` for visitor IP breakdown and new/returning user retention stats
 - **Admin email access control**: Added `sridevi72901@gmail.com` to `ADMIN_EMAILS` config in `backend/app/config.py:63` — grants full admin access regardless of plan
 - **`is_admin` / `role` in user payload**: Modified `backend/app/middleware/auth.py:191-198` and `backend/app/routes/auth.py:174` to compute `is_admin = plan in ("pro", "lifetime") or email in ADMIN_EMAILS` — now flows to all protected routes
 - **`/api/v1/auth/me` returns admin status**: Now includes `is_admin: true` and `role: "admin"` for Pro/Lifetime/admin-email users
 - **Admin dashboard verified**: `/admin` page (AdminDashboard) loads real-time stats, visitor trends, geo breakdown, retention stats for admin users
 
-### Frontend Bug Fixes (August 2026)
-- **`ReferenceError: Rocket is not defined`**: Added missing `Rocket` import in `frontend/src/pages/StudentDashboard.tsx:9`
-- **`ReferenceError: ListChecks is not defined`**: Added missing `ListChecks` import in same file
-- **Onboarding text contrast**: Fixed dismiss button (`text-gray-100`), descriptions (`text-gray-100`), back button (`text-gray-100`), quick action links (`text-gray-100`) against `bg-black/60` backdrop in `Onboarding.tsx`
-
 ### Security & Access Control
 - **Admin routes properly restricted**: All admin endpoints (`analytics_admin.py`, `admin_content.py`, `coupon.py`, `tiers.py`) check `user.get("role") == "admin" or user.get("is_admin") is True` — returns 403 for non-admin users
 - **ADMIN_EMAILS bypass**: Owner email `sridevi72901@gmail.com` granted admin access via config without requiring Pro/Lifetime plan
-
-### Verified Builds
-- **Backend**: `python -c "from app.main import app"` → `OK`
-- **Frontend**: `npm run build` → `✓ built in 27-35s` (zero errors)
 
 ---
 
@@ -567,15 +579,13 @@ npm run smoke                  # Smoke test (11 checks): pages render w/o crash 
 - **Company-specific evaluation rubrics** — 9 company profiles in `ai.py`
 
 ### Frontend Enhancements
-- **70+ lazy-loaded pages** — Code splitting reduces initial bundle
+- **90+ lazy-loaded pages** — Code splitting reduces initial bundle
 - **Gamification juice system** — XP popups, confetti, level-up animations, streak ceremonies
 - **Keyboard shortcuts** — `Cmd/Ctrl+K` for search, `Escape` for modals
 - **Dynamic daily missions** — Adapts based on user progress and weak areas
-- **Space theme + RPG theme** — Rich visual design with animations
 
 ### Bandwidth Protection (Vercel Hobby 100 GB/mo limit)
 - **Cloudinary integration** — `src/services/cloudinary.js` provides `cloudinaryImage()`, `cloudinaryVideo()`, `optimizeImage()` helpers with auto-format/auto-quality
-- **OptimizedImage component** — `src/components/OptimizedImage.jsx` enforces `loading="lazy"`, error fallbacks, and WebP conversion for all local assets
 - **Media hosting strategy:**
   - Video lessons → YouTube embeds (0 Vercel bandwidth)
   - Images/badges/logos → Cloudinary with `.webp` + `w_auto,q_auto` transforms
@@ -597,23 +607,26 @@ npm run smoke                  # Smoke test (11 checks): pages render w/o crash 
 - Cookies set via `set_auth_cookie()` / `clear_auth_cookie()` in middleware
 - Circuit breaker and resilience patterns for all external API calls
 - Structured JSON logging with correlation IDs
+- Route auto-discovery in `main.py` (scans `backend/app/routes/` — delete file to remove route)
 
-### Frontend (React)
+### Frontend (React + TypeScript)
 - Functional components with hooks
+- TypeScript (`.tsx` / `.ts`) throughout
 - Zustand for global state (auth only)
-- `services/api/index.js` aggregated API object for all backend calls
+- `services/api/index.ts` aggregated API object for all backend calls
 - Tailwind CSS for styling (no component library)
 - `ProtectedRoute` wrapper for authenticated pages
 - `ErrorBoundary` wraps entire app
-- `React.lazy()` for all page components (code splitting)
+- `React.lazy()` for all page components via `pages/lazy.ts` (code splitting)
 - Consistent card-based layouts
 - Gamification juice system for celebrations (confetti, XP popups, sound)
 
 ### File Organization
-- Route files: `backend/app/routes/<feature>.py` (one per feature)
+- Route files: `backend/app/routes/<feature>.py` (one per feature, auto-discovered)
 - Service files: `backend/app/services/<domain>.py` (business logic)
 - Route prefixes: `/api/<feature>` (no version prefix yet)
-- AI prompts: All in `backend/app/services/ai.py` (1,621 lines — planned split)
+- AI prompts: Split across `ai.py`, `ai_interview.py`, `ai_resume.py`, `ai_behavioral.py`, etc.
+- Scripts: `backend/scripts/` (consolidated from root-level `seed_*.py`, `fix_*.py`, etc.)
 
 ---
 
