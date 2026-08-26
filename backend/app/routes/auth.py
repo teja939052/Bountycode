@@ -1,11 +1,13 @@
 from datetime import datetime, timezone, timedelta
-from fastapi import APIRouter, Depends, HTTPException, Request, Response
+from fastapi import APIRouter, Depends, HTTPException, Request, Response, status as http_status
+from fastapi.responses import RedirectResponse
 from pydantic import BaseModel, EmailStr
 from typing import Optional
 import secrets
 import logging
 import asyncio
 import smtplib
+import httpx
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from app.services.email import send_email, welcome_email
@@ -489,3 +491,107 @@ async def verify_email(req: VerifyEmailRequest):
         {"$set": {"email_verified": True, "email_verification_token": None, "email_verification_expires": None}},
     )
     return {"message": "Email verified successfully"}
+
+
+@router.get("/google")
+async def google_login():
+    """Redirect user to Google OAuth consent page."""
+    if not settings.GOOGLE_CLIENT_ID:
+        raise HTTPException(status_code=501, detail="Google OAuth not configured")
+    redirect_uri = settings.GOOGLE_REDIRECT_URI
+    scope = "openid email profile"
+    auth_url = (
+        "https://accounts.google.com/o/oauth2/v2/auth"
+        f"?client_id={settings.GOOGLE_CLIENT_ID}"
+        f"&redirect_uri={redirect_uri}"
+        f"&response_type=code"
+        f"&scope={scope}"
+        "&access_type=offline"
+        "&prompt=consent"
+    )
+    return RedirectResponse(url=auth_url)
+
+
+@router.get("/google/callback")
+async def google_callback(request: Request, response: Response):
+    """Handle Google OAuth callback — exchange code, find/create user, set cookies, redirect."""
+    if not settings.GOOGLE_CLIENT_ID or not settings.GOOGLE_CLIENT_SECRET:
+        raise HTTPException(status_code=501, detail="Google OAuth not configured")
+    code = request.query_params.get("code")
+    if not code:
+        raise HTTPException(status_code=400, detail="Missing authorization code")
+    token_data = {
+        "client_id": settings.GOOGLE_CLIENT_ID,
+        "client_secret": settings.GOOGLE_CLIENT_SECRET,
+        "code": code,
+        "grant_type": "authorization_code",
+        "redirect_uri": settings.GOOGLE_REDIRECT_URI,
+    }
+    async with httpx.AsyncClient() as client:
+        token_resp = await client.post(
+            "https://oauth2.googleapis.com/token",
+            data=token_data,
+            timeout=30,
+        )
+        token_resp.raise_for_status()
+        token_info = token_resp.json()
+    access_token = token_info.get("access_token")
+    if not access_token:
+        raise HTTPException(status_code=400, detail="Failed to get access token")
+    async with httpx.AsyncClient() as client:
+        user_resp = await client.get(
+            "https://www.googleapis.com/oauth2/v2/userinfo",
+            headers={"Authorization": f"Bearer {access_token}"},
+            timeout=30,
+        )
+        user_resp.raise_for_status()
+        google_user = user_resp.json()
+    google_email = google_user.get("email", "").lower()
+    google_name = google_user.get("name", google_email.split("@")[0])
+    if not google_email:
+        raise HTTPException(status_code=400, detail="Google account has no email")
+    existing = await users_collection.find_one({"email": google_email})
+    now = datetime.now(timezone.utc)
+    if existing:
+        user_id = str(existing["_id"])
+        await users_collection.update_one(
+            {"_id": existing["_id"]},
+            {"$set": {"last_active": now, "google_id": google_user.get("id")}},
+        )
+    else:
+        result = await users_collection.insert_one({
+            "email": google_email,
+            "name": google_name,
+            "password_hash": None,
+            "plan": "free",
+            "country": "unknown",
+            "ip": None,
+            "paypal_customer_id": None,
+            "email_verified": True,
+            "email_verification_token": None,
+            "email_verification_expires": None,
+            "interviews_used": 0,
+            "resumes_used": 0,
+            "aptitude_used": 0,
+            "cover_letters_used": 0,
+            "monthly_reset_date": now,
+            "created_at": now,
+            "last_active": now,
+            "google_id": google_user.get("id"),
+        })
+        user_id = str(result.inserted_id)
+    access_token_jwt = create_access_token(user_id)
+    refresh_token, refresh_jti = create_refresh_token(user_id)
+    set_auth_cookie(response, access_token_jwt)
+    set_auth_cookie(response, refresh_token, cookie_name="pp_refresh_token", max_age=settings.JWT_REFRESH_EXPIRY_DAYS * 86400)
+    await users_collection.update_one(
+        {"_id": ObjectId(user_id)},
+        {"$set": {"refresh_jti": refresh_jti}}
+    )
+    frontend_origin = settings.CORS_ORIGINS.split(",")[0].strip()
+    redirect = RedirectResponse(
+        url=f"{frontend_origin}/?auth=success",
+        status_code=http_status.HTTP_303_SEE_OTHER,
+    )
+    redirect.headers.__dict__["_list"] = response.headers.__dict__.get("_list", [])
+    return redirect

@@ -13,32 +13,12 @@ import {
   Sparkles,
   LayoutDashboard,
   MessageSquare,
-  Leaf,
   Calendar,
   Trophy,
   Briefcase,
-  Gamepad2,
   Castle,
-  Users,
-  Swords,
-  Layers,
-  Award,
-  Globe,
-  Coins,
-  Library,
-  Gift,
-  Shield,
   Brain,
-  Timer,
-  TreeDeciduous,
-  MessageCircle,
-  Building2,
-  Lightbulb,
-  ScrollText,
-  Target,
-  Zap,
-   UserPlus,
- } from "lucide-react";
+} from "lucide-react";
 
 /* Primary IA — exactly 5 top-level destinations (Material/Apple guideline).
    Everything else lives in the "More" menu so users build a fast mental map.
@@ -63,44 +43,18 @@ export default function Navbar() {
     {
       label: "Your Journey",
       items: [
-        { to: "/journey", label: "Journey", icon: Gamepad2 },
         { to: "/tower", label: "Tower", icon: Castle },
-        { to: "/guilds", label: "Guilds", icon: Users },
-        { to: "/dungeons", label: "Dungeons", icon: Swords },
-        { to: "/collection", label: "Collection", icon: Library },
-        { to: "/cards", label: "Cards", icon: Layers },
-        { to: "/achievements", label: "Achievements", icon: Award },
-        { to: "/world", label: "World", icon: Globe },
-        { to: "/economy", label: "Economy", icon: Coins },
-        { to: "/wheel", label: "Lucky Wheel", icon: Gift },
-        { to: "/battle-pass", label: "Battle Pass", icon: Shield },
       ],
     },
     {
       label: "Tools & Community",
       items: [
         { to: "/community", label: "Community", icon: MessageSquare },
-        { to: "/discussions", label: "Discussions", icon: MessageCircle },
-        { to: "/friends", label: "Friends", icon: UserPlus },
         { to: "/ai-mentor", label: "AI Mentor", icon: Brain },
         { to: "/project-generator", label: "Project Generator", icon: Sparkles },
         { to: "/concepts", label: "Concepts", icon: Lightbulb },
-        { to: "/behavioral-practice", label: "Behavioral Practice", icon: ScrollText },
-        { to: "/company-directory", label: "Company Directory", icon: Building2 },
-        { to: "/study-timer", label: "Study Timer", icon: Timer },
         { to: "/placement-calendar", label: "Placement Calendar", icon: Calendar },
         { to: "/settings", label: "Settings", icon: Settings },
-      ],
-    },
-    {
-      label: "Progress",
-      items: [
-        { to: "/quests", label: "Quests", icon: ScrollText },
-        { to: "/goals", label: "Goals", icon: Target },
-        { to: "/readiness", label: "Readiness Score", icon: Zap },
-        { to: "/skill-mastery", label: "Skill Mastery", icon: Lightbulb },
-        { to: "/energy", label: "Energy", icon: Zap },
-        { to: "/mystery-box", label: "Mystery Box", icon: Gift },
       ],
     },
   ];
@@ -115,16 +69,16 @@ export default function Navbar() {
       <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-brand-primary focus:text-white focus:rounded-lg">Skip to main content</a>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between gap-4">
-          <Link to="/" className="flex items-center gap-3 group shrink-0" aria-label="PlacementPro home">
+          <Link to="/" className="flex items-center gap-3 group shrink-0" aria-label="BountyCode home">
             <div className="relative">
               <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-nature-leaf/40 to-nature-blossom/40 blur-md opacity-70 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
-              <div className="relative h-10 w-10 rounded-2xl bg-gradient-to-br from-nature-leaf via-nature-moss to-nature-blossom flex items-center justify-center shadow-[0_8px_20px_-8px_rgba(45,130,110,0.4)] transition-transform duration-300 group-hover:scale-105">
-                <Leaf size={18} className="text-text-primary" />
+              <div className="relative h-10 w-10 rounded-2xl bg-gradient-to-br from-nature-leaf via-nature-moss to-nature-blossom flex items-center justify-center shadow-[0_8px_20px_-8px_rgba(45,130,110,0.4)] transition-transform duration-300 group-hover:scale-105 overflow-hidden">
+                <img src="/assets/logo/bountycode-icon.svg" alt="BountyCode" className="h-7 w-7" />
               </div>
             </div>
             <div className="leading-tight">
               <div className="text-lg font-display font-extrabold tracking-tight text-text-primary">
-                PlacementPro
+                BountyCode
               </div>
               <div className="text-[10px] font-mono uppercase tracking-[0.28em] text-text-muted">
                 Placement Prep Platform

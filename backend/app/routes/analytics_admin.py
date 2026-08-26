@@ -2,7 +2,7 @@
 Analytics routes — tracking, admin dashboard, visitor stats.
 """
 from fastapi import APIRouter, Depends, HTTPException, Request
-from app.middleware.auth import get_current_user
+from app.middleware.auth import get_current_user, require_admin
 from app.services.analytics_service import (
     track_event,
     get_visitor_stats,
@@ -17,12 +17,6 @@ from app.services.analytics_service import (
 )
 
 router = APIRouter(prefix="/api/v1/analytics", tags=["analytics"])
-
-
-async def require_admin(user=Depends(get_current_user)):
-    if user.get("role") == "admin" or user.get("is_admin") is True:
-        return user
-    raise HTTPException(status_code=403, detail="Admin access required")
 
 
 @router.post("/track")
@@ -44,7 +38,7 @@ async def track(request: Request):
         import jose
         from app.config import settings
         cookies = request.cookies
-        token = cookies.get("token")
+        token = cookies.get("pp_token")
         if token:
             payload = jose.jwt.decode(token, settings.JWT_SECRET, algorithms=["HS256"])
             user_id = payload.get("sub")

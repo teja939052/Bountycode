@@ -179,62 +179,6 @@ export const gamificationApi = {
     return request(`/api/v1/gamification/daily-bonus/history?limit=${limit}`);
   },
 
-  getCardCollection(
-    params: Record<string, string> = {},
-  ): Promise<Record<string, unknown>> {
-    const query = new URLSearchParams();
-    Object.entries(params).forEach(([k, v]) => {
-      if (v) query.set(k, v);
-    });
-    return request(`/api/v1/cards/collection?${query.toString()}`);
-  },
-
-  getDailyDraw(): Promise<Record<string, unknown>> {
-    return request("/api/v1/cards/daily-draw");
-  },
-
-  fuseCards(cardIds: string[]): Promise<Record<string, unknown>> {
-    return request("/api/v1/cards/fuse", {
-      method: "POST",
-      body: JSON.stringify(cardIds),
-    });
-  },
-
-  toggleCardFavorite(cardId: string): Promise<{ favorited?: boolean }> {
-    return request(`/api/v1/cards/favorite/${cardId}`, { method: "POST" });
-  },
-
-  getCardStats(): Promise<Record<string, unknown>> {
-    return request("/api/v1/cards/stats");
-  },
-
-  getMissingCards(): Promise<Record<string, unknown>> {
-    return request("/api/v1/cards/missing");
-  },
-
-  getWizardProfile(): Promise<Record<string, unknown>> {
-    return request("/api/v1/wizard/profile");
-  },
-
-  customizeWizard(
-    updates: Record<string, unknown>,
-  ): Promise<{ updated?: boolean }> {
-    return request("/api/v1/wizard/customize", {
-      method: "PUT",
-      body: JSON.stringify(updates),
-    });
-  },
-
-  getWizardDialogue(
-    situation: string,
-  ): Promise<{ dialogue: string; options?: string[] }> {
-    return request(`/api/v1/wizard/dialogue/${situation}`);
-  },
-
-  getWizardLevels(): Promise<Record<string, unknown>> {
-    return request("/api/v1/wizard/levels");
-  },
-
   getNearbyLeaderboard(
     radius = 5,
     limit = 10,

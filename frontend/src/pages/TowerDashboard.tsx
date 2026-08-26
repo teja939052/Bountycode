@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { TowerProgress, BossBattle, StarsDisplay, PowerUpShop, WizardProgression, StreakFreeze, DailyGoal, getTitleForLevel } from '../components/tower';
+import { TowerProgress, BossBattle, StarsDisplay, PowerUpShop, StreakFreeze, DailyGoal, getTitleForLevel } from '../components/tower';
 import ForestJourney from '../components/tower/ForestJourney';
 import DailyBonusCalendar from '../components/DailyBonusCalendar';
 import { useToast } from '../components/Toast';
@@ -148,7 +148,9 @@ export default function TowerDashboard() {
           }} />
           <div className="relative flex items-center gap-5">
             <div className="shrink-0">
-              <WizardProgression level={tower.level} size={72} />
+              <div className="w-[72px] h-[72px] rounded-full bg-gradient-to-br from-cyber-blue/20 to-cyber-purple/20 border border-white/10 flex items-center justify-center text-3xl">
+                {emoji}
+              </div>
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-1">

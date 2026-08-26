@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { X, Download } from "lucide-react";
 
-const VISIT_KEY = "placementpro_pwa_visits";
-const DISMISSED_KEY = "placementpro_pwa_dismissed";
+const VISIT_KEY = "bountycode_pwa_visits";
+const DISMISSED_KEY = "bountycode_pwa_dismissed";
 
 export default function PwaInstallPrompt() {
   const [show, setShow] = useState(false);
@@ -53,7 +53,7 @@ export default function PwaInstallPrompt() {
             <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
               <Download size={16} className="text-text-primary" />
             </div>
-            <p className="text-sm font-semibold text-text-primary">Install PlacementPro</p>
+            <p className="text-sm font-semibold text-text-primary">Install BountyCode</p>
           </div>
           <button onClick={handleDismiss} className="text-gray-400 hover:text-white transition-colors">
             <X size={16} />

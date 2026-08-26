@@ -1,7 +1,7 @@
 import re
 import json
 from typing import Dict, Any, List
-from app.services.ai import chat_completion, parse_json
+from app.services.ai_core import chat_completion, parse_json
 
 
 class ResumeEngine:

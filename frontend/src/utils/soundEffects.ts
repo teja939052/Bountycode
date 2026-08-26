@@ -1,5 +1,5 @@
 /**
- * Web Audio API Sound Effects Synthesizer for PlacementPro.
+ * Web Audio API Sound Effects Synthesizer for BountyCode.
  * Zero external assets required, instant loading, hardware-accelerated sound effects.
  */
 

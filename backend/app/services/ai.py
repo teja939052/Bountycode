@@ -64,6 +64,7 @@ from app.services.ai_behavioral import (
     generate_interview_tips,
     generate_mentor_message,
 )
+from app.services.ai_feedback import sentence_level_feedback
 from app.services.ai_project import (
     generate_project,
     review_project,
@@ -100,6 +101,7 @@ __all__ = [
     "generate_behavioral_question",
     "generate_interview_tips",
     "generate_mentor_message",
+    "sentence_level_feedback",
     "generate_project",
     "review_project",
     "improve_code",

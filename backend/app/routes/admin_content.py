@@ -1,8 +1,9 @@
 from datetime import datetime, timezone
 from typing import Optional
+import re
 from fastapi import APIRouter, Depends, HTTPException, Query
 from bson import ObjectId
-from app.middleware.auth import get_current_user
+from app.middleware.auth import get_current_user, require_admin
 from app.database import (
     users_collection,
     content_modules_collection,
@@ -15,14 +16,6 @@ router = APIRouter(prefix="/api/v1/admin/content", tags=["admin-content"])
 assignments_router = APIRouter(prefix="/api/v1/assignments", tags=["assignments"])
 
 EDITABLE_CONTENT_FIELDS = ("title", "description", "category", "difficulty", "body", "order")
-CATEGORIES = ("dsa", "aptitude", "soft-skills", "system-design", "behavioral")
-DIFFICULTIES = ("beginner", "intermediate", "advanced")
-
-
-async def require_admin(user=Depends(get_current_user)):
-    if user.get("role") == "admin" or user.get("is_admin") is True:
-        return user
-    raise HTTPException(status_code=403, detail="Admin access required")
 
 
 def _iso(value):
@@ -128,9 +121,10 @@ async def list_content(
     if category:
         query["category"] = category
     if search:
+        safe_search = re.escape(search)
         query["$or"] = [
-            {"title": {"$regex": search, "$options": "i"}},
-            {"description": {"$regex": search, "$options": "i"}},
+            {"title": {"$regex": safe_search, "$options": "i"}},
+            {"description": {"$regex": safe_search, "$options": "i"}},
         ]
 
     total = await content_modules_collection().count_documents(query)

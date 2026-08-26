@@ -16,7 +16,6 @@ const BADGE_RARITY = {
   perfect_score: { rarity: 'legendary', color: '#EAB308', emoji: '💯', title: 'Perfect Score' },
   company_hunter: { rarity: 'epic', color: '#A855F7', emoji: '🏢', title: 'Company Hunter' },
   system_architect: { rarity: 'legendary', color: '#EAB308', emoji: '🏗️', title: 'System Architect' },
-  data_wizard: { rarity: 'epic', color: '#A855F7', emoji: '🧙', title: 'Data Wizard' },
 };
 
 const GLOW_COLORS = {

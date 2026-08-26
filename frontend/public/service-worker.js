@@ -1,4 +1,4 @@
-const CACHE_VERSION = "placementpro-cache-v3";
+const CACHE_VERSION = "bountycode-cache-v3";
 const CORE_CACHE = `${CACHE_VERSION}-core`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 const PRECACHE_URLS = ["/"];
@@ -78,7 +78,7 @@ self.addEventListener("push", (event) => {
   } catch (err) {
     data = { body: event.data ? event.data.text() : "New update available" };
   }
-  const title = data.title || "PlacementPro";
+  const title = data.title || "BountyCode";
   const options = {
     body: data.body || "",
     icon: data.icon || "/icon.svg",

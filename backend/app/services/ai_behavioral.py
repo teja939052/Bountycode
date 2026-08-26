@@ -1,7 +1,7 @@
 """Behavioral interview AI functions."""
 
 import logging
-from typing import Dict, Any
+from typing import Dict, Any, List
 from app.services.ai_core import chat_completion, parse_json
 
 logger = logging.getLogger(__name__)
@@ -91,9 +91,71 @@ Return ONLY the JSON object. No markdown, no explanation."""
 
 
 async def generate_mentor_message(
+    mentor_name: str,
+    current_day: int = 1,
+    yesterday_completed: int = 0,
+    topic: str = "",
+    level: str = "intermediate",
+) -> Dict[str, Any] | str:
+    """Generate a personalized mentor message for daily challenge.
+
+    When called with (mentor_name, current_day, yesterday_completed) — the
+    daily-challenge pattern — returns a motivational string.  When called with
+    (topic, level) — the original conceptual-explanation pattern — returns a
+    JSON dict with explanation and examples.
+
+    Args:
+        mentor_name: Mentor character name (or topic in legacy mode).
+        current_day: Current day number in the challenge.
+        yesterday_completed: Number of quests completed yesterday.
+        topic: Concept to explain (only used in legacy mode).
+        level: Difficulty level (only used in legacy mode).
+
+    Returns:
+        str or Dict: Motivational message string (daily challenge mode) or
+            explanation dict (legacy mode).
+    """
+    if topic:
+        return await _generate_topic_explanation(topic, level)
+    return await _generate_daily_mentor_message(mentor_name, current_day, yesterday_completed)
+
+
+async def _generate_daily_mentor_message(
+    mentor_name: str,
+    current_day: int,
+    yesterday_completed: int,
+) -> str:
+    """Generate a motivational mentor message for the daily challenge."""
+    system_prompt = f"""You are a motivational coding mentor named "{mentor_name}".
+
+Current day: {current_day} of a 30-day placement prep challenge.
+Yesterday's completed quests: {yesterday_completed}.
+
+Write a short (1-2 sentence) motivational message.
+- If yesterday_completed > 0, acknowledge the streak.
+- If yesterday_completed == 0, gently encourage them to get back on track.
+- Reference the day number and keep it personal.
+
+Return ONLY the message text, no JSON, no quotes, no markdown."""
+
+    messages = [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": f"Generate a day {current_day} mentor message."},
+    ]
+
+    try:
+        result = await chat_completion(messages, max_tokens=200)
+        return result.strip().strip('"').strip("'")
+    except Exception:
+        fallback = f"Day {current_day} — Let's make it count, {mentor_name} believes in you!"
+        return fallback
+
+
+async def _generate_topic_explanation(
     topic: str,
     level: str = "intermediate",
 ) -> Dict[str, Any]:
+    """Generate a topic explanation for the mentor."""
     system_prompt = f"""You are an experienced coding mentor. Explain the concept of "{topic}" clearly.
 
 Target audience: {level} level developer.

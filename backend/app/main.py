@@ -450,6 +450,17 @@ class RequestIdMiddleware(BaseHTTPMiddleware):
         return response
 
 
+class ApiVersionMiddleware(BaseHTTPMiddleware):
+    """Add API version header to all API responses."""
+
+    async def dispatch(self, request: Request, call_next):
+        response = await call_next(request)
+        if request.url.path.startswith("/api/"):
+            response.headers["X-API-Version"] = settings.API_VERSION
+            response.headers["X-API-Latest-Version"] = settings.API_VERSION
+        return response
+
+
 # ============================================================
 # Middleware
 # ============================================================
@@ -466,6 +477,9 @@ app.add_middleware(SecurityHeadersMiddleware)
 
 # Request ID middleware
 app.add_middleware(RequestIdMiddleware)
+
+# API version header
+app.add_middleware(ApiVersionMiddleware)
 
 # GZip response compression
 app.add_middleware(GZipMiddleware, minimum_size=1024)
@@ -523,12 +537,14 @@ app.add_middleware(
     allow_credentials=settings.CORS_ALLOW_CREDENTIALS,
     allow_methods=settings.CORS_ALLOW_METHODS,
     allow_headers=settings.CORS_ALLOW_HEADERS,
-    expose_headers=[
+        expose_headers=[
         "X-RateLimit-Limit",
         "X-RateLimit-Remaining",
         "X-RateLimit-Reset",
         "X-Request-ID",
         "X-Response-Time",
+        "X-API-Version",
+        "X-API-Latest-Version",
     ],
 )
 

@@ -9,7 +9,7 @@ import {
 import api from "../services/api";
 import ArcadeBackdrop from "../components/learning/ArcadeBackdrop";
 
-const STORAGE_KEY = "placementpro_free_trial";
+const STORAGE_KEY = "bountycode_free_trial";
 const LANGUAGE = "c";
 
 const COMPILER_MAP = {

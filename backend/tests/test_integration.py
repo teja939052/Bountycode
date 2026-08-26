@@ -134,13 +134,6 @@ class TestGamification:
             assert "cost" in pu
             assert pu["cost"] > 0
 
-    def test_wizard_outfits_at_milestones(self):
-        from app.services.gamification import WIZARD_OUTFITS
-        for lvl in [1, 10, 25, 50, 75, 100]:
-            assert lvl in WIZARD_OUTFITS
-            assert "name" in WIZARD_OUTFITS[lvl]
-            assert "color" in WIZARD_OUTFITS[lvl]
-
     def test_tower_titles_at_milestones(self):
         from app.services.gamification import TOWER_TITLES
         for lvl in [1, 5, 10, 15, 50, 100]:
@@ -403,10 +396,10 @@ class TestRouteRegistration:
             career_profile, practice, analytics, ai_feedback,
             profile_stats, compiler, problems,
             daily_challenge, playlists,
-            cards, wizard, submissions, progress, features,
+            cards, submissions, progress, features,
             battles, aptitude_tests,
             indian_placement, placement_questions,
-            dsa_fingerprint, energy, learning, analytics_admin,
+            dsa_fingerprint, learning, analytics_admin,
         )
 
     def test_extended_route_modules_importable(self):
@@ -487,24 +480,6 @@ class TestValidation:
         assert validate_required("", "name") is not None
         assert validate_required(None, "name") is not None
 
-
-# ── Energy constants ──────────────────────────────────────────
-
-class TestEnergy:
-    def test_constants(self):
-        from app.services.energy import MAX_ENERGY, RECHARGE_HOURS, ENERGY_PER_DAY
-        assert MAX_ENERGY == 10
-        assert RECHARGE_HOURS == 4
-        assert ENERGY_PER_DAY == 6
-
-    def test_pro_unlimited(self):
-        from app.services.energy import get_energy
-
-        async def _test():
-            user = {"id": "000000000000000000000000", "plan": "pro"}
-            result = await get_energy(user)
-            assert result["is_unlimited"] is True
-        asyncio.run(_test())
 
 
 # ── Request metrics ──────────────────────────────────────────

@@ -26,12 +26,7 @@ import {
   mockInterviewApi as mockIntApi,
   personalDashboardApi,
   dsaFingerprintApi,
-  battlesApi,
-  scrimsApi,
-  rankApi,
   projectGeneratorApi,
-  mysteryBoxApi,
-  energyApi,
   playlistsApi,
   discussionsApi,
   submissionsApi,
@@ -47,70 +42,19 @@ import { studyApi } from "./study.ts";
 import { languagePathsApi } from "./languagePathsApi.ts";
 import { freeTrialApi } from "./freeTrial.ts";
 import { onboardingApi } from "./onboarding.ts";
-import { showcaseApi } from "./showcase.ts";
 import { adminContentApi, assignmentsApi } from "./adminContent.ts";
-import { gameEventsApi } from "./gameEvents.ts";
-import { campusApi } from "./campus.ts";
-import { companyDirectoryApi } from "./companyDirectory.ts";
-import { worldApi } from "./world.ts";
-import { merchantApi } from "./merchant.ts";
-import { guildsApi } from "./guilds.ts";
-import { dungeonsApi } from "./dungeons.ts";
-import { collectionApi, eventsApi } from "./collectionEvents.ts";
 import { metricsApi } from "./metrics.ts";
-import { economyApi } from "./economy.ts";
-import { journeyApi } from "./journey.ts";
-import { careerApi } from "./career.ts";
-import { timelineApi } from "./timeline.ts";
-import { collegeNetworkApi } from "./collegeNetwork.ts";
-import { newspaperApi } from "./newspaper.ts";
-import { steamApi } from "./steam.ts";
-import { luckyWheelApi } from "./luckyWheel.ts";
-import { battlePassApi } from "./battlePass.ts";
-import { referralSystemApi } from "./referralSystem.ts";
-import { guildCastleApi } from "./guildCastle.ts";
-import { chatApi } from "./chat.ts";
-import { gdApi } from "./gdRooms.ts";
-import { cgpaApi } from "./cgpa.ts";
-import { driveApi } from "./driveTracker.ts";
-import { peerReviewApi } from "./peerReview.ts";
-import { studySquadsApi } from "./studySquads.ts";
-import { reportCardApi } from "./reportCard.ts";
-import { seasonsApi } from "./seasons.ts";
-import { achievementsApi } from "./achievements.ts";
-import { tournamentsApi } from "./tournaments.ts";
-import { teamsApi } from "./teams.ts";
-import { referralApi } from "./referrals.ts";
-import { skillTreesApi } from "./skillTrees.ts";
-import { shareableAchievementsApi } from "./shareableAchievements.ts";
-import { campusPulseApi } from "./campusPulse.ts";
-import { trendingChallengesApi } from "./trendingChallenges.ts";
 import { flatApi } from "./flat.ts";
 import { flatOverrides } from "./flatOverrides.ts";
-import { friendsApi } from "./friends.ts";
-import { studyTimerApi } from "./studyTimer.ts";
-import { goalsApi } from "./goals.ts";
-import { themesApi } from "./themes.ts";
-import { bountyApi } from "./bounty.ts";
-import { interviewChatApi } from "./interviewChat.ts";
-import { massRecruiterApi } from "./massRecruiter.ts";
-import { grandLineApi } from "./grandLine.ts";
-import { pseudocodeApi } from "./pseudocode.ts";
-import { bigFourApi } from "./bigFour.ts";
 
 const api = {
   auth: authApi,
   interview: interviewApi,
-  interviewChat: interviewChatApi,
   mockInterview: mockInterviewApi,
   booking: bookingApi,
   resume: resumeApi,
   billing: billingApi,
   aptitude: aptitudeApi,
-  massRecruiter: massRecruiterApi,
-  grandLine: grandLineApi,
-  pseudocode: pseudocodeApi,
-  bigFour: bigFourApi,
   behavioral: behavioralApi,
   hr: hrApi,
   coding: codingApi,
@@ -121,9 +65,6 @@ const api = {
   companyPrep: companyPrepApi,
   companyMocks: companyMocksApi,
   gamification: gamificationApi,
-  battlePass: battlePassApi,
-  referral: referralSystemApi,
-  guildCastle: guildCastleApi,
   enhanced: enhancedApi,
   freePractice: freePracticeApi,
   student: studentApi,
@@ -139,12 +80,7 @@ const api = {
   readiness: readinessApi,
   personalDashboard: personalDashboardApi,
   dsaFingerprint: dsaFingerprintApi,
-  battles: battlesApi,
-  scrims: scrimsApi,
-  rank: rankApi,
   projectGenerator: projectGeneratorApi,
-  mysteryBox: mysteryBoxApi,
-  energy: energyApi,
   playlists: playlistsApi,
   discussions: discussionsApi,
   submissions: submissionsApi,
@@ -159,44 +95,9 @@ const api = {
   languagePaths: languagePathsApi,
   freeTrial: freeTrialApi,
   onboarding: onboardingApi,
-  showcase: showcaseApi,
   adminContent: adminContentApi,
   assignments: assignmentsApi,
-  gameEvents: gameEventsApi,
-  campus: campusApi,
-  companyDirectory: companyDirectoryApi,
-  world: worldApi,
-  merchant: merchantApi,
-  guilds: guildsApi,
-  dungeons: dungeonsApi,
-  collection: collectionApi,
-  events: eventsApi,
   metrics: metricsApi,
-  economy: economyApi,
-  seasons: seasonsApi,
-  journey: journeyApi,
-  career: careerApi,
-  timeline: timelineApi,
-  college: collegeNetworkApi,
-  newspaper: newspaperApi,
-  steam: steamApi,
-  chat: chatApi,
-  gd: gdApi,
-  cgpa: cgpaApi,
-  driveTracker: driveApi,
-  peerReview: peerReviewApi,
-  studySquads: studySquadsApi,
-  reportCard: reportCardApi,
-  wheel: luckyWheelApi,
-  pass: battlePassApi,
-  achievements: achievementsApi,
-  tournaments: tournamentsApi,
-  teams: teamsApi,
-  referrals: referralApi,
-  skillTrees: skillTreesApi,
-  shareableAchievements: shareableAchievementsApi,
-  campusPulse: campusPulseApi,
-  trendingChallenges: trendingChallengesApi,
   getMe: () => authApi.getMe(),
   register: (...args: Parameters<typeof authApi.register>) =>
     authApi.register.apply(authApi, args),
@@ -219,29 +120,20 @@ const api = {
   ) => authApi.onboardingComplete.apply(authApi, args),
   ...flatApi,
   ...flatOverrides,
-  friends: friendsApi,
-  studyTimer: studyTimerApi,
-  goals: goalsApi,
-  themes: themesApi,
-  bounty: bountyApi,
 };
 
 export default api;
 export {
   authApi,
   interviewApi,
-  interviewChatApi,
   mockInterviewApi,
   bookingApi,
   resumeApi,
   billingApi,
   aptitudeApi,
-  massRecruiterApi,
-  grandLineApi,
-  pseudocodeApi,
-  bigFourApi,  codingApi,
   behavioralApi,
   hrApi,
+  codingApi,
   compilerApi,
   questionsApi,
   toolsApi,
@@ -265,12 +157,7 @@ export {
   mockIntApi,
   personalDashboardApi,
   dsaFingerprintApi,
-  battlesApi,
-  scrimsApi,
-  rankApi,
   projectGeneratorApi,
-  mysteryBoxApi,
-  energyApi,
   playlistsApi,
   discussionsApi,
   submissionsApi,
@@ -285,14 +172,4 @@ export {
   languagePathsApi,
   freeTrialApi,
   onboardingApi,
-  timelineApi,
-  chatApi,
-  peerReviewApi,
-  studySquadsApi,
-  friendsApi,
-  reportCardApi,
-  studyTimerApi,
-  goalsApi,
-  themesApi,
-  bountyApi,
 };

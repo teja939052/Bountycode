@@ -2,7 +2,7 @@ import logging
 from datetime import datetime, timezone
 
 from app.database import question_explanations_collection
-from app.services.ai import chat_completion, parse_json
+from app.services.ai_core import chat_completion, parse_json
 from app.services.cache import cache
 
 logger = logging.getLogger(__name__)

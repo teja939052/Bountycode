@@ -10,7 +10,7 @@ router = APIRouter(prefix="/api/v1/metrics", tags=["metrics"])
 ALLOWED_FEATURES = [
     "daily_quest", "merchant", "guild", "dungeon", "battle", "campus",
     "boss", "season", "combo", "showcase", "scrim", "assignment",
-    "collection", "events", "world", "prestige", "login",
+    "collection", "events", "world", "login",
 ]
 
 ACTIVE_CAP = 2000

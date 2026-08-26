@@ -26,6 +26,7 @@ import { DashboardSkeleton } from "./components/ui/Skeleton";
 import { ToastProvider } from "./components/Toast";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { JuiceProvider, useJuice } from "./juice/JuiceProvider";
+import CookieBanner from "./components/CookieBanner";
 import Landing from "./pages/Landing";
 
 const AuthLayout = lazy(() => import("./components/AuthLayout"));
@@ -49,15 +50,10 @@ import {
   ResumeStudio,
   ATSOptimizer,
   Pricing,
-  RoleSelector,
   PlacementCalendar,
   NotFound,
-  BattleArena,
   CodePlayground,
   CompareVisualizer,
-  Journey,
-  RankProfile,
-  Scrims,
   AptitudeTest,
   CoverLetter,
   SalaryNegotiation,
@@ -89,12 +85,8 @@ import {
   IndianPlacement,
   DSAFingerprint,
   TowerDashboard,
-  BattlePass,
   StudyTimer,
   StudyGoals,
-  ThemesPage,
-  CampusConnect,
-  CampusWars,
   ProblemOfTheDay,
   DailyChallenge,
   DSAVisualizer,
@@ -107,7 +99,6 @@ import {
   AdminDashboard,
   Topics,
   TopicProblems,
-  CardCollection,
   PersonalDashboard,
   StudentDashboard,
   AdaptivePath,
@@ -119,78 +110,22 @@ import {
   LearnTrack,
   LearnLesson,
   FreeTrial,
-  Showcase,
-  ShowcaseDetail,
   PwaSetup,
   AdminContent,
   MyAssignments,
-  GameEvents,
-  Timeline,
-  WorldMap,
   AIMentor,
-  HealthDashboard,
-  AchievementChains,
-  CampusPulse,
-  CareerRpg,
   ChallengePacks,
   Home,
   Prepare,
-  InterviewTerminal,
-  MassRecruiterExam,
-  GrandLine,
-  PseudocodeDrill,
-  ConsulsRoute,
   Practice,
   Compete,
   Career,
-  Chat,
-  GDRoom,
-  CGPASimulator,
-  DriveTracker,
-  PeerReview,
-  StudySquads,
-  PrepReportCard,
-  CollectionEvents,
-  CollegeNetwork,
   CommandCenter,
   Community,
-  Dungeons,
-  Economy,
-  GuildCastle,
-  Guilds,
   LearningJourneys,
-  LuckyWheel,
-  Merchant,
-  Newspaper,
-  Referral,
-  ReferralGamification,
-  RetentionAdmin,
-  SeasonalEvents,
-  ShareCard,
-  SkillTrees,
-  SteamProfile,
-  TeamCompetitions,
-  Tournaments,
-  TrendingChallenges,
-  BehavioralPractice,
-  CompanyDirectory,
   Concepts,
-  Quests,
-  ReadinessScore,
-  MysteryBoxPage,
-  SkillMasteryPage,
-  EnergyPage,
-  FriendsPage,
-  GoalsPage,
-  DiscussionsPage,
-  BossAssessment,
-  MissionView,
-  Mission,
-  JourneyMapPage,
-  BountyPage,
-  JobReadiness,
-  CapabilityWorlds,
-  CapabilityMission,
+  Terms,
+  Privacy,
 } from "./pages/lazy";
 
 function AnimatedRoutes() {
@@ -217,11 +152,12 @@ function AnimatedRoutes() {
       <Route path="/" element={<Landing />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/role-selector" element={<RoleSelector />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
-      <Route path="/pricing" element={<Pricing />} />
-      <Route path="/free-trial" element={<FreeTrial />} />
+<Route path="/pricing" element={<Pricing />} />
+<Route path="/free-trial" element={<FreeTrial />} />
+<Route path="/terms" element={<Terms />} />
+<Route path="/privacy" element={<Privacy />} />
       <Route
         path="/onboarding"
         element={
@@ -259,33 +195,8 @@ function AnimatedRoutes() {
           path="/analytics"
           element={<Navigate to="/dashboard" replace />}
         />
-        <Route path="/health" element={<Navigate to="/dashboard" replace />} />
         <Route path="/learning" element={<Navigate to="/learn" replace />} />
-        <Route
-          path="/campus"
-          element={<Navigate to="/campus-wars" replace />}
-        />
-        <Route path="/journey" element={<CareerRpg />} />
-        <Route path="/boss/:bossId" element={<BossAssessment />} />
-        <Route path="/mission/:topic" element={<MissionView />} />
-        <Route path="/mission/:worldId/:missionId" element={<Mission />} />
-        <Route path="/journey-map/:worldId" element={<JourneyMapPage />} />
-        <Route path="/world/:worldId" element={<JourneyMapPage />} />
-        <Route path="/bounty" element={<BountyPage />} />
-        <Route path="/job-readiness" element={<JobReadiness />} />
-        <Route path="/capability-worlds" element={<CapabilityWorlds />} />
-        <Route path="/capability-mission/:worldId/:competencyId" element={<CapabilityMission />} />
-        <Route path="/behavioral-practice" element={<BehavioralPractice />} />
-        <Route path="/company-directory" element={<CompanyDirectory />} />
         <Route path="/concepts" element={<Concepts />} />
-        <Route path="/quests" element={<Quests />} />
-        <Route path="/readiness" element={<ReadinessScore />} />
-        <Route path="/mystery-box" element={<MysteryBoxPage />} />
-        <Route path="/skill-mastery" element={<SkillMasteryPage />} />
-        <Route path="/energy" element={<EnergyPage />} />
-        <Route path="/friends" element={<FriendsPage />} />
-        <Route path="/goals" element={<GoalsPage />} />
-        <Route path="/discussions" element={<DiscussionsPage />} />
 
         {/* Interview Routes */}
         <Route
@@ -313,46 +224,6 @@ function AnimatedRoutes() {
           }
         />
         <Route
-          path="/interview-terminal"
-          element={
-            <FeatureErrorBoundary featureName="Interview">
-              <InterviewTerminal />
-            </FeatureErrorBoundary>
-          }
-        />
-        <Route
-          path="/mass-recruiter"
-          element={
-            <FeatureErrorBoundary featureName="MassRecruiterExam">
-              <MassRecruiterExam />
-            </FeatureErrorBoundary>
-          }
-        />
-        <Route
-          path="/grand-line"
-          element={
-            <FeatureErrorBoundary featureName="GrandLine">
-              <GrandLine />
-            </FeatureErrorBoundary>
-          }
-        />
-        <Route
-          path="/pseudocode"
-          element={
-            <FeatureErrorBoundary featureName="PseudocodeDrill">
-              <PseudocodeDrill />
-            </FeatureErrorBoundary>
-          }
-        />
-        <Route
-          path="/consuls-route"
-          element={
-            <FeatureErrorBoundary featureName="ConsulsRoute">
-              <ConsulsRoute />
-            </FeatureErrorBoundary>
-          }
-        />
-        <Route
           path="/interview-replay/:interviewId"
           element={
             <FeatureErrorBoundary featureName="Interview">
@@ -360,8 +231,6 @@ function AnimatedRoutes() {
             </FeatureErrorBoundary>
           }
         />
-
-        <Route path="/referral" element={<Referral />} />
 
         {/* Career Routes */}
         <Route
@@ -649,38 +518,6 @@ function AnimatedRoutes() {
             </FeatureErrorBoundary>
           }
         />
-        <Route path="/battle-pass" element={<Navigate to="/tower" replace />} />
-        <Route path="/cards" element={<Navigate to="/tower" replace />} />
-        <Route path="/rank" element={<Navigate to="/tower" replace />} />
-        <Route
-          path="/achievements"
-          element={<Navigate to="/tower" replace />}
-        />
-        <Route path="/skill-trees" element={<Navigate to="/tower" replace />} />
-        <Route
-          path="/battles"
-          element={
-            <FeatureErrorBoundary featureName="Gamification">
-              <BattleArena />
-            </FeatureErrorBoundary>
-          }
-        />
-        <Route
-          path="/battles/:battleId"
-          element={
-            <FeatureErrorBoundary featureName="Gamification">
-              <BattleArena />
-            </FeatureErrorBoundary>
-          }
-        />
-        <Route
-          path="/wheel"
-          element={
-            <FeatureErrorBoundary featureName="Gamification">
-              <LuckyWheel />
-            </FeatureErrorBoundary>
-          }
-        />
 
         {/* Learning Routes */}
         <Route
@@ -741,22 +578,6 @@ function AnimatedRoutes() {
         <Route
           path="/curriculum/:trackId/:lessonId"
           element={<Navigate to="/learn" replace />}
-        />
-        <Route
-          path="/scrims"
-          element={
-            <FeatureErrorBoundary featureName="Learning">
-              <Scrims />
-            </FeatureErrorBoundary>
-          }
-        />
-        <Route
-          path="/scrims/:scrimId"
-          element={
-            <FeatureErrorBoundary featureName="Learning">
-              <Scrims />
-            </FeatureErrorBoundary>
-          }
         />
         <Route path="/study" element={<Navigate to="/learn" replace />} />
 
@@ -837,59 +658,6 @@ function AnimatedRoutes() {
             </FeatureErrorBoundary>
           }
         />
-        <Route
-          path="/campus-connect"
-          element={<Navigate to="/community" replace />}
-        />
-        <Route
-          path="/campus-wars"
-          element={
-            <FeatureErrorBoundary featureName="Community">
-              <CampusWars />
-            </FeatureErrorBoundary>
-          }
-        />
-        <Route
-          path="/campus-pulse"
-          element={<Navigate to="/community" replace />}
-        />
-        <Route path="/college" element={<Navigate to="/community" replace />} />
-        <Route path="/chat" element={<Navigate to="/community" replace />} />
-        <Route path="/gd" element={<Navigate to="/community" replace />} />
-        <Route
-          path="/gd/:roomId"
-          element={<Navigate to="/community" replace />}
-        />
-        <Route
-          path="/peer-review"
-          element={<Navigate to="/community" replace />}
-        />
-        <Route
-          path="/study-groups"
-          element={<Navigate to="/community" replace />}
-        />
-        <Route
-          path="/study-squads"
-          element={<Navigate to="/community" replace />}
-        />
-
-        {/* Showcase */}
-        <Route
-          path="/showcase"
-          element={
-            <FeatureErrorBoundary featureName="Showcase">
-              <Showcase />
-            </FeatureErrorBoundary>
-          }
-        />
-        <Route
-          path="/showcase/:projectId"
-          element={
-            <FeatureErrorBoundary featureName="Showcase">
-              <ShowcaseDetail />
-            </FeatureErrorBoundary>
-          }
-        />
 
         {/* PWA */}
         <Route
@@ -902,7 +670,11 @@ function AnimatedRoutes() {
         />
 
         {/* Admin */}
-        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin" element={
+          <ProtectedRoute>
+            <AdminDashboard />
+          </ProtectedRoute>
+        } />
         <Route
           path="/admin-content"
           element={<Navigate to="/admin" replace />}
@@ -911,60 +683,9 @@ function AnimatedRoutes() {
           path="/my-assignments"
           element={<Navigate to="/dashboard" replace />}
         />
-        <Route path="/retention" element={<Navigate to="/admin" replace />} />
 
         {/* Gamification Hub Redirects */}
-        <Route path="/economy" element={<Navigate to="/tower" replace />} />
-        <Route path="/merchant" element={<Navigate to="/tower" replace />} />
-        <Route path="/game-events" element={<Navigate to="/tower" replace />} />
-        <Route path="/world" element={<Navigate to="/tower" replace />} />
-        <Route path="/guilds" element={<Navigate to="/tower" replace />} />
-        <Route path="/dungeons" element={<Navigate to="/tower" replace />} />
-        <Route path="/collection" element={<Navigate to="/tower" replace />} />
-        <Route path="/timeline" element={<Navigate to="/tower" replace />} />
-        <Route path="/newspaper" element={<Navigate to="/tower" replace />} />
-        <Route path="/share" element={<Navigate to="/tower" replace />} />
-        <Route path="/trending" element={<Navigate to="/tower" replace />} />
-        <Route path="/seasonal" element={<Navigate to="/tower" replace />} />
-        <Route
-          path="/guilds/castle/:guildId"
-          element={<Navigate to="/tower" replace />}
-        />
-        <Route path="/tournaments" element={<Navigate to="/tower" replace />} />
-        <Route path="/teams" element={<Navigate to="/tower" replace />} />
-        <Route path="/referrals" element={<Navigate to="/tower" replace />} />
-        <Route path="/themes" element={<Navigate to="/tower" replace />} />
-        <Route path="/daily-drill" element={<Navigate to="/tower" replace />} />
-        <Route
-          path="/profile/steam"
-          element={<Navigate to="/dashboard" replace />}
-        />
-
-        {/* Utility */}
-        <Route
-          path="/cgpa-simulator"
-          element={
-            <ProtectedRoute>
-              <CGPASimulator />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/drive-tracker"
-          element={
-            <ProtectedRoute>
-              <DriveTracker />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/report-card"
-          element={
-            <ProtectedRoute>
-              <PrepReportCard />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/daily-drill" element={<Navigate to="/tower" replace />}         />
       </Route>
 
       <Route path="*" element={<NotFound />} />
@@ -1081,6 +802,7 @@ function AppContent() {
             </PageSuspense>
           </main>
           <Footer />
+          <CookieBanner />
           <Suspense fallback={null}>
             <Onboarding />
             <XPPopup

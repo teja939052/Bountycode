@@ -1,4 +1,4 @@
-export const CLOUDINARY_CLOUD_NAME = "placementpro";
+export const CLOUDINARY_CLOUD_NAME = "bountycode";
 
 interface ImageOptions {
   width?: string | number;

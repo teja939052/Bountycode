@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 
 interface TsParticlesConfig {
   particles: {
@@ -32,6 +32,7 @@ interface TsParticlesConfig {
 
 export default function ArrakisBackground({ reducedMotion = false }: { reducedMotion?: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [canvasHeight, setCanvasHeight] = useState(0);
 
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -47,15 +48,20 @@ export default function ArrakisBackground({ reducedMotion = false }: { reducedMo
       return;
     }
 
-    // Set canvas size
+    // Set initial canvas size based on parent container
     function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      if (canvasRef.current) {
+        const parent = canvasRef.current.parentElement;
+        const rect = parent.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+        setCanvasHeight(rect.height);
+      }
     }
     resize();
     window.addEventListener('resize', resize);
 
-    // Particle class
+    // Sand grain particle class
     class Particle {
       x: number;
       y: number;
@@ -63,21 +69,25 @@ export default function ArrakisBackground({ reducedMotion = false }: { reducedMo
       vy: number;
       radius: number;
       hue: number;
+      opacity: number;
       
       constructor() {
+        // Start at random position within canvas
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.vx = (Math.random() - 0.5) * 2;
-        this.vy = (Math.random() - 0.5) * 2;
-        this.radius = Math.random() * 2 + 1;
-        this.hue = Math.random() * 360;
+        // Sand-like colors: warm browns, light oranges - 30-50 degree hue range
+        this.hue = 35 + Math.random() * 15; // 35-50 degree range (warm sand tones)
+        this.radius = Math.random() * 2 + 0.5;
+        this.opacity = 0.5 + Math.random() * 0.3; // 0.5-0.8 opacity
+        this.vx = (Math.random() - 0.5) * 0.3; // Very slow, smooth movement
+        this.vy = (Math.random() - 0.5) * 0.3;
       }
 
       update() {
         this.x += this.vx;
         this.y += this.vy;
 
-        // Wrap around edges
+        // Wrap around edges with seamless loop
         if (this.x > canvas.width + this.radius) this.x = -this.radius;
         if (this.x < -this.radius) this.x = canvas.width + this.radius;
         if (this.y > canvas.height + this.radius) this.y = -this.radius;
@@ -87,54 +97,35 @@ export default function ArrakisBackground({ reducedMotion = false }: { reducedMo
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `hsl(${this.hue}, 70%, 70%)`;
+        // Sand color with varying opacity - warm beige tones
+        // Using #E9D6A3 (sand) and #FDF6EB (sand-soft) color palette
+        const sandColor = `rgba(233, 214, 163, ${this.opacity * 0.6})`; // #E9D6A3 with opacity
+        ctx.fillStyle = sandColor;
         ctx.fill();
       }
     }
 
-    // Initialize particles
-    const particleCount = Math.min(50, Math.floor((canvas.width * canvas.height) / 15000));
+    // Initialize particles - limited count for performance and calm effect
+    const particleCount = Math.min(20, Math.floor((canvas.width * canvas.height) / 50000));
     for (let i = 0; i < particleCount; i++) {
       particles.push(new Particle());
     }
 
-    // Connection function
-    function connectParticles() {
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-      const dx = particles[i].x - particles[j].x;
-      const dy = particles[i].y - particles[j].y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
-
-      if (distance < 150) {
-        ctx.beginPath();
-        ctx.moveTo(particles[i].x, particles[i].y);
-        ctx.lineTo(particles[j].x, particles[j].y);
-        ctx.strokeStyle = `rgba(34, 197, 94, ${1 - distance / 150 * 0.5})`;
-        ctx.lineWidth = 1;
-        ctx.stroke();
-      }
-    }
-      }
-    }
-
     // Animation loop
     function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Background gradient
-      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-      gradient.addColorStop(0, '#0a0a1e');
-      gradient.addColorStop(1, '#1a1a3a');
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      // Clear with sand gradient background
+      if (canvas.height > 0) {
+        const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+        gradient.addColorStop(0, '#FDF6EB'); // sand-soft top
+        gradient.addColorStop(1, '#E9D6A3'); // sand bottom
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
 
       particles.forEach(p => {
         p.update();
         p.draw();
       });
-
-      connectParticles();
 
       animationId = requestAnimationFrame(animate);
     }
@@ -146,13 +137,13 @@ export default function ArrakisBackground({ reducedMotion = false }: { reducedMo
       if (animationId) cancelAnimationFrame(animationId);
       window.removeEventListener('resize', resize);
     };
-  }, [reducedMotion]);
+  }, [reducedMotion, canvasHeight]);
 
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0"
-      style={{ background: 'transparent' }}
+      className="absolute inset-0 z-0"
+      style={{ height: '100%' }}
     />
   );
 }

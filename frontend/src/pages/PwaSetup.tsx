@@ -10,7 +10,7 @@ import {
   isPushSupported, requestPushPermission, subscribeToPush, getStoredSubscription,
 } from "../services/pushNotifications";
 
-const OFFLINE_LESSONS_KEY = "placementpro_offline_lessons";
+const OFFLINE_LESSONS_KEY = "bountycode_offline_lessons";
 
 function StatusPill({ online }) {
   return (
@@ -173,7 +173,7 @@ export default function PwaSetup() {
               <div>
                 <h2 className="font-semibold text-text-primary">Install App</h2>
                 <p className="text-xs text-text-muted mt-0.5">
-                  Add PlacementPro to your home screen for full-screen access
+                  Add BountyCode to your home screen for full-screen access
                 </p>
               </div>
             </div>

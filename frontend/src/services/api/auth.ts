@@ -86,4 +86,8 @@ export const authApi = {
   clearCache(): void {
     clearApiCache();
   },
+
+  googleLogin(): string {
+    return "/api/v1/auth/google";
+  },
 };

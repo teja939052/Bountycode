@@ -402,7 +402,6 @@ export interface GamificationProfile {
   coins?: number;
   title?: string;
   title_emoji?: string;
-  wizard_outfit?: string;
   [key: string]: unknown;
 }
 

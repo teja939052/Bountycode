@@ -291,23 +291,6 @@ export const flatOverrides = {
       body: JSON.stringify({ quest_ids: questIds }),
     }),
 
-  // ---- scrims ----
-  createScrim: (payload: Record<string, unknown>) =>
-    requestWithRetry("/api/v1/scrims", {
-      method: "POST",
-      body: JSON.stringify(payload),
-    }),
-  getScrims: (params: Record<string, string> = {}) =>
-    requestWithRetry(
-      `/api/v1/scrims${Object.keys(params).length ? `?${new URLSearchParams(params).toString()}` : ""}`,
-    ),
-  getScrim: (scrimId: string) =>
-    requestWithRetry(`/api/v1/scrims/${encodeURIComponent(scrimId)}`),
-  likeScrim: (scrimId: string) =>
-    requestWithRetry(`/api/v1/scrims/${encodeURIComponent(scrimId)}/like`, {
-      method: "POST",
-    }),
-
   // ---- system design ----
   startSystemDesign: (payload: Record<string, unknown>) =>
     requestWithRetry("/api/v1/system-design/start", {
@@ -632,9 +615,6 @@ export const flatOverrides = {
       body: JSON.stringify(body),
     }),
 
-  // ---- guilds ----
-  getMyRank: () => requestWithRetry("/api/v1/guilds/rank"),
-
   // ---- spaced repetition ----
   initializeSRS: (body: Record<string, unknown> = {}) =>
     requestWithRetry("/api/v1/srs/initialize", {
@@ -663,59 +643,8 @@ export const flatOverrides = {
       },
     ),
 
-  // ---- cards / gamification (used by CardCollection) ----
-  getCardCollection: (params: Record<string, string> = {}) =>
-    requestWithRetry(
-      `/api/v1/cards/collection${Object.keys(params).length ? `?${new URLSearchParams(params).toString()}` : ""}`,
-    ),
-  getCardStats: () => requestWithRetry("/api/v1/cards/stats"),
-  getDailyDraw: () => requestWithRetry("/api/v1/cards/daily-draw"),
   getGamificationProfile: () =>
     requestWithRetry("/api/v1/gamification/profile"),
-
-  // ---- dungeons ----
-  getDungeons: () => requestWithRetry("/api/v1/dungeons"),
-  getDungeonDetail: (dungeonId: string) =>
-    requestWithRetry(`/api/v1/dungeons/${encodeURIComponent(dungeonId)}`),
-  startDungeon: (dungeonId: string, payload: Record<string, unknown> = {}) =>
-    requestWithRetry(
-      `/api/v1/dungeons/${encodeURIComponent(dungeonId)}/start`,
-      {
-        method: "POST",
-        body: JSON.stringify(payload),
-      },
-    ),
-  submitDungeonStage: (
-    dungeonId: string,
-    payload: Record<string, unknown> = {},
-  ) =>
-    requestWithRetry(
-      `/api/v1/dungeons/${encodeURIComponent(dungeonId)}/stage`,
-      {
-        method: "POST",
-        body: JSON.stringify(payload),
-      },
-    ),
-  getDungeonLeaderboard: (dungeonId: string) =>
-    requestWithRetry(
-      `/api/v1/dungeons/${encodeURIComponent(dungeonId)}/leaderboard`,
-    ),
-  getDungeonHistory: (dungeonId: string) =>
-    requestWithRetry(
-      `/api/v1/dungeons/${encodeURIComponent(dungeonId)}/history`,
-    ),
-  getDungeonChests: (dungeonId: string) =>
-    requestWithRetry(
-      `/api/v1/dungeons/${encodeURIComponent(dungeonId)}/chests`,
-    ),
-  advanceDungeon: (dungeonId: string, stageIndex: number) =>
-    requestWithRetry(
-      `/api/v1/dungeons/${encodeURIComponent(dungeonId)}/advance`,
-      {
-        method: "POST",
-        body: JSON.stringify({ stage_index: stageIndex }),
-      },
-    ),
 
   // ---- question bank extras (missing legacy aliases) ----
   getQuestionStats: () => requestWithRetry("/api/v1/questions/stats"),

@@ -486,7 +486,7 @@ func main() {
         Generate step-by-step execution trace for algorithm visualizer.
         Returns line-by-line execution steps, variable state, data structure visualization, and output.
         """
-        from app.services.ai import chat_completion, parse_json
+        from app.services.ai_core import chat_completion, parse_json
 
         lang = (language or "").lower()
 

@@ -5,6 +5,7 @@ import json
 import hashlib
 import hmac
 from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 from typing import Optional, List
 from app.database import users_collection, payments_collection, coupons_collection
@@ -12,6 +13,7 @@ from app.middleware.auth import get_current_user
 from app.config import get_settings
 from app.services.revenue import record_payment, record_revenue_event
 from app.services.coupon import validate_coupon, apply_coupon as apply_coupon_service
+from app.services.invoice import invoice_service
 from bson import ObjectId
 from datetime import datetime, timezone
 
@@ -545,13 +547,32 @@ async def capture_paypal_order(request: Request, user=Depends(get_current_user))
         payment_docs = await payments_collection.find(
             {"payment_id": order_id, "user_id": user["id"]}
         ).to_list(length=1)
+        invoice_id = None
         if payment_docs:
+            payment_doc = payment_docs[0]
             await payments_collection.update_one(
-                {"_id": payment_docs[0]["_id"]},
+                {"_id": payment_doc["_id"]},
                 {"$set": {"status": "completed", "captured_at": datetime.now(timezone.utc)}},
             )
+            try:
+                invoice = invoice_service.generate_invoice(
+                    user=user,
+                    plan=payment_doc.get("plan", new_plan),
+                    amount=float(payment_doc.get("amount", 0)),
+                    currency=payment_doc.get("currency", "USD"),
+                    transaction_id=order_id,
+                    billing_cycle=payment_doc.get("billing_cycle", "one-time"),
+                )
+                invoice_id = invoice["invoice_id"]
+                await payments_collection.update_one(
+                    {"_id": payment_doc["_id"]},
+                    {"$set": {"invoice_id": invoice_id}},
+                )
+            except Exception:
+                # Invoice generation must never break the upgrade flow.
+                pass
 
-        return {"status": "success", "plan": new_plan}
+        return {"status": "success", "plan": new_plan, "invoice_id": invoice_id}
 
     raise HTTPException(status_code=400, detail=f"Payment not completed: {data.get('status')}")
 
@@ -614,6 +635,17 @@ async def paypal_webhook(request: Request):
                     payment_id=f"wh-{custom_id}",
                     status="completed",
                 )
+                try:
+                    invoice_service.generate_invoice(
+                        user=user,
+                        plan=new_plan,
+                        amount=paid_amount,
+                        currency=currency,
+                        transaction_id=f"wh-{custom_id}",
+                        billing_cycle="monthly",
+                    )
+                except Exception:
+                    pass
 
     elif event_type == "PAYMENT.CAPTURE.DENIED":
         resource = payload.get("resource", {})
@@ -703,6 +735,23 @@ async def billing_status(user=Depends(get_current_user)):
         "interviews_used": user.get("interviews_used", 0),
         "resumes_used": user.get("resumes_used", 0),
     }
+
+
+@router.get("/invoices")
+async def list_invoices(user=Depends(get_current_user)):
+    """List the current user's invoices (metadata only)."""
+    return {"invoices": invoice_service.get_user_invoices(user["id"])}
+
+
+@router.get("/invoices/{invoice_id}")
+async def get_invoice(invoice_id: str, request: Request, user=Depends(get_current_user)):
+    """Fetch a single invoice as JSON, or HTML with ?format=html."""
+    invoice = invoice_service.get_invoice(invoice_id)
+    if not invoice or invoice.get("customer", {}).get("user_id") != str(user["id"]):
+        raise HTTPException(status_code=404, detail="Invoice not found")
+    if request.query_params.get("format") == "html":
+        return HTMLResponse(content=invoice_service.generate_invoice_html(invoice))
+    return invoice
 
 
 # Single source of truth for prices. Frontend renders from this so prices can

@@ -2,7 +2,7 @@
 
 This module contains the complete gamification system including:
 - Level/XP/streak math and progression
-- Tower titles, boss battles, wizard outfits
+- Tower titles, boss battles
 - Power-ups, challenges, badges
 - Daily bonuses, mystery boxes
 - Practice recording and profile management
@@ -47,16 +47,6 @@ TOWER_TITLES = {
     90: ("Legendary Programmer", "🏅"),
     95: ("Code Overlord", "👁️"),
     100: ("God of Code", "👑"),
-}
-
-# ─── Wizard outfits ───
-WIZARD_OUTFITS = {
-    1:   {"name": "Novice Robe", "color": "#6b7280", "effect": "none"},
-    10:  {"name": "Apprentice Robe", "color": "#22c55e", "effect": "glow"},
-    25:  {"name": "Mage Robe", "color": "#3b82f6", "effect": "sparkle"},
-    50:  {"name": "Archmage Robe", "color": "#a855f7", "effect": "fire_aura"},
-    75:  {"name": "Code Sage Robe", "color": "#f59e0b", "effect": "lightning"},
-    100: {"name": "God of Code", "color": "#4CC9F0", "effect": "rainbow_wings"},
 }
 
 # ─── Boss definitions ───
@@ -607,7 +597,6 @@ async def initialize_gamification(user_id: str):
             "auto_save": 0, "night_mode": 0, "focus_mode": 0,
         },
         "bosses_defeated": [],
-        "wizard_outfit": "novice_robe",
         "first_solve_today": None,
         "weekly_challenges": [],
         "monthly_challenges": [],
@@ -632,7 +621,7 @@ async def record_practice(user_id: str, activity_type: str, score: float = 0, me
     tower_defaults = {
         "stars_total": 0, "coins": 0,
         "power_ups": {k: 0 for k in POWER_UPS},
-        "bosses_defeated": [], "wizard_outfit": "novice robe",
+        "bosses_defeated": [],
         "first_solve_today": None,
         "weekly_challenges": [], "monthly_challenges": [],
         "streak_freezes": 1,
@@ -765,13 +754,6 @@ async def record_practice(user_id: str, activity_type: str, score: float = 0, me
                         {"$set": {"level": new_level}},
                         session=session,
                     )
-                    outfit = get_wizard_outfit(new_level)
-                    await coll.update_one(
-                        {"user_id": user_id},
-                        {"$set": {"wizard_outfit": outfit}},
-                        session=session,
-                    )
-
                 # 3. Update challenge progress inside the same transaction
                 await _update_challenge_progress_tx(
                     user_id, activity_type, score, new_streak, new_level, session
@@ -791,11 +773,6 @@ async def record_practice(user_id: str, activity_type: str, score: float = 0, me
             await gamification_collection.update_one(
                 {"user_id": user_id},
                 {"$set": {"level": new_level}},
-            )
-            outfit = get_wizard_outfit(new_level)
-            await gamification_collection.update_one(
-                {"user_id": user_id},
-                {"$set": {"wizard_outfit": outfit}},
             )
         await _update_challenge_progress(user_id, activity_type, score, new_streak, new_level)
 
@@ -902,15 +879,6 @@ def get_title_for_level(level: int) -> tuple:
         if level >= threshold:
             title, emoji = t, e
     return title, emoji
-
-
-def get_wizard_outfit(level: int) -> dict:
-    """Get wizard outfit for a level."""
-    outfit = WIZARD_OUTFITS[1]
-    for threshold, o in sorted(WIZARD_OUTFITS.items()):
-        if level >= threshold:
-            outfit = o
-    return outfit
 
 
 # ─── Forest Journey helpers ───
@@ -1259,7 +1227,6 @@ async def ensure_tower_fields(user_id: str):
         "coins": 0,
         "power_ups": {k: 0 for k in POWER_UPS},
         "bosses_defeated": [],
-        "wizard_outfit": "novice robe",
         "first_solve_today": None,
         "weekly_challenges": [],
         "monthly_challenges": [],
@@ -1283,7 +1250,6 @@ async def get_gamification_profile(user_id: str) -> dict:
 
     level = _calculate_level(profile.get("xp", 0))
     title, emoji = get_title_for_level(level)
-    outfit = get_wizard_outfit(level)
     mult, bonus = calculate_streak_multiplier(profile.get("streak", 0))
 
     # Current boss info
@@ -1299,7 +1265,6 @@ async def get_gamification_profile(user_id: str) -> dict:
     profile["xp_for_current_level"] = xp_for_level(level)
     profile["title"] = title
     profile["title_emoji"] = emoji
-    profile["wizard_outfit"] = outfit
     profile["streak_multiplier"] = mult
     profile["streak_bonus_xp"] = bonus
     profile["current_boss"] = current_boss

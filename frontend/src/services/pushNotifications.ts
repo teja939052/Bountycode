@@ -1,4 +1,4 @@
-const SUBSCRIPTION_KEY = "placementpro_push_subscription";
+const SUBSCRIPTION_KEY = "bountycode_push_subscription";
 
 export function isPushSupported() {
   return "serviceWorker" in navigator && "PushManager" in window;

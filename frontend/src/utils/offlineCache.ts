@@ -1,4 +1,4 @@
-const DB_NAME = "placementpro";
+const DB_NAME = "bountycode";
 const DB_VERSION = 1;
 const STORE_NAME = "lessons";
 

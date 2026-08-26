@@ -14,7 +14,7 @@ from bson import ObjectId
 
 from app.config import get_settings
 from app.database import users_collection, career_profiles_collection, resumes_collection
-from app.services.ai import chat_completion, parse_json
+from app.services.ai_core import chat_completion, parse_json
 from app.services.resume_parser import extract_text_from_pdf
 
 logger = logging.getLogger(__name__)

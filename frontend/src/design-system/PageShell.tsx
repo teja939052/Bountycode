@@ -9,9 +9,10 @@ import { AmbientNature } from "./AmbientNature";
  *  - adventure  : Leaves + faint map contours (landing, journey map, home)
  *  - focus      : NO decorative background. Compiler, OA, resume, admin.
  *  - celebration: Leaves + warm gold wash (reward reveals)
+ *  - spring     : Sakura petal overlay (landing page hero)
  */
 
-export type PageTheme = "nature" | "adventure" | "focus" | "celebration";
+export type PageTheme = "nature" | "adventure" | "focus" | "celebration" | "spring";
 
 interface PageShellProps {
   theme?: PageTheme;
@@ -50,7 +51,9 @@ export function PageShell({ theme = "nature", children, className = "" }: PageSh
           }}
         />
       )}
-      <AmbientNature density={theme === "adventure" ? "normal" : "normal"} />
+      {theme !== "spring" && (
+        <AmbientNature density={theme === "adventure" ? "normal" : "normal"} />
+      )}
       <div className={`relative z-10 ${pad}`}>{children}</div>
     </div>
   );

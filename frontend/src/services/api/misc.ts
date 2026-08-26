@@ -47,51 +47,6 @@ export const dsaFingerprintApi = {
   },
 };
 
-export const battlesApi = {
-  get() {
-    return request("/api/v1/battles");
-  },
-
-  getById(battleId) {
-    return request(`/api/v1/battles/${battleId}`);
-  },
-};
-
-export const scrimsApi = {
-  get(params: Record<string, any> = {}) {
-    const query = new URLSearchParams();
-    Object.entries(params).forEach(([k, v]) => {
-      if (v) query.set(k, v);
-    });
-    return request(`/api/v1/scrims?${query.toString()}`);
-  },
-
-  getById(scrimId) {
-    return request(`/api/v1/scrims/${scrimId}`);
-  },
-
-  create(payload) {
-    return request("/api/v1/scrims", {
-      method: "POST",
-      body: JSON.stringify(payload),
-    });
-  },
-
-  like(scrimId) {
-    return request(`/api/v1/scrims/${scrimId}/like`, { method: "POST" });
-  },
-};
-
-export const rankApi = {
-  get() {
-    return request("/api/v1/rank");
-  },
-
-  getProfile() {
-    return request("/api/v1/rank/profile");
-  },
-};
-
 export const projectGeneratorApi = {
   generate(payload) {
     return request("/api/v1/project-generator/generate", {
@@ -102,37 +57,6 @@ export const projectGeneratorApi = {
 
   getHistory() {
     return request("/api/v1/project-generator/history");
-  },
-};
-
-export const mysteryBoxApi = {
-  open() {
-    return request("/api/v1/hook/mystery-box", { method: "POST" });
-  },
-
-  checkDoubleXP(activityType, score) {
-    return request("/api/v1/hook/double-xp-check", {
-      method: "POST",
-      body: JSON.stringify({ activity_type: activityType, score }),
-    });
-  },
-
-  getSavageFeedback(score) {
-    return request(`/api/v1/hook/savage-feedback?score=${score}`);
-  },
-
-  useStreakFreeze() {
-    return request("/api/v1/hook/streak-freeze", { method: "POST" });
-  },
-
-  getDailyBonus() {
-    return request("/api/v1/hook/daily-bonus");
-  },
-};
-
-export const energyApi = {
-  get() {
-    return request("/api/v1/energy");
   },
 };
 

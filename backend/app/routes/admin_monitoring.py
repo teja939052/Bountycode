@@ -5,9 +5,10 @@ from datetime import datetime, timedelta
 
 from app.utils.timeutil import utcnow
 from typing import Optional
+import re
 import logging
 
-from app.middleware.auth import get_current_user
+from app.middleware.auth import get_current_user, require_admin
 from app.database import get_db
 from app.services.health_checker import get_health_checker
 from app.services.feature_flags import get_feature_manager, FeatureStatus
@@ -16,15 +17,8 @@ router = APIRouter(prefix="/api/v1/admin", tags=["admin"])
 logger = logging.getLogger(__name__)
 
 
-async def verify_admin(user=Depends(get_current_user)):
-    """Verify user is admin."""
-    if not getattr(user, 'is_admin', False) and user.get("email") not in ["admin@placementpro.com"]:
-        raise HTTPException(status_code=403, detail="Admin access required")
-    return user
-
-
 @router.get("/dashboard/overview")
-async def admin_dashboard_overview(admin=Depends(verify_admin), db=Depends(get_db)):
+async def admin_dashboard_overview(admin=Depends(require_admin), db=Depends(get_db)):
     """Get admin dashboard overview with key metrics."""
     try:
         users_collection = db["users"]
@@ -106,7 +100,7 @@ async def admin_dashboard_overview(admin=Depends(verify_admin), db=Depends(get_d
 
 
 @router.get("/system/health")
-async def system_health_report(admin=Depends(verify_admin)):
+async def system_health_report(admin=Depends(require_admin)):
     """Get comprehensive system health report."""
     try:
         checker = get_health_checker()
@@ -118,7 +112,7 @@ async def system_health_report(admin=Depends(verify_admin)):
 
 
 @router.get("/feature-flags")
-async def list_feature_flags(admin=Depends(verify_admin)):
+async def list_feature_flags(admin=Depends(require_admin)):
     """List all feature flags and their status."""
     try:
         manager = get_feature_manager()
@@ -147,7 +141,7 @@ async def list_feature_flags(admin=Depends(verify_admin)):
 async def update_feature_flag_status(
     flag_name: str,
     status: str,
-    admin=Depends(verify_admin)
+    admin=Depends(require_admin)
 ):
     """Update feature flag status (enabled/disabled/beta/gradual)."""
     try:
@@ -178,7 +172,7 @@ async def update_feature_flag_status(
 async def set_feature_flag_rollout(
     flag_name: str,
     rollout_percentage: int,
-    admin=Depends(verify_admin)
+    admin=Depends(require_admin)
 ):
     """Set feature flag rollout percentage for gradual deployment."""
     try:
@@ -206,7 +200,7 @@ async def set_feature_flag_rollout(
 async def search_users(
     email: Optional[str] = None,
     user_id: Optional[str] = None,
-    admin=Depends(verify_admin),
+    admin=Depends(require_admin),
     db=Depends(get_db)
 ):
     """Search for users by email or ID."""
@@ -215,9 +209,11 @@ async def search_users(
         
         query = {}
         if email:
-            query["email"] = {"$regex": email, "$options": "i"}
+            query["email"] = {"$regex": re.escape(email), "$options": "i"}
         elif user_id:
             from bson import ObjectId
+            if not ObjectId.is_valid(user_id):
+                raise HTTPException(status_code=400, detail="Invalid user_id format")
             query["_id"] = ObjectId(user_id)
         else:
             raise HTTPException(status_code=400, detail="Provide email or user_id")
@@ -230,7 +226,7 @@ async def search_users(
                     "id": str(u["_id"]),
                     "email": u.get("email"),
                     "name": u.get("name"),
-                    "tier": u.get("tier", "free"),
+                    "plan": u.get("plan", "free"),
                     "created_at": u.get("created_at"),
                     "last_login": u.get("last_login"),
                 }
@@ -247,7 +243,7 @@ async def search_users(
 @router.get("/revenue/breakdown")
 async def revenue_breakdown(
     days: int = 30,
-    admin=Depends(verify_admin),
+    admin=Depends(require_admin),
     db=Depends(get_db)
 ):
     """Get revenue breakdown by plan type."""
