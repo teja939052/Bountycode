@@ -3,6 +3,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
 from typing import List, Optional, Dict, Any
 from app.middleware.auth import get_current_user
+from app.database import srs_cards_collection
 
 router = APIRouter(prefix="/api/v1/sde", tags=["sde-diagnostic"])
 
@@ -225,8 +226,9 @@ async def complete_sde_module(
         # (In production, this would recalculate readiness based on assessments)
         
         # Enroll module concepts into SRS
-        from app.services.srs_engine import create_card
-        
+        from app.services.spaced_repetition import SpacedRepetitionEngine, SRSState
+        from dataclasses import asdict
+
         module_concepts = {
             "module_1": [
                 {"concept_id": "variables_types", "topic": "Programming", "difficulty": "easy"},
@@ -241,19 +243,26 @@ async def complete_sde_module(
                 {"concept_id": "dsa_graphs", "topic": "DSA", "difficulty": "medium"},
             ]
         }
-        
+
         if module_id in module_concepts:
+            engine = SpacedRepetitionEngine()
+            col = srs_cards_collection()
             for concept in module_concepts[module_id]:
                 try:
-                    from app.services.srs_engine import create_card
-                    await create_card(
-                        user_id=user["id"],
-                        concept_id=concept["concept_id"],
-                        topic=concept["topic"],
-                        difficulty=concept["difficulty"],
-                        metadata={"source": "module_completion", "module_id": module_id}
+                    state = engine.create_new_card(concept["concept_id"], user["id"])
+                    doc = asdict(state)
+                    doc["problem_id"] = concept["concept_id"]
+                    doc["user_id"] = user["id"]
+                    doc["difficulty"] = concept["difficulty"]
+                    doc["topic"] = concept["topic"]
+                    doc["source"] = "module_completion"
+                    doc["module_id"] = module_id
+                    await col.update_one(
+                        {"user_id": user["id"], "problem_id": concept["concept_id"]},
+                        {"$set": doc},
+                        upsert=True,
                     )
-                except Exception as e:
+                except Exception:
                     pass
         
         return {

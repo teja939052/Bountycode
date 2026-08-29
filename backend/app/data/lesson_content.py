@@ -752,9 +752,190 @@ HAND_CRAFTED_LESSONS.update(dict([
             "Break large programs into smaller pieces",
             "Congratulations on your first project!",
         ],
-        next_steps="Level 1 complete! Now let us move to Level 2: Variables.",
-    ),
+         next_steps="Level 1 complete! Now let us move to Level 2: Variables.",
+     ),
 ]))
+
+
+# ============================================================================
+# VARIABLE / STATE VERTICAL SLICE — Interactive Discovery Lesson
+# ============================================================================
+# This is the game-based learning vertical slice. It delivers:
+#   - Story world context (memory kingdom)
+#   - First-principle discovery of variables as memory labels
+#   - Interactive manipulation with immediate feedback
+#   - Scaffolded hints (conceptual / structural / optimization)
+#   - Transfer challenge (apply to a new context)
+#   - Mastery update, SRS enrollment, XP reward
+# The lesson_id "c-variable-discovery" is a special non-curriculum lesson
+# routed through /api/v1/learning/lesson/variable-discovery.
+
+VARIABLE_DISCOVERY_CONTENT = {
+    "story_world": {
+        "title": "The Memory Kingdom",
+        "emoji": "🏰",
+        "narration": [
+            "In the Memory Kingdom, every piece of information lives in a tiny tower of drawers.",
+            "Each drawer has an address (a number) and holds a single value.",
+            "But the King has a problem: the drawers are only labeled by address. No one can remember which address holds what!",
+            "The Royal Inventor (you!) must create LABELS — human-readable names that point to drawer addresses.",
+            "These labels are what we call VARIABLES. A variable is a name that refers to a memory location.",
+        ],
+        "character": {
+            "name": "Byte the Royal Inventor",
+            "emoji": "🔧",
+            "quote": "Names are power! Without labels, memory is just a sea of numbers.",
+        },
+    },
+    "discovery": {
+        "title": "First Principle: What is a Variable?",
+        "steps": [
+            {
+                "type": "observation",
+                "prompt": "Look at the memory grid below. There are 8 drawers (addresses 0-7), each holding a value.",
+                "memory_state": [0, 0, 0, 0, 42, 0, 0, 0],
+                "question": "Which drawer holds the value 42?",
+                "correct_answer": 4,
+                "hint_level_1": "Count from 0. The 5th drawer (index 4) holds 42.",
+                "hint_level_2": "Address = index. Find the address where value == 42.",
+                "hint_level_3": "Use the formula: iterate addresses 0..7, find where memory[addr] == 42.",
+            },
+            {
+                "type": "manipulation",
+                "prompt": "Now you will CREATE a label. Assign the name 'age' to the drawer at address 4 (which holds 42).",
+                "question": "What will 'age' evaluate to?",
+                "correct_answer": 42,
+                "hint_level_1": "The label 'age' points to address 4. Address 4 holds 42.",
+                "hint_level_2": "A variable lookup: name -> address -> value. age -> addr 4 -> 42.",
+                "hint_level_3": "In C this is: int age = 42; then printf(\"%d\", age) prints 42.",
+            },
+            {
+                "type": "mutation",
+                "prompt": "Variables can change! Reassign 'age' to 25.",
+                "question": "After reassignment, what does the memory at address 4 now hold?",
+                "correct_answer": 25,
+                "hint_level_1": "Reassignment overwrites the value at the same address.",
+                "hint_level_2": "age = 25; writes 25 to address 4. The name stays the same, the value changes.",
+                "hint_level_3": "Variables are mutable bindings — the name is constant, the value can change.",
+            },
+            {
+                "type": "bulb_reveal",
+                "prompt": "You just discovered that a variable is a NAME bound to a MEMORY ADDRESS.",
+                "insight": (
+                    "A variable declaration like 'int age = 42;' does three things:\n"
+                    "1. Allocates memory (a drawer) of the right size\n"
+                    "2. Stores the value (42) in that drawer\n"
+                    "3. Labels the drawer with the name 'age'\n\n"
+                    "From then on, 'age' is a shortcut to that drawer's address."
+                ),
+            },
+        ],
+    },
+    "code_sandbox": {
+        "language": "c",
+        "starter_code": (
+            '#include <stdio.h>\n'
+            '\n'
+            'int main() {\n'
+            '    // TODO: Declare a variable named "age" and set it to 42\n'
+            '    // TODO: Print "My age is %d"\n'
+            '    // TODO: Change age to 25 and print again\n'
+            '    return 0;\n'
+            '}'
+        ),
+        "test_cases": [
+            {
+                "description": "Age starts at 42, then changes to 25",
+                "expected_output": "My age is 42\nMy age is 25",
+            },
+        ],
+        "scaffolded_hints": [
+            {
+                "level": 1,
+                "text": "Use 'int age = 42;' to declare and initialize the variable.",
+            },
+            {
+                "level": 2,
+                "text": "Use printf(\"My age is %d\\n\", age); to print. Then assign 'age = 25;' and print again.",
+            },
+            {
+                "level": 3,
+                "text": "The full solution: declare age=42, print, reassign age=25, print. Two printf calls.",
+            },
+        ],
+    },
+    "transfer_challenge": {
+        "title": "Memory Ledger (Transfer Challenge)",
+        "description": (
+            "A bank uses an array of 8 'account balances'. "
+            "You must write a function that finds the account with the highest balance "
+            "using only variable assignments (no built-in functions)."
+        ),
+        "difficulty": "medium",
+        "starter_code": (
+            '#include <stdio.h>\n'
+            '\n'
+            'int main() {\n'
+            '    int balances[8] = {100, 500, 250, 750, 300, 900, 450, 800};\n'
+            '    int highest_index = 0;\n'
+            '    int highest_value = balances[0];\n'
+            '    // TODO: Loop through balances, update highest_index & highest_value\n'
+            '    // TODO: Print "Account X has the highest balance: Y"\n'
+            '    return 0;\n'
+            '}'
+        ),
+        "expected_output": "Account 5 has the highest balance: 900",
+        "scaffolded_hints": [
+            {
+                "level": 1,
+                "text": "Use a for loop. If balances[i] > highest_value, update both variables.",
+            },
+            {
+                "level": 2,
+                "text": "Remember: highest_index tracks the position, highest_value tracks the amount.",
+            },
+            {
+                "level": 3,
+                "text": "After the loop, account 5 (value 900) should be the winner.",
+            },
+        ],
+    },
+    "boss_battle": {
+        "title": "The State Mutation Boss",
+        "emoji": "🧟",
+        "description": (
+            "The boss starts with 3 health. You have 3 variables (attack, defense, special). "
+            "Each correct answer reduces its health by 1. All 3 must be used correctly to win."
+        ),
+        "health": 3,
+        "rounds": [
+            {
+                "question": "A variable named 'hp' holds 100. You do 'hp = hp - 25'. What is hp now?",
+                "correct_answer": 75,
+                "explanation": "Variables store state that evolves. hp - 25 reads hp, subtracts, writes back.",
+            },
+            {
+                "question": "If 'int a = 5, b = 3;' then 'a = b; b = a;', what are a and b?",
+                "correct_answer": "a=3, b=3",
+                "explanation": "Assignment copies values. After a=b, both are 3. b=a doesn't swap!",
+            },
+            {
+                "question": "What is wrong with: 'int x; x = x + 1;' when x was just declared?",
+                "correct_answer": "x has no defined value (garbage), so the result is unpredictable",
+                "explanation": "Always initialize variables before using them.",
+            },
+        ],
+        "reward_xp": 100,
+        "reward_badge": "variable_master",
+    },
+    "srs_concept": "variables:types",
+    "mastery_concept": "variables:basics",
+    "xp_reward": 75,
+    "next_steps": (
+        "Excellent! You now understand variables as named memory locations. "
+        "Next: learn how these labels connect to actual machine memory with pointers."
+    ),
+}
 
 
 # ============================================================================

@@ -191,8 +191,8 @@ def get_client() -> AsyncIOMotorClient:
             maxPoolSize=settings.MONGODB_MAX_POOL_SIZE,
             minPoolSize=settings.MONGODB_MIN_POOL_SIZE,
             maxIdleTimeMS=settings.MONGODB_MAX_IDLE_TIME_MS,
-            serverSelectionTimeoutMS=5000,
-            connectTimeoutMS=5000,
+            serverSelectionTimeoutMS=15000,
+            connectTimeoutMS=10000,
             socketTimeoutMS=30000,
         )
     return _client

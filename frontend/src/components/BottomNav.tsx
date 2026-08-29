@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { LayoutDashboard, BookOpen, Code2, MessageSquare, Menu, Trophy, Briefcase, Castle, Brain, Calendar, type LucideIcon } from 'lucide-react';
+import { LayoutDashboard, BookOpen, Code2, MessageSquare, Menu, Trophy, Briefcase, Castle, Brain, Calendar, Lightbulb, type LucideIcon } from 'lucide-react';
 import useAuthStore from '../store/authStore';
 import { useGamification } from '../hooks/useGamification';
 

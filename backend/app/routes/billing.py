@@ -784,3 +784,181 @@ async def get_plans():
             "currency_inr": inr.get("currency"),
         })
     return {"plans": out, "seat_min": {"team": 5, "enterprise": 10}, "seat_max": {"team": 50}}
+
+
+@router.post("/checkout/razorpay")
+async def create_razorpay_order(request: Request, user=Depends(get_current_user)):
+    """Create a Razorpay order for Indian users (INR + UPI)."""
+    if not settings.RAZORPAY_KEY_ID:
+        raise HTTPException(status_code=500, detail="Razorpay not configured")
+
+    body = await request.json() if request.headers.get("content-type", "").startswith("application/json") else {}
+    plan_key = body.get("plan", "pro_monthly")
+    seats = body.get("seats", 1)
+
+    price_key = _get_pricing(plan_key, "IN")
+    final_amount = float(price_key["amount"]) * seats
+    currency = price_key["currency"]
+
+    coupon_code = body.get("coupon_code")
+    if coupon_code:
+        coupon_result = await apply_coupon_service(user["id"], coupon_code, plan_key.replace("_monthly", "").replace("_yearly", "").replace("_lifetime", ""), final_amount, "monthly")
+        if coupon_result.get("valid"):
+            final_amount = coupon_result["final_amount"]
+
+    order_data = {
+        "amount": int(final_amount * 100),
+        "currency": currency,
+        "receipt": f"rc_{user['id']}_{plan_key}",
+        "notes": {
+            "user_id": str(user["id"]),
+            "plan": plan_key,
+            "seats": str(seats),
+        },
+    }
+
+    async with httpx.AsyncClient() as client:
+        resp = await client.post(
+            "https://api.razorpay.com/v1/orders",
+            auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET),
+            headers={"Content-Type": "application/json"},
+            json=order_data,
+        )
+        resp.raise_for_status()
+        order = resp.json()
+
+    await users_collection.update_one(
+        {"_id": ObjectId(user["id"])},
+        {
+            "$set": {
+                "razorpay_order_id": order["id"],
+                "plan_pending": plan_key,
+            },
+        },
+    )
+
+    await record_payment(
+        user_id=user["id"],
+        amount=final_amount,
+        currency=currency,
+        plan=plan_key,
+        billing_cycle="yearly" if "yearly" in plan_key else "monthly" if "monthly" in plan_key else "lifetime",
+        payment_method="razorpay",
+        payment_id=order["id"],
+        status="pending",
+        metadata={"seats": seats, "coupon_code": coupon_code},
+    )
+
+    return {
+        "order_id": order["id"],
+        "amount": order["amount"],
+        "currency": order["currency"],
+        "key_id": settings.RAZORPAY_KEY_ID,
+    }
+
+
+def _verify_razorpay_signature(body: bytes, headers: dict) -> bool:
+    """Verify Razorpay webhook signature."""
+    if not settings.RAZORPAY_WEBHOOK_SECRET:
+        return False
+
+    signature = headers.get("x-razorpay-signature", "")
+    if not signature:
+        return False
+
+    secret = settings.RAZORPAY_WEBHOOK_SECRET.encode()
+    computed = hmac.new(secret, body, hashlib.sha256).hexdigest()
+    expected = hmac.new(secret, body, hashlib.sha256).hexdigest()
+
+    try:
+        return hmac.compare_digest(signature, computed)
+    except Exception:
+        return False
+
+
+@router.post("/webhook/razorpay")
+async def razorpay_webhook(request: Request):
+    """Handle Razorpay payment webhook events (UPI, cards, netbanking)."""
+    body = await request.body()
+    headers = dict(request.headers)
+
+    if not _verify_razorpay_signature(body, headers):
+        raise HTTPException(status_code=401, detail="Invalid webhook signature")
+
+    try:
+        payload = json.loads(body)
+    except json.JSONDecodeError:
+        raise HTTPException(status_code=400, detail="Invalid JSON")
+
+    event_type = payload.get("event", "")
+
+    if event_type == "payment.captured":
+        payment = payload.get("payload", {}).get("payment", {}).get("entity", {})
+        order_id = payment.get("order_id", "")
+        notes = payment.get("notes", {})
+
+        user_id = notes.get("user_id", "")
+        plan_key = notes.get("plan", "pro")
+        seats = int(notes.get("seats", 1))
+
+        if not user_id or not ObjectId.is_valid(user_id):
+            return {"status": "ok"}
+
+        new_plan = "pro" if plan_key in ("pro_monthly", "pro_monthly") else plan_key
+        billing_cycle = "lifetime" if "lifetime" in plan_key else "yearly" if "yearly" in plan_key else "monthly"
+
+        amount = float(payment.get("amount", 0)) / 100.0
+        currency = payment.get("currency", "INR").upper()
+
+        await users_collection.update_one(
+            {"_id": ObjectId(user_id)},
+            {
+                "$set": {
+                    "plan": new_plan,
+                    "plan_updated_at": datetime.now(timezone.utc),
+                },
+                "$unset": {"razorpay_order_id": "", "plan_pending": ""},
+            },
+        )
+
+        from app.services.trial import mark_trial_converted
+        await mark_trial_converted(user_id)
+
+        await record_payment(
+            user_id=user_id,
+            amount=amount,
+            currency=currency,
+            plan=new_plan,
+            billing_cycle=billing_cycle,
+            payment_method="razorpay_webhook",
+            payment_id=order_id,
+            status="completed",
+        )
+
+        user = await users_collection.find_one({"_id": ObjectId(user_id)})
+        if user:
+            try:
+                invoice_service.generate_invoice(
+                    user=user,
+                    plan=new_plan,
+                    amount=amount,
+                    currency=currency,
+                    transaction_id=order_id,
+                    billing_cycle="one-time" if "lifetime" in plan_key else billing_cycle,
+                )
+            except Exception:
+                pass
+
+    elif event_type == "payment.failed":
+        payment = payload.get("payload", {}).get("payment", {}).get("entity", {})
+        order_id = payment.get("order_id", "")
+        notes = payment.get("notes", {})
+        user_id = notes.get("user_id", "")
+
+        if user_id and ObjectId.is_valid(user_id):
+            await users_collection.update_one(
+                {"_id": ObjectId(user_id)},
+                {"$set": {"plan": "free", "plan_pending": ""}},
+            )
+
+    return {"status": "ok"}

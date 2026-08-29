@@ -318,7 +318,6 @@ _MISSION_BY_CATEGORY = {
     "resume": {"label": "Optimize your resume", "to": "/ats", "minutes": 10},
     "coding": {"label": "Solve a coding challenge", "to": "/coding", "minutes": 20},
     "aptitude": {"label": "Take an aptitude test", "to": "/aptitude", "minutes": 20},
-    "projects": {"label": "Generate a project", "to": "/project-generator", "minutes": 25},
 }
 
 

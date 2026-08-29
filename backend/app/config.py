@@ -68,6 +68,12 @@ class Settings(BaseSettings):
     PAYPAL_MODE: str = os.getenv("PAYPAL_MODE", "sandbox")
     PAYPAL_WEBHOOK_ID: str = os.getenv("PAYPAL_WEBHOOK_ID", "")
 
+    # Razorpay (India payment gateway)
+    RAZORPAY_KEY_ID: str = os.getenv("RAZORPAY_KEY_ID", "")
+    RAZORPAY_KEY_SECRET: str = os.getenv("RAZORPAY_KEY_SECRET", "")
+    RAZORPAY_WEBHOOK_SECRET: str = os.getenv("RAZORPAY_WEBHOOK_SECRET", "")
+    RAZORPAY_MODE: str = os.getenv("RAZORPAY_MODE", "test")
+
     # Google OAuth
     GOOGLE_CLIENT_ID: str = os.getenv("GOOGLE_CLIENT_ID", "")
     GOOGLE_CLIENT_SECRET: str = os.getenv("GOOGLE_CLIENT_SECRET", "")
@@ -159,7 +165,8 @@ class Settings(BaseSettings):
     PISTON_TIMEOUT: int = 30
     # Local sandboxed fallback for code execution when Piston is rate-limited/down.
     # Self-hosted, zero egress: runs code in a restricted subprocess with resource limits.
-    USE_LOCAL_SANDBOX: bool = os.getenv("USE_LOCAL_SANDBOX", "false").lower() == "true"
+    # Defaults ON so Python/JS code execution works out-of-the-box without a Piston key.
+    USE_LOCAL_SANDBOX: bool = os.getenv("USE_LOCAL_SANDBOX", "true").lower() == "true"
     SANDBOX_TIMEOUT: int = int(os.getenv("SANDBOX_TIMEOUT", "5"))
     # Free remote fallbacks (Wandbox + Glot.io) tried after Piston and before the
     # local sandbox. Best-effort public APIs with per-IP limits — not a security boundary.

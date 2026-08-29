@@ -1,8 +1,6 @@
 import { lazy } from "react";
 
 const routeImportFns = {
-  CurriculumHub: () => import("./CurriculumHub"),
-  LearnTrack: () => import("./LearnTrack"),
   LearnLesson: () => import("./LearnLesson"),
   Login: () => import("./Login"),
   Register: () => import("./Register"),
@@ -42,31 +40,25 @@ const routeImportFns = {
   SolveProblem: () => import("./SolveProblem"),
   ForgotPassword: () => import("./ForgotPassword"),
   ResetPassword: () => import("./ResetPassword"),
+  RoleSelect: () => import("./RoleSelect"),
   MonthlyContests: () => import("./MonthlyContests"),
   IndianPlacement: () => import("./IndianPlacement"),
-  DSAFingerprint: () => import("./DSAFingerprint"),
-  TowerDashboard: () => import("./TowerDashboard"),
   MockOA: () => import("./MockOA"),
   ResumeATS: () => import("./ResumeATS"),
   LearningHub: () => import("./LearningHub"),
   LanguageJourney: () => import("./LanguageJourney"),
-  LessonView: () => import("./LessonView"),
+  LessonPage: () => import("./LessonPage"),
   StudyLibrary: () => import("./StudyLibrary"),
   AdminDashboard: () => import("./AdminDashboard"),
   Topics: () => import("./Topics"),
   TopicProblems: () => import("./TopicProblems"),
   PersonalDashboard: () => import("./PersonalDashboard"),
-  AdaptivePath: () => import("./AdaptivePath"),
-   LearningModules: () => import("./LearningModules"),
-   LearningModule: () => import("./LearningModule"),
   ProblemOfTheDay: () => import("./ProblemOfTheDay"),
   DailyChallenge: () => import("./DailyChallenge"),
   DSAVisualizer: () => import("./DSAVisualizer"),
-  LearningJourneys: () => import("./LearningJourneys"),
   ChallengePacks: () => import("./ChallengePacks"),
   AIMentor: () => import("./AIMentor"),
   CodePlayground: () => import("./CodePlayground"),
-  CommandCenter: () => import("./CommandCenter"),
   CompareVisualizer: () => import("./CompareVisualizer"),
   Community: () => import("./Community"),
 
@@ -76,6 +68,7 @@ const routeImportFns = {
   InterviewBooking: () => import("./InterviewBooking"),
 
   InterviewReplay: () => import("./InterviewReplay"),
+  JourneyPage: () => import("./JourneyPage"),
   FreeTrial: () => import("./FreeTrial"),
   PwaSetup: () => import("./PwaSetup"),
   AdminContent: () => import("./AdminContent"),
@@ -114,7 +107,6 @@ const IDLE_PRELOAD_ROUTES = [
   "SystemDesign",
   "CompanyPrep",
   "CodingChallenge",
-  "TowerDashboard",
   "LearningHub",
   "Compiler",
   "Community",
@@ -134,8 +126,6 @@ function scheduleIdlePreload() {
 window.addEventListener("load", scheduleIdlePreload);
 
 const Login = lazy(() => import("./Login"));
-const CurriculumHub = lazy(() => import("./CurriculumHub"));
-const LearnTrack = lazy(() => import("./LearnTrack"));
 const LearnLesson = lazy(() => import("./LearnLesson"));
 const Register = lazy(() => import("./Register"));
 const Dashboard = lazy(() => import("./Dashboard"));
@@ -174,32 +164,26 @@ const Compiler = lazy(() => import("./Compiler"));
 const SolveProblem = lazy(() => import("./SolveProblem"));
 const ForgotPassword = lazy(() => import("./ForgotPassword"));
 const ResetPassword = lazy(() => import("./ResetPassword"));
+const RoleSelect = lazy(() => import("./RoleSelect"));
 const MonthlyContests = lazy(() => import("./MonthlyContests"));
 const IndianPlacement = lazy(() => import("./IndianPlacement"));
-const DSAFingerprint = lazy(() => import("./DSAFingerprint"));
-const TowerDashboard = lazy(() => import("./TowerDashboard"));
 const MockOA = lazy(() => import("./MockOA"));
 const ResumeATS = lazy(() => import("./ResumeATS"));
 const LearningHub = lazy(() => import("./LearningHub"));
 const LanguageJourney = lazy(() => import("./LanguageJourney"));
-const LessonView = lazy(() => import("./LessonView"));
+const LessonPage = lazy(() => import("./LessonPage"));
 const StudyLibrary = lazy(() => import("./StudyLibrary"));
 const AdminDashboard = lazy(() => import("./AdminDashboard"));
 const Topics = lazy(() => import("./Topics"));
 const TopicProblems = lazy(() => import("./TopicProblems"));
 const PersonalDashboard = lazy(() => import("./PersonalDashboard"));
 const StudentDashboard = lazy(() => import("./StudentDashboard"));
-const AdaptivePath = lazy(() => import("./AdaptivePath"));
-const LearningModules = lazy(() => import("./LearningModules"));
-const LearningModule = lazy(() => import("./LearningModule"));
 const ProblemOfTheDay = lazy(() => import('./ProblemOfTheDay'));
 const DailyChallenge = lazy(() => import('./DailyChallenge'));
 const DSAVisualizer = lazy(() => import('./DSAVisualizer'));
-const LearningJourneys = lazy(() => import('./LearningJourneys'));
 const ChallengePacks = lazy(() => import('./ChallengePacks'));
 const AIMentor = lazy(() => import('./AIMentor'));
 const CodePlayground = lazy(() => import('./CodePlayground'));
-const CommandCenter = lazy(() => import('./CommandCenter'));
 const CompareVisualizer = lazy(() => import('./CompareVisualizer'));
 const Community = lazy(() => import('./Community'));
 const ProjectGenerator = lazy(() => import('./ProjectGenerator'));
@@ -207,6 +191,7 @@ const LanguageLearning = lazy(() => import('./LanguageLearning'));
 const OnboardingQuest = lazy(() => import('./OnboardingQuest'));
 const InterviewBooking = lazy(() => import('./InterviewBooking'));
 const InterviewReplay = lazy(() => import('./InterviewReplay'));
+const JourneyPage = lazy(() => import('./JourneyPage'));
 const FreeTrial = lazy(() => import('./FreeTrial'));
 const PwaSetup = lazy(() => import('./PwaSetup'));
 const AdminContent = lazy(() => import('./AdminContent'));
@@ -222,15 +207,12 @@ const Career = lazy(() => import('./Career'));
 const Terms = lazy(() => import('./Terms'));
 const Privacy = lazy(() => import('./Privacy'));
 export {
-  CurriculumHub,
-  LearnTrack,
   LearnLesson,
   CompareVisualizer,
   Community,
   ProblemOfTheDay,
   DailyChallenge,
   DSAVisualizer,
-  LearningJourneys,
   ChallengePacks,
   AIMentor,
   Login,
@@ -271,31 +253,27 @@ export {
   SolveProblem,
   ForgotPassword,
   ResetPassword,
+  RoleSelect,
   MonthlyContests,
   IndianPlacement,
-  DSAFingerprint,
-  TowerDashboard,
   MockOA,
   ResumeATS,
   LearningHub,
   LanguageJourney,
-  LessonView,
+  LessonPage,
   StudyLibrary,
   AdminDashboard,
   Topics,
   TopicProblems,
   PersonalDashboard,
   StudentDashboard,
-  AdaptivePath,
-  LearningModules,
-  LearningModule,
   CodePlayground,
-  CommandCenter,
   ProjectGenerator,
   LanguageLearning,
   OnboardingQuest,
   InterviewBooking,
   InterviewReplay,
+  JourneyPage,
   FreeTrial,
   PwaSetup,
   AdminContent,

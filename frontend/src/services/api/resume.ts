@@ -62,6 +62,19 @@ export const resumeApi = {
     });
   },
 
+  analyzeRuleBased(
+    resumeText: string,
+    jobDescription = "",
+  ): Promise<Record<string, unknown>> {
+    return request("/api/v1/resume/analyze-rulebased", {
+      method: "POST",
+      body: JSON.stringify({
+        resume_text: resumeText,
+        job_description: jobDescription,
+      }),
+    });
+  },
+
   getResume(resumeId: string): Promise<ResumeData> {
     return request(`/api/v1/resume/${encodeURIComponent(resumeId)}`);
   },

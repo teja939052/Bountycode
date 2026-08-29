@@ -1,0 +1,1050 @@
+[
+  {
+    "id": "tuf_0591",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Strings",
+    "sub_topic": "Hard String Problems (KMP/Rabin-Karp)",
+    "pattern": "String Matching",
+    "tuf_step": "Strings",
+    "tuf_subtopic": "Hard String Problems (KMP/Rabin-Karp)",
+    "tuf_step_index": 18,
+    "question": "Minimum Window Subsequence (Strings #1)",
+    "question_title": "Minimum Window Subsequence (Strings #1)",
+    "statement": "Minimum Window Subsequence (Strings #1). Solve the Striver A2Z problem 'Minimum Window Subsequence (Strings #1)' from TakeUForward step 'Strings' (pattern: Hard String Problems (KMP/Rabin-Karp)). Return the required answer per TUF sheet. This is part of Strings asked in top product companies.",
+    "description": "Minimum Window Subsequence (Strings #1). Solve the Striver A2Z problem 'Minimum Window Subsequence (Strings #1)' from TakeUForward step 'Strings' (pattern: Hard String Problems (KMP/Rabin-Karp)). Return the required answ",
+    "constraints": [
+      "1 <= s.length <= 2*10^5",
+      "ASCII"
+    ],
+    "examples": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "output": "3",
+        "explanation": "Longest without repeat"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "output": "1",
+        "explanation": "All same"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def minimum(nums):\n    # Minimum Window Subsequence (Strings #1) - Strings\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "function_name": "minimum",
+    "leetcode_number": 1638,
+    "dsa_guide": {
+      "approach": "String Matching",
+      "data_structures": [
+        "Hard String Problems (KMP/Rabin-Karp)"
+      ],
+      "patterns": [
+        "String Matching"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Strings",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 72,
+    "upvotes": 112
+  },
+  {
+    "id": "tuf_0592",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Strings",
+    "sub_topic": "Hard String Problems (KMP/Rabin-Karp)",
+    "pattern": "String Matching",
+    "tuf_step": "Strings",
+    "tuf_subtopic": "Hard String Problems (KMP/Rabin-Karp)",
+    "tuf_step_index": 18,
+    "question": "Count and Say",
+    "question_title": "Count and Say",
+    "statement": "Count and Say. Solve the Striver A2Z problem 'Count and Say' from TakeUForward step 'Strings' (pattern: Hard String Problems (KMP/Rabin-Karp)). Return the required answer per TUF sheet. This is part of Strings asked in top product companies.",
+    "description": "Count and Say. Solve the Striver A2Z problem 'Count and Say' from TakeUForward step 'Strings' (pattern: Hard String Problems (KMP/Rabin-Karp)). Return the required answer per TUF sheet. This is part of Strings asked in t",
+    "constraints": [
+      "1 <= s.length <= 2*10^5",
+      "ASCII"
+    ],
+    "examples": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "output": "3",
+        "explanation": "Longest without repeat"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "output": "1",
+        "explanation": "All same"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def count(nums):\n    # Count and Say - Strings\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "function_name": "count",
+    "leetcode_number": 1645,
+    "dsa_guide": {
+      "approach": "String Matching",
+      "data_structures": [
+        "Hard String Problems (KMP/Rabin-Karp)"
+      ],
+      "patterns": [
+        "String Matching"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Strings",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 13,
+    "upvotes": 372
+  },
+  {
+    "id": "tuf_0593",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Strings",
+    "sub_topic": "Hard String Problems (KMP/Rabin-Karp)",
+    "pattern": "String Matching",
+    "tuf_step": "Strings",
+    "tuf_subtopic": "Hard String Problems (KMP/Rabin-Karp)",
+    "tuf_step_index": 18,
+    "question": "Rabin Karp",
+    "question_title": "Rabin Karp",
+    "statement": "Rabin Karp. Solve the Striver A2Z problem 'Rabin Karp' from TakeUForward step 'Strings' (pattern: Hard String Problems (KMP/Rabin-Karp)). Return the required answer per TUF sheet. This is part of Strings asked in top product companies.",
+    "description": "Rabin Karp. Solve the Striver A2Z problem 'Rabin Karp' from TakeUForward step 'Strings' (pattern: Hard String Problems (KMP/Rabin-Karp)). Return the required answer per TUF sheet. This is part of Strings asked in top pro",
+    "constraints": [
+      "1 <= s.length <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "output": "3",
+        "explanation": "Longest without repeat"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "output": "1",
+        "explanation": "All same"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def rabin(nums):\n    # Rabin Karp - Strings\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "function_name": "rabin",
+    "leetcode_number": 1652,
+    "dsa_guide": {
+      "approach": "String Matching",
+      "data_structures": [
+        "Hard String Problems (KMP/Rabin-Karp)"
+      ],
+      "patterns": [
+        "String Matching"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Strings",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 87,
+    "upvotes": 459
+  },
+  {
+    "id": "tuf_0594",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Strings",
+    "sub_topic": "Hard String Problems (KMP/Rabin-Karp)",
+    "pattern": "String Matching",
+    "tuf_step": "Strings",
+    "tuf_subtopic": "Hard String Problems (KMP/Rabin-Karp)",
+    "tuf_step_index": 18,
+    "question": "KMP LPS Array",
+    "question_title": "KMP LPS Array",
+    "statement": "KMP LPS Array. Solve the Striver A2Z problem 'KMP LPS Array' from TakeUForward step 'Strings' (pattern: Hard String Problems (KMP/Rabin-Karp)). Return the required answer per TUF sheet. This is part of Strings asked in top product companies.",
+    "description": "KMP LPS Array. Solve the Striver A2Z problem 'KMP LPS Array' from TakeUForward step 'Strings' (pattern: Hard String Problems (KMP/Rabin-Karp)). Return the required answer per TUF sheet. This is part of Strings asked in t",
+    "constraints": [
+      "1 <= s.length <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "output": "3",
+        "explanation": "Longest without repeat"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "output": "1",
+        "explanation": "All same"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def kmp(nums):\n    # KMP LPS Array - Strings\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "function_name": "kmp",
+    "leetcode_number": 1659,
+    "dsa_guide": {
+      "approach": "String Matching",
+      "data_structures": [
+        "Hard String Problems (KMP/Rabin-Karp)"
+      ],
+      "patterns": [
+        "String Matching"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Strings",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 40,
+    "upvotes": 413
+  },
+  {
+    "id": "tuf_0595",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Strings",
+    "sub_topic": "Hard String Problems (KMP/Rabin-Karp)",
+    "pattern": "String Matching",
+    "tuf_step": "Strings",
+    "tuf_subtopic": "Hard String Problems (KMP/Rabin-Karp)",
+    "tuf_step_index": 18,
+    "question": "Longest Happy Prefix",
+    "question_title": "Longest Happy Prefix",
+    "statement": "Longest Happy Prefix. Solve the Striver A2Z problem 'Longest Happy Prefix' from TakeUForward step 'Strings' (pattern: Hard String Problems (KMP/Rabin-Karp)). Return the required answer per TUF sheet. This is part of Strings asked in top product companies.",
+    "description": "Longest Happy Prefix. Solve the Striver A2Z problem 'Longest Happy Prefix' from TakeUForward step 'Strings' (pattern: Hard String Problems (KMP/Rabin-Karp)). Return the required answer per TUF sheet. This is part of Stri",
+    "constraints": [
+      "1 <= s.length <= 10^5",
+      "s lowercase letters"
+    ],
+    "examples": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "output": "3",
+        "explanation": "Longest without repeat"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "output": "1",
+        "explanation": "All same"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def longest(nums):\n    # Longest Happy Prefix - Strings\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "function_name": "longest",
+    "leetcode_number": 1666,
+    "dsa_guide": {
+      "approach": "String Matching",
+      "data_structures": [
+        "Hard String Problems (KMP/Rabin-Karp)"
+      ],
+      "patterns": [
+        "String Matching"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Strings",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 30,
+    "upvotes": 209
+  },
+  {
+    "id": "tuf_0596",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Strings",
+    "sub_topic": "Hard String Problems (KMP/Rabin-Karp)",
+    "pattern": "String Matching",
+    "tuf_step": "Strings",
+    "tuf_subtopic": "Hard String Problems (KMP/Rabin-Karp)",
+    "tuf_step_index": 18,
+    "question": "Z-Function",
+    "question_title": "Z-Function",
+    "statement": "Z-Function. Solve the Striver A2Z problem 'Z-Function' from TakeUForward step 'Strings' (pattern: Hard String Problems (KMP/Rabin-Karp)). Return the required answer per TUF sheet. This is part of Strings asked in top product companies.",
+    "description": "Z-Function. Solve the Striver A2Z problem 'Z-Function' from TakeUForward step 'Strings' (pattern: Hard String Problems (KMP/Rabin-Karp)). Return the required answer per TUF sheet. This is part of Strings asked in top pro",
+    "constraints": [
+      "1 <= s.length <= 10^5",
+      "s lowercase letters"
+    ],
+    "examples": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "output": "3",
+        "explanation": "Longest without repeat"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "output": "1",
+        "explanation": "All same"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def zfunction(nums):\n    # Z-Function - Strings\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "function_name": "zfunction",
+    "leetcode_number": 1673,
+    "dsa_guide": {
+      "approach": "String Matching",
+      "data_structures": [
+        "Hard String Problems (KMP/Rabin-Karp)"
+      ],
+      "patterns": [
+        "String Matching"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Strings",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 80,
+    "upvotes": 57
+  },
+  {
+    "id": "tuf_0597",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Strings",
+    "sub_topic": "Hard String Problems (KMP/Rabin-Karp)",
+    "pattern": "String Matching",
+    "tuf_step": "Strings",
+    "tuf_subtopic": "Hard String Problems (KMP/Rabin-Karp)",
+    "tuf_step_index": 18,
+    "question": "Shortest Palindrome",
+    "question_title": "Shortest Palindrome",
+    "statement": "Shortest Palindrome. Solve the Striver A2Z problem 'Shortest Palindrome' from TakeUForward step 'Strings' (pattern: Hard String Problems (KMP/Rabin-Karp)). Return the required answer per TUF sheet. This is part of Strings asked in top product companies.",
+    "description": "Shortest Palindrome. Solve the Striver A2Z problem 'Shortest Palindrome' from TakeUForward step 'Strings' (pattern: Hard String Problems (KMP/Rabin-Karp)). Return the required answer per TUF sheet. This is part of String",
+    "constraints": [
+      "1 <= s.length <= 10^5",
+      "s lowercase letters"
+    ],
+    "examples": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "output": "3",
+        "explanation": "Longest without repeat"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "output": "1",
+        "explanation": "All same"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def shortest(nums):\n    # Shortest Palindrome - Strings\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "function_name": "shortest",
+    "leetcode_number": 1680,
+    "dsa_guide": {
+      "approach": "String Matching",
+      "data_structures": [
+        "Hard String Problems (KMP/Rabin-Karp)"
+      ],
+      "patterns": [
+        "String Matching"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Strings",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 80,
+    "upvotes": 258
+  },
+  {
+    "id": "tuf_0598",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Strings",
+    "sub_topic": "Hard String Problems (KMP/Rabin-Karp)",
+    "pattern": "String Matching",
+    "tuf_step": "Strings",
+    "tuf_subtopic": "Hard String Problems (KMP/Rabin-Karp)",
+    "tuf_step_index": 18,
+    "question": "Count Palindromic Subsequences",
+    "question_title": "Count Palindromic Subsequences",
+    "statement": "Count Palindromic Subsequences. Solve the Striver A2Z problem 'Count Palindromic Subsequences' from TakeUForward step 'Strings' (pattern: Hard String Problems (KMP/Rabin-Karp)). Return the required answer per TUF sheet. This is part of Strings asked in top product companies.",
+    "description": "Count Palindromic Subsequences. Solve the Striver A2Z problem 'Count Palindromic Subsequences' from TakeUForward step 'Strings' (pattern: Hard String Problems (KMP/Rabin-Karp)). Return the required answer per TUF sheet. ",
+    "constraints": [
+      "1 <= s.length <= 10^5",
+      "s lowercase letters"
+    ],
+    "examples": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "output": "3",
+        "explanation": "Longest without repeat"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "output": "1",
+        "explanation": "All same"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def count(nums):\n    # Count Palindromic Subsequences - Strings\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "function_name": "count",
+    "leetcode_number": 1687,
+    "dsa_guide": {
+      "approach": "String Matching",
+      "data_structures": [
+        "Hard String Problems (KMP/Rabin-Karp)"
+      ],
+      "patterns": [
+        "String Matching"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Strings",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 21,
+    "upvotes": 165
+  },
+  {
+    "id": "tuf_0599",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Strings",
+    "sub_topic": "Hard String Problems (KMP/Rabin-Karp)",
+    "pattern": "String Matching",
+    "tuf_step": "Strings",
+    "tuf_subtopic": "Hard String Problems (KMP/Rabin-Karp)",
+    "tuf_step_index": 18,
+    "question": "Repeated String Match",
+    "question_title": "Repeated String Match",
+    "statement": "Repeated String Match. Solve the Striver A2Z problem 'Repeated String Match' from TakeUForward step 'Strings' (pattern: Hard String Problems (KMP/Rabin-Karp)). Return the required answer per TUF sheet. This is part of Strings asked in top product companies.",
+    "description": "Repeated String Match. Solve the Striver A2Z problem 'Repeated String Match' from TakeUForward step 'Strings' (pattern: Hard String Problems (KMP/Rabin-Karp)). Return the required answer per TUF sheet. This is part of St",
+    "constraints": [
+      "1 <= s.length <= 2*10^5",
+      "ASCII"
+    ],
+    "examples": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "output": "3",
+        "explanation": "Longest without repeat"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "output": "1",
+        "explanation": "All same"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def repeated(nums):\n    # Repeated String Match - Strings\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "function_name": "repeated",
+    "leetcode_number": 1694,
+    "dsa_guide": {
+      "approach": "String Matching",
+      "data_structures": [
+        "Hard String Problems (KMP/Rabin-Karp)"
+      ],
+      "patterns": [
+        "String Matching"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Strings",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 24,
+    "upvotes": 286
+  },
+  {
+    "id": "tuf_0600",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Strings",
+    "sub_topic": "Hard String Problems (KMP/Rabin-Karp)",
+    "pattern": "String Matching",
+    "tuf_step": "Strings",
+    "tuf_subtopic": "Hard String Problems (KMP/Rabin-Karp)",
+    "tuf_step_index": 18,
+    "question": "Minimum Window Subsequence (Strings #10)",
+    "question_title": "Minimum Window Subsequence (Strings #10)",
+    "statement": "Minimum Window Subsequence (Strings #10). Solve the Striver A2Z problem 'Minimum Window Subsequence (Strings #10)' from TakeUForward step 'Strings' (pattern: Hard String Problems (KMP/Rabin-Karp)). Return the required answer per TUF sheet. This is part of Strings asked in top product companies.",
+    "description": "Minimum Window Subsequence (Strings #10). Solve the Striver A2Z problem 'Minimum Window Subsequence (Strings #10)' from TakeUForward step 'Strings' (pattern: Hard String Problems (KMP/Rabin-Karp)). Return the required an",
+    "constraints": [
+      "1 <= s.length <= 2*10^5",
+      "ASCII"
+    ],
+    "examples": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "output": "3",
+        "explanation": "Longest without repeat"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "output": "1",
+        "explanation": "All same"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def minimum(nums):\n    # Minimum Window Subsequence (Strings #10) - Strings\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "function_name": "minimum",
+    "leetcode_number": 1701,
+    "dsa_guide": {
+      "approach": "String Matching",
+      "data_structures": [
+        "Hard String Problems (KMP/Rabin-Karp)"
+      ],
+      "patterns": [
+        "String Matching"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Strings",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 25,
+    "upvotes": 381
+  }
+]

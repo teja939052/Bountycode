@@ -1,0 +1,2116 @@
+[
+  {
+    "id": "tuf_0425",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Binary Search Trees [Concept and Problems]",
+    "sub_topic": "Concepts",
+    "pattern": "Binary Search Trees",
+    "tuf_step": "Binary Search Trees [Concept and Problems]",
+    "tuf_subtopic": "Concepts",
+    "tuf_step_index": 14,
+    "question": "Introduction to BST",
+    "question_title": "Introduction to BST",
+    "statement": "Introduction to BST. Solve the Striver A2Z problem 'Introduction to BST' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Concepts). Return the required answer per TUF sheet. This is part of Binary Search Trees [Concept and Problems] asked in top product companies.",
+    "description": "Introduction to BST. Solve the Striver A2Z problem 'Introduction to BST' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Concepts). Return the required answer per TUF sheet. This is part of ",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= val <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def introduction(nums):\n    # Introduction to BST - Binary Search Trees [Concept and Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "introduction",
+    "leetcode_number": 476,
+    "dsa_guide": {
+      "approach": "Binary Search Trees",
+      "data_structures": [
+        "Concepts"
+      ],
+      "patterns": [
+        "Binary Search Trees"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search Trees [Concept and Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 18,
+    "upvotes": 309
+  },
+  {
+    "id": "tuf_0426",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Binary Search Trees [Concept and Problems]",
+    "sub_topic": "Practice Problems",
+    "pattern": "Binary Search Trees",
+    "tuf_step": "Binary Search Trees [Concept and Problems]",
+    "tuf_subtopic": "Practice Problems",
+    "tuf_step_index": 14,
+    "question": "Search in BST",
+    "question_title": "Search in BST",
+    "statement": "Search in BST. Solve the Striver A2Z problem 'Search in BST' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Practice Problems). Return the required answer per TUF sheet. This is part of Binary Search Trees [Concept and Problems] asked in top product companies.",
+    "description": "Search in BST. Solve the Striver A2Z problem 'Search in BST' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Practice Problems). Return the required answer per TUF sheet. This is part of Bin",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= val <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def search(nums):\n    # Search in BST - Binary Search Trees [Concept and Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "search",
+    "leetcode_number": 483,
+    "dsa_guide": {
+      "approach": "Binary Search Trees",
+      "data_structures": [
+        "Practice Problems"
+      ],
+      "patterns": [
+        "Binary Search Trees"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search Trees [Concept and Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 92,
+    "upvotes": 224
+  },
+  {
+    "id": "tuf_0427",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search Trees [Concept and Problems]",
+    "sub_topic": "Concepts",
+    "pattern": "Binary Search Trees",
+    "tuf_step": "Binary Search Trees [Concept and Problems]",
+    "tuf_subtopic": "Concepts",
+    "tuf_step_index": 14,
+    "question": "Ceil in BST",
+    "question_title": "Ceil in BST",
+    "statement": "Ceil in BST. Solve the Striver A2Z problem 'Ceil in BST' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Concepts). Return the required answer per TUF sheet. This is part of Binary Search Trees [Concept and Problems] asked in top product companies.",
+    "description": "Ceil in BST. Solve the Striver A2Z problem 'Ceil in BST' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Concepts). Return the required answer per TUF sheet. This is part of Binary Search Tr",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def ceil(nums):\n    # Ceil in BST - Binary Search Trees [Concept and Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "ceil",
+    "leetcode_number": 490,
+    "dsa_guide": {
+      "approach": "Binary Search Trees",
+      "data_structures": [
+        "Concepts"
+      ],
+      "patterns": [
+        "Binary Search Trees"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search Trees [Concept and Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 11,
+    "upvotes": 484
+  },
+  {
+    "id": "tuf_0428",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search Trees [Concept and Problems]",
+    "sub_topic": "Practice Problems",
+    "pattern": "Binary Search Trees",
+    "tuf_step": "Binary Search Trees [Concept and Problems]",
+    "tuf_subtopic": "Practice Problems",
+    "tuf_step_index": 14,
+    "question": "Floor in BST",
+    "question_title": "Floor in BST",
+    "statement": "Floor in BST. Solve the Striver A2Z problem 'Floor in BST' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Practice Problems). Return the required answer per TUF sheet. This is part of Binary Search Trees [Concept and Problems] asked in top product companies.",
+    "description": "Floor in BST. Solve the Striver A2Z problem 'Floor in BST' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Practice Problems). Return the required answer per TUF sheet. This is part of Binar",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def floor(nums):\n    # Floor in BST - Binary Search Trees [Concept and Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "floor",
+    "leetcode_number": 497,
+    "dsa_guide": {
+      "approach": "Binary Search Trees",
+      "data_structures": [
+        "Practice Problems"
+      ],
+      "patterns": [
+        "Binary Search Trees"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search Trees [Concept and Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 63,
+    "upvotes": 471
+  },
+  {
+    "id": "tuf_0429",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search Trees [Concept and Problems]",
+    "sub_topic": "Concepts",
+    "pattern": "Binary Search Trees",
+    "tuf_step": "Binary Search Trees [Concept and Problems]",
+    "tuf_subtopic": "Concepts",
+    "tuf_step_index": 14,
+    "question": "Insert Node in BST",
+    "question_title": "Insert Node in BST",
+    "statement": "Insert Node in BST. Solve the Striver A2Z problem 'Insert Node in BST' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Concepts). Return the required answer per TUF sheet. This is part of Binary Search Trees [Concept and Problems] asked in top product companies.",
+    "description": "Insert Node in BST. Solve the Striver A2Z problem 'Insert Node in BST' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Concepts). Return the required answer per TUF sheet. This is part of Bi",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def insert(nums):\n    # Insert Node in BST - Binary Search Trees [Concept and Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "insert",
+    "leetcode_number": 504,
+    "dsa_guide": {
+      "approach": "Binary Search Trees",
+      "data_structures": [
+        "Concepts"
+      ],
+      "patterns": [
+        "Binary Search Trees"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search Trees [Concept and Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 72,
+    "upvotes": 104
+  },
+  {
+    "id": "tuf_0430",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search Trees [Concept and Problems]",
+    "sub_topic": "Practice Problems",
+    "pattern": "Binary Search Trees",
+    "tuf_step": "Binary Search Trees [Concept and Problems]",
+    "tuf_subtopic": "Practice Problems",
+    "tuf_step_index": 14,
+    "question": "Delete Node in BST",
+    "question_title": "Delete Node in BST",
+    "statement": "Delete Node in BST. Solve the Striver A2Z problem 'Delete Node in BST' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Practice Problems). Return the required answer per TUF sheet. This is part of Binary Search Trees [Concept and Problems] asked in top product companies.",
+    "description": "Delete Node in BST. Solve the Striver A2Z problem 'Delete Node in BST' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Practice Problems). Return the required answer per TUF sheet. This is p",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def delete(nums):\n    # Delete Node in BST - Binary Search Trees [Concept and Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "delete",
+    "leetcode_number": 511,
+    "dsa_guide": {
+      "approach": "Binary Search Trees",
+      "data_structures": [
+        "Practice Problems"
+      ],
+      "patterns": [
+        "Binary Search Trees"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search Trees [Concept and Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 65,
+    "upvotes": 235
+  },
+  {
+    "id": "tuf_0431",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Binary Search Trees [Concept and Problems]",
+    "sub_topic": "Concepts",
+    "pattern": "Binary Search Trees",
+    "tuf_step": "Binary Search Trees [Concept and Problems]",
+    "tuf_subtopic": "Concepts",
+    "tuf_step_index": 14,
+    "question": "Kth Smallest/Largest",
+    "question_title": "Kth Smallest/Largest",
+    "statement": "Kth Smallest/Largest. Solve the Striver A2Z problem 'Kth Smallest/Largest' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Concepts). Return the required answer per TUF sheet. This is part of Binary Search Trees [Concept and Problems] asked in top product companies.",
+    "description": "Kth Smallest/Largest. Solve the Striver A2Z problem 'Kth Smallest/Largest' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Concepts). Return the required answer per TUF sheet. This is part o",
+    "constraints": [
+      "1 <= n <= 2*10^5",
+      "-10^9 <= val <= 10^9",
+      "Time 2s"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def kth(nums):\n    # Kth Smallest/Largest - Binary Search Trees [Concept and Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "kth",
+    "leetcode_number": 518,
+    "dsa_guide": {
+      "approach": "Binary Search Trees",
+      "data_structures": [
+        "Concepts"
+      ],
+      "patterns": [
+        "Binary Search Trees"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search Trees [Concept and Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 91,
+    "upvotes": 474
+  },
+  {
+    "id": "tuf_0432",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Binary Search Trees [Concept and Problems]",
+    "sub_topic": "Practice Problems",
+    "pattern": "Binary Search Trees",
+    "tuf_step": "Binary Search Trees [Concept and Problems]",
+    "tuf_subtopic": "Practice Problems",
+    "tuf_step_index": 14,
+    "question": "Check BST Valid",
+    "question_title": "Check BST Valid",
+    "statement": "Check BST Valid. Solve the Striver A2Z problem 'Check BST Valid' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Practice Problems). Return the required answer per TUF sheet. This is part of Binary Search Trees [Concept and Problems] asked in top product companies.",
+    "description": "Check BST Valid. Solve the Striver A2Z problem 'Check BST Valid' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Practice Problems). Return the required answer per TUF sheet. This is part of",
+    "constraints": [
+      "1 <= n <= 2*10^5",
+      "-10^9 <= val <= 10^9",
+      "Time 2s"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def check(nums):\n    # Check BST Valid - Binary Search Trees [Concept and Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "check",
+    "leetcode_number": 525,
+    "dsa_guide": {
+      "approach": "Binary Search Trees",
+      "data_structures": [
+        "Practice Problems"
+      ],
+      "patterns": [
+        "Binary Search Trees"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search Trees [Concept and Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 68,
+    "upvotes": 412
+  },
+  {
+    "id": "tuf_0433",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Binary Search Trees [Concept and Problems]",
+    "sub_topic": "Concepts",
+    "pattern": "Binary Search Trees",
+    "tuf_step": "Binary Search Trees [Concept and Problems]",
+    "tuf_subtopic": "Concepts",
+    "tuf_step_index": 14,
+    "question": "LCA in BST",
+    "question_title": "LCA in BST",
+    "statement": "LCA in BST. Solve the Striver A2Z problem 'LCA in BST' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Concepts). Return the required answer per TUF sheet. This is part of Binary Search Trees [Concept and Problems] asked in top product companies.",
+    "description": "LCA in BST. Solve the Striver A2Z problem 'LCA in BST' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Concepts). Return the required answer per TUF sheet. This is part of Binary Search Tree",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= val <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def lca(nums):\n    # LCA in BST - Binary Search Trees [Concept and Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "lca",
+    "leetcode_number": 532,
+    "dsa_guide": {
+      "approach": "Binary Search Trees",
+      "data_structures": [
+        "Concepts"
+      ],
+      "patterns": [
+        "Binary Search Trees"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search Trees [Concept and Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 29,
+    "upvotes": 272
+  },
+  {
+    "id": "tuf_0434",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Binary Search Trees [Concept and Problems]",
+    "sub_topic": "Practice Problems",
+    "pattern": "Binary Search Trees",
+    "tuf_step": "Binary Search Trees [Concept and Problems]",
+    "tuf_subtopic": "Practice Problems",
+    "tuf_step_index": 14,
+    "question": "Construct BST from Preorder",
+    "question_title": "Construct BST from Preorder",
+    "statement": "Construct BST from Preorder. Solve the Striver A2Z problem 'Construct BST from Preorder' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Practice Problems). Return the required answer per TUF sheet. This is part of Binary Search Trees [Concept and Problems] asked in top product companies.",
+    "description": "Construct BST from Preorder. Solve the Striver A2Z problem 'Construct BST from Preorder' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Practice Problems). Return the required answer per TU",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= val <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def construct(nums):\n    # Construct BST from Preorder - Binary Search Trees [Concept and Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "construct",
+    "leetcode_number": 539,
+    "dsa_guide": {
+      "approach": "Binary Search Trees",
+      "data_structures": [
+        "Practice Problems"
+      ],
+      "patterns": [
+        "Binary Search Trees"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search Trees [Concept and Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 32,
+    "upvotes": 425
+  },
+  {
+    "id": "tuf_0435",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search Trees [Concept and Problems]",
+    "sub_topic": "Concepts",
+    "pattern": "Binary Search Trees",
+    "tuf_step": "Binary Search Trees [Concept and Problems]",
+    "tuf_subtopic": "Concepts",
+    "tuf_step_index": 14,
+    "question": "Inorder Successor/Predecessor",
+    "question_title": "Inorder Successor/Predecessor",
+    "statement": "Inorder Successor/Predecessor. Solve the Striver A2Z problem 'Inorder Successor/Predecessor' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Concepts). Return the required answer per TUF sheet. This is part of Binary Search Trees [Concept and Problems] asked in top product companies.",
+    "description": "Inorder Successor/Predecessor. Solve the Striver A2Z problem 'Inorder Successor/Predecessor' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Concepts). Return the required answer per TUF she",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def inorder(nums):\n    # Inorder Successor/Predecessor - Binary Search Trees [Concept and Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "inorder",
+    "leetcode_number": 546,
+    "dsa_guide": {
+      "approach": "Binary Search Trees",
+      "data_structures": [
+        "Concepts"
+      ],
+      "patterns": [
+        "Binary Search Trees"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search Trees [Concept and Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 76,
+    "upvotes": 383
+  },
+  {
+    "id": "tuf_0436",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search Trees [Concept and Problems]",
+    "sub_topic": "Practice Problems",
+    "pattern": "Binary Search Trees",
+    "tuf_step": "Binary Search Trees [Concept and Problems]",
+    "tuf_subtopic": "Practice Problems",
+    "tuf_step_index": 14,
+    "question": "Merge Two BSTs",
+    "question_title": "Merge Two BSTs",
+    "statement": "Merge Two BSTs. Solve the Striver A2Z problem 'Merge Two BSTs' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Practice Problems). Return the required answer per TUF sheet. This is part of Binary Search Trees [Concept and Problems] asked in top product companies.",
+    "description": "Merge Two BSTs. Solve the Striver A2Z problem 'Merge Two BSTs' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Practice Problems). Return the required answer per TUF sheet. This is part of B",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def merge(nums):\n    # Merge Two BSTs - Binary Search Trees [Concept and Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "merge",
+    "leetcode_number": 553,
+    "dsa_guide": {
+      "approach": "Binary Search Trees",
+      "data_structures": [
+        "Practice Problems"
+      ],
+      "patterns": [
+        "Binary Search Trees"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search Trees [Concept and Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 44,
+    "upvotes": 365
+  },
+  {
+    "id": "tuf_0437",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search Trees [Concept and Problems]",
+    "sub_topic": "Concepts",
+    "pattern": "Binary Search Trees",
+    "tuf_step": "Binary Search Trees [Concept and Problems]",
+    "tuf_subtopic": "Concepts",
+    "tuf_step_index": 14,
+    "question": "Two Sum in BST",
+    "question_title": "Two Sum in BST",
+    "statement": "Two Sum in BST. Solve the Striver A2Z problem 'Two Sum in BST' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Concepts). Return the required answer per TUF sheet. This is part of Binary Search Trees [Concept and Problems] asked in top product companies.",
+    "description": "Two Sum in BST. Solve the Striver A2Z problem 'Two Sum in BST' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Concepts). Return the required answer per TUF sheet. This is part of Binary Sea",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def two(nums):\n    # Two Sum in BST - Binary Search Trees [Concept and Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "two",
+    "leetcode_number": 560,
+    "dsa_guide": {
+      "approach": "Binary Search Trees",
+      "data_structures": [
+        "Concepts"
+      ],
+      "patterns": [
+        "Binary Search Trees"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search Trees [Concept and Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 78,
+    "upvotes": 446
+  },
+  {
+    "id": "tuf_0438",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search Trees [Concept and Problems]",
+    "sub_topic": "Practice Problems",
+    "pattern": "Binary Search Trees",
+    "tuf_step": "Binary Search Trees [Concept and Problems]",
+    "tuf_subtopic": "Practice Problems",
+    "tuf_step_index": 14,
+    "question": "Correct BST with Two Swapped Nodes",
+    "question_title": "Correct BST with Two Swapped Nodes",
+    "statement": "Correct BST with Two Swapped Nodes. Solve the Striver A2Z problem 'Correct BST with Two Swapped Nodes' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Practice Problems). Return the required answer per TUF sheet. This is part of Binary Search Trees [Concept and Problems] asked in top product companies.",
+    "description": "Correct BST with Two Swapped Nodes. Solve the Striver A2Z problem 'Correct BST with Two Swapped Nodes' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Practice Problems). Return the required",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def correct(nums):\n    # Correct BST with Two Swapped Nodes - Binary Search Trees [Concept and Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "correct",
+    "leetcode_number": 567,
+    "dsa_guide": {
+      "approach": "Binary Search Trees",
+      "data_structures": [
+        "Practice Problems"
+      ],
+      "patterns": [
+        "Binary Search Trees"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search Trees [Concept and Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 71,
+    "upvotes": 288
+  },
+  {
+    "id": "tuf_0439",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Binary Search Trees [Concept and Problems]",
+    "sub_topic": "Concepts",
+    "pattern": "Binary Search Trees",
+    "tuf_step": "Binary Search Trees [Concept and Problems]",
+    "tuf_subtopic": "Concepts",
+    "tuf_step_index": 14,
+    "question": "Largest BST in Binary Tree",
+    "question_title": "Largest BST in Binary Tree",
+    "statement": "Largest BST in Binary Tree. Solve the Striver A2Z problem 'Largest BST in Binary Tree' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Concepts). Return the required answer per TUF sheet. This is part of Binary Search Trees [Concept and Problems] asked in top product companies.",
+    "description": "Largest BST in Binary Tree. Solve the Striver A2Z problem 'Largest BST in Binary Tree' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Concepts). Return the required answer per TUF sheet. Th",
+    "constraints": [
+      "1 <= n <= 2*10^5",
+      "-10^9 <= val <= 10^9",
+      "Time 2s"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def largest(nums):\n    # Largest BST in Binary Tree - Binary Search Trees [Concept and Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "largest",
+    "leetcode_number": 574,
+    "dsa_guide": {
+      "approach": "Binary Search Trees",
+      "data_structures": [
+        "Concepts"
+      ],
+      "patterns": [
+        "Binary Search Trees"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search Trees [Concept and Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 65,
+    "upvotes": 472
+  },
+  {
+    "id": "tuf_0440",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Binary Search Trees [Concept and Problems]",
+    "sub_topic": "Practice Problems",
+    "pattern": "Binary Search Trees",
+    "tuf_step": "Binary Search Trees [Concept and Problems]",
+    "tuf_subtopic": "Practice Problems",
+    "tuf_step_index": 14,
+    "question": "BST Iterator",
+    "question_title": "BST Iterator",
+    "statement": "BST Iterator. Solve the Striver A2Z problem 'BST Iterator' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Practice Problems). Return the required answer per TUF sheet. This is part of Binary Search Trees [Concept and Problems] asked in top product companies.",
+    "description": "BST Iterator. Solve the Striver A2Z problem 'BST Iterator' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Practice Problems). Return the required answer per TUF sheet. This is part of Binar",
+    "constraints": [
+      "1 <= n <= 2*10^5",
+      "-10^9 <= val <= 10^9",
+      "Time 2s"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def bst(nums):\n    # BST Iterator - Binary Search Trees [Concept and Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "bst",
+    "leetcode_number": 581,
+    "dsa_guide": {
+      "approach": "Binary Search Trees",
+      "data_structures": [
+        "Practice Problems"
+      ],
+      "patterns": [
+        "Binary Search Trees"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search Trees [Concept and Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 85,
+    "upvotes": 187
+  },
+  {
+    "id": "tuf_0441",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Binary Search Trees [Concept and Problems]",
+    "sub_topic": "Concepts",
+    "pattern": "Binary Search Trees",
+    "tuf_step": "Binary Search Trees [Concept and Problems]",
+    "tuf_subtopic": "Concepts",
+    "tuf_step_index": 14,
+    "question": "Introduction to BST (Binary Searc #17)",
+    "question_title": "Introduction to BST (Binary Searc #17)",
+    "statement": "Introduction to BST (Binary Searc #17). Solve the Striver A2Z problem 'Introduction to BST (Binary Searc #17)' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Concepts). Return the required answer per TUF sheet. This is part of Binary Search Trees [Concept and Problems] asked in top product companies.",
+    "description": "Introduction to BST (Binary Searc #17). Solve the Striver A2Z problem 'Introduction to BST (Binary Searc #17)' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Concepts). Return the required ",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= val <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def introduction(nums):\n    # Introduction to BST (Binary Searc #17) - Binary Search Trees [Concept and Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "introduction",
+    "leetcode_number": 588,
+    "dsa_guide": {
+      "approach": "Binary Search Trees",
+      "data_structures": [
+        "Concepts"
+      ],
+      "patterns": [
+        "Binary Search Trees"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search Trees [Concept and Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 51,
+    "upvotes": 486
+  },
+  {
+    "id": "tuf_0442",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Binary Search Trees [Concept and Problems]",
+    "sub_topic": "Practice Problems",
+    "pattern": "Binary Search Trees",
+    "tuf_step": "Binary Search Trees [Concept and Problems]",
+    "tuf_subtopic": "Practice Problems",
+    "tuf_step_index": 14,
+    "question": "Search in BST (Binary Searc #18)",
+    "question_title": "Search in BST (Binary Searc #18)",
+    "statement": "Search in BST (Binary Searc #18). Solve the Striver A2Z problem 'Search in BST (Binary Searc #18)' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Practice Problems). Return the required answer per TUF sheet. This is part of Binary Search Trees [Concept and Problems] asked in top product companies.",
+    "description": "Search in BST (Binary Searc #18). Solve the Striver A2Z problem 'Search in BST (Binary Searc #18)' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Practice Problems). Return the required ans",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= val <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def search(nums):\n    # Search in BST (Binary Searc #18) - Binary Search Trees [Concept and Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "search",
+    "leetcode_number": 595,
+    "dsa_guide": {
+      "approach": "Binary Search Trees",
+      "data_structures": [
+        "Practice Problems"
+      ],
+      "patterns": [
+        "Binary Search Trees"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search Trees [Concept and Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 41,
+    "upvotes": 475
+  },
+  {
+    "id": "tuf_0443",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search Trees [Concept and Problems]",
+    "sub_topic": "Concepts",
+    "pattern": "Binary Search Trees",
+    "tuf_step": "Binary Search Trees [Concept and Problems]",
+    "tuf_subtopic": "Concepts",
+    "tuf_step_index": 14,
+    "question": "Ceil in BST (Binary Searc #19)",
+    "question_title": "Ceil in BST (Binary Searc #19)",
+    "statement": "Ceil in BST (Binary Searc #19). Solve the Striver A2Z problem 'Ceil in BST (Binary Searc #19)' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Concepts). Return the required answer per TUF sheet. This is part of Binary Search Trees [Concept and Problems] asked in top product companies.",
+    "description": "Ceil in BST (Binary Searc #19). Solve the Striver A2Z problem 'Ceil in BST (Binary Searc #19)' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Concepts). Return the required answer per TUF s",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def ceil(nums):\n    # Ceil in BST (Binary Searc #19) - Binary Search Trees [Concept and Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "ceil",
+    "leetcode_number": 602,
+    "dsa_guide": {
+      "approach": "Binary Search Trees",
+      "data_structures": [
+        "Concepts"
+      ],
+      "patterns": [
+        "Binary Search Trees"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search Trees [Concept and Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 21,
+    "upvotes": 192
+  },
+  {
+    "id": "tuf_0444",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search Trees [Concept and Problems]",
+    "sub_topic": "Practice Problems",
+    "pattern": "Binary Search Trees",
+    "tuf_step": "Binary Search Trees [Concept and Problems]",
+    "tuf_subtopic": "Practice Problems",
+    "tuf_step_index": 14,
+    "question": "Floor in BST (Binary Searc #20)",
+    "question_title": "Floor in BST (Binary Searc #20)",
+    "statement": "Floor in BST (Binary Searc #20). Solve the Striver A2Z problem 'Floor in BST (Binary Searc #20)' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Practice Problems). Return the required answer per TUF sheet. This is part of Binary Search Trees [Concept and Problems] asked in top product companies.",
+    "description": "Floor in BST (Binary Searc #20). Solve the Striver A2Z problem 'Floor in BST (Binary Searc #20)' from TakeUForward step 'Binary Search Trees [Concept and Problems]' (pattern: Practice Problems). Return the required answe",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "1 <= edges <= 2*10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "output": "2",
+        "explanation": "Sample traversal"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[2,3]]",
+        "output": "1",
+        "explanation": "Disconnected"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def floor(nums):\n    # Floor in BST (Binary Searc #20) - Binary Search Trees [Concept and Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "n=3, edges=[[0,1],[1,2]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=1, edges=[]",
+        "expected": "0"
+      },
+      {
+        "input": "n=5, edges=[[0,1],[1,2],[3,4]]",
+        "expected": "2"
+      },
+      {
+        "input": "n=4, edges=[[0,1],[1,2],[2,3],[3,0]]",
+        "expected": "4"
+      }
+    ],
+    "function_name": "floor",
+    "leetcode_number": 609,
+    "dsa_guide": {
+      "approach": "Binary Search Trees",
+      "data_structures": [
+        "Practice Problems"
+      ],
+      "patterns": [
+        "Binary Search Trees"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search Trees [Concept and Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 67,
+    "upvotes": 174
+  }
+]

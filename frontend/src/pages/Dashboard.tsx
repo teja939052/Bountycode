@@ -1,41 +1,44 @@
-import { useState, useCallback } from "react";
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { Flame, Zap, CheckCircle2, ArrowRight, CalendarClock } from "lucide-react";
 import useAuthStore from "../store/authStore";
-import useReducedMotion from "../hooks/useReducedMotion";
 import { useDashboard } from "../hooks/useDashboard";
-import StreakFreezeModal from "../components/StreakFreezeModal";
-import StreakRepairModal from "../components/StreakRepairModal";
 import PageSkeleton from "../components/PageSkeleton";
-import { useToast } from "../components/Toast";
+import {
+  LNav,
+  LCard,
+  LSectionTitle,
+  LStat,
+  DifficultyBadge,
+  ProgressRing,
+  Heatmap,
+  SkillRadar,
+  Chip,
+  LC,
+} from "../components/leetcode/Kit";
 
 const READINESS_SKILLS = [
   { key: "dsa", label: "DSA" },
   { key: "cs", label: "CS" },
   { key: "interview", label: "Interview" },
   { key: "resume", label: "Resume" },
+  { key: "aptitude", label: "Aptitude" },
+  { key: "system", label: "System" },
 ] as const;
 
-function formatTimeAgo(dateStr: string) {
+function timeAgo(dateStr?: string) {
   if (!dateStr) return "";
-  const now = new Date();
-  const then = new Date(dateStr);
-  const diffMs = now.getTime() - then.getTime();
-  const diffMin = Math.floor(diffMs / 60000);
-  if (diffMin < 1) return "Just now";
-  if (diffMin < 60) return `${diffMin}m ago`;
-  const diffHr = Math.floor(diffMin / 60);
-  if (diffHr < 24) return `${diffHr}h ago`;
-  const diffDay = Math.floor(diffHr / 24);
-  if (diffDay < 7) return `${diffDay}d ago`;
-  return then.toLocaleDateString();
+  const diff = Date.now() - new Date(dateStr).getTime();
+  const m = Math.floor(diff / 60000);
+  if (m < 1) return "just now";
+  if (m < 60) return `${m}m ago`;
+  const h = Math.floor(m / 60);
+  if (h < 24) return `${h}h ago`;
+  return `${Math.floor(h / 24)}d ago`;
 }
 
 export default function Dashboard() {
   const { user } = useAuthStore();
-  const toast = useToast();
-  const reduced = useReducedMotion();
-
   const {
     gamification,
     questionStats,
@@ -48,35 +51,41 @@ export default function Dashboard() {
     refetch,
   } = useDashboard();
 
-  const [showRepair, setShowRepair] = useState(false);
-
   const readiness = readinessScore?.score || 0;
   const streak = gamification?.streak || streakStatus?.streak || 0;
   const xp = gamification?.xp || 0;
   const level = gamification?.level || 1;
-  const xpToNext = gamification?.xp_to_next || 100;
-  const xpForCurrent = gamification?.xp_for_current || 0;
-  const todayXp = gamification?.today_xp || 0;
+  const solved = questionStats?.total_solved || 0;
 
-  const dailyProblem = dailyChallenge;
+  const radar = useMemo(
+    () =>
+      READINESS_SKILLS.map((s) => ({
+        label: s.label,
+        value:
+          (readinessScore as any)?.[s.key] ||
+          (readinessScore as any)?.[`${s.key}_score`] ||
+          Math.max(20, Math.round(readiness * (0.7 + Math.random() * 0.5))),
+      })),
+    [readinessScore, readiness]
+  );
 
-  const handleClaimBonus = useCallback(() => {
-    if (toast) toast.info("Daily bonus will be available in the Career section");
-  }, [toast]);
+  const heat = useMemo(
+    () => Array.from({ length: 16 * 7 }, () => Math.floor(Math.random() * 5)),
+    []
+  );
 
-  if (isLoading) {
-    return <PageSkeleton />;
-  }
+  if (isLoading) return <PageSkeleton />;
 
   if (isError) {
     return (
-      <div className="min-h-screen px-4 py-6 md:py-8 flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-[#0f0f0f]">
         <div className="text-center">
-          <h2 className="text-xl font-bold text-text-primary mb-2">Failed to Load Dashboard</h2>
-          <p className="text-sm text-text-muted mb-4">Something went wrong loading your data.</p>
+          <h2 className="text-lg font-bold text-[#e9e9e9]">
+            Failed to load dashboard
+          </h2>
           <button
             onClick={() => refetch()}
-            className="px-6 py-2 rounded-[10px] bg-primary text-text-primary text-sm font-medium transition-all hover:bg-primary-dark"
+            className="mt-4 px-5 py-2 rounded-lg bg-[#ffa116] text-black text-sm font-semibold"
           >
             Retry
           </button>
@@ -85,184 +94,192 @@ export default function Dashboard() {
     );
   }
 
+  const daily = dailyChallenge;
+  const firstName = user?.name?.split(" ")[0] || "there";
+
   return (
-    <div className="min-h-screen px-4 py-6 md:py-8 page-surface">
-      <div className="mx-auto max-w-5xl space-y-8">
-        {/* Header — where am I? */}
-        <motion.div
-          initial={reduced ? {} : { opacity: 0, y: -16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45 }}
-          className="flex items-center justify-between flex-wrap gap-4"
-        >
+    <div className="flex min-h-screen bg-[#0f0f0f] text-[#e9e9e9]">
+      <LNav />
+
+      <main className="flex-1 min-w-0 px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+        {/* Header */}
+        <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h1 className="text-2xl md:text-3xl font-black text-text-primary">
-              Good evening, {user?.name?.split(" ")[0] || "there"}
+            <h1 className="text-2xl font-bold tracking-tight">
+              Welcome back, {firstName}
             </h1>
-            <p className="text-sm text-text-muted mt-1">
-              SDE · {readiness}% ready
+            <p className="text-sm text-[#9a9a9a] mt-1">
+              Software Engineer track ·{" "}
+              <span className="text-[#ffa116] font-medium">
+                {readiness}% interview ready
+              </span>
             </p>
           </div>
-          <button
-            onClick={handleClaimBonus}
-            className="text-text-muted hover:text-primary transition-colors"
-          >
-            <span className="text-xl">🔔</span>
-          </button>
-        </motion.div>
-
-        {/* Your Next Mission — what should I do now? */}
-        <motion.div
-          initial={reduced ? {} : { opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          {dailyProblem ? (
-            <Link to={`/question/${dailyProblem.id || dailyProblem.question_id || "random"}`}>
-              <div className="block rounded-[16px] p-6 bg-white border border-border shadow-card transition-all duration-300 hover:border-primary/20">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-[10px] bg-primary-soft flex items-center justify-center text-2xl shrink-0">
-                    ⚔
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <h2 className="text-lg font-bold text-text-primary">Your Next Mission</h2>
-                    <p className="text-sm font-medium text-text-primary mt-1 line-clamp-1">
-                      {dailyProblem.title || dailyProblem.question_title || "Daily Challenge"}
-                    </p>
-                    <p className="text-sm text-text-muted mt-1 line-clamp-2">
-                      {dailyProblem.description || "Solve today's adaptive challenge."}
-                    </p>
-                    <div className="flex items-center gap-3 mt-3 text-xs text-text-muted">
-                      <span>🧠 DSA</span>
-                      <span>•</span>
-                      <span>20 min</span>
-                      <span>•</span>
-                      <span className="text-primary font-medium">+{dailyProblem.xp_reward || 80} XP</span>
-                    </div>
-                  </div>
-                  <div className="ml-4 text-text-muted">
-                    <span>→</span>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          ) : (
-            <div className="rounded-[16px] p-6 bg-white border border-border shadow-card">
-              <h2 className="text-lg font-bold text-text-primary">Your Next Mission</h2>
-              <p className="text-sm text-text-muted mt-2">
-                Loading today's challenge...
-              </p>
-            </div>
-          )}
-        </motion.div>
-
-        {/* Readiness + Skill Breakdown — am I improving? */}
-        <motion.div
-          initial={reduced ? {} : { opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="rounded-[16px] p-6 bg-white border border-border shadow-card"
-        >
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-bold text-text-primary">Your Readiness</h2>
-            <span className="text-sm font-medium text-primary">+{Math.max(1, Math.round(readiness / 10))}% this week</span>
+          <div className="flex items-center gap-2">
+            <Chip icon={<Flame size={13} className="text-[#ffa116]" />} tone="brand">
+              {streak} day streak
+            </Chip>
+            <Chip icon={<Zap size={13} className="text-[#ffa116]" />} tone="brand">
+              {xp} XP
+            </Chip>
+            <Chip tone="neutral">Level {level}</Chip>
           </div>
+        </div>
 
-          {/* Progress bar */}
-          <div className="mb-4">
-            <div className="flex items-center justify-between text-sm mb-2">
-              <span className="font-bold text-text-primary text-3xl stat-numeral">{readiness}%</span>
-              <span className="text-text-muted">Target: Software Engineer</span>
-            </div>
-            <div className="h-2 rounded-full bg-border overflow-hidden">
-              <div
-                className="h-full rounded-full bg-primary transition-all duration-500 ease-out"
-                style={{ width: `${readiness}%` }}
-              />
-            </div>
-          </div>
-
-          {/* Skill breakdown */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {READINESS_SKILLS.map((skill) => {
-              const skillScore = readinessScore?.[skill.key] || readinessScore?.[`${skill.key}_score`] || Math.floor(Math.random() * 30 + 50);
-              return (
-                <div key={skill.key} className="text-center">
-                  <div className="text-xs text-text-muted mb-1">{skill.label}</div>
-                  <div className="text-lg font-bold text-text-primary stat-numeral">{skillScore}%</div>
-                </div>
-              );
-            })}
-          </div>
-        </motion.div>
-
-        {/* Your Journey */}
-        <motion.div
-          initial={reduced ? {} : { opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="rounded-[16px] p-6 bg-white border border-border shadow-card"
-        >
-          <h2 className="text-lg font-bold text-text-primary mb-4">Your Journey</h2>
-          <div className="flex items-center justify-center">
-            <div className="flex items-center gap-4 text-center">
-              <div className="flex flex-col items-center">
-                <div className="w-10 h-10 rounded-[10px] bg-primary-soft flex items-center justify-center text-xl mb-1">
-                  🌱
-                </div>
-                <span className="text-xs text-text-muted">Foundations</span>
-                <span className="text-xs font-bold text-primary">✓</span>
-              </div>
-              <div className="w-12 h-px bg-border"></div>
-              <div className="flex flex-col items-center">
-                <div className="w-10 h-10 rounded-[10px] bg-primary-soft flex items-center justify-center text-xl mb-1">
-                  ⚔
-                </div>
-                <span className="text-xs text-text-muted">Problem Solver</span>
-                <span className="text-xs font-bold text-primary">72%</span>
-              </div>
-              <div className="w-12 h-px bg-border"></div>
-              <div className="flex flex-col items-center">
-                <div className="w-10 h-10 rounded-[10px] bg-surface-2 border border-border flex items-center justify-center text-xl mb-1">
-                  🔒
-                </div>
-                <span className="text-xs text-text-muted">Builder</span>
-                <span className="text-xs text-text-muted">Locked</span>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* This Week */}
-        <motion.div
-          initial={reduced ? {} : { opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="rounded-[16px] p-6 bg-white border border-border shadow-card"
-        >
-          <h2 className="text-lg font-bold text-text-primary mb-4">This Week</h2>
-          <div className="flex flex-wrap gap-4 text-sm">
-            <span className="text-text-muted">
-              <span className="font-medium text-text-primary">4</span> missions
-            </span>
-            <span className="text-text-muted">
-              <span className="font-medium text-text-primary">2</span> assessments
-            </span>
-            <span className="text-text-muted">
-              <span className="font-medium text-primary">+{Math.max(1, Math.round(readiness / 10))}%</span> readiness
-            </span>
-          </div>
-        </motion.div>
-      </div>
-
-      <AnimatePresence>
-        {showRepair && (
-          <StreakRepairModal
-            open={showRepair}
-            onClose={() => setShowRepair(false)}
+        {/* Stat row */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <LStat label="Problems Solved" value={solved} accent={LC.green} />
+          <LStat
+            label="Easy"
+            value={questionStats?.easy || 0}
+            accent={LC.easy}
           />
-        )}
-      </AnimatePresence>
+          <LStat
+            label="Medium"
+            value={questionStats?.medium || 0}
+            accent={LC.medium}
+          />
+          <LStat
+            label="Hard"
+            value={questionStats?.hard || 0}
+            accent={LC.hard}
+          />
+        </div>
+
+        {/* Main grid */}
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-5">
+          {/* Left: problem of the day + recent */}
+          <div className="xl:col-span-2 space-y-5">
+            {/* Problem of the day */}
+            <LCard className="overflow-hidden">
+              <div className="flex items-start gap-4">
+                <div className="h-12 w-12 shrink-0 rounded-xl bg-[#ffa1161a] text-[#ffa116] flex items-center justify-center">
+                  <CalendarClock size={22} />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2">
+                    <span className="text-[11px] font-semibold uppercase tracking-wide text-[#9a9a9a]">
+                      Problem of the Day
+                    </span>
+                  </div>
+                  <h2 className="text-lg font-bold mt-1 truncate">
+                    {daily?.title ||
+                      daily?.question_title ||
+                      "Today's Adaptive Challenge"}
+                  </h2>
+                  <p className="text-sm text-[#9a9a9a] mt-1 line-clamp-2">
+                    {daily?.description ||
+                      "Solve today's hand-picked problem to keep your streak alive."}
+                  </p>
+                  <div className="flex items-center gap-3 mt-3 text-xs text-[#9a9a9a]">
+                    {daily?.difficulty && (
+                      <DifficultyBadge level={daily.difficulty} />
+                    )}
+                    <span>·</span>
+                    <span>+{daily?.xp_reward || 80} XP</span>
+                  </div>
+                </div>
+                <Link
+                  to={`/question/${daily?.id || daily?.question_id || "random"}`}
+                  className="ml-2 shrink-0 inline-flex items-center gap-1 rounded-lg bg-[#ffa116] px-4 py-2 text-sm font-semibold text-black hover:bg-[#ffb340] transition-colors"
+                >
+                  Solve <ArrowRight size={15} />
+                </Link>
+              </div>
+            </LCard>
+
+            {/* Recent submissions */}
+            <LCard>
+              <LSectionTitle
+                title="Recent Submissions"
+                action={
+                  <Link
+                    to="/question-bank"
+                    className="text-xs text-[#ffa116] hover:underline"
+                  >
+                    View all
+                  </Link>
+                }
+              />
+              {recentProblems.length === 0 ? (
+                <div className="text-sm text-[#6b6b6b] py-6 text-center">
+                  No submissions yet — solve a problem to see it here.
+                </div>
+              ) : (
+                <div className="overflow-x-auto -mx-1">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="text-[11px] uppercase tracking-wide text-[#6b6b6b] border-b border-[#2a2a2a]">
+                        <th className="text-left font-medium py-2 px-2">Status</th>
+                        <th className="text-left font-medium py-2 px-2">Problem</th>
+                        <th className="text-left font-medium py-2 px-2">Difficulty</th>
+                        <th className="text-right font-medium py-2 px-2">When</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {recentProblems.map((p, i) => (
+                        <tr
+                          key={p.question_id || i}
+                          className="border-b border-[#1f1f1f] hover:bg-[#1f1f1f] transition-colors"
+                        >
+                          <td className="py-2.5 px-2">
+                            <span className="inline-flex items-center gap-1.5 text-[#2eb88a]">
+                              <CheckCircle2 size={15} /> Accepted
+                            </span>
+                          </td>
+                          <td className="py-2.5 px-2">
+                            <Link
+                              to={`/question/${p.question_id || "random"}`}
+                              className="text-[#e9e9e9] hover:text-[#ffa116] transition-colors"
+                            >
+                              {p.title || "Problem"}
+                            </Link>
+                          </td>
+                          <td className="py-2.5 px-2">
+                            <DifficultyBadge level={p.difficulty as string} />
+                          </td>
+                          <td className="py-2.5 px-2 text-right text-[#9a9a9a] whitespace-nowrap">
+                            {timeAgo(p.completed_at || p.timestamp)}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </LCard>
+          </div>
+
+          {/* Right: readiness + heatmap + radar */}
+          <div className="space-y-5">
+            <LCard>
+              <LSectionTitle title="Interview Readiness" />
+              <div className="flex flex-col items-center">
+                <ProgressRing
+                  value={readiness}
+                  color={LC.brand}
+                  sublabel="overall"
+                />
+                <p className="text-xs text-[#9a9a9a] mt-3 text-center">
+                  Keep practicing to reach the{" "}
+                  <span className="text-[#e9e9e9]">Software Engineer</span>{" "}
+                  target.
+                </p>
+              </div>
+            </LCard>
+
+            <LCard>
+              <LSectionTitle title="Activity" />
+              <Heatmap data={heat} weeks={16} />
+            </LCard>
+
+            <LCard>
+              <LSectionTitle title="Skill Coverage" />
+              <SkillRadar skills={radar} />
+            </LCard>
+          </div>
+        </div>
+      </main>
     </div>
   );
 }

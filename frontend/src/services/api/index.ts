@@ -42,6 +42,7 @@ import { studyApi } from "./study.ts";
 import { languagePathsApi } from "./languagePathsApi.ts";
 import { freeTrialApi } from "./freeTrial.ts";
 import { onboardingApi } from "./onboarding.ts";
+import { lessonApi } from "./lesson.ts";
 import { adminContentApi, assignmentsApi } from "./adminContent.ts";
 import { metricsApi } from "./metrics.ts";
 import { flatApi } from "./flat.ts";
@@ -94,6 +95,7 @@ const api = {
   study: studyApi,
   languagePaths: languagePathsApi,
   freeTrial: freeTrialApi,
+  lesson: lessonApi,
   onboarding: onboardingApi,
   adminContent: adminContentApi,
   assignments: assignmentsApi,
@@ -171,5 +173,6 @@ export {
   studyApi,
   languagePathsApi,
   freeTrialApi,
+  lessonApi,
   onboardingApi,
 };

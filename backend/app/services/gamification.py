@@ -600,6 +600,8 @@ async def initialize_gamification(user_id: str):
         "first_solve_today": None,
         "weekly_challenges": [],
         "monthly_challenges": [],
+        "weekly_league_xp": 0,
+        "weekly_league_week": None,
         "created_at": datetime.now(timezone.utc),
         "updated_at": datetime.now(timezone.utc),
     }
@@ -706,6 +708,7 @@ async def record_practice(user_id: str, activity_type: str, score: float = 0, me
 
     # Update counters
     counter_field = f"total_{activity_type}s"
+    week_id = _league_week_id()
     update_ops = {
         "$set": {
             "last_practice_date": now,
@@ -713,12 +716,14 @@ async def record_practice(user_id: str, activity_type: str, score: float = 0, me
             "longest_streak": longest_streak,
             "daily_goal_count": daily_goal_count,
             "daily_goal_date": today.isoformat(),
+            "weekly_league_week": week_id,
         },
         "$inc": {
             "xp": xp_gained,
             "coins": coins_earned,
             "stars_total": stars,
             counter_field: 1,
+            "weekly_league_xp": xp_gained,
         },
         "$currentDate": {"updated_at": True},
     }
@@ -1661,37 +1666,28 @@ async def get_league_status(user_id: str) -> dict:
     with season_id matching the weekly league id). Rank is by weekly XP.
     Mirrors Duolingo-style weekly reset + promotion/relegation.
     """
-    from app.database import season_xp_collection
     week_id = _league_week_id()
     season_id = f"league-{week_id}"
 
-    user_doc = await season_xp_collection.find_one(
-        {"season_id": season_id, "user_id": user_id}
-    )
-    weekly_xp = user_doc.get("xp", 0) if user_doc else 0
-
-    # Cohort rank: count users strictly above this user's XP (+1).
-    rank = max(1, int(await season_xp_collection.count_documents(
-        {"season_id": season_id, "xp": {"$gt": weekly_xp}}
-    )) + 1)
-    cohort_size = int(await season_xp_collection.count_documents({"season_id": season_id}))
+    profile = await gamification_collection.find_one({"user_id": user_id})
+    weekly_xp = profile.get("weekly_league_xp", 0) if profile else 0
 
     tier = _league_for_xp(weekly_xp)
-    n = cohort_size or 1
-    top_third = max(1, n // 3)
-    bottom_third = max(1, n - top_third)
-    promoted = 1 < n and rank <= top_third
-    relegated = 1 < n and rank > bottom_third
+
+    # Compute rank: count how many users have strictly more weekly_xp this week
+    higher = await gamification_collection.count_documents({"weekly_league_xp": {"$gt": weekly_xp}})
+    total = await gamification_collection.count_documents({})
+    rank = higher + 1
 
     return {
         "week": week_id,
         "season_id": season_id,
         "weekly_xp": weekly_xp,
         "rank": rank,
-        "of": cohort_size,
+        "of": max(total, 1),
         "tier": tier,
-        "promoted_next_week": promoted,
-        "relegated_next_week": relegated,
+        "promoted_next_week": False,
+        "relegated_next_week": False,
         "tiers": LEAGUE_TIERS,
     }
 

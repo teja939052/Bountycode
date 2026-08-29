@@ -83,8 +83,6 @@ import {
   ResetPassword,
   MonthlyContests,
   IndianPlacement,
-  DSAFingerprint,
-  TowerDashboard,
   StudyTimer,
   StudyGoals,
   ProblemOfTheDay,
@@ -94,20 +92,16 @@ import {
   MockOA,
   LearningHub,
   LanguageJourney,
-  LessonView,
+  RoleSelect,
+  JourneyPage,
   StudyLibrary,
   AdminDashboard,
   Topics,
   TopicProblems,
   PersonalDashboard,
   StudentDashboard,
-  AdaptivePath,
-   LearningModules,
-   LearningModule,
-   ProjectGenerator,
+  ProjectGenerator,
   LanguageLearning,
-  CurriculumHub,
-  LearnTrack,
   LearnLesson,
   FreeTrial,
   PwaSetup,
@@ -122,7 +116,6 @@ import {
   Career,
   CommandCenter,
   Community,
-  LearningJourneys,
   Concepts,
   Terms,
   Privacy,
@@ -177,6 +170,22 @@ function AnimatedRoutes() {
         }
       >
         <Route path="/dashboard" element={<StudentDashboard />} />
+        <Route
+          path="/journey"
+          element={
+            <FeatureErrorBoundary featureName="Journey">
+              <JourneyPage />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/role-select"
+          element={
+            <FeatureErrorBoundary featureName="Role Select">
+              <RoleSelect />
+            </FeatureErrorBoundary>
+          }
+        />
         <Route
           path="/student-dashboard"
           element={<Navigate to="/dashboard" replace />}
@@ -477,14 +486,6 @@ function AnimatedRoutes() {
           }
         />
         <Route
-          path="/fingerprint"
-          element={
-            <FeatureErrorBoundary featureName="Question Bank">
-              <DSAFingerprint />
-            </FeatureErrorBoundary>
-          }
-        />
-        <Route
           path="/challenge-packs"
           element={
             <FeatureErrorBoundary featureName="Question Bank">
@@ -509,16 +510,6 @@ function AnimatedRoutes() {
           }
         />
 
-        {/* Gamification Routes */}
-        <Route
-          path="/tower"
-          element={
-            <FeatureErrorBoundary featureName="Gamification">
-              <TowerDashboard />
-            </FeatureErrorBoundary>
-          }
-        />
-
         {/* Learning Routes */}
         <Route
           path="/learn"
@@ -537,30 +528,6 @@ function AnimatedRoutes() {
           element={
             <FeatureErrorBoundary featureName="Learning">
               <LanguageLearning />
-            </FeatureErrorBoundary>
-          }
-        />
-        <Route
-          path="/learn/:languageId/:levelId/:lessonId"
-          element={
-            <FeatureErrorBoundary featureName="Learning">
-              <LessonView />
-            </FeatureErrorBoundary>
-          }
-        />
-         <Route
-          path="/modules"
-          element={
-            <FeatureErrorBoundary featureName="Learning">
-              <LearningModules />
-            </FeatureErrorBoundary>
-          }
-        />
-        <Route
-          path="/modules/:moduleId"
-          element={
-            <FeatureErrorBoundary featureName="Learning">
-              <LearningModule />
             </FeatureErrorBoundary>
           }
         />
@@ -684,8 +651,6 @@ function AnimatedRoutes() {
           element={<Navigate to="/dashboard" replace />}
         />
 
-        {/* Gamification Hub Redirects */}
-        <Route path="/daily-drill" element={<Navigate to="/tower" replace />}         />
       </Route>
 
       <Route path="*" element={<NotFound />} />

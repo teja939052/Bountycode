@@ -1,4 +1,6 @@
 from datetime import datetime, timezone
+import json
+import os
 from fastapi import APIRouter, Depends, HTTPException, Query
 from fastapi.responses import JSONResponse
 from typing import Optional, List, Dict, Any
@@ -17,9 +19,81 @@ from app.services.response_cache import cached, invalidate_questions_cache
 from app.services import question_store
 from app.services.explanation_cache import get_or_create_explanation
 import random
+import os
+import json
+from pathlib import Path
+
+BACKEND_ROOT = Path(__file__).resolve().parents[2]
 
 router = APIRouter(prefix="/api/v1/questions", tags=["question-bank"])
 code_engine = CodeExecutionEngine()
+
+FREE_DAILY_PROBLEM_LIMIT = 3
+
+
+def _is_paid(user: dict) -> bool:
+    return user.get("plan") in ("pro", "lifetime")
+
+
+def _daily_question_count(user: dict) -> int:
+    daily = user.get("daily_usage") or {}
+    today_key = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    return daily.get("questions_today", 0)
+
+
+def _check_question_quota(user: dict):
+    """Raise HTTPException if the user has exhausted their free daily quota."""
+    if _is_paid(user):
+        return
+    if _daily_question_count(user) >= FREE_DAILY_PROBLEM_LIMIT:
+        raise HTTPException(
+            status_code=402,
+            detail=(
+                "⚠️ Your daily training stamina is depleted! "
+                "You've used your 3 free problems today. "
+                "Upgrade to the Pro Pass for unlimited practice, "
+                "company-specific questions, and instant AI feedback."
+            ),
+        )
+
+
+def _filter_curated(questions: list, company: str, pattern: str, role: str) -> list:
+    """Apply company/pattern/role filters to the curated question list."""
+    result = questions
+    if company:
+        result = [q for q in result if company.lower() in [c.lower() for c in q.get("company", [])]]
+    if pattern:
+        result = [q for q in result if q.get("pattern") == pattern]
+    if role:
+        result = [q for q in result if q.get("role") == role]
+    return result
+
+
+CURATED_EXTRA_BANKS = [
+    BACKEND_ROOT / "app" / "data" / "leetcode_problems_seed.json",
+    BACKEND_ROOT / "app" / "data" / "striver_a2z_600.json",
+]
+
+def _load_curated_questions() -> list:
+    """Load the curated question bank from the content directory, then merge
+    file-based laptop-storage banks (placement-grade, non-AI, no DB) so the
+    browse API surfaces Striver + LeetCode problems."""
+    questions: list = []
+    curated_path = BACKEND_ROOT / "app" / "content" / "questions" / "curated" / "curated.json"
+    if curated_path.exists():
+        try:
+            with open(curated_path, "r", encoding="utf-8") as f:
+                questions = json.load(f)
+        except Exception:
+            questions = []
+    for seed_path in CURATED_EXTRA_BANKS:
+        if seed_path.exists():
+            try:
+                with open(seed_path, "r", encoding="utf-8") as f:
+                    questions.extend(json.load(f))
+            except Exception:
+                pass
+    return questions
 
 
 def _question_title(q: dict) -> str:
@@ -85,44 +159,69 @@ async def browse_questions(
     sort: Optional[str] = Query("frequency"),
     page: int = Query(1, ge=1),
     limit: int = Query(30, ge=1, le=100),
+    skip_quota: bool = Query(False, description="Internal: skip quota for verified free-access content"),
+    context: Optional[str] = Query(None, description="Context for free-access verification: onboarding|tutorial|first_problem"),
     user=Depends(get_current_user),
 ):
-    query = {}
-    if company:
-        query["company"] = {"$in": [company, company.title(), company.upper()]}
-    if role:
-        query["role"] = role
+    # Paywall: company-specific filters require Pro
+    if company and not _is_paid(user):
+        raise HTTPException(
+            status_code=402,
+            detail=(
+                f"🔒 Company-specific question filters are locked. "
+                f"Targeted {company} preparation requires a Pro Pass. "
+                f"Upgrade for access to 53 company blueprints."
+            ),
+        )
+
+    # Free-access verification: backend independently identifies whether the
+    # requested content is legitimately onboarding/tutorial/first-problem.
+    # The frontend cannot simply set skip_quota=true to bypass the quota.
+    is_free_access = False
+    if skip_quota and context in ("onboarding", "tutorial", "first_problem"):
+        # Only allow free access if the user is actually eligible (free tier, not yet consumed today)
+        if not _is_paid(user) and not _daily_question_count(user) >= FREE_DAILY_PROBLEM_LIMIT:
+            is_free_access = True
+
+    # Paywall: enforce daily free quota
+    # Exception: allow onboarding diagnostic + first sample without consuming quota
+    if not is_free_access:
+        _check_question_quota(user)
+
+    # Load from curated content store (clean JSON on disk, not MongoDB)
+    all_questions = _load_curated_questions()
+
+    # For production serving, only show placement-grade reviewed questions
+    # Admin users and Pro can see all; free users get only reviewed ones
+    if not _is_paid(user):
+        all_questions = [q for q in all_questions if q.get("review_status") in ("placement_grade", "reviewed")]
+
+    # Apply filters
+    filtered = _filter_curated(all_questions, company, pattern, role)
     if topic:
-        query["topic"] = topic
-    if sub_topic:
-        query["sub_topic"] = sub_topic
+        filtered = [q for q in filtered if q.get("topic", "").lower() == topic.lower()]
     if difficulty:
-        query["difficulty"] = difficulty
+        filtered = [q for q in filtered if q.get("difficulty", "").lower() == difficulty.lower()]
     if type:
-        query["type"] = type
-    if pattern:
-        query["pattern"] = pattern
-    if source:
-        query["source"] = source
+        filtered = [q for q in filtered if q.get("type", "").lower() == type.lower()]
     if search:
-        query["$text"] = {"$search": search}
+        search_lower = search.lower()
+        filtered = [q for q in filtered if search_lower in (q.get("question", "") or "").lower()]
 
+    # Sort
     if sort == "difficulty":
-        sort_stage = [("difficulty", 1), ("frequency", -1)]
-    elif sort == "companies":
-        sort_stage = [("company", -1), ("frequency", -1)]
-    elif sort == "acceptance":
-        sort_stage = [("frequency", -1)]
-    elif sort == "newest":
-        sort_stage = [("frequency", -1)]
+        filtered.sort(key=lambda q: (q.get("difficulty", "medium"),))
     elif sort == "alphabetical":
-        sort_stage = [("question", 1)]
+        filtered.sort(key=lambda q: q.get("question", ""))[:100]
     else:
-        sort_stage = [("frequency", -1)]
+        filtered.sort(key=lambda q: q.get("frequency", 0), reverse=True)
 
-    total = question_store.count_documents(query)
+    total = len(filtered)
     skip = (page - 1) * limit
-    items = question_store.find(query).skip(skip).limit(limit).sort(sort_stage).to_list()
+    items = filtered[skip:skip + limit]
+
+    # Inject usage info for the frontend
+    remaining = max(0, FREE_DAILY_PROBLEM_LIMIT - _daily_question_count(user)) if not _is_paid(user) else -1
 
     return {
         "questions": items,
@@ -130,6 +229,9 @@ async def browse_questions(
         "page": page,
         "pages": (total + limit - 1) // limit if total > 0 else 1,
         "sort": sort,
+        "remaining_daily": remaining,
+        "is_pro": _is_paid(user),
+        "source": "curated",
     }
 
 
@@ -348,6 +450,26 @@ async def get_my_stats(user=Depends(get_current_user)):
         "weak_areas": weak_areas,
         "strong_areas": strong_areas,
     }
+
+
+@router.post("/daily-increment")
+async def increment_daily_question_count(user=Depends(get_current_user)):
+    """Increment the user's daily question counter. Returns remaining daily quota."""
+    if _is_paid(user):
+        return {"remaining": -1, "is_pro": True}
+    today_key = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    daily = user.get("daily_usage") or {}
+    last_reset = daily.get("questions_reset_date")
+    if last_reset != today_key:
+        daily["questions_today"] = 0
+        daily["questions_reset_date"] = today_key
+    daily["questions_today"] = daily.get("questions_today", 0) + 1
+    remaining = max(0, FREE_DAILY_PROBLEM_LIMIT - daily["questions_today"])
+    await users_collection.update_one(
+        {"_id": ObjectId(user["id"])},
+        {"$set": {"daily_usage": daily}},
+    )
+    return {"remaining": remaining, "is_pro": False}
 
 
 @router.post("/submit")

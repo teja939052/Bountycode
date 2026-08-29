@@ -35,9 +35,9 @@ from app.services.gamification import (
 from app.services.skill_assessment import (
     get_skill_graph,
     get_weak_areas,
-    get_readiness_score,
     update_skill_score,
 )
+from app.services.readiness_engine import compute_readiness
 from app.services.response_cache import cached
 
 router = APIRouter(prefix="/api/v1/gamification", tags=["gamification"])
@@ -376,4 +376,4 @@ async def weak_areas(user=Depends(get_current_user), top_n: int = Query(default=
 
 @router.get("/skills/readiness")
 async def readiness(company: str = None, user=Depends(get_current_user)):
-    return await get_readiness_score(user["id"], company)
+    return await compute_readiness(user["id"], company)

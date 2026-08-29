@@ -104,6 +104,8 @@ def _is_correct_answer(user_ans: str, correct: str, q_type: str) -> bool:
 @router.post("/answer")
 async def submit_answer(req: SubmitAnswer, user=Depends(get_current_user)):
     await check_and_reset_monthly_usage(user)
+    from app.routes.questions import _is_paid, _check_question_quota
+    _check_question_quota(user)
     qid = req.question_id
     question = question_store.find_one({"id": qid})
     if not question:
@@ -263,6 +265,8 @@ async def submit_code_for_question(
     user=Depends(get_current_user),
 ):
     await check_and_reset_monthly_usage(user)
+    from app.routes.questions import _check_question_quota
+    _check_question_quota(user)
     question = question_store.find_one({"id": question_id})
     if not question:
         raise HTTPException(status_code=404, detail="Question not found")

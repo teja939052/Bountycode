@@ -14,13 +14,12 @@ from app.database import (
     srs_cards_collection,
     solved_problems_collection,
 )
-from app.services.srs_engine import (
-    create_card,
-    update_card,
+from app.services.spaced_repetition import (
+    SpacedRepetitionEngine,
+    SRSState,
+    ReviewGrade,
     get_due_cards,
-    compute_stats,
-    serialize_card,
-    SRSCard,
+    serialize_state,
 )
 
 router = APIRouter(prefix="/api/v1/srs", tags=["spaced-repetition-problems"])
@@ -33,29 +32,40 @@ class ReviewRecordRequest(BaseModel):
     is_correct: bool = Field(..., description="Whether the attempt was correct")
 
 
+def _doc_to_state(doc: dict) -> SRSState:
+    """Convert a MongoDB document to SRSState."""
+    return SRSState(
+        concept_id=doc.get("problem_id", doc.get("concept_id", "")),
+        user_id=doc.get("user_id", ""),
+        interval=doc.get("interval_days", doc.get("interval", 0)),
+        repetitions=doc.get("review_count", doc.get("repetitions", 0)),
+        ease_factor=doc.get("ease_factor", 2.5),
+        total_reviews=doc.get("total_reviews", doc.get("review_count", 0)),
+        lapses=doc.get("lapses", 0),
+    )
+
+
 @router.get("/due")
 async def get_due_problems(
     limit: int = 20,
     user=Depends(get_current_user),
 ):
-    """Get problems due for review today.
-
-    Returns the user's SRS cards that are scheduled for review now or are
-    overdue, sorted by most overdue first. Each card includes the problem_id,
-    difficulty, interval, and scheduling metadata.
-    """
+    """Get problems due for review today."""
     uid = user["id"]
     cards_col = srs_cards_collection()
 
     cursor = cards_col.find({"user_id": uid})
     cards = []
     async for doc in cursor:
-        cards.append(SRSCard.from_dict(doc))
+        try:
+            cards.append(_doc_to_state(doc))
+        except Exception:
+            continue
 
     due = get_due_cards(cards, limit=limit)
 
     return {
-        "cards": [serialize_card(c) for c in due],
+        "cards": [serialize_state(c) for c in due],
         "count": len(due),
         "total_cards": len(cards),
     }
@@ -63,71 +73,65 @@ async def get_due_problems(
 
 @router.get("/stats")
 async def get_review_stats(user=Depends(get_current_user)):
-    """Get review statistics for the user.
-
-    Returns counts for due, overdue, mastered, and learning cards,
-    plus average ease factor, retention rate, and per-difficulty breakdown.
-    """
+    """Get review statistics for the user."""
     uid = user["id"]
     cards_col = srs_cards_collection()
 
     cursor = cards_col.find({"user_id": uid})
     cards = []
     async for doc in cursor:
-        cards.append(SRSCard.from_dict(doc))
+        try:
+            cards.append(_doc_to_state(doc))
+        except Exception:
+            continue
 
-    stats = compute_stats(cards)
+    engine = SpacedRepetitionEngine()
+    stats = engine.get_stats(cards)
 
     return stats
 
 
 @router.post("/record")
 async def record_review(req: ReviewRecordRequest, user=Depends(get_current_user)):
-    """Record a review attempt for a problem and update the SRS schedule.
-
-    Creates a new card if this is the first time, or updates the existing
-    card's schedule based on the SM-2-inspired algorithm:
-    - Correct → interval doubles (or sets initial interval)
-    - Wrong → interval resets to tonight
-    - Ease factor adjusts based on performance
-
-    Returns the updated card with the next review date.
-    """
+    """Record a review attempt for a problem and update the SRS schedule."""
     uid = user["id"]
     cards_col = srs_cards_collection()
 
-    # Validate difficulty
     if req.difficulty not in ("easy", "medium", "hard"):
         raise HTTPException(status_code=400, detail="Difficulty must be 'easy', 'medium', or 'hard'")
 
-    # Find existing card
     existing_doc = await cards_col.find_one({
         "user_id": uid,
         "problem_id": req.problem_id,
     })
 
+    engine = SpacedRepetitionEngine()
+
     if existing_doc:
-        card = SRSCard.from_dict(existing_doc)
-        is_review = card.review_count > 0 or card.total_attempts > 0
-        card = update_card(card, req.correct)
+        state = _doc_to_state(existing_doc)
+        is_review = state.total_reviews > 0
+        grade = ReviewGrade.GOOD if req.is_correct else ReviewGrade.AGAIN
+        state = engine.review(state, grade)
     else:
         is_review = False
-        card = create_card(
-            user_id=uid,
-            problem_id=req.problem_id,
-            difficulty=req.difficulty,
-            is_correct=req.correct,
-        )
+        state = engine.create_new_card(req.problem_id, uid)
+        if not req.is_correct:
+            grade = ReviewGrade.AGAIN
+            state = engine.review(state, grade)
 
-    # Persist to database
-    card_dict = card.to_dict()
+    from dataclasses import asdict
+    card_dict = asdict(state)
+    card_dict["problem_id"] = req.problem_id
+    card_dict["user_id"] = uid
+    card_dict["difficulty"] = req.difficulty
+
     await cards_col.update_one(
         {"user_id": uid, "problem_id": req.problem_id},
         {"$set": card_dict},
         upsert=True,
     )
 
-    serialized = serialize_card(card)
+    serialized = serialize_state(state)
     serialized["is_review"] = is_review
     serialized["new_card"] = not existing_doc
 
@@ -136,10 +140,7 @@ async def record_review(req: ReviewRecordRequest, user=Depends(get_current_user)
 
 @router.get("/problem/{problem_id}")
 async def get_card_status(problem_id: str, user=Depends(get_current_user)):
-    """Get the SRS status for a specific problem.
-
-    Returns the card's scheduling state, or null values if no card exists yet.
-    """
+    """Get the SRS status for a specific problem."""
     uid = user["id"]
     cards_col = srs_cards_collection()
 
@@ -157,8 +158,8 @@ async def get_card_status(problem_id: str, user=Depends(get_current_user)):
             "review_count": 0,
         }
 
-    card = SRSCard.from_dict(doc)
-    serialized = serialize_card(card)
+    state = _doc_to_state(doc)
+    serialized = serialize_state(state)
     serialized["has_card"] = True
 
     return serialized

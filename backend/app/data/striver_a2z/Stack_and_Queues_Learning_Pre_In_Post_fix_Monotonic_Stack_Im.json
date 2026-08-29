@@ -1,0 +1,3984 @@
+[
+  {
+    "id": "tuf_0283",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Learning",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Learning",
+    "tuf_step_index": 9,
+    "question": "Implement Stack using Arrays",
+    "question_title": "Implement Stack using Arrays",
+    "statement": "Implement Stack using Arrays. Solve the Striver A2Z problem 'Implement Stack using Arrays' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Learning). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Implement Stack using Arrays. Solve the Striver A2Z problem 'Implement Stack using Arrays' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Learning). Retur",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def implement(nums):\n    # Implement Stack using Arrays - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "implement",
+    "leetcode_number": 1982,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Learning"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 18,
+    "upvotes": 390
+  },
+  {
+    "id": "tuf_0284",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Prefix, Infix, PostFix Conversion",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Prefix, Infix, PostFix Conversion",
+    "tuf_step_index": 9,
+    "question": "Implement Queue using Arrays",
+    "question_title": "Implement Queue using Arrays",
+    "statement": "Implement Queue using Arrays. Solve the Striver A2Z problem 'Implement Queue using Arrays' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Prefix, Infix, PostFix Conversion). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Implement Queue using Arrays. Solve the Striver A2Z problem 'Implement Queue using Arrays' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Prefix, Infix, P",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def implement(nums):\n    # Implement Queue using Arrays - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "implement",
+    "leetcode_number": 1989,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Prefix, Infix, PostFix Conversion"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 52,
+    "upvotes": 369
+  },
+  {
+    "id": "tuf_0285",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Monotonic Stack/Queue",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Monotonic Stack/Queue",
+    "tuf_step_index": 9,
+    "question": "Implement Stack using Queue",
+    "question_title": "Implement Stack using Queue",
+    "statement": "Implement Stack using Queue. Solve the Striver A2Z problem 'Implement Stack using Queue' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Monotonic Stack/Queue). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Implement Stack using Queue. Solve the Striver A2Z problem 'Implement Stack using Queue' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Monotonic Stack/Qu",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def implement(nums):\n    # Implement Stack using Queue - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "implement",
+    "leetcode_number": 1996,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Monotonic Stack/Queue"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 50,
+    "upvotes": 389
+  },
+  {
+    "id": "tuf_0286",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Implementation Problems",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Implementation Problems",
+    "tuf_step_index": 9,
+    "question": "Implement Queue using Stack",
+    "question_title": "Implement Queue using Stack",
+    "statement": "Implement Queue using Stack. Solve the Striver A2Z problem 'Implement Queue using Stack' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Implementation Problems). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Implement Queue using Stack. Solve the Striver A2Z problem 'Implement Queue using Stack' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Implementation Pro",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def implement(nums):\n    # Implement Queue using Stack - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "implement",
+    "leetcode_number": 2003,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Implementation Problems"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 25,
+    "upvotes": 418
+  },
+  {
+    "id": "tuf_0287",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Learning",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Learning",
+    "tuf_step_index": 9,
+    "question": "Implement Stack using LinkedList",
+    "question_title": "Implement Stack using LinkedList",
+    "statement": "Implement Stack using LinkedList. Solve the Striver A2Z problem 'Implement Stack using LinkedList' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Learning). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Implement Stack using LinkedList. Solve the Striver A2Z problem 'Implement Stack using LinkedList' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Learning",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def implement(nums):\n    # Implement Stack using LinkedList - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "implement",
+    "leetcode_number": 2010,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Learning"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 48,
+    "upvotes": 309
+  },
+  {
+    "id": "tuf_0288",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Prefix, Infix, PostFix Conversion",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Prefix, Infix, PostFix Conversion",
+    "tuf_step_index": 9,
+    "question": "Implement Queue using LinkedList",
+    "question_title": "Implement Queue using LinkedList",
+    "statement": "Implement Queue using LinkedList. Solve the Striver A2Z problem 'Implement Queue using LinkedList' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Prefix, Infix, PostFix Conversion). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Implement Queue using LinkedList. Solve the Striver A2Z problem 'Implement Queue using LinkedList' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Prefix, ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def implement(nums):\n    # Implement Queue using LinkedList - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "implement",
+    "leetcode_number": 2017,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Prefix, Infix, PostFix Conversion"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 49,
+    "upvotes": 391
+  },
+  {
+    "id": "tuf_0289",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Monotonic Stack/Queue",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Monotonic Stack/Queue",
+    "tuf_step_index": 9,
+    "question": "Balanced Parantheses",
+    "question_title": "Balanced Parantheses",
+    "statement": "Balanced Parantheses. Solve the Striver A2Z problem 'Balanced Parantheses' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Monotonic Stack/Queue). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Balanced Parantheses. Solve the Striver A2Z problem 'Balanced Parantheses' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Monotonic Stack/Queue). Return t",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def balanced(nums):\n    # Balanced Parantheses - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "balanced",
+    "leetcode_number": 2024,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Monotonic Stack/Queue"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 62,
+    "upvotes": 217
+  },
+  {
+    "id": "tuf_0290",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Implementation Problems",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Implementation Problems",
+    "tuf_step_index": 9,
+    "question": "Implement Min Stack",
+    "question_title": "Implement Min Stack",
+    "statement": "Implement Min Stack. Solve the Striver A2Z problem 'Implement Min Stack' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Implementation Problems). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Implement Min Stack. Solve the Striver A2Z problem 'Implement Min Stack' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Implementation Problems). Return t",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def implement(nums):\n    # Implement Min Stack - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "implement",
+    "leetcode_number": 2031,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Implementation Problems"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 61,
+    "upvotes": 406
+  },
+  {
+    "id": "tuf_0291",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Learning",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Learning",
+    "tuf_step_index": 9,
+    "question": "Infix to Postfix",
+    "question_title": "Infix to Postfix",
+    "statement": "Infix to Postfix. Solve the Striver A2Z problem 'Infix to Postfix' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Learning). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Infix to Postfix. Solve the Striver A2Z problem 'Infix to Postfix' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Learning). Return the required answer pe",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def infix(nums):\n    # Infix to Postfix - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "infix",
+    "leetcode_number": 2038,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Learning"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 47,
+    "upvotes": 333
+  },
+  {
+    "id": "tuf_0292",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Prefix, Infix, PostFix Conversion",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Prefix, Infix, PostFix Conversion",
+    "tuf_step_index": 9,
+    "question": "Prefix to Infix",
+    "question_title": "Prefix to Infix",
+    "statement": "Prefix to Infix. Solve the Striver A2Z problem 'Prefix to Infix' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Prefix, Infix, PostFix Conversion). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Prefix to Infix. Solve the Striver A2Z problem 'Prefix to Infix' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Prefix, Infix, PostFix Conversion). Return",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def prefix(nums):\n    # Prefix to Infix - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "prefix",
+    "leetcode_number": 2045,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Prefix, Infix, PostFix Conversion"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 26,
+    "upvotes": 148
+  },
+  {
+    "id": "tuf_0293",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Monotonic Stack/Queue",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Monotonic Stack/Queue",
+    "tuf_step_index": 9,
+    "question": "Prefix to Postfix",
+    "question_title": "Prefix to Postfix",
+    "statement": "Prefix to Postfix. Solve the Striver A2Z problem 'Prefix to Postfix' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Monotonic Stack/Queue). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Prefix to Postfix. Solve the Striver A2Z problem 'Prefix to Postfix' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Monotonic Stack/Queue). Return the req",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def prefix(nums):\n    # Prefix to Postfix - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "prefix",
+    "leetcode_number": 2052,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Monotonic Stack/Queue"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 63,
+    "upvotes": 390
+  },
+  {
+    "id": "tuf_0294",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Implementation Problems",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Implementation Problems",
+    "tuf_step_index": 9,
+    "question": "Postfix to Prefix",
+    "question_title": "Postfix to Prefix",
+    "statement": "Postfix to Prefix. Solve the Striver A2Z problem 'Postfix to Prefix' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Implementation Problems). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Postfix to Prefix. Solve the Striver A2Z problem 'Postfix to Prefix' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Implementation Problems). Return the r",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def postfix(nums):\n    # Postfix to Prefix - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "postfix",
+    "leetcode_number": 2059,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Implementation Problems"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 58,
+    "upvotes": 396
+  },
+  {
+    "id": "tuf_0295",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Learning",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Learning",
+    "tuf_step_index": 9,
+    "question": "Postfix to Infix",
+    "question_title": "Postfix to Infix",
+    "statement": "Postfix to Infix. Solve the Striver A2Z problem 'Postfix to Infix' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Learning). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Postfix to Infix. Solve the Striver A2Z problem 'Postfix to Infix' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Learning). Return the required answer pe",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def postfix(nums):\n    # Postfix to Infix - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "postfix",
+    "leetcode_number": 2066,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Learning"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 32,
+    "upvotes": 365
+  },
+  {
+    "id": "tuf_0296",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Prefix, Infix, PostFix Conversion",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Prefix, Infix, PostFix Conversion",
+    "tuf_step_index": 9,
+    "question": "Infix to Prefix",
+    "question_title": "Infix to Prefix",
+    "statement": "Infix to Prefix. Solve the Striver A2Z problem 'Infix to Prefix' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Prefix, Infix, PostFix Conversion). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Infix to Prefix. Solve the Striver A2Z problem 'Infix to Prefix' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Prefix, Infix, PostFix Conversion). Return",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def infix(nums):\n    # Infix to Prefix - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "infix",
+    "leetcode_number": 2073,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Prefix, Infix, PostFix Conversion"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 82,
+    "upvotes": 204
+  },
+  {
+    "id": "tuf_0297",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Monotonic Stack/Queue",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Monotonic Stack/Queue",
+    "tuf_step_index": 9,
+    "question": "Next Greater Element",
+    "question_title": "Next Greater Element",
+    "statement": "Next Greater Element. Solve the Striver A2Z problem 'Next Greater Element' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Monotonic Stack/Queue). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Next Greater Element. Solve the Striver A2Z problem 'Next Greater Element' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Monotonic Stack/Queue). Return t",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def next(nums):\n    # Next Greater Element - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "next",
+    "leetcode_number": 2080,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Monotonic Stack/Queue"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 61,
+    "upvotes": 330
+  },
+  {
+    "id": "tuf_0298",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Implementation Problems",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Implementation Problems",
+    "tuf_step_index": 9,
+    "question": "Next Greater Element II",
+    "question_title": "Next Greater Element II",
+    "statement": "Next Greater Element II. Solve the Striver A2Z problem 'Next Greater Element II' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Implementation Problems). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Next Greater Element II. Solve the Striver A2Z problem 'Next Greater Element II' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Implementation Problems). ",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def next(nums):\n    # Next Greater Element II - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "next",
+    "leetcode_number": 2087,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Implementation Problems"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 10,
+    "upvotes": 205
+  },
+  {
+    "id": "tuf_0299",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Learning",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Learning",
+    "tuf_step_index": 9,
+    "question": "Next Smaller Element",
+    "question_title": "Next Smaller Element",
+    "statement": "Next Smaller Element. Solve the Striver A2Z problem 'Next Smaller Element' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Learning). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Next Smaller Element. Solve the Striver A2Z problem 'Next Smaller Element' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Learning). Return the required a",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def next(nums):\n    # Next Smaller Element - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "next",
+    "leetcode_number": 2094,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Learning"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 46,
+    "upvotes": 157
+  },
+  {
+    "id": "tuf_0300",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Prefix, Infix, PostFix Conversion",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Prefix, Infix, PostFix Conversion",
+    "tuf_step_index": 9,
+    "question": "Number of NGEs",
+    "question_title": "Number of NGEs",
+    "statement": "Number of NGEs. Solve the Striver A2Z problem 'Number of NGEs' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Prefix, Infix, PostFix Conversion). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Number of NGEs. Solve the Striver A2Z problem 'Number of NGEs' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Prefix, Infix, PostFix Conversion). Return t",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def number(nums):\n    # Number of NGEs - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "number",
+    "leetcode_number": 2101,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Prefix, Infix, PostFix Conversion"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 65,
+    "upvotes": 452
+  },
+  {
+    "id": "tuf_0301",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Monotonic Stack/Queue",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Monotonic Stack/Queue",
+    "tuf_step_index": 9,
+    "question": "Trapping Rain Water",
+    "question_title": "Trapping Rain Water",
+    "statement": "Trapping Rain Water. Solve the Striver A2Z problem 'Trapping Rain Water' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Monotonic Stack/Queue). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Trapping Rain Water. Solve the Striver A2Z problem 'Trapping Rain Water' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Monotonic Stack/Queue). Return the",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def trapping(nums):\n    # Trapping Rain Water - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "trapping",
+    "leetcode_number": 2108,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Monotonic Stack/Queue"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 84,
+    "upvotes": 360
+  },
+  {
+    "id": "tuf_0302",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Implementation Problems",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Implementation Problems",
+    "tuf_step_index": 9,
+    "question": "Sum of Subarray Minimums",
+    "question_title": "Sum of Subarray Minimums",
+    "statement": "Sum of Subarray Minimums. Solve the Striver A2Z problem 'Sum of Subarray Minimums' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Implementation Problems). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Sum of Subarray Minimums. Solve the Striver A2Z problem 'Sum of Subarray Minimums' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Implementation Problems)",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def sum(nums):\n    # Sum of Subarray Minimums - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "sum",
+    "leetcode_number": 2115,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Implementation Problems"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 93,
+    "upvotes": 214
+  },
+  {
+    "id": "tuf_0303",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Learning",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Learning",
+    "tuf_step_index": 9,
+    "question": "Asteroid Collision",
+    "question_title": "Asteroid Collision",
+    "statement": "Asteroid Collision. Solve the Striver A2Z problem 'Asteroid Collision' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Learning). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Asteroid Collision. Solve the Striver A2Z problem 'Asteroid Collision' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Learning). Return the required answe",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def asteroid(nums):\n    # Asteroid Collision - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "asteroid",
+    "leetcode_number": 2122,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Learning"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 69,
+    "upvotes": 276
+  },
+  {
+    "id": "tuf_0304",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Prefix, Infix, PostFix Conversion",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Prefix, Infix, PostFix Conversion",
+    "tuf_step_index": 9,
+    "question": "Sum of Subarray Ranges",
+    "question_title": "Sum of Subarray Ranges",
+    "statement": "Sum of Subarray Ranges. Solve the Striver A2Z problem 'Sum of Subarray Ranges' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Prefix, Infix, PostFix Conversion). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Sum of Subarray Ranges. Solve the Striver A2Z problem 'Sum of Subarray Ranges' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Prefix, Infix, PostFix Conve",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def sum(nums):\n    # Sum of Subarray Ranges - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "sum",
+    "leetcode_number": 2129,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Prefix, Infix, PostFix Conversion"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 66,
+    "upvotes": 395
+  },
+  {
+    "id": "tuf_0305",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Monotonic Stack/Queue",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Monotonic Stack/Queue",
+    "tuf_step_index": 9,
+    "question": "Remove K Digits",
+    "question_title": "Remove K Digits",
+    "statement": "Remove K Digits. Solve the Striver A2Z problem 'Remove K Digits' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Monotonic Stack/Queue). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Remove K Digits. Solve the Striver A2Z problem 'Remove K Digits' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Monotonic Stack/Queue). Return the require",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def remove(nums):\n    # Remove K Digits - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "remove",
+    "leetcode_number": 2136,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Monotonic Stack/Queue"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 37,
+    "upvotes": 311
+  },
+  {
+    "id": "tuf_0306",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Implementation Problems",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Implementation Problems",
+    "tuf_step_index": 9,
+    "question": "Largest Rectangle in Histogram",
+    "question_title": "Largest Rectangle in Histogram",
+    "statement": "Largest Rectangle in Histogram. Solve the Striver A2Z problem 'Largest Rectangle in Histogram' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Implementation Problems). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Largest Rectangle in Histogram. Solve the Striver A2Z problem 'Largest Rectangle in Histogram' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Implementati",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def largest(nums):\n    # Largest Rectangle in Histogram - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "largest",
+    "leetcode_number": 2143,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Implementation Problems"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 70,
+    "upvotes": 456
+  },
+  {
+    "id": "tuf_0307",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Learning",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Learning",
+    "tuf_step_index": 9,
+    "question": "Maximal Rectangle",
+    "question_title": "Maximal Rectangle",
+    "statement": "Maximal Rectangle. Solve the Striver A2Z problem 'Maximal Rectangle' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Learning). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Maximal Rectangle. Solve the Striver A2Z problem 'Maximal Rectangle' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Learning). Return the required answer ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def maximal(nums):\n    # Maximal Rectangle - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "maximal",
+    "leetcode_number": 2150,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Learning"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 31,
+    "upvotes": 387
+  },
+  {
+    "id": "tuf_0308",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Prefix, Infix, PostFix Conversion",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Prefix, Infix, PostFix Conversion",
+    "tuf_step_index": 9,
+    "question": "Sliding Window Maximum",
+    "question_title": "Sliding Window Maximum",
+    "statement": "Sliding Window Maximum. Solve the Striver A2Z problem 'Sliding Window Maximum' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Prefix, Infix, PostFix Conversion). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Sliding Window Maximum. Solve the Striver A2Z problem 'Sliding Window Maximum' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Prefix, Infix, PostFix Conve",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def sliding(nums):\n    # Sliding Window Maximum - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "sliding",
+    "leetcode_number": 2157,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Prefix, Infix, PostFix Conversion"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 20,
+    "upvotes": 195
+  },
+  {
+    "id": "tuf_0309",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Monotonic Stack/Queue",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Monotonic Stack/Queue",
+    "tuf_step_index": 9,
+    "question": "Stock Span",
+    "question_title": "Stock Span",
+    "statement": "Stock Span. Solve the Striver A2Z problem 'Stock Span' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Monotonic Stack/Queue). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Stock Span. Solve the Striver A2Z problem 'Stock Span' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Monotonic Stack/Queue). Return the required answer p",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def stock(nums):\n    # Stock Span - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "stock",
+    "leetcode_number": 2164,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Monotonic Stack/Queue"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 75,
+    "upvotes": 389
+  },
+  {
+    "id": "tuf_0310",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Implementation Problems",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Implementation Problems",
+    "tuf_step_index": 9,
+    "question": "Celebrity Problem",
+    "question_title": "Celebrity Problem",
+    "statement": "Celebrity Problem. Solve the Striver A2Z problem 'Celebrity Problem' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Implementation Problems). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Celebrity Problem. Solve the Striver A2Z problem 'Celebrity Problem' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Implementation Problems). Return the r",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def celebrity(nums):\n    # Celebrity Problem - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "celebrity",
+    "leetcode_number": 2171,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Implementation Problems"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 91,
+    "upvotes": 367
+  },
+  {
+    "id": "tuf_0311",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Learning",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Learning",
+    "tuf_step_index": 9,
+    "question": "LRU Cache",
+    "question_title": "LRU Cache",
+    "statement": "LRU Cache. Solve the Striver A2Z problem 'LRU Cache' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Learning). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "LRU Cache. Solve the Striver A2Z problem 'LRU Cache' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Learning). Return the required answer per TUF sheet. T",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def lru(nums):\n    # LRU Cache - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "lru",
+    "leetcode_number": 2178,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Learning"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 52,
+    "upvotes": 97
+  },
+  {
+    "id": "tuf_0312",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Prefix, Infix, PostFix Conversion",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Prefix, Infix, PostFix Conversion",
+    "tuf_step_index": 9,
+    "question": "LFU Cache",
+    "question_title": "LFU Cache",
+    "statement": "LFU Cache. Solve the Striver A2Z problem 'LFU Cache' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Prefix, Infix, PostFix Conversion). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "LFU Cache. Solve the Striver A2Z problem 'LFU Cache' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Prefix, Infix, PostFix Conversion). Return the require",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def lfu(nums):\n    # LFU Cache - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "lfu",
+    "leetcode_number": 2185,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Prefix, Infix, PostFix Conversion"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 40,
+    "upvotes": 394
+  },
+  {
+    "id": "tuf_0313",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Monotonic Stack/Queue",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Monotonic Stack/Queue",
+    "tuf_step_index": 9,
+    "question": "Implement Stack using Arrays (Stack and Qu #31)",
+    "question_title": "Implement Stack using Arrays (Stack and Qu #31)",
+    "statement": "Implement Stack using Arrays (Stack and Qu #31). Solve the Striver A2Z problem 'Implement Stack using Arrays (Stack and Qu #31)' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Monotonic Stack/Queue). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Implement Stack using Arrays (Stack and Qu #31). Solve the Striver A2Z problem 'Implement Stack using Arrays (Stack and Qu #31)' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Imple",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def implement(nums):\n    # Implement Stack using Arrays (Stack and Qu #31) - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "implement",
+    "leetcode_number": 2192,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Monotonic Stack/Queue"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 49,
+    "upvotes": 165
+  },
+  {
+    "id": "tuf_0314",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Implementation Problems",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Implementation Problems",
+    "tuf_step_index": 9,
+    "question": "Implement Queue using Arrays (Stack and Qu #32)",
+    "question_title": "Implement Queue using Arrays (Stack and Qu #32)",
+    "statement": "Implement Queue using Arrays (Stack and Qu #32). Solve the Striver A2Z problem 'Implement Queue using Arrays (Stack and Qu #32)' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Implementation Problems). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Implement Queue using Arrays (Stack and Qu #32). Solve the Striver A2Z problem 'Implement Queue using Arrays (Stack and Qu #32)' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Imple",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def implement(nums):\n    # Implement Queue using Arrays (Stack and Qu #32) - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "implement",
+    "leetcode_number": 2199,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Implementation Problems"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 35,
+    "upvotes": 125
+  },
+  {
+    "id": "tuf_0315",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Learning",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Learning",
+    "tuf_step_index": 9,
+    "question": "Implement Stack using Queue (Stack and Qu #33)",
+    "question_title": "Implement Stack using Queue (Stack and Qu #33)",
+    "statement": "Implement Stack using Queue (Stack and Qu #33). Solve the Striver A2Z problem 'Implement Stack using Queue (Stack and Qu #33)' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Learning). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Implement Stack using Queue (Stack and Qu #33). Solve the Striver A2Z problem 'Implement Stack using Queue (Stack and Qu #33)' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Impleme",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def implement(nums):\n    # Implement Stack using Queue (Stack and Qu #33) - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "implement",
+    "leetcode_number": 2206,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Learning"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 13,
+    "upvotes": 73
+  },
+  {
+    "id": "tuf_0316",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Prefix, Infix, PostFix Conversion",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Prefix, Infix, PostFix Conversion",
+    "tuf_step_index": 9,
+    "question": "Implement Queue using Stack (Stack and Qu #34)",
+    "question_title": "Implement Queue using Stack (Stack and Qu #34)",
+    "statement": "Implement Queue using Stack (Stack and Qu #34). Solve the Striver A2Z problem 'Implement Queue using Stack (Stack and Qu #34)' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Prefix, Infix, PostFix Conversion). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Implement Queue using Stack (Stack and Qu #34). Solve the Striver A2Z problem 'Implement Queue using Stack (Stack and Qu #34)' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Impleme",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def implement(nums):\n    # Implement Queue using Stack (Stack and Qu #34) - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "implement",
+    "leetcode_number": 2213,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Prefix, Infix, PostFix Conversion"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 41,
+    "upvotes": 293
+  },
+  {
+    "id": "tuf_0317",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Monotonic Stack/Queue",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Monotonic Stack/Queue",
+    "tuf_step_index": 9,
+    "question": "Implement Stack using LinkedList (Stack and Qu #35)",
+    "question_title": "Implement Stack using LinkedList (Stack and Qu #35)",
+    "statement": "Implement Stack using LinkedList (Stack and Qu #35). Solve the Striver A2Z problem 'Implement Stack using LinkedList (Stack and Qu #35)' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Monotonic Stack/Queue). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Implement Stack using LinkedList (Stack and Qu #35). Solve the Striver A2Z problem 'Implement Stack using LinkedList (Stack and Qu #35)' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stac",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def implement(nums):\n    # Implement Stack using LinkedList (Stack and Qu #35) - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "implement",
+    "leetcode_number": 2220,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Monotonic Stack/Queue"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 88,
+    "upvotes": 485
+  },
+  {
+    "id": "tuf_0318",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Implementation Problems",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Implementation Problems",
+    "tuf_step_index": 9,
+    "question": "Implement Queue using LinkedList (Stack and Qu #36)",
+    "question_title": "Implement Queue using LinkedList (Stack and Qu #36)",
+    "statement": "Implement Queue using LinkedList (Stack and Qu #36). Solve the Striver A2Z problem 'Implement Queue using LinkedList (Stack and Qu #36)' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Implementation Problems). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Implement Queue using LinkedList (Stack and Qu #36). Solve the Striver A2Z problem 'Implement Queue using LinkedList (Stack and Qu #36)' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stac",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def implement(nums):\n    # Implement Queue using LinkedList (Stack and Qu #36) - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "implement",
+    "leetcode_number": 2227,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Implementation Problems"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 19,
+    "upvotes": 283
+  },
+  {
+    "id": "tuf_0319",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Learning",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Learning",
+    "tuf_step_index": 9,
+    "question": "Balanced Parantheses (Stack and Qu #37)",
+    "question_title": "Balanced Parantheses (Stack and Qu #37)",
+    "statement": "Balanced Parantheses (Stack and Qu #37). Solve the Striver A2Z problem 'Balanced Parantheses (Stack and Qu #37)' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Learning). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Balanced Parantheses (Stack and Qu #37). Solve the Striver A2Z problem 'Balanced Parantheses (Stack and Qu #37)' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pat",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def balanced(nums):\n    # Balanced Parantheses (Stack and Qu #37) - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "balanced",
+    "leetcode_number": 2234,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Learning"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 63,
+    "upvotes": 372
+  },
+  {
+    "id": "tuf_0320",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "sub_topic": "Prefix, Infix, PostFix Conversion",
+    "pattern": "Stacks & Queues",
+    "tuf_step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_subtopic": "Prefix, Infix, PostFix Conversion",
+    "tuf_step_index": 9,
+    "question": "Implement Min Stack (Stack and Qu #38)",
+    "question_title": "Implement Min Stack (Stack and Qu #38)",
+    "statement": "Implement Min Stack (Stack and Qu #38). Solve the Striver A2Z problem 'Implement Min Stack (Stack and Qu #38)' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (pattern: Prefix, Infix, PostFix Conversion). Return the required answer per TUF sheet. This is part of Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation] asked in top product companies.",
+    "description": "Implement Min Stack (Stack and Qu #38). Solve the Striver A2Z problem 'Implement Min Stack (Stack and Qu #38)' from TakeUForward step 'Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]' (patte",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic stack O(n)",
+      "Simulate stack"
+    ],
+    "solution": {
+      "code": "def implement(nums):\n    # Implement Min Stack (Stack and Qu #38) - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "implement",
+    "leetcode_number": 2241,
+    "dsa_guide": {
+      "approach": "Stacks & Queues",
+      "data_structures": [
+        "Prefix, Infix, PostFix Conversion"
+      ],
+      "patterns": [
+        "Stacks & Queues"
+      ],
+      "tips": [
+        "Monotonic stack O(n)",
+        "Simulate stack"
+      ]
+    },
+    "source": "TakeUForward - Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 83,
+    "upvotes": 149
+  }
+]

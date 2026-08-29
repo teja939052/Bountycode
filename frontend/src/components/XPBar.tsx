@@ -2,39 +2,34 @@ import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import CountUp from 'react-countup';
 
-const LEVEL_THRESHOLDS = [
-  0, 100, 300, 600, 1000, 1600, 2400, 3400, 4600, 6000,
-  7800, 10000, 12600, 15600, 19200, 23400, 28200, 33800, 40200, 47600,
-];
-
-function getLevelForXP(xp) {
-  let level = 1;
-  for (let i = 1; i < LEVEL_THRESHOLDS.length; i++) {
-    if (xp >= LEVEL_THRESHOLDS[i]) level = i + 1;
-    else break;
-  }
-  return level;
+function xpForLevel(level: number): number {
+  return ((level - 1) ** 2) * 50;
 }
 
-function getXPForLevel(level) {
-  return LEVEL_THRESHOLDS[Math.min(level - 1, LEVEL_THRESHOLDS.length - 1)];
+function xpForNextLevel(level: number): number {
+  return (level ** 2) * 50;
 }
 
-function getLevelColor(level) {
-  if (level >= 20) return { from: '#EC4899', to: '#A855F7', label: 'Mythic' };
-  if (level >= 15) return { from: '#EAB308', to: '#F59E0B', label: 'Legendary' };
-  if (level >= 10) return { from: '#A855F7', to: '#6366F1', label: 'Epic' };
-  if (level >= 7) return { from: '#3B82F6', to: '#2563EB', label: 'Rare' };
-  if (level >= 4) return { from: '#22C55E', to: '#16A34A', label: 'Uncommon' };
+function getLevelForXP(xp: number): number {
+  if (xp <= 0) return 1;
+  return Math.max(1, Math.min(100, Math.floor(Math.sqrt(xp / 50)) + 1));
+}
+
+function getLevelColor(level: number) {
+  if (level >= 90) return { from: '#EC4899', to: '#A855F7', label: 'Mythic' };
+  if (level >= 70) return { from: '#EAB308', to: '#F59E0B', label: 'Legendary' };
+  if (level >= 50) return { from: '#A855F7', to: '#6366F1', label: 'Epic' };
+  if (level >= 30) return { from: '#3B82F6', to: '#2563EB', label: 'Rare' };
+  if (level >= 10) return { from: '#22C55E', to: '#16A34A', label: 'Uncommon' };
   return { from: '#9CA3AF', to: '#6B7280', label: 'Common' };
 }
 
-export { getLevelForXP, getXPForLevel, getLevelColor };
+export { getLevelForXP, xpForLevel, xpForNextLevel, getLevelColor };
 
 export default function XPBar({ xp = 0, showLevel = true, compact = false, className = '' }) {
   const level = getLevelForXP(xp);
-  const currentLevelXP = getXPForLevel(level);
-  const nextLevelXP = getXPForLevel(level + 1);
+  const currentLevelXP = xpForLevel(level);
+  const nextLevelXP = xpForNextLevel(level);
   const progress = nextLevelXP > currentLevelXP
     ? ((xp - currentLevelXP) / (nextLevelXP - currentLevelXP)) * 100
     : 100;

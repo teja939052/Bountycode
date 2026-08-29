@@ -16,6 +16,8 @@ export default function ATSOptimizer() {
   const [error, setError] = useState("");
   const [step, setStep] = useState(1);
   const [analyzingSemantic, setAnalyzingSemantic] = useState(false);
+  const [ruleResult, setRuleResult] = useState<any>(null);
+  const [analyzingRule, setAnalyzingRule] = useState(false);
 
   const handleUploadResume = async (e) => {
     const file = e.target.files[0];
@@ -74,6 +76,18 @@ export default function ATSOptimizer() {
       setSemanticScore(data);
     } catch {}
     setAnalyzingSemantic(false);
+  };
+
+  const handleRuleAnalysis = async () => {
+    if (!resumeText) return;
+    setAnalyzingRule(true);
+    try {
+      const data = await api.resume.analyzeRuleBased(resumeText, jobDescription);
+      setRuleResult(data);
+    } catch (err) {
+      setError("Rule-based scan failed: " + (err as Error).message);
+    }
+    setAnalyzingRule(false);
   };
 
   return (
@@ -221,6 +235,75 @@ export default function ATSOptimizer() {
                   ))}
                 </div>
               </div>
+            </div>
+
+            {/* Deterministic, non-AI ATS scan */}
+            <div className="card border-cyber-green/20">
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="font-display font-bold text-cyber-green text-sm flex items-center gap-2">
+                  <CheckCircle size={18} /> Exact ATS Scanner (rule-based, no AI)
+                </h3>
+                <button onClick={handleRuleAnalysis} disabled={analyzingRule} className="btn-secondary text-xs">
+                  {analyzingRule ? "Scanning..." : ruleResult ? "Re-scan" : "Run exact scan"}
+                </button>
+              </div>
+              {ruleResult && (
+                <div className="space-y-4">
+                  <div className="flex items-center gap-4">
+                    <div className="text-center">
+                      <p className="text-3xl font-bold text-text-primary">{ruleResult.ats_score}</p>
+                      <p className="text-[10px] font-mono text-gray-500">ATS SCORE / GRADE {ruleResult.grade}</p>
+                    </div>
+                    <div className="flex-1">
+                      <div className="h-2 rounded-full bg-surface-base overflow-hidden">
+                        <div className="h-full bg-cyber-green" style={{ width: `${Math.max(0, Math.min(100, Number(ruleResult.ats_score) || 0))}%` }} />
+                      </div>
+                      <p className="text-[10px] font-mono text-gray-500 mt-1">
+                        {ruleResult.would_pass_ats ? "Would pass most ATS parsers" : "Likely rejected by ATS parsers"}
+                      </p>
+                    </div>
+                  </div>
+
+                  {ruleResult.critical_issues?.length > 0 && (
+                    <div>
+                      <p className="text-xs font-mono text-cyber-red mb-2">Critical issues ({ruleResult.critical_issues.length})</p>
+                      <div className="space-y-2">
+                        {ruleResult.critical_issues.slice(0, 5).map((c: any, i: number) => (
+                          <div key={i} className="bg-cyber-red/10 border border-cyber-red/20 rounded-lg p-3">
+                            <p className="text-xs text-gray-200">{c.issue}</p>
+                            <p className="text-[10px] text-cyber-green font-mono mt-1">Fix: {c.fix}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {ruleResult.recommendations?.length > 0 && (
+                    <div>
+                      <p className="text-xs font-mono text-gray-400 mb-2">Recommendations</p>
+                      <ul className="list-disc list-inside space-y-1 text-xs text-gray-300">
+                        {ruleResult.recommendations.slice(0, 5).map((r: any, i: number) => (
+                          <li key={i}>{r.action}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {ruleResult.line_fixes?.length > 0 && (
+                    <div>
+                      <p className="text-xs font-mono text-gray-400 mb-2">Line-by-line fixes</p>
+                      <div className="space-y-2">
+                        {ruleResult.line_fixes.slice(0, 6).map((f: any, i: number) => (
+                          <div key={i} className="bg-surface-base border border-brand-primary/10 rounded-lg p-3">
+                            <p className="text-[10px] font-mono text-gray-500">{f.line ? `Line ${f.line}: ` : ""}{f.issue}</p>
+                            {f.suggestion && <p className="text-xs text-cyber-green mt-1">→ {f.suggestion}</p>}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
 
             {!semanticScore ? (

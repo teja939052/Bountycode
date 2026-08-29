@@ -54,7 +54,6 @@ FEATURE_FLAGS: dict[str, dict] = {
     "compiler": {"enabled": True, "description": "LeetCode-style compiler"},
     "questions": {"enabled": True, "description": "Question bank"},
     "ai_mentor": {"enabled": True, "description": "AI mentor chat"},
-    "project_generator": {"enabled": True, "description": "AI project generator"},
     "cover_letter": {"enabled": True, "description": "Cover letter generator"},
     "salary_negotiation": {"enabled": True, "description": "Salary negotiation coach"},
     "system_design": {"enabled": True, "description": "System design practice"},
