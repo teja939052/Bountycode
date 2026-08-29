@@ -793,7 +793,7 @@ function AppContent() {
       <div className="min-h-screen flex flex-col relative">
         <CustomCursor />
         <div className="relative z-10 flex flex-col min-h-screen">
-          <Navbar />
+          {location.pathname !== "/" && <Navbar />}
           <main className="flex-1" id="main-content" role="main">
             <PageSuspense>
               <RouteErrorBoundary>

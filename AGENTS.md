@@ -466,8 +466,9 @@ placementpro/
 The hero background on `frontend/src/pages/Landing.tsx` must use a **confirmed-valid Unsplash photo ID** (a broken ID renders as white/cream). All verified IDs below return HTTP 200. A neutral gradient + base-color fallback is layered behind the image so it never shows plain white.
 
 Verified-working photo IDs (use with `https://images.unsplash.com/photo-<ID>?w=4096&q=80&auto=format&fit=crop&fm=jpg`):
-- `1534067783941-51c9c23ecefd` — **current default: user-approved "perfecto" sakura image** (valid, 200).
-- `1551632811-561732d1e306` — mountain/landscape theme candidate (valid, 200).
+- `1534067783941-51c9c23ecefd` — **current hero: user-approved "el perfecto" sakura image** (valid, 200). Set at `w=7680` with Imgix `bri=12&sat=8`, pink gradient fallback `#fbe4ec`.
+- `1551632811-561732d1e306` — mountain/landscape candidate (valid, 200).
+- `1534067783941-51c9c23ecefd` — sakura candidate, archived (valid, 200).
 - `1743309979269-af5d46d0c390` — original sakura-trees wallpaper (user-confirmed "sakura trees").
 - `1520763185298-1b434c919102` — sakura candidate (valid, 200).
 - `1542273917363-3b1817f69a2d` — sakura candidate (valid, 200).
@@ -480,6 +481,8 @@ Verified-working photo IDs (use with `https://images.unsplash.com/photo-<ID>?w=4
 - `1472396961693-142e6e269027` — autumn trees (valid, 200).
 
 Known-broken ID to avoid: `15087040-efdd9b34cpho` (404 — previously caused the white screen).
+
+Landing hero composition rules (locked): ONE navbar only — the global `Navbar` is hidden on `/` in `App.tsx` (line ~809: `{location.pathname !== "/" && <Navbar />}`), and `Landing.tsx` renders its own minimal `BountyCode / Login / Get started` nav over the photo. No "You are here" marker, no character, no glassmorphism card. Headline: "From your first line of code / to your first offer." with **"first offer." in gold (`#D4A843`)**, not rainbow. Keep the Diagnose → Learn → Practice → Get Hired strip (expedition path with arrows). Soft radial halo behind the headline only. Brand identity: **nostalgic spring adventure** — sakura communicates growth, calm focus, and a fresh start.
 
 ---
 
