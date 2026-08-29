@@ -1,0 +1,482 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BountyCode Worlds Data Specification",
+  "type": "object",
+  "description": "Complete data spec for all Worlds, Towns, Levels, Rewards, Mystery Boxes, Keys, and Special Levels in the BountyCode game layer.",
+  "definitions": {
+    "interaction_type": {
+      "enum": ["memory_box", "pair_tap", "slider", "three_box_grid", "expression_combine", "boss_rebuild", "code_editor", "multi_select"],
+      "type": "string"
+    },
+    "hint_step": {
+      "enum": ["think", "concept", "structure", "reveal"],
+      "type": "string"
+    },
+    "award_type": {
+      "enum": ["xp", "badge", "title", "power_up", "cosmetic", "key", "mystery_box"],
+      "type": "string"
+    },
+    "rarity": {
+      "enum": ["common", "uncommon", "rare", "epic", "legendary"],
+      "type": "string"
+    },
+    "power_up_type": {
+      "enum": ["extra_time", "hint_reveal", "retry", "double_xp", "skip_boss", "show_answer"],
+      "type": "string"
+    },
+    "title_tier": {
+      "enum": ["hatchling", "apprentice", "journeyman", "master", "grandmaster", "archmage", "god_of_code"],
+      "type": "string"
+    }
+  },
+  "main": {
+    " Worlds": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "theme", "canonical_skill", "towns", "unlock_requires"],
+        "properties": {
+          "id": { "type": "string", "description": "World identifier, e.g. 'foundations', 'problem_solver', 'build_systems'" },
+          "name": { "type": "string", "description": "Human-readable world name" },
+          "theme": { "type": "string", "description": "Visual theme/color scheme" },
+          "canonical_skill": { "type": "string", "description": "Primary skill ID, e.g. 'coding.variables', 'coding.conditions', 'coding.loops'" },
+          "unlock_requires": {
+            "type": "object",
+            "properties": {
+              "min_level": { "type": "integer", "description": "Minimum player level" },
+              "completed_worlds": { "type": "array", "items": { "type": "string" }, "description": "World IDs that must be completed first" },
+              "min_xp": { "type": "integer", "description": "Minimum XP required" }
+            },
+            "description": "Requirements to unlock this world"
+          },
+          "towns": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "name", "levels", "boss_level", "unlock_requires"],
+              "properties": {
+                "id": { "type": "string", "description": "Town identifier, e.g. 'things', 'gates', 'forest'" },
+                "name": { "type": "string", "description": "Human-readable town name" },
+                "unlock_requires": {
+                  "type": "object",
+                  "properties": {
+                    "min_level": { "type": "integer" },
+                    "completed_worlds": { "type": "array" }
+                  }
+                },
+                "levels": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["id", "name", "story", "tutor", "interaction", "code_prompt", "judge", "hints", "world_before", "world_after", "byte_line", "reward_xp", "reward_awards"],
+                    "properties": {
+                      "id": { "type": "string", "description": "Level identifier, e.g. 'l1_box', 'l2_label'" },
+                      "name": { "type": "string", "description": "Human-readable level name" },
+                      "story": { "type": "string", "description": "Context/narrative for the level" },
+                      "tutor": { "type": "string", "description": "Key concept taught" },
+                      "interaction": {
+                        "type": "object",
+                        "required": ["type", "config"],
+                        "properties": {
+                          "type": { "type": "string", "enum": ["memory_box", "pair_tap", "slider", "three_box_grid", "expression_combine", "boss_rebuild", "code_editor", "multi_select"] },
+                          "config": {
+                            "type": "object",
+                            "description": "Interaction-specific configuration (MemoryBox items, slider range, three-box grid items, etc.)"
+                          }
+                        }
+                      },
+                      "code_prompt": { "type": "string", "description": "Code prompt for the level - what to write" },
+                      "judge": {
+                        "type": "object",
+                        "required": ["type", "pattern", "source_regex", "explanation"],
+                        "properties": {
+                          "type": { "type": "string", "enum": ["regex", "test_case", "ai_evaluator"] },
+                          "pattern": { "type": "string", "description": "Regex pattern for test inputs/outputs" },
+                          "source_regex": { "type": "string", "description": "Expected output pattern from student code" },
+                          "explanation": { "type": "string", "description": "Human-readable feedback if judge fails" }
+                        }
+                      },
+                      "hints": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": ["step", "text"],
+                          "properties": {
+                            "step": { "type": "string", "enum": ["think", "concept", "structure", "reveal"] },
+                            "text": { "type": "string", "description": "Hint text at this step - H1 never reveals answer" }
+                          }
+                        },
+                        "description": "4-step hint ladder: Think→Concept→Structure→Reveal"
+                      },
+                      "world_before": {
+                        "type": "string",
+                        "description": "World state before the level - serialized snapshot"
+                      },
+                      "world_after": {
+                        "type": "string",
+                        "description": "World state after completing the level - serialized snapshot"
+                      },
+                      "byte_line": {
+                        "type": "string",
+                        "description": "Representative line of Bytecode/program output that demonstrates success"
+                      },
+                      "reward_xp": { "type": "integer", "description": "XP awarded for completion" },
+                      "reward_awards": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "type": { "type": "string", "enum": ["badge", "title", "power_up", "cosmetic", "xp"] },
+                            "value": { "type": "string" }
+                          }
+                        },
+                        "description": "Awards granted on level completion"
+                      }
+                    }
+                  },
+                  "description": "5 regular levels + 1 boss level per town"
+                },
+                "boss_level": {
+                  "type": "object",
+                  "required": ["id", "name", "story", "tutor", "interaction", "code_prompt", "judge", "hints", "world_before", "world_after", "byte_line", "reward_xp", "reward_awards", "transfer_context"],
+                  "properties": {
+                    "id": { "type": "string", "description": "Boss level identifier" },
+                    "name": { "type": "string", "description": "Boss level name" },
+                    "story": { "type": "string", "description": "Boss narrative context" },
+                    "tutor": { "type": "string", "description": "Boss key concept" },
+                    "interaction": {
+                      "type": "object",
+                      "required": ["type", "config"],
+                      "properties": {
+                        "type": { "type": "string", "enum": ["boss_rebuild", "code_editor", "multi_select"] },
+                        "config": { "type": "object" }
+                      }
+                    },
+                    "code_prompt": { "type": "string", "description": "Boss code prompt - transfer style, no variable names/values in directive" },
+                    "judge": {
+                      "type": "object",
+                      "required": ["type", "pattern", "source_regex", "explanation"],
+                      "properties": {
+                        "type": "string", "enum": ["regex", "test_case", "ai_evaluator"]
+                      }
+                    },
+                    "hints": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": ["step", "text"],
+                        "properties": {
+                          "step": { "type": "string", "enum": ["think", "concept", "structure", "reveal"] },
+                          "text": { "type": "string" }
+                        }
+                      },
+                      "description": "Boss hints - progressive transfer-style disclosure"
+                    },
+                    "world_before": { "type": "string" },
+                    "world_after": { "type": "string" },
+                    "byte_line": { "type": "string" },
+                    "reward_xp": { "type": "integer" },
+                    "reward_awards": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": { "type": "string", "enum": ["badge", "title", "power_up", "cosmetic", "xp"] },
+                          "value": { "type": "string" }
+                        }
+                      }
+                    },
+                    "transfer_context": {
+                      "type": "object",
+                      "properties": {
+                        "before": { "type": "object", "description": "State before boss (e.g. stockroom contents)" },
+                        "after": { "type": "object", "description": "State student must achieve in new context" },
+                        "directive": { "type": "string", "description": "Transfer prompt without variable names/values (e.g. 'make program remember stockroom and announce total' not 'apples = 12; bread = 4; total = apples + bread')" }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": "Town contains 5 regular levels + 1 boss level"
+          }
+        }
+      }
+    },
+    "rewards_system": {
+      "type": "object",
+      "required": ["xp_per_action", "level_thresholds", "badges", "titles", "power_ups", "cosmetics"],
+      "properties": {
+        "xp_per_action": {
+          "type": "object",
+          "properties": {
+            "level_complete": { "type": "integer" },
+            "boss_complete": { "type": "integer" },
+            "hint_used": { "type": "integer" },
+            "first_attempt": { "type": "integer" },
+            "daily_streak_bonus": { "type": "integer" }
+          }
+        },
+        "level_thresholds": {
+          "type": "array",
+          "items": { "type": "integer" },
+          "description": "XP required for each level 1-100"
+        },
+        "badges": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "name", "description", "criteria"],
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "description": { "type": "string" },
+              "criteria": { "type": "object", "description": "Key-value pairs defining badge requirements, e.g. { 'levels_completed': 50, 'bosses_defeated': 5 } }
+            }
+          },
+          "description": "30+ achievable badges"
+        },
+        "titles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "name", "tier", "unlock_criteria"],
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "tier": { "type": "string", "enum": ["hatchling", "apprentice", "journeyman", "master", "grandmaster", "archmage", "god_of_code"] },
+              "unlock_criteria": {
+                "type": "object",
+                "description": "Criteria for title unlock, e.g. { 'min_level': 25, 'badges': ['code_hunter'], 'levels_completed': 30 }"
+              }
+            }
+          },
+          "description": "50+ titles from Hatchling to God of Code"
+        },
+        "power_ups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "name", "type", "cooldown", "description", "rarity"],
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "type": { "type": "string", "enum": ["extra_time", "hint_reveal", "retry", "double_xp", "skip_boss", "show_answer"] },
+              "cooldown": { "type": "integer", "description": "Seconds before reuse" },
+              "description": { "type": "string" },
+              "rarity": { "type": "string", "enum": ["common", "uncommon", "rare"] }
+            }
+          },
+          "description": "6 power-ups: extra_time, hint_reveal, retry, double_xp, skip_boss, show_answer"
+        },
+        "cosmetics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "name", "type", "unlock_requirements", " rarity"],
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "type": { "type": "string", "enum": ["avatar_skin", "badge_emblem", "trail", "title_background"] },
+              "unlock_requirements": {
+                "type": "object",
+                "description": "e.g. { 'min_level': 10, 'badge': 'code_hunter' }"
+              },
+              "rarity": { "type": "string", "enum": ["common", "uncommon", "rare"] }
+            }
+          },
+          "description": "Cosmetic items for character customization"
+        }
+      }
+    },
+    "mystery_boxes": {
+      "type": "object",
+      "required": ["tiers", "possible_rewards", "drop_rates"],
+      "properties": {
+        "tiers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "name", "min_level", "max_level", "probability", "rewards"],
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "min_level": { "type": "integer" },
+              "max_level": { "type": "integer" },
+              "probability": { "type": "number", "description": "Sum across all tiers = 1.0" },
+              "rewards": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["type", "value", "rarity"],
+                  "properties": {
+                    "type": { "type": "string", "enum": ["xp", "badge", "title", "power_up", "cosmetic", "key"] },
+                    "value": { "type": "string" },
+                    "rarity": { "type": "string", "enum": ["common", "uncommon", "rare", "epic"] }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "possible_rewards": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["xp", "badge", "title", "power_up", "cosmetic", "key", "mystery_box"]
+          }
+        }
+      }
+    },
+    "keys": {
+      "type": "object",
+      "required": ["types", "unlock_purposes", "acquisition_methods"],
+      "properties": {
+        "types": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "name", "description", "unlocks"],
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "description": { "type": "string" },
+              "unlocks": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "e.g. ['boss_battle', 'special_world', 'secret_level']"
+              }
+            }
+          }
+        },
+        "unlock_purposes": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "e.g. ['world_boss', 'secret_area', 'hard_mode_level', 'se_cosmetic']"
+        },
+        "acquisition_methods": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "e.g. ['complete_world', 'defeat_boss', 'purchase_shop', 'achievement_reward']"
+        }
+      }
+    },
+    "special_levels": {
+      "type": "object",
+      "required": ["boss_battles", "secret_levels", "event_levels"],
+      "properties": {
+        "boss_battles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "town_id", "name", "code_prompt", "judge", "hints", "transfer_context", "rewards"],
+            "properties": {
+              "id": { "type": "string" },
+              "town_id": { "type": "string" },
+              "name": { "type": "string" },
+              "code_prompt": { "type": "string" },
+              "judge": {
+                "type": "object",
+                "required": ["type", "pattern", "source_regex", "explanation"]
+              },
+              "hints": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["step", "text"],
+                  "properties": {
+                    "step": { "type": "string", "enum": ["think", "concept", "structure", "reveal"] },
+                    "text": { "type": "string" }
+                  }
+                }
+              },
+              "transfer_context": {
+                "type": "object",
+                "properties": {
+                  "before": { "type": "object" },
+                  "after": { "type": "object" },
+                  "directive": { "type": "string" }
+                }
+              },
+              "rewards": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["type", "value", "rarity"],
+                  "properties": {
+                    "type": { "type": "string" },
+                    "value": { "type": "string" },
+                    "rarity": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "description": "Transfer-style boss at end of each town - tests concept migration"
+        },
+        "secret_levels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "name", "unlock_requirements", "code_prompt", "judge", "rewards"],
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "unlock_requirements": {
+                "type": "object",
+                "properties": {
+                  "min_level": { "type": "integer" },
+                  "has_key": { "type": "boolean" },
+                  "completed_worlds": { "type": "array" }
+                }
+              },
+              "code_prompt": { "type": "string" },
+              "judge": {
+                "type": "object",
+                "required": ["type", "pattern", "source_regex", "explanation"]
+              },
+              "rewards": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["type", "value", "rarity"],
+                  "properties": {
+                    "type": { "type": "string" },
+                    "value": { "type": "string" },
+                    "rarity": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "event_levels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "name", "event_name", "duration", "special_rules", "rewards"],
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "event_name": { "type": "string" },
+              "duration": { "type": "string" },
+              "special_rules": { "type": "string" },
+              "rewards": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["type", "value", "rarity"],
+                  "properties": {
+                    "type": { "type": "string" },
+                    "value": { "type": "string" },
+                    "rarity": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

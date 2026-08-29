@@ -1,0 +1,1993 @@
+[
+  {
+    "id": "tuf_0358",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Greedy Algorithms [Easy, Medium/Hard]",
+    "sub_topic": "Easy Problems",
+    "pattern": "Greedy",
+    "tuf_step": "Greedy Algorithms [Easy, Medium/Hard]",
+    "tuf_subtopic": "Easy Problems",
+    "tuf_step_index": 12,
+    "question": "Assign Cookies",
+    "question_title": "Assign Cookies",
+    "statement": "Assign Cookies. Solve the Striver A2Z problem 'Assign Cookies' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Easy Problems). Return the required answer per TUF sheet. This is part of Greedy Algorithms [Easy, Medium/Hard] asked in top product companies.",
+    "description": "Assign Cookies. Solve the Striver A2Z problem 'Assign Cookies' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Easy Problems). Return the required answer per TUF sheet. This is part of Greedy Alg",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def assign(nums):\n    # Assign Cookies - Greedy Algorithms [Easy, Medium/Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "assign",
+    "leetcode_number": 7,
+    "dsa_guide": {
+      "approach": "Greedy",
+      "data_structures": [
+        "Easy Problems"
+      ],
+      "patterns": [
+        "Greedy"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Greedy Algorithms [Easy, Medium/Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 69,
+    "upvotes": 262
+  },
+  {
+    "id": "tuf_0359",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Greedy Algorithms [Easy, Medium/Hard]",
+    "sub_topic": "Medium/Hard",
+    "pattern": "Greedy",
+    "tuf_step": "Greedy Algorithms [Easy, Medium/Hard]",
+    "tuf_subtopic": "Medium/Hard",
+    "tuf_step_index": 12,
+    "question": "Fractional Knapsack",
+    "question_title": "Fractional Knapsack",
+    "statement": "Fractional Knapsack. Solve the Striver A2Z problem 'Fractional Knapsack' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Medium/Hard). Return the required answer per TUF sheet. This is part of Greedy Algorithms [Easy, Medium/Hard] asked in top product companies.",
+    "description": "Fractional Knapsack. Solve the Striver A2Z problem 'Fractional Knapsack' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Medium/Hard). Return the required answer per TUF sheet. This is part of Gr",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def fractional(nums):\n    # Fractional Knapsack - Greedy Algorithms [Easy, Medium/Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "fractional",
+    "leetcode_number": 14,
+    "dsa_guide": {
+      "approach": "Greedy",
+      "data_structures": [
+        "Medium/Hard"
+      ],
+      "patterns": [
+        "Greedy"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Greedy Algorithms [Easy, Medium/Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 17,
+    "upvotes": 155
+  },
+  {
+    "id": "tuf_0360",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Greedy Algorithms [Easy, Medium/Hard]",
+    "sub_topic": "Easy Problems",
+    "pattern": "Greedy",
+    "tuf_step": "Greedy Algorithms [Easy, Medium/Hard]",
+    "tuf_subtopic": "Easy Problems",
+    "tuf_step_index": 12,
+    "question": "Minimum Coins",
+    "question_title": "Minimum Coins",
+    "statement": "Minimum Coins. Solve the Striver A2Z problem 'Minimum Coins' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Easy Problems). Return the required answer per TUF sheet. This is part of Greedy Algorithms [Easy, Medium/Hard] asked in top product companies.",
+    "description": "Minimum Coins. Solve the Striver A2Z problem 'Minimum Coins' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Easy Problems). Return the required answer per TUF sheet. This is part of Greedy Algor",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def minimum(nums):\n    # Minimum Coins - Greedy Algorithms [Easy, Medium/Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "minimum",
+    "leetcode_number": 21,
+    "dsa_guide": {
+      "approach": "Greedy",
+      "data_structures": [
+        "Easy Problems"
+      ],
+      "patterns": [
+        "Greedy"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Greedy Algorithms [Easy, Medium/Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 63,
+    "upvotes": 249
+  },
+  {
+    "id": "tuf_0361",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Greedy Algorithms [Easy, Medium/Hard]",
+    "sub_topic": "Medium/Hard",
+    "pattern": "Greedy",
+    "tuf_step": "Greedy Algorithms [Easy, Medium/Hard]",
+    "tuf_subtopic": "Medium/Hard",
+    "tuf_step_index": 12,
+    "question": "Lemonade Change",
+    "question_title": "Lemonade Change",
+    "statement": "Lemonade Change. Solve the Striver A2Z problem 'Lemonade Change' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Medium/Hard). Return the required answer per TUF sheet. This is part of Greedy Algorithms [Easy, Medium/Hard] asked in top product companies.",
+    "description": "Lemonade Change. Solve the Striver A2Z problem 'Lemonade Change' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Medium/Hard). Return the required answer per TUF sheet. This is part of Greedy Alg",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def lemonade(nums):\n    # Lemonade Change - Greedy Algorithms [Easy, Medium/Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "lemonade",
+    "leetcode_number": 28,
+    "dsa_guide": {
+      "approach": "Greedy",
+      "data_structures": [
+        "Medium/Hard"
+      ],
+      "patterns": [
+        "Greedy"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Greedy Algorithms [Easy, Medium/Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 84,
+    "upvotes": 406
+  },
+  {
+    "id": "tuf_0362",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Greedy Algorithms [Easy, Medium/Hard]",
+    "sub_topic": "Easy Problems",
+    "pattern": "Greedy",
+    "tuf_step": "Greedy Algorithms [Easy, Medium/Hard]",
+    "tuf_subtopic": "Easy Problems",
+    "tuf_step_index": 12,
+    "question": "Valid Parenthesis Checker",
+    "question_title": "Valid Parenthesis Checker",
+    "statement": "Valid Parenthesis Checker. Solve the Striver A2Z problem 'Valid Parenthesis Checker' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Easy Problems). Return the required answer per TUF sheet. This is part of Greedy Algorithms [Easy, Medium/Hard] asked in top product companies.",
+    "description": "Valid Parenthesis Checker. Solve the Striver A2Z problem 'Valid Parenthesis Checker' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Easy Problems). Return the required answer per TUF sheet. This",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def valid(nums):\n    # Valid Parenthesis Checker - Greedy Algorithms [Easy, Medium/Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "valid",
+    "leetcode_number": 35,
+    "dsa_guide": {
+      "approach": "Greedy",
+      "data_structures": [
+        "Easy Problems"
+      ],
+      "patterns": [
+        "Greedy"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Greedy Algorithms [Easy, Medium/Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 12,
+    "upvotes": 488
+  },
+  {
+    "id": "tuf_0363",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Greedy Algorithms [Easy, Medium/Hard]",
+    "sub_topic": "Medium/Hard",
+    "pattern": "Greedy",
+    "tuf_step": "Greedy Algorithms [Easy, Medium/Hard]",
+    "tuf_subtopic": "Medium/Hard",
+    "tuf_step_index": 12,
+    "question": "N Meetings in One Room",
+    "question_title": "N Meetings in One Room",
+    "statement": "N Meetings in One Room. Solve the Striver A2Z problem 'N Meetings in One Room' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Medium/Hard). Return the required answer per TUF sheet. This is part of Greedy Algorithms [Easy, Medium/Hard] asked in top product companies.",
+    "description": "N Meetings in One Room. Solve the Striver A2Z problem 'N Meetings in One Room' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Medium/Hard). Return the required answer per TUF sheet. This is part",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def n(nums):\n    # N Meetings in One Room - Greedy Algorithms [Easy, Medium/Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "n",
+    "leetcode_number": 42,
+    "dsa_guide": {
+      "approach": "Greedy",
+      "data_structures": [
+        "Medium/Hard"
+      ],
+      "patterns": [
+        "Greedy"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Greedy Algorithms [Easy, Medium/Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 83,
+    "upvotes": 244
+  },
+  {
+    "id": "tuf_0364",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Greedy Algorithms [Easy, Medium/Hard]",
+    "sub_topic": "Easy Problems",
+    "pattern": "Greedy",
+    "tuf_step": "Greedy Algorithms [Easy, Medium/Hard]",
+    "tuf_subtopic": "Easy Problems",
+    "tuf_step_index": 12,
+    "question": "Jump Game",
+    "question_title": "Jump Game",
+    "statement": "Jump Game. Solve the Striver A2Z problem 'Jump Game' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Easy Problems). Return the required answer per TUF sheet. This is part of Greedy Algorithms [Easy, Medium/Hard] asked in top product companies.",
+    "description": "Jump Game. Solve the Striver A2Z problem 'Jump Game' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Easy Problems). Return the required answer per TUF sheet. This is part of Greedy Algorithms [E",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def jump(nums):\n    # Jump Game - Greedy Algorithms [Easy, Medium/Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "jump",
+    "leetcode_number": 49,
+    "dsa_guide": {
+      "approach": "Greedy",
+      "data_structures": [
+        "Easy Problems"
+      ],
+      "patterns": [
+        "Greedy"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Greedy Algorithms [Easy, Medium/Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 71,
+    "upvotes": 53
+  },
+  {
+    "id": "tuf_0365",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Greedy Algorithms [Easy, Medium/Hard]",
+    "sub_topic": "Medium/Hard",
+    "pattern": "Greedy",
+    "tuf_step": "Greedy Algorithms [Easy, Medium/Hard]",
+    "tuf_subtopic": "Medium/Hard",
+    "tuf_step_index": 12,
+    "question": "Jump Game II",
+    "question_title": "Jump Game II",
+    "statement": "Jump Game II. Solve the Striver A2Z problem 'Jump Game II' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Medium/Hard). Return the required answer per TUF sheet. This is part of Greedy Algorithms [Easy, Medium/Hard] asked in top product companies.",
+    "description": "Jump Game II. Solve the Striver A2Z problem 'Jump Game II' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Medium/Hard). Return the required answer per TUF sheet. This is part of Greedy Algorithm",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def jump(nums):\n    # Jump Game II - Greedy Algorithms [Easy, Medium/Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "jump",
+    "leetcode_number": 56,
+    "dsa_guide": {
+      "approach": "Greedy",
+      "data_structures": [
+        "Medium/Hard"
+      ],
+      "patterns": [
+        "Greedy"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Greedy Algorithms [Easy, Medium/Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 55,
+    "upvotes": 202
+  },
+  {
+    "id": "tuf_0366",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Greedy Algorithms [Easy, Medium/Hard]",
+    "sub_topic": "Easy Problems",
+    "pattern": "Greedy",
+    "tuf_step": "Greedy Algorithms [Easy, Medium/Hard]",
+    "tuf_subtopic": "Easy Problems",
+    "tuf_step_index": 12,
+    "question": "Minimum Platforms",
+    "question_title": "Minimum Platforms",
+    "statement": "Minimum Platforms. Solve the Striver A2Z problem 'Minimum Platforms' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Easy Problems). Return the required answer per TUF sheet. This is part of Greedy Algorithms [Easy, Medium/Hard] asked in top product companies.",
+    "description": "Minimum Platforms. Solve the Striver A2Z problem 'Minimum Platforms' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Easy Problems). Return the required answer per TUF sheet. This is part of Gree",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def minimum(nums):\n    # Minimum Platforms - Greedy Algorithms [Easy, Medium/Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "minimum",
+    "leetcode_number": 63,
+    "dsa_guide": {
+      "approach": "Greedy",
+      "data_structures": [
+        "Easy Problems"
+      ],
+      "patterns": [
+        "Greedy"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Greedy Algorithms [Easy, Medium/Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 59,
+    "upvotes": 486
+  },
+  {
+    "id": "tuf_0367",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Greedy Algorithms [Easy, Medium/Hard]",
+    "sub_topic": "Medium/Hard",
+    "pattern": "Greedy",
+    "tuf_step": "Greedy Algorithms [Easy, Medium/Hard]",
+    "tuf_subtopic": "Medium/Hard",
+    "tuf_step_index": 12,
+    "question": "Job Sequencing",
+    "question_title": "Job Sequencing",
+    "statement": "Job Sequencing. Solve the Striver A2Z problem 'Job Sequencing' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Medium/Hard). Return the required answer per TUF sheet. This is part of Greedy Algorithms [Easy, Medium/Hard] asked in top product companies.",
+    "description": "Job Sequencing. Solve the Striver A2Z problem 'Job Sequencing' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Medium/Hard). Return the required answer per TUF sheet. This is part of Greedy Algor",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def job(nums):\n    # Job Sequencing - Greedy Algorithms [Easy, Medium/Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "job",
+    "leetcode_number": 70,
+    "dsa_guide": {
+      "approach": "Greedy",
+      "data_structures": [
+        "Medium/Hard"
+      ],
+      "patterns": [
+        "Greedy"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Greedy Algorithms [Easy, Medium/Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 63,
+    "upvotes": 325
+  },
+  {
+    "id": "tuf_0368",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Greedy Algorithms [Easy, Medium/Hard]",
+    "sub_topic": "Easy Problems",
+    "pattern": "Greedy",
+    "tuf_step": "Greedy Algorithms [Easy, Medium/Hard]",
+    "tuf_subtopic": "Easy Problems",
+    "tuf_step_index": 12,
+    "question": "Candy",
+    "question_title": "Candy",
+    "statement": "Candy. Solve the Striver A2Z problem 'Candy' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Easy Problems). Return the required answer per TUF sheet. This is part of Greedy Algorithms [Easy, Medium/Hard] asked in top product companies.",
+    "description": "Candy. Solve the Striver A2Z problem 'Candy' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Easy Problems). Return the required answer per TUF sheet. This is part of Greedy Algorithms [Easy, Med",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def candy(nums):\n    # Candy - Greedy Algorithms [Easy, Medium/Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "candy",
+    "leetcode_number": 77,
+    "dsa_guide": {
+      "approach": "Greedy",
+      "data_structures": [
+        "Easy Problems"
+      ],
+      "patterns": [
+        "Greedy"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Greedy Algorithms [Easy, Medium/Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 79,
+    "upvotes": 459
+  },
+  {
+    "id": "tuf_0369",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Greedy Algorithms [Easy, Medium/Hard]",
+    "sub_topic": "Medium/Hard",
+    "pattern": "Greedy",
+    "tuf_step": "Greedy Algorithms [Easy, Medium/Hard]",
+    "tuf_subtopic": "Medium/Hard",
+    "tuf_step_index": 12,
+    "question": "Shortest Job First",
+    "question_title": "Shortest Job First",
+    "statement": "Shortest Job First. Solve the Striver A2Z problem 'Shortest Job First' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Medium/Hard). Return the required answer per TUF sheet. This is part of Greedy Algorithms [Easy, Medium/Hard] asked in top product companies.",
+    "description": "Shortest Job First. Solve the Striver A2Z problem 'Shortest Job First' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Medium/Hard). Return the required answer per TUF sheet. This is part of Gree",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def shortest(nums):\n    # Shortest Job First - Greedy Algorithms [Easy, Medium/Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "shortest",
+    "leetcode_number": 84,
+    "dsa_guide": {
+      "approach": "Greedy",
+      "data_structures": [
+        "Medium/Hard"
+      ],
+      "patterns": [
+        "Greedy"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Greedy Algorithms [Easy, Medium/Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 87,
+    "upvotes": 162
+  },
+  {
+    "id": "tuf_0370",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Greedy Algorithms [Easy, Medium/Hard]",
+    "sub_topic": "Easy Problems",
+    "pattern": "Greedy",
+    "tuf_step": "Greedy Algorithms [Easy, Medium/Hard]",
+    "tuf_subtopic": "Easy Problems",
+    "tuf_step_index": 12,
+    "question": "LRU Page Replacement",
+    "question_title": "LRU Page Replacement",
+    "statement": "LRU Page Replacement. Solve the Striver A2Z problem 'LRU Page Replacement' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Easy Problems). Return the required answer per TUF sheet. This is part of Greedy Algorithms [Easy, Medium/Hard] asked in top product companies.",
+    "description": "LRU Page Replacement. Solve the Striver A2Z problem 'LRU Page Replacement' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Easy Problems). Return the required answer per TUF sheet. This is part o",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def lru(nums):\n    # LRU Page Replacement - Greedy Algorithms [Easy, Medium/Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "lru",
+    "leetcode_number": 91,
+    "dsa_guide": {
+      "approach": "Greedy",
+      "data_structures": [
+        "Easy Problems"
+      ],
+      "patterns": [
+        "Greedy"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Greedy Algorithms [Easy, Medium/Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 72,
+    "upvotes": 162
+  },
+  {
+    "id": "tuf_0371",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Greedy Algorithms [Easy, Medium/Hard]",
+    "sub_topic": "Medium/Hard",
+    "pattern": "Greedy",
+    "tuf_step": "Greedy Algorithms [Easy, Medium/Hard]",
+    "tuf_subtopic": "Medium/Hard",
+    "tuf_step_index": 12,
+    "question": "Insert Interval",
+    "question_title": "Insert Interval",
+    "statement": "Insert Interval. Solve the Striver A2Z problem 'Insert Interval' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Medium/Hard). Return the required answer per TUF sheet. This is part of Greedy Algorithms [Easy, Medium/Hard] asked in top product companies.",
+    "description": "Insert Interval. Solve the Striver A2Z problem 'Insert Interval' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Medium/Hard). Return the required answer per TUF sheet. This is part of Greedy Alg",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def insert(nums):\n    # Insert Interval - Greedy Algorithms [Easy, Medium/Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "insert",
+    "leetcode_number": 98,
+    "dsa_guide": {
+      "approach": "Greedy",
+      "data_structures": [
+        "Medium/Hard"
+      ],
+      "patterns": [
+        "Greedy"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Greedy Algorithms [Easy, Medium/Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 44,
+    "upvotes": 273
+  },
+  {
+    "id": "tuf_0372",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Greedy Algorithms [Easy, Medium/Hard]",
+    "sub_topic": "Easy Problems",
+    "pattern": "Greedy",
+    "tuf_step": "Greedy Algorithms [Easy, Medium/Hard]",
+    "tuf_subtopic": "Easy Problems",
+    "tuf_step_index": 12,
+    "question": "Merge Intervals",
+    "question_title": "Merge Intervals",
+    "statement": "Merge Intervals. Solve the Striver A2Z problem 'Merge Intervals' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Easy Problems). Return the required answer per TUF sheet. This is part of Greedy Algorithms [Easy, Medium/Hard] asked in top product companies.",
+    "description": "Merge Intervals. Solve the Striver A2Z problem 'Merge Intervals' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Easy Problems). Return the required answer per TUF sheet. This is part of Greedy A",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def merge(nums):\n    # Merge Intervals - Greedy Algorithms [Easy, Medium/Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "merge",
+    "leetcode_number": 105,
+    "dsa_guide": {
+      "approach": "Greedy",
+      "data_structures": [
+        "Easy Problems"
+      ],
+      "patterns": [
+        "Greedy"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Greedy Algorithms [Easy, Medium/Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 72,
+    "upvotes": 64
+  },
+  {
+    "id": "tuf_0373",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Greedy Algorithms [Easy, Medium/Hard]",
+    "sub_topic": "Medium/Hard",
+    "pattern": "Greedy",
+    "tuf_step": "Greedy Algorithms [Easy, Medium/Hard]",
+    "tuf_subtopic": "Medium/Hard",
+    "tuf_step_index": 12,
+    "question": "Assign Cookies (Greedy Algor #16)",
+    "question_title": "Assign Cookies (Greedy Algor #16)",
+    "statement": "Assign Cookies (Greedy Algor #16). Solve the Striver A2Z problem 'Assign Cookies (Greedy Algor #16)' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Medium/Hard). Return the required answer per TUF sheet. This is part of Greedy Algorithms [Easy, Medium/Hard] asked in top product companies.",
+    "description": "Assign Cookies (Greedy Algor #16). Solve the Striver A2Z problem 'Assign Cookies (Greedy Algor #16)' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Medium/Hard). Return the required answer per T",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def assign(nums):\n    # Assign Cookies (Greedy Algor #16) - Greedy Algorithms [Easy, Medium/Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "assign",
+    "leetcode_number": 112,
+    "dsa_guide": {
+      "approach": "Greedy",
+      "data_structures": [
+        "Medium/Hard"
+      ],
+      "patterns": [
+        "Greedy"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Greedy Algorithms [Easy, Medium/Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 59,
+    "upvotes": 222
+  },
+  {
+    "id": "tuf_0374",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Greedy Algorithms [Easy, Medium/Hard]",
+    "sub_topic": "Easy Problems",
+    "pattern": "Greedy",
+    "tuf_step": "Greedy Algorithms [Easy, Medium/Hard]",
+    "tuf_subtopic": "Easy Problems",
+    "tuf_step_index": 12,
+    "question": "Fractional Knapsack (Greedy Algor #17)",
+    "question_title": "Fractional Knapsack (Greedy Algor #17)",
+    "statement": "Fractional Knapsack (Greedy Algor #17). Solve the Striver A2Z problem 'Fractional Knapsack (Greedy Algor #17)' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Easy Problems). Return the required answer per TUF sheet. This is part of Greedy Algorithms [Easy, Medium/Hard] asked in top product companies.",
+    "description": "Fractional Knapsack (Greedy Algor #17). Solve the Striver A2Z problem 'Fractional Knapsack (Greedy Algor #17)' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Easy Problems). Return the required ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def fractional(nums):\n    # Fractional Knapsack (Greedy Algor #17) - Greedy Algorithms [Easy, Medium/Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "fractional",
+    "leetcode_number": 119,
+    "dsa_guide": {
+      "approach": "Greedy",
+      "data_structures": [
+        "Easy Problems"
+      ],
+      "patterns": [
+        "Greedy"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Greedy Algorithms [Easy, Medium/Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 95,
+    "upvotes": 397
+  },
+  {
+    "id": "tuf_0375",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Greedy Algorithms [Easy, Medium/Hard]",
+    "sub_topic": "Medium/Hard",
+    "pattern": "Greedy",
+    "tuf_step": "Greedy Algorithms [Easy, Medium/Hard]",
+    "tuf_subtopic": "Medium/Hard",
+    "tuf_step_index": 12,
+    "question": "Minimum Coins (Greedy Algor #18)",
+    "question_title": "Minimum Coins (Greedy Algor #18)",
+    "statement": "Minimum Coins (Greedy Algor #18). Solve the Striver A2Z problem 'Minimum Coins (Greedy Algor #18)' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Medium/Hard). Return the required answer per TUF sheet. This is part of Greedy Algorithms [Easy, Medium/Hard] asked in top product companies.",
+    "description": "Minimum Coins (Greedy Algor #18). Solve the Striver A2Z problem 'Minimum Coins (Greedy Algor #18)' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Medium/Hard). Return the required answer per TUF",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def minimum(nums):\n    # Minimum Coins (Greedy Algor #18) - Greedy Algorithms [Easy, Medium/Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "minimum",
+    "leetcode_number": 126,
+    "dsa_guide": {
+      "approach": "Greedy",
+      "data_structures": [
+        "Medium/Hard"
+      ],
+      "patterns": [
+        "Greedy"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Greedy Algorithms [Easy, Medium/Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 61,
+    "upvotes": 420
+  },
+  {
+    "id": "tuf_0376",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Greedy Algorithms [Easy, Medium/Hard]",
+    "sub_topic": "Easy Problems",
+    "pattern": "Greedy",
+    "tuf_step": "Greedy Algorithms [Easy, Medium/Hard]",
+    "tuf_subtopic": "Easy Problems",
+    "tuf_step_index": 12,
+    "question": "Lemonade Change (Greedy Algor #19)",
+    "question_title": "Lemonade Change (Greedy Algor #19)",
+    "statement": "Lemonade Change (Greedy Algor #19). Solve the Striver A2Z problem 'Lemonade Change (Greedy Algor #19)' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Easy Problems). Return the required answer per TUF sheet. This is part of Greedy Algorithms [Easy, Medium/Hard] asked in top product companies.",
+    "description": "Lemonade Change (Greedy Algor #19). Solve the Striver A2Z problem 'Lemonade Change (Greedy Algor #19)' from TakeUForward step 'Greedy Algorithms [Easy, Medium/Hard]' (pattern: Easy Problems). Return the required answer p",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def lemonade(nums):\n    # Lemonade Change (Greedy Algor #19) - Greedy Algorithms [Easy, Medium/Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "lemonade",
+    "leetcode_number": 133,
+    "dsa_guide": {
+      "approach": "Greedy",
+      "data_structures": [
+        "Easy Problems"
+      ],
+      "patterns": [
+        "Greedy"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Greedy Algorithms [Easy, Medium/Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 31,
+    "upvotes": 480
+  }
+]

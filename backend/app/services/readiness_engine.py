@@ -741,3 +741,141 @@ def predict_readiness_date(overall_score: float, company: Optional[str] = None) 
         "estimated_date": ready_date.strftime("%B %d, %Y"),
         "confidence": "High" if overall_score > 60 else "Medium" if overall_score > 30 else "Low",
     }
+
+
+# ─── Canonical async entrypoint (fetches from MongoDB) ─────────────────
+
+async def compute_readiness(user_id: str, company: Optional[str] = None) -> Dict[str, Any]:
+    """Canonical readiness calculation: fetch user data from MongoDB, then score.
+
+    This is the single entrypoint all routes/services should call.
+    It replaces:
+      - adaptive_learning.calculate_readiness_score
+      - skill_assessment.get_readiness_score
+      - job_readiness.get_personalized_gaps / overall_readiness inline calc
+
+    Args:
+        user_id: The user's MongoDB _id string.
+        company: Optional company name for company-specific weighting.
+
+    Returns:
+        Unified dict with overall_readiness, categories, recommendations,
+        company score/match, and stats.
+    """
+    from app.database import (
+        solved_problems_collection,
+        submissions_collection,
+        aptitude_tests_collection,
+        interviews_collection,
+        resumes_collection,
+        generated_projects_collection,
+        question_answers_collection,
+        skill_graph_collection,
+    )
+    from app.services.skill_assessment import get_skill_graph
+
+    uid = user_id
+
+    # DSA data
+    solved_col = solved_problems_collection()
+    total_solved = await solved_col.count_documents({"user_id": uid})
+    easy = await solved_col.count_documents({"user_id": uid, "difficulty": "easy"})
+    medium = await solved_col.count_documents({"user_id": uid, "difficulty": "medium"})
+    hard = await solved_col.count_documents({"user_id": uid, "difficulty": "hard"})
+    unique_topics = len(await solved_col.distinct("topic", {"user_id": uid}))
+    sub_count = await submissions_collection.count_documents({"user_id": uid})
+    accuracy = (total_solved / sub_count) if sub_count > 0 else 0.0
+    dsa_data = {
+        "total_solved": total_solved,
+        "easy": easy,
+        "medium": medium,
+        "hard": hard,
+        "unique_topics": unique_topics,
+        "accuracy_rate": accuracy,
+    }
+
+    # Aptitude data
+    apt_col = aptitude_tests_collection()
+    apt_tests = await apt_col.find({"user_id": uid}).to_list(100)
+    avg_pct = sum(t.get("percentage", 0) for t in apt_tests) / len(apt_tests) if apt_tests else 0.0
+    recent_pcts = [t.get("percentage", 0) for t in apt_tests[-5:]]
+    categories_set = {t.get("category") for t in apt_tests if t.get("category")}
+    aptitude_data = {
+        "avg_percentage": avg_pct,
+        "test_count": len(apt_tests),
+        "category_count": len(categories_set),
+        "recent_percentages": recent_pcts,
+    }
+
+    # CS fundamentals data (from interview answers tagged with CS topics)
+    cs_data = {"answered_count": 0, "cs_tagged_count": 0, "avg_score": 0.0}
+
+    # Coding data (from submissions)
+    coding_data = {"submissions": sub_count, "accepted": total_solved, "acceptance_rate": accuracy}
+
+    # Interview data
+    int_col = interviews_collection()
+    interview_count = await int_col.count_documents({"user_id": uid})
+    interview_data = {"completed": interview_count}
+
+    # Resume data
+    resume_col = resumes_collection()
+    resume_count = await resume_col.count_documents({"user_id": uid})
+    resume_data = {"uploaded": resume_count}
+
+    # Project data
+    proj_col = generated_projects_collection()
+    project_count = await proj_col.count_documents({"user_id": uid})
+    project_data = {"count": project_count}
+
+    result = calculate_readiness(
+        dsa_data=dsa_data,
+        aptitude_data=aptitude_data,
+        cs_data=cs_data,
+        coding_data=coding_data,
+        interview_data=interview_data,
+        resume_data=resume_data,
+        project_data=project_data,
+        company=company,
+    )
+
+    # Build weak/strong area summaries for callers that expect them
+    cats = result.categories
+    weak_areas = [{"category": k, "score": v.score} for k, v in cats.items() if v.score < 50]
+    strong_domains = [{"category": k, "score": v.score} for k, v in cats.items() if v.score >= 80]
+
+    return {
+        "user_id": uid,
+        "overall_readiness": result.overall,
+        "overall": result.overall,
+        "readiness_level": _readiness_level(result.overall),
+        "base_score": result.overall,
+        "category_scores": {k: v.score for k, v in cats.items()},
+        "categories": {k: {"score": v.score, "weight": v.weight, "details": v.details} for k, v in cats.items()},
+        "weak_areas_count": len(weak_areas),
+        "strong_domains_count": len(strong_domains),
+        "company_specific": {
+            "company": company,
+            "score": result.company_score,
+            "match": result.company_match,
+        } if company else None,
+        "recommendations": result.recommendations,
+        "stats": result.stats,
+        "coverage_pct": 100.0,
+        "untouched_penalty": 0,
+        "accuracy_penalty": 0,
+        "consistency_bonus": 0,
+    }
+
+
+def _readiness_level(score: float) -> str:
+    if score >= 90:
+        return "Interview Ready"
+    elif score >= 75:
+        return "Almost There"
+    elif score >= 60:
+        return "Progressing"
+    elif score >= 40:
+        return "Building Foundation"
+    else:
+        return "Getting Started"

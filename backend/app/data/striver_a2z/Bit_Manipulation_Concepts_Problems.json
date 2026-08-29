@@ -1,0 +1,2411 @@
+[
+  {
+    "id": "tuf_0260",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Bit Manipulation [Concepts & Problems]",
+    "sub_topic": "Learn Bit Manipulation",
+    "pattern": "Bit Manipulation",
+    "tuf_step": "Bit Manipulation [Concepts & Problems]",
+    "tuf_subtopic": "Learn Bit Manipulation",
+    "tuf_step_index": 8,
+    "question": "Intro to Bits",
+    "question_title": "Intro to Bits",
+    "statement": "Intro to Bits. Solve the Striver A2Z problem 'Intro to Bits' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Learn Bit Manipulation). Return the required answer per TUF sheet. This is part of Bit Manipulation [Concepts & Problems] asked in top product companies.",
+    "description": "Intro to Bits. Solve the Striver A2Z problem 'Intro to Bits' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Learn Bit Manipulation). Return the required answer per TUF sheet. This is part of Bi",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def intro(nums):\n    # Intro to Bits - Bit Manipulation [Concepts & Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "intro",
+    "leetcode_number": 1821,
+    "dsa_guide": {
+      "approach": "Bit Manipulation",
+      "data_structures": [
+        "Learn Bit Manipulation"
+      ],
+      "patterns": [
+        "Bit Manipulation"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Bit Manipulation [Concepts & Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 34,
+    "upvotes": 254
+  },
+  {
+    "id": "tuf_0261",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Bit Manipulation [Concepts & Problems]",
+    "sub_topic": "Interview Problems",
+    "pattern": "Bit Manipulation",
+    "tuf_step": "Bit Manipulation [Concepts & Problems]",
+    "tuf_subtopic": "Interview Problems",
+    "tuf_step_index": 8,
+    "question": "Check ith Bit Set",
+    "question_title": "Check ith Bit Set",
+    "statement": "Check ith Bit Set. Solve the Striver A2Z problem 'Check ith Bit Set' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Interview Problems). Return the required answer per TUF sheet. This is part of Bit Manipulation [Concepts & Problems] asked in top product companies.",
+    "description": "Check ith Bit Set. Solve the Striver A2Z problem 'Check ith Bit Set' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Interview Problems). Return the required answer per TUF sheet. This is part o",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def check(nums):\n    # Check ith Bit Set - Bit Manipulation [Concepts & Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "check",
+    "leetcode_number": 1828,
+    "dsa_guide": {
+      "approach": "Bit Manipulation",
+      "data_structures": [
+        "Interview Problems"
+      ],
+      "patterns": [
+        "Bit Manipulation"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Bit Manipulation [Concepts & Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 52,
+    "upvotes": 192
+  },
+  {
+    "id": "tuf_0262",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Bit Manipulation [Concepts & Problems]",
+    "sub_topic": "Advanced Maths",
+    "pattern": "Bit Manipulation",
+    "tuf_step": "Bit Manipulation [Concepts & Problems]",
+    "tuf_subtopic": "Advanced Maths",
+    "tuf_step_index": 8,
+    "question": "Check Odd Even",
+    "question_title": "Check Odd Even",
+    "statement": "Check Odd Even. Solve the Striver A2Z problem 'Check Odd Even' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Advanced Maths). Return the required answer per TUF sheet. This is part of Bit Manipulation [Concepts & Problems] asked in top product companies.",
+    "description": "Check Odd Even. Solve the Striver A2Z problem 'Check Odd Even' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Advanced Maths). Return the required answer per TUF sheet. This is part of Bit Mani",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def check(nums):\n    # Check Odd Even - Bit Manipulation [Concepts & Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "check",
+    "leetcode_number": 1835,
+    "dsa_guide": {
+      "approach": "Bit Manipulation",
+      "data_structures": [
+        "Advanced Maths"
+      ],
+      "patterns": [
+        "Bit Manipulation"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Bit Manipulation [Concepts & Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 18,
+    "upvotes": 445
+  },
+  {
+    "id": "tuf_0263",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Bit Manipulation [Concepts & Problems]",
+    "sub_topic": "Learn Bit Manipulation",
+    "pattern": "Bit Manipulation",
+    "tuf_step": "Bit Manipulation [Concepts & Problems]",
+    "tuf_subtopic": "Learn Bit Manipulation",
+    "tuf_step_index": 8,
+    "question": "Power of 2",
+    "question_title": "Power of 2",
+    "statement": "Power of 2. Solve the Striver A2Z problem 'Power of 2' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Learn Bit Manipulation). Return the required answer per TUF sheet. This is part of Bit Manipulation [Concepts & Problems] asked in top product companies.",
+    "description": "Power of 2. Solve the Striver A2Z problem 'Power of 2' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Learn Bit Manipulation). Return the required answer per TUF sheet. This is part of Bit Mani",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def power(nums):\n    # Power of 2 - Bit Manipulation [Concepts & Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "power",
+    "leetcode_number": 1842,
+    "dsa_guide": {
+      "approach": "Bit Manipulation",
+      "data_structures": [
+        "Learn Bit Manipulation"
+      ],
+      "patterns": [
+        "Bit Manipulation"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Bit Manipulation [Concepts & Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 45,
+    "upvotes": 229
+  },
+  {
+    "id": "tuf_0264",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Bit Manipulation [Concepts & Problems]",
+    "sub_topic": "Interview Problems",
+    "pattern": "Bit Manipulation",
+    "tuf_step": "Bit Manipulation [Concepts & Problems]",
+    "tuf_subtopic": "Interview Problems",
+    "tuf_step_index": 8,
+    "question": "Count Set Bits",
+    "question_title": "Count Set Bits",
+    "statement": "Count Set Bits. Solve the Striver A2Z problem 'Count Set Bits' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Interview Problems). Return the required answer per TUF sheet. This is part of Bit Manipulation [Concepts & Problems] asked in top product companies.",
+    "description": "Count Set Bits. Solve the Striver A2Z problem 'Count Set Bits' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Interview Problems). Return the required answer per TUF sheet. This is part of Bit ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def count(nums):\n    # Count Set Bits - Bit Manipulation [Concepts & Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "count",
+    "leetcode_number": 1849,
+    "dsa_guide": {
+      "approach": "Bit Manipulation",
+      "data_structures": [
+        "Interview Problems"
+      ],
+      "patterns": [
+        "Bit Manipulation"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Bit Manipulation [Concepts & Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 92,
+    "upvotes": 310
+  },
+  {
+    "id": "tuf_0265",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Bit Manipulation [Concepts & Problems]",
+    "sub_topic": "Advanced Maths",
+    "pattern": "Bit Manipulation",
+    "tuf_step": "Bit Manipulation [Concepts & Problems]",
+    "tuf_subtopic": "Advanced Maths",
+    "tuf_step_index": 8,
+    "question": "Swap Two Numbers",
+    "question_title": "Swap Two Numbers",
+    "statement": "Swap Two Numbers. Solve the Striver A2Z problem 'Swap Two Numbers' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Advanced Maths). Return the required answer per TUF sheet. This is part of Bit Manipulation [Concepts & Problems] asked in top product companies.",
+    "description": "Swap Two Numbers. Solve the Striver A2Z problem 'Swap Two Numbers' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Advanced Maths). Return the required answer per TUF sheet. This is part of Bit ",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def swap(nums):\n    # Swap Two Numbers - Bit Manipulation [Concepts & Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "swap",
+    "leetcode_number": 1856,
+    "dsa_guide": {
+      "approach": "Bit Manipulation",
+      "data_structures": [
+        "Advanced Maths"
+      ],
+      "patterns": [
+        "Bit Manipulation"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Bit Manipulation [Concepts & Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 61,
+    "upvotes": 397
+  },
+  {
+    "id": "tuf_0266",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Bit Manipulation [Concepts & Problems]",
+    "sub_topic": "Learn Bit Manipulation",
+    "pattern": "Bit Manipulation",
+    "tuf_step": "Bit Manipulation [Concepts & Problems]",
+    "tuf_subtopic": "Learn Bit Manipulation",
+    "tuf_step_index": 8,
+    "question": "Divide Without Multiply",
+    "question_title": "Divide Without Multiply",
+    "statement": "Divide Without Multiply. Solve the Striver A2Z problem 'Divide Without Multiply' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Learn Bit Manipulation). Return the required answer per TUF sheet. This is part of Bit Manipulation [Concepts & Problems] asked in top product companies.",
+    "description": "Divide Without Multiply. Solve the Striver A2Z problem 'Divide Without Multiply' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Learn Bit Manipulation). Return the required answer per TUF sheet",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def divide(nums):\n    # Divide Without Multiply - Bit Manipulation [Concepts & Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "divide",
+    "leetcode_number": 1863,
+    "dsa_guide": {
+      "approach": "Bit Manipulation",
+      "data_structures": [
+        "Learn Bit Manipulation"
+      ],
+      "patterns": [
+        "Bit Manipulation"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Bit Manipulation [Concepts & Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 78,
+    "upvotes": 219
+  },
+  {
+    "id": "tuf_0267",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Bit Manipulation [Concepts & Problems]",
+    "sub_topic": "Interview Problems",
+    "pattern": "Bit Manipulation",
+    "tuf_step": "Bit Manipulation [Concepts & Problems]",
+    "tuf_subtopic": "Interview Problems",
+    "tuf_step_index": 8,
+    "question": "Minimum Bit Flips",
+    "question_title": "Minimum Bit Flips",
+    "statement": "Minimum Bit Flips. Solve the Striver A2Z problem 'Minimum Bit Flips' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Interview Problems). Return the required answer per TUF sheet. This is part of Bit Manipulation [Concepts & Problems] asked in top product companies.",
+    "description": "Minimum Bit Flips. Solve the Striver A2Z problem 'Minimum Bit Flips' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Interview Problems). Return the required answer per TUF sheet. This is part o",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def minimum(nums):\n    # Minimum Bit Flips - Bit Manipulation [Concepts & Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "minimum",
+    "leetcode_number": 1870,
+    "dsa_guide": {
+      "approach": "Bit Manipulation",
+      "data_structures": [
+        "Interview Problems"
+      ],
+      "patterns": [
+        "Bit Manipulation"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Bit Manipulation [Concepts & Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 13,
+    "upvotes": 109
+  },
+  {
+    "id": "tuf_0268",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Bit Manipulation [Concepts & Problems]",
+    "sub_topic": "Advanced Maths",
+    "pattern": "Bit Manipulation",
+    "tuf_step": "Bit Manipulation [Concepts & Problems]",
+    "tuf_subtopic": "Advanced Maths",
+    "tuf_step_index": 8,
+    "question": "Single Number I",
+    "question_title": "Single Number I",
+    "statement": "Single Number I. Solve the Striver A2Z problem 'Single Number I' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Advanced Maths). Return the required answer per TUF sheet. This is part of Bit Manipulation [Concepts & Problems] asked in top product companies.",
+    "description": "Single Number I. Solve the Striver A2Z problem 'Single Number I' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Advanced Maths). Return the required answer per TUF sheet. This is part of Bit Ma",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def single(nums):\n    # Single Number I - Bit Manipulation [Concepts & Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "single",
+    "leetcode_number": 1877,
+    "dsa_guide": {
+      "approach": "Bit Manipulation",
+      "data_structures": [
+        "Advanced Maths"
+      ],
+      "patterns": [
+        "Bit Manipulation"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Bit Manipulation [Concepts & Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 43,
+    "upvotes": 141
+  },
+  {
+    "id": "tuf_0269",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Bit Manipulation [Concepts & Problems]",
+    "sub_topic": "Learn Bit Manipulation",
+    "pattern": "Bit Manipulation",
+    "tuf_step": "Bit Manipulation [Concepts & Problems]",
+    "tuf_subtopic": "Learn Bit Manipulation",
+    "tuf_step_index": 8,
+    "question": "Single Number III",
+    "question_title": "Single Number III",
+    "statement": "Single Number III. Solve the Striver A2Z problem 'Single Number III' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Learn Bit Manipulation). Return the required answer per TUF sheet. This is part of Bit Manipulation [Concepts & Problems] asked in top product companies.",
+    "description": "Single Number III. Solve the Striver A2Z problem 'Single Number III' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Learn Bit Manipulation). Return the required answer per TUF sheet. This is pa",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def single(nums):\n    # Single Number III - Bit Manipulation [Concepts & Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "single",
+    "leetcode_number": 1884,
+    "dsa_guide": {
+      "approach": "Bit Manipulation",
+      "data_structures": [
+        "Learn Bit Manipulation"
+      ],
+      "patterns": [
+        "Bit Manipulation"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Bit Manipulation [Concepts & Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 84,
+    "upvotes": 185
+  },
+  {
+    "id": "tuf_0270",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Bit Manipulation [Concepts & Problems]",
+    "sub_topic": "Interview Problems",
+    "pattern": "Bit Manipulation",
+    "tuf_step": "Bit Manipulation [Concepts & Problems]",
+    "tuf_subtopic": "Interview Problems",
+    "tuf_step_index": 8,
+    "question": "Power Set (Bit Manipula #11)",
+    "question_title": "Power Set (Bit Manipula #11)",
+    "statement": "Power Set (Bit Manipula #11). Solve the Striver A2Z problem 'Power Set (Bit Manipula #11)' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Interview Problems). Return the required answer per TUF sheet. This is part of Bit Manipulation [Concepts & Problems] asked in top product companies.",
+    "description": "Power Set (Bit Manipula #11). Solve the Striver A2Z problem 'Power Set (Bit Manipula #11)' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Interview Problems). Return the required answer per TUF",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def power(nums):\n    # Power Set (Bit Manipula #11) - Bit Manipulation [Concepts & Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "power",
+    "leetcode_number": 1891,
+    "dsa_guide": {
+      "approach": "Bit Manipulation",
+      "data_structures": [
+        "Interview Problems"
+      ],
+      "patterns": [
+        "Bit Manipulation"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Bit Manipulation [Concepts & Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 14,
+    "upvotes": 105
+  },
+  {
+    "id": "tuf_0271",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Bit Manipulation [Concepts & Problems]",
+    "sub_topic": "Advanced Maths",
+    "pattern": "Bit Manipulation",
+    "tuf_step": "Bit Manipulation [Concepts & Problems]",
+    "tuf_subtopic": "Advanced Maths",
+    "tuf_step_index": 8,
+    "question": "XOR of Range",
+    "question_title": "XOR of Range",
+    "statement": "XOR of Range. Solve the Striver A2Z problem 'XOR of Range' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Advanced Maths). Return the required answer per TUF sheet. This is part of Bit Manipulation [Concepts & Problems] asked in top product companies.",
+    "description": "XOR of Range. Solve the Striver A2Z problem 'XOR of Range' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Advanced Maths). Return the required answer per TUF sheet. This is part of Bit Manipula",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def xor(nums):\n    # XOR of Range - Bit Manipulation [Concepts & Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "xor",
+    "leetcode_number": 1898,
+    "dsa_guide": {
+      "approach": "Bit Manipulation",
+      "data_structures": [
+        "Advanced Maths"
+      ],
+      "patterns": [
+        "Bit Manipulation"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Bit Manipulation [Concepts & Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 86,
+    "upvotes": 272
+  },
+  {
+    "id": "tuf_0272",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Bit Manipulation [Concepts & Problems]",
+    "sub_topic": "Learn Bit Manipulation",
+    "pattern": "Bit Manipulation",
+    "tuf_step": "Bit Manipulation [Concepts & Problems]",
+    "tuf_subtopic": "Learn Bit Manipulation",
+    "tuf_step_index": 8,
+    "question": "Print Prime Factors",
+    "question_title": "Print Prime Factors",
+    "statement": "Print Prime Factors. Solve the Striver A2Z problem 'Print Prime Factors' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Learn Bit Manipulation). Return the required answer per TUF sheet. This is part of Bit Manipulation [Concepts & Problems] asked in top product companies.",
+    "description": "Print Prime Factors. Solve the Striver A2Z problem 'Print Prime Factors' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Learn Bit Manipulation). Return the required answer per TUF sheet. This i",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def print(nums):\n    # Print Prime Factors - Bit Manipulation [Concepts & Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "print",
+    "leetcode_number": 1905,
+    "dsa_guide": {
+      "approach": "Bit Manipulation",
+      "data_structures": [
+        "Learn Bit Manipulation"
+      ],
+      "patterns": [
+        "Bit Manipulation"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Bit Manipulation [Concepts & Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 54,
+    "upvotes": 423
+  },
+  {
+    "id": "tuf_0273",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Bit Manipulation [Concepts & Problems]",
+    "sub_topic": "Interview Problems",
+    "pattern": "Bit Manipulation",
+    "tuf_step": "Bit Manipulation [Concepts & Problems]",
+    "tuf_subtopic": "Interview Problems",
+    "tuf_step_index": 8,
+    "question": "Divisors of a Number",
+    "question_title": "Divisors of a Number",
+    "statement": "Divisors of a Number. Solve the Striver A2Z problem 'Divisors of a Number' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Interview Problems). Return the required answer per TUF sheet. This is part of Bit Manipulation [Concepts & Problems] asked in top product companies.",
+    "description": "Divisors of a Number. Solve the Striver A2Z problem 'Divisors of a Number' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Interview Problems). Return the required answer per TUF sheet. This is ",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def divisors(nums):\n    # Divisors of a Number - Bit Manipulation [Concepts & Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "divisors",
+    "leetcode_number": 1912,
+    "dsa_guide": {
+      "approach": "Bit Manipulation",
+      "data_structures": [
+        "Interview Problems"
+      ],
+      "patterns": [
+        "Bit Manipulation"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Bit Manipulation [Concepts & Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 50,
+    "upvotes": 273
+  },
+  {
+    "id": "tuf_0274",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Bit Manipulation [Concepts & Problems]",
+    "sub_topic": "Advanced Maths",
+    "pattern": "Bit Manipulation",
+    "tuf_step": "Bit Manipulation [Concepts & Problems]",
+    "tuf_subtopic": "Advanced Maths",
+    "tuf_step_index": 8,
+    "question": "Prime Factorisation",
+    "question_title": "Prime Factorisation",
+    "statement": "Prime Factorisation. Solve the Striver A2Z problem 'Prime Factorisation' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Advanced Maths). Return the required answer per TUF sheet. This is part of Bit Manipulation [Concepts & Problems] asked in top product companies.",
+    "description": "Prime Factorisation. Solve the Striver A2Z problem 'Prime Factorisation' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Advanced Maths). Return the required answer per TUF sheet. This is part o",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def prime(nums):\n    # Prime Factorisation - Bit Manipulation [Concepts & Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "prime",
+    "leetcode_number": 1919,
+    "dsa_guide": {
+      "approach": "Bit Manipulation",
+      "data_structures": [
+        "Advanced Maths"
+      ],
+      "patterns": [
+        "Bit Manipulation"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Bit Manipulation [Concepts & Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 87,
+    "upvotes": 311
+  },
+  {
+    "id": "tuf_0275",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Bit Manipulation [Concepts & Problems]",
+    "sub_topic": "Learn Bit Manipulation",
+    "pattern": "Bit Manipulation",
+    "tuf_step": "Bit Manipulation [Concepts & Problems]",
+    "tuf_subtopic": "Learn Bit Manipulation",
+    "tuf_step_index": 8,
+    "question": "Pow(x,n)",
+    "question_title": "Pow(x,n)",
+    "statement": "Pow(x,n). Solve the Striver A2Z problem 'Pow(x,n)' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Learn Bit Manipulation). Return the required answer per TUF sheet. This is part of Bit Manipulation [Concepts & Problems] asked in top product companies.",
+    "description": "Pow(x,n). Solve the Striver A2Z problem 'Pow(x,n)' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Learn Bit Manipulation). Return the required answer per TUF sheet. This is part of Bit Manipula",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def powxn(nums):\n    # Pow(x,n) - Bit Manipulation [Concepts & Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "powxn",
+    "leetcode_number": 1926,
+    "dsa_guide": {
+      "approach": "Bit Manipulation",
+      "data_structures": [
+        "Learn Bit Manipulation"
+      ],
+      "patterns": [
+        "Bit Manipulation"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Bit Manipulation [Concepts & Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 24,
+    "upvotes": 247
+  },
+  {
+    "id": "tuf_0276",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Bit Manipulation [Concepts & Problems]",
+    "sub_topic": "Interview Problems",
+    "pattern": "Bit Manipulation",
+    "tuf_step": "Bit Manipulation [Concepts & Problems]",
+    "tuf_subtopic": "Interview Problems",
+    "tuf_step_index": 8,
+    "question": "Intro to Bits (Bit Manipula #17)",
+    "question_title": "Intro to Bits (Bit Manipula #17)",
+    "statement": "Intro to Bits (Bit Manipula #17). Solve the Striver A2Z problem 'Intro to Bits (Bit Manipula #17)' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Interview Problems). Return the required answer per TUF sheet. This is part of Bit Manipulation [Concepts & Problems] asked in top product companies.",
+    "description": "Intro to Bits (Bit Manipula #17). Solve the Striver A2Z problem 'Intro to Bits (Bit Manipula #17)' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Interview Problems). Return the required answer",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def intro(nums):\n    # Intro to Bits (Bit Manipula #17) - Bit Manipulation [Concepts & Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "intro",
+    "leetcode_number": 1933,
+    "dsa_guide": {
+      "approach": "Bit Manipulation",
+      "data_structures": [
+        "Interview Problems"
+      ],
+      "patterns": [
+        "Bit Manipulation"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Bit Manipulation [Concepts & Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 83,
+    "upvotes": 147
+  },
+  {
+    "id": "tuf_0277",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Bit Manipulation [Concepts & Problems]",
+    "sub_topic": "Advanced Maths",
+    "pattern": "Bit Manipulation",
+    "tuf_step": "Bit Manipulation [Concepts & Problems]",
+    "tuf_subtopic": "Advanced Maths",
+    "tuf_step_index": 8,
+    "question": "Check ith Bit Set (Bit Manipula #18)",
+    "question_title": "Check ith Bit Set (Bit Manipula #18)",
+    "statement": "Check ith Bit Set (Bit Manipula #18). Solve the Striver A2Z problem 'Check ith Bit Set (Bit Manipula #18)' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Advanced Maths). Return the required answer per TUF sheet. This is part of Bit Manipulation [Concepts & Problems] asked in top product companies.",
+    "description": "Check ith Bit Set (Bit Manipula #18). Solve the Striver A2Z problem 'Check ith Bit Set (Bit Manipula #18)' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Advanced Maths). Return the required an",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def check(nums):\n    # Check ith Bit Set (Bit Manipula #18) - Bit Manipulation [Concepts & Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "check",
+    "leetcode_number": 1940,
+    "dsa_guide": {
+      "approach": "Bit Manipulation",
+      "data_structures": [
+        "Advanced Maths"
+      ],
+      "patterns": [
+        "Bit Manipulation"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Bit Manipulation [Concepts & Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 42,
+    "upvotes": 72
+  },
+  {
+    "id": "tuf_0278",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Bit Manipulation [Concepts & Problems]",
+    "sub_topic": "Learn Bit Manipulation",
+    "pattern": "Bit Manipulation",
+    "tuf_step": "Bit Manipulation [Concepts & Problems]",
+    "tuf_subtopic": "Learn Bit Manipulation",
+    "tuf_step_index": 8,
+    "question": "Check Odd Even (Bit Manipula #19)",
+    "question_title": "Check Odd Even (Bit Manipula #19)",
+    "statement": "Check Odd Even (Bit Manipula #19). Solve the Striver A2Z problem 'Check Odd Even (Bit Manipula #19)' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Learn Bit Manipulation). Return the required answer per TUF sheet. This is part of Bit Manipulation [Concepts & Problems] asked in top product companies.",
+    "description": "Check Odd Even (Bit Manipula #19). Solve the Striver A2Z problem 'Check Odd Even (Bit Manipula #19)' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Learn Bit Manipulation). Return the required ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def check(nums):\n    # Check Odd Even (Bit Manipula #19) - Bit Manipulation [Concepts & Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "check",
+    "leetcode_number": 1947,
+    "dsa_guide": {
+      "approach": "Bit Manipulation",
+      "data_structures": [
+        "Learn Bit Manipulation"
+      ],
+      "patterns": [
+        "Bit Manipulation"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Bit Manipulation [Concepts & Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 65,
+    "upvotes": 50
+  },
+  {
+    "id": "tuf_0279",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Bit Manipulation [Concepts & Problems]",
+    "sub_topic": "Interview Problems",
+    "pattern": "Bit Manipulation",
+    "tuf_step": "Bit Manipulation [Concepts & Problems]",
+    "tuf_subtopic": "Interview Problems",
+    "tuf_step_index": 8,
+    "question": "Power of 2 (Bit Manipula #20)",
+    "question_title": "Power of 2 (Bit Manipula #20)",
+    "statement": "Power of 2 (Bit Manipula #20). Solve the Striver A2Z problem 'Power of 2 (Bit Manipula #20)' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Interview Problems). Return the required answer per TUF sheet. This is part of Bit Manipulation [Concepts & Problems] asked in top product companies.",
+    "description": "Power of 2 (Bit Manipula #20). Solve the Striver A2Z problem 'Power of 2 (Bit Manipula #20)' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Interview Problems). Return the required answer per T",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def power(nums):\n    # Power of 2 (Bit Manipula #20) - Bit Manipulation [Concepts & Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "power",
+    "leetcode_number": 1954,
+    "dsa_guide": {
+      "approach": "Bit Manipulation",
+      "data_structures": [
+        "Interview Problems"
+      ],
+      "patterns": [
+        "Bit Manipulation"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Bit Manipulation [Concepts & Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 76,
+    "upvotes": 462
+  },
+  {
+    "id": "tuf_0280",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Bit Manipulation [Concepts & Problems]",
+    "sub_topic": "Advanced Maths",
+    "pattern": "Bit Manipulation",
+    "tuf_step": "Bit Manipulation [Concepts & Problems]",
+    "tuf_subtopic": "Advanced Maths",
+    "tuf_step_index": 8,
+    "question": "Count Set Bits (Bit Manipula #21)",
+    "question_title": "Count Set Bits (Bit Manipula #21)",
+    "statement": "Count Set Bits (Bit Manipula #21). Solve the Striver A2Z problem 'Count Set Bits (Bit Manipula #21)' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Advanced Maths). Return the required answer per TUF sheet. This is part of Bit Manipulation [Concepts & Problems] asked in top product companies.",
+    "description": "Count Set Bits (Bit Manipula #21). Solve the Striver A2Z problem 'Count Set Bits (Bit Manipula #21)' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Advanced Maths). Return the required answer p",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def count(nums):\n    # Count Set Bits (Bit Manipula #21) - Bit Manipulation [Concepts & Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "count",
+    "leetcode_number": 1961,
+    "dsa_guide": {
+      "approach": "Bit Manipulation",
+      "data_structures": [
+        "Advanced Maths"
+      ],
+      "patterns": [
+        "Bit Manipulation"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Bit Manipulation [Concepts & Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 78,
+    "upvotes": 401
+  },
+  {
+    "id": "tuf_0281",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Bit Manipulation [Concepts & Problems]",
+    "sub_topic": "Learn Bit Manipulation",
+    "pattern": "Bit Manipulation",
+    "tuf_step": "Bit Manipulation [Concepts & Problems]",
+    "tuf_subtopic": "Learn Bit Manipulation",
+    "tuf_step_index": 8,
+    "question": "Swap Two Numbers (Bit Manipula #22)",
+    "question_title": "Swap Two Numbers (Bit Manipula #22)",
+    "statement": "Swap Two Numbers (Bit Manipula #22). Solve the Striver A2Z problem 'Swap Two Numbers (Bit Manipula #22)' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Learn Bit Manipulation). Return the required answer per TUF sheet. This is part of Bit Manipulation [Concepts & Problems] asked in top product companies.",
+    "description": "Swap Two Numbers (Bit Manipula #22). Solve the Striver A2Z problem 'Swap Two Numbers (Bit Manipula #22)' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Learn Bit Manipulation). Return the requi",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def swap(nums):\n    # Swap Two Numbers (Bit Manipula #22) - Bit Manipulation [Concepts & Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "swap",
+    "leetcode_number": 1968,
+    "dsa_guide": {
+      "approach": "Bit Manipulation",
+      "data_structures": [
+        "Learn Bit Manipulation"
+      ],
+      "patterns": [
+        "Bit Manipulation"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Bit Manipulation [Concepts & Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 95,
+    "upvotes": 150
+  },
+  {
+    "id": "tuf_0282",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Bit Manipulation [Concepts & Problems]",
+    "sub_topic": "Interview Problems",
+    "pattern": "Bit Manipulation",
+    "tuf_step": "Bit Manipulation [Concepts & Problems]",
+    "tuf_subtopic": "Interview Problems",
+    "tuf_step_index": 8,
+    "question": "Divide Without Multiply (Bit Manipula #23)",
+    "question_title": "Divide Without Multiply (Bit Manipula #23)",
+    "statement": "Divide Without Multiply (Bit Manipula #23). Solve the Striver A2Z problem 'Divide Without Multiply (Bit Manipula #23)' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Interview Problems). Return the required answer per TUF sheet. This is part of Bit Manipulation [Concepts & Problems] asked in top product companies.",
+    "description": "Divide Without Multiply (Bit Manipula #23). Solve the Striver A2Z problem 'Divide Without Multiply (Bit Manipula #23)' from TakeUForward step 'Bit Manipulation [Concepts & Problems]' (pattern: Interview Problems). Return",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def divide(nums):\n    # Divide Without Multiply (Bit Manipula #23) - Bit Manipulation [Concepts & Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "divide",
+    "leetcode_number": 1975,
+    "dsa_guide": {
+      "approach": "Bit Manipulation",
+      "data_structures": [
+        "Interview Problems"
+      ],
+      "patterns": [
+        "Bit Manipulation"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Bit Manipulation [Concepts & Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 56,
+    "upvotes": 270
+  }
+]

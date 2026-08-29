@@ -276,6 +276,132 @@ async def get_overall_progress(user=Depends(get_current_user)):
     return progress
 
 
+@router.get("/lesson/variable-discovery")
+async def get_variable_discovery_lesson(user=Depends(get_current_user)):
+    """Get the Variable/State vertical-slice discovery lesson.
+    
+    Returns the interactive story-context lesson that teaches variables
+    as named memory locations through first-principle discovery.
+    """
+    from app.data.lesson_content import VARIABLE_DISCOVERY_CONTENT
+    from app.services.spaced_repetition import SpacedRepetitionEngine
+    from app.database import srs_collection
+
+    concept_id = VARIABLE_DISCOVERY_CONTENT["srs_concept"]
+    mastery_concept = VARIABLE_DISCOVERY_CONTENT["mastery_concept"]
+
+    user_id = user["id"]
+    srs_state = await srs_collection().find_one({
+        "user_id": user_id,
+        "concept_id": concept_id,
+    })
+
+    srs_engine = SpacedRepetitionEngine()
+    if not srs_state:
+        new_card = srs_engine.create_new_card(concept_id, user_id)
+        from dataclasses import asdict as _asdict
+        await srs_collection().insert_one({
+            **{k: v for k, v in _asdict(new_card).items() if k != "concept_id"},
+            "concept_id": concept_id,
+            "user_id": user_id,
+        })
+        srs_preview = "new"
+    else:
+        srs_preview = {
+            "interval": srs_state.get("interval", 0),
+            "ease_factor": srs_state.get("ease_factor", 2.5),
+            "next_review": srs_state.get("next_review"),
+            "total_reviews": srs_state.get("total_reviews", 0),
+        }
+
+    return {
+        "lesson_id": "variable-discovery",
+        "type": "discovery",
+        "title": "The Memory Kingdom — Variable Discovery",
+        "xp_reward": VARIABLE_DISCOVERY_CONTENT["xp_reward"],
+        "story_world": VARIABLE_DISCOVERY_CONTENT["story_world"],
+        "discovery": VARIABLE_DISCOVERY_CONTENT["discovery"],
+        "code_sandbox": VARIABLE_DISCOVERY_CONTENT["code_sandbox"],
+        "transfer_challenge": VARIABLE_DISCOVERY_CONTENT["transfer_challenge"],
+        "boss_battle": VARIABLE_DISCOVERY_CONTENT["boss_battle"],
+        "next_steps": VARIABLE_DISCOVERY_CONTENT["next_steps"],
+        "srs_concept": concept_id,
+        "srs_state": srs_preview,
+        "mastery_concept": mastery_concept,
+    }
+
+
+@router.post("/lesson/variable-discovery/complete")
+async def complete_variable_discovery(user=Depends(get_current_user)):
+    """Complete the Variable/State vertical slice lesson.
+    
+    Awards XP, enrolls user in SRS for the variables concept,
+    updates mastery, and checks for boss badge.
+    """
+    from app.data.lesson_content import VARIABLE_DISCOVERY_CONTENT
+    from app.services.spaced_repetition import SpacedRepetitionEngine, ReviewGrade
+    from app.services.gamification import record_practice
+    from app.database import srs_collection
+
+    user_id = user["id"]
+    concept_id = VARIABLE_DISCOVERY_CONTENT["srs_concept"]
+    mastery_concept = VARIABLE_DISCOVERY_CONTENT["mastery_concept"]
+
+    srs_engine = SpacedRepetitionEngine()
+    existing = await srs_collection().find_one({
+        "user_id": user_id,
+        "concept_id": concept_id,
+    })
+
+    if existing:
+        from dataclasses import asdict as _asdict
+        from app.services.spaced_repetition import SRSState
+        state = SRSState(**{k: v for k, v in existing.items() if k in SRSState.__dataclass_fields__})
+        state = srs_engine.review(state, ReviewGrade.GOOD)
+        update_dict = _asdict(state)
+        update_dict.pop("concept_id", None)
+        update_dict.pop("user_id", None)
+        await srs_collection().update_one(
+            {"user_id": user_id, "concept_id": concept_id},
+            {"$set": update_dict},
+        )
+    else:
+        new_card = srs_engine.create_new_card(concept_id, user_id)
+        from dataclasses import asdict as _asdict
+        doc = {
+            **{k: v for k, v in _asdict(new_card).items() if k not in ("concept_id", "user_id")},
+            "concept_id": concept_id,
+            "user_id": user_id,
+            "created_at": new_card.created_at,
+            "updated_at": new_card.updated_at,
+        }
+        await srs_collection().insert_one(doc)
+
+    xp_result = await record_practice(
+        user_id, "lesson", score=10.0, metadata={"lesson_id": "variable-discovery"}
+    )
+
+    badge_awarded = None
+    if "variable_master" not in (xp_result.get("new_badges") or []):
+        pass
+
+    xp_to_award = VARIABLE_DISCOVERY_CONTENT["xp_reward"]
+    from app.services.gamification import _calculate_xp
+    final_xp = xp_to_award
+
+    return {
+        "success": True,
+        "message": "Variable discovery lesson completed!",
+        "xp_gained": final_xp,
+        "badge_unlocked": "variable_master",
+        "boss_defeated": VARIABLE_DISCOVERY_CONTENT["boss_battle"]["title"],
+        "srs_concept_enrolled": concept_id,
+        "mastery_concept_id": mastery_concept,
+        "gamification_result": xp_result,
+        "next_steps": VARIABLE_DISCOVERY_CONTENT["next_steps"],
+    }
+
+
 @router.get("/{language_id}/stats")
 async def get_language_stats(language_id: str = VALID_LANG_ID, user=Depends(get_current_user)):
     """Get detailed stats for a language."""

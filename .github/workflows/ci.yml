@@ -5,6 +5,8 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  schedule:
+    - cron: "0 3 * * 1"  # Weekly re-curate question bank every Monday 3AM UTC
 
 jobs:
   backend:
@@ -68,3 +70,32 @@ jobs:
 
       - name: Build
         run: npm run build
+
+  curate-questions:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Re-curate question bank
+        run: |
+          python app/scripts/sanitize_qbank.py
+          python app/scripts/enrich_learning_objects.py
+          python app/scripts/generate_curriculum.py
+          python app/scripts/finalize_curriculum.py
+          python app/scripts/generate_all_role_curricula.py
+          echo "Curated bank refreshed:"
+          wc -c app/content/questions/curated/curated.json app/content/questions/rejected/rejected.json app/content/questions/curated/learning_objects.json app/content/questions/review_duplicates/review_duplicates.json app/content/curriculum/learning_paths.json app/content/curriculum/final_curriculum.json app/content/curriculum/mock_tests.json app/content/curriculum/all_role_curricula.json
+      - name: Commit curated output
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "github-actions"
+          git add app/content/questions/curated/curated.json app/content/questions/rejected/rejected.json app/content/questions/curated/learning_objects.json app/content/questions/review_duplicates/review_duplicates.json app/content/curriculum/learning_paths.json app/content/curriculum/final_curriculum.json app/content/curriculum/mock_tests.json app/content/curriculum/all_role_curricula.json
+          git diff --staged --quiet || git commit -m "chore: weekly re-curate question bank"
+          git push

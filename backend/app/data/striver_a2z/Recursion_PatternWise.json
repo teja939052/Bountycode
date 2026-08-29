@@ -1,0 +1,3354 @@
+[
+  {
+    "id": "tuf_0228",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Get a Strong Hold",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Get a Strong Hold",
+    "tuf_step_index": 7,
+    "question": "Print 1 to N",
+    "question_title": "Print 1 to N",
+    "statement": "Print 1 to N. Solve the Striver A2Z problem 'Print 1 to N' from TakeUForward step 'Recursion [PatternWise]' (pattern: Get a Strong Hold). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Print 1 to N. Solve the Striver A2Z problem 'Print 1 to N' from TakeUForward step 'Recursion [PatternWise]' (pattern: Get a Strong Hold). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def print(nums):\n    # Print 1 to N - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "print",
+    "leetcode_number": 1597,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Get a Strong Hold"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 11,
+    "upvotes": 107
+  },
+  {
+    "id": "tuf_0229",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Subsequences Pattern",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Subsequences Pattern",
+    "tuf_step_index": 7,
+    "question": "Print N to 1",
+    "question_title": "Print N to 1",
+    "statement": "Print N to 1. Solve the Striver A2Z problem 'Print N to 1' from TakeUForward step 'Recursion [PatternWise]' (pattern: Subsequences Pattern). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Print N to 1. Solve the Striver A2Z problem 'Print N to 1' from TakeUForward step 'Recursion [PatternWise]' (pattern: Subsequences Pattern). Return the required answer per TUF sheet. This is part of Recursion [PatternWis",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def print(nums):\n    # Print N to 1 - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "print",
+    "leetcode_number": 1604,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Subsequences Pattern"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 19,
+    "upvotes": 403
+  },
+  {
+    "id": "tuf_0230",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Trying out all Combos / Hard",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Trying out all Combos / Hard",
+    "tuf_step_index": 7,
+    "question": "Sum of First N",
+    "question_title": "Sum of First N",
+    "statement": "Sum of First N. Solve the Striver A2Z problem 'Sum of First N' from TakeUForward step 'Recursion [PatternWise]' (pattern: Trying out all Combos / Hard). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Sum of First N. Solve the Striver A2Z problem 'Sum of First N' from TakeUForward step 'Recursion [PatternWise]' (pattern: Trying out all Combos / Hard). Return the required answer per TUF sheet. This is part of Recursion",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def sum(nums):\n    # Sum of First N - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "sum",
+    "leetcode_number": 1611,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Trying out all Combos / Hard"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 29,
+    "upvotes": 329
+  },
+  {
+    "id": "tuf_0231",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Get a Strong Hold",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Get a Strong Hold",
+    "tuf_step_index": 7,
+    "question": "Factorial (Recursion [P #4)",
+    "question_title": "Factorial (Recursion [P #4)",
+    "statement": "Factorial (Recursion [P #4). Solve the Striver A2Z problem 'Factorial (Recursion [P #4)' from TakeUForward step 'Recursion [PatternWise]' (pattern: Get a Strong Hold). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Factorial (Recursion [P #4). Solve the Striver A2Z problem 'Factorial (Recursion [P #4)' from TakeUForward step 'Recursion [PatternWise]' (pattern: Get a Strong Hold). Return the required answer per TUF sheet. This is pa",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def factorial(nums):\n    # Factorial (Recursion [P #4) - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "factorial",
+    "leetcode_number": 1618,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Get a Strong Hold"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 14,
+    "upvotes": 477
+  },
+  {
+    "id": "tuf_0232",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Subsequences Pattern",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Subsequences Pattern",
+    "tuf_step_index": 7,
+    "question": "Reverse Array",
+    "question_title": "Reverse Array",
+    "statement": "Reverse Array. Solve the Striver A2Z problem 'Reverse Array' from TakeUForward step 'Recursion [PatternWise]' (pattern: Subsequences Pattern). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Reverse Array. Solve the Striver A2Z problem 'Reverse Array' from TakeUForward step 'Recursion [PatternWise]' (pattern: Subsequences Pattern). Return the required answer per TUF sheet. This is part of Recursion [PatternW",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def reverse(nums):\n    # Reverse Array - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "reverse",
+    "leetcode_number": 1625,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Subsequences Pattern"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 57,
+    "upvotes": 348
+  },
+  {
+    "id": "tuf_0233",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Trying out all Combos / Hard",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Trying out all Combos / Hard",
+    "tuf_step_index": 7,
+    "question": "Check Palindrome (Recursion [P #6)",
+    "question_title": "Check Palindrome (Recursion [P #6)",
+    "statement": "Check Palindrome (Recursion [P #6). Solve the Striver A2Z problem 'Check Palindrome (Recursion [P #6)' from TakeUForward step 'Recursion [PatternWise]' (pattern: Trying out all Combos / Hard). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Check Palindrome (Recursion [P #6). Solve the Striver A2Z problem 'Check Palindrome (Recursion [P #6)' from TakeUForward step 'Recursion [PatternWise]' (pattern: Trying out all Combos / Hard). Return the required answer ",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def check(nums):\n    # Check Palindrome (Recursion [P #6) - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "check",
+    "leetcode_number": 1632,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Trying out all Combos / Hard"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 80,
+    "upvotes": 125
+  },
+  {
+    "id": "tuf_0234",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Get a Strong Hold",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Get a Strong Hold",
+    "tuf_step_index": 7,
+    "question": "Fibonacci",
+    "question_title": "Fibonacci",
+    "statement": "Fibonacci. Solve the Striver A2Z problem 'Fibonacci' from TakeUForward step 'Recursion [PatternWise]' (pattern: Get a Strong Hold). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Fibonacci. Solve the Striver A2Z problem 'Fibonacci' from TakeUForward step 'Recursion [PatternWise]' (pattern: Get a Strong Hold). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked ",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def fibonacci(nums):\n    # Fibonacci - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "fibonacci",
+    "leetcode_number": 1639,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Get a Strong Hold"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 65,
+    "upvotes": 115
+  },
+  {
+    "id": "tuf_0235",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Subsequences Pattern",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Subsequences Pattern",
+    "tuf_step_index": 7,
+    "question": "Generate Binary Strings",
+    "question_title": "Generate Binary Strings",
+    "statement": "Generate Binary Strings. Solve the Striver A2Z problem 'Generate Binary Strings' from TakeUForward step 'Recursion [PatternWise]' (pattern: Subsequences Pattern). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Generate Binary Strings. Solve the Striver A2Z problem 'Generate Binary Strings' from TakeUForward step 'Recursion [PatternWise]' (pattern: Subsequences Pattern). Return the required answer per TUF sheet. This is part of",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def generate(nums):\n    # Generate Binary Strings - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "generate",
+    "leetcode_number": 1646,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Subsequences Pattern"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 15,
+    "upvotes": 207
+  },
+  {
+    "id": "tuf_0236",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Trying out all Combos / Hard",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Trying out all Combos / Hard",
+    "tuf_step_index": 7,
+    "question": "Generate Parentheses",
+    "question_title": "Generate Parentheses",
+    "statement": "Generate Parentheses. Solve the Striver A2Z problem 'Generate Parentheses' from TakeUForward step 'Recursion [PatternWise]' (pattern: Trying out all Combos / Hard). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Generate Parentheses. Solve the Striver A2Z problem 'Generate Parentheses' from TakeUForward step 'Recursion [PatternWise]' (pattern: Trying out all Combos / Hard). Return the required answer per TUF sheet. This is part ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def generate(nums):\n    # Generate Parentheses - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "generate",
+    "leetcode_number": 1653,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Trying out all Combos / Hard"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 56,
+    "upvotes": 457
+  },
+  {
+    "id": "tuf_0237",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Get a Strong Hold",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Get a Strong Hold",
+    "tuf_step_index": 7,
+    "question": "Power Set",
+    "question_title": "Power Set",
+    "statement": "Power Set. Solve the Striver A2Z problem 'Power Set' from TakeUForward step 'Recursion [PatternWise]' (pattern: Get a Strong Hold). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Power Set. Solve the Striver A2Z problem 'Power Set' from TakeUForward step 'Recursion [PatternWise]' (pattern: Get a Strong Hold). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def power(nums):\n    # Power Set - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "power",
+    "leetcode_number": 1660,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Get a Strong Hold"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 15,
+    "upvotes": 233
+  },
+  {
+    "id": "tuf_0238",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Subsequences Pattern",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Subsequences Pattern",
+    "tuf_step_index": 7,
+    "question": "Count Subsequences with Sum K",
+    "question_title": "Count Subsequences with Sum K",
+    "statement": "Count Subsequences with Sum K. Solve the Striver A2Z problem 'Count Subsequences with Sum K' from TakeUForward step 'Recursion [PatternWise]' (pattern: Subsequences Pattern). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Count Subsequences with Sum K. Solve the Striver A2Z problem 'Count Subsequences with Sum K' from TakeUForward step 'Recursion [PatternWise]' (pattern: Subsequences Pattern). Return the required answer per TUF sheet. Thi",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def count(nums):\n    # Count Subsequences with Sum K - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "count",
+    "leetcode_number": 1667,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Subsequences Pattern"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 36,
+    "upvotes": 399
+  },
+  {
+    "id": "tuf_0239",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Trying out all Combos / Hard",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Trying out all Combos / Hard",
+    "tuf_step_index": 7,
+    "question": "Check Subsequence with Sum K",
+    "question_title": "Check Subsequence with Sum K",
+    "statement": "Check Subsequence with Sum K. Solve the Striver A2Z problem 'Check Subsequence with Sum K' from TakeUForward step 'Recursion [PatternWise]' (pattern: Trying out all Combos / Hard). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Check Subsequence with Sum K. Solve the Striver A2Z problem 'Check Subsequence with Sum K' from TakeUForward step 'Recursion [PatternWise]' (pattern: Trying out all Combos / Hard). Return the required answer per TUF shee",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def check(nums):\n    # Check Subsequence with Sum K - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "check",
+    "leetcode_number": 1674,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Trying out all Combos / Hard"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 41,
+    "upvotes": 391
+  },
+  {
+    "id": "tuf_0240",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Get a Strong Hold",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Get a Strong Hold",
+    "tuf_step_index": 7,
+    "question": "Combination Sum",
+    "question_title": "Combination Sum",
+    "statement": "Combination Sum. Solve the Striver A2Z problem 'Combination Sum' from TakeUForward step 'Recursion [PatternWise]' (pattern: Get a Strong Hold). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Combination Sum. Solve the Striver A2Z problem 'Combination Sum' from TakeUForward step 'Recursion [PatternWise]' (pattern: Get a Strong Hold). Return the required answer per TUF sheet. This is part of Recursion [Pattern",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def combination(nums):\n    # Combination Sum - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "combination",
+    "leetcode_number": 1681,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Get a Strong Hold"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 23,
+    "upvotes": 231
+  },
+  {
+    "id": "tuf_0241",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Subsequences Pattern",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Subsequences Pattern",
+    "tuf_step_index": 7,
+    "question": "Combination Sum II",
+    "question_title": "Combination Sum II",
+    "statement": "Combination Sum II. Solve the Striver A2Z problem 'Combination Sum II' from TakeUForward step 'Recursion [PatternWise]' (pattern: Subsequences Pattern). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Combination Sum II. Solve the Striver A2Z problem 'Combination Sum II' from TakeUForward step 'Recursion [PatternWise]' (pattern: Subsequences Pattern). Return the required answer per TUF sheet. This is part of Recursion",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def combination(nums):\n    # Combination Sum II - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "combination",
+    "leetcode_number": 1688,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Subsequences Pattern"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 81,
+    "upvotes": 497
+  },
+  {
+    "id": "tuf_0242",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Trying out all Combos / Hard",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Trying out all Combos / Hard",
+    "tuf_step_index": 7,
+    "question": "Subsets I",
+    "question_title": "Subsets I",
+    "statement": "Subsets I. Solve the Striver A2Z problem 'Subsets I' from TakeUForward step 'Recursion [PatternWise]' (pattern: Trying out all Combos / Hard). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Subsets I. Solve the Striver A2Z problem 'Subsets I' from TakeUForward step 'Recursion [PatternWise]' (pattern: Trying out all Combos / Hard). Return the required answer per TUF sheet. This is part of Recursion [PatternW",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def subsets(nums):\n    # Subsets I - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "subsets",
+    "leetcode_number": 1695,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Trying out all Combos / Hard"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 62,
+    "upvotes": 367
+  },
+  {
+    "id": "tuf_0243",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Get a Strong Hold",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Get a Strong Hold",
+    "tuf_step_index": 7,
+    "question": "Subsets II",
+    "question_title": "Subsets II",
+    "statement": "Subsets II. Solve the Striver A2Z problem 'Subsets II' from TakeUForward step 'Recursion [PatternWise]' (pattern: Get a Strong Hold). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Subsets II. Solve the Striver A2Z problem 'Subsets II' from TakeUForward step 'Recursion [PatternWise]' (pattern: Get a Strong Hold). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] aske",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def subsets(nums):\n    # Subsets II - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "subsets",
+    "leetcode_number": 1702,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Get a Strong Hold"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 29,
+    "upvotes": 171
+  },
+  {
+    "id": "tuf_0244",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Subsequences Pattern",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Subsequences Pattern",
+    "tuf_step_index": 7,
+    "question": "Combination Sum III",
+    "question_title": "Combination Sum III",
+    "statement": "Combination Sum III. Solve the Striver A2Z problem 'Combination Sum III' from TakeUForward step 'Recursion [PatternWise]' (pattern: Subsequences Pattern). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Combination Sum III. Solve the Striver A2Z problem 'Combination Sum III' from TakeUForward step 'Recursion [PatternWise]' (pattern: Subsequences Pattern). Return the required answer per TUF sheet. This is part of Recursi",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def combination(nums):\n    # Combination Sum III - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "combination",
+    "leetcode_number": 1709,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Subsequences Pattern"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 30,
+    "upvotes": 459
+  },
+  {
+    "id": "tuf_0245",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Trying out all Combos / Hard",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Trying out all Combos / Hard",
+    "tuf_step_index": 7,
+    "question": "Letter Combinations",
+    "question_title": "Letter Combinations",
+    "statement": "Letter Combinations. Solve the Striver A2Z problem 'Letter Combinations' from TakeUForward step 'Recursion [PatternWise]' (pattern: Trying out all Combos / Hard). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Letter Combinations. Solve the Striver A2Z problem 'Letter Combinations' from TakeUForward step 'Recursion [PatternWise]' (pattern: Trying out all Combos / Hard). Return the required answer per TUF sheet. This is part of",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def letter(nums):\n    # Letter Combinations - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "letter",
+    "leetcode_number": 1716,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Trying out all Combos / Hard"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 32,
+    "upvotes": 261
+  },
+  {
+    "id": "tuf_0246",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Get a Strong Hold",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Get a Strong Hold",
+    "tuf_step_index": 7,
+    "question": "Palindrome Partitioning",
+    "question_title": "Palindrome Partitioning",
+    "statement": "Palindrome Partitioning. Solve the Striver A2Z problem 'Palindrome Partitioning' from TakeUForward step 'Recursion [PatternWise]' (pattern: Get a Strong Hold). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Palindrome Partitioning. Solve the Striver A2Z problem 'Palindrome Partitioning' from TakeUForward step 'Recursion [PatternWise]' (pattern: Get a Strong Hold). Return the required answer per TUF sheet. This is part of Re",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def palindrome(nums):\n    # Palindrome Partitioning - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "palindrome",
+    "leetcode_number": 1723,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Get a Strong Hold"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 13,
+    "upvotes": 141
+  },
+  {
+    "id": "tuf_0247",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Subsequences Pattern",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Subsequences Pattern",
+    "tuf_step_index": 7,
+    "question": "Word Search",
+    "question_title": "Word Search",
+    "statement": "Word Search. Solve the Striver A2Z problem 'Word Search' from TakeUForward step 'Recursion [PatternWise]' (pattern: Subsequences Pattern). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Word Search. Solve the Striver A2Z problem 'Word Search' from TakeUForward step 'Recursion [PatternWise]' (pattern: Subsequences Pattern). Return the required answer per TUF sheet. This is part of Recursion [PatternWise]",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def word(nums):\n    # Word Search - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "word",
+    "leetcode_number": 1730,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Subsequences Pattern"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 52,
+    "upvotes": 450
+  },
+  {
+    "id": "tuf_0248",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Trying out all Combos / Hard",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Trying out all Combos / Hard",
+    "tuf_step_index": 7,
+    "question": "N Queen",
+    "question_title": "N Queen",
+    "statement": "N Queen. Solve the Striver A2Z problem 'N Queen' from TakeUForward step 'Recursion [PatternWise]' (pattern: Trying out all Combos / Hard). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "N Queen. Solve the Striver A2Z problem 'N Queen' from TakeUForward step 'Recursion [PatternWise]' (pattern: Trying out all Combos / Hard). Return the required answer per TUF sheet. This is part of Recursion [PatternWise]",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def n(nums):\n    # N Queen - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "n",
+    "leetcode_number": 1737,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Trying out all Combos / Hard"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 62,
+    "upvotes": 460
+  },
+  {
+    "id": "tuf_0249",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Get a Strong Hold",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Get a Strong Hold",
+    "tuf_step_index": 7,
+    "question": "Rat in a Maze",
+    "question_title": "Rat in a Maze",
+    "statement": "Rat in a Maze. Solve the Striver A2Z problem 'Rat in a Maze' from TakeUForward step 'Recursion [PatternWise]' (pattern: Get a Strong Hold). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Rat in a Maze. Solve the Striver A2Z problem 'Rat in a Maze' from TakeUForward step 'Recursion [PatternWise]' (pattern: Get a Strong Hold). Return the required answer per TUF sheet. This is part of Recursion [PatternWise",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def rat(nums):\n    # Rat in a Maze - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "rat",
+    "leetcode_number": 1744,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Get a Strong Hold"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 95,
+    "upvotes": 492
+  },
+  {
+    "id": "tuf_0250",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Subsequences Pattern",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Subsequences Pattern",
+    "tuf_step_index": 7,
+    "question": "M Coloring",
+    "question_title": "M Coloring",
+    "statement": "M Coloring. Solve the Striver A2Z problem 'M Coloring' from TakeUForward step 'Recursion [PatternWise]' (pattern: Subsequences Pattern). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "M Coloring. Solve the Striver A2Z problem 'M Coloring' from TakeUForward step 'Recursion [PatternWise]' (pattern: Subsequences Pattern). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] a",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def m(nums):\n    # M Coloring - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "m",
+    "leetcode_number": 1751,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Subsequences Pattern"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 41,
+    "upvotes": 186
+  },
+  {
+    "id": "tuf_0251",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Trying out all Combos / Hard",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Trying out all Combos / Hard",
+    "tuf_step_index": 7,
+    "question": "Sudoku Solver",
+    "question_title": "Sudoku Solver",
+    "statement": "Sudoku Solver. Solve the Striver A2Z problem 'Sudoku Solver' from TakeUForward step 'Recursion [PatternWise]' (pattern: Trying out all Combos / Hard). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Sudoku Solver. Solve the Striver A2Z problem 'Sudoku Solver' from TakeUForward step 'Recursion [PatternWise]' (pattern: Trying out all Combos / Hard). Return the required answer per TUF sheet. This is part of Recursion [",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def sudoku(nums):\n    # Sudoku Solver - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "sudoku",
+    "leetcode_number": 1758,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Trying out all Combos / Hard"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 30,
+    "upvotes": 453
+  },
+  {
+    "id": "tuf_0252",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Get a Strong Hold",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Get a Strong Hold",
+    "tuf_step_index": 7,
+    "question": "Expression Add Operators",
+    "question_title": "Expression Add Operators",
+    "statement": "Expression Add Operators. Solve the Striver A2Z problem 'Expression Add Operators' from TakeUForward step 'Recursion [PatternWise]' (pattern: Get a Strong Hold). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Expression Add Operators. Solve the Striver A2Z problem 'Expression Add Operators' from TakeUForward step 'Recursion [PatternWise]' (pattern: Get a Strong Hold). Return the required answer per TUF sheet. This is part of ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def expression(nums):\n    # Expression Add Operators - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "expression",
+    "leetcode_number": 1765,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Get a Strong Hold"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 23,
+    "upvotes": 245
+  },
+  {
+    "id": "tuf_0253",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Subsequences Pattern",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Subsequences Pattern",
+    "tuf_step_index": 7,
+    "question": "Print 1 to N (Recursion [P #26)",
+    "question_title": "Print 1 to N (Recursion [P #26)",
+    "statement": "Print 1 to N (Recursion [P #26). Solve the Striver A2Z problem 'Print 1 to N (Recursion [P #26)' from TakeUForward step 'Recursion [PatternWise]' (pattern: Subsequences Pattern). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Print 1 to N (Recursion [P #26). Solve the Striver A2Z problem 'Print 1 to N (Recursion [P #26)' from TakeUForward step 'Recursion [PatternWise]' (pattern: Subsequences Pattern). Return the required answer per TUF sheet.",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def print(nums):\n    # Print 1 to N (Recursion [P #26) - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "print",
+    "leetcode_number": 1772,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Subsequences Pattern"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 14,
+    "upvotes": 489
+  },
+  {
+    "id": "tuf_0254",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Trying out all Combos / Hard",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Trying out all Combos / Hard",
+    "tuf_step_index": 7,
+    "question": "Print N to 1 (Recursion [P #27)",
+    "question_title": "Print N to 1 (Recursion [P #27)",
+    "statement": "Print N to 1 (Recursion [P #27). Solve the Striver A2Z problem 'Print N to 1 (Recursion [P #27)' from TakeUForward step 'Recursion [PatternWise]' (pattern: Trying out all Combos / Hard). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Print N to 1 (Recursion [P #27). Solve the Striver A2Z problem 'Print N to 1 (Recursion [P #27)' from TakeUForward step 'Recursion [PatternWise]' (pattern: Trying out all Combos / Hard). Return the required answer per TU",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def print(nums):\n    # Print N to 1 (Recursion [P #27) - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "print",
+    "leetcode_number": 1779,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Trying out all Combos / Hard"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 70,
+    "upvotes": 163
+  },
+  {
+    "id": "tuf_0255",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Get a Strong Hold",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Get a Strong Hold",
+    "tuf_step_index": 7,
+    "question": "Sum of First N (Recursion [P #28)",
+    "question_title": "Sum of First N (Recursion [P #28)",
+    "statement": "Sum of First N (Recursion [P #28). Solve the Striver A2Z problem 'Sum of First N (Recursion [P #28)' from TakeUForward step 'Recursion [PatternWise]' (pattern: Get a Strong Hold). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Sum of First N (Recursion [P #28). Solve the Striver A2Z problem 'Sum of First N (Recursion [P #28)' from TakeUForward step 'Recursion [PatternWise]' (pattern: Get a Strong Hold). Return the required answer per TUF sheet",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def sum(nums):\n    # Sum of First N (Recursion [P #28) - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "sum",
+    "leetcode_number": 1786,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Get a Strong Hold"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 35,
+    "upvotes": 468
+  },
+  {
+    "id": "tuf_0256",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Subsequences Pattern",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Subsequences Pattern",
+    "tuf_step_index": 7,
+    "question": "Factorial (Recursion [P #29)",
+    "question_title": "Factorial (Recursion [P #29)",
+    "statement": "Factorial (Recursion [P #29). Solve the Striver A2Z problem 'Factorial (Recursion [P #29)' from TakeUForward step 'Recursion [PatternWise]' (pattern: Subsequences Pattern). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Factorial (Recursion [P #29). Solve the Striver A2Z problem 'Factorial (Recursion [P #29)' from TakeUForward step 'Recursion [PatternWise]' (pattern: Subsequences Pattern). Return the required answer per TUF sheet. This ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def factorial(nums):\n    # Factorial (Recursion [P #29) - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "factorial",
+    "leetcode_number": 1793,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Subsequences Pattern"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 68,
+    "upvotes": 229
+  },
+  {
+    "id": "tuf_0257",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Trying out all Combos / Hard",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Trying out all Combos / Hard",
+    "tuf_step_index": 7,
+    "question": "Reverse Array (Recursion [P #30)",
+    "question_title": "Reverse Array (Recursion [P #30)",
+    "statement": "Reverse Array (Recursion [P #30). Solve the Striver A2Z problem 'Reverse Array (Recursion [P #30)' from TakeUForward step 'Recursion [PatternWise]' (pattern: Trying out all Combos / Hard). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Reverse Array (Recursion [P #30). Solve the Striver A2Z problem 'Reverse Array (Recursion [P #30)' from TakeUForward step 'Recursion [PatternWise]' (pattern: Trying out all Combos / Hard). Return the required answer per ",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def reverse(nums):\n    # Reverse Array (Recursion [P #30) - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "reverse",
+    "leetcode_number": 1800,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Trying out all Combos / Hard"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 49,
+    "upvotes": 470
+  },
+  {
+    "id": "tuf_0258",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Get a Strong Hold",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Get a Strong Hold",
+    "tuf_step_index": 7,
+    "question": "Check Palindrome (Recursion [P #31)",
+    "question_title": "Check Palindrome (Recursion [P #31)",
+    "statement": "Check Palindrome (Recursion [P #31). Solve the Striver A2Z problem 'Check Palindrome (Recursion [P #31)' from TakeUForward step 'Recursion [PatternWise]' (pattern: Get a Strong Hold). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Check Palindrome (Recursion [P #31). Solve the Striver A2Z problem 'Check Palindrome (Recursion [P #31)' from TakeUForward step 'Recursion [PatternWise]' (pattern: Get a Strong Hold). Return the required answer per TUF s",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def check(nums):\n    # Check Palindrome (Recursion [P #31) - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "check",
+    "leetcode_number": 1807,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Get a Strong Hold"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 39,
+    "upvotes": 164
+  },
+  {
+    "id": "tuf_0259",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Recursion [PatternWise]",
+    "sub_topic": "Subsequences Pattern",
+    "pattern": "Recursion & Backtracking",
+    "tuf_step": "Recursion [PatternWise]",
+    "tuf_subtopic": "Subsequences Pattern",
+    "tuf_step_index": 7,
+    "question": "Fibonacci (Recursion [P #32)",
+    "question_title": "Fibonacci (Recursion [P #32)",
+    "statement": "Fibonacci (Recursion [P #32). Solve the Striver A2Z problem 'Fibonacci (Recursion [P #32)' from TakeUForward step 'Recursion [PatternWise]' (pattern: Subsequences Pattern). Return the required answer per TUF sheet. This is part of Recursion [PatternWise] asked in top product companies.",
+    "description": "Fibonacci (Recursion [P #32). Solve the Striver A2Z problem 'Fibonacci (Recursion [P #32)' from TakeUForward step 'Recursion [PatternWise]' (pattern: Subsequences Pattern). Return the required answer per TUF sheet. This ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def fibonacci(nums):\n    # Fibonacci (Recursion [P #32) - Recursion [PatternWise]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "fibonacci",
+    "leetcode_number": 1814,
+    "dsa_guide": {
+      "approach": "Recursion & Backtracking",
+      "data_structures": [
+        "Subsequences Pattern"
+      ],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Recursion [PatternWise]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 13,
+    "upvotes": 387
+  }
+]

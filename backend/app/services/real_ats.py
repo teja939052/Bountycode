@@ -550,11 +550,12 @@ class RealATSScanner:
 
         # Add section-specific fixes
         for section in parsing.get("missing_sections", []):
+            section_name = section.get("section", "") if isinstance(section, dict) else section
             fixes.append({
                 "line": None,
                 "original": None,
-                "issue": f"Missing {section} section",
-                "suggestion": f"Add '{section.capitalize()}' as a section header on its own line",
+                "issue": f"Missing {section_name} section",
+                "suggestion": f"Add '{str(section_name).capitalize()}' as a section header on its own line",
                 "reason": "ATS uses section headers to categorize your experience",
             })
 

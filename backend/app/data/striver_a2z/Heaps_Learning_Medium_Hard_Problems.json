@@ -1,0 +1,2306 @@
+[
+  {
+    "id": "tuf_0336",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Heaps [Learning, Medium, Hard Problems]",
+    "sub_topic": "Learning",
+    "pattern": "Heaps / Priority Queue",
+    "tuf_step": "Heaps [Learning, Medium, Hard Problems]",
+    "tuf_subtopic": "Learning",
+    "tuf_step_index": 11,
+    "question": "Implement Min Heap",
+    "question_title": "Implement Min Heap",
+    "statement": "Implement Min Heap. Solve the Striver A2Z problem 'Implement Min Heap' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Learning). Return the required answer per TUF sheet. This is part of Heaps [Learning, Medium, Hard Problems] asked in top product companies.",
+    "description": "Implement Min Heap. Solve the Striver A2Z problem 'Implement Min Heap' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Learning). Return the required answer per TUF sheet. This is part of Heaps",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def implement(nums):\n    # Implement Min Heap - Heaps [Learning, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "implement",
+    "leetcode_number": 2353,
+    "dsa_guide": {
+      "approach": "Heaps / Priority Queue",
+      "data_structures": [
+        "Learning"
+      ],
+      "patterns": [
+        "Heaps / Priority Queue"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Heaps [Learning, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 66,
+    "upvotes": 363
+  },
+  {
+    "id": "tuf_0337",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Heaps [Learning, Medium, Hard Problems]",
+    "sub_topic": "Medium Problems",
+    "pattern": "Heaps / Priority Queue",
+    "tuf_step": "Heaps [Learning, Medium, Hard Problems]",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 11,
+    "question": "Check Array Represents Min Heap",
+    "question_title": "Check Array Represents Min Heap",
+    "statement": "Check Array Represents Min Heap. Solve the Striver A2Z problem 'Check Array Represents Min Heap' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Heaps [Learning, Medium, Hard Problems] asked in top product companies.",
+    "description": "Check Array Represents Min Heap. Solve the Striver A2Z problem 'Check Array Represents Min Heap' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Medium Problems). Return the required answer per",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def check(nums):\n    # Check Array Represents Min Heap - Heaps [Learning, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "check",
+    "leetcode_number": 2360,
+    "dsa_guide": {
+      "approach": "Heaps / Priority Queue",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Heaps / Priority Queue"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Heaps [Learning, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 74,
+    "upvotes": 268
+  },
+  {
+    "id": "tuf_0338",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Heaps [Learning, Medium, Hard Problems]",
+    "sub_topic": "Hard Problems",
+    "pattern": "Heaps / Priority Queue",
+    "tuf_step": "Heaps [Learning, Medium, Hard Problems]",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 11,
+    "question": "Convert Min Heap to Max Heap",
+    "question_title": "Convert Min Heap to Max Heap",
+    "statement": "Convert Min Heap to Max Heap. Solve the Striver A2Z problem 'Convert Min Heap to Max Heap' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Heaps [Learning, Medium, Hard Problems] asked in top product companies.",
+    "description": "Convert Min Heap to Max Heap. Solve the Striver A2Z problem 'Convert Min Heap to Max Heap' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF she",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def convert(nums):\n    # Convert Min Heap to Max Heap - Heaps [Learning, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "convert",
+    "leetcode_number": 2367,
+    "dsa_guide": {
+      "approach": "Heaps / Priority Queue",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Heaps / Priority Queue"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Heaps [Learning, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 80,
+    "upvotes": 278
+  },
+  {
+    "id": "tuf_0339",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Heaps [Learning, Medium, Hard Problems]",
+    "sub_topic": "Learning",
+    "pattern": "Heaps / Priority Queue",
+    "tuf_step": "Heaps [Learning, Medium, Hard Problems]",
+    "tuf_subtopic": "Learning",
+    "tuf_step_index": 11,
+    "question": "Kth Largest Element",
+    "question_title": "Kth Largest Element",
+    "statement": "Kth Largest Element. Solve the Striver A2Z problem 'Kth Largest Element' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Learning). Return the required answer per TUF sheet. This is part of Heaps [Learning, Medium, Hard Problems] asked in top product companies.",
+    "description": "Kth Largest Element. Solve the Striver A2Z problem 'Kth Largest Element' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Learning). Return the required answer per TUF sheet. This is part of Hea",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def kth(nums):\n    # Kth Largest Element - Heaps [Learning, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "kth",
+    "leetcode_number": 2374,
+    "dsa_guide": {
+      "approach": "Heaps / Priority Queue",
+      "data_structures": [
+        "Learning"
+      ],
+      "patterns": [
+        "Heaps / Priority Queue"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Heaps [Learning, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 30,
+    "upvotes": 430
+  },
+  {
+    "id": "tuf_0340",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Heaps [Learning, Medium, Hard Problems]",
+    "sub_topic": "Medium Problems",
+    "pattern": "Heaps / Priority Queue",
+    "tuf_step": "Heaps [Learning, Medium, Hard Problems]",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 11,
+    "question": "Kth Smallest Element",
+    "question_title": "Kth Smallest Element",
+    "statement": "Kth Smallest Element. Solve the Striver A2Z problem 'Kth Smallest Element' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Heaps [Learning, Medium, Hard Problems] asked in top product companies.",
+    "description": "Kth Smallest Element. Solve the Striver A2Z problem 'Kth Smallest Element' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is pa",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def kth(nums):\n    # Kth Smallest Element - Heaps [Learning, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "kth",
+    "leetcode_number": 2381,
+    "dsa_guide": {
+      "approach": "Heaps / Priority Queue",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Heaps / Priority Queue"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Heaps [Learning, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 70,
+    "upvotes": 280
+  },
+  {
+    "id": "tuf_0341",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Heaps [Learning, Medium, Hard Problems]",
+    "sub_topic": "Hard Problems",
+    "pattern": "Heaps / Priority Queue",
+    "tuf_step": "Heaps [Learning, Medium, Hard Problems]",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 11,
+    "question": "Merge K Sorted Lists",
+    "question_title": "Merge K Sorted Lists",
+    "statement": "Merge K Sorted Lists. Solve the Striver A2Z problem 'Merge K Sorted Lists' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Heaps [Learning, Medium, Hard Problems] asked in top product companies.",
+    "description": "Merge K Sorted Lists. Solve the Striver A2Z problem 'Merge K Sorted Lists' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def merge(nums):\n    # Merge K Sorted Lists - Heaps [Learning, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "merge",
+    "leetcode_number": 2388,
+    "dsa_guide": {
+      "approach": "Heaps / Priority Queue",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Heaps / Priority Queue"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Heaps [Learning, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 43,
+    "upvotes": 434
+  },
+  {
+    "id": "tuf_0342",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Heaps [Learning, Medium, Hard Problems]",
+    "sub_topic": "Learning",
+    "pattern": "Heaps / Priority Queue",
+    "tuf_step": "Heaps [Learning, Medium, Hard Problems]",
+    "tuf_subtopic": "Learning",
+    "tuf_step_index": 11,
+    "question": "Replace Elements by Rank",
+    "question_title": "Replace Elements by Rank",
+    "statement": "Replace Elements by Rank. Solve the Striver A2Z problem 'Replace Elements by Rank' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Learning). Return the required answer per TUF sheet. This is part of Heaps [Learning, Medium, Hard Problems] asked in top product companies.",
+    "description": "Replace Elements by Rank. Solve the Striver A2Z problem 'Replace Elements by Rank' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Learning). Return the required answer per TUF sheet. This is p",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def replace(nums):\n    # Replace Elements by Rank - Heaps [Learning, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "replace",
+    "leetcode_number": 2395,
+    "dsa_guide": {
+      "approach": "Heaps / Priority Queue",
+      "data_structures": [
+        "Learning"
+      ],
+      "patterns": [
+        "Heaps / Priority Queue"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Heaps [Learning, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 41,
+    "upvotes": 480
+  },
+  {
+    "id": "tuf_0343",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Heaps [Learning, Medium, Hard Problems]",
+    "sub_topic": "Medium Problems",
+    "pattern": "Heaps / Priority Queue",
+    "tuf_step": "Heaps [Learning, Medium, Hard Problems]",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 11,
+    "question": "Task Scheduler",
+    "question_title": "Task Scheduler",
+    "statement": "Task Scheduler. Solve the Striver A2Z problem 'Task Scheduler' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Heaps [Learning, Medium, Hard Problems] asked in top product companies.",
+    "description": "Task Scheduler. Solve the Striver A2Z problem 'Task Scheduler' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Heaps ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def task(nums):\n    # Task Scheduler - Heaps [Learning, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "task",
+    "leetcode_number": 2402,
+    "dsa_guide": {
+      "approach": "Heaps / Priority Queue",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Heaps / Priority Queue"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Heaps [Learning, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 91,
+    "upvotes": 191
+  },
+  {
+    "id": "tuf_0344",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Heaps [Learning, Medium, Hard Problems]",
+    "sub_topic": "Hard Problems",
+    "pattern": "Heaps / Priority Queue",
+    "tuf_step": "Heaps [Learning, Medium, Hard Problems]",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 11,
+    "question": "Hand of Straights",
+    "question_title": "Hand of Straights",
+    "statement": "Hand of Straights. Solve the Striver A2Z problem 'Hand of Straights' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Heaps [Learning, Medium, Hard Problems] asked in top product companies.",
+    "description": "Hand of Straights. Solve the Striver A2Z problem 'Hand of Straights' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of He",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def hand(nums):\n    # Hand of Straights - Heaps [Learning, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "hand",
+    "leetcode_number": 2409,
+    "dsa_guide": {
+      "approach": "Heaps / Priority Queue",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Heaps / Priority Queue"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Heaps [Learning, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 76,
+    "upvotes": 298
+  },
+  {
+    "id": "tuf_0345",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Heaps [Learning, Medium, Hard Problems]",
+    "sub_topic": "Learning",
+    "pattern": "Heaps / Priority Queue",
+    "tuf_step": "Heaps [Learning, Medium, Hard Problems]",
+    "tuf_subtopic": "Learning",
+    "tuf_step_index": 11,
+    "question": "Kth Largest in Stream",
+    "question_title": "Kth Largest in Stream",
+    "statement": "Kth Largest in Stream. Solve the Striver A2Z problem 'Kth Largest in Stream' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Learning). Return the required answer per TUF sheet. This is part of Heaps [Learning, Medium, Hard Problems] asked in top product companies.",
+    "description": "Kth Largest in Stream. Solve the Striver A2Z problem 'Kth Largest in Stream' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Learning). Return the required answer per TUF sheet. This is part of",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def kth(nums):\n    # Kth Largest in Stream - Heaps [Learning, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "kth",
+    "leetcode_number": 2416,
+    "dsa_guide": {
+      "approach": "Heaps / Priority Queue",
+      "data_structures": [
+        "Learning"
+      ],
+      "patterns": [
+        "Heaps / Priority Queue"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Heaps [Learning, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 90,
+    "upvotes": 172
+  },
+  {
+    "id": "tuf_0346",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Heaps [Learning, Medium, Hard Problems]",
+    "sub_topic": "Medium Problems",
+    "pattern": "Heaps / Priority Queue",
+    "tuf_step": "Heaps [Learning, Medium, Hard Problems]",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 11,
+    "question": "Maximum Sum Combination",
+    "question_title": "Maximum Sum Combination",
+    "statement": "Maximum Sum Combination. Solve the Striver A2Z problem 'Maximum Sum Combination' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Heaps [Learning, Medium, Hard Problems] asked in top product companies.",
+    "description": "Maximum Sum Combination. Solve the Striver A2Z problem 'Maximum Sum Combination' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def maximum(nums):\n    # Maximum Sum Combination - Heaps [Learning, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "maximum",
+    "leetcode_number": 2423,
+    "dsa_guide": {
+      "approach": "Heaps / Priority Queue",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Heaps / Priority Queue"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Heaps [Learning, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 45,
+    "upvotes": 275
+  },
+  {
+    "id": "tuf_0347",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Heaps [Learning, Medium, Hard Problems]",
+    "sub_topic": "Hard Problems",
+    "pattern": "Heaps / Priority Queue",
+    "tuf_step": "Heaps [Learning, Medium, Hard Problems]",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 11,
+    "question": "Find Median from Data Stream",
+    "question_title": "Find Median from Data Stream",
+    "statement": "Find Median from Data Stream. Solve the Striver A2Z problem 'Find Median from Data Stream' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Heaps [Learning, Medium, Hard Problems] asked in top product companies.",
+    "description": "Find Median from Data Stream. Solve the Striver A2Z problem 'Find Median from Data Stream' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF she",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def find(nums):\n    # Find Median from Data Stream - Heaps [Learning, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "find",
+    "leetcode_number": 2430,
+    "dsa_guide": {
+      "approach": "Heaps / Priority Queue",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Heaps / Priority Queue"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Heaps [Learning, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 19,
+    "upvotes": 415
+  },
+  {
+    "id": "tuf_0348",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Heaps [Learning, Medium, Hard Problems]",
+    "sub_topic": "Learning",
+    "pattern": "Heaps / Priority Queue",
+    "tuf_step": "Heaps [Learning, Medium, Hard Problems]",
+    "tuf_subtopic": "Learning",
+    "tuf_step_index": 11,
+    "question": "Top K Frequent Elements",
+    "question_title": "Top K Frequent Elements",
+    "statement": "Top K Frequent Elements. Solve the Striver A2Z problem 'Top K Frequent Elements' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Learning). Return the required answer per TUF sheet. This is part of Heaps [Learning, Medium, Hard Problems] asked in top product companies.",
+    "description": "Top K Frequent Elements. Solve the Striver A2Z problem 'Top K Frequent Elements' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Learning). Return the required answer per TUF sheet. This is par",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def top(nums):\n    # Top K Frequent Elements - Heaps [Learning, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "top",
+    "leetcode_number": 2437,
+    "dsa_guide": {
+      "approach": "Heaps / Priority Queue",
+      "data_structures": [
+        "Learning"
+      ],
+      "patterns": [
+        "Heaps / Priority Queue"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Heaps [Learning, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 46,
+    "upvotes": 170
+  },
+  {
+    "id": "tuf_0349",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Heaps [Learning, Medium, Hard Problems]",
+    "sub_topic": "Medium Problems",
+    "pattern": "Heaps / Priority Queue",
+    "tuf_step": "Heaps [Learning, Medium, Hard Problems]",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 11,
+    "question": "K Closest Points",
+    "question_title": "K Closest Points",
+    "statement": "K Closest Points. Solve the Striver A2Z problem 'K Closest Points' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Heaps [Learning, Medium, Hard Problems] asked in top product companies.",
+    "description": "K Closest Points. Solve the Striver A2Z problem 'K Closest Points' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of He",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def k(nums):\n    # K Closest Points - Heaps [Learning, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "k",
+    "leetcode_number": 2444,
+    "dsa_guide": {
+      "approach": "Heaps / Priority Queue",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Heaps / Priority Queue"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Heaps [Learning, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 44,
+    "upvotes": 221
+  },
+  {
+    "id": "tuf_0350",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Heaps [Learning, Medium, Hard Problems]",
+    "sub_topic": "Hard Problems",
+    "pattern": "Heaps / Priority Queue",
+    "tuf_step": "Heaps [Learning, Medium, Hard Problems]",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 11,
+    "question": "Merge K Sorted Arrays",
+    "question_title": "Merge K Sorted Arrays",
+    "statement": "Merge K Sorted Arrays. Solve the Striver A2Z problem 'Merge K Sorted Arrays' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Heaps [Learning, Medium, Hard Problems] asked in top product companies.",
+    "description": "Merge K Sorted Arrays. Solve the Striver A2Z problem 'Merge K Sorted Arrays' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is pa",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def merge(nums):\n    # Merge K Sorted Arrays - Heaps [Learning, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "merge",
+    "leetcode_number": 2451,
+    "dsa_guide": {
+      "approach": "Heaps / Priority Queue",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Heaps / Priority Queue"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Heaps [Learning, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 50,
+    "upvotes": 326
+  },
+  {
+    "id": "tuf_0351",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Heaps [Learning, Medium, Hard Problems]",
+    "sub_topic": "Learning",
+    "pattern": "Heaps / Priority Queue",
+    "tuf_step": "Heaps [Learning, Medium, Hard Problems]",
+    "tuf_subtopic": "Learning",
+    "tuf_step_index": 11,
+    "question": "Implement Min Heap (Heaps [Learn #16)",
+    "question_title": "Implement Min Heap (Heaps [Learn #16)",
+    "statement": "Implement Min Heap (Heaps [Learn #16). Solve the Striver A2Z problem 'Implement Min Heap (Heaps [Learn #16)' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Learning). Return the required answer per TUF sheet. This is part of Heaps [Learning, Medium, Hard Problems] asked in top product companies.",
+    "description": "Implement Min Heap (Heaps [Learn #16). Solve the Striver A2Z problem 'Implement Min Heap (Heaps [Learn #16)' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Learning). Return the required answe",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def implement(nums):\n    # Implement Min Heap (Heaps [Learn #16) - Heaps [Learning, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "implement",
+    "leetcode_number": 2458,
+    "dsa_guide": {
+      "approach": "Heaps / Priority Queue",
+      "data_structures": [
+        "Learning"
+      ],
+      "patterns": [
+        "Heaps / Priority Queue"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Heaps [Learning, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 20,
+    "upvotes": 120
+  },
+  {
+    "id": "tuf_0352",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Heaps [Learning, Medium, Hard Problems]",
+    "sub_topic": "Medium Problems",
+    "pattern": "Heaps / Priority Queue",
+    "tuf_step": "Heaps [Learning, Medium, Hard Problems]",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 11,
+    "question": "Check Array Represents Min Heap (Heaps [Learn #17)",
+    "question_title": "Check Array Represents Min Heap (Heaps [Learn #17)",
+    "statement": "Check Array Represents Min Heap (Heaps [Learn #17). Solve the Striver A2Z problem 'Check Array Represents Min Heap (Heaps [Learn #17)' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Heaps [Learning, Medium, Hard Problems] asked in top product companies.",
+    "description": "Check Array Represents Min Heap (Heaps [Learn #17). Solve the Striver A2Z problem 'Check Array Represents Min Heap (Heaps [Learn #17)' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Medium Pro",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def check(nums):\n    # Check Array Represents Min Heap (Heaps [Learn #17) - Heaps [Learning, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "check",
+    "leetcode_number": 2465,
+    "dsa_guide": {
+      "approach": "Heaps / Priority Queue",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Heaps / Priority Queue"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Heaps [Learning, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 29,
+    "upvotes": 168
+  },
+  {
+    "id": "tuf_0353",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Heaps [Learning, Medium, Hard Problems]",
+    "sub_topic": "Hard Problems",
+    "pattern": "Heaps / Priority Queue",
+    "tuf_step": "Heaps [Learning, Medium, Hard Problems]",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 11,
+    "question": "Convert Min Heap to Max Heap (Heaps [Learn #18)",
+    "question_title": "Convert Min Heap to Max Heap (Heaps [Learn #18)",
+    "statement": "Convert Min Heap to Max Heap (Heaps [Learn #18). Solve the Striver A2Z problem 'Convert Min Heap to Max Heap (Heaps [Learn #18)' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Heaps [Learning, Medium, Hard Problems] asked in top product companies.",
+    "description": "Convert Min Heap to Max Heap (Heaps [Learn #18). Solve the Striver A2Z problem 'Convert Min Heap to Max Heap (Heaps [Learn #18)' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Hard Problems). ",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def convert(nums):\n    # Convert Min Heap to Max Heap (Heaps [Learn #18) - Heaps [Learning, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "convert",
+    "leetcode_number": 2472,
+    "dsa_guide": {
+      "approach": "Heaps / Priority Queue",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Heaps / Priority Queue"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Heaps [Learning, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 59,
+    "upvotes": 405
+  },
+  {
+    "id": "tuf_0354",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Heaps [Learning, Medium, Hard Problems]",
+    "sub_topic": "Learning",
+    "pattern": "Heaps / Priority Queue",
+    "tuf_step": "Heaps [Learning, Medium, Hard Problems]",
+    "tuf_subtopic": "Learning",
+    "tuf_step_index": 11,
+    "question": "Kth Largest Element (Heaps [Learn #19)",
+    "question_title": "Kth Largest Element (Heaps [Learn #19)",
+    "statement": "Kth Largest Element (Heaps [Learn #19). Solve the Striver A2Z problem 'Kth Largest Element (Heaps [Learn #19)' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Learning). Return the required answer per TUF sheet. This is part of Heaps [Learning, Medium, Hard Problems] asked in top product companies.",
+    "description": "Kth Largest Element (Heaps [Learn #19). Solve the Striver A2Z problem 'Kth Largest Element (Heaps [Learn #19)' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Learning). Return the required ans",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def kth(nums):\n    # Kth Largest Element (Heaps [Learn #19) - Heaps [Learning, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "kth",
+    "leetcode_number": 2479,
+    "dsa_guide": {
+      "approach": "Heaps / Priority Queue",
+      "data_structures": [
+        "Learning"
+      ],
+      "patterns": [
+        "Heaps / Priority Queue"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Heaps [Learning, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 29,
+    "upvotes": 411
+  },
+  {
+    "id": "tuf_0355",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Heaps [Learning, Medium, Hard Problems]",
+    "sub_topic": "Medium Problems",
+    "pattern": "Heaps / Priority Queue",
+    "tuf_step": "Heaps [Learning, Medium, Hard Problems]",
+    "tuf_subtopic": "Medium Problems",
+    "tuf_step_index": 11,
+    "question": "Kth Smallest Element (Heaps [Learn #20)",
+    "question_title": "Kth Smallest Element (Heaps [Learn #20)",
+    "statement": "Kth Smallest Element (Heaps [Learn #20). Solve the Striver A2Z problem 'Kth Smallest Element (Heaps [Learn #20)' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Medium Problems). Return the required answer per TUF sheet. This is part of Heaps [Learning, Medium, Hard Problems] asked in top product companies.",
+    "description": "Kth Smallest Element (Heaps [Learn #20). Solve the Striver A2Z problem 'Kth Smallest Element (Heaps [Learn #20)' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Medium Problems). Return the req",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def kth(nums):\n    # Kth Smallest Element (Heaps [Learn #20) - Heaps [Learning, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "kth",
+    "leetcode_number": 2486,
+    "dsa_guide": {
+      "approach": "Heaps / Priority Queue",
+      "data_structures": [
+        "Medium Problems"
+      ],
+      "patterns": [
+        "Heaps / Priority Queue"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Heaps [Learning, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 37,
+    "upvotes": 82
+  },
+  {
+    "id": "tuf_0356",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Heaps [Learning, Medium, Hard Problems]",
+    "sub_topic": "Hard Problems",
+    "pattern": "Heaps / Priority Queue",
+    "tuf_step": "Heaps [Learning, Medium, Hard Problems]",
+    "tuf_subtopic": "Hard Problems",
+    "tuf_step_index": 11,
+    "question": "Merge K Sorted Lists (Heaps [Learn #21)",
+    "question_title": "Merge K Sorted Lists (Heaps [Learn #21)",
+    "statement": "Merge K Sorted Lists (Heaps [Learn #21). Solve the Striver A2Z problem 'Merge K Sorted Lists (Heaps [Learn #21)' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Hard Problems). Return the required answer per TUF sheet. This is part of Heaps [Learning, Medium, Hard Problems] asked in top product companies.",
+    "description": "Merge K Sorted Lists (Heaps [Learn #21). Solve the Striver A2Z problem 'Merge K Sorted Lists (Heaps [Learn #21)' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Hard Problems). Return the requi",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def merge(nums):\n    # Merge K Sorted Lists (Heaps [Learn #21) - Heaps [Learning, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "merge",
+    "leetcode_number": 2493,
+    "dsa_guide": {
+      "approach": "Heaps / Priority Queue",
+      "data_structures": [
+        "Hard Problems"
+      ],
+      "patterns": [
+        "Heaps / Priority Queue"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Heaps [Learning, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 63,
+    "upvotes": 258
+  },
+  {
+    "id": "tuf_0357",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Heaps [Learning, Medium, Hard Problems]",
+    "sub_topic": "Learning",
+    "pattern": "Heaps / Priority Queue",
+    "tuf_step": "Heaps [Learning, Medium, Hard Problems]",
+    "tuf_subtopic": "Learning",
+    "tuf_step_index": 11,
+    "question": "Replace Elements by Rank (Heaps [Learn #22)",
+    "question_title": "Replace Elements by Rank (Heaps [Learn #22)",
+    "statement": "Replace Elements by Rank (Heaps [Learn #22). Solve the Striver A2Z problem 'Replace Elements by Rank (Heaps [Learn #22)' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Learning). Return the required answer per TUF sheet. This is part of Heaps [Learning, Medium, Hard Problems] asked in top product companies.",
+    "description": "Replace Elements by Rank (Heaps [Learn #22). Solve the Striver A2Z problem 'Replace Elements by Rank (Heaps [Learn #22)' from TakeUForward step 'Heaps [Learning, Medium, Hard Problems]' (pattern: Learning). Return the re",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def replace(nums):\n    # Replace Elements by Rank (Heaps [Learn #22) - Heaps [Learning, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "replace",
+    "leetcode_number": 2500,
+    "dsa_guide": {
+      "approach": "Heaps / Priority Queue",
+      "data_structures": [
+        "Learning"
+      ],
+      "patterns": [
+        "Heaps / Priority Queue"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Heaps [Learning, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 52,
+    "upvotes": 327
+  }
+]

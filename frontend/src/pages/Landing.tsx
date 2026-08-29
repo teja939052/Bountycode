@@ -1,5 +1,6 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Code2,
   FileText,
@@ -10,12 +11,15 @@ import {
   CheckCircle2,
   Building2,
   Star,
+  Flame,
+  Trophy,
+  X,
 } from "lucide-react";
 import useReducedMotion from "../hooks/useReducedMotion";
 import { PageShell } from "../design-system/PageShell";
 import { Button } from "../design-system/Button";
 import { Card } from "../design-system/Card";
-import { SakuraPetals } from "../components/SakuraPetals";
+import useAuthStore from "../store/authStore";
 
 const ROLE_PATHS = [
   { id: "sde", title: "Software Developer", desc: "Full-stack SDE roles", icon: Code2, color: "#22C55E" },
@@ -37,8 +41,78 @@ const COMPANIES = [
   "TCS", "Infosys", "Wipro", "Flipkart", "Razorpay",
 ];
 
+const ROTATING_AUDIENCES = [
+  "students",
+  "teachers",
+  "researchers",
+  "developers",
+  "job seekers",
+  "career switchers",
+];
+
+function RotatingWord({
+  words,
+  className = "",
+}: {
+  words: string[];
+  className?: string;
+}) {
+  const reduced = useReducedMotion();
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(
+      () => setIndex((i) => (i + 1) % words.length),
+      2200
+    );
+    return () => clearInterval(t);
+  }, [words.length]);
+
+  return (
+    <span className={`inline-block align-baseline ${className}`} aria-live="polite">
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={index}
+          initial={reduced ? {} : { y: 14, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={reduced ? {} : { y: -14, opacity: 0 }}
+          transition={{ duration: 0.32, ease: "easeOut" }}
+          className="inline-block"
+        >
+          {words[index]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  );
+}
+
 export default function Landing() {
   const reduced = useReducedMotion();
+  const token = useAuthStore((s) => s.user?.token);
+  const [potd, setPotd] = useState(null);
+  const [potdLoading, setPotdLoading] = useState(true);
+  const [potdDismissed, setPotdDismissed] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    const load = async () => {
+      if (!token) { setPotdLoading(false); return; }
+      try {
+        const r = await fetch("/api/v1/daily-problem/today", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (!r.ok) throw new Error();
+        const data = await r.json();
+        if (!cancelled) setPotd(data);
+      } catch {
+        // silent — POTD is optional on landing
+      } finally {
+        if (!cancelled) setPotdLoading(false);
+      }
+    };
+    load();
+    return () => { cancelled = true; };
+  }, [token]);
 
   return (
     <PageShell theme="spring">
@@ -50,23 +124,80 @@ export default function Landing() {
         Skip to content
       </a>
 
-      {/* ═══ SAKURA PETALS — sparse, realistic ═══ */}
-      <SakuraPetals density="hero" />
+      {/* ═══ PROBLEM OF THE DAY — interactive banner ═══ */}
+      {!potdDismissed && (
+        <AnimatePresence>
+          {potdLoading ? (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="fixed top-4 left-1/2 z-50 -translate-x-1/2"
+            >
+              <div className="flex items-center gap-3 rounded-2xl border border-orange-200 bg-white/90 px-5 py-3 shadow-xl backdrop-blur-md">
+                <Flame className="text-orange-500" size={20} />
+                <span className="text-sm font-medium text-gray-700">Loading today&apos;s challenge...</span>
+              </div>
+            </motion.div>
+          ) : potd && !potd.already_completed ? (
+            <motion.div
+              initial={{ opacity: 0, y: -30, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -30, scale: 0.96 }}
+              transition={{ type: "spring", stiffness: 260, damping: 20 }}
+              className="fixed top-4 left-1/2 z-50 -translate-x-1/2 w-[calc(100%-2rem)] max-w-3xl"
+            >
+              <div className="relative rounded-2xl border border-orange-200 bg-white/95 p-4 shadow-2xl backdrop-blur-md">
+                <button
+                  onClick={() => setPotdDismissed(true)}
+                  className="absolute right-3 top-3 rounded-lg p-1 text-gray-400 hover:text-gray-600 transition-colors"
+                  aria-label="Dismiss"
+                >
+                  <X size={16} />
+                </button>
+                <div className="flex items-start gap-4">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-orange-50 text-2xl">
+                    🧩
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Flame className="text-orange-500" size={18} />
+                      <span className="text-xs font-bold uppercase tracking-wide text-orange-600">Problem of the Day</span>
+                    </div>
+                    <h3 className="text-sm font-bold text-gray-900 truncate">{potd.problem?.question_title || "Today's Challenge"}</h3>
+                    <div className="mt-1 flex items-center gap-2">
+                      <span className="rounded-full bg-orange-100 px-2 py-0.5 text-[10px] font-bold uppercase text-orange-700">
+                        {potd.config?.difficulty || "medium"}
+                      </span>
+                      <span className="text-[11px] text-gray-500">{potd.config?.category || "Coding"}</span>
+                      <span className="text-[11px] text-gray-400">·</span>
+                      <span className="text-[11px] text-gray-500">+{potd.xp_reward || 50} XP</span>
+                    </div>
+                  </div>
+                  <Link to="/problem-of-the-day" className="shrink-0">
+                    <Button variant="primary" size="sm" className="shadow-lg">
+                      Solve Now
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
+      )}
 
       {/* ═══ THE SPRING PATH — hero as immersive world ═══ */}
-      <section className="spring-hero relative overflow-hidden" style={{ background: "#F4FAF8" }}>
+      <section className="spring-hero relative overflow-hidden" style={{ background: "#fbe4ec" }}>
 
-        {/* ── Photographic environment — shifted low so sky owns the text zone ── */}
-        <div
-          className="absolute inset-0"
+        {/* ── Photographic environment — optimized hero image (LCP, eager + high priority) ── */}
+        <img
+          src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?w=2400&q=70&auto=format&fit=crop&fm=webp&bri=12&sat=8"
+          alt=""
           aria-hidden="true"
-          style={{
-            backgroundColor: "#fbe4ec",
-            backgroundImage: "linear-gradient(rgba(251,228,236,0.18), rgba(251,228,236,0.32)), url('https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?w=7680&q=80&auto=format&fit=crop&fm=jpg&bri=12&sat=8')",
-            backgroundSize: "cover",
-            backgroundPosition: "center 72%",
-            backgroundRepeat: "no-repeat",
-          }}
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ objectPosition: "center 72%" }}
+          {...({ fetchpriority: "high" } as any)}
         />
 
         {/* ── Minimal tint — photo should dominate ── */}
@@ -150,16 +281,6 @@ export default function Landing() {
           </svg>
         </div>
 
-        {/* ── Film grain ── */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          aria-hidden="true"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E")`,
-            opacity: 0.05,
-          }}
-        />
-
         {/* ═══ CONTENT — sits within the environment ═══ */}
         <div className="relative z-10 min-h-screen flex flex-col">
           {/* Top bar — transparent, lets photo show through */}
@@ -191,14 +312,22 @@ export default function Landing() {
               <h1
                 id="main"
                 className="font-display text-[2.6rem] leading-[1.1] font-extrabold tracking-tight sm:text-5xl md:text-[3.5rem] md:leading-[1.06]"
-                style={{ color: "#14201B" }}
+                style={{ color: "#0E1813" }}
               >
                 From your first line of code
                 <br />
                 to your first offer.
               </h1>
 
-              <p className="mt-5 text-base sm:text-lg leading-relaxed max-w-xl mx-auto" style={{ color: "#14201B", opacity: 0.55 }}>
+              <p className="mt-4 text-xl sm:text-2xl font-extrabold text-[#0E1813]">
+                Built for{" "}
+                <RotatingWord
+                  words={ROTATING_AUDIENCES}
+                  className="text-2xl sm:text-3xl font-extrabold text-[#16A34A]"
+                />
+                .
+              </p>
+              <p className="mt-4 text-base sm:text-lg leading-relaxed max-w-xl mx-auto" style={{ color: "#0E1813", opacity: 0.85 }}>
                 BountyCode builds your role-specific path, trains your weak skills, and puts you
                 through the coding challenges, company OAs and interviews that matter.
               </p>
@@ -210,7 +339,7 @@ export default function Landing() {
                     <ArrowRight size={15} />
                   </button>
                 </Link>
-                <Link to="/pricing" className="text-sm font-medium text-[#14201B]/50 hover:text-[#14201B]/80 transition-colors">
+                <Link to="/pricing" className="text-sm font-semibold text-[#14201B]/80 hover:text-[#14201B] transition-colors">
                   Explore how it works
                 </Link>
               </div>
@@ -245,7 +374,7 @@ export default function Landing() {
             <div className="flex flex-col items-center">
               {/* Journey milestones — vertical path fading into the horizon */}
               {[
-                { label: "You are here", active: true },
+                 { label: "Start", active: true },
                 { label: "Programming", active: false },
                 { label: "DSA", active: false },
                 { label: "Projects", active: false },
@@ -301,13 +430,13 @@ export default function Landing() {
         initial={reduced ? {} : { opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="spring-section spring-section-pink"
+        className="spring-section spring-section-pink cvauto"
       >
         <div className="mx-auto max-w-5xl px-4">
           <h2 className="text-center font-display text-2xl font-extrabold text-gray-900 sm:text-3xl">
             Discover your role
           </h2>
-          <p className="mx-auto mt-3 max-w-xl text-center text-sm text-gray-500">
+          <p className="mx-auto mt-3 max-w-xl text-center text-sm text-gray-600">
             Every journey begins with a destination. Pick your path.
           </p>
 
@@ -327,7 +456,7 @@ export default function Landing() {
                     <role.icon size={26} strokeWidth={1.8} />
                   </div>
                   <p className="text-sm font-bold text-gray-900">{role.title}</p>
-                  <p className="mt-1 text-xs text-gray-500">{role.desc}</p>
+                  <p className="mt-1 text-xs text-gray-600">{role.desc}</p>
                 </motion.div>
               </Link>
             ))}
@@ -345,13 +474,13 @@ export default function Landing() {
         initial={reduced ? {} : { opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="spring-section spring-section-green"
+        className="spring-section spring-section-green cvauto"
       >
         <div className="mx-auto max-w-5xl px-4">
           <h2 className="text-center font-display text-2xl font-extrabold text-gray-900 sm:text-3xl">
             Each path becomes your curriculum
           </h2>
-          <p className="mx-auto mt-3 max-w-xl text-center text-sm text-gray-500">
+          <p className="mx-auto mt-3 max-w-xl text-center text-sm text-gray-600">
             Not a generic course. A personalized roadmap built from your role, your weak areas, and your target companies.
           </p>
 
@@ -368,7 +497,7 @@ export default function Landing() {
                     <feature.icon size={22} strokeWidth={1.8} />
                   </div>
                   <h3 className="font-display text-lg font-bold text-gray-900">{feature.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-gray-500">{feature.desc}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-gray-600">{feature.desc}</p>
                 </Card>
               </motion.div>
             ))}
@@ -417,13 +546,13 @@ export default function Landing() {
         initial={reduced ? {} : { opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.3 }}
-        className="spring-section"
+        className="spring-section cvauto"
       >
         <div className="mx-auto max-w-5xl px-4">
           <h2 className="text-center font-display text-2xl font-extrabold text-gray-900 sm:text-3xl">
             Prepare for the companies you want
           </h2>
-          <p className="mx-auto mt-3 max-w-xl text-center text-sm text-gray-500">
+          <p className="mx-auto mt-3 max-w-xl text-center text-sm text-gray-600">
             Company-specific patterns, behavioral questions, and real interview experiences.
           </p>
 
@@ -462,7 +591,7 @@ export default function Landing() {
         initial={reduced ? {} : { opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.35 }}
-        className="spring-section spring-section-gold"
+        className="spring-section spring-section-gold cvauto"
       >
         <div className="mx-auto max-w-3xl px-4 text-center">
           <div className="gold-glow mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-amber-50 to-yellow-100 shadow-lg">
@@ -472,7 +601,7 @@ export default function Landing() {
           <h2 className="font-display text-3xl font-extrabold text-gray-900 sm:text-4xl">
             Job Ready
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-base text-gray-500">
+          <p className="mx-auto mt-4 max-w-xl text-base text-gray-600">
             You have completed the journey. Your skills are proven. Your resume is optimized.
             Your interview performance is real. You are ready.
           </p>
@@ -485,7 +614,7 @@ export default function Landing() {
             ].map((stat) => (
               <div key={stat.label} className="rounded-xl border border-amber-200/60 bg-white/80 p-4 shadow-sm">
                 <p className="text-2xl font-extrabold text-amber-600">{stat.value}</p>
-                <p className="mt-1 text-xs text-gray-500">{stat.label}</p>
+                <p className="mt-1 text-xs text-gray-600">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -497,13 +626,13 @@ export default function Landing() {
         initial={reduced ? {} : { opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.4 }}
-        className="spring-section bg-white"
+        className="spring-section bg-white cvauto"
       >
         <div className="mx-auto max-w-3xl px-4 text-center">
           <h2 className="font-display text-3xl font-extrabold text-gray-900 sm:text-4xl">
             Ready to start your journey?
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-sm text-gray-500">
+          <p className="mx-auto mt-4 max-w-xl text-sm text-gray-600">
             Join thousands of students who landed offers at top companies. Free to start — upgrade
             anytime.
           </p>

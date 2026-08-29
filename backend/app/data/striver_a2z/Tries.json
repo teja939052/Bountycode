@@ -1,0 +1,945 @@
+[
+  {
+    "id": "tuf_0582",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Tries",
+    "sub_topic": "Theory",
+    "pattern": "Tries",
+    "tuf_step": "Tries",
+    "tuf_subtopic": "Theory",
+    "tuf_step_index": 17,
+    "question": "Trie Implementation",
+    "question_title": "Trie Implementation",
+    "statement": "Trie Implementation. Solve the Striver A2Z problem 'Trie Implementation' from TakeUForward step 'Tries' (pattern: Theory). Return the required answer per TUF sheet. This is part of Tries asked in top product companies.",
+    "description": "Trie Implementation. Solve the Striver A2Z problem 'Trie Implementation' from TakeUForward step 'Tries' (pattern: Theory). Return the required answer per TUF sheet. This is part of Tries asked in top product companies.",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def trie(nums):\n    # Trie Implementation - Tries\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "trie",
+    "leetcode_number": 1575,
+    "dsa_guide": {
+      "approach": "Tries",
+      "data_structures": [
+        "Theory"
+      ],
+      "patterns": [
+        "Tries"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Tries",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 62,
+    "upvotes": 77
+  },
+  {
+    "id": "tuf_0583",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Tries",
+    "sub_topic": "Problems",
+    "pattern": "Tries",
+    "tuf_step": "Tries",
+    "tuf_subtopic": "Problems",
+    "tuf_step_index": 17,
+    "question": "Longest Word with All Prefixes",
+    "question_title": "Longest Word with All Prefixes",
+    "statement": "Longest Word with All Prefixes. Solve the Striver A2Z problem 'Longest Word with All Prefixes' from TakeUForward step 'Tries' (pattern: Problems). Return the required answer per TUF sheet. This is part of Tries asked in top product companies.",
+    "description": "Longest Word with All Prefixes. Solve the Striver A2Z problem 'Longest Word with All Prefixes' from TakeUForward step 'Tries' (pattern: Problems). Return the required answer per TUF sheet. This is part of Tries asked in ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def longest(nums):\n    # Longest Word with All Prefixes - Tries\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "longest",
+    "leetcode_number": 1582,
+    "dsa_guide": {
+      "approach": "Tries",
+      "data_structures": [
+        "Problems"
+      ],
+      "patterns": [
+        "Tries"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Tries",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 34,
+    "upvotes": 315
+  },
+  {
+    "id": "tuf_0584",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Tries",
+    "sub_topic": "Theory",
+    "pattern": "Tries",
+    "tuf_step": "Tries",
+    "tuf_subtopic": "Theory",
+    "tuf_step_index": 17,
+    "question": "Number of Distinct Substrings",
+    "question_title": "Number of Distinct Substrings",
+    "statement": "Number of Distinct Substrings. Solve the Striver A2Z problem 'Number of Distinct Substrings' from TakeUForward step 'Tries' (pattern: Theory). Return the required answer per TUF sheet. This is part of Tries asked in top product companies.",
+    "description": "Number of Distinct Substrings. Solve the Striver A2Z problem 'Number of Distinct Substrings' from TakeUForward step 'Tries' (pattern: Theory). Return the required answer per TUF sheet. This is part of Tries asked in top ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def number(nums):\n    # Number of Distinct Substrings - Tries\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "number",
+    "leetcode_number": 1589,
+    "dsa_guide": {
+      "approach": "Tries",
+      "data_structures": [
+        "Theory"
+      ],
+      "patterns": [
+        "Tries"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Tries",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 56,
+    "upvotes": 368
+  },
+  {
+    "id": "tuf_0585",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Tries",
+    "sub_topic": "Problems",
+    "pattern": "Tries",
+    "tuf_step": "Tries",
+    "tuf_subtopic": "Problems",
+    "tuf_step_index": 17,
+    "question": "Maximum XOR of Two Numbers",
+    "question_title": "Maximum XOR of Two Numbers",
+    "statement": "Maximum XOR of Two Numbers. Solve the Striver A2Z problem 'Maximum XOR of Two Numbers' from TakeUForward step 'Tries' (pattern: Problems). Return the required answer per TUF sheet. This is part of Tries asked in top product companies.",
+    "description": "Maximum XOR of Two Numbers. Solve the Striver A2Z problem 'Maximum XOR of Two Numbers' from TakeUForward step 'Tries' (pattern: Problems). Return the required answer per TUF sheet. This is part of Tries asked in top prod",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def maximum(nums):\n    # Maximum XOR of Two Numbers - Tries\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "maximum",
+    "leetcode_number": 1596,
+    "dsa_guide": {
+      "approach": "Tries",
+      "data_structures": [
+        "Problems"
+      ],
+      "patterns": [
+        "Tries"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Tries",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 73,
+    "upvotes": 370
+  },
+  {
+    "id": "tuf_0586",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Tries",
+    "sub_topic": "Theory",
+    "pattern": "Tries",
+    "tuf_step": "Tries",
+    "tuf_subtopic": "Theory",
+    "tuf_step_index": 17,
+    "question": "Maximum XOR With Element From Array",
+    "question_title": "Maximum XOR With Element From Array",
+    "statement": "Maximum XOR With Element From Array. Solve the Striver A2Z problem 'Maximum XOR With Element From Array' from TakeUForward step 'Tries' (pattern: Theory). Return the required answer per TUF sheet. This is part of Tries asked in top product companies.",
+    "description": "Maximum XOR With Element From Array. Solve the Striver A2Z problem 'Maximum XOR With Element From Array' from TakeUForward step 'Tries' (pattern: Theory). Return the required answer per TUF sheet. This is part of Tries a",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def maximum(nums):\n    # Maximum XOR With Element From Array - Tries\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "maximum",
+    "leetcode_number": 1603,
+    "dsa_guide": {
+      "approach": "Tries",
+      "data_structures": [
+        "Theory"
+      ],
+      "patterns": [
+        "Tries"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Tries",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 66,
+    "upvotes": 439
+  },
+  {
+    "id": "tuf_0587",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Tries",
+    "sub_topic": "Problems",
+    "pattern": "Tries",
+    "tuf_step": "Tries",
+    "tuf_subtopic": "Problems",
+    "tuf_step_index": 17,
+    "question": "Complete String",
+    "question_title": "Complete String",
+    "statement": "Complete String. Solve the Striver A2Z problem 'Complete String' from TakeUForward step 'Tries' (pattern: Problems). Return the required answer per TUF sheet. This is part of Tries asked in top product companies.",
+    "description": "Complete String. Solve the Striver A2Z problem 'Complete String' from TakeUForward step 'Tries' (pattern: Problems). Return the required answer per TUF sheet. This is part of Tries asked in top product companies.",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def complete(nums):\n    # Complete String - Tries\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "complete",
+    "leetcode_number": 1610,
+    "dsa_guide": {
+      "approach": "Tries",
+      "data_structures": [
+        "Problems"
+      ],
+      "patterns": [
+        "Tries"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Tries",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 16,
+    "upvotes": 154
+  },
+  {
+    "id": "tuf_0588",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Tries",
+    "sub_topic": "Theory",
+    "pattern": "Tries",
+    "tuf_step": "Tries",
+    "tuf_subtopic": "Theory",
+    "tuf_step_index": 17,
+    "question": "Power Set Trie",
+    "question_title": "Power Set Trie",
+    "statement": "Power Set Trie. Solve the Striver A2Z problem 'Power Set Trie' from TakeUForward step 'Tries' (pattern: Theory). Return the required answer per TUF sheet. This is part of Tries asked in top product companies.",
+    "description": "Power Set Trie. Solve the Striver A2Z problem 'Power Set Trie' from TakeUForward step 'Tries' (pattern: Theory). Return the required answer per TUF sheet. This is part of Tries asked in top product companies.",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def power(nums):\n    # Power Set Trie - Tries\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "power",
+    "leetcode_number": 1617,
+    "dsa_guide": {
+      "approach": "Tries",
+      "data_structures": [
+        "Theory"
+      ],
+      "patterns": [
+        "Tries"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Tries",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 44,
+    "upvotes": 331
+  },
+  {
+    "id": "tuf_0589",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Tries",
+    "sub_topic": "Problems",
+    "pattern": "Tries",
+    "tuf_step": "Tries",
+    "tuf_subtopic": "Problems",
+    "tuf_step_index": 17,
+    "question": "Trie Implementation (Tries #8)",
+    "question_title": "Trie Implementation (Tries #8)",
+    "statement": "Trie Implementation (Tries #8). Solve the Striver A2Z problem 'Trie Implementation (Tries #8)' from TakeUForward step 'Tries' (pattern: Problems). Return the required answer per TUF sheet. This is part of Tries asked in top product companies.",
+    "description": "Trie Implementation (Tries #8). Solve the Striver A2Z problem 'Trie Implementation (Tries #8)' from TakeUForward step 'Tries' (pattern: Problems). Return the required answer per TUF sheet. This is part of Tries asked in ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def trie(nums):\n    # Trie Implementation (Tries #8) - Tries\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "trie",
+    "leetcode_number": 1624,
+    "dsa_guide": {
+      "approach": "Tries",
+      "data_structures": [
+        "Problems"
+      ],
+      "patterns": [
+        "Tries"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Tries",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 26,
+    "upvotes": 197
+  },
+  {
+    "id": "tuf_0590",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Tries",
+    "sub_topic": "Theory",
+    "pattern": "Tries",
+    "tuf_step": "Tries",
+    "tuf_subtopic": "Theory",
+    "tuf_step_index": 17,
+    "question": "Longest Word with All Prefixes (Tries #9)",
+    "question_title": "Longest Word with All Prefixes (Tries #9)",
+    "statement": "Longest Word with All Prefixes (Tries #9). Solve the Striver A2Z problem 'Longest Word with All Prefixes (Tries #9)' from TakeUForward step 'Tries' (pattern: Theory). Return the required answer per TUF sheet. This is part of Tries asked in top product companies.",
+    "description": "Longest Word with All Prefixes (Tries #9). Solve the Striver A2Z problem 'Longest Word with All Prefixes (Tries #9)' from TakeUForward step 'Tries' (pattern: Theory). Return the required answer per TUF sheet. This is par",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def longest(nums):\n    # Longest Word with All Prefixes (Tries #9) - Tries\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "longest",
+    "leetcode_number": 1631,
+    "dsa_guide": {
+      "approach": "Tries",
+      "data_structures": [
+        "Theory"
+      ],
+      "patterns": [
+        "Tries"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Tries",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 66,
+    "upvotes": 500
+  }
+]

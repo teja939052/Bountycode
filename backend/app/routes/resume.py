@@ -27,6 +27,40 @@ class SemanticScoreRequest(BaseModel):
     job_description: str = ""
 
 
+class RuleBasedATSRequest(BaseModel):
+    resume_text: str
+    job_description: str = ""
+
+
+@router.post("/analyze-rulebased")
+async def analyze_resume_rulebased(req: RuleBasedATSRequest, user=Depends(get_current_user)):
+    """Deterministic, non-AI ATS analysis. Always works without API keys/credits.
+
+    Uses ``RealATSScanner`` to simulate enterprise ATS parsing (Workday, Lever,
+    Greenhouse, iCIMS...) and returns a grade, critical issues, keyword gaps, and
+    line-by-line rewrite suggestions. This is the reliable fallback and the
+    core of the exact resume analyzer."""
+    from app.services.real_ats import RealATSScanner
+
+    scanner = RealATSScanner()
+    result = scanner.full_scan(req.resume_text or "", req.job_description or "")
+
+    return {
+        "ats_score": result.get("ats_score"),
+        "grade": result.get("grade"),
+        "would_pass_ats": result.get("would_pass_ats", False),
+        "parsing_simulation": result.get("parsing_simulation"),
+        "section_detection": result.get("section_detection"),
+        "contact_detection": result.get("contact_detection"),
+        "content_analysis": result.get("content_analysis"),
+        "keyword_analysis": result.get("keyword_analysis"),
+        "critical_issues": result.get("critical_issues", []),
+        "recommendations": result.get("recommendations", []),
+        "line_fixes": result.get("line_fixes", []),
+        "engine": "rulebased",
+    }
+
+
 @router.post("/semantic-score")
 async def semantic_ats_score(req: SemanticScoreRequest, user=Depends(get_current_user)):
     jd = req.job_description or ""

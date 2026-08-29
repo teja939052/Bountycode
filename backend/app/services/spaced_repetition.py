@@ -320,6 +320,36 @@ def initialize_user_srs(user_id: str) -> List[SRSState]:
     return [engine.create_new_card(cid, user_id) for cid in get_all_concept_ids()]
 
 
+def serialize_state(state: SRSState) -> Dict[str, Any]:
+    """Serialize an SRSState for API response."""
+    now = utcnow()
+    overdue_days = 0
+    if state.next_review and state.next_review < now:
+        overdue_days = (now - state.next_review).days
+
+    return {
+        "concept_id": state.concept_id,
+        "user_id": state.user_id,
+        "interval_days": state.interval,
+        "repetitions": state.repetitions,
+        "ease_factor": round(state.ease_factor, 2),
+        "next_review": state.next_review.isoformat() if state.next_review else None,
+        "last_reviewed": state.last_reviewed.isoformat() if state.last_reviewed else None,
+        "learning_step": state.learning_step,
+        "total_reviews": state.total_reviews,
+        "lapses": state.lapses,
+        "is_due": bool(state.next_review and state.next_review <= now),
+        "overdue_days": overdue_days,
+    }
+
+
+# Compatibility aliases for study_engine.py
+def get_due_cards(states: List[SRSState], limit: int = 20) -> List[SRSState]:
+    """Get cards due for review (compatibility wrapper)."""
+    engine = SpacedRepetitionEngine()
+    return engine.get_due_cards(states, limit)
+
+
 # Example usage and testing
 if __name__ == "__main__":
     engine = SpacedRepetitionEngine()

@@ -793,3 +793,9 @@
 .page-hidden .sakura-petal {
   animation-play-state: paused;
 }
+
+/* Skip rendering offscreen sections to speed up initial paint on long pages */
+.cvauto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}

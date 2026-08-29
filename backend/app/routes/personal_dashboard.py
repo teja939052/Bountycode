@@ -9,6 +9,7 @@ from app.database import (
     curated_questions_collection, solved_problems_collection,
     question_answers_collection, users_collection
 )
+from app.services.readiness_engine import compute_readiness
 
 router = APIRouter(prefix="/api/v1/dashboard", tags=["personal-dashboard"])
 
@@ -151,10 +152,8 @@ async def get_personal_dashboard(user=Depends(get_current_user)):
             "action": "/problems",
         })
 
-    # Calculate readiness score
-    total_problems = sum(t["total"] for t in topic_totals.values())
-    total_solved_all = sum(s.get("total", 0) for s in solved_stats.values())
-    readiness_score = round(total_solved_all / total_problems * 100, 1) if total_problems > 0 else 0
+    readiness = await compute_readiness(uid)
+    readiness_score = readiness.get("overall_readiness", 0)
 
     return {
         "readiness_score": readiness_score,

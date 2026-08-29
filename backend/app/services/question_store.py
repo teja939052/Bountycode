@@ -373,6 +373,40 @@ def _load_from_seed_files() -> None:
             logger.info("Loaded %d from %s", len(items), fname)
 
 
+EXTRA_BANKS = [
+    "leetcode_problems_seed.json",
+    "striver_a2z_600.json",
+]
+
+def _load_extra_bank() -> None:
+    """Load verified file-based banks (laptop storage, not DB).
+
+    Each JSON is a curated ``review_status: placement_grade`` list with
+    constraints + test cases, appended before dedupe so curated-grade wins."""
+    global _questions
+    for fname in EXTRA_BANKS:
+        extra_path = os.path.join(_BACKEND_ROOT, "app", "data", fname)
+        if not os.path.exists(extra_path):
+            continue
+        try:
+            with open(extra_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except Exception as e:
+            logger.warning("Failed to read extra bank %s: %s", fname, e)
+            continue
+        if not isinstance(data, list):
+            continue
+        idx = len(_questions)
+        added = 0
+        for q in data:
+            if isinstance(q, dict) and q.get("question"):
+                _questions.append(_assign_id(dict(q), idx))
+                idx += 1
+                added += 1
+        if added:
+            logger.info("Loaded %d problems from %s", added, fname)
+
+
 def load_all():
     global _questions, _loaded
     if _loaded:
@@ -381,6 +415,7 @@ def load_all():
 
     # Fast path: use consolidated JSON bank if available and up-to-date
     if _json_bank_fresh() and _load_from_json_bank():
+        _load_extra_bank()
         _dedupe_and_filter()
         _apply_leetcode_meta()
         _expand_questions()
@@ -390,6 +425,7 @@ def load_all():
 
     # Fallback: load from 17 individual Python seed files
     _load_from_seed_files()
+    _load_extra_bank()
 
     _dedupe_and_filter()
     _apply_leetcode_meta()

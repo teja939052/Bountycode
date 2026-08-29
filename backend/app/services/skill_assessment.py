@@ -43,6 +43,18 @@ SKILL_CATEGORIES = {
             "formatting", "impact_statements", "tailoring",
         ],
     },
+    "coding": {
+        "name": "Programming Foundations",
+        "skills": [
+            "variables", "types", "memory_model", "type_checking", "assignment",
+            "conditions", "booleans", "loops", "iteration",
+            "functions", "parameters", "return",
+            "strings", "lists", "dicts", "sets", "data_structures",
+            "input_output", "string_methods", "error_handling", "exceptions",
+            "json", "modules", "files", "git", "debugging", "testing",
+            "http", "apis",
+        ],
+    },
 }
 
 
@@ -213,9 +225,9 @@ async def run_sde_diagnostic(user_id: str) -> dict:
     """
     from app.services.role_engine.profiles import get_profile
     from app.services.mastery_engine import SkillMastery, MASTERY_LEVELS
-    from app.services.srs_engine import create_card, get_due_cards
+    from app.services.spaced_repetition import SpacedRepetitionEngine, get_due_cards
     from app.services.skill_assessment import initialize_skill_graph, update_skill_score, get_skill_graph
-    from app.services.srs_engine import create_card as srs_create_card
+    from app.services.spaced_repetition import SpacedRepetitionEngine as _SrsEngine
     from app.services.role_engine.profiles import get_profile
     
     # Get SDE profile with readiness weights
@@ -323,9 +335,13 @@ async def _calculate_sde_readiness(user_id: str, diagnostic_results: dict) -> di
 
 async def _enroll_diagnostic_concepts_srs(user_id: str, diagnostic_results: dict) -> None:
     """Enroll basic concepts into SRS for review after diagnostic."""
-    from app.services.srs_engine import create_card
-    
-    # Enroll basic concepts for review after diagnostic
+    from app.services.spaced_repetition import SpacedRepetitionEngine
+    from app.database import srs_cards_collection
+    from dataclasses import asdict
+
+    engine = SpacedRepetitionEngine()
+    col = srs_cards_collection()
+
     basic_concepts = [
         {"concept_id": "variables_types", "topic": "Programming", "difficulty": "easy"},
         {"concept_id": "control_flow", "topic": "Programming", "difficulty": "easy"},
@@ -336,18 +352,23 @@ async def _enroll_diagnostic_concepts_srs(user_id: str, diagnostic_results: dict
         {"concept_id": "oop_basics", "topic": "OOP", "difficulty": "easy"},
         {"concept_id": "git_basics", "topic": "Git/GitHub", "difficulty": "easy"},
     ]
-    
+
     for concept in basic_concepts:
         try:
-            await create_card(
-                user_id=user_id,
-                concept_id=concept["concept_id"],
-                topic=concept["topic"],
-                difficulty=concept["difficulty"],
-                metadata={"source": "diagnostic", "enrollment_reason": "module_1_foundation"}
+            state = engine.create_new_card(concept["concept_id"], user_id)
+            doc = asdict(state)
+            doc["problem_id"] = concept["concept_id"]
+            doc["user_id"] = user_id
+            doc["difficulty"] = concept["difficulty"]
+            doc["topic"] = concept["topic"]
+            doc["source"] = "diagnostic"
+            doc["enrollment_reason"] = "module_1_foundation"
+            await col.update_one(
+                {"user_id": user_id, "problem_id": concept["concept_id"]},
+                {"$set": doc},
+                upsert=True,
             )
         except Exception as e:
-            # Log error but don't fail diagnostic
             import logging
             logging.getLogger(__name__).warning(f"Failed to enroll SRS concept {concept['concept_id']}: {e}")
 

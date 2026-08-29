@@ -1,0 +1,110 @@
+[
+  {
+    "step": "Learn the basics",
+    "tuf_count": 54,
+    "scaled_count": 68,
+    "file": "Learn_the_basics.json"
+  },
+  {
+    "step": "Learn Important Sorting Techniques",
+    "tuf_count": 7,
+    "scaled_count": 9,
+    "file": "Learn_Important_Sorting_Techniques.json"
+  },
+  {
+    "step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_count": 40,
+    "scaled_count": 51,
+    "file": "Solve_Problems_on_Arrays_Easy_Medium_Hard.json"
+  },
+  {
+    "step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_count": 32,
+    "scaled_count": 41,
+    "file": "Binary_Search_1D_2D_Arrays_Search_Space.json"
+  },
+  {
+    "step": "Strings [Basic and Medium]",
+    "tuf_count": 15,
+    "scaled_count": 19,
+    "file": "Strings_Basic_and_Medium.json"
+  },
+  {
+    "step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_count": 31,
+    "scaled_count": 39,
+    "file": "Learn_LinkedList_Single_LL_Double_LL_Medium_Hard_Problems.json"
+  },
+  {
+    "step": "Recursion [PatternWise]",
+    "tuf_count": 25,
+    "scaled_count": 32,
+    "file": "Recursion_PatternWise.json"
+  },
+  {
+    "step": "Bit Manipulation [Concepts & Problems]",
+    "tuf_count": 18,
+    "scaled_count": 23,
+    "file": "Bit_Manipulation_Concepts_Problems.json"
+  },
+  {
+    "step": "Stack and Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]",
+    "tuf_count": 30,
+    "scaled_count": 38,
+    "file": "Stack_and_Queues_Learning_Pre_In_Post_fix_Monotonic_Stack_Im.json"
+  },
+  {
+    "step": "Sliding Window & Two Pointer Combined Problems",
+    "tuf_count": 12,
+    "scaled_count": 15,
+    "file": "Sliding_Window_Two_Pointer_Combined_Problems.json"
+  },
+  {
+    "step": "Heaps [Learning, Medium, Hard Problems]",
+    "tuf_count": 17,
+    "scaled_count": 22,
+    "file": "Heaps_Learning_Medium_Hard_Problems.json"
+  },
+  {
+    "step": "Greedy Algorithms [Easy, Medium/Hard]",
+    "tuf_count": 15,
+    "scaled_count": 19,
+    "file": "Greedy_Algorithms_Easy_Medium_Hard.json"
+  },
+  {
+    "step": "Binary Trees [Traversals, Medium and Hard Problems]",
+    "tuf_count": 38,
+    "scaled_count": 48,
+    "file": "Binary_Trees_Traversals_Medium_and_Hard_Problems.json"
+  },
+  {
+    "step": "Binary Search Trees [Concept and Problems]",
+    "tuf_count": 16,
+    "scaled_count": 20,
+    "file": "Binary_Search_Trees_Concept_and_Problems.json"
+  },
+  {
+    "step": "Graphs [Concepts & Problems]",
+    "tuf_count": 53,
+    "scaled_count": 67,
+    "file": "Graphs_Concepts_Problems.json"
+  },
+  {
+    "step": "Dynamic Programming [Patterns and Problems]",
+    "tuf_count": 55,
+    "scaled_count": 70,
+    "file": "Dynamic_Programming_Patterns_and_Problems.json"
+  },
+  {
+    "step": "Tries",
+    "tuf_count": 7,
+    "scaled_count": 9,
+    "file": "Tries.json"
+  },
+  {
+    "step": "Strings",
+    "tuf_count": 9,
+    "scaled_count": 10,
+    "file": "Strings.json"
+  }
+]

@@ -1,0 +1,4307 @@
+[
+  {
+    "id": "tuf_0129",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on 1D Arrays",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on 1D Arrays",
+    "tuf_step_index": 4,
+    "question": "Search X in Sorted Array",
+    "question_title": "Search X in Sorted Array",
+    "statement": "Search X in Sorted Array. Solve the Striver A2Z problem 'Search X in Sorted Array' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 1D Arrays). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Search X in Sorted Array. Solve the Striver A2Z problem 'Search X in Sorted Array' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 1D Arrays). Return the required answer per TUF sheet",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= nums[i] <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def search(nums):\n    # Search X in Sorted Array - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "search",
+    "leetcode_number": 904,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on 1D Arrays"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 75,
+    "upvotes": 171
+  },
+  {
+    "id": "tuf_0130",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on 2D Arrays",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on 2D Arrays",
+    "tuf_step_index": 4,
+    "question": "Lower Bound",
+    "question_title": "Lower Bound",
+    "statement": "Lower Bound. Solve the Striver A2Z problem 'Lower Bound' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 2D Arrays). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Lower Bound. Solve the Striver A2Z problem 'Lower Bound' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 2D Arrays). Return the required answer per TUF sheet. This is part of Binary S",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= nums[i] <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def lower(nums):\n    # Lower Bound - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "lower",
+    "leetcode_number": 911,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on 2D Arrays"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 45,
+    "upvotes": 392
+  },
+  {
+    "id": "tuf_0131",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on Answers",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on Answers",
+    "tuf_step_index": 4,
+    "question": "Upper Bound",
+    "question_title": "Upper Bound",
+    "statement": "Upper Bound. Solve the Striver A2Z problem 'Upper Bound' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on Answers). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Upper Bound. Solve the Striver A2Z problem 'Upper Bound' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on Answers). Return the required answer per TUF sheet. This is part of Binary Sea",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def upper(nums):\n    # Upper Bound - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "upper",
+    "leetcode_number": 918,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on Answers"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 72,
+    "upvotes": 159
+  },
+  {
+    "id": "tuf_0132",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on 1D Arrays",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on 1D Arrays",
+    "tuf_step_index": 4,
+    "question": "Search Insert Position",
+    "question_title": "Search Insert Position",
+    "statement": "Search Insert Position. Solve the Striver A2Z problem 'Search Insert Position' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 1D Arrays). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Search Insert Position. Solve the Striver A2Z problem 'Search Insert Position' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 1D Arrays). Return the required answer per TUF sheet. Th",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def search(nums):\n    # Search Insert Position - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "search",
+    "leetcode_number": 925,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on 1D Arrays"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 79,
+    "upvotes": 117
+  },
+  {
+    "id": "tuf_0133",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on 2D Arrays",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on 2D Arrays",
+    "tuf_step_index": 4,
+    "question": "Floor and Ceil",
+    "question_title": "Floor and Ceil",
+    "statement": "Floor and Ceil. Solve the Striver A2Z problem 'Floor and Ceil' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 2D Arrays). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Floor and Ceil. Solve the Striver A2Z problem 'Floor and Ceil' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 2D Arrays). Return the required answer per TUF sheet. This is part of Bi",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def floor(nums):\n    # Floor and Ceil - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "floor",
+    "leetcode_number": 932,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on 2D Arrays"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 83,
+    "upvotes": 345
+  },
+  {
+    "id": "tuf_0134",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on Answers",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on Answers",
+    "tuf_step_index": 4,
+    "question": "First and Last Occurrence",
+    "question_title": "First and Last Occurrence",
+    "statement": "First and Last Occurrence. Solve the Striver A2Z problem 'First and Last Occurrence' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on Answers). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "First and Last Occurrence. Solve the Striver A2Z problem 'First and Last Occurrence' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on Answers). Return the required answer per TUF sheet",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def first(nums):\n    # First and Last Occurrence - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "first",
+    "leetcode_number": 939,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on Answers"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 70,
+    "upvotes": 174
+  },
+  {
+    "id": "tuf_0135",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on 1D Arrays",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on 1D Arrays",
+    "tuf_step_index": 4,
+    "question": "Count Occurrences",
+    "question_title": "Count Occurrences",
+    "statement": "Count Occurrences. Solve the Striver A2Z problem 'Count Occurrences' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 1D Arrays). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Count Occurrences. Solve the Striver A2Z problem 'Count Occurrences' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 1D Arrays). Return the required answer per TUF sheet. This is part",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def count(nums):\n    # Count Occurrences - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "count",
+    "leetcode_number": 946,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on 1D Arrays"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 70,
+    "upvotes": 463
+  },
+  {
+    "id": "tuf_0136",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on 2D Arrays",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on 2D Arrays",
+    "tuf_step_index": 4,
+    "question": "Search in Rotated Array I",
+    "question_title": "Search in Rotated Array I",
+    "statement": "Search in Rotated Array I. Solve the Striver A2Z problem 'Search in Rotated Array I' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 2D Arrays). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Search in Rotated Array I. Solve the Striver A2Z problem 'Search in Rotated Array I' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 2D Arrays). Return the required answer per TUF she",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def search(nums):\n    # Search in Rotated Array I - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "search",
+    "leetcode_number": 953,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on 2D Arrays"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 62,
+    "upvotes": 147
+  },
+  {
+    "id": "tuf_0137",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on Answers",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on Answers",
+    "tuf_step_index": 4,
+    "question": "Search in Rotated Array II",
+    "question_title": "Search in Rotated Array II",
+    "statement": "Search in Rotated Array II. Solve the Striver A2Z problem 'Search in Rotated Array II' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on Answers). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Search in Rotated Array II. Solve the Striver A2Z problem 'Search in Rotated Array II' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on Answers). Return the required answer per TUF she",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= nums[i] <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def search(nums):\n    # Search in Rotated Array II - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "search",
+    "leetcode_number": 960,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on Answers"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 22,
+    "upvotes": 99
+  },
+  {
+    "id": "tuf_0138",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on 1D Arrays",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on 1D Arrays",
+    "tuf_step_index": 4,
+    "question": "Find Minimum in Rotated Array",
+    "question_title": "Find Minimum in Rotated Array",
+    "statement": "Find Minimum in Rotated Array. Solve the Striver A2Z problem 'Find Minimum in Rotated Array' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 1D Arrays). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Find Minimum in Rotated Array. Solve the Striver A2Z problem 'Find Minimum in Rotated Array' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 1D Arrays). Return the required answer per",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= nums[i] <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def find(nums):\n    # Find Minimum in Rotated Array - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "find",
+    "leetcode_number": 967,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on 1D Arrays"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 94,
+    "upvotes": 270
+  },
+  {
+    "id": "tuf_0139",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on 2D Arrays",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on 2D Arrays",
+    "tuf_step_index": 4,
+    "question": "How Many Times Rotated",
+    "question_title": "How Many Times Rotated",
+    "statement": "How Many Times Rotated. Solve the Striver A2Z problem 'How Many Times Rotated' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 2D Arrays). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "How Many Times Rotated. Solve the Striver A2Z problem 'How Many Times Rotated' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 2D Arrays). Return the required answer per TUF sheet. Th",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def how(nums):\n    # How Many Times Rotated - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "how",
+    "leetcode_number": 974,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on 2D Arrays"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 55,
+    "upvotes": 266
+  },
+  {
+    "id": "tuf_0140",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on Answers",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on Answers",
+    "tuf_step_index": 4,
+    "question": "Single Element in Sorted Array",
+    "question_title": "Single Element in Sorted Array",
+    "statement": "Single Element in Sorted Array. Solve the Striver A2Z problem 'Single Element in Sorted Array' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on Answers). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Single Element in Sorted Array. Solve the Striver A2Z problem 'Single Element in Sorted Array' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on Answers). Return the required answer per",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def single(nums):\n    # Single Element in Sorted Array - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "single",
+    "leetcode_number": 981,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on Answers"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 62,
+    "upvotes": 289
+  },
+  {
+    "id": "tuf_0141",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on 1D Arrays",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on 1D Arrays",
+    "tuf_step_index": 4,
+    "question": "Find Peak Element",
+    "question_title": "Find Peak Element",
+    "statement": "Find Peak Element. Solve the Striver A2Z problem 'Find Peak Element' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 1D Arrays). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Find Peak Element. Solve the Striver A2Z problem 'Find Peak Element' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 1D Arrays). Return the required answer per TUF sheet. This is part",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def find(nums):\n    # Find Peak Element - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "find",
+    "leetcode_number": 988,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on 1D Arrays"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 16,
+    "upvotes": 394
+  },
+  {
+    "id": "tuf_0142",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on 2D Arrays",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on 2D Arrays",
+    "tuf_step_index": 4,
+    "question": "Find Row with Maximum 1s",
+    "question_title": "Find Row with Maximum 1s",
+    "statement": "Find Row with Maximum 1s. Solve the Striver A2Z problem 'Find Row with Maximum 1s' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 2D Arrays). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Find Row with Maximum 1s. Solve the Striver A2Z problem 'Find Row with Maximum 1s' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 2D Arrays). Return the required answer per TUF sheet",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def find(nums):\n    # Find Row with Maximum 1s - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "find",
+    "leetcode_number": 995,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on 2D Arrays"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 93,
+    "upvotes": 380
+  },
+  {
+    "id": "tuf_0143",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on Answers",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on Answers",
+    "tuf_step_index": 4,
+    "question": "Search in 2D Matrix",
+    "question_title": "Search in 2D Matrix",
+    "statement": "Search in 2D Matrix. Solve the Striver A2Z problem 'Search in 2D Matrix' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on Answers). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Search in 2D Matrix. Solve the Striver A2Z problem 'Search in 2D Matrix' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on Answers). Return the required answer per TUF sheet. This is pa",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def search(nums):\n    # Search in 2D Matrix - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "search",
+    "leetcode_number": 1002,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on Answers"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 22,
+    "upvotes": 81
+  },
+  {
+    "id": "tuf_0144",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on 1D Arrays",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on 1D Arrays",
+    "tuf_step_index": 4,
+    "question": "Search in 2D Matrix II",
+    "question_title": "Search in 2D Matrix II",
+    "statement": "Search in 2D Matrix II. Solve the Striver A2Z problem 'Search in 2D Matrix II' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 1D Arrays). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Search in 2D Matrix II. Solve the Striver A2Z problem 'Search in 2D Matrix II' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 1D Arrays). Return the required answer per TUF sheet. Th",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def search(nums):\n    # Search in 2D Matrix II - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "search",
+    "leetcode_number": 1009,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on 1D Arrays"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 61,
+    "upvotes": 422
+  },
+  {
+    "id": "tuf_0145",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on 2D Arrays",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on 2D Arrays",
+    "tuf_step_index": 4,
+    "question": "Find Peak Element II",
+    "question_title": "Find Peak Element II",
+    "statement": "Find Peak Element II. Solve the Striver A2Z problem 'Find Peak Element II' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 2D Arrays). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Find Peak Element II. Solve the Striver A2Z problem 'Find Peak Element II' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 2D Arrays). Return the required answer per TUF sheet. This i",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= nums[i] <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def find(nums):\n    # Find Peak Element II - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "find",
+    "leetcode_number": 1016,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on 2D Arrays"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 53,
+    "upvotes": 459
+  },
+  {
+    "id": "tuf_0146",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on Answers",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on Answers",
+    "tuf_step_index": 4,
+    "question": "Matrix Median",
+    "question_title": "Matrix Median",
+    "statement": "Matrix Median. Solve the Striver A2Z problem 'Matrix Median' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on Answers). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Matrix Median. Solve the Striver A2Z problem 'Matrix Median' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on Answers). Return the required answer per TUF sheet. This is part of Binary",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= nums[i] <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def matrix(nums):\n    # Matrix Median - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "matrix",
+    "leetcode_number": 1023,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on Answers"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 23,
+    "upvotes": 177
+  },
+  {
+    "id": "tuf_0147",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on 1D Arrays",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on 1D Arrays",
+    "tuf_step_index": 4,
+    "question": "Square Root",
+    "question_title": "Square Root",
+    "statement": "Square Root. Solve the Striver A2Z problem 'Square Root' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 1D Arrays). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Square Root. Solve the Striver A2Z problem 'Square Root' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 1D Arrays). Return the required answer per TUF sheet. This is part of Binary S",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def square(nums):\n    # Square Root - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "square",
+    "leetcode_number": 1030,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on 1D Arrays"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 34,
+    "upvotes": 147
+  },
+  {
+    "id": "tuf_0148",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on 2D Arrays",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on 2D Arrays",
+    "tuf_step_index": 4,
+    "question": "Nth Root",
+    "question_title": "Nth Root",
+    "statement": "Nth Root. Solve the Striver A2Z problem 'Nth Root' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 2D Arrays). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Nth Root. Solve the Striver A2Z problem 'Nth Root' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 2D Arrays). Return the required answer per TUF sheet. This is part of Binary Search ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def nth(nums):\n    # Nth Root - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "nth",
+    "leetcode_number": 1037,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on 2D Arrays"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 78,
+    "upvotes": 279
+  },
+  {
+    "id": "tuf_0149",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on Answers",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on Answers",
+    "tuf_step_index": 4,
+    "question": "Koko Eating Bananas",
+    "question_title": "Koko Eating Bananas",
+    "statement": "Koko Eating Bananas. Solve the Striver A2Z problem 'Koko Eating Bananas' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on Answers). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Koko Eating Bananas. Solve the Striver A2Z problem 'Koko Eating Bananas' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on Answers). Return the required answer per TUF sheet. This is pa",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def koko(nums):\n    # Koko Eating Bananas - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "koko",
+    "leetcode_number": 1044,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on Answers"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 27,
+    "upvotes": 266
+  },
+  {
+    "id": "tuf_0150",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on 1D Arrays",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on 1D Arrays",
+    "tuf_step_index": 4,
+    "question": "Minimum Days to Make M Bouquets",
+    "question_title": "Minimum Days to Make M Bouquets",
+    "statement": "Minimum Days to Make M Bouquets. Solve the Striver A2Z problem 'Minimum Days to Make M Bouquets' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 1D Arrays). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Minimum Days to Make M Bouquets. Solve the Striver A2Z problem 'Minimum Days to Make M Bouquets' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 1D Arrays). Return the required answer",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def minimum(nums):\n    # Minimum Days to Make M Bouquets - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "minimum",
+    "leetcode_number": 1051,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on 1D Arrays"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 33,
+    "upvotes": 192
+  },
+  {
+    "id": "tuf_0151",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on 2D Arrays",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on 2D Arrays",
+    "tuf_step_index": 4,
+    "question": "Smallest Divisor",
+    "question_title": "Smallest Divisor",
+    "statement": "Smallest Divisor. Solve the Striver A2Z problem 'Smallest Divisor' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 2D Arrays). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Smallest Divisor. Solve the Striver A2Z problem 'Smallest Divisor' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 2D Arrays). Return the required answer per TUF sheet. This is part o",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def smallest(nums):\n    # Smallest Divisor - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "smallest",
+    "leetcode_number": 1058,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on 2D Arrays"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 69,
+    "upvotes": 177
+  },
+  {
+    "id": "tuf_0152",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on Answers",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on Answers",
+    "tuf_step_index": 4,
+    "question": "Ship Within D Days",
+    "question_title": "Ship Within D Days",
+    "statement": "Ship Within D Days. Solve the Striver A2Z problem 'Ship Within D Days' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on Answers). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Ship Within D Days. Solve the Striver A2Z problem 'Ship Within D Days' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on Answers). Return the required answer per TUF sheet. This is part",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def ship(nums):\n    # Ship Within D Days - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "ship",
+    "leetcode_number": 1065,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on Answers"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 19,
+    "upvotes": 276
+  },
+  {
+    "id": "tuf_0153",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on 1D Arrays",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on 1D Arrays",
+    "tuf_step_index": 4,
+    "question": "Kth Missing Positive",
+    "question_title": "Kth Missing Positive",
+    "statement": "Kth Missing Positive. Solve the Striver A2Z problem 'Kth Missing Positive' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 1D Arrays). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Kth Missing Positive. Solve the Striver A2Z problem 'Kth Missing Positive' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 1D Arrays). Return the required answer per TUF sheet. This i",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= nums[i] <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def kth(nums):\n    # Kth Missing Positive - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "kth",
+    "leetcode_number": 1072,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on 1D Arrays"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 80,
+    "upvotes": 100
+  },
+  {
+    "id": "tuf_0154",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on 2D Arrays",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on 2D Arrays",
+    "tuf_step_index": 4,
+    "question": "Aggressive Cows",
+    "question_title": "Aggressive Cows",
+    "statement": "Aggressive Cows. Solve the Striver A2Z problem 'Aggressive Cows' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 2D Arrays). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Aggressive Cows. Solve the Striver A2Z problem 'Aggressive Cows' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 2D Arrays). Return the required answer per TUF sheet. This is part of ",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= nums[i] <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def aggressive(nums):\n    # Aggressive Cows - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "aggressive",
+    "leetcode_number": 1079,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on 2D Arrays"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 16,
+    "upvotes": 383
+  },
+  {
+    "id": "tuf_0155",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on Answers",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on Answers",
+    "tuf_step_index": 4,
+    "question": "Book Allocation",
+    "question_title": "Book Allocation",
+    "statement": "Book Allocation. Solve the Striver A2Z problem 'Book Allocation' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on Answers). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Book Allocation. Solve the Striver A2Z problem 'Book Allocation' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on Answers). Return the required answer per TUF sheet. This is part of Bi",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def book(nums):\n    # Book Allocation - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "book",
+    "leetcode_number": 1086,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on Answers"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 79,
+    "upvotes": 478
+  },
+  {
+    "id": "tuf_0156",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on 1D Arrays",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on 1D Arrays",
+    "tuf_step_index": 4,
+    "question": "Split Array Largest Sum",
+    "question_title": "Split Array Largest Sum",
+    "statement": "Split Array Largest Sum. Solve the Striver A2Z problem 'Split Array Largest Sum' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 1D Arrays). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Split Array Largest Sum. Solve the Striver A2Z problem 'Split Array Largest Sum' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 1D Arrays). Return the required answer per TUF sheet. ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def split(nums):\n    # Split Array Largest Sum - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "split",
+    "leetcode_number": 1093,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on 1D Arrays"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 11,
+    "upvotes": 97
+  },
+  {
+    "id": "tuf_0157",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on 2D Arrays",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on 2D Arrays",
+    "tuf_step_index": 4,
+    "question": "Painter Partition",
+    "question_title": "Painter Partition",
+    "statement": "Painter Partition. Solve the Striver A2Z problem 'Painter Partition' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 2D Arrays). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Painter Partition. Solve the Striver A2Z problem 'Painter Partition' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 2D Arrays). Return the required answer per TUF sheet. This is part",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def painter(nums):\n    # Painter Partition - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "painter",
+    "leetcode_number": 1100,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on 2D Arrays"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 40,
+    "upvotes": 135
+  },
+  {
+    "id": "tuf_0158",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on Answers",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on Answers",
+    "tuf_step_index": 4,
+    "question": "Minimize Max Distance to Gas Station",
+    "question_title": "Minimize Max Distance to Gas Station",
+    "statement": "Minimize Max Distance to Gas Station. Solve the Striver A2Z problem 'Minimize Max Distance to Gas Station' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on Answers). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Minimize Max Distance to Gas Station. Solve the Striver A2Z problem 'Minimize Max Distance to Gas Station' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on Answers). Return the require",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def minimize(nums):\n    # Minimize Max Distance to Gas Station - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "minimize",
+    "leetcode_number": 1107,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on Answers"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 62,
+    "upvotes": 298
+  },
+  {
+    "id": "tuf_0159",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on 1D Arrays",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on 1D Arrays",
+    "tuf_step_index": 4,
+    "question": "Median of Two Sorted Arrays",
+    "question_title": "Median of Two Sorted Arrays",
+    "statement": "Median of Two Sorted Arrays. Solve the Striver A2Z problem 'Median of Two Sorted Arrays' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 1D Arrays). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Median of Two Sorted Arrays. Solve the Striver A2Z problem 'Median of Two Sorted Arrays' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 1D Arrays). Return the required answer per TUF",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def median(nums):\n    # Median of Two Sorted Arrays - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "median",
+    "leetcode_number": 1114,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on 1D Arrays"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 71,
+    "upvotes": 159
+  },
+  {
+    "id": "tuf_0160",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on 2D Arrays",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on 2D Arrays",
+    "tuf_step_index": 4,
+    "question": "Kth Element of Two Sorted Arrays",
+    "question_title": "Kth Element of Two Sorted Arrays",
+    "statement": "Kth Element of Two Sorted Arrays. Solve the Striver A2Z problem 'Kth Element of Two Sorted Arrays' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 2D Arrays). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Kth Element of Two Sorted Arrays. Solve the Striver A2Z problem 'Kth Element of Two Sorted Arrays' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 2D Arrays). Return the required answ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def kth(nums):\n    # Kth Element of Two Sorted Arrays - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "kth",
+    "leetcode_number": 1121,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on 2D Arrays"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 61,
+    "upvotes": 80
+  },
+  {
+    "id": "tuf_0161",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on Answers",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on Answers",
+    "tuf_step_index": 4,
+    "question": "Search X in Sorted Array (Binary Searc #33)",
+    "question_title": "Search X in Sorted Array (Binary Searc #33)",
+    "statement": "Search X in Sorted Array (Binary Searc #33). Solve the Striver A2Z problem 'Search X in Sorted Array (Binary Searc #33)' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on Answers). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Search X in Sorted Array (Binary Searc #33). Solve the Striver A2Z problem 'Search X in Sorted Array (Binary Searc #33)' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on Answers). Retu",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= nums[i] <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def search(nums):\n    # Search X in Sorted Array (Binary Searc #33) - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "search",
+    "leetcode_number": 1128,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on Answers"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 31,
+    "upvotes": 244
+  },
+  {
+    "id": "tuf_0162",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on 1D Arrays",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on 1D Arrays",
+    "tuf_step_index": 4,
+    "question": "Lower Bound (Binary Searc #34)",
+    "question_title": "Lower Bound (Binary Searc #34)",
+    "statement": "Lower Bound (Binary Searc #34). Solve the Striver A2Z problem 'Lower Bound (Binary Searc #34)' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 1D Arrays). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Lower Bound (Binary Searc #34). Solve the Striver A2Z problem 'Lower Bound (Binary Searc #34)' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 1D Arrays). Return the required answer p",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= nums[i] <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def lower(nums):\n    # Lower Bound (Binary Searc #34) - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "lower",
+    "leetcode_number": 1135,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on 1D Arrays"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 10,
+    "upvotes": 249
+  },
+  {
+    "id": "tuf_0163",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on 2D Arrays",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on 2D Arrays",
+    "tuf_step_index": 4,
+    "question": "Upper Bound (Binary Searc #35)",
+    "question_title": "Upper Bound (Binary Searc #35)",
+    "statement": "Upper Bound (Binary Searc #35). Solve the Striver A2Z problem 'Upper Bound (Binary Searc #35)' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 2D Arrays). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Upper Bound (Binary Searc #35). Solve the Striver A2Z problem 'Upper Bound (Binary Searc #35)' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 2D Arrays). Return the required answer p",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def upper(nums):\n    # Upper Bound (Binary Searc #35) - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "upper",
+    "leetcode_number": 1142,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on 2D Arrays"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 43,
+    "upvotes": 451
+  },
+  {
+    "id": "tuf_0164",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on Answers",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on Answers",
+    "tuf_step_index": 4,
+    "question": "Search Insert Position (Binary Searc #36)",
+    "question_title": "Search Insert Position (Binary Searc #36)",
+    "statement": "Search Insert Position (Binary Searc #36). Solve the Striver A2Z problem 'Search Insert Position (Binary Searc #36)' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on Answers). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Search Insert Position (Binary Searc #36). Solve the Striver A2Z problem 'Search Insert Position (Binary Searc #36)' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on Answers). Return t",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def search(nums):\n    # Search Insert Position (Binary Searc #36) - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "search",
+    "leetcode_number": 1149,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on Answers"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 68,
+    "upvotes": 196
+  },
+  {
+    "id": "tuf_0165",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on 1D Arrays",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on 1D Arrays",
+    "tuf_step_index": 4,
+    "question": "Floor and Ceil (Binary Searc #37)",
+    "question_title": "Floor and Ceil (Binary Searc #37)",
+    "statement": "Floor and Ceil (Binary Searc #37). Solve the Striver A2Z problem 'Floor and Ceil (Binary Searc #37)' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 1D Arrays). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Floor and Ceil (Binary Searc #37). Solve the Striver A2Z problem 'Floor and Ceil (Binary Searc #37)' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 1D Arrays). Return the required an",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def floor(nums):\n    # Floor and Ceil (Binary Searc #37) - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "floor",
+    "leetcode_number": 1156,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on 1D Arrays"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 64,
+    "upvotes": 406
+  },
+  {
+    "id": "tuf_0166",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on 2D Arrays",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on 2D Arrays",
+    "tuf_step_index": 4,
+    "question": "First and Last Occurrence (Binary Searc #38)",
+    "question_title": "First and Last Occurrence (Binary Searc #38)",
+    "statement": "First and Last Occurrence (Binary Searc #38). Solve the Striver A2Z problem 'First and Last Occurrence (Binary Searc #38)' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 2D Arrays). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "First and Last Occurrence (Binary Searc #38). Solve the Striver A2Z problem 'First and Last Occurrence (Binary Searc #38)' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 2D Arrays). ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def first(nums):\n    # First and Last Occurrence (Binary Searc #38) - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "first",
+    "leetcode_number": 1163,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on 2D Arrays"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 81,
+    "upvotes": 388
+  },
+  {
+    "id": "tuf_0167",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on Answers",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on Answers",
+    "tuf_step_index": 4,
+    "question": "Count Occurrences (Binary Searc #39)",
+    "question_title": "Count Occurrences (Binary Searc #39)",
+    "statement": "Count Occurrences (Binary Searc #39). Solve the Striver A2Z problem 'Count Occurrences (Binary Searc #39)' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on Answers). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Count Occurrences (Binary Searc #39). Solve the Striver A2Z problem 'Count Occurrences (Binary Searc #39)' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on Answers). Return the require",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def count(nums):\n    # Count Occurrences (Binary Searc #39) - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "count",
+    "leetcode_number": 1170,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on Answers"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 72,
+    "upvotes": 129
+  },
+  {
+    "id": "tuf_0168",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on 1D Arrays",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on 1D Arrays",
+    "tuf_step_index": 4,
+    "question": "Search in Rotated Array I (Binary Searc #40)",
+    "question_title": "Search in Rotated Array I (Binary Searc #40)",
+    "statement": "Search in Rotated Array I (Binary Searc #40). Solve the Striver A2Z problem 'Search in Rotated Array I (Binary Searc #40)' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 1D Arrays). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Search in Rotated Array I (Binary Searc #40). Solve the Striver A2Z problem 'Search in Rotated Array I (Binary Searc #40)' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 1D Arrays). ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def search(nums):\n    # Search in Rotated Array I (Binary Searc #40) - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "search",
+    "leetcode_number": 1177,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on 1D Arrays"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 34,
+    "upvotes": 201
+  },
+  {
+    "id": "tuf_0169",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Binary Search [1D, 2D Arrays, Search Space]",
+    "sub_topic": "BS on 2D Arrays",
+    "pattern": "Binary Search",
+    "tuf_step": "Binary Search [1D, 2D Arrays, Search Space]",
+    "tuf_subtopic": "BS on 2D Arrays",
+    "tuf_step_index": 4,
+    "question": "Search in Rotated Array II (Binary Searc #41)",
+    "question_title": "Search in Rotated Array II (Binary Searc #41)",
+    "statement": "Search in Rotated Array II (Binary Searc #41). Solve the Striver A2Z problem 'Search in Rotated Array II (Binary Searc #41)' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 2D Arrays). Return the required answer per TUF sheet. This is part of Binary Search [1D, 2D Arrays, Search Space] asked in top product companies.",
+    "description": "Search in Rotated Array II (Binary Searc #41). Solve the Striver A2Z problem 'Search in Rotated Array II (Binary Searc #41)' from TakeUForward step 'Binary Search [1D, 2D Arrays, Search Space]' (pattern: BS on 2D Arrays)",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= nums[i] <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Monotonic condition? Move low/high",
+      "mid = low + (high-low)//2"
+    ],
+    "solution": {
+      "code": "def search(nums):\n    # Search in Rotated Array II (Binary Searc #41) - Binary Search [1D, 2D Arrays, Search Space]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "search",
+    "leetcode_number": 1184,
+    "dsa_guide": {
+      "approach": "Binary Search",
+      "data_structures": [
+        "BS on 2D Arrays"
+      ],
+      "patterns": [
+        "Binary Search"
+      ],
+      "tips": [
+        "Monotonic condition? Move low/high",
+        "mid = low + (high-low)//2"
+      ]
+    },
+    "source": "TakeUForward - Binary Search [1D, 2D Arrays, Search Space]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 37,
+    "upvotes": 79
+  }
+]

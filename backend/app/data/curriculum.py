@@ -92,6 +92,7 @@ C_LEVELS = [
     ]},
     # Level 2: Variables 📦
     {"id": "l02", "lessons": [
+        {"title": "The Memory Kingdom — Variable Discovery", "xp": 75, "difficulty": 3, "type": "discovery", "lesson_id": "variable-discovery"},
         _L("Int, Float, Double", 10, 1), _L("char Type", 10, 1),
         _L("Variable Declaration", 15, 1), _L("Constants & #define", 15, 1),
         _L("Type Sizes with sizeof", 15, 2), _L("scanf() Input", 15, 1, "practice"),

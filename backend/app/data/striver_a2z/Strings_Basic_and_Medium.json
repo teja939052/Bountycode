@@ -1,0 +1,1992 @@
+[
+  {
+    "id": "tuf_0170",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Strings [Basic and Medium]",
+    "sub_topic": "Basic and Easy String Problems",
+    "pattern": "Strings",
+    "tuf_step": "Strings [Basic and Medium]",
+    "tuf_subtopic": "Basic and Easy String Problems",
+    "tuf_step_index": 5,
+    "question": "Remove Outermost Parentheses",
+    "question_title": "Remove Outermost Parentheses",
+    "statement": "Remove Outermost Parentheses. Solve the Striver A2Z problem 'Remove Outermost Parentheses' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Basic and Easy String Problems). Return the required answer per TUF sheet. This is part of Strings [Basic and Medium] asked in top product companies.",
+    "description": "Remove Outermost Parentheses. Solve the Striver A2Z problem 'Remove Outermost Parentheses' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Basic and Easy String Problems). Return the required answer per TUF",
+    "constraints": [
+      "1 <= s.length <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "output": "3",
+        "explanation": "Longest without repeat"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "output": "1",
+        "explanation": "All same"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def remove(nums):\n    # Remove Outermost Parentheses - Strings [Basic and Medium]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "function_name": "remove",
+    "leetcode_number": 1191,
+    "dsa_guide": {
+      "approach": "Strings",
+      "data_structures": [
+        "Basic and Easy String Problems"
+      ],
+      "patterns": [
+        "Strings"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Strings [Basic and Medium]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 84,
+    "upvotes": 426
+  },
+  {
+    "id": "tuf_0171",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Strings [Basic and Medium]",
+    "sub_topic": "Medium String Problems",
+    "pattern": "Strings",
+    "tuf_step": "Strings [Basic and Medium]",
+    "tuf_subtopic": "Medium String Problems",
+    "tuf_step_index": 5,
+    "question": "Reverse Words",
+    "question_title": "Reverse Words",
+    "statement": "Reverse Words. Solve the Striver A2Z problem 'Reverse Words' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Medium String Problems). Return the required answer per TUF sheet. This is part of Strings [Basic and Medium] asked in top product companies.",
+    "description": "Reverse Words. Solve the Striver A2Z problem 'Reverse Words' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Medium String Problems). Return the required answer per TUF sheet. This is part of Strings [Basic",
+    "constraints": [
+      "1 <= s.length <= 10^5",
+      "s lowercase letters"
+    ],
+    "examples": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "output": "3",
+        "explanation": "Longest without repeat"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "output": "1",
+        "explanation": "All same"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def reverse(nums):\n    # Reverse Words - Strings [Basic and Medium]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "function_name": "reverse",
+    "leetcode_number": 1198,
+    "dsa_guide": {
+      "approach": "Strings",
+      "data_structures": [
+        "Medium String Problems"
+      ],
+      "patterns": [
+        "Strings"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Strings [Basic and Medium]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 79,
+    "upvotes": 81
+  },
+  {
+    "id": "tuf_0172",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Strings [Basic and Medium]",
+    "sub_topic": "Basic and Easy String Problems",
+    "pattern": "Strings",
+    "tuf_step": "Strings [Basic and Medium]",
+    "tuf_subtopic": "Basic and Easy String Problems",
+    "tuf_step_index": 5,
+    "question": "Largest Odd Number",
+    "question_title": "Largest Odd Number",
+    "statement": "Largest Odd Number. Solve the Striver A2Z problem 'Largest Odd Number' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Basic and Easy String Problems). Return the required answer per TUF sheet. This is part of Strings [Basic and Medium] asked in top product companies.",
+    "description": "Largest Odd Number. Solve the Striver A2Z problem 'Largest Odd Number' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Basic and Easy String Problems). Return the required answer per TUF sheet. This is part",
+    "constraints": [
+      "1 <= s.length <= 10^5",
+      "s lowercase letters"
+    ],
+    "examples": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "output": "3",
+        "explanation": "Longest without repeat"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "output": "1",
+        "explanation": "All same"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def largest(nums):\n    # Largest Odd Number - Strings [Basic and Medium]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "function_name": "largest",
+    "leetcode_number": 1205,
+    "dsa_guide": {
+      "approach": "Strings",
+      "data_structures": [
+        "Basic and Easy String Problems"
+      ],
+      "patterns": [
+        "Strings"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Strings [Basic and Medium]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 50,
+    "upvotes": 79
+  },
+  {
+    "id": "tuf_0173",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Strings [Basic and Medium]",
+    "sub_topic": "Medium String Problems",
+    "pattern": "Strings",
+    "tuf_step": "Strings [Basic and Medium]",
+    "tuf_subtopic": "Medium String Problems",
+    "tuf_step_index": 5,
+    "question": "Longest Common Prefix",
+    "question_title": "Longest Common Prefix",
+    "statement": "Longest Common Prefix. Solve the Striver A2Z problem 'Longest Common Prefix' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Medium String Problems). Return the required answer per TUF sheet. This is part of Strings [Basic and Medium] asked in top product companies.",
+    "description": "Longest Common Prefix. Solve the Striver A2Z problem 'Longest Common Prefix' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Medium String Problems). Return the required answer per TUF sheet. This is part o",
+    "constraints": [
+      "1 <= s.length <= 10^5",
+      "s lowercase letters"
+    ],
+    "examples": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "output": "3",
+        "explanation": "Longest without repeat"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "output": "1",
+        "explanation": "All same"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def longest(nums):\n    # Longest Common Prefix - Strings [Basic and Medium]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "function_name": "longest",
+    "leetcode_number": 1212,
+    "dsa_guide": {
+      "approach": "Strings",
+      "data_structures": [
+        "Medium String Problems"
+      ],
+      "patterns": [
+        "Strings"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Strings [Basic and Medium]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 16,
+    "upvotes": 349
+  },
+  {
+    "id": "tuf_0174",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Strings [Basic and Medium]",
+    "sub_topic": "Basic and Easy String Problems",
+    "pattern": "Strings",
+    "tuf_step": "Strings [Basic and Medium]",
+    "tuf_subtopic": "Basic and Easy String Problems",
+    "tuf_step_index": 5,
+    "question": "Isomorphic String",
+    "question_title": "Isomorphic String",
+    "statement": "Isomorphic String. Solve the Striver A2Z problem 'Isomorphic String' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Basic and Easy String Problems). Return the required answer per TUF sheet. This is part of Strings [Basic and Medium] asked in top product companies.",
+    "description": "Isomorphic String. Solve the Striver A2Z problem 'Isomorphic String' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Basic and Easy String Problems). Return the required answer per TUF sheet. This is part o",
+    "constraints": [
+      "1 <= s.length <= 10^5",
+      "s lowercase letters"
+    ],
+    "examples": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "output": "3",
+        "explanation": "Longest without repeat"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "output": "1",
+        "explanation": "All same"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def isomorphic(nums):\n    # Isomorphic String - Strings [Basic and Medium]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "function_name": "isomorphic",
+    "leetcode_number": 1219,
+    "dsa_guide": {
+      "approach": "Strings",
+      "data_structures": [
+        "Basic and Easy String Problems"
+      ],
+      "patterns": [
+        "Strings"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Strings [Basic and Medium]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 71,
+    "upvotes": 307
+  },
+  {
+    "id": "tuf_0175",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Strings [Basic and Medium]",
+    "sub_topic": "Medium String Problems",
+    "pattern": "Strings",
+    "tuf_step": "Strings [Basic and Medium]",
+    "tuf_subtopic": "Medium String Problems",
+    "tuf_step_index": 5,
+    "question": "Rotate String",
+    "question_title": "Rotate String",
+    "statement": "Rotate String. Solve the Striver A2Z problem 'Rotate String' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Medium String Problems). Return the required answer per TUF sheet. This is part of Strings [Basic and Medium] asked in top product companies.",
+    "description": "Rotate String. Solve the Striver A2Z problem 'Rotate String' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Medium String Problems). Return the required answer per TUF sheet. This is part of Strings [Basic",
+    "constraints": [
+      "1 <= s.length <= 2*10^5",
+      "ASCII"
+    ],
+    "examples": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "output": "3",
+        "explanation": "Longest without repeat"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "output": "1",
+        "explanation": "All same"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def rotate(nums):\n    # Rotate String - Strings [Basic and Medium]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "function_name": "rotate",
+    "leetcode_number": 1226,
+    "dsa_guide": {
+      "approach": "Strings",
+      "data_structures": [
+        "Medium String Problems"
+      ],
+      "patterns": [
+        "Strings"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Strings [Basic and Medium]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 77,
+    "upvotes": 130
+  },
+  {
+    "id": "tuf_0176",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Strings [Basic and Medium]",
+    "sub_topic": "Basic and Easy String Problems",
+    "pattern": "Strings",
+    "tuf_step": "Strings [Basic and Medium]",
+    "tuf_subtopic": "Basic and Easy String Problems",
+    "tuf_step_index": 5,
+    "question": "Check Anagram",
+    "question_title": "Check Anagram",
+    "statement": "Check Anagram. Solve the Striver A2Z problem 'Check Anagram' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Basic and Easy String Problems). Return the required answer per TUF sheet. This is part of Strings [Basic and Medium] asked in top product companies.",
+    "description": "Check Anagram. Solve the Striver A2Z problem 'Check Anagram' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Basic and Easy String Problems). Return the required answer per TUF sheet. This is part of String",
+    "constraints": [
+      "1 <= s.length <= 2*10^5",
+      "ASCII"
+    ],
+    "examples": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "output": "3",
+        "explanation": "Longest without repeat"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "output": "1",
+        "explanation": "All same"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def check(nums):\n    # Check Anagram - Strings [Basic and Medium]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "function_name": "check",
+    "leetcode_number": 1233,
+    "dsa_guide": {
+      "approach": "Strings",
+      "data_structures": [
+        "Basic and Easy String Problems"
+      ],
+      "patterns": [
+        "Strings"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Strings [Basic and Medium]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 17,
+    "upvotes": 310
+  },
+  {
+    "id": "tuf_0177",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Strings [Basic and Medium]",
+    "sub_topic": "Medium String Problems",
+    "pattern": "Strings",
+    "tuf_step": "Strings [Basic and Medium]",
+    "tuf_subtopic": "Medium String Problems",
+    "tuf_step_index": 5,
+    "question": "Sort Characters by Frequency",
+    "question_title": "Sort Characters by Frequency",
+    "statement": "Sort Characters by Frequency. Solve the Striver A2Z problem 'Sort Characters by Frequency' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Medium String Problems). Return the required answer per TUF sheet. This is part of Strings [Basic and Medium] asked in top product companies.",
+    "description": "Sort Characters by Frequency. Solve the Striver A2Z problem 'Sort Characters by Frequency' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Medium String Problems). Return the required answer per TUF sheet. ",
+    "constraints": [
+      "1 <= s.length <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "output": "3",
+        "explanation": "Longest without repeat"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "output": "1",
+        "explanation": "All same"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def sort(nums):\n    # Sort Characters by Frequency - Strings [Basic and Medium]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "function_name": "sort",
+    "leetcode_number": 1240,
+    "dsa_guide": {
+      "approach": "Strings",
+      "data_structures": [
+        "Medium String Problems"
+      ],
+      "patterns": [
+        "Strings"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Strings [Basic and Medium]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 20,
+    "upvotes": 485
+  },
+  {
+    "id": "tuf_0178",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Strings [Basic and Medium]",
+    "sub_topic": "Basic and Easy String Problems",
+    "pattern": "Strings",
+    "tuf_step": "Strings [Basic and Medium]",
+    "tuf_subtopic": "Basic and Easy String Problems",
+    "tuf_step_index": 5,
+    "question": "Max Nesting Depth",
+    "question_title": "Max Nesting Depth",
+    "statement": "Max Nesting Depth. Solve the Striver A2Z problem 'Max Nesting Depth' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Basic and Easy String Problems). Return the required answer per TUF sheet. This is part of Strings [Basic and Medium] asked in top product companies.",
+    "description": "Max Nesting Depth. Solve the Striver A2Z problem 'Max Nesting Depth' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Basic and Easy String Problems). Return the required answer per TUF sheet. This is part o",
+    "constraints": [
+      "1 <= s.length <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "output": "3",
+        "explanation": "Longest without repeat"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "output": "1",
+        "explanation": "All same"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def max(nums):\n    # Max Nesting Depth - Strings [Basic and Medium]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "function_name": "max",
+    "leetcode_number": 1247,
+    "dsa_guide": {
+      "approach": "Strings",
+      "data_structures": [
+        "Basic and Easy String Problems"
+      ],
+      "patterns": [
+        "Strings"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Strings [Basic and Medium]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 33,
+    "upvotes": 85
+  },
+  {
+    "id": "tuf_0179",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Strings [Basic and Medium]",
+    "sub_topic": "Medium String Problems",
+    "pattern": "Strings",
+    "tuf_step": "Strings [Basic and Medium]",
+    "tuf_subtopic": "Medium String Problems",
+    "tuf_step_index": 5,
+    "question": "Roman to Integer",
+    "question_title": "Roman to Integer",
+    "statement": "Roman to Integer. Solve the Striver A2Z problem 'Roman to Integer' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Medium String Problems). Return the required answer per TUF sheet. This is part of Strings [Basic and Medium] asked in top product companies.",
+    "description": "Roman to Integer. Solve the Striver A2Z problem 'Roman to Integer' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Medium String Problems). Return the required answer per TUF sheet. This is part of Strings ",
+    "constraints": [
+      "1 <= s.length <= 10^5",
+      "s lowercase letters"
+    ],
+    "examples": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "output": "3",
+        "explanation": "Longest without repeat"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "output": "1",
+        "explanation": "All same"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def roman(nums):\n    # Roman to Integer - Strings [Basic and Medium]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "function_name": "roman",
+    "leetcode_number": 1254,
+    "dsa_guide": {
+      "approach": "Strings",
+      "data_structures": [
+        "Medium String Problems"
+      ],
+      "patterns": [
+        "Strings"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Strings [Basic and Medium]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 86,
+    "upvotes": 84
+  },
+  {
+    "id": "tuf_0180",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Strings [Basic and Medium]",
+    "sub_topic": "Basic and Easy String Problems",
+    "pattern": "Strings",
+    "tuf_step": "Strings [Basic and Medium]",
+    "tuf_subtopic": "Basic and Easy String Problems",
+    "tuf_step_index": 5,
+    "question": "String to Integer atoi",
+    "question_title": "String to Integer atoi",
+    "statement": "String to Integer atoi. Solve the Striver A2Z problem 'String to Integer atoi' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Basic and Easy String Problems). Return the required answer per TUF sheet. This is part of Strings [Basic and Medium] asked in top product companies.",
+    "description": "String to Integer atoi. Solve the Striver A2Z problem 'String to Integer atoi' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Basic and Easy String Problems). Return the required answer per TUF sheet. This",
+    "constraints": [
+      "1 <= s.length <= 10^5",
+      "s lowercase letters"
+    ],
+    "examples": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "output": "3",
+        "explanation": "Longest without repeat"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "output": "1",
+        "explanation": "All same"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def string(nums):\n    # String to Integer atoi - Strings [Basic and Medium]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "function_name": "string",
+    "leetcode_number": 1261,
+    "dsa_guide": {
+      "approach": "Strings",
+      "data_structures": [
+        "Basic and Easy String Problems"
+      ],
+      "patterns": [
+        "Strings"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Strings [Basic and Medium]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 40,
+    "upvotes": 256
+  },
+  {
+    "id": "tuf_0181",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Strings [Basic and Medium]",
+    "sub_topic": "Medium String Problems",
+    "pattern": "Strings",
+    "tuf_step": "Strings [Basic and Medium]",
+    "tuf_subtopic": "Medium String Problems",
+    "tuf_step_index": 5,
+    "question": "Longest Palindromic Substring",
+    "question_title": "Longest Palindromic Substring",
+    "statement": "Longest Palindromic Substring. Solve the Striver A2Z problem 'Longest Palindromic Substring' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Medium String Problems). Return the required answer per TUF sheet. This is part of Strings [Basic and Medium] asked in top product companies.",
+    "description": "Longest Palindromic Substring. Solve the Striver A2Z problem 'Longest Palindromic Substring' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Medium String Problems). Return the required answer per TUF sheet",
+    "constraints": [
+      "1 <= s.length <= 10^5",
+      "s lowercase letters"
+    ],
+    "examples": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "output": "3",
+        "explanation": "Longest without repeat"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "output": "1",
+        "explanation": "All same"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def longest(nums):\n    # Longest Palindromic Substring - Strings [Basic and Medium]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "function_name": "longest",
+    "leetcode_number": 1268,
+    "dsa_guide": {
+      "approach": "Strings",
+      "data_structures": [
+        "Medium String Problems"
+      ],
+      "patterns": [
+        "Strings"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Strings [Basic and Medium]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 25,
+    "upvotes": 341
+  },
+  {
+    "id": "tuf_0182",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Strings [Basic and Medium]",
+    "sub_topic": "Basic and Easy String Problems",
+    "pattern": "Strings",
+    "tuf_step": "Strings [Basic and Medium]",
+    "tuf_subtopic": "Basic and Easy String Problems",
+    "tuf_step_index": 5,
+    "question": "Sum of Beauty of Substrings",
+    "question_title": "Sum of Beauty of Substrings",
+    "statement": "Sum of Beauty of Substrings. Solve the Striver A2Z problem 'Sum of Beauty of Substrings' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Basic and Easy String Problems). Return the required answer per TUF sheet. This is part of Strings [Basic and Medium] asked in top product companies.",
+    "description": "Sum of Beauty of Substrings. Solve the Striver A2Z problem 'Sum of Beauty of Substrings' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Basic and Easy String Problems). Return the required answer per TUF s",
+    "constraints": [
+      "1 <= s.length <= 10^5",
+      "s lowercase letters"
+    ],
+    "examples": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "output": "3",
+        "explanation": "Longest without repeat"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "output": "1",
+        "explanation": "All same"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def sum(nums):\n    # Sum of Beauty of Substrings - Strings [Basic and Medium]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "function_name": "sum",
+    "leetcode_number": 1275,
+    "dsa_guide": {
+      "approach": "Strings",
+      "data_structures": [
+        "Basic and Easy String Problems"
+      ],
+      "patterns": [
+        "Strings"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Strings [Basic and Medium]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 41,
+    "upvotes": 346
+  },
+  {
+    "id": "tuf_0183",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Strings [Basic and Medium]",
+    "sub_topic": "Medium String Problems",
+    "pattern": "Strings",
+    "tuf_step": "Strings [Basic and Medium]",
+    "tuf_subtopic": "Medium String Problems",
+    "tuf_step_index": 5,
+    "question": "Remove Outermost Parentheses (Strings [Bas #14)",
+    "question_title": "Remove Outermost Parentheses (Strings [Bas #14)",
+    "statement": "Remove Outermost Parentheses (Strings [Bas #14). Solve the Striver A2Z problem 'Remove Outermost Parentheses (Strings [Bas #14)' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Medium String Problems). Return the required answer per TUF sheet. This is part of Strings [Basic and Medium] asked in top product companies.",
+    "description": "Remove Outermost Parentheses (Strings [Bas #14). Solve the Striver A2Z problem 'Remove Outermost Parentheses (Strings [Bas #14)' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Medium String Problems). Retu",
+    "constraints": [
+      "1 <= s.length <= 2*10^5",
+      "ASCII"
+    ],
+    "examples": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "output": "3",
+        "explanation": "Longest without repeat"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "output": "1",
+        "explanation": "All same"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def remove(nums):\n    # Remove Outermost Parentheses (Strings [Bas #14) - Strings [Basic and Medium]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "function_name": "remove",
+    "leetcode_number": 1282,
+    "dsa_guide": {
+      "approach": "Strings",
+      "data_structures": [
+        "Medium String Problems"
+      ],
+      "patterns": [
+        "Strings"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Strings [Basic and Medium]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 86,
+    "upvotes": 70
+  },
+  {
+    "id": "tuf_0184",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Strings [Basic and Medium]",
+    "sub_topic": "Basic and Easy String Problems",
+    "pattern": "Strings",
+    "tuf_step": "Strings [Basic and Medium]",
+    "tuf_subtopic": "Basic and Easy String Problems",
+    "tuf_step_index": 5,
+    "question": "Reverse Words (Strings [Bas #15)",
+    "question_title": "Reverse Words (Strings [Bas #15)",
+    "statement": "Reverse Words (Strings [Bas #15). Solve the Striver A2Z problem 'Reverse Words (Strings [Bas #15)' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Basic and Easy String Problems). Return the required answer per TUF sheet. This is part of Strings [Basic and Medium] asked in top product companies.",
+    "description": "Reverse Words (Strings [Bas #15). Solve the Striver A2Z problem 'Reverse Words (Strings [Bas #15)' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Basic and Easy String Problems). Return the required answer",
+    "constraints": [
+      "1 <= s.length <= 2*10^5",
+      "ASCII"
+    ],
+    "examples": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "output": "3",
+        "explanation": "Longest without repeat"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "output": "1",
+        "explanation": "All same"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def reverse(nums):\n    # Reverse Words (Strings [Bas #15) - Strings [Basic and Medium]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "function_name": "reverse",
+    "leetcode_number": 1289,
+    "dsa_guide": {
+      "approach": "Strings",
+      "data_structures": [
+        "Basic and Easy String Problems"
+      ],
+      "patterns": [
+        "Strings"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Strings [Basic and Medium]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 89,
+    "upvotes": 91
+  },
+  {
+    "id": "tuf_0185",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Strings [Basic and Medium]",
+    "sub_topic": "Medium String Problems",
+    "pattern": "Strings",
+    "tuf_step": "Strings [Basic and Medium]",
+    "tuf_subtopic": "Medium String Problems",
+    "tuf_step_index": 5,
+    "question": "Largest Odd Number (Strings [Bas #16)",
+    "question_title": "Largest Odd Number (Strings [Bas #16)",
+    "statement": "Largest Odd Number (Strings [Bas #16). Solve the Striver A2Z problem 'Largest Odd Number (Strings [Bas #16)' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Medium String Problems). Return the required answer per TUF sheet. This is part of Strings [Basic and Medium] asked in top product companies.",
+    "description": "Largest Odd Number (Strings [Bas #16). Solve the Striver A2Z problem 'Largest Odd Number (Strings [Bas #16)' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Medium String Problems). Return the required answ",
+    "constraints": [
+      "1 <= s.length <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "output": "3",
+        "explanation": "Longest without repeat"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "output": "1",
+        "explanation": "All same"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def largest(nums):\n    # Largest Odd Number (Strings [Bas #16) - Strings [Basic and Medium]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "function_name": "largest",
+    "leetcode_number": 1296,
+    "dsa_guide": {
+      "approach": "Strings",
+      "data_structures": [
+        "Medium String Problems"
+      ],
+      "patterns": [
+        "Strings"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Strings [Basic and Medium]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 63,
+    "upvotes": 386
+  },
+  {
+    "id": "tuf_0186",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Strings [Basic and Medium]",
+    "sub_topic": "Basic and Easy String Problems",
+    "pattern": "Strings",
+    "tuf_step": "Strings [Basic and Medium]",
+    "tuf_subtopic": "Basic and Easy String Problems",
+    "tuf_step_index": 5,
+    "question": "Longest Common Prefix (Strings [Bas #17)",
+    "question_title": "Longest Common Prefix (Strings [Bas #17)",
+    "statement": "Longest Common Prefix (Strings [Bas #17). Solve the Striver A2Z problem 'Longest Common Prefix (Strings [Bas #17)' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Basic and Easy String Problems). Return the required answer per TUF sheet. This is part of Strings [Basic and Medium] asked in top product companies.",
+    "description": "Longest Common Prefix (Strings [Bas #17). Solve the Striver A2Z problem 'Longest Common Prefix (Strings [Bas #17)' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Basic and Easy String Problems). Return the",
+    "constraints": [
+      "1 <= s.length <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "output": "3",
+        "explanation": "Longest without repeat"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "output": "1",
+        "explanation": "All same"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def longest(nums):\n    # Longest Common Prefix (Strings [Bas #17) - Strings [Basic and Medium]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "function_name": "longest",
+    "leetcode_number": 1303,
+    "dsa_guide": {
+      "approach": "Strings",
+      "data_structures": [
+        "Basic and Easy String Problems"
+      ],
+      "patterns": [
+        "Strings"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Strings [Basic and Medium]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 84,
+    "upvotes": 339
+  },
+  {
+    "id": "tuf_0187",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Strings [Basic and Medium]",
+    "sub_topic": "Medium String Problems",
+    "pattern": "Strings",
+    "tuf_step": "Strings [Basic and Medium]",
+    "tuf_subtopic": "Medium String Problems",
+    "tuf_step_index": 5,
+    "question": "Isomorphic String (Strings [Bas #18)",
+    "question_title": "Isomorphic String (Strings [Bas #18)",
+    "statement": "Isomorphic String (Strings [Bas #18). Solve the Striver A2Z problem 'Isomorphic String (Strings [Bas #18)' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Medium String Problems). Return the required answer per TUF sheet. This is part of Strings [Basic and Medium] asked in top product companies.",
+    "description": "Isomorphic String (Strings [Bas #18). Solve the Striver A2Z problem 'Isomorphic String (Strings [Bas #18)' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Medium String Problems). Return the required answer",
+    "constraints": [
+      "1 <= s.length <= 10^5",
+      "s lowercase letters"
+    ],
+    "examples": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "output": "3",
+        "explanation": "Longest without repeat"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "output": "1",
+        "explanation": "All same"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def isomorphic(nums):\n    # Isomorphic String (Strings [Bas #18) - Strings [Basic and Medium]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "function_name": "isomorphic",
+    "leetcode_number": 1310,
+    "dsa_guide": {
+      "approach": "Strings",
+      "data_structures": [
+        "Medium String Problems"
+      ],
+      "patterns": [
+        "Strings"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Strings [Basic and Medium]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 76,
+    "upvotes": 211
+  },
+  {
+    "id": "tuf_0188",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Strings [Basic and Medium]",
+    "sub_topic": "Basic and Easy String Problems",
+    "pattern": "Strings",
+    "tuf_step": "Strings [Basic and Medium]",
+    "tuf_subtopic": "Basic and Easy String Problems",
+    "tuf_step_index": 5,
+    "question": "Rotate String (Strings [Bas #19)",
+    "question_title": "Rotate String (Strings [Bas #19)",
+    "statement": "Rotate String (Strings [Bas #19). Solve the Striver A2Z problem 'Rotate String (Strings [Bas #19)' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Basic and Easy String Problems). Return the required answer per TUF sheet. This is part of Strings [Basic and Medium] asked in top product companies.",
+    "description": "Rotate String (Strings [Bas #19). Solve the Striver A2Z problem 'Rotate String (Strings [Bas #19)' from TakeUForward step 'Strings [Basic and Medium]' (pattern: Basic and Easy String Problems). Return the required answer",
+    "constraints": [
+      "1 <= s.length <= 10^5",
+      "s lowercase letters"
+    ],
+    "examples": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "output": "3",
+        "explanation": "Longest without repeat"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "output": "1",
+        "explanation": "All same"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def rotate(nums):\n    # Rotate String (Strings [Bas #19) - Strings [Basic and Medium]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "s=\"abcabcbb\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"bbbbb\"",
+        "expected": "1"
+      },
+      {
+        "input": "s=\"pwwkew\"",
+        "expected": "3"
+      },
+      {
+        "input": "s=\"\"",
+        "expected": "0"
+      }
+    ],
+    "function_name": "rotate",
+    "leetcode_number": 1317,
+    "dsa_guide": {
+      "approach": "Strings",
+      "data_structures": [
+        "Basic and Easy String Problems"
+      ],
+      "patterns": [
+        "Strings"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Strings [Basic and Medium]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 43,
+    "upvotes": 154
+  }
+]

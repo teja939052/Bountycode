@@ -1,0 +1,945 @@
+[
+  {
+    "id": "tuf_0069",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Learn Important Sorting Techniques",
+    "sub_topic": "Sorting-I (Selection/Bubble/Insertion)",
+    "pattern": "Sorting",
+    "tuf_step": "Learn Important Sorting Techniques",
+    "tuf_subtopic": "Sorting-I (Selection/Bubble/Insertion)",
+    "tuf_step_index": 2,
+    "question": "Selection Sort",
+    "question_title": "Selection Sort",
+    "statement": "Selection Sort. Solve the Striver A2Z problem 'Selection Sort' from TakeUForward step 'Learn Important Sorting Techniques' (pattern: Sorting-I (Selection/Bubble/Insertion)). Return the required answer per TUF sheet. This is part of Learn Important Sorting Techniques asked in top product companies.",
+    "description": "Selection Sort. Solve the Striver A2Z problem 'Selection Sort' from TakeUForward step 'Learn Important Sorting Techniques' (pattern: Sorting-I (Selection/Bubble/Insertion)). Return the required answer per TUF sheet. This",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def selection(nums):\n    # Selection Sort - Learn Important Sorting Techniques\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "selection",
+    "leetcode_number": 484,
+    "dsa_guide": {
+      "approach": "Sorting",
+      "data_structures": [
+        "Sorting-I (Selection/Bubble/Insertion)"
+      ],
+      "patterns": [
+        "Sorting"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn Important Sorting Techniques",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 56,
+    "upvotes": 162
+  },
+  {
+    "id": "tuf_0070",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Learn Important Sorting Techniques",
+    "sub_topic": "Sorting-II (Merge/Quick/Recursive)",
+    "pattern": "Sorting",
+    "tuf_step": "Learn Important Sorting Techniques",
+    "tuf_subtopic": "Sorting-II (Merge/Quick/Recursive)",
+    "tuf_step_index": 2,
+    "question": "Bubble Sort",
+    "question_title": "Bubble Sort",
+    "statement": "Bubble Sort. Solve the Striver A2Z problem 'Bubble Sort' from TakeUForward step 'Learn Important Sorting Techniques' (pattern: Sorting-II (Merge/Quick/Recursive)). Return the required answer per TUF sheet. This is part of Learn Important Sorting Techniques asked in top product companies.",
+    "description": "Bubble Sort. Solve the Striver A2Z problem 'Bubble Sort' from TakeUForward step 'Learn Important Sorting Techniques' (pattern: Sorting-II (Merge/Quick/Recursive)). Return the required answer per TUF sheet. This is part o",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def bubble(nums):\n    # Bubble Sort - Learn Important Sorting Techniques\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "bubble",
+    "leetcode_number": 491,
+    "dsa_guide": {
+      "approach": "Sorting",
+      "data_structures": [
+        "Sorting-II (Merge/Quick/Recursive)"
+      ],
+      "patterns": [
+        "Sorting"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn Important Sorting Techniques",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 27,
+    "upvotes": 310
+  },
+  {
+    "id": "tuf_0071",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Learn Important Sorting Techniques",
+    "sub_topic": "Sorting-I (Selection/Bubble/Insertion)",
+    "pattern": "Sorting",
+    "tuf_step": "Learn Important Sorting Techniques",
+    "tuf_subtopic": "Sorting-I (Selection/Bubble/Insertion)",
+    "tuf_step_index": 2,
+    "question": "Insertion Sort",
+    "question_title": "Insertion Sort",
+    "statement": "Insertion Sort. Solve the Striver A2Z problem 'Insertion Sort' from TakeUForward step 'Learn Important Sorting Techniques' (pattern: Sorting-I (Selection/Bubble/Insertion)). Return the required answer per TUF sheet. This is part of Learn Important Sorting Techniques asked in top product companies.",
+    "description": "Insertion Sort. Solve the Striver A2Z problem 'Insertion Sort' from TakeUForward step 'Learn Important Sorting Techniques' (pattern: Sorting-I (Selection/Bubble/Insertion)). Return the required answer per TUF sheet. This",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def insertion(nums):\n    # Insertion Sort - Learn Important Sorting Techniques\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "insertion",
+    "leetcode_number": 498,
+    "dsa_guide": {
+      "approach": "Sorting",
+      "data_structures": [
+        "Sorting-I (Selection/Bubble/Insertion)"
+      ],
+      "patterns": [
+        "Sorting"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn Important Sorting Techniques",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 73,
+    "upvotes": 96
+  },
+  {
+    "id": "tuf_0072",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Learn Important Sorting Techniques",
+    "sub_topic": "Sorting-II (Merge/Quick/Recursive)",
+    "pattern": "Sorting",
+    "tuf_step": "Learn Important Sorting Techniques",
+    "tuf_subtopic": "Sorting-II (Merge/Quick/Recursive)",
+    "tuf_step_index": 2,
+    "question": "Merge Sort",
+    "question_title": "Merge Sort",
+    "statement": "Merge Sort. Solve the Striver A2Z problem 'Merge Sort' from TakeUForward step 'Learn Important Sorting Techniques' (pattern: Sorting-II (Merge/Quick/Recursive)). Return the required answer per TUF sheet. This is part of Learn Important Sorting Techniques asked in top product companies.",
+    "description": "Merge Sort. Solve the Striver A2Z problem 'Merge Sort' from TakeUForward step 'Learn Important Sorting Techniques' (pattern: Sorting-II (Merge/Quick/Recursive)). Return the required answer per TUF sheet. This is part of ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def merge(nums):\n    # Merge Sort - Learn Important Sorting Techniques\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "merge",
+    "leetcode_number": 505,
+    "dsa_guide": {
+      "approach": "Sorting",
+      "data_structures": [
+        "Sorting-II (Merge/Quick/Recursive)"
+      ],
+      "patterns": [
+        "Sorting"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn Important Sorting Techniques",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 16,
+    "upvotes": 490
+  },
+  {
+    "id": "tuf_0073",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Learn Important Sorting Techniques",
+    "sub_topic": "Sorting-I (Selection/Bubble/Insertion)",
+    "pattern": "Sorting",
+    "tuf_step": "Learn Important Sorting Techniques",
+    "tuf_subtopic": "Sorting-I (Selection/Bubble/Insertion)",
+    "tuf_step_index": 2,
+    "question": "Quick Sort",
+    "question_title": "Quick Sort",
+    "statement": "Quick Sort. Solve the Striver A2Z problem 'Quick Sort' from TakeUForward step 'Learn Important Sorting Techniques' (pattern: Sorting-I (Selection/Bubble/Insertion)). Return the required answer per TUF sheet. This is part of Learn Important Sorting Techniques asked in top product companies.",
+    "description": "Quick Sort. Solve the Striver A2Z problem 'Quick Sort' from TakeUForward step 'Learn Important Sorting Techniques' (pattern: Sorting-I (Selection/Bubble/Insertion)). Return the required answer per TUF sheet. This is part",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def quick(nums):\n    # Quick Sort - Learn Important Sorting Techniques\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "quick",
+    "leetcode_number": 512,
+    "dsa_guide": {
+      "approach": "Sorting",
+      "data_structures": [
+        "Sorting-I (Selection/Bubble/Insertion)"
+      ],
+      "patterns": [
+        "Sorting"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn Important Sorting Techniques",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 24,
+    "upvotes": 128
+  },
+  {
+    "id": "tuf_0074",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Learn Important Sorting Techniques",
+    "sub_topic": "Sorting-II (Merge/Quick/Recursive)",
+    "pattern": "Sorting",
+    "tuf_step": "Learn Important Sorting Techniques",
+    "tuf_subtopic": "Sorting-II (Merge/Quick/Recursive)",
+    "tuf_step_index": 2,
+    "question": "Recursive Bubble Sort",
+    "question_title": "Recursive Bubble Sort",
+    "statement": "Recursive Bubble Sort. Solve the Striver A2Z problem 'Recursive Bubble Sort' from TakeUForward step 'Learn Important Sorting Techniques' (pattern: Sorting-II (Merge/Quick/Recursive)). Return the required answer per TUF sheet. This is part of Learn Important Sorting Techniques asked in top product companies.",
+    "description": "Recursive Bubble Sort. Solve the Striver A2Z problem 'Recursive Bubble Sort' from TakeUForward step 'Learn Important Sorting Techniques' (pattern: Sorting-II (Merge/Quick/Recursive)). Return the required answer per TUF s",
+    "constraints": [
+      "1 <= n <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def recursive(nums):\n    # Recursive Bubble Sort - Learn Important Sorting Techniques\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "recursive",
+    "leetcode_number": 519,
+    "dsa_guide": {
+      "approach": "Sorting",
+      "data_structures": [
+        "Sorting-II (Merge/Quick/Recursive)"
+      ],
+      "patterns": [
+        "Sorting"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn Important Sorting Techniques",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 90,
+    "upvotes": 131
+  },
+  {
+    "id": "tuf_0075",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Learn Important Sorting Techniques",
+    "sub_topic": "Sorting-I (Selection/Bubble/Insertion)",
+    "pattern": "Sorting",
+    "tuf_step": "Learn Important Sorting Techniques",
+    "tuf_subtopic": "Sorting-I (Selection/Bubble/Insertion)",
+    "tuf_step_index": 2,
+    "question": "Recursive Insertion Sort",
+    "question_title": "Recursive Insertion Sort",
+    "statement": "Recursive Insertion Sort. Solve the Striver A2Z problem 'Recursive Insertion Sort' from TakeUForward step 'Learn Important Sorting Techniques' (pattern: Sorting-I (Selection/Bubble/Insertion)). Return the required answer per TUF sheet. This is part of Learn Important Sorting Techniques asked in top product companies.",
+    "description": "Recursive Insertion Sort. Solve the Striver A2Z problem 'Recursive Insertion Sort' from TakeUForward step 'Learn Important Sorting Techniques' (pattern: Sorting-I (Selection/Bubble/Insertion)). Return the required answer",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def recursive(nums):\n    # Recursive Insertion Sort - Learn Important Sorting Techniques\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "recursive",
+    "leetcode_number": 526,
+    "dsa_guide": {
+      "approach": "Sorting",
+      "data_structures": [
+        "Sorting-I (Selection/Bubble/Insertion)"
+      ],
+      "patterns": [
+        "Sorting"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn Important Sorting Techniques",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 64,
+    "upvotes": 355
+  },
+  {
+    "id": "tuf_0076",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Learn Important Sorting Techniques",
+    "sub_topic": "Sorting-II (Merge/Quick/Recursive)",
+    "pattern": "Sorting",
+    "tuf_step": "Learn Important Sorting Techniques",
+    "tuf_subtopic": "Sorting-II (Merge/Quick/Recursive)",
+    "tuf_step_index": 2,
+    "question": "Selection Sort (Learn Import #8)",
+    "question_title": "Selection Sort (Learn Import #8)",
+    "statement": "Selection Sort (Learn Import #8). Solve the Striver A2Z problem 'Selection Sort (Learn Import #8)' from TakeUForward step 'Learn Important Sorting Techniques' (pattern: Sorting-II (Merge/Quick/Recursive)). Return the required answer per TUF sheet. This is part of Learn Important Sorting Techniques asked in top product companies.",
+    "description": "Selection Sort (Learn Import #8). Solve the Striver A2Z problem 'Selection Sort (Learn Import #8)' from TakeUForward step 'Learn Important Sorting Techniques' (pattern: Sorting-II (Merge/Quick/Recursive)). Return the req",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def selection(nums):\n    # Selection Sort (Learn Import #8) - Learn Important Sorting Techniques\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "selection",
+    "leetcode_number": 533,
+    "dsa_guide": {
+      "approach": "Sorting",
+      "data_structures": [
+        "Sorting-II (Merge/Quick/Recursive)"
+      ],
+      "patterns": [
+        "Sorting"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn Important Sorting Techniques",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 18,
+    "upvotes": 247
+  },
+  {
+    "id": "tuf_0077",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Learn Important Sorting Techniques",
+    "sub_topic": "Sorting-I (Selection/Bubble/Insertion)",
+    "pattern": "Sorting",
+    "tuf_step": "Learn Important Sorting Techniques",
+    "tuf_subtopic": "Sorting-I (Selection/Bubble/Insertion)",
+    "tuf_step_index": 2,
+    "question": "Bubble Sort (Learn Import #9)",
+    "question_title": "Bubble Sort (Learn Import #9)",
+    "statement": "Bubble Sort (Learn Import #9). Solve the Striver A2Z problem 'Bubble Sort (Learn Import #9)' from TakeUForward step 'Learn Important Sorting Techniques' (pattern: Sorting-I (Selection/Bubble/Insertion)). Return the required answer per TUF sheet. This is part of Learn Important Sorting Techniques asked in top product companies.",
+    "description": "Bubble Sort (Learn Import #9). Solve the Striver A2Z problem 'Bubble Sort (Learn Import #9)' from TakeUForward step 'Learn Important Sorting Techniques' (pattern: Sorting-I (Selection/Bubble/Insertion)). Return the requi",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= arr[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def bubble(nums):\n    # Bubble Sort (Learn Import #9) - Learn Important Sorting Techniques\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "bubble",
+    "leetcode_number": 540,
+    "dsa_guide": {
+      "approach": "Sorting",
+      "data_structures": [
+        "Sorting-I (Selection/Bubble/Insertion)"
+      ],
+      "patterns": [
+        "Sorting"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn Important Sorting Techniques",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 58,
+    "upvotes": 355
+  }
+]

@@ -18,6 +18,7 @@ import {
   Briefcase,
   Castle,
   Brain,
+  Lightbulb,
 } from "lucide-react";
 
 /* Primary IA — exactly 5 top-level destinations (Material/Apple guideline).

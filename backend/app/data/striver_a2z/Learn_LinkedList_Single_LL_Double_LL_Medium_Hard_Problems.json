@@ -1,0 +1,4087 @@
+[
+  {
+    "id": "tuf_0189",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Learn 1D LinkedList",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Learn 1D LinkedList",
+    "tuf_step_index": 6,
+    "question": "Intro to LL",
+    "question_title": "Intro to LL",
+    "statement": "Intro to LL. Solve the Striver A2Z problem 'Intro to LL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn 1D LinkedList). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Intro to LL. Solve the Striver A2Z problem 'Intro to LL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn 1D LinkedList). Return the required answer per TUF sheet. T",
+    "constraints": [
+      "0 <= nodes <= 10^5",
+      "-10^5 <= Node.val <= 10^5"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def intro(nums):\n    # Intro to LL - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "intro",
+    "leetcode_number": 1324,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Learn 1D LinkedList"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 95,
+    "upvotes": 416
+  },
+  {
+    "id": "tuf_0190",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Learn Doubly LinkedList",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Learn Doubly LinkedList",
+    "tuf_step_index": 6,
+    "question": "Insert at Head",
+    "question_title": "Insert at Head",
+    "statement": "Insert at Head. Solve the Striver A2Z problem 'Insert at Head' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn Doubly LinkedList). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Insert at Head. Solve the Striver A2Z problem 'Insert at Head' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn Doubly LinkedList). Return the required answer per TU",
+    "constraints": [
+      "0 <= nodes <= 10^5",
+      "-10^5 <= Node.val <= 10^5"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def insert(nums):\n    # Insert at Head - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "insert",
+    "leetcode_number": 1331,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Learn Doubly LinkedList"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 50,
+    "upvotes": 172
+  },
+  {
+    "id": "tuf_0191",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Medium Problems of DLL",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Medium Problems of DLL",
+    "tuf_step_index": 6,
+    "question": "Delete Head",
+    "question_title": "Delete Head",
+    "statement": "Delete Head. Solve the Striver A2Z problem 'Delete Head' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of DLL). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Delete Head. Solve the Striver A2Z problem 'Delete Head' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of DLL). Return the required answer per TUF sheet",
+    "constraints": [
+      "0 <= nodes <= 10^5",
+      "-10^5 <= Node.val <= 10^5"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def delete(nums):\n    # Delete Head - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "delete",
+    "leetcode_number": 1338,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Medium Problems of DLL"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 43,
+    "upvotes": 252
+  },
+  {
+    "id": "tuf_0192",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Medium Problems of LL",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Medium Problems of LL",
+    "tuf_step_index": 6,
+    "question": "Length of LL",
+    "question_title": "Length of LL",
+    "statement": "Length of LL. Solve the Striver A2Z problem 'Length of LL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of LL). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Length of LL. Solve the Striver A2Z problem 'Length of LL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of LL). Return the required answer per TUF shee",
+    "constraints": [
+      "0 <= nodes <= 10^5",
+      "-10^5 <= Node.val <= 10^5"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def length(nums):\n    # Length of LL - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "length",
+    "leetcode_number": 1345,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Medium Problems of LL"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 26,
+    "upvotes": 393
+  },
+  {
+    "id": "tuf_0193",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Hard Problems of LL",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Hard Problems of LL",
+    "tuf_step_index": 6,
+    "question": "Search in LL",
+    "question_title": "Search in LL",
+    "statement": "Search in LL. Solve the Striver A2Z problem 'Search in LL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Hard Problems of LL). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Search in LL. Solve the Striver A2Z problem 'Search in LL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Hard Problems of LL). Return the required answer per TUF sheet.",
+    "constraints": [
+      "0 <= nodes <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def search(nums):\n    # Search in LL - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "search",
+    "leetcode_number": 1352,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Hard Problems of LL"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 92,
+    "upvotes": 203
+  },
+  {
+    "id": "tuf_0194",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Learn 1D LinkedList",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Learn 1D LinkedList",
+    "tuf_step_index": 6,
+    "question": "Intro to Doubly LL",
+    "question_title": "Intro to Doubly LL",
+    "statement": "Intro to Doubly LL. Solve the Striver A2Z problem 'Intro to Doubly LL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn 1D LinkedList). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Intro to Doubly LL. Solve the Striver A2Z problem 'Intro to Doubly LL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn 1D LinkedList). Return the required answer pe",
+    "constraints": [
+      "0 <= nodes <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def intro(nums):\n    # Intro to Doubly LL - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "intro",
+    "leetcode_number": 1359,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Learn 1D LinkedList"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 68,
+    "upvotes": 211
+  },
+  {
+    "id": "tuf_0195",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Learn Doubly LinkedList",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Learn Doubly LinkedList",
+    "tuf_step_index": 6,
+    "question": "Insert Before Head DLL",
+    "question_title": "Insert Before Head DLL",
+    "statement": "Insert Before Head DLL. Solve the Striver A2Z problem 'Insert Before Head DLL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn Doubly LinkedList). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Insert Before Head DLL. Solve the Striver A2Z problem 'Insert Before Head DLL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn Doubly LinkedList). Return the requir",
+    "constraints": [
+      "0 <= nodes <= 10^5",
+      "-10^5 <= Node.val <= 10^5"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def insert(nums):\n    # Insert Before Head DLL - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "insert",
+    "leetcode_number": 1366,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Learn Doubly LinkedList"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 19,
+    "upvotes": 54
+  },
+  {
+    "id": "tuf_0196",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Medium Problems of DLL",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Medium Problems of DLL",
+    "tuf_step_index": 6,
+    "question": "Delete Head DLL",
+    "question_title": "Delete Head DLL",
+    "statement": "Delete Head DLL. Solve the Striver A2Z problem 'Delete Head DLL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of DLL). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Delete Head DLL. Solve the Striver A2Z problem 'Delete Head DLL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of DLL). Return the required answer per T",
+    "constraints": [
+      "0 <= nodes <= 10^5",
+      "-10^5 <= Node.val <= 10^5"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def delete(nums):\n    # Delete Head DLL - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "delete",
+    "leetcode_number": 1373,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Medium Problems of DLL"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 68,
+    "upvotes": 368
+  },
+  {
+    "id": "tuf_0197",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Medium Problems of LL",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Medium Problems of LL",
+    "tuf_step_index": 6,
+    "question": "Reverse DLL",
+    "question_title": "Reverse DLL",
+    "statement": "Reverse DLL. Solve the Striver A2Z problem 'Reverse DLL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of LL). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Reverse DLL. Solve the Striver A2Z problem 'Reverse DLL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of LL). Return the required answer per TUF sheet.",
+    "constraints": [
+      "0 <= nodes <= 10^5",
+      "-10^5 <= Node.val <= 10^5"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def reverse(nums):\n    # Reverse DLL - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "reverse",
+    "leetcode_number": 1380,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Medium Problems of LL"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 82,
+    "upvotes": 101
+  },
+  {
+    "id": "tuf_0198",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Hard Problems of LL",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Hard Problems of LL",
+    "tuf_step_index": 6,
+    "question": "Delete Occurrences in DLL",
+    "question_title": "Delete Occurrences in DLL",
+    "statement": "Delete Occurrences in DLL. Solve the Striver A2Z problem 'Delete Occurrences in DLL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Hard Problems of LL). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Delete Occurrences in DLL. Solve the Striver A2Z problem 'Delete Occurrences in DLL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Hard Problems of LL). Return the requ",
+    "constraints": [
+      "0 <= nodes <= 10^5",
+      "-10^5 <= Node.val <= 10^5"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def delete(nums):\n    # Delete Occurrences in DLL - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "delete",
+    "leetcode_number": 1387,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Hard Problems of LL"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 19,
+    "upvotes": 325
+  },
+  {
+    "id": "tuf_0199",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Learn 1D LinkedList",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Learn 1D LinkedList",
+    "tuf_step_index": 6,
+    "question": "Find Pairs with Sum in DLL",
+    "question_title": "Find Pairs with Sum in DLL",
+    "statement": "Find Pairs with Sum in DLL. Solve the Striver A2Z problem 'Find Pairs with Sum in DLL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn 1D LinkedList). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Find Pairs with Sum in DLL. Solve the Striver A2Z problem 'Find Pairs with Sum in DLL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn 1D LinkedList). Return the re",
+    "constraints": [
+      "0 <= nodes <= 10^5",
+      "-10^5 <= Node.val <= 10^5"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def find(nums):\n    # Find Pairs with Sum in DLL - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "find",
+    "leetcode_number": 1394,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Learn 1D LinkedList"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 37,
+    "upvotes": 309
+  },
+  {
+    "id": "tuf_0200",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Learn Doubly LinkedList",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Learn Doubly LinkedList",
+    "tuf_step_index": 6,
+    "question": "Remove Duplicates in DLL",
+    "question_title": "Remove Duplicates in DLL",
+    "statement": "Remove Duplicates in DLL. Solve the Striver A2Z problem 'Remove Duplicates in DLL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn Doubly LinkedList). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Remove Duplicates in DLL. Solve the Striver A2Z problem 'Remove Duplicates in DLL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn Doubly LinkedList). Return the re",
+    "constraints": [
+      "0 <= nodes <= 10^5",
+      "-10^5 <= Node.val <= 10^5"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def remove(nums):\n    # Remove Duplicates in DLL - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "remove",
+    "leetcode_number": 1401,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Learn Doubly LinkedList"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 43,
+    "upvotes": 117
+  },
+  {
+    "id": "tuf_0201",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Medium Problems of DLL",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Medium Problems of DLL",
+    "tuf_step_index": 6,
+    "question": "Middle of LL",
+    "question_title": "Middle of LL",
+    "statement": "Middle of LL. Solve the Striver A2Z problem 'Middle of LL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of DLL). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Middle of LL. Solve the Striver A2Z problem 'Middle of LL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of DLL). Return the required answer per TUF she",
+    "constraints": [
+      "0 <= nodes <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def middle(nums):\n    # Middle of LL - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "middle",
+    "leetcode_number": 1408,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Medium Problems of DLL"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 54,
+    "upvotes": 85
+  },
+  {
+    "id": "tuf_0202",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Medium Problems of LL",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Medium Problems of LL",
+    "tuf_step_index": 6,
+    "question": "Reverse LL",
+    "question_title": "Reverse LL",
+    "statement": "Reverse LL. Solve the Striver A2Z problem 'Reverse LL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of LL). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Reverse LL. Solve the Striver A2Z problem 'Reverse LL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of LL). Return the required answer per TUF sheet. T",
+    "constraints": [
+      "0 <= nodes <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def reverse(nums):\n    # Reverse LL - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "reverse",
+    "leetcode_number": 1415,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Medium Problems of LL"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 41,
+    "upvotes": 239
+  },
+  {
+    "id": "tuf_0203",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Hard Problems of LL",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Hard Problems of LL",
+    "tuf_step_index": 6,
+    "question": "Detect Loop",
+    "question_title": "Detect Loop",
+    "statement": "Detect Loop. Solve the Striver A2Z problem 'Detect Loop' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Hard Problems of LL). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Detect Loop. Solve the Striver A2Z problem 'Detect Loop' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Hard Problems of LL). Return the required answer per TUF sheet. T",
+    "constraints": [
+      "0 <= nodes <= 10^5",
+      "-10^5 <= Node.val <= 10^5"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def detect(nums):\n    # Detect Loop - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "detect",
+    "leetcode_number": 1422,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Hard Problems of LL"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 46,
+    "upvotes": 130
+  },
+  {
+    "id": "tuf_0204",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Learn 1D LinkedList",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Learn 1D LinkedList",
+    "tuf_step_index": 6,
+    "question": "Starting Point of Loop",
+    "question_title": "Starting Point of Loop",
+    "statement": "Starting Point of Loop. Solve the Striver A2Z problem 'Starting Point of Loop' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn 1D LinkedList). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Starting Point of Loop. Solve the Striver A2Z problem 'Starting Point of Loop' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn 1D LinkedList). Return the required a",
+    "constraints": [
+      "0 <= nodes <= 10^5",
+      "-10^5 <= Node.val <= 10^5"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def starting(nums):\n    # Starting Point of Loop - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "starting",
+    "leetcode_number": 1429,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Learn 1D LinkedList"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 66,
+    "upvotes": 476
+  },
+  {
+    "id": "tuf_0205",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Learn Doubly LinkedList",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Learn Doubly LinkedList",
+    "tuf_step_index": 6,
+    "question": "Length of Loop",
+    "question_title": "Length of Loop",
+    "statement": "Length of Loop. Solve the Striver A2Z problem 'Length of Loop' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn Doubly LinkedList). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Length of Loop. Solve the Striver A2Z problem 'Length of Loop' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn Doubly LinkedList). Return the required answer per TU",
+    "constraints": [
+      "0 <= nodes <= 10^5",
+      "-10^5 <= Node.val <= 10^5"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def length(nums):\n    # Length of Loop - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "length",
+    "leetcode_number": 1436,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Learn Doubly LinkedList"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 79,
+    "upvotes": 410
+  },
+  {
+    "id": "tuf_0206",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Medium Problems of DLL",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Medium Problems of DLL",
+    "tuf_step_index": 6,
+    "question": "Check Palindrome (Learn Linked #18)",
+    "question_title": "Check Palindrome (Learn Linked #18)",
+    "statement": "Check Palindrome (Learn Linked #18). Solve the Striver A2Z problem 'Check Palindrome (Learn Linked #18)' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of DLL). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Check Palindrome (Learn Linked #18). Solve the Striver A2Z problem 'Check Palindrome (Learn Linked #18)' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems o",
+    "constraints": [
+      "0 <= nodes <= 10^5",
+      "-10^5 <= Node.val <= 10^5"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def check(nums):\n    # Check Palindrome (Learn Linked #18) - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "check",
+    "leetcode_number": 1443,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Medium Problems of DLL"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 48,
+    "upvotes": 363
+  },
+  {
+    "id": "tuf_0207",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Medium Problems of LL",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Medium Problems of LL",
+    "tuf_step_index": 6,
+    "question": "Segregate Odd Even",
+    "question_title": "Segregate Odd Even",
+    "statement": "Segregate Odd Even. Solve the Striver A2Z problem 'Segregate Odd Even' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of LL). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Segregate Odd Even. Solve the Striver A2Z problem 'Segregate Odd Even' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of LL). Return the required answer ",
+    "constraints": [
+      "0 <= nodes <= 10^5",
+      "-10^5 <= Node.val <= 10^5"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def segregate(nums):\n    # Segregate Odd Even - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "segregate",
+    "leetcode_number": 1450,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Medium Problems of LL"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 93,
+    "upvotes": 320
+  },
+  {
+    "id": "tuf_0208",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Hard Problems of LL",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Hard Problems of LL",
+    "tuf_step_index": 6,
+    "question": "Remove Nth Node from End",
+    "question_title": "Remove Nth Node from End",
+    "statement": "Remove Nth Node from End. Solve the Striver A2Z problem 'Remove Nth Node from End' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Hard Problems of LL). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Remove Nth Node from End. Solve the Striver A2Z problem 'Remove Nth Node from End' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Hard Problems of LL). Return the requir",
+    "constraints": [
+      "0 <= nodes <= 10^5",
+      "-10^5 <= Node.val <= 10^5"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def remove(nums):\n    # Remove Nth Node from End - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "remove",
+    "leetcode_number": 1457,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Hard Problems of LL"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 11,
+    "upvotes": 391
+  },
+  {
+    "id": "tuf_0209",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Learn 1D LinkedList",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Learn 1D LinkedList",
+    "tuf_step_index": 6,
+    "question": "Delete Middle Node",
+    "question_title": "Delete Middle Node",
+    "statement": "Delete Middle Node. Solve the Striver A2Z problem 'Delete Middle Node' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn 1D LinkedList). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Delete Middle Node. Solve the Striver A2Z problem 'Delete Middle Node' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn 1D LinkedList). Return the required answer pe",
+    "constraints": [
+      "0 <= nodes <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def delete(nums):\n    # Delete Middle Node - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "delete",
+    "leetcode_number": 1464,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Learn 1D LinkedList"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 80,
+    "upvotes": 203
+  },
+  {
+    "id": "tuf_0210",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Learn Doubly LinkedList",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Learn Doubly LinkedList",
+    "tuf_step_index": 6,
+    "question": "Sort LL",
+    "question_title": "Sort LL",
+    "statement": "Sort LL. Solve the Striver A2Z problem 'Sort LL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn Doubly LinkedList). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Sort LL. Solve the Striver A2Z problem 'Sort LL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn Doubly LinkedList). Return the required answer per TUF sheet. This ",
+    "constraints": [
+      "0 <= nodes <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def sort(nums):\n    # Sort LL - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "sort",
+    "leetcode_number": 1471,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Learn Doubly LinkedList"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 94,
+    "upvotes": 103
+  },
+  {
+    "id": "tuf_0211",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Medium Problems of DLL",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Medium Problems of DLL",
+    "tuf_step_index": 6,
+    "question": "Sort 0s 1s 2s (Learn Linked #23)",
+    "question_title": "Sort 0s 1s 2s (Learn Linked #23)",
+    "statement": "Sort 0s 1s 2s (Learn Linked #23). Solve the Striver A2Z problem 'Sort 0s 1s 2s (Learn Linked #23)' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of DLL). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Sort 0s 1s 2s (Learn Linked #23). Solve the Striver A2Z problem 'Sort 0s 1s 2s (Learn Linked #23)' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of DLL)",
+    "constraints": [
+      "0 <= nodes <= 10^5",
+      "-10^5 <= Node.val <= 10^5"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def sort(nums):\n    # Sort 0s 1s 2s (Learn Linked #23) - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "sort",
+    "leetcode_number": 1478,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Medium Problems of DLL"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 27,
+    "upvotes": 185
+  },
+  {
+    "id": "tuf_0212",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Medium Problems of LL",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Medium Problems of LL",
+    "tuf_step_index": 6,
+    "question": "Intersection Point of Y LL",
+    "question_title": "Intersection Point of Y LL",
+    "statement": "Intersection Point of Y LL. Solve the Striver A2Z problem 'Intersection Point of Y LL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of LL). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Intersection Point of Y LL. Solve the Striver A2Z problem 'Intersection Point of Y LL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of LL). Return the ",
+    "constraints": [
+      "0 <= nodes <= 10^5",
+      "-10^5 <= Node.val <= 10^5"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def intersection(nums):\n    # Intersection Point of Y LL - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "intersection",
+    "leetcode_number": 1485,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Medium Problems of LL"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 24,
+    "upvotes": 104
+  },
+  {
+    "id": "tuf_0213",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Hard Problems of LL",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Hard Problems of LL",
+    "tuf_step_index": 6,
+    "question": "Add 1 to Number as LL",
+    "question_title": "Add 1 to Number as LL",
+    "statement": "Add 1 to Number as LL. Solve the Striver A2Z problem 'Add 1 to Number as LL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Hard Problems of LL). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Add 1 to Number as LL. Solve the Striver A2Z problem 'Add 1 to Number as LL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Hard Problems of LL). Return the required ans",
+    "constraints": [
+      "0 <= nodes <= 10^5",
+      "-10^5 <= Node.val <= 10^5"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def add(nums):\n    # Add 1 to Number as LL - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "add",
+    "leetcode_number": 1492,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Hard Problems of LL"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 80,
+    "upvotes": 129
+  },
+  {
+    "id": "tuf_0214",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Learn 1D LinkedList",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Learn 1D LinkedList",
+    "tuf_step_index": 6,
+    "question": "Add Two Numbers",
+    "question_title": "Add Two Numbers",
+    "statement": "Add Two Numbers. Solve the Striver A2Z problem 'Add Two Numbers' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn 1D LinkedList). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Add Two Numbers. Solve the Striver A2Z problem 'Add Two Numbers' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn 1D LinkedList). Return the required answer per TUF ",
+    "constraints": [
+      "0 <= nodes <= 10^5",
+      "-10^5 <= Node.val <= 10^5"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def add(nums):\n    # Add Two Numbers - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "add",
+    "leetcode_number": 1499,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Learn 1D LinkedList"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 44,
+    "upvotes": 194
+  },
+  {
+    "id": "tuf_0215",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Learn Doubly LinkedList",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Learn Doubly LinkedList",
+    "tuf_step_index": 6,
+    "question": "Reverse LL in K Groups",
+    "question_title": "Reverse LL in K Groups",
+    "statement": "Reverse LL in K Groups. Solve the Striver A2Z problem 'Reverse LL in K Groups' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn Doubly LinkedList). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Reverse LL in K Groups. Solve the Striver A2Z problem 'Reverse LL in K Groups' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn Doubly LinkedList). Return the requir",
+    "constraints": [
+      "0 <= nodes <= 10^5",
+      "-10^5 <= Node.val <= 10^5"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def reverse(nums):\n    # Reverse LL in K Groups - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "reverse",
+    "leetcode_number": 1506,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Learn Doubly LinkedList"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 87,
+    "upvotes": 157
+  },
+  {
+    "id": "tuf_0216",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Medium Problems of DLL",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Medium Problems of DLL",
+    "tuf_step_index": 6,
+    "question": "Rotate LL",
+    "question_title": "Rotate LL",
+    "statement": "Rotate LL. Solve the Striver A2Z problem 'Rotate LL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of DLL). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Rotate LL. Solve the Striver A2Z problem 'Rotate LL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of DLL). Return the required answer per TUF sheet. Th",
+    "constraints": [
+      "0 <= nodes <= 10^5",
+      "-10^5 <= Node.val <= 10^5"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def rotate(nums):\n    # Rotate LL - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "rotate",
+    "leetcode_number": 1513,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Medium Problems of DLL"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 53,
+    "upvotes": 154
+  },
+  {
+    "id": "tuf_0217",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Medium Problems of LL",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Medium Problems of LL",
+    "tuf_step_index": 6,
+    "question": "Flatten LL",
+    "question_title": "Flatten LL",
+    "statement": "Flatten LL. Solve the Striver A2Z problem 'Flatten LL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of LL). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Flatten LL. Solve the Striver A2Z problem 'Flatten LL' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of LL). Return the required answer per TUF sheet. T",
+    "constraints": [
+      "0 <= nodes <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def flatten(nums):\n    # Flatten LL - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "flatten",
+    "leetcode_number": 1520,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Medium Problems of LL"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 91,
+    "upvotes": 486
+  },
+  {
+    "id": "tuf_0218",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Hard Problems of LL",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Hard Problems of LL",
+    "tuf_step_index": 6,
+    "question": "Clone LL with Random Pointer",
+    "question_title": "Clone LL with Random Pointer",
+    "statement": "Clone LL with Random Pointer. Solve the Striver A2Z problem 'Clone LL with Random Pointer' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Hard Problems of LL). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Clone LL with Random Pointer. Solve the Striver A2Z problem 'Clone LL with Random Pointer' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Hard Problems of LL). Return th",
+    "constraints": [
+      "0 <= nodes <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def clone(nums):\n    # Clone LL with Random Pointer - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "clone",
+    "leetcode_number": 1527,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Hard Problems of LL"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 43,
+    "upvotes": 308
+  },
+  {
+    "id": "tuf_0219",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Learn 1D LinkedList",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Learn 1D LinkedList",
+    "tuf_step_index": 6,
+    "question": "Intro to LL (Learn Linked #31)",
+    "question_title": "Intro to LL (Learn Linked #31)",
+    "statement": "Intro to LL (Learn Linked #31). Solve the Striver A2Z problem 'Intro to LL (Learn Linked #31)' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn 1D LinkedList). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Intro to LL (Learn Linked #31). Solve the Striver A2Z problem 'Intro to LL (Learn Linked #31)' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn 1D LinkedList). Retur",
+    "constraints": [
+      "0 <= nodes <= 10^5",
+      "-10^5 <= Node.val <= 10^5"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def intro(nums):\n    # Intro to LL (Learn Linked #31) - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "intro",
+    "leetcode_number": 1534,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Learn 1D LinkedList"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 72,
+    "upvotes": 178
+  },
+  {
+    "id": "tuf_0220",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Learn Doubly LinkedList",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Learn Doubly LinkedList",
+    "tuf_step_index": 6,
+    "question": "Insert at Head (Learn Linked #32)",
+    "question_title": "Insert at Head (Learn Linked #32)",
+    "statement": "Insert at Head (Learn Linked #32). Solve the Striver A2Z problem 'Insert at Head (Learn Linked #32)' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn Doubly LinkedList). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Insert at Head (Learn Linked #32). Solve the Striver A2Z problem 'Insert at Head (Learn Linked #32)' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn Doubly LinkedLi",
+    "constraints": [
+      "0 <= nodes <= 10^5",
+      "-10^5 <= Node.val <= 10^5"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def insert(nums):\n    # Insert at Head (Learn Linked #32) - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "insert",
+    "leetcode_number": 1541,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Learn Doubly LinkedList"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 16,
+    "upvotes": 97
+  },
+  {
+    "id": "tuf_0221",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Medium Problems of DLL",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Medium Problems of DLL",
+    "tuf_step_index": 6,
+    "question": "Delete Head (Learn Linked #33)",
+    "question_title": "Delete Head (Learn Linked #33)",
+    "statement": "Delete Head (Learn Linked #33). Solve the Striver A2Z problem 'Delete Head (Learn Linked #33)' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of DLL). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Delete Head (Learn Linked #33). Solve the Striver A2Z problem 'Delete Head (Learn Linked #33)' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of DLL). Re",
+    "constraints": [
+      "0 <= nodes <= 10^5",
+      "-10^5 <= Node.val <= 10^5"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def delete(nums):\n    # Delete Head (Learn Linked #33) - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "delete",
+    "leetcode_number": 1548,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Medium Problems of DLL"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 91,
+    "upvotes": 266
+  },
+  {
+    "id": "tuf_0222",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Medium Problems of LL",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Medium Problems of LL",
+    "tuf_step_index": 6,
+    "question": "Length of LL (Learn Linked #34)",
+    "question_title": "Length of LL (Learn Linked #34)",
+    "statement": "Length of LL (Learn Linked #34). Solve the Striver A2Z problem 'Length of LL (Learn Linked #34)' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of LL). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Length of LL (Learn Linked #34). Solve the Striver A2Z problem 'Length of LL (Learn Linked #34)' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of LL). R",
+    "constraints": [
+      "0 <= nodes <= 10^5",
+      "-10^5 <= Node.val <= 10^5"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def length(nums):\n    # Length of LL (Learn Linked #34) - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "length",
+    "leetcode_number": 1555,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Medium Problems of LL"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 45,
+    "upvotes": 72
+  },
+  {
+    "id": "tuf_0223",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Hard Problems of LL",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Hard Problems of LL",
+    "tuf_step_index": 6,
+    "question": "Search in LL (Learn Linked #35)",
+    "question_title": "Search in LL (Learn Linked #35)",
+    "statement": "Search in LL (Learn Linked #35). Solve the Striver A2Z problem 'Search in LL (Learn Linked #35)' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Hard Problems of LL). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Search in LL (Learn Linked #35). Solve the Striver A2Z problem 'Search in LL (Learn Linked #35)' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Hard Problems of LL). Ret",
+    "constraints": [
+      "0 <= nodes <= 10^5",
+      "-10^5 <= Node.val <= 10^5"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def search(nums):\n    # Search in LL (Learn Linked #35) - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "search",
+    "leetcode_number": 1562,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Hard Problems of LL"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 10,
+    "upvotes": 220
+  },
+  {
+    "id": "tuf_0224",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Learn 1D LinkedList",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Learn 1D LinkedList",
+    "tuf_step_index": 6,
+    "question": "Intro to Doubly LL (Learn Linked #36)",
+    "question_title": "Intro to Doubly LL (Learn Linked #36)",
+    "statement": "Intro to Doubly LL (Learn Linked #36). Solve the Striver A2Z problem 'Intro to Doubly LL (Learn Linked #36)' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn 1D LinkedList). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Intro to Doubly LL (Learn Linked #36). Solve the Striver A2Z problem 'Intro to Doubly LL (Learn Linked #36)' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn 1D Link",
+    "constraints": [
+      "0 <= nodes <= 10^5",
+      "-10^5 <= Node.val <= 10^5"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def intro(nums):\n    # Intro to Doubly LL (Learn Linked #36) - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "intro",
+    "leetcode_number": 1569,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Learn 1D LinkedList"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 26,
+    "upvotes": 376
+  },
+  {
+    "id": "tuf_0225",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Learn Doubly LinkedList",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Learn Doubly LinkedList",
+    "tuf_step_index": 6,
+    "question": "Insert Before Head DLL (Learn Linked #37)",
+    "question_title": "Insert Before Head DLL (Learn Linked #37)",
+    "statement": "Insert Before Head DLL (Learn Linked #37). Solve the Striver A2Z problem 'Insert Before Head DLL (Learn Linked #37)' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn Doubly LinkedList). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Insert Before Head DLL (Learn Linked #37). Solve the Striver A2Z problem 'Insert Before Head DLL (Learn Linked #37)' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Learn",
+    "constraints": [
+      "0 <= nodes <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def insert(nums):\n    # Insert Before Head DLL (Learn Linked #37) - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "insert",
+    "leetcode_number": 1576,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Learn Doubly LinkedList"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 43,
+    "upvotes": 132
+  },
+  {
+    "id": "tuf_0226",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Medium Problems of DLL",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Medium Problems of DLL",
+    "tuf_step_index": 6,
+    "question": "Delete Head DLL (Learn Linked #38)",
+    "question_title": "Delete Head DLL (Learn Linked #38)",
+    "statement": "Delete Head DLL (Learn Linked #38). Solve the Striver A2Z problem 'Delete Head DLL (Learn Linked #38)' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of DLL). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Delete Head DLL (Learn Linked #38). Solve the Striver A2Z problem 'Delete Head DLL (Learn Linked #38)' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of ",
+    "constraints": [
+      "0 <= nodes <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def delete(nums):\n    # Delete Head DLL (Learn Linked #38) - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "delete",
+    "leetcode_number": 1583,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Medium Problems of DLL"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 66,
+    "upvotes": 332
+  },
+  {
+    "id": "tuf_0227",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "sub_topic": "Medium Problems of LL",
+    "pattern": "Linked Lists",
+    "tuf_step": "Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "tuf_subtopic": "Medium Problems of LL",
+    "tuf_step_index": 6,
+    "question": "Reverse DLL (Learn Linked #39)",
+    "question_title": "Reverse DLL (Learn Linked #39)",
+    "statement": "Reverse DLL (Learn Linked #39). Solve the Striver A2Z problem 'Reverse DLL (Learn Linked #39)' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of LL). Return the required answer per TUF sheet. This is part of Learn LinkedList [Single LL, Double LL, Medium, Hard Problems] asked in top product companies.",
+    "description": "Reverse DLL (Learn Linked #39). Solve the Striver A2Z problem 'Reverse DLL (Learn Linked #39)' from TakeUForward step 'Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]' (pattern: Medium Problems of LL). Ret",
+    "constraints": [
+      "0 <= nodes <= 10^5",
+      "-10^5 <= Node.val <= 10^5"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def reverse(nums):\n    # Reverse DLL (Learn Linked #39) - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "reverse",
+    "leetcode_number": 1590,
+    "dsa_guide": {
+      "approach": "Linked Lists",
+      "data_structures": [
+        "Medium Problems of LL"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Learn LinkedList [Single LL, Double LL, Medium, Hard Problems]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 64,
+    "upvotes": 337
+  }
+]

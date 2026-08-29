@@ -1,0 +1,3527 @@
+{
+  "generated_at": "2026-08-26T16:15:53.772658+00:00",
+  "learning_objects": 158,
+  "sde_pack_target": 325,
+  "progress_percent": 101.8,
+  "skill_areas": 18,
+  "skills_complete": 18,
+  "mastery_badges": 0,
+  "avg_quality_score": 32.0,
+  "curriculum": {
+    "programming-fundamentals": {
+      "skill_id": "programming-fundamentals",
+      "name": "Programming Fundamentals",
+      "description": "Basic syntax, control flow, functions, and debugging",
+      "question_target": 20,
+      "current_total": 20,
+      "coverage_percent": 100.0,
+      "difficulty_distribution": {
+        "easy": 6,
+        "medium": 10,
+        "hard": 4
+      },
+      "learning_path": {
+        "learn": [
+          {
+            "id": "scaffold_programming-fundamentals_easy_000",
+            "title": "Programming Fundamentals — Easy [Variables]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_programming-fundamentals_easy_001",
+            "title": "Programming Fundamentals — Easy [Loops]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_programming-fundamentals_easy_002",
+            "title": "Programming Fundamentals — Easy [Functions]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_programming-fundamentals_easy_003",
+            "title": "Programming Fundamentals — Easy [Recursion]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_programming-fundamentals_easy_004",
+            "title": "Programming Fundamentals — Easy [Variables]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_programming-fundamentals_easy_005",
+            "title": "Programming Fundamentals — Easy [Loops]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ],
+        "guided_practice": [
+          {
+            "id": "scaffold_programming-fundamentals_medium_006",
+            "title": "Programming Fundamentals — Medium [Functions]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_programming-fundamentals_medium_007",
+            "title": "Programming Fundamentals — Medium [Recursion]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_programming-fundamentals_medium_008",
+            "title": "Programming Fundamentals — Medium [Variables]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_programming-fundamentals_medium_009",
+            "title": "Programming Fundamentals — Medium [Loops]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_programming-fundamentals_medium_010",
+            "title": "Programming Fundamentals — Medium [Functions]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_programming-fundamentals_medium_011",
+            "title": "Programming Fundamentals — Medium [Recursion]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_programming-fundamentals_medium_012",
+            "title": "Programming Fundamentals — Medium [Variables]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_programming-fundamentals_medium_013",
+            "title": "Programming Fundamentals — Medium [Loops]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_programming-fundamentals_medium_014",
+            "title": "Programming Fundamentals — Medium [Functions]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_programming-fundamentals_medium_015",
+            "title": "Programming Fundamentals — Medium [Recursion]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ],
+        "placement_practice": [
+          {
+            "id": "scaffold_programming-fundamentals_hard_016",
+            "title": "Programming Fundamentals — Hard [Variables]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_programming-fundamentals_hard_017",
+            "title": "Programming Fundamentals — Hard [Loops]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_programming-fundamentals_hard_018",
+            "title": "Programming Fundamentals — Hard [Functions]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_programming-fundamentals_hard_019",
+            "title": "Programming Fundamentals — Hard [Recursion]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ]
+      },
+      "mastery": {
+        "badge": "Learner",
+        "emoji": "🌱",
+        "coverage_percent": 100.0,
+        "avg_quality_score": 50,
+        "questions_authored": 0,
+        "target": 20,
+        "is_complete": true
+      }
+    },
+    "arrays-hashing": {
+      "skill_id": "arrays-hashing",
+      "name": "Arrays & Hashing",
+      "description": "Traversal, in-place modification, hash map lookups",
+      "question_target": 30,
+      "current_total": 33,
+      "coverage_percent": 110.0,
+      "difficulty_distribution": {
+        "easy": 12,
+        "medium": 15,
+        "hard": 6
+      },
+      "learning_path": {
+        "learn": [
+          {
+            "id": "q_000000",
+            "title": "Given an array of integers nums sorted in non-decreasing order, find the startin",
+            "pattern": "binary-search",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000002",
+            "title": "Given an integer array nums, return true if any value appears at least twice, el",
+            "pattern": "hash-table",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000004",
+            "title": "Given an array of strings strs, group the anagrams together.\n\nExample: strs=['ea",
+            "pattern": "hash-table",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000014",
+            "title": "Given array nums, return the majority element (appears more than n/2 times). Maj",
+            "pattern": "hash-table",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000016",
+            "title": "Find all numbers that disappear in an array of length n with values in [1,n]. Re",
+            "pattern": "hash-table",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000030",
+            "title": "Given array nums, move all zeros to the end while maintaining order of non-zero ",
+            "pattern": "two-pointers",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000032",
+            "title": "Given array nums, return pivot index where sum of left equals sum of right. If n",
+            "pattern": "hash-table",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000034",
+            "title": "Determine if two strings s and t are isomorphic. Characters in s can be replaced",
+            "pattern": "hash-table",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000036",
+            "title": "Bulls and Cows: secret number and guess string. Bull=correct digit in correct po",
+            "pattern": "hash-table",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000040",
+            "title": "Given two integer arrays, return their intersection (unique elements that appear",
+            "pattern": "hash-table",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000042",
+            "title": "Write algorithm to determine if a number n is happy. Starting with n, replace by",
+            "pattern": "hash-table",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000046",
+            "title": "Given array nums, return running sum where runningSum[i]=sum(nums[0]..nums[i]).\n",
+            "pattern": "prefix-sum",
+            "hint_count": 3,
+            "test_case_count": 3
+          }
+        ],
+        "guided_practice": [
+          {
+            "id": "scaffold_arrays-hashing_medium_000",
+            "title": "Arrays & Hashing — Medium [Two Sum]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "q_000006",
+            "title": "Given an integer array nums and an integer k, return the k most frequent element",
+            "pattern": "hash-table",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000008",
+            "title": "Given an integer array nums, return an array answer such that answer[i] equals p",
+            "pattern": "hash-table",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000010",
+            "title": "Given an unsorted array of integers nums, return the length of the longest conse",
+            "pattern": "sliding-window",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000012",
+            "title": "Given an array nums containing n distinct numbers from range [0,n], find the mis",
+            "pattern": "hash-table",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000018",
+            "title": "Sort an array of 0s, 1s, and 2s in-place (Dutch National Flag problem).\n\nExample",
+            "pattern": "hash-table",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000020",
+            "title": "Given an integer array nums, return the maximum sum of a contiguous subarray usi",
+            "pattern": "sliding-window",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000022",
+            "title": "Given an m x n matrix, if element is 0 set entire row and column to 0 in-place.\n",
+            "pattern": "hash-table",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000024",
+            "title": "Return elements of an m x n matrix in spiral order.\n\nExample: matrix=[[1,2,3],[4",
+            "pattern": "hash-table",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000026",
+            "title": "Rotate an n x n matrix 90 degrees clockwise in-place.\n\nExample: matrix=[[1,2,3],",
+            "pattern": "two-pointers",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000028",
+            "title": "Design a data structure supporting insert, delete, and getRandom in O(1) average",
+            "pattern": "hash-table",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000038",
+            "title": "Determine if a 9x9 Sudoku board is valid. Only filled cells need validation (row",
+            "pattern": "hash-table",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000044",
+            "title": "Count number of good pairs: pairs (i,j) i<j where nums[i]==nums[j].\n\nExample: nu",
+            "pattern": "two-pointers",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000048",
+            "title": "Given a string s, find first non-repeating character and return its index. If no",
+            "pattern": "binary-search",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000050",
+            "title": "Find the longest substring length without repeating characters.\n\nExample: s='abc",
+            "pattern": "sliding-window",
+            "hint_count": 3,
+            "test_case_count": 3
+          }
+        ],
+        "placement_practice": [
+          {
+            "id": "scaffold_arrays-hashing_hard_001",
+            "title": "Arrays & Hashing — Hard [Group Anagrams]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "q_000052",
+            "title": "Given an unsorted array, find the first missing positive integer. O(n) time, O(1",
+            "pattern": "hash-table",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000054",
+            "title": "Given array of n+1 integers in range [1,n], find the duplicate without modifying",
+            "pattern": "hash-table",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000056",
+            "title": "Find the longest consecutive sequence length in an unsorted array. O(n) time.\n\nE",
+            "pattern": "sliding-window",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000058",
+            "title": "Given n non-negative integers representing elevation map where bar width=1, comp",
+            "pattern": "two-pointers",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000060",
+            "title": "Given two sorted arrays nums1 and nums2, return median of the two sorted arrays.",
+            "pattern": "binary-search",
+            "hint_count": 3,
+            "test_case_count": 3
+          }
+        ]
+      },
+      "mastery": {
+        "badge": "Apprentice",
+        "emoji": "📚",
+        "coverage_percent": 110.0,
+        "avg_quality_score": 32.0,
+        "questions_authored": 31,
+        "target": 30,
+        "is_complete": true
+      }
+    },
+    "strings": {
+      "skill_id": "strings",
+      "name": "Strings",
+      "description": "String manipulation, parsing, and pattern matching",
+      "question_target": 20,
+      "current_total": 20,
+      "coverage_percent": 100.0,
+      "difficulty_distribution": {
+        "easy": 6,
+        "medium": 10,
+        "hard": 4
+      },
+      "learning_path": {
+        "learn": [
+          {
+            "id": "scaffold_strings_easy_000",
+            "title": "Strings — Easy [Valid Palindrome]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_strings_easy_001",
+            "title": "Strings — Easy [Reverse Words]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_strings_easy_002",
+            "title": "Strings — Easy [Group Anagrams]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_strings_easy_003",
+            "title": "Strings — Easy [Min Window Substring]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_strings_easy_004",
+            "title": "Strings — Easy [Valid Palindrome]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_strings_easy_005",
+            "title": "Strings — Easy [Reverse Words]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ],
+        "guided_practice": [
+          {
+            "id": "scaffold_strings_medium_006",
+            "title": "Strings — Medium [Group Anagrams]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_strings_medium_007",
+            "title": "Strings — Medium [Min Window Substring]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_strings_medium_008",
+            "title": "Strings — Medium [Valid Palindrome]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_strings_medium_009",
+            "title": "Strings — Medium [Reverse Words]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_strings_medium_010",
+            "title": "Strings — Medium [Group Anagrams]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_strings_medium_011",
+            "title": "Strings — Medium [Min Window Substring]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_strings_medium_012",
+            "title": "Strings — Medium [Valid Palindrome]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_strings_medium_013",
+            "title": "Strings — Medium [Reverse Words]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_strings_medium_014",
+            "title": "Strings — Medium [Group Anagrams]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_strings_medium_015",
+            "title": "Strings — Medium [Min Window Substring]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ],
+        "placement_practice": [
+          {
+            "id": "scaffold_strings_hard_016",
+            "title": "Strings — Hard [Valid Palindrome]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_strings_hard_017",
+            "title": "Strings — Hard [Reverse Words]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_strings_hard_018",
+            "title": "Strings — Hard [Group Anagrams]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_strings_hard_019",
+            "title": "Strings — Hard [Min Window Substring]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ]
+      },
+      "mastery": {
+        "badge": "Learner",
+        "emoji": "🌱",
+        "coverage_percent": 100.0,
+        "avg_quality_score": 50,
+        "questions_authored": 0,
+        "target": 20,
+        "is_complete": true
+      }
+    },
+    "two-pointers-sliding-window": {
+      "skill_id": "two-pointers-sliding-window",
+      "name": "Two Pointers & Sliding Window",
+      "description": "Paired indices and window invariants for subarray problems",
+      "question_target": 20,
+      "current_total": 20,
+      "coverage_percent": 100.0,
+      "difficulty_distribution": {
+        "easy": 6,
+        "medium": 10,
+        "hard": 4
+      },
+      "learning_path": {
+        "learn": [
+          {
+            "id": "scaffold_two-pointers-sliding-window_easy_000",
+            "title": "Two Pointers & Sliding Window — Easy [Two Sum Ii]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_two-pointers-sliding-window_easy_001",
+            "title": "Two Pointers & Sliding Window — Easy [Sort Colors]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_two-pointers-sliding-window_easy_002",
+            "title": "Two Pointers & Sliding Window — Easy [Min Size Subarray Sum]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_two-pointers-sliding-window_easy_003",
+            "title": "Two Pointers & Sliding Window — Easy [Longest Repeating Char]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_two-pointers-sliding-window_easy_004",
+            "title": "Two Pointers & Sliding Window — Easy [Two Sum Ii]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_two-pointers-sliding-window_easy_005",
+            "title": "Two Pointers & Sliding Window — Easy [Sort Colors]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ],
+        "guided_practice": [
+          {
+            "id": "scaffold_two-pointers-sliding-window_medium_006",
+            "title": "Two Pointers & Sliding Window — Medium [Min Size Subarray Sum]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_two-pointers-sliding-window_medium_007",
+            "title": "Two Pointers & Sliding Window — Medium [Longest Repeating Char]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_two-pointers-sliding-window_medium_008",
+            "title": "Two Pointers & Sliding Window — Medium [Two Sum Ii]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_two-pointers-sliding-window_medium_009",
+            "title": "Two Pointers & Sliding Window — Medium [Sort Colors]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_two-pointers-sliding-window_medium_010",
+            "title": "Two Pointers & Sliding Window — Medium [Min Size Subarray Sum]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_two-pointers-sliding-window_medium_011",
+            "title": "Two Pointers & Sliding Window — Medium [Longest Repeating Char]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_two-pointers-sliding-window_medium_012",
+            "title": "Two Pointers & Sliding Window — Medium [Two Sum Ii]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_two-pointers-sliding-window_medium_013",
+            "title": "Two Pointers & Sliding Window — Medium [Sort Colors]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_two-pointers-sliding-window_medium_014",
+            "title": "Two Pointers & Sliding Window — Medium [Min Size Subarray Sum]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_two-pointers-sliding-window_medium_015",
+            "title": "Two Pointers & Sliding Window — Medium [Longest Repeating Char]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ],
+        "placement_practice": [
+          {
+            "id": "scaffold_two-pointers-sliding-window_hard_016",
+            "title": "Two Pointers & Sliding Window — Hard [Two Sum Ii]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_two-pointers-sliding-window_hard_017",
+            "title": "Two Pointers & Sliding Window — Hard [Sort Colors]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_two-pointers-sliding-window_hard_018",
+            "title": "Two Pointers & Sliding Window — Hard [Min Size Subarray Sum]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_two-pointers-sliding-window_hard_019",
+            "title": "Two Pointers & Sliding Window — Hard [Longest Repeating Char]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ]
+      },
+      "mastery": {
+        "badge": "Learner",
+        "emoji": "🌱",
+        "coverage_percent": 100.0,
+        "avg_quality_score": 50,
+        "questions_authored": 0,
+        "target": 20,
+        "is_complete": true
+      }
+    },
+    "binary-search": {
+      "skill_id": "binary-search",
+      "name": "Binary Search",
+      "description": "Boundary detection and search-space reduction",
+      "question_target": 15,
+      "current_total": 15,
+      "coverage_percent": 100.0,
+      "difficulty_distribution": {
+        "easy": 4,
+        "medium": 8,
+        "hard": 3
+      },
+      "learning_path": {
+        "learn": [
+          {
+            "id": "scaffold_binary-search_easy_000",
+            "title": "Binary Search — Easy [Search Insert]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "q_000126",
+            "title": "Given sorted array of distinct integers and target, return target index or -1.\n\n",
+            "pattern": "binary-search",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000128",
+            "title": "Given sorted array and target, return index where target is or should be inserte",
+            "pattern": "binary-search",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000130",
+            "title": "Find square root of non-negative integer x. Return only integer part (floor).\n\nE",
+            "pattern": "binary-search",
+            "hint_count": 3,
+            "test_case_count": 3
+          }
+        ],
+        "guided_practice": [
+          {
+            "id": "scaffold_binary-search_medium_001",
+            "title": "Binary Search — Medium [Find First Last]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_binary-search_medium_002",
+            "title": "Binary Search — Medium [Search Rotated]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "q_000132",
+            "title": "Search in a rotated sorted array with unique values. Return index or -1.\n\nExampl",
+            "pattern": "binary-search",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000134",
+            "title": "Find minimum in a rotated sorted array (unique values).\n\nExample: nums=[3,4,5,1,",
+            "pattern": "binary-search",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000136",
+            "title": "Search in rotated sorted array with duplicates. Return true if target exists.\n\nE",
+            "pattern": "binary-search",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000138",
+            "title": "Find peak element in array. Peak is element > neighbors. Return any peak index.\n",
+            "pattern": "binary-search",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000140",
+            "title": "Koko loves bananas. Given piles and hours h, she eats k bananas per hour (ceil d",
+            "pattern": "binary-search",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000148",
+            "title": "Given sorted array and target, find first and last occurrence of target.\n\nExampl",
+            "pattern": "binary-search",
+            "hint_count": 3,
+            "test_case_count": 3
+          }
+        ],
+        "placement_practice": [
+          {
+            "id": "q_000142",
+            "title": "Find median of two sorted arrays. O(log(min(m,n))) time.\n\nExample: nums1=[1,3], ",
+            "pattern": "binary-search",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000144",
+            "title": "Given sorted array rotated at unknown pivot, find number of rotations = index of",
+            "pattern": "binary-search",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000146",
+            "title": "Given array of positive integers and threshold, find smallest divisor such that ",
+            "pattern": "binary-search",
+            "hint_count": 3,
+            "test_case_count": 3
+          }
+        ]
+      },
+      "mastery": {
+        "badge": "Apprentice",
+        "emoji": "📚",
+        "coverage_percent": 100.0,
+        "avg_quality_score": 32.0,
+        "questions_authored": 12,
+        "target": 15,
+        "is_complete": true
+      }
+    },
+    "linked-lists": {
+      "skill_id": "linked-lists",
+      "name": "Linked Lists",
+      "description": "Pointer manipulation and dummy-head techniques",
+      "question_target": 15,
+      "current_total": 16,
+      "coverage_percent": 106.7,
+      "difficulty_distribution": {
+        "easy": 5,
+        "medium": 8,
+        "hard": 3
+      },
+      "learning_path": {
+        "learn": [
+          {
+            "id": "q_000150",
+            "title": "Reverse a singly linked list iteratively.\n\nExample: head=[1,2,3,4,5] => [5,4,3,2",
+            "pattern": "two-pointers",
+            "hint_count": 3,
+            "test_case_count": 0
+          },
+          {
+            "id": "q_000152",
+            "title": "Return middle node of linked list. If two middles, return second.\n\nExample: head",
+            "pattern": "bit-manipulation",
+            "hint_count": 3,
+            "test_case_count": 0
+          },
+          {
+            "id": "q_000154",
+            "title": "Determine if linked list has a cycle.\n\nExample: head=[3,2,0,-4], tail connects t",
+            "pattern": "bit-manipulation",
+            "hint_count": 3,
+            "test_case_count": 0
+          },
+          {
+            "id": "q_000156",
+            "title": "Merge two sorted linked lists into one sorted list.\n\nExample: list1=[1,2,4], lis",
+            "pattern": "bit-manipulation",
+            "hint_count": 3,
+            "test_case_count": 0
+          },
+          {
+            "id": "q_000174",
+            "title": "Convert binary number in linked list to integer (values are 0 or 1).\n\nExample: h",
+            "pattern": "bit-manipulation",
+            "hint_count": 3,
+            "test_case_count": 0
+          }
+        ],
+        "guided_practice": [
+          {
+            "id": "scaffold_linked-lists_medium_000",
+            "title": "Linked Lists — Medium [Reverse Linked List]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_linked-lists_medium_001",
+            "title": "Linked Lists — Medium [Add Two Numbers]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "q_000158",
+            "title": "Remove n-th node from end of linked list in one pass.\n\nExample: head=[1,2,3,4,5]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 0
+          },
+          {
+            "id": "q_000160",
+            "title": "Delete all duplicates from sorted linked list so each element appears once.\n\nExa",
+            "pattern": "bst",
+            "hint_count": 3,
+            "test_case_count": 0
+          },
+          {
+            "id": "q_000162",
+            "title": "Swap every two adjacent nodes in a linked list.\n\nExample: head=[1,2,3,4] => [2,1",
+            "pattern": "two-pointers",
+            "hint_count": 3,
+            "test_case_count": 0
+          },
+          {
+            "id": "q_000164",
+            "title": "Return node where cycle begins in linked list. Return null if no cycle.\n\nExample",
+            "pattern": "greedy",
+            "hint_count": 3,
+            "test_case_count": 0
+          },
+          {
+            "id": "q_000166",
+            "title": "Add two numbers represented by linked lists (digits in reverse order). Return su",
+            "pattern": "two-pointers",
+            "hint_count": 3,
+            "test_case_count": 0
+          },
+          {
+            "id": "q_000176",
+            "title": "Design a linked list with: get(index), addAtHead(val), addAtTail(val), addAtInde",
+            "pattern": "bst",
+            "hint_count": 3,
+            "test_case_count": 0
+          }
+        ],
+        "placement_practice": [
+          {
+            "id": "q_000168",
+            "title": "Reverse nodes in k-group. If length not multiple of k, remaining nodes stay as-i",
+            "pattern": "two-pointers",
+            "hint_count": 3,
+            "test_case_count": 0
+          },
+          {
+            "id": "q_000170",
+            "title": "Merge k sorted linked lists into one sorted list.\n\nExample: lists=[[1,4,5],[1,3,",
+            "pattern": "heap",
+            "hint_count": 3,
+            "test_case_count": 0
+          },
+          {
+            "id": "q_000172",
+            "title": "Find intersection node of two linked lists that merge at some point.\n\nExample: l",
+            "pattern": "two-pointers",
+            "hint_count": 3,
+            "test_case_count": 0
+          }
+        ]
+      },
+      "mastery": {
+        "badge": "Apprentice",
+        "emoji": "📚",
+        "coverage_percent": 106.7,
+        "avg_quality_score": 32.0,
+        "questions_authored": 14,
+        "target": 15,
+        "is_complete": true
+      }
+    },
+    "stacks-queues": {
+      "skill_id": "stacks-queues",
+      "name": "Stacks & Queues",
+      "description": "Monotonic stacks, balanced brackets, sliding window max",
+      "question_target": 20,
+      "current_total": 20,
+      "coverage_percent": 100.0,
+      "difficulty_distribution": {
+        "easy": 6,
+        "medium": 10,
+        "hard": 4
+      },
+      "learning_path": {
+        "learn": [
+          {
+            "id": "scaffold_stacks-queues_easy_000",
+            "title": "Stacks & Queues — Easy [Valid Parentheses]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_stacks-queues_easy_001",
+            "title": "Stacks & Queues — Easy [Min Stack]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_stacks-queues_easy_002",
+            "title": "Stacks & Queues — Easy [Daily Temperatures]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_stacks-queues_easy_003",
+            "title": "Stacks & Queues — Easy [Sliding Window Max]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_stacks-queues_easy_004",
+            "title": "Stacks & Queues — Easy [Valid Parentheses]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_stacks-queues_easy_005",
+            "title": "Stacks & Queues — Easy [Min Stack]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ],
+        "guided_practice": [
+          {
+            "id": "scaffold_stacks-queues_medium_006",
+            "title": "Stacks & Queues — Medium [Daily Temperatures]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_stacks-queues_medium_007",
+            "title": "Stacks & Queues — Medium [Sliding Window Max]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_stacks-queues_medium_008",
+            "title": "Stacks & Queues — Medium [Valid Parentheses]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_stacks-queues_medium_009",
+            "title": "Stacks & Queues — Medium [Min Stack]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_stacks-queues_medium_010",
+            "title": "Stacks & Queues — Medium [Daily Temperatures]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_stacks-queues_medium_011",
+            "title": "Stacks & Queues — Medium [Sliding Window Max]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_stacks-queues_medium_012",
+            "title": "Stacks & Queues — Medium [Valid Parentheses]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_stacks-queues_medium_013",
+            "title": "Stacks & Queues — Medium [Min Stack]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_stacks-queues_medium_014",
+            "title": "Stacks & Queues — Medium [Daily Temperatures]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_stacks-queues_medium_015",
+            "title": "Stacks & Queues — Medium [Sliding Window Max]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ],
+        "placement_practice": [
+          {
+            "id": "scaffold_stacks-queues_hard_016",
+            "title": "Stacks & Queues — Hard [Valid Parentheses]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_stacks-queues_hard_017",
+            "title": "Stacks & Queues — Hard [Min Stack]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_stacks-queues_hard_018",
+            "title": "Stacks & Queues — Hard [Daily Temperatures]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_stacks-queues_hard_019",
+            "title": "Stacks & Queues — Hard [Sliding Window Max]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ]
+      },
+      "mastery": {
+        "badge": "Learner",
+        "emoji": "🌱",
+        "coverage_percent": 100.0,
+        "avg_quality_score": 50,
+        "questions_authored": 0,
+        "target": 20,
+        "is_complete": true
+      }
+    },
+    "trees": {
+      "skill_id": "trees",
+      "name": "Trees",
+      "description": "DFS/BFS, recursive decomposition, tree validation",
+      "question_target": 25,
+      "current_total": 25,
+      "coverage_percent": 100.0,
+      "difficulty_distribution": {
+        "easy": 8,
+        "medium": 12,
+        "hard": 5
+      },
+      "learning_path": {
+        "learn": [
+          {
+            "id": "scaffold_trees_easy_000",
+            "title": "Trees — Easy [Inorder Traversal]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_trees_easy_001",
+            "title": "Trees — Easy [Validate Bst]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_trees_easy_002",
+            "title": "Trees — Easy [Lca]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "q_000178",
+            "title": "Given root of binary tree, return maximum depth (longest root-to-leaf path).\n\nEx",
+            "pattern": "sliding-window",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000180",
+            "title": "Given two binary trees p and q, check if they are identical.\n\nExample: p=[1,2,3]",
+            "pattern": "tree-dfs",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000182",
+            "title": "Return level order (BFS) traversal of binary tree as nested arrays, left to righ",
+            "pattern": "stack",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000184",
+            "title": "Check if binary tree is symmetric (mirror of itself).\n\nExample: root=[1,2,2,3,4,",
+            "pattern": "tree-dfs",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000208",
+            "title": "Return preorder traversal of binary tree iteratively (root, left, right).\n\nExamp",
+            "pattern": "stack",
+            "hint_count": 3,
+            "test_case_count": 3
+          }
+        ],
+        "guided_practice": [
+          {
+            "id": "scaffold_trees_medium_003",
+            "title": "Trees — Medium [Serialize Deserialize]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_trees_medium_004",
+            "title": "Trees — Medium [Level Order]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_trees_medium_005",
+            "title": "Trees — Medium [Inorder Traversal]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_trees_medium_006",
+            "title": "Trees — Medium [Validate Bst]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "q_000186",
+            "title": "Determine if binary tree is a valid BST (left < root < right for all nodes).\n\nEx",
+            "pattern": "tree-dfs",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000188",
+            "title": "Return inorder traversal of binary tree iteratively (no recursion).\n\nExample: ro",
+            "pattern": "stack",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000190",
+            "title": "Given root and targetSum, return true if a root-to-leaf path sums to target.\n\nEx",
+            "pattern": "tree-dfs",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000192",
+            "title": "Return zigzag level order traversal alternating left-right, right-left.\n\nExample",
+            "pattern": "tree-dfs",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000194",
+            "title": "Construct binary tree from preorder and inorder traversal arrays.\n\nExample: preo",
+            "pattern": "tree-dfs",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000196",
+            "title": "Find lowest common ancestor (LCA) of two nodes in a binary tree.\n\nExample: root=",
+            "pattern": "tree-dfs",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000198",
+            "title": "Given root of binary tree, return right-side view (nodes visible from right side",
+            "pattern": "tree-dfs",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000200",
+            "title": "Convert sorted array to height-balanced BST (where depth of left/right subtrees ",
+            "pattern": "tree-dfs",
+            "hint_count": 3,
+            "test_case_count": 3
+          }
+        ],
+        "placement_practice": [
+          {
+            "id": "scaffold_trees_hard_007",
+            "title": "Trees — Hard [Lca]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_trees_hard_008",
+            "title": "Trees — Hard [Serialize Deserialize]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "q_000202",
+            "title": "Serialize a binary tree to a string and deserialize back. Use any format, must b",
+            "pattern": "tree-dfs",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000204",
+            "title": "Maximum path sum in binary tree. Path can start and end at any node. Values can ",
+            "pattern": "tree-dfs",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000206",
+            "title": "Diameter of binary tree = longest path between any two nodes (edges, not nodes).",
+            "pattern": "sliding-window",
+            "hint_count": 3,
+            "test_case_count": 3
+          }
+        ]
+      },
+      "mastery": {
+        "badge": "Apprentice",
+        "emoji": "📚",
+        "coverage_percent": 100.0,
+        "avg_quality_score": 32.0,
+        "questions_authored": 16,
+        "target": 25,
+        "is_complete": true
+      }
+    },
+    "graphs": {
+      "skill_id": "graphs",
+      "name": "Graphs",
+      "description": "DFS/BFS, shortest path, topological sort, union-find",
+      "question_target": 25,
+      "current_total": 25,
+      "coverage_percent": 100.0,
+      "difficulty_distribution": {
+        "easy": 8,
+        "medium": 12,
+        "hard": 5
+      },
+      "learning_path": {
+        "learn": [
+          {
+            "id": "scaffold_graphs_easy_000",
+            "title": "Graphs — Easy [Clone Graph]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_graphs_easy_001",
+            "title": "Graphs — Easy [Course Schedule]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_graphs_easy_002",
+            "title": "Graphs — Easy [Dijkstra]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_graphs_easy_003",
+            "title": "Graphs — Easy [Bfs Shortest Path]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_graphs_easy_004",
+            "title": "Graphs — Easy [Topological Sort]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "q_000234",
+            "title": "Given number of nodes n (0 to n-1) and edges, check if graph is fully connected ",
+            "pattern": "tree-dfs",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000236",
+            "title": "Given adjacency list of a directed graph, clone it (deep copy).\n\nExample: adj=[[",
+            "pattern": "hash-table",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000238",
+            "title": "Given grid of 1s (land) and 0s (water), count number of islands (connected 1s, 4",
+            "pattern": "hash-table",
+            "hint_count": 3,
+            "test_case_count": 3
+          }
+        ],
+        "guided_practice": [
+          {
+            "id": "scaffold_graphs_medium_005",
+            "title": "Graphs — Medium [Clone Graph]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_graphs_medium_006",
+            "title": "Graphs — Medium [Course Schedule]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_graphs_medium_007",
+            "title": "Graphs — Medium [Dijkstra]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "q_000240",
+            "title": "Return number of provinces (connected components) in undirected graph.\n\nExample:",
+            "pattern": "hash-table",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000242",
+            "title": "Return all nodes that can reach all other nodes in a directed graph (find nodes ",
+            "pattern": "two-pointers",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000244",
+            "title": "Given an m x n grid with oranges: 2=fresh, 1=rotten, 0=empty. Every minute, rott",
+            "pattern": "tree-bfs",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000246",
+            "title": "Given an array of n nodes labeled 0..n-1 and edges where edge[i] = [u,v], detect",
+            "pattern": "tree-dfs",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000248",
+            "title": "Return shortest path length in a binary matrix from top-left to bottom-right. Mo",
+            "pattern": "tree-dfs",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000250",
+            "title": "Given a directed graph, return all nodes in topological order. Each node's prere",
+            "pattern": "stack",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000252",
+            "title": "Given a 2D grid of characters and a word, determine if the word exists in the gr",
+            "pattern": "tree-dfs",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000260",
+            "title": "Given a list of word pairs and their synonyms (bidirectional), determine if two ",
+            "pattern": "two-pointers",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000264",
+            "title": "Flood fill: given image grid, starting cell, and new color. Change all pixels co",
+            "pattern": "tree-dfs",
+            "hint_count": 3,
+            "test_case_count": 3
+          }
+        ],
+        "placement_practice": [
+          {
+            "id": "q_000254",
+            "title": "Number of connected components in an undirected graph.\n\nExample: n=5, edges=[[0,",
+            "pattern": "hash-table",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000256",
+            "title": "Find minimum spanning tree weight using Kruskal's algorithm.\n\nExample: n=4, edge",
+            "pattern": "tree-dfs",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000258",
+            "title": "Find shortest path from source to all nodes in weighted graph (no negative edges",
+            "pattern": "heap",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000262",
+            "title": "Given a directed acyclic graph (DAG) of n nodes labeled 0..n-1, find all possibl",
+            "pattern": "tree-dfs",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000266",
+            "title": "Alien Dictionary: Given list of words from an alien language sorted lexicographi",
+            "pattern": "graph-dfs",
+            "hint_count": 3,
+            "test_case_count": 3
+          }
+        ]
+      },
+      "mastery": {
+        "badge": "Apprentice",
+        "emoji": "📚",
+        "coverage_percent": 100.0,
+        "avg_quality_score": 32.0,
+        "questions_authored": 17,
+        "target": 25,
+        "is_complete": true
+      }
+    },
+    "recursion-backtracking": {
+      "skill_id": "recursion-backtracking",
+      "name": "Recursion & Backtracking",
+      "description": "State space exploration with DFS and constraint pruning",
+      "question_target": 20,
+      "current_total": 20,
+      "coverage_percent": 100.0,
+      "difficulty_distribution": {
+        "easy": 6,
+        "medium": 10,
+        "hard": 4
+      },
+      "learning_path": {
+        "learn": [
+          {
+            "id": "scaffold_recursion-backtracking_easy_000",
+            "title": "Recursion & Backtracking — Easy [Subsets]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_recursion-backtracking_easy_001",
+            "title": "Recursion & Backtracking — Easy [Permutations]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_recursion-backtracking_easy_002",
+            "title": "Recursion & Backtracking — Easy [Word Search]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_recursion-backtracking_easy_003",
+            "title": "Recursion & Backtracking — Easy [N Queens]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_recursion-backtracking_easy_004",
+            "title": "Recursion & Backtracking — Easy [Sudoku Solver]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_recursion-backtracking_easy_005",
+            "title": "Recursion & Backtracking — Easy [Subsets]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ],
+        "guided_practice": [
+          {
+            "id": "scaffold_recursion-backtracking_medium_006",
+            "title": "Recursion & Backtracking — Medium [Permutations]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_recursion-backtracking_medium_007",
+            "title": "Recursion & Backtracking — Medium [Word Search]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_recursion-backtracking_medium_008",
+            "title": "Recursion & Backtracking — Medium [N Queens]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_recursion-backtracking_medium_009",
+            "title": "Recursion & Backtracking — Medium [Sudoku Solver]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_recursion-backtracking_medium_010",
+            "title": "Recursion & Backtracking — Medium [Subsets]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_recursion-backtracking_medium_011",
+            "title": "Recursion & Backtracking — Medium [Permutations]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_recursion-backtracking_medium_012",
+            "title": "Recursion & Backtracking — Medium [Word Search]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_recursion-backtracking_medium_013",
+            "title": "Recursion & Backtracking — Medium [N Queens]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_recursion-backtracking_medium_014",
+            "title": "Recursion & Backtracking — Medium [Sudoku Solver]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_recursion-backtracking_medium_015",
+            "title": "Recursion & Backtracking — Medium [Subsets]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ],
+        "placement_practice": [
+          {
+            "id": "scaffold_recursion-backtracking_hard_016",
+            "title": "Recursion & Backtracking — Hard [Permutations]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_recursion-backtracking_hard_017",
+            "title": "Recursion & Backtracking — Hard [Word Search]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_recursion-backtracking_hard_018",
+            "title": "Recursion & Backtracking — Hard [N Queens]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_recursion-backtracking_hard_019",
+            "title": "Recursion & Backtracking — Hard [Sudoku Solver]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ]
+      },
+      "mastery": {
+        "badge": "Learner",
+        "emoji": "🌱",
+        "coverage_percent": 100.0,
+        "avg_quality_score": 50,
+        "questions_authored": 0,
+        "target": 20,
+        "is_complete": true
+      }
+    },
+    "heap-greedy": {
+      "skill_id": "heap-greedy",
+      "name": "Heap & Greedy",
+      "description": "Priority queue ordering and locally optimal choices",
+      "question_target": 15,
+      "current_total": 15,
+      "coverage_percent": 100.0,
+      "difficulty_distribution": {
+        "easy": 4,
+        "medium": 8,
+        "hard": 3
+      },
+      "learning_path": {
+        "learn": [
+          {
+            "id": "scaffold_heap-greedy_easy_000",
+            "title": "Heap & Greedy — Easy [Kth Largest]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_heap-greedy_easy_001",
+            "title": "Heap & Greedy — Easy [Merge Intervals]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_heap-greedy_easy_002",
+            "title": "Heap & Greedy — Easy [Non Overlapping Intervals]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_heap-greedy_easy_003",
+            "title": "Heap & Greedy — Easy [Task Scheduler]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ],
+        "guided_practice": [
+          {
+            "id": "scaffold_heap-greedy_medium_004",
+            "title": "Heap & Greedy — Medium [Kth Largest]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_heap-greedy_medium_005",
+            "title": "Heap & Greedy — Medium [Merge Intervals]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_heap-greedy_medium_006",
+            "title": "Heap & Greedy — Medium [Non Overlapping Intervals]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_heap-greedy_medium_007",
+            "title": "Heap & Greedy — Medium [Task Scheduler]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_heap-greedy_medium_008",
+            "title": "Heap & Greedy — Medium [Kth Largest]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_heap-greedy_medium_009",
+            "title": "Heap & Greedy — Medium [Merge Intervals]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_heap-greedy_medium_010",
+            "title": "Heap & Greedy — Medium [Non Overlapping Intervals]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_heap-greedy_medium_011",
+            "title": "Heap & Greedy — Medium [Task Scheduler]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ],
+        "placement_practice": [
+          {
+            "id": "scaffold_heap-greedy_hard_012",
+            "title": "Heap & Greedy — Hard [Kth Largest]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_heap-greedy_hard_013",
+            "title": "Heap & Greedy — Hard [Merge Intervals]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_heap-greedy_hard_014",
+            "title": "Heap & Greedy — Hard [Non Overlapping Intervals]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ]
+      },
+      "mastery": {
+        "badge": "Learner",
+        "emoji": "🌱",
+        "coverage_percent": 100.0,
+        "avg_quality_score": 50,
+        "questions_authored": 0,
+        "target": 15,
+        "is_complete": true
+      }
+    },
+    "dynamic-programming": {
+      "skill_id": "dynamic-programming",
+      "name": "Dynamic Programming",
+      "description": "State transition design and optimal substructure",
+      "question_target": 25,
+      "current_total": 27,
+      "coverage_percent": 108.0,
+      "difficulty_distribution": {
+        "easy": 8,
+        "medium": 12,
+        "hard": 7
+      },
+      "learning_path": {
+        "learn": [
+          {
+            "id": "scaffold_dynamic-programming_easy_000",
+            "title": "Dynamic Programming — Easy [Climbing Stairs]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_dynamic-programming_easy_001",
+            "title": "Dynamic Programming — Easy [Coin Change]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_dynamic-programming_easy_002",
+            "title": "Dynamic Programming — Easy [Longest Increasing Subsequence]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "q_000268",
+            "title": "Return nth Fibonacci number (F(0)=0, F(1)=1).\n\nExample: n=6 => 8",
+            "pattern": "dp-1d",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000270",
+            "title": "You are climbing a staircase. It takes n steps to reach the top. Each time you c",
+            "pattern": "dp-1d",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000272",
+            "title": "Given an array of integers nums, find the contiguous subarray (containing at lea",
+            "pattern": "sliding-window",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000274",
+            "title": "Given a m x n grid filled with non-negative numbers, find a path from top-left t",
+            "pattern": "tree-dfs",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000276",
+            "title": "Given an array prices where prices[i] is price on day i. Find max profit with on",
+            "pattern": "dp-1d",
+            "hint_count": 3,
+            "test_case_count": 3
+          }
+        ],
+        "guided_practice": [
+          {
+            "id": "q_000278",
+            "title": "Given coins of different denominations and total amount, return fewest number of",
+            "pattern": "dp-1d",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000280",
+            "title": "Given a string s and a dictionary of strings wordDict, return true if s can be s",
+            "pattern": "dp-1d",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000282",
+            "title": "Return the length of the longest increasing subsequence in an array.\n\nExample: n",
+            "pattern": "binary-search",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000284",
+            "title": "Given a m x n binary matrix filled with 0s and 1s, find the largest square conta",
+            "pattern": "dp-1d",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000286",
+            "title": "Given an integer array nums, partition it into two subsets such that sum of elem",
+            "pattern": "dp-1d",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000288",
+            "title": "You are a professional robber planning to rob houses along a street. Adjacent ho",
+            "pattern": "tree-dfs",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000290",
+            "title": "Given two strings text1 and text2, return length of their longest common subsequ",
+            "pattern": "sliding-window",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000292",
+            "title": "Given a triangle array, find min path sum from top to bottom moving to adjacent ",
+            "pattern": "tree-dfs",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000300",
+            "title": "Given integer n, return the number of structurally unique BSTs that store values",
+            "pattern": "bst",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000302",
+            "title": "Given an array of integers, return max product of any contiguous subarray.\n\nExam",
+            "pattern": "sliding-window",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000304",
+            "title": "Given an array of distinct integers nums and target integer, return number of po",
+            "pattern": "dp-1d",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000306",
+            "title": "Given n balloons indexed 0..n-1, each with a number. Burst balloons one by one. ",
+            "pattern": "dp-1d",
+            "hint_count": 3,
+            "test_case_count": 3
+          }
+        ],
+        "placement_practice": [
+          {
+            "id": "q_000294",
+            "title": "Given s1, s2, s3, determine if s3 is formed by interleaving s1 and s2.\n\nExample:",
+            "pattern": "dp-1d",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000296",
+            "title": "Given two words word1 and word2, return minimum edit distance (insert, delete, r",
+            "pattern": "bst",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000298",
+            "title": "Given strings s and t, count number of distinct subsequences of s that equal t.\n",
+            "pattern": "hash-table",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000308",
+            "title": "Given strings s and p (pattern with *,? and ., . matches any char, * matches zer",
+            "pattern": "dp-1d",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000310",
+            "title": "Given two strings s and t, return length of shortest common supersequence (SCS).",
+            "pattern": "dp-1d",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000312",
+            "title": "Given two integer arrays slices (3n slices in order), you can pick exactly n sli",
+            "pattern": "dp-1d",
+            "hint_count": 3,
+            "test_case_count": 3
+          },
+          {
+            "id": "q_000314",
+            "title": "Given an array of strings words, find the length of longest string chain where c",
+            "pattern": "sliding-window",
+            "hint_count": 3,
+            "test_case_count": 3
+          }
+        ]
+      },
+      "mastery": {
+        "badge": "Apprentice",
+        "emoji": "📚",
+        "coverage_percent": 108.0,
+        "avg_quality_score": 32.0,
+        "questions_authored": 24,
+        "target": 25,
+        "is_complete": true
+      }
+    },
+    "sql": {
+      "skill_id": "sql",
+      "name": "SQL",
+      "description": "Joins, aggregations, subqueries, window functions",
+      "question_target": 20,
+      "current_total": 20,
+      "coverage_percent": 100.0,
+      "difficulty_distribution": {
+        "easy": 6,
+        "medium": 10,
+        "hard": 4
+      },
+      "learning_path": {
+        "learn": [
+          {
+            "id": "scaffold_sql_easy_000",
+            "title": "SQL — Easy [Joins]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_sql_easy_001",
+            "title": "SQL — Easy [Group By]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_sql_easy_002",
+            "title": "SQL — Easy [Subqueries]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_sql_easy_003",
+            "title": "SQL — Easy [Window Functions]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_sql_easy_004",
+            "title": "SQL — Easy [Top K]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_sql_easy_005",
+            "title": "SQL — Easy [Joins]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ],
+        "guided_practice": [
+          {
+            "id": "scaffold_sql_medium_006",
+            "title": "SQL — Medium [Group By]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_sql_medium_007",
+            "title": "SQL — Medium [Subqueries]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_sql_medium_008",
+            "title": "SQL — Medium [Window Functions]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_sql_medium_009",
+            "title": "SQL — Medium [Top K]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_sql_medium_010",
+            "title": "SQL — Medium [Joins]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_sql_medium_011",
+            "title": "SQL — Medium [Group By]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_sql_medium_012",
+            "title": "SQL — Medium [Subqueries]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_sql_medium_013",
+            "title": "SQL — Medium [Window Functions]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_sql_medium_014",
+            "title": "SQL — Medium [Top K]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_sql_medium_015",
+            "title": "SQL — Medium [Joins]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ],
+        "placement_practice": [
+          {
+            "id": "scaffold_sql_hard_016",
+            "title": "SQL — Hard [Group By]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_sql_hard_017",
+            "title": "SQL — Hard [Subqueries]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_sql_hard_018",
+            "title": "SQL — Hard [Window Functions]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_sql_hard_019",
+            "title": "SQL — Hard [Top K]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ]
+      },
+      "mastery": {
+        "badge": "Learner",
+        "emoji": "🌱",
+        "coverage_percent": 100.0,
+        "avg_quality_score": 50,
+        "questions_authored": 0,
+        "target": 20,
+        "is_complete": true
+      }
+    },
+    "dbms": {
+      "skill_id": "dbms",
+      "name": "DBMS",
+      "description": "Indexing, normalization, transactions, ACID",
+      "question_target": 15,
+      "current_total": 15,
+      "coverage_percent": 100.0,
+      "difficulty_distribution": {
+        "easy": 4,
+        "medium": 8,
+        "hard": 3
+      },
+      "learning_path": {
+        "learn": [
+          {
+            "id": "scaffold_dbms_easy_000",
+            "title": "DBMS — Easy [Indexing]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_dbms_easy_001",
+            "title": "DBMS — Easy [Normalization]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_dbms_easy_002",
+            "title": "DBMS — Easy [Transactions]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_dbms_easy_003",
+            "title": "DBMS — Easy [Deadlocks]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ],
+        "guided_practice": [
+          {
+            "id": "scaffold_dbms_medium_004",
+            "title": "DBMS — Medium [Indexing]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_dbms_medium_005",
+            "title": "DBMS — Medium [Normalization]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_dbms_medium_006",
+            "title": "DBMS — Medium [Transactions]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_dbms_medium_007",
+            "title": "DBMS — Medium [Deadlocks]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_dbms_medium_008",
+            "title": "DBMS — Medium [Indexing]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_dbms_medium_009",
+            "title": "DBMS — Medium [Normalization]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_dbms_medium_010",
+            "title": "DBMS — Medium [Transactions]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_dbms_medium_011",
+            "title": "DBMS — Medium [Deadlocks]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ],
+        "placement_practice": [
+          {
+            "id": "scaffold_dbms_hard_012",
+            "title": "DBMS — Hard [Indexing]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_dbms_hard_013",
+            "title": "DBMS — Hard [Normalization]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_dbms_hard_014",
+            "title": "DBMS — Hard [Transactions]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ]
+      },
+      "mastery": {
+        "badge": "Learner",
+        "emoji": "🌱",
+        "coverage_percent": 100.0,
+        "avg_quality_score": 50,
+        "questions_authored": 0,
+        "target": 15,
+        "is_complete": true
+      }
+    },
+    "os": {
+      "skill_id": "os",
+      "name": "Operating Systems",
+      "description": "Scheduling, memory management, concurrency, deadlocks",
+      "question_target": 10,
+      "current_total": 10,
+      "coverage_percent": 100.0,
+      "difficulty_distribution": {
+        "easy": 3,
+        "medium": 5,
+        "hard": 2
+      },
+      "learning_path": {
+        "learn": [
+          {
+            "id": "scaffold_os_easy_000",
+            "title": "Operating Systems — Easy [Scheduling]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_os_easy_001",
+            "title": "Operating Systems — Easy [Virtual Memory]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_os_easy_002",
+            "title": "Operating Systems — Easy [Process Vs Thread]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ],
+        "guided_practice": [
+          {
+            "id": "scaffold_os_medium_003",
+            "title": "Operating Systems — Medium [Semaphores]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_os_medium_004",
+            "title": "Operating Systems — Medium [Scheduling]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_os_medium_005",
+            "title": "Operating Systems — Medium [Virtual Memory]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_os_medium_006",
+            "title": "Operating Systems — Medium [Process Vs Thread]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_os_medium_007",
+            "title": "Operating Systems — Medium [Semaphores]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ],
+        "placement_practice": [
+          {
+            "id": "scaffold_os_hard_008",
+            "title": "Operating Systems — Hard [Scheduling]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_os_hard_009",
+            "title": "Operating Systems — Hard [Virtual Memory]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ]
+      },
+      "mastery": {
+        "badge": "Learner",
+        "emoji": "🌱",
+        "coverage_percent": 100.0,
+        "avg_quality_score": 50,
+        "questions_authored": 0,
+        "target": 10,
+        "is_complete": true
+      }
+    },
+    "networks": {
+      "skill_id": "networks",
+      "name": "Computer Networks",
+      "description": "OSI layers, TCP/IP, HTTP, CDN, caching",
+      "question_target": 10,
+      "current_total": 10,
+      "coverage_percent": 100.0,
+      "difficulty_distribution": {
+        "easy": 3,
+        "medium": 5,
+        "hard": 2
+      },
+      "learning_path": {
+        "learn": [
+          {
+            "id": "scaffold_networks_easy_000",
+            "title": "Computer Networks — Easy [Tcp Handshake]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_networks_easy_001",
+            "title": "Computer Networks — Easy [Http Vs Https]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_networks_easy_002",
+            "title": "Computer Networks — Easy [Cdn]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ],
+        "guided_practice": [
+          {
+            "id": "scaffold_networks_medium_003",
+            "title": "Computer Networks — Medium [Load Balancer]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_networks_medium_004",
+            "title": "Computer Networks — Medium [Dns]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_networks_medium_005",
+            "title": "Computer Networks — Medium [Tcp Handshake]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_networks_medium_006",
+            "title": "Computer Networks — Medium [Http Vs Https]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_networks_medium_007",
+            "title": "Computer Networks — Medium [Cdn]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ],
+        "placement_practice": [
+          {
+            "id": "scaffold_networks_hard_008",
+            "title": "Computer Networks — Hard [Load Balancer]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_networks_hard_009",
+            "title": "Computer Networks — Hard [Dns]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ]
+      },
+      "mastery": {
+        "badge": "Learner",
+        "emoji": "🌱",
+        "coverage_percent": 100.0,
+        "avg_quality_score": 50,
+        "questions_authored": 0,
+        "target": 10,
+        "is_complete": true
+      }
+    },
+    "oop": {
+      "skill_id": "oop",
+      "name": "Object-Oriented Programming",
+      "description": "Classes, inheritance, polymorphism, design patterns",
+      "question_target": 10,
+      "current_total": 10,
+      "coverage_percent": 100.0,
+      "difficulty_distribution": {
+        "easy": 3,
+        "medium": 5,
+        "hard": 2
+      },
+      "learning_path": {
+        "learn": [
+          {
+            "id": "scaffold_oop_easy_000",
+            "title": "Object-Oriented Programming — Easy [Encapsulation]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_oop_easy_001",
+            "title": "Object-Oriented Programming — Easy [Inheritance]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_oop_easy_002",
+            "title": "Object-Oriented Programming — Easy [Polymorphism]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ],
+        "guided_practice": [
+          {
+            "id": "scaffold_oop_medium_003",
+            "title": "Object-Oriented Programming — Medium [Design Patterns]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_oop_medium_004",
+            "title": "Object-Oriented Programming — Medium [Encapsulation]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_oop_medium_005",
+            "title": "Object-Oriented Programming — Medium [Inheritance]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_oop_medium_006",
+            "title": "Object-Oriented Programming — Medium [Polymorphism]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_oop_medium_007",
+            "title": "Object-Oriented Programming — Medium [Design Patterns]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ],
+        "placement_practice": [
+          {
+            "id": "scaffold_oop_hard_008",
+            "title": "Object-Oriented Programming — Hard [Encapsulation]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_oop_hard_009",
+            "title": "Object-Oriented Programming — Hard [Inheritance]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ]
+      },
+      "mastery": {
+        "badge": "Learner",
+        "emoji": "🌱",
+        "coverage_percent": 100.0,
+        "avg_quality_score": 50,
+        "questions_authored": 0,
+        "target": 10,
+        "is_complete": true
+      }
+    },
+    "system-design": {
+      "skill_id": "system-design",
+      "name": "System Design",
+      "description": "Scalability, load balancing, caching, database design",
+      "question_target": 10,
+      "current_total": 10,
+      "coverage_percent": 100.0,
+      "difficulty_distribution": {
+        "easy": 3,
+        "medium": 5,
+        "hard": 2
+      },
+      "learning_path": {
+        "learn": [
+          {
+            "id": "scaffold_system-design_easy_000",
+            "title": "System Design — Easy [Url Shortener]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_system-design_easy_001",
+            "title": "System Design — Easy [Message Queue]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_system-design_easy_002",
+            "title": "System Design — Easy [Cache Strategy]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ],
+        "guided_practice": [
+          {
+            "id": "scaffold_system-design_medium_003",
+            "title": "System Design — Medium [Rate Limiting]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_system-design_medium_004",
+            "title": "System Design — Medium [Distributed Systems]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_system-design_medium_005",
+            "title": "System Design — Medium [Url Shortener]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_system-design_medium_006",
+            "title": "System Design — Medium [Message Queue]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_system-design_medium_007",
+            "title": "System Design — Medium [Cache Strategy]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ],
+        "placement_practice": [
+          {
+            "id": "scaffold_system-design_hard_008",
+            "title": "System Design — Hard [Rate Limiting]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          },
+          {
+            "id": "scaffold_system-design_hard_009",
+            "title": "System Design — Hard [Distributed Systems]",
+            "pattern": "misc",
+            "hint_count": 3,
+            "test_case_count": 2
+          }
+        ]
+      },
+      "mastery": {
+        "badge": "Learner",
+        "emoji": "🌱",
+        "coverage_percent": 100.0,
+        "avg_quality_score": 50,
+        "questions_authored": 0,
+        "target": 10,
+        "is_complete": true
+      }
+    }
+  },
+  "company_blueprints": {
+    "amazon": {
+      "company_id": "amazon",
+      "display_name": "Amazon",
+      "oa_pattern": [
+        "Debugging (4 MCQ)",
+        "Coding (2 problems, 90 min)",
+        "Work Simulation"
+      ],
+      "interview_pattern": [
+        "Two Coding Problems",
+        "System Design (SDE2+)",
+        "LP Behavioral"
+      ],
+      "common_oa_patterns": [
+        "two-sum",
+        "sliding-window",
+        "tree-dfs",
+        "hash-table",
+        "greedy"
+      ],
+      "matching_questions": [
+        {
+          "id": "q_000002",
+          "title": "Given an integer array nums, return true if any value appears at least twice, el",
+          "pattern": "hash-table",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000004",
+          "title": "Given an array of strings strs, group the anagrams together.\n\nExample: strs=['ea",
+          "pattern": "hash-table",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000006",
+          "title": "Given an integer array nums and an integer k, return the k most frequent element",
+          "pattern": "hash-table",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000008",
+          "title": "Given an integer array nums, return an array answer such that answer[i] equals p",
+          "pattern": "hash-table",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000010",
+          "title": "Given an unsorted array of integers nums, return the length of the longest conse",
+          "pattern": "sliding-window",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000012",
+          "title": "Given an array nums containing n distinct numbers from range [0,n], find the mis",
+          "pattern": "hash-table",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000014",
+          "title": "Given array nums, return the majority element (appears more than n/2 times). Maj",
+          "pattern": "hash-table",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000016",
+          "title": "Find all numbers that disappear in an array of length n with values in [1,n]. Re",
+          "pattern": "hash-table",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000018",
+          "title": "Sort an array of 0s, 1s, and 2s in-place (Dutch National Flag problem).\n\nExample",
+          "pattern": "hash-table",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000020",
+          "title": "Given an integer array nums, return the maximum sum of a contiguous subarray usi",
+          "pattern": "sliding-window",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000022",
+          "title": "Given an m x n matrix, if element is 0 set entire row and column to 0 in-place.\n",
+          "pattern": "hash-table",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000024",
+          "title": "Return elements of an m x n matrix in spiral order.\n\nExample: matrix=[[1,2,3],[4",
+          "pattern": "hash-table",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000028",
+          "title": "Design a data structure supporting insert, delete, and getRandom in O(1) average",
+          "pattern": "hash-table",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000032",
+          "title": "Given array nums, return pivot index where sum of left equals sum of right. If n",
+          "pattern": "hash-table",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000034",
+          "title": "Determine if two strings s and t are isomorphic. Characters in s can be replaced",
+          "pattern": "hash-table",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000036",
+          "title": "Bulls and Cows: secret number and guess string. Bull=correct digit in correct po",
+          "pattern": "hash-table",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000038",
+          "title": "Determine if a 9x9 Sudoku board is valid. Only filled cells need validation (row",
+          "pattern": "hash-table",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000040",
+          "title": "Given two integer arrays, return their intersection (unique elements that appear",
+          "pattern": "hash-table",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000042",
+          "title": "Write algorithm to determine if a number n is happy. Starting with n, replace by",
+          "pattern": "hash-table",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000050",
+          "title": "Find the longest substring length without repeating characters.\n\nExample: s='abc",
+          "pattern": "sliding-window",
+          "difficulty": "medium",
+          "hint_count": 3
+        }
+      ],
+      "coverage": "75 questions available"
+    },
+    "microsoft": {
+      "company_id": "microsoft",
+      "display_name": "Microsoft",
+      "oa_pattern": [
+        "2-3 Problems (60-90 min)",
+        "Probability/QnA"
+      ],
+      "interview_pattern": [
+        "Live Coding",
+        "Design (SDE2+)",
+        "Behavioral"
+      ],
+      "common_oa_patterns": [
+        "two-pointers",
+        "tree-dfs",
+        "dp-1d",
+        "binary-search"
+      ],
+      "matching_questions": [
+        {
+          "id": "q_000000",
+          "title": "Given an array of integers nums sorted in non-decreasing order, find the startin",
+          "pattern": "binary-search",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000026",
+          "title": "Rotate an n x n matrix 90 degrees clockwise in-place.\n\nExample: matrix=[[1,2,3],",
+          "pattern": "two-pointers",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000030",
+          "title": "Given array nums, move all zeros to the end while maintaining order of non-zero ",
+          "pattern": "two-pointers",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000044",
+          "title": "Count number of good pairs: pairs (i,j) i<j where nums[i]==nums[j].\n\nExample: nu",
+          "pattern": "two-pointers",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000048",
+          "title": "Given a string s, find first non-repeating character and return its index. If no",
+          "pattern": "binary-search",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000058",
+          "title": "Given n non-negative integers representing elevation map where bar width=1, comp",
+          "pattern": "two-pointers",
+          "difficulty": "hard",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000060",
+          "title": "Given two sorted arrays nums1 and nums2, return median of the two sorted arrays.",
+          "pattern": "binary-search",
+          "difficulty": "hard",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000062",
+          "title": "Given a sorted array and target, find two numbers that sum to target. Return 1-i",
+          "pattern": "two-pointers",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000064",
+          "title": "Check if string s is a palindrome considering only alphanumeric chars and ignori",
+          "pattern": "two-pointers",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000066",
+          "title": "Given two strings s and t, return true if t is an anagram of s. O(n) time, O(1) ",
+          "pattern": "two-pointers",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000068",
+          "title": "Merge two sorted arrays nums1 (size m+n) and nums2 (size n) into nums1 in-place.",
+          "pattern": "two-pointers",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000070",
+          "title": "Given array nums, return all unique triplets that sum to zero. No duplicates.\n\nE",
+          "pattern": "two-pointers",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000072",
+          "title": "Given n non-negative integers forming height map, find two lines that together w",
+          "pattern": "two-pointers",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000074",
+          "title": "Reverse words in a string. Reduce multiple spaces to single space between words.",
+          "pattern": "two-pointers",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000076",
+          "title": "Given head of linked list, remove n-th node from the end in one pass.\n\nExample: ",
+          "pattern": "two-pointers",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000080",
+          "title": "Given two sorted arrays, return median in O(log(min(m,n))) time.\n\nExample: nums1",
+          "pattern": "binary-search",
+          "difficulty": "hard",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000082",
+          "title": "Given sorted array nums, remove duplicates in-place. Return new length.\n\nExample",
+          "pattern": "two-pointers",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000112",
+          "title": "Evaluate Reverse Polish Notation (postfix expression). Operators: +,-,*,/. Divis",
+          "pattern": "two-pointers",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000122",
+          "title": "Given n pairs of parentheses, generate all combinations of well-formed parenthes",
+          "pattern": "two-pointers",
+          "difficulty": "hard",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000126",
+          "title": "Given sorted array of distinct integers and target, return target index or -1.\n\n",
+          "pattern": "binary-search",
+          "difficulty": "easy",
+          "hint_count": 3
+        }
+      ],
+      "coverage": "75 questions available"
+    },
+    "tcs": {
+      "company_id": "tcs",
+      "display_name": "TCS",
+      "oa_pattern": [
+        "NQT: Aptitude (40) + Coding (1) + MCQ"
+      ],
+      "interview_pattern": [
+        "TR: Project + CS Fundamentals + Coding"
+      ],
+      "common_oa_patterns": [
+        "sliding-window",
+        "two-sum",
+        "hash-table",
+        "binary-search"
+      ],
+      "matching_questions": [
+        {
+          "id": "q_000000",
+          "title": "Given an array of integers nums sorted in non-decreasing order, find the startin",
+          "pattern": "binary-search",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000002",
+          "title": "Given an integer array nums, return true if any value appears at least twice, el",
+          "pattern": "hash-table",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000004",
+          "title": "Given an array of strings strs, group the anagrams together.\n\nExample: strs=['ea",
+          "pattern": "hash-table",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000006",
+          "title": "Given an integer array nums and an integer k, return the k most frequent element",
+          "pattern": "hash-table",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000008",
+          "title": "Given an integer array nums, return an array answer such that answer[i] equals p",
+          "pattern": "hash-table",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000010",
+          "title": "Given an unsorted array of integers nums, return the length of the longest conse",
+          "pattern": "sliding-window",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000012",
+          "title": "Given an array nums containing n distinct numbers from range [0,n], find the mis",
+          "pattern": "hash-table",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000014",
+          "title": "Given array nums, return the majority element (appears more than n/2 times). Maj",
+          "pattern": "hash-table",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000016",
+          "title": "Find all numbers that disappear in an array of length n with values in [1,n]. Re",
+          "pattern": "hash-table",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000018",
+          "title": "Sort an array of 0s, 1s, and 2s in-place (Dutch National Flag problem).\n\nExample",
+          "pattern": "hash-table",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000020",
+          "title": "Given an integer array nums, return the maximum sum of a contiguous subarray usi",
+          "pattern": "sliding-window",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000022",
+          "title": "Given an m x n matrix, if element is 0 set entire row and column to 0 in-place.\n",
+          "pattern": "hash-table",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000024",
+          "title": "Return elements of an m x n matrix in spiral order.\n\nExample: matrix=[[1,2,3],[4",
+          "pattern": "hash-table",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000028",
+          "title": "Design a data structure supporting insert, delete, and getRandom in O(1) average",
+          "pattern": "hash-table",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000032",
+          "title": "Given array nums, return pivot index where sum of left equals sum of right. If n",
+          "pattern": "hash-table",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000034",
+          "title": "Determine if two strings s and t are isomorphic. Characters in s can be replaced",
+          "pattern": "hash-table",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000036",
+          "title": "Bulls and Cows: secret number and guess string. Bull=correct digit in correct po",
+          "pattern": "hash-table",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000038",
+          "title": "Determine if a 9x9 Sudoku board is valid. Only filled cells need validation (row",
+          "pattern": "hash-table",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000040",
+          "title": "Given two integer arrays, return their intersection (unique elements that appear",
+          "pattern": "hash-table",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000042",
+          "title": "Write algorithm to determine if a number n is happy. Starting with n, replace by",
+          "pattern": "hash-table",
+          "difficulty": "easy",
+          "hint_count": 3
+        }
+      ],
+      "coverage": "69 questions available"
+    },
+    "google": {
+      "company_id": "google",
+      "display_name": "Google",
+      "oa_pattern": [
+        "Hard Coding Problem (120 min)",
+        "Googliness Survey"
+      ],
+      "interview_pattern": [
+        "LeetCode Medium-Hard (2-3 rounds)",
+        "System Design"
+      ],
+      "common_oa_patterns": [
+        "dp-2d",
+        "graph-bfs",
+        "sliding-window",
+        "bit-manipulation"
+      ],
+      "matching_questions": [
+        {
+          "id": "q_000010",
+          "title": "Given an unsorted array of integers nums, return the length of the longest conse",
+          "pattern": "sliding-window",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000020",
+          "title": "Given an integer array nums, return the maximum sum of a contiguous subarray usi",
+          "pattern": "sliding-window",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000050",
+          "title": "Find the longest substring length without repeating characters.\n\nExample: s='abc",
+          "pattern": "sliding-window",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000056",
+          "title": "Find the longest consecutive sequence length in an unsorted array. O(n) time.\n\nE",
+          "pattern": "sliding-window",
+          "difficulty": "hard",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000078",
+          "title": "Longest Repeating Character Replacement: given string s and integer k, you can r",
+          "pattern": "sliding-window",
+          "difficulty": "hard",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000084",
+          "title": "Given array of positive integers and target, return minimal length of contiguous",
+          "pattern": "sliding-window",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000086",
+          "title": "Given binary array nums and int k, return max consecutive 1s with at most k flip",
+          "pattern": "sliding-window",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000088",
+          "title": "Find longest substring without repeating characters.\n\nExample: s='abcabcbb' => 3",
+          "pattern": "sliding-window",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000090",
+          "title": "Given two strings s and p, return all start indices of p's anagrams in s.\n\nExamp",
+          "pattern": "sliding-window",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000092",
+          "title": "Given a string s and integer k, return max number of vowels in any substring of ",
+          "pattern": "sliding-window",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000094",
+          "title": "Given array nums and integer k, slide window of size k from left to right. Retur",
+          "pattern": "sliding-window",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000096",
+          "title": "Given binary string s and int k, return true if every binary code of length k oc",
+          "pattern": "sliding-window",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000098",
+          "title": "Find maximum sum of any contiguous subarray of size exactly k.\n\nExample: arr=[2,",
+          "pattern": "sliding-window",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000100",
+          "title": "Find length of longest substring containing at most 2 distinct characters.\n\nExam",
+          "pattern": "sliding-window",
+          "difficulty": "hard",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000102",
+          "title": "Given s1 and s2, return true if s2 contains a permutation of s1.\n\nExample: s1='a",
+          "pattern": "sliding-window",
+          "difficulty": "hard",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000104",
+          "title": "Sliding window maximum: return array of max values in each window of size k.\n\nEx",
+          "pattern": "sliding-window",
+          "difficulty": "hard",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000114",
+          "title": "Given string with '(' and ')', return length of longest valid parentheses substr",
+          "pattern": "sliding-window",
+          "difficulty": "medium",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000152",
+          "title": "Return middle node of linked list. If two middles, return second.\n\nExample: head",
+          "pattern": "bit-manipulation",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000154",
+          "title": "Determine if linked list has a cycle.\n\nExample: head=[3,2,0,-4], tail connects t",
+          "pattern": "bit-manipulation",
+          "difficulty": "easy",
+          "hint_count": 3
+        },
+        {
+          "id": "q_000156",
+          "title": "Merge two sorted linked lists into one sorted list.\n\nExample: list1=[1,2,4], lis",
+          "pattern": "bit-manipulation",
+          "difficulty": "easy",
+          "hint_count": 3
+        }
+      ],
+      "coverage": "27 questions available"
+    }
+  },
+  "company_los_mapping": {
+    "google": 133,
+    "amazon": 158,
+    "tcs": 49,
+    "infosys": 23,
+    "microsoft": 50,
+    "goldman sachs": 27,
+    "meta": 33,
+    "wipro": 1
+  }
+}

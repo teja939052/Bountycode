@@ -1,0 +1,489 @@
+{
+  "amazon": {
+    "mock_config": {
+      "name": "Amazon SDE Mock Test",
+      "description": "Simulates Amazon's online assessment: 4 debugging MCQs + 2 coding problems + Work Simulation",
+      "total_questions": 14,
+      "time_limit_minutes": 135,
+      "sections": [
+        {
+          "name": "Debugging MCQ",
+          "type": "mcq",
+          "count": 4,
+          "time_minutes": 20,
+          "questions": [
+            {
+              "id": "q_000002",
+              "title": "Given an integer array nums, return true if any value appear",
+              "pattern": "hash-table",
+              "difficulty": "easy",
+              "type": "mcq"
+            },
+            {
+              "id": "q_000180",
+              "title": "Given two binary trees p and q, check if they are identical.",
+              "pattern": "tree-dfs",
+              "difficulty": "easy",
+              "type": "mcq"
+            },
+            {
+              "id": "q_000266",
+              "title": "Alien Dictionary: Given list of words from an alien language",
+              "pattern": "graph-dfs",
+              "difficulty": "hard",
+              "type": "mcq"
+            },
+            {
+              "id": "q_000084",
+              "title": "Given array of positive integers and target, return minimal ",
+              "pattern": "sliding-window",
+              "difficulty": "easy",
+              "type": "mcq"
+            }
+          ]
+        },
+        {
+          "name": "Coding Problem 1",
+          "type": "coding",
+          "count": 1,
+          "time_minutes": 45,
+          "questions": [
+            {
+              "id": "q_000000",
+              "title": "Given an array of integers nums sorted in non-decreasing ord",
+              "pattern": "binary-search",
+              "difficulty": "easy",
+              "type": "coding"
+            }
+          ]
+        },
+        {
+          "name": "Coding Problem 2",
+          "type": "coding",
+          "count": 1,
+          "time_minutes": 45,
+          "questions": [
+            {
+              "id": "q_000004",
+              "title": "Given an array of strings strs, group the anagrams together.",
+              "pattern": "hash-table",
+              "difficulty": "easy",
+              "type": "coding"
+            }
+          ]
+        },
+        {
+          "name": "Work Simulation",
+          "type": "simulation",
+          "count": 1,
+          "time_minutes": 25,
+          "questions": [
+            {
+              "id": "q_000014",
+              "title": "Given array nums, return the majority element (appears more ",
+              "pattern": "hash-table",
+              "difficulty": "easy",
+              "type": "simulation"
+            }
+          ]
+        }
+      ],
+      "patterns": [
+        "hash-table",
+        "two-sum",
+        "tree-dfs",
+        "graph-dfs",
+        "sliding-window"
+      ]
+    },
+    "booking_slots": {
+      "duration_minutes": 60,
+      "slots_per_day": 8,
+      "available_hours": [
+        "09:00",
+        "10:30",
+        "12:00",
+        "14:00",
+        "15:30",
+        "17:00"
+      ]
+    },
+    "total_questions": 14,
+    "patterns_covered": [
+      "two-pointers",
+      "binary-search",
+      "tree-dfs",
+      "hash-table",
+      "sliding-window",
+      "graph-dfs"
+    ],
+    "avg_quality": 32.0
+  },
+  "google": {
+    "mock_config": {
+      "name": "Google SWE Mock Test",
+      "description": "Simulates Google's phone screen: 1 hard coding + 1 medium + Googliness behavioral",
+      "total_questions": 12,
+      "time_limit_minutes": 120,
+      "sections": [
+        {
+          "name": "Hard Coding",
+          "type": "coding",
+          "count": 1,
+          "time_minutes": 45,
+          "questions": [
+            {
+              "id": "q_000152",
+              "title": "Return middle node of linked list. If two middles, return se",
+              "pattern": "bit-manipulation",
+              "difficulty": "easy",
+              "type": "coding"
+            }
+          ]
+        },
+        {
+          "name": "Medium Coding",
+          "type": "coding",
+          "count": 1,
+          "time_minutes": 30,
+          "questions": [
+            {
+              "id": "q_000156",
+              "title": "Merge two sorted linked lists into one sorted list.\n\nExample",
+              "pattern": "bit-manipulation",
+              "difficulty": "easy",
+              "type": "coding"
+            }
+          ]
+        },
+        {
+          "name": "Googliness Behavioral",
+          "type": "behavioral",
+          "count": 1,
+          "time_minutes": 15,
+          "questions": [
+            {
+              "id": "q_000174",
+              "title": "Convert binary number in linked list to integer (values are ",
+              "pattern": "bit-manipulation",
+              "difficulty": "easy",
+              "type": "behavioral"
+            }
+          ]
+        },
+        {
+          "name": "System Design (Optional)",
+          "type": "design",
+          "count": 1,
+          "time_minutes": 30,
+          "questions": [
+            {
+              "id": "q_000084",
+              "title": "Given array of positive integers and target, return minimal ",
+              "pattern": "sliding-window",
+              "difficulty": "easy",
+              "type": "design"
+            }
+          ]
+        }
+      ],
+      "patterns": [
+        "dp-2d",
+        "graph-bfs",
+        "bit-manipulation",
+        "sliding-window",
+        "greedy"
+      ]
+    },
+    "booking_slots": {
+      "duration_minutes": 45,
+      "slots_per_day": 12,
+      "available_hours": [
+        "08:00",
+        "09:30",
+        "11:00",
+        "13:00",
+        "14:30",
+        "16:00"
+      ]
+    },
+    "total_questions": 12,
+    "patterns_covered": [
+      "two-pointers",
+      "binary-search",
+      "greedy",
+      "hash-table",
+      "bit-manipulation",
+      "sliding-window"
+    ],
+    "avg_quality": 32.0
+  },
+  "microsoft": {
+    "mock_config": {
+      "name": "Microsoft SDE Mock Test",
+      "description": "Simulates Microsoft's online assessment: 3 coding problems + Probability QnA",
+      "total_questions": 12,
+      "time_limit_minutes": 100,
+      "sections": [
+        {
+          "name": "Easy Coding",
+          "type": "coding",
+          "count": 1,
+          "time_minutes": 20,
+          "questions": [
+            {
+              "id": "q_000064",
+              "title": "Check if string s is a palindrome considering only alphanume",
+              "pattern": "two-pointers",
+              "difficulty": "easy",
+              "type": "coding"
+            }
+          ]
+        },
+        {
+          "name": "Medium Coding",
+          "type": "coding",
+          "count": 1,
+          "time_minutes": 35,
+          "questions": [
+            {
+              "id": "q_000186",
+              "title": "Determine if binary tree is a valid BST (left < root < right",
+              "pattern": "tree-dfs",
+              "difficulty": "medium",
+              "type": "coding"
+            }
+          ]
+        },
+        {
+          "name": "Hard Coding",
+          "type": "coding",
+          "count": 1,
+          "time_minutes": 40,
+          "questions": [
+            {
+              "id": "q_000268",
+              "title": "Return nth Fibonacci number (F(0)=0, F(1)=1).\n\nExample: n=6 ",
+              "pattern": "dp-1d",
+              "difficulty": "easy",
+              "type": "coding"
+            }
+          ]
+        },
+        {
+          "name": "Probability QnA",
+          "type": "theory",
+          "count": 1,
+          "time_minutes": 5,
+          "questions": [
+            {
+              "id": "q_000130",
+              "title": "Find square root of non-negative integer x. Return only inte",
+              "pattern": "binary-search",
+              "difficulty": "easy",
+              "type": "theory"
+            }
+          ]
+        }
+      ],
+      "patterns": [
+        "two-pointers",
+        "tree-dfs",
+        "dp-1d",
+        "binary-search",
+        "stack"
+      ]
+    },
+    "booking_slots": {
+      "duration_minutes": 60,
+      "slots_per_day": 10,
+      "available_hours": [
+        "09:00",
+        "10:30",
+        "12:00",
+        "13:30",
+        "15:00",
+        "16:30"
+      ]
+    },
+    "total_questions": 12,
+    "patterns_covered": [
+      "two-pointers",
+      "binary-search",
+      "tree-dfs",
+      "hash-table",
+      "stack",
+      "bit-manipulation",
+      "sliding-window",
+      "dp-1d"
+    ],
+    "avg_quality": 32.0
+  },
+  "tcs": {
+    "mock_config": {
+      "name": "TCS NQT Mock Test",
+      "description": "Simulates TCS NQT: Aptitude (40 min) + Coding (1 problem, 45 min) + MCQ (10 min)",
+      "total_questions": 15,
+      "time_limit_minutes": 95,
+      "sections": [
+        {
+          "name": "Aptitude + Reasoning",
+          "type": "aptitude",
+          "count": 10,
+          "time_minutes": 40,
+          "questions": [
+            {
+              "id": "q_000084",
+              "title": "Given array of positive integers and target, return minimal ",
+              "pattern": "sliding-window",
+              "difficulty": "easy",
+              "type": "aptitude"
+            },
+            {
+              "id": "q_000000",
+              "title": "Given an array of integers nums sorted in non-decreasing ord",
+              "pattern": "binary-search",
+              "difficulty": "easy",
+              "type": "aptitude"
+            },
+            {
+              "id": "q_000014",
+              "title": "Given array nums, return the majority element (appears more ",
+              "pattern": "hash-table",
+              "difficulty": "easy",
+              "type": "aptitude"
+            },
+            {
+              "id": "q_000016",
+              "title": "Find all numbers that disappear in an array of length n with",
+              "pattern": "hash-table",
+              "difficulty": "easy",
+              "type": "aptitude"
+            },
+            {
+              "id": "q_000030",
+              "title": "Given array nums, move all zeros to the end while maintainin",
+              "pattern": "two-pointers",
+              "difficulty": "easy",
+              "type": "aptitude"
+            },
+            {
+              "id": "q_000040",
+              "title": "Given two integer arrays, return their intersection (unique ",
+              "pattern": "hash-table",
+              "difficulty": "easy",
+              "type": "aptitude"
+            },
+            {
+              "id": "q_000046",
+              "title": "Given array nums, return running sum where runningSum[i]=sum",
+              "pattern": "prefix-sum",
+              "difficulty": "easy",
+              "type": "aptitude"
+            },
+            {
+              "id": "q_000062",
+              "title": "Given a sorted array and target, find two numbers that sum t",
+              "pattern": "two-pointers",
+              "difficulty": "easy",
+              "type": "aptitude"
+            },
+            {
+              "id": "q_000068",
+              "title": "Merge two sorted arrays nums1 (size m+n) and nums2 (size n) ",
+              "pattern": "two-pointers",
+              "difficulty": "easy",
+              "type": "aptitude"
+            },
+            {
+              "id": "q_000082",
+              "title": "Given sorted array nums, remove duplicates in-place. Return ",
+              "pattern": "two-pointers",
+              "difficulty": "easy",
+              "type": "aptitude"
+            }
+          ]
+        },
+        {
+          "name": "Verbal Ability",
+          "type": "aptitude",
+          "count": 5,
+          "time_minutes": 20,
+          "questions": [
+            {
+              "id": "q_000086",
+              "title": "Given binary array nums and int k, return max consecutive 1s",
+              "pattern": "sliding-window",
+              "difficulty": "easy",
+              "type": "aptitude"
+            },
+            {
+              "id": "q_000106",
+              "title": "Given string with '(',')','{','}','[',']', determine if inpu",
+              "pattern": "stack",
+              "difficulty": "easy",
+              "type": "aptitude"
+            },
+            {
+              "id": "q_000110",
+              "title": "Given array temperatures, return array answer[i]=days to wai",
+              "pattern": "stack",
+              "difficulty": "easy",
+              "type": "aptitude"
+            },
+            {
+              "id": "q_000126",
+              "title": "Given sorted array of distinct integers and target, return t",
+              "pattern": "binary-search",
+              "difficulty": "easy",
+              "type": "aptitude"
+            },
+            {
+              "id": "q_000150",
+              "title": "Reverse a singly linked list iteratively.\n\nExample: head=[1,",
+              "pattern": "two-pointers",
+              "difficulty": "easy",
+              "type": "aptitude"
+            }
+          ]
+        },
+        {
+          "name": "Coding Problem",
+          "type": "coding",
+          "count": 1,
+          "time_minutes": 45,
+          "questions": []
+        }
+      ],
+      "patterns": [
+        "two-sum",
+        "sliding-window",
+        "binary-search",
+        "hash-table",
+        "strings"
+      ]
+    },
+    "booking_slots": {
+      "duration_minutes": 40,
+      "slots_per_day": 15,
+      "available_hours": [
+        "08:00",
+        "09:00",
+        "10:00",
+        "11:00",
+        "13:00",
+        "14:00"
+      ]
+    },
+    "total_questions": 15,
+    "patterns_covered": [
+      "two-pointers",
+      "prefix-sum",
+      "binary-search",
+      "hash-table",
+      "stack",
+      "sliding-window"
+    ],
+    "avg_quality": 32.0
+  }
+}

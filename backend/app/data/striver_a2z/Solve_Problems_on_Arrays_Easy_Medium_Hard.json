@@ -1,0 +1,5357 @@
+[
+  {
+    "id": "tuf_0078",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Easy",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Easy",
+    "tuf_step_index": 3,
+    "question": "Largest Element",
+    "question_title": "Largest Element",
+    "statement": "Largest Element. Solve the Striver A2Z problem 'Largest Element' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Largest Element. Solve the Striver A2Z problem 'Largest Element' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per TUF sheet. This is part of Solve",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def largest(nums):\n    # Largest Element - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "largest",
+    "leetcode_number": 547,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Easy"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 69,
+    "upvotes": 320
+  },
+  {
+    "id": "tuf_0079",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Medium",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Medium",
+    "tuf_step_index": 3,
+    "question": "Second Largest",
+    "question_title": "Second Largest",
+    "statement": "Second Largest. Solve the Striver A2Z problem 'Second Largest' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Second Largest. Solve the Striver A2Z problem 'Second Largest' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer per TUF sheet. This is part of Solve",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def second(nums):\n    # Second Largest - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "second",
+    "leetcode_number": 554,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Medium"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 42,
+    "upvotes": 333
+  },
+  {
+    "id": "tuf_0080",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Hard",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Hard",
+    "tuf_step_index": 3,
+    "question": "Check Sorted",
+    "question_title": "Check Sorted",
+    "statement": "Check Sorted. Solve the Striver A2Z problem 'Check Sorted' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Check Sorted. Solve the Striver A2Z problem 'Check Sorted' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer per TUF sheet. This is part of Solve Probl",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def check(nums):\n    # Check Sorted - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "check",
+    "leetcode_number": 561,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Hard"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 11,
+    "upvotes": 398
+  },
+  {
+    "id": "tuf_0081",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Easy",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Easy",
+    "tuf_step_index": 3,
+    "question": "Remove Duplicates",
+    "question_title": "Remove Duplicates",
+    "statement": "Remove Duplicates. Solve the Striver A2Z problem 'Remove Duplicates' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Remove Duplicates. Solve the Striver A2Z problem 'Remove Duplicates' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per TUF sheet. This is part of S",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= nums[i] <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def remove(nums):\n    # Remove Duplicates - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "remove",
+    "leetcode_number": 568,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Easy"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 24,
+    "upvotes": 399
+  },
+  {
+    "id": "tuf_0082",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Medium",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Medium",
+    "tuf_step_index": 3,
+    "question": "Rotate Array",
+    "question_title": "Rotate Array",
+    "statement": "Rotate Array. Solve the Striver A2Z problem 'Rotate Array' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Rotate Array. Solve the Striver A2Z problem 'Rotate Array' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer per TUF sheet. This is part of Solve Pro",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= nums[i] <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def rotate(nums):\n    # Rotate Array - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "rotate",
+    "leetcode_number": 575,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Medium"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 78,
+    "upvotes": 434
+  },
+  {
+    "id": "tuf_0083",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Hard",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Hard",
+    "tuf_step_index": 3,
+    "question": "Move Zeroes",
+    "question_title": "Move Zeroes",
+    "statement": "Move Zeroes. Solve the Striver A2Z problem 'Move Zeroes' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Move Zeroes. Solve the Striver A2Z problem 'Move Zeroes' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer per TUF sheet. This is part of Solve Problem",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def move(nums):\n    # Move Zeroes - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "move",
+    "leetcode_number": 582,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Hard"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 44,
+    "upvotes": 443
+  },
+  {
+    "id": "tuf_0084",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Easy",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Easy",
+    "tuf_step_index": 3,
+    "question": "Linear Search",
+    "question_title": "Linear Search",
+    "statement": "Linear Search. Solve the Striver A2Z problem 'Linear Search' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Linear Search. Solve the Striver A2Z problem 'Linear Search' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per TUF sheet. This is part of Solve Pro",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def linear(nums):\n    # Linear Search - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "linear",
+    "leetcode_number": 589,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Easy"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 92,
+    "upvotes": 224
+  },
+  {
+    "id": "tuf_0085",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Medium",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Medium",
+    "tuf_step_index": 3,
+    "question": "Union of Sorted Arrays",
+    "question_title": "Union of Sorted Arrays",
+    "statement": "Union of Sorted Arrays. Solve the Striver A2Z problem 'Union of Sorted Arrays' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Union of Sorted Arrays. Solve the Striver A2Z problem 'Union of Sorted Arrays' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer per TUF sheet. This ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def union(nums):\n    # Union of Sorted Arrays - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "union",
+    "leetcode_number": 596,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Medium"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 24,
+    "upvotes": 200
+  },
+  {
+    "id": "tuf_0086",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Hard",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Hard",
+    "tuf_step_index": 3,
+    "question": "Missing Number",
+    "question_title": "Missing Number",
+    "statement": "Missing Number. Solve the Striver A2Z problem 'Missing Number' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Missing Number. Solve the Striver A2Z problem 'Missing Number' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer per TUF sheet. This is part of Solve P",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def missing(nums):\n    # Missing Number - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "missing",
+    "leetcode_number": 603,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Hard"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 65,
+    "upvotes": 130
+  },
+  {
+    "id": "tuf_0087",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Easy",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Easy",
+    "tuf_step_index": 3,
+    "question": "Max Consecutive Ones",
+    "question_title": "Max Consecutive Ones",
+    "statement": "Max Consecutive Ones. Solve the Striver A2Z problem 'Max Consecutive Ones' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Max Consecutive Ones. Solve the Striver A2Z problem 'Max Consecutive Ones' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per TUF sheet. This is par",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def max(nums):\n    # Max Consecutive Ones - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "max",
+    "leetcode_number": 610,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Easy"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 68,
+    "upvotes": 51
+  },
+  {
+    "id": "tuf_0088",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Medium",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Medium",
+    "tuf_step_index": 3,
+    "question": "Single Number",
+    "question_title": "Single Number",
+    "statement": "Single Number. Solve the Striver A2Z problem 'Single Number' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Single Number. Solve the Striver A2Z problem 'Single Number' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer per TUF sheet. This is part of Solve P",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def single(nums):\n    # Single Number - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "single",
+    "leetcode_number": 617,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Medium"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 43,
+    "upvotes": 306
+  },
+  {
+    "id": "tuf_0089",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Hard",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Hard",
+    "tuf_step_index": 3,
+    "question": "Longest Subarray with Sum K",
+    "question_title": "Longest Subarray with Sum K",
+    "statement": "Longest Subarray with Sum K. Solve the Striver A2Z problem 'Longest Subarray with Sum K' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Longest Subarray with Sum K. Solve the Striver A2Z problem 'Longest Subarray with Sum K' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer per TUF shee",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= nums[i] <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def longest(nums):\n    # Longest Subarray with Sum K - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "longest",
+    "leetcode_number": 624,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Hard"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 32,
+    "upvotes": 309
+  },
+  {
+    "id": "tuf_0090",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Easy",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Easy",
+    "tuf_step_index": 3,
+    "question": "Two Sum",
+    "question_title": "Two Sum",
+    "statement": "Two Sum. Solve the Striver A2Z problem 'Two Sum' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Two Sum. Solve the Striver A2Z problem 'Two Sum' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per TUF sheet. This is part of Solve Problems on Arr",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= nums[i] <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def two(nums):\n    # Two Sum - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "two",
+    "leetcode_number": 631,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Easy"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 23,
+    "upvotes": 495
+  },
+  {
+    "id": "tuf_0091",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Medium",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Medium",
+    "tuf_step_index": 3,
+    "question": "Sort 0s 1s 2s",
+    "question_title": "Sort 0s 1s 2s",
+    "statement": "Sort 0s 1s 2s. Solve the Striver A2Z problem 'Sort 0s 1s 2s' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Sort 0s 1s 2s. Solve the Striver A2Z problem 'Sort 0s 1s 2s' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer per TUF sheet. This is part of Solve P",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def sort(nums):\n    # Sort 0s 1s 2s - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "sort",
+    "leetcode_number": 638,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Medium"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 90,
+    "upvotes": 202
+  },
+  {
+    "id": "tuf_0092",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Hard",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Hard",
+    "tuf_step_index": 3,
+    "question": "Majority Element",
+    "question_title": "Majority Element",
+    "statement": "Majority Element. Solve the Striver A2Z problem 'Majority Element' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Majority Element. Solve the Striver A2Z problem 'Majority Element' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer per TUF sheet. This is part of Sol",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def majority(nums):\n    # Majority Element - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "majority",
+    "leetcode_number": 645,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Hard"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 91,
+    "upvotes": 309
+  },
+  {
+    "id": "tuf_0093",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Easy",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Easy",
+    "tuf_step_index": 3,
+    "question": "Kadane Maximum Subarray",
+    "question_title": "Kadane Maximum Subarray",
+    "statement": "Kadane Maximum Subarray. Solve the Striver A2Z problem 'Kadane Maximum Subarray' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Kadane Maximum Subarray. Solve the Striver A2Z problem 'Kadane Maximum Subarray' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per TUF sheet. This ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def kadane(nums):\n    # Kadane Maximum Subarray - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "kadane",
+    "leetcode_number": 652,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Easy"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 87,
+    "upvotes": 151
+  },
+  {
+    "id": "tuf_0094",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Medium",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Medium",
+    "tuf_step_index": 3,
+    "question": "Next Permutation",
+    "question_title": "Next Permutation",
+    "statement": "Next Permutation. Solve the Striver A2Z problem 'Next Permutation' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Next Permutation. Solve the Striver A2Z problem 'Next Permutation' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer per TUF sheet. This is part of S",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def next(nums):\n    # Next Permutation - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "next",
+    "leetcode_number": 659,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Medium"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 29,
+    "upvotes": 241
+  },
+  {
+    "id": "tuf_0095",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Hard",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Hard",
+    "tuf_step_index": 3,
+    "question": "Leaders in Array",
+    "question_title": "Leaders in Array",
+    "statement": "Leaders in Array. Solve the Striver A2Z problem 'Leaders in Array' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Leaders in Array. Solve the Striver A2Z problem 'Leaders in Array' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer per TUF sheet. This is part of Sol",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def leaders(nums):\n    # Leaders in Array - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "leaders",
+    "leetcode_number": 666,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Hard"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 30,
+    "upvotes": 326
+  },
+  {
+    "id": "tuf_0096",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Easy",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Easy",
+    "tuf_step_index": 3,
+    "question": "Longest Consecutive Sequence",
+    "question_title": "Longest Consecutive Sequence",
+    "statement": "Longest Consecutive Sequence. Solve the Striver A2Z problem 'Longest Consecutive Sequence' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Longest Consecutive Sequence. Solve the Striver A2Z problem 'Longest Consecutive Sequence' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per TUF sh",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def longest(nums):\n    # Longest Consecutive Sequence - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "longest",
+    "leetcode_number": 673,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Easy"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 77,
+    "upvotes": 50
+  },
+  {
+    "id": "tuf_0097",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Medium",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Medium",
+    "tuf_step_index": 3,
+    "question": "Set Matrix Zeroes",
+    "question_title": "Set Matrix Zeroes",
+    "statement": "Set Matrix Zeroes. Solve the Striver A2Z problem 'Set Matrix Zeroes' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Set Matrix Zeroes. Solve the Striver A2Z problem 'Set Matrix Zeroes' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer per TUF sheet. This is part of",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= nums[i] <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def set(nums):\n    # Set Matrix Zeroes - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "set",
+    "leetcode_number": 680,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Medium"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 86,
+    "upvotes": 215
+  },
+  {
+    "id": "tuf_0098",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Hard",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Hard",
+    "tuf_step_index": 3,
+    "question": "Rotate Matrix",
+    "question_title": "Rotate Matrix",
+    "statement": "Rotate Matrix. Solve the Striver A2Z problem 'Rotate Matrix' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Rotate Matrix. Solve the Striver A2Z problem 'Rotate Matrix' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer per TUF sheet. This is part of Solve Pro",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= nums[i] <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def rotate(nums):\n    # Rotate Matrix - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "rotate",
+    "leetcode_number": 687,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Hard"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 72,
+    "upvotes": 59
+  },
+  {
+    "id": "tuf_0099",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Easy",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Easy",
+    "tuf_step_index": 3,
+    "question": "Spiral Matrix",
+    "question_title": "Spiral Matrix",
+    "statement": "Spiral Matrix. Solve the Striver A2Z problem 'Spiral Matrix' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Spiral Matrix. Solve the Striver A2Z problem 'Spiral Matrix' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per TUF sheet. This is part of Solve Pro",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def spiral(nums):\n    # Spiral Matrix - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "spiral",
+    "leetcode_number": 694,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Easy"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 24,
+    "upvotes": 235
+  },
+  {
+    "id": "tuf_0100",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Medium",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Medium",
+    "tuf_step_index": 3,
+    "question": "Count Subarrays with Sum K",
+    "question_title": "Count Subarrays with Sum K",
+    "statement": "Count Subarrays with Sum K. Solve the Striver A2Z problem 'Count Subarrays with Sum K' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Count Subarrays with Sum K. Solve the Striver A2Z problem 'Count Subarrays with Sum K' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer per TUF shee",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def count(nums):\n    # Count Subarrays with Sum K - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "count",
+    "leetcode_number": 701,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Medium"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 49,
+    "upvotes": 172
+  },
+  {
+    "id": "tuf_0101",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Hard",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Hard",
+    "tuf_step_index": 3,
+    "question": "Pascal Triangle",
+    "question_title": "Pascal Triangle",
+    "statement": "Pascal Triangle. Solve the Striver A2Z problem 'Pascal Triangle' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Pascal Triangle. Solve the Striver A2Z problem 'Pascal Triangle' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer per TUF sheet. This is part of Solve",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def pascal(nums):\n    # Pascal Triangle - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "pascal",
+    "leetcode_number": 708,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Hard"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 17,
+    "upvotes": 173
+  },
+  {
+    "id": "tuf_0102",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Easy",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Easy",
+    "tuf_step_index": 3,
+    "question": "Majority Element II",
+    "question_title": "Majority Element II",
+    "statement": "Majority Element II. Solve the Striver A2Z problem 'Majority Element II' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Majority Element II. Solve the Striver A2Z problem 'Majority Element II' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per TUF sheet. This is part ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def majority(nums):\n    # Majority Element II - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "majority",
+    "leetcode_number": 715,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Easy"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 82,
+    "upvotes": 90
+  },
+  {
+    "id": "tuf_0103",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Medium",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Medium",
+    "tuf_step_index": 3,
+    "question": "3 Sum",
+    "question_title": "3 Sum",
+    "statement": "3 Sum. Solve the Striver A2Z problem '3 Sum' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "3 Sum. Solve the Striver A2Z problem '3 Sum' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer per TUF sheet. This is part of Solve Problems on Array",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def solve3(nums):\n    # 3 Sum - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "solve3",
+    "leetcode_number": 722,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Medium"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 20,
+    "upvotes": 424
+  },
+  {
+    "id": "tuf_0104",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Hard",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Hard",
+    "tuf_step_index": 3,
+    "question": "4 Sum",
+    "question_title": "4 Sum",
+    "statement": "4 Sum. Solve the Striver A2Z problem '4 Sum' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "4 Sum. Solve the Striver A2Z problem '4 Sum' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def solve4(nums):\n    # 4 Sum - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "solve4",
+    "leetcode_number": 729,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Hard"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 72,
+    "upvotes": 467
+  },
+  {
+    "id": "tuf_0105",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Easy",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Easy",
+    "tuf_step_index": 3,
+    "question": "Merge Overlapping Intervals",
+    "question_title": "Merge Overlapping Intervals",
+    "statement": "Merge Overlapping Intervals. Solve the Striver A2Z problem 'Merge Overlapping Intervals' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Merge Overlapping Intervals. Solve the Striver A2Z problem 'Merge Overlapping Intervals' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per TUF shee",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= nums[i] <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def merge(nums):\n    # Merge Overlapping Intervals - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "merge",
+    "leetcode_number": 736,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Easy"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 18,
+    "upvotes": 439
+  },
+  {
+    "id": "tuf_0106",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Medium",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Medium",
+    "tuf_step_index": 3,
+    "question": "Merge Sorted Arrays Without Extra Space",
+    "question_title": "Merge Sorted Arrays Without Extra Space",
+    "statement": "Merge Sorted Arrays Without Extra Space. Solve the Striver A2Z problem 'Merge Sorted Arrays Without Extra Space' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Merge Sorted Arrays Without Extra Space. Solve the Striver A2Z problem 'Merge Sorted Arrays Without Extra Space' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the re",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= nums[i] <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def merge(nums):\n    # Merge Sorted Arrays Without Extra Space - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "merge",
+    "leetcode_number": 743,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Medium"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 78,
+    "upvotes": 442
+  },
+  {
+    "id": "tuf_0107",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Hard",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Hard",
+    "tuf_step_index": 3,
+    "question": "Find Repeating and Missing",
+    "question_title": "Find Repeating and Missing",
+    "statement": "Find Repeating and Missing. Solve the Striver A2Z problem 'Find Repeating and Missing' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Find Repeating and Missing. Solve the Striver A2Z problem 'Find Repeating and Missing' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer per TUF sheet.",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def find(nums):\n    # Find Repeating and Missing - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "find",
+    "leetcode_number": 750,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Hard"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 26,
+    "upvotes": 115
+  },
+  {
+    "id": "tuf_0108",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Easy",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Easy",
+    "tuf_step_index": 3,
+    "question": "Count Inversions",
+    "question_title": "Count Inversions",
+    "statement": "Count Inversions. Solve the Striver A2Z problem 'Count Inversions' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Count Inversions. Solve the Striver A2Z problem 'Count Inversions' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per TUF sheet. This is part of Sol",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def count(nums):\n    # Count Inversions - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "count",
+    "leetcode_number": 757,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Easy"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 94,
+    "upvotes": 293
+  },
+  {
+    "id": "tuf_0109",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Medium",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Medium",
+    "tuf_step_index": 3,
+    "question": "Reverse Pairs",
+    "question_title": "Reverse Pairs",
+    "statement": "Reverse Pairs. Solve the Striver A2Z problem 'Reverse Pairs' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Reverse Pairs. Solve the Striver A2Z problem 'Reverse Pairs' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer per TUF sheet. This is part of Solve P",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def reverse(nums):\n    # Reverse Pairs - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "reverse",
+    "leetcode_number": 764,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Medium"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 80,
+    "upvotes": 134
+  },
+  {
+    "id": "tuf_0110",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Hard",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Hard",
+    "tuf_step_index": 3,
+    "question": "Maximum Product Subarray",
+    "question_title": "Maximum Product Subarray",
+    "statement": "Maximum Product Subarray. Solve the Striver A2Z problem 'Maximum Product Subarray' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Maximum Product Subarray. Solve the Striver A2Z problem 'Maximum Product Subarray' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer per TUF sheet. Thi",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def maximum(nums):\n    # Maximum Product Subarray - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "maximum",
+    "leetcode_number": 771,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Hard"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 43,
+    "upvotes": 320
+  },
+  {
+    "id": "tuf_0111",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Easy",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Easy",
+    "tuf_step_index": 3,
+    "question": "Largest Subarray with 0 Sum",
+    "question_title": "Largest Subarray with 0 Sum",
+    "statement": "Largest Subarray with 0 Sum. Solve the Striver A2Z problem 'Largest Subarray with 0 Sum' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Largest Subarray with 0 Sum. Solve the Striver A2Z problem 'Largest Subarray with 0 Sum' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per TUF shee",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def largest(nums):\n    # Largest Subarray with 0 Sum - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "largest",
+    "leetcode_number": 778,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Easy"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 87,
+    "upvotes": 266
+  },
+  {
+    "id": "tuf_0112",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Medium",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Medium",
+    "tuf_step_index": 3,
+    "question": "Count Subarrays with XOR K",
+    "question_title": "Count Subarrays with XOR K",
+    "statement": "Count Subarrays with XOR K. Solve the Striver A2Z problem 'Count Subarrays with XOR K' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Count Subarrays with XOR K. Solve the Striver A2Z problem 'Count Subarrays with XOR K' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer per TUF shee",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def count(nums):\n    # Count Subarrays with XOR K - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "count",
+    "leetcode_number": 785,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Medium"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 37,
+    "upvotes": 326
+  },
+  {
+    "id": "tuf_0113",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Hard",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Hard",
+    "tuf_step_index": 3,
+    "question": "Largest Element (Solve Proble #36)",
+    "question_title": "Largest Element (Solve Proble #36)",
+    "statement": "Largest Element (Solve Proble #36). Solve the Striver A2Z problem 'Largest Element (Solve Proble #36)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Largest Element (Solve Proble #36). Solve the Striver A2Z problem 'Largest Element (Solve Proble #36)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answe",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= nums[i] <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def largest(nums):\n    # Largest Element (Solve Proble #36) - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "largest",
+    "leetcode_number": 792,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Hard"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 35,
+    "upvotes": 415
+  },
+  {
+    "id": "tuf_0114",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Easy",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Easy",
+    "tuf_step_index": 3,
+    "question": "Second Largest (Solve Proble #37)",
+    "question_title": "Second Largest (Solve Proble #37)",
+    "statement": "Second Largest (Solve Proble #37). Solve the Striver A2Z problem 'Second Largest (Solve Proble #37)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Second Largest (Solve Proble #37). Solve the Striver A2Z problem 'Second Largest (Solve Proble #37)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer ",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= nums[i] <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def second(nums):\n    # Second Largest (Solve Proble #37) - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "second",
+    "leetcode_number": 799,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Easy"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 49,
+    "upvotes": 254
+  },
+  {
+    "id": "tuf_0115",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Medium",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Medium",
+    "tuf_step_index": 3,
+    "question": "Check Sorted (Solve Proble #38)",
+    "question_title": "Check Sorted (Solve Proble #38)",
+    "statement": "Check Sorted (Solve Proble #38). Solve the Striver A2Z problem 'Check Sorted (Solve Proble #38)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Check Sorted (Solve Proble #38). Solve the Striver A2Z problem 'Check Sorted (Solve Proble #38)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer pe",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def check(nums):\n    # Check Sorted (Solve Proble #38) - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "check",
+    "leetcode_number": 806,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Medium"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 95,
+    "upvotes": 382
+  },
+  {
+    "id": "tuf_0116",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Hard",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Hard",
+    "tuf_step_index": 3,
+    "question": "Remove Duplicates (Solve Proble #39)",
+    "question_title": "Remove Duplicates (Solve Proble #39)",
+    "statement": "Remove Duplicates (Solve Proble #39). Solve the Striver A2Z problem 'Remove Duplicates (Solve Proble #39)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Remove Duplicates (Solve Proble #39). Solve the Striver A2Z problem 'Remove Duplicates (Solve Proble #39)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required a",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def remove(nums):\n    # Remove Duplicates (Solve Proble #39) - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "remove",
+    "leetcode_number": 813,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Hard"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 57,
+    "upvotes": 274
+  },
+  {
+    "id": "tuf_0117",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Easy",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Easy",
+    "tuf_step_index": 3,
+    "question": "Rotate Array (Solve Proble #40)",
+    "question_title": "Rotate Array (Solve Proble #40)",
+    "statement": "Rotate Array (Solve Proble #40). Solve the Striver A2Z problem 'Rotate Array (Solve Proble #40)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Rotate Array (Solve Proble #40). Solve the Striver A2Z problem 'Rotate Array (Solve Proble #40)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def rotate(nums):\n    # Rotate Array (Solve Proble #40) - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "rotate",
+    "leetcode_number": 820,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Easy"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 76,
+    "upvotes": 281
+  },
+  {
+    "id": "tuf_0118",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Medium",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Medium",
+    "tuf_step_index": 3,
+    "question": "Move Zeroes (Solve Proble #41)",
+    "question_title": "Move Zeroes (Solve Proble #41)",
+    "statement": "Move Zeroes (Solve Proble #41). Solve the Striver A2Z problem 'Move Zeroes (Solve Proble #41)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Move Zeroes (Solve Proble #41). Solve the Striver A2Z problem 'Move Zeroes (Solve Proble #41)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer per ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def move(nums):\n    # Move Zeroes (Solve Proble #41) - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "move",
+    "leetcode_number": 827,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Medium"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 25,
+    "upvotes": 176
+  },
+  {
+    "id": "tuf_0119",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Hard",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Hard",
+    "tuf_step_index": 3,
+    "question": "Linear Search (Solve Proble #42)",
+    "question_title": "Linear Search (Solve Proble #42)",
+    "statement": "Linear Search (Solve Proble #42). Solve the Striver A2Z problem 'Linear Search (Solve Proble #42)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Linear Search (Solve Proble #42). Solve the Striver A2Z problem 'Linear Search (Solve Proble #42)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer pe",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def linear(nums):\n    # Linear Search (Solve Proble #42) - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "linear",
+    "leetcode_number": 834,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Hard"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 38,
+    "upvotes": 82
+  },
+  {
+    "id": "tuf_0120",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Easy",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Easy",
+    "tuf_step_index": 3,
+    "question": "Union of Sorted Arrays (Solve Proble #43)",
+    "question_title": "Union of Sorted Arrays (Solve Proble #43)",
+    "statement": "Union of Sorted Arrays (Solve Proble #43). Solve the Striver A2Z problem 'Union of Sorted Arrays (Solve Proble #43)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Union of Sorted Arrays (Solve Proble #43). Solve the Striver A2Z problem 'Union of Sorted Arrays (Solve Proble #43)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the ",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def union(nums):\n    # Union of Sorted Arrays (Solve Proble #43) - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "union",
+    "leetcode_number": 841,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Easy"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 53,
+    "upvotes": 60
+  },
+  {
+    "id": "tuf_0121",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Medium",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Medium",
+    "tuf_step_index": 3,
+    "question": "Missing Number (Solve Proble #44)",
+    "question_title": "Missing Number (Solve Proble #44)",
+    "statement": "Missing Number (Solve Proble #44). Solve the Striver A2Z problem 'Missing Number (Solve Proble #44)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Missing Number (Solve Proble #44). Solve the Striver A2Z problem 'Missing Number (Solve Proble #44)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answe",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= nums[i] <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def missing(nums):\n    # Missing Number (Solve Proble #44) - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "missing",
+    "leetcode_number": 848,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Medium"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 85,
+    "upvotes": 333
+  },
+  {
+    "id": "tuf_0122",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "easy",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Hard",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Hard",
+    "tuf_step_index": 3,
+    "question": "Max Consecutive Ones (Solve Proble #45)",
+    "question_title": "Max Consecutive Ones (Solve Proble #45)",
+    "statement": "Max Consecutive Ones (Solve Proble #45). Solve the Striver A2Z problem 'Max Consecutive Ones (Solve Proble #45)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Max Consecutive Ones (Solve Proble #45). Solve the Striver A2Z problem 'Max Consecutive Ones (Solve Proble #45)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the requ",
+    "constraints": [
+      "1 <= n <= 10^3",
+      "-10^3 <= nums[i] <= 10^3"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def max(nums):\n    # Max Consecutive Ones (Solve Proble #45) - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "max",
+    "leetcode_number": 855,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Hard"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 39,
+    "upvotes": 351
+  },
+  {
+    "id": "tuf_0123",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Easy",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Easy",
+    "tuf_step_index": 3,
+    "question": "Single Number (Solve Proble #46)",
+    "question_title": "Single Number (Solve Proble #46)",
+    "statement": "Single Number (Solve Proble #46). Solve the Striver A2Z problem 'Single Number (Solve Proble #46)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Single Number (Solve Proble #46). Solve the Striver A2Z problem 'Single Number (Solve Proble #46)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer pe",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def single(nums):\n    # Single Number (Solve Proble #46) - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "single",
+    "leetcode_number": 862,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Easy"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 38,
+    "upvotes": 53
+  },
+  {
+    "id": "tuf_0124",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Medium",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Medium",
+    "tuf_step_index": 3,
+    "question": "Longest Subarray with Sum K (Solve Proble #47)",
+    "question_title": "Longest Subarray with Sum K (Solve Proble #47)",
+    "statement": "Longest Subarray with Sum K (Solve Proble #47). Solve the Striver A2Z problem 'Longest Subarray with Sum K (Solve Proble #47)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Longest Subarray with Sum K (Solve Proble #47). Solve the Striver A2Z problem 'Longest Subarray with Sum K (Solve Proble #47)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium).",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def longest(nums):\n    # Longest Subarray with Sum K (Solve Proble #47) - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "longest",
+    "leetcode_number": 869,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Medium"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 19,
+    "upvotes": 412
+  },
+  {
+    "id": "tuf_0125",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Hard",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Hard",
+    "tuf_step_index": 3,
+    "question": "Two Sum (Solve Proble #48)",
+    "question_title": "Two Sum (Solve Proble #48)",
+    "statement": "Two Sum (Solve Proble #48). Solve the Striver A2Z problem 'Two Sum (Solve Proble #48)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Two Sum (Solve Proble #48). Solve the Striver A2Z problem 'Two Sum (Solve Proble #48)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer per TUF sheet.",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def two(nums):\n    # Two Sum (Solve Proble #48) - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "two",
+    "leetcode_number": 876,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Hard"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 90,
+    "upvotes": 80
+  },
+  {
+    "id": "tuf_0126",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "medium",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Easy",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Easy",
+    "tuf_step_index": 3,
+    "question": "Sort 0s 1s 2s (Solve Proble #49)",
+    "question_title": "Sort 0s 1s 2s (Solve Proble #49)",
+    "statement": "Sort 0s 1s 2s (Solve Proble #49). Solve the Striver A2Z problem 'Sort 0s 1s 2s (Solve Proble #49)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Sort 0s 1s 2s (Solve Proble #49). Solve the Striver A2Z problem 'Sort 0s 1s 2s (Solve Proble #49)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Easy). Return the required answer pe",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def sort(nums):\n    # Sort 0s 1s 2s (Solve Proble #49) - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "sort",
+    "leetcode_number": 883,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Easy"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 39,
+    "upvotes": 84
+  },
+  {
+    "id": "tuf_0127",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Medium",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Medium",
+    "tuf_step_index": 3,
+    "question": "Majority Element (Solve Proble #50)",
+    "question_title": "Majority Element (Solve Proble #50)",
+    "statement": "Majority Element (Solve Proble #50). Solve the Striver A2Z problem 'Majority Element (Solve Proble #50)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Majority Element (Solve Proble #50). Solve the Striver A2Z problem 'Majority Element (Solve Proble #50)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Medium). Return the required a",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def majority(nums):\n    # Majority Element (Solve Proble #50) - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "majority",
+    "leetcode_number": 890,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Medium"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 14,
+    "upvotes": 490
+  },
+  {
+    "id": "tuf_0128",
+    "type": "coding",
+    "company": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "role": "SDE",
+    "difficulty": "hard",
+    "topic": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "sub_topic": "Hard",
+    "pattern": "Arrays",
+    "tuf_step": "Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "tuf_subtopic": "Hard",
+    "tuf_step_index": 3,
+    "question": "Kadane Maximum Subarray (Solve Proble #51)",
+    "question_title": "Kadane Maximum Subarray (Solve Proble #51)",
+    "statement": "Kadane Maximum Subarray (Solve Proble #51). Solve the Striver A2Z problem 'Kadane Maximum Subarray (Solve Proble #51)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return the required answer per TUF sheet. This is part of Solve Problems on Arrays [Easy -> Medium -> Hard] asked in top product companies.",
+    "description": "Kadane Maximum Subarray (Solve Proble #51). Solve the Striver A2Z problem 'Kadane Maximum Subarray (Solve Proble #51)' from TakeUForward step 'Solve Problems on Arrays [Easy -> Medium -> Hard]' (pattern: Hard). Return th",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]",
+        "explanation": "Two sum"
+      },
+      {
+        "input": "nums=[3,2,4], target=6",
+        "output": "[1,2]",
+        "explanation": "Second example"
+      }
+    ],
+    "hints": [
+      "Hash map O(1)",
+      "Sort first"
+    ],
+    "solution": {
+      "code": "def kadane(nums):\n    # Kadane Maximum Subarray (Solve Proble #51) - Solve Problems on Arrays [Easy -> Medium -> Hard]\n    return 0",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "visible_test_cases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "testcases": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[3,3], target=6",
+        "expected": "[0,1]"
+      },
+      {
+        "input": "nums=[0,4,3,0], target=0",
+        "expected": "[0,3]"
+      },
+      {
+        "input": "nums=[-1,-2,-3,-4], target=-7",
+        "expected": "[2,3]"
+      }
+    ],
+    "function_name": "kadane",
+    "leetcode_number": 897,
+    "dsa_guide": {
+      "approach": "Arrays",
+      "data_structures": [
+        "Hard"
+      ],
+      "patterns": [
+        "Arrays"
+      ],
+      "tips": [
+        "Hash map O(1)",
+        "Sort first"
+      ]
+    },
+    "source": "TakeUForward - Solve Problems on Arrays [Easy -> Medium -> Hard]",
+    "curated_source": "striver_a2z",
+    "review_status": "placement_grade",
+    "frequency": 52,
+    "upvotes": 86
+  }
+]

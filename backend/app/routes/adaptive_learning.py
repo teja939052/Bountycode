@@ -9,10 +9,10 @@ from app.services.adaptive_learning import (
     generate_daily_plan,
     generate_personalized_recommendations,
     generate_learning_path,
-    calculate_readiness_score,
     record_learning_activity,
     SKILL_DOMAINS,
 )
+from app.services.readiness_engine import compute_readiness
 
 router = APIRouter(prefix="/api/v1/adaptive", tags=["adaptive"])
 
@@ -55,7 +55,7 @@ async def get_learning_path(company: str = Query(None, description="Target compa
 @router.get("/readiness")
 async def get_readiness(company: str = Query(None, description="Company-specific readiness"), user=Depends(get_current_user)):
     """Calculate interview readiness score."""
-    score = await calculate_readiness_score(user["id"], company=company)
+    score = await compute_readiness(user["id"], company=company)
     return {"success": True, "data": score}
 
 
