@@ -467,6 +467,8 @@ The hero background on `frontend/src/pages/Landing.tsx` must use a **confirmed-v
 
 
 
+Landing hero composition rules (locked): ONE navbar only — the global `Navbar` is hidden on `/` in `App.tsx` (line ~809: `{location.pathname !== "/" && <Navbar />}`), and `Landing.tsx` renders its own minimal `BountyCode / Login / Get started` nav over the photo. No "You are here" marker, no character, no glassmorphism card. Headline: "From your first line of code / to your first offer." with **"first offer." in gold (`#D4A843`)**, not rainbow. Keep the Diagnose → Learn → Practice → Get Hired strip (expedition path with arrows). Soft radial halo behind the headline only. Brand identity: **nostalgic spring adventure** — sakura communicates growth, calm focus, and a fresh start.
+
 ---
 
 ## Known Issues (Fix Priority)
