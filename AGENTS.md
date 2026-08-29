@@ -461,6 +461,14 @@ placementpro/
 
 ---
 
+## Verified Landing Page Background Assets
+
+The hero background on `frontend/src/pages/Landing.tsx` must use a **confirmed-valid Unsplash photo ID** (a broken ID renders as white/cream). All verified IDs below return HTTP 200. A neutral gradient + base-color fallback is layered behind the image so it never shows plain white.
+
+
+
+---
+
 ## Known Issues (Fix Priority)
 
 ### P0 — CRITICAL (Fixed)

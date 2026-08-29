@@ -61,6 +61,7 @@ export default function Landing() {
           className="absolute inset-0"
           aria-hidden="true"
           style={{
+            backgroundColor: "#fbe4ec",
             backgroundSize: "cover",
             backgroundPosition: "center 72%",
             backgroundRepeat: "no-repeat",
