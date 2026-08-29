@@ -461,6 +461,28 @@ placementpro/
 
 ---
 
+## Verified Landing Page Background Assets
+
+The hero background on `frontend/src/pages/Landing.tsx` must use a **confirmed-valid Unsplash photo ID** (a broken ID renders as white/cream). All verified IDs below return HTTP 200. A neutral gradient + base-color fallback is layered behind the image so it never shows plain white.
+
+Verified-working photo IDs (use with `https://images.unsplash.com/photo-<ID>?w=4096&q=80&auto=format&fit=crop&fm=jpg`):
+- `1534067783941-51c9c23ecefd` — **current default: user-approved "perfecto" sakura image** (valid, 200).
+- `1551632811-561732d1e306` — mountain/landscape theme candidate (valid, 200).
+- `1743309979269-af5d46d0c390` — original sakura-trees wallpaper (user-confirmed "sakura trees").
+- `1520763185298-1b434c919102` — sakura candidate (valid, 200).
+- `1542273917363-3b1817f69a2d` — sakura candidate (valid, 200).
+- `1518998053901-5348d3961a04` — sakura candidate (valid, 200).
+- `1505691938895-1758d7feb511` — sakura candidate (valid, 200).
+- `1534067783941-51c9c23ecefd` — sakura candidate (valid, 200).
+- `1522383225653-ed111181a951` — cherry-blossom tree candidate (valid, 200).
+- `1490750967868-88aa4486c946` — pink flower field (valid, 200; not trees).
+- `1441974231531-c6227db76b6e` — forest path, green trees (valid, 200; not sakura).
+- `1472396961693-142e6e269027` — autumn trees (valid, 200).
+
+Known-broken ID to avoid: `15087040-efdd9b34cpho` (404 — previously caused the white screen).
+
+---
+
 ## Known Issues (Fix Priority)
 
 ### P0 — CRITICAL (Fixed)

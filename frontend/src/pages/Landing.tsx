@@ -61,7 +61,8 @@ export default function Landing() {
           className="absolute inset-0"
           aria-hidden="true"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1743309979269-af5d46d0c390?w=4096&q=100&fit=max&fm=jpg')",
+            backgroundColor: "#fbe4ec",
+            backgroundImage: "linear-gradient(rgba(251,228,236,0.18), rgba(251,228,236,0.32)), url('https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?w=7680&q=80&auto=format&fit=crop&fm=jpg&bri=12&sat=8')",
             backgroundSize: "cover",
             backgroundPosition: "center 72%",
             backgroundRepeat: "no-repeat",
