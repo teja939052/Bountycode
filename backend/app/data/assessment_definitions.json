@@ -1,0 +1,119 @@
+{
+  "assessment_definitions": {
+    "sde_intern_mock_oa": {
+      "id": "sde_intern_mock_oa",
+      "role": "sde_intern",
+      "level": "junior",
+      "duration_minutes": 70,
+      "competencies": [
+        "problem_solving",
+        "arrays",
+        "hashing",
+        "recursion",
+        "complexity_analysis"
+      ],
+      "stages": [
+        {
+          "stage": "coding",
+          "type": "code_execution",
+          "points": 40,
+          "questions": 1,
+          "allowed_ai_mode": "prohibited"
+        },
+        {
+          "stage": "debugging",
+          "type": "code_fix",
+          "points": 20,
+          "questions": 1,
+          "allowed_ai_mode": "prohibited"
+        },
+        {
+          "stage": "aptitude",
+          "type": "mcq",
+          "points": 20,
+          "questions": 5,
+          "allowed_ai_mode": "prohibited"
+        },
+        {
+          "stage": "ai_collaboration",
+          "type": "ai_assisted",
+          "points": 20,
+          "questions": 3,
+          "allowed_ai_mode": "allowed"
+        }
+      ],
+      "rubric": {
+        "problem_solving": {
+          "excellent": "Clarifies problem, identifies edge cases, designs algorithm",
+          "acceptable": "Attempts solution with minor gaps",
+          "weak": "Cannot articulate approach, gives up easily"
+        },
+        "coding": {
+          "excellent": "Clean code, proper variable names, handles edge cases",
+          "acceptable": "Works but poor style, misses some edge cases",
+          "weak": "Fails to compile, unclear logic"
+        }
+      }
+    },
+
+    "sde_technical_interview": {
+      "id": "sde_technical_interview",
+      "role": "sde",
+      "level": "mid_level",
+      "duration_minutes": 45,
+      "competencies": [
+        "problem_solving",
+        "coding",
+        "dsa",
+        "system_design_basics",
+        "communication"
+      ],
+      "stages": [
+        {
+          "stage": "coding",
+          "type": "code_execution",
+          "points": 35,
+          "questions": 1,
+          "allowed_ai_mode": "prohibited"
+        },
+        {
+          "stage": "followup",
+          "type": "followup_questions",
+          "points": 25,
+          "questions": 3,
+          "allowed_ai_mode": "prohibited"
+        },
+        {
+          "stage": "system_design",
+          "type": "system_design",
+          "points": 25,
+          "questions": 1,
+          "allowed_ai_mode": "prohibited"
+        },
+        {
+          "stage": "behavioral",
+          "type": "behavioral",
+          "points": 15,
+          "questions": 2,
+          "allowed_ai_mode": "prohibited"
+        }
+      ],
+      "rubric": {
+        "problem_solving": {
+          "excellent": "Reduces problem to known sub-problems, chooses right data structure",
+          "acceptable": "Reduces problem but chooses suboptimal structure",
+          "weak": "Cannot reduce problem, stuck on implementation"
+        },
+        "communication": {
+          "excellent": "Explains thought process, talks through edge cases",
+          "acceptable": "Gives correct answer with minimal explanation",
+          "weak": "Cannot articulate approach"
+        }
+      }
+    }
+  },
+  "question_bank": {
+    "sde_intern_oa": "striver_a2z_600.json",
+    "sde_technical": "leetcode_problems_seed.json"
+  }
+}

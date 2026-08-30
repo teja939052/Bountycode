@@ -1229,6 +1229,358 @@ OOPS_TOWN = TownDefinition(
     ],
 )
 
+
+# ───────────────────────────────────────────────────────────────────
+# TOWN 3 — FOREST  (repetition, loops)
+# ───────────────────────────────────────────────────────────────────
+
+FOREST_TOWN = TownDefinition(
+    id="forest",
+    name="Forest",
+    icon="🌲",
+    description="The same path, walked many times. Until it's done.",
+    order=3,
+    mental_model="Loops repeat an action — either a set number of times or until a condition is met.",
+    canonical_skill="coding.loops",
+    competencies=["repetition", "while", "for", "iteration", "nested"],
+    lessons=[
+        LessonDefinition(
+            id="forest-1", title="Walking Until", icon="🚶", order=1, concept="while",
+            mental_model="A while-loop repeats as long as its condition is True.",
+            canonical_skill="coding.while",
+            why_this_matters="Loops handle 'keep doing this until...' — the most common pattern in engineering.",
+            engineering_context="In backend, while loops drive retry logic, connection pooling, and event loops.",
+            builds_toward="SDE Fundamentals — iteration and stream processing",
+            steps=[
+                LessonStep(step_type="discover", title="The Endless Path",
+                    content="while not at_river: take_step(). Repeat until condition is False.",
+                    visual="🚶 → 🚶 → 🚶 → 🌊"),
+                LessonStep(step_type="predict", title="How Many Steps?",
+                    question="steps=0; while steps<3: steps+=1. Final value?",
+                    options=[{"id":"a","text":"3","correct":True},{"id":"b","text":"4","correct":False}]),
+                LessonStep(step_type="build", title="Count the Steps",
+                    function_name="count_steps", signature="def count_steps(target: int) -> int:",
+                    description="Start at 0, add 1 until target. Return target.",
+                    test_cases=[{"input":[3],"expected":3}], hidden_tests=3),
+            ],
+            mastery_evidence=["Predict while-loop iterations"],
+            unlocks="forest-2",
+        ),
+        LessonDefinition(
+            id="forest-2", title="Counting With For", icon="🔢", order=2, concept="for",
+            mental_model="A for-loop visits each item in a sequence.",
+            canonical_skill="coding.for_loops",
+            why_this_matters="For-loops are the workhorse of data processing.",
+            engineering_context="In API dev, for-loops transform database models into JSON responses.",
+            builds_toward="SDE Fundamentals — data transformation",
+            steps=[
+                LessonStep(step_type="discover", title="Visiting Each Tree",
+                    content="for tree in forest: examine(tree). One visit per tree."),
+                LessonStep(step_type="build", title="Sum the Numbers",
+                    function_name="sum_list", signature="def sum_list(numbers: list) -> int:",
+                    description="Return the sum of all numbers.",
+                    test_cases=[{"input":[[1,2,3]],"expected":6}], hidden_tests=3),
+            ],
+            mastery_evidence=["Use a for-loop to visit each item"],
+            unlocks="forest-boss",
+        ),
+        LessonDefinition(
+            id="forest-boss", title="Forest Boss", icon="🐉", kind="boss", order=3,
+            concept="transfer", mental_model="Use loops to solve a new problem.",
+            canonical_skill="coding.loops", xp=100, estimated_minutes=15,
+            why_this_matters="Real data processing combines all loop types.",
+            engineering_context="In ETL pipelines: iterate (for), retry (while), skip (continue), stop (break).",
+            builds_toward="DSA Fundamentals — combining loop patterns",
+            steps=[
+                LessonStep(step_type="mastery", title="The Treasure Count",
+                    function_name="count_treasures", signature="def count_treasures(finds: list) -> dict:",
+                    description="Return {name: count} for each name in finds.",
+                    test_cases=[{"input":[["gold","gold","silver"]],"expected":{"gold":2,"silver":1}}], hidden_tests=5),
+            ],
+            mastery_evidence=["Use while and for loops", "Control with break/continue"],
+        ),
+    ],
+)
+
+
+# ═══════════════════════════════════════════════════════════════════
+# TOWN 4 — WORKSHOP  (functions, reuse)
+# ═══════════════════════════════════════════════════════════════════
+
+WORKSHOP_TOWN = TownDefinition(
+    id="workshop",
+    name="Workshop",
+    icon="🛠",
+    description="Build tools once. Use them forever.",
+    order=4,
+    mental_model="A function is a named recipe — define it once, call it many times.",
+    canonical_skill="coding.functions",
+    competencies=["functions", "parameters", "return_values", "reuse", "composition"],
+    lessons=[
+        LessonDefinition(
+            id="workshop-1", title="The Recipe", icon="📜", order=1, concept="functions",
+            mental_model="def names a block of code so you can run it by calling its name.",
+            canonical_skill="coding.functions",
+            why_this_matters="Functions are the single most important concept in software engineering.",
+            engineering_context="A payment service has process_payment(), refund_payment(), get_payment_status().",
+            builds_toward="Software Engineering — code organization",
+            steps=[
+                LessonStep(step_type="discover", title="Name the Recipe",
+                    content="def greet(): print('Hello!'). Now greet() runs the recipe.",
+                    visual="def greet(): ...  →  greet() → 'Hello!'"),
+                LessonStep(step_type="build", title="Write a Greeter",
+                    function_name="greet", signature="def greet(name: str) -> str:",
+                    description="Return 'Hello, {name}!'.",
+                    test_cases=[{"input":["Ada"],"expected":"Hello, Ada!"}], hidden_tests=2),
+            ],
+            mastery_evidence=["Define and call a function"],
+            unlocks="workshop-2",
+        ),
+        LessonDefinition(
+            id="workshop-2", title="Ingredients", icon="🧪", order=2, concept="parameters",
+            mental_model="Parameters let you pass different inputs to the same recipe.",
+            canonical_skill="coding.parameters",
+            why_this_matters="Parameters make functions reusable.",
+            engineering_context="API endpoints take parameters: GET /users?role=admin.",
+            builds_toward="Software Engineering — reusable code",
+            steps=[
+                LessonStep(step_type="build", title="Add Two Numbers",
+                    function_name="add", signature="def add(a: int, b: int) -> int:",
+                    description="Return a + b.",
+                    test_cases=[{"input":[3,5],"expected":8}], hidden_tests=3),
+            ],
+            mastery_evidence=["Pass arguments through parameters"],
+            unlocks="workshop-3",
+        ),
+        LessonDefinition(
+            id="workshop-3", title="The Return", icon="↩️", order=3, concept="return_values",
+            mental_model="return sends a value back to whoever called the function.",
+            canonical_skill="coding.return_values",
+            why_this_matters="return is how functions communicate results.",
+            engineering_context="In microservices, functions return responses that other services consume.",
+            builds_toward="Software Engineering — function composition",
+            steps=[
+                LessonStep(step_type="predict", title="What's Returned?",
+                    question="def double(x): return x * 2. double(7) is…",
+                    options=[{"id":"a","text":"14","correct":True},{"id":"b","text":"7","correct":False}]),
+                LessonStep(step_type="build", title="Calculate Area",
+                    function_name="area", signature="def area(width: int, height: int) -> int:",
+                    description="Return width * height.",
+                    test_cases=[{"input":[4,5],"expected":20}], hidden_tests=3),
+            ],
+            mastery_evidence=["Use return to send back a result"],
+            unlocks="workshop-boss",
+        ),
+        LessonDefinition(
+            id="workshop-boss", title="Workshop Boss", icon="🐉", kind="boss", order=4,
+            concept="transfer", mental_model="Combine functions, parameters, and composition.",
+            canonical_skill="coding.functions", xp=100, estimated_minutes=15,
+            why_this_matters="Real features are built by composing functions.",
+            engineering_context="In e-commerce, processing an order involves 5-10 functions composed together.",
+            builds_toward="Software Engineering — feature development",
+            steps=[
+                LessonStep(step_type="mastery", title="The Assembly Line",
+                    function_name="pipeline", signature="def pipeline(numbers: list) -> list:",
+                    description="Filter to even numbers, then double each.",
+                    test_cases=[{"input":[[1,2,3,4]],"expected":[4,8]}], hidden_tests=5),
+            ],
+            mastery_evidence=["Define functions with parameters", "Return values", "Compose functions"],
+        ),
+    ],
+)
+
+
+# ═══════════════════════════════════════════════════════════════════
+# TOWN 5 — LIBRARY  (collections, data organization)
+# ═══════════════════════════════════════════════════════════════════
+
+LIBRARY_TOWN = TownDefinition(
+    id="library",
+    name="Library",
+    icon="📚",
+    description="Organize many things into one place.",
+    order=5,
+    mental_model="Collections (lists, dicts, sets) hold many values under one name.",
+    canonical_skill="coding.collections",
+    competencies=["lists", "dictionaries", "sets", "strings", "data_organization"],
+    lessons=[
+        LessonDefinition(
+            id="library-1", title="The Shelf", icon="📋", order=1, concept="lists",
+            mental_model="A list is an ordered shelf — each item has a position (index).",
+            canonical_skill="coding.lists",
+            why_this_matters="Lists are the most common data structure.",
+            engineering_context="API responses return lists. Frontend maps lists to UI components.",
+            builds_toward="DSA Fundamentals — arrays and dynamic lists",
+            steps=[
+                LessonStep(step_type="discover", title="The Ordered Shelf",
+                    content="books = ['A','B','C']. books[0] is 'A'. Index starts at 0.",
+                    visual="['A','B','C'] → [0]='A' [1]='B' [2]='C'"),
+                LessonStep(step_type="build", title="Get First and Last",
+                    function_name="first_last", signature="def first_last(items: list) -> list:",
+                    description="Return [first_item, last_item].",
+                    test_cases=[{"input":[[1,2,3]],"expected":[1,3]}], hidden_tests=3),
+            ],
+            mastery_evidence=["Access list items by index"],
+            unlocks="library-2",
+        ),
+        LessonDefinition(
+            id="library-2", title="The Card Catalog", icon="🗂", order=2, concept="dictionaries",
+            mental_model="A dictionary maps keys to values — look up anything by name.",
+            canonical_skill="coding.dictionaries",
+            why_this_matters="Dictionaries store structured data. JSON is dicts.",
+            engineering_context="Every API request body is a dict.",
+            builds_toward="DSA Fundamentals — hash maps and key-value stores",
+            steps=[
+                LessonStep(step_type="build", title="Look Up a Price",
+                    function_name="get_price", signature="def get_price(prices: dict, item: str) -> int:",
+                    description="Return prices[item], or 0 if not found.",
+                    test_cases=[{"input":[{"apple":5},"apple"],"expected":5}], hidden_tests=3),
+            ],
+            mastery_evidence=["Look up values by key in a dict"],
+            unlocks="library-3",
+        ),
+        LessonDefinition(
+            id="library-3", title="Unique Items", icon="🎯", order=3, concept="sets",
+            mental_model="A set holds only unique items — duplicates are ignored.",
+            canonical_skill="coding.sets",
+            why_this_matters="Sets solve uniqueness: remove duplicates, check membership.",
+            engineering_context="In data engineering, sets deduplicate records.",
+            builds_toward="DSA Fundamentals — set operations and deduplication",
+            steps=[
+                LessonStep(step_type="build", title="Remove Duplicates",
+                    function_name="unique", signature="def unique(items: list) -> list:",
+                    description="Return items with duplicates removed, preserving first occurrence order.",
+                    test_cases=[{"input":[[1,2,2,3,1]],"expected":[1,2,3]}], hidden_tests=3),
+            ],
+            mastery_evidence=["Use a set to remove duplicates"],
+            unlocks="library-boss",
+        ),
+        LessonDefinition(
+            id="library-boss", title="Library Boss", icon="🐉", kind="boss", order=4,
+            concept="transfer", mental_model="Combine lists, dicts, and sets to organize real data.",
+            canonical_skill="coding.collections", xp=100, estimated_minutes=15,
+            why_this_matters="Real data is messy and requires combining collections.",
+            engineering_context="In analytics: query records (list), group by category (dict), count unique users (set).",
+            builds_toward="DSA Fundamentals — combining data structures",
+            steps=[
+                LessonStep(step_type="mastery", title="The Inventory Report",
+                    function_name="inventory_report", signature="def inventory_report(items: list) -> dict:",
+                    description="Return {item: count} for each unique item, sorted by count descending.",
+                    test_cases=[{"input":[["apple","bread","apple"]],"expected":{"apple":2,"bread":1}}], hidden_tests=5),
+            ],
+            mastery_evidence=["Use lists, dicts, and sets", "Choose the right collection"],
+        ),
+    ],
+)
+
+
+# ═══════════════════════════════════════════════════════════════════
+# TOWN 6 — OOPS  (objects, classes, inheritance)
+# ═══════════════════════════════════════════════════════════════════
+
+OOPS_TOWN = TownDefinition(
+    id="oops",
+    name="Objects",
+    icon="🏛️",
+    description="Model the real world as objects. The heart of modern engineering.",
+    order=6,
+    mental_model="A class is a blueprint, an object is an instance. Objects bundle data + behavior.",
+    canonical_skills=["coding.oop"],
+    competencies=["classes", "objects", "inheritance", "polymorphism", "encapsulation"],
+    lessons=[
+        LessonDefinition(
+            id="oops-1", title="Blueprints", icon="📐", order=1, concept="classes",
+            mental_model="A class defines what something IS (attributes) and what it DOES (methods).",
+            canonical_skill="coding.classes",
+            why_this_matters="OOP is the foundation of modern software engineering.",
+            engineering_context="In backend, a User class models a user with attributes (name, email) and methods (login, logout).",
+            builds_toward="Software Engineering — object-oriented design",
+            steps=[
+                LessonStep(step_type="discover", title="The Blueprint",
+                    content="class Building: defines height, floors, type. Each building is an instance."),
+                LessonStep(step_type="manipulate", title="Create an Object",
+                    content="tower = Building(height=50, floors=20, type='office')",
+                    template="tower = Building(height=?, floors=?, type=?)",
+                    answer="tower = Building(height=50, floors=20, type='office')"),
+                LessonStep(step_type="build", title="Define a User Class",
+                    function_name="class User", signature="class User:",
+                    description="Create User with __init__(name, email) and greet() returning 'Hello, {name}!'.",
+                    starter="class User:\n    def __init__(self, name, email):\n        ?",
+                    test_cases=[{"input":[],"expected":"class defined"}], hidden_tests=3),
+            ],
+            mastery_evidence=["Define a class with attributes"],
+            unlocks="oops-2",
+        ),
+        LessonDefinition(
+            id="oops-2", title="Inheritance", icon="🌳", order=2, concept="inheritance",
+            mental_model="A child class inherits all attributes and methods from its parent.",
+            canonical_skill="coding.inheritance",
+            why_this_matters="Inheritance eliminates code duplication. It's the foundation of framework design.",
+            engineering_context="PremiumUser inherits from User and adds premium_features.",
+            builds_toward="Software Engineering — framework design",
+            steps=[
+                LessonStep(step_type="discover", title="Parent → Child",
+                    content="class PremiumUser(User): inherits name, email AND adds premium_features."),
+                LessonStep(step_type="build", title="Extend a Class",
+                    function_name="class PremiumUser", signature="class PremiumUser(User):",
+                    description="Inherit from User and add premium_features.",
+                    starter="class PremiumUser(User):\n    def __init__(self, name, email, features):\n        ?",
+                    test_cases=[{"input":[],"expected":"inheritance"}], hidden_tests=3),
+            ],
+            mastery_evidence=["Create child classes that inherit from parents"],
+            unlocks="oops-3",
+        ),
+        LessonDefinition(
+            id="oops-3", title="Polymorphism", icon="🎭", order=3, concept="polymorphism",
+            canonical_skill="coding.polymorphism",
+            why_this_matters="Polymorphism lets you write code that works with ANY object with the right interface.",
+            engineering_context="process_payment() works with CreditCard, PayPal, or Crypto — each implements pay() differently.",
+            builds_toward="System Design — interface-based design",
+            steps=[
+                LessonStep(step_type="discover", title="Same Call, Different Behavior",
+                    content="user.greet() → 'Hello, Alice!'. admin.greet() → 'Hello, Admin Alice!'."),
+                LessonStep(step_type="retrieve", title="Why?",
+                    question="Why is polymorphism useful?",
+                    prompt="Polymorphism lets us…", answer="write code that works with any object implementing the same interface"),
+            ],
+            mastery_evidence=["Understand how different objects respond to the same method"],
+            unlocks="oops-4",
+        ),
+        LessonDefinition(
+            id="oops-4", title="Encapsulation", icon="🔒", order=4, concept="encapsulation",
+            canonical_skill="coding.encapsulation",
+            why_this_matters="Encapsulation prevents bugs by controlling how data is accessed.",
+            engineering_context="A BankAccount class hides the balance field and exposes deposit() and withdraw().",
+            builds_toward="Software Engineering — defensive programming",
+            steps=[
+                LessonStep(step_type="build", title="Protect the Balance",
+                    function_name="class BankAccount", signature="class BankAccount:",
+                    description="Create BankAccount with private _balance, deposit(), and withdraw() preventing overdraft.",
+                    starter="class BankAccount:\n    def __init__(self, balance):\n        self._balance = balance\n    def withdraw(self, amount):\n        ?",
+                    test_cases=[{"input":[],"expected":"encapsulation"}], hidden_tests=3),
+            ],
+            mastery_evidence=["Hide internal data using private attributes"],
+            unlocks="oops-boss",
+        ),
+        LessonDefinition(
+            id="oops-boss", title="OOPs Boss", icon="🐉", kind="boss", order=5,
+            concept="transfer", mental_model="Combine all OOP concepts to model a real system.",
+            canonical_skill="coding.oop", xp=100, estimated_minutes=20,
+            why_this_matters="Real systems combine all OOP concepts.",
+            engineering_context="You'd design a class hierarchy: User → PremiumUser/AdminUser.",
+            builds_toward="Software Engineering — complete OOP system design",
+            steps=[
+                LessonStep(step_type="mastery", title="Design a Library System",
+                    function_name="design_library", signature="def design_library() -> dict:",
+                    description="Return a class hierarchy: User (parent), Member and Librarian (children).",
+                    starter="def design_library():\n    return {}",
+                    test_cases=[{"input":[],"expected":"hierarchy"}], hidden_tests=5),
+            ],
+            mastery_evidence=["Define classes", "Use inheritance", "Apply polymorphism", "Encapsulate data"],
+        ),
+    ],
+)
+
 WORLD_1_FOUNDATIONS = WorldDefinition(
     id="foundations",
     name="Beginner Valley",
