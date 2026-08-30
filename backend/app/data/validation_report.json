@@ -1,0 +1,18 @@
+{
+  "sample_size": 100,
+  "results": {
+    "coding": {
+      "passed": 0,
+      "failed": 98
+    },
+    "aptitude": {
+      "passed": 1,
+      "failed": 0
+    },
+    "other": {
+      "passed": 1,
+      "failed": 0
+    }
+  },
+  "duplicates_found": 3611
+}

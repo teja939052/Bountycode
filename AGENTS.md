@@ -64,6 +64,51 @@ At every arrow, verify data persists.
 
 **Capability gained per student** — not routes, files, questions, or badges.
 
+### Content Trust Rule
+
+Never promote content because metadata exists.
+
+Never promote content because an LLM generated a plausible answer.
+
+Never promote content because a solution compiles.
+
+Trust requires evidence that the content is correct.
+
+**For coding:** independent expected outputs + visible tests + hidden tests + edge cases.
+
+**For aptitude/logical/verbal:** independent answer verification + reasoning verification + ambiguity review.
+
+**For company claims:** verified provenance OR explicitly labeled pattern-relevant.
+
+**For lessons:** completion is not mastery; transfer evidence is required.
+
+**For assessments:** a score is not a diagnosis; a diagnosis must produce an actionable repair.
+
+**For interviews:** a transcript is not personalization; the interview must use actual student state.
+
+When uncertain, quarantine rather than publish.
+
+### Content Trust Pipeline
+
+```
+UNVERIFIED → AUTOMATED_CHECKED → HUMAN_REVIEWED → TRUSTED
+```
+
+- **UNVERIFIED**: Raw imported content. Never served to students.
+- **AUTOMATED_CHECKED**: Passes automated validation (solution executes, tests pass, no ambiguity flags).
+- **HUMAN_REVIEWED**: Human verified correctness, relevance, and quality.
+- **TRUSTED**: Fully verified. Safe to serve as placement-quality.
+
+### v1.3 Acceptance Gates
+
+| Phase | Must be true before moving on |
+|-------|-------------------------------|
+| 1. Content correctness | Every question promoted to TRUSTED has independently verified outputs/tests |
+| 2. World 1 | All 35 lessons demonstrate the complete teaching loop, especially transfer |
+| 3. Mock OA | A failed assessment produces a specific, useful repair path |
+| 4. AI Interview | Interview uses actual student history and produces competency-level diagnosis |
+| 5. Companies | Provenance is explicit; no fabricated company history |
+
 ---
 
 ## Project Overview

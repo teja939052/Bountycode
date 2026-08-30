@@ -1,0 +1,691 @@
+{
+  "bank_total": 6379,
+  "verified": 11,
+  "verified_ids": [
+    "apt-001",
+    "apt-002",
+    "apt-003",
+    "apt-004",
+    "apt-005",
+    "verify-001",
+    "verify-002",
+    "verify-003",
+    "verify-004",
+    "verify-005",
+    "verify-006"
+  ],
+  "unverified_pending": 6379,
+  "repair_reasons": {
+    "TEST_CASE_MISSING": 430,
+    "UNVERIFIED_EXPECTED_OUTPUT": 2821,
+    "TEMPLATE_SHELL": 3128
+  },
+  "type_distribution": {
+    "coding": 2879,
+    "aptitude": 50,
+    "logical": 30,
+    "verbal": 20,
+    "unknown": 3400
+  },
+  "tier1_pending_repair": 5914,
+  "top_companies_flagged": {
+    "google": 2306,
+    "microsoft": 2130,
+    "amazon": 2121,
+    "meta": 1818,
+    "apple": 1709,
+    "netflix": 1571,
+    "uber": 1352,
+    "adobe": 839,
+    "infosys": 679,
+    "tcs": 631,
+    "airbnb": 555,
+    "cognizant": 536,
+    "wipro": 533,
+    "linkedin": 479,
+    "accenture": 466
+  },
+  "next_targets_11_50": [
+    {
+      "id": "extra-two-sum",
+      "type": "coding",
+      "topic": "Arrays",
+      "company": [
+        "Amazon",
+        "Microsoft",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "extra-product-except-self",
+      "type": "coding",
+      "topic": "Arrays",
+      "company": [
+        "Amazon",
+        "Meta",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "extra-maximum-subarray",
+      "type": "coding",
+      "topic": "Arrays",
+      "company": [
+        "Adobe",
+        "Amazon",
+        "Microsoft",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "extra-merge-intervals",
+      "type": "coding",
+      "topic": "Arrays",
+      "company": [
+        "Amazon",
+        "Microsoft",
+        "Google",
+        "Uber"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "extra-rotate-array",
+      "type": "coding",
+      "topic": "Arrays",
+      "company": [
+        "Amazon",
+        "Apple",
+        "Microsoft"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "extra-valid-anagram",
+      "type": "coding",
+      "topic": "Strings",
+      "company": [
+        "Amazon",
+        "Microsoft",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "extra-longest-palindrome",
+      "type": "coding",
+      "topic": "Strings",
+      "company": [
+        "Amazon",
+        "Meta",
+        "Apple",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "extra-group-anagrams",
+      "type": "coding",
+      "topic": "Strings",
+      "company": [
+        "LinkedIn",
+        "Amazon",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "extra-min-window-substring",
+      "type": "coding",
+      "topic": "Strings",
+      "company": [
+        "Netflix",
+        "Amazon",
+        "Meta",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "extra-valid-parentheses",
+      "type": "coding",
+      "topic": "Stack",
+      "company": [
+        "Amazon",
+        "Microsoft",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "extra-daily-temperatures",
+      "type": "coding",
+      "topic": "Stack",
+      "company": [
+        "Amazon",
+        "Apple",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "extra-climbing-stairs",
+      "type": "coding",
+      "topic": "Dynamic Programming",
+      "company": [
+        "Amazon",
+        "Microsoft",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "extra-house-robber",
+      "type": "coding",
+      "topic": "Dynamic Programming",
+      "company": [
+        "Amazon",
+        "Meta",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "extra-coin-change",
+      "type": "coding",
+      "topic": "Dynamic Programming",
+      "company": [
+        "Amazon",
+        "Microsoft",
+        "Google",
+        "Uber"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "extra-lis",
+      "type": "coding",
+      "topic": "Dynamic Programming",
+      "company": [
+        "Amazon",
+        "Meta",
+        "Apple",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "faang-3sum",
+      "type": "coding",
+      "topic": "Arrays",
+      "company": [
+        "Amazon",
+        "Meta",
+        "Microsoft",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "faang-largest-rectangle",
+      "type": "coding",
+      "topic": "Stack",
+      "company": [
+        "Amazon",
+        "Meta",
+        "Google",
+        "Uber"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "faang-trapping-rain-water",
+      "type": "coding",
+      "topic": "Arrays",
+      "company": [
+        "Amazon",
+        "Meta",
+        "Apple",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "faang-longest-substring",
+      "type": "coding",
+      "topic": "Strings",
+      "company": [
+        "Amazon",
+        "Meta",
+        "Microsoft",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "faang-edit-distance",
+      "type": "coding",
+      "topic": "Dynamic Programming",
+      "company": [
+        "Amazon",
+        "Meta",
+        "Microsoft",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "faang-minimum-window-hard",
+      "type": "coding",
+      "topic": "Strings",
+      "company": [
+        "Netflix",
+        "Amazon",
+        "Meta",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "bulk-0001",
+      "type": "coding",
+      "topic": "Arrays",
+      "company": [
+        "Amazon",
+        "Meta",
+        "Microsoft",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "bulk-0002",
+      "type": "coding",
+      "topic": "Arrays",
+      "company": [
+        "Amazon",
+        "Meta",
+        "Apple",
+        "Microsoft"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "bulk-0003",
+      "type": "coding",
+      "topic": "Strings",
+      "company": [
+        "Uber",
+        "Meta",
+        "Apple",
+        "Microsoft"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "bulk-0004",
+      "type": "coding",
+      "topic": "Strings",
+      "company": [
+        "Netflix",
+        "Uber",
+        "Meta",
+        "Apple"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "bulk-0006",
+      "type": "coding",
+      "topic": "Stack",
+      "company": [
+        "Netflix",
+        "Uber",
+        "Adobe",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "bulk-0014",
+      "type": "coding",
+      "topic": "Dynamic Programming",
+      "company": [
+        "Netflix",
+        "Uber",
+        "Adobe",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "bulk-0015",
+      "type": "coding",
+      "topic": "Dynamic Programming",
+      "company": [
+        "Netflix",
+        "Amazon",
+        "Adobe",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "bulk-0017",
+      "type": "coding",
+      "topic": "Arrays",
+      "company": [
+        "Amazon",
+        "Meta",
+        "Microsoft",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "bulk-0018",
+      "type": "coding",
+      "topic": "Arrays",
+      "company": [
+        "Amazon",
+        "Meta",
+        "Apple",
+        "Microsoft"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "bulk-0019",
+      "type": "coding",
+      "topic": "Strings",
+      "company": [
+        "Uber",
+        "Meta",
+        "Apple",
+        "Microsoft"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "bulk-0020",
+      "type": "coding",
+      "topic": "Strings",
+      "company": [
+        "Netflix",
+        "Uber",
+        "Meta",
+        "Apple"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "bulk-0022",
+      "type": "coding",
+      "topic": "Stack",
+      "company": [
+        "Netflix",
+        "Uber",
+        "Adobe",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "bulk-0030",
+      "type": "coding",
+      "topic": "Dynamic Programming",
+      "company": [
+        "Netflix",
+        "Uber",
+        "Adobe",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "bulk-0031",
+      "type": "coding",
+      "topic": "Dynamic Programming",
+      "company": [
+        "Netflix",
+        "Amazon",
+        "Adobe",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "bulk-0033",
+      "type": "coding",
+      "topic": "Arrays",
+      "company": [
+        "Amazon",
+        "Meta",
+        "Microsoft",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "bulk-0034",
+      "type": "coding",
+      "topic": "Arrays",
+      "company": [
+        "Amazon",
+        "Meta",
+        "Apple",
+        "Microsoft"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "bulk-0035",
+      "type": "coding",
+      "topic": "Strings",
+      "company": [
+        "Uber",
+        "Meta",
+        "Apple",
+        "Microsoft"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "bulk-0036",
+      "type": "coding",
+      "topic": "Strings",
+      "company": [
+        "Netflix",
+        "Uber",
+        "Meta",
+        "Apple"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "bulk-0038",
+      "type": "coding",
+      "topic": "Stack",
+      "company": [
+        "Netflix",
+        "Uber",
+        "Adobe",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "bulk-0046",
+      "type": "coding",
+      "topic": "Dynamic Programming",
+      "company": [
+        "Netflix",
+        "Uber",
+        "Adobe",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "bulk-0047",
+      "type": "coding",
+      "topic": "Dynamic Programming",
+      "company": [
+        "Netflix",
+        "Amazon",
+        "Adobe",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "bulk-0049",
+      "type": "coding",
+      "topic": "Arrays",
+      "company": [
+        "Amazon",
+        "Meta",
+        "Microsoft",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "bulk-0050",
+      "type": "coding",
+      "topic": "Arrays",
+      "company": [
+        "Amazon",
+        "Meta",
+        "Apple",
+        "Microsoft"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "bulk-0051",
+      "type": "coding",
+      "topic": "Strings",
+      "company": [
+        "Uber",
+        "Meta",
+        "Apple",
+        "Microsoft"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "bulk-0052",
+      "type": "coding",
+      "topic": "Strings",
+      "company": [
+        "Netflix",
+        "Uber",
+        "Meta",
+        "Apple"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "bulk-0054",
+      "type": "coding",
+      "topic": "Stack",
+      "company": [
+        "Netflix",
+        "Uber",
+        "Adobe",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "bulk-0062",
+      "type": "coding",
+      "topic": "Dynamic Programming",
+      "company": [
+        "Netflix",
+        "Uber",
+        "Adobe",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "bulk-0063",
+      "type": "coding",
+      "topic": "Dynamic Programming",
+      "company": [
+        "Netflix",
+        "Amazon",
+        "Adobe",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    },
+    {
+      "id": "bulk-0065",
+      "type": "coding",
+      "topic": "Arrays",
+      "company": [
+        "Amazon",
+        "Meta",
+        "Microsoft",
+        "Google"
+      ],
+      "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
+      "priority": 1.0
+    }
+  ]
+}
