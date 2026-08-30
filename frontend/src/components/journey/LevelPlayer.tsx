@@ -276,9 +276,8 @@ export function LevelPlayer({ worldId, level, onClose, onMastered }: LevelPlayer
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ type: "spring", damping: 15 }}
-              className="space-y-5 py-4"
+              className="space-y-4 py-4"
             >
-              {/* Header */}
               <div className="text-center">
                 <motion.div
                   initial={{ scale: 0 }}
@@ -292,13 +291,13 @@ export function LevelPlayer({ worldId, level, onClose, onMastered }: LevelPlayer
                   initial={{ y: 10, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.3 }}
-                  className="text-lg font-bold text-text-primary tracking-wide"
+                  className="text-lg font-bold text-text-primary"
                 >
                   MASTERY PROVEN
                 </motion.h3>
               </div>
 
-              {/* What you learned */}
+              {/* What you learned — evidence-based */}
               <motion.div
                 initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -309,7 +308,7 @@ export function LevelPlayer({ worldId, level, onClose, onMastered }: LevelPlayer
                   🧠 You learned
                 </div>
                 <p className="text-sm font-medium text-emerald-900 mb-3">
-                  {level.concept ? `${level.concept.charAt(0).toUpperCase() + level.concept.slice(1)} — a new tool for your engineering toolkit.` : "A new concept for your engineering toolkit."}
+                  {level.concept ? `${level.concept.charAt(0).toUpperCase() + level.concept.slice(1)}` : "A new concept"} — a new tool for your engineering toolkit.
                 </p>
                 <ul className="space-y-1.5">
                   <li className="text-sm flex items-start gap-2 text-emerald-800">
@@ -331,18 +330,17 @@ export function LevelPlayer({ worldId, level, onClose, onMastered }: LevelPlayer
                 </ul>
               </motion.div>
 
-              {/* Divider */}
+              {/* Unlock consequence */}
               <div className="flex items-center gap-3">
                 <div className="flex-1 h-px bg-border" />
                 <span className="text-[10px] text-text-muted uppercase tracking-widest">Unlock</span>
                 <div className="flex-1 h-px bg-border" />
               </div>
 
-              {/* Unlock consequence */}
               <motion.div
                 initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.6 }}
+                transition={{ delay: 0.5 }}
                 className="text-center"
               >
                 <p className="text-sm text-text-primary font-medium">
@@ -357,7 +355,7 @@ export function LevelPlayer({ worldId, level, onClose, onMastered }: LevelPlayer
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                transition={{ delay: 0.7, type: "spring" }}
+                transition={{ delay: 0.6, type: "spring" }}
                 className="flex items-center justify-center gap-4 text-sm"
               >
                 <span className="flex items-center gap-1 text-yellow-600 font-semibold">
@@ -374,7 +372,7 @@ export function LevelPlayer({ worldId, level, onClose, onMastered }: LevelPlayer
                 whileTap={{ scale: 0.98 }}
                 onClick={handleComplete}
                 disabled={busy}
-                className="w-full rounded-xl bg-gradient-to-r from-primary to-primary-dark hover:shadow-lg text-white font-semibold py-3.5 min-h-[48px] flex items-center justify-center gap-2 disabled:opacity-50"
+                className="w-full rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold py-3.5 min-h-[48px] flex items-center justify-center gap-2 disabled:opacity-50"
               >
                 {busy ? <Loader2 className="w-4 h-4 animate-spin" /> : <ChevronRight className="w-4 h-4" />}
                 Continue Journey
