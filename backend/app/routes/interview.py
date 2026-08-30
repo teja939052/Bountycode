@@ -322,3 +322,80 @@ def _average_breakdown(breakdowns: list) -> dict:
         values = [b.get(k, 0) for b in breakdowns if isinstance(b, dict) and k in b]
         result[k] = round(sum(values) / len(values), 1) if values else 0
     return result
+
+
+@router.get("/personalized-config")
+async def get_personalized_config(user=Depends(get_current_user)):
+    """Generate a personalized interview configuration based on student data.
+
+    Consumes: role, company, resume, mastery, weaknesses, OA history, previous interviews.
+    Returns: recommended focus areas, difficulty, question types, and company-specific tips.
+    """
+    user_id = user["id"]
+
+    # Read student profile
+    from app.database import users_collection
+    user_doc = await users_collection.find_one({"user_id": user_id}) or {}
+    target_role = user_doc.get("target_role", "sde")
+    target_company = user_doc.get("target_company", "")
+
+    # Read mastery state
+    from app.services.adaptive_learning import assess_user_skills
+    assessment = await assess_user_skills(user_id)
+    skills = assessment.get("skills", {})
+
+    # Identify weak areas for focused interview questions
+    weak_areas = [s for s, data in skills.items() if data.get("mastery") in ("novice", "introduced")]
+    strong_areas = [s for s, data in skills.items() if data.get("mastery") in ("competent", "proficient", "master")]
+
+    # Read previous interview history
+    from app.database import interviews_collection
+    prev_interviews = []
+    async for doc in interviews_collection.find({"user_id": user_id}).sort("created_at", -1).limit(5):
+        prev_interviews.append({
+            "company": doc.get("company", ""),
+            "score": doc.get("overall_score", 0),
+            "weaknesses": doc.get("weaknesses", []),
+        })
+
+    # Company-specific rubric
+    from app.services.ai import COMPANY_PROFILES
+    company_profile = COMPANY_PROFILES.get(target_company, {})
+    interview_style = company_profile.get("interview_style", "")
+    focus_areas = company_profile.get("focus_areas", [])
+
+    return {
+        "target_role": target_role,
+        "target_company": target_company,
+        "weak_areas": weak_areas[:5],
+        "strong_areas": strong_areas[:5],
+        "recommended_focus": weak_areas[:3] if weak_areas else focus_areas[:3],
+        "difficulty": "medium" if len(strong_areas) < 3 else "hard",
+        "question_types": ["technical", "behavioral"] if target_company in ("google", "amazon") else ["technical"],
+        "company_style": interview_style,
+        "previous_interviews": prev_interviews,
+        "total_previous": len(prev_interviews),
+        "tips": _get_interview_tips(target_company, weak_areas),
+    }
+
+
+def _get_interview_tips(company: str, weak_areas: List[str]) -> List[str]:
+    """Generate company-specific interview tips."""
+    tips = []
+    if company == "google":
+        tips.append("Focus on algorithmic thinking and clean code.")
+        tips.append("Practice explaining your thought process out loud.")
+    elif company == "amazon":
+        tips.append("Use the STAR method for behavioral questions.")
+        tips.append("Reference Leadership Principles in your answers.")
+    elif company == "tcs":
+        tips.append("Focus on fundamentals and clear communication.")
+        tips.append("Practice basic DSA and aptitude questions.")
+    else:
+        tips.append("Research the company's interview format.")
+        tips.append("Practice coding out loud.")
+
+    for area in weak_areas[:2]:
+        tips.append(f"Review {area} before the interview.")
+
+    return tips

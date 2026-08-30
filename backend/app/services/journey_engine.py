@@ -29,7 +29,7 @@ from app.middleware.auth import get_current_user
 from app.services.gamification import get_gamification_profile
 from app.services.study_engine import get_today as study_get_today
 from app.services.adaptive_learning import assess_user_skills, detect_weak_areas
-from app.services.readiness_engine import calculate_readiness, compute_readiness as get_readiness
+from app.services.readiness_engine import COMPANY_PROFILES, calculate_readiness, compute_readiness as get_readiness
 from app.content.world_registry import ALL_WORLDS, get_world
 from app.database import gamification_collection, skill_graph_collection, \
     curated_questions_collection, users_collection

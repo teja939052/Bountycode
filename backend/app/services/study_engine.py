@@ -565,3 +565,194 @@ def _xp_for_activity(activity_type: str, score: float, passed: bool) -> int:
     else:
         bonus = -10
     return max(0, base + bonus)
+
+
+# ─── 30-Day Preparation Plan ─────────────────────────────────────
+
+async def generate_30_day_plan(user_id: str, role_id: str, company_id: str = "") -> Dict[str, Any]:
+    """Generate a structured 30-day preparation plan.
+
+    Combines role curriculum + company requirements into a day-by-day plan.
+    Each day has: learn, practice, review, and optional assessment.
+    """
+    from app.content.role_packages import get_role_package
+    from app.content.company_journeys import get_company_journey
+
+    role_package = get_role_package(role_id)
+    company_journey = get_company_journey(role_id, company_id) if company_id else None
+
+    # Assess current skill level
+    assessment = await assess_user_skills(user_id)
+    current_level = assessment.get("overall_level", 1)
+
+    days: List[Dict[str, Any]] = []
+
+    for day in range(1, 31):
+        day_plan: Dict[str, Any] = {
+            "day": day,
+            "date": "",
+            "phase": _get_phase_for_day(day),
+            "activities": [],
+            "assessment": None,
+        }
+
+        # Week 1: Foundations
+        if day <= 7:
+            day_plan["activities"].append({
+                "type": "learn",
+                "title": f"World 1: Day {day} lesson",
+                "estimated_minutes": 20,
+            })
+            day_plan["activities"].append({
+                "type": "practice",
+                "title": f"Day {day} practice problems",
+                "estimated_minutes": 15,
+            })
+
+        # Week 2: Role-specific practice
+        elif day <= 14:
+            day_plan["activities"].append({
+                "type": "learn",
+                "title": f"Role concept: Day {day}",
+                "estimated_minutes": 15,
+            })
+            day_plan["activities"].append({
+                "type": "practice",
+                "title": "Role exercises",
+                "estimated_minutes": 20,
+            })
+            day_plan["activities"].append({
+                "type": "review",
+                "title": "SRS reviews",
+                "estimated_minutes": 10,
+            })
+
+        # Week 3: Mock assessments
+        elif day <= 21:
+            day_plan["activities"].append({
+                "type": "review",
+                "title": "SRS reviews",
+                "estimated_minutes": 10,
+            })
+            day_plan["activities"].append({
+                "type": "practice",
+                "title": "Timed practice",
+                "estimated_minutes": 30,
+            })
+            if day in [14, 21]:
+                day_plan["assessment"] = {
+                    "type": "mock_oa",
+                    "title": f"Day {day} Mock OA",
+                    "duration_minutes": 90,
+                }
+
+        # Week 4: Interview prep
+        else:
+            day_plan["activities"].append({
+                "type": "review",
+                "title": "Weakness repair",
+                "estimated_minutes": 15,
+            })
+            if day in [25, 28, 30]:
+                day_plan["assessment"] = {
+                    "type": "ai_interview",
+                    "title": f"Day {day} Mock Interview",
+                    "duration_minutes": 45,
+                }
+
+        days.append(day_plan)
+
+    return {
+        "role": role_package.model_dump() if role_package else None,
+        "company": company_journey.model_dump() if company_journey else None,
+        "current_level": current_level,
+        "total_days": 30,
+        "days": days,
+    }
+
+
+def _get_phase_for_day(day: int) -> str:
+    """Return the preparation phase for a given day."""
+    if day <= 7:
+        return "foundations"
+    elif day <= 14:
+        return "practice"
+    elif day <= 21:
+        return "assessment"
+    else:
+        return "interview"
+
+
+# ─── Mock OA Diagnostic ────────────────────────────────────────────
+
+async def diagnose_mock_oa(user_id: str, responses: Dict[str, Any]) -> Dict[str, Any]:
+    """Analyze Mock OA results and generate diagnostic report.
+
+    Returns section analysis, topic weaknesses, time management insights,
+    and recommended repair missions.
+    """
+    score = responses.get("score", 0)
+    total = responses.get("total_questions", 1)
+    percentage = (score / total) * 100 if total > 0 else 0
+
+    section_analysis = {}
+    time_analysis = {}
+    weaknesses = []
+
+    # Analyze by section
+    for section, results in responses.get("sections", {}).items():
+        section_score = results.get("correct", 0)
+        section_total = results.get("total", 1)
+        section_pct = (section_score / section_total) * 100
+        section_analysis[section] = {
+            "score": section_score,
+            "total": section_total,
+            "percentage": section_pct,
+            "strength": "strong" if section_pct >= 80 else ("medium" if section_pct >= 60 else "weak"),
+        }
+        if section_pct < 70:
+            weaknesses.append(section)
+
+    # Time management analysis
+    time_per_question = responses.get("time_per_question", [])
+    if time_per_question:
+        avg_time = sum(time_per_question) / len(time_per_question)
+        slow_questions = [i for i, t in enumerate(time_per_question) if t > avg_time * 1.5]
+        time_analysis = {
+            "average_seconds": avg_time,
+            "slow_questions": slow_questions,
+            "time_management": "good" if len(slow_questions) < len(time_per_question) * 0.2 else "needs_improvement",
+        }
+
+    # Generate diagnostic message
+    if percentage >= 80:
+        diagnostic = "Strong performance. Focus on maintaining consistency."
+    elif percentage >= 60:
+        diagnostic = f"Good foundation. Losing points on: {', '.join(weaknesses[:3])}. Targeted repair recommended."
+    else:
+        diagnostic = f"Needs improvement. Key weaknesses: {', '.join(weaknesses[:3])}. Structured repair plan recommended."
+
+    # Create repair missions for weaknesses
+    repair_missions = []
+    for weakness in weaknesses[:3]:
+        repair_missions.append({
+            "skill": weakness,
+            "priority": "high",
+            "recommended_actions": [
+                f"Review {weakness} fundamentals",
+                f"Practice 5 {weakness} problems",
+                f"Take {weakness} quiz",
+            ],
+        })
+
+    return {
+        "overall_score": percentage,
+        "correct": score,
+        "total": total,
+        "section_analysis": section_analysis,
+        "time_analysis": time_analysis,
+        "weaknesses": weaknesses,
+        "diagnostic_message": diagnostic,
+        "repair_missions": repair_missions,
+        "next_action": "advance" if percentage >= 70 else "repair",
+    }
