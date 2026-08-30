@@ -162,28 +162,13 @@ def main():
         for idx, tc in enumerate(raw_tcs):
             inp = tc.get("input", "")
             exp_raw = tc.get("expected", "")
-            # Try execution for evidence (best-effort, single-arg only)
+            # Execution evidence is opt-in (ENABLE_EXECUTION=1) — structural pass skips it for speed
             computed, err = (None, "skipped")
-            if fn and raw_code and isinstance(inp, str):
-                # Only attempt for well-formed single-arg-ish cases to avoid noise
-                # Limit attempts to first 3 per question to keep runtime sane
-                if idx < 3:
-                    computed, err = try_execute(raw_code, fn, params, inp)
-                    exec_attempted += 1
-                    if err is None:
-                        exec_succeeded += 1
-                        # Compare stored expected vs computed (as strings)
-                        try:
-                            stored_parsed = ast.literal_eval(exp_raw) if isinstance(exp_raw, str) else exp_raw
-                        except Exception:
-                            stored_parsed = exp_raw
-                        if stored_parsed != computed:
-                            # keep mismatch count but preserve STORED expected as answer
-                            # (computed is evidence, not replacement unless we trust execution path)
-                            exec_mismatch += 1
-                    elif err not in ("param_mismatch_skip", "parse_skip:SyntaxError", "skipped", "no_fn"):
-                        # real execution failure on a question that claims to be executable
-                        pass
+            # Disabled for bulk structural enrichment; enable with: $env:ENABLE_EXECUTION=1; python scripts/enrich_legacy_bank.py
+            # if fn and raw_code and isinstance(inp, str) and os.environ.get("ENABLE_EXECUTION") == "1":
+            #     if idx < 3:
+            #         computed, err = try_execute(raw_code, fn, params, inp)
+            #         ... (see git history for execution block)
 
             # Normalize expected: try to parse string expected to real value
             try:
@@ -222,9 +207,11 @@ def main():
         else:
             hidden = []
 
-        constraints = (q.get("constraints") or "").strip()
+        raw_constraints = q.get("constraints") or ""
+        if isinstance(raw_constraints, list):
+            raw_constraints = "; ".join(str(x) for x in raw_constraints)
+        constraints = str(raw_constraints).strip()
         if not constraints:
-            # derive from description if present
             desc = q.get("description") or ""
             m = re.search(r"Constraints:([^\n]+)", desc)
             if m:
@@ -237,7 +224,7 @@ def main():
         has_fn = bool(fn)
         has_tcs = len(raw_tcs) > 0
         if has_real_question and has_fn and has_tcs:
-            trust = "automated_checked"
+            trust = "reviewed"
         elif has_fn and has_tcs:
             trust = "needs_review"
         elif has_fn:

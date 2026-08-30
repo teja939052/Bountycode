@@ -382,8 +382,11 @@ EXTRA_BANKS = [
     "striver_a2z_600.json",
     "tcs_nqt_questions.json",
     "infosys_questions.json",
-    # Independently verified (Content Trust) tranches. First: 11 verified
-    # (6 coding + 5 aptitude). Loaded before dedupe so verified wins.
+    # Bulk LeetCode-complete enrichment of legacy coding (structural: function_name,
+    # constraints, visible+hidden splits). Trust: reviewed/needs_review (never verified).
+    # Loaded before verified so verified still wins on dedupe.
+    "legacy_enriched_coding.json",
+    # Independently verified (Content Trust) tranches. Loaded last before dedupe so verified wins.
     "verified_placement_questions.json",
 ]
 
