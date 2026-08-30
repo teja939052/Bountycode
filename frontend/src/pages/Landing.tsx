@@ -11,15 +11,11 @@ import {
   CheckCircle2,
   Building2,
   Star,
-  Flame,
-  Trophy,
-  X,
 } from "lucide-react";
 import useReducedMotion from "../hooks/useReducedMotion";
 import { PageShell } from "../design-system/PageShell";
 import { Button } from "../design-system/Button";
 import { Card } from "../design-system/Card";
-import { requestWithRetry } from "../services/api/request.ts";
 
 const ROLE_PATHS = [
   { id: "sde", title: "Software Developer", desc: "Full-stack SDE roles", icon: Code2, color: "#22C55E" },
@@ -88,25 +84,6 @@ function RotatingWord({
 
 export default function Landing() {
   const reduced = useReducedMotion();
-  const [potd, setPotd] = useState(null);
-  const [potdLoading, setPotdLoading] = useState(true);
-  const [potdDismissed, setPotdDismissed] = useState(false);
-
-  useEffect(() => {
-    let cancelled = false;
-    const load = async () => {
-      try {
-        const data = await requestWithRetry<{ problem: any; config: any; xp_reward: number; streak_bonus: number; already_completed: boolean }>("/api/v1/daily-problem/today");
-        if (!cancelled) setPotd(data);
-      } catch {
-        // silent — POTD is optional on landing
-      } finally {
-        if (!cancelled) setPotdLoading(false);
-      }
-    };
-    load();
-    return () => { cancelled = true; };
-  }, []);
 
   return (
     <PageShell theme="spring">
@@ -117,68 +94,6 @@ export default function Landing() {
       >
         Skip to content
       </a>
-
-      {/* ═══ PROBLEM OF THE DAY — interactive banner ═══ */}
-      {!potdDismissed && (
-        <AnimatePresence>
-          {potdLoading ? (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="fixed top-4 left-1/2 z-50 -translate-x-1/2"
-            >
-              <div className="flex items-center gap-3 rounded-2xl border border-orange-200 bg-white/90 px-5 py-3 shadow-xl backdrop-blur-md">
-                <Flame className="text-orange-500" size={20} />
-                <span className="text-sm font-medium text-gray-700">Loading today&apos;s challenge...</span>
-              </div>
-            </motion.div>
-          ) : potd && !potd.already_completed ? (
-            <motion.div
-              initial={{ opacity: 0, y: -30, scale: 0.96 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -30, scale: 0.96 }}
-              transition={{ type: "spring", stiffness: 260, damping: 20 }}
-              className="fixed top-4 left-1/2 z-50 -translate-x-1/2 w-[calc(100%-2rem)] max-w-3xl"
-            >
-              <div className="relative rounded-2xl border border-orange-200 bg-white/95 p-4 shadow-2xl backdrop-blur-md">
-                <button
-                  onClick={() => setPotdDismissed(true)}
-                  className="absolute right-3 top-3 rounded-lg p-1 text-gray-400 hover:text-gray-600 transition-colors"
-                  aria-label="Dismiss"
-                >
-                  <X size={16} />
-                </button>
-                <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-orange-50 text-2xl">
-                    🧩
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-1">
-                      <Flame className="text-orange-500" size={18} />
-                      <span className="text-xs font-bold uppercase tracking-wide text-orange-600">Problem of the Day</span>
-                    </div>
-                    <h3 className="text-sm font-bold text-gray-900 truncate">{potd.problem?.question_title || "Today's Challenge"}</h3>
-                    <div className="mt-1 flex items-center gap-2">
-                      <span className="rounded-full bg-orange-100 px-2 py-0.5 text-[10px] font-bold uppercase text-orange-700">
-                        {potd.config?.difficulty || "medium"}
-                      </span>
-                      <span className="text-[11px] text-gray-500">{potd.config?.category || "Coding"}</span>
-                      <span className="text-[11px] text-gray-400">·</span>
-                      <span className="text-[11px] text-gray-500">+{potd.xp_reward || 50} XP</span>
-                    </div>
-                  </div>
-                  <Link to="/problem-of-the-day" className="shrink-0">
-                    <Button variant="primary" size="sm" className="shadow-lg">
-                      Solve Now
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
-          ) : null}
-        </AnimatePresence>
-      )}
 
       {/* ═══ THE SPRING PATH — hero as immersive world ═══ */}
       <section className="spring-hero relative overflow-hidden" style={{ background: "#fbe4ec" }}>

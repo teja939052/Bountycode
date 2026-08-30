@@ -16,6 +16,7 @@ import { questionsApi } from "./questions.ts";
 import { toolsApi, salaryApi } from "./tools.ts";
 import { companyPrepApi, companyMocksApi } from "./companyPrep.ts";
 import { gamificationApi } from "./gamification.ts";
+import { rolesApi } from "./roles.ts";
 import { enhancedApi, freePracticeApi } from "./enhanced.ts";
 import { studentApi } from "./student.ts";
 import { placementApi, indianPlacementApi } from "./placement.ts";
@@ -123,9 +124,11 @@ const api = {
   ) => authApi.onboardingComplete.apply(authApi, args),
   ...flatApi,
   ...flatOverrides,
+  roles: rolesApi,
 };
 
 export default api;
+
 export {
   authApi,
   interviewApi,
