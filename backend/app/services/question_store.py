@@ -316,6 +316,10 @@ def _assign_id(q: dict, idx: int) -> dict:
         q["dsa_guide"] = {"approach": "", "data_structures": [], "patterns": [], "tips": []}
     if "pattern" not in q:
         q["pattern"] = _detect_pattern(q)
+    if "trust_status" not in q:
+        q["trust_status"] = "unverified"
+    if not q.get("source_bank"):
+        q["source_bank"] = "legacy"
     return q
 
 
@@ -378,6 +382,9 @@ EXTRA_BANKS = [
     "striver_a2z_600.json",
     "tcs_nqt_questions.json",
     "infosys_questions.json",
+    # Independently verified (Content Trust) tranches. First: 11 verified
+    # (6 coding + 5 aptitude). Loaded before dedupe so verified wins.
+    "verified_placement_questions.json",
 ]
 
 def _load_extra_bank() -> None:
@@ -520,13 +527,21 @@ def _is_usable(q: dict) -> bool:
     auto-generated one-liners without any content are dropped."""
     title = str(q.get("question") or q.get("question_title") or "").strip()
     body = str(q.get("description") or q.get("explanation") or q.get("question") or "").strip()
+    # Strongest signals first: executable test cases or independent verification
+    # make a question usable regardless of statement length.
+    if q.get("testcases"):
+        return True
+    if trust_rank(q) >= TRUST_RANK["verified"]:
+        return True
     if not body or len(body) < 15:
         return False
     if not title or title.lower() in ("", "untitled", "question", "problem"):
         return False
-    if q.get("testcases"):
-        return True
     if q.get("options"):
+        # Pure MCQ stubs without a verifiable answer are dropped. Keep MCQs
+        # that carry independent verification or a real reasoning trail.
+        if q.get("reasoning_steps") or q.get("correct_index") is not None:
+            return True
         return False
     return True
 
@@ -557,7 +572,18 @@ def _dedupe_and_filter():
             seen[key] = q
         else:
             # Keep whichever variant is more complete, then merge curated tags.
-            if _quality_score(q) >= _quality_score(prev):
+            # Independently verified content wins over an unverified legacy
+            # duplicate (trust is a stronger signal than metadata richness), so
+            # students always get the verified variant when one exists.
+            prev_trust = trust_rank(prev)
+            q_trust = trust_rank(q)
+            if q_trust > prev_trust:
+                seen[key] = q
+                winner = q
+            elif q_trust < prev_trust:
+                seen[key] = prev
+                winner = prev
+            elif _quality_score(q) >= _quality_score(prev):
                 seen[key] = q
                 winner = q
             else:
@@ -665,6 +691,14 @@ def count_documents(query: Optional[dict] = None) -> int:
     return sum(1 for q in _questions if _match(q, query))
 
 
+TRUST_RANK = {"verified": 3, "reviewed": 2, "needs_review": 1, "unverified": 0, "quarantined": -1}
+
+
+def trust_rank(q: dict) -> int:
+    """Priority of a question's trust level (higher = more trusted)."""
+    return TRUST_RANK.get(str(q.get("trust_status", "unverified")).lower(), 0)
+
+
 def find_one(query: dict) -> Optional[dict]:
     load_all()
     for q in _questions:
@@ -709,6 +743,24 @@ class QuestionCursor:
 
     def sort(self, sort_by):
         self._sort_spec = sort_by
+        return self
+
+    def prefer_verified(self):
+        """Sort so independently verified content surfaces first (stable;
+        ties keep original order). New student-facing flows should use this so
+        the legacy bank is progressively starved, not removed."""
+        self._all = sorted(
+            enumerate(self._all),
+            key=lambda it: (trust_rank(it[1]), it[0]),
+            reverse=True,
+        )
+        self._all = [q for _, q in self._all]
+        return self
+
+    def only_verified(self):
+        """Keep only independently verified content. Callers should fall back
+        to a trusted+legacy mix if this yields too few questions."""
+        self._all = [q for q in self._all if trust_rank(q) >= TRUST_RANK["verified"]]
         return self
 
     def to_list(self, length: Optional[int] = None) -> list[dict]:

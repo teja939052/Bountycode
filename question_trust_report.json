@@ -1,0 +1,43 @@
+{
+  "title": "Content Trust v1 - Honest Quality Assessment",
+  "date": "2026-08-30",
+  "total_questions": 6389,
+  "summary": "QUESTION BANK IS 2.7% TRUSTWORTHY. Metadata completeness does NOT equal content correctness.",
+  "trusted": {
+    "coding_verified_end_to_end": 32,
+    "coding_manual_q_questions": 131,
+    "hr_standalone": 10,
+    "approx_total_trusted": 173
+  },
+  "untrustworthy": {
+    "coding_no_answer_needs_authoring": 3217,
+    "coding_unverified_or_broken": 3030,
+    "coding_template": 0,
+    "aptitude_all_duplicates": 50,
+    "logical_all_duplicates": 30,
+    "verbal_all_duplicates": 20
+  },
+  "repair_plan": [
+    "P0 - Gate: Block all Q-tier questions from student-facing flows. Only serve the ~173 trusted questions now.",
+    "P0 - Dedupe: Remove the 100 duplicate aptitude/logical/verbal questions; keep 1 representative each and author genuine replacements (28 required).",
+    "P1 - High-value placement: Repair questions tagged TCS/Infosys/Wipro/Cognizant/Accenture/Amazon/Google/Microsoft first, authoring correct solutions + test cases + verified answers.",
+    "P1 - Fix test cases: For coding questions where code runs, regenerate expected outputs by executing the (corrected) solution rather than trusting stored expected values.",
+    "P2 - Foundational: Repair arrays/strings/hashing/trees/graphs/DP etc. with verified solutions.",
+    "P2 - Author missing: Write real solutions for the 3,217 template/no-answer questions.",
+    "P3 - Depth: Build Concept→Guided→Practice→Pattern→Timed→Placement→OA→Interview progressions for every key skill.",
+    "P3 - Provenance: Only claim company relevance where verified; otherwise label 'pattern-relevant to X'.",
+    "Every repaired question must pass: code executes, all test cases match, explanation agrees, complexity stated matches actual, title matches problem."
+  ],
+  "duplicate_families": {
+    "aptitude_50_questions_identical_discount_prompt": "All 50 aptitude questions share the exact same '20% and 10% discount' prompt and '28%' answer, only topic label differs (Percentages, Profit&Loss, Time&Work, etc.).",
+    "logical_30_questions_identical_series_prompt": "All 30 logical questions share the exact same '1, 3, 6, 10, ?' prompt and '15' answer, only topic label differs (Series, Coding-Decoding, Blood Relations, etc.).",
+    "verbal_20_questions_identical_ubiquitous_prompt": "All 20 verbal questions share the exact same 'Synonym of Ubiquitous' prompt and 'Present everywhere' answer, only topic label differs (Synonyms, Antonyms, Spelling, Grammar, etc.)."
+  },
+  "root_causes": [
+    "Bulk coding questions have solutions that do not match their own test-case expected outputs (only ~13% consistency).",
+    "Auto-extracted answers (68% match code output) are internally consistent with code but NOT with the test cases students will see.",
+    "Aptitude/logical/verbal are template duplicates masquerading as distinct questions - severe duplicate + provenance failure.",
+    "3,217 coding questions have no answer or template-only solutions and were never actually authored.",
+    "Original q_ questions (131) have sensible manual answers but zero test cases, so correctness cannot be programmatically verified."
+  ]
+}

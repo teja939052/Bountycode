@@ -518,7 +518,18 @@ async def record_activity(
             user_id,
             activity=activity_type,
             score=score,
-            metadata={"skill_id": skill_id, "time_spent": time_spent, "passed": passed},
+            metadata={
+                "skill_id": skill_id,
+                "time_spent": time_spent,
+                "passed": passed,
+                # Content Trust instrumentation (additive): lets the team
+                # measure % of attempts powered by independently verified
+                # content. Present only when the caller supplies it.
+                "question_id": activity.get("question_id"),
+                "trust_status": activity.get("trust_status"),
+                "source_bank": activity.get("source_bank"),
+                "verification_version": activity.get("verification_version"),
+            },
         )
         result["xp_awarded"] = xp
         result["xp_applied"] = True

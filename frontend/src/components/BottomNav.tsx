@@ -34,7 +34,6 @@ const MORE_GROUPS: { label: string; items: NavItem[] }[] = [
     items: [
       { to: '/community', icon: MessageSquare, label: 'Community' },
       { to: '/ai-mentor', icon: Brain, label: 'AI Mentor' },
-      { to: '/project-generator', icon: MessageSquare, label: 'Project Generator' },
       { to: '/concepts', icon: Lightbulb, label: 'Concepts' },
       { to: '/placement-calendar', icon: Calendar, label: 'Placement Calendar' },
       { to: '/settings', icon: Menu, label: 'Settings' },
