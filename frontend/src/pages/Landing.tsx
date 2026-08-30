@@ -493,7 +493,7 @@ export default function Landing() {
 
           <div className="mx-auto mt-8 sm:mt-10 grid max-w-md grid-cols-3 gap-3 sm:gap-4">
             {[
-              { label: "Problems Solved", value: "200+" },
+              { label: "Verified Questions", value: "2,652" },
               { label: "Mock Interviews", value: "50+" },
               { label: "Companies Covered", value: "53+" },
             ].map((stat) => (

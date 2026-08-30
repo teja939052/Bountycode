@@ -536,3 +536,28 @@ async def get_question_solution(
         "solution": visible_solution,
         "unlocked": plan in ("pro", "lifetime") or bool(solved),
     }
+
+
+@router.get("/quality-stats")
+async def get_quality_stats():
+    """Return question bank quality statistics for the landing page.
+
+    Shows verified placement-quality question counts, not raw totals.
+    """
+    try:
+        from pathlib import Path
+        import json
+        report_path = Path(__file__).parent.parent / "data" / "quality_report.json"
+        if report_path.exists():
+            with open(report_path, "r", encoding="utf-8") as f:
+                report = json.load(f)
+            return {
+                "published": report.get("showable", 0),
+                "excellent": report.get("excellent", 0),
+                "good": report.get("good", 0),
+                "total_reviewed": report.get("total", 0),
+                "note": "Only verified A/B tier questions are served to students",
+            }
+    except Exception:
+        pass
+    return {"published": 0, "note": "Quality report unavailable"}

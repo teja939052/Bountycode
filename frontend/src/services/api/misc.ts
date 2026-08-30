@@ -47,20 +47,6 @@ export const dsaFingerprintApi = {
   },
 };
 
-export const dsaFingerprintApi = {
-  getSkillProfile() {
-    return request("/api/v1/fingerprint/skill-profile");
-  },
-
-  getCompanyPredictions() {
-    return request("/api/v1/fingerprint/company-predictions");
-  },
-
-  getCompanyFingerprint(companyId) {
-    return request(`/api/v1/fingerprint/company/${companyId}`);
-  },
-};
-
 export const playlistsApi = {
   get(difficulty = null, company = null) {
     const params = new URLSearchParams();
