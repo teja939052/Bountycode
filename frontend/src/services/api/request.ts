@@ -18,6 +18,7 @@ export interface ApiErrorBody {
 
 export interface ApiRequestOptions extends RequestInit {
   headers?: Record<string, string>;
+  skipAuthRefresh?: boolean;
 }
 
 const MEMORY_CACHE_TTL = 60000;
@@ -146,7 +147,7 @@ export async function requestWithRetry<T = any>(
           credentials: "include",
         });
 
-        if (response.status === 401 && attempt === 0) {
+        if (response.status === 401 && attempt === 0 && !options.skipAuthRefresh) {
           try {
             const refreshRes = await fetch(`${API_BASE}/api/v1/auth/refresh`, {
               method: "POST",
