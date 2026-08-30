@@ -162,6 +162,22 @@ THINGS_TOWN = TownDefinition(
                     visual="apples = 5 â†’ ðŸŽðŸŽ bought â†’ ???",
                 ),
                 LessonStep(
+                    step_type="break",
+                    title="The Lost Update",
+                    content="Two functions both do apples = apples - 1. Starting from 5, what's the result?",
+                    question="If both run, what is apples?",
+                    options=[{'id': 'a', 'text': '4 (one wins)', 'correct': True}, {'id': 'b', 'text': '3 (both apply)', 'correct': False}],
+                    explanation="Reassignment is not atomic. In concurrent systems, this causes lost updates.",
+                ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of reassignment?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
+                LessonStep(
                     step_type="predict",
                     title="Predict the New Value",
                     question="After apples = apples - 2, apples isâ€¦",
@@ -211,6 +227,22 @@ THINGS_TOWN = TownDefinition(
                     content="5 + 5 = 10. But '5' + '5' = '55'. Same symbol, different type, different result.",
                     visual="5 + 5 = 10  vs  '5' + '5' = '55'",
                 ),
+                LessonStep(
+                    step_type="break",
+                    title="The Type Trap",
+                    content="'5' + '5' = '55', not 10. Why?",
+                    question="What is '5' + '5'?",
+                    options=[{'id': 'a', 'text': "'55' (string concatenation)", 'correct': True}, {'id': 'b', 'text': '10 (addition)', 'correct': False}],
+                    explanation="Types determine behavior. Text + text joins, number + number adds.",
+                ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of types?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
                 LessonStep(
                     step_type="predict",
                     title="What Type Is It?",
@@ -268,6 +300,14 @@ THINGS_TOWN = TownDefinition(
                     test_cases=[{"input": [5, 2], "expected": 10}],
                     hidden_tests=3,
                 ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of expressions?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Write expressions that combine values"],
             unlocks="things-5",
@@ -379,6 +419,14 @@ GATES_TOWN = TownDefinition(
                     visual="has_torch? â†’ YES: left path  /  NO: right path",
                 ),
                 LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of decisions?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
+                LessonStep(
                     step_type="predict",
                     title="Which Path?",
                     question="has_torch = False. Which path does the program take?",
@@ -434,6 +482,14 @@ GATES_TOWN = TownDefinition(
                     test_cases=[{"input": [10, 5], "expected": True}, {"input": [3, 5], "expected": False}],
                     hidden_tests=3,
                 ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of comparisons?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Write comparisons that produce True/False"],
             unlocks="gates-3",
@@ -468,6 +524,14 @@ GATES_TOWN = TownDefinition(
                     test_cases=[{"input": [True, True], "expected": True}],
                     hidden_tests=4,
                 ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of boolean?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Combine conditions with and/or"],
             unlocks="gates-4",
@@ -496,6 +560,14 @@ GATES_TOWN = TownDefinition(
                     test_cases=[{"input": [95], "expected": "A"}, {"input": [72], "expected": "C"}],
                     hidden_tests=4,
                 ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of branching?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Chain multiple conditions with elif"],
             unlocks="gates-5",
@@ -524,6 +596,14 @@ GATES_TOWN = TownDefinition(
                     test_cases=[{"input": [18], "expected": "adult"}],
                     hidden_tests=3,
                 ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of debugging?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Find and fix a bug in a conditional"],
             unlocks="gates-boss",
@@ -619,6 +699,14 @@ FOREST_TOWN = TownDefinition(
                     test_cases=[{"input": [3], "expected": 3}],
                     hidden_tests=3,
                 ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of while?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Predict how many times a while-loop runs"],
             unlocks="forest-2",
@@ -653,6 +741,14 @@ FOREST_TOWN = TownDefinition(
                     test_cases=[{"input": [[1, 2, 3]], "expected": 6}],
                     hidden_tests=3,
                 ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of for?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Use a for-loop to visit each item"],
             unlocks="forest-3",
@@ -681,6 +777,14 @@ FOREST_TOWN = TownDefinition(
                     test_cases=[{"input": [3], "expected": [3, 6, 9]}],
                     hidden_tests=3,
                 ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of nested?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Use nested loops to build grids"],
             unlocks="forest-4",
@@ -709,6 +813,14 @@ FOREST_TOWN = TownDefinition(
                     test_cases=[{"input": [[3, -1, -5]], "expected": -1}],
                     hidden_tests=3,
                 ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of break_continue?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Use break to exit a loop early"],
             unlocks="forest-5",
@@ -736,6 +848,14 @@ FOREST_TOWN = TownDefinition(
                     test_cases=[{"input": [3], "expected": [3, 2, 1]}],
                     hidden_tests=3,
                 ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of debugging?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Find and fix an infinite loop"],
             unlocks="forest-boss",
@@ -825,6 +945,22 @@ WORKSHOP_TOWN = TownDefinition(
                     test_cases=[{"input": ["Ada"], "expected": "Hello, Ada!"}],
                     hidden_tests=2,
                 ),
+                LessonStep(
+                    step_type="break",
+                    title="The Missing Return",
+                    content="def add(a, b): a + b. What does add(2, 3) return?",
+                    question="What is the result?",
+                    options=[{'id': 'a', 'text': 'None (no return statement)', 'correct': True}, {'id': 'b', 'text': '5', 'correct': False}],
+                    explanation="Without return, a function returns None. The result of a + b is computed but discarded.",
+                ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of functions?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Define and call a function"],
             unlocks="workshop-2",
@@ -853,6 +989,14 @@ WORKSHOP_TOWN = TownDefinition(
                     test_cases=[{"input": [3, 5], "expected": 8}],
                     hidden_tests=3,
                 ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of parameters?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Pass arguments through parameters"],
             unlocks="workshop-3",
@@ -887,6 +1031,14 @@ WORKSHOP_TOWN = TownDefinition(
                     test_cases=[{"input": [4, 5], "expected": 20}],
                     hidden_tests=3,
                 ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of return_values?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Use return to send back a result"],
             unlocks="workshop-4",
@@ -915,6 +1067,14 @@ WORKSHOP_TOWN = TownDefinition(
                     test_cases=[{"input": [4, 5], "expected": "Area: 20"}],
                     hidden_tests=3,
                 ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of composition?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Compose functions together"],
             unlocks="workshop-5",
@@ -942,6 +1102,14 @@ WORKSHOP_TOWN = TownDefinition(
                     test_cases=[{"input": [4], "expected": True}],
                     hidden_tests=3,
                 ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of debugging?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Debug a broken function"],
             unlocks="workshop-boss",
@@ -1031,6 +1199,14 @@ LIBRARY_TOWN = TownDefinition(
                     test_cases=[{"input": [[1, 2, 3]], "expected": [1, 3]}],
                     hidden_tests=3,
                 ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of lists?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Access list items by index"],
             unlocks="library-2",
@@ -1065,6 +1241,14 @@ LIBRARY_TOWN = TownDefinition(
                     test_cases=[{"input": [{"apple": 5}, "apple"], "expected": 5}],
                     hidden_tests=3,
                 ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of dictionaries?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Look up values by key in a dict"],
             unlocks="library-3",
@@ -1093,6 +1277,14 @@ LIBRARY_TOWN = TownDefinition(
                     test_cases=[{"input": [[1, 2, 2, 3, 1]], "expected": [1, 2, 3]}],
                     hidden_tests=3,
                 ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of sets?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Use a set to remove duplicates"],
             unlocks="library-4",
@@ -1121,6 +1313,14 @@ LIBRARY_TOWN = TownDefinition(
                     test_cases=[{"input": ["abc"], "expected": "cba"}],
                     hidden_tests=3,
                 ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of strings?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Manipulate strings"],
             unlocks="library-5",
@@ -1227,6 +1427,22 @@ OOPS_TOWN = TownDefinition(
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
                     test_cases=[{"input":[],"expected":"class defined"}], hidden_tests=3),
+                LessonStep(
+                    step_type="break",
+                    title="The Missing Self",
+                    content="class User: def greet(): return 'hi'. What's wrong?",
+                    question="What's missing?",
+                    options=[{'id': 'a', 'text': 'self parameter', 'correct': True}, {'id': 'b', 'text': 'Nothing', 'correct': False}],
+                    explanation="Instance methods need self as the first parameter to access the instance.",
+                ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of classes?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Define a class with attributes"],
             unlocks="oops-2",
@@ -1253,6 +1469,14 @@ OOPS_TOWN = TownDefinition(
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
                     test_cases=[{"input":[],"expected":"inheritance"}], hidden_tests=3),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of inheritance?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Create child classes that inherit from parents"],
             unlocks="oops-3",
@@ -1296,6 +1520,14 @@ OOPS_TOWN = TownDefinition(
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
                     test_cases=[{"input":[],"expected":"encapsulation"}], hidden_tests=3),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of encapsulation?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Hide internal data using private attributes"],
             unlocks="oops-boss",
@@ -1361,6 +1593,14 @@ FOREST_TOWN = TownDefinition(
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
                     test_cases=[{"input":[3],"expected":3}], hidden_tests=3),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of while?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Predict while-loop iterations"],
             unlocks="forest-2",
@@ -1382,6 +1622,14 @@ FOREST_TOWN = TownDefinition(
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
                     test_cases=[{"input":[[1,2,3]],"expected":6}], hidden_tests=3),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of for?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Use a for-loop to visit each item"],
             unlocks="forest-boss",
@@ -1437,6 +1685,22 @@ WORKSHOP_TOWN = TownDefinition(
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
                     test_cases=[{"input":["Ada"],"expected":"Hello, Ada!"}], hidden_tests=2),
+                LessonStep(
+                    step_type="break",
+                    title="The Missing Return",
+                    content="def add(a, b): a + b. What does add(2, 3) return?",
+                    question="What is the result?",
+                    options=[{'id': 'a', 'text': 'None (no return statement)', 'correct': True}, {'id': 'b', 'text': '5', 'correct': False}],
+                    explanation="Without return, a function returns None. The result of a + b is computed but discarded.",
+                ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of functions?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Define and call a function"],
             unlocks="workshop-2",
@@ -1456,6 +1720,14 @@ WORKSHOP_TOWN = TownDefinition(
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
                     test_cases=[{"input":[3,5],"expected":8}], hidden_tests=3),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of parameters?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Pass arguments through parameters"],
             unlocks="workshop-3",
@@ -1478,6 +1750,14 @@ WORKSHOP_TOWN = TownDefinition(
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
                     test_cases=[{"input":[4,5],"expected":20}], hidden_tests=3),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of return_values?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Use return to send back a result"],
             unlocks="workshop-boss",
@@ -1533,6 +1813,14 @@ LIBRARY_TOWN = TownDefinition(
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
                     test_cases=[{"input":[[1,2,3]],"expected":[1,3]}], hidden_tests=3),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of lists?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Access list items by index"],
             unlocks="library-2",
@@ -1552,6 +1840,14 @@ LIBRARY_TOWN = TownDefinition(
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
                     test_cases=[{"input":[{"apple":5},"apple"],"expected":5}], hidden_tests=3),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of dictionaries?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Look up values by key in a dict"],
             unlocks="library-3",
@@ -1571,6 +1867,14 @@ LIBRARY_TOWN = TownDefinition(
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
                     test_cases=[{"input":[[1,2,2,3,1]],"expected":[1,2,3]}], hidden_tests=3),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of sets?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Use a set to remove duplicates"],
             unlocks="library-boss",
@@ -1630,6 +1934,22 @@ OOPS_TOWN = TownDefinition(
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
                     test_cases=[{"input":[],"expected":"class defined"}], hidden_tests=3),
+                LessonStep(
+                    step_type="break",
+                    title="The Missing Self",
+                    content="class User: def greet(): return 'hi'. What's wrong?",
+                    question="What's missing?",
+                    options=[{'id': 'a', 'text': 'self parameter', 'correct': True}, {'id': 'b', 'text': 'Nothing', 'correct': False}],
+                    explanation="Instance methods need self as the first parameter to access the instance.",
+                ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of classes?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Define a class with attributes"],
             unlocks="oops-2",
@@ -1652,6 +1972,14 @@ OOPS_TOWN = TownDefinition(
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
                     test_cases=[{"input":[],"expected":"inheritance"}], hidden_tests=3),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of inheritance?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Create child classes that inherit from parents"],
             unlocks="oops-3",
@@ -1687,6 +2015,14 @@ OOPS_TOWN = TownDefinition(
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
                     test_cases=[{"input":[],"expected":"encapsulation"}], hidden_tests=3),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Recall",
+                    content="Without looking — what is the key idea of encapsulation?",
+                    prompt="The key idea is…",
+                    answer="understanding through practice",
+                ),
+
             ],
             mastery_evidence=["Hide internal data using private attributes"],
             unlocks="oops-boss",

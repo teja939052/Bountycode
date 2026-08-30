@@ -411,6 +411,10 @@ async def get_random_question(
     if company:
         query["company"] = {"$in": [company, company.title(), company.upper()]}
 
+    # ── Quality gate: only serve A/B tier questions to students ──
+    # C (filler) and Q (quarantined) are filtered out by default
+    query["quality_tier"] = {"$in": ["placement", "solid", "A", "B"]}
+
     cache_key = f"{type or '*'}:{difficulty or '*'}:{topic or '*'}:{company or '*'}:{'1' if exclude_solved else '0'}"
     cached_id = await cache.get("random_question", cache_key)
     if cached_id:
