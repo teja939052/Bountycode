@@ -1,5 +1,71 @@
 # AGENTS.md — PlacementPro
 
+## 🔒 ARCHITECTURE FREEZE — CONTENT EXCELLENCE PHASE
+
+**The architecture is frozen. Do NOT create new systems.**
+
+Every agent must read this section before touching the repository.
+
+### Canonical Pipeline (DO NOT DUPLICATE)
+
+```
+Journey → Study Engine → Lesson Engine → Mastery → SRS → Gamification → Mock OA → Repair → AI Interview → Readiness → Journey
+```
+
+### Before Modifying Anything
+
+1. Search the repository for an existing implementation
+2. Identify the canonical system responsible for the behavior
+3. Reuse it rather than creating another implementation
+4. Search routes, services, frontend pages, API modules, and database collections
+5. Do not create a new abstraction unless the existing canonical abstraction is demonstrably incapable
+6. If unsure, STOP and report the existing systems and proposed integration point
+7. Do not declare work complete from compilation alone
+8. Verify the actual student flow
+9. Do not generate bulk content until quality gaps are identified
+10. Every content change must improve capability, confidence, or employability
+
+### Do NOT Create
+
+- New journey engines
+- New study engines
+- New curriculum abstractions
+- New mastery systems
+- New SRS implementations
+- New XP/reward systems
+- New navigation systems
+- New dashboard systems
+- New duplicate routes
+- New database collections
+- New parallel question banks
+
+### Content Excellence Priorities
+
+1. **World 1 must become exceptional** — every lesson needs: Discover → Manipulate → Predict → Build → Break → Debug → Retrieve → Transfer → Mastery
+2. **Question bank quality gate** — A/B/C/Q tiers are publishing gates, not metadata
+3. **Intelligent failure** — misconception detection → repair → guided practice → retest
+4. **Mock OA realism** — diagnostic reports with weakness repair paths
+5. **AI Interview memory** — consume student's complete learning + assessment history
+6. **Company preparation** — role + company → targeted Journey
+7. **Gamification serves learning** — Mastery → Proof → Unlock → Reward (not click → XP)
+8. **Character = capability** — visual representation of learning progress
+
+### Student Simulation Test
+
+Before declaring ANY work complete, verify the full flow:
+
+```
+signup → onboarding → Journey → first lesson → fail → hint → repair → mastery → unlock → SRS → practice → Mock OA → weakness → repair → retest → AI Interview → interview weakness → repair → second interview → readiness → Journey
+```
+
+At every arrow, verify data persists.
+
+### North-Star Metric
+
+**Capability gained per student** — not routes, files, questions, or badges.
+
+---
+
 ## Project Overview
 
 **PlacementPro** is an AI-powered placement preparation platform targeting job seekers (students + experienced professionals). It offers **40+ core features** across placement prep, gamified learning, and career development.

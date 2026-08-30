@@ -19,9 +19,9 @@ from app.content.role_content import (
     get_challenge_by_id,
 )
 from app.content.role_packages import get_role_package
-from app.services.mastery_engine import update_skill_score, get_mastery_graph
+from app.services.skill_assessment import update_skill_score
 from app.services.gamification import record_practice
-from app.services.spaced_repetition import get_due_cards, update_card, SpacedRepetitionEngine
+from app.services.spaced_repetition import get_due_cards, SpacedRepetitionEngine
 
 logger = logging.getLogger(__name__)
 

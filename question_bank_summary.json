@@ -1,0 +1,52 @@
+{
+  "total": 6389,
+  "by_type": {
+    "coding": 2879,
+    "aptitude": 50,
+    "logical": 30,
+    "verbal": 20,
+    "unknown": 3400,
+    "hr": 10
+  },
+  "quality_tiers": {
+    "placement": 158,
+    "solid": 2494,
+    "review": 3727,
+    "B": 10
+  },
+  "missing_fields": {
+    "question": 3400,
+    "correct_answer": 6221,
+    "explanation": 6221,
+    "difficulty": 0
+  },
+  "top_companies": {
+    "amazon": 219,
+    "google": 199,
+    "tcs": 141,
+    "infosys": 111,
+    "wipro": 94,
+    "microsoft": 88,
+    "accenture": 79,
+    "meta": 78,
+    "goldman sachs": 57,
+    "uber": 52
+  },
+  "top_topics": {
+    "arrays": 959,
+    "trees": 780,
+    "dynamic-programming": 771,
+    "graphs": 722,
+    "strings": 707,
+    "linked-lists": 300,
+    "stack": 290,
+    "math": 168,
+    "backtracking": 164,
+    "stacks-queues": 150,
+    "two-pointers": 150,
+    "binary-search": 150,
+    "greedy": 104,
+    "heaps": 100,
+    "bit-manipulation": 100
+  }
+}

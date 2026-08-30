@@ -62,7 +62,6 @@ const routeImportFns = {
   CompareVisualizer: () => import("./CompareVisualizer"),
   Community: () => import("./Community"),
 
-  ProjectGenerator: () => import("./ProjectGenerator"),
   LanguageLearning: () => import("./LanguageLearning"),
   OnboardingQuest: () => import("./OnboardingQuest"),
   InterviewBooking: () => import("./InterviewBooking"),
@@ -186,7 +185,6 @@ const AIMentor = lazy(() => import('./AIMentor'));
 const CodePlayground = lazy(() => import('./CodePlayground'));
 const CompareVisualizer = lazy(() => import('./CompareVisualizer'));
 const Community = lazy(() => import('./Community'));
-const ProjectGenerator = lazy(() => import('./ProjectGenerator'));
 const LanguageLearning = lazy(() => import('./LanguageLearning'));
 const OnboardingQuest = lazy(() => import('./OnboardingQuest'));
 const InterviewBooking = lazy(() => import('./InterviewBooking'));
@@ -268,7 +266,6 @@ export {
   PersonalDashboard,
   StudentDashboard,
   CodePlayground,
-  ProjectGenerator,
   LanguageLearning,
   OnboardingQuest,
   InterviewBooking,

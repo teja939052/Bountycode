@@ -1,4 +1,4 @@
-"""Journey Engine — the canonical orchestrator that determines the highest-value
+﻿"""Journey Engine â€” the canonical orchestrator that determines the highest-value
 next action for any student.
 
 Per the architecture strategy doc (AGENTS.md): The Journey Engine sits *above*
@@ -6,13 +6,13 @@ the Study Engine and composes its output with career context, company targets,
 mastery state, SRS due cards, gamification rewards, and readiness signals.
 
 It does NOT create new engines. It reads from the canonical systems:
-  * Study Engine (get_today) — NEXT + REVIEW + PRACTICE + CHALLENGE
-  * Gamification (get_gamification_profile) — XP, level, coins, streak
-  * Mastery (skill_assessment) — per-skill scores
-  * Readiness (readiness_engine) — interview/OA readiness
-  * Question Bank (curated_questions) — practice questions
-  * World Registry (world_registry) — world/town/level progression
-  * Company Blueprints — target company context
+  * Study Engine (get_today) â€” NEXT + REVIEW + PRACTICE + CHALLENGE
+  * Gamification (get_gamification_profile) â€” XP, level, coins, streak
+  * Mastery (skill_assessment) â€” per-skill scores
+  * Readiness (readiness_engine) â€” interview/OA readiness
+  * Question Bank (curated_questions) â€” practice questions
+  * World Registry (world_registry) â€” world/town/level progression
+  * Company Blueprints â€” target company context
 
 The single output is a canonical JourneyState that the frontend consumes,
 and the one answer to "What do I do next?"
@@ -39,7 +39,7 @@ from app.services.spaced_repetition import get_due_cards, SRSState
 router = APIRouter(prefix="/api/v1/journey", tags=["journey"])
 
 
-# ─── Priority matrix ──────────────────────────────────────────────────
+# â”€â”€â”€ Priority matrix â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 # Higher score = higher priority. These weights are the canonical priority
 # engine. They consider SRS debt, company context, prerequisites, and
 # recent performance so the student always gets the most meaningful next
@@ -58,7 +58,7 @@ PRIORITY_WEIGHTS = {
 }
 
 
-# ─── Helpers ──────────────────────────────────────────────────────────
+# â”€â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 
 def _user_target_company(user: Dict[str, Any]) -> str:
@@ -79,7 +79,7 @@ def _unlocked(world_id: str, town_id: str, level_id: str,
     world = get_world(world_id)
     all_level_ids: List[str] = []
     for town_data in world.towns:
-        for lvl in town_data.levels:
+        for lvl in town_data.lessons:
             all_level_ids.append(lvl.id)
 
     level_idx = all_level_ids.index(level_id)
@@ -117,7 +117,7 @@ def _unlocked_evidence_based(world_id: str, town_id: str, level_id: str,
     world = get_world(world_id)
     all_level_ids: List[str] = []
     for town_data in world.towns:
-        for lvl in town_data.levels:
+        for lvl in town_data.lessons:
             all_level_ids.append(lvl.id)
 
     level_idx = all_level_ids.index(level_id)
@@ -127,7 +127,25 @@ def _unlocked_evidence_based(world_id: str, town_id: str, level_id: str,
     return _has_mastery_evidence(world_id, all_level_ids[level_idx - 1], completed)
 
 
-# ─── Core: rank activities for a single student ───────────────────────
+async def _get_srs_due(user_id: str) -> list:
+    """Get due SRS cards for the user."""
+    try:
+        from app.database import srs_cards_collection
+        from app.services.spaced_repetition import SRSState, get_due_cards
+        col = srs_cards_collection()
+        cards = []
+        async for doc in col.find({"user_id": user_id}).limit(50):
+            try:
+                cards.append(SRSState(**doc))
+            except Exception:
+                continue
+        return get_due_cards(cards, limit=5)
+    except Exception:
+        return []
+
+
+
+# â”€â”€â”€ Core: rank activities for a single student â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 
 async def _rank_activities(user_id: str) -> Dict[str, Any]:
@@ -137,12 +155,12 @@ async def _rank_activities(user_id: str) -> Dict[str, Any]:
     """
     from app.services.ai import close_http_client  # avoid import cycle at top
 
-    # ── Read user profile ────────────────────────────────────────────
+    # â”€â”€ Read user profile â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     user = await users_collection().find_one({"user_id": user_id}) or {}
     # Also read from the in-memory get_current_user if available
     try:
         from app.middleware.auth import get_current_user as _gcu
-        # get_current_user is a dependency, not a plain function — skip
+        # get_current_user is a dependency, not a plain function â€” skip
     except Exception:
         pass
 
@@ -175,14 +193,14 @@ async def _rank_activities(user_id: str) -> Dict[str, Any]:
     # Read SRS due cards
     srs_due = await _get_srs_due(user_id)
 
-    # ── Compute priority scores for each activity category ───────────
+    # â”€â”€ Compute priority scores for each activity category â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     scores: Dict[str, int] = {}
 
-    # 1. SRS overdue — highest priority
+    # 1. SRS overdue â€” highest priority
     if srs_due:
         scores["srs_overdue"] = PRIORITY_WEIGHTS["srs_overdue"]
 
-    # 2. Failed concept repair — if recent failures in skill graph
+    # 2. Failed concept repair â€” if recent failures in skill graph
     failed_repairs = 0
     try:
         sg_doc = await skill_graph_collection().find_one({"user_id": user_id}) or {}
@@ -195,7 +213,7 @@ async def _rank_activities(user_id: str) -> Dict[str, Any]:
     if failed_repairs > 0:
         scores["failed_repair"] = PRIORITY_WEIGHTS["failed_repair"] * min(failed_repairs, 3)
 
-    # 3. Prerequisite check — is the current world progression blocked?
+    # 3. Prerequisite check â€” is the current world progression blocked?
     # Check if student is stuck (no unlocked incomplete levels beyond current)
     world_pos = next(
         (w for w in ALL_WORLDS.values()
@@ -206,30 +224,41 @@ async def _rank_activities(user_id: str) -> Dict[str, Any]:
     if world_pos:
         # Find the student's current position
         for town in world_pos.towns:
-            for lvl in town.levels:
+            for lvl in town.lessons:
                 key = f"{world_pos.id}:{lvl.id}"
                 if completed.get(key, {}).get("completed"):
                     # Check if there's an unlocked incomplete level after this
                     pass
-    # Simplified: if there's a current incomplete unlocked level, no block
-    if next(_iter_unlockable(world_pos.id if world_pos else "", completed)):
-        prerequisite_blocked = False
-    else:
-        # Check if all worlds are complete
-        if not any(
-            not all(
-                completed.get(f"{w.id}:{lvl.id}", {}).get("completed", False)
-                for town in w.towns
-                for lvl in town.levels
-            )
-            for w in ALL_WORLDS.values()
-        ):
-            prerequisite_blocked = True
+    # Check if there's an unlocked incomplete level
+    prerequisite_blocked = False
+    try:
+        async for _ in _iter_unlockable(world_pos.id if world_pos else "", completed):
+            prerequisite_blocked = False
+            break
+    except Exception:
+        pass
+
+    # Check if all worlds are complete
+    all_complete = True
+    for w in ALL_WORLDS.values():
+        for town in w.towns:
+            for lvl in town.lessons:
+                key = f"{w.id}:{lvl.id}"
+                if not completed.get(key, {}).get("completed", False):
+                    all_complete = False
+                    break
+            if not all_complete:
+                break
+        if not all_complete:
+            break
+
+    if not all_complete:
+        prerequisite_blocked = True
 
     if not prerequisite_blocked:
         scores["prerequisite"] = PRIORITY_WEIGHTS["prerequisite"]
 
-    # 4. Company-critical weakness — if target company is set, boost
+    # 4. Company-critical weakness â€” if target company is set, boost
     # weaknesses in skills that company evaluates
     if target_company:
         company_profile = COMPANY_PROFILES.get(target_company.lower(), {})
@@ -244,21 +273,21 @@ async def _rank_activities(user_id: str) -> Dict[str, Any]:
             scores["company_critical"] = PRIORITY_WEIGHTS["company_critical"] * min(
                 len(weak_critical), 3)
 
-    # 5. Current lesson — the Study Engine's next mission
+    # 5. Current lesson â€” the Study Engine's next mission
     if next_mission:
         scores["current_lesson"] = PRIORITY_WEIGHTS["current_lesson"]
 
-    # 6. Role practice — if we know the user's target role
+    # 6. Role practice â€” if we know the user's target role
     target_role = user.get("target_role", "") or user.get("role", "")
     if target_role and target_role != "student":
         # Check if role-specific practice is available
         scores["role_practice"] = PRIORITY_WEIGHTS["role_practice"]
 
-    # 7. Mock preparation — if readiness is below threshold
+    # 7. Mock preparation â€” if readiness is below threshold
     if interview_readiness < 70 or oa_readiness < 70:
         scores["mock_prep"] = PRIORITY_WEIGHTS["mock_prep"]
 
-    # 8. Challenge — if student is ready (3+ mastered skills)
+    # 8. Challenge â€” if student is ready (3+ mastered skills)
     mastered_count = sum(
         1 for s in skills.values()
         if s.get("mastery", "") in ("competent", "proficient", "master")
@@ -266,12 +295,12 @@ async def _rank_activities(user_id: str) -> Dict[str, Any]:
     if mastered_count >= 3 and challenge:
         scores["challenge"] = PRIORITY_WEIGHTS["challenge"]
 
-    # 9. Exploration — low priority optional
+    # 9. Exploration â€” low priority optional
     # Only if there's "free time" (low total priority from other categories)
     if not scores and challenge is None:
         scores["exploration"] = PRIORITY_WEIGHTS["exploration"]
 
-    # ── Select the winner ────────────────────────────────────────────
+    # â”€â”€ Select the winner â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     winner_category = max(scores, key=scores.get) if scores else "exploration"
     winner_score = scores.get(winner_category, 0)
 
@@ -299,12 +328,12 @@ async def _iter_unlockable(world_id: str, completed: Dict[str, Any]):
 
     all_level_ids: List[str] = []
     for town_data in world.towns:
-        for lvl in town_data.levels:
+        for lvl in town_data.lessons:
             all_level_ids.append(lvl.id)
 
     seen_complete = True
     for town_data in world.towns:
-        for lvl in town_data.levels:
+        for lvl in town_data.lessons:
             key = f"{world.id}:{lvl.id}"
             done = completed.get(key, {}).get("completed", False)
             if done:
@@ -314,11 +343,11 @@ async def _iter_unlockable(world_id: str, completed: Dict[str, Any]):
             yield {"world_id": world.id, "town_id": town_data.id, "level_id": lvl.id}
             seen_complete = all(
                 completed.get(f"{world.id}:{lvl2.id}", {}).get("completed", False)
-                for lvl2 in town_data.levels
+                for lvl2 in town_data.lessons
             )
 
 
-# ─── Build the canonical JourneyState ─────────────────────────────────
+# â”€â”€â”€ Build the canonical JourneyState â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 
 async def build_journey_state(user_id: str) -> Dict[str, Any]:
@@ -335,12 +364,12 @@ async def build_journey_state(user_id: str) -> Dict[str, Any]:
     adds career context and ranks everything into a single next action.
     """
 
-    # ── Rank activities and get winner ───────────────────────────────
+    # â”€â”€ Rank activities and get winner â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     ranking = await _rank_activities(user_id)
     winner = ranking["winner_category"]
     scores = ranking["scores"]
 
-    # ── Read user profile for context ────────────────────────────────
+    # â”€â”€ Read user profile for context â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     from app.middleware.auth import get_current_user as _gcu_dep
     # We can't call the dependency directly, read from DB instead
     from app.database import users_collection as _uc
@@ -348,7 +377,7 @@ async def build_journey_state(user_id: str) -> Dict[str, Any]:
     target_company = _user_target_company(user_doc)
     target_role = user_doc.get("target_role", "") or user_doc.get("role", "")
 
-    # ── Re-read Study Engine plan (already refreshed in _rank_activities) ─
+    # â”€â”€ Re-read Study Engine plan (already refreshed in _rank_activities) â”€
     # We already have it from _rank_activities; reuse where possible
     # For the full state, call study engine fresh:
     study_plan = await study_get_today(user_id, force_refresh=True)
@@ -357,7 +386,7 @@ async def build_journey_state(user_id: str) -> Dict[str, Any]:
     practice = study_plan.get("practice", [])
     challenge = study_plan.get("challenge")
 
-    # ── Read gamification ────────────────────────────────────────────
+    # â”€â”€ Read gamification â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     g = await get_gamification_profile(user_id)
     level = g.get("level", 1)
     xp = g.get("xp", 0)
@@ -365,7 +394,7 @@ async def build_journey_state(user_id: str) -> Dict[str, Any]:
     streak = g.get("streak", 0)
     badges = g.get("badges", [])
 
-    # ── Read world/progression state ─────────────────────────────────
+    # â”€â”€ Read world/progression state â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     # Find the character position: first unlocked incomplete level
     completed: Dict[str, Any] = g.get("completed_competencies", {})
     character_position = None
@@ -379,7 +408,7 @@ async def build_journey_state(user_id: str) -> Dict[str, Any]:
 
         # Check towns and levels
         for town in world.towns:
-            town_levels = town.levels
+            town_levels = town.lessons
             for idx, lvl in enumerate(town_levels):
                 key = f"{world.id}:{lvl.id}"
                 entry = completed.get(key, {})
@@ -388,7 +417,7 @@ async def build_journey_state(user_id: str) -> Dict[str, Any]:
                 # Unlock rule
                 all_level_ids = []
                 for t in world.towns:
-                    for lt in t.levels:
+                    for lt in t.lessons:
                         all_level_ids.append(lt.id)
                 walk_idx = all_level_ids.index(lvl.id)
                 if walk_idx == 0:
@@ -430,8 +459,8 @@ async def build_journey_state(user_id: str) -> Dict[str, Any]:
             world_keys = [k for k in completed if k.startswith(world.id + ":")]
             if world_keys and world.towns:
                 last_town = world.towns[-1]
-                if last_town.levels:
-                    last_lvl = last_town.levels[-1]
+                if last_town.lessons:
+                    last_lvl = last_town.lessons[-1]
                     character_position = {
                         "world_id": world.id,
                         "town_id": last_town.id,
@@ -439,7 +468,7 @@ async def build_journey_state(user_id: str) -> Dict[str, Any]:
                     }
                     break
 
-    # ── Determine the single next action ─────────────────────────────
+    # â”€â”€ Determine the single next action â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     # Based on the winner category from the priority engine:
     next_action: Dict[str, Any] = {}
     today = _today_key()
@@ -478,16 +507,16 @@ async def build_journey_state(user_id: str) -> Dict[str, Any]:
             w = get_world(character_position["world_id"])
             town = next(t for t in w.towns if t.id == character_position["town_id"])
             current_idx = None
-            for i, lvl in enumerate(town.levels):
+            for i, lvl in enumerate(town.lessons):
                 if lvl.id == character_position["level_id"]:
                     current_idx = i
                     break
-            if current_idx is not None and current_idx < len(town.levels) - 1:
-                next_lvl = town.levels[current_idx + 1]
+            if current_idx is not None and current_idx < len(town.lessons) - 1:
+                next_lvl = town.lessons[current_idx + 1]
                 next_action = {
                     "type": "unlock",
                     "title": f"Unlock: {next_lvl.title}",
-                    "description": f"Move from {town.title} to {next_lvl.title}",
+                    "description": f"Move from {town.name} to {next_lvl.title}",
                     "kind": "progression",
                     "target_world": character_position["world_id"],
                     "target_town": character_position["town_id"],
@@ -566,7 +595,7 @@ async def build_journey_state(user_id: str) -> Dict[str, Any]:
             "action": "explore",
         }
 
-    # ── Build and return the canonical JourneyState ──────────────────
+    # â”€â”€ Build and return the canonical JourneyState â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     journey_state: Dict[str, Any] = {
         "character": {
             "level": level,
@@ -615,17 +644,17 @@ def _today_key() -> str:
 def _title_for_level(level: int) -> Dict[str, Any]:
     """Return character title info for a given level."""
     CHARACTER_TITLES = [
-        {"min_level": 1, "title": "Rookie", "emoji": "🌱"},
-        {"min_level": 10, "title": "Explorer", "emoji": "🧭"},
-        {"min_level": 20, "title": "Problem Solver", "emoji": "🧩"},
-        {"min_level": 30, "title": "Builder", "emoji": "🛠"},
-        {"min_level": 40, "title": "Engineer", "emoji": "⚙️"},
-        {"min_level": 50, "title": "Developer", "emoji": "🚀"},
-        {"min_level": 60, "title": "Specialist", "emoji": "🧠"},
-        {"min_level": 70, "title": "Architect", "emoji": "🏗"},
-        {"min_level": 80, "title": "Senior Engineer", "emoji": "⚡"},
-        {"min_level": 90, "title": "Expert", "emoji": "👑"},
-        {"min_level": 100, "title": "Master Engineer", "emoji": "🌌"},
+        {"min_level": 1, "title": "Rookie", "emoji": "ðŸŒ±"},
+        {"min_level": 10, "title": "Explorer", "emoji": "ðŸ§­"},
+        {"min_level": 20, "title": "Problem Solver", "emoji": "ðŸ§©"},
+        {"min_level": 30, "title": "Builder", "emoji": "ðŸ› "},
+        {"min_level": 40, "title": "Engineer", "emoji": "âš™ï¸"},
+        {"min_level": 50, "title": "Developer", "emoji": "ðŸš€"},
+        {"min_level": 60, "title": "Specialist", "emoji": "ðŸ§ "},
+        {"min_level": 70, "title": "Architect", "emoji": "ðŸ—"},
+        {"min_level": 80, "title": "Senior Engineer", "emoji": "âš¡"},
+        {"min_level": 90, "title": "Expert", "emoji": "ðŸ‘‘"},
+        {"min_level": 100, "title": "Master Engineer", "emoji": "ðŸŒŒ"},
     ]
     pick = CHARACTER_TITLES[0]
     for t in CHARACTER_TITLES:
@@ -638,7 +667,7 @@ def _emoji_for_level(level: int) -> str:
     return _title_for_level(level)["emoji"]
 
 
-# ─── Router endpoint ──────────────────────────────────────────────────
+# â”€â”€â”€ Router endpoint â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 @router.get("/state", summary="Return the canonical journey state for the user.")
 async def journey_state_endpoint(user=Depends(get_current_user)):
@@ -672,7 +701,7 @@ async def journey_state_endpoint(user=Depends(get_current_user)):
         import json as _json
         cached = await cache.get("journey", f"state:{user_id}:{_today_key()}")
         if cached:
-            # Don't return cached if we just computed a new state —
+            # Don't return cached if we just computed a new state â€”
             # the cache is best-effort for performance, not for correctness.
             pass
     except Exception:

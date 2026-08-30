@@ -56,7 +56,6 @@ export default function Navbar() {
       items: [
         { to: "/community", label: "Community", icon: MessageSquare },
         { to: "/ai-mentor", label: "AI Mentor", icon: Brain },
-        { to: "/project-generator", label: "Project Generator", icon: Sparkles },
         { to: "/concepts", label: "Concepts", icon: Lightbulb },
         { to: "/placement-calendar", label: "Placement Calendar", icon: Calendar },
         { to: "/settings", label: "Settings", icon: Settings },

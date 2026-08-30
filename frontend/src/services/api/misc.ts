@@ -47,16 +47,17 @@ export const dsaFingerprintApi = {
   },
 };
 
-export const projectGeneratorApi = {
-  generate(payload) {
-    return request("/api/v1/project-generator/generate", {
-      method: "POST",
-      body: JSON.stringify(payload),
-    });
+export const dsaFingerprintApi = {
+  getSkillProfile() {
+    return request("/api/v1/fingerprint/skill-profile");
   },
 
-  getHistory() {
-    return request("/api/v1/project-generator/history");
+  getCompanyPredictions() {
+    return request("/api/v1/fingerprint/company-predictions");
+  },
+
+  getCompanyFingerprint(companyId) {
+    return request(`/api/v1/fingerprint/company/${companyId}`);
   },
 };
 
