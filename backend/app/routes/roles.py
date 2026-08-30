@@ -87,7 +87,7 @@ async def record_activity(
 
 
 @router.get("/{role_id}/next")
-async def get_next_activity(role_id: string, user=Depends(get_current_user)):
+async def get_next_activity(role_id: str, user=Depends(get_current_user)):
     """Get the next recommended activity for this role."""
     from app.services.role_content_service import get_next_role_activity
     next_activity = await get_next_role_activity(user["id"], role_id)
@@ -95,7 +95,7 @@ async def get_next_activity(role_id: string, user=Depends(get_current_user)):
 
 
 @router.get("/{role_id}/dashboard")
-async def get_dashboard(role_id: string, user=Depends(get_current_user)):
+async def get_dashboard(role_id: str, user=Depends(get_current_user)):
     """Get the role dashboard for the Journey page."""
     from app.services.role_content_service import get_role_dashboard
     dashboard = get_role_dashboard(user["id"], role_id)
