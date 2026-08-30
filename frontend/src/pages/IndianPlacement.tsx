@@ -45,9 +45,8 @@ export default function IndianPlacement() {
       if (data?.companies) {
         setCompanies(data.companies);
       } else {
-        // Fallback - fetch directly
-        const res = await fetch('/api/v1/indian-placement/companies');
-        const json = await res.json();
+        const res = await fetch('/api/v1/indian-placement/companies', { credentials: 'include' });
+        const json = await res.json().catch(() => ({}));
         setCompanies(json.companies || []);
       }
     } catch { setCompanies([]); }
@@ -62,9 +61,9 @@ export default function IndianPlacement() {
     setMockSections(null);
     try {
       const [detailRes, hrRes, codingRes] = await Promise.all([
-        fetch(`/api/v1/indian-placement/${companyId}`).then(r => r.ok ? r.json() : null).catch(() => null),
-        fetch(`/api/v1/indian-placement/${companyId}/hr-questions`).then(r => r.ok ? r.json() : null).catch(() => null),
-        fetch(`/api/v1/indian-placement/${companyId}/coding-patterns`).then(r => r.ok ? r.json() : null).catch(() => null),
+        fetch(`/api/v1/indian-placement/${encodeURIComponent(companyId)}`, { credentials: 'include' }).then(r => r.ok ? r.json() : null).catch(() => null),
+        fetch(`/api/v1/indian-placement/${encodeURIComponent(companyId)}/hr-questions`, { credentials: 'include' }).then(r => r.ok ? r.json() : null).catch(() => null),
+        fetch(`/api/v1/indian-placement/${encodeURIComponent(companyId)}/coding-patterns`, { credentials: 'include' }).then(r => r.ok ? r.json() : null).catch(() => null),
       ]);
       setDetail(detailRes);
       setHrData(hrRes);
@@ -78,11 +77,11 @@ export default function IndianPlacement() {
     try {
       const res = await fetch('/api/v1/indian-placement/start-mock', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', ...(api.getIndianCompanies ? {} : {}) },
         credentials: 'include',
         body: JSON.stringify({ company_id: selected }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
       setMockSections(data);
       setMockStarted(true);
     } catch {}

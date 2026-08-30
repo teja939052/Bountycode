@@ -54,6 +54,7 @@ const api = {
   mockInterview: mockInterviewApi,
   booking: bookingApi,
   resume: resumeApi,
+  companyPrep: companyPrepApi,
   billing: billingApi,
   aptitude: aptitudeApi,
   behavioral: behavioralApi,

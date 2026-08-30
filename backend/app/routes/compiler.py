@@ -153,6 +153,28 @@ async def get_supported_languages():
     }
 
 
+class StarterCodeRequest(BaseModel):
+    """Request to generate starter code for a specific language."""
+    signature: str = Field(..., description="Python function signature")
+    language: str = Field(..., min_length=1, max_length=32, description="Target language")
+
+    def model_post_init(self, __context) -> None:
+        if self.language.lower() not in SUPPORTED_LANGUAGE_IDS:
+            raise ValueError(
+                f"Language '{self.language}' not supported. "
+                f"Supported: {', '.join(sorted(SUPPORTED_LANGUAGE_IDS))}"
+            )
+        self.language = self.language.lower()
+
+
+@router.post("/starter-code")
+async def generate_starter_code(req: StarterCodeRequest):
+    """Generate starter code for a given language from a Python signature."""
+    from app.services.code_executor import CodeExecutionEngine
+    code = CodeExecutionEngine.generate_starter_code(req.signature, req.language)
+    return {"language": req.language, "code": code, "signature": req.signature}
+
+
 class BoilerplateRequest(BaseModel):
     language: str = Field(..., min_length=1, max_length=32)
     topics: List[str] = Field(default_factory=list, max_length=10)

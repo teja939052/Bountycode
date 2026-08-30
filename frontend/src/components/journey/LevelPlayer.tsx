@@ -188,7 +188,26 @@ export function LevelPlayer({ worldId, level, onClose, onMastered }: LevelPlayer
                 {LANGUAGES.map((lang) => (
                   <button
                     key={lang.id}
-                    onClick={() => setLanguage(lang.id)}
+                    onClick={() => {
+                      setLanguage(lang.id);
+                      // Load starter code for this language from the API
+                      void (async () => {
+                        try {
+                          const sig = level.canonical_skill || "def solution():";
+                          const res = await fetch("/api/v1/compiler/starter-code", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ signature: `def solution(${sig.replace("coding.", "").replace(".", "_")}) -> int:`, language: lang.id }),
+                          });
+                          if (res.ok) {
+                            const data = await res.json();
+                            if (data.code) setCode(data.code);
+                          }
+                        } catch {
+                          // Keep current code if API fails
+                        }
+                      })();
+                    }}
                     className={`flex-1 flex items-center justify-center gap-1 py-1.5 px-2 rounded-md text-xs font-medium transition-colors min-h-[32px] ${
                       language === lang.id
                         ? "bg-white shadow-sm text-primary border border-border"

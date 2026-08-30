@@ -19,7 +19,7 @@ import useReducedMotion from "../hooks/useReducedMotion";
 import { PageShell } from "../design-system/PageShell";
 import { Button } from "../design-system/Button";
 import { Card } from "../design-system/Card";
-import useAuthStore from "../store/authStore";
+import { requestWithRetry } from "../services/api/request.ts";
 
 const ROLE_PATHS = [
   { id: "sde", title: "Software Developer", desc: "Full-stack SDE roles", icon: Code2, color: "#22C55E" },
@@ -88,7 +88,6 @@ function RotatingWord({
 
 export default function Landing() {
   const reduced = useReducedMotion();
-  const token = useAuthStore((s) => s.user?.token);
   const [potd, setPotd] = useState(null);
   const [potdLoading, setPotdLoading] = useState(true);
   const [potdDismissed, setPotdDismissed] = useState(false);
@@ -96,13 +95,8 @@ export default function Landing() {
   useEffect(() => {
     let cancelled = false;
     const load = async () => {
-      if (!token) { setPotdLoading(false); return; }
       try {
-        const r = await fetch("/api/v1/daily-problem/today", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        if (!r.ok) throw new Error();
-        const data = await r.json();
+        const data = await requestWithRetry<{ problem: any; config: any; xp_reward: number; streak_bonus: number; already_completed: boolean }>("/api/v1/daily-problem/today");
         if (!cancelled) setPotd(data);
       } catch {
         // silent — POTD is optional on landing
@@ -112,7 +106,7 @@ export default function Landing() {
     };
     load();
     return () => { cancelled = true; };
-  }, [token]);
+  }, []);
 
   return (
     <PageShell theme="spring">

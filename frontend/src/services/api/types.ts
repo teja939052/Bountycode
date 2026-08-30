@@ -20,6 +20,7 @@ export interface AuthUser {
   college?: string;
   league?: string;
   gamification?: Record<string, unknown>;
+  token?: string;
 }
 
 export interface UsageStats {

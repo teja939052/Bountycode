@@ -1,0 +1,147 @@
+{
+  "company_blueprints": {
+    "tcs_nqt": {
+      "name": "TCS NQT",
+      "full_name": "TCS National Qualifier Test",
+      "role": "SDE undergrad",
+      "hiring_tracks": ["ninja", "digital", "prime"],
+      "ctc_range": {"ninja": "3.5-3.9 LPA", "digital": "7-7.5 LPA", "prime": "9-11 LPA"},
+      "duration_minutes": 190,
+      "structure": {
+        "foundation": {
+          "duration": 75,
+          "sections": ["quantitative_aptitude", "verbal_ability", "reasoning_ability"],
+          "questions": 65,
+          "negative_marking": false,
+          "topics": {
+            "quantitative_aptitude": {
+              "weight": 20,
+              "sub_topics": ["percentages", "profit_loss", "ratio_proportion", "averages", "time_work", "time_distance", "probability", "permutations_combinations", "number_systems"]
+            },
+            "verbal_ability": {
+              "weight": 20,
+              "sub_topics": ["reading_comprehension", "sentence_correction", "para_jumbles", "synonyms_antonyms", "fill_in_blanks"]
+            },
+            "reasoning_ability": {
+              "weight": 20,
+              "sub_topics": ["series", "coding_decoding", "blood_relation", "direction_sense", "analogy", "odd_one_out", "sequence"]
+            }
+          }
+        },
+        "advanced": {
+          "duration": 115,
+          "sections": ["advanced_quantitative", "advanced_reasoning", "advanced_coding"],
+          "questions": 18,
+          "negative_marking": false,
+          "topics": {
+            "advanced_quantitative": {
+              "weight": 30,
+              "sub_topics": ["advanced_mixtures", "advanced_time_work", "advanced_time_distance", "advanced_probability", "advanced_permutations"]
+            },
+            "advanced_reasoning": {
+              "weight": 20,
+              "sub_topics": ["advanced_coding_decoding", "advanced_blood_relation", "advanced_direction_sense", "advanced_analogy"]
+            },
+            "advanced_coding": {
+              "weight": 50,
+              "problems": 3,
+              "duration_minutes": 90,
+              "topics": ["arrays", "strings", "loops", "recursion", "sorting", "searching", "hashing"]
+            }
+          }
+        }
+      },
+      "competencies": [
+        "quantitative_aptitude",
+        "verbal_ability",
+        "reasoning_ability",
+        "problem_solving",
+        "coding",
+        "analytical_reasoning",
+        "technical_fundamentals"
+      ],
+      "readiness_weights": {
+        "foundation": 0.4,
+        "advanced": 0.4,
+        "coding": 0.2
+      },
+      "companies": ["tcs"],
+      "source": "official_tcs_nqt_pattern",
+      "last_verified": "2026-08",
+      "description": "TCS National Qualifier Test separates candidates into Ninja (Foundation only), Digital (Foundation + Advanced), and Prime (All tracks) based on section scores."
+    },
+
+    "accenture": {
+      "name": "Accenture",
+      "full_name": "Accenture Placement Drive",
+      "role": "2025-2026 batch",
+      "hiring_tracks": ["analyst", "senior_analyst"],
+      "ctc_range": {"analyst": "3.5-4.5 LPA", "senior_analyst": "5-7 LPA"},
+      "duration_minutes": 120,
+      "structure": {
+        "foundation": {
+          "duration": 70,
+          "sections": ["verbal_ability", "quantitative_aptitude", "logical_reasoning", "computer_basics"],
+          "questions": 50,
+          "negative_marking": false,
+          "topics": {
+            "verbal_ability": {
+              "weight": 25,
+              "sub_topics": ["reading_comprehension", "sentence_correction", "synonyms_antonyms", "para_jumbles", "critical_reasoning"]
+            },
+            "quantitative_aptitude": {
+              "weight": 25,
+              "sub_topics": ["percentages", "profit_loss", "time_work_distance", "averages", "probability", "series"]
+            },
+            "logical_reasoning": {
+              "weight": 30,
+              "sub_topics": ["blood_relation", "direction_sense", "analogy", "coding_decoding", "series", "venn_diagrams"]
+            },
+            "computer_basics": {
+              "weight": 20,
+              "sub_topics": ["computer_fundamentals", "os_basics", "db_basics", "networking_basics"]
+            }
+          }
+        },
+        "advanced": {
+          "duration": 50,
+          "sections": ["technical", "problem_solving", "communication"],
+          "questions": 30,
+          "negative_marking": false,
+          "topics": {
+            "technical": {
+              "weight": 40,
+              "sub_topics": ["c_language", "java_basics", "dbms", "os", "networking", "data_structures"]
+            },
+            "problem_solving": {
+              "weight": 35,
+              "sub_topics": ["analytical_reasoning", "data_interpretaion", "decision_making"]
+            },
+            "communication": {
+              "weight": 25,
+              "sub_topics": ["verbal_ability", "body_language", "storytelling", "structured_thinking"]
+            }
+          }
+        }
+      },
+      "competencies": [
+        "verbal_ability",
+        "quantitative_aptitude",
+        "logical_reasoning",
+        "computer_basics",
+        "technical_knowledge",
+        "problem_solving",
+        "communication"
+      ],
+      "readiness_weights": {
+        "foundation": 0.5,
+        "advanced": 0.3,
+        "communication": 0.2
+      },
+      "companies": ["accure"],
+      "source": "accenture_2025_pattern",
+      "last_verified": "2026-08",
+      "description": "Accenture hiring process consists of Foundation assessment (Verbal + Quant + Reasoning + Computer Basics) followed by Advanced Technical + Problem Solving + Communication round."
+    }
+  }
+}

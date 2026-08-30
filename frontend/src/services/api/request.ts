@@ -1,5 +1,15 @@
 export const API_BASE = import.meta.env.VITE_API_URL || "";
 
+let authToken: string | null = null;
+
+export function setAuthToken(token: string | null) {
+  authToken = token;
+}
+
+export function getAuthToken(): string | null {
+  return authToken;
+}
+
 export interface ApiErrorBody {
   detail?: string;
   error_explanation?: string | null;
@@ -122,6 +132,10 @@ export async function requestWithRetry<T = any>(
     ...(options.headers || {}),
   };
 
+  if (getAuthToken()) {
+    headers.Authorization = `Bearer ${getAuthToken()}`;
+  }
+
   const run = (async () => {
     let lastError: unknown;
     for (let attempt = 0; attempt <= maxRetries; attempt++) {
@@ -134,10 +148,13 @@ export async function requestWithRetry<T = any>(
 
         if (response.status === 401 && attempt === 0) {
           try {
-            await fetch(`${API_BASE}/api/v1/auth/refresh`, {
+            const refreshRes = await fetch(`${API_BASE}/api/v1/auth/refresh`, {
               method: "POST",
               credentials: "include",
             });
+            if (!refreshRes.ok) {
+              throw new Error("Session expired");
+            }
             continue;
           } catch {
             throw new Error("Session expired");

@@ -15,6 +15,7 @@ import {
 import CelebrationOverlay from "../components/CelebrationOverlay";
 import AnimatedCard from "../components/motion/AnimatedCard";
 import useReducedMotion from "../hooks/useReducedMotion";
+import { requestWithRetry } from "../services/api/request.ts";
 
 const DIFFICULTY_COLORS = {
   easy: "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400",
@@ -57,11 +58,7 @@ export default function ProblemOfTheDay() {
     setRunResult(null);
     setRevealedHints(0);
     try {
-      const token = (await import("../store/authStore")).default.getState().user?.token;
-      if (!token) { setError("Please log in to view the daily problem."); setLoading(false); return; }
-      const data = await fetch("/api/v1/daily-problem/today", {
-        headers: { Authorization: `Bearer ${token}` },
-      }).then((r) => r.json());
+      const data = await requestWithRetry<{ problem: any; config: any; xp_reward: number; streak_bonus: number; already_completed: boolean }>("/api/v1/daily-problem/today");
       setChallenge(data);
     } catch {
       setError("Failed to load today's challenge.");
@@ -75,13 +72,10 @@ export default function ProblemOfTheDay() {
     setSubmitting(true);
     setError(null);
     try {
-      const token = (await import("../store/authStore")).default.getState().user?.token;
-      const res = await fetch("/api/v1/daily-problem/submit", {
+      const data = await requestWithRetry<{ all_passed: boolean; passed_count: number; total_cases: number; xp_gained: number; streak_bonus: number; time_taken: number }>("/api/v1/daily-problem/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify({ problem_id: challenge.problem.id, code: userCode, language: selectedLanguage }),
       });
-      const data = await res.json();
       setResult(data);
       if (data.all_passed) {
         setShowCelebration(true);
@@ -98,14 +92,11 @@ export default function ProblemOfTheDay() {
     if (!userCode.trim()) return;
     setCodeRunning(true);
     try {
-      const token = (await import("../store/authStore")).default.getState().user?.token;
-      const r = await fetch("/api/v1/compiler/execute", {
+      const data = await requestWithRetry<{ success: boolean; stdout?: string; error?: string }>("/api/v1/compiler/execute", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify({ code: userCode, language: selectedLanguage, stdin: "", timeout: 10 }),
       });
-      const d = await r.json();
-      setRunResult(d);
+      setRunResult(data);
     } catch {
       // silent
     } finally {
