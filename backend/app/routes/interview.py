@@ -1,5 +1,6 @@
 from datetime import datetime, timezone
 import random
+from typing import List
 from fastapi import APIRouter, Depends, HTTPException
 from app.models.interview import StartInterview, SubmitAnswer
 from app.database import users_collection, interviews_collection

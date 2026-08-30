@@ -1,0 +1,30 @@
+{
+  "total": 6379,
+  "excellent": 341,
+  "good": 6026,
+  "filler": 12,
+  "quarantined": 0,
+  "showable": 6367,
+  "topics": {
+    "trees": 64,
+    "dynamic-programming": 36,
+    "strings": 36,
+    "arrays & hashing": 31,
+    "graphs": 18,
+    "binary search": 17,
+    "linked list": 15,
+    "sliding window": 14,
+    "stack": 14,
+    "two pointers": 13,
+    "heap / priority queue": 10,
+    "aptitude": 10,
+    "arrays": 9,
+    "array": 8,
+    "tree": 8,
+    "logical reasoning": 6,
+    "string": 6,
+    "verbal ability": 5,
+    "linked-lists": 3,
+    "design": 3
+  }
+}

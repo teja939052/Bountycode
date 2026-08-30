@@ -16,6 +16,7 @@ export const authApi = {
     return request("/api/v1/auth/register", {
       method: "POST",
       body: JSON.stringify({ email, password, name }),
+      skipAuthRefresh: true,
     });
   },
 
@@ -23,6 +24,7 @@ export const authApi = {
     return request("/api/v1/auth/login", {
       method: "POST",
       body: JSON.stringify({ email, password }),
+      skipAuthRefresh: true,
     });
   },
 
