@@ -1,18 +1,57 @@
 {
   "bank_total": 6379,
-  "verified": 11,
+  "verified": 50,
   "verified_ids": [
     "apt-001",
     "apt-002",
     "apt-003",
     "apt-004",
     "apt-005",
+    "apt-006",
+    "apt-007",
+    "apt-008",
+    "apt-009",
+    "apt-010",
+    "cs-001",
+    "cs-002",
+    "cs-003",
+    "cs-004",
+    "log-001",
+    "log-002",
+    "log-003",
+    "verb-001",
+    "verb-002",
+    "verb-003",
     "verify-001",
     "verify-002",
     "verify-003",
     "verify-004",
     "verify-005",
-    "verify-006"
+    "verify-006",
+    "verify-007",
+    "verify-008",
+    "verify-009",
+    "verify-010",
+    "verify-011",
+    "verify-012",
+    "verify-013",
+    "verify-014",
+    "verify-015",
+    "verify-016",
+    "verify-017",
+    "verify-018",
+    "verify-019",
+    "verify-020",
+    "verify-021",
+    "verify-022",
+    "verify-023",
+    "verify-024",
+    "verify-025",
+    "verify-026",
+    "verify-027",
+    "verify-028",
+    "verify-029",
+    "verify-030"
   ],
   "unverified_pending": 6379,
   "repair_reasons": {
@@ -51,9 +90,9 @@
       "type": "coding",
       "topic": "Arrays",
       "company": [
+        "Google",
         "Amazon",
-        "Microsoft",
-        "Google"
+        "Microsoft"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -63,9 +102,9 @@
       "type": "coding",
       "topic": "Arrays",
       "company": [
-        "Amazon",
+        "Google",
         "Meta",
-        "Google"
+        "Amazon"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -75,10 +114,10 @@
       "type": "coding",
       "topic": "Arrays",
       "company": [
+        "Google",
         "Adobe",
         "Amazon",
-        "Microsoft",
-        "Google"
+        "Microsoft"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -88,10 +127,10 @@
       "type": "coding",
       "topic": "Arrays",
       "company": [
-        "Amazon",
-        "Microsoft",
         "Google",
-        "Uber"
+        "Uber",
+        "Amazon",
+        "Microsoft"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -101,9 +140,9 @@
       "type": "coding",
       "topic": "Arrays",
       "company": [
-        "Amazon",
+        "Microsoft",
         "Apple",
-        "Microsoft"
+        "Amazon"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -113,9 +152,9 @@
       "type": "coding",
       "topic": "Strings",
       "company": [
+        "Google",
         "Amazon",
-        "Microsoft",
-        "Google"
+        "Microsoft"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -125,10 +164,10 @@
       "type": "coding",
       "topic": "Strings",
       "company": [
-        "Amazon",
+        "Google",
         "Meta",
         "Apple",
-        "Google"
+        "Amazon"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -138,9 +177,9 @@
       "type": "coding",
       "topic": "Strings",
       "company": [
+        "Google",
         "LinkedIn",
-        "Amazon",
-        "Google"
+        "Amazon"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -150,10 +189,10 @@
       "type": "coding",
       "topic": "Strings",
       "company": [
-        "Netflix",
-        "Amazon",
+        "Google",
         "Meta",
-        "Google"
+        "Netflix",
+        "Amazon"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -163,9 +202,9 @@
       "type": "coding",
       "topic": "Stack",
       "company": [
+        "Google",
         "Amazon",
-        "Microsoft",
-        "Google"
+        "Microsoft"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -175,9 +214,9 @@
       "type": "coding",
       "topic": "Stack",
       "company": [
-        "Amazon",
+        "Google",
         "Apple",
-        "Google"
+        "Amazon"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -187,9 +226,9 @@
       "type": "coding",
       "topic": "Dynamic Programming",
       "company": [
+        "Google",
         "Amazon",
-        "Microsoft",
-        "Google"
+        "Microsoft"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -199,9 +238,9 @@
       "type": "coding",
       "topic": "Dynamic Programming",
       "company": [
-        "Amazon",
+        "Google",
         "Meta",
-        "Google"
+        "Amazon"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -211,10 +250,10 @@
       "type": "coding",
       "topic": "Dynamic Programming",
       "company": [
-        "Amazon",
-        "Microsoft",
         "Google",
-        "Uber"
+        "Uber",
+        "Amazon",
+        "Microsoft"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -224,10 +263,10 @@
       "type": "coding",
       "topic": "Dynamic Programming",
       "company": [
-        "Amazon",
+        "Google",
         "Meta",
         "Apple",
-        "Google"
+        "Amazon"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -237,10 +276,10 @@
       "type": "coding",
       "topic": "Arrays",
       "company": [
-        "Amazon",
+        "Google",
         "Meta",
-        "Microsoft",
-        "Google"
+        "Amazon",
+        "Microsoft"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -250,10 +289,10 @@
       "type": "coding",
       "topic": "Stack",
       "company": [
-        "Amazon",
-        "Meta",
         "Google",
-        "Uber"
+        "Meta",
+        "Uber",
+        "Amazon"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -263,10 +302,10 @@
       "type": "coding",
       "topic": "Arrays",
       "company": [
-        "Amazon",
+        "Google",
         "Meta",
         "Apple",
-        "Google"
+        "Amazon"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -276,10 +315,10 @@
       "type": "coding",
       "topic": "Strings",
       "company": [
-        "Amazon",
+        "Google",
         "Meta",
-        "Microsoft",
-        "Google"
+        "Amazon",
+        "Microsoft"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -289,10 +328,10 @@
       "type": "coding",
       "topic": "Dynamic Programming",
       "company": [
-        "Amazon",
+        "Google",
         "Meta",
-        "Microsoft",
-        "Google"
+        "Amazon",
+        "Microsoft"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -302,10 +341,10 @@
       "type": "coding",
       "topic": "Strings",
       "company": [
-        "Netflix",
-        "Amazon",
+        "Google",
         "Meta",
-        "Google"
+        "Netflix",
+        "Amazon"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -315,10 +354,10 @@
       "type": "coding",
       "topic": "Arrays",
       "company": [
-        "Amazon",
+        "Google",
         "Meta",
-        "Microsoft",
-        "Google"
+        "Amazon",
+        "Microsoft"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -328,9 +367,9 @@
       "type": "coding",
       "topic": "Arrays",
       "company": [
-        "Amazon",
         "Meta",
         "Apple",
+        "Amazon",
         "Microsoft"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
@@ -341,8 +380,8 @@
       "type": "coding",
       "topic": "Strings",
       "company": [
-        "Uber",
         "Meta",
+        "Uber",
         "Apple",
         "Microsoft"
       ],
@@ -355,8 +394,8 @@
       "topic": "Strings",
       "company": [
         "Netflix",
-        "Uber",
         "Meta",
+        "Uber",
         "Apple"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
@@ -367,10 +406,10 @@
       "type": "coding",
       "topic": "Stack",
       "company": [
+        "Google",
         "Netflix",
         "Uber",
-        "Adobe",
-        "Google"
+        "Adobe"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -380,10 +419,10 @@
       "type": "coding",
       "topic": "Dynamic Programming",
       "company": [
+        "Google",
         "Netflix",
         "Uber",
-        "Adobe",
-        "Google"
+        "Adobe"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -393,10 +432,10 @@
       "type": "coding",
       "topic": "Dynamic Programming",
       "company": [
+        "Google",
         "Netflix",
         "Amazon",
-        "Adobe",
-        "Google"
+        "Adobe"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -406,10 +445,10 @@
       "type": "coding",
       "topic": "Arrays",
       "company": [
-        "Amazon",
+        "Google",
         "Meta",
-        "Microsoft",
-        "Google"
+        "Amazon",
+        "Microsoft"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -419,9 +458,9 @@
       "type": "coding",
       "topic": "Arrays",
       "company": [
-        "Amazon",
         "Meta",
         "Apple",
+        "Amazon",
         "Microsoft"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
@@ -432,8 +471,8 @@
       "type": "coding",
       "topic": "Strings",
       "company": [
-        "Uber",
         "Meta",
+        "Uber",
         "Apple",
         "Microsoft"
       ],
@@ -446,8 +485,8 @@
       "topic": "Strings",
       "company": [
         "Netflix",
-        "Uber",
         "Meta",
+        "Uber",
         "Apple"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
@@ -458,10 +497,10 @@
       "type": "coding",
       "topic": "Stack",
       "company": [
+        "Google",
         "Netflix",
         "Uber",
-        "Adobe",
-        "Google"
+        "Adobe"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -471,10 +510,10 @@
       "type": "coding",
       "topic": "Dynamic Programming",
       "company": [
+        "Google",
         "Netflix",
         "Uber",
-        "Adobe",
-        "Google"
+        "Adobe"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -484,10 +523,10 @@
       "type": "coding",
       "topic": "Dynamic Programming",
       "company": [
+        "Google",
         "Netflix",
         "Amazon",
-        "Adobe",
-        "Google"
+        "Adobe"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -497,10 +536,10 @@
       "type": "coding",
       "topic": "Arrays",
       "company": [
-        "Amazon",
+        "Google",
         "Meta",
-        "Microsoft",
-        "Google"
+        "Amazon",
+        "Microsoft"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -510,9 +549,9 @@
       "type": "coding",
       "topic": "Arrays",
       "company": [
-        "Amazon",
         "Meta",
         "Apple",
+        "Amazon",
         "Microsoft"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
@@ -523,8 +562,8 @@
       "type": "coding",
       "topic": "Strings",
       "company": [
-        "Uber",
         "Meta",
+        "Uber",
         "Apple",
         "Microsoft"
       ],
@@ -537,8 +576,8 @@
       "topic": "Strings",
       "company": [
         "Netflix",
-        "Uber",
         "Meta",
+        "Uber",
         "Apple"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
@@ -549,10 +588,10 @@
       "type": "coding",
       "topic": "Stack",
       "company": [
+        "Google",
         "Netflix",
         "Uber",
-        "Adobe",
-        "Google"
+        "Adobe"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -562,10 +601,10 @@
       "type": "coding",
       "topic": "Dynamic Programming",
       "company": [
+        "Google",
         "Netflix",
         "Uber",
-        "Adobe",
-        "Google"
+        "Adobe"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -575,10 +614,10 @@
       "type": "coding",
       "topic": "Dynamic Programming",
       "company": [
+        "Google",
         "Netflix",
         "Amazon",
-        "Adobe",
-        "Google"
+        "Adobe"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -588,10 +627,10 @@
       "type": "coding",
       "topic": "Arrays",
       "company": [
-        "Amazon",
+        "Google",
         "Meta",
-        "Microsoft",
-        "Google"
+        "Amazon",
+        "Microsoft"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -601,9 +640,9 @@
       "type": "coding",
       "topic": "Arrays",
       "company": [
-        "Amazon",
         "Meta",
         "Apple",
+        "Amazon",
         "Microsoft"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
@@ -614,8 +653,8 @@
       "type": "coding",
       "topic": "Strings",
       "company": [
-        "Uber",
         "Meta",
+        "Uber",
         "Apple",
         "Microsoft"
       ],
@@ -628,8 +667,8 @@
       "topic": "Strings",
       "company": [
         "Netflix",
-        "Uber",
         "Meta",
+        "Uber",
         "Apple"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
@@ -640,10 +679,10 @@
       "type": "coding",
       "topic": "Stack",
       "company": [
+        "Google",
         "Netflix",
         "Uber",
-        "Adobe",
-        "Google"
+        "Adobe"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -653,10 +692,10 @@
       "type": "coding",
       "topic": "Dynamic Programming",
       "company": [
+        "Google",
         "Netflix",
         "Uber",
-        "Adobe",
-        "Google"
+        "Adobe"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -666,10 +705,10 @@
       "type": "coding",
       "topic": "Dynamic Programming",
       "company": [
+        "Google",
         "Netflix",
         "Amazon",
-        "Adobe",
-        "Google"
+        "Adobe"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0
@@ -679,10 +718,10 @@
       "type": "coding",
       "topic": "Arrays",
       "company": [
-        "Amazon",
+        "Google",
         "Meta",
-        "Microsoft",
-        "Google"
+        "Amazon",
+        "Microsoft"
       ],
       "repair_reason": "UNVERIFIED_EXPECTED_OUTPUT",
       "priority": 1.0

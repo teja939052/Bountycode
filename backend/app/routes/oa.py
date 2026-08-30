@@ -130,6 +130,7 @@ class StartOARequest(BaseModel):
     duration_minutes: int = Field(90, ge=10, le=180, description="Total OA duration in minutes")
     mode: str = Field("calm", description="calm | pressure | boss")
     integrity: bool = Field(False, description="Enable opt-in integrity signal tracking")
+    verified_only: bool = Field(False, description="Serve ONLY independently verified content (trusted packs). When True, sections lacking enough verified questions are skipped rather than filled with legacy content.")
 
 
 class SubmitOAItem(BaseModel):
@@ -179,12 +180,124 @@ def _distribute(total: int, blueprint: Dict[str, float]) -> Dict[str, int]:
     return {sec: n for sec, n in floor.items() if n > 0}
 
 
-async def _build_questions(dist: Dict[str, int]) -> List[dict]:
-    """Build the OA question list deterministically from existing banks."""
+# Map OA sections to verified question-store types (Content Trust).
+# Behavioral/situational are intentionally ABSENT: no independently verified
+# content exists for them, so they are never served as "trusted".
+_VERIFIED_TYPE_FOR_SECTION = {
+    "aptitude": "aptitude",
+    "cs_fundamentals": "cs_fundamentals",
+    "logical": "logical",
+    "verbal": "verbal",
+    "coding": "coding",
+    "dsa": "coding",
+}
+
+
+def _verified_questions_for(section: str, count: int) -> list:
+    """Pull `count` exclusively verified questions for a section from the
+    canonical verified bank. Returns [] if none/none enough. Never returns
+    legacy content."""
+    qtype = _VERIFIED_TYPE_FOR_SECTION.get(section)
+    if not qtype:
+        return []
+    try:
+        from app.services import question_store as qs
+    except Exception:
+        return []
+    try:
+        rows = qs.find({"type": qtype}).only_verified().to_list(count)
+        return [dict(q) for q in rows]
+    except Exception:
+        return []
+
+
+def _to_oa_mcq(q: dict, section: str, meta: dict, idx: int) -> dict:
+    """Convert a verified MCQ (aptitude/logical/verbal/cs_fundamentals) into
+    an OA question dict. Keeps the independent reasoning trail on the server
+    copy for the scorecard, strips answer keys from the client payload below."""
+    options = q.get("options") or q.get("multiple_choice_options") or []
+    correct = q.get("correct_index")
+    if correct is None:
+        correct = q.get("correct_answer")
+    return {
+        "question_uid": f"{section}-{idx}",
+        "section": section,
+        "section_label": meta["label"],
+        "kind": "mcq",
+        "question": q.get("question", ""),
+        "options": options,
+        "time_limit": meta["minutes"] * 60,
+        "difficulty": q.get("difficulty", "medium"),
+        "topic": q.get("topic", ""),
+        "sub_topic": q.get("sub_topic", ""),
+        "_correct_index": correct,
+        "_explanation": q.get("reasoning_steps") or q.get("explanation", ""),
+        "_shortcut": q.get("shortcut", ""),
+        "_common_trap": q.get("common_trap", ""),
+        "trust_status": q.get("trust_status", "unverified"),
+        "source_bank": q.get("source_bank", ""),
+        "verification_version": q.get("verification_version"),
+        "question_id": q.get("id", ""),
+    }
+
+
+def _to_oa_code(q: dict, section: str, meta: dict, idx: int) -> dict:
+    """Convert a verified coding question into an OA code question. Uses the
+    verified testcases + hidden testcases and exposes starter code built from
+    the verified signature."""
+    tc = q.get("testcases") or []
+    hidden = q.get("hidden_testcases") or []
+    code = (q.get("solution") or {}).get("code") or ""
+    def _ser(t):
+        """Serialize {'input': [...], 'expected': ...} for the execution engine."""
+        inp = t.get("input", [])
+        if isinstance(inp, (list, tuple)) and len(inp) == 1 and isinstance(inp[0], (list, dict)):
+            inp = inp[0]
+        return {"input": inp, "expected": t.get("expected")}
+    return {
+        "question_uid": f"{section}-{idx}",
+        "section": section,
+        "section_label": meta["label"],
+        "kind": "code",
+        "question": q.get("question") or q.get("title", ""),
+        "description": q.get("question", ""),
+        "starter_code": {"python": _starter_from(code)},
+        "language": "python",
+        "test_cases": [_ser(t) for t in (tc + hidden)],
+        "time_limit": meta["minutes"] * 60,
+        "difficulty": q.get("difficulty", "medium"),
+        "topic": q.get("topic", "arrays"),
+        "function_name": "",
+        "trust_status": q.get("trust_status", "unverified"),
+        "source_bank": q.get("source_bank", ""),
+        "verification_version": q.get("verification_version"),
+        "question_id": q.get("id", ""),
+    }
+
+
+def _starter_from(code: str) -> str:
+    """Strip the candidate solution body into a 'pass' skeleton for the
+    student, so we never leak the answer in the starter code."""
+    if not code:
+        return "def solve():\n    pass"
+    lines = [l for l in code.splitlines() if l.strip()]
+    if not lines:
+        return "def solve():\n    pass"
+    header = lines[0].rstrip(":")
+    return header + ":\n    # your implementation here\n    pass"
+
+
+async def _build_questions(dist: Dict[str, int], verified_only: bool = False) -> List[dict]:
     out: List[dict] = []
     for sec, count in dist.items():
         meta = SECTION_META.get(sec, {"label": sec, "minutes": 8, "kind": "mcq"})
         if meta["kind"] == "mcq":
+            # Content Trust: for trusted packs use ONLY verified questions.
+            if verified_only:
+                v = _verified_questions_for(sec, count)
+                for idx, q in enumerate(v[:count]):
+                    out.append(_to_oa_mcq(q, sec, meta, idx))
+                continue
             cat = APT_BANK_MAP.get(sec, "quantitative")
             qs = get_random_questions(cat, count)
             if not qs:
@@ -204,6 +317,12 @@ async def _build_questions(dist: Dict[str, int]) -> List[dict]:
                     "_explanation": q.get("explanation", ""),
                 })
         elif meta["kind"] == "code":
+            # Content Trust: for trusted packs use ONLY verified coding.
+            if verified_only:
+                v = _verified_questions_for(sec, count)
+                for idx, q in enumerate(v[:count]):
+                    out.append(_to_oa_code(q, sec, meta, idx))
+                continue
             # Coding: pull from coding_challenges_collection; fall back to template if empty
             from app.database import coding_challenges_collection
             items = []
@@ -287,6 +406,60 @@ def _score_mcq(item: SubmitOAItem, qdef: dict) -> float:
     return 100.0 if user_ans == correct else 0.0
 
 
+async def _run_diagnosis_and_repair(user_id: str, sess: dict, section_avg: dict, scorecard: list) -> dict:
+    """Feed the verified OA scorecard into the EXISTING diagnosis + repair
+    loop (study_engine.diagnose_mock_oa + repair_service.create_repair_mission).
+    This connects OA -> diagnosis -> persisted repair missions -> retest without
+    creating any new engine. Best-effort: never fails the completion response."""
+    try:
+        from app.services.study_engine import diagnose_mock_oa
+        from app.services.repair_service import create_repair_mission
+    except Exception:
+        return {}
+
+    # Derive section correct/total from the verified scorecard (per-100 scores).
+    sections: Dict[str, dict] = {}
+    for pq in scorecard:
+        sec = pq.get("section", "other")
+        correct = 1 if pq.get("score", 0) >= 100 else 0
+        total = 1
+        s = sections.setdefault(sec, {"correct": 0, "total": 0})
+        s["correct"] += correct
+        s["total"] += total
+
+    responses = {
+        "score": sum(pq.get("score", 0) >= 100 for pq in scorecard),
+        "total_questions": len(scorecard),
+        "sections": sections,
+        "time_per_question": [int(pq.get("time_taken", 0)) for pq in scorecard],
+    }
+    try:
+        diagnosis = await diagnose_mock_oa(user_id, responses)
+    except Exception:
+        diagnosis = {}
+
+    # Persist repair missions for each diagnosed weakness (existing service).
+    missions = []
+    for weakness in diagnosis.get("weaknesses", [])[:3]:
+        try:
+            mission = await create_repair_mission(user_id, [weakness], source="mock_oa")
+            missions.append({
+                "skill": weakness,
+                "mission_title": mission.title,
+                "recommended_lessons": mission.recommended_lessons,
+                "recommended_exercises": mission.recommended_exercises,
+                "recommended_quizzes": mission.recommended_quizzes,
+            })
+        except Exception:
+            continue
+
+    return {
+        "diagnosis": diagnosis,
+        "repair_missions": missions,
+    }
+
+
+
 def _score_text(item: SubmitOAItem, qdef: dict) -> float:
     """Deterministic STAR rubric (no AI): presence of Situation/Task/Action/Result markers."""
     text = (item.answer or "").strip()
@@ -340,6 +513,75 @@ async def list_blueprints():
     }
 
 
+def _load_trusted_packs() -> list:
+    """Load the 10 trusted pack definitions (data artifact, not an engine)."""
+    import json, os
+    path = os.path.join(os.path.dirname(__file__), "..", "data", "trusted_packs.json")
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            doc = json.load(f)
+        return doc.get("packs", [])
+    except Exception:
+        return []
+
+
+def _verified_stock() -> dict:
+    """Return count of verified questions per type, from the canonical store."""
+    stock = {}
+    try:
+        from app.services import question_store as qs
+        if not qs._questions:
+            qs.load_all()
+        for q in qs._questions:
+            if q.get("trust_status") == "verified":
+                t = q.get("type", "other")
+                stock[t] = stock.get(t, 0) + 1
+    except Exception:
+        pass
+    return stock
+
+
+@router.get("/trusted-packs")
+async def list_trusted_packs():
+    """Read-only list of the 10 trusted placement packs. Each pack runs on the
+    shared independently-verified pool (verified_only=true). Section demand is
+    validated against live verified stock: sections with insufficient verified
+    questions are reported so clients can warn rather than silently backfill
+    with unverified legacy content."""
+    packs = _load_trusted_packs()
+    stock = _verified_stock()
+    mapped = {"aptitude": "aptitude", "logical": "logical", "verbal": "verbal",
+              "cs_fundamentals": "cs_fundamentals", "coding": "coding", "dsa": "coding"}
+    result = []
+    for p in packs:
+        availability = {}
+        all_met = True
+        unmet = []
+        for sec, need in p.get("sections", {}).items():
+            have = stock.get(mapped.get(sec, sec), 0)
+            ok = have >= need
+            availability[sec] = {"needed": need, "verified_available": have, "satisfied": ok}
+            if not ok:
+                all_met = False
+                unmet.append(sec)
+        result.append({
+            "id": p.get("id"),
+            "company": p.get("company"),
+            "stage": p.get("stage"),
+            "role": p.get("role"),
+            "difficulty": p.get("difficulty"),
+            "duration_minutes": p.get("duration_minutes"),
+            "total_questions": p.get("total_questions"),
+            "provenance": p.get("provenance"),
+            "sections": p.get("sections"),
+            "availability": availability,
+            "fully_verified": all_met,
+            "unmet_sections": unmet,
+        })
+    total_verified = sum(stock.values())
+    return {"trusted_packs": result, "verified_total": total_verified, "verified_universe": stock}
+
+
 @router.post("/{company}/start")
 async def start_oa(company: str, req: StartOARequest, user=Depends(get_current_user)):
     """Start a company OA simulation. Returns the full question set + timer config."""
@@ -358,7 +600,7 @@ async def start_oa(company: str, req: StartOARequest, user=Depends(get_current_u
 
     blueprint = _resolve_blueprint(company, req.role)
     dist = _distribute(req.total_questions, blueprint)
-    questions = await _build_questions(dist)
+    questions = await _build_questions(dist, verified_only=req.verified_only)
 
     # Per-question timing budget + pressure-mode penalties
     pressure = req.mode == "pressure"
@@ -588,6 +830,19 @@ async def complete_oa(session_id: str, user=Depends(get_current_user)):
     # Feed readiness (best-effort, non-blocking)
     try:
         await _update_readiness(user["id"], sess.get("company"), overall, section_avg)
+    except Exception:
+        pass
+
+    # Diagnosis -> persisted repair missions (existing loop, best-effort)
+    try:
+        diagnosis = await _run_diagnosis_and_repair(user["id"], sess, section_avg, per_question)
+        if diagnosis:
+            result["diagnosis"] = diagnosis.get("diagnosis", {})
+            result["repair_missions"] = diagnosis.get("repair_missions", [])
+            await oa_sessions_collection.update_one(
+                {"_id": ObjectId(session_id)},
+                {"$set": {"result": result, "diagnosis": result.get("diagnosis"), "repair_missions": result.get("repair_missions") or []}},
+            )
     except Exception:
         pass
 
