@@ -1,0 +1,13 @@
+{
+  "total": 3400,
+  "levels": {
+    "REVIEWED": 29,
+    "QUARANTINED": 3368,
+    "VERIFIED": 3
+  },
+  "oracle_passed": 2175,
+  "oracle_failed": 0,
+  "edge_passed": 2150,
+  "edge_failed": 2975,
+  "duplicates": 3368
+}
