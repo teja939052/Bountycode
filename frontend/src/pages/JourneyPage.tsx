@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Flame, Map, ChevronRight, Star, Lock, CheckCircle2,
   Zap, Trophy, Coins, RotateCcw, Sparkles, ChevronDown,
-  Target, Brain, Swords,
+  Target, Brain, Swords, Play,
 } from "lucide-react";
 import { useJourneyState, type JourneyWorld, type JourneyLevel } from "../hooks/useJourneyState";
 import { PlayerCharacter, type CharacterState } from "../components/journey/PlayerCharacter";
@@ -62,7 +62,6 @@ export default function JourneyPage() {
     .flatMap((t) => t.levels)
     .find((l: JourneyLevel) => l.id === character.position?.level_id);
 
-  // Gather today's activities
   const todayReviews = state.today?.reviews || [];
   const todayPractice = state.today?.practice || [];
   const todayChallenge = state.today?.challenge;
@@ -70,119 +69,136 @@ export default function JourneyPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[var(--pp-canvas)] to-white">
-      {/* ── Header: Character + Stats ── */}
-      <header className="sticky top-0 z-10 bg-white/80 backdrop-blur border-b border-border">
-        <div className="mx-auto max-w-[800px] px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <PlayerCharacter
-              state={celebrate ? "mastery" : currentLevel ? "discovering" : "idle"}
-              titleEmoji={character.title_emoji}
-              size="md"
-            />
-            <div>
-              <div className="text-sm font-bold">{character.title} Lv.{character.level}</div>
-              <div className="text-[11px] text-text-muted">{currentWorld?.title ?? "Your Journey"}</div>
-            </div>
-          </div>
-          <div className="flex items-center gap-2 text-xs">
-            <span className="flex items-center gap-1 text-orange-500 font-semibold">
-              <Flame className="w-3.5 h-3.5" /> {stats.streak}
-            </span>
-            <span className="flex items-center gap-1 text-yellow-500 font-semibold">
-              <Coins className="w-3.5 h-3.5" /> {stats.coins}
-            </span>
-          </div>
-        </div>
-      </header>
-
       <main className="mx-auto max-w-[800px] px-4 py-6 space-y-6">
-        {/* ═══ TODAY SECTION ═══ */}
+        {/* ═══ PRIMARY ACTION: What should I do right now? ═══ */}
         <section>
-          <h2 className="text-xs font-mono uppercase tracking-widest text-text-muted mb-3 flex items-center gap-2">
-            <Target className="w-3.5 h-3.5" /> Today
-          </h2>
-
-          <div className="space-y-3">
-            {/* ── Primary Action: Continue Lesson ── */}
-            {currentLevel && (
-              <ContinueCard
-                level={currentLevel}
-                world={currentWorld!}
-                character={character.state as CharacterState}
-                titleEmoji={character.title_emoji}
-                onContinue={() => handleContinue(currentLevel, currentWorld!.id)}
-              />
-            )}
-
-            {/* ── SRS Reviews ── */}
-            {todayReviews.length > 0 && (
-              <motion.div
-                initial={{ y: 10, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                className="rounded-xl border border-amber-200 bg-amber-50/50 p-4"
-              >
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-sm font-bold text-amber-900 flex items-center gap-2">
-                    <Sparkles className="w-4 h-4" /> Review
-                  </h3>
-                  <span className="text-[10px] text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full">
-                    {todayReviews.length} due
-                  </span>
+          {currentLevel ? (
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              className="rounded-2xl bg-gradient-to-br from-primary/5 via-white to-emerald-500/5 border border-primary/20 p-6 shadow-md"
+            >
+              {/* Journey memory */}
+              {currentLevel.attempts > 0 && (
+                <div className="text-xs text-text-muted mb-2 flex items-center gap-1">
+                  <RotateCcw className="w-3 h-3" />
+                  You left off here. Continue your journey.
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {todayReviews.slice(0, 5).map((r, i) => (
-                    <span key={i} className="text-xs bg-white rounded-lg px-3 py-1.5 border border-amber-200 text-amber-900 font-medium">
-                      {String(r.skill_id ?? r.problem_id ?? "Review").replace(/_/g, " ")}
-                    </span>
-                  ))}
-                  {todayReviews.length > 5 && (
-                    <span className="text-xs text-amber-600 self-center">+{todayReviews.length - 5} more</span>
+              )}
+
+              <div className="flex items-start gap-4">
+                <PlayerCharacter
+                  state={celebrate ? "mastery" : "discovering"}
+                  titleEmoji={character.title_emoji}
+                  size="lg"
+                />
+                <div className="flex-1 min-w-0">
+                  <div className="text-[11px] font-mono uppercase tracking-widest text-primary/70">
+                    {currentWorld?.title} · Level {currentLevel.order}
+                  </div>
+                  <h2 className="text-xl font-bold leading-tight mt-1">
+                    {currentLevel.icon} {currentLevel.title}
+                  </h2>
+                  <p className="text-sm text-text-muted mt-1">
+                    "{currentLevel.mental_model || currentLevel.concept}"
+                  </p>
+                  {currentLevel.mastery > 0 && (
+                    <div className="mt-3">
+                      <div className="flex items-center justify-between text-[10px] text-text-muted mb-1">
+                        <span>Mastery</span>
+                        <span>{currentLevel.mastery}%</span>
+                      </div>
+                      <div className="h-1.5 bg-zinc-100 rounded-full overflow-hidden">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          animate={{ width: `${currentLevel.mastery}%` }}
+                          className="h-full bg-gradient-to-r from-primary to-emerald-400 rounded-full"
+                        />
+                      </div>
+                    </div>
                   )}
                 </div>
-              </motion.div>
-            )}
+              </div>
 
-            {/* ── Role Activity ── */}
-            {todayRole && (
-              <motion.div
-                initial={{ y: 10, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.1 }}
-                className="rounded-xl border border-primary/20 bg-primary/5 p-4"
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => handleContinue(currentLevel, currentWorld!.id)}
+                className="mt-5 w-full rounded-xl bg-primary hover:bg-primary-dark text-white font-bold py-4 flex items-center justify-center gap-2 min-h-[52px] shadow-lg"
               >
-                <div className="flex items-center gap-3">
-                  <Brain className="w-5 h-5 text-primary shrink-0" />
-                  <div className="flex-1 min-w-0">
-                    <div className="text-sm font-semibold text-text-primary">{todayRole.title}</div>
-                    <div className="text-[11px] text-text-muted">{todayRole.description || "Role-specific practice"}</div>
+                <Play className="w-5 h-5" />
+                {currentLevel.attempts > 0 ? "Continue" : "Begin"}
+                <ChevronRight className="w-5 h-5" />
+              </motion.button>
+
+              <div className="mt-2 flex items-center justify-center gap-4 text-[11px] text-text-muted">
+                <span className="flex items-center gap-1">
+                  <Flame className="w-3 h-3 text-orange-500" /> {stats.streak} day streak
+                </span>
+                <span>·</span>
+                <span>{currentLevel.xp} XP reward</span>
+              </div>
+            </motion.div>
+          ) : (
+            <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 text-center">
+              <div className="text-3xl mb-2">🎉</div>
+              <h2 className="text-lg font-bold text-emerald-900">All levels complete!</h2>
+              <p className="text-sm text-emerald-700 mt-1">You've mastered this world. More coming soon.</p>
+            </div>
+          )}
+        </section>
+
+        {/* ═══ SUPPORTING ACTIVITIES (secondary) ═══ */}
+        {(todayReviews.length > 0 || todayRole || todayChallenge) && (
+          <section>
+            <h2 className="text-xs font-mono uppercase tracking-widest text-text-muted mb-3 flex items-center gap-2">
+              <Target className="w-3.5 h-3.5" /> Also Today
+            </h2>
+            <div className="space-y-2">
+              {todayReviews.length > 0 && (
+                <div className="rounded-xl border border-amber-200 bg-amber-50/50 p-3 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-amber-600" />
+                    <span className="text-sm font-medium text-amber-900">
+                      {todayReviews.length} review{todayReviews.length > 1 ? "s" : ""} due
+                    </span>
                   </div>
-                  <button className="text-xs text-primary font-medium shrink-0">Start →</button>
+                  <button className="text-xs text-amber-700 font-medium bg-amber-100 rounded-lg px-3 py-1.5">
+                    Review
+                  </button>
                 </div>
-              </motion.div>
-            )}
+              )}
 
-            {/* ── Challenge ── */}
-            {todayChallenge && (
-              <motion.div
-                initial={{ y: 10, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.15 }}
-                className="rounded-xl border border-purple-200 bg-purple-50/50 p-4"
-              >
-                <div className="flex items-center gap-3">
-                  <Swords className="w-5 h-5 text-purple-600 shrink-0" />
-                  <div className="flex-1 min-w-0">
-                    <div className="text-sm font-semibold text-text-primary">{todayChallenge.title}</div>
-                    <div className="text-[11px] text-text-muted">{todayChallenge.description || "Optional challenge"}</div>
+              {todayRole && (
+                <div className="rounded-xl border border-primary/20 bg-primary/5 p-3 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Brain className="w-4 h-4 text-primary" />
+                    <span className="text-sm font-medium text-text-primary truncate">
+                      {todayRole.title}
+                    </span>
                   </div>
-                  <span className="text-[10px] text-purple-600 font-medium bg-purple-100 px-2 py-0.5 rounded-full shrink-0">
+                  <button className="text-xs text-primary font-medium bg-primary/10 rounded-lg px-3 py-1.5">
+                    Start
+                  </button>
+                </div>
+              )}
+
+              {todayChallenge && (
+                <div className="rounded-xl border border-purple-200 bg-purple-50/50 p-3 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Swords className="w-4 h-4 text-purple-600" />
+                    <span className="text-sm font-medium text-text-primary truncate">
+                      {todayChallenge.title}
+                    </span>
+                  </div>
+                  <span className="text-[10px] text-purple-600 font-medium bg-purple-100 px-2 py-1 rounded-full">
                     +{todayChallenge.xp_reward} XP
                   </span>
                 </div>
-              </motion.div>
-            )}
-          </div>
-        </section>
+              )}
+            </div>
+          </section>
+        )}
 
         {/* ═══ CURRENT WORLD PROGRESS ═══ */}
         {currentWorld && (
@@ -193,23 +209,22 @@ export default function JourneyPage() {
               </h2>
               <span className="text-xs text-text-muted font-medium">
                 {currentWorld.towns.reduce((s, t) => s + t.levels.filter((l) => l.status === "completed").length, 0)}
-                /{currentWorld.towns.reduce((s, t) => s + t.levels.length, 0)} complete
+                /{currentWorld.towns.reduce((s, t) => s + t.levels.length, 0)}
               </span>
             </div>
 
             <div className="relative pl-6">
-              {/* Vertical spine */}
               <div className="absolute left-[18px] top-1 bottom-1 w-[2px] bg-border rounded-full" />
 
               {currentWorld.towns.map((town) => {
                 const townComplete = town.levels.every((l) => l.status === "completed");
                 return (
-                  <div key={town.id} className="mb-6 last:mb-0">
+                  <div key={town.id} className="mb-5 last:mb-0">
                     <div className="text-[11px] font-mono uppercase tracking-widest text-text-muted mb-2 flex items-center gap-2">
                       {town.title}
                       {townComplete && <CheckCircle2 className="w-3 h-3 text-emerald-500" />}
                     </div>
-                    <div className="space-y-2">
+                    <div className="space-y-1.5">
                       {town.levels.map((lvl) => {
                         const isHere = character.position?.level_id === lvl.id;
                         return (
@@ -237,7 +252,7 @@ export default function JourneyPage() {
               className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-text-muted hover:text-text-primary transition-colors"
             >
               <ChevronDown className={`w-3.5 h-3.5 transition-transform ${showAllWorlds ? "rotate-180" : ""}`} />
-              {showAllWorlds ? "Hide" : "Show"} Other Worlds
+              {showAllWorlds ? "Hide" : "Show"} All Worlds
             </button>
 
             <AnimatePresence>
@@ -246,7 +261,7 @@ export default function JourneyPage() {
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
-                  className="overflow-hidden mt-4 space-y-6"
+                  className="overflow-hidden mt-4 space-y-3"
                 >
                   {worlds
                     .filter((w: JourneyWorld) => w.id !== character.position?.world_id)
@@ -260,7 +275,6 @@ export default function JourneyPage() {
         )}
       </main>
 
-      {/* ── Level player overlay ── */}
       <AnimatePresence>
         {activeLevel && activeWorldId && (
           <LevelPlayer
@@ -272,52 +286,7 @@ export default function JourneyPage() {
         )}
       </AnimatePresence>
 
-      {/* ── Celebration overlay ── */}
       <Celebration show={celebrate} xp={celebrateXp} onComplete={() => setCelebrate(false)} />
-    </div>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════════════ */
-
-function ContinueCard({ level, world, character, titleEmoji, onContinue }: {
-  level: JourneyLevel; world: JourneyWorld; character: CharacterState; titleEmoji: string; onContinue: () => void;
-}) {
-  return (
-    <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 to-emerald-500/5 p-5 shadow-sm">
-      <div className="flex items-start gap-4">
-        <PlayerCharacter state={character} titleEmoji={titleEmoji} size="lg" />
-        <div className="flex-1 min-w-0">
-          <div className="text-[11px] font-mono uppercase tracking-widest text-primary/70">
-            {world.title}
-          </div>
-          <h3 className="text-lg font-bold leading-tight mt-0.5">{level.icon} {level.title}</h3>
-          <p className="text-sm text-text-muted mt-1">
-            {level.concept} · <span className="text-yellow-600 font-medium">+{level.xp} XP</span>
-          </p>
-          {level.mastery > 0 && (
-            <div className="mt-2">
-              <div className="h-1.5 bg-zinc-100 rounded-full overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: `${level.mastery}%` }}
-                  className="h-full bg-gradient-to-r from-primary to-emerald-400 rounded-full"
-                />
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-      <motion.button
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        onClick={onContinue}
-        className="mt-4 w-full rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold py-3.5 flex items-center justify-center gap-2 min-h-[48px]"
-      >
-        <Zap className="w-4 h-4" />
-        {level.attempts > 0 ? "Try Again" : "Continue"}
-        <ChevronRight className="w-4 h-4" />
-      </motion.button>
     </div>
   );
 }
@@ -369,8 +338,6 @@ function LevelNode({ level, isCharacterHere, onSelect }: {
   );
 }
 
-/* ═══════════════════════════════════════════════════════════════════ */
-
 function WorldSummary({ world }: { world: JourneyWorld }) {
   const total = world.towns.reduce((s, t) => s + t.levels.length, 0);
   const done = world.towns.reduce((s, t) => s + t.levels.filter((l) => l.status === "completed").length, 0);
@@ -378,20 +345,14 @@ function WorldSummary({ world }: { world: JourneyWorld }) {
   const isLocked = world.status === "locked";
 
   return (
-    <div className={`rounded-xl border p-4 ${isLocked ? "opacity-40 border-border bg-zinc-50" : "border-border bg-white"}`}>
-      <div className="flex items-center gap-3">
-        <span className="text-xl">{world.icon}</span>
-        <div className="flex-1 min-w-0">
-          <div className="text-sm font-bold">{world.title}</div>
-          <div className="text-[11px] text-text-muted">{world.subtitle}</div>
-        </div>
-        <div className="text-right shrink-0">
-          <div className="text-sm font-bold">{pct}%</div>
-          <div className="text-[10px] text-text-muted">{done}/{total}</div>
-        </div>
+    <div className={`rounded-xl border p-3 flex items-center gap-3 ${isLocked ? "opacity-40 border-border bg-zinc-50" : "border-border bg-white"}`}>
+      <span className="text-xl">{world.icon}</span>
+      <div className="flex-1 min-w-0">
+        <div className="text-sm font-bold">{world.title}</div>
+        <div className="text-[11px] text-text-muted">{world.subtitle}</div>
       </div>
-      <div className="mt-2 h-1.5 bg-zinc-100 rounded-full overflow-hidden">
-        <div className="h-full bg-primary rounded-full transition-all" style={{ width: `${pct}%` }} />
+      <div className="text-right shrink-0">
+        <div className="text-sm font-bold">{pct}%</div>
       </div>
     </div>
   );
