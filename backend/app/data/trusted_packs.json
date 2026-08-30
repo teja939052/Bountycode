@@ -1,0 +1,180 @@
+{
+  "_meta": {
+    "version": 1,
+    "purpose": "10 trusted placement assessment packs built from the shared independently-verified question pool (verified_placement_questions.json, 104 verified). Section mixes + timing + difficulty over verified content ONLY. Provenance is pattern_relevant (never fabricated historical company questions).",
+    "verified_universe": {
+      "coding": 30,
+      "aptitude": 35,
+      "cs_fundamentals": 19,
+      "logical": 10,
+      "verbal": 10
+    },
+    "trusted_pack_flag": "verified_only=true at OA start; any required verified section with insufficient stock is dropped rather than backfilled with legacy content."
+  },
+  "packs": [
+    {
+      "id": "trusted-tcs-nqt",
+      "company": "tcs",
+      "stage": "nqt",
+      "role": "any_graduate",
+      "provenance": "pattern_relevant",
+      "difficulty": "medium",
+      "duration_minutes": 80,
+      "total_questions": 24,
+      "sections": {
+        "aptitude": 8,
+        "logical": 5,
+        "verbal": 5,
+        "cs_fundamentals": 3,
+        "coding": 3
+      }
+    },
+    {
+      "id": "trusted-infosys",
+      "company": "infosys",
+      "stage": "specialist_programmer",
+      "role": "swe",
+      "provenance": "pattern_relevant",
+      "difficulty": "medium",
+      "duration_minutes": 85,
+      "total_questions": 25,
+      "sections": {
+        "aptitude": 8,
+        "logical": 4,
+        "verbal": 4,
+        "cs_fundamentals": 4,
+        "coding": 5
+      }
+    },
+    {
+      "id": "trusted-wipro",
+      "company": "wipro",
+      "stage": "nlth",
+      "role": "any_graduate",
+      "provenance": "pattern_relevant",
+      "difficulty": "easy",
+      "duration_minutes": 60,
+      "total_questions": 20,
+      "sections": {
+        "aptitude": 7,
+        "logical": 4,
+        "verbal": 4,
+        "cs_fundamentals": 2,
+        "coding": 3
+      }
+    },
+    {
+      "id": "trusted-accenture",
+      "company": "accenture",
+      "stage": "cognitive",
+      "role": "any_graduate",
+      "provenance": "pattern_relevant",
+      "difficulty": "medium",
+      "duration_minutes": 75,
+      "total_questions": 22,
+      "sections": {
+        "aptitude": 8,
+        "logical": 5,
+        "verbal": 5,
+        "cs_fundamentals": 4
+      }
+    },
+    {
+      "id": "trusted-cognizant",
+      "company": "cognizant",
+      "stage": "genc",
+      "role": "swe",
+      "provenance": "pattern_relevant",
+      "difficulty": "medium",
+      "duration_minutes": 75,
+      "total_questions": 22,
+      "sections": {
+        "aptitude": 7,
+        "logical": 4,
+        "verbal": 4,
+        "cs_fundamentals": 4,
+        "coding": 3
+      }
+    },
+    {
+      "id": "trusted-capgemini",
+      "company": "capgemini",
+      "stage": "exceller",
+      "role": "any_graduate",
+      "provenance": "pattern_relevant",
+      "difficulty": "easy",
+      "duration_minutes": 65,
+      "total_questions": 20,
+      "sections": {
+        "aptitude": 7,
+        "logical": 4,
+        "verbal": 4,
+        "cs_fundamentals": 3,
+        "coding": 2
+      }
+    },
+    {
+      "id": "trusted-ibm",
+      "company": "ibm",
+      "stage": "cognitive_assessment",
+      "role": "swe",
+      "provenance": "pattern_relevant",
+      "difficulty": "medium",
+      "duration_minutes": 80,
+      "total_questions": 23,
+      "sections": {
+        "aptitude": 6,
+        "logical": 4,
+        "verbal": 3,
+        "cs_fundamentals": 5,
+        "coding": 5
+      }
+    },
+    {
+      "id": "trusted-deloitte",
+      "company": "deloitte",
+      "stage": "specialist",
+      "role": "any_graduate",
+      "provenance": "pattern_relevant",
+      "difficulty": "medium",
+      "duration_minutes": 70,
+      "total_questions": 20,
+      "sections": {
+        "aptitude": 8,
+        "logical": 5,
+        "verbal": 5,
+        "cs_fundamentals": 2
+      }
+    },
+    {
+      "id": "trusted-amazon",
+      "company": "amazon",
+      "stage": "swe_oa",
+      "role": "sde",
+      "provenance": "pattern_relevant",
+      "difficulty": "hard",
+      "duration_minutes": 120,
+      "total_questions": 14,
+      "sections": {
+        "coding": 8,
+        "cs_fundamentals": 3,
+        "aptitude": 3
+      }
+    },
+    {
+      "id": "trusted-flipkart",
+      "company": "flipkart",
+      "stage": "sde_oa",
+      "role": "sde",
+      "provenance": "pattern_relevant",
+      "difficulty": "hard",
+      "duration_minutes": 100,
+      "total_questions": 12,
+      "sections": {
+        "coding": 8,
+        "cs_fundamentals": 2,
+        "aptitude": 2
+      }
+    }
+  ]
+}
