@@ -321,6 +321,38 @@ async def _get_optional_challenge(
     }
 
 
+# ─── 5. ROLE ACTIVITY — role-specific practice ─────────────────────
+
+async def _get_role_activity(user_id: str) -> Optional[Dict[str, Any]]:
+    """Get the next role-specific activity for the student.
+
+    Checks if the student has selected a role, then recommends:
+    1. SRS reviews for role concepts due now
+    2. Role exercises matching weak skills
+    3. Role challenges when ready
+    4. Mock OA / AI Interview when mastery is high enough
+    """
+    # Get the student's selected role from their profile
+    role_id = await _get_user_role(user_id)
+    if not role_id:
+        return None
+
+    from app.services.role_content_service import get_next_role_activity
+    return await get_next_role_activity(user_id, role_id)
+
+
+async def _get_user_role(user_id: str) -> Optional[str]:
+    """Get the student's selected role from their profile."""
+    try:
+        from app.database import users_collection
+        user = await users_collection.find_one({"user_id": user_id})
+        if user:
+            return user.get("selected_role")
+    except Exception:
+        pass
+    return None
+
+
 # ─── Orchestrator ────────────────────────────────────────────────────
 
 async def get_today(user_id: str, force_refresh: bool = False) -> Dict[str, Any]:
@@ -364,6 +396,9 @@ async def get_today(user_id: str, force_refresh: bool = False) -> Dict[str, Any]
     practice = await _get_practice_tasks(user_id, assessment, weak_areas)
     challenge = await _get_optional_challenge(user_id, assessment, weak_areas)
 
+    # ── Role-specific activities (if role selected) ──
+    role_activity = await _get_role_activity(user_id)
+
     # Gamification context for the header tile.
     try:
         g = await get_gamification_profile(user_id)
@@ -385,6 +420,7 @@ async def get_today(user_id: str, force_refresh: bool = False) -> Dict[str, Any]
         "reviews": reviews,
         "practice": practice,
         "challenge": challenge,
+        "role_activity": role_activity,
     }
 
     est = 0
