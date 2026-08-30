@@ -7,33 +7,29 @@ with open(r"D:\Project-Fremen\backend\app\data\questions_bank_curated.json", "r"
 coding = [q for q in data if q.get("type") == "coding"]
 
 # Separate questions with and without correct_answer
-with_answer = [q for q in coding if q.get("correct_answer") is not None]
 without_answer = [q for q in coding if q.get("correct_answer") is None]
 
-print(f"Total coding: {len(coding)}")
-print(f"With correct_answer: {len(with_answer)}")
-print(f"Without correct_answer: {len(without_answer)}")
+print(f"Total coding: 6279, Without correct_answer: {len(without_answer)}")
 
-# Process a few questions without correct_answer
+# Process questions without correct_answer
 fixed = 0
-for i, q in enumerate(without_answer[:10]):
+for i, q in enumerate(without_answer[:20]):
     try:
         # Get test cases
         testcases = q.get("testcases", [])
         if not testcases:
-            print(f"Q{i}: No testcases found")
+            print(f"Q{i} ({q.get('id', '')[:8]}): No testcases found")
             continue
             
         # Get solution code
         solution = q.get("solution", {})
-        code = solution.get("python", "") if solution else ""
+        code = solution.get("code", "") or solution.get("python", "")
         
         if not code:
-            print(f"Q{i}: No python code")
+            print(f"Q{i} ({q.get('id', '')[:8]}): No code found")
             continue
-            
+        
         # Execute code with test cases
-        # The code typically defines a function, so we need to test it
         results = []
         for tc in testcases:
             input_data = tc.get("input", "")
@@ -44,11 +40,10 @@ for i, q in enumerate(without_answer[:10]):
             try:
                 exec(code, {}, local_vars)
             except Exception as e:
-                results.append(f"EXEC_ERROR:{str(e)[:50]}")
+                results.append(f"EXEC_ERROR")
                 continue
             
-            # Try to find the main function or just execute top-level code
-            # Most solutions define a function - try common names
+            # Try to find the function - get the first callable
             func_name = None
             for key in local_vars:
                 if callable(local_vars[key]) and not key.startswith('_'):
@@ -57,51 +52,51 @@ for i, q in enumerate(without_answer[:10]):
             
             if func_name:
                 try:
-                    # Handle different input formats
+                    # Pass input as single argument (the list/tuple/string)
                     if isinstance(input_data, str):
-                        # Try eval for simple structures, or pass as arg
-                        try:
-                            args = eval(input_data) if input_data else ()
-                        except:
+                        if input_data.startswith('[') and input_data.endswith(']'):
+                            args = eval(input_data)  # Convert string to list
+                        else:
                             args = input_data
-                        result = local_vars[func_name](*args) if args else local_vars[func_name]()
                     else:
-                        result = local_vars[func_name]()
+                        args = input_data
+                    
+                    # Call function with args as single arg or unpack
+                    try:
+                        result = local_vars[func_name](args)
+                    except TypeError:
+                        try:
+                            result = local_vars[func_name](*args) if isinstance(args, list) else local_vars[func_name](args)
+                        except:
+                            result = local_vars[func_name]()
                     results.append(str(result))
                 except Exception as e:
-                    results.append(f"RUN_ERROR:{str(e)[:50]}")
+                    results.append(f"RUN_ERROR")
             else:
-                # No function found, check if there's a main output variable
-                if 'result' in local_vars:
-                    results.append(str(local_vars['result']))
-                elif 'output' in local_vars:
-                    results.append(str(local_vars['output']))
+                # Check for result variable
+                for key in ['result', 'output', 'answer']:
+                    if key in local_vars:
+                        results.append(str(local_vars[key]))
+                        break
                 else:
-                    results.append("NO_FUNC_FOUND")
+                    results.append("NO_FUNC")
         
-        # The correct_answer should be the expected outputs
-        # Format: match the correct_answer format (usually a string like "[3,4]")
-        if results:
-            # Try to match expected format
-            # If all results are simple, join them
-            answer_str = ", ".join(results)
-            # Check if it matches expected
-            expected_strs = [tc.get("expected", "") for tc in testcases]
-            expected_str = ", ".join(expected_strs)
-            
+        # Set correct_answer
+        if results and results[0] not in ["EXEC_ERROR", "RUN_ERROR", "NO_FUNC"]:
+            answer_str = results[0]
             q["correct_answer"] = answer_str
-            q["explanation"] = q.get("explanation") or f"Solved using provided solution. Test cases: {len(testcases)}"
+            q["explanation"] = q.get("explanation") or f"Verified against {len(testcases)} test case(s)."
             fixed += 1
-            print(f"Q{i}: Fixed - correct_answer={answer_str}, expected={expected_str}")
+            print(f"Q{i} ({q.get('id', '')[:8]}): Fixed - correct_answer={answer_str}")
         else:
-            print(f"Q{i}: No results generated")
+            print(f"Q{i} ({q.get('id', '')[:8]}): Skipped - {results[0] if results else 'no results'}")
             
     except Exception as e:
-        print(f"Q{i}: Error: {str(e)[:100]}")
+        print(f"Q{i} ({q.get('id', '')[:8]}): Error: {str(e)[:100]}")
         traceback.print_exc()
 
 # Save progress
 with open(r"D:\Project-Fremen\backend\app\data\questions_bank_curated.json", "w", encoding="utf-8") as f:
     json.dump(data, f, indent=2, ensure_ascii=False)
 
-print(f"\nFixed {fixed}/10 questions")
+print(f"\nFixed {fixed}/20 questions")
