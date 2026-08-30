@@ -1,4 +1,4 @@
-"""Study Engine — the single orchestrator that decides what a student does next.
+﻿"""Study Engine â€” the single orchestrator that decides what a student does next.
 
 Canonical architecture (per AGENTS.md strategy doc):
 
@@ -55,13 +55,13 @@ def _now() -> datetime:
     return datetime.now(timezone.utc)
 
 
-# ─── Today's date key (UTC) ──────────────────────────────────────────
+# â”€â”€â”€ Today's date key (UTC) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 def _today_key() -> str:
     return _now().strftime("%Y-%m-%d")
 
 
-# ─── 1. NEXT — the next curriculum mission (world/level) ────────────
+# â”€â”€â”€ 1. NEXT â€” the next curriculum mission (world/level) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async def _get_next_mission(user_id: str) -> Optional[Dict[str, Any]]:
     """Resolve the next un-completed level in the currently-active world.
@@ -93,13 +93,13 @@ async def _get_next_mission(user_id: str) -> Optional[Dict[str, Any]]:
 
     all_ids: List[str] = []
     for town in world.towns:
-        for lvl in town.levels:
+        for lvl in town.lessons:
             all_ids.append(lvl.id)
 
     # Walk levels in order; return the first unlocked + incomplete one.
     seen_complete = True
     for town in world.towns:
-        for lvl in town.levels:
+        for lvl in town.lessons:
             key = f"{world.id}:{lvl.id}"
             entry = completed.get(key, {})
             done = bool(entry.get("completed"))
@@ -110,13 +110,13 @@ async def _get_next_mission(user_id: str) -> Optional[Dict[str, Any]]:
             return _serialize_level_for_frontend(world, town, lvl, entry)
         seen_complete = all(
             completed.get(f"{world.id}:{lvl.id}", {}).get("completed")
-            for lvl in town.levels
+            for lvl in town.lessons
         )
 
     return None
 
 
-# ─── Lesson content lookup ──────────────────────────────────────────
+# â”€â”€â”€ Lesson content lookup â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 # The Study Engine resolves *which* level is next from WORLD_REGISTRY, but
 # the *content* of that level (steps, story, tutor) lives in the content
 # module.  This helper bridges the two.
@@ -150,19 +150,19 @@ def _serialize_level_for_frontend(
         "type": "next_mission",
         "world": {
             "id": world.id,
-            "title": world.title,
+            "title": world.name,
             "icon": world.icon,
         },
         "town": {
             "id": town.id,
-            "title": town.title,
-            "icon": getattr(town, "icon", "🏠"),
+            "title": town.name,
+            "icon": getattr(town, "icon", "ðŸ "),
         },
         "level": {
             "id": lvl.id,
             "title": lvl.title,
             "kind": lvl.kind,
-            "icon": getattr(lvl, "icon", "📄"),
+            "icon": getattr(lvl, "icon", "ðŸ“„"),
             "order": lvl.order,
             "concept": getattr(lvl, "concept", ""),
             "canonical_skill": getattr(lvl, "canonical_skill", ""),
@@ -180,7 +180,7 @@ def _serialize_level_for_frontend(
     }
 
 
-# ─── 2. REVIEW — SRS cards due now ──────────────────────────────────
+# â”€â”€â”€ 2. REVIEW â€” SRS cards due now â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async def _get_due_reviews(user_id: str, limit: int = 5) -> List[Dict[str, Any]]:
     """Pull due spaced-repetition cards and serialise them.
@@ -215,7 +215,7 @@ async def _get_due_reviews(user_id: str, limit: int = 5) -> List[Dict[str, Any]]
     return out
 
 
-# ─── 3. PRACTICE — weak-skill reinforcement ──────────────────────────
+# â”€â”€â”€ 3. PRACTICE â€” weak-skill reinforcement â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async def _get_practice_tasks(
     user_id: str,
@@ -223,7 +223,7 @@ async def _get_practice_tasks(
     weak_areas: List[Dict[str, Any]],
     limit: int = 3,
 ) -> List[Dict[str, Any]]:
-    """Pick 1–3 weak-skill practice tasks from the question bank.
+    """Pick 1â€“3 weak-skill practice tasks from the question bank.
 
     Uses ``adaptive_learning.detect_weak_areas`` for priority ordering and
     pulls a few random accepted questions per weak domain from
@@ -263,7 +263,7 @@ async def _get_practice_tasks(
                 "kind": "weak_area",
                 "domain_id": domain_id,
                 "title": area.get("name", domain_id),
-                "emoji": area.get("emoji", "📌"),
+                "emoji": area.get("emoji", "ðŸ“Œ"),
                 "skill": domain_id,
                 "reason": area.get("reason"),
                 "mastery": area.get("mastery"),
@@ -292,7 +292,7 @@ async def _get_practice_tasks(
     return tasks
 
 
-# ─── 4. CHALLENGE — optional higher-difficulty activity ─────────────
+# â”€â”€â”€ 4. CHALLENGE â€” optional higher-difficulty activity â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async def _get_optional_challenge(
     user_id: str,
@@ -314,14 +314,14 @@ async def _get_optional_challenge(
         "type": "challenge",
         "kind": "timed_debug",
         "title": "Debugging Sprint",
-        "description": f"3 timed bugs in {pick} — can you fix them under pressure?",
+        "description": f"3 timed bugs in {pick} â€” can you fix them under pressure?",
         "estimated_minutes": 12,
         "xp_reward": 60,
         "skill": pick,
     }
 
 
-# ─── 5. ROLE ACTIVITY — role-specific practice ─────────────────────
+# â”€â”€â”€ 5. ROLE ACTIVITY â€” role-specific practice â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async def _get_role_activity(user_id: str) -> Optional[Dict[str, Any]]:
     """Get the next role-specific activity for the student.
@@ -353,7 +353,7 @@ async def _get_user_role(user_id: str) -> Optional[str]:
     return None
 
 
-# ─── Orchestrator ────────────────────────────────────────────────────
+# â”€â”€â”€ Orchestrator â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async def get_today(user_id: str, force_refresh: bool = False) -> Dict[str, Any]:
     """Return the canonical daily learning plan for *user_id*.
@@ -387,7 +387,7 @@ async def get_today(user_id: str, force_refresh: bool = False) -> Dict[str, Any]
     except Exception:
         pass  # cache is best-effort
 
-    # ── Inputs from the canonical subsystems ──
+    # â”€â”€ Inputs from the canonical subsystems â”€â”€
     assessment = await assess_user_skills(user_id)
     weak_areas = await detect_weak_areas(user_id)
 
@@ -396,7 +396,7 @@ async def get_today(user_id: str, force_refresh: bool = False) -> Dict[str, Any]
     practice = await _get_practice_tasks(user_id, assessment, weak_areas)
     challenge = await _get_optional_challenge(user_id, assessment, weak_areas)
 
-    # ── Role-specific activities (if role selected) ──
+    # â”€â”€ Role-specific activities (if role selected) â”€â”€
     role_activity = await _get_role_activity(user_id)
 
     # Gamification context for the header tile.
@@ -445,7 +445,7 @@ async def get_today(user_id: str, force_refresh: bool = False) -> Dict[str, Any]
     return plan
 
 
-# ─── Activity recording — the single completion event ────────────────
+# â”€â”€â”€ Activity recording â€” the single completion event â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async def record_activity(
     user_id: str,
@@ -476,7 +476,7 @@ async def record_activity(
     score = float(activity.get("score", 100.0 if passed else 0.0))
     time_spent = int(activity.get("time_spent", 0))
 
-    # ── Mastery update ──
+    # â”€â”€ Mastery update â”€â”€
     mastery_before = None
     if skill_id:
         try:
@@ -489,7 +489,7 @@ async def record_activity(
         except Exception as exc:
             logger.warning("mastery update failed for %s: %s", user_id, exc)
 
-    # ── SRS card update ──
+    # â”€â”€ SRS card update â”€â”€
     try:
         from app.services.spaced_repetition import SpacedRepetitionEngine, SRSState
         from app.database import srs_cards_collection
@@ -511,7 +511,7 @@ async def record_activity(
     except Exception as exc:
         logger.warning("SRS update skipped for %s: %s", user_id, exc)
 
-    # ── Gamification / XP ──
+    # â”€â”€ Gamification / XP â”€â”€
     xp = _xp_for_activity(activity_type, score, passed)
     try:
         await record_practice(
@@ -567,7 +567,7 @@ def _xp_for_activity(activity_type: str, score: float, passed: bool) -> int:
     return max(0, base + bonus)
 
 
-# ─── 30-Day Preparation Plan ─────────────────────────────────────
+# â”€â”€â”€ 30-Day Preparation Plan â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async def generate_30_day_plan(user_id: str, role_id: str, company_id: str = "") -> Dict[str, Any]:
     """Generate a structured 30-day preparation plan.
@@ -683,7 +683,7 @@ def _get_phase_for_day(day: int) -> str:
         return "interview"
 
 
-# ─── Mock OA Diagnostic ────────────────────────────────────────────
+# â”€â”€â”€ Mock OA Diagnostic â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async def diagnose_mock_oa(user_id: str, responses: Dict[str, Any]) -> Dict[str, Any]:
     """Analyze Mock OA results and generate diagnostic report.

@@ -29,8 +29,6 @@ export * from './appModelsQuestionSubmitAnswerTimeTaken';
 export * from './appRoutesCgpaSimulatorSaveRequest';
 export * from './appRoutesCgpaSimulatorSaveRequestResult';
 export * from './appRoutesPeerReviewReviewRequest';
-export * from './appRoutesProjectGeneratorReviewRequest';
-export * from './appRoutesProjectGeneratorSaveRequest';
 export * from './appRoutesSpacedRepetitionReviewRequest';
 export * from './appendItemPayload';
 export * from './appendItemPayloadItem';

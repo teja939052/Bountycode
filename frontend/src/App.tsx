@@ -100,7 +100,6 @@ import {
   TopicProblems,
   PersonalDashboard,
   StudentDashboard,
-  ProjectGenerator,
   LanguageLearning,
   LearnLesson,
   FreeTrial,
@@ -570,14 +569,6 @@ function AnimatedRoutes() {
           element={
             <FeatureErrorBoundary featureName="Study Tools">
               <AIMentor />
-            </FeatureErrorBoundary>
-          }
-        />
-        <Route
-          path="/project-generator"
-          element={
-            <FeatureErrorBoundary featureName="Study Tools">
-              <ProjectGenerator />
             </FeatureErrorBoundary>
           }
         />
