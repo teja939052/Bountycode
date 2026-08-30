@@ -376,6 +376,8 @@ def _load_from_seed_files() -> None:
 EXTRA_BANKS = [
     "leetcode_problems_seed.json",
     "striver_a2z_600.json",
+    "tcs_nqt_questions.json",
+    "infosys_questions.json",
 ]
 
 def _load_extra_bank() -> None:

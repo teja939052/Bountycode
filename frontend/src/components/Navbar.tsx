@@ -19,6 +19,7 @@ import {
   Castle,
   Brain,
   Lightbulb,
+  Shield,
 } from "lucide-react";
 
 /* Primary IA — exactly 5 top-level destinations (Material/Apple guideline).
@@ -58,6 +59,16 @@ export default function Navbar() {
         { to: "/settings", label: "Settings", icon: Settings },
       ],
     },
+    ...(isAdmin
+      ? [
+          {
+            label: "Admin",
+            items: [
+              { to: "/admin", label: "Analytics", icon: Shield },
+            ],
+          } as NavGroup,
+        ]
+      : []),
   ];
 
   const handleLogout = async () => {

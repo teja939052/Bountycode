@@ -72,6 +72,8 @@ def _filter_curated(questions: list, company: str, pattern: str, role: str) -> l
 CURATED_EXTRA_BANKS = [
     BACKEND_ROOT / "app" / "data" / "leetcode_problems_seed.json",
     BACKEND_ROOT / "app" / "data" / "striver_a2z_600.json",
+    BACKEND_ROOT / "app" / "data" / "tcs_nqt_questions.json",
+    BACKEND_ROOT / "app" / "data" / "infosys_questions.json",
 ]
 
 def _load_curated_questions() -> list:
