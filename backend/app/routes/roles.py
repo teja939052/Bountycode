@@ -60,7 +60,7 @@ async def get_role_quizzes(role_id: str, user=Depends(get_current_user)):
 
 
 @router.get("/{role_id}/challenges")
-async def get_role_challenges(role_id: string, user=Depends(get_current_user)):
+async def get_role_challenges(role_id: str, user=Depends(get_current_user)):
     """Get coding challenges for a role."""
     challenges = get_challenges_for_role(role_id)
     return {"challenges": [c.model_dump() for c in challenges]}
@@ -68,7 +68,7 @@ async def get_role_challenges(role_id: string, user=Depends(get_current_user)):
 
 @router.post("/{role_id}/activity")
 async def record_activity(
-    role_id: string,
+    role_id: str,
     activity: dict,
     user=Depends(get_current_user),
 ):
