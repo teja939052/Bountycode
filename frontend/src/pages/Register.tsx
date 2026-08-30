@@ -40,7 +40,7 @@ export default function Register() {
     setLoading(true);
     try {
       const data = await authApi.register(email, password, name);
-      setAuth(data.user);
+      setAuth(data.user, data.token);
       navigate("/onboarding");
     } catch (err: any) {
       setError(err.message || "Registration failed. Please try again.");

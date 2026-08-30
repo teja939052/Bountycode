@@ -1,10 +1,107 @@
 import httpx
 import asyncio
 import time
+import re
 from typing import Dict, Any, List, Optional
 from app.services.request_metrics import metrics as request_metrics
 from app.services.circuit_breaker import compiler_breaker
 from app.services.code_tracer import execute_with_trace, detect_algorithm_type
+
+
+# ─── Multi-language helper functions ────────────────────────────────
+
+def _convert_params_java(params: str) -> str:
+    if not params:
+        return ""
+    result = []
+    for param in params.split(","):
+        param = param.strip()
+        if ":" in param:
+            name, ptype = param.split(":", 1)
+            name, ptype = name.strip(), ptype.strip()
+            if ptype == "int":
+                result.append(f"int {name}")
+            elif ptype == "str":
+                result.append(f"String {name}")
+            elif ptype == "bool":
+                result.append(f"boolean {name}")
+            elif ptype == "list":
+                result.append(f"int[] {name}")
+            elif ptype == "dict":
+                result.append(f"java.util.Map<String, Integer> {name}")
+            else:
+                result.append(f"int {name}")
+        else:
+            result.append(f"int {param}")
+    return ", ".join(result)
+
+
+def _convert_params_cpp(params: str) -> str:
+    if not params:
+        return ""
+    result = []
+    for param in params.split(","):
+        param = param.strip()
+        if ":" in param:
+            name, ptype = param.split(":", 1)
+            name, ptype = name.strip(), ptype.strip()
+            if ptype == "int":
+                result.append(f"int {name}")
+            elif ptype == "str":
+                result.append(f"string {name}")
+            elif ptype == "bool":
+                result.append(f"bool {name}")
+            elif ptype == "list":
+                result.append(f"vector<int> {name}")
+            elif ptype == "dict":
+                result.append(f"map<string, int> {name}")
+            else:
+                result.append(f"int {name}")
+        else:
+            result.append(f"int {param}")
+    return ", ".join(result)
+
+
+def _convert_params_c(params: str) -> str:
+    if not params:
+        return ""
+    result = []
+    for param in params.split(","):
+        param = param.strip()
+        if ":" in param:
+            name, ptype = param.split(":", 1)
+            name, ptype = name.strip(), ptype.strip()
+            if ptype == "int":
+                result.append(f"int {name}")
+            elif ptype == "str":
+                result.append(f"char* {name}")
+            elif ptype == "bool":
+                result.append(f"bool {name}")
+            elif ptype == "list":
+                result.append(f"int* {name}")
+            elif ptype == "dict":
+                result.append(f"struct Dict* {name}")
+            else:
+                result.append(f"int {name}")
+        else:
+            result.append(f"int {param}")
+    return ", ".join(result)
+
+
+def _convert_return_java(return_type: str) -> str:
+    return {"int": "int", "str": "String", "bool": "boolean", "list": "int[]", "dict": "java.util.Map<String, Integer>"}.get(return_type, "int")
+
+
+def _convert_return_cpp(return_type: str) -> str:
+    return {"int": "int", "str": "string", "bool": "bool", "list": "vector<int>", "dict": "map<string, int>"}.get(return_type, "int")
+
+
+def _convert_return_c(return_type: str) -> str:
+    return {"int": "int", "str": "char*", "bool": "bool", "list": "int*", "dict": "struct Dict*"}.get(return_type, "int")
+
+
+def _default_return(return_type: str) -> str:
+    return {"int": "0", "str": '""', "bool": "false", "list": "null", "dict": "null"}.get(return_type, "0")
 
 
 # Circuit breaker — now uses async-safe CircuitBreaker class
@@ -236,7 +333,73 @@ func main() {
     // Your code here
 }''',
         },
+        "c": {
+            "general": '''#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+    // Your code here
+    return 0;
+}''',
+            "class": '''#include <stdio.h>
+#include <stdlib.h>
+
+int solution(int* nums, int numsSize) {
+    // Your code here
+    return 0;
+}''',
+            "function": '''#include <stdio.h>
+
+int solution(int n) {
+    // Your code here
+    return 0;
+}
+
+int main() {
+    int n;
+    scanf("%d", &n);
+    printf("%d", solution(n));
+    return 0;
+}''',
+        },
     }
+
+    @staticmethod
+    def generate_starter_code(signature: str, language: str = "python") -> str:
+        """Generate starter code for a given language from a Python signature.
+
+        Args:
+            signature: Python function signature like "def two_sum(nums: list, target: int) -> list:"
+            language: Target language (python, java, cpp, c)
+
+        Returns:
+            Starter code string for the target language.
+        """
+        import re
+        match = re.search(r'def\s+(\w+)\s*\(([^)]*)\)\s*(?:->\s*(\w+))?', signature)
+        if not match:
+            return CodeExecutionEngine.BOILERPLATES.get(language, {}).get("general", "")
+
+        func_name = match.group(1)
+        params = match.group(2).strip()
+        return_type = match.group(3) or "int"
+
+        if language == "python":
+            return f"def {func_name}({params}):\n    # Your code here\n    pass"
+        elif language == "java":
+            java_params = _convert_params_java(params)
+            java_return = _convert_return_java(return_type)
+            return f"public class Main {{\n    public static {java_return} {func_name}({java_params}) {{\n        // Your code here\n        return {_default_return(return_type)};\n    }}\n}}"
+        elif language == "cpp":
+            cpp_params = _convert_params_cpp(params)
+            cpp_return = _convert_return_cpp(return_type)
+            return f"#include <iostream>\n#include <vector>\nusing namespace std;\n\n{cpp_return} {func_name}({cpp_params}) {{\n    // Your code here\n    return {_default_return(return_type)};\n}}\n\nint main() {{\n    // Test your function\n    return 0;\n}}"
+        elif language == "c":
+            c_params = _convert_params_c(params)
+            c_return = _convert_return_c(return_type)
+            return f"#include <stdio.h>\n#include <stdlib.h>\n\n{c_return} {func_name}({c_params}) {{\n    // Your code here\n    return {_default_return(return_type)};\n}}\n\nint main() {{\n    // Test your function\n    return 0;\n}}"
+        return signature
 
     async def execute_code(
         self,
