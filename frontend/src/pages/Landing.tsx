@@ -188,97 +188,72 @@ export default function Landing() {
             <path d="M0 120 C 180 80, 360 100, 540 90 C 720 80, 900 95, 1080 85 C 1200 78, 1350 88, 1440 84 L 1440 200 L 0 200 Z" fill="rgba(160,185,160,0.10)" />
             <path d="M0 140 C 240 115, 480 125, 720 118 C 960 112, 1200 120, 1440 115 L 1440 200 L 0 200 Z" fill="rgba(150,175,150,0.07)" />
           </svg>
-        </div>
+         </div>
 
-        {/* ═══ CONTENT — sits within the environment ═══ */}
-        <div className="relative z-10 min-h-screen flex flex-col">
-          {/* Top bar — transparent, lets photo show through */}
-          <nav className="flex items-center justify-between px-6 py-4 md:px-12">
-            <Link to="/" className="flex items-center gap-2.5 group">
-              <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-[#22C55E] to-[#16A34A] flex items-center justify-center shadow-sm">
-                <img src="/assets/logo/bountycode-icon.svg" alt="" className="h-5 w-5" aria-hidden="true" />
-              </div>
-              <span className="text-sm font-bold tracking-tight text-[#14201B]">BountyCode</span>
-            </Link>
-            <div className="flex items-center gap-4">
-              <Link to="/login" className="text-sm font-medium text-[#14201B]/70 hover:text-[#14201B] transition-colors">
-                Log in
-              </Link>
-              <Link to="/register" className="text-sm font-bold text-white bg-[#22C55E] hover:bg-[#16A34A] px-4 py-2 rounded-lg transition-colors shadow-sm">
-                Get started
-              </Link>
+         {/* ═══ CONTENT — sits within the environment ═══ */}
+         <div className="relative z-10 min-h-screen flex flex-col">
+           {/* Hero center — headline floats in the atmospheric space */}
+           <div className="flex-1 flex items-center justify-center px-6 pb-16">
+             <motion.div
+               initial={reduced ? {} : { opacity: 0, y: 20 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ duration: 0.8, ease: "easeOut" }}
+               className="text-center max-w-3xl mx-auto"
+             >
+               <h1
+                 id="main"
+                 className="font-display text-[2.5rem] leading-[1.08] font-extrabold tracking-tight sm:text-6xl md:text-7xl md:leading-[1.05]"
+                 style={{ color: "#0E1813" }}
+               >
+                 From your first line of code
+                 <br />
+                 <span style={{ color: "#D4A843" }}>to your first offer.</span>
+               </h1>
+
+               <p className="mt-5 text-xl sm:text-2xl font-extrabold text-[#0E1813]">
+                 A guided path from learning to getting hired.
+               </p>
+               <p className="mt-4 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto" style={{ color: "#0E1813", opacity: 0.85 }}>
+                 Learn the fundamentals, practice the skills companies test, and prove yourself through realistic OAs and interviews.
+               </p>
+
+               <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+                 <Link to="/role-selector">
+                   <button className="hero-cta-primary inline-flex items-center gap-2 rounded-xl px-7 py-3.5 text-sm font-bold text-white shadow-lg transition-all hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]">
+                     Begin my journey
+                     <ArrowRight size={15} />
+                   </button>
+                 </Link>
+                 <Link to="/pricing" className="text-sm font-semibold text-[#14201B]/80 hover:text-[#14201B] transition-colors">
+                   Explore how it works
+                 </Link>
+               </div>
+
+               {/* Journey chips — the product, in four words */}
+               <div className="mt-10 flex items-center justify-center gap-2 flex-wrap" aria-label="How BountyCode works">
+                 {[
+                   { n: "1", label: "Diagnose" },
+                   { n: "2", label: "Learn" },
+                   { n: "3", label: "Practice" },
+                   { n: "4", label: "Get Hired" },
+                 ].map((chip, i) => (
+                   <span key={chip.n} className="flex items-center gap-2">
+                     <span
+                       className="inline-flex items-center gap-1.5 rounded-full border border-white/70 bg-white/60 px-3.5 py-1.5 text-xs font-semibold backdrop-blur-sm shadow-sm"
+                       style={{ color: "#14201B" }}
+                     >
+                       <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#22C55E] text-[10px] font-bold text-white">
+                         {chip.n}
+                       </span>
+                       {chip.label}
+                     </span>
+                     {i < 3 && <span className="text-[#14201B]/30 text-xs">→</span>}
+                   </span>
+                 ))}
+               </div>
+              </motion.div>
             </div>
-          </nav>
-
-          {/* Hero center — headline floats in the atmospheric space */}
-          <div className="flex-1 flex items-center justify-center px-6 pb-20">
-            <motion.div
-              initial={reduced ? {} : { opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-center max-w-2xl mx-auto"
-            >
-              <h1
-                id="main"
-                className="font-display text-[2.6rem] leading-[1.1] font-extrabold tracking-tight sm:text-5xl md:text-[3.5rem] md:leading-[1.06]"
-                style={{ color: "#0E1813" }}
-              >
-                From your first line of code
-                <br />
-                to your first offer.
-              </h1>
-
-              <p className="mt-4 text-xl sm:text-2xl font-extrabold text-[#0E1813]">
-                Built for{" "}
-                <RotatingWord
-                  words={ROTATING_AUDIENCES}
-                  className="text-2xl sm:text-3xl font-extrabold text-[#16A34A]"
-                />
-                .
-              </p>
-              <p className="mt-4 text-base sm:text-lg leading-relaxed max-w-xl mx-auto" style={{ color: "#0E1813", opacity: 0.85 }}>
-                BountyCode builds your role-specific path, trains your weak skills, and puts you
-                through the coding challenges, company OAs and interviews that matter.
-              </p>
-
-              <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-                <Link to="/role-selector">
-                  <button className="hero-cta-primary inline-flex items-center gap-2 rounded-xl px-7 py-3.5 text-sm font-bold text-white shadow-lg transition-all hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]">
-                    Begin Chapter I
-                    <ArrowRight size={15} />
-                  </button>
-                </Link>
-                <Link to="/pricing" className="text-sm font-semibold text-[#14201B]/80 hover:text-[#14201B] transition-colors">
-                  Explore how it works
-                </Link>
-              </div>
-
-              {/* Journey chips — the product, in four words */}
-              <div className="mt-9 flex items-center justify-center gap-2 flex-wrap" aria-label="How BountyCode works">
-                {[
-                  { n: "1", label: "Diagnose" },
-                  { n: "2", label: "Learn" },
-                  { n: "3", label: "Practice" },
-                  { n: "4", label: "Get Hired" },
-                ].map((chip, i) => (
-                  <span key={chip.n} className="flex items-center gap-2">
-                    <span
-                      className="inline-flex items-center gap-1.5 rounded-full border border-white/70 bg-white/55 px-3.5 py-1.5 text-xs font-semibold backdrop-blur-sm"
-                      style={{ color: "#14201B" }}
-                    >
-                      <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#22C55E] text-[10px] font-bold text-white">
-                        {chip.n}
-                      </span>
-                      {chip.label}
-                    </span>
-                    {i < 3 && <span className="text-[#14201B]/30 text-xs">→</span>}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-
-          {/* ═══ JOURNEY PATH — the product, visualized in the landscape ═══ */}
+           {/* ═══ JOURNEY PATH — the product, visualized in the landscape ═══ */}
           <div className="relative pb-8" aria-hidden="true">
             <div className="flex flex-col items-center">
               {/* Journey milestones — vertical path fading into the horizon */}
@@ -349,23 +324,23 @@ export default function Landing() {
             Every journey begins with a destination. Pick your path.
           </p>
 
-          <div className="mx-auto mt-12 grid max-w-3xl grid-cols-2 gap-6 sm:grid-cols-4">
+          <div className="mx-auto mt-12 grid max-w-3xl grid-cols-2 gap-4 sm:gap-6 sm:grid-cols-4">
             {ROLE_PATHS.map((role, i) => (
               <Link key={role.id} to="/role-selector" className="group">
                 <motion.div
                   initial={reduced ? {} : { opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.15 + i * 0.08 }}
-                  className="role-path-card"
+                  className="role-path-card h-full"
                 >
                   <div
-                    className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110 group-hover:ring-primary/20 group-hover:border-primary/40"
+                    className="mx-auto mb-3 sm:mb-4 flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 group-hover:ring-primary/20 group-hover:border-primary/40"
                     style={{ backgroundColor: `${role.color}12`, color: role.color }}
                   >
-                    <role.icon size={26} strokeWidth={1.8} />
+                    <role.icon size={22} strokeWidth={1.8} />
                   </div>
-                  <p className="text-sm font-bold text-gray-900">{role.title}</p>
-                  <p className="mt-1 text-xs text-gray-600">{role.desc}</p>
+                  <p className="text-sm font-bold text-gray-900 text-center">{role.title}</p>
+                  <p className="mt-1 text-xs text-gray-600 text-center">{role.desc}</p>
                 </motion.div>
               </Link>
             ))}
@@ -393,7 +368,7 @@ export default function Landing() {
             Not a generic course. A personalized roadmap built from your role, your weak areas, and your target companies.
           </p>
 
-          <div className="mx-auto mt-12 grid max-w-3xl gap-6 sm:grid-cols-3">
+          <div className="mx-auto mt-10 sm:mt-12 grid max-w-3xl gap-4 sm:gap-6 sm:grid-cols-3">
             {CORE_FEATURES.slice(0, 3).map((feature, i) => (
               <motion.div
                 key={feature.title}
@@ -402,10 +377,10 @@ export default function Landing() {
                 transition={{ duration: 0.4, delay: 0.25 + i * 0.1 }}
               >
                 <Card className="h-full">
-                  <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-green-50 text-green-600">
-                    <feature.icon size={22} strokeWidth={1.8} />
+                  <div className="mb-3 sm:mb-4 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-green-50 text-green-600">
+                    <feature.icon size={20} strokeWidth={1.8} />
                   </div>
-                  <h3 className="font-display text-lg font-bold text-gray-900">{feature.title}</h3>
+                  <h3 className="font-display text-base sm:text-lg font-bold text-gray-900">{feature.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-gray-600">{feature.desc}</p>
                 </Card>
               </motion.div>
@@ -465,14 +440,15 @@ export default function Landing() {
             Company-specific patterns, behavioral questions, and real interview experiences.
           </p>
 
-          <div className="mx-auto mt-10 flex flex-wrap justify-center gap-3">
+          <div className="mx-auto mt-8 sm:mt-10 flex flex-wrap justify-center gap-2 sm:gap-3">
             {COMPANIES.map((company) => (
               <Link
                 key={company}
                 to="/company-prep"
-                className="flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm transition-all hover:border-green-300 hover:shadow-md hover:-translate-y-0.5"
+                className="flex items-center gap-1.5 sm:gap-2 rounded-full border border-gray-200 bg-white px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium text-gray-700 shadow-sm transition-all hover:border-green-300 hover:shadow-md hover:-translate-y-0.5"
               >
-                <Building2 size={14} className="text-gray-400" />
+                <Building2 size={12} className="text-gray-400 sm:hidden" />
+                <Building2 size={14} className="text-gray-400 hidden sm:block" />
                 {company}
               </Link>
             ))}
@@ -515,15 +491,15 @@ export default function Landing() {
             Your interview performance is real. You are ready.
           </p>
 
-          <div className="mx-auto mt-8 grid max-w-md grid-cols-3 gap-4">
+          <div className="mx-auto mt-8 sm:mt-10 grid max-w-md grid-cols-3 gap-3 sm:gap-4">
             {[
               { label: "Problems Solved", value: "200+" },
               { label: "Mock Interviews", value: "50+" },
               { label: "Companies Covered", value: "53+" },
             ].map((stat) => (
-              <div key={stat.label} className="rounded-xl border border-amber-200/60 bg-white/80 p-4 shadow-sm">
-                <p className="text-2xl font-extrabold text-amber-600">{stat.value}</p>
-                <p className="mt-1 text-xs text-gray-600">{stat.label}</p>
+              <div key={stat.label} className="rounded-xl border border-amber-200/60 bg-white/80 p-3 sm:p-4 shadow-sm">
+                <p className="text-xl sm:text-2xl font-extrabold text-amber-600">{stat.value}</p>
+                <p className="mt-1 text-[10px] sm:text-xs text-gray-600">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -545,7 +521,7 @@ export default function Landing() {
             Join thousands of students who landed offers at top companies. Free to start — upgrade
             anytime.
           </p>
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="mt-8 sm:mt-10 flex flex-col items-center justify-center gap-3 sm:gap-4">
             <Link to="/role-selector" className="w-full sm:w-auto">
               <Button variant="primary" size="xl" fullWidth className="sm:w-auto">
                 Start free

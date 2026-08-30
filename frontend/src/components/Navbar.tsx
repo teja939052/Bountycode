@@ -21,6 +21,7 @@ import {
   Lightbulb,
   Shield,
 } from "lucide-react";
+import { useLocation } from "react-router-dom";
 
 /* Primary IA — exactly 5 top-level destinations (Material/Apple guideline).
    Everything else lives in the "More" menu so users build a fast mental map.
@@ -38,6 +39,8 @@ export default function Navbar() {
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [toolsOpen, setToolsOpen] = useState(false);
+  const location = useLocation();
+  const isLanding = location.pathname === "/";
 
   const isAdmin = user?.is_admin || user?.role === "admin" || user?.plan === "pro" || user?.plan === "lifetime";
 
@@ -77,7 +80,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-transparent bg-transparent" role="navigation" aria-label="Main navigation">
+    <nav className={`sticky top-0 z-50 border-b ${isLanding ? "bg-white/90 border-white/40 backdrop-blur-md" : "border-transparent bg-transparent"}`} role="navigation" aria-label="Main navigation">
       <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-brand-primary focus:text-white focus:rounded-lg">Skip to main content</a>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between gap-4">
