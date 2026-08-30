@@ -60,10 +60,46 @@ async def get_role_quizzes(role_id: str, user=Depends(get_current_user)):
 
 
 @router.get("/{role_id}/challenges")
-async def get_role_challenges(role_id: str, user=Depends(get_current_user)):
+async def get_role_challenges(role_id: string, user=Depends(get_current_user)):
     """Get coding challenges for a role."""
     challenges = get_challenges_for_role(role_id)
     return {"challenges": [c.model_dump() for c in challenges]}
+
+
+@router.post("/{role_id}/activity")
+async def record_activity(
+    role_id: string,
+    activity: dict,
+    user=Depends(get_current_user),
+):
+    """Record a role activity and fan-out to mastery/SRS/XP."""
+    from app.services.role_content_service import record_role_activity
+    result = await record_role_activity(
+        user_id=user["id"],
+        role_id=role_id,
+        activity_type=activity.get("type", "exercise"),
+        activity_id=activity.get("activity_id", ""),
+        passed=activity.get("passed", False),
+        score=activity.get("score", 100.0),
+        time_spent=activity.get("time_spent", 0),
+    )
+    return {"success": True, "data": result}
+
+
+@router.get("/{role_id}/next")
+async def get_next_activity(role_id: string, user=Depends(get_current_user)):
+    """Get the next recommended activity for this role."""
+    from app.services.role_content_service import get_next_role_activity
+    next_activity = await get_next_role_activity(user["id"], role_id)
+    return {"next": next_activity}
+
+
+@router.get("/{role_id}/dashboard")
+async def get_dashboard(role_id: string, user=Depends(get_current_user)):
+    """Get the role dashboard for the Journey page."""
+    from app.services.role_content_service import get_role_dashboard
+    dashboard = get_role_dashboard(user["id"], role_id)
+    return dashboard
 
 
 @router.get("/{role_id}/practice-sets")

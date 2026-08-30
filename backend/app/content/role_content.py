@@ -608,10 +608,116 @@ ML_ENGINEER_CHALLENGES: List[CodingChallenge] = [
     ),
 ]
 
+DEVOPS_CHALLENGES: List[CodingChallenge] = [
+    CodingChallenge(
+        id="devops-challenge-1", role_id="devops", title="Log Parser & Analyzer", difficulty="medium",
+        description="Parse server logs and extract error rate, top endpoints, and p95 latency.",
+        signature="def analyze_logs(log_lines: list) -> dict:",
+        starter_code={
+            "python": "def analyze_logs(log_lines):\n    return {}",
+            "java": "public static Map<String, Object> analyzeLogs(String[] logLines) { return new HashMap<>(); }",
+            "cpp": "map<string, variant<string,int,double>> analyzeLogs(vector<string>& logLines) { return {}; }",
+            "c": "struct LogStats* analyzeLogs(char** logLines, int size) { return NULL; }",
+        },
+        test_cases=[{"input":[["GET /api 200 50ms","POST /api 500 200ms"]],"expected":{"error_rate":0.5}}],
+        hidden_tests=3,
+        hints=["Use split() to parse each line", "Track counts in a dict", "Calculate percentiles from sorted times"],
+        solution_python='def analyze_logs(log_lines):\n    errors = 0; endpoints = {}; times = []\n    for line in log_lines:\n        parts = line.split(); status = int(parts[2]); t = int(parts[3].replace("ms",""))\n        endpoints[parts[1]] = endpoints.get(parts[1], 0) + 1; times.append(t)\n        if status >= 400: errors += 1\n    times.sort(); p95 = int(len(times) * 0.95)\n    return {"error_rate": errors/len(log_lines), "top_endpoints": sorted(endpoints.items(), key=lambda x: -x[1])[:5], "p95_latency": times[p95]}',
+        time_minutes=20,
+        companies=["Google","Netflix","Amazon"],
+    ),
+    CodingChallenge(
+        id="devops-challenge-2", role_id="devops", title="Circuit Breaker Simulator", difficulty="hard",
+        description="Implement circuit breaker: after N failures, open circuit for T seconds.",
+        signature="def circuit_breaker(threshold: int, timeout: int, requests: list) -> list:",
+        starter_code={
+            "python": "def circuit_breaker(threshold, timeout, requests):\n    pass",
+            "java": "public static boolean[] circuitBreaker(int t, int to, boolean[] r) { return new boolean[0]; }",
+            "cpp": "vector<bool> circuitBreaker(int t, int to, vector<bool>& r) { return {}; }",
+            "c": "bool* circuitBreaker(int t, int to, bool* r, int s) { return NULL; }",
+        },
+        test_cases=[{"input":[3,10,[True,False,False,False,True,True]],"expected":[True,False,False,False,False,True]}],
+        hidden_tests=3,
+        hints=["Track failure count and last failure time", "CLOSED -> OPEN after threshold failures", "OPEN -> HALF_OPEN after timeout"],
+        solution_python='def circuit_breaker(threshold, timeout, requests):\n    failures = 0; state = "CLOSED"; last_failure = -1; results = []\n    for success in requests:\n        if state == "CLOSED":\n            if success: failures = 0\n            else: failures += 1\n            if failures >= threshold: state = "OPEN"; last_failure = 0; results.append(success); last_failure += 1; continue\n        elif state == "OPEN":\n            if last_failure >= timeout: state = "HALF_OPEN"\n            else: results.append(False); last_failure += 1; continue\n        elif state == "HALF_OPEN":\n            if success: state = "CLOSED"; failures = 0\n            else: state = "OPEN"; last_failure = 0\n        last_failure += 1; results.append(success)\n    return results',
+        time_minutes=25,
+        companies=["Amazon","Netflix","Uber"],
+    ),
+]
 
-# ═══════════════════════════════════════════════════════════════════
-# PRACTICE SETS
-# ═══════════════════════════════════════════════════════════════════
+FRONTEND_CHALLENGES: List[CodingChallenge] = [
+    CodingChallenge(
+        id="fe-challenge-1", role_id="frontend", title="Debounce Function", difficulty="easy",
+        description="Implement debounce: delay execution until wait ms pass since last call.",
+        signature="def debounce(func, wait_ms: int):",
+        starter_code={
+            "python": "from threading import Timer\ndef debounce(func, wait_ms):\n    pass",
+            "java": "public static <T> T debounce(T func, int waitMs) { return null; }",
+            "cpp": "auto debounce(auto func, int waitMs) { return func; }",
+            "c": "void* debounce(void* func, int waitMs) { return NULL; }",
+        },
+        test_cases=[{"input":["print",100],"expected":"function"}],
+        hidden_tests=2,
+        hints=["Use a timer that resets on each call", "Only execute after wait period expires"],
+        solution_python='from threading import Timer\ndef debounce(func, wait_ms):\n    timer = None\n    def debounced(*args, **kwargs):\n        nonlocal timer\n        if timer: timer.cancel()\n        timer = Timer(wait_ms / 1000, func, args=args, kwargs=kwargs)\n        timer.start()\n    return debounced',
+        time_minutes=15,
+        companies=["Google","Meta","Amazon"],
+    ),
+    CodingChallenge(
+        id="fe-challenge-2", role_id="frontend", title="Virtual List Renderer", difficulty="hard",
+        description="Return visible items given item count, item height, viewport height, scroll top.",
+        signature="def virtual_list(item_count: int, item_height: int, viewport_height: int, scroll_top: int) -> dict:",
+        starter_code={
+            "python": "def virtual_list(item_count, item_height, viewport_height, scroll_top):\n    return {}",
+            "java": "public static Map<String,Integer> virtualList(int c, int h, int vh, int st) { return new HashMap<>(); }",
+            "cpp": "map<string,int> virtualList(int c, int h, int vh, int st) { return {}; }",
+            "c": "struct VListResult virtualList(int c, int h, int vh, int st) { return (struct VListResult){0}; }",
+        },
+        test_cases=[{"input":[1000,50,300,500],"expected":{"start_index":10,"end_index":16,"total_height":50000}}],
+        hidden_tests=3,
+        hints=["start_index = scroll_top // item_height", "visible_count = viewport_height // item_height + 2"],
+        solution_python='def virtual_list(item_count, item_height, viewport_height, scroll_top):\n    start = max(0, scroll_top // item_height - 1)\n    visible = viewport_height // item_height + 2\n    end = min(item_count, start + visible)\n    return {"start_index": start, "end_index": end, "total_height": item_count * item_height}',
+        time_minutes=25,
+        companies=["Meta","Google","Twitter"],
+    ),
+]
+
+CP_CHALLENGES: List[CodingChallenge] = [
+    CodingChallenge(
+        id="cp-challenge-1", role_id="cp", title="Matrix Exponentiation Fibonacci", difficulty="hard",
+        description="Compute nth Fibonacci in O(log n) using matrix exponentiation.",
+        signature="def fib(n: int) -> int:",
+        starter_code={
+            "python": "def fib(n):\n    pass",
+            "java": "public static long fib(int n) { return 0; }",
+            "cpp": "long long fib(int n) { return 0; }",
+            "c": "long long fib(int n) { return 0; }",
+        },
+        test_cases=[{"input":[10],"expected":55},{"input":[50],"expected":12586269025}],
+        hidden_tests=3,
+        hints=["Use matrix [[1,1],[1,0]]^n", "Implement binary exponentiation"],
+        solution_python='def fib(n):\n    if n == 0: return 0\n    def mat_mult(A, B):\n        return [[A[0][0]*B[0][0]+A[0][1]*B[1][0], A[0][0]*B[0][1]+A[0][1]*B[1][1]],[A[1][0]*B[0][0]+A[1][1]*B[1][0], A[1][0]*B[0][1]+A[1][1]*B[1][1]]]\n    def mat_pow(M, p):\n        result = [[1,0],[0,1]]\n        while p > 0:\n            if p % 2 == 1: result = mat_mult(result, M)\n            M = mat_mult(M, M); p //= 2\n        return result\n    return mat_pow([[1,1],[1,0]], n)[0][1]',
+        time_minutes=25,
+        companies=["Google Code Jam","ICPC"],
+    ),
+    CodingChallenge(
+        id="cp-challenge-2", role_id="cp", title="Segment Tree Range Query", difficulty="hard",
+        description="Segment tree supporting range sum queries and point updates in O(log n).",
+        signature="def segment_tree(arr: list, queries: list) -> list:",
+        starter_code={
+            "python": "def segment_tree(arr, queries):\n    pass",
+            "java": "public static long[] segmentTree(int[] arr, int[][] q) { return new long[0]; }",
+            "cpp": "vector<long long> segmentTree(vector<int>& arr, vector<vector<int>>& q) { return {}; }",
+            "c": "long long* segmentTree(int* arr, int n, int** q, int qs) { return NULL; }",
+        },
+        test_cases=[{"input":[[1,3,5,7],[[1,0,3]]],"expected":[16]}],
+        hidden_tests=3,
+        hints=["Build tree bottom-up", "For query: traverse from root, combine results", "For update: update leaf and propagate up"],
+        solution_python='def segment_tree(arr, queries):\n    n = len(arr); size = 1\n    while size < n: size *= 2\n    tree = [0] * (2 * size)\n    for i in range(n): tree[size + i] = arr[i]\n    for i in range(size - 1, 0, -1): tree[i] = tree[2*i] + tree[2*i+1]\n    def query(l, r):\n        res = 0; l += size; r += size\n        while l <= r:\n            if l % 2 == 1: res += tree[l]; l += 1\n            if r % 2 == 0: res += tree[r]; r -= 1\n            l //= 2; r //= 2\n        return res\n    results = []\n    for q in queries:\n        if q[0] == 0: idx, val = q[1], q[2]; idx += size; tree[idx] = val; idx //= 2\n            while idx >= 1: tree[idx] = tree[2*idx] + tree[2*idx+1]; idx //= 2\n        else: results.append(query(q[1], q[2]))\n    return results',
+        time_minutes=30,
+        companies=["ICPC","Google Code Jam","Facebook Hacker Cup"],
+    ),
+]
 
 SDE_PRACTICE_SETS: List[PracticeSet] = [
     PracticeSet(
@@ -681,18 +787,45 @@ ALL_CHALLENGES: Dict[str, List[CodingChallenge]] = {
     "sde": SDE_CHALLENGES,
     "data_scientist": DATA_SCIENTIST_CHALLENGES,
     "ml_engineer": ML_ENGINEER_CHALLENGES,
-    "devops": [],
-    "frontend": [],
-    "cp": [],
+    "devops": DEVOPS_CHALLENGES,
+    "frontend": FRONTEND_CHALLENGES,
+    "cp": CP_CHALLENGES,
 }
 
 ALL_PRACTICE_SETS: Dict[str, List[PracticeSet]] = {
     "sde": SDE_PRACTICE_SETS,
     "data_scientist": DATA_SCIENTIST_PRACTICE_SETS,
     "ml_engineer": ML_ENGINEER_PRACTICE_SETS,
-    "devops": [],
-    "frontend": [],
-    "cp": [],
+    "devops": [
+        PracticeSet(
+            id="devops-practice-1", role_id="devops", title="SRE Interview Prep",
+            description="Monitoring, reliability, and incident response for SRE interviews.",
+            exercise_ids=["devops-cicd-1", "devops-observability-1"],
+            challenge_ids=["devops-challenge-1", "devops-challenge-2"],
+            target_companies=["Google", "Netflix", "Amazon"],
+            estimated_hours=8,
+        ),
+    ],
+    "frontend": [
+        PracticeSet(
+            id="fe-practice-1", role_id="frontend", title="Meta Frontend Prep",
+            description="React, performance, and system design for Meta frontend interviews.",
+            exercise_ids=["fe-react-1", "fe-api-1"],
+            challenge_ids=["fe-challenge-1", "fe-challenge-2"],
+            target_companies=["Meta", "Google", "Airbnb"],
+            estimated_hours=8,
+        ),
+    ],
+    "cp": [
+        PracticeSet(
+            id="cp-practice-1", role_id="cp", title="ICPC Contest Prep",
+            description="Advanced algorithms and optimization for competitive programming.",
+            exercise_ids=["cp-graph-1", "cp-dp-1"],
+            challenge_ids=["cp-challenge-1", "cp-challenge-2"],
+            target_companies=["ICPC", "Google Code Jam", "Facebook Hacker Cup"],
+            estimated_hours=15,
+        ),
+    ],
 }
 
 
