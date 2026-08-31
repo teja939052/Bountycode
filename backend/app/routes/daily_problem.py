@@ -49,18 +49,27 @@ def _is_real_question(q: dict) -> bool:
 
 
 def _pick_problem(config: dict, day_key: str):
-    """Deterministically pick a coding problem for the given day."""
-    # Try topic-specific first, then fall back to any coding problem
+    """Deterministically pick a coding problem for the given day.
+
+    Preference order: independently verified content first, then curated/real
+    LeetCode questions, then any usable coding question. Selection is seeded
+    by the UTC date so every user sees the same problem on the same day.
+    """
+    seed = int(hashlib.sha256(f"{day_key}:{config['topic']}:{config['difficulty']}".encode()).hexdigest(), 16)
     for query in [
         {"type": "coding", "topic": config["topic"], "difficulty": config["difficulty"]},
         {"type": "coding", "topic": config["topic"]},
         {"type": "coding", "difficulty": config["difficulty"]},
         {"type": "coding"},
     ]:
-        questions = find(query).to_list()
-        curated = [q for q in questions if _is_real_question(q)]
+        # Prefer verified content first (Content Trust pipeline), then fall
+        # back to any real question that isn't an auto-generated variant.
+        verified = find(query).prefer_verified().only_verified().to_list()
+        if verified:
+            return verified[seed % len(verified)]
+        all_qs = find(query).to_list()
+        curated = [q for q in all_qs if _is_real_question(q)]
         if curated:
-            seed = int(hashlib.sha256(f"{day_key}:{config['topic']}:{config['difficulty']}".encode()).hexdigest(), 16)
             return curated[seed % len(curated)]
     return None
 

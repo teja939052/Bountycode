@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import useAuthStore from "../store/authStore";
+import { Link } from "react-router-dom";
 import {
   Flame,
   Trophy,
@@ -11,6 +12,8 @@ import {
   RotateCcw,
   Play,
   Zap,
+  FileText,
+  Code2,
 } from "lucide-react";
 import CelebrationOverlay from "../components/CelebrationOverlay";
 import AnimatedCard from "../components/motion/AnimatedCard";

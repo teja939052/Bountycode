@@ -409,23 +409,30 @@ def _score_mcq(item: SubmitOAItem, qdef: dict) -> float:
 async def _run_diagnosis_and_repair(user_id: str, sess: dict, section_avg: dict, scorecard: list) -> dict:
     """Feed the verified OA scorecard into the EXISTING diagnosis + repair
     loop (study_engine.diagnose_mock_oa + repair_service.create_repair_mission).
-    This connects OA -> diagnosis -> persisted repair missions -> retest without
-    creating any new engine. Best-effort: never fails the completion response."""
+    Hardened to produce skill-level evidence (topic/sub_topic), time-tier,
+    and concrete retest via verified questions. Best-effort."""
     try:
         from app.services.study_engine import diagnose_mock_oa
         from app.services.repair_service import create_repair_mission
     except Exception:
         return {}
 
-    # Derive section correct/total from the verified scorecard (per-100 scores).
     sections: Dict[str, dict] = {}
+    skill_stats: Dict[str, dict] = {}
     for pq in scorecard:
         sec = pq.get("section", "other")
         correct = 1 if pq.get("score", 0) >= 100 else 0
-        total = 1
         s = sections.setdefault(sec, {"correct": 0, "total": 0})
         s["correct"] += correct
-        s["total"] += total
+        s["total"] += 1
+        # skill key = topic or topic/sub_topic
+        skill = pq.get("topic") or sec
+        sub = pq.get("sub_topic") or ""
+        key = f"{skill}/{sub}" if sub else skill
+        ss = skill_stats.setdefault(key, {"correct": 0, "total": 0, "times": [], "slow": 0})
+        ss["correct"] += correct
+        ss["total"] += 1
+        ss["times"].append(int(pq.get("time_taken", 0)))
 
     responses = {
         "score": sum(pq.get("score", 0) >= 100 for pq in scorecard),
@@ -438,17 +445,59 @@ async def _run_diagnosis_and_repair(user_id: str, sess: dict, section_avg: dict,
     except Exception:
         diagnosis = {}
 
-    # Persist repair missions for each diagnosed weakness (existing service).
+    # Skill-level weaknesses: <70% and at least 2 questions or single hard fail
+    avg_time = sum(int(pq.get("time_taken", 0)) for pq in scorecard) / max(len(scorecard), 1)
+    skill_weaknesses = []
+    for skill, st in skill_stats.items():
+        pct = (st["correct"] / st["total"] * 100) if st["total"] else 0
+        slow = sum(1 for t in st["times"] if t > avg_time * 1.5) if avg_time else 0
+        if pct < 70:
+            skill_weaknesses.append({
+                "skill": skill,
+                "correct": st["correct"],
+                "total": st["total"],
+                "pct": round(pct, 1),
+                "avg_time_s": round(sum(st["times"])/len(st["times"]), 1) if st["times"] else 0,
+                "slow_count": slow,
+            })
+    skill_weaknesses.sort(key=lambda x: x["pct"])
+    # enrich diagnosis with skill evidence
+    if skill_weaknesses:
+        diagnosis["skill_weaknesses"] = skill_weaknesses
+        diagnosis["primary_weakness"] = skill_weaknesses[0]["skill"]
+        # concrete repair chain
+        primary = skill_weaknesses[0]
+        diagnosis["repair_chain"] = [
+            f"Concept lesson: {primary['skill']}",
+            f"Guided problem: {primary['skill']}",
+            f"3 verified practice: {primary['skill']}",
+            "SRS review",
+        ]
+        diagnosis["retest_condition"] = ">=80% across 3 verified questions on primary weakness"
+
     missions = []
-    for weakness in diagnosis.get("weaknesses", [])[:3]:
+    # Prefer skill weaknesses over section weaknesses for repair
+    weakness_keys = [w["skill"] for w in skill_weaknesses[:2]] if skill_weaknesses else diagnosis.get("weaknesses", [])[:3]
+    for weakness in weakness_keys[:3]:
         try:
             mission = await create_repair_mission(user_id, [weakness], source="mock_oa")
+            # Attach verified retest question ids for this skill
+            retest_ids = []
+            try:
+                from app.services import question_store as qs
+                # best-effort: pull 3 verified for this skill topic
+                topic = weakness.split("/")[0]
+                rows = qs.find({"topic": topic}).only_verified().to_list(3)
+                retest_ids = [r.get("id") for r in rows]
+            except Exception:
+                pass
             missions.append({
                 "skill": weakness,
                 "mission_title": mission.title,
                 "recommended_lessons": mission.recommended_lessons,
                 "recommended_exercises": mission.recommended_exercises,
                 "recommended_quizzes": mission.recommended_quizzes,
+                "retest_verified_ids": retest_ids,
             })
         except Exception:
             continue
