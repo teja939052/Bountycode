@@ -36,12 +36,18 @@ def _today_config():
 
 def _is_real_question(q: dict) -> bool:
     """Prefer real LeetCode / curated questions over auto-generated variants."""
-    title = str(q.get("question_title") or q.get("question") or "")
+    if q.get("trust_status") == "verified":
+        return True
+    title = str(q.get("question_title") or q.get("title") or q.get("question") or "")
     if "variant" in title.lower():
         return False
     source = str(q.get("source") or "")
     curated = str(q.get("curated_source") or "")
-    if "LeetCode" in source or curated:
+    sources = q.get("sources") or []
+    if isinstance(sources, str):
+        sources = [sources]
+    combined_sources = source + " " + " ".join(str(s) for s in sources) + " " + curated
+    if "LeetCode" in combined_sources or curated:
         return True
     if len(title) > 40:
         return True
@@ -84,6 +90,13 @@ async def get_today_problem(user=Depends(get_current_user)):
     if not problem:
         raise HTTPException(status_code=404, detail="No problem available for today")
 
+    # Verified questions use `title` for the title and `question` for the
+    # statement. Legacy questions may use `question_title` + `description` or
+    # `question` + `explanation`. Normalize so the frontend always gets the
+    # right field regardless of the question's origin.
+    title = problem.get("question_title") or problem.get("title") or ""
+    statement = problem.get("statement") or problem.get("question") or problem.get("description") or ""
+
     solved_col = solved_problems_collection()
     existing = await solved_col.find_one({
         "user_id": user["id"],
@@ -99,12 +112,13 @@ async def get_today_problem(user=Depends(get_current_user)):
         "config": config,
         "problem": {
             "id": problem.get("id"),
-            "question_title": problem.get("question_title") or problem.get("question", "")[:80],
-            "statement": problem.get("question") or problem.get("statement", ""),
+            "question_title": title,
+            "statement": statement,
             "difficulty": problem.get("difficulty", "medium"),
             "topics": [problem.get("topic", "")] if problem.get("topic") else [],
             "company": problem.get("company", []),
-            "visible_test_cases": problem.get("visible_test_cases", []),
+            "visible_test_cases": problem.get("visible_test_cases") or problem.get("testcases", []),
+            "hidden_test_cases": problem.get("hidden_test_cases") or problem.get("hidden_testcases", []),
             "constraints": problem.get("constraints", []),
             "examples": problem.get("examples", []),
             "hints": problem.get("hints", []),
