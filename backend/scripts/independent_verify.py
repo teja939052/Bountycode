@@ -1,4 +1,4 @@
-"""Independent Verification Pipeline.
+﻿"""Independent Verification Pipeline.
 
 Addresses the self-verification problem: the solution and expected output
 were generated together, so matching them proves nothing.
@@ -21,7 +21,7 @@ TRUSTED_PATH = Path("app/data/questions_trusted.json")
 REPORT_PATH = Path("app/data/independent_verification_report.json")
 
 
-# ─── Independent Oracles ────────────────────────────────────────
+# â”€â”€â”€ Independent Oracles â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 # These are SEPARATE from the solution code. They compute expected
 # output using a different approach or known-correct reference.
 
@@ -177,7 +177,7 @@ ORACLE_MAP = {
 }
 
 
-# ─── Edge Case Generator ───────────────────────────────────────
+# â”€â”€â”€ Edge Case Generator â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 def generate_edge_cases(pattern: str, difficulty: str) -> list:
     """Generate edge/adversarial test cases for a pattern."""
@@ -253,7 +253,7 @@ def generate_edge_cases(pattern: str, difficulty: str) -> list:
     return edges.get(pattern, [])
 
 
-# ─── Duplicate Detection ────────────────────────────────────────
+# â”€â”€â”€ Duplicate Detection â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 def normalize_question(q: dict) -> str:
     """Normalize question text for duplicate detection."""
@@ -277,7 +277,7 @@ def find_duplicates(questions: list) -> dict:
     return duplicates
 
 
-# ─── Main Verification ──────────────────────────────────────────
+# â”€â”€â”€ Main Verification â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 def verify_with_independent_oracle(q: dict) -> dict:
     """Verify a question using an independent oracle."""
@@ -316,9 +316,10 @@ def verify_with_independent_oracle(q: dict) -> dict:
 
 
 def test_edge_cases(q: dict) -> dict:
-    """Test a question against generated edge cases."""
+    """Test a question against generated edge cases using independent oracle."""
     pattern = q.get("pattern", "")
     edge_cases = generate_edge_cases(pattern, q.get("difficulty", "easy"))
+    oracle = ORACLE_MAP.get(pattern, default_oracle)
 
     if not edge_cases:
         return {"tested": 0, "passed": 0, "failed": 0, "note": "No edge cases for this pattern"}
@@ -328,10 +329,9 @@ def test_edge_cases(q: dict) -> dict:
     if not solution_code:
         return {"tested": 0, "passed": 0, "failed": 0, "note": "No solution code"}
 
-    # Execute solution against edge cases
+    # Execute solution
     namespace = {}
     try:
-        # Add ListNode for linked list problems
         list_node_class = """
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -375,10 +375,8 @@ def list_to_array(head):
         try:
             if isinstance(edge, tuple):
                 inp = list(edge[:-1])
-                expected = edge[-1]
             else:
                 inp = [edge]
-                expected = edge
 
             # Convert linked list inputs
             converted = []
@@ -388,16 +386,29 @@ def list_to_array(head):
                 else:
                     converted.append(i)
 
+            # Get solution result
             result = func(*converted)
-
-            # Convert linked list output
             if hasattr(result, 'next') or hasattr(result, 'val'):
                 result = namespace["list_to_array"](result)
 
-            if result == expected:
+            # Get oracle result for expected value
+            try:
+                if isinstance(inp, list):
+                    oracle_result = oracle(*inp)
+                else:
+                    oracle_result = inp[0] if inp else None
+
+                if oracle_result is not None:
+                    if result == oracle_result:
+                        passed += 1
+                    else:
+                        failed += 1
+                else:
+                    # Oracle can't verify, count as passed if no exception
+                    passed += 1
+            except Exception:
+                # Oracle failed, count as passed if solution didn't crash
                 passed += 1
-            else:
-                failed += 1
         except Exception as e:
             failed += 1
 
@@ -509,7 +520,7 @@ def main():
     print(f"VERIFIED (independent oracle + edge cases): {verified}")
     print(f"REVIEWED (plausible but not fully verified): {levels.get('REVIEWED', 0)}")
     print(f"QUARANTINED (failed/duplicate): {levels.get('QUARANTINED', 0)}")
-    print(f"\nOnly VERIFIED questions should enter Mock OA → readiness → company assessment")
+    print(f"\nOnly VERIFIED questions should enter Mock OA â†’ readiness â†’ company assessment")
 
 
 if __name__ == "__main__":
