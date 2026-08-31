@@ -40,6 +40,21 @@ async def start_interview(req: StartInterview, user=Depends(get_current_user)):
     company_profile = COMPANY_PROFILES.get(company, {})
     company_style = company_profile.get("interview_style", "")
 
+    # Pull latest OA diagnosis for adaptive questioning (moat: interview probes real weaknesses)
+    oa_context = {}
+    try:
+        from app.database import oa_sessions_collection
+        latest_oa = await oa_sessions_collection.find_one(
+            {"user_id": user["id"], "status": "completed"}, sort=[("completed_at", -1)]
+        )
+        if latest_oa:
+            res = latest_oa.get("result", {}) or {}
+            diag = res.get("diagnosis", {}) or {}
+            if diag.get("skill_weaknesses") or diag.get("weaknesses"):
+                oa_context = diag
+    except Exception:
+        pass
+
     interview_doc = {
         "user_id": user["id"],
         "job_role": req.job_role,
@@ -50,14 +65,33 @@ async def start_interview(req: StartInterview, user=Depends(get_current_user)):
         "status": "in_progress",
         "score_history": [],
         "difficulty_progression": [req.difficulty],
+        "oa_context": oa_context,
         "created_at": datetime.now(timezone.utc),
     }
     result = await interviews_collection.insert_one(interview_doc)
     interview_id = str(result.inserted_id)
 
-    question_data = await generate_interview_question(
-        req.job_role, [], company=company, difficulty=req.difficulty,
-    )
+    # If OA revealed a primary weakness, probe it first (evidence-driven interview)
+    if oa_context.get("primary_weakness") or oa_context.get("skill_weaknesses"):
+        primary = oa_context.get("primary_weakness") or (oa_context.get("skill_weaknesses", [{}])[0].get("skill", ""))
+        if primary:
+            w = next((x for x in oa_context.get("skill_weaknesses", []) if x.get("skill")==primary), {})
+            pct = w.get("pct", "")
+            pct_str = f" (OA: {pct}%)" if pct else ""
+            question_data = {
+                "question": f"You scored{pct_str} on {primary} in your recent Mock OA. Walk me through how you'd solve a {primary} problem and why a naive approach wouldn't scale.",
+                "question_type": "technical",
+                "tips": f"Focus on {primary} fundamentals; explain trade-offs.",
+                "difficulty": req.difficulty,
+            }
+        else:
+            question_data = await generate_interview_question(
+                req.job_role, [], company=company, difficulty=req.difficulty,
+            )
+    else:
+        question_data = await generate_interview_question(
+            req.job_role, [], company=company, difficulty=req.difficulty,
+        )
 
     await users_collection.update_one(
         {"_id": ObjectId(user["id"])},
