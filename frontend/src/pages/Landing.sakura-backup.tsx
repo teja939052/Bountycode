@@ -1,5 +1,6 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Code2,
   FileText,
@@ -36,6 +37,51 @@ const COMPANIES = [
   "TCS", "Infosys", "Wipro", "Flipkart", "Razorpay",
 ];
 
+const ROTATING_AUDIENCES = [
+  "students",
+  "teachers",
+  "researchers",
+  "developers",
+  "job seekers",
+  "career switchers",
+];
+
+function RotatingWord({
+  words,
+  className = "",
+}: {
+  words: string[];
+  className?: string;
+}) {
+  const reduced = useReducedMotion();
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(
+      () => setIndex((i) => (i + 1) % words.length),
+      2200
+    );
+    return () => clearInterval(t);
+  }, [words.length]);
+
+  return (
+    <span className={`inline-block align-baseline ${className}`} aria-live="polite">
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={index}
+          initial={reduced ? {} : { y: 14, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={reduced ? {} : { y: -14, opacity: 0 }}
+          transition={{ duration: 0.32, ease: "easeOut" }}
+          className="inline-block"
+        >
+          {words[index]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  );
+}
+
 export default function Landing() {
   const reduced = useReducedMotion();
 
@@ -49,103 +95,209 @@ export default function Landing() {
         Skip to content
       </a>
 
-      {/* ═══ HERO — product-first, no stock photo ═══ */}
-      <section className="relative bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-10 py-12 sm:py-16 lg:grid-cols-2 lg:gap-14 lg:py-24">
-            {/* Copy */}
-            <motion.div
-              initial={reduced ? {} : { opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
-            >
-              <h1 className="font-display text-[2.1rem] leading-[1.08] font-extrabold tracking-tight text-[#0E1813] sm:text-5xl md:text-6xl md:leading-[1.05]">
-                Stop preparing randomly.
-                <br />
-                <span className="text-[#22C55E]">Prepare like your target role actually tests.</span>
-              </h1>
+      {/* ═══ THE SPRING PATH — hero as immersive world ═══ */}
+      <section className="spring-hero relative overflow-hidden" style={{ background: "#fbe4ec" }}>
 
-              <p className="mt-5 text-base sm:text-lg leading-relaxed text-[#14201B]/80">
-                PlacementPro maps the exact skills companies test, then builds a personal curriculum around your gaps — practice, prove, repair, repeat.
-              </p>
+        {/* ── Photographic environment — optimized hero image (LCP, eager + high priority) ── */}
+        <img
+          src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?w=2400&q=70&auto=format&fit=crop&fm=webp&bri=12&sat=8"
+          alt=""
+          aria-hidden="true"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ objectPosition: "center 72%" }}
+          {...({ fetchpriority: "high" } as any)}
+        />
 
-              <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-                <Link to="/role-selector" className="inline-flex items-center gap-2 rounded-xl bg-[#0E1813] px-6 py-3 text-sm font-bold text-white shadow-md transition-all hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]">
-                  Start free
-                  <ArrowRight size={15} />
-                </Link>
-                <Link to="/pricing" className="inline-flex items-center gap-2 rounded-xl border border-[#14201B]/10 bg-white px-6 py-3 text-sm font-semibold text-[#14201B] transition-colors hover:border-[#14201B]/20">
-                  See how it works
-                </Link>
-              </div>
+        {/* ── Minimal tint — photo should dominate ── */}
+        <div
+          className="absolute inset-0"
+          aria-hidden="true"
+          style={{
+            background: `linear-gradient(
+              180deg,
+              rgba(244,250,248,0.08) 0%,
+              rgba(244,250,248,0.12) 40%,
+              rgba(244,250,248,0.25) 70%,
+              rgba(244,250,248,0.55) 100%
+            )`,
+          }}
+        />
 
-              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-[#14201B]/70">
-                <span className="inline-flex items-center gap-1.5">
-                  <CheckCircle2 size={14} className="text-[#22C55E]" />
-                  Skill-graph driven practice
-                </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <CheckCircle2 size={14} className="text-[#22C55E]" />
-                  Adaptive repair on weak areas
-                </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <CheckCircle2 size={14} className="text-[#22C55E]" />
-                  Company-pattern mocks
-                </span>
-              </div>
-            </motion.div>
+        {/* ── Sunlight — warm wash from upper right (static) ── */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          aria-hidden="true"
+          style={{
+            background: "radial-gradient(ellipse 50% 40% at 78% 15%, rgba(255,240,200,0.18) 0%, transparent 70%)",
+          }}
+        />
 
-            {/* Product mockup */}
-            <motion.div
-              initial={reduced ? {} : { opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-              className="relative"
-            >
-              <div className="rounded-2xl border border-[#14201B]/10 bg-white shadow-xl">
-                <div className="flex items-center gap-2 border-b border-[#14201B]/5 px-4 py-3">
-                  <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-green-400/80" />
-                  <span className="ml-3 text-[10px] font-medium text-[#14201B]/40">placementpro.app/dashboard</span>
+        {/* ── Light halo — soft readability glow behind the headline zone (static) ── */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          aria-hidden="true"
+          style={{
+            background: "radial-gradient(ellipse 46% 34% at 50% 44%, rgba(255,255,255,0.52) 0%, rgba(255,255,255,0.28) 45%, transparent 72%)",
+          }}
+        />
+
+        {/* ── Branch silhouettes — only at peripheral edges (static) ── */}
+        <div
+          className="absolute top-0 left-0 w-[28%] h-[65%] overflow-hidden pointer-events-none"
+          aria-hidden="true"
+          style={{ opacity: 0.10 }}
+        >
+          <svg viewBox="0 0 300 450" className="w-full h-full" style={{ transform: "scaleX(-1)" }}>
+            <path d="M0 0 C 25 70, 50 110, 35 180 C 28 230, 45 270, 70 310" stroke="#4a2510" strokeWidth="2.5" fill="none" opacity="0.7" />
+            <path d="M35 180 C 60 170, 85 160, 110 175" stroke="#4a2510" strokeWidth="1.8" fill="none" opacity="0.5" />
+            <path d="M70 310 C 85 300, 105 285, 130 300" stroke="#4a2510" strokeWidth="1.5" fill="none" opacity="0.4" />
+            <circle cx="110" cy="172" r="5" fill="#FFC8D6" opacity="0.45" />
+            <circle cx="106" cy="168" r="3" fill="#FFB7C5" opacity="0.35" />
+            <circle cx="114" cy="176" r="2.5" fill="#FFE4E8" opacity="0.25" />
+          </svg>
+        </div>
+
+        <div
+          className="absolute top-0 right-0 w-[28%] h-[65%] overflow-hidden pointer-events-none"
+          aria-hidden="true"
+          style={{ opacity: 0.10 }}
+        >
+          <svg viewBox="0 0 300 450" className="w-full h-full">
+            <path d="M300 0 C 275 70, 250 110, 265 180 C 272 230, 255 270, 230 310" stroke="#4a2510" strokeWidth="2.5" fill="none" opacity="0.7" />
+            <path d="M265 180 C 240 170, 215 160, 190 175" stroke="#4a2510" strokeWidth="1.8" fill="none" opacity="0.5" />
+            <path d="M230 310 C 215 300, 195 285, 170 300" stroke="#4a2510" strokeWidth="1.5" fill="none" opacity="0.4" />
+            <circle cx="190" cy="172" r="5" fill="#FFC8D6" opacity="0.45" />
+            <circle cx="194" cy="168" r="3" fill="#FFB7C5" opacity="0.35" />
+            <circle cx="186" cy="176" r="2.5" fill="#FFE4E8" opacity="0.25" />
+          </svg>
+        </div>
+
+        {/* ── Distant landscape / horizon — lower 25% (static) ── */}
+        <div
+          className="absolute bottom-0 left-0 right-0 pointer-events-none"
+          aria-hidden="true"
+          style={{ height: "28%" }}
+        >
+          {/* Ground fade into content */}
+          <div className="absolute inset-0" style={{
+            background: "linear-gradient(to top, rgba(244,250,248,0.95) 0%, rgba(244,250,248,0.6) 50%, transparent 100%)"
+          }} />
+          {/* Subtle rolling hills */}
+          <svg viewBox="0 0 1440 200" className="absolute bottom-0 w-full" preserveAspectRatio="none" style={{ height: "60%" }}>
+            <path d="M0 120 C 180 80, 360 100, 540 90 C 720 80, 900 95, 1080 85 C 1200 78, 1350 88, 1440 84 L 1440 200 L 0 200 Z" fill="rgba(160,185,160,0.10)" />
+            <path d="M0 140 C 240 115, 480 125, 720 118 C 960 112, 1200 120, 1440 115 L 1440 200 L 0 200 Z" fill="rgba(150,175,150,0.07)" />
+          </svg>
+         </div>
+
+         {/* ═══ CONTENT — sits within the environment ═══ */}
+         <div className="relative z-10 min-h-screen flex flex-col">
+           {/* Hero center — headline floats in the atmospheric space */}
+           <div className="flex-1 flex items-center justify-center px-6 pb-16">
+             <motion.div
+               initial={reduced ? {} : { opacity: 0, y: 20 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ duration: 0.8, ease: "easeOut" }}
+               className="text-center max-w-3xl mx-auto"
+             >
+               <h1
+                 id="main"
+                 className="font-display text-[2.5rem] leading-[1.08] font-extrabold tracking-tight sm:text-6xl md:text-7xl md:leading-[1.05]"
+                 style={{ color: "#0E1813" }}
+               >
+                 From your first line of code
+                 <br />
+                 <span style={{ color: "#D4A843" }}>to your first offer.</span>
+               </h1>
+
+               <p className="mt-5 text-xl sm:text-2xl font-extrabold text-[#0E1813]">
+                 A guided path from learning to getting hired.
+               </p>
+               <p className="mt-4 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto" style={{ color: "#0E1813", opacity: 0.85 }}>
+                 Learn the fundamentals, practice the skills companies test, and prove yourself through realistic OAs and interviews.
+               </p>
+
+               <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+                 <Link to="/role-selector">
+                   <button className="hero-cta-primary inline-flex items-center gap-2 rounded-xl px-7 py-3.5 text-sm font-bold text-white shadow-lg transition-all hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]">
+                     Begin my journey
+                     <ArrowRight size={15} />
+                   </button>
+                 </Link>
+                 <Link to="/pricing" className="text-sm font-semibold text-[#14201B]/80 hover:text-[#14201B] transition-colors">
+                   Explore how it works
+                 </Link>
+               </div>
+
+               {/* Journey chips — the product, in four words */}
+               <div className="mt-10 flex items-center justify-center gap-2 flex-wrap" aria-label="How BountyCode works">
+                 {[
+                   { n: "1", label: "Diagnose" },
+                   { n: "2", label: "Learn" },
+                   { n: "3", label: "Practice" },
+                   { n: "4", label: "Get Hired" },
+                 ].map((chip, i) => (
+                   <span key={chip.n} className="flex items-center gap-2">
+                     <span
+                       className="inline-flex items-center gap-1.5 rounded-full border border-white/70 bg-white/60 px-3.5 py-1.5 text-xs font-semibold backdrop-blur-sm shadow-sm"
+                       style={{ color: "#14201B" }}
+                     >
+                       <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#22C55E] text-[10px] font-bold text-white">
+                         {chip.n}
+                       </span>
+                       {chip.label}
+                     </span>
+                     {i < 3 && <span className="text-[#14201B]/30 text-xs">→</span>}
+                   </span>
+                 ))}
+               </div>
+              </motion.div>
+            </div>
+           {/* ═══ JOURNEY PATH — the product, visualized in the landscape ═══ */}
+          <div className="relative pb-8" aria-hidden="true">
+            <div className="flex flex-col items-center">
+              {/* Journey milestones — vertical path fading into the horizon */}
+              {[
+                 { label: "Start", active: true },
+                { label: "Programming", active: false },
+                { label: "DSA", active: false },
+                { label: "Projects", active: false },
+                { label: "OA", active: false },
+                { label: "Interview", active: false },
+                { label: "Offer", milestone: true },
+              ].map((step, i) => (
+                <div key={step.label} className="flex flex-col items-center" style={{ opacity: 1 - i * 0.1 }}>
+                  {/* Dot */}
+                  <div
+                    className={`w-2 h-2 rounded-full ${
+                      step.active
+                        ? "bg-[#22C55E] shadow-[0_0_8px_rgba(34,197,94,0.4)]"
+                        : step.milestone
+                        ? "bg-[#D4A843] shadow-[0_0_8px_rgba(212,168,67,0.3)]"
+                        : "bg-[#14201B]/20"
+                    }`}
+                  />
+                  {/* Label */}
+                  <span
+                    className={`text-[10px] font-medium tracking-wide mt-1 mb-2 ${
+                      step.active
+                        ? "text-[#22C55E]"
+                        : step.milestone
+                        ? "text-[#D4A843]"
+                        : "text-[#14201B]/25"
+                    }`}
+                  >
+                    {step.label}
+                  </span>
+                  {/* Connecting line — except after last */}
+                  {i < 6 && (
+                    <div className="w-px h-3" style={{
+                      background: `linear-gradient(to bottom, rgba(20,32,27,${0.15 - i * 0.015}), transparent)`
+                    }} />
+                  )}
                 </div>
-                <div className="p-4 sm:p-5">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-[10px] font-semibold uppercase tracking-widest text-[#14201B]/40">Target Role</p>
-                      <p className="text-sm font-bold text-[#0E1813]">Software Engineer</p>
-                    </div>
-                    <div className="rounded-lg bg-[#22C55E]/10 px-2.5 py-1 text-right">
-                      <p className="text-[10px] font-semibold uppercase tracking-widest text-[#22C55E]">Readiness</p>
-                      <p className="text-sm font-bold text-[#0E1813]">68%</p>
-                    </div>
-                  </div>
-                  <div className="mt-4 space-y-3">
-                    {[
-                      { label: "DSA", value: 82 },
-                      { label: "SQL", value: 74 },
-                      { label: "Interview", value: 61 },
-                      { label: "System Design", value: 43 },
-                    ].map((item) => (
-                      <div key={item.label} className="flex items-center gap-3">
-                        <span className="w-24 text-xs font-medium text-[#14201B]/70 sm:w-28">{item.label}</span>
-                        <div className="h-2 flex-1 rounded-full bg-[#14201B]/5">
-                          <div
-                            className="h-2 rounded-full bg-[#22C55E]"
-                            style={{ width: `${item.value}%` }}
-                          />
-                        </div>
-                        <span className="w-8 text-right text-xs font-semibold text-[#0E1813]">{item.value}%</span>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-4 rounded-xl border border-dashed border-[#14201B]/10 bg-[#14201B]/[0.02] p-3">
-                    <p className="text-[10px] font-semibold uppercase tracking-widest text-[#14201B]/40">Next Mission</p>
-                    <p className="mt-1 text-xs font-medium text-[#0E1813]">Repair: Graph Traversal patterns</p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
