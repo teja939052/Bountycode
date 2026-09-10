@@ -10,6 +10,7 @@ import {
   CheckCircle2,
   Building2,
   Star,
+  Target,
 } from "lucide-react";
 import useReducedMotion from "../hooks/useReducedMotion";
 import { PageShell } from "../design-system/PageShell";
@@ -95,14 +96,15 @@ export default function Landing() {
               </div>
             </motion.div>
 
-            {/* Product mockup */}
+            {/* Product mockup — wow moment */}
             <motion.div
-              initial={reduced ? {} : { opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={reduced ? {} : { opacity: 0, y: 18, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
               className="relative"
             >
-              <div className="rounded-2xl border border-[#14201B]/10 bg-white shadow-xl">
+              <div className="rounded-2xl border border-[#14201B]/10 bg-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.12)]">
+                {/* Browser chrome */}
                 <div className="flex items-center gap-2 border-b border-[#14201B]/5 px-4 py-3">
                   <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
                   <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
@@ -110,38 +112,57 @@ export default function Landing() {
                   <span className="ml-3 text-[10px] font-medium text-[#14201B]/40">placementpro.app/dashboard</span>
                 </div>
                 <div className="p-4 sm:p-5">
+                  {/* Header row */}
                   <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-[10px] font-semibold uppercase tracking-widest text-[#14201B]/40">Target Role</p>
-                      <p className="text-sm font-bold text-[#0E1813]">Software Engineer</p>
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#22C55E]/10 text-lg">👤</div>
+                      <div>
+                        <p className="text-sm font-bold text-[#0E1813]">Good morning, Alex</p>
+                        <p className="text-[10px] font-medium text-[#14201B]/50">SDE · 68% ready</p>
+                      </div>
                     </div>
-                    <div className="rounded-lg bg-[#22C55E]/10 px-2.5 py-1 text-right">
-                      <p className="text-[10px] font-semibold uppercase tracking-widest text-[#22C55E]">Readiness</p>
-                      <p className="text-sm font-bold text-[#0E1813]">68%</p>
+                    <div className="relative flex h-12 w-12 items-center justify-center">
+                      <svg className="h-12 w-12 -rotate-90" viewBox="0 0 48 48">
+                        <circle cx="24" cy="24" r="20" fill="none" stroke="#14201B" strokeWidth="3" opacity="0.06" />
+                        <circle cx="24" cy="24" r="20" fill="none" stroke="#22C55E" strokeWidth="3" strokeDasharray="125.6" strokeDashoffset="40.2" strokeLinecap="round" />
+                      </svg>
+                      <span className="absolute text-[10px] font-black text-[#0E1813]">68%</span>
                     </div>
                   </div>
-                  <div className="mt-4 space-y-3">
+
+                  {/* Next Mission */}
+                  <div className="mt-4 rounded-xl border border-dashed border-[#14201B]/10 bg-gradient-to-r from-[#14201B]/[0.02] to-transparent p-3">
+                    <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-widest text-[#22C55E]">
+                      <Target size={12} /> Next Mission
+                    </div>
+                    <p className="mt-1.5 text-sm font-bold text-[#0E1813]">Repair: Graph Traversal patterns</p>
+                    <div className="mt-2 flex items-center gap-3">
+                      <span className="rounded-full bg-[#22C55E]/10 px-2 py-0.5 text-[10px] font-bold text-[#22C55E]">+120 XP</span>
+                      <span className="text-[10px] text-[#14201B]/50">~15 min</span>
+                    </div>
+                  </div>
+
+                  {/* Skill grid */}
+                  <div className="mt-4 grid grid-cols-2 gap-2 sm:gap-3">
                     {[
-                      { label: "DSA", value: 82 },
-                      { label: "SQL", value: 74 },
-                      { label: "Interview", value: 61 },
-                      { label: "System Design", value: 43 },
+                      { label: "DSA", value: 82, color: "#22C55E", level: "Strong" },
+                      { label: "SQL", value: 74, color: "#22C55E", level: "Competent" },
+                      { label: "Interview", value: 61, color: "#f59e0b", level: "Practicing" },
+                      { label: "System Design", value: 43, color: "#ef4444", level: "Introduced" },
                     ].map((item) => (
-                      <div key={item.label} className="flex items-center gap-3">
-                        <span className="w-24 text-xs font-medium text-[#14201B]/70 sm:w-28">{item.label}</span>
-                        <div className="h-2 flex-1 rounded-full bg-[#14201B]/5">
-                          <div
-                            className="h-2 rounded-full bg-[#22C55E]"
-                            style={{ width: `${item.value}%` }}
-                          />
+                      <div key={item.label} className="rounded-xl border border-[#14201B]/5 bg-[#14201B]/[0.01] p-2.5 sm:p-3">
+                        <div className="flex items-center justify-between">
+                          <span className="text-[10px] font-semibold uppercase tracking-wider text-[#14201B]/60">{item.label}</span>
+                          <span className="rounded-full px-1.5 py-0.5 text-[9px] font-bold" style={{ background: item.color + "18", color: item.color }}>{item.level}</span>
                         </div>
-                        <span className="w-8 text-right text-xs font-semibold text-[#0E1813]">{item.value}%</span>
+                        <div className="mt-2 flex items-end justify-between">
+                          <span className="text-xl font-black text-[#0E1813] leading-none">{item.value}<span className="text-[10px] font-semibold text-[#14201B]/40 ml-0.5">%</span></span>
+                        </div>
+                        <div className="mt-2 h-1.5 w-full rounded-full bg-[#14201B]/5 overflow-hidden">
+                          <div className="h-full rounded-full transition-all duration-500" style={{ width: `${item.value}%`, background: item.color }} />
+                        </div>
                       </div>
                     ))}
-                  </div>
-                  <div className="mt-4 rounded-xl border border-dashed border-[#14201B]/10 bg-[#14201B]/[0.02] p-3">
-                    <p className="text-[10px] font-semibold uppercase tracking-widest text-[#14201B]/40">Next Mission</p>
-                    <p className="mt-1 text-xs font-medium text-[#0E1813]">Repair: Graph Traversal patterns</p>
                   </div>
                 </div>
               </div>
