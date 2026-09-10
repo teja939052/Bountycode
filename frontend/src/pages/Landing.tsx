@@ -1,5 +1,6 @@
+import { useCallback, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import {
   Code2,
   FileText,
@@ -37,6 +38,195 @@ const COMPANIES = [
   "TCS", "Infosys", "Wipro", "Flipkart", "Razorpay",
 ];
 
+function AnimatedNumber({ value, suffix = "", delay = 0 }: { value: number; suffix?: string; delay?: number }) {
+  const spring = useSpring(0, { stiffness: 70, damping: 18 });
+  const display = useTransform(spring, (v) => Math.round(v));
+
+  useEffect(() => {
+    const t = setTimeout(() => spring.set(value), delay);
+    return () => clearTimeout(t);
+  }, [value, delay, spring]);
+
+  return (
+    <span className="inline-flex items-baseline">
+      <motion.span>{display}</motion.span>
+      <span className="text-[10px] font-semibold text-[#14201B]/40 ml-0.5">{suffix}</span>
+    </span>
+  );
+}
+
+function HeroOrbs() {
+  const reduced = useReducedMotion();
+  if (reduced) return null;
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <motion.div
+        className="absolute -top-24 -left-24 h-72 w-72 rounded-full"
+        style={{ background: "radial-gradient(circle, rgba(34,197,94,0.12) 0%, transparent 70%)" }}
+        animate={{ x: [0, 40, -20, 0], y: [0, -30, 20, 0] }}
+        transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+      />
+      <motion.div
+        className="absolute top-32 right-0 h-96 w-96 rounded-full"
+        style={{ background: "radial-gradient(circle, rgba(20,32,27,0.06) 0%, transparent 70%)" }}
+        animate={{ x: [0, -30, 20, 0], y: [0, 25, -15, 0] }}
+        transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+      />
+      <motion.div
+        className="absolute bottom-0 left-1/3 h-64 w-64 rounded-full"
+        style={{ background: "radial-gradient(circle, rgba(212,168,67,0.08) 0%, transparent 70%)" }}
+        animate={{ x: [0, 25, -25, 0], y: [0, -20, 30, 0] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+      />
+    </div>
+  );
+}
+
+function HeroMockup({ reduced }: { reduced: boolean }) {
+  const mouseX = useMotionValue(0.5);
+  const mouseY = useMotionValue(0.5);
+  const springX = useSpring(mouseX, { stiffness: 180, damping: 16 });
+  const springY = useSpring(mouseY, { stiffness: 180, damping: 16 });
+  const rotateX = useTransform(springY, [0, 1], [6, -6]);
+  const rotateY = useTransform(springX, [0, 1], [-6, 6]);
+  const glare = useTransform(
+    [springX, springY],
+    // Framer Motion infers array callback params as `unknown`; values are numeric motion values.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ([x, y]: any) =>
+      `radial-gradient(circle at ${x * 100}% ${y * 100}%, rgba(255,255,255,0.25) 0%, transparent 55%)`
+  );
+
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      mouseX.set((e.clientX - rect.left) / rect.width);
+      mouseY.set((e.clientY - rect.top) / rect.height);
+    },
+    [mouseX, mouseY]
+  );
+
+  const handleMouseLeave = useCallback(() => {
+    mouseX.set(0.5);
+    mouseY.set(0.5);
+  }, [mouseX, mouseY]);
+
+  return (
+    <motion.div
+      initial={reduced ? {} : { opacity: 0, y: 18, scale: 0.98 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+      className="relative"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ perspective: 1200 }}
+    >
+      <motion.div
+        className="relative rounded-2xl border border-[#14201B]/10 bg-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.12)]"
+        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+      >
+        <div className="absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          style={{ background: glare as any }}
+        />
+        {/* Browser chrome */}
+        <div className="flex items-center gap-2 border-b border-[#14201B]/5 px-4 py-3">
+          <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
+          <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
+          <span className="h-2.5 w-2.5 rounded-full bg-green-400/80" />
+          <span className="ml-3 text-[10px] font-medium text-[#14201B]/40">placementpro.app/dashboard</span>
+        </div>
+        <div className="p-4 sm:p-5">
+          {/* Header row */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#22C55E]/10 text-lg">👤</div>
+              <div>
+                <p className="text-sm font-bold text-[#0E1813]">Good morning, Alex</p>
+                <p className="text-[10px] font-medium text-[#14201B]/50">SDE · 68% ready</p>
+              </div>
+            </div>
+            <div className="relative flex h-12 w-12 items-center justify-center">
+              <svg className="h-12 w-12 -rotate-90" viewBox="0 0 48 48">
+                <circle cx="24" cy="24" r="20" fill="none" stroke="#14201B" strokeWidth="3" opacity="0.06" />
+                <motion.circle
+                  cx="24" cy="24" r="20" fill="none" stroke="#22C55E" strokeWidth="3" strokeDasharray="125.6" strokeDashoffset="40.2" strokeLinecap="round"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: 1, opacity: 1 }}
+                  transition={{ duration: 1.4, ease: "easeOut", delay: 0.5 }}
+                />
+              </svg>
+              <AnimatedNumber value={68} suffix="%" delay={500} />
+            </div>
+          </div>
+
+          {/* Next Mission */}
+          <motion.div
+            className="mt-4 rounded-xl border border-dashed border-[#14201B]/10 bg-gradient-to-r from-[#14201B]/[0.02] to-transparent p-3"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+          >
+            <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-widest text-[#22C55E]">
+              <Target size={12} /> Next Mission
+            </div>
+            <p className="mt-1.5 text-sm font-bold text-[#0E1813]">Repair: Graph Traversal patterns</p>
+            <div className="mt-2 flex items-center gap-3">
+              <span className="rounded-full bg-[#22C55E]/10 px-2 py-0.5 text-[10px] font-bold text-[#22C55E]">+120 XP</span>
+              <span className="text-[10px] text-[#14201B]/50">~15 min</span>
+            </div>
+          </motion.div>
+
+          {/* Skill grid */}
+          <motion.div
+            className="mt-4 grid grid-cols-2 gap-2 sm:gap-3"
+            initial="hidden"
+            animate="show"
+            variants={{
+              hidden: { opacity: 0 },
+              show: { opacity: 1, transition: { staggerChildren: 0.08, delayChildren: 0.7 } },
+            }}
+          >
+            {[
+              { label: "DSA", value: 82, color: "#22C55E", level: "Strong" },
+              { label: "SQL", value: 74, color: "#22C55E", level: "Competent" },
+              { label: "Interview", value: 61, color: "#f59e0b", level: "Practicing" },
+              { label: "System Design", value: 43, color: "#ef4444", level: "Introduced" },
+            ].map((item) => (
+              <motion.div
+                key={item.label}
+                variants={{
+                  hidden: { opacity: 0, y: 10 },
+                  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 260, damping: 20 } },
+                }}
+                className="rounded-xl border border-[#14201B]/5 bg-[#14201B]/[0.01] p-2.5 sm:p-3"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-[#14201B]/60">{item.label}</span>
+                  <span className="rounded-full px-1.5 py-0.5 text-[9px] font-bold" style={{ background: item.color + "18", color: item.color }}>{item.level}</span>
+                </div>
+                <div className="mt-2 flex items-end justify-between">
+                  <span className="text-xl font-black text-[#0E1813] leading-none">
+                    <AnimatedNumber value={item.value} suffix="%" delay={700 + item.value * 5} />
+                  </span>
+                </div>
+                <div className="mt-2 h-1.5 w-full rounded-full bg-[#14201B]/5 overflow-hidden">
+                  <motion.div
+                    className="h-full rounded-full"
+                    style={{ background: item.color }}
+                    initial={{ width: 0 }}
+                    animate={{ width: `${item.value}%` }}
+                    transition={{ duration: 0.9, delay: 0.8, ease: "easeOut" }}
+                  />
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
 export default function Landing() {
   const reduced = useReducedMotion();
 
@@ -51,8 +241,9 @@ export default function Landing() {
       </a>
 
       {/* ═══ HERO — product-first, no stock photo ═══ */}
-      <section className="relative bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-white">
+        <HeroOrbs />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-10 py-12 sm:py-16 lg:grid-cols-2 lg:gap-14 lg:py-24">
             {/* Copy */}
             <motion.div
@@ -60,17 +251,32 @@ export default function Landing() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
             >
-              <h1 className="font-display text-[2.1rem] leading-[1.08] font-extrabold tracking-tight text-[#0E1813] sm:text-5xl md:text-6xl md:leading-[1.05]">
+              <motion.h1
+                className="font-display text-[2.1rem] leading-[1.08] font-extrabold tracking-tight text-[#0E1813] sm:text-5xl md:text-6xl md:leading-[1.05]"
+                initial={reduced ? {} : { opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.05 }}
+              >
                 Stop preparing randomly.
                 <br />
                 <span className="text-[#22C55E]">Prepare like your target role actually tests.</span>
-              </h1>
+              </motion.h1>
 
-              <p className="mt-5 text-base sm:text-lg leading-relaxed text-[#14201B]/80">
+              <motion.p
+                className="mt-5 text-base sm:text-lg leading-relaxed text-[#14201B]/80"
+                initial={reduced ? {} : { opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.7, delay: 0.15 }}
+              >
                 PlacementPro maps the exact skills companies test, then builds a personal curriculum around your gaps — practice, prove, repair, repeat.
-              </p>
+              </motion.p>
 
-              <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+              <motion.div
+                className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center"
+                initial={reduced ? {} : { opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.25 }}
+              >
                 <Link to="/role-selector" className="inline-flex items-center gap-2 rounded-xl bg-[#0E1813] px-6 py-3 text-sm font-bold text-white shadow-md transition-all hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]">
                   Start free
                   <ArrowRight size={15} />
@@ -78,9 +284,14 @@ export default function Landing() {
                 <Link to="/pricing" className="inline-flex items-center gap-2 rounded-xl border border-[#14201B]/10 bg-white px-6 py-3 text-sm font-semibold text-[#14201B] transition-colors hover:border-[#14201B]/20">
                   See how it works
                 </Link>
-              </div>
+              </motion.div>
 
-              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-[#14201B]/70">
+              <motion.div
+                className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-[#14201B]/70"
+                initial={reduced ? {} : { opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.7, delay: 0.35 }}
+              >
                 <span className="inline-flex items-center gap-1.5">
                   <CheckCircle2 size={14} className="text-[#22C55E]" />
                   Skill-graph driven practice
@@ -93,80 +304,11 @@ export default function Landing() {
                   <CheckCircle2 size={14} className="text-[#22C55E]" />
                   Company-pattern mocks
                 </span>
-              </div>
+              </motion.div>
             </motion.div>
 
             {/* Product mockup — wow moment */}
-            <motion.div
-              initial={reduced ? {} : { opacity: 0, y: 18, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-              className="relative"
-            >
-              <div className="rounded-2xl border border-[#14201B]/10 bg-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.12)]">
-                {/* Browser chrome */}
-                <div className="flex items-center gap-2 border-b border-[#14201B]/5 px-4 py-3">
-                  <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-green-400/80" />
-                  <span className="ml-3 text-[10px] font-medium text-[#14201B]/40">placementpro.app/dashboard</span>
-                </div>
-                <div className="p-4 sm:p-5">
-                  {/* Header row */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#22C55E]/10 text-lg">👤</div>
-                      <div>
-                        <p className="text-sm font-bold text-[#0E1813]">Good morning, Alex</p>
-                        <p className="text-[10px] font-medium text-[#14201B]/50">SDE · 68% ready</p>
-                      </div>
-                    </div>
-                    <div className="relative flex h-12 w-12 items-center justify-center">
-                      <svg className="h-12 w-12 -rotate-90" viewBox="0 0 48 48">
-                        <circle cx="24" cy="24" r="20" fill="none" stroke="#14201B" strokeWidth="3" opacity="0.06" />
-                        <circle cx="24" cy="24" r="20" fill="none" stroke="#22C55E" strokeWidth="3" strokeDasharray="125.6" strokeDashoffset="40.2" strokeLinecap="round" />
-                      </svg>
-                      <span className="absolute text-[10px] font-black text-[#0E1813]">68%</span>
-                    </div>
-                  </div>
-
-                  {/* Next Mission */}
-                  <div className="mt-4 rounded-xl border border-dashed border-[#14201B]/10 bg-gradient-to-r from-[#14201B]/[0.02] to-transparent p-3">
-                    <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-widest text-[#22C55E]">
-                      <Target size={12} /> Next Mission
-                    </div>
-                    <p className="mt-1.5 text-sm font-bold text-[#0E1813]">Repair: Graph Traversal patterns</p>
-                    <div className="mt-2 flex items-center gap-3">
-                      <span className="rounded-full bg-[#22C55E]/10 px-2 py-0.5 text-[10px] font-bold text-[#22C55E]">+120 XP</span>
-                      <span className="text-[10px] text-[#14201B]/50">~15 min</span>
-                    </div>
-                  </div>
-
-                  {/* Skill grid */}
-                  <div className="mt-4 grid grid-cols-2 gap-2 sm:gap-3">
-                    {[
-                      { label: "DSA", value: 82, color: "#22C55E", level: "Strong" },
-                      { label: "SQL", value: 74, color: "#22C55E", level: "Competent" },
-                      { label: "Interview", value: 61, color: "#f59e0b", level: "Practicing" },
-                      { label: "System Design", value: 43, color: "#ef4444", level: "Introduced" },
-                    ].map((item) => (
-                      <div key={item.label} className="rounded-xl border border-[#14201B]/5 bg-[#14201B]/[0.01] p-2.5 sm:p-3">
-                        <div className="flex items-center justify-between">
-                          <span className="text-[10px] font-semibold uppercase tracking-wider text-[#14201B]/60">{item.label}</span>
-                          <span className="rounded-full px-1.5 py-0.5 text-[9px] font-bold" style={{ background: item.color + "18", color: item.color }}>{item.level}</span>
-                        </div>
-                        <div className="mt-2 flex items-end justify-between">
-                          <span className="text-xl font-black text-[#0E1813] leading-none">{item.value}<span className="text-[10px] font-semibold text-[#14201B]/40 ml-0.5">%</span></span>
-                        </div>
-                        <div className="mt-2 h-1.5 w-full rounded-full bg-[#14201B]/5 overflow-hidden">
-                          <div className="h-full rounded-full transition-all duration-500" style={{ width: `${item.value}%`, background: item.color }} />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+            <HeroMockup reduced={reduced} />
           </div>
         </div>
       </section>
