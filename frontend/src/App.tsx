@@ -123,7 +123,7 @@ import {
 
 function AnimatedRoutes() {
   const location = useLocation();
-  const lastTrackedPath = useRef(null);
+  const lastTrackedPath = useRef<string | null>(null);
 
   // Track page views for analytics (throttled: once per path, StrictMode-safe)
   useEffect(() => {
@@ -705,19 +705,21 @@ function AnimatedRoutes() {
   );
 }
 
-function PageSuspense({ children }) {
+function PageSuspense({ children }: { children: React.ReactNode }) {
   return <Suspense fallback={<DashboardSkeleton />}>{children}</Suspense>;
 }
 
 function AppContent() {
-  const { showXP, showLevelUp, showStreakCeremony, showBadgeUnlock, showBossDefeat, showDailyLogin, showAchievement, showCriticalHit, play, screenShake } =
+  const { showXP, showLevelUp, showStreakCeremony, showBadgeUnlock, showBossDefeat, showDailyLogin, showAchievement, showCriticalHit, screenShake } =
     useJuice();
   const [xpPopup, setXpPopup] = useState({
     show: false,
     xp: 0,
     level: 0,
     streak: 0,
-    badges: [],
+    badges: [] as string[],
+    critical: false,
+    criticalBonus: 0,
   });
   const [celebration, setCelebration] = useState({
     show: false,
@@ -727,16 +729,16 @@ function AppContent() {
     xp: 0,
   });
   const [searchOpen, setSearchOpen] = useState(false);
-  const searchInputRef = useRef(null);
 
   const { combo } = useGamificationData();
-  const currentCombo = combo?.current_combo ?? 0;
-  const comboMultiplier = combo?.multiplier ?? 1;
+  const currentCombo = (combo?.current_combo as number | undefined) ?? 0;
+  const comboMultiplier = (combo?.multiplier as number | undefined) ?? 1;
 
   // Global XP listener — components can dispatch "xp-gained" event
   useEffect(() => {
-    const handler = (e) => {
-      const { xp, level, streak, badges, combo, critical, boss, dailyLogin, achievement } = e.detail || {};
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail || {};
+      const { xp, level, streak, badges, critical, boss, dailyLogin, achievement } = detail;
       if (xp) {
         const isBig = (xp || 0) >= 100;
         setXpPopup({
@@ -744,13 +746,13 @@ function AppContent() {
           xp,
           level: level || 0,
           streak: streak || 0,
-          badges: badges || [],
+          badges: (badges as string[]) || [],
           critical: critical || false,
-          criticalBonus: critical?.bonus || 0,
+          criticalBonus: (critical as { bonus?: number } | undefined)?.bonus || 0,
         });
         showXP(xp, window.innerWidth / 2, window.innerHeight / 2, isBig);
         if (critical) {
-          showCriticalHit('CRITICAL HIT!', `+${Math.round((critical.bonus || 0) * 100)}% Bonus`);
+          showCriticalHit('CRITICAL HIT!', `+${Math.round(((critical as { bonus?: number } | undefined)?.bonus || 0) * 100)}% Bonus`);
         }
         if (level) {
           setTimeout(() => showLevelUp(level), 300);
@@ -758,8 +760,8 @@ function AppContent() {
         if (streak && (streak % 7 === 0 || streak === 1)) {
           setTimeout(() => showStreakCeremony(streak), 500);
         }
-        if (badges && badges.length > 0) {
-          badges.forEach((badge, i) => {
+        if (badges && (badges as string[])?.length > 0) {
+          (badges as string[]).forEach((badge, i) => {
             setTimeout(() => showBadgeUnlock(badge), i * 800 + 500);
           });
         }
@@ -775,8 +777,8 @@ function AppContent() {
         }
       }
     };
-    const celebrationHandler = (e) => {
-      const { type, title, subtitle, xp, message } = e.detail || {};
+    const celebrationHandler = (e: Event) => {
+      const { type, title, subtitle, xp, message } = (e as CustomEvent).detail || {};
       setCelebration({
         show: true,
         type: type || "confetti",
@@ -807,7 +809,7 @@ function AppContent() {
 
   // Keyboard shortcuts
   useEffect(() => {
-    const handleKeydown = (e) => {
+    const handleKeydown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
         setSearchOpen((prev) => !prev);
@@ -861,7 +863,7 @@ function AppContent() {
               visible={currentCombo >= 2}
             />
             <ComboWarningOverlay
-              seconds={combo?.combo_decay_seconds ?? 0}
+              seconds={(combo?.combo_decay_seconds as number | undefined) ?? 0}
               visible={currentCombo >= 3}
             />
             <CriticalHitOverlay
