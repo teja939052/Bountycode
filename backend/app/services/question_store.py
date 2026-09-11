@@ -17,6 +17,8 @@ _questions: list[dict] = []
 _loaded = False
 _expanded = False
 _mongo_loaded = False
+_unverified_questions: list[dict] = []
+_unverified_loaded = False
 
 settings = get_settings()
 
@@ -26,25 +28,7 @@ settings = get_settings()
 _BACKEND_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 _BANK_JSON = os.path.join(_BACKEND_ROOT, "app", "data", "questions_bank.json")
 
-_SEED_FILES: list[str] = [
-    "seed_questions_mega.py",
-    "seed_questions_v2.py",
-    "seed_questions_2000.py",
-    "seed_questions.py",
-    "seed_questions_extra.py",
-    "seed_questions_faang.py",
-    "seed_questions_500.py",
-    "seed_questions_500_more.py",
-    "seed_questions_300_more.py",
-    "seed_questions_500_plus_2.py",
-    "seed_questions_500_plus_3.py",
-    "seed_questions_graph_dp.py",
-    "massive_questions.py",
-    "seed_questions_striver.py",
-    "seed_questions_blind75.py",
-    "seed_questions_neetcode150.py",
-    "seed_questions_leetcode_extra.py",
-]
+_SEED_FILES: list[str] = []
 
 # Number of unique-id variants appended per original question.
 # Set to 0: variants were artificial `-v2/-v3/-v4` clones that padded the bank
@@ -190,7 +174,12 @@ _PATTERN_KEYWORDS = [
 
 
 def _detect_pattern(q: dict) -> str:
-    """Best-effort Striver pattern detection from topic + title + description."""
+    """Best-effort Striver pattern detection from topic + title + description.
+    Patterns are a coding-problem concept only: non-coding question types
+    (sql, interview, aptitude, verbal, logical, cs fundamentals ...) are left
+    untagged so they can never pollute a coding pattern page."""
+    if str(q.get("type") or "coding").lower() != "coding":
+        return ""
     topic = _normalize_topic(q.get("topic"))
     if topic in TOPIC_TO_PATTERN:
         return TOPIC_TO_PATTERN[topic]
@@ -377,26 +366,49 @@ def _load_from_seed_files() -> None:
             logger.info("Loaded %d from %s", len(items), fname)
 
 
-EXTRA_BANKS = [
+VERIFIED_EXTRA_BANKS = [
+    "verified_placement_questions.json",
+    "sql_practice_bank.json",
+    "interview_practice_bank.json",
+    "india_placement_depth.json",
+    "system_design_bank.json",
+    "debugging_bank.json",
+    # Reviewed candidates promoted from the isolated unverified pool.
+    # These passed structural review (statement, testcases, solution) and are
+    # safe for student-facing practice, but are not yet independently verified.
+    "promoted_questions.json",
+]
+
+UNVERIFIED_EXTRA_BANKS = [
     "leetcode_problems_seed.json",
     "striver_a2z_600.json",
     "tcs_nqt_questions.json",
     "infosys_questions.json",
-    # Bulk LeetCode-complete enrichment of legacy coding (structural: function_name,
-    # constraints, visible+hidden splits). Trust: reviewed/needs_review (never verified).
-    # Loaded before verified so verified still wins on dedupe.
     "legacy_enriched_coding.json",
-    # Independently verified (Content Trust) tranches. Loaded last before dedupe so verified wins.
-    "verified_placement_questions.json",
 ]
 
-def _load_extra_bank() -> None:
-    """Load verified file-based banks (laptop storage, not DB).
+# Default serving uses verified-only extra banks.
+EXTRA_BANKS = list(VERIFIED_EXTRA_BANKS)
 
-    Each JSON is a curated ``review_status: placement_grade`` list with
-    constraints + test cases, appended before dedupe so curated-grade wins."""
-    global _questions
-    for fname in EXTRA_BANKS:
+# Machine-executed banks: every solution executed against all visible +
+# hidden tests (or answers independently re-simulated for SQL). Labeled
+# trust_status=automated_checked (NOT human-reviewed). Served below verified
+# content via TRUST_RANK; owner-authorized per serving request.
+AUTO_CHECKED_BANKS = [
+    "llm_draft_checked.json",
+]
+
+
+def _load_extra_bank(target: Optional[list] = None, bank_list: Optional[list] = None) -> None:
+    """Load file-based banks into the target list (default: verified extra banks).
+
+    Each JSON is a curated list with constraints + test cases, appended before
+    dedupe so curated-grade wins."""
+    if target is None:
+        target = _questions
+    if bank_list is None:
+        bank_list = EXTRA_BANKS
+    for fname in bank_list:
         extra_path = os.path.join(_BACKEND_ROOT, "app", "data", fname)
         if not os.path.exists(extra_path):
             continue
@@ -408,11 +420,11 @@ def _load_extra_bank() -> None:
             continue
         if not isinstance(data, list):
             continue
-        idx = len(_questions)
+        idx = len(target)
         added = 0
         for q in data:
             if isinstance(q, dict) and q.get("question"):
-                _questions.append(_assign_id(dict(q), idx))
+                target.append(_assign_id(dict(q), idx))
                 idx += 1
                 added += 1
         if added:
@@ -425,25 +437,71 @@ def load_all():
         return
     _questions = []
 
-    # Fast path: use consolidated JSON bank if available and up-to-date
-    if _json_bank_fresh() and _load_from_json_bank():
-        _load_extra_bank()
-        _dedupe_and_filter()
-        _apply_leetcode_meta()
-        _expand_questions()
-        _loaded = True
-        logger.info("QuestionStore loaded %d questions total (via JSON bank)", len(_questions))
-        return
+    # Verified-only default serving: skip the consolidated JSON bank and
+    # unverified extra banks. Only verified file-based banks are loaded here.
+    _load_extra_bank(_questions)
+    # Machine-executed drafts (owner-authorized): solutions executed against
+    # all tests / answers re-simulated. Ranked below verified via TRUST_RANK.
+    _load_extra_bank(_questions, AUTO_CHECKED_BANKS)
 
-    # Fallback: load from 17 individual Python seed files
-    _load_from_seed_files()
-    _load_extra_bank()
-
-    _dedupe_and_filter()
+    _dedupe_and_filter(_questions)
     _apply_leetcode_meta()
     _expand_questions()
     _loaded = True
-    logger.info("QuestionStore loaded %d questions total (via seed files)", len(_questions))
+    logger.info("QuestionStore loaded %d verified questions total", len(_questions))
+
+
+def load_unverified():
+    """Load dirty / unverified banks into the isolated unverified pool.
+
+    This is for admin / candidate mode only. Student-facing flows must not
+    call this."""
+    global _unverified_questions, _unverified_loaded
+    if _unverified_loaded:
+        return
+    _unverified_questions = []
+
+    # Load consolidated JSON bank (all entries have missing trust_status)
+    if os.path.exists(_BANK_JSON):
+        try:
+            with open(_BANK_JSON, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            if isinstance(data, list):
+                idx = 0
+                for q in data:
+                    if isinstance(q, dict):
+                        _unverified_questions.append(_assign_id(dict(q), idx))
+                        idx += 1
+                logger.info("Loaded %d unverified questions from JSON bank", len(_unverified_questions))
+        except Exception as e:
+            logger.warning("Failed to load unverified JSON bank: %s", e)
+
+    # Load unverified extra banks
+    for fname in UNVERIFIED_EXTRA_BANKS:
+        extra_path = os.path.join(_BACKEND_ROOT, "app", "data", fname)
+        if not os.path.exists(extra_path):
+            continue
+        try:
+            with open(extra_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except Exception as e:
+            logger.warning("Failed to read unverified extra bank %s: %s", fname, e)
+            continue
+        if not isinstance(data, list):
+            continue
+        idx = len(_unverified_questions)
+        added = 0
+        for q in data:
+            if isinstance(q, dict) and q.get("question"):
+                _unverified_questions.append(_assign_id(dict(q), idx))
+                idx += 1
+                added += 1
+        if added:
+            logger.info("Loaded %d unverified problems from %s", added, fname)
+
+    _dedupe_and_filter(_unverified_questions)
+    _unverified_loaded = True
+    logger.info("Loaded %d unverified questions total", len(_unverified_questions))
 
 
 def _apply_leetcode_meta():
@@ -549,7 +607,7 @@ def _is_usable(q: dict) -> bool:
     return True
 
 
-def _dedupe_and_filter():
+def _dedupe_and_filter(target: Optional[list] = None) -> list[dict]:
     """Remove auto-generated filler and collapse duplicate questions.
 
     - Drops malformed / placeholder / pure-MCQ entries.
@@ -559,9 +617,11 @@ def _dedupe_and_filter():
       problem that belongs to several curated lists keeps all of them.
     """
     global _questions
+    if target is None:
+        target = _questions
     seen: dict[str, dict] = {}
     dropped_filler = 0
-    for q in _questions:
+    for q in target:
         if not _is_usable(q):
             dropped_filler += 1
             continue
@@ -602,12 +662,15 @@ def _dedupe_and_filter():
             if sources:
                 winner["sources"] = sorted(sources)
                 winner["curated_source"] = winner.get("curated_source") or sorted(sources)[0]
-    before = len(_questions)
-    _questions = list(seen.values())
+    before = len(target)
+    result = list(seen.values())
+    if target is _questions:
+        _questions = result
     logger.info(
         "Dedupe: %d raw -> %d kept (%d filler dropped, %d dupes collapsed)",
-        before, len(_questions), dropped_filler, before - len(_questions) - dropped_filler,
+        before, len(result), dropped_filler, before - len(result) - dropped_filler,
     )
+    return result
 
 
 def _match(q: dict, query: dict) -> bool:
@@ -694,7 +757,7 @@ def count_documents(query: Optional[dict] = None) -> int:
     return sum(1 for q in _questions if _match(q, query))
 
 
-TRUST_RANK = {"verified": 3, "reviewed": 2, "needs_review": 1, "unverified": 0, "quarantined": -1}
+TRUST_RANK = {"verified": 3, "reviewed": 2, "needs_review": 1, "automated_checked": 1, "unverified": 0, "quarantined": -1}
 
 
 def trust_rank(q: dict) -> int:
@@ -702,17 +765,62 @@ def trust_rank(q: dict) -> int:
     return TRUST_RANK.get(str(q.get("trust_status", "unverified")).lower(), 0)
 
 
-def find_one(query: dict) -> Optional[dict]:
+def find_one(query: dict, allow_unverified: bool = False) -> Optional[dict]:
     load_all()
     for q in _questions:
         if _match(q, query):
             return dict(q)
+    if allow_unverified:
+        # Fallback to unverified pool for backward compatibility with history
+        if not _unverified_loaded:
+            try:
+                load_unverified()
+            except Exception:
+                pass
+        for q in _unverified_questions:
+            if _match(q, query):
+                return dict(q)
     return None
+
+
+def find_one_verified(query: dict) -> Optional[dict]:
+    """Like find_one, but only returns independently verified content."""
+    load_all()
+    for q in _questions:
+        if _match(q, query) and trust_rank(q) >= TRUST_RANK["verified"]:
+            return dict(q)
+    return None
+
+
+def get_question_for_serving(question_id: str) -> Optional[dict]:
+    """Fetch one question from the in-memory canonical store by string id,
+    normalized onto the serving schema (question_title/statement/
+    visible_test_cases with fallbacks). Returns None when absent. Never
+    touches MongoDB (Residency Rule, AGENTS.md).
+
+    Only returns independently verified content. Use find_one() with
+    allow_unverified=True for admin/history lookups."""
+    q = find_one_verified({"id": str(question_id)})
+    if not q:
+        return None
+    q.setdefault("question_title", q.get("title") or (q.get("question") or "")[:80] or "Unknown")
+    q.setdefault("statement", q.get("question", ""))
+    q.setdefault("visible_test_cases", q.get("testcases", []) or [])
+    q.setdefault("hidden_test_cases", q.get("hidden_testcases", []) or [])
+    q.setdefault("hints", q.get("hints", []) or [])
+    return q
 
 
 def find(query: Optional[dict] = None):
     load_all()
     return QuestionCursor(_questions, query)
+
+
+def find_unverified(query: Optional[dict] = None):
+    """Search the isolated unverified/candidate pool. Admin/candidate mode only."""
+    if not _unverified_loaded:
+        load_unverified()
+    return QuestionCursor(_unverified_questions, query)
 
 
 def distinct(field: str) -> list:
@@ -900,31 +1008,61 @@ def get_topic_stats() -> list[dict]:
     return sorted(stats.values(), key=lambda t: (-t["total"], t["topic"]))
 
 
-async def load_from_mongo(collection=None):
-    """Load user-submitted questions from MongoDB into memory."""
-    global _questions, _mongo_loaded
-    if _mongo_loaded:
-        return
-    
-    try:
-        if collection is None:
-            from app.database import get_client
-            db = get_client()[settings.DATABASE_NAME]
-            collection = db["curated_questions"]
-        
-        existing_ids = {q["id"] for q in _questions}
-        count = 0
-        async for doc in collection.find({}):
-            qid = str(doc.pop("_id", ""))
-            if qid and qid not in existing_ids:
-                doc["id"] = qid
-                _questions.append(dict(doc))
-                count += 1
-        
-        _mongo_loaded = True
-        logger.info("Loaded %d questions from MongoDB (%d total)", count, len(_questions))
-    except Exception as e:
-        logger.warning("Failed to load from MongoDB: %s", e)
+# Canonical company key -> tag variants matched against verified questions'
+# explicit `companies` lists (case-insensitive). Deterministic, no LLM.
+_COMPANY_TAG_ALIASES: dict[str, list[str]] = {
+    "tcs": ["tcs", "tcs_nqt", "tata consultancy services"],
+    "infosys": ["infosys", "infytq"],
+    "wipro": ["wipro", "wipro_nlth", "nlth"],
+    "accenture": ["accenture", "amcat"],
+    "cognizant": ["cognizant", "genc", "gen c"],
+    "amazon": ["amazon"],
+    "google": ["google"],
+    "meta": ["meta", "facebook"],
+    "microsoft": ["microsoft"],
+}
+
+
+def canonical_company_key(name: str) -> str:
+    key = (name or "").lower().strip()
+    for canon, variants in _COMPANY_TAG_ALIASES.items():
+        if key == canon or key in variants:
+            return canon
+    return key
+
+
+def company_verified_bank(company: str) -> dict:
+    """Per-company bank: deterministic filter over VERIFIED-ONLY stock using
+    the questions' explicit `companies` tags. No LLM involvement — pure
+    in-memory filtering over human-verified content. Each item keeps its own
+    `provenance` (e.g. "pattern_relevant to TCS NQT / Infosys"); the bank as a
+    whole is therefore pattern-relevant topic/company alignment, never a claim
+    of "asked at X". Returns counts grouped by type/topic plus the items."""
+    canon = canonical_company_key(company)
+    variants = _COMPANY_TAG_ALIASES.get(canon, [canon])
+    items = find({"company": {"$in": variants}}).only_verified().to_list()
+    by_type: dict[str, dict] = {}
+    for q in items:
+        t = q.get("type", "unknown")
+        entry = by_type.setdefault(t, {"count": 0, "topics": {}})
+        entry["count"] += 1
+        topic = _display_topic(q.get("topic") or "General")
+        entry["topics"][topic] = entry["topics"].get(topic, 0) + 1
+    for entry in by_type.values():
+        entry["topics"] = dict(sorted(entry["topics"].items(), key=lambda kv: (-kv[1], kv[0])))
+    return {
+        "company": canon,
+        "total": len(items),
+        "by_type": by_type,
+        "relevance": "tagged",
+        "provenance_note": (
+            "Items carry explicit company tags with per-item provenance "
+            "(pattern-relevant unless independently drive-verified). "
+            "Topic alignment without an explicit tag is pattern-relevant, "
+            "never presented as asked-at-X."
+        ),
+        "items": items,
+    }
 
 
 def insert_question(doc: dict) -> str:
@@ -933,3 +1071,22 @@ def insert_question(doc: dict) -> str:
     doc["id"] = qid
     _questions.append(dict(doc))
     return qid
+
+
+def vote_question(question_id: str, vote: int) -> Optional[dict]:
+    """Record curation feedback in the in-memory candidate store.
+
+    Question-bank content and its curation candidates intentionally never use
+    MongoDB. Votes are ephemeral until a curator promotes an item into a
+    versioned source file.
+    """
+    load_all()
+    for pool in (_questions, _unverified_questions):
+        for question in pool:
+            if str(question.get("id")) != str(question_id):
+                continue
+            question["upvotes"] = question.get("upvotes", 0) + max(0, vote)
+            question["downvotes"] = question.get("downvotes", 0) + max(0, -vote)
+            question["updated_at"] = datetime.now(timezone.utc)
+            return dict(question)
+    return None

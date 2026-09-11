@@ -3,15 +3,12 @@ import json
 import os
 from fastapi import APIRouter, Depends, HTTPException, Query
 from fastapi.responses import JSONResponse
+from pydantic import BaseModel, Field
 from typing import Optional, List, Dict, Any
-from bson import ObjectId
 from app.middleware.auth import get_current_user
-from app.database import (
-    curated_questions_collection, question_answers_collection,
-    users_collection, solved_problems_collection
-)
+from app.database import question_answers_collection, users_collection, solved_problems_collection
 from app.models.question import SubmitAnswer, QuestionSubmission, QuestionVote
-from app.services.ai import chat_completion, parse_json, assign_companies
+from app.services.ai_core import chat_completion, parse_json, assign_companies
 from app.services.gamification import record_practice
 from app.services.usage import check_and_reset_monthly_usage
 from app.services.code_executor import CodeExecutionEngine
@@ -69,11 +66,20 @@ def _filter_curated(questions: list, company: str, pattern: str, role: str) -> l
     return result
 
 
+# The browse API merges the curated content bank with the file-based
+# placement banks that the canonical question_store also loads. Deriving this
+# list from question_store.EXTRA_BANKS (rather than duplicating filenames here)
+# keeps a single canonical source of truth for which on-disk banks feed the
+# runtime. question_store is the owner of the placement/coding question bank;
+# quiz_service owns the curated interactive-quiz model and is intentionally
+# separate (see services/question_standard.py and the content-trust pipeline).
 CURATED_EXTRA_BANKS = [
-    BACKEND_ROOT / "app" / "data" / "leetcode_problems_seed.json",
-    BACKEND_ROOT / "app" / "data" / "striver_a2z_600.json",
-    BACKEND_ROOT / "app" / "data" / "tcs_nqt_questions.json",
-    BACKEND_ROOT / "app" / "data" / "infosys_questions.json",
+    BACKEND_ROOT / "app" / "data" / fname
+    for fname in question_store.EXTRA_BANKS
+    if fname != "legacy_enriched_coding.json" and fname != "verified_placement_questions.json"
+] + [
+    BACKEND_ROOT / "app" / "data" / fname
+    for fname in question_store.AUTO_CHECKED_BANKS
 ]
 
 def _load_curated_questions() -> list:
@@ -194,9 +200,11 @@ async def browse_questions(
     all_questions = _load_curated_questions()
 
     # For production serving, only show placement-grade reviewed questions
+    # plus machine-executed drafts (solutions executed against all tests,
+    # labeled trust_status=automated_checked, ranked below verified).
     # Admin users and Pro can see all; free users get only reviewed ones
     if not _is_paid(user):
-        all_questions = [q for q in all_questions if q.get("review_status") in ("placement_grade", "reviewed")]
+        all_questions = [q for q in all_questions if q.get("review_status") in ("placement_grade", "reviewed", "automated_checked")]
 
     # Apply filters
     filtered = _filter_curated(all_questions, company, pattern, role)
@@ -253,7 +261,7 @@ def _coding_store_topics(company_key: str, limit: int = 8):
     variants = ("-v2", "-v3", "-v4")
     query = {"company": {"$in": [company_key, company_key.replace("_", " "), company_key.replace("_", "-")]}, "type": "coding"}
     counts: Dict[str, int] = {}
-    for q in question_store.find(query).to_list():
+    for q in question_store.find(query).prefer_verified().to_list():
         if str(q.get("id", "")).endswith(variants):
             continue
         topic = (q.get("topic") or "General").strip()
@@ -315,7 +323,7 @@ async def company_question_bank(
                 })
     if coding["top_topics"]:
         query = {"company": {"$in": [company_id or company.lower().strip()]}, "type": "coding"}
-        for q in question_store.find(query).to_list():
+        for q in question_store.find(query).prefer_verified().to_list():
             if str(q.get("id", "")).endswith(("-v2", "-v3", "-v4")):
                 continue
             if len([s for s in samples if s["type"] == "coding"]) >= 3:
@@ -330,6 +338,25 @@ async def company_question_bank(
                 "type": "coding",
             })
 
+    # Verified per-company bank: deterministic in-memory filter over TRUSTED
+    # stock by explicit company tags (no LLM, honest provenance). Counts only —
+    # items are served by the OA/study flows that consume the same index.
+    verified_bank = {}
+    try:
+        bank = question_store.company_verified_bank(company_id or company.lower().strip())
+        verified_bank = {
+            "company": bank["company"],
+            "total": bank["total"],
+            "by_type": {
+                        t: {"count": e["count"], "topics": e["topics"]}
+                        for t, e in bank["by_type"].items()
+                    },
+            "relevance": bank["relevance"],
+            "provenance_note": bank["provenance_note"],
+        }
+    except Exception:
+        verified_bank = {"total": 0, "by_type": {}}
+
     return {
         "company_id": company_id,
         "company": display_name,
@@ -341,6 +368,7 @@ async def company_question_bank(
         "leadership_principles": (overview or {}).get("leadership_principles", []),
         "focus_areas": focus_areas,
         "coding_store": coding,
+        "verified_bank": verified_bank,
         "sample_questions": samples[:12],
         "source": "Authored interview question bank + curated coding store",
     }
@@ -411,6 +439,136 @@ async def get_patterns():
     return {"patterns": patterns, "total": sum(p["total"] for p in patterns)}
 
 
+def _canonical_pattern(name: str) -> Optional[str]:
+    """Resolve a slug or free-text name to a canonical Striver pattern name."""
+    if not name or not name.strip():
+        return None
+    slug = "".join(ch for ch in name.lower().replace("_", " ").replace("-", " ") if ch.isalnum() or ch == " ")
+    slug = " ".join(slug.split())
+    for p in question_store.STRIVER_PATTERNS:
+        p_flat = p.lower().replace(" ", "")
+        if slug == p.lower() or slug.replace(" ", "") == p_flat:
+            return p
+    if slug in {"slidingwindow", "sliding windows", "sw"}:
+        return "Sliding Window"
+    for p in question_store.STRIVER_PATTERNS:
+        if slug in p.lower() or p.lower() in slug:
+            return p
+    return None
+
+
+def pattern_variants(pattern: str) -> List[str]:
+    """Canonical pattern name plus legacy tag variants (e.g. 'sliding_window',
+    'two pointers', 'binary search')."""
+    variants = [pattern]
+    lower_under = pattern.lower().replace(" ", "_")
+    lower_space = pattern.lower()
+    for v in (lower_under, lower_space, lower_under.replace("_", ""), lower_space.replace(" ", "")):
+        if v and v not in variants:
+            variants.append(v)
+    return variants
+
+
+async def build_pattern_page_payload(uid: str, canonical: str) -> Dict[str, Any]:
+    """Aggregate a per-user pattern page over existing student state
+    (solved_problems + question_answers). Pure read — no new collections."""
+    problems = question_store.find({"type": "coding", "pattern": {"$in": pattern_variants(canonical)}}).only_verified().to_list()
+    diff_order = {"easy": 0, "medium": 1, "hard": 2}
+    problems.sort(key=lambda q: (diff_order.get(q.get("difficulty", "medium"), 3), (q.get("title") or "")))
+
+    ids = [q["id"] for q in problems]
+
+    solved_ids: set = set()
+    solved_docs = await solved_problems_collection.find(
+        {"user_id": uid, "question_id": {"$in": ids}}, {"question_id": 1}
+    ).to_list(10000)
+    for d in solved_docs:
+        solved_ids.add(d.get("question_id"))
+
+    best_by_qid: Dict[str, float] = {}
+    if ids:
+        cursor = question_answers_collection.find(
+            {"user_id": uid, "question_id": {"$in": ids}}, {"question_id": 1, "score": 1}
+        )
+        async for a in cursor:
+            qid = a.get("question_id")
+            sc = a.get("score") or 0
+            if qid not in best_by_qid or sc > best_by_qid[qid]:
+                best_by_qid[qid] = sc
+
+    items = []
+    company_counts: Dict[str, int] = {}
+    for q in problems:
+        qid = q["id"]
+        if qid in solved_ids:
+            status = "solved"
+        elif qid in best_by_qid:
+            status = "attempted"
+        else:
+            status = "not_started"
+        best_score = round(best_by_qid[qid], 1) if qid in best_by_qid else None
+        if status == "solved" and best_score is not None and best_score >= 8.0:
+            status = "mastered"
+        for c in q.get("companies", []) or []:
+            company_counts[c] = company_counts.get(c, 0) + 1
+        guide = q.get("dsa_guide") or {}
+        title = q.get("title") or q.get("question_title") or ""
+        if not title:
+            clean = (q.get("question") or "").strip()
+            title = (clean[:72] + "…") if len(clean) > 72 else clean
+        items.append({
+            "id": qid,
+            "title": title,
+            "difficulty": q.get("difficulty") or "medium",
+            "type": q.get("type") or "coding",
+            "topic": q.get("topic") or "",
+            "sub_topic": q.get("sub_topic") or "",
+            "status": status,
+            "best_score": best_score,
+            "companies": q.get("companies") or [],
+            "provenance": q.get("provenance") or "",
+            "statement": q.get("question") or "",
+            "approach": guide.get("approach") or "",
+            "complexity": guide.get("complexity") or {},
+            "common_mistakes": guide.get("common_mistakes") or [],
+            "tips": guide.get("tips") or [],
+            "testcase_count": len((q.get("testcases") or (q.get("solution") or {}).get("testcases") or [])),
+            "external_url": q.get("external_url") or "",
+            "source_platform": q.get("source_platform") or "",
+            "ladder_order": q.get("ladder_order", 999),
+        })
+
+    total = len(items)
+    mastered = len([i for i in items if i["status"] == "mastered"])
+    solved = len([i for i in items if i["status"] in ("solved", "mastered")])
+    attempted = len([i for i in items if i["status"] == "attempted"])
+    top_companies = sorted(company_counts.items(), key=lambda kv: (-kv[1], kv[0]))[:6]
+
+    return {
+        "pattern": canonical,
+        "verified_only": True,
+        "total": total,
+        "mastered": mastered,
+        "solved": solved,
+        "attempted": attempted,
+        "remaining": total - solved - attempted,
+        "mastery_percent": round((solved / total) * 100, 1) if total else 0,
+        "companies": [{"name": k, "count": v} for k, v in top_companies],
+        "problems": items,
+    }
+
+
+@router.get("/patterns/{pattern}")
+async def get_pattern_page(pattern: str, user=Depends(get_current_user)):
+    """Per-user pattern page: verified problems ordered Easy->Medium->Hard with
+    per-question status (not_started/attempted/solved) and pattern mastery %.
+    Pure read aggregation over existing student state — no new collections."""
+    canonical = _canonical_pattern(pattern)
+    if not canonical:
+        raise HTTPException(status_code=404, detail=f"Unknown pattern: {pattern}")
+    return await build_pattern_page_payload(user["id"], canonical)
+
+
 @router.get("/topics")
 @cached(ttl=300, key_prefix="questions")
 async def get_topics():
@@ -476,15 +634,19 @@ async def increment_daily_question_count(user=Depends(get_current_user)):
 
 @router.post("/submit")
 async def submit_question(req: QuestionSubmission, user=Depends(get_current_user)):
+    # Residency Rule (AGENTS.md): question content is in-memory only, never in
+    # MongoDB. User submissions enter the in-memory store as UNVERIFIED curation
+    # candidates and are never served as trusted content.
+    import uuid as _uuid
     doc = req.model_dump()
+    doc["id"] = f"user-submitted-{_uuid.uuid4().hex[:12]}"
     doc["submitted_by"] = user["id"]
     doc["upvotes"] = 0
     doc["downvotes"] = 0
     doc["reported"] = False
+    doc["trust_status"] = "unverified"
     doc["created_at"] = datetime.now(timezone.utc)
     doc["updated_at"] = datetime.now(timezone.utc)
-    result = await curated_questions_collection.insert_one(doc)
-    doc["id"] = str(result.inserted_id)
     try:
         from app.services import question_store
         question_store.insert_question(doc)
@@ -500,24 +662,145 @@ async def upvote_question(req: QuestionVote, user=Depends(get_current_user)):
     if not question:
         raise HTTPException(status_code=404, detail="Question not found")
 
-    try:
-        q_oid = ObjectId(req.question_id)
-        await curated_questions_collection.update_one(
-            {"_id": q_oid},
-            {"$inc": {"upvotes": max(0, req.vote), "downvotes": max(0, -req.vote)}, "$set": {"updated_at": datetime.now(timezone.utc)}},
-        )
-        updated = await curated_questions_collection.find_one({"_id": q_oid})
-        up = updated.get("upvotes", 0) if updated else question.get("upvotes", 0)
-        down = updated.get("downvotes", 0) if updated else question.get("downvotes", 0)
-    except Exception:
-        up = question.get("upvotes", 0) + max(0, req.vote)
-        down = question.get("downvotes", 0) + max(0, -req.vote)
+    updated = question_store.vote_question(req.question_id, req.vote)
+    if not updated:
+        raise HTTPException(status_code=404, detail="Question not found")
+    up = updated.get("upvotes", 0)
+    down = updated.get("downvotes", 0)
 
     return {
         "question_id": req.question_id,
         "upvotes": up,
         "downvotes": down,
     }
+
+
+@router.get("/pattern-readiness/{patternId}", response_model=dict)
+async def pattern_readiness(
+    patternId: str,
+    company: str = "TCS",
+    uid: str = Depends(get_current_user),
+):
+    """Return pattern mastery + company readiness for a given pattern and company."""
+    # resolve canonical pattern name
+    canonical = _canonical_pattern(patternId)
+    if not canonical:
+        raise HTTPException(404, detail="Pattern not found")
+    variants = pattern_variants(canonical)
+    pool = question_store.find({"pattern": {"$in": variants}, "type": "coding"}).prefer_verified().to_list()
+    total = len(pool)
+
+    qids = [q["id"] for q in pool]
+    if not qids:
+        return {
+            "patternId": patternId,
+            "masteryPercent": 0.0,
+            "totalQuestions": 0,
+            "solvedCount": 0,
+            "companyReadiness": {
+                "overallPercent": 0,
+                "sections": [],
+                "nextUpId": None,
+                "weakestSection": None,
+                "weakestTitle": None,
+            },
+            "nextPattern": None,
+        }
+
+    # compute user's solved / attempted / mastered status
+    solved_set: set = set()
+    best: Dict[str, float] = {}
+    if qids:
+        docs = await solved_problems_collection.find(
+            {"user_id": uid, "question_id": {"$in": qids}}, {"question_id": 1}
+        ).to_list(10000)
+        solved_set = {d.get("question_id") for d in docs}
+        cursor = question_answers_collection.find(
+            {"user_id": uid, "question_id": {"$in": qids}}, {"question_id": 1, "score": 1}
+        )
+        async for a in cursor:
+            qid = a.get("question_id")
+            sc = a.get("score") or 0
+            if qid not in best or sc > best[qid]:
+                best[qid] = sc
+
+    solved_count = 0
+    mastered_count = 0
+    for q in pool:
+        qid = q["id"]
+        if qid in solved_set:
+            solved_count += 1
+            if qid in best and best[qid] >= 8.0:
+                mastered_count += 1
+
+    mastery_percent = (mastered_count / total * 100) if total else 0.0
+
+    # determine next pattern in the canonical order
+    pattern_order = ["sliding-window", "two-pointers", "binary-search", "hashing", "strings"]
+    current_idx = pattern_order.index(patternId) if patternId in pattern_order else -1
+    next_pattern = pattern_order[current_idx + 1] if current_idx is not None and current_idx + 1 < len(pattern_order) else None
+
+    # company readiness: we currently return a minimal block; full details
+    # can be fetched from /api/v1/tracks/{company}/overview
+    company_readiness = {
+        "overallPercent": 0,  # placeholder; compute from user's solved/total if desired
+        "sections": [],       # placeholder
+        "nextUpId": None,
+        "weakestSection": None,
+        "weakestTitle": None,
+    }
+
+    return {
+        "patternId": patternId,
+        "masteryPercent": mastery_percent,
+        "totalQuestions": total,
+        "solvedCount": solved_count,
+        "companyReadiness": company_readiness,
+        "nextPattern": next_pattern,
+    }
+
+
+class PatternChecklistState(BaseModel):
+    pattern_id: str
+    checked: List[bool] = Field(default_factory=list, description="Checked state for each checklist item")
+    checklist: List[str] = Field(default_factory=list, description="Checklist items")
+
+
+@router.get("/pattern-checklist/{pattern_id}")
+async def get_pattern_checklist(pattern_id: str, user=Depends(get_current_user)):
+    """Get saved checklist state for a pattern page."""
+    uid = user["id"]
+    doc = await user_question_state_collection.find_one({
+        "user_id": uid,
+        "pattern_id": pattern_id,
+        "type": "pattern_checklist",
+    })
+    if not doc:
+        return {"pattern_id": pattern_id, "checked": [], "checklist": []}
+    return {
+        "pattern_id": doc.get("pattern_id", pattern_id),
+        "checked": doc.get("checked", []),
+        "checklist": doc.get("checklist", []),
+    }
+
+
+@router.post("/pattern-checklist")
+async def save_pattern_checklist(req: PatternChecklistState, user=Depends(get_current_user)):
+    """Save checklist state for a pattern page."""
+    uid = user["id"]
+    await user_question_state_collection.update_one(
+        {"user_id": uid, "pattern_id": req.pattern_id, "type": "pattern_checklist"},
+        {"$set": {
+            "user_id": uid,
+            "pattern_id": req.pattern_id,
+            "type": "pattern_checklist",
+            "checked": req.checked,
+            "checklist": req.checklist,
+            "updated_at": datetime.now(timezone.utc),
+        }},
+        upsert=True,
+    )
+    return {"success": True, "pattern_id": req.pattern_id}
 
 
 from app.routes.questions_solve import router as solve_router
