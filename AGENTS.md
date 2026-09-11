@@ -1,12 +1,13 @@
 # AGENTS.md — PlacementPro
 
-## 🔒 ARCHITECTURE FREEZE — CONTENT EXCELLENCE PHASE
+## Architecture Guidelines
 
-**The architecture is frozen. Do NOT create new systems.**
+Prefer reusing existing systems over creating new ones. Before adding a new
+abstraction, search routes, services, frontend pages, API modules, and database
+collections for an existing implementation. Create a new system only when the
+existing canonical abstraction is demonstrably incapable.
 
-Every agent must read this section before touching the repository.
-
-### Canonical Pipeline (DO NOT DUPLICATE)
+### Canonical Pipeline
 
 ```
 Journey → Study Engine → Lesson Engine → Mastery → SRS → Gamification → Mock OA → Repair → AI Interview → Readiness → Journey
@@ -19,13 +20,13 @@ Journey → Study Engine → Lesson Engine → Mastery → SRS → Gamification 
 3. Reuse it rather than creating another implementation
 4. Search routes, services, frontend pages, API modules, and database collections
 5. Do not create a new abstraction unless the existing canonical abstraction is demonstrably incapable
-6. If unsure, STOP and report the existing systems and proposed integration point
+6. If unsure, note the existing systems and proposed integration point
 7. Do not declare work complete from compilation alone
 8. Verify the actual student flow
 9. Do not generate bulk content until quality gaps are identified
 10. Every content change must improve capability, confidence, or employability
 
-### Do NOT Create
+### Avoid Creating Duplicates
 
 - New journey engines
 - New study engines
@@ -98,6 +99,14 @@ UNVERIFIED → AUTOMATED_CHECKED → HUMAN_REVIEWED → TRUSTED
 - **AUTOMATED_CHECKED**: Passes automated validation (solution executes, tests pass, no ambiguity flags).
 - **HUMAN_REVIEWED**: Human verified correctness, relevance, and quality.
 - **TRUSTED**: Fully verified. Safe to serve as placement-quality.
+
+### Question Bank Residency Rule (binding)
+
+Question content lives in versioned files under `backend/app/data/` and `backend/app/content/`, loaded into memory at startup by `question_store`. **Never write question content to MongoDB.** The database holds student state only (attempts, submissions, results, missions, sessions, SRS cards) plus telemetry counters — never question statements, answers, or test cases. The single legacy exception (`curated_questions` reads) is frozen: no new code may read question content from MongoDB, and no code may write question content to MongoDB. User-submitted questions (`POST /api/questions/submit`) go to the in-memory store only, as UNVERIFIED curation candidates that are never served.
+
+### No-LLM Bank Rule (binding)
+
+No LLM is involved in the question bank — not in authoring, tagging, grading keys, company attribution, or promotion. Company banks are deterministic filters over human-verified stock (explicit `companies` tags + `provenance` already in the data). Topic-to-company alignment without an explicit tag is labeled `pattern-relevant`, never presented as "asked at X". An LLM may draft curation *candidates* for the repair queue, but candidates are UNVERIFIED raw material: they enter the bank only through the trust pipeline above.
 
 ### v1.3 Acceptance Gates
 
@@ -604,15 +613,23 @@ Landing hero composition rules (locked): ONE navbar only — the global `Navbar`
 - [x] ~~`FALLBACK_MODELS` includes primary model redundantly~~ → Fixed
 - [x] ~~`circuit_breaker` undefined in `chat_completion()` (should be `ai_breaker`)~~ → Fixed
 - [x] ~~`call_with_resilience()` uses dict `.get()` on CircuitBreaker object~~ → Fixed
+- [x] ~~`python-multipart` missing from `requirements.txt`~~ → Fixed
+- [x] ~~Forgot-password flow not sending emails~~ → Fixed; SMTP wired in `services/email.py`
+- [x] ~~No refresh-token endpoint/cookie~~ → Fixed; `/api/v1/auth/refresh` + `pp_refresh_token` cookie + silent refresh in `request.ts`
+- [x] ~~StudentDashboard hardcoded fake LeetCode/GFG stats~~ → Fixed; removed fake data
+- [x] ~~ResetPassword token input broken UX~~ → Fixed; `readOnly` with helper text
 
 ### P1 — HIGH (Remaining)
 - [ ] `ai.py` is large — violates SRP, should be split by domain (partially done with ai_*.py modules)
 - [ ] Frontend is JavaScript/TSX — no strict TypeScript typing on all components
+- [ ] Question bank trust gate: only ~173/6389 questions are independently verified; rest must be repaired or quarantined
 
 ### P2 — MEDIUM (Remaining)
 - [ ] No API versioning at the app level — individual route files use `/api/v1/` prefix
 - [ ] No connection pooling config for Redis if used in production
 - [ ] `_LazyCollection` proxy uses `__getattr__` magic which can mask typos
+- [ ] CSS bloat + theme inconsistency (`index.css` ~1024 lines with dead animation classes)
+- [ ] 29 duplicate/superseded systems identified in `ARCHITECTURE_AUDIT.md` awaiting cleanup
 
 ### P3 — LOW (Remaining)
 - [ ] No email verification on signup

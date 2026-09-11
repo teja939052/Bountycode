@@ -70,7 +70,7 @@ def _pick_problem(config: dict, day_key: str):
     ]:
         # Prefer verified content first (Content Trust pipeline), then fall
         # back to any real question that isn't an auto-generated variant.
-        verified = find(query).prefer_verified().only_verified().to_list()
+        verified = find(query).prefer_verified().to_list()
         if verified:
             return verified[seed % len(verified)]
         all_qs = find(query).to_list()
@@ -150,7 +150,7 @@ async def submit_daily_problem(
     if existing:
         raise HTTPException(status_code=400, detail="Already completed today's problem")
 
-    problem = find_one({"id": problem_id})
+    problem = find_one_verified({"id": problem_id})
     if not problem:
         raise HTTPException(status_code=404, detail="Problem not found")
 

@@ -9,11 +9,11 @@ import {
   useEffect,
   Suspense,
   useState,
-  useCallback,
   useRef,
   lazy,
 } from "react";
 import useAuthStore from "./store/authStore";
+import { useGamificationData } from "./hooks/useGamificationData";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ErrorBoundary from "./components/ErrorBoundary";
@@ -28,6 +28,9 @@ import { ThemeProvider } from "./components/ThemeProvider";
 import { JuiceProvider, useJuice } from "./juice/JuiceProvider";
 import CookieBanner from "./components/CookieBanner";
 import Landing from "./pages/Landing";
+import ComboCounter from "./components/ComboCounter";
+import ComboWarningOverlay from "./juice/ComboWarningOverlay";
+import CriticalHitOverlay from "./juice/CriticalHitOverlay";
 
 const AuthLayout = lazy(() => import("./components/AuthLayout"));
 const Onboarding = lazy(() => import("./components/Onboarding"));
@@ -41,7 +44,6 @@ import {
   Login,
   Register,
   OnboardingQuest,
-  Dashboard,
   Interview,
   InterviewSession,
   InterviewBooking,
@@ -65,7 +67,6 @@ import {
   History,
   Leaderboard,
   DailyDrill,
-  StudyGroups,
   Predictor,
   QuestionBank,
   PracticeMode,
@@ -75,8 +76,6 @@ import {
   PlacementDrives,
   CareerProfile,
   ApplicationTracker,
-  Analytics,
-  Enterprise,
   Compiler,
   SolveProblem,
   ForgotPassword,
@@ -86,26 +85,21 @@ import {
   StudyTimer,
   StudyGoals,
   ProblemOfTheDay,
+  Tower,
   DailyChallenge,
   DSAVisualizer,
   ResumeATS,
   MockOA,
   LearningHub,
-  LanguageJourney,
   RoleSelect,
   JourneyPage,
-  StudyLibrary,
   AdminDashboard,
   Topics,
   TopicProblems,
-  PersonalDashboard,
-  StudentDashboard,
-  LanguageLearning,
-  LearnLesson,
-  FreeTrial,
-  PwaSetup,
-  AdminContent,
-  MyAssignments,
+  PatternPage,
+  CompanyTrack,
+  DuolingoPage,
+  SkillGraph,
   AIMentor,
   ChallengePacks,
   Home,
@@ -113,11 +107,18 @@ import {
   Practice,
   Compete,
   Career,
-  CommandCenter,
   Community,
   Concepts,
+  LessonPage,
+  LearningPaths,
+  CompanyTracks,
+  PrepHub,
   Terms,
   Privacy,
+  FreeTrial,
+  StudentDashboard,
+  LanguageLearning,
+  PwaSetup,
 } from "./pages/lazy";
 
 function AnimatedRoutes() {
@@ -178,6 +179,14 @@ function AnimatedRoutes() {
           }
         />
         <Route
+          path="/lesson/:slug"
+          element={
+            <FeatureErrorBoundary featureName="Lesson">
+              <LessonPage />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
           path="/role-select"
           element={
             <FeatureErrorBoundary featureName="Role Select">
@@ -204,6 +213,9 @@ function AnimatedRoutes() {
           element={<Navigate to="/dashboard" replace />}
         />
         <Route path="/learning" element={<Navigate to="/learn" replace />} />
+        <Route path="/learning-paths" element={<LearningPaths />} />
+        <Route path="/company-tracks" element={<CompanyTracks />} />
+        <Route path="/prep-hub" element={<PrepHub />} />
         <Route path="/concepts" element={<Concepts />} />
 
         {/* Interview Routes */}
@@ -445,6 +457,26 @@ function AnimatedRoutes() {
           }
         />
         <Route
+          path="/tower"
+          element={
+            <ProtectedRoute>
+              <FeatureErrorBoundary featureName="Gamification">
+                <Tower />
+              </FeatureErrorBoundary>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/skill-graph"
+          element={
+            <ProtectedRoute>
+              <FeatureErrorBoundary featureName="Skill Graph">
+                <SkillGraph />
+              </FeatureErrorBoundary>
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/problems"
           element={
             <FeatureErrorBoundary featureName="Question Bank">
@@ -457,6 +489,30 @@ function AnimatedRoutes() {
           element={
             <FeatureErrorBoundary featureName="Question Bank">
               <TopicProblems />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/pattern/:patternId"
+          element={
+            <FeatureErrorBoundary featureName="Question Bank">
+              <PatternPage />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/tracks/:company"
+          element={
+            <FeatureErrorBoundary featureName="Company Prep">
+              <CompanyTrack />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/language-loop"
+          element={
+            <FeatureErrorBoundary featureName="Learning">
+              <DuolingoPage />
             </FeatureErrorBoundary>
           }
         />
@@ -654,7 +710,7 @@ function PageSuspense({ children }) {
 }
 
 function AppContent() {
-  const { showXP, showLevelUp, showStreakCeremony, showBadgeUnlock, play } =
+  const { showXP, showLevelUp, showStreakCeremony, showBadgeUnlock, showBossDefeat, showDailyLogin, showAchievement, showCriticalHit, play, screenShake } =
     useJuice();
   const [xpPopup, setXpPopup] = useState({
     show: false,
@@ -673,19 +729,29 @@ function AppContent() {
   const [searchOpen, setSearchOpen] = useState(false);
   const searchInputRef = useRef(null);
 
+  const { combo } = useGamificationData();
+  const currentCombo = combo?.current_combo ?? 0;
+  const comboMultiplier = combo?.multiplier ?? 1;
+
   // Global XP listener — components can dispatch "xp-gained" event
   useEffect(() => {
     const handler = (e) => {
-      const { xp, level, streak, badges } = e.detail || {};
+      const { xp, level, streak, badges, combo, critical, boss, dailyLogin, achievement } = e.detail || {};
       if (xp) {
+        const isBig = (xp || 0) >= 100;
         setXpPopup({
           show: true,
           xp,
           level: level || 0,
           streak: streak || 0,
           badges: badges || [],
+          critical: critical || false,
+          criticalBonus: critical?.bonus || 0,
         });
-        showXP(xp, window.innerWidth / 2, window.innerHeight / 2);
+        showXP(xp, window.innerWidth / 2, window.innerHeight / 2, isBig);
+        if (critical) {
+          showCriticalHit('CRITICAL HIT!', `+${Math.round((critical.bonus || 0) * 100)}% Bonus`);
+        }
         if (level) {
           setTimeout(() => showLevelUp(level), 300);
         }
@@ -696,6 +762,16 @@ function AppContent() {
           badges.forEach((badge, i) => {
             setTimeout(() => showBadgeUnlock(badge), i * 800 + 500);
           });
+        }
+        if (boss) {
+          setTimeout(() => showBossDefeat(boss), 400);
+          screenShake(10, 600);
+        }
+        if (dailyLogin) {
+          setTimeout(() => showDailyLogin(dailyLogin.reward, dailyLogin.streak), 200);
+        }
+        if (achievement) {
+          setTimeout(() => showAchievement(achievement), 300);
         }
       }
     };
@@ -727,7 +803,7 @@ function AppContent() {
       window.removeEventListener("xp-gained", handler);
       window.removeEventListener("celebrate", celebrationHandler);
     };
-  }, [showXP, showLevelUp, showStreakCeremony, showBadgeUnlock]);
+  }, [showXP, showLevelUp, showStreakCeremony, showBadgeUnlock, showBossDefeat, showDailyLogin, showAchievement, showCriticalHit, screenShake]);
 
   // Keyboard shortcuts
   useEffect(() => {
@@ -778,6 +854,20 @@ function AppContent() {
               onClose={() =>
                 setCelebration((prev) => ({ ...prev, show: false }))
               }
+            />
+            <ComboCounter
+              combo={currentCombo}
+              multiplier={comboMultiplier}
+              visible={currentCombo >= 2}
+            />
+            <ComboWarningOverlay
+              seconds={combo?.combo_decay_seconds ?? 0}
+              visible={currentCombo >= 3}
+            />
+            <CriticalHitOverlay
+              visible={celebration?.type === 'critical'}
+              text={celebration?.title}
+              subtext={celebration?.subtitle}
             />
           </Suspense>
           <Suspense fallback={null}>
