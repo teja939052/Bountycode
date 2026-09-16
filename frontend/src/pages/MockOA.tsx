@@ -5,7 +5,8 @@ import api from "../services/api";
 import Spinner from "../components/ui/Spinner";
 import CelebrationOverlay from "../components/CelebrationOverlay";
 import RepairPanel from "../components/RepairPanel";
-import { useMockSession } from "../hooks/useMockSession";
+import { useMockSession, type Section } from "../hooks/useMockSession";
+import type { OASession, SubmitOAItem } from "../services/api/oa";
 import {
   Clock,
   CheckCircle,
@@ -13,7 +14,6 @@ import {
   ArrowRight,
   ArrowLeft,
   FileText,
-  Shield,
   Zap,
   ChevronRight,
   AlertTriangle,
@@ -119,102 +119,18 @@ const DURATION_OPTIONS = [
   { value: 60, label: "60 min" },
 ];
 
-function CountdownTimer({ totalSeconds, onTimeUp, isActive }) {
-  const [remaining, setRemaining] = useState(totalSeconds);
-  const intervalRef = useRef(null);
-
-  useEffect(() => {
-    if (!isActive) return;
-    setRemaining(totalSeconds);
-  }, [totalSeconds, isActive]);
-
-  useEffect(() => {
-    if (!isActive || remaining <= 0) return;
-    intervalRef.current = setInterval(() => {
-      setRemaining((prev) => {
-        if (prev <= 1) {
-          clearInterval(intervalRef.current);
-          onTimeUp();
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-    return () => clearInterval(intervalRef.current);
-  }, [isActive, onTimeUp, remaining > 0]);
-
-  const minutes = Math.floor(remaining / 60);
-  const seconds = remaining % 60;
-  const pct = (remaining / totalSeconds) * 100;
-  const urgency =
-    remaining <= 300 ? "critical" : remaining <= 900 ? "warning" : "normal";
-
-  const colors = {
-    normal: { text: "text-text-primary", ring: "#4CC9F0", bg: "rgba(76,201,240,0.1)" },
-    warning: { text: "text-cyber-amber", ring: "#F59E0B", bg: "rgba(245,158,11,0.1)" },
-    critical: { text: "text-cyber-red", ring: "#EF4444", bg: "rgba(239,68,68,0.1)" },
-  };
-  const c = colors[urgency];
-
-  return (
-    <div className="flex flex-col items-center gap-3">
-      <div className="relative w-32 h-32">
-        <svg className="w-full h-full -rotate-90" viewBox="0 0 120 120">
-          <circle
-            cx="60"
-            cy="60"
-            r="54"
-            fill="none"
-            stroke="rgba(255,255,255,0.05)"
-            strokeWidth="6"
-          />
-          <circle
-            cx="60"
-            cy="60"
-            r="54"
-            fill="none"
-            stroke={c.ring}
-            strokeWidth="6"
-            strokeLinecap="round"
-            strokeDasharray={339.292}
-            strokeDashoffset={339.292 * (1 - pct / 100)}
-            className="transition-all duration-1000"
-            style={{
-              filter: `drop-shadow(0 0 6px ${c.ring})`,
-            }}
-          />
-        </svg>
-        <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className={`font-display font-black text-2xl ${c.text} leading-none`}>
-            {String(minutes).padStart(2, "0")}
-          </span>
-          <span className={`font-mono text-xs ${c.text} opacity-60`}>:</span>
-          <span className={`font-display font-black text-2xl ${c.text} leading-none`}>
-            {String(seconds).padStart(2, "0")}
-          </span>
-        </div>
-      </div>
-      <div className="text-center">
-        <p className={`font-mono text-xs uppercase tracking-widest ${
-          urgency === "critical"
-            ? "text-cyber-red animate-pulse"
-            : urgency === "warning"
-            ? "text-cyber-amber"
-            : "text-gray-500"
-        }`}>
-          {urgency === "critical" ? "Time Running Out!" : "Time Remaining"}
-        </p>
-      </div>
-    </div>
-  );
-}
-
 function QuestionPalette({
   total,
   current,
   answers,
   submittedAnswers,
   onNavigate,
+}: {
+  total: number;
+  current: number;
+  answers: Record<number, unknown>;
+  submittedAnswers: Record<number, { is_correct?: boolean }>;
+  onNavigate: (idx: number) => void;
 }) {
   return (
     <div>
@@ -279,7 +195,7 @@ function QuestionPalette({
   );
 }
 
-function ScoreRing({ percentage, size = 180 }) {
+function ScoreRing({ percentage, size = 180 }: { percentage: number; size?: number }) {
   const r = (size - 16) / 2;
   const circ = 2 * Math.PI * r;
   const offset = circ * (1 - percentage / 100);
@@ -338,25 +254,40 @@ function ScoreRing({ percentage, size = 180 }) {
   );
 }
 
+interface OAQuestion extends Record<string, unknown> {
+  question_uid?: string;
+  id?: string;
+  section?: string;
+  kind?: string;
+  language?: string;
+  options?: Record<string, unknown>[];
+  question?: string;
+}
+
+interface AnswerResult {
+  is_correct?: boolean;
+  answer?: unknown;
+}
+
 export default function MockOA() {
-  const [step, setStep] = useState("select");
-  const [selectedCompany, setSelectedCompany] = useState(null);
+  const [step, setStep] = useState<"select" | "test" | "results">("select");
+  const [selectedCompany, setSelectedCompany] = useState<string | null>(null);
   const [customDuration, setCustomDuration] = useState(45);
-  const [sessionId, setSessionId] = useState("");
-  const [questions, setQuestions] = useState([]);
+  const [sessionId, setSessionId] = useState<string>("");
+  const [questions, setQuestions] = useState<OAQuestion[]>([]);
   const [currentQ, setCurrentQ] = useState(0);
-  const [answers, setAnswers] = useState({});
-  const [submittedAnswers, setSubmittedAnswers] = useState({});
+  const [answers, setAnswers] = useState<Record<number, unknown>>({});
+  const [submittedAnswers, setSubmittedAnswers] = useState<Record<number, AnswerResult>>({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState<Record<string, unknown> | null>(null);
   const [timeTaken, setTimeTaken] = useState(0);
-  const [startTime, setStartTime] = useState(null);
+  const [startTime, setStartTime] = useState<number | null>(null);
   const [showCelebration, setShowCelebration] = useState(false);
   const [currentSection, setCurrentSection] = useState("");
   const [reviewMode, setReviewMode] = useState(false);
-  const [showExplanation, setShowExplanation] = useState({});
-  const [sections, setSections] = useState([]);
+  const [showExplanation, setShowExplanation] = useState<Record<number, boolean>>({});
+  const [sections, setSections] = useState<Section[]>([]);
   const timerRef = useRef(null);
 
   const mockSession = useMockSession({
@@ -410,7 +341,7 @@ export default function MockOA() {
     }
   }, [step, mockSession]);
 
-  const navigateQuestion = (idx) => {
+  const navigateQuestion = (idx: number) => {
     if (idx >= 0 && idx < questions.length) {
       const sectionSize = Math.ceil(questions.length / company.sections.length);
       const targetSectionIdx = Math.min(
@@ -419,11 +350,12 @@ export default function MockOA() {
       );
       const currentSectionIdx = mockSession.state.currentSectionIndex;
       const completedSections = mockSession.state.completedSectionIds;
+      const currentSectionId = mockSession.currentSection?.id;
 
       const isCurrentOrCompleted =
         targetSectionIdx <= currentSectionIdx &&
         (targetSectionIdx < currentSectionIdx ||
-          completedSections.includes(mockSession.currentSection?.id));
+          (typeof currentSectionId === "string" && completedSections.includes(currentSectionId)));
 
       if (!isCurrentOrCompleted && targetSectionIdx > currentSectionIdx) {
         return;
@@ -436,8 +368,8 @@ export default function MockOA() {
     setLoading(true);
     setError("");
     try {
-      const companyId = selectedCompany === "general" ? "swe" : selectedCompany;
-      const data = await api.oa.start({
+      const companyId = (selectedCompany === "general" ? "swe" : selectedCompany) as string;
+      const data = (await api.oa.start({
         company: companyId,
         role: "swe",
         total_questions: company.questionCount,
@@ -445,16 +377,16 @@ export default function MockOA() {
         mode: "calm",
         integrity: false,
         verified_only: true,
-      });
-      const loadedQuestions = data.questions || [];
-      const builtSections = (data.sections || []).map((section) => ({
-        id: section.id,
-        title: section.title || section.id,
-        duration_minutes: Math.round((section.time_limit_s || 0) / 60) || Math.round((customDuration || company.duration) / (company.sections?.length || 1)),
-        question_ids: section.question_ids || [],
+      })) as OASession;
+      const loadedQuestions: OAQuestion[] = Array.isArray(data.questions) ? data.questions : [];
+      const builtSections: Section[] = (data.sections || []).map((section) => ({
+        id: String(section.id),
+        title: typeof section.title === "string" ? section.title : String(section.id),
+        duration_minutes: Math.round((Number(section.time_limit_s) || 0) / 60) || Math.round((customDuration || company.duration) / (company.sections?.length || 1)),
+        question_ids: Array.isArray(section.question_ids) ? section.question_ids.map(String) : [],
       }));
 
-      setSessionId(data.session_id);
+      setSessionId(String(data.session_id));
       setQuestions(loadedQuestions);
       setSections(builtSections);
       setCurrentQ(0);
@@ -468,57 +400,28 @@ export default function MockOA() {
       setStep("test");
       mockSession.triggerFullscreen().catch(() => {});
     } catch (err) {
-      setError(err.message);
+      setError(err instanceof Error ? err.message : "Failed to start test");
     }
     setLoading(false);
   };
 
-  const submitAnswer = async (answer) => {
+  const submitAnswer = async (answer: unknown) => {
     if (submittedAnswers[currentQ] !== undefined) return;
     setLoading(true);
     setError("");
     try {
       const question = questions[currentQ];
-      const item = {
+      const item: SubmitOAItem = {
         question_uid: String(question?.question_uid || question?.id || currentQ),
         answer,
-        language: question?.language || undefined,
-        time_taken: Math.round((Date.now() - (startTime || Date.now())) / 1000),
+        language: typeof question?.language === "string" ? question.language : undefined,
+        time_taken: Math.round(((Date.now() - (startTime || Date.now())) / 1000)),
       };
       await api.oa.submitAnswer(sessionId, [item]);
       setAnswers((prev) => ({ ...prev, [currentQ]: answer }));
-      setSubmittedAnswers((prev) => ({ ...prev, [currentQ]: { is_correct: null, answer } }));
+      setSubmittedAnswers((prev) => ({ ...prev, [currentQ]: { is_correct: null, answer } as unknown as AnswerResult }));
     } catch (err) {
-      setError(err.message);
-    }
-    setLoading(false);
-  };
-
-  const submitTest = async () => {
-    setLoading(true);
-    try {
-      const answersArray = questions.map((_, i) => answers[i] ?? null);
-      const items = questions.map((q, i) => ({
-        question_uid: String(q?.question_uid || q?.id || i),
-        answer: answersArray[i],
-        language: q?.language,
-        time_taken: Math.round(timeTaken / Math.max(1, questions.length)),
-      }));
-      await api.oa.submitAnswer(sessionId, items);
-      const completeData = await api.oa.complete(sessionId);
-      const resultData = await api.oa.getResult(sessionId);
-      setResult({
-        ...resultData,
-        answers: submittedAnswers,
-        timeTaken,
-      });
-      setStep("results");
-      if ((resultData.percentage ?? 0) >= 70) {
-        setShowCelebration(true);
-        setTimeout(() => setShowCelebration(false), 3000);
-      }
-    } catch (err) {
-      setError(err.message);
+      setError(err instanceof Error ? err.message : "Failed to submit answer");
     }
     setLoading(false);
   };
@@ -1006,7 +909,7 @@ export default function MockOA() {
   // ═══════════════ RESULTS SCREEN ═══════════════
   if (step === "results" && result) {
     const total = questions.length;
-    const pct = result.percentage || 0;
+    const pct = typeof result.percentage === "number" ? result.percentage : 0;
 
     return (
       <div className="page-surface min-h-screen py-6 px-4">
