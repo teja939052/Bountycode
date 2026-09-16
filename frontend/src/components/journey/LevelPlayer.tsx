@@ -1,6 +1,6 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { X, Lightbulb, CheckCircle2, Loader2, Code2, Zap, ChevronRight } from "lucide-react";
+import { X, Lightbulb, CheckCircle2, Loader2, Code2, ChevronRight } from "lucide-react";
 import api from "../../services/api";
 import { refreshJourneyState } from "../../hooks/useJourneyState";
 import { PlayerCharacter } from "./PlayerCharacter";
@@ -19,52 +19,87 @@ interface LevelPlayerProps {
   worldId: string;
   level: JourneyLevel;
   onClose: () => void;
-  onMastered?: (xp: number) => void;
+  onMastered?: (xp: number, detail?: {
+    stars?: number; reward?: Record<string, unknown>; xp_nominal?: number;
+  }) => void;
 }
 
 type Phase = "discover" | "code" | "testing" | "success";
 
-/**
- * Lightweight level player overlay.
- *
- * Renders the level's discover → code → test → success loop using the
- * existing ``/api/v1/worlds`` level endpoints.  On completion it calls the
- * Study Engine's ``record_activity`` so mastery / SRS / XP all update, then
- * refreshes the journey state so the character visibly moves.
- */
+interface LevelContent {
+  discover?: { visual?: string; interaction?: string; prompt?: string; answer?: string; values?: unknown[] };
+  manipulate?: { type?: string; template?: string; answer?: string; blocks?: string[]; hint?: string };
+  predict?: { prompt?: string; answer?: string; explanation?: string };
+  build?: { prompt?: string; starter?: string; placeholder?: string; language?: string };
+  break_step?: { prompt?: string; broken_code?: string; expected_failure?: string };
+  debug?: { prompt?: string; buggy_code?: string; fix_steps?: string[]; answer?: string };
+  code?: { prompt?: string; starter?: string; placeholder?: string; language?: string };
+  checks?: { required_patterns?: string[]; forbidden?: string[]; hint_triggers?: string[] };
+  hints?: Array<{ title?: string; icon?: string; description?: string; hint?: string; mental_model?: string; xp_reward?: number; rarity?: string; color?: string }>;
+  retrieval?: { prompt?: string; answer?: string; explanation?: string };
+  transfer?: { prompt?: string; answer?: string; context?: string };
+  success?: { world_before?: string; world_after?: string; world_reaction?: string; reward_text?: string; byte_line?: string; xp?: number };
+  story?: { location?: string; npc?: string; line?: string };
+  tutor?: { name?: string; avatar?: string; discover?: string; explain?: string };
+  mental_model?: string;
+}
+
 export function LevelPlayer({ worldId, level, onClose, onMastered }: LevelPlayerProps) {
   const [phase, setPhase] = useState<Phase>("discover");
   const [code, setCode] = useState("");
   const [language, setLanguage] = useState("python");
   const [feedback, setFeedback] = useState<{ ok: boolean; msg: string } | null>(null);
   const [busy, setBusy] = useState(false);
-  const [hintIdx, setHintIdx] = useState<number | null>(null);
-  const [worldData, setWorldData] = useState<Record<string, unknown> | null>(null);
   const [openedBoxes, setOpenedBoxes] = useState<Set<number>>(new Set());
 
-  // Get hint ladder for this problem (if any)
-  const hintBoxes = useRef<Record<string, unknown> | null>(null);
   const attemptsRef = useRef(0);
+  const contentRef = useRef<LevelContent | null>(null);
 
   // Track lesson start
-  useState(() => {
+  useEffect(() => {
     analytics.lessonStarted(level.id, worldId);
     if (level.kind === "boss") analytics.bossStarted(level.id);
-  });
+  }, [level.id, worldId, level.kind]);
 
+  // Load world content from backend
   const loadWorld = useCallback(async () => {
     try {
       const res = await api.journey.getWorldView(worldId);
-      setWorldData(res.world ?? res);
+      const world = (res as Record<string, unknown>).world as Record<string, unknown> | undefined;
+      if (world?.towns && Array.isArray(world.towns)) {
+        const allLevels: unknown[] = [];
+        for (const town of world.towns) {
+          const t = town as Record<string, unknown>;
+          if (Array.isArray(t.levels)) {
+            allLevels.push(...t.levels);
+          }
+        }
+        const current = allLevels.find((l) => (l as Record<string, unknown>).id === level.id) as Record<string, unknown> | undefined;
+        if (current) {
+          contentRef.current = current as LevelContent;
+          // Prefill code from backend content if available
+          const codeContent = (current.code || current.build || {}) as Record<string, unknown>;
+          const starter = typeof codeContent.starter === "string" ? codeContent.starter : "";
+          if (starter && !code) {
+            setCode(starter);
+          }
+          // Set language from content if available
+          const contentLanguage = typeof codeContent.language === "string" ? codeContent.language : null;
+          if (contentLanguage && !code) {
+            setLanguage(contentLanguage);
+          }
+        }
+      }
     } catch {
-      setWorldData(null);
+      // content stays null; UI falls back to empty state
     }
-  }, [worldId]);
+  }, [worldId, level.id, code]);
 
-  // Lazily load world detail on first render so we can surface story/tutor.
-  useState(() => {
+  useEffect(() => {
     void loadWorld();
-  });
+  }, [loadWorld]);
+
+  const content = contentRef.current;
 
   const handleAttempt = useCallback(async () => {
     setBusy(true);
@@ -86,9 +121,8 @@ export function LevelPlayer({ worldId, level, onClose, onMastered }: LevelPlayer
           analytics.transferAttempted(level.id);
         }
       } else {
-        setFeedback({ ok: false, msg: res.message ?? res.hint ?? "Not quite — try a hint!" });
+        setFeedback({ ok: false, msg: (res as Record<string, unknown>).message as string || (res as Record<string, unknown>).hint as string || "Not quite — try a hint!" });
         analytics.buildFailed(level.id, attemptsRef.current);
-        if (res.hint_index != null) setHintIdx(res.hint_index);
       }
     } catch (e: unknown) {
       setFeedback({ ok: false, msg: e instanceof Error ? e.message : "Check failed." });
@@ -96,13 +130,12 @@ export function LevelPlayer({ worldId, level, onClose, onMastered }: LevelPlayer
     } finally {
       setBusy(false);
     }
-  }, [worldId, level.id, code]);
+  }, [worldId, level.id, code, language, level.kind]);
 
   const handleComplete = useCallback(async () => {
     setBusy(true);
     try {
-      await api.journey.completeLevel(worldId, level.id, { code, language, time_spent_seconds: 0 });
-      // Fan-out to mastery / SRS / XP via the Study Engine.
+      const res = await api.journey.completeLevel(worldId, level.id, { code, language, time_spent_seconds: 0 });
       await api.journey.recordActivity({
         type: "learn",
         skill_id: level.canonical_skill || level.concept,
@@ -112,15 +145,37 @@ export function LevelPlayer({ worldId, level, onClose, onMastered }: LevelPlayer
       });
       analytics.masteryAchieved(level.id, worldId, level.xp);
       refreshJourneyState();
-      onMastered?.(level.xp);
+      const xpAwarded = (res as Record<string, unknown>).xp_awarded as number | undefined;
+      onMastered?.(xpAwarded ?? level.xp, {
+        stars: (res as Record<string, unknown>).stars as number | undefined,
+        reward: (res as Record<string, unknown>).reward as Record<string, unknown> | undefined,
+        xp_nominal: (res as Record<string, unknown>).xp_nominal as number | undefined,
+      });
     } catch (e: unknown) {
       setFeedback({ ok: false, msg: e instanceof Error ? e.message : "Complete failed." });
     } finally {
       setBusy(false);
     }
-  }, [worldId, level.id, level.canonical_skill, level.concept, level.xp, code, onMastered]);
+  }, [worldId, level.id, level.canonical_skill, level.concept, level.xp, code, language, onMastered]);
 
   const characterState = phase === "success" ? "correct" : phase === "discover" ? "discovering" : "thinking";
+
+  // Real content from backend
+  const discoverContent = content?.discover;
+  const manipulateContent = content?.manipulate;
+  const codeContent = content?.code || content?.build;
+  const hintsContent = content?.hints;
+  const storyContent = content?.story;
+  const tutorContent = content?.tutor;
+  const predictContent = content?.predict;
+  const breakContent = content?.break_step;
+  const debugContent = content?.debug;
+  const retrievalContent = content?.retrieval;
+  const transferContent = content?.transfer;
+
+  const promptText = discoverContent?.prompt || predictContent?.prompt || breakContent?.prompt || debugContent?.prompt || retrievalContent?.prompt || transferContent?.prompt || codeContent?.prompt || level.concept || "";
+  const codeStarter = codeContent?.starter || manipulateContent?.template || "";
+  const codeLanguage = codeContent?.language || language;
 
   return (
     <motion.div
@@ -158,14 +213,66 @@ export function LevelPlayer({ worldId, level, onClose, onMastered }: LevelPlayer
 
         {/* Body */}
         <div className="px-5 py-4 space-y-4">
+          {/* Story / Tutor narration */}
+          {(storyContent?.line || tutorContent?.discover) && (
+            <div className="rounded-xl bg-primary/5 border border-primary/10 p-4">
+              <div className="text-xs font-mono uppercase tracking-widest text-primary mb-1">
+                {storyContent?.location || "Lesson"}
+              </div>
+              <p className="text-sm">
+                {storyContent?.line || tutorContent?.discover}
+                {storyContent?.npc ? ` — ${storyContent.npc}` : ""}
+              </p>
+            </div>
+          )}
+
           {/* Discover phase */}
-          {phase === "discover" && (
+          {phase === "discover" && discoverContent && (
             <div className="space-y-3">
               <div className="rounded-xl bg-primary/5 border border-primary/10 p-4">
                 <div className="text-xs font-mono uppercase tracking-widest text-primary mb-1">Discover</div>
-                <p className="text-sm">
-                  Every program needs to <strong>remember</strong> things. Let's see how.
-                </p>
+                {discoverContent.visual && (
+                  <div className="text-2xl mb-2">{discoverContent.visual}</div>
+                )}
+                <p className="text-sm">{discoverContent.prompt}</p>
+              </div>
+              <button
+                onClick={() => {
+                  setPhase("code");
+                  analytics.discoveryCompleted(level.id);
+                }}
+                className="w-full rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold py-3 min-h-[44px] flex items-center justify-center gap-2"
+              >
+                Try it <Lightbulb className="w-4 h-4" />
+              </button>
+            </div>
+          )}
+
+          {/* Predict phase */}
+          {phase === "discover" && predictContent && !discoverContent && (
+            <div className="space-y-3">
+              <div className="rounded-xl bg-primary/5 border border-primary/10 p-4">
+                <div className="text-xs font-mono uppercase tracking-widest text-primary mb-1">Predict</div>
+                <p className="text-sm">{predictContent.prompt}</p>
+              </div>
+              <button
+                onClick={() => {
+                  setPhase("code");
+                  analytics.discoveryCompleted(level.id);
+                }}
+                className="w-full rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold py-3 min-h-[44px] flex items-center justify-center gap-2"
+              >
+                Check Prediction <Target className="w-4 h-4" />
+              </button>
+            </div>
+          )}
+
+          {/* Fallback discover if no content */}
+          {phase === "discover" && !discoverContent && !predictContent && (
+            <div className="space-y-3">
+              <div className="rounded-xl bg-primary/5 border border-primary/10 p-4">
+                <div className="text-xs font-mono uppercase tracking-widest text-primary mb-1">Discover</div>
+                <p className="text-sm">{level.concept ? `${level.concept.charAt(0).toUpperCase() + level.concept.slice(1)}` : "A new concept"} — a new tool for your engineering toolkit.</p>
               </div>
               <button
                 onClick={() => {
@@ -182,6 +289,14 @@ export function LevelPlayer({ worldId, level, onClose, onMastered }: LevelPlayer
           {/* Code phase */}
           {(phase === "code" || phase === "testing") && (
             <div className="space-y-3">
+              {/* Code prompt from backend */}
+              {promptText && (
+                <div className="rounded-xl bg-primary/5 border border-primary/10 p-3">
+                  <div className="text-xs font-mono uppercase tracking-widest text-primary mb-1">Challenge</div>
+                  <p className="text-sm">{promptText}</p>
+                </div>
+              )}
+
               {/* Language selector */}
               <div className="flex items-center gap-1 bg-zinc-50 rounded-lg p-1">
                 <Code2 className="w-3.5 h-3.5 text-text-muted ml-2" />
@@ -219,15 +334,16 @@ export function LevelPlayer({ worldId, level, onClose, onMastered }: LevelPlayer
                   </button>
                 ))}
               </div>
+
               <div className="rounded-xl bg-[#0f172a] p-3">
-                <div className="text-[11px] font-mono text-zinc-400 mb-1">your code ({language})</div>
+                <div className="text-[11px] font-mono text-zinc-400 mb-1">your code ({codeLanguage || language})</div>
                 <textarea
                   value={code}
                   onChange={(e) => setCode(e.target.value)}
                   rows={6}
                   spellCheck={false}
                   className="w-full bg-transparent font-mono text-sm text-zinc-100 placeholder:text-zinc-500 focus:outline-none resize-none min-h-[120px]"
-                  placeholder="# write your solution here"
+                  placeholder={codeStarter || "# write your solution here"}
                 />
               </div>
 
@@ -243,17 +359,32 @@ export function LevelPlayer({ worldId, level, onClose, onMastered }: LevelPlayer
                 </div>
               )}
 
-              {/* Mystery boxes — gamified hints */}
+              {/* Mystery boxes — gamified hints from backend or fallback */}
               <MysteryBoxContainer
-                boxes={[
-                  { id: "h1", title: "A Nudge", icon: "🔍", description: "Think about the approach", hint: hintIdx !== null ? "" : "What's the simplest way to start? Look for patterns.", mental_model: "Start simple, then optimize.", xp_reward: 5, rarity: "common" },
-                  { id: "h2", title: "The Pattern", icon: "🧩", description: "Which technique fits?", hint: "Think: have you seen a similar problem? What data structure helps here?", mental_model: "Most problems are patterns in disguise.", xp_reward: 10, rarity: "rare" },
-                  { id: "h3", title: "The Approach", icon: "💡", description: "Here's the strategy", hint: "Break the problem into smaller steps. Solve each step, then combine.", mental_model: "Decompose → solve → combine.", xp_reward: 15, rarity: "epic", color: "#8B5CF6" },
-                ]}
+                boxes={(() => {
+                  if (hintsContent && hintsContent.length > 0) {
+                    return hintsContent.map((hint, idx) => ({
+                      id: `hint-${idx}`,
+                      title: hint.title || `Hint ${idx + 1}`,
+                      icon: hint.icon || "💡",
+                      description: hint.description || "",
+                      hint: typeof hint === "string" ? hint : hint.hint || "",
+                      mental_model: hint.mental_model || "",
+                      xp_reward: typeof hint.xp_reward === "number" ? hint.xp_reward : 5,
+                      coin_reward: 0,
+                      rarity: hint.rarity || "common",
+                      color: hint.color || "#8B5CF6",
+                    }));
+                  }
+                  return [
+                    { id: "h1", title: "A Nudge", icon: "🔍", description: "Think about the approach", hint: "What's the simplest way to start? Look for patterns.", mental_model: "Start simple, then optimize.", xp_reward: 5, rarity: "common" as const, color: "#94a3b8", coin_reward: 0 },
+                    { id: "h2", title: "The Pattern", icon: "🧩", description: "Which technique fits?", hint: "Think: have you seen a similar problem? What data structure helps here?", mental_model: "Most problems are patterns in disguise.", xp_reward: 10, rarity: "rare" as const, color: "#3b82f6", coin_reward: 0 },
+                    { id: "h3", title: "The Approach", icon: "💡", description: "Here's the strategy", hint: "Break the problem into smaller steps. Solve each step, then combine.", mental_model: "Decompose → solve → combine.", xp_reward: 15, rarity: "epic" as const, color: "#8b5cf6", coin_reward: 0 },
+                  ];
+                })()}
                 openedIndices={openedBoxes}
                 onOpen={(idx) => {
                   setOpenedBoxes((prev) => new Set([...prev, idx]));
-                  setHintIdx(idx);
                 }}
               />
 
