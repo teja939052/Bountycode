@@ -70,6 +70,9 @@ const routeImportFns = {
   LearningPaths: () => import("./LearningPaths"),
   CompanyTracks: () => import("./CompanyTracks"),
   Concepts: () => import("./Concepts"),
+  TcsNqtSimulation: () => import("./TcsNqtSimulation"),
+  ExamMemorySubmission: () => import("./ExamMemorySubmission"),
+  AdminExamReview: () => import("./AdminExamReview"),
 };
 
 const preload: Record<string, () => void> = {};
@@ -184,6 +187,9 @@ const PrepHub = lazy(() => import('./PrepHub'));
 const LearningPaths = lazy(() => import('./LearningPaths'));
 const CompanyTracks = lazy(() => import('./CompanyTracks'));
 const Concepts = lazy(() => import('./Concepts'));
+const TcsNqtSimulation = lazy(() => import('./TcsNqtSimulation'));
+const ExamMemorySubmission = lazy(() => import('./ExamMemorySubmission'));
+const AdminExamReview = lazy(() => import('./AdminExamReview'));
 export {
   Login,
   Register,
@@ -254,4 +260,7 @@ export {
   LearningPaths,
   CompanyTracks,
   Concepts,
+  TcsNqtSimulation,
+  ExamMemorySubmission,
+  AdminExamReview,
 };
