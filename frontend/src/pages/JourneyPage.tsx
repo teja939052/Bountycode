@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback, useEffect, useRef, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import {
@@ -192,6 +192,28 @@ export default function JourneyPage() {
   const activeLevelRecovered = useRef(false);
 
   const [voyageWorld, setVoyageWorld] = useState<string | undefined>(undefined);
+
+  // Fetch full world content for the current level to show real learning content
+  const { data: worldContent } = useQuery({
+    queryKey: ["world", "content", currentWorld?.id],
+    queryFn: () => api.journey.getWorldView(currentWorld!.id),
+    enabled: !!currentWorld?.id,
+    staleTime: 60_000,
+  });
+
+  // Extract current level content from world data
+  const currentLevelContent = useMemo(() => {
+    if (!worldContent?.world?.towns) return null;
+    const world = worldContent.world as Record<string, unknown>;
+    const towns = world.towns as Array<Record<string, unknown>>;
+    for (const town of towns) {
+      const levels = town.levels as Array<Record<string, unknown>> | undefined;
+      if (!levels) continue;
+      const found = levels.find((l) => l.id === currentLevel?.id);
+      if (found) return found as Record<string, unknown>;
+    }
+    return null;
+  }, [worldContent, currentLevel?.id]);
 
   if (isLoading) {
     return (
@@ -558,6 +580,58 @@ const todayRole = state.today?.role_activity;
                 {currentLevel.attempts > 0 ? "Continue" : "Begin"}
                 <ChevronRight className="w-5 h-5" />
               </motion.button>
+
+              {/* Real lesson preview from backend */}
+              {currentLevelContent && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="mt-4 rounded-xl border border-border bg-card p-4 space-y-3"
+                >
+                  <div className="text-[10px] font-mono uppercase tracking-widest text-primary mb-1">Lesson Preview</div>
+
+                  {/* Discover content */}
+                  {(currentLevelContent.discover as Record<string, unknown> | undefined)?.prompt && (
+                    <div>
+                      <div className="text-xs font-semibold text-secondary mb-1">Discover</div>
+                      <p className="text-sm text-text-primary">
+                        {(currentLevelContent.discover as Record<string, unknown>).prompt as string}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Mental model */}
+                  {currentLevelContent.mental_model && (
+                    <div>
+                      <div className="text-xs font-semibold text-secondary mb-1">Mental Model</div>
+                      <p className="text-sm text-text-primary italic">
+                        {currentLevelContent.mental_model as string}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Code challenge preview */}
+                  {(currentLevelContent.code as Record<string, unknown> | undefined)?.prompt && (
+                    <div>
+                      <div className="text-xs font-semibold text-secondary mb-1">Challenge</div>
+                      <p className="text-sm text-text-primary">
+                        {(currentLevelContent.code as Record<string, unknown>).prompt as string}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Predict question */}
+                  {currentLevelContent.predict && (
+                    <div>
+                      <div className="text-xs font-semibold text-secondary mb-1">Predict</div>
+                      <p className="text-sm text-text-primary">
+                        {(currentLevelContent.predict as Record<string, unknown>).prompt as string}
+                      </p>
+                    </div>
+                  )}
+                </motion.div>
+              )}
 
               <div className="mt-2 flex items-center justify-center gap-4 text-[11px] text-muted">
                 <span className="flex items-center gap-1">
