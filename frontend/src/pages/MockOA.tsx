@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import api from "../services/api";
 import Spinner from "../components/ui/Spinner";
 import CelebrationOverlay from "../components/CelebrationOverlay";
+import RepairPanel from "../components/RepairPanel";
+import { useMockSession } from "../hooks/useMockSession";
 import {
   Clock,
   CheckCircle,
@@ -340,7 +342,7 @@ export default function MockOA() {
   const [step, setStep] = useState("select");
   const [selectedCompany, setSelectedCompany] = useState(null);
   const [customDuration, setCustomDuration] = useState(45);
-  const [testId, setTestId] = useState("");
+  const [sessionId, setSessionId] = useState("");
   const [questions, setQuestions] = useState([]);
   const [currentQ, setCurrentQ] = useState(0);
   const [answers, setAnswers] = useState({});
@@ -354,7 +356,26 @@ export default function MockOA() {
   const [currentSection, setCurrentSection] = useState("");
   const [reviewMode, setReviewMode] = useState(false);
   const [showExplanation, setShowExplanation] = useState({});
+  const [sections, setSections] = useState([]);
   const timerRef = useRef(null);
+
+  const mockSession = useMockSession({
+    mockId: sessionId,
+    sections,
+    onExamComplete: (sessionState) => {
+      setResult({
+        percentage: 0,
+        correct: 0,
+        wrong: 0,
+        unattempted: questions.length,
+        timeTaken: timeTaken,
+        answers: sessionState.answers,
+        tabViolations: sessionState.tabViolationsCount,
+        isExamComplete: true,
+      });
+      setStep("results");
+    },
+  });
 
   const company = useMemo(
     () => COMPANIES.find((c) => c.id === selectedCompany) || COMPANIES[0],
@@ -385,21 +406,57 @@ export default function MockOA() {
 
   const handleTimeUp = useCallback(() => {
     if (step === "test") {
-      submitTest();
+      mockSession.advanceSection();
     }
-  }, [step, testId, timeTaken]);
+  }, [step, mockSession]);
+
+  const navigateQuestion = (idx) => {
+    if (idx >= 0 && idx < questions.length) {
+      const sectionSize = Math.ceil(questions.length / company.sections.length);
+      const targetSectionIdx = Math.min(
+        Math.floor(idx / sectionSize),
+        company.sections.length - 1
+      );
+      const currentSectionIdx = mockSession.state.currentSectionIndex;
+      const completedSections = mockSession.state.completedSectionIds;
+
+      const isCurrentOrCompleted =
+        targetSectionIdx <= currentSectionIdx &&
+        (targetSectionIdx < currentSectionIdx ||
+          completedSections.includes(mockSession.currentSection?.id));
+
+      if (!isCurrentOrCompleted && targetSectionIdx > currentSectionIdx) {
+        return;
+      }
+      setCurrentQ(idx);
+    }
+  };
 
   const startTest = async () => {
     setLoading(true);
     setError("");
     try {
-      const data = await api.startAptitudeTest(
-        "mixed",
-        company.difficulty,
-        company.questionCount
-      );
-      setTestId(data.test_id);
-      setQuestions(data.questions);
+      const companyId = selectedCompany === "general" ? "swe" : selectedCompany;
+      const data = await api.oa.start({
+        company: companyId,
+        role: "swe",
+        total_questions: company.questionCount,
+        duration_minutes: customDuration || company.duration,
+        mode: "calm",
+        integrity: false,
+        verified_only: true,
+      });
+      const loadedQuestions = data.questions || [];
+      const builtSections = (data.sections || []).map((section) => ({
+        id: section.id,
+        title: section.title || section.id,
+        duration_minutes: Math.round((section.time_limit_s || 0) / 60) || Math.round((customDuration || company.duration) / (company.sections?.length || 1)),
+        question_ids: section.question_ids || [],
+      }));
+
+      setSessionId(data.session_id);
+      setQuestions(loadedQuestions);
+      setSections(builtSections);
       setCurrentQ(0);
       setAnswers({});
       setSubmittedAnswers({});
@@ -409,6 +466,7 @@ export default function MockOA() {
       setReviewMode(false);
       setResult(null);
       setStep("test");
+      mockSession.triggerFullscreen().catch(() => {});
     } catch (err) {
       setError(err.message);
     }
@@ -420,9 +478,16 @@ export default function MockOA() {
     setLoading(true);
     setError("");
     try {
-      const data = await api.submitAptitudeAnswer(testId, currentQ, answer);
+      const question = questions[currentQ];
+      const item = {
+        question_uid: String(question?.question_uid || question?.id || currentQ),
+        answer,
+        language: question?.language || undefined,
+        time_taken: Math.round((Date.now() - (startTime || Date.now())) / 1000),
+      };
+      await api.oa.submitAnswer(sessionId, [item]);
       setAnswers((prev) => ({ ...prev, [currentQ]: answer }));
-      setSubmittedAnswers((prev) => ({ ...prev, [currentQ]: data }));
+      setSubmittedAnswers((prev) => ({ ...prev, [currentQ]: { is_correct: null, answer } }));
     } catch (err) {
       setError(err.message);
     }
@@ -433,14 +498,22 @@ export default function MockOA() {
     setLoading(true);
     try {
       const answersArray = questions.map((_, i) => answers[i] ?? null);
-      const data = await api.completeAptitudeTest(testId, timeTaken);
+      const items = questions.map((q, i) => ({
+        question_uid: String(q?.question_uid || q?.id || i),
+        answer: answersArray[i],
+        language: q?.language,
+        time_taken: Math.round(timeTaken / Math.max(1, questions.length)),
+      }));
+      await api.oa.submitAnswer(sessionId, items);
+      const completeData = await api.oa.complete(sessionId);
+      const resultData = await api.oa.getResult(sessionId);
       setResult({
-        ...data,
+        ...resultData,
         answers: submittedAnswers,
         timeTaken,
       });
       setStep("results");
-      if (data.percentage >= 70) {
+      if ((resultData.percentage ?? 0) >= 70) {
         setShowCelebration(true);
         setTimeout(() => setShowCelebration(false), 3000);
       }
@@ -448,10 +521,6 @@ export default function MockOA() {
       setError(err.message);
     }
     setLoading(false);
-  };
-
-  const navigateQuestion = (idx) => {
-    if (idx >= 0 && idx < questions.length) setCurrentQ(idx);
   };
 
   const formatTime = (s) =>
@@ -623,13 +692,17 @@ export default function MockOA() {
   // ═══════════════ TEST SCREEN ═══════════════
   if (step === "test" && questions.length > 0) {
     const q = questions[currentQ];
+    const sessionSection = mockSession.currentSection;
+    const sectionTitle = sessionSection?.title || currentSection;
     const sectionSize = Math.ceil(questions.length / company.sections.length);
-    const sectionIdx = Math.min(
-      Math.floor(currentQ / sectionSize),
-      company.sections.length - 1
-    );
+    const sectionIdx = mockSession.state.currentSectionIndex;
     const sectionStart = sectionIdx * sectionSize;
     const sectionEnd = Math.min(sectionStart + sectionSize, questions.length);
+    const remainingSeconds = mockSession.state.timeRemainingSeconds;
+    const tabWarnings = mockSession.state.tabViolationsCount;
+
+    const formatTime = (s) =>
+      `${Math.floor(s / 60)}:${(s % 60).toString().padStart(2, "0")}`;
 
     return (
       <div className="min-h-screen">
@@ -643,21 +716,29 @@ export default function MockOA() {
               </span>
               <span className="w-px h-4 bg-space-border" />
               <span className="font-mono text-xs text-cyber-blue">
-                {currentSection}
+                {sectionTitle}
               </span>
               <span className="font-mono text-[10px] text-gray-500">
                 Q{currentQ + 1}–{sectionEnd} of {questions.length}
               </span>
             </div>
             <div className="flex items-center gap-3">
+              {tabWarnings > 0 && (
+                <span className="font-mono text-[10px] text-cyber-amber">
+                  ⚠ Tab switches: {tabWarnings}/3
+                </span>
+              )}
               <span className="font-mono text-xs text-gray-500">
                 {answeredCount}/{questions.length} answered
               </span>
-              <CountdownTimer
-                totalSeconds={customDuration * 60}
-                onTimeUp={handleTimeUp}
-                isActive={step === "test"}
-              />
+              <div className="flex flex-col items-center">
+                <span className="font-display font-black text-lg text-text-primary leading-none">
+                  {formatTime(remainingSeconds)}
+                </span>
+                <span className="font-mono text-[10px] text-gray-500">
+                  Section Timer
+                </span>
+              </div>
             </div>
           </div>
           {/* Section Progress Bar */}
@@ -812,8 +893,8 @@ export default function MockOA() {
                 {/* Navigation */}
                 <div className="flex items-center justify-between">
                   <button
-                    onClick={() => navigateQuestion(currentQ - 1)}
-                    disabled={currentQ === 0}
+                    onClick={() => mockSession.canGoBack && navigateQuestion(currentQ - 1)}
+                    disabled={!mockSession.canGoBack || currentQ === 0}
                     className="btn-ghost flex items-center gap-1 disabled:opacity-30"
                   >
                     <ArrowLeft size={16} /> Previous
@@ -822,21 +903,22 @@ export default function MockOA() {
                     {currentQ < questions.length - 1 ? (
                       <button
                         onClick={() => navigateQuestion(currentQ + 1)}
+                        disabled={mockSession.isLocked}
                         className="btn-secondary flex items-center gap-1"
                       >
                         Next <ChevronRight size={16} />
                       </button>
                     ) : (
                       <button
-                        onClick={submitTest}
-                        disabled={loading}
+                        onClick={mockSession.advanceSection}
+                        disabled={loading || mockSession.isLocked}
                         className="btn-primary flex items-center gap-2"
                       >
                         {loading ? (
                           <Spinner size="sm" className="text-space-void" />
                         ) : (
                           <>
-                            Submit OA <ArrowRight size={16} />
+                            Submit Section <ArrowRight size={16} />
                           </>
                         )}
                       </button>
@@ -886,15 +968,15 @@ export default function MockOA() {
 
               <div className="border-t border-black/5 pt-4">
                 <button
-                  onClick={submitTest}
-                  disabled={loading}
+                  onClick={mockSession.advanceSection}
+                  disabled={loading || mockSession.isLocked}
                   className="btn-primary w-full flex items-center justify-center gap-2"
                 >
                   {loading ? (
                     <Spinner size="sm" className="text-space-void" />
                   ) : (
                     <>
-                      Submit OA <ArrowRight size={16} />
+                      Submit Section <ArrowRight size={16} />
                     </>
                   )}
                 </button>
@@ -905,7 +987,7 @@ export default function MockOA() {
                         "Are you sure? This will submit your OA."
                       )
                     ) {
-                      submitTest();
+                      mockSession.advanceSection();
                     }
                   }}
                   className="btn-ghost w-full mt-2 text-cyber-red hover:text-cyber-red text-xs"
@@ -982,6 +1064,19 @@ export default function MockOA() {
                   Time Taken
                 </p>
               </div>
+              {result.tabViolations > 0 && (
+                <>
+                  <div className="w-px h-8 bg-space-border" />
+                  <div className="text-center">
+                    <p className="font-display font-black text-2xl text-cyber-amber">
+                      {result.tabViolations}
+                    </p>
+                    <p className="font-mono text-[10px] text-gray-500 uppercase">
+                      Tab Violations
+                    </p>
+                  </div>
+                </>
+              )}
             </div>
             <p className="font-mono text-xs text-gray-500">
               {company.name} Mock OA — {total} Questions
@@ -1045,6 +1140,9 @@ export default function MockOA() {
               })}
             </div>
           </motion.div>
+
+          {/* Repair Missions — closed-loop return path */}
+          <RepairPanel />
 
           {/* Question Review Toggle */}
           <motion.div

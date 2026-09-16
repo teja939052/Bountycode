@@ -22,9 +22,6 @@ import {
   Sun,
   Moon,
   CalendarDays,
-  FileText,
-  FileSearch,
-  Briefcase,
   Trophy,
 } from "lucide-react";
 import BackgroundSwitcher from "../components/background/BackgroundSwitcher";
@@ -74,15 +71,6 @@ export default function Navbar() {
       items: [
         { to: "/interview-booking", label: "Book Session", icon: CalendarDays },
         { to: "/system-design", label: "System Design", icon: Network },
-      ],
-    },
-    {
-      label: "Career",
-      items: [
-        { to: "/resume", label: "Resume Builder", icon: FileText },
-        { to: "/resume-studio", label: "Resume Studio", icon: FileText },
-        { to: "/ats", label: "ATS Optimizer", icon: FileSearch },
-        { to: "/applications", label: "Applications", icon: Briefcase },
       ],
     },
     {
