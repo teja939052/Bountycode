@@ -1,12 +1,15 @@
 from datetime import datetime, timezone
 import json
 import os
-from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query, status
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 from typing import Optional, List, Dict, Any
 from app.middleware.auth import get_current_user
-from app.database import question_answers_collection, users_collection, solved_problems_collection
+from app.database import (
+    question_answers_collection, users_collection, solved_problems_collection,
+    question_reports_collection, served_quarantine_collection,
+)
 from app.models.question import SubmitAnswer, QuestionSubmission, QuestionVote
 from app.services.ai_core import chat_completion, parse_json, assign_companies
 from app.services.gamification import record_practice
@@ -66,42 +69,37 @@ def _filter_curated(questions: list, company: str, pattern: str, role: str) -> l
     return result
 
 
-# The browse API merges the curated content bank with the file-based
-# placement banks that the canonical question_store also loads. Deriving this
-# list from question_store.EXTRA_BANKS (rather than duplicating filenames here)
-# keeps a single canonical source of truth for which on-disk banks feed the
-# runtime. question_store is the owner of the placement/coding question bank;
-# quiz_service owns the curated interactive-quiz model and is intentionally
-# separate (see services/question_standard.py and the content-trust pipeline).
-CURATED_EXTRA_BANKS = [
-    BACKEND_ROOT / "app" / "data" / fname
-    for fname in question_store.EXTRA_BANKS
-    if fname != "legacy_enriched_coding.json" and fname != "verified_placement_questions.json"
-] + [
-    BACKEND_ROOT / "app" / "data" / fname
-    for fname in question_store.AUTO_CHECKED_BANKS
-]
+# Canonical source of truth: question_store (in-memory bank loaded from
+# versioned files under backend/app/data/). No duplicate file reads here,
+# no MongoDB question reads, no LLM drafts. quiz_service owns the separate
+# curated interactive-quiz model (see services/question_standard.py).
+def _complete_serving_card(q: dict) -> dict:
+    """Normalize one browse item onto the complete LeetCode/GFG parity card.
+
+    Presentation fallbacks only — never invents grading content. Incomplete
+    items are dropped by the caller (quarantine, not publish).
+    """
+    out = dict(q)
+    title = out.get("title") or out.get("question_title") or (out.get("question") or "")[:80]
+    out["question_title"] = out.get("question_title") or title or "Unknown"
+    out["statement"] = out.get("statement") or out.get("question", "")
+    out["visible_test_cases"] = out.get("visible_test_cases") or out.get("testcases") or out.get("test_cases") or []
+    out["hidden_test_cases"] = out.get("hidden_test_cases") or out.get("hidden_testcases") or []
+    out["examples"] = out.get("examples") or []
+    out["constraints"] = out.get("constraints") or ""
+    out["hints"] = out.get("hints") or []
+    out["editorial"] = out.get("editorial") or out.get("explanation") or ""
+    out["provenance"] = out.get("provenance") or out.get("source_bank") or "verified"
+    return out
+
 
 def _load_curated_questions() -> list:
-    """Load the curated question bank from the content directory, then merge
-    file-based laptop-storage banks (placement-grade, non-AI, no DB) so the
-    browse API surfaces Striver + LeetCode problems."""
-    questions: list = []
-    curated_path = BACKEND_ROOT / "app" / "content" / "questions" / "curated" / "curated.json"
-    if curated_path.exists():
-        try:
-            with open(curated_path, "r", encoding="utf-8") as f:
-                questions = json.load(f)
-        except Exception:
-            questions = []
-    for seed_path in CURATED_EXTRA_BANKS:
-        if seed_path.exists():
-            try:
-                with open(seed_path, "r", encoding="utf-8") as f:
-                    questions.extend(json.load(f))
-            except Exception:
-                pass
-    return questions
+    """Deprecated shim kept for internal callers: returns the canonical
+    verified in-memory bank (complete cards only). Never reads MongoDB."""
+    return [
+        _complete_serving_card(q)
+        for q in question_store.find().only_verified().to_list()
+    ]
 
 
 def _question_title(q: dict) -> str:
@@ -196,15 +194,10 @@ async def browse_questions(
     if not is_free_access:
         _check_question_quota(user)
 
-    # Load from curated content store (clean JSON on disk, not MongoDB)
+    # Canonical in-memory bank (Residency Rule): verified human-reviewed
+    # stock only, for every tier. Pending/unverified/automated_checked are
+    # quarantined — never served, even to Pro/Admin (Content Trust Rule).
     all_questions = _load_curated_questions()
-
-    # For production serving, only show placement-grade reviewed questions
-    # plus machine-executed drafts (solutions executed against all tests,
-    # labeled trust_status=automated_checked, ranked below verified).
-    # Admin users and Pro can see all; free users get only reviewed ones
-    if not _is_paid(user):
-        all_questions = [q for q in all_questions if q.get("review_status") in ("placement_grade", "reviewed", "automated_checked")]
 
     # Apply filters
     filtered = _filter_curated(all_questions, company, pattern, role)
@@ -292,16 +285,7 @@ async def company_question_bank(
 
     focus_areas = []
     prep_name = None
-    try:
-        from app.routes.company_prep import TOP_COMPANIES
-        meta = TOP_COMPANIES.get(company_id) if company_id else None
-        if meta:
-            focus_areas = list(meta.get("focus_areas", []))
-            prep_name = meta.get("name")
-    except Exception:
-        pass
-
-    display_name = (overview or {}).get("name") or prep_name or company.title()
+    display_name = (overview or {}).get("name") or company.title()
     icon = (overview or {}).get("icon", "")
     color = (overview or {}).get("color", "")
 
@@ -639,12 +623,24 @@ async def submit_question(req: QuestionSubmission, user=Depends(get_current_user
     # candidates and are never served as trusted content.
     import uuid as _uuid
     doc = req.model_dump()
+    # Intake lint (app/services/intake_lint.py): filler never enters even
+    # the UNVERIFIED candidate pool. Structural screens only — never a
+    # trust stamp; accepted docs are still unverified, never served.
+    from app.services.intake_lint import lint_question
+    lint = lint_question(doc)
+    if lint["verdict"] == "rejected":
+        raise HTTPException(status_code=422, detail={
+            "message": "Submission looks like filler content and was not accepted.",
+            "reasons": lint["reasons"],
+        })
     doc["id"] = f"user-submitted-{_uuid.uuid4().hex[:12]}"
     doc["submitted_by"] = user["id"]
     doc["upvotes"] = 0
     doc["downvotes"] = 0
     doc["reported"] = False
     doc["trust_status"] = "unverified"
+    if lint["warnings"]:
+        doc["lint_flags"] = lint["warnings"]
     doc["created_at"] = datetime.now(timezone.utc)
     doc["updated_at"] = datetime.now(timezone.utc)
     try:
@@ -654,6 +650,19 @@ async def submit_question(req: QuestionSubmission, user=Depends(get_current_user
         pass
     await invalidate_questions_cache()
     return doc
+
+
+REPORT_QUORUM = 10
+REPORTS_PATH = BACKEND_ROOT / "app" / "data" / "question_reports.json"
+SERVED_QUARANTINE_PATH = BACKEND_ROOT / "app" / "data" / "served_quarantine.json"
+
+
+def _read_json_list(path) -> list:
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        return data if isinstance(data, list) else []
+    except Exception:
+        return []
 
 
 @router.post("/upvote")
@@ -668,10 +677,56 @@ async def upvote_question(req: QuestionVote, user=Depends(get_current_user)):
     up = updated.get("upvotes", 0)
     down = updated.get("downvotes", 0)
 
+    # Student report loop (no new collection): downvote + reason is a report.
+    # Abuse guards: authenticated user only (route requires auth), one report
+    # per user+question, max 5 reports per user per day. Quorum of distinct
+    # reporters auto-quarantines the question from serving (rollback path,
+    # human-reviewable file). NOTE: no email verification exists yet (P3), so
+    # throwaway-account brigading is only blunted, not eliminated.
+    REPORT_DAILY_CAP = 5
+    report_count = 0
+    quarantined = False
+    if req.vote < 0 and (req.reason or "").strip():
+        # Reports + quorum quarantine live in Mongo (§1.1 migration: local
+        # JSON resets on every Render restart, silently un-quarantining).
+        # The app/data files are seed/export artifacts only (see backfill).
+        from pymongo.errors import DuplicateKeyError
+        today = datetime.now(timezone.utc).date().isoformat()
+        if await question_reports_collection.count_documents(
+                {"user_id": user["id"], "day": today}) >= REPORT_DAILY_CAP:
+            raise HTTPException(status_code=429, detail="Daily report limit reached (5/day)")
+        try:
+            await question_reports_collection.insert_one(
+                {"question_id": req.question_id, "user_id": user["id"],
+                 "reason": req.reason.strip()[:500], "day": today,
+                 "created_at": datetime.now(timezone.utc)})
+        except DuplicateKeyError:
+            pass  # concurrent double-report: already recorded, keep counting
+        report_count = await question_reports_collection.count_documents(
+            {"question_id": req.question_id})
+        if report_count >= REPORT_QUORUM:
+            await served_quarantine_collection.update_one(
+                {"question_id": req.question_id},
+                {"$setOnInsert": {
+                    "question_id": req.question_id,
+                    "reason": f"student-quorum:{report_count}_reports",
+                    "title": (question.get("question") or "")[:80],
+                    "created_at": datetime.now(timezone.utc)}},
+                upsert=True,
+            )
+            quarantined = True
+            # Immediate effect on this process (no restart): mark in-memory.
+            try:
+                question_store.mark_quarantined_in_memory(req.question_id)
+            except Exception:
+                pass
+
     return {
         "question_id": req.question_id,
         "upvotes": up,
         "downvotes": down,
+        "report_count": report_count,
+        "quarantined": quarantined,
     }
 
 

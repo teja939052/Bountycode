@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, type ReactNode } from "react";
 import type { LucideIcon } from "lucide-react";
 import useAuthStore from "../store/authStore";
+import { useThemeStore } from "../store/themeStore";
 import {
   LogOut,
   Menu,
@@ -11,27 +12,33 @@ import {
   BookOpen,
   Code2,
   Sparkles,
-  LayoutDashboard,
-  MessageSquare,
-  Calendar,
-  Trophy,
-  Briefcase,
-  Castle,
-  Brain,
   Lightbulb,
   Shield,
+  Building2,
+  Network,
+  Compass,
+  ClipboardList,
+  User,
+  Sun,
+  Moon,
+  CalendarDays,
+  FileText,
+  FileSearch,
+  Briefcase,
+  Trophy,
 } from "lucide-react";
+import BackgroundSwitcher from "../components/background/BackgroundSwitcher";
 import { useLocation } from "react-router-dom";
 
-/* Primary IA — exactly 5 top-level destinations (Material/Apple guideline).
-   Everything else lives in the "More" menu so users build a fast mental map.
-   Resume/ATS/Cover Letter appear ONLY under Career (no duplication). */
+/* Primary IA — canonical navigation.
+    Six hubs: Journey, Practice, Mock OA, AI Interview, Company Tracks, Profile. */
 const PRIMARY_LINKS: NavItem[] = [
-  { to: "/hub", label: "Home", icon: LayoutDashboard },
-  { to: "/prepare", label: "Prepare", icon: BookOpen },
+  { to: "/journey", label: "Journey", icon: Compass },
   { to: "/practice", label: "Practice", icon: Code2 },
-  { to: "/compete", label: "Compete", icon: Trophy },
-  { to: "/career", label: "Career", icon: Briefcase },
+  { to: "/mock-oa", label: "Mock OA", icon: ClipboardList },
+  { to: "/interview", label: "AI Interview", icon: User },
+  { to: "/company-tracks", label: "Companies", icon: Building2 },
+  { to: "/career-profile", label: "Profile", icon: User },
 ];
 
 export default function Navbar() {
@@ -41,24 +48,49 @@ export default function Navbar() {
   const [toolsOpen, setToolsOpen] = useState(false);
   const location = useLocation();
   const isLanding = location.pathname === "/";
+  const { mode, setMode } = useThemeStore();
 
   const isAdmin = user?.is_admin || user?.role === "admin" || user?.plan === "pro" || user?.plan === "lifetime";
 
+  const cycleTheme = () => {
+    if (mode === "crystal-light") setMode("crystal-dark");
+    else if (mode === "crystal-dark") setMode("crystal-light");
+    else setMode("crystal-light");
+  };
+
   const MORE_GROUPS: NavGroup[] = [
     {
-      label: "Your Journey",
+      label: "Learning",
       items: [
-        { to: "/tower", label: "Tower", icon: Castle },
+        { to: "/learning-paths", label: "Learning Paths", icon: BookOpen },
+        { to: "/concepts", label: "Concepts", icon: Lightbulb },
+        { to: "/problems", label: "Question Bank", icon: Code2 },
+        { to: "/aptitude", label: "Aptitude", icon: ClipboardList },
+        { to: "/coding", label: "Coding", icon: Code2 },
       ],
     },
     {
-      label: "Tools & Community",
+      label: "Interview",
       items: [
-        { to: "/community", label: "Community", icon: MessageSquare },
-        { to: "/ai-mentor", label: "AI Mentor", icon: Brain },
-        { to: "/concepts", label: "Concepts", icon: Lightbulb },
-        { to: "/placement-calendar", label: "Placement Calendar", icon: Calendar },
-        { to: "/settings", label: "Settings", icon: Settings },
+        { to: "/interview-booking", label: "Book Session", icon: CalendarDays },
+        { to: "/system-design", label: "System Design", icon: Network },
+      ],
+    },
+    {
+      label: "Career",
+      items: [
+        { to: "/resume", label: "Resume Builder", icon: FileText },
+        { to: "/resume-studio", label: "Resume Studio", icon: FileText },
+        { to: "/ats", label: "ATS Optimizer", icon: FileSearch },
+        { to: "/applications", label: "Applications", icon: Briefcase },
+      ],
+    },
+    {
+      label: "Gamification",
+      items: [
+        { to: "/tower", label: "Tower", icon: Trophy },
+        { to: "/skill-graph", label: "Skill Graph", icon: Network },
+        { to: "/leaderboard", label: "Leaderboard", icon: Trophy },
       ],
     },
     ...(isAdmin
@@ -66,7 +98,7 @@ export default function Navbar() {
           {
             label: "Admin",
             items: [
-              { to: "/admin", label: "Analytics", icon: Shield },
+              { to: "/admin", label: "Admin Dashboard", icon: Shield },
             ],
           } as NavGroup,
         ]
@@ -154,12 +186,16 @@ export default function Navbar() {
                   <span className="rounded-full border border-brand-primary/30 bg-brand-primary/10 px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.2em] text-brand-primary" aria-label={`Plan: ${user.plan}`}>
                     {user.plan}
                   </span>
-                  <Link to="/settings" className="text-text-muted transition-colors hover:text-brand-primary" aria-label="Settings">
-                    <Settings size={17} />
-                  </Link>
-                  <button onClick={handleLogout} className="text-text-muted transition-colors hover:text-error" aria-label="Logout">
-                    <LogOut size={17} />
-                  </button>
+                   <Link to="/settings" className="text-text-muted transition-colors hover:text-brand-primary" aria-label="Settings">
+                     <Settings size={17} />
+                   </Link>
+                    <button onClick={cycleTheme} className="text-text-muted transition-colors hover:text-brand-primary" aria-label="Toggle theme">
+                      {mode === "crystal-dark" ? <Sun size={17} /> : <Moon size={17} />}
+                    </button>
+                    <BackgroundSwitcher />
+                    <button onClick={handleLogout} className="text-text-muted transition-colors hover:text-error" aria-label="Logout">
+                      <LogOut size={17} />
+                    </button>
                 </div>
               </>
              ) : (
