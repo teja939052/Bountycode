@@ -28,7 +28,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
 from app.data.worlds_data import WORLD_REGISTRY
-from app.database import gamification_collection, skill_graph_collection
+from app.database import gamification_collection, skill_graph_collection, srs_cards_collection
 from app.middleware.auth import get_current_user
 from app.models.world import (
     Boss,
@@ -89,6 +89,43 @@ def _is_unlocked(level_id: str, all_ids: list[str], completed: dict, world_prefi
     return bool(prog.get("completed"))
 
 
+def world_progress(world_id: str, completed: dict) -> dict:
+    """Done/total counts for one world from persisted evidence."""
+    world = WORLD_REGISTRY.get(world_id)
+    if world is None:
+        return {"done": 0, "total": 0}
+    total = sum(len(t.levels) for t in world.towns)
+    done = sum(
+        1 for t in world.towns for lvl in t.levels
+        if completed.get(f"{world_id}:{lvl.id}", {}).get("completed")
+    )
+    return {"done": done, "total": total}
+
+
+def is_world_unlocked(world_id: str, completed: dict) -> bool:
+    """Cross-world gate, read from the registry's own prerequisites.
+
+    Single source of truth: the map switcher, the voyage summary, and the
+    attempt/hint/complete endpoints below all call this. Unlocked when the
+    world has no prerequisites, the student has any progress inside it
+    (earned progress is never locked out), or every prerequisite world is
+    fully cleared. Viewing (GET) is never gated — only progress writes.
+    """
+    world = WORLD_REGISTRY.get(world_id)
+    if world is None:
+        return False
+    prereqs = list(getattr(world, "prerequisites", []) or [])
+    if not prereqs:
+        return True
+    if world_progress(world_id, completed)["done"] > 0:
+        return True
+    for pid in prereqs:
+        pre = world_progress(pid, completed)
+        if pre["total"] and pre["done"] < pre["total"]:
+            return False
+    return True
+
+
 def judge_level(lvl: LevelBase, code: str) -> tuple[bool, str, Optional[int]]:
     patterns: list[str] = lvl.checks.required_patterns if lvl.checks else []
     code_norm = code.strip()
@@ -100,6 +137,25 @@ def judge_level(lvl: LevelBase, code: str) -> tuple[bool, str, Optional[int]]:
                 return False, "Write some code to try!", 0
             return False, lvl.hints[hint], hint
     return True, lvl.success.world_reaction, None
+
+
+def stars_for_entry(entry: Dict[str, Any]) -> int:
+    """1-3 stars from persisted evidence (0-100 best score + hints used).
+
+    Single source of truth: the map AND the complete response both read
+    this (it lives here, next to the entries it scores — map.py imports it).
+    Forward progress needs only 1 star; 3 stars require independence
+    (high best with <=1 hint), so repair-then-recover can still earn 3.
+    """
+    if not entry.get("completed"):
+        return 0
+    best = float(entry.get("best_score", 0) or 0)
+    hints = len(entry.get("hints_used", []) or [])
+    if best >= 85 and hints <= 1:
+        return 3
+    if best >= 60:
+        return 2
+    return 1
 
 
 def _level_by_id(world: World, level_id: str) -> LevelBase | None:
@@ -132,7 +188,6 @@ async def _get_skill_score(user_id: str, category: str = "coding") -> float:
 async def _ensure_srs_card(user_id: str, problem_id: str, is_correct: bool, difficulty: str = "easy"):
     """Create/update SRS card for a world level."""
     try:
-        from app.database import srs_cards_collection
         from app.services.spaced_repetition import SpacedRepetitionEngine, SRSState, ReviewGrade
         from dataclasses import asdict
 
@@ -178,18 +233,46 @@ async def _record_skill_touch(user_id: str, canonical_skill: str, passed: bool):
         pass
 
 
-async def _award_xp(user_id: str, world_id: str, xp: int, meta: dict | None = None):
-    try:
-        from app.services.gamification import record_practice
-        await record_practice(user_id, world_id, xp, meta or {})
-    except Exception:
-        doc = await gamification_collection.find_one({"user_id": user_id}) or {"xp": 0}
-        cur_xp = doc.get("xp", 0)
-        await gamification_collection.update_one(
-            {"user_id": user_id},
-            {"$set": {"xp": cur_xp + xp}},
-            upsert=True,
+async def _award_xp(user_id: str, world_id: str, xp: int, meta: dict | None = None, role: str = "sde"):
+    """Award XP for a world-level completion via the canonical gamification service.
+
+    LAW: record_practice is the ONLY writer of XP. There is no fallback
+    $inc/$set path — a silent fallback is how mastery got polluted, and a
+    smaller wrong number is worse than an explicit pending flag.
+
+    Contract: activity_type is the canonical "lesson" (score 0-10: a pass is
+    10.0); world/level travel in metadata so per-world counters don't
+    fragment into total_foundationss-style junk. (Payout base shifts 70->75
+    pre-multiplier vs the old unknown-type fallback; role multipliers now
+    apply, which is the correct behavior.)
+
+    On engine failure the caller persists the completion entry with
+    rewards_pending=True and returns completed:true + rewards_pending:true
+    (entry saved, XP missing but flagged, never silently short). Raises.
+    Skill-graph mastery is NOT affected (fixed 85/True via
+    ``_record_skill_touch``); map stars are NOT affected (entry best_score).
+    Returns the ``record_practice`` result (with ``xp_gained``).
+    """
+    import logging as _logging
+
+    _log = _logging.getLogger("app.routes.worlds")
+    from app.services.gamification import record_practice
+    meta = dict(meta or {})
+    meta.setdefault("world_id", world_id)
+    result = await record_practice(user_id, "lesson", 10.0, meta, role=role)
+    stored = (result or {}).get("xp_gained")
+    # Evidence trail: nominal request vs canonical award. Stored is
+    # routinely larger by design (streak / first-of-day / combo / crit).
+    _log.debug(
+        "xp_award user=%s world=%s level=%s nominal=%s stored=%s",
+        user_id, world_id, meta.get("level_id"), xp, stored,
+    )
+    if stored is not None and int(stored) < int(xp):
+        _log.warning(
+            "xp_underpay user=%s world=%s level=%s nominal=%s stored=%s",
+            user_id, world_id, meta.get("level_id"), xp, stored,
         )
+    return result
 
 
 # ─────────────────────────────────────────────
@@ -257,6 +340,7 @@ async def _build_progress(world: World, user_id: str) -> dict:
 class AttemptRequest(BaseModel):
     code: str = ""
     time_spent_seconds: int = 0
+    step_type: str = "code"
 
 
 class HintRequest(BaseModel):
@@ -333,6 +417,8 @@ async def record_hint(world_id: str, level_id: str, req: HintRequest, user=Depen
     lvl = _level_by_id(world, level_id)
     if not lvl:
         raise HTTPException(status_code=404, detail=f"Unknown level: {level_id}")
+    if not is_world_unlocked(world_id, await _get_completed(user["id"])):
+        raise HTTPException(status_code=403, detail="World locked. Clear the previous world first.")
     key = f"{world_id}:{level_id}"
     doc = await gamification_collection.find_one({"user_id": user["id"]}) or {"user_id": user["id"], "completed_competencies": {}}
     comp = doc.get("completed_competencies", {})
@@ -358,11 +444,28 @@ async def attempt_level(world_id: str, level_id: str, req: AttemptRequest, user=
 
     completed = await _get_completed(user["id"])
     all_ids = _all_level_ids(world)
+    if not is_world_unlocked(world_id, completed):
+        raise HTTPException(status_code=403, detail="World locked. Clear the previous world first.")
     if not _is_unlocked(level_id, all_ids, completed, world_id):
         raise HTTPException(status_code=403, detail="Level locked. Complete previous levels first.")
 
     mastery_before = await _get_skill_score(user["id"])
-    passed, message, hint_idx = judge_level(lvl, req.code)
+    step_type = getattr(req, "step_type", "code") or "code"
+
+    if step_type == "predict" and hasattr(lvl, "predict") and lvl.predict:
+        passed = req.code.strip().lower() == lvl.predict.answer.strip().lower()
+        message = lvl.predict.explanation or ("Correct!" if passed else f"Not quite. Expected: {lvl.predict.answer}")
+        hint_idx = None
+    elif step_type == "retrieval" and hasattr(lvl, "retrieval") and lvl.retrieval:
+        passed = req.code.strip().lower() == lvl.retrieval.answer.strip().lower()
+        message = lvl.retrieval.explanation or ("Correct!" if passed else f"Not quite. Expected: {lvl.retrieval.answer}")
+        hint_idx = None
+        if passed:
+            await _ensure_srs_card(user["id"], f"{world_id}:{level_id}:retrieval", is_correct=True, difficulty="easy")
+        else:
+            await _ensure_srs_card(user["id"], f"{world_id}:{level_id}:retrieval", is_correct=False, difficulty="medium")
+    else:
+        passed, message, hint_idx = judge_level(lvl, req.code)
 
     key = f"{world_id}:{level_id}"
     doc = await gamification_collection.find_one({"user_id": user["id"]}) or {"user_id": user["id"], "completed_competencies": {}}
@@ -417,6 +520,8 @@ async def complete_level(world_id: str, level_id: str, req: AttemptRequest, user
 
     completed = await _get_completed(user["id"])
     all_ids = _all_level_ids(world)
+    if not is_world_unlocked(world_id, completed):
+        raise HTTPException(status_code=403, detail="World locked. Clear the previous world first.")
     if not _is_unlocked(level_id, all_ids, completed, world_id):
         raise HTTPException(status_code=403, detail="Level locked.")
 
@@ -427,9 +532,37 @@ async def complete_level(world_id: str, level_id: str, req: AttemptRequest, user
 
     uid = user["id"]
     now = datetime.now(timezone.utc)
+    key = f"{world_id}:{level_id}"
+    # Idempotency, including CONCURRENT double-tap: the claim below is a
+    # single atomic op. Of two requests landing at the same instant, exactly
+    # one matches the "not completed" filter and proceeds to award XP; the
+    # loser sees no match and returns deduplicated. A plain read-then-write
+    # check cannot guarantee this. Ship position derives from completed
+    # flags, so the character can never advance twice from one completion.
+    await gamification_collection.update_one(
+        {"user_id": uid},
+        {"$setOnInsert": {"user_id": uid, "completed_competencies": {}}},
+        upsert=True,
+    )
+    claimed = await gamification_collection.find_one_and_update(
+        {"user_id": uid, f"completed_competencies.{key}.completed": {"$ne": True}},
+        {"$set": {
+            f"completed_competencies.{key}.completed": True,
+            f"completed_competencies.{key}.claimed_at": now.isoformat(),
+            "updated_at": now,
+        }},
+    )
+    if claimed is None:
+        progress = await _build_progress(world, uid)
+        return {
+            "completed": True,
+            "deduplicated": True,
+            "level_id": level_id,
+            "xp_awarded": 0,
+            "progress": progress,
+        }
     doc = await gamification_collection.find_one({"user_id": uid}) or {"user_id": uid, "completed_competencies": {}}
     comp = doc.get("completed_competencies", {})
-    key = f"{world_id}:{level_id}"
     entry = comp.get(key, {"completed": False, "score": 0, "best_score": 0, "attempts": 0, "failed_attempts": 0, "hints_used": [], "total_time_seconds": 0})
     entry["completed"] = True
     entry["score"] = 100
@@ -443,13 +576,41 @@ async def complete_level(world_id: str, level_id: str, req: AttemptRequest, user
 
     xp_gain = lvl.success.xp if isinstance(lvl, LevelBase) else 0
     update: dict = {"completed_competencies": comp, "updated_at": now}
-    await _award_xp(uid, world_id, xp_gain, {"level_id": level_id, "world": world_id})
+    # Persist the completion entry BEFORE awarding: if the reward engine
+    # fails, the entry (and a rewards_pending flag) still lands — a failed
+    # award must never lose the completion, and must never silently short it.
+    # Report the ACTUAL canonical award, not the nominal level reward:
+    # response.xp_awarded == stored $inc delta == profile delta.
     fresh = await gamification_collection.find_one({"user_id": uid}) or {}
     fresh_comp = fresh.get("completed_competencies", {})
     fresh_comp[key] = entry
     await gamification_collection.update_one(
         {"user_id": uid}, {"$set": {"completed_competencies": fresh_comp, "updated_at": now}}, upsert=True
     )
+    rewards_pending = False
+    reward_breakdown: dict = {}
+    try:
+        xp_result = await _award_xp(uid, world_id, xp_gain, {"level_id": level_id, "world": world_id}, role=user.get("role") or user.get("target_role") or "sde")
+        xp_awarded = (xp_result or {}).get("xp_gained", xp_gain)
+        # Forward the engine's own breakdown so the result banner renders
+        # real numbers (no second fetch, no client math).
+        reward_breakdown = {
+            "combo": ((xp_result or {}).get("combo") or {}).get("current", 0),
+            "streak_multiplier": (xp_result or {}).get("streak_multiplier", 1.0),
+            "critical_hit": bool((xp_result or {}).get("critical_hit", False)),
+            "new_streak": (xp_result or {}).get("new_streak", 0),
+        }
+    except Exception as exc:
+        import logging as _logging2
+        _logging2.getLogger("app.routes.worlds").warning(
+            "xp_award_failed user=%s world=%s level=%s err=%s", uid, world_id, level_id, exc)
+        xp_awarded = 0
+        rewards_pending = True
+        entry["rewards_pending"] = True
+        fresh_comp[key] = entry
+        await gamification_collection.update_one(
+            {"user_id": uid}, {"$set": {"completed_competencies": fresh_comp, "updated_at": now}}, upsert=True
+        )
 
     await _record_skill_touch(uid, _canonical_skill_for_level(lvl), True)
 
@@ -472,7 +633,11 @@ async def complete_level(world_id: str, level_id: str, req: AttemptRequest, user
     return {
         "completed": True,
         "level_id": level_id,
-        "xp_awarded": xp_gain,
+        "xp_awarded": xp_awarded,
+        "xp_nominal": xp_gain,
+        "rewards_pending": rewards_pending,
+        "reward": reward_breakdown,
+        "stars": stars_for_entry(entry),
         "world_reaction": lvl.success.world_reaction,
         "world_before": lvl.success.world_before,
         "world_after": lvl.success.world_after,
