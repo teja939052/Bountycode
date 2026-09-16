@@ -1,22 +1,18 @@
 import { lazy } from "react";
 
 const routeImportFns = {
-  LearnLesson: () => import("./LearnLesson"),
   Login: () => import("./Login"),
   Register: () => import("./Register"),
-  Dashboard: () => import("./Dashboard"),
   Interview: () => import("./Interview"),
   InterviewSession: () => import("./InterviewSession"),
+  InterviewBooking: () => import("./InterviewBooking"),
+  InterviewReplay: () => import("./InterviewReplay"),
   ResumeBuilder: () => import("./ResumeBuilder"),
   ResumeStudio: () => import("./ResumeStudio"),
   ATSOptimizer: () => import("./ATSOptimizer"),
   AptitudeTest: () => import("./AptitudeTest"),
-  CoverLetter: () => import("./CoverLetter"),
-  SalaryNegotiation: () => import("./SalaryNegotiation"),
   SystemDesign: () => import("./SystemDesign"),
-  CompanyPrep: () => import("./CompanyPrep"),
   CodingChallenge: () => import("./CodingChallenge"),
-  SalaryBenchmark: () => import("./SalaryBenchmark"),
   Pricing: () => import("./Pricing"),
   PlacementCalendar: () => import("./PlacementCalendar"),
   NotFound: () => import("./NotFound"),
@@ -24,17 +20,16 @@ const routeImportFns = {
   History: () => import("./History"),
   Leaderboard: () => import("./Leaderboard"),
   DailyDrill: () => import("./DailyDrill"),
-  StudyGroups: () => import("./StudyGroups"),
-  Predictor: () => import("./Predictor"),
   QuestionBank: () => import("./QuestionBank"),
   PracticeMode: () => import("./PracticeMode"),
+  PatternPage: () => import("./PatternPage"),
+  CompanyTrack: () => import("./CompanyTrack"),
   MyProgress: () => import("./MyProgress"),
   CompanyMocks: () => import("./CompanyMocks"),
   AlumniExperiences: () => import("./AlumniExperiences"),
   PlacementDrives: () => import("./PlacementDrives"),
   CareerProfile: () => import("./CareerProfile"),
   ApplicationTracker: () => import("./ApplicationTracker"),
-  Analytics: () => import("./Analytics"),
   Enterprise: () => import("./Enterprise"),
   Compiler: () => import("./Compiler"),
   SolveProblem: () => import("./SolveProblem"),
@@ -46,43 +41,39 @@ const routeImportFns = {
   MockOA: () => import("./MockOA"),
   ResumeATS: () => import("./ResumeATS"),
   LearningHub: () => import("./LearningHub"),
-  LanguageJourney: () => import("./LanguageJourney"),
   LessonPage: () => import("./LessonPage"),
-  StudyLibrary: () => import("./StudyLibrary"),
   AdminDashboard: () => import("./AdminDashboard"),
+  AdminContentCorpus: () => import("./AdminContentCorpus"),
   Topics: () => import("./Topics"),
   TopicProblems: () => import("./TopicProblems"),
-  PersonalDashboard: () => import("./PersonalDashboard"),
   ProblemOfTheDay: () => import("./ProblemOfTheDay"),
+  Tower: () => import("./Tower"),
+  SkillGraph: () => import("./SkillGraph"),
   DailyChallenge: () => import("./DailyChallenge"),
   DSAVisualizer: () => import("./DSAVisualizer"),
   ChallengePacks: () => import("./ChallengePacks"),
   AIMentor: () => import("./AIMentor"),
   CodePlayground: () => import("./CodePlayground"),
   CompareVisualizer: () => import("./CompareVisualizer"),
-  Community: () => import("./Community"),
-
-  LanguageLearning: () => import("./LanguageLearning"),
   OnboardingQuest: () => import("./OnboardingQuest"),
-  InterviewBooking: () => import("./InterviewBooking"),
-
-  InterviewReplay: () => import("./InterviewReplay"),
   JourneyPage: () => import("./JourneyPage"),
+  LevelMap: () => import("./LevelMap"),
   FreeTrial: () => import("./FreeTrial"),
   PwaSetup: () => import("./PwaSetup"),
-  AdminContent: () => import("./AdminContent"),
-  MyAssignments: () => import("./MyAssignments"),
-
   StudentDashboard: () => import("./StudentDashboard"),
-
   StudyTimer: () => import("./StudyTimer"),
-
+  StudyGoals: () => import("./StudyGoals"),
   Terms: () => import("./Terms"),
   Privacy: () => import("./Privacy"),
+  Practice: () => import("./Practice"),
+  PrepHub: () => import("./PrepHub"),
+  LearningPaths: () => import("./LearningPaths"),
+  CompanyTracks: () => import("./CompanyTracks"),
+  Concepts: () => import("./Concepts"),
 };
 
-const preload = {};
-const preloaded = new Set();
+const preload: Record<string, () => void> = {};
+const preloaded = new Set<string>();
 for (const [name, importFn] of Object.entries(routeImportFns)) {
   preload[name] = () => {
     if (preloaded.has(name)) return;
@@ -94,7 +85,6 @@ for (const [name, importFn] of Object.entries(routeImportFns)) {
 export { preload };
 
 const IDLE_PRELOAD_ROUTES = [
-  "Dashboard",
   "Login",
   "Register",
   "Pricing",
@@ -104,11 +94,12 @@ const IDLE_PRELOAD_ROUTES = [
   "ATSOptimizer",
   "AptitudeTest",
   "SystemDesign",
-  "CompanyPrep",
   "CodingChallenge",
-  "LearningHub",
+  "LearningPaths",
   "Compiler",
-  "Community",
+  "LevelMap",
+  "Tower",
+  "JourneyPage",
 ];
 
 function scheduleIdlePreload() {
@@ -125,21 +116,15 @@ function scheduleIdlePreload() {
 window.addEventListener("load", scheduleIdlePreload);
 
 const Login = lazy(() => import("./Login"));
-const LearnLesson = lazy(() => import("./LearnLesson"));
 const Register = lazy(() => import("./Register"));
-const Dashboard = lazy(() => import("./Dashboard"));
 const Interview = lazy(() => import("./Interview"));
 const InterviewSession = lazy(() => import("./InterviewSession"));
 const ResumeBuilder = lazy(() => import("./ResumeBuilder"));
 const ResumeStudio = lazy(() => import("./ResumeStudio"));
 const ATSOptimizer = lazy(() => import("./ATSOptimizer"));
 const AptitudeTest = lazy(() => import("./AptitudeTest"));
-const CoverLetter = lazy(() => import("./CoverLetter"));
-const SalaryNegotiation = lazy(() => import("./SalaryNegotiation"));
 const SystemDesign = lazy(() => import("./SystemDesign"));
-const CompanyPrep = lazy(() => import("./CompanyPrep"));
 const CodingChallenge = lazy(() => import("./CodingChallenge"));
-const SalaryBenchmark = lazy(() => import("./SalaryBenchmark"));
 const Pricing = lazy(() => import("./Pricing"));
 const PlacementCalendar = lazy(() => import("./PlacementCalendar"));
 const NotFound = lazy(() => import("./NotFound"));
@@ -147,17 +132,16 @@ const Settings = lazy(() => import("./Settings"));
 const History = lazy(() => import("./History"));
 const Leaderboard = lazy(() => import("./Leaderboard"));
 const DailyDrill = lazy(() => import("./DailyDrill"));
-const StudyGroups = lazy(() => import("./StudyGroups"));
-const Predictor = lazy(() => import("./Predictor"));
 const QuestionBank = lazy(() => import("./QuestionBank"));
 const PracticeMode = lazy(() => import("./PracticeMode"));
+const PatternPage = lazy(() => import("./PatternPage"));
+const CompanyTrack = lazy(() => import("./CompanyTrack"));
 const MyProgress = lazy(() => import("./MyProgress"));
 const CompanyMocks = lazy(() => import("./CompanyMocks"));
 const AlumniExperiences = lazy(() => import("./AlumniExperiences"));
 const PlacementDrives = lazy(() => import("./PlacementDrives"));
 const CareerProfile = lazy(() => import("./CareerProfile"));
 const ApplicationTracker = lazy(() => import("./ApplicationTracker"));
-const Analytics = lazy(() => import("./Analytics"));
 const Enterprise = lazy(() => import("./Enterprise"));
 const Compiler = lazy(() => import("./Compiler"));
 const SolveProblem = lazy(() => import("./SolveProblem"));
@@ -169,65 +153,48 @@ const IndianPlacement = lazy(() => import("./IndianPlacement"));
 const MockOA = lazy(() => import("./MockOA"));
 const ResumeATS = lazy(() => import("./ResumeATS"));
 const LearningHub = lazy(() => import("./LearningHub"));
-const LanguageJourney = lazy(() => import("./LanguageJourney"));
 const LessonPage = lazy(() => import("./LessonPage"));
-const StudyLibrary = lazy(() => import("./StudyLibrary"));
 const AdminDashboard = lazy(() => import("./AdminDashboard"));
+const AdminContentCorpus = lazy(() => import("./AdminContentCorpus"));
 const Topics = lazy(() => import("./Topics"));
 const TopicProblems = lazy(() => import("./TopicProblems"));
-const PersonalDashboard = lazy(() => import("./PersonalDashboard"));
-const StudentDashboard = lazy(() => import("./StudentDashboard"));
 const ProblemOfTheDay = lazy(() => import('./ProblemOfTheDay'));
+const Tower = lazy(() => import('./Tower'));
+const SkillGraph = lazy(() => import('./SkillGraph'));
 const DailyChallenge = lazy(() => import('./DailyChallenge'));
 const DSAVisualizer = lazy(() => import('./DSAVisualizer'));
 const ChallengePacks = lazy(() => import('./ChallengePacks'));
 const AIMentor = lazy(() => import('./AIMentor'));
 const CodePlayground = lazy(() => import('./CodePlayground'));
 const CompareVisualizer = lazy(() => import('./CompareVisualizer'));
-const Community = lazy(() => import('./Community'));
-const LanguageLearning = lazy(() => import('./LanguageLearning'));
 const OnboardingQuest = lazy(() => import('./OnboardingQuest'));
 const InterviewBooking = lazy(() => import('./InterviewBooking'));
 const InterviewReplay = lazy(() => import('./InterviewReplay'));
 const JourneyPage = lazy(() => import('./JourneyPage'));
+const LevelMap = lazy(() => import('./LevelMap'));
 const FreeTrial = lazy(() => import('./FreeTrial'));
 const PwaSetup = lazy(() => import('./PwaSetup'));
-const AdminContent = lazy(() => import('./AdminContent'));
-const MyAssignments = lazy(() => import('./MyAssignments'));
-const Concepts = lazy(() => import('./Concepts'));
+const StudentDashboard = lazy(() => import('./StudentDashboard'));
 const StudyTimer = lazy(() => import('./StudyTimer'));
 const StudyGoals = lazy(() => import('./StudyGoals'));
-const Home = lazy(() => import('./Home'));
-const Prepare = lazy(() => import('./Prepare'));
-const Practice = lazy(() => import('./Practice'));
-const Compete = lazy(() => import('./Compete'));
-const Career = lazy(() => import('./Career'));
 const Terms = lazy(() => import('./Terms'));
 const Privacy = lazy(() => import('./Privacy'));
+const Practice = lazy(() => import('./Practice'));
+const PrepHub = lazy(() => import('./PrepHub'));
+const LearningPaths = lazy(() => import('./LearningPaths'));
+const CompanyTracks = lazy(() => import('./CompanyTracks'));
+const Concepts = lazy(() => import('./Concepts'));
 export {
-  LearnLesson,
-  CompareVisualizer,
-  Community,
-  ProblemOfTheDay,
-  DailyChallenge,
-  DSAVisualizer,
-  ChallengePacks,
-  AIMentor,
   Login,
   Register,
-  Dashboard,
   Interview,
   InterviewSession,
   ResumeBuilder,
   ResumeStudio,
   ATSOptimizer,
   AptitudeTest,
-  CoverLetter,
-  SalaryNegotiation,
   SystemDesign,
-  CompanyPrep,
   CodingChallenge,
-  SalaryBenchmark,
   Pricing,
   PlacementCalendar,
   NotFound,
@@ -235,17 +202,16 @@ export {
   History,
   Leaderboard,
   DailyDrill,
-  StudyGroups,
-  Predictor,
   QuestionBank,
   PracticeMode,
+  PatternPage,
+  CompanyTrack,
   MyProgress,
   CompanyMocks,
   AlumniExperiences,
   PlacementDrives,
   CareerProfile,
   ApplicationTracker,
-  Analytics,
   Enterprise,
   Compiler,
   SolveProblem,
@@ -257,32 +223,35 @@ export {
   MockOA,
   ResumeATS,
   LearningHub,
-  LanguageJourney,
   LessonPage,
-  StudyLibrary,
   AdminDashboard,
+  AdminContentCorpus,
   Topics,
   TopicProblems,
-  PersonalDashboard,
-  StudentDashboard,
+  ProblemOfTheDay,
+  Tower,
+  SkillGraph,
+  DailyChallenge,
+  DSAVisualizer,
+  ChallengePacks,
+  AIMentor,
   CodePlayground,
-  LanguageLearning,
+  CompareVisualizer,
   OnboardingQuest,
   InterviewBooking,
   InterviewReplay,
   JourneyPage,
+  LevelMap,
   FreeTrial,
   PwaSetup,
-  AdminContent,
-  MyAssignments,
+  StudentDashboard,
   StudyTimer,
   StudyGoals,
-  Home,
-  Prepare,
-  Practice,
-  Compete,
-  Career,
-  Concepts,
   Terms,
   Privacy,
+  Practice,
+  PrepHub,
+  LearningPaths,
+  CompanyTracks,
+  Concepts,
 };
