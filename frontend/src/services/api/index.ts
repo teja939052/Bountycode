@@ -17,6 +17,7 @@ import { toolsApi } from "./tools.ts";
 import { companyMocksApi } from "./companyPrep.ts";
 import { gamificationApi } from "./gamification.ts";
 import { rolesApi } from "./roles.ts";
+import { oaApi } from "./oa.ts";
 import { enhancedApi, freePracticeApi } from "./enhanced.ts";
 import { studentApi } from "./student.ts";
 import { placementApi, indianPlacementApi } from "./placement.ts";
@@ -64,6 +65,7 @@ const api = {
   tools: toolsApi,
   companyMocks: companyMocksApi,
   gamification: gamificationApi,
+  oa: oaApi,
   enhanced: enhancedApi,
   freePractice: freePracticeApi,
   student: studentApi,
@@ -141,6 +143,7 @@ export {
   toolsApi,
   companyMocksApi,
   gamificationApi,
+  oaApi,
   enhancedApi,
   freePracticeApi,
   studentApi,
