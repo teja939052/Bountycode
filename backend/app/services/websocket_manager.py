@@ -24,7 +24,7 @@ class MessageType(str, Enum):
     JOB_FAILED = "job_failed"
 
     # Real-time updates
-    XP_GAINED = "xp_gained"
+    Diamonds_GAINED = "xp_gained"
     LEVEL_UP = "level_up"
     STREAK_UPDATE = "streak_update"
     BADGE_EARNED = "badge_earned"

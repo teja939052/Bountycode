@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "PlacementPro Apply Copilot",
+  "name": "BountyCode Apply Copilot",
   "version": "1.0.0",
-  "description": "Autofill applications, tailor resumes, and track applications with PlacementPro.",
+  "description": "Autofill applications, tailor resumes, and track applications with BountyCode.",
   "permissions": ["storage", "activeTab", "scripting", "identity"],
   "host_permissions": [
     "*://*.workday.com/*",

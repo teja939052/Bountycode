@@ -1,10 +1,10 @@
-# PlacementPro Apply Copilot — Chrome Extension
+# BountyCode Apply Copilot — Chrome Extension
 
 ## What it does
-- Autofill job application forms from your PlacementPro Career Profile.
+- Autofill job application forms from your BountyCode Career Profile.
 - Tailor your resume for the current job posting (one click).
 - Draft a cover letter for the role/company on the page.
-- Log the application into PlacementPro's Application Tracker.
+- Log the application into BountyCode's Application Tracker.
 - Launch a "Practice for This Role" session from any job page.
 
 ## How to install (dev)
@@ -16,9 +16,9 @@
 
 ## Setup
 1. Open the extension popup and note the API base.
-2. You need a running PlacementPro backend with cookies enabled.
+2. You need a running BountyCode backend with cookies enabled.
 3. For cross-origin cookies to work in the extension, set your backend CORS to allow the extension origin, or use the same host as the frontend.
-4. Login to PlacementPro in the same browser so the session cookie is present.
+4. Login to BountyCode in the same browser so the session cookie is present.
 
 ## Privacy & Trust
 - Nothing is submitted without you clicking a button.
@@ -34,5 +34,5 @@
 
 ## Roadmap
 - Better field mapping per ATS (Workday / Lever / Greenhouse).
-- Save tailored resume + cover letter to PlacementPro profile.
+- Save tailored resume + cover letter to BountyCode profile.
 - Show matched drive alerts when visiting a company careers page.

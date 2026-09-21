@@ -21,10 +21,10 @@ export default function DailyBonusCalendar({ dailyBonus, claiming, onClaim }) {
   const cellFor = (date) => dailyBonus.history?.find((h) => h.date === date);
 
   const streakTierLabel = (n) => {
-    if (n <= 1) return "10 XP";
-    if (n <= 3) return "25 XP";
-    if (n <= 5) return "50 XP";
-    return "100 XP";
+    if (n <= 1) return "10 Diamonds";
+    if (n <= 3) return "25 Diamonds";
+    if (n <= 5) return "50 Diamonds";
+    return "100 Diamonds";
   };
 
   return (
@@ -64,7 +64,7 @@ export default function DailyBonusCalendar({ dailyBonus, claiming, onClaim }) {
         ))}
         {cells.map((date) => {
           const entry = cellFor(date);
-          const intensity = entry ? Math.min(1, (entry.xp || 0) / 25) : 0;
+          const intensity = entry ? Math.min(1, (entry.diamonds || 0) / 25) : 0;
           let bg = "bg-gray-800";
           if (intensity > 0.75) bg = "bg-brand-emerald";
           else if (intensity > 0.5) bg = "bg-emerald-600";
@@ -75,9 +75,9 @@ export default function DailyBonusCalendar({ dailyBonus, claiming, onClaim }) {
               key={date}
               whileHover={entry ? { scale: 1.15 } : {}}
               className={`aspect-square w-full rounded ${bg} flex items-center justify-center`}
-              title={entry ? `${date}: +${entry.xp} XP` : `${date}: no bonus`}
+              title={entry ? `${date}: +${entry.diamonds} Diamonds` : `${date}: no bonus`}
             >
-              {entry && entry.xp > 0 && (
+              {entry && entry.diamonds > 0 && (
                 <CheckCircle size={8} className="text-text-primary" />
               )}
             </motion.div>

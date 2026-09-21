@@ -224,7 +224,8 @@ COMPANY_BLUEPRINTS: Dict[str, Dict[str, Any]] = {
             {"name": "Technical", "score": 0, "target": 75},
         ],
         "process": [
-            {"name": "NQT Pattern", "description": "Quantitative + Logical + Verbal + Coding"},
+            {"name": "NQT Foundation (65Q/75min)", "description": "Numerical 20 + Verbal 25 + Reasoning 20. Gates Ninja. No negative marking; sections lock, no back-navigation — attempt every question."},
+            {"name": "NQT Advanced (15Q + 2 coding/115min)", "description": "Advanced Aptitude 15Q/25min gates Digital; Advanced Coding 2 problems/90min with partial marks gates Prime."},
             {"name": "TCS CodeVita", "description": "Contest-style coding challenge"},
             {"name": "Technical interview", "description": "Project + CS fundamentals + coding"},
             {"name": "Final simulation", "description": "Full TCS NQT + Technical mock"},

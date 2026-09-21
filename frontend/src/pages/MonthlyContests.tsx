@@ -12,7 +12,7 @@ const MOCK_CONTESTS = [
     start_date: '2026-07-01',
     end_date: '2026-07-31',
     participants: 142,
-    prize: '🏆 + 5000 XP',
+    prize: '🏆 + 5000 Diamonds',
     difficulty: 'all',
   },
   {
@@ -23,7 +23,7 @@ const MOCK_CONTESTS = [
     start_date: '2026-08-01',
     end_date: '2026-08-15',
     participants: 0,
-    prize: '🏅 + 3000 XP + Badge',
+    prize: '🏅 + 3000 Diamonds + Badge',
     difficulty: 'hard',
   },
   {
@@ -34,7 +34,7 @@ const MOCK_CONTESTS = [
     start_date: '2026-08-15',
     end_date: '2026-08-30',
     participants: 0,
-    prize: '💎 + 10000 XP + Legendary Card',
+    prize: '💎 + 10000 Diamonds + Legendary Card',
     difficulty: 'expert',
   },
 ];

@@ -6,7 +6,7 @@ from fastapi import APIRouter, Depends
 from typing import Dict, List
 from app.middleware.auth import get_current_user
 from app.database import (
-    curated_questions_collection, solved_problems_collection,
+    solved_problems_collection,
     question_answers_collection, users_collection
 )
 from app.services.readiness_engine import compute_readiness
@@ -17,48 +17,40 @@ router = APIRouter(prefix="/api/v1/dashboard", tags=["personal-dashboard"])
 @router.get("/personal")
 async def get_personal_dashboard(user=Depends(get_current_user)):
     """Get comprehensive personal dashboard with weak area analysis."""
-    collection = curated_questions_collection()
+    # All question content resolved from the in-memory canonical store
+    # (Residency Rule): never MongoDB.
+    from app.services import question_store
     solved_col = solved_problems_collection()
     answers_col = question_answers_collection()
     uid = user["id"]
 
-    # Get all solved problems with their details
-    solved_pipeline = [
-        {"$match": {"user_id": uid}},
-        {"$lookup": {
-            "from": "curated_questions",
-            "localField": "question_id",
-            "foreignField": "_id",
-            "as": "question"
-        }},
-        {"$unwind": "$question"},
-        {"$group": {
-            "_id": {
-                "topic": "$question.topic",
-                "difficulty": "$question.difficulty"
-            },
-            "count": {"$sum": 1},
-            "avg_score": {"$avg": "$score"}
-        }}
-    ]
+    # Solved stats per topic/difficulty with avg score
     solved_stats = {}
-    async for doc in solved_col.aggregate(solved_pipeline):
-        topic = doc["_id"]["topic"]
-        diff = doc["_id"]["difficulty"]
-        if topic not in solved_stats:
-            solved_stats[topic] = {"easy": 0, "medium": 0, "hard": 0, "total": 0, "avg_score": 0}
-        solved_stats[topic][diff] = doc["count"]
-        solved_stats[topic]["total"] += doc["count"]
-        solved_stats[topic]["avg_score"] = doc["avg_score"]
+    async for s in solved_col.find({"user_id": uid}):
+        q = question_store.find_one({"id": str(s.get("question_id", ""))})
+        if not q:
+            continue
+        topic = q.get("topic", "General")
+        diff = q.get("difficulty", "medium")
+        entry = solved_stats.setdefault(
+            topic, {"easy": 0, "medium": 0, "hard": 0, "total": 0, "_scores": []}
+        )
+        if diff in ("easy", "medium", "hard"):
+            entry[diff] += 1
+        entry["total"] += 1
+        if isinstance(s.get("score"), (int, float)):
+            entry["_scores"].append(s["score"])
+    for entry in solved_stats.values():
+        scores = entry.pop("_scores")
+        entry["avg_score"] = round(sum(scores) / len(scores), 1) if scores else 0
 
-    # Get total problems per topic
-    topic_pipeline = [
-        {"$group": {"_id": "$topic", "total": {"$sum": 1}, "topic_order": {"$first": "$topic_order"}}},
-        {"$sort": {"topic_order": 1}}
-    ]
+    # Total problems per topic (whole in-memory store, first-seen order)
     topic_totals = {}
-    async for doc in collection.aggregate(topic_pipeline):
-        topic_totals[doc["_id"]] = {"total": doc["total"], "topic_order": doc["topic_order"]}
+    for q in question_store.find().prefer_verified().to_list():
+        t = q.get("topic", "General")
+        if t not in topic_totals:
+            topic_totals[t] = {"total": 0, "topic_order": q.get("topic_order", "")}
+        topic_totals[t]["total"] += 1
 
     # Analyze weak areas
     weak_areas = []
@@ -91,31 +83,20 @@ async def get_personal_dashboard(user=Depends(get_current_user)):
     # Sort weak areas by percentage (lowest first)
     weak_areas.sort(key=lambda x: x["percentage"])
 
-    # Get recent activity
-    recent_pipeline = [
-        {"$match": {"user_id": uid}},
-        {"$sort": {"created_at": -1}},
-        {"$limit": 10},
-        {"$lookup": {
-            "from": "curated_questions",
-            "localField": "question_id",
-            "foreignField": "_id",
-            "as": "question"
-        }},
-        {"$unwind": "$question"},
-        {"$project": {
-            "question_title": "$question.question_title",
-            "topic": "$question.topic",
-            "difficulty": "$question.difficulty",
-            "score": 1,
-            "is_correct": 1,
-            "created_at": 1
-        }}
-    ]
+    # Recent activity: latest answers joined to in-memory questions
     recent_activity = []
-    async for doc in answers_col.aggregate(recent_pipeline):
-        doc["_id"] = str(doc.pop("_id"))
-        recent_activity.append(doc)
+    cursor = answers_col.find({"user_id": uid}).sort("created_at", -1).limit(10)
+    async for doc in cursor:
+        q = question_store.find_one({"id": str(doc.get("question_id", ""))}) or {}
+        recent_activity.append({
+            "_id": str(doc["_id"]),
+            "question_title": q.get("question_title", "Unknown"),
+            "topic": q.get("topic", "General"),
+            "difficulty": q.get("difficulty", "medium"),
+            "score": doc.get("score"),
+            "is_correct": doc.get("is_correct"),
+            "created_at": doc.get("created_at"),
+        })
 
     # Generate personalized recommendations
     recommendations = []
@@ -178,49 +159,42 @@ async def get_personal_dashboard(user=Depends(get_current_user)):
 @router.get("/weak-areas")
 async def get_weak_areas(top_n: int = 5, user=Depends(get_current_user)):
     """Get user's weak areas with specific problem recommendations."""
-    collection = curated_questions_collection()
+    # In-memory canonical store only (Residency Rule): never MongoDB.
+    from app.services import question_store
     solved_col = solved_problems_collection()
     uid = user["id"]
 
-    # Get solved problems per topic
-    solved_pipeline = [
-        {"$match": {"user_id": uid}},
-        {"$lookup": {
-            "from": "curated_questions",
-            "localField": "question_id",
-            "foreignField": "_id",
-            "as": "question"
-        }},
-        {"$unwind": "$question"},
-        {"$group": {"_id": "$question.topic", "count": {"$sum": 1}}}
-    ]
+    # Solved problems per topic
     solved_counts = {}
-    async for doc in solved_col.aggregate(solved_pipeline):
-        solved_counts[doc["_id"]] = doc["count"]
+    solved_ids = set()
+    async for s in solved_col.find({"user_id": uid}):
+        solved_ids.add(str(s.get("question_id", "")))
+        q = question_store.find_one({"id": str(s.get("question_id", ""))})
+        if not q:
+            continue
+        t = q.get("topic", "General")
+        solved_counts[t] = solved_counts.get(t, 0) + 1
 
-    # Get all topics with totals
-    topic_pipeline = [
-        {"$group": {"_id": "$topic", "total": {"$sum": 1}, "topic_order": {"$first": "$topic_order"}}},
-        {"$sort": {"topic_order": 1}}
-    ]
+    # All topics with totals (whole in-memory store)
+    topic_totals = {}
+    for q in question_store.find().prefer_verified().to_list():
+        t = q.get("topic", "General")
+        topic_totals[t] = topic_totals.get(t, 0) + 1
     weak_areas = []
-    async for doc in collection.aggregate(topic_pipeline):
-        topic = doc["_id"]
-        total = doc["total"]
+    for topic, total in topic_totals.items():
         solved = solved_counts.get(topic, 0)
         percentage = (solved / total * 100) if total > 0 else 0
 
         if percentage < 50:  # Less than 50% solved
-            # Find unsolved problems in this topic
-            unsolved_cursor = collection.find(
-                {"topic": topic, "_id": {"$nin": []}},
-                {"question_title": 1, "difficulty": 1, "company": 1}
-            ).limit(5)
-
+            # Unsolved problems in this topic (in-memory, verified first)
             unsolved = []
-            async for q in unsolved_cursor:
-                q["id"] = str(q.pop("_id"))
-                unsolved.append(q)
+            for q in question_store.find({"topic": topic}).prefer_verified().to_list():
+                if str(q.get("id")) not in solved_ids:
+                    doc = question_store.get_question_for_serving(q.get("id")) or dict(q)
+                    doc["id"] = str(q.get("id", ""))
+                    unsolved.append(doc)
+                if len(unsolved) >= 5:
+                    break
 
             weak_areas.append({
                 "topic": topic,
@@ -237,32 +211,23 @@ async def get_weak_areas(top_n: int = 5, user=Depends(get_current_user)):
 @router.get("/recommendations")
 async def get_recommendations(user=Depends(get_current_user)):
     """Get personalized study recommendations."""
-    collection = curated_questions_collection()
+    # In-memory canonical store only (Residency Rule): never MongoDB.
+    from app.services import question_store
     solved_col = solved_problems_collection()
     uid = user["id"]
 
-    # Analyze user's strengths and weaknesses
-    solved_pipeline = [
-        {"$match": {"user_id": uid}},
-        {"$lookup": {
-            "from": "curated_questions",
-            "localField": "question_id",
-            "foreignField": "_id",
-            "as": "question"
-        }},
-        {"$unwind": "$question"},
-        {"$group": {
-            "_id": {"topic": "$question.topic", "difficulty": "$question.difficulty"},
-            "count": {"$sum": 1}
-        }}
-    ]
+    # Strengths/weaknesses from solved history joined to memory questions
     stats = {}
-    async for doc in solved_col.aggregate(solved_pipeline):
-        topic = doc["_id"]["topic"]
-        diff = doc["_id"]["difficulty"]
+    async for s in solved_col.find({"user_id": uid}):
+        q = question_store.find_one({"id": str(s.get("question_id", ""))})
+        if not q:
+            continue
+        topic = q.get("topic", "General")
+        diff = q.get("difficulty", "medium")
         if topic not in stats:
             stats[topic] = {"easy": 0, "medium": 0, "hard": 0}
-        stats[topic][diff] = doc["count"]
+        if diff in stats[topic]:
+            stats[topic][diff] += 1
 
     recommendations = []
 

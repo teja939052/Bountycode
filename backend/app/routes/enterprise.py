@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from typing import List, Optional
 from app.middleware.auth import get_current_user
 from app.database import get_collection
+from bson import ObjectId
 from datetime import datetime, timezone
 
 router = APIRouter(prefix="/api/v1/enterprise", tags=["enterprise"])
@@ -48,7 +49,6 @@ async def list_cohorts(user=Depends(get_current_user)):
 async def get_cohort_progress(cohort_id: str, user=Depends(get_current_user)):
     col = get_collection("cohorts")
     try:
-        from bson import ObjectId
         cohort = await col.find_one({"_id": ObjectId(cohort_id), "admin_id": user["id"]})
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid cohort ID")
@@ -67,7 +67,7 @@ async def get_cohort_progress(cohort_id: str, user=Depends(get_current_user)):
         students.append({
             "user_id": sid,
             "overall_score": (skill or {}).get("overall_score", 0),
-            "xp": (gam or {}).get("xp", 0),
+            "diamonds": (gam or {}).get("diamonds", 0),
             "level": (gam or {}).get("level", 1),
             "streak": (gam or {}).get("streak", 0),
         })

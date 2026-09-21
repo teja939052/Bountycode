@@ -3,18 +3,18 @@ version: '3.8'
 services:
   mongodb:
     image: mongo:7
-    container_name: placementpro-mongodb
+    container_name: BountyCode-mongodb
     restart: unless-stopped
     ports:
       - "27017:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD:-securepassword}
-      MONGO_INITDB_DATABASE: placementpro
+      MONGO_INITDB_DATABASE: BountyCode
     volumes:
       - mongodb_data:/data/db
     networks:
-      - placementpro-network
+      - BountyCode-network
     healthcheck:
       test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
       interval: 10s
@@ -23,14 +23,14 @@ services:
 
   redis:
     image: redis:7-alpine
-    container_name: placementpro-redis
+    container_name: BountyCode-redis
     restart: unless-stopped
     ports:
       - "6379:6379"
     volumes:
       - redis_data:/data
     networks:
-      - placementpro-network
+      - BountyCode-network
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
@@ -41,17 +41,17 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: placementpro-backend
+    container_name: BountyCode-backend
     restart: unless-stopped
     ports:
       - "8000:8000"
     environment:
       MONGODB_URL: mongodb://admin:${MONGO_ROOT_PASSWORD:-securepassword}@mongodb:27017
-      DATABASE_NAME: placementpro
+      DATABASE_NAME: BountyCode
       REDIS_URL: redis://redis:6379
       JWT_SECRET: ${JWT_SECRET:-change-me-in-production}
       OPENROUTER_API_KEY: ${OPENROUTER_API_KEY}
-      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5173,http://localhost:3000}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:80,http://localhost:5173}
       LOG_LEVEL: ${LOG_LEVEL:-INFO}
       PAYPAL_CLIENT_ID: ${PAYPAL_CLIENT_ID:-}
       PAYPAL_CLIENT_SECRET: ${PAYPAL_CLIENT_SECRET:-}
@@ -61,32 +61,38 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
-    volumes:
-      - ./backend:/app
-      - /app/__pycache__
     networks:
-      - placementpro-network
+      - BountyCode-network
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/v1/health/live', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      start_period: 40s
+      retries: 3
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        VITE_API_URL: ${VITE_API_URL:-http://localhost:8000}
-    container_name: placementpro-frontend
+        VITE_API_URL: ${VITE_API_URL:-/api}
+    container_name: BountyCode-frontend
     restart: unless-stopped
     ports:
-      - "5173:5173"
+      - "80:80"
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
     environment:
-      VITE_API_URL: ${VITE_API_URL:-http://localhost:8000}
+      VITE_API_URL: ${VITE_API_URL:-/api}
     networks:
-      - placementpro-network
-    # Uncomment for development with hot-reload
-    # volumes:
-    #   - ./frontend:/app
-    #   - /app/node_modules
+      - BountyCode-network
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1/", ">", "/dev/null", "2>&1"]
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3
 
 volumes:
   mongodb_data:
@@ -95,5 +101,5 @@ volumes:
     driver: local
 
 networks:
-  placementpro-network:
+  BountyCode-network:
     driver: bridge

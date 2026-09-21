@@ -107,7 +107,7 @@ export function MissionStepRenderer({
           </div>
           <div className="ml-auto flex items-center gap-2">
             <span className="rounded-full bg-primary-soft px-3 py-1 text-xs font-semibold text-primary">
-              +{step.xp} XP
+              +{step.diamonds} Diamonds
             </span>
           </div>
         </div>
@@ -510,7 +510,7 @@ function RewardStep({ step }: any) {
       <h3 className="font-display text-2xl font-bold text-text-primary">Mission Complete!</h3>
       <p className="text-text-secondary">{step.content}</p>
       <div className="rounded-xl bg-gradient-to-r from-primary to-primary-dark px-6 py-4 text-text-primary">
-        <p className="font-bold">+{step.xp} XP</p>
+        <p className="font-bold">+{step.diamonds} Diamonds</p>
         <p className="text-sm opacity-80">Mastery unlocked</p>
       </div>
     </div>

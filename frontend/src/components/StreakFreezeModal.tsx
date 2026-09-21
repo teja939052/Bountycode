@@ -46,7 +46,7 @@ export default function StreakFreezeModal({ open, onClose }: StreakFreezeModalPr
       if (res?.success) {
         setMessage(`❄️ Freeze added! You now have ${(status?.streak_freezes || 0) + 1}.`);
         setStatus((prev) => ({ ...prev, streak_freezes: (prev?.streak_freezes || 0) + 1 }));
-        window.dispatchEvent(new CustomEvent("xp-gained", { detail: { xp: 0 } }));
+        window.dispatchEvent(new CustomEvent("streak-updated", { detail: { freezes: (status?.streak_freezes || 0) + 1 } }));
         refetch();
       } else {
         setError(res?.message || "Purchase failed");

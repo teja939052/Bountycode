@@ -12,7 +12,7 @@ The same schema is shared by:
 
 from __future__ import annotations
 
-from typing import Any, Optional
+from typing import Any, Dict, List, Optional
 from pydantic import BaseModel, Field
 
 
@@ -102,11 +102,11 @@ class Success(BaseModel):
     world_reaction: str = ""
     reward_text: str = ""
     byte_line: Optional[str] = None
-    xp: int = 0
+    diamonds: int = 0
 
 
 class Reward(BaseModel):
-    xp: int = 0
+    diamonds: int = 0
     coins: int = 0
     badges: list[str] = []
     unlocks_town: Optional[str] = None
@@ -135,6 +135,8 @@ class LevelBase(BaseModel):
     mental_model: str = ""
     canonical_skill: str = ""
     maps_to_competency: Optional[str] = None
+    role_relevance: Optional[str] = None
+    company_relevance: Optional[str] = None
     story: Story = Field(default_factory=Story)
     tutor: Tutor = Field(default_factory=Tutor)
     discover: Discover = Field(default_factory=Discover)
@@ -147,10 +149,27 @@ class LevelBase(BaseModel):
     code: Code = Field(default_factory=Code)
     checks: Checks = Field(default_factory=Checks)
     hints: list[str] = []
+    mastery: Optional[str] = None
+    mastery_evidence: list[str] = []
     retrieval: Optional[Retrieval] = None
     transfer: Optional[Transfer] = None
     mastery_threshold: Optional[int] = None
     estimated_minutes: Optional[int] = None
+    # Lesson-rich metadata carried over from Registry B
+    languages: List[str] = Field(default_factory=lambda: ["python", "java", "cpp", "c"])
+    starter_code_per_language: Dict[str, str] = Field(default_factory=dict)
+    signatures_per_language: Dict[str, str] = Field(default_factory=dict)
+    test_cases: List[Dict[str, Any]] = Field(default_factory=list)
+    hidden_tests: int = 0
+    repair_steps: List[Dict[str, Any]] = Field(default_factory=list)
+    passing_score: int = 70
+    max_attempts: int = 3
+    function_name: str = ""
+    signature: str = ""
+    description: str = ""
+    why_this_matters: str = ""
+    engineering_context: str = ""
+    builds_toward: str = ""
     reward: Optional[Reward] = None
     success: Success = Field(default_factory=Success)
     unlocks: Optional[str] = None
@@ -178,6 +197,10 @@ class Town(BaseModel):
     levels: list[Level | Boss] = []
     boss: Optional[Boss] = None
 
+    @property
+    def lessons(self) -> list[Level | Boss]:
+        return self.levels
+
 
 class World(BaseModel):
     id: str
@@ -188,6 +211,7 @@ class World(BaseModel):
     order: int = 0
     theme: str = ""
     recommended_roles: list[str] = []
+    recommended_companies: list[str] = []
     prerequisites: list[str] = []
     towns: list[Town] = []
     completion_reward: Optional[Reward] = None

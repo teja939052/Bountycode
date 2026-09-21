@@ -232,7 +232,7 @@ Use this checklist to verify all crash-fixing components are properly installed 
   - [ ] No console.error() in production code
 
 - [ ] Environment variables set
-  - [ ] `REACT_APP_API_URL=https://api.placementpro.com`
+  - [ ] `REACT_APP_API_URL=https://api.BountyCode.com`
   - [ ] Backend `OPENROUTER_API_KEY=xxx`
   - [ ] Backend `MONGODB_URL=mongodb://...`
   - [ ] Backend `JWT_SECRET=xxx`
@@ -372,7 +372,7 @@ Use this checklist to verify all crash-fixing components are properly installed 
 
 ## ✅ Sign-Off
 
-When ALL checks pass, PlacementPro is production-ready!
+When ALL checks pass, BountyCode is production-ready!
 
 Date Completed: ________________
 Verified By: ________________

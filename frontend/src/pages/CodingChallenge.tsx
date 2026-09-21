@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import api from "../services/api";
 import Spinner from "../components/ui/Spinner";
 import CelebrationOverlay from "../components/CelebrationOverlay";
-import XPPopup from "../components/XPPopup";
+import DiamondsPopup from "../components/XPPopup";
 import { HyperdriveStatus } from "../components/space";
 import { motion, AnimatePresence } from "framer-motion";
 import useReducedMotion from "../hooks/useReducedMotion";

@@ -225,7 +225,7 @@ from app.middleware.route_safety import (
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup
-    logger.info("Starting PlacementPro API...")
+    logger.info("Starting BountyCode API...")
     
     # Initialize database
     await init_database()
@@ -245,7 +245,7 @@ async def lifespan(app: FastAPI):
     yield
     
     # Shutdown
-    logger.info("Shutting down PlacementPro API...")
+    logger.info("Shutting down BountyCode API...")
     await close_database()
 
 app = FastAPI(lifespan=lifespan)

@@ -36,11 +36,17 @@ export const aptitudeApi = {
     });
   },
 
-  completeTest(testId: string, timeTaken = 0): Promise<TestResult> {
+  completeTest(testId: string, timeTaken = 0, answers: Record<string, number | string> = {}, category = "", questions: Array<Record<string, unknown>> = []): Promise<TestResult> {
     return request(
-      `/api/v1/aptitude/${testId}/complete?time_taken=${timeTaken}`,
+      `/api/v1/aptitude/${testId}/complete`,
       {
         method: "POST",
+        body: JSON.stringify({
+          time_taken: timeTaken,
+          answers,
+          category,
+          questions,
+        }),
       },
     );
   },

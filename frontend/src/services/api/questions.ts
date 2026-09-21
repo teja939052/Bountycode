@@ -53,6 +53,37 @@ export const questionsApi = {
     return request("/api/v1/questions/filters");
   },
 
+  getPatternPage(pattern: string): Promise<{
+    pattern: string;
+    verified_only: boolean;
+    total: number;
+    solved: number;
+    attempted: number;
+    remaining: number;
+    mastery_percent: number;
+    companies: { name: string; count: number }[];
+    problems: {
+      id: string;
+      title: string;
+      difficulty: string;
+      type: string;
+      topic: string;
+      sub_topic: string;
+      status: string;
+      best_score: number | null;
+      companies: string[];
+      provenance: string;
+      statement: string;
+      approach: string;
+      complexity: { time?: string; space?: string };
+      common_mistakes: string[];
+      tips: string[];
+      testcase_count: number;
+    }[];
+  }> {
+    return request(`/api/v1/questions/patterns/${encodeURIComponent(pattern)}`);
+  },
+
   getFull(questionId: string): Promise<QuestionDetail> {
     return request(`/api/v1/questions/${encodeURIComponent(questionId)}`);
   },
@@ -173,5 +204,16 @@ export const questionsApi = {
     return request(
       `/api/v1/questions/${encodeURIComponent(questionId)}/discussion-summary`,
     );
+  },
+
+  getPatternChecklist(patternId: string): Promise<{ pattern_id: string; checked: boolean[]; checklist: string[] }> {
+    return request(`/api/v1/questions/pattern-checklist/${encodeURIComponent(patternId)}`);
+  },
+
+  savePatternChecklist(payload: { pattern_id: string; checked: boolean[]; checklist: string[] }): Promise<{ success: boolean; pattern_id: string }> {
+    return request("/api/v1/questions/pattern-checklist", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    });
   },
 };

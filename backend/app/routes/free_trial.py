@@ -6,9 +6,9 @@ from app.data.lesson_content import get_lesson_content
 router = APIRouter(prefix="/api/v1/free-trial", tags=["free-trial"])
 
 FREE_LESSONS = [
-    {"id": "c-l01-01", "title": "What is Programming?", "type": "theory", "xp": 10, "level_id": "l01"},
-    {"id": "c-l01-02", "title": "Your First C Program", "type": "practice", "xp": 10, "level_id": "l01"},
-    {"id": "c-l01-03", "title": "Variables & Data", "type": "theory", "xp": 10, "level_id": "l01"},
+    {"id": "c-l01-01", "title": "What is Programming?", "type": "theory", "diamonds": 10, "level_id": "l01"},
+    {"id": "c-l01-02", "title": "Your First C Program", "type": "practice", "diamonds": 10, "level_id": "l01"},
+    {"id": "c-l01-03", "title": "Variables & Data", "type": "theory", "diamonds": 10, "level_id": "l01"},
 ]
 
 CONVERSION_PROMPT = {
@@ -23,12 +23,13 @@ CONVERSION_PROMPT = {
         "AI-powered mock interviews with feedback",
         "ATS resume optimizer for tech jobs",
         "Company-specific prep for 53+ companies",
-        "Gamification: XP levels, streaks, badges, leaderboards",
+        "Gamification: Diamonds levels, streaks, badges, leaderboards",
         "Coding compiler with real test cases",
     ],
     "pricing": {
-        "pro_monthly": "$9/month",
-        "lifetime": "$39 one-time",
+        "pro_monthly": "₹99/month",
+        "pro_yearly": "₹899/year",
+        "lifetime": "₹1499 one-time",
         "student_discount": "50% off with .edu or student ID",
     },
 }
@@ -46,7 +47,7 @@ async def get_free_trial_lessons():
             "id": fl["id"],
             "title": fl["title"],
             "type": fl["type"],
-            "xp": fl["xp"],
+            "diamonds": fl["diamonds"],
             "content": content,
         })
     return {"lessons": lessons, "total_lessons": len(lessons)}

@@ -18,6 +18,8 @@ const LEADERBOARD_KEY = ["gamification", "leaderboard"] as const;
 const SKILLS_KEY = ["gamification", "skills"] as const;
 const WEAK_KEY = ["gamification", "skills", "weak"] as const;
 const STREAK_STATUS_KEY = ["gamification", "streak-status"] as const;
+const COMBO_KEY = ["gamification", "combo"] as const;
+const DAILY_LOGIN_KEY = ["gamification", "daily-login"] as const;
 
 export function useGamificationData() {
   const queryClient = useQueryClient();
@@ -97,6 +99,22 @@ export function useGamificationData() {
     refetchOnWindowFocus: false,
   });
 
+  const combo = useQuery<Record<string, unknown> | null>({
+    queryKey: COMBO_KEY,
+    queryFn: () => api.gamification.getComboStatus().catch(() => null),
+    retry: 1,
+    staleTime: 30_000,
+    refetchOnWindowFocus: false,
+  });
+
+  const dailyLogin = useQuery<Record<string, unknown> | null>({
+    queryKey: DAILY_LOGIN_KEY,
+    queryFn: () => api.gamification.getDailyLoginCalendar().catch(() => null),
+    retry: 1,
+    staleTime: 60_000,
+    refetchOnWindowFocus: false,
+  });
+
   const claimBonus = useMutation({
     mutationFn: () => api.gamification.claimDailyBonus(),
     onSuccess: () => {
@@ -153,6 +171,8 @@ export function useGamificationData() {
     skills: skills.data ?? null,
     weakAreas: weakAreas.data ?? null,
     streakStatus: streakStatus.data ?? null,
+    combo: combo.data ?? null,
+    dailyLogin: dailyLogin.data ?? null,
     claimBonus,
     buyPowerUp,
     usePowerUp,

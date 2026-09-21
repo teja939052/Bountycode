@@ -5,10 +5,9 @@ Shows histograms and percentile rankings for each problem.
 from datetime import datetime, timezone
 from fastapi import APIRouter, Depends, HTTPException
 from typing import Optional
-from bson import ObjectId
 from app.middleware.auth import get_current_user
 from app.database import (
-    curated_questions_collection, submissions_collection,
+    submissions_collection,
     solved_problems_collection
 )
 
@@ -22,15 +21,12 @@ async def get_runtime_distribution(
     user=Depends(get_current_user),
 ):
     """Get runtime distribution for a problem."""
-    collection = curated_questions_collection()
+    # Question existence from the in-memory canonical store (Residency Rule);
+    # runtimes from student-state submissions (unchanged).
+    from app.services import question_store
     submissions_col = submissions_collection()
 
-    try:
-        q_oid = ObjectId(question_id)
-    except Exception:
-        raise HTTPException(status_code=400, detail="Invalid question ID")
-
-    question = await collection.find_one({"_id": q_oid})
+    question = question_store.get_question_for_serving(question_id)
     if not question:
         raise HTTPException(status_code=404, detail="Question not found")
 

@@ -31,10 +31,10 @@ QUEST_STEPS = [
     },
     {
         "id": "step-3",
-        "title": "Earn Your First XP",
+        "title": "Earn Your First Diamonds",
         "description": "Complete the lesson and watch your progress climb. Gamification keeps you hooked.",
         "type": "action",
-        "action": "Complete a lesson to earn XP",
+        "action": "Complete a lesson to earn Diamonds",
         "target": "/learn/c",
         "icon": "\u2b50",
     },
@@ -50,7 +50,7 @@ QUEST_STEPS = [
     {
         "id": "step-5",
         "title": "Go Pro for Unlimited Access",
-        "description": "Free users get 3 lessons per month. Pro unlocks everything for $9/mo or lock in lifetime for $39.",
+        "description": "Free users get 3 lessons per month. Pro unlocks everything for ₹99/mo or ₹899/yr.",
         "type": "conversion",
         "action": "Upgrade to Pro",
         "target": "/pricing",

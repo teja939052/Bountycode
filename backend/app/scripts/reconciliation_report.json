@@ -1,0 +1,61 @@
+{
+  "original_count": 6379,
+  "final_count": 3012,
+  "removed_total": 3367,
+  "duplicates_removed": 3367,
+  "no_answer_removed": 0,
+  "quarantined_total": 3367,
+  "final_distribution": {
+    "by_type": {
+      "coding": 2878,
+      "aptitude": 50,
+      "logical": 30,
+      "verbal": 20,
+      "MISSING": 34
+    },
+    "by_topic": {
+      "Arrays": 508,
+      "Trees": 430,
+      "Graphs": 422,
+      "Strings": 407,
+      "Dynamic Programming": 371,
+      "Stack": 290,
+      "Linked Lists": 100,
+      "Aptitude": 50,
+      "Heap": 35,
+      "Arrays & Hashing": 31,
+      "Logical Reasoning": 30,
+      "Bit Manipulation": 21,
+      "Binary Search": 20,
+      "Verbal Ability": 20,
+      "Sliding Window": 18,
+      "Linked List": 18,
+      "Math": 18,
+      "Two Pointers": 17,
+      "Coding Challenges": 15,
+      "Backtracking": 14
+    },
+    "by_difficulty": {
+      "easy": 623,
+      "medium": 1751,
+      "hard": 638
+    },
+    "by_company": {
+      "Google": 1491,
+      "Microsoft": 1391,
+      "Amazon": 1316,
+      "Apple": 1103,
+      "Meta": 1101,
+      "Netflix": 1030,
+      "Uber": 848,
+      "Adobe": 839,
+      "Facebook": 109,
+      "Bloomberg": 14,
+      "Airbnb": 9,
+      "TCS": 8,
+      "LinkedIn": 7,
+      "Infosys": 7,
+      "Twitter": 5
+    }
+  }
+}

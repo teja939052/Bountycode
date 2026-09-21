@@ -7,7 +7,7 @@ from fastapi import APIRouter, Depends, Query
 from typing import Optional
 from app.middleware.auth import get_current_user
 from app.database import (
-    curated_questions_collection, solved_problems_collection,
+    solved_problems_collection,
     submissions_collection, gamification_collection
 )
 
@@ -150,55 +150,33 @@ async def get_streak(user=Depends(get_current_user)):
 @router.get("/topic-progress")
 async def get_topic_progress(user=Depends(get_current_user)):
     """Get detailed progress per topic with stats."""
-    questions_col = curated_questions_collection()
+    # In-memory canonical store only (Residency Rule): never MongoDB.
+    from app.services import question_store
     solved_col = solved_problems_collection()
 
-    # Get total problems per topic
-    topic_pipeline = [
-        {"$group": {
-            "_id": "$topic",
-            "total": {"$sum": 1},
-            "easy": {"$sum": {"$cond": [{"$eq": ["$difficulty", "easy"]}, 1, 0]}},
-            "medium": {"$sum": {"$cond": [{"$eq": ["$difficulty", "medium"]}, 1, 0]}},
-            "hard": {"$sum": {"$cond": [{"$eq": ["$difficulty", "hard"]}, 1, 0]}},
-            "topic_order": {"$first": "$topic_order"},
-        }},
-        {"$sort": {"topic_order": 1}}
-    ]
-
+    # Totals per topic with difficulty split (whole in-memory store)
     topic_totals = {}
-    async for doc in questions_col.aggregate(topic_pipeline):
-        topic_totals[doc["_id"]] = {
-            "total": doc["total"],
-            "easy": doc["easy"],
-            "medium": doc["medium"],
-            "hard": doc["hard"],
-        }
+    for q in question_store.find().prefer_verified().to_list():
+        t = q.get("topic", "General")
+        d = q.get("difficulty", "medium")
+        entry = topic_totals.setdefault(t, {"total": 0, "easy": 0, "medium": 0, "hard": 0})
+        entry["total"] += 1
+        if d in ("easy", "medium", "hard"):
+            entry[d] += 1
 
-    # Get solved per topic
-    solved_pipeline = [
-        {"$match": {"user_id": user["id"]}},
-        {"$lookup": {
-            "from": "curated_questions",
-            "localField": "question_id",
-            "foreignField": "_id",
-            "as": "question"
-        }},
-        {"$unwind": "$question"},
-        {"$group": {
-            "_id": {"topic": "$question.topic", "difficulty": "$question.difficulty"},
-            "count": {"$sum": 1}
-        }}
-    ]
-
+    # Solved per topic/difficulty joined to memory questions
     solved_data = {}
-    async for doc in solved_col.aggregate(solved_pipeline):
-        topic = doc["_id"]["topic"]
-        diff = doc["_id"]["difficulty"]
+    async for s in solved_col.find({"user_id": user["id"]}):
+        q = question_store.find_one({"id": str(s.get("question_id", ""))})
+        if not q:
+            continue
+        topic = q.get("topic", "General")
+        diff = q.get("difficulty", "medium")
         if topic not in solved_data:
             solved_data[topic] = {"easy": 0, "medium": 0, "hard": 0, "total": 0}
-        solved_data[topic][diff] = doc["count"]
-        solved_data[topic]["total"] += doc["count"]
+        if diff in ("easy", "medium", "hard"):
+            solved_data[topic][diff] += 1
+        solved_data[topic]["total"] += 1
 
     # Build response
     topics = []
@@ -288,13 +266,15 @@ async def get_daily_goal(user=Depends(get_current_user)):
 @router.get("/overview")
 async def get_progress_overview(user=Depends(get_current_user)):
     """Get comprehensive progress overview."""
-    questions_col = curated_questions_collection()
+    # Question totals from the in-memory canonical store (Residency Rule);
+    # user counts from student-state collections (unchanged).
+    from app.services import question_store
     solved_col = solved_problems_collection()
     submissions_col = submissions_collection()
     gam_col = gamification_collection()
 
     # Basic stats
-    total_problems = await questions_col.count_documents({"type": "coding"})
+    total_problems = question_store.count_documents({"type": "coding"})
     total_solved = await solved_col.count_documents({"user_id": user["id"]})
     total_submissions = await submissions_col.count_documents({"user_id": user["id"]})
     accepted = await submissions_col.count_documents({
@@ -304,24 +284,17 @@ async def get_progress_overview(user=Depends(get_current_user)):
 
     # Gamification
     gam_doc = await gam_col.find_one({"user_id": user["id"]})
-    xp = gam_doc.get("xp", 0) if gam_doc else 0
+    diamonds = gam_doc.get("diamonds", 0) if gam_doc else 0
     streak = gam_doc.get("streak", 0) if gam_doc else 0
 
-    # Difficulty breakdown
-    diff_pipeline = [
-        {"$match": {"user_id": user["id"]}},
-        {"$lookup": {
-            "from": "curated_questions",
-            "localField": "question_id",
-            "foreignField": "_id",
-            "as": "question"
-        }},
-        {"$unwind": "$question"},
-        {"$group": {"_id": "$question.difficulty", "count": {"$sum": 1}}}
-    ]
+    # Difficulty breakdown of solved, joined to memory questions
     diff_stats = {}
-    async for doc in solved_col.aggregate(diff_pipeline):
-        diff_stats[doc["_id"]] = doc["count"]
+    async for s in solved_col.find({"user_id": user["id"]}):
+        q = question_store.find_one({"id": str(s.get("question_id", ""))})
+        if not q:
+            continue
+        d = q.get("difficulty", "medium")
+        diff_stats[d] = diff_stats.get(d, 0) + 1
 
     return {
         "total_problems": total_problems,
@@ -330,7 +303,7 @@ async def get_progress_overview(user=Depends(get_current_user)):
         "total_submissions": total_submissions,
         "accepted_submissions": accepted,
         "acceptance_rate": round(accepted / max(total_submissions, 1) * 100, 1),
-        "xp": xp,
+        "diamonds": diamonds,
         "streak": streak,
         "difficulty_breakdown": {
             "easy": diff_stats.get("easy", 0),

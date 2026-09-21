@@ -275,7 +275,7 @@ export default function FreeTrial() {
                         <p className={`text-sm font-medium truncate ${isActive ? "text-text-primary" : isCompleted ? "text-emerald-300" : "text-gray-500"}`}>
                           {lesson.title}
                         </p>
-                        <p className="text-[10px] font-mono text-gray-600 mt-0.5">{lesson.xp} XP</p>
+                        <p className="text-[10px] font-mono text-gray-600 mt-0.5">{lesson.diamonds} Diamonds</p>
                       </div>
                     </div>
                   </button>
@@ -307,7 +307,7 @@ export default function FreeTrial() {
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-xs font-mono text-gray-500 bg-white border-border shadow-card px-3 py-1 rounded-lg">
-                      +{currentLesson?.xp} XP
+                      +{currentLesson?.diamonds} Diamonds
                     </span>
                   </div>
                 </div>
@@ -541,7 +541,7 @@ export default function FreeTrial() {
                 <Trophy size={64} className="text-yellow-400 mx-auto mb-4" />
               </motion.div>
               <p className="text-2xl font-bold text-text-primary mb-2">Lesson Complete!</p>
-              <p className="text-sm text-gray-300">+{currentLesson?.xp} XP earned</p>
+              <p className="text-sm text-gray-300">+{currentLesson?.diamonds} Diamonds earned</p>
             </div>
           </motion.div>
         )}

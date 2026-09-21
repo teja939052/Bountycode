@@ -284,4 +284,4 @@ If stuck:
 
 ---
 
-**You've got this! 🚀 PlacementPro will be bulletproof in 2 hours.**
+**You've got this! 🚀 BountyCode will be bulletproof in 2 hours.**

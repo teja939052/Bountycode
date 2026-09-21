@@ -145,7 +145,7 @@ LEARNING_OBJECT_SCHEMA = {
         "mission_id": str,               # Which mission unlocks this
         "boss_variant": bool,            # Is this a boss (transfer test) or practice?
         "unlock_condition": str,         # What the student must complete first
-        "xp_reward": int,                # Adventure XP (NOT mastery)
+        "xp_reward": int,                # Adventure Diamonds (NOT mastery)
     },
 
     # -------- meta --------

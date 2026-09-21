@@ -11,13 +11,12 @@ from app.middleware.auth import get_current_user
 from app.services import company_conversion as conv
 from app.services.placement_engine import PlacementEngine
 from app.services.career_profile import get_profile
-from app.services.ai import chat_completion, parse_json
+from app.services.ai_core import chat_completion, parse_json
 from app.config import get_settings
 from datetime import datetime, timezone
 from bson import ObjectId
 from app.database import (
     users_collection,
-    curated_questions_collection,
     practice_sessions_collection,
     skill_graph_collection,
     gamification_collection,

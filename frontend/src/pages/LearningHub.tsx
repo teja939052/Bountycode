@@ -74,7 +74,7 @@ function LanguageCard({ lang }: { lang: any }) {
           </div>
         </div>
         <div className="mt-3 flex items-center justify-between text-[11px] text-[#9a9a9a]">
-          <span className="font-mono">{lang.total_xp} XP</span>
+          <span className="font-mono">{lang.total_xp} Diamonds</span>
           <ChevronRight
             size={16}
             className="text-[#6b6b6b] transition-transform group-hover:translate-x-1 group-hover:text-[#ffa116]"
@@ -152,7 +152,7 @@ export default function LearningHub() {
                   {data.total_xp}
                 </div>
                 <div className="mt-1 text-[10px] uppercase tracking-wider text-[#9a9a9a]">
-                  XP
+                  Diamonds
                 </div>
               </div>
               <div className="rounded-xl bg-[#1f1f1f] px-3 py-3 text-center">
@@ -294,7 +294,7 @@ export default function LearningHub() {
                       {entry.name}
                     </span>
                     <span className="text-xs font-mono text-[#ffa116]">
-                      {entry.total_xp} XP
+                      {entry.total_xp} Diamonds
                     </span>
                   </div>
                 ))}

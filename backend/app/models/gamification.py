@@ -23,7 +23,7 @@ class PowerUpEntry(BaseModel):
 
 class GamificationProfile(BaseModel):
     user_id: str
-    xp: int = 0
+    diamonds: int = 0
     level: int = 1
     streak: int = 0
     longest_streak: int = 0
@@ -35,6 +35,8 @@ class GamificationProfile(BaseModel):
     total_aptitude: int = 0
     total_coding: int = 0
     total_system_design: int = 0
+    total_powerups_used: int = 0
+    total_perfect_scores: int = 0
     stars_total: int = 0
     stars_per_problem: dict[str, int] = Field(default_factory=dict)
     coins: int = 0
@@ -55,13 +57,14 @@ class Badge(BaseModel):
     description: str
     icon: str
     category: str
+    rarity: str = "common"
     requirement: Optional[int] = None
 
 
 class LeaderboardEntry(BaseModel):
     user_id: str
     name: str
-    xp: int
+    diamonds: int
     level: int
     rank: Optional[int] = None
 
@@ -109,7 +112,7 @@ class SkillNode(BaseModel):
 
 class TowerData(BaseModel):
     level: int
-    xp: int
+    diamonds: int
     xp_to_next: int
     xp_for_current_level: int
     title: str

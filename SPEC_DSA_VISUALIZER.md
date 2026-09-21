@@ -4,7 +4,7 @@
 **Version:** 1.0
 **Date:** 2026-08-18
 **Priority:** HIGH
-**Target:** PlacementPro Skill Tree Integration
+**Target:** BountyCode Skill Tree Integration
 
 ---
 
@@ -319,7 +319,7 @@ Before coding, the agent must inspect existing `DSAVisualizer.tsx`, `AlgorithmVi
 
 ## Signature Feature: "Predict the Algorithm"
 
-This is the signature PlacementPro feature:
+This is the signature BountyCode feature:
 
 > Student sees a paused algorithm at a critical decision point. They predict what happens next. The algorithm executes. They get immediate feedback. This turns passive watching into active reasoning.
 

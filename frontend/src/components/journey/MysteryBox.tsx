@@ -82,7 +82,7 @@ export function MysteryBox({ box, index, isOpen, onOpen }: MysteryBoxProps) {
             <span className="text-lg">{box.icon}</span>
             <span className="text-sm font-semibold text-slate-700">{box.title}</span>
             <span className="ml-auto text-xs text-yellow-600 font-medium flex items-center gap-1">
-              <Sparkles className="w-3 h-3" /> +{box.xp_reward} XP
+              <Sparkles className="w-3 h-3" /> +{box.xp_reward} Diamonds
             </span>
           </div>
 

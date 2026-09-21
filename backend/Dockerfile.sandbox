@@ -1,6 +1,6 @@
 # Dockerfile for secure code execution sandbox
-# Build: docker build -t placementpro/sandbox:latest .
-# Run: docker run --rm placementpro/sandbox:latest
+# Build: docker build -t BountyCode/sandbox:latest .
+# Run: docker run --rm BountyCode/sandbox:latest
 
 # Base image with all required language runtimes
 FROM ubuntu:22.04

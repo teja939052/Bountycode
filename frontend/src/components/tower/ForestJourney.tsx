@@ -1,24 +1,24 @@
 import { motion } from 'framer-motion';
 
-const FOREST_ZONES = [
-  { index: 0, name: 'Seedling Grove',  levelMin: 1,  levelMax: 10,  stage: 'seedling',   emoji: '🌱', color: '#a7f3d0', description: 'You sprout. Tiny roots, big potential.' },
-  { index: 1, name: 'Sapling Orchard', levelMin: 11, levelMax: 20,  stage: 'sapling',    emoji: '🌿', color: '#86efac', description: 'Flexible, fast-growing, reaching for the light.' },
-  { index: 2, name: 'Young Forest',    levelMin: 21, levelMax: 30,  stage: 'young',      emoji: '🌳', color: '#4ade80', description: 'The grove thickens; branches learn to hold weight.' },
-  { index: 3, name: 'Canopy Trail',    levelMin: 31, levelMax: 40,  stage: 'canopy',     emoji: '🍃', color: '#22c55e', description: 'You climb above the undergrowth toward the sun.' },
-  { index: 4, name: 'Fruiting Tree',   levelMin: 41, levelMax: 50,  stage: 'fruiting',   emoji: '🍎', color: '#16a34a', description: 'Knowledge starts bearing fruit others can share.' },
-  { index: 5, name: 'Ancient Woods',   levelMin: 51, levelMax: 60,  stage: 'ancient',    emoji: '🌲', color: '#15803d', description: 'Deep roots, deep rings, quiet resilience.' },
-  { index: 6, name: 'Summit Grove',    levelMin: 61, levelMax: 70,  stage: 'summit',     emoji: '⛰️', color: '#166534', description: 'Rare air. Only the tallest trees stand here.' },
-  { index: 7, name: 'Crown Canopy',    levelMin: 71, levelMax: 80,  stage: 'crown',      emoji: '👑', color: '#14532d', description: 'You crown the forest — the view is yours.' },
-  { index: 8, name: 'Legend Tree',     levelMin: 81, levelMax: 90,  stage: 'legend',     emoji: '🌟', color: '#0f766e', description: 'Stories are told about trees like you.' },
-  { index: 9, name: 'World Tree',      levelMin: 91, levelMax: 100, stage: 'world',      emoji: '🌍', color: '#065f46', description: 'Your roots hold up the sky. The forest is you.' },
+const VOYAGE_ZONES = [
+  { index: 0, name: 'Shore Camp',      levelMin: 1,  levelMax: 10,  stage: 'shore',     emoji: '⚓', color: '#7dd3fc', description: 'You drop anchor. The hull is thin, the sea is wide.' },
+  { index: 1, name: 'Open Deck',       levelMin: 11, levelMax: 20,  stage: 'deck',      emoji: '🧭', color: '#38bdf8', description: 'Winds pick up. You learn to read the currents.' },
+  { index: 2, name: 'Crow\'s Nest',    levelMin: 21, levelMax: 30,  stage: 'nest',      emoji: '🪶', color: '#0ea5e9', description: 'Higher ground. The horizon shows more routes.' },
+  { index: 3, name: 'Quarterdeck',     levelMin: 31, levelMax: 40,  stage: 'quarter',   emoji: '🏴‍☠️', color: '#0284c7', description: 'You steer. The crew follows your heading.' },
+  { index: 4, name: 'Booty Hold',      levelMin: 41, levelMax: 50,  stage: 'hold',      emoji: '💰', color: '#0369a1', description: 'Prizes stack up. The ship gets heavier and faster.' },
+  { index: 5, name: 'Sterncastle',     levelMin: 51, levelMax: 60,  stage: 'stern',     emoji: '🌊', color: '#075985', description: 'Deep waters. Only seasoned captains sail here.' },
+  { index: 6, name: 'Mizzen Mast',     levelMin: 61, levelMax: 70,  stage: 'mizzen',    emoji: '⛵', color: '#0c4a6e', description: 'Rare air. The rigging strains, but holds.' },
+  { index: 7, name: 'Fleet Flagship',  levelMin: 71, levelMax: 80,  stage: 'flagship',  emoji: '👑', color: '#164e63', description: 'You command the fleet. The horizon obeys.' },
+  { index: 8, name: 'Kraken Wake',     levelMin: 81, levelMax: 90,  stage: 'kraken',    emoji: '🐙', color: '#155e75', description: 'Stories are told about sailors like you.' },
+  { index: 9, name: 'Endless Sea',     levelMin: 91, levelMax: 100, stage: 'endless',   emoji: '🌊', color: '#083344', description: 'Your keel cuts the world. The sea is yours.' },
 ];
 
-export default function ForestJourney({ forest, level }: { forest: any; level: number }) {
+export default function ShipJourney({ forest, level }: { forest: any; level: number }) {
   if (!forest) return null;
 
-  const zoneIndex = Math.min(forest.zone_index ?? 0, FOREST_ZONES.length - 1);
+  const zoneIndex = Math.min(forest.zone_index ?? 0, VOYAGE_ZONES.length - 1);
   const zoneProgress = forest.zone_progress ?? 0;
-  const currentZone = FOREST_ZONES[zoneIndex];
+  const currentZone = VOYAGE_ZONES[zoneIndex];
 
   return (
     <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 mt-6 overflow-hidden relative">
@@ -31,7 +31,7 @@ export default function ForestJourney({ forest, level }: { forest: any; level: n
 
       <div className="relative z-10">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-xs font-mono uppercase tracking-widest text-gray-400">🌲 Forest Journey</h3>
+          <h3 className="text-xs font-mono uppercase tracking-widest text-gray-400">⛵ Ship’s Journey</h3>
           <span className="text-[10px] font-mono text-gray-500">Level {level}</span>
         </div>
 
@@ -95,10 +95,10 @@ export default function ForestJourney({ forest, level }: { forest: any; level: n
 
         {/* Stats */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          <Stat icon="☀️" label="Sunlight" value={forest.sunlight?.toLocaleString() ?? 0} unit="XP" color="#fbbf24" />
-          <Stat icon="💧" label="Waterings" value={forest.waterings ?? 0} unit="streak" color="#60a5fa" />
-          <Stat icon="🌰" label="Seeds" value={forest.seeds ?? 0} unit="badges" color="#a78bfa" />
-          <Stat icon="⛈️" label="Storms Cleared" value={forest.storms_cleared ?? 0} unit="bosses" color="#f87171" />
+          <Stat icon="☀️" label="Gold" value={forest.sunlight?.toLocaleString() ?? 0} unit="Diamonds" color="#fbbf24" />
+          <Stat icon="🍺" label="Rum" value={forest.waterings ?? 0} unit="streak" color="#60a5fa" />
+          <Stat icon="💎" label="Treasures" value={forest.seeds ?? 0} unit="badges" color="#a78bfa" />
+          <Stat icon="⛈️" label="Sea Battles" value={forest.storms_cleared ?? 0} unit="bosses" color="#f87171" />
         </div>
 
         {/* Current storm */}
@@ -117,7 +117,7 @@ export default function ForestJourney({ forest, level }: { forest: any; level: n
               {forest.current_storm.emoji ?? '⛈️'}
             </motion.span>
             <div>
-              <div className="text-xs font-bold text-red-300">Storm: {forest.current_storm.name ?? 'Boss Battle'}</div>
+              <div className="text-xs font-bold text-red-300">Sea Battle: {forest.current_storm.name ?? 'Boss Battle'}</div>
               <div className="text-[10px] text-red-400 mt-0.5">Defeat this boss to clear the storm and grow stronger.</div>
             </div>
           </motion.div>
@@ -127,7 +127,7 @@ export default function ForestJourney({ forest, level }: { forest: any; level: n
         <div className="mt-5">
           <div className="text-[10px] font-mono text-gray-500 mb-2">All Zones</div>
           <div className="flex items-center gap-1.5 overflow-x-auto pb-2">
-            {FOREST_ZONES.map((zone, i) => {
+            {VOYAGE_ZONES.map((zone, i) => {
               const visited = i < zoneIndex;
               const current = i === zoneIndex;
               return (
@@ -154,7 +154,7 @@ export default function ForestJourney({ forest, level }: { forest: any; level: n
   );
 }
 
-function Stat({ icon, label, value, unit, color }: { icon: string; label: string; value: number; unit: string; color: string }) {
+function Stat({ icon, label, value, unit }: { icon: string; label: string; value: number; unit: string; color: string }) {
   return (
     <motion.div
       className="rounded-xl bg-white/[0.03] border border-white/5 p-3"
@@ -168,4 +168,5 @@ function Stat({ icon, label, value, unit, color }: { icon: string; label: string
     </motion.div>
   );
 }
+
 

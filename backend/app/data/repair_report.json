@@ -1,0 +1,41 @@
+{
+  "repair": {
+    "total_input": 11776,
+    "dupes_removed": 0,
+    "normalized_test_cases": 0,
+    "backfilled_outputs": 76,
+    "repaired_mcqs": 192,
+    "backfilled_explanations": 0,
+    "after_dedupe": 8624,
+    "after_repair": 8624
+  },
+  "verification": {
+    "total": 2680,
+    "passed": 393,
+    "failed": 2287,
+    "quarantined": 0,
+    "skipped": 5944
+  },
+  "top_failures": {
+    "MISMATCH exp='3' got='0'": 56,
+    "MISMATCH expected='A' got='RESULT'": 54,
+    "MISMATCH exp='true' got='anagram, nagaram'": 50,
+    "MISMATCH exp='49' got='[1,8,6,2,5,4,8,3,7]'": 50,
+    "MISMATCH exp='2' got='[1,1,1], k=2'": 50,
+    "MISMATCH exp='2' got='[-1,2,1,-4], target=1'": 50,
+    "MISMATCH exp='/c' got='/a/./b/../../c/'": 50,
+    "MISMATCH exp='[1, 3, 4]' got='tree'": 50,
+    "MISMATCH exp='node' got='root, p, q'": 50,
+    "MISMATCH exp='order' got='words'": 50,
+    "MISMATCH exp='167' got='[3,1,5,8]'": 50,
+    "MISMATCH exp='3' got='tree'": 50,
+    "MISMATCH exp='5' got='hit -> cog'": 50,
+    "MISMATCH exp='[0, 1, 2]' got='numCourses + prerequisites'": 50,
+    "MISMATCH exp='3' got='[2,3,2]'": 50,
+    "MISMATCH expected='A' got='28%'": 50,
+    "AttributeError:'list' object has no attribute 'next'": 33,
+    "IndexError:list index out of range": 32,
+    "TypeError:networkDelayTime() missing 2 required positional arguments: 'n' and 'k'": 32,
+    "TypeError:maxSumWindow() missing 1 required positional argument: 'k'": 32
+  }
+}

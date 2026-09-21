@@ -1,0 +1,113 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Visual Trace",
+  "description": "Data-driven algorithm trace for the AlgorithmTracer frontend component. Every trace is a self-contained JSON document — no runtime generation needed.",
+  "type": "object",
+  "required": ["kind", "algorithm", "version", "initial", "steps"],
+  "properties": {
+    "kind": {
+      "type": "string",
+      "const": "visual_trace",
+      "description": "Discriminator — identifies this as a visual trace document"
+    },
+    "algorithm": {
+      "type": "string",
+      "description": "Algorithm identifier (e.g. sliding_window_max, two_sum, binary_search, bubble_sort)"
+    },
+    "version": {
+      "type": "string",
+      "description": "Schema version for forward compatibility"
+    },
+    "title": {
+      "type": "string",
+      "description": "Human-readable title for the trace"
+    },
+    "initial": {
+      "$ref": "#/definitions/TraceStep",
+      "description": "The initial state before any algorithm steps"
+    },
+    "steps": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/TraceStep" },
+      "description": "Ordered sequence of algorithm states"
+    },
+    "questions": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/TraceQuestion" },
+      "description": "Interactive questions embedded at specific steps"
+    }
+  },
+  "definitions": {
+    "TraceStep": {
+      "type": "object",
+      "required": ["step", "description", "array", "pointers", "highlight", "variables"],
+      "properties": {
+        "step": {
+          "type": "integer",
+          "description": "Step number (1-indexed)"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of what happens at this step"
+        },
+        "array": {
+          "type": "array",
+          "items": { "type": "integer" },
+          "description": "Current state of the array being traced"
+        },
+        "pointers": {
+          "type": "object",
+          "additionalProperties": { "type": "integer" },
+          "description": "Named pointer positions (e.g. {left: 0, right: 3})"
+        },
+        "highlight": {
+          "type": "array",
+          "items": { "type": "integer" },
+          "description": "Indices to highlight (current window, comparison pair, etc.)"
+        },
+        "window": {
+          "type": "object",
+          "properties": {
+            "start": { "type": "integer" },
+            "end": { "type": "integer" }
+          },
+          "description": "Optional window bounds for sliding window algorithms"
+        },
+        "variables": {
+          "type": "object",
+          "additionalProperties": {},
+          "description": "Named variable state (e.g. {sum: 15, max: 15, i: 3})"
+        },
+        "codeLine": {
+          "type": "integer",
+          "description": "Optional: which line of the solution code this step corresponds to"
+        }
+      }
+    },
+    "TraceQuestion": {
+      "type": "object",
+      "required": ["step", "question", "answer"],
+      "properties": {
+        "step": {
+          "type": "integer",
+          "description": "Step number where this question appears"
+        },
+        "question": {
+          "type": "string",
+          "description": "Question text"
+        },
+        "answer": {
+          "description": "Expected answer (string, number, or array)"
+        },
+        "hint": {
+          "type": "string",
+          "description": "Optional hint if the student gets it wrong"
+        },
+        "explanation": {
+          "type": "string",
+          "description": "Explanation shown after answering"
+        }
+      }
+    }
+  }
+}

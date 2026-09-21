@@ -1,0 +1,12 @@
+{
+ "scanned_candidates": 0,
+ "matched_execution_captures": 0,
+ "mismatched_flagged_for_review": 0,
+ "exec_failures": 0,
+ "skipped_non_coding": 3614,
+ "skipped_has_testcases": 8067,
+ "skipped_no_solution": 0,
+ "skipped_no_examples": 155,
+ "mismatches_sample": [],
+ "rule": "zero LLM, zero network, no trust_status mutation, no source-bank mutation"
+}

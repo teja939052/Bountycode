@@ -5,14 +5,32 @@ Track every code submission, solved problems, and provide detailed stats.
 from datetime import datetime, timezone
 from fastapi import APIRouter, Depends, HTTPException, Query
 from typing import Optional
-from bson import ObjectId
 from app.middleware.auth import get_current_user
 from app.database import (
-    curated_questions_collection, solved_problems_collection,
+    solved_problems_collection,
     question_answers_collection, submissions_collection
 )
 
 router = APIRouter(prefix="/api/v1/submissions", tags=["submissions"])
+
+
+def _failure_class(status: str, results: list) -> str:
+    """Map judge outcome to the canonical evidence failure enum.
+
+    SUCCESS | WRONG_ANSWER | TIMEOUT | RUNTIME_ERROR | SYNTAX_ERROR.
+    Syntax errors are a subset of runtime failures, detected from the
+    stored per-case error text (SyntaxError raised by the interpreter).
+    """
+    if status == "Accepted":
+        return "SUCCESS"
+    if status == "Time Limit Exceeded":
+        return "TIMEOUT"
+    if status == "Runtime Error":
+        errors = " ".join(str(r.get("error") or "") for r in results)
+        if "SyntaxError" in errors or "invalid syntax" in errors:
+            return "SYNTAX_ERROR"
+        return "RUNTIME_ERROR"
+    return "WRONG_ANSWER"
 
 
 @router.post("/{question_id}/submit")
@@ -27,13 +45,10 @@ async def submit_code(
 
     engine = CodeExecutionEngine()
 
-    # Get the question
-    try:
-        q_oid = ObjectId(question_id)
-    except Exception:
-        raise HTTPException(status_code=400, detail="Invalid question ID")
-
-    question = await curated_questions_collection().find_one({"_id": q_oid})
+    # Get the question from the in-memory canonical store
+    # (Residency Rule, AGENTS.md): never MongoDB.
+    from app.services import question_store
+    question = question_store.get_question_for_serving(question_id)
     if not question:
         raise HTTPException(status_code=404, detail="Question not found")
 
@@ -84,6 +99,27 @@ async def submit_code(
         elif has_error:
             status = "Runtime Error"
 
+    # Deterministic failure class for the evidence layer (derived from the
+    # status/error text computed above — no new signals, just a stable enum).
+    failure_class = _failure_class(status, results)
+
+    # Skill linkage + attempt order for the evidence layer. Best-effort:
+    # never fail a submission on aggregation metadata.
+    skill_id = None
+    topic = question.get("topic", "")
+    try:
+        from app.services.skill_taxonomy import canonical_skill_id
+        tags = list(question.get("topics") or []) + list(question.get("tags") or [])
+        skill_id = canonical_skill_id(topic) or (
+            canonical_skill_id(tags[0]) if tags else None) or "coding.uncategorized"
+    except Exception:
+        skill_id = "coding.uncategorized"
+    try:
+        prior = await submissions_collection().count_documents(
+            {"user_id": user["id"], "question_id": question_id})
+    except Exception:
+        prior = 0
+
     # Record submission
     submission = {
         "user_id": user["id"],
@@ -91,6 +127,10 @@ async def submit_code(
         "code": code,
         "language": language,
         "status": status,
+        "failure_class": failure_class,
+        "skill_id": skill_id,
+        "topic": topic,
+        "attempt_index": prior + 1,
         "score": score,
         "passed_count": passed_count,
         "total_cases": total_cases,
@@ -118,17 +158,10 @@ async def submit_code(
             upsert=True,
         )
 
-    # Update question stats
-    await curated_questions_collection().update_one(
-        {"_id": q_oid},
-        {"$inc": {"total_submissions": 1, "total_accepted": 1 if all_passed else 0}},
-    )
-
-    # Calculate acceptance rate
-    question = await curated_questions_collection().find_one({"_id": q_oid})
-    total_sub = question.get("total_submissions", 0)
-    total_acc = question.get("total_accepted", 0)
-    acceptance_rate = round(total_acc / max(total_sub, 1) * 100, 1)
+    # Legacy per-question counters lived on Mongo docs. In-memory items carry
+    # no submission counters (Residency Rule: telemetry re-homing is separate
+    # work); report 0 rather than fabricate a rate.
+    acceptance_rate = 0.0
 
     return {
         "submission_id": submission["id"],
@@ -234,36 +267,34 @@ async def get_solved_problems(
     difficulty: Optional[str] = None,
     user=Depends(get_current_user),
 ):
-    """Get all solved problems with filtering."""
+    """Get all solved problems with filtering.
+
+    Residency Rule: question text comes from the in-memory canonical store;
+    MongoDB holds student state (solved rows) only.
+    """
+    from app.services import question_store
+
     collection = solved_problems_collection()
-    query = {"user_id": user["id"]}
-
-    pipeline = [
-        {"$match": query},
-        {"$lookup": {
-            "from": "curated_questions",
-            "localField": "question_id",
-            "foreignField": "_id",
-            "as": "question"
-        }},
-        {"$unwind": "$question"},
-    ]
-
-    if topic:
-        pipeline.append({"$match": {"question.topic": topic}})
-    if difficulty:
-        pipeline.append({"$match": {"question.difficulty": difficulty}})
-
-    pipeline.append({"$sort": {"solved_at": -1}})
-
     solved = []
-    async for doc in collection.aggregate(pipeline):
+    cursor = collection.find({"user_id": user["id"]}).sort("solved_at", -1)
+    async for doc in cursor:
+        q = question_store.find_one(
+            {"id": str(doc.get("question_id", ""))}, allow_unverified=True
+        )
+        if not q:
+            continue
+        if topic and str(q.get("topic", "")).lower() != topic.lower():
+            continue
+        if difficulty and str(q.get("difficulty", "")).lower() != difficulty.lower():
+            continue
         doc["id"] = str(doc.pop("_id"))
-        doc["question_title"] = doc["question"].get("question_title", "Unknown")
-        doc["topic"] = doc["question"].get("topic", "Unknown")
-        doc["difficulty"] = doc["question"].get("difficulty", "medium")
-        doc["company"] = doc["question"].get("company", [])
-        del doc["question"]
+        doc["question_title"] = (
+            q.get("question_title") or q.get("title")
+            or (q.get("question") or "")[:80] or "Unknown"
+        )
+        doc["topic"] = q.get("topic", "Unknown")
+        doc["difficulty"] = q.get("difficulty", "medium")
+        doc["company"] = q.get("companies") or q.get("company", [])
         solved.append(doc)
 
     return {
@@ -275,9 +306,11 @@ async def get_solved_problems(
 @router.get("/stats")
 async def get_submission_stats(user=Depends(get_current_user)):
     """Get comprehensive submission statistics."""
+    # Question totals from the in-memory canonical store (Residency Rule);
+    # user counts from student-state collections (unchanged).
+    from app.services import question_store
     solved_col = solved_problems_collection()
     submissions_col = submissions_collection()
-    questions_col = curated_questions_collection()
 
     total_solved = await solved_col.count_documents({"user_id": user["id"]})
     total_submissions = await submissions_col.count_documents({"user_id": user["id"]})
@@ -285,39 +318,27 @@ async def get_submission_stats(user=Depends(get_current_user)):
         "user_id": user["id"],
         "status": "Accepted",
     })
-    total_problems = await questions_col.count_documents({"type": "coding"})
+    total_problems = question_store.count_documents({"type": "coding"})
 
-    # Difficulty breakdown
-    pipeline = [
-        {"$match": {"user_id": user["id"]}},
-        {"$lookup": {
-            "from": "curated_questions",
-            "localField": "question_id",
-            "foreignField": "_id",
-            "as": "question"
-        }},
-        {"$unwind": "$question"},
-        {"$group": {"_id": "$question.difficulty", "count": {"$sum": 1}}}
-    ]
+    # Difficulty breakdown of the user's solved, joined to memory questions
     difficulty_solved = {}
-    async for doc in solved_col.aggregate(pipeline):
-        difficulty_solved[doc["_id"]] = doc["count"]
+    async for s in solved_col.find({"user_id": user["id"]}):
+        q = question_store.find_one({"id": str(s.get("question_id", ""))})
+        if not q:
+            continue
+        d = q.get("difficulty", "medium")
+        difficulty_solved[d] = difficulty_solved.get(d, 0) + 1
 
-    # Topic breakdown
-    topic_pipeline = [
-        {"$match": {"user_id": user["id"]}},
-        {"$lookup": {
-            "from": "curated_questions",
-            "localField": "question_id",
-            "foreignField": "_id",
-            "as": "question"
-        }},
-        {"$unwind": "$question"},
-        {"$group": {"_id": "$question.topic", "count": {"$sum": 1}}}
-    ]
+    # Topic breakdown (in-memory join: solved rows x canonical question store)
     topic_solved = {}
-    async for doc in solved_col.aggregate(topic_pipeline):
-        topic_solved[doc["_id"]] = doc["count"]
+    async for s in solved_col.find({"user_id": user["id"]}, {"question_id": 1}):
+        q = question_store.find_one(
+            {"id": str(s.get("question_id", ""))}, allow_unverified=True
+        )
+        if not q:
+            continue
+        t = q.get("topic") or "Unknown"
+        topic_solved[t] = topic_solved.get(t, 0) + 1
 
     # Language breakdown
     lang_pipeline = [

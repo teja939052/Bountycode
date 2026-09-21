@@ -1,4 +1,4 @@
-# 📋 QUICK REFERENCE CARD: PlacementPro Production Communication Fixes
+# 📋 QUICK REFERENCE CARD: BountyCode Production Communication Fixes
 
 ## ⚡ TL;DR (30 seconds)
 

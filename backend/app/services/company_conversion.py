@@ -14,7 +14,6 @@ from bson import ObjectId
 
 from app.config import get_settings
 from app.database import (
-    curated_questions_collection,
     company_mock_tests_collection,
     question_answers_collection,
     skill_graph_collection,
@@ -264,15 +263,13 @@ async def list_mock_companies(user: dict) -> List[Dict[str, Any]]:
     result = []
     for company_id, bp in MOCK_BLUEPRINTS.items():
         locked = (not premium) and (company_id not in free or bp.get("pro_only"))
-        # Count available questions
-        q_count = await curated_questions_collection.count_documents(
-            {"company": {"$regex": f"^{re.escape(company_id)}$", "$options": "i"}}
-        )
-        # Also try title-case
-        if q_count == 0:
-            q_count = await curated_questions_collection.count_documents(
-                {"company": company_id.title()}
-            )
+        # Verified bank size (in-memory, Residency Rule): explicit company tags
+        # over TRUSTED stock.
+        from app.services import question_store
+        try:
+            q_count = question_store.company_verified_bank(company_id)["total"]
+        except Exception:
+            q_count = 0
         total_qs = sum(s["count"] for s in bp["sections"])
         result.append({
             "id": company_id,
@@ -298,40 +295,58 @@ async def _pick_questions(
     topics: Optional[List[str]] = None,
     exclude_ids: Optional[set] = None,
 ) -> List[dict]:
-    """Pick questions from the company-tagged bank, falling back to any company."""
-    exclude_ids = exclude_ids or set()
-    company_variants = [company, company.title(), company.upper(), company.capitalize()]
+    """Pick questions from the verified company-tagged bank (in-memory),
+    falling back to general verified stock. Field names are normalized onto
+    the shape the graders expect (string ids, `answer` key mapping). Never
+    MongoDB, never legacy unverified content (Residency Rule)."""
+    from app.services import question_store
+    exclude_ids = {str(i) for i in (exclude_ids or set())}
+    bank = question_store.company_verified_bank(company)
+    tagged_ids = {str(q.get("id")) for q in bank["items"]}
 
-    query: Dict[str, Any] = {
-        "type": q_type,
-        "company": {"$in": company_variants},
-    }
+    def _norm(q: dict) -> dict:
+        doc = question_store.get_question_for_serving(q.get("id")) or dict(q)
+        doc["id"] = str(q.get("id", ""))
+        if doc.get("answer") is None:
+            doc["answer"] = doc.get("correct_answer", "")
+        if not doc.get("company"):
+            cos = doc.get("companies") or []
+            doc["company"] = cos[0] if cos else company.title()
+        return doc
+
+    base: Dict[str, Any] = {"type": q_type}
     if topics:
-        query["topic"] = {"$in": topics}
+        base["topic"] = {"$in": topics}
 
-    cursor = curated_questions_collection.find(query).limit(count * 3)
     pool = []
-    async for q in cursor:
-        qid = str(q["_id"])
-        if qid not in exclude_ids:
+    seen_ids: set = set()
+    tagged_seen = 0
+    for q in question_store.find(base).only_verified().to_list():
+        qid = str(q.get("id"))
+        if qid in exclude_ids or qid in seen_ids:
+            continue
+        # Tagged items first, then general verified backfill
+        if qid in tagged_ids or tagged_seen >= count * 3:
             pool.append(q)
-
-    # Fallback: any company same type
+            seen_ids.add(qid)
+            if qid in tagged_ids:
+                tagged_seen += 1
+        if len(pool) >= count * 2:
+            break
+    # Top-up with general verified stock when tags are thin
     if len(pool) < count:
-        fallback_q: Dict[str, Any] = {"type": q_type}
-        if topics:
-            fallback_q["topic"] = {"$in": topics}
-        cursor = curated_questions_collection.find(fallback_q).limit(count * 4)
-        async for q in cursor:
-            qid = str(q["_id"])
-            if qid not in exclude_ids and q not in pool:
-                pool.append(q)
+        for q in question_store.find(base).only_verified().to_list():
+            qid = str(q.get("id"))
+            if qid in exclude_ids or qid in seen_ids:
+                continue
+            pool.append(q)
+            seen_ids.add(qid)
             if len(pool) >= count * 2:
                 break
 
     rng = random.Random(f"{company}-{q_type}-{datetime.now(timezone.utc).date().isoformat()}")
     rng.shuffle(pool)
-    return pool[:count]
+    return [_norm(q) for q in pool[:count]]
 
 
 async def start_company_mock(user: dict, company: str) -> Dict[str, Any]:
@@ -364,7 +379,7 @@ async def start_company_mock(user: dict, company: str) -> Dict[str, Any]:
             company, section["type"], section["count"], section.get("topics"), seen
         )
         for q in picks:
-            seen.add(str(q["_id"]))
+            seen.add(str(q.get("id", "")))
             selected.append(q)
 
     if not selected:
@@ -376,7 +391,7 @@ async def start_company_mock(user: dict, company: str) -> Dict[str, Any]:
     paper_questions = []
     answer_key = {}
     for i, q in enumerate(selected):
-        qid = str(q["_id"])
+        qid = str(q.get("id", ""))
         correct = q.get("answer") or ""
         options = q.get("options") or _make_mcq_options(correct, qid) if q.get("type") == "aptitude" else []
         item = {
@@ -660,18 +675,23 @@ async def _apply_mock_to_skills(
         upsert=True,
     )
 
-    # Gamification counters
+    # Gamification: use record_practice() as sole authority (Gamification Law).
+    # Counter increments and Diamonds both flow through the canonical pipeline
+    # below — the historical direct $inc on total_aptitude/total_coding was a
+    # second (competing) writer of the same canonical fields.
     await gamification_collection.update_one(
         {"user_id": user_id},
-        {
-            "$inc": {
-                "total_aptitude": 1 if "aptitude" in section_scores else 0,
-                "total_coding": 1 if "coding" in section_scores else 0,
-                "xp": max(10, int(overall_pct / 2)),
-            },
-            "$set": {"updated_at": datetime.now(timezone.utc)},
-        },
+        {"$set": {"updated_at": datetime.now(timezone.utc)}},
         upsert=True,
+    )
+    # Award Diamonds through the canonical pipeline (writes ledger, recalculates level)
+    from app.services.gamification import record_practice
+    score_10 = min(10.0, max(0.0, overall_pct / 10.0))
+    await record_practice(
+        user_id,
+        "aptitude",
+        score_10,
+        metadata={"company": company, "source": "mock_test"},
     )
 
 
@@ -739,15 +759,17 @@ async def compute_gap_analysis(
         skill_points_needed = min(deficit, remaining_gap / max(prob_per_skill_point, 0.01))
         problems_needed = max(1, math.ceil(skill_points_needed / points_each))
 
-        # Cap by bank size
+        # Cap by verified bank size (in-memory, Residency Rule)
         bank_count = 0
         if q_type:
-            bank_count = await curated_questions_collection.count_documents({
-                "type": q_type,
-                "company": {"$in": [company, company.title(), company.upper()]},
-            })
-            if bank_count == 0:
-                bank_count = await curated_questions_collection.count_documents({"type": q_type})
+            try:
+                from app.services import question_store
+                bank = question_store.company_verified_bank(company)
+                bank_count = sum(1 for q in bank["items"] if q.get("type") == q_type)
+                if bank_count == 0:
+                    bank_count = question_store.count_documents({"type": q_type})
+            except Exception:
+                bank_count = 0
 
         problems_needed = min(problems_needed, max(bank_count, problems_needed))
         projected_boost = round(min(remaining_gap, problems_needed * points_each * prob_per_skill_point), 1)

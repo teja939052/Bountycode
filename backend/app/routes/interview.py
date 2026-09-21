@@ -1,15 +1,17 @@
 from datetime import datetime, timezone
+import logging
 import random
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException
 from app.models.interview import StartInterview, SubmitAnswer
-from app.database import users_collection, interviews_collection
+from app.database import users_collection, interviews_collection, career_profiles_collection, oa_sessions_collection, skill_graph_collection
 from app.middleware.auth import get_current_user
-from app.services.ai import (
+from app.services.ai_interview import (
     generate_interview_question,
     evaluate_answer,
     COMPANY_PROFILES,
 )
+from app.services.interview_evaluator import InterviewEvaluator
 from app.services.interview_enhanced import (
     generate_follow_up_question,
     analyze_communication_style,
@@ -19,6 +21,8 @@ from app.services.behavioral_enhanced import evaluate_star_answer
 from app.services.gamification import record_practice
 from app.config import get_settings
 from bson import ObjectId
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api/v1/interview", tags=["interview"])
 settings = get_settings()
@@ -40,10 +44,30 @@ async def start_interview(req: StartInterview, user=Depends(get_current_user)):
     company_profile = COMPANY_PROFILES.get(company, {})
     company_style = company_profile.get("interview_style", "")
 
+    mode = (req.interview_type or "mixed").lower().strip()
+    # Resume/profile-aware questions: ground in the candidate's real background
+    # (best-effort; empty when no profile exists — never blocks the interview).
+    candidate_context = ""
+    try:
+        prof = await career_profiles_collection.find_one({"user_id": user["id"]}) or {}
+        bits = []
+        if prof.get("summary"):
+            bits.append(f"Summary: {prof['summary'][:500]}")
+        if prof.get("skills"):
+            bits.append("Skills: " + ", ".join(prof["skills"][:20]))
+        exp = prof.get("experience") or []
+        if exp and isinstance(exp[0], dict):
+            bits.append(
+                "Latest experience: "
+                + exp[0].get("title", "") + " at " + exp[0].get("company", "")
+            )
+        candidate_context = "\n".join(bits)
+    except Exception:
+        candidate_context = ""
+
     # Pull latest OA diagnosis for adaptive questioning (moat: interview probes real weaknesses)
     oa_context = {}
     try:
-        from app.database import oa_sessions_collection
         latest_oa = await oa_sessions_collection.find_one(
             {"user_id": user["id"], "status": "completed"}, sort=[("completed_at", -1)]
         )
@@ -71,27 +95,38 @@ async def start_interview(req: StartInterview, user=Depends(get_current_user)):
     result = await interviews_collection.insert_one(interview_doc)
     interview_id = str(result.inserted_id)
 
-    # If OA revealed a primary weakness, probe it first (evidence-driven interview)
-    if oa_context.get("primary_weakness") or oa_context.get("skill_weaknesses"):
-        primary = oa_context.get("primary_weakness") or (oa_context.get("skill_weaknesses", [{}])[0].get("skill", ""))
-        if primary:
-            w = next((x for x in oa_context.get("skill_weaknesses", []) if x.get("skill")==primary), {})
-            pct = w.get("pct", "")
-            pct_str = f" (OA: {pct}%)" if pct else ""
-            question_data = {
-                "question": f"You scored{pct_str} on {primary} in your recent Mock OA. Walk me through how you'd solve a {primary} problem and why a naive approach wouldn't scale.",
-                "question_type": "technical",
-                "tips": f"Focus on {primary} fundamentals; explain trade-offs.",
-                "difficulty": req.difficulty,
-            }
+    # If OA revealed a primary weakness, probe it first (evidence-driven interview).
+    # Generation failure rolls back: orphan session deleted, free-tier credit
+    # untouched. Same no-loss rule as /answer's eval-pending path.
+    try:
+        if oa_context.get("primary_weakness") or oa_context.get("skill_weaknesses"):
+            primary = oa_context.get("primary_weakness") or (oa_context.get("skill_weaknesses", [{}])[0].get("skill", ""))
+            if primary:
+                w = next((x for x in oa_context.get("skill_weaknesses", []) if x.get("skill")==primary), {})
+                pct = w.get("pct", "")
+                pct_str = f" (OA: {pct}%)" if pct else ""
+                question_data = {
+                    "question": f"You scored{pct_str} on {primary} in your recent Mock OA. Walk me through how you'd solve a {primary} problem and why a naive approach wouldn't scale.",
+                    "question_type": "technical",
+                    "tips": f"Focus on {primary} fundamentals; explain trade-offs.",
+                    "difficulty": req.difficulty,
+                }
+            else:
+                question_data = await generate_interview_question(
+                    req.job_role, [], company=company, difficulty=req.difficulty, user_id=user["id"],
+                    mode=mode, candidate_context=candidate_context or None,
+                )
         else:
             question_data = await generate_interview_question(
                 req.job_role, [], company=company, difficulty=req.difficulty,
             )
-    else:
-        question_data = await generate_interview_question(
-            req.job_role, [], company=company, difficulty=req.difficulty,
-        )
+    except Exception as exc:
+        logger.warning("interview start failed for %s, rolling back: %s", user["id"], exc)
+        try:
+            await interviews_collection.delete_one({"_id": ObjectId(interview_id)})
+        except Exception:
+            pass
+        raise HTTPException(status_code=503, detail="Could not start interview right now. Please retry — no attempt was used.")
 
     await users_collection.update_one(
         {"_id": ObjectId(user["id"])},
@@ -108,6 +143,39 @@ async def start_interview(req: StartInterview, user=Depends(get_current_user)):
         "company_style": company_style,
         "total_questions": TOTAL_QUESTIONS,
     }
+
+
+async def _update_interview_readiness(
+    user_id: str, company: str, mode: str, overall: float, breakdown: dict
+):
+    """Best-effort: store interview outcomes as a readiness signal in the
+    existing skill graph — same collection/shape convention as the OA signal
+    (oa._update_readiness). No new store."""
+    col = skill_graph_collection()
+    doc = await col.find_one({"user_id": user_id})
+    if not doc:
+        doc = {"user_id": user_id, "categories": {}, "oa_outcomes": []}
+    outcomes = doc.get("interview_outcomes", [])
+    outcomes.append({
+        "company": company,
+        "mode": mode,
+        "overall": overall,
+        "breakdown": breakdown,
+        "at": datetime.now(timezone.utc).isoformat(),
+    })
+    outcomes = outcomes[-20:]
+    cats = doc.get("categories", {})
+    prev = cats.get("interview", {})
+    prev_score = prev.get("score", 0)
+    cats["interview"] = {
+        "score": round(prev_score * 0.6 + overall * 0.4, 1),
+        "source": "interview",
+    }
+    await col.update_one(
+        {"user_id": user_id},
+        {"$set": {"categories": cats, "interview_outcomes": outcomes}},
+        upsert=True,
+    )
 
 
 @router.post("/answer")
@@ -129,16 +197,99 @@ async def submit_answer(req: SubmitAnswer, user=Depends(get_current_user)):
     company = interview.get("company", "general")
     job_role = interview.get("job_role", "")
     current_difficulty = interview.get("difficulty", "medium")
+    mode = (interview.get("interview_type") or "mixed").lower().strip()
     # Use the real question type sent by the client; follow-ups are behavioral
     # (probing deeper). Previously this was always "mixed", which gave the
     # evaluator no type-specific guidance.
     qtype = "behavioral" if req.is_follow_up else (req.question_type or "technical")
 
-    feedback = await evaluate_answer(
-        req.question, req.answer, job_role,
-        company=company, question_type=qtype,
-        difficulty=current_difficulty, time_taken=req.time_taken or 0,
-    )
+    # Prefer rubric-based evaluator for modes with explicit criteria
+    rubric_feedback = None
+    mode_key = (mode or qtype or "technical").lower().strip()
+    if mode_key in {"behavioral", "hr", "technical", "system_design", "gd", "group_discussion"}:
+        try:
+            rubric_feedback = await InterviewEvaluator.evaluate_response(
+                question_text=req.question,
+                expected_points=[],
+                student_transcript=req.answer,
+                company_target=company,
+                interview_mode=mode_key,
+            )
+        except Exception:
+            rubric_feedback = None
+
+    if rubric_feedback and not rubric_feedback.get("error"):
+        overall_score = rubric_feedback.get("overall_score", 5)
+        breakdown = {}
+        for c in rubric_feedback.get("criteria", []):
+            breakdown[c.get("id", c.get("label", ""))] = c.get("score", 0)
+        if not breakdown:
+            breakdown = {"overall": overall_score}
+        feedback = {
+            "score": overall_score,
+            "breakdown": breakdown,
+            "rubric_version": rubric_feedback.get("rubric_version", "1.0"),
+            "criteria": rubric_feedback.get("criteria", []),
+            "filler_words": rubric_feedback.get("filler_words", []),
+            "structural_critique": rubric_feedback.get("critique", ""),
+            "actionable_remediation": rubric_feedback.get("remediation", ""),
+            "reaction": "thinking" if overall_score < 5 else ("muscle" if overall_score < 7 else "clap"),
+        }
+    else:
+        # No rubric verdict (evaluator errored or returned error state).
+        # One bounded AI fallback; if that also fails, the answer is STORED
+        # as eval-pending and the client gets a retryable 200 — student text
+        # is never lost to a 504, and pending answers never count as answered.
+        try:
+            feedback = await evaluate_answer(
+                req.question, req.answer, job_role,
+                company=company, question_type=qtype,
+                difficulty=current_difficulty, time_taken=req.time_taken or 0,
+                mode=mode,
+            )
+        except Exception as exc:
+            logger.warning("interview eval failed for %s, storing pending: %s",
+                           req.interview_id, exc)
+            qa_pending = {
+                "question": req.question,
+                "answer": req.answer,
+                "question_type": qtype,
+                "difficulty": current_difficulty,
+                "score": None,
+                "breakdown": {},
+                "feedback": None,
+                "eval_pending": True,
+                "is_follow_up": req.is_follow_up,
+                "company": company,
+                "time_taken": req.time_taken or 0,
+            }
+            await interviews_collection.update_one(
+                {"_id": ObjectId(req.interview_id)},
+                {"$push": {"questions": qa_pending}},
+            )
+            return {
+                "interview_id": req.interview_id,
+                "eval_pending": True,
+                "feedback": {"message": "Grading hiccup — your answer is saved. Tap submit to retry grading."},
+                "current_score": None,
+                "questions_answered": len([
+                    q for q in (interview.get("questions") or [])
+                    if not q.get("is_follow_up") and not q.get("eval_pending")]),
+                "total_questions": TOTAL_QUESTIONS,
+                "finished": False,
+                "is_follow_up": req.is_follow_up,
+                "reaction": "",
+                "breakdown": {},
+                "next_question": req.question,
+                "next_question_type": qtype,
+                "next_tips": "",
+                "next_difficulty": current_difficulty,
+            }
+        feedback = dict(feedback)
+        feedback["degraded"] = True
+        feedback["degraded_reason"] = "rubric_evaluator_unavailable"
+        feedback.setdefault("score", 5)
+        feedback.setdefault("breakdown", {})
 
     score = feedback.get("score", 5)
     breakdown = feedback.get("breakdown", {})
@@ -164,9 +315,56 @@ async def submit_answer(req: SubmitAnswer, user=Depends(get_current_user)):
         {"$push": {"questions": qa_pair}},
     )
 
+    # â”€â”€ Emit canonical LearningEvents for each scored dimension â”€â”€
+    # The interview evaluator produces per-dimension scores (0-10).
+    # Each dimension gets its own event with structured diagnosis codes
+    # when the score indicates a gap.
+    try:
+        from app.services.study_engine import emit_learning_event
+        from app.services.skill_taxonomy import parse_interview_dimension
+        from app.services.diagnosis import diagnose_interview_failure
+
+        question_id_for_event = None
+        # Try to trace back the question_id from the interview doc
+        if interview.get("questions"):
+            question_id_for_event = interview.get("questions", [{}])[-1].get("question_id")
+
+        for dim, dim_score in breakdown.items():
+            if dim_score < 7:  # Below proficiency threshold
+                codes = diagnose_interview_failure(
+                    dimension=dim,
+                    score=dim_score,
+                    feedback=feedback,
+                    answer_text=req.answer,
+                    question_topic=getattr(req, "question_topic", None),
+                )
+                await emit_learning_event(user["id"], {
+                    "activity_type": "interview_answer",
+                    "source": "interview",
+                    "skill_id": parse_interview_dimension(dim),
+                    "question_id": question_id_for_event,
+                    "assessment_id": req.interview_id,
+                    "role": job_role,
+                    "company": company,
+                    "passed": dim_score >= 7,
+                    "score": dim_score,
+                    "time_spent_seconds": req.time_taken or 0,
+                    "diagnosis_codes": codes,
+                    "metadata": {
+                        "question_type": qtype,
+                        "difficulty": current_difficulty,
+                        "overall_feedback": {
+                            "strengths": feedback.get("strengths", []),
+                            "improvements": feedback.get("improvements", []),
+                        },
+                    },
+                })
+    except Exception as exc:
+        logger.warning("interview LearningEvent emission failed: %s", exc)
+
     updated_interview = await interviews_collection.find_one({"_id": ObjectId(req.interview_id)})
     history = updated_interview.get("questions", [])
-    all_primary = [q for q in history if not q.get("is_follow_up")]
+    all_primary = [q for q in history if not q.get("is_follow_up") and not q.get("eval_pending")]
     questions_answered = len(all_primary)
     score_history = updated_interview.get("score_history", [])
     score_history.append(score)
@@ -183,6 +381,7 @@ async def submit_answer(req: SubmitAnswer, user=Depends(get_current_user)):
             follow_up = await generate_follow_up_question(
                 req.question, req.answer, job_role,
                 [{"question": h["question"], "answer": h["answer"]} for h in history[-5:]],
+                mode=mode,
             )
 
             await interviews_collection.update_one(
@@ -206,6 +405,7 @@ async def submit_answer(req: SubmitAnswer, user=Depends(get_current_user)):
             }
 
     if questions_answered >= TOTAL_QUESTIONS:
+        final_score = round(sum(score_history) / len(score_history), 1)
         await interviews_collection.update_one(
             {"_id": ObjectId(req.interview_id)},
             {"$set": {"status": "completed", "score_history": score_history}},
@@ -215,21 +415,106 @@ async def submit_answer(req: SubmitAnswer, user=Depends(get_current_user)):
         strength_areas = feedback.get("strengths", [])
         improvement_areas = feedback.get("improvements", [])
 
+        # --- Completion contract: competency-level diagnosis + next action ---
+        # Bottom-2 dimensions become labeled weaknesses; they drive a repair
+        # mission (score < 7) or a company-OA conversion step, and feed the
+        # skill graph exactly like OA outcomes do. All best-effort.
+        dim_labels = {
+            "technical": "Technical Accuracy",
+            "communication": "Communication & Delivery",
+            "problem_solving": "Problem Solving",
+            "depth": "Answer Depth",
+        }
+        ranked = sorted(avg_breakdown.items(), key=lambda kv: kv[1])
+        weaknesses = [dim_labels.get(d, d) for d, _ in ranked[:2]]
+        next_action = None
+        if final_score < 7:
+            try:
+                from app.services.repair_service import create_repair_mission
+                mission = await create_repair_mission(
+                    user["id"], weaknesses, source="interview"
+                )
+                next_action = {
+                    "type": "repair_mission",
+                    "target": mission.title,
+                    "reason": f"Repair weakest areas: {', '.join(weaknesses)}",
+                }
+            except Exception:
+                next_action = {
+                    "type": "practice",
+                    "target": weaknesses[0] if weaknesses else "fundamentals",
+                    "reason": "Targeted practice on weakest area",
+                }
+        else:
+            next_action = {
+                "type": "company_oa",
+                "target": company,
+                "reason": "Convert interview readiness into OA evidence",
+            }
+        try:
+            await interviews_collection.update_one(
+                {"_id": ObjectId(req.interview_id)},
+                {"$set": {
+                    "weaknesses": weaknesses,
+                    "next_action": next_action,
+                    "overall_score": final_score,
+                }},
+            )
+        except Exception:
+            pass
+        try:
+            await _update_interview_readiness(
+                user["id"], company, mode, final_score, avg_breakdown
+            )
+        except Exception:
+            pass
+
         gamification_result = await record_practice(
             user["id"], "interview",
-            round(sum(score_history) / len(score_history), 1),
+            final_score,
+            role=user.get("role") or user.get("target_role") or "sde",
         )
+
+        # â”€â”€ Emit canonical LearningEvent for the completed interview â”€â”€
+        try:
+            from app.services.study_engine import emit_learning_event
+            await emit_learning_event(user["id"], {
+                "activity_type": "interview_complete",
+                "source": "interview",
+                "skill_id": "interview.overall",
+                "assessment_id": req.interview_id,
+                "role": job_role,
+                "company": company,
+                "passed": final_score >= 7,
+                "score": final_score,
+                "time_spent_seconds": sum(q.get("time_taken", 0) for q in history),
+                "mastery_before": None,
+                "mastery_after": "proficient" if final_score >= 8 else (
+                    "competent" if final_score >= 5 else "developing"
+                ),
+                "diagnosis_codes": weaknesses,
+                "repair_id": None,
+                "metadata": {
+                    "breakdown": avg_breakdown,
+                    "next_action": next_action.get("type") if next_action else None,
+                    "weaknesses": weaknesses,
+                },
+            })
+        except Exception as exc:
+            logger.warning("interview_complete event emission failed: %s", exc)
 
         return {
             "feedback": feedback,
             "next_question": None,
-            "current_score": round(sum(score_history) / len(score_history), 1),
+            "current_score": final_score,
             "questions_answered": questions_answered,
             "total_questions": TOTAL_QUESTIONS,
             "finished": True,
             "reaction": reaction,
             "breakdown": breakdown,
             "score_breakdown": avg_breakdown,
+            "weaknesses": weaknesses,
+            "next_action": next_action,
             "xp_gained": gamification_result.get("xp_gained", 0),
             "level": gamification_result.get("level", 1),
             "new_badges": gamification_result.get("new_badges", []),
@@ -253,7 +538,8 @@ async def submit_answer(req: SubmitAnswer, user=Depends(get_current_user)):
         )
 
     next_q = await generate_interview_question(
-        job_role, history, company=company, difficulty=new_difficulty,
+        job_role, history, company=company, difficulty=new_difficulty, user_id=user["id"],
+        mode=mode,
     )
 
     await interviews_collection.update_one(
@@ -369,7 +655,6 @@ async def get_personalized_config(user=Depends(get_current_user)):
     user_id = user["id"]
 
     # Read student profile
-    from app.database import users_collection
     user_doc = await users_collection.find_one({"user_id": user_id}) or {}
     target_role = user_doc.get("target_role", "sde")
     target_company = user_doc.get("target_company", "")
@@ -384,7 +669,6 @@ async def get_personalized_config(user=Depends(get_current_user)):
     strong_areas = [s for s, data in skills.items() if data.get("mastery") in ("competent", "proficient", "master")]
 
     # Read previous interview history
-    from app.database import interviews_collection
     prev_interviews = []
     async for doc in interviews_collection.find({"user_id": user_id}).sort("created_at", -1).limit(5):
         prev_interviews.append({
@@ -394,7 +678,7 @@ async def get_personalized_config(user=Depends(get_current_user)):
         })
 
     # Company-specific rubric
-    from app.services.ai import COMPANY_PROFILES
+    from app.services.ai_interview import COMPANY_PROFILES
     company_profile = COMPANY_PROFILES.get(target_company, {})
     interview_style = company_profile.get("interview_style", "")
     focus_areas = company_profile.get("focus_areas", [])

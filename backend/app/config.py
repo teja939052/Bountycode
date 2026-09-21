@@ -1,7 +1,7 @@
 """Configuration management using Pydantic Settings.
 
 Loads environment variables from .env with fallback defaults for all
-PlacementPro services: MongoDB, JWT, OpenRouter AI, PayPal, Stripe,
+BountyCode services: MongoDB, JWT, OpenRouter AI, PayPal, Stripe,
 Redis, RabbitMQ, Docker sandbox, WebSocket, CORS, and more.
 """
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -43,7 +43,9 @@ class Settings(BaseSettings):
 
     # MongoDB
     MONGODB_URL: str = os.getenv("MONGODB_URL", "mongodb://localhost:27017")
-    DATABASE_NAME: str = "placementpro"
+    # Live database is `placementpro`. Never rename it in code — operators
+    # point here via DATABASE_NAME; the default matches production reality.
+    DATABASE_NAME: str = os.getenv("DATABASE_NAME", "placementpro")
     MONGODB_MAX_POOL_SIZE: int = 50
     MONGODB_MIN_POOL_SIZE: int = 10
     MONGODB_MAX_IDLE_TIME_MS: int = 10000
@@ -57,9 +59,9 @@ class Settings(BaseSettings):
     
     # OpenRouter AI
     OPENROUTER_API_KEY: str = os.getenv("OPENROUTER_API_KEY", "")
-    OPENROUTER_MODEL: str = "google/gemini-2.0-flash-001"
+    OPENROUTER_MODEL: str = "google/gemma-4-31b-it:free"
     OPENROUTER_URL: str = "https://openrouter.ai/api/v1/chat/completions"
-    OPENROUTER_TIMEOUT: int = 30
+    OPENROUTER_TIMEOUT: int = 120
     OPENROUTER_MAX_RETRIES: int = 3
     
     # PayPal
@@ -83,7 +85,6 @@ class Settings(BaseSettings):
     FREE_TIER_INTERVIEW_LIMIT: int = 3
     FREE_TIER_RESUME_LIMIT: int = 3
     FREE_TIER_APTITUDE_LIMIT: int = 5
-    FREE_TIER_COVER_LETTER_LIMIT: int = 3
     FREE_TIER_CODING_LIMIT: int = 5
     FREE_TIER_COMPANY_MOCK_LIMIT: int = 1
     FREE_TIER_PREDICTOR_LIMIT: int = 3
@@ -174,6 +175,18 @@ class Settings(BaseSettings):
     REMOTE_FALLBACK_TIMEOUT: int = int(os.getenv("REMOTE_FALLBACK_TIMEOUT", "8"))
     # Optional free Glot.io API token (from glot.io account) — anonymous calls also work.
     GLOT_API_TOKEN: str = os.getenv("GLOT_API_TOKEN", "")
+    # Judge0 (fallback when Piston is unavailable; public Piston is
+    # approval-only since Feb 2026). Either RapidAPI-hosted (URL + key) or
+    # self-hosted Judge0 CE (URL only, no key). Empty URL disables the hop.
+    JUDGE0_URL: str = os.getenv("JUDGE0_URL", "")
+    JUDGE0_KEY: str = os.getenv("JUDGE0_KEY", "")
+    JUDGE0_TIMEOUT: int = int(os.getenv("JUDGE0_TIMEOUT", "15"))
+    # PlacementPro compiler microservice (standalone FastAPI in
+    # backend/compiler-service/, deployed to Cloud Run free tier).
+    # When set, it is tried BEFORE third-party providers (own infra,
+    # scale-to-zero, no per-call cost). Empty disables the hop.
+    COMPILER_SERVICE_URL: str = os.getenv("COMPILER_SERVICE_URL", "")
+    COMPILER_SERVICE_KEY: str = os.getenv("COMPILER_SERVICE_KEY", "")
     
     # RabbitMQ for async job queue
     RABBITMQ_URL: str = os.getenv("RABBITMQ_URL", "amqp://guest:guest@localhost:5672/")
@@ -184,7 +197,7 @@ class Settings(BaseSettings):
     
     # Docker sandbox for secure code execution
     DOCKER_SANDBOX_ENABLED: bool = os.getenv("DOCKER_SANDBOX_ENABLED", "false").lower() == "true"
-    DOCKER_SANDBOX_IMAGE: str = os.getenv("DOCKER_SANDBOX_IMAGE", "placementpro/sandbox:latest")
+    DOCKER_SANDBOX_IMAGE: str = os.getenv("DOCKER_SANDBOX_IMAGE", "BountyCode/sandbox:latest")
     DOCKER_SANDBOX_CPU_QUOTA: int = 50000  # 50% CPU
     DOCKER_SANDBOX_MEMORY_LIMIT: str = "256m"
     DOCKER_SANDBOX_PIDS_LIMIT: int = 64
@@ -202,11 +215,11 @@ class Settings(BaseSettings):
     SMTP_PORT: int = int(os.getenv("SMTP_PORT", 587))
     SMTP_USER: str = os.getenv("SMTP_USER", "")
     SMTP_PASSWORD: str = os.getenv("SMTP_PASSWORD", "")
-    SMTP_FROM: str = os.getenv("SMTP_FROM", "noreply@placementpro.app")
+    SMTP_FROM: str = os.getenv("SMTP_FROM", "noreply@BountyCode.app")
 
     # Logging
     LOG_LEVEL: str = os.getenv("LOG_LEVEL", "INFO")
-    LOG_FILE: str = os.getenv("LOG_FILE", "placementpro.log")
+    LOG_FILE: str = os.getenv("LOG_FILE", "BountyCode.log")
 
     # Security
     PASSWORD_MIN_LENGTH: int = 8

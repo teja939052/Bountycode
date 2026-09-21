@@ -1,12 +1,15 @@
-"""Free remote code-execution fallbacks (Wandbox + Glot.io).
+"""Free remote code-execution fallbacks (Judge0 + Wandbox + Glot.io).
 
 These are invoked only after the primary Piston API fails, and only when
-USE_REMOTE_FALLBACKS=true. Both are free public JSON APIs with per-IP rate
-limits — best-effort providers, NOT a hard security boundary. Each provider
-returns a Piston-shaped dict so the rest of the pipeline stays agnostic;
-provider-level failures return None so the chain can move to the next hop.
+USE_REMOTE_FALLBACKS=true. All are free JSON APIs with per-IP or key-based
+rate limits — best-effort providers, NOT a hard security boundary. Each
+provider returns a Piston-shaped dict so the rest of the pipeline stays
+agnostic; provider-level failures return None so the chain can move to the
+next hop.
 
-Chain in code_executor: Piston -> Wandbox -> Glot.io -> local sandbox.
+Chain in code_executor: Piston -> Judge0 -> Wandbox -> Glot.io -> local
+sandbox. Judge0 covers all 12 compiler languages; Wandbox/Glot.io cover
+python + javascript only.
 """
 import asyncio
 import re
@@ -31,6 +34,18 @@ WANDBOX_DEFAULT_COMPILERS = {
 
 # Language slugs per provider
 GLOT_LANGUAGE = {"python": "python", "javascript": "javascript"}
+
+# Judge0 language IDs (api.judge0.com / self-host CE share these IDs).
+JUDGE0_LANGUAGE_IDS = {
+    "python": 71, "javascript": 63, "typescript": 74, "java": 62,
+    "c++": 54, "cpp": 54, "c": 50, "go": 60, "rust": 73,
+    "ruby": 72, "php": 68, "swift": 83, "kotlin": 78,
+}
+
+# Judge0 status IDs that mean "ran fine" (3) vs user-code errors (4-12).
+# Anything else (13+ / null) is provider-side trouble -> next hop.
+JUDGE0_OK_STATUS = 3
+JUDGE0_USER_ERROR_STATUS = {4, 5, 6, 7, 8, 9, 10, 11, 12}
 
 _wandbox_compilers = None
 _wandbox_compiler_lock = None
@@ -194,20 +209,106 @@ async def glot_execute(code: str, language: str, stdin: str = "", timeout: int =
     }
 
 
-async def execute_remote_fallback(language: str, code: str, stdin: str = "", timeout: int = 5) -> dict:
-    """Try Wandbox then Glot.io in parallel; return the first valid result.
+async def judge0_execute(code: str, language: str, stdin: str = "", timeout: int = 5):
+    """Run code on Judge0 (RapidAPI-hosted with key, or self-host CE without).
 
-    Returns {} when neither provider produced an answer, so the caller can
-    continue down the chain (local sandbox). Priority: Wandbox first.
+    Configured via JUDGE0_URL (+ optional JUDGE0_KEY). Uses wait=true so the
+    submission result returns synchronously. Returns a Piston-shaped dict or
+    None. Disabled when JUDGE0_URL is empty.
+    """
+    settings = get_settings()
+    base = (settings.JUDGE0_URL or "").rstrip("/")
+    lang_id = JUDGE0_LANGUAGE_IDS.get((language or "").lower())
+    if not base or not lang_id:
+        return None
+
+    headers = {"Content-Type": "application/json"}
+    if settings.JUDGE0_KEY:
+        # RapidAPI hosting authenticates via key headers.
+        headers["X-RapidAPI-Key"] = settings.JUDGE0_KEY
+        headers["X-RapidAPI-Host"] = base.split("://", 1)[-1].split("/", 1)[0]
+
+    payload = {
+        "source_code": code,
+        "language_id": lang_id,
+        "stdin": stdin or "",
+        "cpu_time_limit": min(max(int(timeout or 5), 1), 15),
+    }
+    request_timeout = min(max(int(getattr(settings, "JUDGE0_TIMEOUT", 15)), 5), 30)
+    try:
+        async with httpx.AsyncClient(timeout=request_timeout) as client:
+            resp = await client.post(
+                f"{base}/submissions?base64_encoded=false&wait=true",
+                json=payload,
+                headers=headers,
+            )
+            if resp.status_code in (401, 403):
+                await request_metrics.record("compiler", "failure", error="Judge0 auth rejected")
+                return None
+            if resp.status_code == 429:
+                await request_metrics.record("compiler", "failure", error="Judge0 rate limited")
+                return None
+            if resp.status_code != 201 and resp.status_code != 200:
+                await request_metrics.record("compiler", "failure", error=f"Judge0 HTTP {resp.status_code}")
+                return None
+            data = resp.json()
+    except Exception:
+        await request_metrics.record("compiler", "failure", error="Judge0 error")
+        return None
+
+    status = data.get("status") or {}
+    try:
+        status_id = int(status.get("id", 0))
+    except (TypeError, ValueError):
+        status_id = 0
+    # Provider-side trouble (queue crush, box error): let the chain continue.
+    if status_id not in JUDGE0_OK_STATUS and status_id not in JUDGE0_USER_ERROR_STATUS:
+        await request_metrics.record("compiler", "failure", error=f"Judge0 status {status_id}")
+        return None
+
+    stdout = (data.get("stdout") or "").strip()
+    stderr = ((data.get("stderr") or "") + "\n" + (data.get("compile_output") or "")).strip()
+    exit_code = 0 if status_id == JUDGE0_OK_STATUS and not stderr else 1
+    try:
+        exec_ms = float(data.get("time") or 0) * 1000
+    except (TypeError, ValueError):
+        exec_ms = 0
+    return {
+        "success": status_id == JUDGE0_OK_STATUS,
+        "exit_code": exit_code,
+        "stdout": stdout,
+        "stderr": stderr,
+        "compile_error": None,
+        "language": language,
+        "execution_time": exec_ms,
+        "memory_usage": data.get("memory") or 0,
+        "source": "judge0",
+    }
+
+
+async def execute_remote_fallback(language: str, code: str, stdin: str = "", timeout: int = 5) -> dict:
+    """Try Judge0, then Wandbox and Glot.io in parallel; first valid wins.
+
+    Returns {} when no provider produced an answer, so the caller can
+    continue down the chain (local sandbox). Judge0 runs first because it
+    covers all 12 compiler languages; Wandbox/Glot.io cover python +
+    javascript only.
     """
     if not get_settings().USE_REMOTE_FALLBACKS:
         return {}
-    if (language or "").lower() not in REMOTE_FALLBACK_LANGUAGES:
+    lang = (language or "").lower()
+
+    if lang in JUDGE0_LANGUAGE_IDS:
+        judge0 = await judge0_execute(code, lang, stdin, timeout)
+        if isinstance(judge0, dict) and judge0.get("source"):
+            return judge0
+
+    if lang not in REMOTE_FALLBACK_LANGUAGES:
         return {}
 
     results = await asyncio.gather(
-        wandbox_execute(code, (language or "").lower(), stdin, timeout),
-        glot_execute(code, (language or "").lower(), stdin, timeout),
+        wandbox_execute(code, lang, stdin, timeout),
+        glot_execute(code, lang, stdin, timeout),
         return_exceptions=True,
     )
     for result in results:

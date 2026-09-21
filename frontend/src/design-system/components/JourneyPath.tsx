@@ -9,7 +9,7 @@ interface JourneyNode {
   type?: "lesson" | "challenge" | "boss" | "milestone";
   position: { x: number; y: number };
   to?: string;
-  xp?: number;
+  diamonds?: number;
   icon?: ReactNode;
 }
 
@@ -218,9 +218,9 @@ export function JourneyPath({
               `}>
                 {node.label}
               </p>
-              {node.xp && (
-                <p className="text-[10px] font-mono text-xp/80 mt-0.5">
-                  +{node.xp} XP
+              {node.diamonds && (
+                <p className="text-[10px] font-mono text-diamonds/80 mt-0.5">
+                  +{node.diamonds} Diamonds
                 </p>
               )}
             </div>

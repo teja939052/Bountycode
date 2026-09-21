@@ -10,6 +10,7 @@ import logging
 
 from app.middleware.auth import get_current_user, require_admin
 from app.database import get_db
+from bson import ObjectId
 from app.services.health_checker import get_health_checker
 from app.services.feature_flags import get_feature_manager, FeatureStatus
 
@@ -211,7 +212,6 @@ async def search_users(
         if email:
             query["email"] = {"$regex": re.escape(email), "$options": "i"}
         elif user_id:
-            from bson import ObjectId
             if not ObjectId.is_valid(user_id):
                 raise HTTPException(status_code=400, detail="Invalid user_id format")
             query["_id"] = ObjectId(user_id)

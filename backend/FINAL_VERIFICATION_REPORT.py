@@ -9,7 +9,7 @@
 
 print("=" * 80)
 print("COMPILER FINAL PRODUCTION VERIFICATION REPORT")
-print("PlacementPro / BountyCode - August 2026")
+print("BountyCode / BountyCode - August 2026")
 print("=" * 80)
 
 # ============================================================
@@ -258,7 +258,7 @@ print("""
            servers is a security risk (filesystem access, process spawning,
            environment variable leakage, network access)
   - Alternative: Students can use the compiler in their own local
-               environments; PlacementPro provides code execution via Piston
+               environments; BountyCode provides code execution via Piston
 
 === Fallback Chain Behavior ===
 ✓ Primary: Piston API

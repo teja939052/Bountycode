@@ -51,7 +51,7 @@ async def lifespan(app: FastAPI):
     
     # ==================== STARTUP ====================
     logger.info("=" * 60)
-    logger.info("🚀 PlacementPro API Starting")
+    logger.info("🚀 BountyCode API Starting")
     logger.info("=" * 60)
     
     try:
@@ -105,7 +105,7 @@ async def lifespan(app: FastAPI):
         
         logger.info("")
         logger.info("=" * 60)
-        logger.info("✅ PlacementPro API startup complete - all services initialized")
+        logger.info("✅ BountyCode API startup complete - all services initialized")
         logger.info("=" * 60)
         logger.info(f"🌐 API ready at http://localhost:8000")
         logger.info(f"📚 Docs at http://localhost:8000/docs")
@@ -127,7 +127,7 @@ async def lifespan(app: FastAPI):
     # ==================== SHUTDOWN ====================
     logger.info("")
     logger.info("=" * 60)
-    logger.info("🛑 PlacementPro API Shutting Down")
+    logger.info("🛑 BountyCode API Shutting Down")
     logger.info("=" * 60)
     
     try:
@@ -151,7 +151,7 @@ async def lifespan(app: FastAPI):
 ```python
 # Create the FastAPI app
 app = FastAPI(
-    title="PlacementPro API",
+    title="BountyCode API",
     description="AI-powered placement preparation platform",
     version="1.0.0",
     lifespan=lifespan,
@@ -168,7 +168,7 @@ app.add_middleware(RouteErrorHandlingMiddleware)
 # 2. CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000", "https://placementpro.vercel.app"],
+    allow_origins=["http://localhost:5173", "http://localhost:3000", "https://BountyCode.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -304,7 +304,7 @@ async def liveness():
 async def root():
     """Root endpoint."""
     return {
-        "name": "PlacementPro API",
+        "name": "BountyCode API",
         "version": "1.0.0",
         "status": "running",
         "docs": "/docs",
@@ -335,7 +335,7 @@ Here's a complete minimal example:
 
 ```python
 """
-PlacementPro API - Main Application
+BountyCode API - Main Application
 """
 
 import logging
@@ -371,7 +371,7 @@ async def lifespan(app: FastAPI):
     """Application lifespan events."""
     
     # Startup
-    logger.info("🚀 PlacementPro API Starting")
+    logger.info("🚀 BountyCode API Starting")
     
     try:
         from app.database import init_db, database
@@ -394,7 +394,7 @@ async def lifespan(app: FastAPI):
         idempotency_manager = IdempotencyManager(database.db)
         logger.info("✅ Idempotency manager ready")
         
-        logger.info("✅ PlacementPro API startup complete\n")
+        logger.info("✅ BountyCode API startup complete\n")
         
     except Exception as e:
         logger.error(f"❌ Startup failed: {e}\n")
@@ -403,7 +403,7 @@ async def lifespan(app: FastAPI):
     yield
     
     # Shutdown
-    logger.info("🛑 PlacementPro API shutting down")
+    logger.info("🛑 BountyCode API shutting down")
     try:
         from app.database import close_db
         await close_db()
@@ -414,7 +414,7 @@ async def lifespan(app: FastAPI):
 
 # Create app
 app = FastAPI(
-    title="PlacementPro API",
+    title="BountyCode API",
     version="1.0.0",
     lifespan=lifespan,
 )
@@ -466,7 +466,7 @@ python -m uvicorn app.main:app --reload
 # ✅ Database initialized
 # ✅ Database indexes created
 # ✅ Health checker ready
-# ✅ PlacementPro API startup complete
+# ✅ BountyCode API startup complete
 
 # Test health endpoint
 curl http://localhost:8000/api/health/ping

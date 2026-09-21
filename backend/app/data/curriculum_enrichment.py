@@ -127,9 +127,9 @@ def _generate_lessons(topics, variants, xp_mult=1):
     """Generate lessons from a topic pool and variant templates."""
     result = []
     for topic in topics:
-        for title_tmpl, xp, diff, type_ in variants:
+        for title_tmpl, diamonds, diff, type_ in variants:
             title = title_tmpl.format(topic=topic)
-            result.append(_L(title, xp * xp_mult, diff, type_))
+            result.append(_L(title, diamonds * xp_mult, diff, type_))
     return result
 
 
@@ -268,9 +268,9 @@ def _build_lang_extra(lang_id):
     # Additional general practice
     for i in range(20):
         difficulty = (i % 3) + 1
-        xp = 15 + (i * 2)
+        diamonds = 15 + (i * 2)
         t = "practice" if i % 3 != 0 else "challenge"
-        lessons.append(_L(f"Sprint #{i+1}: Mixed Skills Challenge", xp, difficulty, t))
+        lessons.append(_L(f"Sprint #{i+1}: Mixed Skills Challenge", diamonds, difficulty, t))
 
     # Interview coding problems
     for i, problem in enumerate([

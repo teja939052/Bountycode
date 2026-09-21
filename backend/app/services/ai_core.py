@@ -24,6 +24,9 @@ MAX_RETRIES = settings.OPENROUTER_MAX_RETRIES
 RETRY_DELAY = 1.0
 
 FALLBACK_MODELS = [
+    "nvidia/nemotron-3.5-lightning:free",
+    "google/gemma-4-31b-it:free",
+    "google/gemma-4-26b-a4b-it:free",
     "meta-llama/llama-3.1-8b-instruct:free",
     "microsoft/phi-3-mini-128k-instruct:free",
     "deepseek/deepseek-chat-v3-0324:free",
@@ -141,12 +144,19 @@ def _make_cache_key(messages: List[Dict], model: str) -> str:
     return hashlib.sha256(content.encode()).hexdigest()[:16]
 
 
-async def _call_openrouter(messages: List[Dict], model: str) -> str:
+async def _call_openrouter(
+    messages: List[Dict],
+    model: str,
+    temperature: float = 0.7,
+    max_tokens: int = 2000,
+) -> str:
     """Execute a single chat completion call to OpenRouter.
 
     Args:
         messages: List of chat message dicts for the completion request.
         model: Model identifier string (e.g., 'google/gemini-2.0-flash-001').
+        temperature: Sampling temperature (0.0-2.0).
+        max_tokens: Maximum tokens to generate.
 
     Returns:
         str: The model's response content string.
@@ -169,14 +179,14 @@ async def _call_openrouter(messages: List[Dict], model: str) -> str:
             headers={
                 "Authorization": f"Bearer {settings.OPENROUTER_API_KEY}",
                 "Content-Type": "application/json",
-                "HTTP-Referer": "https://placementpro.app",
-                "X-Title": "PlacementPro",
+                "HTTP-Referer": "https://BountyCode.app",
+                "X-Title": "BountyCode",
             },
             json={
                 "model": model,
                 "messages": messages,
-                "temperature": 0.7,
-                "max_tokens": 2000,
+                "temperature": temperature,
+                "max_tokens": max_tokens,
                 "top_p": 0.9,
             },
             timeout=settings.OPENROUTER_TIMEOUT,
@@ -256,6 +266,8 @@ async def chat_completion(
                         request_metrics,
                         messages,
                         fallback,
+                        temperature,
+                        max_tokens,
                     )
                     await _record_success()
                     if use_cache:
@@ -280,6 +292,8 @@ async def chat_completion(
                 request_metrics,
                 messages,
                 model_to_use,
+                temperature,
+                max_tokens,
             )
             await _record_success()
             if use_cache:
@@ -297,7 +311,8 @@ def parse_json(text: str) -> Dict[str, Any]:
     """Parse a JSON string from AI model output with multiple fallback strategies.
 
     Handles markdown code fences, trailing fences, substring extraction
-    (first object or array), and single-quote replacement.
+    (first object or array), and single-quote replacement. Also strips
+    common chain-of-thought / thinking prefixes that some models prepend.
 
     Args:
         text: Raw text output from an AI model.
@@ -308,6 +323,37 @@ def parse_json(text: str) -> Dict[str, Any]:
     Raises:
         ValueError: If the text cannot be parsed as JSON after all fallback attempts.
     """
+    original = text
+    text = text.strip()
+
+    # Strip common thinking/chain-of-thought prefixes that some models prepend.
+    prefixes = [
+        "Here's a thinking process",
+        "Here is a thinking process",
+        "Thinking process:",
+        "Thought process:",
+        "Let me think through this:",
+        "Let's think step by step:",
+        "Step-by-step reasoning:",
+        "Reasoning:",
+    ]
+    lower = text.lower()
+    for prefix in prefixes:
+        idx = lower.find(prefix.lower())
+        if idx != -1:
+            text = text[idx + len(prefix):]
+            break
+
+    # If the remaining text looks like a list of numbered/bulleted reasoning
+    # lines, drop everything up to the first line that starts with a JSON brace
+    # or bracket.
+    lines = text.splitlines()
+    for i, line in enumerate(lines):
+        stripped = line.strip()
+        if stripped.startswith("{") or stripped.startswith("["):
+            text = "\n".join(lines[i:])
+            break
+
     text = text.strip()
 
     if text.startswith("```json"):
@@ -347,5 +393,25 @@ def parse_json(text: str) -> Dict[str, Any]:
     except json.JSONDecodeError:
         pass
 
-    logger.error(f"Failed to parse JSON from: {text[:200]}...")
-    raise ValueError(f"Could not parse JSON from AI response: {text[:200]}...")
+    # As a last resort, search the original text for the last JSON object/array.
+    for candidate in (original, text):
+        # Try to find the last complete JSON object
+        start = candidate.rfind("{")
+        end = candidate.rfind("}") + 1
+        if start != -1 and end > start:
+            try:
+                return json.loads(candidate[start:end])
+            except json.JSONDecodeError:
+                pass
+
+        # Try to find the last complete JSON array
+        start = candidate.rfind("[")
+        end = candidate.rfind("]") + 1
+        if start != -1 and end > start:
+            try:
+                return json.loads(candidate[start:end])
+            except json.JSONDecodeError:
+                pass
+
+    logger.error(f"Failed to parse JSON from: {original[:200]}...")
+    raise ValueError(f"Could not parse JSON from AI response: {original[:200]}...")

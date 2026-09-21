@@ -1,4 +1,4 @@
-# PlacementPro Audit Report — Top 10 Remaining Issues
+# BountyCode Audit Report — Top 10 Remaining Issues
 
 ## 1. FORGOT PASSWORD IS COMPLETELY NON-FUNCTIONAL (CRITICAL)
 **Impact:** Students cannot recover accounts. The "forgot password" UI exists but the backend never sends reset emails.

@@ -59,44 +59,6 @@ export const interviewApi = {
   },
 };
 
-export const mockInterviewApi = {
-  startMockInterview(
-    config: Record<string, unknown> = {},
-  ): Promise<{ session_id: string; questions?: unknown[] }> {
-    return request("/api/v1/mock-interview/start", {
-      method: "POST",
-      body: JSON.stringify(config),
-    });
-  },
-
-  submitAnswer(
-    sessionId: string,
-    questionIndex: number,
-    code: string,
-    language: string,
-  ): Promise<{
-    passed?: boolean;
-    score?: number;
-    output?: string;
-    error?: string;
-  }> {
-    return request(`/api/v1/mock-interview/${sessionId}/submit`, {
-      method: "POST",
-      body: JSON.stringify({ question_index: questionIndex, code, language }),
-    });
-  },
-
-  getStatus(
-    sessionId: string,
-  ): Promise<{ status: string; completed?: boolean; score?: number }> {
-    return request(`/api/v1/mock-interview/${sessionId}/status`);
-  },
-
-  getHistory(): Promise<InterviewHistoryItem[]> {
-    return request("/api/v1/mock-interview/history");
-  },
-};
-
 export const bookingApi = {
   bookInterview(
     data: Record<string, unknown>,

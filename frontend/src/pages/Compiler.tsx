@@ -6,6 +6,7 @@ import CelebrationOverlay from "../components/CelebrationOverlay";
 import AlgorithmVisualizer from "../components/AlgorithmVisualizer";
 import { playSound } from "../utils/soundEffects";
 import { useCompilerQueue } from "../hooks/useCompilerQueue";
+import { useBrowserRuntime } from "../hooks/useBrowserRuntime";
 import {
   Play, RotateCcw, Plus, Trash2, CheckCircle, XCircle,
   AlertTriangle, Clock, Terminal, Settings2, Send, ChevronDown,
@@ -164,19 +165,19 @@ export default function Compiler({ problemId, problem }: { problemId?: string; p
   });
   const [stdin, setStdin] = useState("");
   const [testCases, setTestCases] = useState([{ id: 1, input: "", expected: "", isHidden: false }]);
-  const [results, setResults] = useState(null);
+  const [results, setResults] = useState<Record<string, unknown> | null>(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [executionTime, setExecutionTime] = useState(null);
-  const [memoryUsage, setMemoryUsage] = useState(null);
-  const [submissionResult, setSubmissionResult] = useState(null);
+  const [error, setError] = useState<Record<string, unknown> | null>(null);
+  const [executionTime, setExecutionTime] = useState<number | null>(null);
+  const [memoryUsage, setMemoryUsage] = useState<number | null>(null);
+  const [submissionResult, setSubmissionResult] = useState<Record<string, unknown> | null>(null);
   const [showCelebration, setShowCelebration] = useState(false);
   const [savedIndicator, setSavedIndicator] = useState(false);
   const [boilerplateLoading, setBoilerplateLoading] = useState(false);
   const [statusNote, setStatusNote] = useState("");
   const [creativeLoading, setCreativeLoading] = useState(false);
   const [creativeMode, setCreativeMode] = useState("mentor");
-  const [creativeResult, setCreativeResult] = useState(null);
+  const [creativeResult, setCreativeResult] = useState<Record<string, unknown> | null>(null);
   const [creativeError, setCreativeError] = useState("");
   const [activeTestCase, setActiveTestCase] = useState(0);
   const [showExpected, setShowExpected] = useState(true);
@@ -202,21 +203,22 @@ export default function Compiler({ problemId, problem }: { problemId?: string; p
   // Timer
   const [timerRunning, setTimerRunning] = useState(false);
   const [elapsed, setElapsed] = useState(0);
-  const timerRef = useRef(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Submission history
   const [submissions, setSubmissions] = useState([]);
 
   // Run history (for this session)
-  const [runHistory, setRunHistory] = useState([]);
+  const [runHistory, setRunHistory] = useState<Array<Record<string, unknown>>>([]);
 
-  const editorRef = useRef(null);
-  const splitRef = useRef(null);
+  const editorRef = useRef<any>(null);
+  const splitRef = useRef<any>(null);
   const isDragging = useRef(false);
   const problemTopics = normalizeTopics(problem);
   const starterProblemType = getStarterProblemType(problemTopics);
 
   const { execute: executeCompilerJob } = useCompilerQueue();
+  const { isBrowserNative, pyodideReady, pyodideError, execute: browserExecute } = useBrowserRuntime();
 
   // Timer
   useEffect(() => {
@@ -322,6 +324,41 @@ export default function Compiler({ problemId, problem }: { problemId?: string; p
     setExecutionTime(null);
     setMemoryUsage(null);
     try {
+      if (isBrowserNative(language)) {
+        const result = await browserExecute(language, code, stdin, 10000);
+        if (result.success) {
+          setResults({
+            success: true,
+            stdout: result.stdout,
+            stderr: result.stderr,
+            exit_code: result.exit_code,
+            execution_time: result.execution_time,
+            memory_usage: result.memory_usage,
+            source: result.source,
+          });
+          setExecutionTime(result.execution_time ?? null);
+          setMemoryUsage(result.memory_usage ?? null);
+          setRunHistory((prev) => [{ ...result, timestamp: Date.now() }, ...prev].slice(0, 20));
+          setActiveTab("console");
+          setStatusNote(`Browser-native run finished in ${(result.execution_time || 0).toFixed(3)}s`);
+          playSound.success();
+        } else {
+          playSound.error();
+          setError({
+            message: result.compile_error || result.stderr || "Execution failed",
+            type: result.stderr?.includes("timed out") ? "tle" : detectErrorType(result.stderr, result.compile_error, result.exit_code),
+            isCompileError: !!result.compile_error,
+            isRuntimeError: result.exit_code !== 0,
+            isTimeout: result.stderr?.toLowerCase().includes("timed out") || false,
+            stderr: result.stderr,
+            hint: undefined,
+            line: parseErrorLine(result.compile_error || result.stderr),
+          } as any);
+          setActiveTab("console");
+        }
+        return;
+      }
+
       const data: any = await executeCompilerJob({
         run: () => api.executeCompilerCode({ code, language, stdin, timeout: 10 }),
         submitAsync: () => api.executeCompilerCode({ code, language, stdin, timeout: 10, async_mode: true }),
@@ -377,6 +414,41 @@ export default function Compiler({ problemId, problem }: { problemId?: string; p
     setExecutionTime(null);
     setMemoryUsage(null);
     try {
+      if (isBrowserNative(language)) {
+        const caseResults = [];
+        let totalTime = 0;
+        for (const tc of valid) {
+          const result = await browserExecute(language, code, tc.input || "", 10000);
+          totalTime += result.execution_time || 0;
+          const actual = result.stdout.trim();
+          const passed = actual === (tc.expected || "").trim();
+          caseResults.push({
+            passed,
+            input: tc.input,
+            expected: tc.expected,
+            actual,
+            error: result.stderr || undefined,
+            execution_time: result.execution_time,
+            is_hidden: tc.isHidden,
+          });
+        }
+        const allPassed = caseResults.every((r) => r.passed);
+        setResults({
+          success: true,
+          results: caseResults,
+          all_passed: allPassed,
+          passed_count: caseResults.filter((r) => r.passed).length,
+          total_count: caseResults.length,
+          source: "browser",
+        });
+        setExecutionTime(totalTime);
+        setActiveTab("console");
+        setStatusNote(allPassed ? "All test cases passed" : "Some test cases still fail");
+        if (allPassed) playSound.success();
+        else playSound.error();
+        return;
+      }
+
       const data: any = await executeCompilerJob({
         run: () => api.executeCompilerTestCases({ code, language, test_cases: valid, timeout: 10 }),
         submitAsync: () => api.executeCompilerTestCases({ code, language, test_cases: valid, timeout: 10, async_mode: true }),
@@ -600,6 +672,10 @@ export default function Compiler({ problemId, problem }: { problemId?: string; p
   };
 
   const currentLang = LANGUAGES.find((l) => l.id === language) || langs[0];
+  const showBrowserNativeBadge = isBrowserNative(language);
+  const browserNativeLabel = language === "python"
+    ? (pyodideReady ? "Pyodide ready" : pyodideError || "Loading Pyodide...")
+    : "Browser-native";
 
   const passedCount = results?.results?.filter(r => r.passed).length || 0;
   const totalCount = results?.results?.length || 0;
@@ -627,15 +703,23 @@ export default function Compiler({ problemId, problem }: { problemId?: string; p
               {statusNote}
             </span>
           )}
-          {isProblemMode && (
-            <div className="flex items-center gap-1.5 rounded-md bg-surface-2 px-2 py-1 text-xs font-mono">
-              <Timer size={12} className={timerRunning ? "text-brand-emerald" : "text-brand-dim"} />
-              <span className={timerRunning ? "text-brand-emerald" : "text-brand-dim"}>{formatTime(elapsed)}</span>
-              <button onClick={() => setTimerRunning(false)} className="text-brand-dim hover:text-brand-accent">
-                  <X size={10} />
-                </button>
-            </div>
-          )}
+           {isProblemMode && (
+             <div className="flex items-center gap-1.5 rounded-md bg-surface-2 px-2 py-1 text-xs font-mono">
+               <Timer size={12} className={timerRunning ? "text-brand-emerald" : "text-brand-dim"} />
+               <span className={timerRunning ? "text-brand-emerald" : "text-brand-dim"}>{formatTime(elapsed)}</span>
+               <button onClick={() => setTimerRunning(false)} className="text-brand-dim hover:text-brand-accent">
+                   <X size={10} />
+                 </button>
+             </div>
+           )}
+           {showBrowserNativeBadge && (
+             <div className={`hidden md:inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-mono border ${
+               pyodideReady ? "bg-brand-emerald/10 text-brand-emerald border-brand-emerald/20" : "bg-brand-gold/10 text-brand-gold border-brand-gold/20"
+             }`}>
+               <Zap size={10} />
+               {browserNativeLabel}
+             </div>
+           )}
           {executionTime !== null && (
             <div className="flex items-center gap-1.5 text-[10px] text-brand-dim">
               <Cpu size={10} />
@@ -1133,7 +1217,7 @@ text-brand-dim hover:text-brand-primary" title="Fullscreen">
                        </div>
                        <div className="text-xs text-brand-dim flex gap-4">
                          <span>Score: {submissionResult.score}%</span>
-                         <span>XP: +{submissionResult.xp_gained}</span>
+                         <span>Diamonds: +{submissionResult.xp_gained}</span>
                          <span>Time: {formatTime(elapsed)}</span>
                        </div>
                        {/* Test case results */}

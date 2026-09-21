@@ -45,46 +45,47 @@ export default function BountyCard({ user, size = "medium", showStats = true }: 
 
   return (
     <motion.div
-      initial={{ scale: 0.9, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      whileHover={{ scale: 1.03, rotate: -0.5 }}
-      className={`relative ${s.card} bg-gradient-to-br from-amber-950/90 to-amber-900/90 border-2 ${STATUS_BORDER[status] || STATUS_BORDER.active} rounded-2xl overflow-hidden shadow-2xl`}
+      initial={{ scale: 0.9, opacity: 0, rotateX: 10 }}
+      animate={{ scale: 1, opacity: 1, rotateX: 0 }}
+      whileHover={{ scale: 1.03, rotateY: -2 }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      className={`relative ${s.card} gamification-card rounded-2xl overflow-hidden`}
     >
-      {/* Aged paper texture overlay */}
-      <div className="absolute inset-0 opacity-[0.03] bg-gradient-to-b from-white/20 to-transparent pointer-events-none" />
+      {/* Animated gradient border glow */}
+      <div className="absolute inset-0 rounded-2xl opacity-60 pointer-events-none" style={{ background: `linear-gradient(135deg, ${color}33, transparent, ${color}33)` }} />
 
       {/* Top bar */}
-      <div className="relative px-4 pt-3 pb-2 border-b border-amber-700/30">
+      <div className="relative px-4 pt-4 pb-2 border-b border-white/10">
         <div className="flex items-center justify-between">
-          <span className="text-[9px] font-bold tracking-[0.3em] text-amber-400/50 uppercase">WANTED</span>
-          <span className="text-xs text-amber-400/70">
+          <span className="text-[9px] font-bold tracking-[0.3em] text-gray-500 uppercase">WANTED</span>
+          <span className="text-xs text-gray-400">
             {"★".repeat(user.tier?.stars || 1)}
           </span>
         </div>
-        <div className="text-center mt-1">
-          <span className={`${s.bounty} font-black text-amber-300 tracking-tight`}>
+        <div className="text-center mt-2">
+          <span className={`${s.bounty} font-black bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-300 bg-clip-text text-transparent tracking-tight`}>
             {user.bounty_formatted}
           </span>
-          <span className="text-[10px] text-amber-400/50 ml-1">BELLI</span>
+          <span className="text-[10px] text-gray-500 ml-1 font-medium">BELLI</span>
         </div>
       </div>
 
       {/* Avatar */}
-      <div className="relative px-4 pt-4 pb-3 flex flex-col items-center">
+      <div className="relative px-4 pt-5 pb-3 flex flex-col items-center">
         <div
-          className={`${s.avatar} rounded-full border-[3px] overflow-hidden bg-gradient-to-br from-amber-800 to-amber-700 shadow-lg`}
-          style={{ borderColor: `${color}88`, boxShadow: `0 0 20px ${color}22` }}
+          className={`${s.avatar} rounded-full border-[3px] overflow-hidden bg-gradient-to-br from-gray-800 to-gray-700 shadow-lg`}
+          style={{ borderColor: `${color}88`, boxShadow: `0 0 24px ${color}33, inset 0 0 12px ${color}22` }}
         >
           {user.avatar_url ? (
             <img src={user.avatar_url} alt={user.name} className="w-full h-full object-cover" />
           ) : (
-            <div className="w-full h-full flex items-center justify-center font-black text-amber-200"
+            <div className="w-full h-full flex items-center justify-center font-black text-gray-200"
               style={{ fontSize: size === "small" ? 20 : size === "large" ? 36 : 28 }}>
               {user.name?.charAt(0) || "?"}
             </div>
           )}
         </div>
-        <h3 className={`${s.name} font-bold text-text-primary mt-3 tracking-wide text-center`}>{user.name}</h3>
+        <h3 className={`${s.name} font-bold text-white mt-3 tracking-wide text-center`}>{user.name}</h3>
         <p className="text-[10px] font-medium uppercase tracking-wider mt-0.5"
           style={{ color }}>
           &ldquo;{user.display_title || user.tier?.title}&rdquo;
@@ -93,24 +94,24 @@ export default function BountyCard({ user, size = "medium", showStats = true }: 
 
       {/* Stats */}
       {showStats && (
-        <div className="relative px-4 py-3 bg-surface-2 border-t border-amber-700/30">
+        <div className="relative px-4 py-3 bg-black/20 border-t border-white/10">
           <div className="grid grid-cols-2 gap-x-3 gap-y-1.5 text-[11px]">
             <div className="flex justify-between">
-              <span className="text-amber-400/50">LVL</span>
-              <span className="text-text-primary font-semibold">{user.level}</span>
+              <span className="text-gray-500">LVL</span>
+              <span className="text-white font-semibold">{user.level}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-amber-400/50">🔥</span>
-              <span className="text-text-primary font-semibold">{user.streak}d</span>
+              <span className="text-gray-500">🔥</span>
+              <span className="text-white font-semibold">{user.streak}d</span>
             </div>
             {user.categories && Object.entries(user.categories).slice(0, 4).map(([k, v]) => (
               <div key={k} className="flex justify-between">
-                <span className="text-amber-400/50">{CATEGORY_ICONS[k] || "•"} {k.slice(0, 4)}</span>
-                <span className="text-text-primary font-semibold">{Math.round(v)}%</span>
+                <span className="text-gray-500">{CATEGORY_ICONS[k] || "•"} {k.slice(0, 4)}</span>
+                <span className="text-white font-semibold">{Math.round(v)}%</span>
               </div>
             ))}
           </div>
-          <div className="mt-2 pt-2 border-t border-amber-700/20 flex justify-between text-[9px] text-amber-400/40">
+          <div className="mt-2 pt-2 border-t border-white/10 flex justify-between text-[9px] text-gray-500">
             <span>Placement Pro</span>
             <span>
               {user.bosses_defeated ? `💀 ${user.bosses_defeated}` : ""}
@@ -121,10 +122,10 @@ export default function BountyCard({ user, size = "medium", showStats = true }: 
       )}
 
       {/* Corner decorations */}
-      <div className="absolute top-1.5 left-1.5 w-3 h-3 border-t-2 border-l-2 border-amber-500/25 rounded-tl" />
-      <div className="absolute top-1.5 right-1.5 w-3 h-3 border-t-2 border-r-2 border-amber-500/25 rounded-tr" />
-      <div className="absolute bottom-1.5 left-1.5 w-3 h-3 border-b-2 border-l-2 border-amber-500/25 rounded-bl" />
-      <div className="absolute bottom-1.5 right-1.5 w-3 h-3 border-b-2 border-r-2 border-amber-500/25 rounded-br" />
+      <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 rounded-tl-lg pointer-events-none" style={{ borderColor: `${color}44` }} />
+      <div className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 rounded-tr-lg pointer-events-none" style={{ borderColor: `${color}44` }} />
+      <div className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 rounded-bl-lg pointer-events-none" style={{ borderColor: `${color}44` }} />
+      <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 rounded-br-lg pointer-events-none" style={{ borderColor: `${color}44` }} />
     </motion.div>
   );
 }

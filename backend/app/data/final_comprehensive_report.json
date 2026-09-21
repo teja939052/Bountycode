@@ -1,0 +1,20 @@
+{
+  "repair": {
+    "normalized_test_cases": 37,
+    "repaired_mcqs": 0,
+    "backfilled_explanations": 0,
+    "backfilled_mcq_meta": 0,
+    "wrapped_main": 0,
+    "fixed_mismatches": 398,
+    "regenerated_tcs": 2
+  },
+  "verification": {
+    "total": 2835,
+    "passed": 679,
+    "failed": 2001,
+    "quarantined": 155,
+    "skipped": 8941
+  },
+  "servable": 9620,
+  "verified_bank_size": 9620
+}

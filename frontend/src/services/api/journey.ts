@@ -9,7 +9,7 @@ export const journeyApi = {
   getToday() {
     return request("/api/v1/study/today");
   },
-  /** Record a completed learning activity and fan-out to mastery / SRS / XP. */
+  /** Record a completed learning activity and fan-out to mastery / SRS / Diamonds. */
   recordActivity(payload: Record<string, unknown>) {
     return request("/api/v1/study/activity", {
       method: "POST",

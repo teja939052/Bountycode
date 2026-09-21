@@ -324,7 +324,7 @@ def enrich_question(question: Dict[str, Any]) -> Dict[str, Any]:
             topic, ["Basic programming", "Data structures"]
         )
 
-    # Add XP reward if missing
+    # Add Diamonds reward if missing
     if not question.get("xp_reward"):
         question["xp_reward"] = DIFFICULTY_XP.get(difficulty, 10)
 

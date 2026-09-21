@@ -1,0 +1,131 @@
+{
+  "batch_id": "time-work-1",
+  "timestamp": "2026-09-07T15:30:11.917510+00:00",
+  "category": "quant",
+  "count_generated": 2,
+  "report": {
+    "total": 2,
+    "passed": 2,
+    "rejected": 0,
+    "pass_rate": 1.0,
+    "spot_checked": 1,
+    "spot_ok": 1,
+    "spot_pass_rate": 1.0,
+    "rejection_reasons": {},
+    "promoted_ids": [
+      "generated:aptitude:6:1",
+      "generated:aptitude:6:2"
+    ],
+    "rejected_ids": []
+  },
+  "promotion": {
+    "promoted": 2,
+    "rejected": 0,
+    "promoted_ids": [
+      "generated:aptitude:6:1",
+      "generated:aptitude:6:2"
+    ],
+    "rejected_ids": [],
+    "rejection_reasons": []
+  },
+  "questions": [
+    {
+      "question_id": "generated:aptitude:6:1",
+      "question_type": "aptitude",
+      "category": "aptitude",
+      "difficulty": 6,
+      "topic": "profit_loss_discount",
+      "subtopic": "markup_discount_profit",
+      "question": "A trader marks his goods 40% above the cost price and allows a discount of 15% on the marked price. What is his actual profit percent?",
+      "options": {
+        "A": "15%",
+        "B": "19%",
+        "C": "21%",
+        "D": "25%"
+      },
+      "correct_answer": "B",
+      "worked_solution": "Step 1: Assume Cost Price (CP) = 100. Step 2: Marked Price (MP) = CP + 40% of CP = 100 + 40 = 140. Step 3: Discount = 15% of MP = (15/100) × 140 = 21. Step 4: Selling Price (SP) = MP - Discount = 140 - 21 = 119. Step 5: Profit = SP - CP = 119 - 100 = 19. Step 6: Profit % = (Profit / CP) × 100 = (19 / 100) × 100 = 19%.",
+      "trick": "Effective percentage change formula: a + b + (ab/100), where a = markup % and b = discount % (taken as negative). Here, 40 + (-15) + (40 × -15/100) = 25 - 6 = 19%.",
+      "trap": "Simply adding markup and discount percentages (40% - 15% = 25%) is incorrect because the discount is applied on the marked price, not the cost price, which overestimates the actual profit.",
+      "explanation": "Profit percent is always calculated on the cost price. The effective percentage formula accounts for the compounding effect of successive percentage operations on different bases.",
+      "time_benchmark_s": 95,
+      "company_tags": [
+        "TCS",
+        "Infosys",
+        "Wipro"
+      ],
+      "skill_ids": [],
+      "metadata": {},
+      "trust_status": "reviewed",
+      "verification": {
+        "re_solve_runs": [
+          {
+            "answer": "B",
+            "confidence": 100,
+            "steps": "mock"
+          },
+          {
+            "answer": "B",
+            "confidence": 100,
+            "steps": "mock"
+          }
+        ],
+        "agreement": true,
+        "numeric_check": null,
+        "quality_score": 100,
+        "passed": true,
+        "rejection_reasons": [],
+        "answer_matches_proposed": true
+      }
+    },
+    {
+      "question_id": "generated:aptitude:6:2",
+      "question_type": "aptitude",
+      "category": "aptitude",
+      "difficulty": 6,
+      "topic": "time_and_work",
+      "subtopic": "work_efficiency",
+      "question": "A and B can complete a job individually in 15 days and 20 days respectively. They start working together, but after 4 days, A leaves. How many more days will B take to complete the remaining work?",
+      "options": {
+        "A": "8 1/3 days",
+        "B": "10 2/3 days",
+        "C": "12 days",
+        "D": "14 1/2 days"
+      },
+      "correct_answer": "B",
+      "worked_solution": "Step 1: Find total work using LCM of 15 and 20 = 60 units. Step 2: A’s 1 day work = 60 / 15 = 4 units. Step 3: B’s 1 day work = 60 / 20 = 3 units. Step 4: Together, 1 day work = 4 + 3 = 7 units. Step 5: Work done in 4 days together = 7 × 4 = 28 units. Step 6: Remaining work = 60 - 28 = 32 units. Step 7: Days for B alone = 32 / 3 = 10 2/3 days.",
+      "trick": "LCM method: Convert individual times to efficiencies by taking LCM of the days. Work done = efficiency × time. Remaining work ÷ individual efficiency = time required.",
+      "trap": "Assuming B takes 20 - 4 = 16 days ignores that A and B together already completed a portion of the work, and the remaining is a fraction of the total, not a simple subtraction of days.",
+      "explanation": "Work problems require calculating actual work units completed per unit time, not just manipulating the given individual completion times arithmetically.",
+      "time_benchmark_s": 105,
+      "company_tags": [
+        "TCS",
+        "Infosys",
+        "Wipro"
+      ],
+      "skill_ids": [],
+      "metadata": {},
+      "trust_status": "reviewed",
+      "verification": {
+        "re_solve_runs": [
+          {
+            "answer": "B",
+            "confidence": 100,
+            "steps": "mock"
+          },
+          {
+            "answer": "B",
+            "confidence": 100,
+            "steps": "mock"
+          }
+        ],
+        "agreement": true,
+        "numeric_check": null,
+        "quality_score": 100,
+        "passed": true,
+        "rejection_reasons": [],
+        "answer_matches_proposed": true
+      }
+    }
+  ]
+}

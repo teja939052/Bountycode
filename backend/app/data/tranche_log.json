@@ -1,0 +1,99 @@
+{
+ "date": "2026-09-12T09:57:35.704371+00:00",
+ "pool": 6953,
+ "tranche_size": 500,
+ "seed": 20260912,
+ "staged_total": 6953,
+ "rejected_total": 0,
+ "dropped_duplicates": 87,
+ "held_for_enrichment": 205,
+ "human_signoff": null,
+ "serving_merged": false,
+ "note": "Restaged: gate-clean only. Duplicates dropped (already served); thin items held in needs_enrichment.json for human authoring.",
+ "tranches": [
+  {
+   "tranche": "tranche-01",
+   "size": 500,
+   "staged": 500,
+   "rejected": 0
+  },
+  {
+   "tranche": "tranche-02",
+   "size": 500,
+   "staged": 500,
+   "rejected": 0
+  },
+  {
+   "tranche": "tranche-03",
+   "size": 500,
+   "staged": 500,
+   "rejected": 0
+  },
+  {
+   "tranche": "tranche-04",
+   "size": 500,
+   "staged": 500,
+   "rejected": 0
+  },
+  {
+   "tranche": "tranche-05",
+   "size": 500,
+   "staged": 500,
+   "rejected": 0
+  },
+  {
+   "tranche": "tranche-06",
+   "size": 500,
+   "staged": 500,
+   "rejected": 0
+  },
+  {
+   "tranche": "tranche-07",
+   "size": 500,
+   "staged": 500,
+   "rejected": 0
+  },
+  {
+   "tranche": "tranche-08",
+   "size": 500,
+   "staged": 500,
+   "rejected": 0
+  },
+  {
+   "tranche": "tranche-09",
+   "size": 500,
+   "staged": 500,
+   "rejected": 0
+  },
+  {
+   "tranche": "tranche-10",
+   "size": 500,
+   "staged": 500,
+   "rejected": 0
+  },
+  {
+   "tranche": "tranche-11",
+   "size": 500,
+   "staged": 500,
+   "rejected": 0
+  },
+  {
+   "tranche": "tranche-12",
+   "size": 500,
+   "staged": 500,
+   "rejected": 0
+  },
+  {
+   "tranche": "tranche-13",
+   "size": 500,
+   "staged": 500,
+   "rejected": 0
+  },
+  {
+   "tranche": "tranche-14",
+   "size": 453,
+   "staged": 453,
+   "rejected": 0
+  }
+ ]
+}

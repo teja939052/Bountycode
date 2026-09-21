@@ -1,4 +1,16 @@
-# AGENTS.md — PlacementPro
+# AGENTS.md — BountyCode
+
+## Source of Truth (binding)
+
+Read `docs/BOUNTYCODE_VISION_LOCK.md` and `docs/PRD_SERVICE_BASED_V1.md` before making product or architecture decisions.
+
+Do not contradict them silently.
+Do not create alternative launch dates, product names, positioning, or competing strategic priorities.
+
+If implementation reality conflicts with these documents:
+1. report the conflict,
+2. show the evidence,
+3. stop before making a strategic change.
 
 ## Architecture Guidelines
 
@@ -65,6 +77,12 @@ At every arrow, verify data persists.
 
 **Capability gained per student** — not routes, files, questions, or badges.
 
+### Verification Evidence Rule (binding)
+
+"Verified" means a pasted response body, a screenshot, or a test that
+asserts on real output. Compile-passes and route-imports are not evidence.
+A feature that returns an empty list behind a 200 OK is not done.
+
 ### Content Trust Rule
 
 Never promote content because metadata exists.
@@ -102,7 +120,7 @@ UNVERIFIED → AUTOMATED_CHECKED → HUMAN_REVIEWED → TRUSTED
 
 ### Question Bank Residency Rule (binding)
 
-Question content lives in versioned files under `backend/app/data/` and `backend/app/content/`, loaded into memory at startup by `question_store`. **Never write question content to MongoDB.** The database holds student state only (attempts, submissions, results, missions, sessions, SRS cards) plus telemetry counters — never question statements, answers, or test cases. The single legacy exception (`curated_questions` reads) is frozen: no new code may read question content from MongoDB, and no code may write question content to MongoDB. User-submitted questions (`POST /api/questions/submit`) go to the in-memory store only, as UNVERIFIED curation candidates that are never served.
+Question content lives in versioned files under `backend/app/data/` and `backend/app/content/`, loaded into memory at startup by `question_store`. **Never write question content to MongoDB.** The database holds student state only (attempts, submissions, results, missions, sessions, SRS cards) plus telemetry counters — never question statements, answers, or test cases. No code may read question content from MongoDB, and no code may write question content to MongoDB — no exceptions. (History: a `curated_questions` Mongo read path existed until commit `5d0bc5b`, which removed the last Mongo question-content reads as part of trust-gating enforcement; the collection itself was dropped 2026-09-16 with a JSON backup under `backend/backups/dead_collections_20260916/`. Verified zero remaining references.) User-submitted questions (`POST /api/questions/submit`) go to the in-memory store only, as UNVERIFIED curation candidates that are never served — `intake_lint.py` rejects filler at submission time.
 
 ### No-LLM Bank Rule (binding)
 
@@ -118,11 +136,21 @@ No LLM is involved in the question bank — not in authoring, tagging, grading k
 | 4. AI Interview | Interview uses actual student history and produces competency-level diagnosis |
 | 5. Companies | Provenance is explicit; no fabricated company history |
 
+### Gamification Law (binding)
+
+1. The only writer of XP, coins, stars, streak, combo, badges, and weekly/monthly league XP is `record_practice()` (plus `spend_xp()` for shop debits). Direct `$inc`/`$set` on those fields elsewhere is a bug. Hearts stay local to the lesson engine.
+2. Callers pass a 0–10 pedagogical score (engine normalizes 0–100 percents centrally); world/language/company travel in `metadata`, never as `activity_type`.
+3. Ship position, stars, and level derive from server state. Never incremented on the client, never stored in localStorage. The frontend renders backend `level`/`xp_into_level`/`xp_level_span`, never its own curve.
+4. Every award appends one immutable `gamification_events` row (inputs, outputs, `reward_policy_version`). `profile.xp == sum(ledger)` must reconcile (modulo pre-ledger history).
+5. Weekly/monthly league counters reset lazily on UTC ISO period change with last-period snapshot. Quarantine is sticky: reboot re-verify never clears it.
+6. Badges are stored as string IDs, hydrated on read. No new collections, no new XP formulas, no parallel reward engines without explicit sign-off.
+7. "Verified" means a pasted response body or a test asserting real numbers. `compileall` / `npm run build` is not evidence.
+
 ---
 
 ## Project Overview
 
-**PlacementPro** is an AI-powered placement preparation platform targeting job seekers (students + experienced professionals). It offers **40+ core features** across placement prep, gamified learning, and career development.
+**BountyCode** is an AI-powered placement preparation platform targeting job seekers (students + experienced professionals). It offers **40+ core features** across placement prep, gamified learning, and career development.
 
 ### Core Features
 1. **AI Interviewer** — Mock interviews with AI that asks questions, evaluates answers, and gives feedback
@@ -224,7 +252,7 @@ Freemium (Free + Pro $9/mo + Lifetime $39 one-time). Free tier resets monthly wi
 
 ## Project Structure
 ```
-placementpro/
+BountyCode/
 ├── backend/
 │   ├── app/
 │   │   ├── main.py              # FastAPI app, lifespan, middleware, auto-discovers routes
@@ -408,7 +436,7 @@ placementpro/
 │   │   │   └── authStore.ts     # Zustand auth state
 │   │   ├── hooks/               # Custom hooks
 │   │   └── utils/               # Helpers
-│   ├── package.json             # placementpro-frontend
+│   ├── package.json             # BountyCode-frontend
 │   ├── vite.config.ts           # Dev server + /api proxy
 │   ├── tailwind.config.js
 │   ├── postcss.config.js
@@ -676,7 +704,7 @@ npm run smoke                  # Smoke test (11 checks): pages render w/o crash 
 ### Infrastructure Fixes
 - **Dockerfile**: Updated from Python 3.11 → 3.12 (matches CI)
 - **CI**: Added `npm run typecheck` step before build
-- **Package rename**: `bountycode-frontend` → `placementpro-frontend`
+- **Package rename**: `bountycode-frontend` → `BountyCode-frontend`
 - **Scripts consolidated**: 30+ root-level scripts moved to `backend/scripts/` via `git mv`
 - **.gitignore cleaned**: Added patterns for `d*.py`, `test_bank.py`, `backend/app/data/invoices/`
 

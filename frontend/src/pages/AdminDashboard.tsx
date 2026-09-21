@@ -5,7 +5,7 @@ import {
   BarChart3, Users, Eye, Activity, Clock, Globe,
   TrendingUp, RefreshCw, Zap, MapPin, UserCheck,
   Database, Server, Shield, CheckCircle2, XCircle,
-  Target, ArrowUpRight, Crown, Mail
+  Target, ArrowUpRight, Crown, Mail, ShieldCheck, ListTree
 } from "lucide-react";
 import api from "../services/api";
 import Spinner from "../components/ui/Spinner";
@@ -155,6 +155,28 @@ export default function AdminDashboard() {
           </button>
         </div>
       </motion.div>
+
+      {/* Content-trust admin tools */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+        <button onClick={() => navigate("/admin/exam-review")}
+          className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 hover:border-emerald-500/30 hover:bg-emerald-500/5 transition-all text-left">
+          <ShieldCheck size={18} className="text-emerald-400 shrink-0" />
+          <span>
+            <span className="block text-sm font-mono text-text-primary">Exam Memory Review</span>
+            <span className="block text-[11px] font-mono text-gray-500">Promote crowdsourced recollections into the live bank</span>
+          </span>
+          <ArrowUpRight size={15} className="ml-auto text-gray-500 shrink-0" />
+        </button>
+        <button onClick={() => navigate("/admin/content-corpus")}
+          className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 hover:border-sky-500/30 hover:bg-sky-500/5 transition-all text-left">
+          <ListTree size={18} className="text-brand-sky shrink-0" />
+          <span>
+            <span className="block text-sm font-mono text-text-primary">Content Corpus</span>
+            <span className="block text-[11px] font-mono text-gray-500">Concept library, generation queue & validation</span>
+          </span>
+          <ArrowUpRight size={15} className="ml-auto text-gray-500 shrink-0" />
+        </button>
+      </div>
 
       {/* Top Stats Row */}
       <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6">

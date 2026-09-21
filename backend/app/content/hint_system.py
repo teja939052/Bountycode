@@ -6,7 +6,7 @@ students open mystery boxes to reveal them — adding surprise and delight.
 Each mystery box contains:
   - A hint (progressive: vague → specific)
   - A mental model reminder
-  - Sometimes a small XP bonus or coin reward
+  - Sometimes a small Diamonds bonus or coin reward
 """
 from __future__ import annotations
 
@@ -22,7 +22,7 @@ class MysteryBox(BaseModel):
     description: str = ""
     hint: str
     mental_model: str = ""  # the core insight to remember
-    xp_reward: int = 5  # small XP for opening
+    xp_reward: int = 5  # small Diamonds for opening
     coin_reward: int = 0
     # Visual style
     rarity: str = "common"  # common, rare, epic, legendary

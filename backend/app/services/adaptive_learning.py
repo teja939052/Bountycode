@@ -14,7 +14,7 @@ from app.database import (
     users_collection, progress_collection, submissions_collection,
     solved_problems_collection, question_answers_collection,
     learning_progress_collection, skill_graph_collection,
-    gamification_collection, curated_questions_collection
+    gamification_collection
 )
 from app.services.ai_core import chat_completion, parse_json
 from app.services.cache import cache
@@ -467,7 +467,7 @@ async def generate_personalized_recommendations(user_id: str) -> Dict[str, Any]:
     weak_areas = await detect_weak_areas(user_id)
     plan = await generate_daily_plan(user_id)
 
-    prompt = f"""You are an AI career coach for PlacementPro. Based on this user's skill data, generate 3 personalized recommendations.
+    prompt = f"""You are an AI career coach for BountyCode. Based on this user's skill data, generate 3 personalized recommendations.
 
 User's overall score: {assessment['overall_score']}/100
 Mastery level: {assessment['overall_mastery_label']}

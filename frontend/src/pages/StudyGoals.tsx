@@ -7,7 +7,7 @@ import { useToast } from "../components/Toast";
 
 const METRICS = [
   { id: "problems", label: "Problems Solved", icon: "🔢" },
-  { id: "xp", label: "XP Earned", icon: "⚡" },
+  { id: "diamonds", label: "Diamonds Earned", icon: "⚡" },
   { id: "time", label: "Minutes Studied", icon: "⏰" },
   { id: "tests", label: "Tests Taken", icon: "📝" },
   { id: "interviews", label: "Mock Interviews", icon: "🎤" },
@@ -66,8 +66,14 @@ export default function StudyGoals() {
     try {
       const res = await api.goals.track(goal.id, 1);
       if (res.bonus_xp) {
-        window.dispatchEvent(new CustomEvent("xp-gained", { detail: { xp: res.bonus_xp } }));
-        toast.success(`Goal complete! +${res.bonus_xp} XP`);
+        window.dispatchEvent(new CustomEvent("diamonds-gained", {
+          detail: {
+            diamonds: res.bonus_xp,
+            badges: res.new_badges || [],
+            critical: res.critical_hit ? { bonus: res.critical_bonus || 0 } : null,
+          }
+        }));
+        toast.success(`Goal complete! +${res.bonus_xp} Diamonds`);
       } else {
         toast.success(`Progress: ${res.progress}/${goal.target}`);
       }
@@ -105,7 +111,7 @@ export default function StudyGoals() {
               <Target className="text-brand-sky" size={28} />
               Study Goals
             </h1>
-            <p className="text-text-secondary mt-1">Set goals, track streaks, earn XP on completion.</p>
+            <p className="text-text-secondary mt-1">Set goals, track streaks, earn Diamonds on completion.</p>
           </div>
           <button
             onClick={() => setShowCreate(true)}
@@ -213,7 +219,7 @@ export default function StudyGoals() {
                   </div>
                   <div className="flex justify-between text-[11px] text-text-light">
                     <span>{METRICS.find((m) => m.id === g.metric)?.label || g.metric}</span>
-                    {done && <span className="text-green-500 font-bold">COMPLETE +50 XP</span>}
+                    {done && <span className="text-green-500 font-bold">COMPLETE +50 Diamonds</span>}
                   </div>
                   {!done && (
                     <button

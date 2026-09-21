@@ -7,18 +7,22 @@ async def generate_follow_up_question(
     user_answer: str,
     job_role: str,
     conversation_history: List[Dict],
+    mode: str = "mixed",
 ) -> Dict:
     """Generate a dynamic follow-up question based on user's answer."""
-    
+    from app.services.ai_interview import _mode_cfg
+    mode_drill = _mode_cfg(mode).get("followup", "")
+
     history_text = "\n".join([
         f"Q: {h.get('question', '')}\nA: {h.get('answer', '')}"
         for h in conversation_history[-3:]  # Last 3 exchanges
     ])
-    
+
     messages = [
         {
             "role": "system",
             "content": f"""You are an expert interviewer conducting a {job_role} interview.
+{("MODE DRILL (" + mode.upper() + "): " + mode_drill) if mode_drill else ""}
 
 Based on the candidate's previous answer, generate a smart follow-up question that:
 1. Digs deeper into their response

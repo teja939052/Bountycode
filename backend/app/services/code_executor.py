@@ -599,6 +599,8 @@ int main() {
         async def run_single_test(idx: int, case: Dict[str, str]):
             async with tc_semaphore:
                 stdin = case.get("input", "")
+                if not isinstance(stdin, str):
+                    stdin = CodeExecutionEngine._normalize_text(stdin)
                 expected = case.get("expected", case.get("expected_output", ""))
                 is_hidden = case.get("is_hidden", False)
 
@@ -882,8 +884,28 @@ Provide 4 to 12 meaningful, educational execution steps. Focus on loop iteration
         return self._semaphore
 
     @staticmethod
-    def _normalize_text(value: str) -> str:
-        return "\n".join(line.rstrip() for line in (value or "").strip().splitlines())
+    def _normalize_text(value) -> str:
+        # Test-case inputs/expecteds are not always strings: several
+        # verified banks store structured args (e.g. [[2,7,11,15], 9]).
+        # Canonicalize containers to compact JSON (same rule as the batch
+        # runner's _canon); strings keep exact legacy behavior.
+        if value is None:
+            value = ""
+        if not isinstance(value, str):
+            try:
+                import json as _json
+
+                def _j(x):
+                    if isinstance(x, tuple):
+                        return [_j(y) for y in x]
+                    if isinstance(x, list):
+                        return [_j(y) for y in x]
+                    return x
+
+                value = _json.dumps(_j(value), separators=(",", ":"))
+            except Exception:
+                value = str(value)
+        return "\n".join(line.rstrip() for line in value.strip().splitlines())
 
     async def _grade_python_batched(
         self,
@@ -975,14 +997,60 @@ Provide 4 to 12 meaningful, educational execution steps. Focus on loop iteration
     async def _record_failure(self):
         await compiler_breaker.record_failure()
 
-    async def _try_fallback(self, language: str, code: str, stdin: str, timeout: int) -> Dict[str, Any]:
-        """Run code through free remote providers (Wandbox, Glot.io) then the local
-        sandbox when Piston is unavailable.
+    async def _try_gcp_compiler(self, language: str, code: str, stdin: str,
+                                timeout: int) -> Dict[str, Any]:
+        """Own compiler microservice (Cloud Run free tier) — first fallback hop.
 
-        Chain: Wandbox -> Glot.io -> local sandbox. Remote providers are gated by
-        the USE_REMOTE_FALLBACKS flag; the local sandbox by USE_LOCAL_SANDBOX.
-        Returns {} when every hop fails so the caller surfaces the original error.
+        Thin HTTP client only: auth, timeout, and shape-check live here; all
+        sandboxing lives in backend/compiler-service (never in this backend).
+        Returns {} on any failure so the chain falls through to Piston.
         """
+        settings = get_settings()
+        base = (settings.COMPILER_SERVICE_URL or "").rstrip("/")
+        if not base:
+            return {}
+        if (language or "").lower() not in ("python", "javascript"):
+            return {}
+        started = time.perf_counter()
+        try:
+            client = await self._get_client()
+            response = await client.post(
+                base + "/execute",
+                json={"code": code, "language": (language or "").lower(),
+                      "stdin": stdin or "", "timeout": max(1, min(int(timeout or 5), 15))},
+                headers={"Authorization": f"Bearer {settings.COMPILER_SERVICE_KEY}"},
+                timeout=min(int(timeout or 5) + 10, 30),
+            )
+            if response.status_code != 200:
+                await request_metrics.record("compiler", "failure",
+                                             error=f"Compiler service HTTP {response.status_code}")
+                return {}
+            data = response.json()
+            if not isinstance(data, dict) or "success" not in data:
+                return {}
+            await request_metrics.record(
+                "compiler", "success" if data.get("success") else "failure",
+                duration_ms=(time.perf_counter() - started) * 1000)
+            data.setdefault("source", "gcp_compiler")
+            return data
+        except Exception as e:
+            await request_metrics.record("compiler", "failure", error=f"Compiler service: {e!r}"[:200])
+            return {}
+
+    async def _try_fallback(self, language: str, code: str, stdin: str, timeout: int) -> Dict[str, Any]:
+        """Fallback chain when Piston is unavailable.
+
+        Chain: own compiler service (Cloud Run) -> remote providers
+        (Judge0/Wandbox/Glot.io, gated by USE_REMOTE_FALLBACKS) -> local
+        sandbox (gated by USE_LOCAL_SANDBOX). Returns {} when every hop
+        fails so the caller surfaces the original error.
+        """
+        try:
+            own = await self._try_gcp_compiler(language, code, stdin, timeout)
+            if own:
+                return own
+        except Exception:
+            pass
         if get_settings().USE_REMOTE_FALLBACKS:
             try:
                 remote = await execute_remote_fallback(language, code, stdin, timeout)

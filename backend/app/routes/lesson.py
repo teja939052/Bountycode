@@ -98,7 +98,10 @@ async def submit_build(slug: str, req: BuildSubmitRequest, user=Depends(get_curr
         language=req.language,
     )
 
-    if result.get("all_passed"):
+    passing_score = step.get("passing_score", 70)
+    passed_visible = result.get("score", 0) >= passing_score
+
+    if passed_visible:
         hidden_count = step.get("hidden_tests", 0) or len(step.get("hidden_test_cases", []))
         if hidden_count > 0:
             hidden_result = await svc.submit_build_step(
@@ -109,6 +112,8 @@ async def submit_build(slug: str, req: BuildSubmitRequest, user=Depends(get_curr
             )
             result["hidden_pass_rate"] = hidden_result.get("score", 0)
             result["hidden_results"] = hidden_result.get("results", [])
+            result["all_passed"] = hidden_result.get("all_passed", False)
+            result["passed"] = result["all_passed"]
 
     return result
 
@@ -126,7 +131,10 @@ async def submit_transfer(slug: str, req: BuildSubmitRequest, user=Depends(get_c
         language=req.language,
     )
 
-    if result.get("all_passed"):
+    passing_score = transfer.get("passing_score", 70)
+    passed_visible = result.get("score", 0) >= passing_score
+
+    if passed_visible:
         hidden_count = transfer.get("hidden_tests", 0) or len(transfer.get("hidden_test_cases", []))
         if hidden_count > 0:
             hidden_result = await svc.submit_build_step(
@@ -137,6 +145,8 @@ async def submit_transfer(slug: str, req: BuildSubmitRequest, user=Depends(get_c
             )
             result["hidden_pass_rate"] = hidden_result.get("score", 0)
             result["hidden_results"] = hidden_result.get("results", [])
+            result["all_passed"] = hidden_result.get("all_passed", False)
+            result["passed"] = result["all_passed"]
 
     return result
 
@@ -158,6 +168,7 @@ async def complete_lesson(slug: str, req: CompleteRequest, user=Depends(get_curr
         user_id=user["id"],
         score=req.score,
         time_spent_seconds=req.time_spent_seconds,
+        role=user.get("role") or user.get("target_role") or "sde",
     )
     result["lesson_completed"] = req.score >= svc.get_lesson()["assessment"]["mastery_threshold"]
     return result

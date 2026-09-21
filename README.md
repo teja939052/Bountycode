@@ -1,4 +1,4 @@
-# PlacementPro 🚀
+# BountyCode 🚀
 
 AI-powered placement preparation platform with comprehensive features for job seekers.
 

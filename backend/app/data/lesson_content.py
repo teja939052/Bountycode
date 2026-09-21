@@ -766,7 +766,7 @@ HAND_CRAFTED_LESSONS.update(dict([
 #   - Interactive manipulation with immediate feedback
 #   - Scaffolded hints (conceptual / structural / optimization)
 #   - Transfer challenge (apply to a new context)
-#   - Mastery update, SRS enrollment, XP reward
+#   - Mastery update, SRS enrollment, Diamonds reward
 # The lesson_id "c-variable-discovery" is a special non-curriculum lesson
 # routed through /api/v1/learning/lesson/variable-discovery.
 

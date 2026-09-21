@@ -1,11 +1,10 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import confetti from 'canvas-confetti';
 import useReducedMotion from "../hooks/useReducedMotion";
 
 const CONFETTI_COLORS = ["#6366f1", "#f59e0b", "#10b981", "#ef4444", "#ec4899", "#8b5cf6", "#06b6d4", "#f97316"];
-
 const STREAK_EMOJIS = ["🔥", "🔥", "🔥", "⚡", "💥"];
-const LEVEL_BG = ["from-indigo-900/95", "via-purple-900/95", "to-gray-900/95"];
 
 const DIFFICULTY_CONFIG = {
   easy: { color: "text-green-400", label: "Easy" },
@@ -14,11 +13,11 @@ const DIFFICULTY_CONFIG = {
   expert: { color: "text-purple-400", label: "Expert" },
 };
 
-function randomBetween(min, max) {
+function randomBetween(min: number, max: number) {
   return min + Math.random() * (max - min);
 }
 
-function ConfettiPiece({ index, reduced }) {
+function ConfettiPiece({ index, reduced }: { index: number; reduced: boolean }) {
   const color = CONFETTI_COLORS[index % CONFETTI_COLORS.length];
   const x = randomBetween(-250, 250);
   const y = randomBetween(-250, 50);
@@ -47,15 +46,15 @@ function ConfettiPiece({ index, reduced }) {
   );
 }
 
-function XPCountUp({ target, duration = 1500 }) {
+function DiamondsCountUp({ target, duration = 1500 }: { target: number; duration?: number }) {
   const [count, setCount] = useState(0);
   const startRef = useRef(null);
-  const rafRef = useRef(null);
+  const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (target <= 0) { setCount(0); return; }
     startRef.current = null;
-    const step = (timestamp) => {
+    const step = (timestamp: number) => {
       if (!startRef.current) startRef.current = timestamp;
       const progress = Math.min((timestamp - startRef.current) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
@@ -69,7 +68,7 @@ function XPCountUp({ target, duration = 1500 }) {
   return <span>{count.toLocaleString()}</span>;
 }
 
-function ParticleBurst({ count = 12, colors = CONFETTI_COLORS }) {
+function ParticleBurst({ count = 12, colors = CONFETTI_COLORS }: { count?: number; colors?: string[] }) {
   return (
     <>
       {Array.from({ length: count }).map((_, i) => (
@@ -90,13 +89,19 @@ function ParticleBurst({ count = 12, colors = CONFETTI_COLORS }) {
   );
 }
 
-function LevelUpContent({ title, subtitle, xp, onClose, reduced }) {
+function LevelUpContent({ title, subtitle, diamonds, reduced }: { title?: string; subtitle?: string; diamonds?: number; reduced: boolean }) {
   const [flash, setFlash] = useState(true);
 
   useEffect(() => {
     const t = setTimeout(() => setFlash(false), 600);
     return () => clearTimeout(t);
   }, []);
+
+  useEffect(() => {
+    if (!reduced) {
+      confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 }, colors: ['#38BDF8', '#FACC15', '#FB923C', '#BAE6FD'] });
+    }
+  }, [reduced]);
 
   return (
     <div className="relative flex flex-col items-center justify-center min-h-[60vh]">
@@ -152,24 +157,29 @@ function LevelUpContent({ title, subtitle, xp, onClose, reduced }) {
           <span className="text-3xl font-bold text-text-primary">{subtitle || "New Level Reached!"}</span>
         </motion.div>
 
-        {xp > 0 && (
+        {diamonds > 0 && (
           <motion.div
             className="flex items-center gap-2 bg-yellow-500/20 backdrop-blur-md px-6 py-3 rounded-full border border-yellow-400/30"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.0 }}
           >
-            <span className="text-yellow-300 text-xl font-bold">+<XPCountUp target={xp} /> XP</span>
+            <span className="text-yellow-300 text-xl font-bold">+<XPCountUp target={diamonds} /> Diamonds</span>
           </motion.div>
         )}
 
-        <ParticleBurst count={20} colors={["#6366f1", "#8b5cf6", "#a78bfa", "#c4b5fd"]} />
+        <ParticleBurst count={20} colors={["#38BDF8", "#7DD3FC", "#BAE6FD", "#FACC15"]} />
       </motion.div>
     </div>
   );
 }
 
-function BadgeContent({ title, subtitle, reduced }) {
+function BadgeContent({ title, subtitle, reduced }: { title?: string; subtitle?: string; reduced: boolean }) {
+  useEffect(() => {
+    if (!reduced) {
+      confetti({ particleCount: 80, spread: 60, origin: { y: 0.55 }, colors: ['#FACC15', '#FB923C', '#38BDF8', '#FDE047'] });
+    }
+  }, [reduced]);
   return (
     <div className="relative flex flex-col items-center justify-center min-h-[60vh]">
       <motion.div
@@ -222,7 +232,7 @@ function BadgeContent({ title, subtitle, reduced }) {
   );
 }
 
-function SolveContent({ title, subtitle, xp, reduced }) {
+function SolveContent({ title, subtitle, diamonds, reduced }: { title?: string; subtitle?: string; diamonds?: number; reduced: boolean }) {
   const difficulty = subtitle?.toLowerCase() || "";
   const diffConfig = DIFFICULTY_CONFIG[difficulty] || DIFFICULTY_CONFIG.easy;
 
@@ -279,14 +289,14 @@ function SolveContent({ title, subtitle, xp, reduced }) {
           </motion.p>
         )}
 
-        {xp > 0 && (
+        {diamonds > 0 && (
           <motion.div
             className="bg-green-500/20 backdrop-blur-md px-6 py-3 rounded-full border border-green-400/30"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
           >
-            <span className="text-green-300 text-xl font-bold">+<XPCountUp target={xp} /> XP</span>
+            <span className="text-green-300 text-xl font-bold">+<XPCountUp target={diamonds} /> Diamonds</span>
           </motion.div>
         )}
 
@@ -296,8 +306,8 @@ function SolveContent({ title, subtitle, xp, reduced }) {
   );
 }
 
-function StreakContent({ title, subtitle, xp, reduced }) {
-  const days = parseInt(title) || 0;
+function StreakContent({ title, subtitle, diamonds, reduced }: { title?: string; subtitle?: string; diamonds?: number; reduced: boolean }) {
+  const days = parseInt(title || "0") || 0;
 
   return (
     <div className="relative flex flex-col items-center justify-center min-h-[60vh]">
@@ -358,14 +368,14 @@ function StreakContent({ title, subtitle, xp, reduced }) {
           {subtitle || "Incredible consistency!"}
         </motion.p>
 
-        {xp > 0 && (
+        {diamonds > 0 && (
           <motion.div
             className="bg-orange-500/20 backdrop-blur-md px-6 py-3 rounded-full border border-orange-400/30"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
           >
-            <span className="text-orange-300 text-xl font-bold">+<XPCountUp target={xp} /> XP</span>
+            <span className="text-orange-300 text-xl font-bold">+<XPCountUp target={diamonds} /> Diamonds</span>
           </motion.div>
         )}
 
@@ -375,7 +385,7 @@ function StreakContent({ title, subtitle, xp, reduced }) {
   );
 }
 
-function AchievementContent({ title, subtitle, xp, reduced }) {
+function AchievementContent({ title, subtitle, diamonds, reduced }: { title?: string; subtitle?: string; diamonds?: number; reduced: boolean }) {
   return (
     <div className="relative flex flex-col items-center justify-center min-h-[60vh]">
       <motion.div
@@ -439,14 +449,14 @@ function AchievementContent({ title, subtitle, xp, reduced }) {
           </motion.p>
         )}
 
-        {xp > 0 && (
+        {diamonds > 0 && (
           <motion.div
             className="bg-yellow-500/20 backdrop-blur-md px-6 py-3 rounded-full border border-yellow-400/30"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
           >
-            <span className="text-yellow-300 text-xl font-bold">+<XPCountUp target={xp} /> XP</span>
+            <span className="text-yellow-300 text-xl font-bold">+<XPCountUp target={diamonds} /> Diamonds</span>
           </motion.div>
         )}
 
@@ -456,12 +466,208 @@ function AchievementContent({ title, subtitle, xp, reduced }) {
   );
 }
 
-const CONTENT_MAP = {
+function BossContent({ title, subtitle, diamonds, reduced }: { title?: string; subtitle?: string; diamonds?: number; reduced: boolean }) {
+  return (
+    <div className="relative flex flex-col items-center justify-center min-h-[60vh]">
+      <motion.div
+        className="relative z-50 flex flex-col items-center gap-6"
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <motion.div
+          className="text-9xl"
+          animate={reduced ? {} : { scale: [1, 1.2, 1], rotate: [0, -5, 5, 0] }}
+          transition={{ duration: 0.6 }}
+        >
+          {subtitle?.match(/[\u{1F300}-\u{1F9FF}]/u)?.[0] || "🏆"}
+        </motion.div>
+        <motion.h1
+          className="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-400 to-pink-400 text-center"
+          style={{ textShadow: "0 0 40px rgba(245,158,11,0.6)" }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+        >
+          {title || "Boss Defeated!"}
+        </motion.h1>
+        {diamonds > 0 && (
+          <motion.div
+            className="bg-yellow-500/20 backdrop-blur-md px-6 py-3 rounded-full border border-yellow-400/30"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+          >
+            <span className="text-yellow-300 text-xl font-bold">+<XPCountUp target={diamonds} /> Diamonds</span>
+          </motion.div>
+        )}
+        <ParticleBurst count={24} colors={["#fbbf24", "#f59e0b", "#ef4444", "#ec4899"]} />
+      </motion.div>
+    </div>
+  );
+}
+
+function DailyLoginContent({ title, subtitle, diamonds, reduced }: { title?: string; subtitle?: string; diamonds?: number; reduced: boolean }) {
+  const [flipped, setFlipped] = useState(false);
+  const rarity = parseInt(title || "0") >= 6 ? 'legendary' : parseInt(title || "0") >= 4 ? 'epic' : parseInt(title || "0") >= 2 ? 'rare' : 'common';
+  const rarityColors = {
+    common: { border: '#64748b', glow: 'rgba(100,116,139,0.4)', text: '#94a3b8' },
+    uncommon: { border: '#34d399', glow: 'rgba(52,211,153,0.4)', text: '#34d399' },
+    rare: { border: '#3b82f6', glow: 'rgba(59,130,246,0.4)', text: '#60a5fa' },
+    epic: { border: '#8b5cf6', glow: 'rgba(139,92,246,0.4)', text: '#a78bfa' },
+    legendary: { border: '#f59e0b', glow: 'rgba(245,158,11,0.5)', text: '#fbbf24' },
+  };
+  const colors = rarityColors[rarity] || rarityColors.common;
+
+  useEffect(() => {
+    const t = setTimeout(() => setFlipped(true), 600);
+    return () => clearTimeout(t);
+  }, []);
+
+  return (
+    <div className="relative flex flex-col items-center justify-center min-h-[60vh]">
+      <motion.div
+        className="relative z-50 flex flex-col items-center gap-6"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.3 }}
+      >
+        <motion.div
+          className="text-8xl"
+          animate={{ scale: [1, 1.1, 1], rotate: [0, -5, 5, 0] }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+        >
+          🎁
+        </motion.div>
+        <motion.h1
+          className="text-4xl md:text-5xl font-black text-text-primary text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+        >
+          Daily Login
+        </motion.h1>
+        <motion.p
+          className="text-2xl font-bold text-center"
+          style={{ color: colors.text }}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+        >
+          Day {title || "1"} Streak
+        </motion.p>
+        {diamonds > 0 && (
+          <motion.div
+            className="bg-yellow-500/20 backdrop-blur-md px-6 py-3 rounded-full border border-yellow-400/30"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+          >
+            <span className="text-yellow-300 text-xl font-bold">+<XPCountUp target={diamonds} /> Diamonds</span>
+          </motion.div>
+        )}
+        <ParticleBurst count={16} colors={["#fbbf24", "#f59e0b", "#fde68a"]} />
+      </motion.div>
+    </div>
+  );
+}
+
+function CardContent({ title, subtitle, reduced }: { title?: string; subtitle?: string; reduced: boolean }) {
+  const rarityColors = {
+    common: { border: '#64748b', glow: 'rgba(100,116,139,0.4)', text: '#94a3b8' },
+    uncommon: { border: '#34d399', glow: 'rgba(52,211,153,0.4)', text: '#34d399' },
+    rare: { border: '#3b82f6', glow: 'rgba(59,130,246,0.4)', text: '#60a5fa' },
+    epic: { border: '#8b5cf6', glow: 'rgba(139,92,246,0.4)', text: '#a78bfa' },
+    legendary: { border: '#f59e0b', glow: 'rgba(245,158,11,0.5)', text: '#fbbf24' },
+  };
+  const colors = rarityColors[subtitle as keyof typeof rarityColors] || rarityColors.common;
+
+  return (
+    <div className="relative flex flex-col items-center justify-center min-h-[60vh]">
+      <motion.div
+        className="relative z-50 flex flex-col items-center gap-6"
+        initial={{ opacity: 0, scale: 0.8, rotateY: 180 }}
+        animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+        transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.2 }}
+      >
+        <motion.div
+          className="text-8xl md:text-9xl"
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+        >
+          {title?.match(/[\u{1F300}-\u{1F9FF}]/u)?.[0] || "💎"}
+        </motion.div>
+        <motion.h1
+          className="text-4xl md:text-5xl font-black text-text-primary text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+        >
+          {title || "Card Revealed!"}
+        </motion.h1>
+        <motion.p
+          className="text-lg text-gray-300 text-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+        >
+          {subtitle || "Mystery Card"}
+        </motion.p>
+        <ParticleBurst count={12} colors={["#6366f1", "#8b5cf6", "#ec4899"]} />
+      </motion.div>
+    </div>
+  );
+}
+
+function CriticalContent({ title, subtitle, reduced }: { title?: string; subtitle?: string; reduced: boolean }) {
+  return (
+    <div className="relative flex flex-col items-center justify-center min-h-[60vh]">
+      <motion.div
+        className="relative z-50 flex flex-col items-center gap-6"
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ type: "spring", stiffness: 300, damping: 15 }}
+      >
+        <motion.div
+          className="text-7xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-orange-400 to-red-500"
+          style={{ textShadow: "0 0 60px rgba(245,158,11,0.8)", filter: "drop-shadow(0 0 20px rgba(239,68,68,0.6))" }}
+          animate={reduced ? {} : { scale: [1, 1.1, 1], rotate: [0, -2, 2, 0] }}
+          transition={{ duration: 0.3, repeat: 3 }}
+        >
+          {title || "CRITICAL HIT!"}
+        </motion.div>
+        {subtitle && (
+          <motion.div
+            className="text-2xl md:text-3xl font-bold text-yellow-300"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            {subtitle}
+          </motion.div>
+        )}
+        <motion.div
+          className="text-6xl"
+          animate={reduced ? {} : { scale: [0, 1.5, 1], rotate: [0, 360] }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          ⚡
+        </motion.div>
+      </motion.div>
+    </div>
+  );
+}
+
+const CONTENT_MAP: Record<string, React.FC<{ title?: string; subtitle?: string; diamonds?: number; reduced: boolean }>> = {
   levelup: LevelUpContent,
   badge: BadgeContent,
   solve: SolveContent,
   streak: StreakContent,
   achievement: AchievementContent,
+  boss: BossContent,
+  "daily-login": DailyLoginContent,
+  card: CardContent,
+  critical: CriticalContent,
 };
 
 export default function CelebrationOverlay({
@@ -470,7 +676,7 @@ export default function CelebrationOverlay({
   title = "",
   subtitle = "",
   message = "",
-  xp = 0,
+  diamonds = 0,
   onClose,
   autoHide = true,
 }: {
@@ -479,7 +685,7 @@ export default function CelebrationOverlay({
   title?: string;
   subtitle?: string;
   message?: string;
-  xp?: number;
+  diamonds?: number;
   onClose?: () => void;
   autoHide?: boolean;
 }) {
@@ -504,7 +710,7 @@ export default function CelebrationOverlay({
     }
   }, [show, autoHide, type, handleClose]);
 
-  const isRPGType = ["levelup", "badge", "solve", "streak", "achievement"].includes(type);
+  const isRPGType = ["levelup", "badge", "solve", "streak", "achievement", "boss", "daily-login", "card", "critical"].includes(type);
 
   if (!visible || dismissed) return null;
 
@@ -567,8 +773,7 @@ export default function CelebrationOverlay({
           <ContentComponent
             title={title}
             subtitle={subtitle}
-            xp={xp}
-            onClose={handleClose}
+            diamonds={diamonds}
             reduced={reduced}
           />
 

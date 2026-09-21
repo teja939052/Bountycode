@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from "react";
 import Editor from "@monaco-editor/react";
 import { Play, RotateCcw, Loader2, Terminal, ExternalLink, Code2 } from "lucide-react";
 import api from "../../services/api";
+import { useBrowserRuntime } from "../../hooks/useBrowserRuntime";
 
 const LANGS = [
   { id: "c", label: "C", monaco: "c" },
@@ -17,7 +18,7 @@ const DEFAULT_CODE = {
   python: `print("Hello, world!")`,
 };
 
-function toLangId(raw) {
+function toLangId(raw: string | number | undefined) {
   const id = String(raw || "").toLowerCase();
   if (id === "cpp" || id === "c++") return "cpp";
   if (id === "java") return "java";
@@ -31,7 +32,6 @@ type PracticeConsoleProps = {
   height?: number;
   onResult?: (r: { stdout: string; stderr: string; success: boolean }) => void;
   title?: string;
-  compact?: boolean;
   hideTitle?: boolean;
 };
 
@@ -41,7 +41,6 @@ export default function PracticeConsole({
   height = 240,
   onResult,
   title = "Practice Console",
-  compact = false,
   hideTitle = false,
 }: PracticeConsoleProps) {
   const [lang, setLang] = useState(() => toLangId(language));
@@ -49,6 +48,7 @@ export default function PracticeConsole({
   const [output, setOutput] = useState("");
   const [running, setRunning] = useState(false);
   const [error, setError] = useState("");
+  const { isBrowserNative, execute: browserExecute } = useBrowserRuntime();
 
   useEffect(() => {
     const nextLang = toLangId(language);
@@ -59,7 +59,9 @@ export default function PracticeConsole({
   }, [language, initialCode]);
 
   const reset = () => {
-    setCode(initialCode ?? DEFAULT_CODE[lang]);
+    const nextLang = toLangId(lang);
+    setLang(nextLang);
+    setCode(initialCode ?? DEFAULT_CODE[nextLang]);
     setOutput("");
     setError("");
   };
@@ -69,6 +71,19 @@ export default function PracticeConsole({
     setOutput("");
     setError("");
     try {
+      if (isBrowserNative(lang)) {
+        const result = await browserExecute(lang, code, "", 10000);
+        if (result.success) {
+          const out = result.stdout || "(no output)";
+          setOutput(out);
+          onResult?.({ stdout: out, stderr: result.stderr || "", success: true });
+        } else {
+          const msg = result.stderr || result.compile_error || "Execution failed";
+          setError(msg);
+          onResult?.({ stdout: "", stderr: msg, success: false });
+        }
+        return;
+      }
       const result = await api.executeCompilerCode({ code, language: lang, stdin: "", timeout: 10 });
       if (result.success) {
         const out = result.stdout || "(no output)";
@@ -80,12 +95,13 @@ export default function PracticeConsole({
         onResult?.({ stdout: "", stderr: msg, success: false });
       }
     } catch (err) {
-      setError(err.message || "Failed to execute");
-      onResult?.({ stdout: "", stderr: err.message, success: false });
+      const message = err instanceof Error ? err.message : String(err);
+      setError(message || "Failed to execute");
+      onResult?.({ stdout: "", stderr: message || "Failed to execute", success: false });
     } finally {
       setRunning(false);
     }
-  }, [code, lang, onResult]);
+  }, [code, lang, onResult, isBrowserNative, browserExecute]);
 
   return (
     <div className="overflow-hidden rounded-2xl border border-brand-primary/10 bg-surface-card/95 shadow-soft-lg">

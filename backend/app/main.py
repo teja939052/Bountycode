@@ -30,7 +30,7 @@ import httpx
 from app.config import get_settings
 from app.database import init_db, close_db, ping_db, get_client
 from app.services.cache import init_cache, cache
-from app.services.ai import close_http_client
+from app.services.ai_core import close_http_client
 from app.services.analytics_service import refresh_rollups
 from app.services.job_queue import init_job_queue, close_job_queue, get_job_queue, Job, JobType
 from app.services.code_execution_worker import init_code_execution_worker, close_code_execution_worker
@@ -145,7 +145,7 @@ async def _analytics_rollup_worker():
 async def lifespan(app: FastAPI):
     """Lifespan context manager for startup and shutdown events."""
     global analytics_rollup_task
-    logger.info("Starting PlacementPro API...")
+    logger.info("Starting BountyCode API...")
     
     try:
         # Initialize database with retry
@@ -161,14 +161,84 @@ async def lifespan(app: FastAPI):
                 logger.warning(f"Database init attempt {attempt + 1} failed: {e}")
                 await asyncio.sleep(2)
         
-        # Load question store into memory (seed files + MongoDB)
+        # Load the versioned, file-based question store. Question content must
+        # never be read from MongoDB; MongoDB holds student state only.
         try:
             from app.services import question_store
             question_store.load_all()
-            await question_store.load_from_mongo()
             logger.info("Question store loaded into memory")
         except Exception as e:
             logger.warning(f"Question store initialization failed: {e}")
+        
+        # Load the BountyCode Knowledge Corpus into memory.
+        # The corpus is the canonical source of concepts, prerequisites,
+        # cross-language mappings, and curriculum structure.
+        # Content generation is read-only against this corpus and never
+        # mutates production question banks.
+        try:
+            from app.services.content_corpus import load_corpus
+            corpus_summary = load_corpus()
+            logger.info(
+                "Content corpus loaded: %d concepts, %d sources, domains=%s",
+                corpus_summary.get("concept_count", 0),
+                corpus_summary.get("source_count", 0),
+                corpus_summary.get("domains", []),
+            )
+        except Exception as e:
+            logger.warning(f"Content corpus initialization failed: {e}")
+        
+        # Run automated verification on the loaded question bank. This updates
+        # trust_status in-memory: passing questions become automated_checked,
+        # failures are quarantined. No LLM is involved (No-LLM Bank Rule).
+        async def _background_verify():
+            try:
+                from app.services.auto_verify import verify_all_questions
+                verify_result = await verify_all_questions()
+                logger.info(
+                    "Question auto-verify: total=%d passed=%d failed=%d quarantined=%d",
+                    verify_result.total,
+                    verify_result.passed,
+                    verify_result.failed,
+                    verify_result.quarantined,
+                )
+            except Exception as e:
+                logger.warning(f"Question auto-verify failed: {e}")
+
+            try:
+                from app.services.auto_verify import verify_all_lessons
+                lesson_result = await verify_all_lessons(runtime_checks=False)
+                logger.info(
+                    "Lesson auto-verify: total=%d passed=%d failed=%d skipped=%d",
+                    lesson_result.total,
+                    lesson_result.passed,
+                    lesson_result.failed,
+                    lesson_result.skipped,
+                )
+                if lesson_result.details:
+                    logger.warning(
+                        "Lesson verification issues: %s",
+                        "; ".join(
+                            f"{d['world_id']}/{d['level_id']}:{d['reason']}"
+                            for d in lesson_result.details[:20]
+                        ),
+                    )
+            except Exception as e:
+                logger.warning(f"Lesson auto-verify failed: {e}")
+
+        try:
+            asyncio.create_task(_background_verify())
+        except Exception as e:
+            logger.warning(f"Could not start background verification: {e}")
+
+        # Mongo quarantine overrides (§1.1): student-quorum + backfilled
+        # decisions apply over the file-seeded bank so restarts never lose
+        # them. Best-effort; file seed stands alone on a fresh DB.
+        try:
+            from app.services import question_store as _qs_startup
+            n_q = await _qs_startup.apply_mongo_quarantine_overrides()
+            logger.info(f"Mongo quarantine overrides applied: {n_q}")
+        except Exception as e:
+            logger.warning(f"Mongo quarantine overrides failed: {e}")
         
         # Get database client for remaining initialization
         db = get_client()[settings.DATABASE_NAME]
@@ -238,7 +308,7 @@ async def lifespan(app: FastAPI):
         except Exception as e:
             logger.warning(f"Metrics flush could not be started: {e}")
         
-        logger.info("PlacementPro API startup complete - all services initialized")
+        logger.info("BountyCode API startup complete - all services initialized")
 
         yield
         
@@ -247,7 +317,7 @@ async def lifespan(app: FastAPI):
         raise
     finally:
         # Shutdown: close all connections
-        logger.info("Shutting down PlacementPro API...")
+        logger.info("Shutting down BountyCode API...")
         try:
             await request_metrics.stop_periodic_flush()
         except Exception as e:
@@ -283,7 +353,7 @@ async def lifespan(app: FastAPI):
 
 # Create FastAPI app
 app = FastAPI(
-    title="PlacementPro API",
+    title="BountyCode API",
     version="1.2.0",
     description="AI-powered placement preparation platform with 53+ company prep, gamified learning, and system design practice",
     lifespan=lifespan,
@@ -299,7 +369,7 @@ app = FastAPI(
         {"name": "Questions", "description": "Question bank and problem solving"},
         {"name": "Learning", "description": "Language learning hub (C, C++, Java, Python)"},
         {"name": "Learning Modules", "description": "Duolingo-style step-by-step coding lessons"},
-        {"name": "Gamification", "description": "XP, streaks, badges, tower progress"},
+        {"name": "Gamification", "description": "Diamonds, streaks, badges, tower progress"},
         {"name": "Analytics", "description": "Admin analytics dashboard"},
         {"name": "System Health", "description": "Health checks and metrics"},
     ],
@@ -373,7 +443,7 @@ async def general_exception_handler(request: Request, exc: Exception):
     # browser console without requiring a server-terminal read. Guarded so it
     # never leaks secrets: only the class name + repr-length-capped message.
     import traceback as _tb
-    debug = "PLACEEMEN_DEBUG" in os.environ
+    debug = "PLACEMENT_DEBUG" in os.environ
     payload = _error_payload(request, 500, "An internal server error occurred")
     if debug:
         payload["error_type"] = exc.__class__.__name__
@@ -565,14 +635,15 @@ ws_handler = WebSocketHandler(ws_manager)
 
 
 @app.websocket("/ws")
-async def websocket_endpoint(websocket: WebSocket, token: str | None = Query(None)):
+async def websocket_endpoint(websocket: WebSocket):
     """WebSocket endpoint for real-time updates.
 
-    Connect with: ws://localhost:8000/ws?token=<JWT_TOKEN>
-    (token also accepted from the `pp_token` cookie — httpOnly, sent automatically)
+    Authenticates via the httpOnly `pp_token` cookie only. JWT tokens are
+    never accepted via query string to prevent leakage in server logs and
+    browser history.
     """
     try:
-        user = await get_current_user_ws(websocket, token)
+        user = await get_current_user_ws(websocket)
     except HTTPException:
         await websocket.close(code=4001, reason="Authentication required")
         return
@@ -611,7 +682,7 @@ async def websocket_endpoint(websocket: WebSocket, token: str | None = Query(Non
 async def root():
     """Root endpoint."""
     return {
-        "message": "PlacementPro API is running",
+        "message": "BountyCode API is running",
         "version": app.version,
         "status": "operational"
     }

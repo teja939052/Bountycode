@@ -1,18 +1,5 @@
-export function getTitleForLevel(level: number): [string, string] {
-  if (level >= 90) return ["World Tree", "🌍"];
-  if (level >= 80) return ["Legend", "🌟"];
-  if (level >= 70) return ["Crown", "👑"];
-  if (level >= 60) return ["Summit", "⛰️"];
-  if (level >= 50) return ["Ancient", "🌲"];
-  if (level >= 40) return ["Canopy", "🍃"];
-  if (level >= 30) return ["Young", "🌳"];
-  if (level >= 20) return ["Sapling", "🌿"];
-  if (level >= 10) return ["Sprout", "🌱"];
-  return ["Seedling", "🌱"];
-}
-
-export function TowerProgress({ level, xp, xpForNext }: { level: number; xp: number; xpForNext: number }) {
-  const pct = xpForNext > 0 ? Math.min(100, Math.round((xp / xpForNext) * 100)) : 0;
+export function TowerProgress({ level, diamonds, xpForNext }: { level: number; diamonds: number; xpForNext: number }) {
+  const pct = xpForNext > 0 ? Math.min(100, Math.round((diamonds / xpForNext) * 100)) : 0;
   return (
     <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
       <div className="flex justify-between text-xs font-mono text-gray-400 mb-1">
@@ -56,7 +43,7 @@ export function StarsDisplay({ stars }: { stars: number }) {
 export function PowerUpShop({ coins, owned, onBuy, onUse }: { coins: number; owned: any; onBuy: (id: string) => void; onUse: (id: string) => void }) {
   const powerUps = [
     { id: "skip_boss", name: "Skip Boss", cost: 50, emoji: "⏭️" },
-    { id: "double_xp", name: "2x XP", cost: 30, emoji: "⚡" },
+    { id: "double_xp", name: "2x Diamonds", cost: 30, emoji: "⚡" },
     { id: "hint_reveal", name: "Hint", cost: 20, emoji: "💡" },
   ];
   return (

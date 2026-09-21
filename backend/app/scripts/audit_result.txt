@@ -1,0 +1,8 @@
+Total questions: 6379
+
+Type distribution: {'coding': 2879, 'aptitude': 50, 'logical': 30, 'verbal': 20, 'MISSING': 3400}
+Missing solution: 0
+Missing test_cases: 2979
+Missing hints: 0
+Missing answer: 6221
+Duplicate IDs: 0

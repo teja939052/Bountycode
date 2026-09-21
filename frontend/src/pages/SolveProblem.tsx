@@ -5,6 +5,7 @@ import api from "../services/api";
 import ProblemDetail from "../components/ProblemDetail";
 import LeetCodeEditorPanel from "../components/leetcode/LeetCodeEditorPanel";
 import useReducedMotion from "../hooks/useReducedMotion";
+import { usePageMeta } from "../hooks/usePageMeta";
 import { ChevronDown, Clock, Code2, FileText, Pause, Play, RotateCcw } from "lucide-react";
 
 const TIMER_PRESETS = [
@@ -27,6 +28,11 @@ export default function SolveProblem() {
 
   const [problem, setProblem] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+
+  usePageMeta(
+    problem?.question_title || problem?.title || "Solve Problem",
+    problem ? `Practice: ${(problem.question_title || problem.title || "").slice(0, 140)}` : "Solve a verified placement coding problem with hidden test cases."
+  );
   const [mobileTab, setMobileTab] = useState<"problem" | "code">("problem");
 
   const [timerActive, setTimerActive] = useState(false);

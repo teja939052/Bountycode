@@ -1,4 +1,15 @@
-﻿"""Worlds 3-6: Build Systems, Data, Software Engineering, Under Pressure."""
+﻿"""Worlds 3-6: Build Systems, Data, Software Engineering, Under Pressure.
+
+Part of the canonical 12-world structure:
+  foundations -> searchlands -> sorting -> recursion -> linked -> stack ->
+  queue -> hashing -> trees -> graphs -> dynamic -> alpine
+
+Worlds 3-6 occupy the middle portion of that chain.
+DO NOT add, remove, or reorder worlds without updating:
+  - CANONICAL_WORLDS in backend/scripts/verify_world_governance.py
+  - frontend/src/pages/Landing.tsx headline copy
+  - Any tests referencing world count or prereq chain
+"""
 from __future__ import annotations
 
 from app.content.lesson_definitions import (
@@ -30,7 +41,10 @@ API_TOWN = TownDefinition(
                     languages=["python", "java", "cpp", "c"],
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
-                    test_cases=[{"input":["users"],"expected":{"/users": "GET list", "/users": "POST create", "/users/:id": "GET one", "/users/:id": "PUT update", "/users/:id": "DELETE"}}], hidden_tests=3),
+                    test_cases=[{"input":["users"],"expected":{"/users": "GET list", "/users": "POST create", "/users/:id": "GET one", "/users/:id": "PUT update", "/users/:id": "DELETE"}}], hidden_tests=3,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Map CRUD operations to HTTP verbs"],
             unlocks="apis-2",
@@ -53,14 +67,17 @@ API_TOWN = TownDefinition(
         LessonDefinition(
             id="apis-boss", title="APIs Boss", icon="ðŸ‰", kind="boss", order=3,
             concept="transfer", mental_model="Design a complete REST API for a real resource.",
-            canonical_skill="backend.apis", xp=100, estimated_minutes=15,
+            canonical_skill="backend.apis", diamonds=100, estimated_minutes=15,
             engineering_context="In a real sprint, you'd design endpoints for a new feature: 'users can bookmark articles.' You need GET/POST/DELETE endpoints, proper status codes, and error handling.",
             builds_toward="Backend Engineering â€” feature API design",
             steps=[
                 LessonStep(step_type="mastery", title="Bookmark API",
                     function_name="bookmark_endpoints", signature="def bookmark_endpoints() -> dict:",
                     description="Return all REST endpoints for a bookmark feature: list, create, delete bookmarks.",
-                    test_cases=[{"input":[],"expected":"endpoints"}], hidden_tests=3),
+                    test_cases=[{"input":[],"expected":"endpoints"}], hidden_tests=3,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Design REST endpoints", "Use status codes", "Handle CRUD operations"],
         ),
@@ -86,7 +103,10 @@ DB_TOWN = TownDefinition(
                     languages=["python", "java", "cpp", "c"],
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
-                    test_cases=[{"input":[],"expected":"SELECT"}], hidden_tests=3),
+                    test_cases=[{"input":[],"expected":"SELECT"}], hidden_tests=3,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Write basic SQL queries"],
             unlocks="db-2",
@@ -110,14 +130,17 @@ DB_TOWN = TownDefinition(
         LessonDefinition(
             id="db-boss", title="Databases Boss", icon="ðŸ‰", kind="boss", order=3,
             concept="transfer", mental_model="Design a schema and query it.",
-            canonical_skill="backend.databases", xp=100, estimated_minutes=15,
+            canonical_skill="backend.databases", diamonds=100, estimated_minutes=15,
             engineering_context="In a real system design, you'd design tables for a feature (e.g., 'comments on posts'), write the queries to fetch them, and add indexes for performance. This boss tests that combination.",
             builds_toward="Backend Engineering â€” schema design and querying",
             steps=[
                 LessonStep(step_type="mastery", title="Design a Schema",
                     function_name="design_schema", signature="def design_schema() -> dict:",
                     description="Return table definitions for: users(id,name), posts(id,user_id,title), comments(id,post_id,user_id,text).",
-                    test_cases=[{"input":[],"expected":"schema"}], hidden_tests=3),
+                    test_cases=[{"input":[],"expected":"schema"}], hidden_tests=3,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Write SQL queries", "Choose join types", "Design database schemas"],
         ),
@@ -155,7 +178,10 @@ DATA_TOWN = TownDefinition(
                     languages=["python", "java", "cpp", "c"],
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
-                    test_cases=[{"input":[],"expected":"SELECT"}], hidden_tests=3),
+                    test_cases=[{"input":[],"expected":"SELECT"}], hidden_tests=3,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Write aggregation queries"],
             unlocks="data-2",
@@ -174,7 +200,10 @@ DATA_TOWN = TownDefinition(
                     languages=["python", "java", "cpp", "c"],
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
-                    test_cases=[{"input":[],"expected":"RANK"}], hidden_tests=3),
+                    test_cases=[{"input":[],"expected":"RANK"}], hidden_tests=3,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Use window functions for advanced analytics"],
             unlocks="data-boss",
@@ -182,14 +211,17 @@ DATA_TOWN = TownDefinition(
         LessonDefinition(
             id="data-boss", title="Data Boss", icon="ðŸ‰", kind="boss", order=3,
             concept="transfer", mental_model="Combine aggregations and window functions for real analytics.",
-            canonical_skill="data.analytics", xp=100, estimated_minutes=15,
+            canonical_skill="data.analytics", diamonds=100, estimated_minutes=15,
             engineering_context="In a real analytics task, you'd combine everything: aggregate sales by category, rank within each, compute month-over-month growth. That's the combination this boss tests.",
             builds_toward="Data Engineering â€” complex analytics pipelines",
             steps=[
                 LessonStep(step_type="mastery", title="Sales Report",
                     function_name="sales_report", signature="def sales_report() -> str:",
                     description="Return SQL: monthly sales with running total and MoM growth using window functions.",
-                    test_cases=[{"input":[],"expected":"WITH"}], hidden_tests=3),
+                    test_cases=[{"input":[],"expected":"WITH"}], hidden_tests=3,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Write aggregations", "Use window functions", "Combine for complex reports"],
         ),
@@ -233,14 +265,17 @@ GIT_TOWN = TownDefinition(
         LessonDefinition(
             id="git-boss", title="Git Boss", icon="ðŸ‰", kind="boss", order=2,
             concept="transfer", mental_model="Navigate a full Git collaboration workflow.",
-            canonical_skill="engineering.git", xp=100, estimated_minutes=15,
+            canonical_skill="engineering.git", diamonds=100, estimated_minutes=15,
             engineering_context="In a real sprint, you'd branch, commit, push, open a PR, address review comments, and merge. This boss tests whether you understand the full cycle.",
             builds_toward="Software Engineering â€” team collaboration",
             steps=[
                 LessonStep(step_type="mastery", title="Resolve a Merge Conflict",
                     function_name="resolve_conflict", signature="def resolve_conflict() -> str:",
                     description="Return the steps to resolve a merge conflict: identify, edit, add, commit.",
-                    test_cases=[{"input":[],"expected":"steps"}], hidden_tests=3),
+                    test_cases=[{"input":[],"expected":"steps"}], hidden_tests=3,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Branch and merge", "Handle pull requests", "Resolve conflicts"],
         ),
@@ -267,7 +302,10 @@ TESTING_TOWN = TownDefinition(
                     languages=["python", "java", "cpp", "c"],
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
-                    test_cases=[{"input":[],"expected":"assertions"}], hidden_tests=3),
+                    test_cases=[{"input":[],"expected":"assertions"}], hidden_tests=3,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Write unit tests with assertions"],
             unlocks="testing-2",
@@ -291,7 +329,7 @@ TESTING_TOWN = TownDefinition(
         LessonDefinition(
             id="testing-boss", title="Testing Boss", icon="ðŸ‰", kind="boss", order=3,
             concept="transfer", mental_model="Write tests that cover normal cases AND edge cases.",
-            canonical_skill="engineering.testing", xp=100, estimated_minutes=15,
+            canonical_skill="engineering.testing", diamonds=100, estimated_minutes=15,
             engineering_context="In a real PR, you'd write tests for your function covering: normal input, empty input, single element, negative numbers, and large input. That coverage is what reviewers expect.",
             builds_toward="Software Engineering â€” test coverage and quality",
             steps=[
@@ -299,7 +337,10 @@ TESTING_TOWN = TownDefinition(
                     function_name="test_reverse", signature="def test_reverse():",
                     description="Write 4 tests for reverse(): normal list, empty list, single element, two elements.",
                     starter="def test_reverse():\n    # 4 test cases\n",
-                    test_cases=[{"input":[],"expected":"4 tests"}], hidden_tests=3),
+                    test_cases=[{"input":[],"expected":"4 tests"}], hidden_tests=3,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Write unit tests", "Test edge cases", "Cover normal and boundary cases"],
         ),
@@ -353,7 +394,10 @@ OA_TOWN = TownDefinition(
                     languages=["python", "java", "cpp", "c"],
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
-                    test_cases=[{"input":[[2,7,11,15],9],"expected":[0,1]}], hidden_tests=5),
+                    test_cases=[{"input":[[2,7,11,15],9],"expected":[0,1]}], hidden_tests=5,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Optimize from O(nÂ²) to O(n)"],
             unlocks="oa-boss",
@@ -361,14 +405,17 @@ OA_TOWN = TownDefinition(
         LessonDefinition(
             id="oa-boss", title="OA Boss", icon="ðŸ‰", kind="boss", order=3,
             concept="transfer", mental_model="Solve a timed problem: recognize pattern, implement correctly, optimize.",
-            canonical_skill="interview.oa", xp=100, estimated_minutes=20,
+            canonical_skill="interview.oa", diamonds=100, estimated_minutes=20,
             engineering_context="A real OA gives you 2-3 problems in 60-90 minutes. You have to read, recognize the pattern, implement without bugs, and optimize. This boss simulates that pressure.",
             builds_toward="Interview Performance â€” performing under time pressure",
             steps=[
                 LessonStep(step_type="mastery", title="Valid Anagram",
                     function_name="is_anagram", signature="def is_anagram(s: str, t: str) -> bool:",
                     description="Return True if t is an anagram of s. O(n) time, O(1) space (26 letters).",
-                    test_cases=[{"input":["anagram","nagaram"],"expected":True}], hidden_tests=5),
+                    test_cases=[{"input":["anagram","nagaram"],"expected":True}], hidden_tests=5,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Recognize patterns quickly", "Implement correctly", "Optimize solutions"],
         ),

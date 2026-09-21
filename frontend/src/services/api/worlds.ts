@@ -31,13 +31,13 @@ export interface WorldsLevel {
     world_reaction: string;
     reward_text: string;
     byte_line?: string;
-    xp: number;
+    diamonds: number;
   };
   completed: boolean;
   unlocked: boolean;
   score: number;
   attempts: number;
-  xp: number;
+  diamonds: number;
 }
 
 export interface WorldMeta {
@@ -80,7 +80,7 @@ export interface WorldView {
       levels: WorldsLevel[];
       boss?: WorldsLevel;
     }>;
-    completion_reward?: { xp: number; coins: number; badges: string[] };
+    completion_reward?: { diamonds: number; coins: number; badges: string[] };
   };
   progress: {
     levels: WorldsLevel[];

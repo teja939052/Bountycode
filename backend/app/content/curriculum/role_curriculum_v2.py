@@ -169,28 +169,28 @@ LEARNING_MODULE_CATALOG: Dict[str, Dict[str, Any]] = {
                     "title": "The Counter",
                     "instruction": "Create a variable 'count' set to 5. Then change it to 6. Print both values.",
                     "difficulty": "easy",
-                    "xp": 10
+                    "diamonds": 10
                 },
                 {
                     "id": "mc-2",
                     "title": "The Swapper",
                     "instruction": "Create two variables: a = 10, b = 20. Swap their values using a third variable. Print both.",
                     "difficulty": "easy",
-                    "xp": 15
+                    "diamonds": 15
                 },
                 {
                     "id": "mc-3",
                     "title": "The Tracker",
                     "instruction": "Create variables for a game: player_health = 100, enemy_damage = 15. Calculate new_health after one hit and print it.",
                     "difficulty": "medium",
-                    "xp": 20
+                    "diamonds": 20
                 },
                 {
                     "id": "mc-4",
                     "title": "The Level Up",
-                    "instruction": "Create level = 1, xp = 0. Add 100 xp. If xp >= 100, increase level by 1 and reset xp to 0. Print level and xp.",
+                    "instruction": "Create level = 1, diamonds = 0. Add 100 diamonds. If diamonds >= 100, increase level by 1 and reset diamonds to 0. Print level and diamonds.",
                     "difficulty": "medium",
-                    "xp": 25
+                    "diamonds": 25
                 }
             ],
             "hint_ladder": {
@@ -217,7 +217,7 @@ LEARNING_MODULE_CATALOG: Dict[str, Dict[str, Any]] = {
                 "skills_tested": ["variable-declaration", "assignment", "arithmetic", "boolean-logic", "print-formatting"],
                 "starter_code": "# Build your inventory system here\nplayer_gold = \npotion_price = \nsword_price = \n\n# Can afford sword?\ncan_buy = \nprint(f'Can buy sword: {can_buy}')\n\n# Buy potion\nplayer_gold = player_gold - potion_price\nprint(f'Remaining gold: {player_gold}')",
                 "solution": "player_gold = 50\npotion_price = 15\nsword_price = 100\n\ncan_buy = player_gold >= sword_price\nprint(f'Can buy sword: {can_buy}')\n\nplayer_gold = player_gold - potion_price\nprint(f'Remaining gold: {player_gold}')",
-                "xp": 30
+                "diamonds": 30
             },
             "boss": {
                 "title": "The Memory Vault Keeper",
@@ -235,11 +235,11 @@ LEARNING_MODULE_CATALOG: Dict[str, Dict[str, Any]] = {
                     },
                     {
                         "name": "Scenario 3: The Level Gate",
-                        "prompt": "A player needs 200 XP to reach level 2. They currently have 150 XP. They complete a quest worth 60 XP. Calculate new XP, check if they level up, and print both level and XP.",
-                        "success_criteria": "XP added correctly, level-up logic works, both printed"
+                        "prompt": "A player needs 200 Diamonds to reach level 2. They currently have 150 Diamonds. They complete a quest worth 60 Diamonds. Calculate new Diamonds, check if they level up, and print both level and Diamonds.",
+                        "success_criteria": "Diamonds added correctly, level-up logic works, both printed"
                     }
                 ],
-                "xp": 100,
+                "diamonds": 100,
                 "mastery_badge": "Memory Keeper"
             },
             "srs_enrollment": {

@@ -750,7 +750,7 @@ HAND_CRAFTED_JAVA_LESSONS.update(dict([
         code_example=_code(
             "public class Main {\n"
             "    public static void main(String[] args) {\n"
-            "        System.out.println(\"Welcome to PlacementPro!\");\n"
+            "        System.out.println(\"Welcome to BountyCode!\");\n"
             "        System.out.println(\"Your coding journey starts today.\");\n"
             "        System.out.println(\"Stay consistent and keep learning!\");\n"
             "    }\n"

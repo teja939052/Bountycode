@@ -192,11 +192,11 @@ def _build_web_language(lang_id, lang_name, icon, color, desc):
             lessons.append({
                 "id": f"{lang_id}-{raw['id']}-{j+1:02d}",
                 "title": l["title"],
-                "xp": l["xp"],
+                "diamonds": l["diamonds"],
                 "difficulty": l["difficulty"],
                 "type": l["type"],
             })
-        total_xp = sum(l["xp"] for l in lessons)
+        total_xp = sum(l["diamonds"] for l in lessons)
         levels[raw["id"]] = {
             "id": raw["id"],
             "name": theme[0],

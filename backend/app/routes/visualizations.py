@@ -6,10 +6,8 @@ from datetime import datetime, timezone
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from typing import Optional, List, Dict, Any
-from bson import ObjectId
 from app.middleware.auth import get_current_user
-from app.database import curated_questions_collection
-from app.services.ai import chat_completion, parse_json
+from app.services.ai_core import chat_completion, parse_json
 from app.services.code_tracer import execute_with_trace, detect_algorithm_type
 
 router = APIRouter(prefix="/api/v1/visualizations", tags=["visualizations"])
@@ -1030,14 +1028,9 @@ async def generate_visualization(
     user=Depends(get_current_user),
 ):
     """Generate a step-by-step visualization for a problem's execution."""
-    collection = curated_questions_collection()
-
-    try:
-        q_oid = ObjectId(question_id)
-    except Exception:
-        raise HTTPException(status_code=400, detail="Invalid question ID")
-
-    question = await collection.find_one({"_id": q_oid})
+    # In-memory canonical store only (Residency Rule): never MongoDB.
+    from app.services import question_store
+    question = question_store.get_question_for_serving(question_id)
     if not question:
         raise HTTPException(status_code=404, detail="Question not found")
 

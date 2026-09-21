@@ -38,16 +38,21 @@ class InvoiceService:
             return (start + timedelta(days=365)).isoformat()
         return None  # lifetime / one-time
 
-    def generate_invoice(
+    async def generate_invoice(
         self,
         user,
         plan: str,
         amount: float,
         currency: str = "USD",
-        transaction_id: Optional[str] = None,
+        transaction_id: str | None = None,
         billing_cycle: str = "one-time",
     ) -> dict:
-        """Generate a legally compliant invoice."""
+        """Generate a legally compliant invoice (Mongo-backed, §1.1).
+
+        Invoices are billing records: they live in the invoices collection
+        so restarts never lose them. The old invoice_dir/*.json files are
+        seed-only (one-time backfill), never written at request time.
+        """
         u = _resolve_user(user)
         now = datetime.now(timezone.utc)
         invoice_id = f"INV-{now.strftime('%Y%m')}-{uuid.uuid4().hex[:8].upper()}"
@@ -55,9 +60,9 @@ class InvoiceService:
         invoice = {
             "invoice_id": invoice_id,
             "company": {
-                "name": "PlacementPro",
+                "name": "BountyCode",
                 "address": "[Your Business Address]",
-                "email": "support@placementpro.com",
+                "email": "support@BountyCode.com",
                 "gst": "[Your GST Number]",
             },
             "customer": {
@@ -87,35 +92,34 @@ class InvoiceService:
         }
 
         file_path = os.path.join(self.invoice_dir, f"{invoice_id}.json")
-        with open(file_path, "w", encoding="utf-8") as f:
-            json.dump(invoice, f, indent=2)
+        from app.database import invoices_collection
+        await invoices_collection.insert_one(dict(invoice))
 
         return invoice
 
-    def get_invoice(self, invoice_id: str) -> Optional[dict]:
-        """Get an invoice by ID."""
-        file_path = os.path.join(self.invoice_dir, f"{invoice_id}.json")
-        if not os.path.exists(file_path):
+    async def get_invoice(self, invoice_id: str) -> Optional[dict]:
+        """Get an invoice by ID (Mongo; files are seed-only)."""
+        from app.database import invoices_collection
+        doc = await invoices_collection.find_one({"invoice_id": invoice_id})
+        if not doc:
             return None
-        with open(file_path, "r", encoding="utf-8") as f:
-            return json.load(f)
+        doc.pop("_id", None)
+        return doc
 
-    def get_user_invoices(self, user_id: str) -> List[dict]:
+    async def get_user_invoices(self, user_id: str) -> List[dict]:
         """Get all invoices for a user (metadata only, sorted newest first)."""
+        from app.database import invoices_collection
         user_id = str(user_id)
-        invoices = []
-        if not os.path.isdir(self.invoice_dir):
-            return invoices
-        for filename in os.listdir(self.invoice_dir):
-            if not filename.endswith(".json"):
-                continue
-            with open(os.path.join(self.invoice_dir, filename), "r", encoding="utf-8") as f:
-                invoice = json.load(f)
-                if invoice.get("customer", {}).get("user_id") == user_id:
-                    invoices.append(invoice)
-        return sorted(
-            invoices, key=lambda x: x.get("created_at", ""), reverse=True
-        )
+        cursor = invoices_collection.find({"customer.user_id": user_id}).sort("created_at", -1)
+        out = []
+        try:
+            docs = await cursor.to_list(500)
+        except Exception:
+            return []
+        for invoice in docs:
+            invoice.pop("_id", None)
+            out.append(invoice)
+        return out
 
     def generate_invoice_html(self, invoice: dict) -> str:
         """Generate an HTML version of the invoice."""
@@ -152,7 +156,7 @@ class InvoiceService:
             <div class="header">
                 <div>
                     <h1 class="title">Invoice</h1>
-                    <p><strong>PlacementPro</strong></p>
+                    <p><strong>BountyCode</strong></p>
                     <p>[Your Business Address]</p>
                 </div>
                 <div>
@@ -189,8 +193,8 @@ class InvoiceService:
             </div>
 
             <div class="footer">
-                <p>Thank you for choosing PlacementPro!</p>
-                <p>For any questions, contact support@placementpro.com</p>
+                <p>Thank you for choosing BountyCode!</p>
+                <p>For any questions, contact support@BountyCode.com</p>
                 <p>GST: [Your GST Number]</p>
             </div>
         </body>

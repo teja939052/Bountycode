@@ -151,7 +151,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "pattern-relevant to TCS NQT / Infosys (independently verified)"
+    "provenance": "pattern-relevant to TCS NQT / Infosys (independently verified)",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a hashing problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-002",
@@ -270,7 +287,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "pattern-relevant to TCS NQT / Infosys (independently verified)"
+    "provenance": "pattern-relevant to TCS NQT / Infosys (independently verified)",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a dynamic programming problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-003",
@@ -381,7 +415,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "pattern-relevant to TCS NQT / Infosys (independently verified)"
+    "provenance": "pattern-relevant to TCS NQT / Infosys (independently verified)",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a bit manipulation problem.",
+      "Consider using a math-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-004",
@@ -510,7 +561,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "pattern-relevant to TCS NQT / Infosys (independently verified)"
+    "provenance": "pattern-relevant to TCS NQT / Infosys (independently verified)",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a two pointers problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-005",
@@ -589,7 +657,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "pattern-relevant to TCS NQT / Infosys (independently verified)"
+    "provenance": "pattern-relevant to TCS NQT / Infosys (independently verified)",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a string manipulation problem.",
+      "Consider using a strings-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "String immutability: remember that strings can't be modified in place in some languages.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= s.length <= 10^5, s consists of lowercase English letters"
   },
   {
     "id": "verify-006",
@@ -674,7 +759,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "pattern-relevant to TCS NQT / Infosys (independently verified)"
+    "provenance": "pattern-relevant to TCS NQT / Infosys (independently verified)",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a two pointers problem.",
+      "Consider using a strings-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "String immutability: remember that strings can't be modified in place in some languages.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= s.length <= 10^5, s consists of lowercase English letters"
   },
   {
     "id": "apt-001",
@@ -706,7 +808,14 @@
     ],
     "stage": "placement",
     "source_bank": "verified_placement_questions",
-    "verification_version": 1
+    "verification_version": 1,
+    "explanation": "Solve using the appropriate formula for percentages.",
+    "hints": [
+      "This is a percentages problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-002",
@@ -738,7 +847,14 @@
     ],
     "stage": "placement",
     "source_bank": "verified_placement_questions",
-    "verification_version": 1
+    "verification_version": 1,
+    "explanation": "Solve using the appropriate formula for time-work.",
+    "hints": [
+      "This is a time-work problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-003",
@@ -770,7 +886,14 @@
     ],
     "stage": "placement",
     "source_bank": "verified_placement_questions",
-    "verification_version": 1
+    "verification_version": 1,
+    "explanation": "Solve using the appropriate formula for profit-loss.",
+    "hints": [
+      "This is a profit-loss problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-004",
@@ -801,7 +924,14 @@
     ],
     "stage": "placement",
     "source_bank": "verified_placement_questions",
-    "verification_version": 1
+    "verification_version": 1,
+    "explanation": "Solve using the appropriate formula for ratio-proportion.",
+    "hints": [
+      "This is a ratio-proportion problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-005",
@@ -832,7 +962,14 @@
     ],
     "stage": "placement",
     "source_bank": "verified_placement_questions",
-    "verification_version": 1
+    "verification_version": 1,
+    "explanation": "Solve using the appropriate formula for speed-distance-time.",
+    "hints": [
+      "This is a speed-distance-time problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "verify-007",
@@ -924,7 +1061,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "independently verified foundational pattern"
+    "provenance": "independently verified foundational pattern",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a stack problem.",
+      "Consider using a stack-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-008",
@@ -1016,7 +1170,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "independently verified foundational pattern"
+    "provenance": "independently verified foundational pattern",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a dynamic programming problem.",
+      "Consider using a dynamic programming-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not identifying the correct state. Write down the recurrence relation first.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-009",
@@ -1126,7 +1297,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "independently verified foundational pattern"
+    "provenance": "independently verified foundational pattern",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a dynamic programming problem.",
+      "Consider using a dynamic programming-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not identifying the correct state. Write down the recurrence relation first.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-011",
@@ -1211,7 +1399,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "independently verified foundational pattern"
+    "provenance": "independently verified foundational pattern",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a hashing problem.",
+      "Consider using a strings-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "String immutability: remember that strings can't be modified in place in some languages.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= s.length <= 10^5, s consists of lowercase English letters"
   },
   {
     "id": "verify-012",
@@ -1322,7 +1527,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "independently verified foundational pattern"
+    "provenance": "independently verified foundational pattern",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a hashing problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-013",
@@ -1503,7 +1725,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "independently verified foundational pattern"
+    "provenance": "independently verified foundational pattern",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a sorting problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-014",
@@ -1638,7 +1877,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "independently verified foundational pattern"
+    "provenance": "independently verified foundational pattern",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a prefix product problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-015",
@@ -1718,7 +1974,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "independently verified foundational pattern"
+    "provenance": "independently verified foundational pattern",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a hashing problem.",
+      "Consider using a strings-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "String immutability: remember that strings can't be modified in place in some languages.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= s.length <= 10^5, s consists of lowercase English letters"
   },
   {
     "id": "verify-016",
@@ -1840,7 +2113,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "independently verified foundational pattern"
+    "provenance": "independently verified foundational pattern",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a binary search problem.",
+      "Consider using a binary search-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Forgetting the base case in recursion. Always handle null/empty nodes.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "0 <= n <= 10^4, node values are integers"
   },
   {
     "id": "verify-010",
@@ -1967,7 +2257,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "independently verified foundational pattern"
+    "provenance": "independently verified foundational pattern",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a hashing problem.",
+      "Consider using a strings-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "String immutability: remember that strings can't be modified in place in some languages.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= s.length <= 10^5, s consists of lowercase English letters"
   },
   {
     "id": "verify-017",
@@ -2065,7 +2372,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "independently verified foundational pattern"
+    "provenance": "independently verified foundational pattern",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a math problem.",
+      "Consider using a strings-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "String immutability: remember that strings can't be modified in place in some languages.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= s.length <= 10^5, s consists of lowercase English letters"
   },
   {
     "id": "verify-018",
@@ -2182,7 +2506,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "independently verified foundational pattern"
+    "provenance": "independently verified foundational pattern",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a two pointers problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-019",
@@ -2284,7 +2625,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "independently verified foundational pattern"
+    "provenance": "independently verified foundational pattern",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a bit manipulation problem.",
+      "Consider using a bit manipulation-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-020",
@@ -2388,7 +2746,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "independently verified foundational pattern"
+    "provenance": "independently verified foundational pattern",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a string manipulation problem.",
+      "Consider using a strings-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "String immutability: remember that strings can't be modified in place in some languages.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= s.length <= 10^5, s consists of lowercase English letters"
   },
   {
     "id": "verify-021",
@@ -2494,7 +2869,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "independently verified foundational pattern"
+    "provenance": "independently verified foundational pattern",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a voting problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-022",
@@ -2602,7 +2994,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "independently verified foundational pattern"
+    "provenance": "independently verified foundational pattern",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a bit manipulation problem.",
+      "Consider using a bit manipulation-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "log-001",
@@ -2632,7 +3041,9 @@
     ],
     "stage": "placement",
     "source_bank": "verified_placement_questions",
-    "provenance": "pattern-relevant to TCS NQT"
+    "provenance": "pattern-relevant to TCS NQT",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   },
   {
     "id": "log-002",
@@ -2663,7 +3074,9 @@
     ],
     "stage": "placement",
     "source_bank": "verified_placement_questions",
-    "provenance": "pattern-relevant to TCS NQT"
+    "provenance": "pattern-relevant to TCS NQT",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   },
   {
     "id": "log-003",
@@ -2694,7 +3107,9 @@
     ],
     "stage": "placement",
     "source_bank": "verified_placement_questions",
-    "provenance": "pattern-relevant to TCS NQT"
+    "provenance": "pattern-relevant to TCS NQT",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   },
   {
     "id": "verb-001",
@@ -2725,7 +3140,9 @@
     ],
     "stage": "placement",
     "source_bank": "verified_placement_questions",
-    "provenance": "pattern-relevant to Infosys"
+    "provenance": "pattern-relevant to Infosys",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   },
   {
     "id": "verb-002",
@@ -2756,7 +3173,9 @@
     ],
     "stage": "placement",
     "source_bank": "verified_placement_questions",
-    "provenance": "pattern-relevant to Accenture"
+    "provenance": "pattern-relevant to Accenture",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   },
   {
     "id": "verify-023",
@@ -2891,7 +3310,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "independently verified foundational pattern"
+    "provenance": "independently verified foundational pattern",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a two pointers problem.",
+      "Consider using a linked list-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Losing the head pointer is a common mistake. Save references before modifying.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-024",
@@ -3031,7 +3467,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "independently verified foundational pattern"
+    "provenance": "independently verified foundational pattern",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a hashing problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-025",
@@ -3117,7 +3570,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "independently verified foundational pattern"
+    "provenance": "independently verified foundational pattern",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a math problem.",
+      "Consider using a math-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-026",
@@ -3252,7 +3722,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "independently verified foundational pattern"
+    "provenance": "independently verified foundational pattern",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a math problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-027",
@@ -3338,7 +3825,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "independently verified foundational pattern"
+    "provenance": "independently verified foundational pattern",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a string manipulation problem.",
+      "Consider using a strings-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "String immutability: remember that strings can't be modified in place in some languages.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= s.length <= 10^5, s consists of lowercase English letters"
   },
   {
     "id": "apt-006",
@@ -3369,7 +3873,14 @@
     ],
     "stage": "placement",
     "source_bank": "verified_placement_questions",
-    "provenance": "pattern-relevant to TCS NQT"
+    "provenance": "pattern-relevant to TCS NQT",
+    "explanation": "Solve using the appropriate formula for simple-interest.",
+    "hints": [
+      "This is a simple-interest problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-007",
@@ -3399,7 +3910,14 @@
     ],
     "stage": "placement",
     "source_bank": "verified_placement_questions",
-    "provenance": "pattern-relevant to TCS NQT"
+    "provenance": "pattern-relevant to TCS NQT",
+    "explanation": "Solve using the appropriate formula for averages.",
+    "hints": [
+      "This is a averages problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-008",
@@ -3430,7 +3948,14 @@
     ],
     "stage": "placement",
     "source_bank": "verified_placement_questions",
-    "provenance": "pattern-relevant to TCS NQT"
+    "provenance": "pattern-relevant to TCS NQT",
+    "explanation": "Solve using the appropriate formula for compound-interest.",
+    "hints": [
+      "This is a compound-interest problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-009",
@@ -3461,7 +3986,14 @@
     ],
     "stage": "placement",
     "source_bank": "verified_placement_questions",
-    "provenance": "pattern-relevant to TCS NQT"
+    "provenance": "pattern-relevant to TCS NQT",
+    "explanation": "Solve using the appropriate formula for probability.",
+    "hints": [
+      "This is a probability problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-010",
@@ -3491,7 +4023,14 @@
     ],
     "stage": "placement",
     "source_bank": "verified_placement_questions",
-    "provenance": "pattern-relevant to TCS NQT"
+    "provenance": "pattern-relevant to TCS NQT",
+    "explanation": "Solve using the appropriate formula for geometry.",
+    "hints": [
+      "This is a geometry problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "verify-028",
@@ -3589,7 +4128,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "independently verified foundational pattern"
+    "provenance": "independently verified foundational pattern",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a binary search problem.",
+      "Consider using a binary search-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Forgetting the base case in recursion. Always handle null/empty nodes.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "0 <= n <= 10^4, node values are integers"
   },
   {
     "id": "verify-029",
@@ -3708,7 +4264,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "independently verified foundational pattern"
+    "provenance": "independently verified foundational pattern",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a math problem.",
+      "Consider using a matrix-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-030",
@@ -3836,7 +4409,24 @@
     "stage": "placement",
     "source_bank": "verified_placement_questions",
     "verification_version": 1,
-    "provenance": "independently verified foundational pattern"
+    "provenance": "independently verified foundational pattern",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a conditionals problem.",
+      "Consider using a math-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "cs-001",
@@ -3867,7 +4457,9 @@
     ],
     "stage": "placement",
     "source_bank": "verified_placement_questions",
-    "provenance": "pattern-relevant to TCS/Infosys"
+    "provenance": "pattern-relevant to TCS/Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-002",
@@ -3898,7 +4490,9 @@
     ],
     "stage": "placement",
     "source_bank": "verified_placement_questions",
-    "provenance": "pattern-relevant to TCS/Infosys"
+    "provenance": "pattern-relevant to TCS/Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-003",
@@ -3928,7 +4522,9 @@
     ],
     "stage": "placement",
     "source_bank": "verified_placement_questions",
-    "provenance": "pattern-relevant to TCS/Infosys"
+    "provenance": "pattern-relevant to TCS/Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-004",
@@ -3959,7 +4555,9 @@
     ],
     "stage": "placement",
     "source_bank": "verified_placement_questions",
-    "provenance": "pattern-relevant to TCS/Infosys"
+    "provenance": "pattern-relevant to TCS/Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "verb-003",
@@ -3990,7 +4588,9 @@
     ],
     "stage": "placement",
     "source_bank": "verified_placement_questions",
-    "provenance": "pattern-relevant to Infosys"
+    "provenance": "pattern-relevant to Infosys",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   },
   {
     "id": "apt-011",
@@ -4021,7 +4621,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for number-system.",
+    "hints": [
+      "This is a number-system problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-012",
@@ -4052,7 +4659,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for number-system.",
+    "hints": [
+      "This is a number-system problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-013",
@@ -4083,7 +4697,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for percentages.",
+    "hints": [
+      "This is a percentages problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-014",
@@ -4114,7 +4735,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for percentages.",
+    "hints": [
+      "This is a percentages problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-015",
@@ -4145,7 +4773,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for time-work.",
+    "hints": [
+      "This is a time-work problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-016",
@@ -4176,7 +4811,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for time-work.",
+    "hints": [
+      "This is a time-work problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-017",
@@ -4207,7 +4849,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for profit-loss.",
+    "hints": [
+      "This is a profit-loss problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-018",
@@ -4238,7 +4887,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for ratio-proportion.",
+    "hints": [
+      "This is a ratio-proportion problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-019",
@@ -4269,7 +4925,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for mixture-alligation.",
+    "hints": [
+      "This is a mixture-alligation problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-020",
@@ -4300,7 +4963,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for speed-distance-time.",
+    "hints": [
+      "This is a speed-distance-time problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-021",
@@ -4331,7 +5001,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for speed-distance-time.",
+    "hints": [
+      "This is a speed-distance-time problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-022",
@@ -4362,7 +5039,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for average.",
+    "hints": [
+      "This is a average problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-023",
@@ -4393,7 +5077,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for simple-interest.",
+    "hints": [
+      "This is a simple-interest problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-024",
@@ -4424,7 +5115,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for probability.",
+    "hints": [
+      "This is a probability problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-025",
@@ -4455,7 +5153,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for compound-interest.",
+    "hints": [
+      "This is a compound-interest problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "cs-005",
@@ -4486,7 +5191,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-006",
@@ -4517,7 +5224,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-007",
@@ -4548,7 +5257,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-008",
@@ -4579,7 +5290,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-009",
@@ -4610,7 +5323,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-010",
@@ -4641,7 +5356,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-011",
@@ -4672,7 +5389,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-012",
@@ -4703,7 +5422,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-013",
@@ -4734,7 +5455,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-015",
@@ -4765,7 +5488,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "log-004",
@@ -4796,7 +5521,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   },
   {
     "id": "log-005",
@@ -4827,7 +5554,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   },
   {
     "id": "log-006",
@@ -4858,7 +5587,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   },
   {
     "id": "log-007",
@@ -4889,7 +5620,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   },
   {
     "id": "verb-004",
@@ -4920,7 +5653,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   },
   {
     "id": "verb-005",
@@ -4951,7 +5686,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   },
   {
     "id": "verb-006",
@@ -4982,7 +5719,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   },
   {
     "id": "verb-007",
@@ -5013,7 +5752,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   },
   {
     "id": "apt-027",
@@ -5044,7 +5785,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for ratios.",
+    "hints": [
+      "This is a ratios problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-028",
@@ -5075,7 +5823,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for percentages.",
+    "hints": [
+      "This is a percentages problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-029",
@@ -5106,7 +5861,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for time-speed.",
+    "hints": [
+      "This is a time-speed problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-030",
@@ -5137,7 +5899,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for profit-loss.",
+    "hints": [
+      "This is a profit-loss problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-031",
@@ -5168,7 +5937,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for mixtures.",
+    "hints": [
+      "This is a mixtures problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-032",
@@ -5199,7 +5975,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for average-speed.",
+    "hints": [
+      "This is a average-speed problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-033",
@@ -5230,7 +6013,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for compound-interest.",
+    "hints": [
+      "This is a compound-interest problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-034",
@@ -5261,7 +6051,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for number-series.",
+    "hints": [
+      "This is a number-series problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-035",
@@ -5292,7 +6089,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for perimeter-area.",
+    "hints": [
+      "This is a perimeter-area problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-036",
@@ -5323,7 +6127,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for ratio-time.",
+    "hints": [
+      "This is a ratio-time problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "cs-016",
@@ -5354,7 +6165,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-017",
@@ -5385,7 +6198,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-018",
@@ -5416,7 +6231,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-019",
@@ -5447,7 +6264,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-020",
@@ -5478,7 +6297,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "log-008",
@@ -5509,7 +6330,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   },
   {
     "id": "log-009",
@@ -5540,7 +6363,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   },
   {
     "id": "log-010",
@@ -5571,7 +6396,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   },
   {
     "id": "verb-008",
@@ -5602,7 +6429,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   },
   {
     "id": "verb-009",
@@ -5633,7 +6462,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   },
   {
     "id": "verb-010",
@@ -5664,7 +6495,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   },
   {
     "id": "4fd32539-c4bd-4902-8016-98078c9578f9",
@@ -5737,7 +6570,7 @@
       "Use Python's built-in max() function",
       "Or iterate through keeping track of the largest"
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -5749,7 +6582,16 @@
       "had_testcases": true,
       "visible": 2,
       "hidden": 1
-    }
+    },
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "4b9e64bf-e4a3-4e24-8c3b-9209df93d626",
@@ -5822,7 +6664,7 @@
       "Use Python's built-in max() function",
       "Or iterate through keeping track of the largest"
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -5834,7 +6676,16 @@
       "had_testcases": true,
       "visible": 2,
       "hidden": 1
-    }
+    },
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "b1d9624d-b974-496b-8043-2a4dd86837a2",
@@ -5907,7 +6758,7 @@
       "Use Python's built-in max() function",
       "Or iterate through keeping track of the largest"
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -5919,7 +6770,16 @@
       "had_testcases": true,
       "visible": 2,
       "hidden": 1
-    }
+    },
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "a0234f87-9d37-4bc8-93ec-33d9e17e591b",
@@ -5992,7 +6852,7 @@
       "Use Python's built-in max() function",
       "Or iterate through keeping track of the largest"
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -6004,7 +6864,16 @@
       "had_testcases": true,
       "visible": 2,
       "hidden": 1
-    }
+    },
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "0a5a37a2-0c77-4dce-9ece-5353a4d2988d",
@@ -6077,7 +6946,7 @@
       "Use Python's built-in max() function",
       "Or iterate through keeping track of the largest"
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -6089,7 +6958,16 @@
       "had_testcases": true,
       "visible": 2,
       "hidden": 1
-    }
+    },
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "289d1bc9-0ba6-4bdf-884f-52f4942430e3",
@@ -6162,7 +7040,7 @@
       "Use Python's built-in max() function",
       "Or iterate through keeping track of the largest"
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -6174,7 +7052,16 @@
       "had_testcases": true,
       "visible": 2,
       "hidden": 1
-    }
+    },
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "be23c5ff-233b-44ec-b1a1-513e69bce9aa",
@@ -6247,7 +7134,7 @@
       "Use Python's built-in max() function",
       "Or iterate through keeping track of the largest"
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -6259,7 +7146,16 @@
       "had_testcases": true,
       "visible": 2,
       "hidden": 1
-    }
+    },
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "b8b081b7-acba-4ef6-95a6-a51bb2d90096",
@@ -6332,7 +7228,7 @@
       "Use Python's built-in max() function",
       "Or iterate through keeping track of the largest"
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -6344,7 +7240,16 @@
       "had_testcases": true,
       "visible": 2,
       "hidden": 1
-    }
+    },
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "e7098c37-782f-429e-90b6-12ae7dc424de",
@@ -6417,7 +7322,7 @@
       "Use Python's built-in max() function",
       "Or iterate through keeping track of the largest"
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -6429,7 +7334,16 @@
       "had_testcases": true,
       "visible": 2,
       "hidden": 1
-    }
+    },
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "43276cef-7d23-4fc4-8988-7bce2da8313a",
@@ -6502,7 +7416,7 @@
       "Use Python's built-in max() function",
       "Or iterate through keeping track of the largest"
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -6514,7 +7428,16 @@
       "had_testcases": true,
       "visible": 2,
       "hidden": 1
-    }
+    },
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "0945a322-a287-41e5-9780-831561c81697",
@@ -6587,7 +7510,7 @@
       "Use Python's built-in max() function",
       "Or iterate through keeping track of the largest"
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -6599,7 +7522,16 @@
       "had_testcases": true,
       "visible": 2,
       "hidden": 1
-    }
+    },
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "beeef4b9-8993-4d53-a31c-e69b65e6726a",
@@ -6672,7 +7604,7 @@
       "Use Python's built-in max() function",
       "Or iterate through keeping track of the largest"
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -6684,7 +7616,16 @@
       "had_testcases": true,
       "visible": 2,
       "hidden": 1
-    }
+    },
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "fc6c7227-51a8-47e8-bf02-6e635fc28325",
@@ -6757,7 +7698,7 @@
       "Use Python's built-in max() function",
       "Or iterate through keeping track of the largest"
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -6769,7 +7710,16 @@
       "had_testcases": true,
       "visible": 2,
       "hidden": 1
-    }
+    },
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "165138c2-a15c-4de4-9ead-e5d157299506",
@@ -6842,7 +7792,7 @@
       "Use Python's built-in max() function",
       "Or iterate through keeping track of the largest"
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -6854,7 +7804,16 @@
       "had_testcases": true,
       "visible": 2,
       "hidden": 1
-    }
+    },
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "f80feb35-4a07-4188-b68d-b4fdf2f9318b",
@@ -6927,7 +7886,7 @@
       "Use Python's built-in max() function",
       "Or iterate through keeping track of the largest"
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -6939,7 +7898,16 @@
       "had_testcases": true,
       "visible": 2,
       "hidden": 1
-    }
+    },
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "d8171e84-5204-4ed0-b0de-b5b0088bffda",
@@ -7012,7 +7980,7 @@
       "Use Python's built-in max() function",
       "Or iterate through keeping track of the largest"
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -7024,7 +7992,16 @@
       "had_testcases": true,
       "visible": 2,
       "hidden": 1
-    }
+    },
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "cf140b5b-b530-4180-b8b5-464a79e8b74e",
@@ -7097,7 +8074,7 @@
       "Use Python's built-in max() function",
       "Or iterate through keeping track of the largest"
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -7109,7 +8086,16 @@
       "had_testcases": true,
       "visible": 2,
       "hidden": 1
-    }
+    },
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "4521670e-731b-4d6a-a876-42430bf703cc",
@@ -7182,7 +8168,7 @@
       "Use Python's built-in max() function",
       "Or iterate through keeping track of the largest"
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -7194,7 +8180,16 @@
       "had_testcases": true,
       "visible": 2,
       "hidden": 1
-    }
+    },
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "17ce29c1-98c0-4d92-836f-1b7e76f37857",
@@ -7267,7 +8262,7 @@
       "Use Python's built-in max() function",
       "Or iterate through keeping track of the largest"
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -7279,7 +8274,16 @@
       "had_testcases": true,
       "visible": 2,
       "hidden": 1
-    }
+    },
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "8f6408d9-4d83-4793-a4e6-63b441d9ee07",
@@ -7352,7 +8356,7 @@
       "Use Python's built-in max() function",
       "Or iterate through keeping track of the largest"
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -7364,7 +8368,16 @@
       "had_testcases": true,
       "visible": 2,
       "hidden": 1
-    }
+    },
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "85d38fa6-b0a2-468c-93d8-31cf63119a79",
@@ -7427,7 +8440,7 @@
       "XOR of a number with itself is 0",
       "XOR of a number with 0 is the number itself"
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -7439,7 +8452,16 @@
       "had_testcases": true,
       "visible": 1,
       "hidden": 1
-    }
+    },
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "42d320bf-840d-4101-bb36-40faba8d95d1",
@@ -7502,7 +8524,7 @@
       "XOR of a number with itself is 0",
       "XOR of a number with 0 is the number itself"
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -7514,7 +8536,16 @@
       "had_testcases": true,
       "visible": 1,
       "hidden": 1
-    }
+    },
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "f7a17bb1-cc34-4158-a731-9e776e3b2c87",
@@ -7577,7 +8608,7 @@
       "XOR of a number with itself is 0",
       "XOR of a number with 0 is the number itself"
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -7589,7 +8620,16 @@
       "had_testcases": true,
       "visible": 1,
       "hidden": 1
-    }
+    },
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "9cc1d69e-3ac1-4e68-a815-2ff9e454bee9",
@@ -7652,7 +8692,7 @@
       "XOR of a number with itself is 0",
       "XOR of a number with 0 is the number itself"
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -7664,7 +8704,16 @@
       "had_testcases": true,
       "visible": 1,
       "hidden": 1
-    }
+    },
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "f51dc69c-dead-4709-b909-d283f044dca6",
@@ -7727,7 +8776,7 @@
       "XOR of a number with itself is 0",
       "XOR of a number with 0 is the number itself"
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -7739,7 +8788,16 @@
       "had_testcases": true,
       "visible": 1,
       "hidden": 1
-    }
+    },
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "ee02e2b5-6cb8-4168-b95a-449605c73260",
@@ -7802,7 +8860,7 @@
       "XOR of a number with itself is 0",
       "XOR of a number with 0 is the number itself"
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -7814,7 +8872,16 @@
       "had_testcases": true,
       "visible": 1,
       "hidden": 1
-    }
+    },
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "eee47e31-ed61-477d-bba3-72aa4f840e0e",
@@ -7877,7 +8944,7 @@
       "XOR of a number with itself is 0",
       "XOR of a number with 0 is the number itself"
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -7889,7 +8956,16 @@
       "had_testcases": true,
       "visible": 1,
       "hidden": 1
-    }
+    },
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "5a31e1f2-119f-4b96-bd6b-1f8d7b56adf2",
@@ -7952,7 +9028,7 @@
       "XOR of a number with itself is 0",
       "XOR of a number with 0 is the number itself"
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -7964,7 +9040,16 @@
       "had_testcases": true,
       "visible": 1,
       "hidden": 1
-    }
+    },
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "40140498-d697-40f2-8218-845f454aece7",
@@ -8027,7 +9112,7 @@
       "XOR of a number with itself is 0",
       "XOR of a number with 0 is the number itself"
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -8039,7 +9124,16 @@
       "had_testcases": true,
       "visible": 1,
       "hidden": 1
-    }
+    },
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "faang-longest-substring",
@@ -8084,7 +9178,7 @@
       "Remember the last index for each character.",
       "Move the left boundary past duplicates."
     ],
-    "explanation": "",
+    "explanation": "Solution approach: Implement the algorithm directly.",
     "correct_answer": "",
     "trust_status": "verified",
     "source_bank": "verified_placement_questions",
@@ -8096,7 +9190,16 @@
       "had_testcases": true,
       "visible": 1,
       "hidden": 1
-    }
+    },
+    "common_trap": "String immutability: remember that strings can't be modified in place in some languages.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ]
   },
   {
     "id": "verify-031",
@@ -8165,7 +9268,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a stack problem.",
+      "Consider using a stack-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-032",
@@ -8226,7 +9346,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a dp problem.",
+      "Consider using a dp-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not identifying the correct state. Write down the recurrence relation first.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-033",
@@ -8299,7 +9436,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a dp problem.",
+      "Consider using a dp-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not identifying the correct state. Write down the recurrence relation first.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-034",
@@ -8370,7 +9524,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a dp problem.",
+      "Consider using a dp-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not identifying the correct state. Write down the recurrence relation first.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-035",
@@ -8448,7 +9619,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a dp problem.",
+      "Consider using a dp-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not identifying the correct state. Write down the recurrence relation first.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-036",
@@ -8529,7 +9717,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a stack problem.",
+      "Consider using a stack-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-037",
@@ -8588,7 +9793,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a hashing problem.",
+      "Consider using a hashing-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-038",
@@ -8651,7 +9873,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a hashing problem.",
+      "Consider using a strings-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "String immutability: remember that strings can't be modified in place in some languages.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= s.length <= 10^5, s consists of lowercase English letters"
   },
   {
     "id": "verify-039",
@@ -8712,7 +9951,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a prefix problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-040",
@@ -8775,7 +10031,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a hashing problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-041",
@@ -8827,7 +10100,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a hashing problem.",
+      "Consider using a strings-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "String immutability: remember that strings can't be modified in place in some languages.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= s.length <= 10^5, s consists of lowercase English letters"
   },
   {
     "id": "verify-042",
@@ -8887,7 +10177,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a two_pointers problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-043",
@@ -8938,7 +10245,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a linked_list problem.",
+      "Consider using a linked_list-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-044",
@@ -8989,7 +10313,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a trees problem.",
+      "Consider using a trees-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "0 <= n <= 10^4, node values are integers"
   },
   {
     "id": "verify-045",
@@ -9055,7 +10396,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a graphs problem.",
+      "Consider using a graphs-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not marking nodes as visited. Infinite loops are common in graph traversal.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, 0 <= edges <= 10^5"
   },
   {
     "id": "apt-037",
@@ -9086,7 +10444,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for percentages.",
+    "hints": [
+      "This is a percentages problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-038",
@@ -9117,7 +10482,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for profit-loss.",
+    "hints": [
+      "This is a profit-loss problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-039",
@@ -9148,7 +10520,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for time-work.",
+    "hints": [
+      "This is a time-work problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "cs-021",
@@ -9179,7 +10558,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-022",
@@ -9210,7 +10591,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-023",
@@ -9241,7 +10624,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-024",
@@ -9272,7 +10657,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "log-011",
@@ -9303,7 +10690,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   },
   {
     "id": "verb-011",
@@ -9334,7 +10723,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   },
   {
     "id": "verify-046",
@@ -9405,7 +10796,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a two_pointers problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-047",
@@ -9478,7 +10886,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a trees problem.",
+      "Consider using a trees-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "0 <= n <= 10^4, node values are integers"
   },
   {
     "id": "verify-048",
@@ -9566,7 +10991,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a binary_search problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-049",
@@ -9643,7 +11085,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a binary_search problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-050",
@@ -9707,7 +11166,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a binary_search problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-051",
@@ -9802,7 +11278,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a reverse problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-052",
@@ -9880,7 +11373,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a hashing problem.",
+      "Consider using a hashing-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-053",
@@ -9935,7 +11445,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a sieve problem.",
+      "Consider using a math-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-054",
@@ -9990,7 +11517,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a bit problem.",
+      "Consider using a bit_manipulation-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-055",
@@ -10045,7 +11589,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a cycle_detect problem.",
+      "Consider using a math-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-056",
@@ -10120,7 +11681,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a two_pointers problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-057",
@@ -10205,7 +11783,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a sorting problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-058",
@@ -10276,7 +11871,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a sorting problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-059",
@@ -10328,7 +11940,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a strings problem.",
+      "Consider using a strings-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "String immutability: remember that strings can't be modified in place in some languages.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= s.length <= 10^5, s consists of lowercase English letters"
   },
   {
     "id": "verify-060",
@@ -10380,7 +12009,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a hashing problem.",
+      "Consider using a strings-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "String immutability: remember that strings can't be modified in place in some languages.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= s.length <= 10^5, s consists of lowercase English letters"
   },
   {
     "id": "apt-040",
@@ -10411,7 +12057,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for ratio.",
+    "hints": [
+      "This is a ratio problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-041",
@@ -10442,7 +12095,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for probability.",
+    "hints": [
+      "This is a probability problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-042",
@@ -10473,7 +12133,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for compound-interest.",
+    "hints": [
+      "This is a compound-interest problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "cs-025",
@@ -10504,7 +12171,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-026",
@@ -10535,7 +12204,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-027",
@@ -10566,7 +12237,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-028",
@@ -10597,7 +12270,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "log-012",
@@ -10628,7 +12303,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   },
   {
     "id": "verb-012",
@@ -10659,7 +12336,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   },
   {
     "id": "verify-061",
@@ -10716,7 +12395,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a two_pointers problem.",
+      "Consider using a linked_list-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-062",
@@ -10790,7 +12486,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a two_pointers problem.",
+      "Consider using a linked_list-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-063",
@@ -10865,7 +12578,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a bfs problem.",
+      "Consider using a trees-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "0 <= n <= 10^4, node values are integers"
   },
   {
     "id": "verify-064",
@@ -10938,7 +12668,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a bfs problem.",
+      "Consider using a trees-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "0 <= n <= 10^4, node values are integers"
   },
   {
     "id": "verify-065",
@@ -11001,7 +12748,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a dfs problem.",
+      "Consider using a trees-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "0 <= n <= 10^4, node values are integers"
   },
   {
     "id": "verify-066",
@@ -11088,7 +12852,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a binary_search problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-067",
@@ -11163,7 +12944,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a partition problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-068",
@@ -11232,7 +13030,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a sorting problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-069",
@@ -11302,7 +13117,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a dfs problem.",
+      "Consider using a trees-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Forgetting the base case in recursion. Always handle null/empty nodes.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "0 <= n <= 10^4, node values are integers"
   },
   {
     "id": "verify-070",
@@ -11366,7 +13198,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a dfs problem.",
+      "Consider using a trees-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "0 <= n <= 10^4, node values are integers"
   },
   {
     "id": "verify-071",
@@ -11472,7 +13321,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a sorting problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-072",
@@ -11554,7 +13420,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a sorting problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-073",
@@ -11606,7 +13489,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a math problem.",
+      "Consider using a strings-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "String immutability: remember that strings can't be modified in place in some languages.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= s.length <= 10^5, s consists of lowercase English letters"
   },
   {
     "id": "verify-074",
@@ -11661,7 +13561,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a base26 problem.",
+      "Consider using a math-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-075",
@@ -11722,7 +13639,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a two_pointers problem.",
+      "Consider using a strings-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "String immutability: remember that strings can't be modified in place in some languages.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= s.length <= 10^5, s consists of lowercase English letters"
   },
   {
     "id": "apt-043",
@@ -11753,7 +13687,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for simple-interest.",
+    "hints": [
+      "This is a simple-interest problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-044",
@@ -11784,7 +13725,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for time-distance.",
+    "hints": [
+      "This is a time-distance problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-045",
@@ -11815,7 +13763,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for averages.",
+    "hints": [
+      "This is a averages problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "cs-029",
@@ -11846,7 +13801,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-030",
@@ -11877,7 +13834,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-031",
@@ -11908,7 +13867,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-032",
@@ -11939,7 +13900,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "log-013",
@@ -11970,7 +13933,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   },
   {
     "id": "verb-013",
@@ -12001,7 +13966,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   },
   {
     "id": "verify-076",
@@ -12068,7 +14035,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a sliding_window problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-077",
@@ -12134,7 +14118,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a sliding_window problem.",
+      "Consider using a hashing-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-078",
@@ -12183,7 +14184,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a two_pointers problem.",
+      "Consider using a strings-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "String immutability: remember that strings can't be modified in place in some languages.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= s.length <= 10^5, s consists of lowercase English letters"
   },
   {
     "id": "verify-079",
@@ -12253,7 +14271,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a greedy problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-080",
@@ -12323,7 +14358,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a greedy problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-081",
@@ -12378,7 +14430,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a base26 problem.",
+      "Consider using a math-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-082",
@@ -12427,7 +14496,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a bit problem.",
+      "Consider using a bit_manipulation-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-083",
@@ -12479,7 +14565,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a hashing problem.",
+      "Consider using a strings-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "String immutability: remember that strings can't be modified in place in some languages.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= s.length <= 10^5, s consists of lowercase English letters"
   },
   {
     "id": "verify-084",
@@ -12534,7 +14637,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a math problem.",
+      "Consider using a math-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-085",
@@ -12608,7 +14728,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a binary_search problem.",
+      "Consider using a strings-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "String immutability: remember that strings can't be modified in place in some languages.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= s.length <= 10^5, s consists of lowercase English letters"
   },
   {
     "id": "verify-086",
@@ -12700,7 +14837,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a greedy problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-087",
@@ -12752,7 +14906,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a two_pointers problem.",
+      "Consider using a strings-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "String immutability: remember that strings can't be modified in place in some languages.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= s.length <= 10^5, s consists of lowercase English letters"
   },
   {
     "id": "verify-088",
@@ -12811,7 +14982,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a math problem.",
+      "Consider using a strings-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "String immutability: remember that strings can't be modified in place in some languages.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= s.length <= 10^5, s consists of lowercase English letters"
   },
   {
     "id": "verify-089",
@@ -12870,7 +15058,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a stack problem.",
+      "Consider using a strings-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "String immutability: remember that strings can't be modified in place in some languages.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= s.length <= 10^5, s consists of lowercase English letters"
   },
   {
     "id": "verify-090",
@@ -12941,7 +15146,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a scan problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "apt-046",
@@ -12972,7 +15194,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for percentages.",
+    "hints": [
+      "This is a percentages problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-047",
@@ -13003,7 +15232,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for ages.",
+    "hints": [
+      "This is a ages problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-048",
@@ -13034,7 +15270,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for compound-interest.",
+    "hints": [
+      "This is a compound-interest problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "cs-033",
@@ -13065,7 +15308,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-034",
@@ -13096,7 +15341,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-035",
@@ -13127,7 +15374,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-036",
@@ -13158,7 +15407,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "log-014",
@@ -13189,7 +15440,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   },
   {
     "id": "verb-014",
@@ -13220,7 +15473,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   },
   {
     "id": "verify-091",
@@ -13291,7 +15546,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a hashing problem.",
+      "Consider using a hashing-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-092",
@@ -13356,7 +15628,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a dp problem.",
+      "Consider using a dp-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-093",
@@ -13405,7 +15694,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a hashing problem.",
+      "Consider using a strings-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "String immutability: remember that strings can't be modified in place in some languages.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= s.length <= 10^5, s consists of lowercase English letters"
   },
   {
     "id": "verify-094",
@@ -13448,7 +15754,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a strings problem.",
+      "Consider using a strings-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "String immutability: remember that strings can't be modified in place in some languages.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= s.length <= 10^5, s consists of lowercase English letters"
   },
   {
     "id": "verify-095",
@@ -13506,7 +15829,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a strings problem.",
+      "Consider using a strings-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "String immutability: remember that strings can't be modified in place in some languages.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= s.length <= 10^5, s consists of lowercase English letters"
   },
   {
     "id": "verify-096",
@@ -13571,7 +15911,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a hashing problem.",
+      "Consider using a hashing-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-097",
@@ -13623,7 +15980,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a hashing problem.",
+      "Consider using a hashing-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-098",
@@ -13680,7 +16054,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a partition problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-099",
@@ -13735,7 +16126,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a dp problem.",
+      "Consider using a math-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-100",
@@ -13802,7 +16210,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a dp problem.",
+      "Consider using a dp-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not identifying the correct state. Write down the recurrence relation first.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-101",
@@ -13866,7 +16291,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a prefix problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-102",
@@ -13924,7 +16366,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a scan problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-103",
@@ -14001,7 +16460,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a sorting problem.",
+      "Consider using a arrays-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Off-by-one errors are common. Check indices carefully.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= n <= 10^5, -10^9 <= nums[i] <= 10^9"
   },
   {
     "id": "verify-104",
@@ -14044,7 +16520,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a bit problem.",
+      "Consider using a bit_manipulation-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not considering all edge cases. Test with empty, single element, and duplicate inputs.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "verify-105",
@@ -14103,7 +16596,24 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solution approach: Implement the algorithm directly.",
+    "hints": [
+      "This is a dp problem.",
+      "Consider using a dp-based approach.",
+      "Break the problem into smaller steps.",
+      "Test with the provided examples first."
+    ],
+    "common_trap": "Not identifying the correct state. Write down the recurrence relation first.",
+    "reasoning_steps": [
+      "1. Understand the problem: What are the inputs and expected outputs?",
+      "2. Identify the pattern: What algorithm or data structure fits best?",
+      "3. Plan the approach: Write pseudocode before coding.",
+      "4. Implement: Write clean, readable code.",
+      "5. Test: Run through the provided examples.",
+      "6. Optimize: Check time/space complexity."
+    ],
+    "constraints": "1 <= input size <= 10^5, time limit: 1 second"
   },
   {
     "id": "apt-049",
@@ -14134,7 +16644,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for time-work.",
+    "hints": [
+      "This is a time-work problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-050",
@@ -14165,7 +16682,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for numbers.",
+    "hints": [
+      "This is a numbers problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "apt-051",
@@ -14196,7 +16720,14 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Solve using the appropriate formula for profit-loss.",
+    "hints": [
+      "This is a profit-loss problem.",
+      "Write down the given values.",
+      "Identify the formula or approach needed.",
+      "Solve step by step."
+    ]
   },
   {
     "id": "cs-037",
@@ -14227,7 +16758,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-038",
@@ -14258,7 +16791,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-039",
@@ -14289,7 +16824,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "cs-040",
@@ -14320,7 +16857,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "",
+    "hints": []
   },
   {
     "id": "log-015",
@@ -14351,7 +16890,9 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   },
   {
     "id": "verb-015",
@@ -14382,6 +16923,8 @@
       "accenture",
       "cognizant"
     ],
-    "provenance": "pattern_relevant to TCS NQT / Infosys"
+    "provenance": "pattern_relevant to TCS NQT / Infosys",
+    "explanation": "Apply logical reasoning to determine the answer.",
+    "hints": []
   }
 ]

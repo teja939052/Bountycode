@@ -5,11 +5,11 @@ Pre-built playlists for different goals and skill levels.
 from datetime import datetime, timezone
 from fastapi import APIRouter, Depends, HTTPException, Query
 from typing import Optional, List
-from bson import ObjectId
 from app.middleware.auth import get_current_user
 from app.database import (
-    curated_questions_collection, solved_problems_collection,
-    playlists_collection
+    solved_problems_collection,
+    playlists_collection,
+    get_db,
 )
 
 router = APIRouter(prefix="/api/v1/playlists", tags=["playlists"])
@@ -80,7 +80,7 @@ CURATED_PLAYLISTS = [
     {
         "id": "amazon-prep",
         "title": "Amazon SDE Prep",
-        "description": "30 problems frequently asked at Amazon",
+        "description": "30 pattern-relevant problems for Amazon preparation (pattern alignment, never historically-asked claims)",
         "difficulty": "medium",
         "duration_weeks": 4,
         "problems_count": 30,
@@ -118,6 +118,26 @@ CURATED_PLAYLISTS = [
 ]
 
 
+def _playlist_pool(playlist: dict) -> list:
+    """In-memory problem pool for a playlist (Residency Rule): topic-scoped
+    verified-leaning selection from the canonical store, optionally narrowed
+    by the playlist's company tag. Never MongoDB."""
+    from app.services import question_store
+    pool = question_store.find(
+        {"topic": {"$in": playlist["topics"]}, "type": "coding"}
+    ).prefer_verified().to_list()
+    if playlist.get("company"):
+        co = str(playlist["company"]).lower()
+        pool = [q for q in pool if co in {str(c).lower() for c in (q.get("companies") or [])}]
+    # Legacy order semantics: difficulty string ascending, then topic/problem order.
+    pool.sort(key=lambda q: (
+        str(q.get("difficulty", "medium")),
+        str(q.get("topic_order", "")),
+        str(q.get("problem_order", "")),
+    ))
+    return pool
+
+
 @router.get("")
 async def list_playlists(
     difficulty: Optional[str] = None,
@@ -132,35 +152,20 @@ async def list_playlists(
     if company:
         playlists = [p for p in playlists if p.get("company", "").lower() == company.lower()]
 
-    # Get user's progress for each playlist
+    # Get user's progress for each playlist (in-memory only, Residency Rule)
     solved_col = solved_problems_collection()
-    collection = curated_questions_collection()
+    solved_ids = set()
+    async for doc in solved_col.find({"user_id": user["id"]}, {"question_id": 1}):
+        solved_ids.add(str(doc["question_id"]))
 
     result = []
     for playlist in playlists:
         # Get problems in this playlist's topics
-        query = {"topic": {"$in": playlist["topics"]}, "type": "coding"}
-        if playlist.get("company"):
-            query["company"] = playlist["company"]
+        pool = _playlist_pool(playlist)
+        total_problems = len(pool)
 
-        total_problems = await collection.count_documents(query)
-
-        # Get user's solved count
-        pipeline = [
-            {"$match": {"user_id": user["id"]}},
-            {"$lookup": {
-                "from": "curated_questions",
-                "localField": "question_id",
-                "foreignField": "_id",
-                "as": "question"
-            }},
-            {"$unwind": "$question"},
-            {"$match": {"question.topic": {"$in": playlist["topics"]}}},
-            {"$count": "count"}
-        ]
-        solved_count = 0
-        async for doc in solved_col.aggregate(pipeline):
-            solved_count = doc.get("count", 0)
+        # Solved count within the same pool (string id compare)
+        solved_count = sum(1 for q in pool if str(q.get("id")) in solved_ids)
 
         result.append({
             **playlist,
@@ -180,29 +185,21 @@ async def get_playlist(playlist_id: str, user=Depends(get_current_user)):
     if not playlist:
         raise HTTPException(status_code=404, detail="Playlist not found")
 
-    # Get problems for this playlist
-    collection = curated_questions_collection()
+    # Get problems for this playlist (in-memory only, Residency Rule)
     solved_col = solved_problems_collection()
 
-    query = {"topic": {"$in": playlist["topics"]}, "type": "coding"}
-    if playlist.get("company"):
-        query["company"] = playlist["company"]
-
-    cursor = collection.find(query).sort([
-        ("difficulty", 1),  # Easy first
-        ("topic_order", 1),
-        ("problem_order", 1),
-    ]).limit(playlist["problems_count"])
+    pool = _playlist_pool(playlist)[:playlist["problems_count"]]
 
     problems = []
     solved_ids = set()
     async for doc in solved_col.find({"user_id": user["id"]}, {"question_id": 1}):
-        solved_ids.add(doc["question_id"])
+        solved_ids.add(str(doc["question_id"]))
 
-    async for q in cursor:
-        q["id"] = str(q.pop("_id"))
-        q["solved"] = q["id"] in solved_ids
-        problems.append(q)
+    for q in pool:
+        doc = dict(q)
+        doc["id"] = str(q.get("id", ""))
+        doc["solved"] = doc["id"] in solved_ids
+        problems.append(doc)
 
     # Get solved count
     solved_count = sum(1 for p in problems if p.get("solved"))
@@ -222,31 +219,20 @@ async def get_next_problem(playlist_id: str, user=Depends(get_current_user)):
     if not playlist:
         raise HTTPException(status_code=404, detail="Playlist not found")
 
-    collection = curated_questions_collection()
     solved_col = solved_problems_collection()
 
     # Get solved problem IDs
     solved_ids = set()
     async for doc in solved_col.find({"user_id": user["id"]}, {"question_id": 1}):
-        solved_ids.add(doc["question_id"])
+        solved_ids.add(str(doc["question_id"]))
 
-    # Get problems in order, find first unsolved
-    query = {"topic": {"$in": playlist["topics"]}, "type": "coding"}
-    if playlist.get("company"):
-        query["company"] = playlist["company"]
-
-    cursor = collection.find(query).sort([
-        ("difficulty", 1),
-        ("topic_order", 1),
-        ("problem_order", 1),
-    ])
-
-    async for q in cursor:
-        qid = str(q["_id"])
+    # Get problems in order, find first unsolved (in-memory, Residency Rule)
+    for q in _playlist_pool(playlist):
+        qid = str(q.get("id", ""))
         if qid not in solved_ids:
-            q["id"] = qid
-            del q["_id"]
-            return {"next_problem": q, "playlist": playlist}
+            doc = dict(q)
+            doc["id"] = qid
+            return {"next_problem": doc, "playlist": playlist}
 
     return {"next_problem": None, "message": "Playlist complete! All problems solved."}
 
@@ -259,18 +245,15 @@ async def create_custom_playlist(
     user=Depends(get_current_user),
 ):
     """Create a custom playlist with selected problems."""
-    from app.database import get_db
     db = get_db()
 
-    # Verify all problems exist
-    collection = curated_questions_collection()
+    # Verify all problems exist in the in-memory canonical store
+    # (Residency Rule): never MongoDB.
+    from app.services import question_store
     valid_ids = []
     for pid in problem_ids:
-        try:
-            if await collection.find_one({"_id": ObjectId(pid)}):
-                valid_ids.append(pid)
-        except Exception:
-            continue
+        if question_store.get_question_for_serving(pid):
+            valid_ids.append(pid)
 
     if not valid_ids:
         raise HTTPException(status_code=400, detail="No valid problem IDs provided")
@@ -294,7 +277,6 @@ async def create_custom_playlist(
 @router.get("/my/custom")
 async def get_my_custom_playlists(user=Depends(get_current_user)):
     """Get user's custom playlists."""
-    from app.database import get_db
     db = get_db()
 
     cursor = db["playlists"].find({"user_id": user["id"]}).sort("created_at", -1)

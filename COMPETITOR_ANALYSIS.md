@@ -1,6 +1,6 @@
 # Competitor Analysis — Codedex, Mimo, Scrimba, CodinGame, Codecademy, Codewars
 
-> Compiled from deep research into leading gamified coding platforms to evolve PlacementPro into a hybrid learning ecosystem.
+> Compiled from deep research into leading gamified coding platforms to evolve BountyCode into a hybrid learning ecosystem.
 
 ---
 
@@ -115,6 +115,6 @@ They teach **problem decomposition + AI collaboration**, not just syntax. Gen Z 
 
 ## 💎 Key Insight
 
-**Your unfair advantage:** Codédex teaches coding. PlacementPro teaches **getting a job** — with the same addictive, gamified experience. This is the "next level" after Codédex: from learning to code → to landing an offer.
+**Your unfair advantage:** Codédex teaches coding. BountyCode teaches **getting a job** — with the same addictive, gamified experience. This is the "next level" after Codédex: from learning to code → to landing an offer.
 
 **You're 80% there. The last 20% is community culture and making it genuinely fun.**

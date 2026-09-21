@@ -1,0 +1,25 @@
+{
+ "oracle_entries": 28,
+ "servable_coding_scanned": 5595,
+ "states": {
+  "no_independent_source": 5593,
+  "confirmed": 1,
+  "mismatch": 1
+ },
+ "confirmed": [
+  {
+   "id": "faang-longest-substring",
+   "title": "Longest Substring Without Repeating Characters",
+   "detail": "oracle_agreement:longest-substring-without-repeating-characters:4/4"
+  }
+ ],
+ "mismatches_served": [
+  {
+   "id": "q_03133",
+   "title": "Group Anagrams",
+   "trust": "verified",
+   "detail": "oracle_disagreement:group-anagrams:MISMATCH exp='[[\"ate\",\"eat\",\"tea\"],[\"bat\"],[\"nat\",\"tan\"]]' got='[[eat,tea,ate],[tan,nat],[bat]]'"
+  }
+ ],
+ "rule": "mismatch on served content contradicts independent ground truth; no_source is a coverage gap, not a failure"
+}

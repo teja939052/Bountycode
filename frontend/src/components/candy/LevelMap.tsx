@@ -9,7 +9,7 @@ export interface LevelNode {
   level: number;
   status: LevelStatus;
   title?: string;
-  xp?: number;
+  diamonds?: number;
   stars?: number;
   color?: CandyColor;
   icon?: ReactNode;

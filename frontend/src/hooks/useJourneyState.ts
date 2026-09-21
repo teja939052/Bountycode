@@ -14,7 +14,8 @@ export interface JourneyLevel {
   status: "completed" | "current" | "unlocked" | "locked";
   mastery: number;
   attempts: number;
-  xp: number;
+  diamonds: number;
+  recovered?: boolean;
 }
 
 export interface JourneyTown {
@@ -34,6 +35,7 @@ export interface JourneyWorld {
   theme: string;
   status: "completed" | "active" | "locked";
   towns: JourneyTown[];
+  adventure_name?: string;
 }
 
 export interface CharacterPosition {
@@ -51,11 +53,24 @@ export interface JourneyCharacter {
 }
 
 export interface JourneyStats {
-  xp: number;
+  diamonds: number;
   level: number;
   coins: number;
   streak: number;
   badges_count: number;
+}
+
+export interface JourneyCompany {
+  target: string;
+  target_role: string;
+  role_path: string;
+  company_track: string;
+}
+
+export interface JourneyReadiness {
+  interview_readiness: number;
+  oa_readiness: number;
+  mastered_count: number;
 }
 
 export interface JourneyState {
@@ -63,6 +78,9 @@ export interface JourneyState {
   worlds: JourneyWorld[];
   today: Record<string, unknown> | null;
   stats: JourneyStats;
+  company?: JourneyCompany;
+  readiness?: JourneyReadiness;
+  priority?: Record<string, unknown>;
 }
 
 export function useJourneyState() {

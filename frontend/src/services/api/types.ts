@@ -14,7 +14,7 @@ export interface AuthUser {
   role?: string;
   onboarding?: Record<string, unknown>;
   usage?: UsageStats;
-  xp?: number;
+  diamonds?: number;
   level?: number;
   streak?: number;
   college?: string;
@@ -31,8 +31,6 @@ export interface UsageStats {
   resumes_limit?: number | string;
   aptitude_used?: number;
   aptitude_limit?: number | string;
-  cover_letters_used?: number;
-  cover_letters_limit?: number | string;
   company_mocks_used?: number;
   company_mocks_limit?: number | string;
   predictions_used?: number;
@@ -389,20 +387,32 @@ export interface CouponValidation {
 }
 
 export interface GamificationProfile {
-  xp?: number;
+  diamonds?: number;
   level?: number;
   streak?: number;
   longest_streak?: number;
   xp_to_next?: number;
   xp_for_current?: number;
+  xp_into_level?: number;
+  xp_level_span?: number;
   today_xp?: number;
   total_solved?: number;
   ranking?: number;
   badges?: Badge[];
+  badges_details?: Badge[];
   streak_freezes?: number;
   coins?: number;
   title?: string;
   title_emoji?: string;
+  color?: { from: string; to: string; label: string; glow: string };
+  role?: string;
+  badge_priority?: string[];
+  champion_title?: string;
+  daily_goal_count?: number;
+  daily_goal_target?: number;
+  daily_goal_completed?: boolean;
+  boss_level?: number;
+  stars_total?: number;
   [key: string]: unknown;
 }
 
@@ -419,7 +429,7 @@ export interface Badge {
 
 export interface TowerData {
   level: number;
-  xp: number;
+  diamonds: number;
   xp_to_next: number;
   tower_level: number;
   bosses_beaten: number;
@@ -452,13 +462,23 @@ export interface Challenge {
 }
 
 export interface LeaderboardEntry {
-  rank: number;
+  rank?: number;
   user_id: string;
   name?: string;
-  xp?: number;
+  diamonds?: number;
   level?: number;
+  title?: string;
+  title_emoji?: string;
+  rank_title?: string;
+  rank_emoji?: string;
+  rank_tier?: number;
+  period_xp?: number;
+  timeframe?: string;
+  color?: { from: string; to: string; label: string; color: string };
   streak?: number;
   avatar?: string;
+  badges_count?: number;
+  [key: string]: unknown;
 }
 
 export interface SkillNode {
@@ -467,7 +487,7 @@ export interface SkillNode {
   description?: string;
   level: number;
   max_level: number;
-  xp: number;
+  diamonds: number;
   xp_to_next?: number;
   prerequisites?: string[];
   category?: string;
@@ -475,7 +495,7 @@ export interface SkillNode {
 
 export interface StartupState {
   level: number;
-  xp: number;
+  diamonds: number;
   streak: number;
   streak_freezes: number;
   streak_protected: boolean;
@@ -610,7 +630,7 @@ export interface UserProfileStats {
   name: string;
   email?: string;
   level?: number;
-  xp?: number;
+  diamonds?: number;
   streak?: number;
   total_solved?: number;
   plan?: string;

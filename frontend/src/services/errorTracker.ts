@@ -31,23 +31,8 @@ function truncate(str, max) {
   return str.length > max ? str.slice(0, max) : str;
 }
 
-async function reportToBackend(entry) {
+async function reportToBackend(_entry) {
   if (!IS_BROWSER) return;
-  try {
-    await fetch(`${API_BASE}/api/v1/debug/log`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        message: truncate(entry.message, 2000),
-        stack: truncate(entry.stack, 8000),
-        url: truncate(entry.url || window.location.href, 500),
-        component: truncate(entry.component, 200),
-        level: entry.level || "error",
-        user_agent: truncate(navigator.userAgent, 500),
-      }),
-      keepalive: true,
-    }).catch(() => {});
-  } catch {}
 }
 
 function cleanStack(stack) {

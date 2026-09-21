@@ -3,7 +3,7 @@ Company Directory + Placement/Internship Calendar (2026-2027).
 
 Serves the curated dataset of 140+ companies with, for each:
   * what they ask, * how the interview goes (process), * what to focus on,
-  * and how to prepare using PlacementPro (our features).
+  * and how to prepare using BountyCode (our features).
 Plus a month-by-month 2026-2027 calendar of drives, internship windows,
 exams and hackathons.
 """

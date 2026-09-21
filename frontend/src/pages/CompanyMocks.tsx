@@ -236,7 +236,6 @@ export default function CompanyMocks() {
 
           <div className="flex gap-3">
             <Link to="/company-mocks" className="flex-1 btn-secondary text-center">Back to Tests</Link>
-            <Link to="/predictor" className="flex-1 btn-primary text-center">View Full Predictor</Link>
           </div>
         </div>
       </div>

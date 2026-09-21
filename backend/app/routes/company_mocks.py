@@ -3,15 +3,17 @@ Company-Specific Mock Portals — Real interview simulation for specific compani
 Each company has its own format, difficulty, and focus areas.
 """
 from datetime import datetime, timezone, timedelta
+import random
 from fastapi import APIRouter, Depends, HTTPException
 from typing import Optional
 from bson import ObjectId
 from app.middleware.auth import get_current_user
 from app.database import (
-    curated_questions_collection, solved_problems_collection,
-    company_mock_tests_collection
+    solved_problems_collection,
+    company_mock_tests_collection,
+    get_db,
 )
-from app.services.ai import chat_completion, parse_json
+from app.services.ai_core import chat_completion, parse_json
 
 router = APIRouter(prefix="/api/v1/company-mocks", tags=["company-mocks"])
 
@@ -213,83 +215,68 @@ COMPANY_MOCK_CONFIGS = {
             "Ask thoughtful questions about the team",
         ],
     },
+    # TCS NQT — two-stage structure (Foundation + Advanced). Fixed duplicate
+    # `tcs` keys (the second silently overwrote the first); this is now a
+    # single accurate "pattern-relevant" config mirroring TCS_NQT_STRUCTURE in
+    # routes/oa.py (per public exam-pattern analysis, not exact verified counts).
     "tcs": {
-        "name": "TCS NQT Mock",
-        "description": "TCS National Qualifier Test preparation",
+        "name": "TCS NQT Simulation",
+        "description": "TCS National Qualifier Test — two-stage simulation (Foundation aptitude + Advanced programming). Pattern-relevant.",
         "rounds": [
             {
-                "name": "Aptitude Section",
+                "name": "Foundation: Numerical Ability",
                 "type": "aptitude",
-                "questions": 30,
-                "time_minutes": 30,
+                "questions": 21,
+                "time_minutes": 40,
                 "difficulty": "easy",
-                "focus": ["Quantitative", "Logical", "Verbal"],
+                "focus": ["Percentages", "Time & Work", "Profit/Loss", "Averages", "Probability"],
                 "format": "Multiple choice questions",
             },
             {
-                "name": "Coding Section",
+                "name": "Foundation: Reasoning Ability",
+                "type": "logical",
+                "questions": 25,
+                "time_minutes": 50,
+                "difficulty": "easy",
+                "focus": ["Number Series", "Coding-Decoding", "Blood Relations", "Direction Sense"],
+                "format": "Multiple choice questions",
+            },
+            {
+                "name": "Foundation: Verbal Ability",
+                "type": "verbal",
+                "questions": 20,
+                "time_minutes": 30,
+                "difficulty": "easy",
+                "focus": ["Sentence Completion", "Grammar", "Comprehension"],
+                "format": "Multiple choice questions",
+            },
+            {
+                "name": "Advanced: Programming Logic (MCQ)",
+                "type": "cs_fundamentals",
+                "questions": 10,
+                "time_minutes": 25,
+                "difficulty": "medium",
+                "focus": ["Output prediction", "Pointers/data structures", "Debugging"],
+                "format": "Multiple choice questions",
+            },
+            {
+                "name": "Advanced: Coding",
                 "type": "coding",
                 "questions": 2,
-                "time_minutes": 45,
-                "difficulty": "easy",
+                "time_minutes": 60,
+                "difficulty": "medium",
                 "focus": ["Arrays", "Strings", "Basic Logic"],
                 "format": "Two coding problems",
             },
-            {
-                "name": "English Section",
-                "type": "verbal",
-                "questions": 20,
-                "time_minutes": 15,
-                "difficulty": "easy",
-                "focus": ["Grammar", "Vocabulary", "Comprehension"],
-                "format": "Multiple choice questions",
-            },
         ],
-        "total_time_minutes": 90,
+        "total_time_minutes": 190,
         "passing_score": 60,
+        "provenance": "pattern-relevant",
         "interview_tips": [
-            "Focus on speed - time management is crucial",
-            "Practice basic coding patterns",
-    ],
-    },
-    "tcs": {
-        "name": "TCS NQT Mock",
-        "description": "TCS National Qualifier Test preparation",
-        "rounds": [
-            {
-                "name": "Aptitude Section",
-                "type": "aptitude",
-                "questions": 30,
-                "time_minutes": 30,
-                "difficulty": "easy",
-                "focus": ["Quantitative", "Logical", "Verbal"],
-                "format": "Multiple choice questions",
-            },
-            {
-                "name": "Coding Section",
-                "type": "coding",
-                "questions": 2,
-                "time_minutes": 45,
-                "difficulty": "easy",
-                "focus": ["Arrays", "Strings", "Basic Logic"],
-                "format": "Two coding problems",
-            },
-            {
-                "name": "English Section",
-                "type": "verbal",
-                "questions": 20,
-                "time_minutes": 15,
-                "difficulty": "easy",
-                "focus": ["Grammar", "Vocabulary", "Comprehension"],
-                "format": "Multiple choice questions",
-            },
-        ],
-        "total_time_minutes": 90,
-        "passing_score": 60,
-        "interview_tips": [
-            "Focus on speed - time management is crucial",
-            "Practice basic coding patterns",
-            "Review aptitude formulas",
+            "No negative marking in the real NQT — never leave a question unanswered",
+            "Foundation sections are time-boxed: move when the timer forces section end",
+            "Practice basic coding patterns — the Advanced coding round favors clean, working solutions",
+            "Review aptitude formulas (percentages, time & work) before attempting",
             "TCS values accuracy over complexity",
         ],
     },
@@ -332,8 +319,6 @@ async def start_company_mock(
     if not config:
         raise HTTPException(status_code=404, detail="Company not found")
 
-    collection = curated_questions_collection()
-
     # Determine which round to start
     if round_name:
         target_round = next((r for r in config["rounds"] if r["name"] == round_name), None)
@@ -347,29 +332,25 @@ async def start_company_mock(
     all_questions = []
     for round_config in rounds_to_run:
         if round_config["type"] == "coding":
-            query = {
+            # In-memory canonical store only (Residency Rule, AGENTS.md):
+            # verified company-tagged items first, general verified backfill.
+            # Never MongoDB, never legacy unverified content.
+            from app.services import question_store
+            bank = question_store.company_verified_bank(company_id)
+            tagged_ids = {q.get("id") for q in bank["items"]}
+            pool = question_store.find({
                 "type": "coding",
                 "difficulty": round_config["difficulty"],
                 "topic": {"$in": round_config["focus"]},
-            }
-            pipeline = [
-                {"$match": query},
-                {"$sample": {"size": round_config["questions"]}},
-                {"$project": {
-                    "question_title": 1,
-                    "statement": 1,
-                    "difficulty": 1,
-                    "topics": 1,
-                    "company": 1,
-                    "visible_test_cases": 1,
-                    "constraints": 1,
-                    "examples": 1,
-                    "hints": 1,
-                }}
-            ]
-            async for doc in collection.aggregate(pipeline):
-                doc["id"] = str(doc.pop("_id"))
+            }).only_verified().to_list()
+            pool.sort(key=lambda q: (0 if q.get("id") in tagged_ids else 1,))
+            for q in random.sample(pool, min(round_config["questions"], len(pool))):
+                doc = question_store.get_question_for_serving(q.get("id")) or dict(q)
+                doc["id"] = q.get("id")
                 doc["round"] = round_config["name"]
+                # Compat keys matching the legacy projection shape.
+                doc.setdefault("topics", [doc.get("topic", "General")])
+                doc.setdefault("company", company_id)
                 all_questions.append(doc)
 
     # Create mock test session
@@ -388,7 +369,6 @@ async def start_company_mock(
         "total_score": 0,
     }
 
-    from app.database import get_db
     db = get_db()
     result = await db["company_mock_tests"].insert_one(session)
     session_id = str(result.inserted_id)
@@ -406,7 +386,6 @@ async def start_company_mock(
 @router.get("/{session_id}/status")
 async def get_mock_status(session_id: str, user=Depends(get_current_user)):
     """Get current mock test status."""
-    from app.database import get_db
     db = get_db()
 
     try:
@@ -436,7 +415,6 @@ async def get_mock_status(session_id: str, user=Depends(get_current_user)):
 @router.get("/{session_id}/results")
 async def get_mock_results(session_id: str, user=Depends(get_current_user)):
     """Get complete mock test results."""
-    from app.database import get_db
     db = get_db()
 
     try:

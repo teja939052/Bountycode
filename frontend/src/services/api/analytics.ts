@@ -40,8 +40,8 @@ export const analyticsApi = {
   transferAttempted(lessonId: string) {
     return this.track("transfer_attempted", { lesson_id: lessonId });
   },
-  masteryAchieved(lessonId: string, worldId: string, xp: number) {
-    return this.track("mastery_achieved", { lesson_id: lessonId, world_id: worldId, xp });
+  masteryAchieved(lessonId: string, worldId: string, diamonds: number) {
+    return this.track("mastery_achieved", { lesson_id: lessonId, world_id: worldId, diamonds });
   },
   bossStarted(lessonId: string) {
     return this.track("boss_started", { lesson_id: lessonId });

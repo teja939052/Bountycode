@@ -22,8 +22,20 @@ export default function TopicProblems() {
   const { topic } = useParams();
   const navigate = useNavigate();
   const { user } = useAuthStore();
-  const [problems, setProblems] = useState([]);
-  const [topicData, setTopicData] = useState(null);
+  const [problems, setProblems] = useState<Array<{
+    id: string;
+    question_title?: string;
+    question?: string;
+    difficulty: string;
+    companies?: string[];
+    company?: string[];
+    topics?: string[];
+    solved?: boolean;
+  }>>([]);
+  const [topicData, setTopicData] = useState<{
+    total?: number;
+    solved_count?: number;
+  } | null>(null);
   const [loading, setLoading] = useState(true);
   const [consoleOpen, setConsoleOpen] = useState(true);
   const reduced = useReducedMotion();

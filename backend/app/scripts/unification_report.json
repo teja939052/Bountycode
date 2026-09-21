@@ -1,0 +1,80 @@
+{
+  "total_loaded": 19136,
+  "total_retained": 14320,
+  "total_quarantined": 4816,
+  "duplicates_removed": 4816,
+  "source_counts": {
+    "questions_bank.json": 6379,
+    "verified_placement_questions.json": 254,
+    "sql_practice_bank.json": 54,
+    "interview_practice_bank.json": 100,
+    "india_placement_depth.json": 85,
+    "system_design_bank.json": 12,
+    "promoted_questions.json": 21,
+    "leetcode_problems_seed.json": 45,
+    "striver_a2z_600.json": 600,
+    "tcs_nqt_questions.json": 450,
+    "infosys_questions.json": 340,
+    "legacy_enriched_coding.json": 2879,
+    "llm_draft_checked.json": 7917
+  },
+  "final_distribution": {
+    "by_type": {
+      "coding": 10958,
+      "aptitude": 1024,
+      "logical": 796,
+      "verbal": 344,
+      "cs_fundamentals": 193,
+      "sql": 884,
+      "interview": 100,
+      "system_design": 12,
+      "cs": 9
+    },
+    "by_topic": {
+      "arrays": 2013,
+      "Arrays": 1018,
+      "sql": 884,
+      "aptitude": 877,
+      "Trees": 857,
+      "Graphs": 832,
+      "Strings": 826,
+      "logical": 736,
+      "Dynamic Programming": 722,
+      "strings": 680,
+      "Stack": 573,
+      "math": 415,
+      "dynamic-programming": 405,
+      "verbal": 295,
+      "greedy": 271
+    },
+    "by_difficulty": {
+      "easy": 5686,
+      "medium": 7019,
+      "hard": 1615
+    },
+    "by_trust": {
+      "main": 2992,
+      "verified": 505,
+      "promoted": 21,
+      "unverified": 3449,
+      "auto_checked": 7353
+    },
+    "by_company": {
+      "Google": 1610,
+      "Microsoft": 1453,
+      "Amazon": 1437,
+      "Meta": 1155,
+      "Apple": 1148,
+      "Netflix": 1057,
+      "Uber": 901,
+      "Adobe": 839,
+      "tcs": 396,
+      "infosys": 392,
+      "wipro": 371,
+      "accenture": 358,
+      "cognizant": 318,
+      "Facebook": 129,
+      "amazon": 93
+    }
+  }
+}

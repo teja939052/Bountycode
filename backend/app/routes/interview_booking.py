@@ -5,7 +5,7 @@ from pydantic import BaseModel, Field
 from bson import ObjectId
 from app.database import interview_bookings_collection, interviews_collection, users_collection
 from app.middleware.auth import get_current_user
-from app.services.ai import evaluate_answer
+from app.services.ai_interview import evaluate_answer
 from app.services.gamification import record_practice
 from app.config import get_settings
 from app.services.usage import can_use_feature, mark_feature_used
@@ -387,7 +387,9 @@ async def submit_booking_answers(booking_id: str, req: SubmitAnswersRequest, use
     await interviews_collection.insert_one(interview_doc)
 
     gamification_result = await record_practice(
-        user["id"], "interview_booking", overall_score,
+        user["id"], "interview", overall_score,
+        {"booking_id": booking_id, "company": req.company if hasattr(req, "company") else ""},
+        role=user.get("role") or user.get("target_role") or "sde",
     )
 
     badges = []
@@ -637,7 +639,7 @@ async def get_booking_stats(user=Depends(get_current_user)):
 
 
 def _generate_booking_questions(booking_type: str, company: Optional[str], role: Optional[str]) -> list:
-    from app.services.ai import generate_interview_question
+    from app.services.ai_interview import generate_interview_question
     import asyncio
 
     questions = []

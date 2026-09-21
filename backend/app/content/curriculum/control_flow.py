@@ -134,7 +134,7 @@ CONTROL_FLOW_SLICE = {
                     {"input": [60], "expected": "D"},
                     {"input": [0], "expected": "F"},
                 ],
-                "xp": 50,
+                "diamonds": 50,
                 "scaffolded_hints": [
                     {"level": 1, "text": "Start with the highest threshold: if score >= 90: return 'A'"},
                     {"level": 2, "text": "Chain downward with elif for 80, 70, 60, then a final else for 'F'."},
@@ -158,7 +158,7 @@ CONTROL_FLOW_SLICE = {
                     {"input": [2], "expected": [2, 1]},
                     {"input": [0], "expected": []},
                 ],
-                "xp": 55,
+                "diamonds": 55,
                 "scaffolded_hints": [
                     {"level": 1, "text": "Use result = [] and a while n > 0: loop."},
                     {"level": 2, "text": "Inside the loop: append n, then do n -= 1 to move toward the stop condition."},
@@ -182,7 +182,7 @@ CONTROL_FLOW_SLICE = {
                     {"input": [4], "expected": ["*", "**", "***", "****"]},
                     {"input": [2], "expected": ["*", "**"]},
                 ],
-                "xp": 60,
+                "diamonds": 60,
                 "scaffolded_hints": [
                     {"level": 1, "text": "Loop with for i in range(1, n + 1):"},
                     {"level": 2, "text": "Build each row with '*' * i and append it to a list."},
@@ -222,7 +222,7 @@ CONTROL_FLOW_SLICE = {
             {"input": [3], "expected": ["1", "2", "Fizz"]},
         ],
         "time_limit_minutes": 8,
-        "xp": 120,
+        "diamonds": 120,
         "scaffolded_hints": [
             {"level": 1, "text": "Use result = [] and for i in range(1, n + 1):"},
             {"level": 2, "text": "Check the combined condition i % 15 == 0 FIRST, then % 3, then % 5."},
@@ -266,7 +266,7 @@ CONTROL_FLOW_SLICE = {
             },
         ],
         "mastery_threshold": 70,
-        "xp": 180,
+        "diamonds": 180,
     },
     "srs_enrollment": {
         "concept_id": "programming_fundamentals:control_flow",

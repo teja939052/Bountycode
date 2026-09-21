@@ -1,0 +1,3935 @@
+{
+ "seed": 20260912,
+ "per_family": 30,
+ "families": {
+  "average": {
+   "sampled": 30,
+   "pass": 30,
+   "fix": 0,
+   "reject": 0,
+   "issues": {}
+  },
+  "bigo": {
+   "sampled": 30,
+   "pass": 30,
+   "fix": 0,
+   "reject": 0,
+   "issues": {}
+  },
+  "bin_dec": {
+   "sampled": 30,
+   "pass": 30,
+   "fix": 0,
+   "reject": 0,
+   "issues": {}
+  },
+  "bitwise": {
+   "sampled": 30,
+   "pass": 30,
+   "fix": 0,
+   "reject": 0,
+   "issues": {}
+  },
+  "ci": {
+   "sampled": 30,
+   "pass": 30,
+   "fix": 0,
+   "reject": 0,
+   "issues": {}
+  },
+  "code_output": {
+   "sampled": 30,
+   "pass": 30,
+   "fix": 0,
+   "reject": 0,
+   "issues": {}
+  },
+  "direction": {
+   "sampled": 30,
+   "pass": 30,
+   "fix": 0,
+   "reject": 0,
+   "issues": {}
+  },
+  "hex_dec": {
+   "sampled": 30,
+   "pass": 30,
+   "fix": 0,
+   "reject": 0,
+   "issues": {}
+  },
+  "letter_series": {
+   "sampled": 30,
+   "pass": 30,
+   "fix": 0,
+   "reject": 0,
+   "issues": {}
+  },
+  "mixed_series": {
+   "sampled": 30,
+   "pass": 30,
+   "fix": 0,
+   "reject": 0,
+   "issues": {}
+  },
+  "npr": {
+   "sampled": 30,
+   "pass": 30,
+   "fix": 0,
+   "reject": 0,
+   "issues": {}
+  },
+  "num_series": {
+   "sampled": 30,
+   "pass": 30,
+   "fix": 0,
+   "reject": 0,
+   "issues": {}
+  },
+  "odd_one": {
+   "sampled": 30,
+   "pass": 30,
+   "fix": 0,
+   "reject": 0,
+   "issues": {}
+  },
+  "pct_change": {
+   "sampled": 30,
+   "pass": 30,
+   "fix": 0,
+   "reject": 0,
+   "issues": {}
+  },
+  "pct_of": {
+   "sampled": 30,
+   "pass": 30,
+   "fix": 0,
+   "reject": 0,
+   "issues": {}
+  },
+  "prob": {
+   "sampled": 30,
+   "pass": 30,
+   "fix": 0,
+   "reject": 0,
+   "issues": {}
+  },
+  "profit_loss": {
+   "sampled": 30,
+   "pass": 30,
+   "fix": 0,
+   "reject": 0,
+   "issues": {}
+  },
+  "ratio": {
+   "sampled": 30,
+   "pass": 30,
+   "fix": 0,
+   "reject": 0,
+   "issues": {}
+  },
+  "si": {
+   "sampled": 30,
+   "pass": 30,
+   "fix": 0,
+   "reject": 0,
+   "issues": {}
+  },
+  "std": {
+   "sampled": 30,
+   "pass": 30,
+   "fix": 0,
+   "reject": 0,
+   "issues": {}
+  },
+  "time_work": {
+   "sampled": 30,
+   "pass": 30,
+   "fix": 0,
+   "reject": 0,
+   "issues": {}
+  }
+ },
+ "items": [
+  {
+   "id": "parametric-001765",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001856",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001857",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001812",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001908",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001891",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001942",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001827",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001747",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001866",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001791",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001956",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001931",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001714",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001818",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001904",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001780",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001841",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001789",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001710",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001750",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001919",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001888",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001994",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001782",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001879",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001872",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001869",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001947",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001953",
+   "family": "average",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006056",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006144",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006011",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006019",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006041",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006166",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006172",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006149",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006165",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006032",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006018",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006094",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006089",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006021",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006160",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006152",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006040",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006105",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006080",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006155",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006111",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006007",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006026",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006153",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006182",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006003",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006065",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006104",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006134",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006061",
+   "family": "bigo",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005277",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005294",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005370",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005320",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005484",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005500",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005259",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005392",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005303",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005235",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005454",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005366",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005368",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005441",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005394",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005299",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005210",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005385",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005378",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005472",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005238",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005256",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005393",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005357",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005283",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005223",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005468",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005248",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005381",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005411",
+   "family": "bin_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005820",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005772",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005729",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005928",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005835",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005833",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005823",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005853",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005947",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005945",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005913",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005864",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005978",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005704",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005957",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005818",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005893",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005716",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005898",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005726",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005989",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005869",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005964",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005882",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005775",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005760",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005858",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005901",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005838",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005773",
+   "family": "bitwise",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003156",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003213",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003249",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003163",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003178",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003150",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003207",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003251",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003113",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003114",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003187",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003148",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003119",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003240",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003198",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003288",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003220",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003175",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003133",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003221",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003252",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003125",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003138",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003284",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003182",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003292",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003273",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003262",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003224",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003143",
+   "family": "ci",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006430",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006431",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006343",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006259",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006380",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006476",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006587",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006275",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006489",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006375",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006582",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006267",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006485",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006384",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006432",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006362",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006207",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006478",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006366",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006537",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006460",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006514",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006245",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006559",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006471",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006494",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006449",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006527",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006204",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-006455",
+   "family": "code_output",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004757",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004748",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004743",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004823",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004804",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004892",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004848",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004752",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004715",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004857",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004784",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004841",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004898",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004764",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004893",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004797",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004818",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004871",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004887",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004831",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004773",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004803",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004785",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004756",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004708",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004716",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004853",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004808",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004776",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004819",
+   "family": "direction",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005563",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005629",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005604",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005505",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005653",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005595",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005620",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005644",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005675",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005606",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005520",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005687",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005603",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005698",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005594",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005666",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005633",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005671",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005549",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005621",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005627",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005559",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005649",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005659",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005562",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005662",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005682",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005544",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005674",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005614",
+   "family": "hex_dec",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004677",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004646",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004650",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004588",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004595",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004666",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004665",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004535",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004656",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004511",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004530",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004600",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004599",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004508",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004594",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004598",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004616",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004515",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004510",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004678",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004605",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004527",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004658",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004610",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004572",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004544",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004682",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004592",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004507",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004667",
+   "family": "letter_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004957",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005134",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004925",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005165",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005138",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005084",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004936",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005171",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004989",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005121",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005180",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004964",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004937",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004971",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005015",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005150",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004950",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005179",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005188",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005096",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005160",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005083",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005061",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005131",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005043",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005056",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005070",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004985",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004914",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-005055",
+   "family": "mixed_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003432",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003311",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003386",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003413",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003379",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003353",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003391",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003452",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003436",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003333",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003401",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003499",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003482",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003361",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003407",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003467",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003389",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003500",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003348",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003387",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003481",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003424",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003477",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003494",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003363",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003456",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003340",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003365",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003372",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003465",
+   "family": "npr",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004143",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003712",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004184",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003809",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003791",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003783",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003766",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003820",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003994",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004122",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004080",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004052",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003936",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003825",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003836",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003876",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004092",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003944",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004132",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004140",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004083",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004053",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004156",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004063",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004042",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003829",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003895",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004050",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003898",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003926",
+   "family": "num_series",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004234",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004368",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004434",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004227",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004366",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004410",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004353",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004216",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004361",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004213",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004382",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004449",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004242",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004245",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004453",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004265",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004360",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004491",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004422",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004478",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004263",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004364",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004259",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004240",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004440",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004281",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004288",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004298",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004236",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-004404",
+   "family": "odd_one",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000595",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000787",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000550",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000593",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000796",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000724",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000558",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000722",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000650",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000567",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000573",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000535",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000790",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000721",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000552",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000689",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000589",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000773",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000748",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000633",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000703",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000766",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000715",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000723",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000582",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000712",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000572",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000747",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000576",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000521",
+   "family": "pct_change",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000472",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000330",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000458",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000395",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000342",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000369",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000060",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000497",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000319",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000155",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000429",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000129",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000229",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000437",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000118",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000463",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000474",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000110",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000038",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000200",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000379",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000378",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000108",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000416",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000177",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000002",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000292",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000410",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000372",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000217",
+   "family": "pct_of",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003603",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003661",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003678",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003528",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003633",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003545",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003568",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003567",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003675",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003610",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003579",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003546",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003623",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003669",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003580",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003505",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003687",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003614",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003556",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003662",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003628",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003570",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003537",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003694",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003594",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003688",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003555",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003577",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003553",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003602",
+   "family": "prob",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001106",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001221",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001191",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001049",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001071",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000846",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000838",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001194",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001036",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000915",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001220",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001291",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001137",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001105",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000831",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001148",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000844",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001070",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000823",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001214",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000988",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000960",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001239",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001273",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001295",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001120",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000923",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001156",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000922",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-000896",
+   "family": "profit_loss",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001434",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001318",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001507",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001388",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001530",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001679",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001628",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001479",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001332",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001457",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001613",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001516",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001353",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001489",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001553",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001518",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001360",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001654",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001576",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001375",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001677",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001535",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001356",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001655",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001647",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001592",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001594",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001548",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001347",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-001531",
+   "family": "ratio",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002964",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002955",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002869",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002916",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002915",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002953",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002817",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002873",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002811",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002961",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003089",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003099",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003092",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003027",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002894",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003049",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003075",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002891",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002895",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003000",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002988",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002863",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002881",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003032",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003047",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-003004",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002914",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002808",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002845",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002965",
+   "family": "si",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002369",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002197",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002342",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002089",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002287",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002359",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002017",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002113",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002348",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002180",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002116",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002220",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002285",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002262",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002032",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002256",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002081",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002253",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002167",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002374",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002038",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002346",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002217",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002357",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002265",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002390",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002157",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002269",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002260",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002356",
+   "family": "std",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002509",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002758",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002409",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002469",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002490",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002465",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002403",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002522",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002434",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002590",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002418",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002730",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002489",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002550",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002415",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002755",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002785",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002726",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002656",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002411",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002546",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002532",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002516",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002515",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002608",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002449",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002634",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002652",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002738",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  },
+  {
+   "id": "parametric-002464",
+   "family": "time_work",
+   "verdict": "PASS",
+   "reasons": []
+  }
+ ]
+}

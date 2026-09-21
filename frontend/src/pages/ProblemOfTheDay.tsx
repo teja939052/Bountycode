@@ -190,13 +190,13 @@ export default function ProblemOfTheDay() {
               <div className="flex-1">
                 <div className="font-bold text-orange-700 dark:text-orange-400 text-sm uppercase tracking-wide">{league.name} League</div>
                 <div className="text-xs text-brand-muted dark:text-gray-400">
-                  {challenge.already_completed ? "Completed today!" : `+${challenge.streak_bonus || 50} XP bonus for daily streak`}
+                  {challenge.already_completed ? "Completed today!" : `+${challenge.streak_bonus || 50} Diamonds bonus for daily streak`}
                 </div>
               </div>
               {!challenge.already_completed && (
                 <div className="hidden sm:flex items-center gap-1 rounded-lg bg-orange-50 dark:bg-orange-900/20 px-3 py-1.5">
                   <Zap size={14} className="text-orange-500" />
-                  <span className="text-xs font-bold text-orange-700 dark:text-orange-400">+{challenge.xp_reward || 50} XP</span>
+                  <span className="text-xs font-bold text-orange-700 dark:text-orange-400">+{challenge.xp_reward || 50} Diamonds</span>
                 </div>
               )}
             </div>
@@ -428,7 +428,7 @@ export default function ProblemOfTheDay() {
                     <div className="grid grid-cols-3 gap-4">
                       <div className="text-center p-3 bg-primary-50 dark:bg-primary-900/20 rounded-lg">
                         <div className="text-xl font-bold text-primary-600">+{result.xp_gained || 0}</div>
-                        <div className="text-[10px] text-brand-muted uppercase tracking-wide mt-1">XP Gained</div>
+                        <div className="text-[10px] text-brand-muted uppercase tracking-wide mt-1">Diamonds Gained</div>
                       </div>
                       <div className="text-center p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
                         <div className="text-xl font-bold text-green-600">+{result.streak_bonus || 0}</div>
@@ -501,7 +501,7 @@ export default function ProblemOfTheDay() {
                   <Trophy size={28} className="text-primary-600" />
                 </div>
                 <h3 className="font-bold text-text-primary dark:text-white mb-1">Daily Bonus</h3>
-                <p className="text-xs text-brand-muted dark:text-gray-400 mb-4">Solve today for +{challenge.streak_bonus || 50} bonus XP</p>
+                <p className="text-xs text-brand-muted dark:text-gray-400 mb-4">Solve today for +{challenge.streak_bonus || 50} bonus Diamonds</p>
                 <button
                   onClick={() => setActiveTab("code")}
                   className="w-full py-2.5 bg-primary-600 hover:bg-primary-700 text-white text-sm font-bold rounded-xl transition-colors shadow-sm"
@@ -521,7 +521,7 @@ export default function ProblemOfTheDay() {
             <div className="space-y-3">
               {[
                 { label: "Streak", value: `${user?.streak || 0} days`, color: "text-orange-600" },
-                { label: "XP", value: `${user?.xp || 0}`, color: "text-primary-600" },
+                { label: "Diamonds", value: `${user?.diamonds || 0}`, color: "text-primary-600" },
                 { label: "Level", value: `${user?.level || 1}`, color: "text-amber-600" },
               ].map((stat) => (
                 <div key={stat.label} className="flex items-center justify-between p-2.5 rounded-lg bg-surface-card/50 border border-brand-primary/5 dark:border-gray-700">

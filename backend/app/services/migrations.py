@@ -9,7 +9,7 @@ from app.database import get_client
 
 
 # Track which migrations have run
-_MIGRATIONS_KEY = "placementpro:migratiosno"
+_MIGRATIONS_KEY = "BountyCode:migratiosno"
 _MIGRATION_VERSION = "2026.08.18_sde_journey"
 
 
@@ -40,8 +40,9 @@ async def _create_sparse_uid_index():
     - No E11000 duplicate key error occurs on startup
     """
     from app.database import get_client
+    from app.config import get_settings
     client = get_client()
-    db = client.get_database("placementpro")
+    db = client.get_database(get_settings().DATABASE_NAME)
 
     # Create sparse unique index on uid
     # Sparse: only index documents where uid field exists AND is not null

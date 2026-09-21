@@ -39,7 +39,7 @@ jobs:
         run: python -m compileall app/ -q
 
       - name: Run tests
-        run: python -m pytest tests/test_core.py tests/test_integration.py -v --tb=short
+        run: python -m pytest tests/ -v --tb=short
 
       - name: Check alembic migrations
         run: |

@@ -28,7 +28,6 @@ import {
   QuestionBank,
   PracticeMode,
   MyProgress,
-  CompanyMocks,
   AlumniExperiences,
   PlacementDrives,
   CareerProfile,
@@ -40,7 +39,6 @@ import {
   MonthlyContests,
   IndianPlacement,
   StudyTimer,
-  StudyGoals,
   ProblemOfTheDay,
   Tower,
   DailyChallenge,
@@ -63,14 +61,24 @@ import {
   Practice,
   Concepts,
   LessonPage,
+  LessonPlayer,
   LearningPaths,
   CompanyTracks,
   PrepHub,
   Terms,
   Privacy,
   FreeTrial,
-  StudentDashboard,
   PwaSetup,
+  TcsNqtSimulation,
+  ExamMemorySubmission,
+  AdminExamReview,
+  ReadinessHeatmap,
+  EvidenceDashboard,
+  Target,
+  Skills,
+  Profile,
+  Mission,
+  MissionResult,
 } from "../pages/lazy";
 import ProtectedRoute from "../components/ProtectedRoute";
 import OnboardingGuard from "../components/OnboardingGuard";
@@ -128,7 +136,15 @@ export function AnimatedRoutes() {
           </ProtectedRoute>
         }
       >
-        <Route path="/dashboard" element={<StudentDashboard />} />
+        <Route path="/dashboard" element={<Navigate to="/journey" replace />} />
+        {/* V3 unified: Journey / Practice / Target / Skills / Profile */}
+        <Route path="/target" element={<Target />} />
+        <Route path="/skills" element={<Skills />} />
+        <Route path="/profile" element={<Profile />} />
+        {/* V4 internal wiring: universal Mission Shell (roads, not nav) */}
+        <Route path="/mission/:missionId" element={<Mission />} />
+        <Route path="/mission/:missionId/result" element={<MissionResult />} />
+        <Route path="/me" element={<Navigate to="/profile" replace />} />
         <Route
           path="/journey"
           element={
@@ -142,6 +158,14 @@ export function AnimatedRoutes() {
           element={
             <FeatureErrorBoundary featureName="Lesson">
               <LessonPage />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/learn/lesson/:slug"
+          element={
+            <FeatureErrorBoundary featureName="Lesson">
+              <LessonPlayer />
             </FeatureErrorBoundary>
           }
         />
@@ -161,15 +185,17 @@ export function AnimatedRoutes() {
             </FeatureErrorBoundary>
           }
         />
-        <Route path="/student-dashboard" element={<Navigate to="/dashboard" replace />} />
-        <Route path="/my-dashboard" element={<Navigate to="/dashboard" replace />} />
+        <Route path="/student-dashboard" element={<Navigate to="/journey" replace />} />
+        <Route path="/my-dashboard" element={<Navigate to="/journey" replace />} />
         <Route path="/home" element={<Navigate to="/journey" replace />} />
         <Route path="/hub" element={<Navigate to="/journey" replace />} />
         <Route path="/compete" element={<Navigate to="/mock-oa" replace />} />
         <Route path="/career" element={<Navigate to="/career-profile" replace />} />
-        <Route path="/prepare" element={<Navigate to="/prep-hub" replace />} />
+        <Route path="/prepare" element={<Navigate to="/journey" replace />} />
+        <Route path="/company-mocks" element={<Navigate to="/mock-oa" replace />} />
+        <Route path="/company-mocks/:testId" element={<Navigate to="/mock-oa" replace />} />
         <Route path="/practice" element={<Practice />} />
-        <Route path="/analytics" element={<Navigate to="/dashboard" replace />} />
+        <Route path="/analytics" element={<Navigate to="/skills" replace />} />
         <Route path="/learning" element={<Navigate to="/learn" replace />} />
         <Route path="/learning-paths" element={<LearningPaths />} />
         <Route path="/company-tracks" element={<CompanyTracks />} />
@@ -278,6 +304,30 @@ export function AnimatedRoutes() {
           }
         />
         <Route
+          path="/tcs-nqt"
+          element={
+            <FeatureErrorBoundary featureName="Assessment">
+              <TcsNqtSimulation />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/exam-memory/submit"
+          element={
+            <FeatureErrorBoundary featureName="Exam Memory">
+              <ExamMemorySubmission />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
+          path="/admin/exam-review"
+          element={
+            <FeatureErrorBoundary featureName="Exam Memory Review">
+              <AdminExamReview />
+            </FeatureErrorBoundary>
+          }
+        />
+        <Route
           path="/coding"
           element={
             <FeatureErrorBoundary featureName="Assessment">
@@ -309,24 +359,6 @@ export function AnimatedRoutes() {
             </FeatureErrorBoundary>
           }
         />
-        <Route
-          path="/company-mocks"
-          element={
-            <FeatureErrorBoundary featureName="Assessment">
-              <CompanyMocks />
-            </FeatureErrorBoundary>
-          }
-        />
-        <Route
-          path="/company-mocks/:testId"
-          element={
-            <FeatureErrorBoundary featureName="Assessment">
-              <CompanyMocks />
-            </FeatureErrorBoundary>
-          }
-        />
-
-        {/* System Design & Company Prep */}
         <Route
           path="/system-design"
           element={
@@ -390,6 +422,26 @@ export function AnimatedRoutes() {
             <ProtectedRoute>
               <FeatureErrorBoundary featureName="Skill Graph">
                 <SkillGraph />
+              </FeatureErrorBoundary>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/readiness"
+          element={
+            <ProtectedRoute>
+              <FeatureErrorBoundary featureName="Readiness">
+                <ReadinessHeatmap />
+              </FeatureErrorBoundary>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/evidence"
+          element={
+            <ProtectedRoute>
+              <FeatureErrorBoundary featureName="Evidence Dashboard">
+                <EvidenceDashboard />
               </FeatureErrorBoundary>
             </ProtectedRoute>
           }
@@ -508,14 +560,6 @@ export function AnimatedRoutes() {
           element={
             <FeatureErrorBoundary featureName="Study Tools">
               <StudyTimer />
-            </FeatureErrorBoundary>
-          }
-        />
-        <Route
-          path="/study-goals"
-          element={
-            <FeatureErrorBoundary featureName="Study Tools">
-              <StudyGoals />
             </FeatureErrorBoundary>
           }
         />

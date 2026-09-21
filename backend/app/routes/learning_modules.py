@@ -4,6 +4,7 @@ from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from bson import ObjectId
+from bson import ObjectId as BSONObjectId
 
 from app.middleware.auth import get_current_user
 from app.database import (
@@ -333,7 +334,6 @@ async def get_recommendations(
         query["company_tags"] = {"$regex": target_company, "$options": "i"}
 
     if completed_modules:
-        from bson import ObjectId as BSONObjectId
         oid_list = []
         for mid in completed_modules:
             try:

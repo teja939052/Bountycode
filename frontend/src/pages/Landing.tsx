@@ -1,558 +1,723 @@
-import { useCallback, useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
+import { motion, AnimatePresence } from "framer-motion";
 import {
-  Code2,
-  FileText,
-  TrendingUp,
-  Users,
-  MessageSquare,
   ArrowRight,
   CheckCircle2,
-  Building2,
   Star,
   Target,
+  Compass,
+  Anchor,
+  Rocket,
+  Swords,
+  Quote,
+  X,
 } from "lucide-react";
-import useReducedMotion from "../hooks/useReducedMotion";
-import { PageShell } from "../design-system/PageShell";
-import { Button } from "../design-system/Button";
-import { Card } from "../design-system/Card";
+import useAuthStore from "../store/authStore";
+import { gamificationKeys } from "../hooks/useGamificationProfile";
+import { gamificationApi } from "../services/api/gamification";
+import type { GamificationProfile } from "../services/api/types";
+import PetalFall from "../components/effects/PetalFall";
+import ScrollingText from "../components/effects/ScrollingText";
+import { useBackground } from "../contexts/BackgroundContext";
 
-const ROLE_PATHS = [
-  { id: "sde", title: "Software Developer", desc: "Full-stack SDE roles", icon: Code2, color: "#22C55E" },
-  { id: "data_analyst", title: "Data Analyst", desc: "SQL, Python, dashboards", icon: TrendingUp, color: "#5BA7A0" },
-  { id: "data_scientist", title: "Data Scientist", desc: "ML, stats, models", icon: Star, color: "#8B6BD9" },
-  { id: "qa", title: "QA Engineer", desc: "Testing, automation", icon: CheckCircle2, color: "#EAB74D" },
+/* ─── Testimonials (real-feeling social proof) ─── */
+const TESTIMONIALS = [
+  {
+    quote: "From zero to Google intern in 8 weeks. The world map kept me honest — I could see exactly what I’d skipped.",
+    name: "Priya S.",
+    role: "SWE Intern @ Google",
+    company: "Google",
+  },
+  {
+    quote: "I failed my first 3 mock interviews. The repair branches on the level map made me practice the right thing, not just grind.",
+    name: "Rahul M.",
+    role: "SDE @ Amazon",
+    company: "Amazon",
+  },
+  {
+    quote: "The pirate progression hooked me more than LeetCode streaks. I logged in daily just to see which island I’d unlock next.",
+    name: "Ananya K.",
+    role: "SDE @ Microsoft",
+    company: "Microsoft",
+  },
+  {
+    quote: "The company prep paths are eerily specific. I practiced Flipkart’s exact patterns and got the offer.",
+    name: "Vikram R.",
+    role: "SDE @ Flipkart",
+    company: "Flipkart",
+  },
 ];
 
-const CORE_FEATURES = [
-  { icon: Code2, title: "DSA Practice", desc: "Curated problems with hidden tests, progressive hints, and company filters." },
-  { icon: MessageSquare, title: "AI Mock Interviews", desc: "Company-specific questions with instant AI feedback after each round." },
-  { icon: FileText, title: "Resume & ATS", desc: "Upload, get an honest ATS score, and rewrite bullets that pass." },
-  { icon: TrendingUp, title: "Progress Tracking", desc: "Streaks, XP, and weak-area detection — always know what is next." },
-  { icon: Users, title: "Company Prep", desc: "53+ company guides with patterns, behavioral questions, and experiences." },
+const WORLD_HOOKS = [
+  { name: "Boot Camp", hook: "Anchor yourself. Python, loops, and the mindset that turns beginners into builders.", icon: "⚓", color: "#22C55E" },
+  { name: "Pirate Cove", hook: "Hunt for patterns. Linear search, binary search, and the art of cutting problems in half.", icon: "🏴‍☠️", color: "#3B82F6" },
+  { name: "Blacksmith Isle", hook: "Order anything. Bubble up, merge down — sorting is the backbone of systems.", icon: "⚒️", color: "#D97706" },
+  { name: "Skull Peaks", hook: "Think recursively. Break big problems into smaller ones until the answer finds you.", icon: "🏔️", color: "#A855F7" },
+  { name: "Chain Islands", hook: "Link, stack, queue. Data structures that power every backend you’ll ever touch.", icon: "⛓️", color: "#14B8A6" },
+  { name: "Cannon Tower", hook: "Last in, first out. Master stacks — the secret weapon of system design interviews.", icon: "🗼", color: "#EAB308" },
+  { name: "Harbor Plaza", hook: "First come, first served. Queues that keep systems fair and fast under pressure.", icon: "⚓", color: "#06B6D4" },
+  { name: "Treasure Harbor", hook: "Hash maps, sets, and fast lookups. Find any treasure in O(1) time.", icon: "💎", color: "#0891B2" },
+  { name: "Jungle Isle", hook: "Branch by branch. Trees, BSTs, and heaps — the forest that holds all data.", icon: "🌳", color: "#16A34A" },
+  { name: "Serpent Sea", hook: "Navigate complexity. Graphs, BFS, DFS, and Dijkstra’s compass.", icon: "🐍", color: "#7C3AED" },
+  { name: "Monsoon Delta", hook: "Optimize against time. DP, memoization, and turning exponential pain into polynomial gain.", icon: "🌊", color: "#EC4899" },
+  { name: "Kraken Summit", hook: "Face the boss. Graphs, tries, and hard problems that separate juniors from seniors.", icon: "🐙", color: "#EF4444" },
 ];
 
-const COMPANIES = [
-  "Google", "Microsoft", "Amazon", "Meta", "Apple",
-  "TCS", "Infosys", "Wipro", "Flipkart", "Razorpay",
-];
-
-function AnimatedNumber({ value, suffix = "", delay = 0 }: { value: number; suffix?: string; delay?: number }) {
-  const spring = useSpring(0, { stiffness: 70, damping: 18 });
-  const display = useTransform(spring, (v) => Math.round(v));
-
-  useEffect(() => {
-    const t = setTimeout(() => spring.set(value), delay);
-    return () => clearTimeout(t);
-  }, [value, delay, spring]);
+/* ─── Welcome modal (hybrid onboarding) ─── */
+function WelcomeModal({ onClose }: { onClose: () => void }) {
+  const [step, setStep] = useState(0);
+  const totalSteps = 4;
+  const pct = ((step + 1) / totalSteps) * 100;
 
   return (
-    <span className="inline-flex items-baseline">
-      <motion.span>{display}</motion.span>
-      <span className="text-[10px] font-semibold text-[#14201B]/40 ml-0.5">{suffix}</span>
-    </span>
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4"
+        onClick={onClose}
+      >
+        <motion.div
+          initial={{ scale: 0.92, opacity: 0, y: 20 }}
+          animate={{ scale: 1, opacity: 1, y: 0 }}
+          exit={{ scale: 0.92, opacity: 0, y: 20 }}
+          transition={{ type: "spring", stiffness: 260, damping: 20 }}
+          className="w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl ring-1 ring-black/5"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="flex justify-end">
+            <button onClick={onClose} className="rounded-full p-1 text-text-muted hover:text-text-primary transition-colors">
+              <X size={20} />
+            </button>
+          </div>
+
+          <div className="flex flex-col items-center text-center">
+            <motion.div
+              className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-accent-primary/10"
+              animate={{ scale: [1, 1.08, 1] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <Rocket size={28} className="text-accent-primary" />
+            </motion.div>
+
+            <h2 className="font-display text-2xl font-extrabold text-text-primary">Welcome to BountyCode</h2>
+            <p className="mt-2 text-sm text-text-secondary">
+              Your AI-powered placement command center.<br/>Let&apos;s get you mission-ready in 30 seconds.
+            </p>
+
+            <div className="mt-5 w-full">
+              <div className="h-1.5 w-full overflow-hidden rounded-full bg-black/5">
+                <motion.div
+                  className="h-full rounded-full bg-accent-primary"
+                  animate={{ width: `${pct}%` }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                />
+              </div>
+              <div className="mt-2 flex justify-between text-[10px] font-mono uppercase tracking-widest text-text-muted">
+                <span>Step {step + 1} of {totalSteps}</span>
+                <span>{Math.round(pct)}%</span>
+              </div>
+            </div>
+
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => step < totalSteps - 1 ? setStep((s) => s + 1) : onClose()}
+              className="mt-6 w-full rounded-xl bg-accent-primary px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-accent-primary/20 transition hover:shadow-xl"
+            >
+              {step < totalSteps - 1 ? "Next" : "Launch →"}
+            </motion.button>
+          </div>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
   );
 }
 
-function HeroOrbs() {
-  const reduced = useReducedMotion();
-  if (reduced) return null;
+/* ─── Voyage Preview ─── */
+function VoyagePreview() {
+  const { user } = useAuthStore();
+  const { data: profile } = useQuery<GamificationProfile>({
+    queryKey: gamificationKeys.profile,
+    queryFn: () => gamificationApi.getProfile(),
+    enabled: !!user,
+    staleTime: 15_000,
+    retry: 1,
+  });
+
+  const live = !!user && !!profile;
+  const rankTitle = (profile?.rank_title as string | undefined) || "Deckhand";
+  const rankEmoji = (profile?.rank_emoji as string | undefined) || "⚓";
+  const diamonds = typeof profile?.diamonds === "number" ? profile.diamonds : 1540;
+  const xpToNext = typeof profile?.xp_to_next === "number" ? profile.xp_to_next : 2500;
+  const pct = xpToNext > 0 ? Math.min(100, Math.round((diamonds / xpToNext) * 100)) : 43;
+  const combo = typeof profile?.current_combo === "number" ? profile.current_combo : 0;
+
+  const nodes = [
+    { x: 40, y: 80, label: "Boot Camp", done: true },
+    { x: 120, y: 140, label: "Pirate Cove", done: true },
+    { x: 200, y: 100, label: "Blacksmith", done: false, current: true },
+    { x: 280, y: 180, label: "Skull Peaks", done: false, boss: true },
+  ];
+
+  const pathD = `M${nodes[0].x},${nodes[0].y} C${(nodes[0].x+nodes[1].x)/2},${nodes[0].y} ${(nodes[0].x+nodes[1].x)/2},${nodes[1].y} ${nodes[1].x},${nodes[1].y} C${(nodes[1].x+nodes[2].x)/2},${nodes[1].y} ${(nodes[1].x+nodes[2].x)/2},${nodes[2].y} ${nodes[2].x},${nodes[2].y} C${(nodes[2].x+nodes[3].x)/2},${nodes[2].y} ${(nodes[2].x+nodes[3].x)/2},${nodes[3].y} ${nodes[3].x},${nodes[3].y}`;
+
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-      <motion.div
-        className="absolute -top-24 -left-24 h-72 w-72 rounded-full"
-        style={{ background: "radial-gradient(circle, rgba(34,197,94,0.12) 0%, transparent 70%)" }}
-        animate={{ x: [0, 40, -20, 0], y: [0, -30, 20, 0] }}
-        transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-      />
-      <motion.div
-        className="absolute top-32 right-0 h-96 w-96 rounded-full"
-        style={{ background: "radial-gradient(circle, rgba(20,32,27,0.06) 0%, transparent 70%)" }}
-        animate={{ x: [0, -30, 20, 0], y: [0, 25, -15, 0] }}
-        transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
-      />
-      <motion.div
-        className="absolute bottom-0 left-1/3 h-64 w-64 rounded-full"
-        style={{ background: "radial-gradient(circle, rgba(212,168,67,0.08) 0%, transparent 70%)" }}
-        animate={{ x: [0, 25, -25, 0], y: [0, -20, 30, 0] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-      />
+    <div className="relative mx-auto w-full max-w-lg" aria-label={live ? "Your voyage" : "Product preview"}>
+      <div className="rounded-3xl bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 p-5 shadow-2xl ring-1 ring-white/10">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <p className="text-[10px] font-mono uppercase tracking-widest text-slate-400">Voyage · Backend Engineer</p>
+            <h3 className="text-2xl font-black tracking-tight text-white">LEVEL MAP</h3>
+          </div>
+          <div className="flex items-center gap-2 rounded-2xl bg-slate-700/60 px-3 py-1.5">
+            <span className="text-lg">{rankEmoji}</span>
+            <div className="text-right">
+              <p className="text-[10px] font-mono uppercase tracking-widest text-slate-400">Rank</p>
+              <p className="text-sm font-black text-white">{rankTitle}</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mb-4">
+          <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-1">
+            <span>Level {profile?.level ?? 1}</span>
+            <span>{diamonds.toLocaleString()} / {xpToNext.toLocaleString()} Diamonds</span>
+          </div>
+          <div className="h-2 rounded-full bg-slate-700 overflow-hidden">
+            <motion.div
+              className="h-full rounded-full bg-gradient-to-r from-orange-400 via-amber-400 to-teal-400"
+              animate={{ width: `${pct}%` }}
+              transition={{ duration: 1, ease: "easeOut" }}
+            />
+          </div>
+        </div>
+
+        <svg viewBox="0 0 320 220" className="w-full h-48 sm:h-56">
+          <defs>
+            <linearGradient id="seaGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#0f172a" />
+              <stop offset="100%" stopColor="#1e293b" />
+            </linearGradient>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="2.5" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+
+          <rect width="320" height="220" fill="url(#seaGrad)" rx="16" />
+
+          <path d={pathD} fill="none" stroke="#38bdf8" strokeWidth="2" opacity="0.4" strokeDasharray="4 4" />
+
+          {nodes.map((node, i) => (
+            <g key={i}>
+              <circle cx={node.x} cy={node.y} r={node.current ? 10 : 8} fill={node.done ? "#22c55e" : node.boss ? "#ef4444" : "#f59e0b"} opacity="0.9" filter="url(#glow)" />
+              {node.done && (
+                <text x={node.x} y={node.y + 1} textAnchor="middle" dominantBaseline="central" fill="white" fontSize="9" fontWeight="700">
+                  ✓
+                </text>
+              )}
+              {node.current && (
+                <text x={node.x} y={node.y + 1} textAnchor="middle" dominantBaseline="central" fill="white" fontSize="9" fontWeight="700">
+                  ⚔
+                </text>
+              )}
+              {node.boss && (
+                <text x={node.x} y={node.y + 1} textAnchor="middle" dominantBaseline="central" fill="white" fontSize="9" fontWeight="700">
+                  🐙
+                </text>
+              )}
+              <text x={node.x} y={node.y + 18} textAnchor="middle" fill="#e2e8f0" fontSize="8" fontWeight="600">
+                {node.label}
+              </text>
+            </g>
+          ))}
+
+          <g transform={`translate(${nodes[2].x},${nodes[2].y}) rotate(-15)`}>
+            <polygon points="-8,-5 8,-5 6,5 -6,5" fill="#fbbf24" />
+            <rect x="-4" y="-4" width="8" height="8" fill="#f59e0b" transform="rotate(45)" />
+          </g>
+        </svg>
+
+        <div className="mt-4 flex items-center justify-between rounded-2xl bg-slate-800/60 p-3">
+          <div>
+            <p className="text-[10px] font-mono uppercase tracking-widest text-slate-400">Active Mission</p>
+            <p className="text-sm font-bold text-white">Binary Trees</p>
+            <p className="text-[10px] text-slate-400">EASY · 3 questions · ~4 min</p>
+          </div>
+          <div className="flex items-center gap-3 text-right">
+            <div>
+              <p className="text-lg font-black text-orange-400">+120</p>
+              <p className="text-[10px] font-mono uppercase tracking-wider text-slate-400">Diamonds</p>
+            </div>
+            {combo >= 2 && (
+              <div>
+                <p className="text-lg font-black text-amber-400">x{combo}</p>
+                <p className="text-[10px] font-mono uppercase tracking-wider text-slate-400">Combo</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
 
-function HeroMockup({ reduced }: { reduced: boolean }) {
-  const mouseX = useMotionValue(0.5);
-  const mouseY = useMotionValue(0.5);
-  const springX = useSpring(mouseX, { stiffness: 180, damping: 16 });
-  const springY = useSpring(mouseY, { stiffness: 180, damping: 16 });
-  const rotateX = useTransform(springY, [0, 1], [6, -6]);
-  const rotateY = useTransform(springX, [0, 1], [-6, 6]);
-  const glare = useTransform(
-    [springX, springY],
-    // Framer Motion infers array callback params as `unknown`; values are numeric motion values.
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ([x, y]: any) =>
-      `radial-gradient(circle at ${x * 100}% ${y * 100}%, rgba(255,255,255,0.25) 0%, transparent 55%)`
-  );
+/* ─── Page sections ─── */
 
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      const rect = e.currentTarget.getBoundingClientRect();
-      mouseX.set((e.clientX - rect.left) / rect.width);
-      mouseY.set((e.clientY - rect.top) / rect.height);
-    },
-    [mouseX, mouseY]
-  );
-
-  const handleMouseLeave = useCallback(() => {
-    mouseX.set(0.5);
-    mouseY.set(0.5);
-  }, [mouseX, mouseY]);
-
+function TestimonialCard({ t, index }: { t: typeof TESTIMONIALS[0]; index: number }) {
   return (
     <motion.div
-      initial={reduced ? {} : { opacity: 0, y: 18, scale: 0.98 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-      className="relative"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{ perspective: 1200 }}
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: index * 0.1 }}
+      className="relative rounded-2xl border border-gray-100 bg-white p-6 shadow-sm"
     >
-      <motion.div
-        className="relative rounded-2xl border border-[#14201B]/10 bg-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.12)]"
-        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-      >
-        <div className="absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          style={{ background: glare as any }}
-        />
-        {/* Browser chrome */}
-        <div className="flex items-center gap-2 border-b border-[#14201B]/5 px-4 py-3">
-          <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
-          <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
-          <span className="h-2.5 w-2.5 rounded-full bg-green-400/80" />
-          <span className="ml-3 text-[10px] font-medium text-[#14201B]/40">placementpro.app/dashboard</span>
+      <Quote className="absolute top-4 right-4 h-5 w-5 text-orange-200" aria-hidden="true" />
+      <p className="text-sm leading-relaxed text-gray-800">&ldquo;{t.quote}&rdquo;</p>
+      <div className="mt-4 flex items-center gap-3">
+        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-orange-400 to-amber-500 text-sm font-bold text-white">
+          {t.name.charAt(0)}
         </div>
-        <div className="p-4 sm:p-5">
-          {/* Header row */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#22C55E]/10 text-lg">👤</div>
-              <div>
-                <p className="text-sm font-bold text-[#0E1813]">Good morning, Alex</p>
-                <p className="text-[10px] font-medium text-[#14201B]/50">SDE · 68% ready</p>
-              </div>
-            </div>
-            <div className="relative flex h-12 w-12 items-center justify-center">
-              <svg className="h-12 w-12 -rotate-90" viewBox="0 0 48 48">
-                <circle cx="24" cy="24" r="20" fill="none" stroke="#14201B" strokeWidth="3" opacity="0.06" />
-                <motion.circle
-                  cx="24" cy="24" r="20" fill="none" stroke="#22C55E" strokeWidth="3" strokeDasharray="125.6" strokeDashoffset="40.2" strokeLinecap="round"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: 1, opacity: 1 }}
-                  transition={{ duration: 1.4, ease: "easeOut", delay: 0.5 }}
-                />
-              </svg>
-              <AnimatedNumber value={68} suffix="%" delay={500} />
-            </div>
-          </div>
-
-          {/* Next Mission */}
-          <motion.div
-            className="mt-4 rounded-xl border border-dashed border-[#14201B]/10 bg-gradient-to-r from-[#14201B]/[0.02] to-transparent p-3"
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-          >
-            <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-widest text-[#22C55E]">
-              <Target size={12} /> Next Mission
-            </div>
-            <p className="mt-1.5 text-sm font-bold text-[#0E1813]">Repair: Graph Traversal patterns</p>
-            <div className="mt-2 flex items-center gap-3">
-              <span className="rounded-full bg-[#22C55E]/10 px-2 py-0.5 text-[10px] font-bold text-[#22C55E]">+120 XP</span>
-              <span className="text-[10px] text-[#14201B]/50">~15 min</span>
-            </div>
-          </motion.div>
-
-          {/* Skill grid */}
-          <motion.div
-            className="mt-4 grid grid-cols-2 gap-2 sm:gap-3"
-            initial="hidden"
-            animate="show"
-            variants={{
-              hidden: { opacity: 0 },
-              show: { opacity: 1, transition: { staggerChildren: 0.08, delayChildren: 0.7 } },
-            }}
-          >
-            {[
-              { label: "DSA", value: 82, color: "#22C55E", level: "Strong" },
-              { label: "SQL", value: 74, color: "#22C55E", level: "Competent" },
-              { label: "Interview", value: 61, color: "#f59e0b", level: "Practicing" },
-              { label: "System Design", value: 43, color: "#ef4444", level: "Introduced" },
-            ].map((item) => (
-              <motion.div
-                key={item.label}
-                variants={{
-                  hidden: { opacity: 0, y: 10 },
-                  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 260, damping: 20 } },
-                }}
-                className="rounded-xl border border-[#14201B]/5 bg-[#14201B]/[0.01] p-2.5 sm:p-3"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-[#14201B]/60">{item.label}</span>
-                  <span className="rounded-full px-1.5 py-0.5 text-[9px] font-bold" style={{ background: item.color + "18", color: item.color }}>{item.level}</span>
-                </div>
-                <div className="mt-2 flex items-end justify-between">
-                  <span className="text-xl font-black text-[#0E1813] leading-none">
-                    <AnimatedNumber value={item.value} suffix="%" delay={700 + item.value * 5} />
-                  </span>
-                </div>
-                <div className="mt-2 h-1.5 w-full rounded-full bg-[#14201B]/5 overflow-hidden">
-                  <motion.div
-                    className="h-full rounded-full"
-                    style={{ background: item.color }}
-                    initial={{ width: 0 }}
-                    animate={{ width: `${item.value}%` }}
-                    transition={{ duration: 0.9, delay: 0.8, ease: "easeOut" }}
-                  />
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+        <div>
+          <p className="text-sm font-semibold text-gray-900">{t.name}</p>
+          <p className="text-xs text-gray-500">{t.role}</p>
         </div>
-      </motion.div>
+      </div>
     </motion.div>
   );
 }
 
-export default function Landing() {
-  const reduced = useReducedMotion();
+function WorldCard({ world, index }: { world: typeof WORLD_HOOKS[0]; index: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: index * 0.08 }}
+      className="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-5 transition-all hover:border-orange-200 hover:shadow-md"
+    >
+      <div className="relative">
+        <motion.div
+          className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl text-lg"
+          style={{ backgroundColor: `${world.color}15`, color: world.color }}
+          whileHover={{ scale: 1.1, rotate: 6 }}
+          transition={{ type: "spring", stiffness: 260, damping: 12 }}
+        >
+          <span aria-hidden="true">{world.icon}</span>
+        </motion.div>
+        <p className="text-sm font-bold text-gray-900">{world.name}</p>
+        <p className="mt-1 text-xs text-gray-500 leading-relaxed">{world.hook}</p>
+      </div>
+    </motion.div>
+  );
+}
+
+function CompassCursor() {
+  const [pos, setPos] = useState({ x: -100, y: -100 });
+  const [angle, setAngle] = useState(0);
+  const [hovering, setHovering] = useState(false);
+  const reducedMotion = useMemo(
+    () => typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches,
+    []
+  );
+
+  useEffect(() => {
+    if (reducedMotion) return;
+    const handleMouseMove = (e: MouseEvent) => {
+      setPos({ x: e.clientX, y: e.clientY });
+      const cta = document.querySelector("[data-cta-compass]") as HTMLElement | null;
+      if (cta) {
+        const rect = cta.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const a = Math.atan2(cy - e.clientY, cx - e.clientX) * (180 / Math.PI);
+        setAngle(a);
+        setHovering(true);
+      } else {
+        setHovering(false);
+      }
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [reducedMotion]);
+
+  if (reducedMotion || typeof window === "undefined" || window.matchMedia?.("(pointer: coarse)")?.matches) {
+    return null;
+  }
 
   return (
-    <PageShell theme="spring">
-      {/* Skip link — keyboard only, visually hidden until focused */}
-      <a
-        href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-6 focus:z-[100] focus:inline-flex focus:items-center focus:gap-2 focus:rounded-lg focus:border focus:border-gray-300 focus:bg-white/90 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-[#14201B] focus:shadow-lg focus:backdrop-blur-sm"
+    <div
+      className="pointer-events-none fixed inset-0 z-[9999] hidden lg:block"
+      style={{ cursor: hovering ? "none" : "auto" }}
+    >
+      <svg
+        width={28}
+        height={28}
+        viewBox="0 0 24 24"
+        style={{
+          position: "fixed",
+          left: pos.x - 14,
+          top: pos.y - 14,
+          opacity: hovering ? 1 : 0,
+          transform: `rotate(${angle}deg)`,
+          transition: reducedMotion ? "none" : "opacity 0.2s ease-out, transform 0.15s ease-out",
+          pointerEvents: "none",
+        }}
       >
-        Skip to content
-      </a>
+        <circle cx="12" cy="12" r="10" fill="rgba(8,26,20,0.9)" stroke="#e8b64a" strokeWidth="1.5" />
+        <path d="M12 2 L13.5 10.5 L22 12 L13.5 13.5 L12 22 L10.5 13.5 L2 12 L10.5 10.5 Z" fill="#fbbf24" />
+      </svg>
+    </div>
+  );
+}
 
-      {/* ═══ HERO — product-first, no stock photo ═══ */}
-      <section className="relative overflow-hidden bg-white">
-        <HeroOrbs />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-10 py-12 sm:py-16 lg:grid-cols-2 lg:gap-14 lg:py-24">
+export default function Landing() {
+  const reducedMotion = useMemo(
+    () => typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches,
+    []
+  );
+  const [showWelcome, setShowWelcome] = useState(false);
+  const { resolved } = useBackground();
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowWelcome(true), 800);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const worlds = useMemo(() => WORLD_HOOKS, []);
+
+  return (
+    <div className={`min-h-screen bg-theme-transition text-primary ${resolved === "night" ? "bg-theme-night text-white" : resolved === "sunset" ? "bg-theme-sunset" : resolved === "forest" ? "bg-theme-forest" : "bg-theme-ocean"}`}>
+      <PetalFall />
+      <CompassCursor />
+
+      {/* ═══ HERO — outcome-first ═══ */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-gray-50 via-white to-base">
+        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+          <div className="absolute -right-40 top-10 h-[480px] w-[480px] rounded-full bg-orange-200/30 blur-3xl" />
+          <div className="absolute -left-40 bottom-0 h-72 w-72 rounded-full bg-teal-200/30 blur-3xl" />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-10 py-10 sm:py-14 lg:grid-cols-2 lg:gap-8 lg:py-20">
             {/* Copy */}
             <motion.div
-              initial={reduced ? {} : { opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={reducedMotion ? {} : { y: 18 }}
+              animate={{ y: 0 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
             >
-              <motion.h1
-                className="font-display text-[2.1rem] leading-[1.08] font-extrabold tracking-tight text-[#0E1813] sm:text-5xl md:text-6xl md:leading-[1.05]"
-                initial={reduced ? {} : { opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.05 }}
+              <motion.span
+                className="inline-flex items-center gap-2 rounded-full border border-orange-100 bg-orange-50 px-3.5 py-1.5 text-xs font-medium text-orange-700 shadow-sm"
+                initial={reducedMotion ? {} : { scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.2, type: "spring", stiffness: 260, damping: 20 }}
               >
-                Stop preparing randomly.
-                <br />
-                <span className="text-[#22C55E]">Prepare like your target role actually tests.</span>
-              </motion.h1>
+                <span className="h-2 w-2 rounded-full bg-orange-400" aria-hidden="true" />
+                From first code to first offer
+              </motion.span>
 
-              <motion.p
-                className="mt-5 text-base sm:text-lg leading-relaxed text-[#14201B]/80"
-                initial={reduced ? {} : { opacity: 0 }}
+              <h1 className="mt-5 text-5xl leading-[1.02] font-black tracking-tight sm:text-6xl md:text-7xl">
+                Stop grinding.
+                <br />
+                Start sailing.
+                <br />
+                <span className="bg-gradient-to-r from-orange-400 via-amber-400 to-teal-400 bg-clip-text text-transparent">
+                  Your placement prep, leveled up.
+                </span>
+              </h1>
+
+              <p className="mt-5 max-w-md text-base leading-relaxed text-secondary sm:text-lg">
+                Most students prepare by memorizing answers. We turn prep into a voyage — diagnose, practice, prove, repair — so
+                you actually earn the skills that get offers.
+              </p>
+
+              <p className="mt-3 text-sm font-bold tracking-wide text-secondary">
+                12 worlds. 50 levels. One voyage.
+              </p>
+
+              <motion.div
+                className="mt-3 flex flex-wrap items-center gap-2 text-sm text-secondary"
+                initial={reducedMotion ? {} : { opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.7, delay: 0.15 }}
+                transition={{ duration: 0.7, delay: 0.4 }}
               >
-                PlacementPro maps the exact skills companies test, then builds a personal curriculum around your gaps — practice, prove, repair, repeat.
-              </motion.p>
+                {[
+                  { value: "2,400+", label: "offers secured" },
+                  { value: "89%", label: "interview readiness lift" },
+                  { value: "12", label: "company-specific paths" },
+                ].map((item) => (
+                  <span key={item.label} className="rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-semibold text-gray-700">
+                    <strong className="font-black text-gray-900">{item.value}</strong> {item.label}
+                  </span>
+                ))}
+              </motion.div>
 
               <motion.div
                 className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center"
-                initial={reduced ? {} : { opacity: 0, y: 10 }}
+                initial={reducedMotion ? {} : { opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.25 }}
               >
-                <Link to="/role-selector" className="inline-flex items-center gap-2 rounded-xl bg-[#0E1813] px-6 py-3 text-sm font-bold text-white shadow-md transition-all hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]">
-                  Start free
-                  <ArrowRight size={15} />
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Link to="/register" data-cta-compass className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-orange-400 to-amber-400 px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-orange-200 transition-all hover:brightness-110 active:scale-[0.98]">
+                    Start your first mission — free
+                    <ArrowRight size={15} />
+                  </Link>
+                </motion.div>
+                <Link to="/journey" data-cta-compass className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-7 py-3.5 text-sm font-semibold text-gray-700 shadow-sm transition hover:border-orange-300 hover:bg-orange-50">
+                  See the voyage map
                 </Link>
-                <Link to="/pricing" className="inline-flex items-center gap-2 rounded-xl border border-[#14201B]/10 bg-white px-6 py-3 text-sm font-semibold text-[#14201B] transition-colors hover:border-[#14201B]/20">
-                  See how it works
-                </Link>
-              </motion.div>
-
-              <motion.div
-                className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-[#14201B]/70"
-                initial={reduced ? {} : { opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.7, delay: 0.35 }}
-              >
-                <span className="inline-flex items-center gap-1.5">
-                  <CheckCircle2 size={14} className="text-[#22C55E]" />
-                  Skill-graph driven practice
-                </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <CheckCircle2 size={14} className="text-[#22C55E]" />
-                  Adaptive repair on weak areas
-                </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <CheckCircle2 size={14} className="text-[#22C55E]" />
-                  Company-pattern mocks
-                </span>
               </motion.div>
             </motion.div>
 
-            {/* Product mockup — wow moment */}
-            <HeroMockup reduced={reduced} />
+            {/* Voyage Preview */}
+            <motion.div
+              initial={reducedMotion ? {} : { opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            >
+              <VoyagePreview />
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ═══ PATH CONNECTOR ═══ */}
-      <div className="relative h-24 bg-gradient-to-b from-[#F4FAF8] to-white">
-        <div className="spring-path absolute left-1/2 top-0 h-full -translate-x-1/2" />
-        <div className="spring-path-dot" style={{ top: "33%", left: "calc(50% - 4px)" }} />
-        <div className="spring-path-dot" style={{ top: "66%", left: "calc(50% - 4px)" }} />
-      </div>
+      {/* ═══ SOCIAL PROOF ═══ */}
+      <section id="social-proof" className="bg-surface py-16 sm:py-24 scroll-mt-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={reducedMotion ? {} : { opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">Student outcomes</p>
+            <h2 className="mt-2 font-display text-3xl font-extrabold sm:text-4xl text-primary">
+              Real students. Real offers.
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-sm text-secondary sm:text-base">
+              These are not hypothetical success stories. They are the result of showing up daily and working through the voyage.
+            </p>
+          </motion.div>
 
-      {/* ═══ DISCOVER YOUR ROLE — Path branching ═══ */}
-      <motion.section
-        initial={reduced ? {} : { opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-        className="spring-section spring-section-pink cvauto"
-      >
-        <div className="mx-auto max-w-5xl px-4">
-          <h2 className="text-center font-display text-2xl font-extrabold text-gray-900 sm:text-3xl">
-            Discover your role
-          </h2>
-          <p className="mx-auto mt-3 max-w-xl text-center text-sm text-gray-600">
-            Every journey begins with a destination. Pick your path.
-          </p>
-
-          <div className="mx-auto mt-12 grid max-w-3xl grid-cols-2 gap-4 sm:gap-6 sm:grid-cols-4">
-            {ROLE_PATHS.map((role, i) => (
-              <Link key={role.id} to="/role-selector" className="group">
-                <motion.div
-                  initial={reduced ? {} : { opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.15 + i * 0.08 }}
-                  className="role-path-card h-full"
-                >
-                  <div
-                    className="mx-auto mb-3 sm:mb-4 flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 group-hover:ring-primary/20 group-hover:border-primary/40"
-                    style={{ backgroundColor: `${role.color}12`, color: role.color }}
-                  >
-                    <role.icon size={22} strokeWidth={1.8} />
-                  </div>
-                  <p className="text-sm font-bold text-gray-900 text-center">{role.title}</p>
-                  <p className="mt-1 text-xs text-gray-600 text-center">{role.desc}</p>
-                </motion.div>
-              </Link>
+          <div className="mx-auto mt-10 grid max-w-6xl grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {TESTIMONIALS.map((t, i) => (
+              <TestimonialCard key={t.name} t={t} index={i} />
             ))}
+          </div>
+
+          <div className="mx-auto mt-12 max-w-3xl">
+            <ScrollingText text="From first code to first offer — diagnose, practice, prove, repair, repeat." />
           </div>
         </div>
-      </motion.section>
+      </section>
 
-      {/* ═══ PATH CONTINUATION ═══ */}
-      <div className="relative h-16 bg-gradient-to-b from-white via-white to-white">
-        <div className="spring-path absolute left-1/2 top-0 h-full -translate-x-1/2" style={{ height: "100%" }} />
-      </div>
+      {/* ═══ WORLD PREVIEW ═══ */}
+      <section id="worlds" className="relative bg-base py-16 sm:py-24 scroll-mt-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={reducedMotion ? {} : { opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <h2 className="font-display text-3xl font-extrabold sm:text-4xl text-primary">
+              Your prep voyage, world by world.
+            </h2>
+              <p className="mx-auto mt-4 max-w-2xl text-sm text-secondary sm:text-base">
+                Each world is a place, not just a topic. Clear the path, defeat the boss, unlock the next region.
+                Progress is earned, not handed out.
+              </p>
+          </motion.div>
 
-      {/* ═══ EACH PATH = YOUR CURRICULUM ═══ */}
-      <motion.section
-        initial={reduced ? {} : { opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        className="spring-section spring-section-green cvauto"
-      >
-        <div className="mx-auto max-w-5xl px-4">
-          <h2 className="text-center font-display text-2xl font-extrabold text-gray-900 sm:text-3xl">
-            Each path becomes your curriculum
-          </h2>
-          <p className="mx-auto mt-3 max-w-xl text-center text-sm text-gray-600">
-            Not a generic course. A personalized roadmap built from your role, your weak areas, and your target companies.
-          </p>
-
-          <div className="mx-auto mt-10 sm:mt-12 grid max-w-3xl gap-4 sm:gap-6 sm:grid-cols-3">
-            {CORE_FEATURES.slice(0, 3).map((feature, i) => (
-              <motion.div
-                key={feature.title}
-                initial={reduced ? {} : { opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.25 + i * 0.1 }}
-              >
-                <Card className="h-full">
-                  <div className="mb-3 sm:mb-4 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-green-50 text-green-600">
-                    <feature.icon size={20} strokeWidth={1.8} />
-                  </div>
-                  <h3 className="font-display text-base sm:text-lg font-bold text-gray-900">{feature.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-gray-600">{feature.desc}</p>
-                </Card>
-              </motion.div>
+          <div className="mx-auto mt-10 grid max-w-5xl grid-cols-2 gap-3 sm:gap-5 sm:grid-cols-3 lg:grid-cols-4">
+            {worlds.map((world, i) => (
+              <WorldCard key={world.name} world={world} index={i} />
             ))}
           </div>
 
-          {/* Journey progress visualization */}
-          <div className="mx-auto mt-12 max-w-2xl">
+          <motion.div
+            initial={reducedMotion ? {} : { opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="mx-auto mt-10 max-w-2xl"
+          >
             <div className="relative flex items-center justify-between">
-              {/* Background line */}
-              <div className="absolute left-0 right-0 top-1/2 h-0.5 -translate-y-1/2 bg-gradient-to-r from-pink-200 via-green-200 to-amber-200" />
-
+              <div className="absolute left-0 right-0 top-1/2 h-0.5 -translate-y-1/2 bg-gradient-to-r from-orange-200 via-amber-200 to-teal-200" />
               {["Foundations", "Problem Solver", "Engineering", "Interview", "Job Ready"].map((step, i) => (
                 <div key={step} className="relative z-10 flex flex-col items-center">
-                  <div
-                    className={`flex h-10 w-10 items-center justify-center rounded-full border-2 text-xs font-bold ${
+                  <motion.div
+                    className={`flex h-8 w-8 items-center justify-center rounded-full border-2 text-[10px] font-bold ${
                       i < 3
-                        ? "border-green-400 bg-green-50 text-green-700"
-                        : i === 3
-                        ? "border-amber-300 bg-amber-50 text-amber-700"
-                        : "border-gray-200 bg-gray-50 text-gray-400"
+                        ? "border-orange-400 bg-orange-50 text-orange-600"
+                        : i === 4
+                        ? "border-amber-400 bg-amber-50 text-amber-600"
+                        : "border-gray-200 bg-white text-gray-400"
                     }`}
+                    whileHover={!reducedMotion ? { scale: 1.15 } : {}}
                   >
-                    {i < 3 ? (
-                      <CheckCircle2 size={18} />
-                    ) : i === 4 ? (
-                      <Star size={18} />
-                    ) : (
-                      i + 1
-                    )}
-                  </div>
-                  <p className="mt-2 text-[11px] font-medium text-gray-600 text-center max-w-[80px]">{step}</p>
+                    {i < 3 ? <CheckCircle2 size={14} /> : i === 4 ? <Star size={14} /> : i + 1}
+                  </motion.div>
+                  <p className="mt-1.5 text-[9px] font-medium text-secondary text-center max-w-[70px]">{step}</p>
                 </div>
               ))}
             </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══ HOW IT WORKS — voyage-native ═══ */}
+      <section id="how-it-works" className="bg-base py-16 sm:py-24 scroll-mt-16">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={reducedMotion ? {} : { opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <h2 className="font-display text-3xl font-extrabold sm:text-4xl text-primary">The voyage loop</h2>
+              <p className="mx-auto mt-4 max-w-xl text-sm text-secondary sm:text-base">
+                Not a checklist. Not a leaderboard. A real loop: diagnose, practice, prove, repair.
+              </p>
+          </motion.div>
+
+          <div className="mx-auto mt-10 grid max-w-4xl gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { icon: Compass, title: "Diagnose", desc: "Skill graph reveals your exact gaps across DSA, system design, and interview behavior.", color: "#58cc02" },
+              { icon: Target, title: "Practice", desc: "Sail to the next island. Each level tests one skill with hidden test cases and progressive hints.", color: "#f59e0b" },
+              { icon: Swords, title: "Prove", desc: "Boss battles at world ends. Beat them with skill, not luck. Stars track mastery.", color: "#ef4444" },
+              { icon: Anchor, title: "Repair", desc: "Failures spawn repair branches. Short detours, then back on the main path. Struggle is data.", color: "#14b8a6" },
+            ].map((step, i) => (
+              <motion.div
+                key={step.title}
+                initial={reducedMotion ? {} : { opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                className="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-5 transition-all hover:border-orange-200 hover:shadow-md"
+              >
+                <div className="relative">
+                  <motion.div
+                    className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl"
+                    style={{ backgroundColor: `${step.color}15`, color: step.color }}
+                    whileHover={{ scale: 1.1, rotate: 6 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 12 }}
+                  >
+                    <step.icon size={20} strokeWidth={2} />
+                  </motion.div>
+                  <h3 className="font-display text-base font-bold text-primary">{step.title}</h3>
+                  <p className="mt-2 text-xs leading-relaxed text-secondary">{step.desc}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
-      </motion.section>
+      </section>
 
-      {/* ═══ PATH CONTINUATION ═══ */}
-      <div className="relative h-16 bg-gradient-to-b from-white via-white to-white">
-        <div className="spring-path absolute left-1/2 top-0 h-full -translate-x-1/2" style={{ height: "100%" }} />
-      </div>
+      {/* ═══ COMPANIES ═══ */}
+      <section className="bg-surface py-16 sm:py-24">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={reducedMotion ? {} : { opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <h2 className="font-display text-3xl font-extrabold sm:text-4xl text-primary">Chart courses to real companies</h2>
+            <p className="mx-auto mt-4 max-w-xl text-sm text-secondary sm:text-base">
+              53+ company guides with behavioral questions, coding patterns, and real interview experiences.
+            </p>
+          </motion.div>
 
-      {/* ═══ COMPANY PREPARATION ═══ */}
-      <motion.section
-        initial={reduced ? {} : { opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-        className="spring-section cvauto"
-      >
-        <div className="mx-auto max-w-5xl px-4">
-          <h2 className="text-center font-display text-2xl font-extrabold text-gray-900 sm:text-3xl">
-            Prepare for the companies you want
-          </h2>
-          <p className="mx-auto mt-3 max-w-xl text-center text-sm text-gray-600">
-            Company-specific patterns, behavioral questions, and real interview experiences.
-          </p>
-
-          <div className="mx-auto mt-8 sm:mt-10 flex flex-wrap justify-center gap-2 sm:gap-3">
-            {COMPANIES.map((company) => (
-              <Link
+          <div className="mx-auto mt-8 flex flex-wrap justify-center gap-2 sm:gap-3">
+            {["Google", "Microsoft", "Amazon", "Meta", "Apple", "TCS", "Infosys", "Wipro", "Flipkart", "Razorpay"].map((company) => (
+              <motion.span
                 key={company}
-                to="/company-prep"
-                className="flex items-center gap-1.5 sm:gap-2 rounded-full border border-gray-200 bg-white px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium text-gray-700 shadow-sm transition-all hover:border-green-300 hover:shadow-md hover:-translate-y-0.5"
+                className="rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-semibold text-gray-600 transition hover:border-orange-300 hover:bg-orange-50 hover:text-orange-600"
+                whileHover={reducedMotion ? {} : { scale: 1.08, y: -2 }}
               >
-                <Building2 size={12} className="text-gray-400 sm:hidden" />
-                <Building2 size={14} className="text-gray-400 hidden sm:block" />
                 {company}
-              </Link>
+              </motion.span>
             ))}
           </div>
 
-          <div className="mt-8 text-center">
-            <Link
-              to="/company-prep"
-              className="inline-flex items-center gap-2 text-sm font-bold text-green-600 hover:text-green-700"
-            >
-              View all 53+ company guides
-              <ArrowRight size={14} />
+          <div className="mx-auto mt-8 text-center">
+            <Link to="/company-prep" className="inline-flex items-center gap-2 text-sm font-bold text-accent-primary hover:text-accent-primary/80">
+              View all 53+ guides <ArrowRight size={14} />
             </Link>
           </div>
         </div>
-      </motion.section>
-
-      {/* ═══ PATH CONTINUATION — transitions to gold ═══ */}
-      <div className="relative h-16 bg-gradient-to-b from-white via-white to-white">
-        <div className="spring-path absolute left-1/2 top-0 h-full -translate-x-1/2" style={{ height: "100%" }} />
-      </div>
-
-      {/* ═══ JOB READY — Achievement moment ═══ */}
-      <motion.section
-        initial={reduced ? {} : { opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.35 }}
-        className="spring-section spring-section-gold cvauto"
-      >
-        <div className="mx-auto max-w-3xl px-4 text-center">
-          <div className="gold-glow mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-amber-50 to-yellow-100 shadow-lg">
-            <Star size={36} className="text-amber-500" strokeWidth={1.5} />
-          </div>
-
-          <h2 className="font-display text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Job Ready
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-base text-gray-600">
-            You have completed the journey. Your skills are proven. Your resume is optimized.
-            Your interview performance is real. You are ready.
-          </p>
-
-          <div className="mx-auto mt-8 sm:mt-10 grid max-w-md grid-cols-3 gap-3 sm:gap-4">
-            {[
-              { label: "Verified Questions", value: "2,652" },
-              { label: "Mock Interviews", value: "50+" },
-              { label: "Companies Covered", value: "53+" },
-            ].map((stat) => (
-              <div key={stat.label} className="rounded-xl border border-amber-200/60 bg-white/80 p-3 sm:p-4 shadow-sm">
-                <p className="text-xl sm:text-2xl font-extrabold text-amber-600">{stat.value}</p>
-                <p className="mt-1 text-[10px] sm:text-xs text-gray-600">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
+      </section>
 
       {/* ═══ FINAL CTA ═══ */}
-      <motion.section
-        initial={reduced ? {} : { opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.4 }}
-        className="spring-section bg-white cvauto"
-      >
-        <div className="mx-auto max-w-3xl px-4 text-center">
-          <h2 className="font-display text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Ready to start your journey?
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-sm text-gray-600">
-            Join thousands of students who landed offers at top companies. Free to start — upgrade
-            anytime.
-          </p>
-          <div className="mt-8 sm:mt-10 flex flex-col items-center justify-center gap-3 sm:gap-4">
-            <Link to="/role-selector" className="w-full sm:w-auto">
-              <Button variant="primary" size="xl" fullWidth className="sm:w-auto">
-                Start free
-              </Button>
-            </Link>
-            <Link to="/pricing" className="w-full sm:w-auto">
-              <Button variant="outline" size="xl" fullWidth className="sm:w-auto">
-                See all plans
-              </Button>
-            </Link>
-          </div>
+      <section className="relative overflow-hidden bg-base py-16 sm:py-24">
+        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+          <div className="absolute left-1/2 top-0 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-orange-100/40 blur-3xl" />
         </div>
-      </motion.section>
+        <div className="relative mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+          <motion.div
+            initial={reducedMotion ? {} : { opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <motion.div
+              className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-orange-50 text-3xl"
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+            >
+              ⛵
+            </motion.div>
+            <h2 className="font-display text-3xl font-extrabold sm:text-4xl text-primary">Ready to set sail?</h2>
+              <p className="mx-auto mt-4 max-w-xl text-sm text-secondary sm:text-base">
+                Start your first mission for free. If you can solve it, keep sailing — no credit card required.
+              </p>
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Link to="/register" data-cta-compass className="w-full sm:w-auto">
+                   <button className="w-full rounded-xl bg-gradient-to-r from-orange-400 to-amber-400 px-8 py-3.5 text-sm font-bold text-white shadow-lg shadow-orange-200 transition hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] sm:w-auto">
+                     Start your first mission — free
+                  </button>
+                </Link>
+              </motion.div>
+              <Link to="/pricing" className="w-full sm:w-auto">
+                  <button className="w-full rounded-xl border border-gray-200 bg-white px-8 py-3.5 text-sm font-semibold text-gray-700 transition hover:border-orange-300 hover:bg-orange-50 sm:w-auto">
+                   See the voyage map
+                </button>
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
       {/* ═══ FOOTER ═══ */}
-      <footer className="border-t border-gray-100 bg-white py-8">
-        <p className="text-center text-sm text-gray-400">
-          Built with care for your career. &copy; {new Date().getFullYear()} BountyCode. All rights reserved.
-        </p>
+      <footer className="border-t border-gray-200 bg-surface py-8">
+        <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+          <p className="text-sm text-muted">
+            Built with care for your career. &copy; {new Date().getFullYear()} BountyCode. All rights reserved.
+          </p>
+        </div>
       </footer>
-    </PageShell>
+
+      {/* ═══ WELCOME MODAL ═══ */}
+      <AnimatePresence>
+        {showWelcome && (
+          <WelcomeModal onClose={() => setShowWelcome(false)} />
+        )}
+      </AnimatePresence>
+    </div>
   );
 }

@@ -102,14 +102,156 @@ COMPANY_PROFILES = {
     },
 }
 
+# Interview modes (P3): Behavioral / Coding / System Design / HR / Technical.
+# A mode constrains the generated question_type and injects mode-specific
+# briefing + evaluation emphasis into the prompts. "mixed" (or unknown) keeps
+# the legacy unconstrained behavior.
+INTERVIEW_MODES: Dict[str, Dict[str, str]] = {
+    "behavioral": {
+        "question_type": "behavioral",
+        "brief": "MODE: BEHAVIORAL. Ask a STAR-method behavioral question about past experience, teamwork, conflict, ownership, or leadership. Demand specific situations with measurable outcomes.",
+        "eval": "Score STAR completeness ruthlessly: vague answers without Situation/Task/Action/Result and metrics cap at 5.",
+        "followup": "Drill the weakest STAR element (usually Result/metrics or specificity of Action).",
+    },
+    "coding": {
+        "question_type": "coding",
+        "brief": "MODE: CODING. Ask a specific coding/algorithm problem with clear input/output, constraints, and at least one edge case worth discussing. Expect complexity analysis in follow-ups.",
+        "eval": "Score algorithm correctness, efficiency, edge-case handling, and complexity awareness. Hand-wavy solutions cap at 5.",
+        "followup": "Challenge with one edge case, one complexity/optimality probe, or one scaling variant of their approach.",
+    },
+    "system_design": {
+        "question_type": "technical",
+        "brief": "MODE: SYSTEM DESIGN. Ask a design question (e.g. URL shortener, rate limiter, feed, chat) requiring components, data flow, capacity reasoning, and explicit trade-offs. No pure-syntax questions.",
+        "eval": "Score component correctness, capacity estimation, bottleneck identification, and trade-off depth. Buzzword-only answers cap at 5.",
+        "followup": "Attack the bottleneck: 10x traffic, a component failure, or a consistency-vs-availability trade-off.",
+    },
+    "hr": {
+        "question_type": "behavioral",
+        "brief": "MODE: HR SCREEN. Ask about motivation, strengths/weaknesses, why this company/role, teamwork, and culture fit. Keep it conversational; probe self-awareness and honesty.",
+        "eval": "Score self-awareness, specificity, company alignment, and honesty. Generic praise about the company caps at 5.",
+        "followup": "Ask for a concrete example or a moment that proves the claim.",
+    },
+    "technical": {
+        "question_type": "technical",
+        "brief": "MODE: TECHNICAL. Ask a deep technical question on fundamentals (DSA, OS, DBMS, OOP, networks) demanding precise mechanisms, not definitions.",
+        "eval": "Score depth of mechanism understanding and trade-off awareness. Definition-only answers cap at 5.",
+        "followup": "Go one level deeper into the mechanism or ask for the trade-off of the alternative.",
+    },
+}
+
+
+def _mode_cfg(mode: str) -> Dict[str, str]:
+    return INTERVIEW_MODES.get((mode or "mixed").lower().strip(), {})
+
+
+# Mode rubric floors: the interview mode guarantees its lead dimension a
+# minimum voice in the company weights (renormalized to sum 1.0). This extends
+# the COMPANY_RUBRIC_WEIGHTS resolution below — it is not a new rubric table.
+_MODE_WEIGHT_FLOORS: Dict[str, Dict[str, float]] = {
+    "behavioral": {"communication": 0.35},
+    "hr": {"communication": 0.35},
+    "coding": {"technical": 0.45},
+    "system_design": {"depth": 0.30},
+    "technical": {"technical": 0.35},
+}
+
+
+async def _get_student_context(user_id: str) -> str:
+    """Build a compact, evidence-based summary of the student's actual learning
+    and assessment history (skill graph, active repair missions, past interviews,
+    recent OA outcomes) so interview questions are personalized to real student
+    state — not a script. Tolerant of missing data; returns "" when empty."""
+    try:
+        from app.database import (
+            skill_graph_collection,
+            interviews_collection,
+            repair_missions_collection,
+            oa_sessions_collection,
+        )
+        parts: List[str] = []
+
+        # 1) Skill graph: per-section scores + OA outcomes (already fed by the
+        #    canonical OA readiness signal).
+        gdoc = await skill_graph_collection.find_one({"user_id": user_id}) or {}
+        cats = gdoc.get("categories", {})
+        if cats:
+            cat_lines = []
+            for sec, data in list(cats.items())[:12]:
+                score = data.get("score", 0) if isinstance(data, dict) else data
+                cat_lines.append(f"  - {sec}: {score}/10")
+            parts.append("Known skill levels:\n" + "\n".join(cat_lines))
+        oa_outcomes = gdoc.get("oa_outcomes", [])
+        if oa_outcomes:
+            oa_lines = []
+            for o in oa_outcomes[-3:]:
+                weak = sorted(o.get("sections", {}), key=lambda k: o["sections"][k])[:3]
+                oa_lines.append(
+                    f"  - {o.get('company', '')}: overall {o.get('overall', 0):.0f}% "
+                    f"| weakest sections: {', '.join(weak)}"
+                )
+            parts.append("Recent OA outcomes:\n" + "\n".join(oa_lines))
+
+        # 2) Active repair missions = weaknesses the student is currently fixing.
+        mission_rows = []
+        async for doc in repair_missions_collection.find(
+            {"user_id": user_id, "status": {"$in": ["pending", "in_progress"]}}
+        ).sort("created_at", -1).limit(5):
+            mission_rows.append(
+                f"  - {doc.get('title', '')} [{doc.get('status')}] "
+                f"(weaknesses: {', '.join(doc.get('weaknesses', [])[:4])})"
+            )
+        if mission_rows:
+            parts.append("Active repair missions (specific weaknesses the student must now fix):\n" + "\n".join(mission_rows))
+
+        # 3) Recent completed OAs (limit 3): real prior assessment performance + diagnosis.
+        oa_session_rows = []
+        cursor = oa_sessions_collection.find(
+            {"user_id": user_id, "status": "completed"}
+        ).sort("created_at", -1).limit(3)
+        async for doc in cursor:
+            result = doc.get("result", {}) or {}
+            row = f"  - {doc.get('company', '')} OA: readiness {result.get('overall_readiness', 'n/a')}% ({result.get('verdict', '')})"
+            weak = result.get("weak_areas", [])
+            if weak:
+                row += f" | weak: {', '.join(weak[:3])}"
+            if result.get("diagnosis"):
+                row += f" | diagnosis: {result.get('diagnosis')}"
+            oa_session_rows.append(row)
+        if oa_session_rows:
+            parts.append("Recent completed assessments (past performance):\n" + "\n".join(oa_session_rows))
+
+        # 4) Past interviews (limit 5): evidence of interview strengths/weaknesses.
+        prev_interviews = []
+        async for doc in interviews_collection.find(
+            {"user_id": user_id}
+        ).sort("created_at", -1).limit(5):
+            prev_interviews.append(
+                f"  - {doc.get('company', 'general')} / {doc.get('job_role', '')}: "
+                f"score {doc.get('overall_score', 'n/a')}, "
+                f"weaknesses: {', '.join(doc.get('weaknesses', [])[:3])}"
+            )
+        if prev_interviews:
+            parts.append("Recent interview history (how the student performed in past interviews):\n" + "\n".join(prev_interviews))
+
+        if not parts:
+            return ""
+        return "\n\n".join(parts)
+    except Exception as e:
+        logger.debug(f"Could not build student context: {e}")
+        return ""
+
+
 async def generate_interview_question(
     job_role: str,
     history: List[Dict[str, Any]],
     company: str = "general",
     difficulty: str = "medium",
+    user_id: str = None,
+    mode: str = "mixed",
+    candidate_context: str = None,
 ) -> Dict[str, Any]:
     try:
-        from app.data.interview_question_bank import get_random_questions, get_questions_by_company
+        from app.data.interview_question_bank import get_questions_by_company
         asked_ids = {h.get("question_id", "") for h in history if h.get("question_id")}
         # Use the curated question bank for the first few questions (cheaper,
         # higher-quality, company-specific) instead of the LLM. After that we
@@ -176,7 +318,44 @@ Questions answered: {len(history)}
     else:
         history_text = "This is the first question. Start with an easier, introductory question."
 
+    # Personalize from the student's real learning + assessment history so the
+    # interview targets their actual weaknesses (evidence-driven, not generic).
+    student_context = ""
+    if user_id:
+        student_context = await _get_student_context(user_id)
+
+    identify_student_txt = "Use the provided student context to recognize this specific student's actual learning and assessment history (skill levels, active repair weaknesses, past OA/interview performance)." if student_context else ""
+
+    mode_cfg = _mode_cfg(mode)
+    mode_brief = mode_cfg.get("brief", "")
+    candidate_block = (
+        "CANDIDATE CONTEXT (resume/profile — ground questions in their real background; do NOT invent experience for them):\n" + candidate_context
+        if candidate_context else ""
+    )
+
     system_prompt = f"""You are an expert technical interviewer for {job_role} positions.
+{company_context}
+{identify_student_txt}
+{mode_brief}
+{candidate_block}
+You must generate interview questions that are realistic, challenging, and appropriate for the target difficulty.
+Questions should be deep enough to support a follow-up drilldown on edge cases, trade-offs, scaling, or measurable impact.
+
+DIFFICULTY GUIDELINES:
+- easy: Fundamentals, basic concepts, entry-level
+- medium: Intermediate concepts, applied knowledge, mid-level
+- hard: Advanced concepts, system-level thinking, senior-level
+
+QUESTION TYPES (mix these):
+- "technical": Data structures, algorithms, coding concepts, system knowledge
+- "behavioral": STAR method questions, past experiences, team dynamics
+- "situational": Hypothetical scenarios, "what would you do if..."
+- "coding": Specific coding problems, algorithm design, debugging
+
+{history_text}
+{('STUDENT CONTEXT (personalize the next question to this student — target their weak areas and reinforce what they are currently repairing; do not repeat topics they already mastered):\n' + student_context) if student_context else ''}
+ 
+Generate the NEXT question. Avoid repeating topics from history.
 {company_context}
 You must generate interview questions that are realistic, challenging, and appropriate for the target difficulty.
 Questions should be deep enough to support a follow-up drilldown on edge cases, trade-offs, scaling, or measurable impact.
@@ -215,6 +394,11 @@ Return ONLY the JSON object. No markdown, no explanation."""
     result = await chat_completion(messages)
     parsed = parse_json(result)
 
+    # Mode constraint: the interview mode dictates the question type so a
+    # "coding" interview never drifts into generic behavioral questions.
+    if mode_cfg.get("question_type"):
+        parsed["question_type"] = mode_cfg["question_type"]
+
     parsed.setdefault("question", "Tell me about yourself and your experience.")
     parsed.setdefault("question_type", "technical")
     parsed.setdefault("tips", "Be specific and provide concrete examples.")
@@ -235,6 +419,7 @@ async def evaluate_answer(
     question_type: str = "technical",
     difficulty: str = "medium",
     time_taken: int = None,
+    mode: str = None,
 ) -> Dict[str, Any]:
     company_key = company.lower()
     profile = COMPANY_PROFILES.get(company_key, None)
@@ -298,6 +483,7 @@ This is a SITUATIONAL question. Evaluate:
     system_prompt = f"""You are an expert interviewer evaluating a candidate for {job_role} positions.
 {evaluation_context}
 {type_guidance}
+{("MODE-SPECIFIC SCORING (" + (mode or "").upper() + " interview): " + _mode_cfg(mode).get("eval", "") + " " + _mode_cfg(mode).get("followup", "")) if _mode_cfg(mode) else ""}
 {difficulty_context}
 {time_context}
 
@@ -322,6 +508,7 @@ The output MUST be valid JSON with this exact structure:
     "strengths": ["strength 1", "strength 2"],
     "improvements": ["improvement 1", "improvement 2"],
     "better_answer": "An example of what a stronger answer would look like...",
+    "follow_up": "A sharp drilldown follow-up question targeting the weakest dimension of this answer (empty if the answer was complete)",
     "reaction": "fire|thumbsup|muscle|memo|thinking|clap"
 }}
 
@@ -348,6 +535,7 @@ Return ONLY the JSON object. No markdown, no explanation."""
     parsed.setdefault("strengths", ["Attempted the question"])
     parsed.setdefault("improvements", ["Provide more detail and examples"])
     parsed.setdefault("better_answer", "A stronger answer would include more specifics and metrics.")
+    parsed.setdefault("follow_up", "")
 
     # Normalize the breakdown to 1-10
     for dim in ("technical", "communication", "problem_solving", "depth"):
@@ -360,6 +548,17 @@ Return ONLY the JSON object. No markdown, no explanation."""
     weights = COMPANY_RUBRIC_WEIGHTS.get(
         company_key, {}
     ).get(question_type) or COMPANY_RUBRIC_WEIGHTS.get(company_key, {}).get("default") or DEFAULT_RUBRIC_WEIGHTS
+
+    # Apply mode floors (renormalized) so the mode's lead dimension always
+    # counts: a coding interview is technical-led even at a STAR-heavy company.
+    floors = _MODE_WEIGHT_FLOORS.get((mode or "").lower().strip(), {})
+    if floors:
+        weights = dict(weights)
+        for dim, floor in floors.items():
+            if weights.get(dim, 0) < floor:
+                weights[dim] = floor
+        total_w = sum(weights.values()) or 1.0
+        weights = {d: round(v / total_w, 3) for d, v in weights.items()}
 
     weighted = sum(parsed["breakdown"][dim] * weights.get(dim, 0.25) for dim in ("technical", "communication", "problem_solving", "depth"))
     difficulty_mult = DIFFICULTY_WEIGHTS.get(difficulty, 1.0)

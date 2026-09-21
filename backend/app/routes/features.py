@@ -6,10 +6,9 @@ from datetime import datetime, timezone
 import random
 from fastapi import APIRouter, Depends, HTTPException, Query
 from typing import Optional
-from bson import ObjectId
 from app.middleware.auth import get_current_user
 from app.database import (
-    curated_questions_collection, bookmarks_collection,
+    bookmarks_collection,
     notes_collection, solved_problems_collection
 )
 
@@ -28,48 +27,46 @@ async def get_random_problem(
     user=Depends(get_current_user),
 ):
     """Get a random problem with optional filters."""
-    collection = curated_questions_collection()
-    query = {"type": "coding"}
-
+    # In-memory canonical store only (Residency Rule): verified first.
+    from app.services import question_store
+    base = {"type": "coding"}
     if difficulty:
-        query["difficulty"] = difficulty
+        base["difficulty"] = difficulty
     if topic:
-        query["topic"] = topic
+        base["topic"] = topic
+    pool = question_store.find(base).prefer_verified().to_list()
     if company:
-        query["$or"] = [{"company": company}, {"company": company.title()}]
-
+        variants = {company.lower(), company.title().lower(), company.upper().lower()}
+        pool = [
+            q for q in pool
+            if variants & {str(c).lower() for c in (q.get("companies") or [])}
+        ]
     if unsolved_only:
-        solved_ids = []
+        solved_ids = set()
         async for doc in solved_problems_collection().find(
             {"user_id": user["id"]}, {"question_id": 1}
         ):
-            solved_ids.append(doc["question_id"])
+            solved_ids.add(str(doc["question_id"]))
         if solved_ids:
-            query["_id"] = {"$nin": [ObjectId(sid) for sid in solved_ids if ObjectId.is_valid(sid)]}
+            pool = [q for q in pool if str(q.get("id")) not in solved_ids]
 
-    # Get random problem
-    pipeline = [
-        {"$match": query},
-        {"$sample": {"size": 1}},
-        {"$project": {
-            "statement": 0,
-            "visible_test_cases": 0,
-            "hidden_test_cases": 0,
-            "solution": 0,
-        }}
-    ]
+    def _public_pick(q: dict) -> dict:
+        doc = question_store.get_question_for_serving(q.get("id")) or dict(q)
+        doc["id"] = str(q.get("id", ""))
+        # Mirror the legacy projection: metadata only, no grading material.
+        for k in ("solution", "hidden_test_cases", "hidden_testcases"):
+            doc.pop(k, None)
+        return doc
 
     problem = None
-    async for doc in collection.aggregate(pipeline):
-        doc["id"] = str(doc.pop("_id"))
-        problem = doc
+    if pool:
+        problem = _public_pick(random.choice(pool))
 
     if not problem:
         # Fallback: any random problem
-        pipeline = [{"$sample": {"size": 1}}]
-        async for doc in collection.aggregate(pipeline):
-            doc["id"] = str(doc.pop("_id"))
-            problem = doc
+        fb = question_store.find({"type": "coding"}).prefer_verified().to_list()
+        if fb:
+            problem = _public_pick(random.choice(fb))
 
     if not problem:
         raise HTTPException(status_code=404, detail="No problems available")
@@ -105,13 +102,10 @@ async def toggle_bookmark(
         await collection.delete_one({"_id": existing["_id"]})
         return {"bookmarked": False, "message": "Bookmark removed"}
     else:
-        # Verify question exists
-        try:
-            q_oid = ObjectId(question_id)
-        except Exception:
-            raise HTTPException(status_code=400, detail="Invalid question ID")
-
-        question = await curated_questions_collection().find_one({"_id": q_oid})
+        # Verify question exists in the in-memory canonical store
+        # (Residency Rule): never MongoDB.
+        from app.services import question_store
+        question = question_store.get_question_for_serving(question_id)
         if not question:
             raise HTTPException(status_code=404, detail="Question not found")
 
@@ -239,49 +233,39 @@ async def get_company_problems(
     user=Depends(get_current_user),
 ):
     """Get problems for a specific company (Pro feature)."""
-    collection = curated_questions_collection()
-    query = {"type": "coding"}
-
-    # Match company (case-insensitive)
-    query["$or"] = [
-        {"company": company_name},
-        {"company": company_name.title()},
-        {"company": company_name.upper()},
-    ]
-
+    # In-memory verified company bank (Residency Rule): explicit company tags,
+    # deterministic, no LLM.
+    from app.services import question_store
+    bank = question_store.company_verified_bank(company_name)
+    items = [q for q in bank["items"] if q.get("type") == "coding"]
     if difficulty:
-        query["difficulty"] = difficulty
+        items = [q for q in items if q.get("difficulty") == difficulty]
     if topic:
-        query["topic"] = topic
+        items = [q for q in items if str(q.get("topic", "")).lower() == topic.lower()]
 
     # Build sort
     if sort == "difficulty":
-        sort_stage = [("difficulty", 1)]
+        order = {"easy": 0, "medium": 1, "hard": 2}
+        items = sorted(items, key=lambda q: order.get(q.get("difficulty"), 1))
     elif sort == "newest":
-        sort_stage = [("created_at", -1)]
+        items = sorted(items, key=lambda q: str(q.get("created_at", "")), reverse=True)
     else:  # frequency
-        sort_stage = [("frequency", -1)]
+        items = sorted(items, key=lambda q: q.get("frequency", 0), reverse=True)
 
-    total = await collection.count_documents(query)
+    total = len(items)
     skip = (page - 1) * limit
 
-    cursor = collection.find(query).sort(sort_stage).skip(skip).limit(limit)
     problems = []
-    async for doc in cursor:
-        doc["id"] = str(doc.pop("_id"))
+    for q in items[skip:skip + limit]:
+        doc = question_store.get_question_for_serving(q.get("id")) or dict(q)
+        doc["id"] = str(q.get("id", ""))
         problems.append(doc)
 
-    # Company stats
-    company_pipeline = [
-        {"$match": query},
-        {"$group": {
-            "_id": "$difficulty",
-            "count": {"$sum": 1}
-        }}
-    ]
+    # Difficulty stats over the filtered set
     diff_stats = {}
-    async for doc in collection.aggregate(company_pipeline):
-        diff_stats[doc["_id"]] = doc["count"]
+    for q in items:
+        d = q.get("difficulty", "medium")
+        diff_stats[d] = diff_stats.get(d, 0) + 1
 
     return {
         "company": company_name,
@@ -304,19 +288,14 @@ async def get_company_problems(
 @router.get("/problem/{question_id}/enhanced")
 async def get_enhanced_problem_detail(question_id: str, user=Depends(get_current_user)):
     """Get enhanced problem detail with submission status, bookmarks, notes."""
-    collection = curated_questions_collection()
-
-    try:
-        q_oid = ObjectId(question_id)
-    except Exception:
-        raise HTTPException(status_code=400, detail="Invalid question ID")
-
-    question = await collection.find_one({"_id": q_oid})
+    # In-memory canonical store only (Residency Rule): never MongoDB.
+    from app.services import question_store
+    question = question_store.get_question_for_serving(question_id)
     if not question:
         raise HTTPException(status_code=404, detail="Question not found")
 
     q = {
-        "id": str(question["_id"]),
+        "id": str(question.get("id", question_id)),
         "question_title": question.get("question_title", "Unknown"),
         "statement": question.get("statement", ""),
         "examples": question.get("examples", []),
@@ -324,8 +303,8 @@ async def get_enhanced_problem_detail(question_id: str, user=Depends(get_current
         "visible_test_cases": question.get("visible_test_cases", []),
         "difficulty": question.get("difficulty", "medium"),
         "topic": question.get("topic", "Unknown"),
-        "topics": question.get("topics", []),
-        "company": question.get("company", []),
+        "topics": question.get("topics") or [question.get("topic", "General")],
+        "company": question.get("company", question.get("companies", [])),
         "company_frequency": question.get("company_frequency", {}),
         "hints": question.get("hints", []),
         "approaches": question.get("approaches", []),
@@ -379,61 +358,68 @@ async def get_similar_problems(
     user=Depends(get_current_user),
 ):
     """Get similar problems based on topic, difficulty, and companies."""
-    collection = curated_questions_collection()
-
-    try:
-        q_oid = ObjectId(question_id)
-    except Exception:
-        raise HTTPException(status_code=400, detail="Invalid question ID")
-
-    question = await collection.find_one({"_id": q_oid})
+    # In-memory canonical store only (Residency Rule): verified first.
+    from app.services import question_store
+    question = question_store.get_question_for_serving(question_id)
     if not question:
         raise HTTPException(status_code=404, detail="Question not found")
 
-    topic = question.get("topic", "")
+    topic = str(question.get("topic", "")).lower()
     difficulty = question.get("difficulty", "medium")
-    companies = question.get("company", [])
-    topics = question.get("topics", [])
+    companies = question.get("companies") or []
+    if isinstance(companies, str):
+        companies = [companies]
+    legacy_co = question.get("company")
+    if legacy_co:
+        companies += legacy_co if isinstance(legacy_co, list) else [legacy_co]
+    companies = [str(c) for c in companies if c]
 
-    # Build similarity query
-    query = {
-        "_id": {"$ne": q_oid},
-        "type": "coding",
-    }
+    pool = [
+        q for q in question_store.find({"type": "coding"}).prefer_verified().to_list()
+        if str(q.get("id")) != str(question.get("id"))
+    ]
+
+    def _public(doc: dict, reason: str) -> dict:
+        out = question_store.get_question_for_serving(doc.get("id")) or dict(doc)
+        out["id"] = str(doc.get("id", ""))
+        out["similarity_reason"] = reason
+        return out
 
     # Prefer same topic and difficulty
     similar = []
 
     # First: same topic, same difficulty
     if topic:
-        q1 = {**query, "topic": topic, "difficulty": difficulty}
-        async for doc in collection.find(q1).limit(limit):
-            doc["id"] = str(doc.pop("_id"))
-            doc["similarity_reason"] = f"Same topic ({topic}) and difficulty"
-            similar.append(doc)
+        for doc in pool:
+            if len(similar) >= limit:
+                break
+            if str(doc.get("topic", "")).lower() == topic and doc.get("difficulty") == difficulty:
+                similar.append(_public(doc, f"Same topic ({question.get('topic')}) and difficulty"))
 
     # Second: same topic, different difficulty
     if len(similar) < limit and topic:
-        q2 = {**query, "topic": topic}
-        existing_ids = [s["id"] for s in similar]
-        async for doc in collection.find({**q2, "_id": {"$nin": [ObjectId(i) for i in existing_ids] if existing_ids else []}}).limit(limit - len(similar)):
-            doc["id"] = str(doc.pop("_id"))
-            if doc["id"] not in existing_ids:
-                doc["similarity_reason"] = f"Same topic ({topic})"
-                similar.append(doc)
+        seen = {s["id"] for s in similar}
+        for doc in pool:
+            if len(similar) >= limit:
+                break
+            if str(doc.get("id")) not in seen and str(doc.get("topic", "")).lower() == topic:
+                seen.add(str(doc.get("id")))
+                similar.append(_public(doc, f"Same topic ({question.get('topic')})"))
 
-    # Third: same companies
+    # Third: shared company tags (pattern-relevant alignment, never asked-at claims)
     if len(similar) < limit and companies:
-        existing_ids = [s["id"] for s in similar]
-        q3 = {**query, "company": {"$in": companies[:3]}}
-        if existing_ids:
-            q3["_id"]["$in"] = []
-            q3["_id"]["$nin"] = [ObjectId(i) for i in existing_ids]
-        async for doc in collection.find(q3).limit(limit - len(similar)):
-            doc["id"] = str(doc.pop("_id"))
-            if doc["id"] not in existing_ids:
-                doc["similarity_reason"] = f"Asked at {', '.join(companies[:2])}"
-                similar.append(doc)
+        wanted = {c.lower() for c in companies[:3]}
+        seen = {s["id"] for s in similar}
+        for doc in pool:
+            if len(similar) >= limit:
+                break
+            tags = {str(c).lower() for c in (doc.get("companies") or [])}
+            if str(doc.get("id")) not in seen and (tags & wanted):
+                seen.add(str(doc.get("id")))
+                similar.append(_public(
+                    doc,
+                    f"Shares company tags ({', '.join(companies[:2])}) — pattern-relevant",
+                ))
 
     return {
         "similar_problems": similar[:limit],
@@ -447,14 +433,11 @@ async def get_similar_problems(
 @router.get("/problem/{question_id}/acceptance")
 async def get_acceptance_rate(question_id: str, user=Depends(get_current_user)):
     """Get acceptance rate and submission count for a problem."""
-    collection = curated_questions_collection()
-
-    try:
-        q_oid = ObjectId(question_id)
-    except Exception:
-        raise HTTPException(status_code=400, detail="Invalid question ID")
-
-    question = await collection.find_one({"_id": q_oid})
+    # In-memory canonical store only (Residency Rule). Note: legacy
+    # per-question submission counters lived on Mongo docs; in-memory items
+    # report 0 until counters are re-homed onto telemetry (student state).
+    from app.services import question_store
+    question = question_store.get_question_for_serving(question_id)
     if not question:
         raise HTTPException(status_code=404, detail="Question not found")
 

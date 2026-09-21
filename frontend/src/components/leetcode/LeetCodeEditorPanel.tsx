@@ -327,7 +327,7 @@ export default function LeetCodeEditorPanel({ problemId, problem, className = ""
                     </div>
                     <div className="mt-2 flex flex-wrap gap-3 text-xs text-brand-muted">
                       {typeof result.score === "number" && <span>Score: {result.score}%</span>}
-                      {typeof result.xp_gained === "number" && <span>XP: +{result.xp_gained}</span>}
+                      {typeof result.xp_gained === "number" && <span>Diamonds: +{result.xp_gained}</span>}
                       {typeof result.execution_time === "number" && <span>Time: {result.execution_time.toFixed(3)}s</span>}
                       {typeof result.memory_usage === "number" && <span>Memory: {formatMemory(result.memory_usage)}</span>}
                       {totalCount > 0 && <span>{completedCount}/{totalCount} passed</span>}

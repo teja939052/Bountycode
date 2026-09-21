@@ -6,8 +6,7 @@ from datetime import datetime, timezone
 from fastapi import APIRouter, Depends, HTTPException
 from typing import Optional
 from app.middleware.auth import get_current_user
-from app.database import curated_questions_collection
-from app.services.ai import chat_completion, parse_json
+from app.services.ai_core import chat_completion, parse_json
 from app.services.code_executor import CodeExecutionEngine
 
 router = APIRouter(prefix="/api/v1/ai-debugger", tags=["ai-debugger"])
@@ -23,15 +22,10 @@ async def analyze_failed_submission(
     user=Depends(get_current_user),
 ):
     """Analyze a failed code submission and provide step-by-step debugging help."""
-    from bson import ObjectId
-
-    # Get the question
-    try:
-        q_oid = ObjectId(question_id)
-    except Exception:
-        raise HTTPException(status_code=400, detail="Invalid question ID")
-
-    question = await curated_questions_collection().find_one({"_id": q_oid})
+    # Question content comes from the in-memory canonical store only
+    # (Residency Rule, AGENTS.md): never MongoDB.
+    from app.services import question_store
+    question = question_store.get_question_for_serving(question_id)
     if not question:
         raise HTTPException(status_code=404, detail="Question not found")
 
@@ -126,14 +120,10 @@ async def get_progressive_hint(
     user=Depends(get_current_user),
 ):
     """Get a progressive hint for a problem (3 levels: nudge → approach → solution)."""
-    from bson import ObjectId
-
-    try:
-        q_oid = ObjectId(question_id)
-    except Exception:
-        raise HTTPException(status_code=400, detail="Invalid question ID")
-
-    question = await curated_questions_collection().find_one({"_id": q_oid})
+    # Question content comes from the in-memory canonical store only
+    # (Residency Rule, AGENTS.md): never MongoDB.
+    from app.services import question_store
+    question = question_store.get_question_for_serving(question_id)
     if not question:
         raise HTTPException(status_code=404, detail="Question not found")
 
@@ -260,14 +250,10 @@ async def step_by_step_trace(
     user=Depends(get_current_user),
 ):
     """Generate a step-by-step execution trace for a failed submission."""
-    from bson import ObjectId
-
-    try:
-        q_oid = ObjectId(question_id)
-    except Exception:
-        raise HTTPException(status_code=400, detail="Invalid question ID")
-
-    question = await curated_questions_collection().find_one({"_id": q_oid})
+    # Question content comes from the in-memory canonical store only
+    # (Residency Rule, AGENTS.md): never MongoDB.
+    from app.services import question_store
+    question = question_store.get_question_for_serving(question_id)
     if not question:
         raise HTTPException(status_code=404, detail="Question not found")
 
@@ -338,14 +324,10 @@ async def suggest_fix(
     user=Depends(get_current_user),
 ):
     """AI suggests specific fixes for the code."""
-    from bson import ObjectId
-
-    try:
-        q_oid = ObjectId(question_id)
-    except Exception:
-        raise HTTPException(status_code=400, detail="Invalid question ID")
-
-    question = await curated_questions_collection().find_one({"_id": q_oid})
+    # Question content comes from the in-memory canonical store only
+    # (Residency Rule, AGENTS.md): never MongoDB.
+    from app.services import question_store
+    question = question_store.get_question_for_serving(question_id)
     if not question:
         raise HTTPException(status_code=404, detail="Question not found")
 
@@ -413,14 +395,10 @@ async def rubber_duck_debug(
     user=Depends(get_current_user),
 ):
     """Rubber duck debugging — AI helps you think through your approach."""
-    from bson import ObjectId
-
-    try:
-        q_oid = ObjectId(question_id)
-    except Exception:
-        raise HTTPException(status_code=400, detail="Invalid question ID")
-
-    question = await curated_questions_collection().find_one({"_id": q_oid})
+    # Question content comes from the in-memory canonical store only
+    # (Residency Rule, AGENTS.md): never MongoDB.
+    from app.services import question_store
+    question = question_store.get_question_for_serving(question_id)
     if not question:
         raise HTTPException(status_code=404, detail="Question not found")
 

@@ -32,7 +32,6 @@ function getPlans(isIndia, prices) {
         "3 AI interviews / month",
         "3 resume reviews / month",
         "5 aptitude tests / month",
-        "3 cover letters / month",
         "ATS score check",
         "Basic AI feedback",
       ],
@@ -52,13 +51,11 @@ function getPlans(isIndia, prices) {
         "Unlimited AI interviews",
         "Unlimited resume reviews",
         "Unlimited aptitude tests",
-        "Unlimited cover letters",
         "ATS optimization engine",
         "Resume export (PDF & DOCX)",
         "Detailed AI feedback + scores",
         "System design practice",
         "Coding challenges",
-        "Salary negotiation coach",
         "Company-specific mock tests (53 companies)",
         "Priority support",
       ],
@@ -69,15 +66,15 @@ function getPlans(isIndia, prices) {
       {
         id: "yearly",
         name: "Strategist",
-        price: isIndia ? inr("yearly", 499) : usd("yearly", 99),
-        priceINR: isIndia ? `${inr("yearly", 499)}/yr` : `${usd("yearly", 99)}/yr`,
+        price: isIndia ? inr("yearly", 899) : usd("yearly", 99),
+        priceINR: isIndia ? `${inr("yearly", 899)}/yr` : `${usd("yearly", 99)}/yr`,
         priceUsd: `${usd("yearly", 99)}/yr`,
-        priceInr: `${inr("yearly", 499)}/yr`,
+        priceInr: `${inr("yearly", 899)}/yr`,
         period: "/year",
-        desc: isIndia ? "Save ₹689/yr vs monthly!" : "Save $129/yr vs monthly!",
+        desc: isIndia ? "Save ₹289/yr vs monthly!" : "Save $129/yr vs monthly!",
         features: [
           "Everything in Pro",
-          isIndia ? "Just ₹42/month (save 58%)" : "$8.25/month (save 57%)",
+          isIndia ? "Just ₹75/month (save 24%)" : "$8.25/month (save 57%)",
           "Unlimited all features",
           "Company-specific placement prep",
           "53 companies with real patterns",
@@ -447,9 +444,10 @@ export default function Pricing() {
               <button
                 onClick={() => {
                   if (plan.id === "free") {
-                    navigate(user ? "/hub" : "/register");
+                     navigate(user ? "/journey" : "/register");
                   } else if (plan.id === "enterprise") {
-                    navigate("/enterprise-contact");
+                    window.location.href =
+                      "mailto:support@BountyCode.com?subject=Enterprise%20plan%20inquiry";
                   } else {
                     const seats = plan.id === "team" ? 5 : 1;
                     handleCheckout(plan.id, seats);

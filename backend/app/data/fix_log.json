@@ -1,0 +1,16 @@
+[
+ {
+  "date": "2026-09-12",
+  "area": "generator",
+  "issue": "pct_change: old=250 with pct=25 truncated 312.5 to 312 while answer claimed 25%",
+  "fix": "removed 250 from old choices; regenerated bank",
+  "verify": "verify_parametric_bank 6600/6600"
+ },
+ {
+  "date": "2026-09-12",
+  "area": "sampler",
+  "issue": "letter_series flagged short_series (heuristic counted digits, letters have none)",
+  "fix": "sampler checks letter count for letter families; re-ran sampling 630/630 PASS",
+  "verify": "sampling_report.json"
+ }
+]

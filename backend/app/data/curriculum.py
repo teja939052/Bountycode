@@ -6,7 +6,7 @@ Each level has a theme, color, icon, lessons with difficulty stars, projects, an
 #pylint: skip-file
 
 # Difficulty: 1=easy, 2=medium, 3=hard
-# XP: easy=10-15, medium=20-30, hard=35-50, project=60, boss=80
+# Diamonds: easy=10-15, medium=20-30, hard=35-50, project=60, boss=80
 
 LEVEL_THEMES = [
     {"id": "l01", "name": "First Steps",        "emoji": "🌱", "color": "#22C55E", "bg": "from-green-500/20 to-emerald-600/20",  "border": "border-green-500/30",  "text": "text-green-400",  "desc": "Hello World & basic output"},
@@ -57,9 +57,9 @@ LEVEL_THEMES = [
 ]
 
 
-def _L(title, xp=15, diff=1, type_="theory", git_desc=None):
+def _L(title, diamonds=15, diff=1, type_="theory", git_desc=None):
     """Shorthand to create a lesson dict."""
-    result = {"title": title, "xp": xp, "difficulty": diff, "type": type_}
+    result = {"title": title, "diamonds": diamonds, "difficulty": diff, "type": type_}
     if git_desc:
         result["git_description"] = git_desc
     return result
@@ -92,7 +92,7 @@ C_LEVELS = [
     ]},
     # Level 2: Variables 📦
     {"id": "l02", "lessons": [
-        {"title": "The Memory Kingdom — Variable Discovery", "xp": 75, "difficulty": 3, "type": "discovery", "lesson_id": "variable-discovery"},
+        {"title": "The Memory Kingdom — Variable Discovery", "diamonds": 75, "difficulty": 3, "type": "discovery", "lesson_id": "variable-discovery"},
         _L("Int, Float, Double", 10, 1), _L("char Type", 10, 1),
         _L("Variable Declaration", 15, 1), _L("Constants & #define", 15, 1),
         _L("Type Sizes with sizeof", 15, 2), _L("scanf() Input", 15, 1, "practice"),
@@ -747,14 +747,14 @@ def _build_level(lang_id, level_cfg, level_index):
         lesson = {
             "id": lid,
             "title": l["title"],
-            "xp": l["xp"],
+            "diamonds": l["diamonds"],
             "difficulty": l["difficulty"],
             "type": l["type"],
         }
         if "git_description" in l:
             lesson["git_description"] = l["git_description"]
         lessons.append(lesson)
-    total_xp = sum(l["xp"] for l in lessons)
+    total_xp = sum(l["diamonds"] for l in lessons)
     return {
         "id": level_cfg["id"],
         "name": theme["name"],

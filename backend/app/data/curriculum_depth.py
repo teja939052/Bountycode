@@ -157,33 +157,33 @@ def _gen_level_depth(topics_pool, lang_id, idx):
     proj_pool = topics_pool["projects"]
 
     diff = 2 if idx < 15 else 3
-    xp = 40 + idx * 2
+    diamonds = 40 + idx * 2
     xp_proj = 80 + idx * 3
 
-    lessons.append(_L(f"{phase} Phase: {base_topic} — {lang_id.upper()} Professional", xp, 1, "theory"))
-    lessons.append(_L(f"{base_topic}: Architecture Overview", xp + 5, diff, "theory"))
+    lessons.append(_L(f"{phase} Phase: {base_topic} — {lang_id.upper()} Professional", diamonds, 1, "theory"))
+    lessons.append(_L(f"{base_topic}: Architecture Overview", diamonds + 5, diff, "theory"))
 
     bt = base_pool[(idx * 3 + 50) % len(base_pool)]
-    lessons.append(_L(f"{bt} — Advanced Theory", xp + 10, diff, "theory"))
+    lessons.append(_L(f"{bt} — Advanced Theory", diamonds + 10, diff, "theory"))
     bt2 = base_pool[(idx * 3 + 51) % len(base_pool)]
-    lessons.append(_L(f"{bt2} — In Practice", xp + 15, diff, "practice"))
+    lessons.append(_L(f"{bt2} — In Practice", diamonds + 15, diff, "practice"))
 
     at = adv_pool[(idx * 5 + 40) % len(adv_pool)]
-    lessons.append(_L(f"{at} — Deep Dive", xp + 20, 3, "theory"))
+    lessons.append(_L(f"{at} — Deep Dive", diamonds + 20, 3, "theory"))
     at2 = adv_pool[(idx * 5 + 41) % len(adv_pool)]
-    lessons.append(_L(f"Practice: {at2}", xp + 25, 3, "practice"))
+    lessons.append(_L(f"Practice: {at2}", diamonds + 25, 3, "practice"))
 
-    lessons.append(_L(f"Sprint: {base_topic} — 3 Build Exercises", xp + 20, diff, "practice"))
-    lessons.append(_L(f"Sprint: {bt} — Mini Builds", xp + 25, diff + 1, "practice"))
+    lessons.append(_L(f"Sprint: {base_topic} — 3 Build Exercises", diamonds + 20, diff, "practice"))
+    lessons.append(_L(f"Sprint: {bt} — Mini Builds", diamonds + 25, diff + 1, "practice"))
 
-    lessons.append(_L(f"Challenge: {base_topic} Implementation", xp + 30, 3, "challenge"))
-    lessons.append(_L(f"Challenge: {at} Production Case", xp + 40, 3, "challenge"))
+    lessons.append(_L(f"Challenge: {base_topic} Implementation", diamonds + 30, 3, "challenge"))
+    lessons.append(_L(f"Challenge: {at} Production Case", diamonds + 40, 3, "challenge"))
 
     algo = _DEPTH_ALGOS[(idx * 3) % len(_DEPTH_ALGOS)]
-    lessons.append(_L(f"Algo: {algo} — Optimized {lang_id.upper()} Solution", xp + 35, 3, "challenge"))
+    lessons.append(_L(f"Algo: {algo} — Optimized {lang_id.upper()} Solution", diamonds + 35, 3, "challenge"))
 
-    lessons.append(_L(f"Review: {base_topic} Code Samples", xp + 15, diff, "practice"))
-    lessons.append(_L(f"Quiz: {base_topic} Mastery Check", xp + 10, diff, "practice"))
+    lessons.append(_L(f"Review: {base_topic} Code Samples", diamonds + 15, diff, "practice"))
+    lessons.append(_L(f"Quiz: {base_topic} Mastery Check", diamonds + 10, diff, "practice"))
 
     if proj_pool:
         p1 = proj_pool[(idx * 5 + 23) % len(proj_pool)]
@@ -216,33 +216,33 @@ def _gen_web_level_depth(topics_pool, lang_id, idx):
     proj_pool = topics_pool["projects"]
 
     diff = 2 if idx < 10 else 3
-    xp = 40 + idx * 2
+    diamonds = 40 + idx * 2
     xp_proj = 80 + idx * 3
 
-    lessons.append(_L(f"{phase} Phase: {theme_name} — {lang_id.title()} Professional", xp, 1, "theory"))
-    lessons.append(_L(f"{theme_name}: Key Architecture", xp + 5, diff, "theory"))
+    lessons.append(_L(f"{phase} Phase: {theme_name} — {lang_id.title()} Professional", diamonds, 1, "theory"))
+    lessons.append(_L(f"{theme_name}: Key Architecture", diamonds + 5, diff, "theory"))
 
     bt = base_pool[(idx * 3 + 30) % len(base_pool)]
-    lessons.append(_L(f"{bt} — Advanced Theory", xp + 10, diff, "theory"))
+    lessons.append(_L(f"{bt} — Advanced Theory", diamonds + 10, diff, "theory"))
     bt2 = base_pool[(idx * 3 + 31) % len(base_pool)]
-    lessons.append(_L(f"{bt2} — In Practice", xp + 15, diff, "practice"))
+    lessons.append(_L(f"{bt2} — In Practice", diamonds + 15, diff, "practice"))
 
     if adv_pool:
         at = adv_pool[(idx * 5 + 22) % len(adv_pool)]
-        lessons.append(_L(f"{at} — Deep Dive", xp + 20, 3, "theory"))
+        lessons.append(_L(f"{at} — Deep Dive", diamonds + 20, 3, "theory"))
         at2 = adv_pool[(idx * 5 + 23) % len(adv_pool)]
-        lessons.append(_L(f"Practice: {at2}", xp + 25, 3, "practice"))
+        lessons.append(_L(f"Practice: {at2}", diamonds + 25, 3, "practice"))
 
-    lessons.append(_L(f"Sprint: {theme_name} — 3 Build Exercises", xp + 20, diff, "practice"))
-    lessons.append(_L(f"Sprint: {bt} — Mini Builds", xp + 25, diff + 1, "practice"))
+    lessons.append(_L(f"Sprint: {theme_name} — 3 Build Exercises", diamonds + 20, diff, "practice"))
+    lessons.append(_L(f"Sprint: {bt} — Mini Builds", diamonds + 25, diff + 1, "practice"))
 
-    lessons.append(_L(f"Challenge: {theme_name} Implementation", xp + 30, 3, "challenge"))
+    lessons.append(_L(f"Challenge: {theme_name} Implementation", diamonds + 30, 3, "challenge"))
 
     algo = _DEPTH_ALGOS[(idx * 3 + 5) % len(_DEPTH_ALGOS)]
-    lessons.append(_L(f"Algo: {algo} — {lang_id.title()} Build", xp + 35, 3, "challenge"))
+    lessons.append(_L(f"Algo: {algo} — {lang_id.title()} Build", diamonds + 35, 3, "challenge"))
 
-    lessons.append(_L(f"Review: {theme_name} Audit", xp + 15, diff, "practice"))
-    lessons.append(_L(f"Quiz: {theme_name} Mastery Check", xp + 10, diff, "practice"))
+    lessons.append(_L(f"Review: {theme_name} Audit", diamonds + 15, diff, "practice"))
+    lessons.append(_L(f"Quiz: {theme_name} Mastery Check", diamonds + 10, diff, "practice"))
 
     if proj_pool:
         p1 = proj_pool[(idx * 5 + 12) % len(proj_pool)]
@@ -268,11 +268,11 @@ def _build_level_dict(lang_id, raw, theme, order):
         lessons.append({
             "id": f"{lang_id}-{raw['id']}-{j+1:02d}",
             "title": l["title"],
-            "xp": l["xp"],
+            "diamonds": l["diamonds"],
             "difficulty": l["difficulty"],
             "type": l["type"],
         })
-    total_xp = sum(l["xp"] for l in lessons)
+    total_xp = sum(l["diamonds"] for l in lessons)
     return {
         "id": raw["id"],
         "name": theme[0],

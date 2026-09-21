@@ -22,7 +22,9 @@ import { enhancedApi, freePracticeApi } from "./enhanced.ts";
 import { studentApi } from "./student.ts";
 import { placementApi, indianPlacementApi } from "./placement.ts";
 import { systemDesignApi, systemDesignTestsApi } from "./systemDesign.ts";
-import { dailyApi, learningApi } from "./community.ts";
+import { dailyApi, learningApi, communityApi } from "./community.ts";
+import { studyTimerApi } from "./studyTimer.ts";
+import { companyDirectoryApi } from "./companyDirectory.ts";
 import { adaptiveApi, predictorApi, readinessApi } from "./adaptive.ts";
 import {
   personalDashboardApi,
@@ -35,6 +37,8 @@ import {
   analyticsApi,
   aiDebuggerApi,
   conceptsApi,
+  evidenceApi,
+  progressApi,
 } from "./misc.ts";
 import { learningModulesApi } from "./learningModules.ts";
 import { studyApi } from "./study.ts";
@@ -43,12 +47,16 @@ import { freeTrialApi } from "./freeTrial.ts";
 import { onboardingApi } from "./onboarding.ts";
 import { lessonApi } from "./lesson.ts";
 import { journeyApi } from "./journey.ts";
+import { missionApi } from "./missions.ts";
 import { mapApi } from "./map.ts";
 import { adminContentApi, assignmentsApi } from "./adminContent.ts";
 import { metricsApi } from "./metrics.ts";
 import { tracksApi } from "./tracks.ts";
+import { tcsNqtApi } from "./tcsNqt.ts";
+import { companyLessonsApi } from "./companyLessons.ts";
 import { flatApi } from "./flat.ts";
 import { flatOverrides } from "./flatOverrides.ts";
+import { examMemoriesApi } from "./examMemories.ts";
 
 const api = {
   auth: authApi,
@@ -64,6 +72,7 @@ const api = {
   questions: questionsApi,
   tools: toolsApi,
   companyMocks: companyMocksApi,
+  companyLessons: companyLessonsApi,
   gamification: gamificationApi,
   oa: oaApi,
   enhanced: enhancedApi,
@@ -75,6 +84,9 @@ const api = {
   systemDesignTests: systemDesignTestsApi,
   daily: dailyApi,
   learning: learningApi,
+  community: communityApi,
+  studyTimer: studyTimerApi,
+  companyDirectory: companyDirectoryApi,
   adaptive: adaptiveApi,
   predictor: predictorApi,
   readiness: readinessApi,
@@ -88,6 +100,8 @@ const api = {
   analytics: analyticsApi,
   aiDebugger: aiDebuggerApi,
   concepts: conceptsApi,
+  evidence: evidenceApi,
+  progress: progressApi,
   learningModules: learningModulesApi,
   study: studyApi,
   learningPaths: learningPathsApi,
@@ -95,12 +109,15 @@ const api = {
   freeTrial: freeTrialApi,
   lesson: lessonApi,
   journey: journeyApi,
+  mission: missionApi,
   map: mapApi,
   onboarding: onboardingApi,
   adminContent: adminContentApi,
   assignments: assignmentsApi,
   metrics: metricsApi,
   tracks: tracksApi,
+  tcsNqt: tcsNqtApi,
+  examMemories: examMemoriesApi,
   getMe: () => authApi.getMe(),
   register: (...args: Parameters<typeof authApi.register>) =>
     authApi.register.apply(authApi, args),
@@ -170,6 +187,8 @@ export {
   freeTrialApi,
   lessonApi,
   journeyApi,
+  missionApi,
   mapApi,
   onboardingApi,
+  examMemoriesApi,
 };

@@ -1,7 +1,7 @@
 """Role Content Service — integrates role content with the existing pipeline.
 
 This service connects:
-  Role exercises/challenges → Mastery evidence → SRS → XP → Readiness
+  Role exercises/challenges → Mastery evidence → SRS → Diamonds → Readiness
 
 It does NOT create a new system. It extends the existing Study Engine,
 Mastery Engine, Gamification, and SRS with role-specific activities.
@@ -35,12 +35,12 @@ async def record_role_activity(
     score: float = 100.0,
     time_spent: int = 0,
 ) -> Dict[str, Any]:
-    """Record a role-specific activity and fan-out to mastery / SRS / XP.
+    """Record a role-specific activity and fan-out to mastery / SRS / Diamonds.
 
     This is the canonical completion sink for role content. When a student
     completes an exercise or challenge, this function:
     1. Updates the skill graph (mastery evidence)
-    2. Awards XP and coins (gamification)
+    2. Awards Diamonds and coins (gamification)
     3. Schedules SRS review (spaced repetition)
     4. Updates role readiness
 
@@ -71,8 +71,8 @@ async def record_role_activity(
     except Exception as exc:
         logger.warning("Mastery update failed for %s: %s", user_id, exc)
 
-    # ── 2. Gamification / XP ──
-    xp = _calculate_xp(activity_type, passed, score)
+    # ── 2. Gamification / Diamonds ──
+    diamonds = _calculate_xp(activity_type, passed, score)
     try:
         await record_practice(
             user_id,
@@ -84,8 +84,9 @@ async def record_role_activity(
                 "passed": passed,
                 "time_spent": time_spent,
             },
+            role=role_id,
         )
-        result["xp_awarded"] = xp
+        result["xp_awarded"] = diamonds
         result["xp_applied"] = True
     except Exception as exc:
         logger.warning("Gamification record failed for %s: %s", user_id, exc)
@@ -133,7 +134,7 @@ def _get_category_for_activity(activity_type: str, role_id: str) -> str:
 
 
 def _calculate_xp(activity_type: str, passed: bool, score: float) -> int:
-    """Calculate XP for a role activity."""
+    """Calculate Diamonds for a role activity."""
     base = {
         "exercise": 25,
         "challenge": 40,
@@ -167,10 +168,31 @@ async def get_next_role_activity(user_id: str, role_id: str) -> Optional[Dict[st
     1. SRS reviews due now
     2. Weak-skill exercises
     3. Role practice set progression
+
+    When a company track is enrolled, exercises are filtered to
+    company-relevant topics (company requirement × student weakness ×
+    prerequisite × evidence freshness × assessment relevance).
     """
     package = get_role_package(role_id)
     if not package:
         return None
+
+    # ── Read user goal for company-aware filtering ──
+    company_relevant_topics: List[str] = []
+    try:
+        from app.database import users_collection
+        user_doc = await users_collection().find_one({"user_id": user_id}) or {}
+        company_track = user_doc.get("company_track", "")
+        if company_track:
+            from app.data.learning_paths import COMPANY_TRACKS
+            track = COMPANY_TRACKS.get(company_track)
+            if track:
+                for section in track.get("sections", []):
+                    for topic in section.get("topics", []):
+                        for sub in topic.get("sub_topics", []):
+                            company_relevant_topics.append(sub)
+    except Exception:
+        pass
 
     # Check for due SRS reviews first
     try:
@@ -200,11 +222,23 @@ async def get_next_role_activity(user_id: str, role_id: str) -> Optional[Dict[st
     if practice_sets:
         ps = practice_sets[0]
         if ps.exercise_ids:
+            # ── Company-aware filtering: prefer exercises tagged with
+            # company-relevant topics when a company track is enrolled ──
+            exercise_id = ps.exercise_ids[0]
+            if company_relevant_topics:
+                from app.content.role_content import get_exercise_by_id
+                company_exercises = [
+                    eid for eid in ps.exercise_ids
+                    if any(t in (get_exercise_by_id(eid).topics if get_exercise_by_id(eid) else [])
+                           for t in company_relevant_topics)
+                ]
+                if company_exercises:
+                    exercise_id = company_exercises[0]
             return {
                 "type": "exercise",
                 "title": ps.title,
                 "description": ps.description,
-                "activity_id": ps.exercise_ids[0],
+                "activity_id": exercise_id,
                 "role_id": role_id,
                 "practice_set_id": ps.id,
             }

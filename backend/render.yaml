@@ -1,18 +1,33 @@
 services:
   - type: web
-    name: placementpro-api
+    name: BountyCode-api
     runtime: python
-    plan: free
+    # NOTE: keep off `free` — free-tier sleep causes OA cold-start timeouts.
+    # Use starter or higher before first real deploy.
+    plan: starter
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/v1/health/live
     envVars:
       - key: PYTHON_VERSION
-        value: "3.11"
+        value: "3.12"
       - key: CORS_ORIGINS
         value: "https://REPLACE-WITH-YOUR-VERCEL-URL.vercel.app"
       - key: COOKIE_SAMESITE
         value: "none"
-      - key: MONGODB_URI
+      # App reads MONGODB_URL (not MONGODB_URI) + DATABASE_NAME.
+      - key: MONGODB_URL
+        sync: false
+      - key: DATABASE_NAME
+        value: "placementpro"
+      # Local sandbox keeps the compiler alive when Piston is down.
+      - key: USE_LOCAL_SANDBOX
+        value: "true"
+      # Own compiler microservice (backend/compiler-service on Cloud Run).
+      # Tried before all third-party providers; empty disables the hop.
+      - key: COMPILER_SERVICE_URL
+        sync: false
+      - key: COMPILER_SERVICE_KEY
         sync: false
       - key: JWT_SECRET
         sync: false

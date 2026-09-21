@@ -1,0 +1,88 @@
+{
+  "id": "lesson_successive_percentage_001",
+  "slug": "successive_percentage_change",
+  "title": "Successive Percentage Change",
+  "domain": "Quantitative Aptitude",
+  "pattern": "Successive Percentage Change",
+  "difficulty": "easy",
+  "duration_min": 15,
+  "xp_reward": 80,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "The Trap of Simple Addition",
+      "content": "When a value is increased by x% and then decreased by y%, the net change is NOT simply (x - y)%. Percentages are calculated on different bases.",
+      "example": "Start with ₹100. Increase by 20% → ₹120. Decrease by 10% → ₹108. Net change = +₹8, which is +8%, not +10%.",
+      "formula": "Net change = x + y + (x × y) / 100",
+      "tip": "Always apply the formula. Never subtract percentages directly."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Apply the Formula",
+      "prompt": "A shirt's price is increased by 30% and then decreased by 20%. What is the net percentage change?",
+      "options": ["+10%", "+4%", "+6%", "-6%"],
+      "correct_index": 1,
+      "explanation": "Net change = 30 + (-20) + (30 × -20)/100 = 10 - 6 = +4%. The final price is 104% of the original."
+    },
+    {
+      "step_number": 3,
+      "step_type": "practice",
+      "title": "Quick Practice",
+      "prompt": "If a number is increased by 10% and then decreased by 10%, the net change is:",
+      "options": ["0%", "-1%", "+1%", "-2%"],
+      "correct_index": 1,
+      "explanation": "Net change = 10 + (-10) + (10 × -10)/100 = 0 - 1 = -1%. The value decreases by 1%."
+    },
+    {
+      "step_number": 4,
+      "step_type": "explain",
+      "title": "Reverse Percentage",
+      "content": "If a value is decreased by x% and you want to restore it, you must increase by MORE than x%.",
+      "example": "If salary drops by 25%, a 25% raise does NOT restore it. You need a 33.33% raise to get back to the original.",
+      "formula": "Required increase = (x × 100) / (100 - x) %"
+    },
+    {
+      "step_number": 5,
+      "step_type": "interactive",
+      "title": "Test Your Understanding",
+      "prompt": "A student scored 60% marks. After a 20% increase in score, what is the new percentage?",
+      "options": ["72%", "80%", "76%", "75%"],
+      "correct_index": 1,
+      "explanation": "New score = 60 + 20% of 60 = 60 + 12 = 72%. Wait, this is NOT successive percentage change. This is a simple 20% increase on the score value. The answer is 72%."
+    }
+  ],
+  "practice_questions": ["tcs_nqt_quant_0001", "tcs_nqt_quant_0002", "tcs_nqt_quant_0003"],
+  "assessment": {
+    "questions": [
+      {
+        "prompt": "A number is first increased by 10% and then decreased by 20%. The net change is:",
+        "options": ["-10%", "-12%", "-8%", "+10%"],
+        "correct_index": 1,
+        "explanation": "Net change = 10 + (-20) + (10 × -20)/100 = -10 - 2 = -12%."
+      },
+      {
+        "prompt": "If price of an article is decreased by 25%, by what percent must it be increased to restore the original price?",
+        "options": ["25%", "30%", "33.33%", "20%"],
+        "correct_index": 2,
+        "explanation": "Required increase = (25 × 100) / (100 - 25) = 2500/75 = 33.33%."
+      }
+    ],
+    "mastery_threshold": 0.7,
+    "duration_sec": 120
+  },
+  "srs_cards": [
+    {
+      "type": "formula",
+      "question": "What is the formula for successive percentage change when increased by x% and decreased by y%?",
+      "answer": "Net change = x + y + (x × y) / 100"
+    },
+    {
+      "type": "concept",
+      "question": "Why can't we simply add or subtract percentages directly?",
+      "answer": "Because each percentage is calculated on a different base value."
+    }
+  ]
+}

@@ -4,49 +4,133 @@
       "name": "TCS NQT",
       "full_name": "TCS National Qualifier Test",
       "role": "SDE undergrad",
-      "hiring_tracks": ["ninja", "digital", "prime"],
-      "ctc_range": {"ninja": "3.5-3.9 LPA", "digital": "7-7.5 LPA", "prime": "9-11 LPA"},
+      "hiring_tracks": [
+        "ninja",
+        "digital",
+        "prime"
+      ],
+      "ctc_range": {
+        "ninja": "3.5-3.9 LPA",
+        "digital": "7-7.5 LPA",
+        "prime": "9-11 LPA"
+      },
       "duration_minutes": 190,
+      "exam_rules": {
+        "negative_marking": false,
+        "section_switching": false,
+        "back_navigation": false,
+        "note": "Once a section's time expires it locks permanently. Within a section, clicking Next locks the question \u00e2\u20ac\u201d no review or change. Attempt every question: blank and wrong both score zero."
+      },
+      "band_logic": [
+        "All candidates attempt all 5 sections in one sitting (integrated model since 2023).",
+        "Foundation percentile is evaluated first \u00e2\u20ac\u201d below-threshold candidates are Ninja-ineligible.",
+        "Foundation-eligible candidates are evaluated on Advanced Aptitude \u00e2\u20ac\u201d clearing it means Digital-eligible.",
+        "Advanced Coding (partial marks on test-case pass rate) determines Prime eligibility at 80th+ percentile overall."
+      ],
       "structure": {
         "foundation": {
+          "stage": "Foundation",
+          "label": "Foundation ( gates Ninja eligibility )",
           "duration": 75,
-          "sections": ["quantitative_aptitude", "verbal_ability", "reasoning_ability"],
+          "sections": [
+            "quantitative_aptitude",
+            "verbal_ability",
+            "reasoning_ability"
+          ],
           "questions": 65,
           "negative_marking": false,
           "topics": {
             "quantitative_aptitude": {
-              "weight": 20,
-              "sub_topics": ["percentages", "profit_loss", "ratio_proportion", "averages", "time_work", "time_distance", "probability", "permutations_combinations", "number_systems"]
+              "questions": 20,
+              "duration_minutes": 25,
+              "sub_topics": [
+                "percentages",
+                "profit_loss",
+                "ratio_proportion",
+                "averages",
+                "time_work",
+                "time_distance",
+                "probability",
+                "permutations_combinations",
+                "number_systems",
+                "data_interpretation"
+              ]
             },
             "verbal_ability": {
-              "weight": 20,
-              "sub_topics": ["reading_comprehension", "sentence_correction", "para_jumbles", "synonyms_antonyms", "fill_in_blanks"]
+              "questions": 25,
+              "duration_minutes": 25,
+              "sub_topics": [
+                "reading_comprehension",
+                "sentence_correction",
+                "para_jumbles",
+                "synonyms_antonyms",
+                "fill_in_blanks"
+              ]
             },
             "reasoning_ability": {
-              "weight": 20,
-              "sub_topics": ["series", "coding_decoding", "blood_relation", "direction_sense", "analogy", "odd_one_out", "sequence"]
+              "questions": 20,
+              "duration_minutes": 25,
+              "sub_topics": [
+                "series",
+                "coding_decoding",
+                "blood_relation",
+                "direction_sense",
+                "analogy",
+                "odd_one_out",
+                "sequence",
+                "seating_arrangements",
+                "syllogisms"
+              ]
             }
           }
         },
         "advanced": {
+          "stage": "Advanced",
+          "label": "Advanced ( gates Digital / Prime eligibility )",
           "duration": 115,
-          "sections": ["advanced_quantitative", "advanced_reasoning", "advanced_coding"],
-          "questions": 18,
+          "sections": [
+            "advanced_aptitude",
+            "advanced_coding"
+          ],
+          "questions": 17,
           "negative_marking": false,
           "topics": {
-            "advanced_quantitative": {
-              "weight": 30,
-              "sub_topics": ["advanced_mixtures", "advanced_time_work", "advanced_time_distance", "advanced_probability", "advanced_permutations"]
-            },
-            "advanced_reasoning": {
-              "weight": 20,
-              "sub_topics": ["advanced_coding_decoding", "advanced_blood_relation", "advanced_direction_sense", "advanced_analogy"]
+            "advanced_aptitude": {
+              "questions": 15,
+              "duration_minutes": 25,
+              "note": "Shared Advanced Quantitative + Reasoning pool, significantly harder than Foundation.",
+              "sub_topics": [
+                "advanced_mixtures",
+                "advanced_time_work",
+                "advanced_time_distance",
+                "advanced_probability",
+                "advanced_permutations",
+                "advanced_coding_decoding",
+                "advanced_blood_relation",
+                "advanced_direction_sense",
+                "advanced_analogy"
+              ]
             },
             "advanced_coding": {
-              "weight": 50,
-              "problems": 3,
+              "problems": 2,
               "duration_minutes": 90,
-              "topics": ["arrays", "strings", "loops", "recursion", "sorting", "searching", "hashing"]
+              "partial_marks": true,
+              "languages": [
+                "C",
+                "C++",
+                "Java",
+                "Python",
+                "Perl"
+              ],
+              "topics": [
+                "arrays",
+                "strings",
+                "loops",
+                "recursion",
+                "sorting",
+                "searching",
+                "hashing"
+              ]
             }
           }
         }
@@ -65,83 +149,671 @@
         "advanced": 0.4,
         "coding": 0.2
       },
-      "companies": ["tcs"],
-      "source": "official_tcs_nqt_pattern",
-      "last_verified": "2026-08",
-      "description": "TCS National Qualifier Test separates candidates into Ninja (Foundation only), Digital (Foundation + Advanced), and Prime (All tracks) based on section scores."
+      "companies": [
+        "tcs"
+      ],
+      "provenance_status": "pattern_relevant",
+      "sources": [
+        "https://bharatnqt.com/tcs-nqt-exam-pattern-2026",
+        "https://prepinsta.com/tcs-nqt/syllabus",
+        "https://www.geeksforgeeks.org/competitive-exam-experiences/tcs-nqt-exam-preparation-and-guide"
+      ],
+      "last_verified": "2026-09-08",
+      "description": "TCS National Qualifier Test: one integrated 190-minute test. Foundation (65Q/75min) gates Ninja eligibility; Advanced Aptitude (15Q/25min) gates Digital; Advanced Coding (2 problems/90min, partial marks) gates Prime. No negative marking; sections lock permanently.",
+      "last_verified_at": "2026-09-13T04:30:43.895212+00:00"
     },
-
     "accenture": {
       "name": "Accenture",
-      "full_name": "Accenture Placement Drive",
-      "role": "2025-2026 batch",
-      "hiring_tracks": ["analyst", "senior_analyst"],
-      "ctc_range": {"analyst": "3.5-4.5 LPA", "senior_analyst": "5-7 LPA"},
-      "duration_minutes": 120,
+      "full_name": "Accenture India",
+      "role": "ASE / SE",
+      "hiring_tracks": [
+        "analyst",
+        "senior_analyst"
+      ],
+      "ctc_range": {
+        "analyst": "4.5 LPA",
+        "senior_analyst": "6.5 LPA"
+      },
+      "duration_minutes": 90,
+      "exam_rules": {
+        "negative_marking": false,
+        "section_switching": false,
+        "back_navigation": false,
+        "note": "Single integrated 90-minute AMCAT-style assessment. Sections submit independently; no back-navigation within a section."
+      },
+      "band_logic": [
+        "Cognitive score (Numerical + Logical + Verbal) determines eligibility.",
+        "Coding score (2 problems, 25 min) is evaluated separately for role fit."
+      ],
       "structure": {
         "foundation": {
-          "duration": 70,
-          "sections": ["verbal_ability", "quantitative_aptitude", "logical_reasoning", "computer_basics"],
-          "questions": 50,
+          "duration": 65,
+          "sections": [
+            "numerical_ability",
+            "logical_reasoning",
+            "verbal_ability"
+          ],
+          "questions": 75,
           "negative_marking": false,
           "topics": {
-            "verbal_ability": {
-              "weight": 25,
-              "sub_topics": ["reading_comprehension", "sentence_correction", "synonyms_antonyms", "para_jumbles", "critical_reasoning"]
-            },
-            "quantitative_aptitude": {
-              "weight": 25,
-              "sub_topics": ["percentages", "profit_loss", "time_work_distance", "averages", "probability", "series"]
+            "numerical_ability": {
+              "questions": 25,
+              "duration_minutes": 20,
+              "sub_topics": [
+                "number_system",
+                "hcf_lcm",
+                "percentages",
+                "profit_loss",
+                "time_work",
+                "speed_time_distance",
+                "simple_compound_interest",
+                "mixture_alligation"
+              ]
             },
             "logical_reasoning": {
-              "weight": 30,
-              "sub_topics": ["blood_relation", "direction_sense", "analogy", "coding_decoding", "series", "venn_diagrams"]
+              "questions": 25,
+              "duration_minutes": 25,
+              "sub_topics": [
+                "coding_decoding",
+                "syllogisms",
+                "blood_relation",
+                "direction_sense",
+                "series",
+                "puzzles",
+                "arrangements",
+                "odd_one_out"
+              ]
             },
-            "computer_basics": {
-              "weight": 20,
-              "sub_topics": ["computer_fundamentals", "os_basics", "db_basics", "networking_basics"]
+            "verbal_ability": {
+              "questions": 25,
+              "duration_minutes": 20,
+              "sub_topics": [
+                "grammar",
+                "sentence_correction",
+                "cloze_test",
+                "synonyms_antonyms",
+                "reading_comprehension",
+                "para_jumbles"
+              ]
             }
           }
         },
         "advanced": {
-          "duration": 50,
-          "sections": ["technical", "problem_solving", "communication"],
-          "questions": 30,
+          "duration": 25,
+          "sections": [
+            "coding"
+          ],
+          "questions": 2,
           "negative_marking": false,
           "topics": {
-            "technical": {
-              "weight": 40,
-              "sub_topics": ["c_language", "java_basics", "dbms", "os", "networking", "data_structures"]
-            },
-            "problem_solving": {
-              "weight": 35,
-              "sub_topics": ["analytical_reasoning", "data_interpretaion", "decision_making"]
-            },
-            "communication": {
-              "weight": 25,
-              "sub_topics": ["verbal_ability", "body_language", "storytelling", "structured_thinking"]
+            "coding": {
+              "problems": 2,
+              "duration_minutes": 25,
+              "partial_marks": true,
+              "languages": [
+                "C",
+                "C++",
+                "Java",
+                "Python"
+              ],
+              "topics": [
+                "arrays",
+                "strings",
+                "linked_lists",
+                "basic_algorithms",
+                "mathematical",
+                "pattern_matching"
+              ]
             }
           }
         }
       },
       "competencies": [
+        "numerical_ability",
+        "logical_reasoning",
         "verbal_ability",
+        "coding",
+        "problem_solving"
+      ],
+      "readiness_weights": {
+        "foundation": 0.7,
+        "coding": 0.3
+      },
+      "companies": [
+        "accenture"
+      ],
+      "provenance_status": "pattern_relevant",
+      "sources": [
+        "backend/app/data/indian_companies.py (in-repo Accenture AMCAT pattern)",
+        "https://prepinsta.com/accenture-amcat",
+        "https://www.geeksforgeeks.org/competitive-exam-experiences/accenture"
+      ],
+      "last_verified": "2026-09-08",
+      "verification_todo": "Exact per-section counts are from in-repo pattern data; confirm against 2026 official Accenture communication before serving as verified.",
+      "description": "Accenture AMCAT-style assessment: 90-minute integrated test. Cognitive sections (Numerical 25q/20m, Logical 25q/25m, Verbal 25q/20m) followed by Coding (2 problems/25m, partial marks). No negative marking.",
+      "last_verified_at": "2026-09-13T04:30:43.895212+00:00"
+    },
+    "infosys": {
+      "name": "Infosys",
+      "full_name": "Infosys Limited",
+      "role": "SDE undergrad / Specialist",
+      "hiring_tracks": [
+        "infytq",
+        "specialist_program"
+      ],
+      "ctc_range": {
+        "infytq": "3.6 LPA",
+        "specialist_program": "6.25 LPA"
+      },
+      "duration_minutes": 180,
+      "exam_rules": {
+        "negative_marking": false,
+        "section_switching": false,
+        "back_navigation": false,
+        "note": "3-hour integrated test. Programming MCQ + Coding sections are adaptive. No negative marking."
+      },
+      "band_logic": [
+        "InfyTQ Certification score gates entry into the Specialist Program track.",
+        "Higher InfyTQ scores lead to DSE (Digital Specialist Engineer) roles with higher package.",
+        "Coding performance (3 problems) is the primary differentiator for Specialist track selection."
+      ],
+      "structure": {
+        "foundation": {
+          "duration": 50,
+          "sections": [
+            "aptitude_logic",
+            "programming_mcq"
+          ],
+          "questions": 50,
+          "negative_marking": false,
+          "topics": {
+            "aptitude_logic": {
+              "questions": 30,
+              "duration_minutes": 30,
+              "sub_topics": [
+                "percentages",
+                "mixtures",
+                "clocks",
+                "calendars",
+                "series",
+                "puzzles",
+                "seating_arrangement",
+                "venn_diagrams",
+                "data_interpretation"
+              ]
+            },
+            "programming_mcq": {
+              "questions": 20,
+              "duration_minutes": 20,
+              "sub_topics": [
+                "java_python_basics",
+                "oop",
+                "exception_handling",
+                "collections",
+                "file_io",
+                "recursion",
+                "time_complexity",
+                "output_prediction"
+              ]
+            }
+          }
+        },
+        "advanced": {
+          "duration": 130,
+          "sections": [
+            "coding"
+          ],
+          "questions": 3,
+          "negative_marking": false,
+          "topics": {
+            "coding": {
+              "problems": 3,
+              "duration_minutes": 90,
+              "partial_marks": true,
+              "languages": [
+                "C",
+                "C++",
+                "Java",
+                "Python",
+                "JavaScript"
+              ],
+              "sub_topics": {
+                "easy": {
+                  "count": 1,
+                  "duration_minutes": 35,
+                  "topics": [
+                    "arrays",
+                    "strings",
+                    "basic_math",
+                    "pattern_printing"
+                  ]
+                },
+                "medium": {
+                  "count": 1,
+                  "duration_minutes": 55,
+                  "topics": [
+                    "linked_lists",
+                    "hashmaps",
+                    "stacks_queues",
+                    "trees_basics"
+                  ]
+                },
+                "hard": {
+                  "count": 1,
+                  "duration_minutes": 75,
+                  "topics": [
+                    "dynamic_programming",
+                    "graph_traversal",
+                    "advanced_recursion"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "competencies": [
         "quantitative_aptitude",
         "logical_reasoning",
-        "computer_basics",
-        "technical_knowledge",
+        "programming_fundamentals",
+        "coding",
         "problem_solving",
-        "communication"
+        "technical_fundamentals"
       ],
       "readiness_weights": {
         "foundation": 0.5,
-        "advanced": 0.3,
-        "communication": 0.2
+        "coding": 0.5
       },
-      "companies": ["accure"],
-      "source": "accenture_2025_pattern",
-      "last_verified": "2026-08",
-      "description": "Accenture hiring process consists of Foundation assessment (Verbal + Quant + Reasoning + Computer Basics) followed by Advanced Technical + Problem Solving + Communication round."
+      "companies": [
+        "infosys"
+      ],
+      "provenance_status": "pattern_relevant",
+      "sources": [
+        "backend/app/data/indian_companies.py (in-repo Infosys InfyTQ pattern)",
+        "https://prepinsta.com/infosys-sp-dse",
+        "https://www.geeksforgeeks.org/competitive-exam-experiences/infosys-infytq"
+      ],
+      "last_verified": "2026-09-08",
+      "verification_todo": "Exact per-section counts and difficulty split are from in-repo pattern data + PrepInsta secondary source; confirm against 2026 official Infosys communication before serving as verified.",
+      "description": "Infosys InfyTQ / Specialist Program: 3-hour integrated test. Foundation (Aptitude & Logic 30q/30m + Programming MCQ 20q/20m) followed by Advanced Coding (3 problems/90m, partial marks, Easy/Medium/Hard split). No negative marking.",
+      "last_verified_at": "2026-09-13T04:30:43.895212+00:00"
+    },
+    "wipro_nlth": {
+      "name": "Wipro NLTH",
+      "full_name": "Wipro National Level Talent Hunt",
+      "role": "SDE undergrad",
+      "hiring_tracks": [
+        "wilp",
+        "turbo"
+      ],
+      "ctc_range": {
+        "wilp": "3.5 LPA",
+        "turbo": "6 LPA"
+      },
+      "duration_minutes": 96,
+      "exam_rules": {
+        "negative_marking": false,
+        "section_switching": false,
+        "back_navigation": false,
+        "note": "96-minute single-sitting test. Sections are sequential; no back-navigation. No negative marking."
+      },
+      "band_logic": [
+        "Aptitude + English scores determine eligibility for technical round.",
+        "Coding performance (2 problems, 60 min) is the primary filter for Turbo/WILP track."
+      ],
+      "structure": {
+        "foundation": {
+          "duration": 36,
+          "sections": [
+            "quantitative_aptitude",
+            "logical_reasoning",
+            "verbal_ability"
+          ],
+          "questions": 60,
+          "negative_marking": false,
+          "topics": {
+            "quantitative_aptitude": {
+              "questions": 20,
+              "duration_minutes": 20,
+              "sub_topics": [
+                "time_distance",
+                "probability",
+                "permutation",
+                "ratio_proportion",
+                "blood_relation",
+                "direction_sense",
+                "odd_one_out",
+                "number_series"
+              ]
+            },
+            "logical_reasoning": {
+              "questions": 20,
+              "duration_minutes": 20,
+              "sub_topics": [
+                "coding_decoding",
+                "syllogisms",
+                "blood_relation",
+                "direction_sense",
+                "series",
+                "puzzles",
+                "arrangements",
+                "odd_one_out"
+              ]
+            },
+            "verbal_ability": {
+              "questions": 20,
+              "duration_minutes": 16,
+              "sub_topics": [
+                "active_passive_voice",
+                "direct_indirect_speech",
+                "error_spotting",
+                "fill_in_blanks",
+                "word_analogy",
+                "one_word_substitution"
+              ]
+            }
+          }
+        },
+        "advanced": {
+          "duration": 60,
+          "sections": [
+            "coding"
+          ],
+          "questions": 2,
+          "negative_marking": false,
+          "topics": {
+            "coding": {
+              "problems": 2,
+              "duration_minutes": 60,
+              "partial_marks": true,
+              "languages": [
+                "C",
+                "C++",
+                "Java",
+                "Python"
+              ],
+              "topics": [
+                "arrays",
+                "strings",
+                "linked_lists",
+                "recursion",
+                "dynamic_programming_basics",
+                "pattern_printing",
+                "matrix_operations"
+              ]
+            }
+          }
+        }
+      },
+      "competencies": [
+        "quantitative_aptitude",
+        "logical_reasoning",
+        "verbal_ability",
+        "coding",
+        "problem_solving"
+      ],
+      "readiness_weights": {
+        "foundation": 0.5,
+        "coding": 0.5
+      },
+      "companies": [
+        "wipro"
+      ],
+      "provenance_status": "pattern_relevant",
+      "sources": [
+        "backend/app/data/indian_companies.py (in-repo Wipro NLTH pattern)",
+        "https://prepinsta.com/wipro-nlth",
+        "https://www.geeksforgeeks.org/competitive-exam-experiences/wipro"
+      ],
+      "last_verified": "2026-09-08",
+      "verification_todo": "Exact per-section counts are from in-repo pattern data; confirm against 2026 official Wipro communication before serving as verified.",
+      "description": "Wipro NLTH: 96-minute integrated test. Foundation (Quantitative 20q/20m + Logical 20q/20m + Verbal 20q/16m) followed by Coding (2 problems/60m, partial marks). No negative marking.",
+      "last_verified_at": "2026-09-13T04:30:43.895212+00:00"
+    },
+    "capgemini": {
+      "name": "Capgemini",
+      "full_name": "Capgemini Technology Services India",
+      "role": "Engineer Trainee / Analyst",
+      "hiring_tracks": [
+        "engineer_trainee",
+        "analyst"
+      ],
+      "ctc_range": {
+        "engineer_trainee": "3.5-4 LPA",
+        "analyst": "4-4.5 LPA"
+      },
+      "duration_minutes": 90,
+      "exam_rules": {
+        "negative_marking": false,
+        "section_switching": false,
+        "back_navigation": false,
+        "note": "Integrated online assessment. Sections submit independently; no negative marking."
+      },
+      "band_logic": [
+        "Aptitude (quant + logical) and Verbal (English) scores determine shortlisting.",
+        "Coding performance (2 problems) is used as a differentiator for engineering roles."
+      ],
+      "structure": {
+        "foundation": {
+          "duration": 50,
+          "sections": [
+            "quantitative_aptitude",
+            "verbal_ability"
+          ],
+          "questions": 50,
+          "negative_marking": false,
+          "topics": {
+            "quantitative_aptitude": {
+              "questions": 25,
+              "duration_minutes": 25,
+              "note": "Quantitative + Logical combined aptitude pool.",
+              "sub_topics": [
+                "number_system",
+                "percentages",
+                "profit_loss",
+                "ratio_proportion",
+                "time_work",
+                "speed_time_distance",
+                "probability",
+                "data_interpretation",
+                "series",
+                "coding_decoding",
+                "syllogisms",
+                "blood_relation",
+                "direction_sense"
+              ]
+            },
+            "verbal_ability": {
+              "questions": 25,
+              "duration_minutes": 25,
+              "sub_topics": [
+                "grammar",
+                "sentence_correction",
+                "cloze_test",
+                "synonyms_antonyms",
+                "reading_comprehension",
+                "para_jumbles",
+                "error_spotting"
+              ]
+            }
+          }
+        },
+        "advanced": {
+          "duration": 30,
+          "sections": [
+            "coding"
+          ],
+          "questions": 2,
+          "negative_marking": false,
+          "topics": {
+            "coding": {
+              "problems": 2,
+              "duration_minutes": 30,
+              "partial_marks": true,
+              "languages": [
+                "C",
+                "C++",
+                "Java",
+                "Python"
+              ],
+              "topics": [
+                "arrays",
+                "strings",
+                "basic_algorithms",
+                "mathematical",
+                "pattern_printing"
+              ]
+            }
+          }
+        }
+      },
+      "competencies": [
+        "quantitative_aptitude",
+        "verbal_ability",
+        "logical_reasoning",
+        "coding",
+        "problem_solving"
+      ],
+      "readiness_weights": {
+        "foundation": 0.6,
+        "coding": 0.4
+      },
+      "companies": [
+        "capgemini"
+      ],
+      "provenance_status": "pattern_relevant",
+      "sources": [
+        "https://prepinsta.com/capgemini/",
+        "https://www.geeksforgeeks.org/competitive-exam-experiences/capgemini"
+      ],
+      "last_verified": "2026-09-16",
+      "verification_todo": "Pattern-relevant: reported Capgemini online assessment blueprint. Confirm against official 2026 Capgemini communication before serving as verified.",
+      "description": "Capgemini online assessment: Aptitude (quant + logical, ~25q/25m) and Verbal (~25q/25m) followed by Coding (2 problems, 30m) for engineering roles. No negative marking.",
+      "last_verified_at": "2026-09-16T00:00:00+00:00"
+    },
+    "ibm": {
+      "name": "IBM",
+      "full_name": "IBM India - Entry Level",
+      "role": "Associate / Software Engineer",
+      "hiring_tracks": [
+        "associate_system_engineer",
+        "software_developer"
+      ],
+      "ctc_range": {
+        "associate_system_engineer": "4-4.5 LPA",
+        "software_developer": "6-8 LPA"
+      },
+      "duration_minutes": 75,
+      "exam_rules": {
+        "negative_marking": false,
+        "section_switching": false,
+        "back_navigation": false,
+        "note": "Cognitive Ability + optional coding round. No negative marking."
+      },
+      "band_logic": [
+        "Cognitive ability score (aptitude/logical/verbal) is the primary filter.",
+        "Coding round (2 problems) applies for software engineering roles."
+      ],
+      "structure": {
+        "foundation": {
+          "duration": 30,
+          "sections": [
+            "quantitative_aptitude",
+            "logical_reasoning",
+            "verbal_ability"
+          ],
+          "questions": 50,
+          "negative_marking": false,
+          "topics": {
+            "quantitative_aptitude": {
+              "questions": 20,
+              "duration_minutes": 10,
+              "sub_topics": [
+                "number_system",
+                "percentages",
+                "profit_loss",
+                "time_work",
+                "speed_time_distance",
+                "probability"
+              ]
+            },
+            "logical_reasoning": {
+              "questions": 20,
+              "duration_minutes": 10,
+              "sub_topics": [
+                "series",
+                "coding_decoding",
+                "syllogisms",
+                "blood_relation",
+                "direction_sense",
+                "analogy",
+                "puzzles"
+              ]
+            },
+            "verbal_ability": {
+              "questions": 10,
+              "duration_minutes": 10,
+              "sub_topics": [
+                "grammar",
+                "sentence_correction",
+                "synonyms_antonyms",
+                "reading_comprehension"
+              ]
+            }
+          }
+        },
+        "advanced": {
+          "duration": 45,
+          "sections": [
+            "coding"
+          ],
+          "questions": 2,
+          "negative_marking": false,
+          "topics": {
+            "coding": {
+              "problems": 2,
+              "duration_minutes": 45,
+              "partial_marks": true,
+              "languages": [
+                "C",
+                "C++",
+                "Java",
+                "Python"
+              ],
+              "topics": [
+                "arrays",
+                "strings",
+                "stacks_queues",
+                "linked_lists",
+                "mathematical"
+              ]
+            }
+          }
+        }
+      },
+      "competencies": [
+        "quantitative_aptitude",
+        "logical_reasoning",
+        "verbal_ability",
+        "coding",
+        "problem_solving"
+      ],
+      "readiness_weights": {
+        "foundation": 0.6,
+        "coding": 0.4
+      },
+      "companies": [
+        "ibm"
+      ],
+      "provenance_status": "pattern_relevant",
+      "sources": [
+        "https://prepinsta.com/ibm/",
+        "https://www.geeksforgeeks.org/competitive-exam-experiences/ibm"
+      ],
+      "last_verified": "2026-09-16",
+      "verification_todo": "Pattern-relevant: reported IBM entry-level cognitive assessment blueprint. Confirm against official 2026 IBM communication before serving as verified.",
+      "description": "IBM entry-level Cognitive Ability + coding assessment: aptitude/logical/verbal (~50q/30m) followed by Coding (2 problems) for software roles. No negative marking.",
+      "last_verified_at": "2026-09-16T00:00:00+00:00"
     }
   }
 }

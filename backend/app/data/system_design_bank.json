@@ -1,0 +1,1278 @@
+[
+  {
+    "id": "sd-001",
+    "type": "system_design",
+    "title": "Design a URL Shortener",
+    "question": "Design a URL shortener like bit.ly. Requirements: shorten long URLs, redirect to original, track click counts. Support 100M URLs, 1B redirects/month.",
+    "topic": "system_design",
+    "sub_topic": "url_shortener",
+    "pattern": "system_design",
+    "difficulty": "medium",
+    "companies": [
+      "google",
+      "amazon",
+      "meta",
+      "microsoft"
+    ],
+    "provenance": "human_verified",
+    "trust_status": "reviewed",
+    "source_bank": "system_design_bank",
+    "mental_model": "Hash-based encoding, separate read/write paths, caching layer for hot URLs.",
+    "solution": {
+      "approach": "Hash the long URL or auto-increment ID. Base62 encode for short URL. Store mapping in DB. Cache hot URLs in Redis.",
+      "components": [
+        "API Gateway",
+        "Write Service",
+        "Read Service",
+        "Cache (Redis)",
+        "Database (Cassandra/Postgres)",
+        "Analytics Service"
+      ],
+      "api_endpoints": [
+        "POST /api/shorten",
+        "GET /{short_code}"
+      ],
+      "data_model": {
+        "url_mappings": [
+          "id",
+          "long_url",
+          "short_code",
+          "created_at",
+          "expires_at",
+          "click_count"
+        ]
+      },
+      "complexity": {
+        "write": "O(1)",
+        "read": "O(1) with cache"
+      }
+    },
+    "explanation": "URL shortener requires: (1) Unique ID generation (hash or auto-increment), (2) Base62 encoding for short codes, (3) Separate write/read paths for scaling, (4) Caching for hot URLs to reduce DB load, (5) Analytics for click tracking.",
+    "hints": [
+      "Consider ID generation strategies: hash vs auto-increment vs UUID",
+      "Base62 encoding gives you 62^n possible short URLs",
+      "Cache the most frequently accessed URLs",
+      "Consider TTL for temporary URLs"
+    ],
+    "common_trap": "Using hash of URL can cause collisions. Auto-increment is simpler but reveals total URL count.",
+    "reasoning_steps": [
+      "1. Clarify requirements: shorten, redirect, analytics, scale",
+      "2. Estimate capacity: 100M URLs, 1B redirects/month",
+      "3. Choose ID generation strategy",
+      "4. Design data model for URL mappings",
+      "5. Design API endpoints",
+      "6. Add caching layer for performance",
+      "7. Consider analytics and monitoring"
+    ],
+    "constraints": "100M URLs stored, 1B redirects/month, 99.9% availability, <100ms p99 latency",
+    "follow_up": "How would you handle custom short URLs? How would you prevent abuse/rate limiting? Pressure: 10x traffic spike overnight — what breaks first? Short-code enumeration attack — how do you detect and stop it?",
+    "statement": "Design a URL shortener like bit.ly. Users submit long URLs and get short codes; visitors hitting a short code redirect to the original; owners see click counts.",
+    "requirements": {
+      "functional": [
+        "Shorten long URL to unique short code",
+        "Redirect short code to original (301/302)",
+        "Track click counts per code",
+        "Optional custom codes and TTL/expiry"
+      ],
+      "non_functional": [
+        "Read-heavy: far more redirects than shortens",
+        "Redirect latency <100ms p99",
+        "99.9% availability",
+        "Codes must be unguessable enough to avoid enumeration"
+      ]
+    },
+    "key_components": [
+      "API Gateway",
+      "Write Service",
+      "Read Service",
+      "Cache (Redis)",
+      "Database",
+      "Analytics Service"
+    ],
+    "estimated_users": "100M stored URLs, ~1B redirects/month",
+    "category": "hld",
+    "subcategory": "Infrastructure",
+    "scale_estimation": "Reads: 1B/month ~= 386/sec avg, ~4K/sec at 10x peak. Writes: 100M URLs over ~5 years ~= 1/sec avg. Storage: 100M x ~500B ~= 50GB. Redirect bandwidth: 4K x 500B ~= 2MB/sec. Cache the hot ~20% of codes serving ~80% of reads.",
+    "rubric": {
+      "requirements_gathering": {
+        "weight": 15,
+        "excellent": "Asks read/write ratio, code length, custom codes, expiry before designing",
+        "weak": "Jumps to hashing with no clarification"
+      },
+      "high_level_design": {
+        "weight": 25,
+        "excellent": "Separate read/write paths with cache in front of reads",
+        "weak": "Single service + single DB with no scaling story"
+      },
+      "deep_dive": {
+        "weight": 25,
+        "excellent": "Base62 ID strategy with collision analysis; cache-aside with TTL",
+        "weak": "Cannot explain hash vs counter trade-offs"
+      },
+      "scalability": {
+        "weight": 20,
+        "excellent": "Names redirect path as bottleneck; adds read replicas/edge cache",
+        "weak": "No bottleneck identified; 'add more servers' with no reasoning"
+      },
+      "communication": {
+        "weight": 15,
+        "excellent": "Walks interviewer through estimate numbers out loud",
+        "weak": "Silent coding with no narration of choices"
+      }
+    },
+    "enrichment_provenance": "llm-drafted 2026-09-09, needs human re-review before verified",
+    "review_status": "reviewed"
+  },
+  {
+    "id": "sd-002",
+    "type": "system_design",
+    "title": "Design a Rate Limiter",
+    "question": "Design a rate limiter for a public API. Requirements: limit 100 requests/minute per user, support multiple algorithms, distributed systems compatible.",
+    "topic": "system_design",
+    "sub_topic": "rate_limiter",
+    "pattern": "system_design",
+    "difficulty": "medium",
+    "companies": [
+      "google",
+      "amazon",
+      "meta",
+      "microsoft"
+    ],
+    "provenance": "human_verified",
+    "trust_status": "reviewed",
+    "source_bank": "system_design_bank",
+    "mental_model": "Token bucket or sliding window algorithm, Redis for distributed state, API gateway integration.",
+    "solution": {
+      "approach": "Token bucket algorithm: each user has a bucket that refills at fixed rate. Requests consume tokens. Empty bucket = rate limited.",
+      "components": [
+        "API Gateway",
+        "Rate Limiter Service",
+        "Redis (state store)",
+        "User Service"
+      ],
+      "algorithms": [
+        "Token Bucket",
+        "Sliding Window",
+        "Fixed Window",
+        "Leaky Bucket"
+      ],
+      "data_model": {
+        "rate_limits": [
+          "user_id",
+          "algorithm",
+          "tokens_remaining",
+          "last_refill"
+        ]
+      }
+    },
+    "explanation": "Rate limiter prevents API abuse. Token bucket allows burst traffic while enforcing average rate. Redis provides distributed state sharing across multiple API gateway instances.",
+    "hints": [
+      "Token bucket allows burst up to bucket capacity",
+      "Sliding window is more precise but uses more memory",
+      "Store rate limit state in Redis with TTL",
+      "API gateway should reject before hitting backend"
+    ],
+    "common_trap": "In-memory rate limiting doesn't work in distributed systems. Each request might hit a different server.",
+    "reasoning_steps": [
+      "1. Clarify requirements: rate, window, algorithms",
+      "2. Choose algorithm: token bucket for flexibility",
+      "3. Design distributed state store (Redis)",
+      "4. Design API gateway integration",
+      "5. Consider edge cases: clock skew, distributed consistency"
+    ],
+    "constraints": "100 req/min per user, <5ms overhead per request, distributed across 10+ gateway instances",
+    "follow_up": "How would you implement different rate limits for free vs paid users? How would you handle burst traffic? Pressure: a single API key suddenly sends 1000x — what breaks, and what alerts fire?",
+    "statement": "Design a token-bucket rate limiter for a public API: 100 requests/minute per user, bursty traffic allowed, enforced at the API gateway.",
+    "requirements": {
+      "functional": [
+        "Enforce per-user rate limits",
+        "Support burst traffic within capacity",
+        "Reject over-limit requests fast with headers"
+      ],
+      "non_functional": [
+        "<5ms overhead per request",
+        "Works across 10+ gateway instances",
+        "No single point of failure"
+      ]
+    },
+    "key_components": [
+      "API Gateway",
+      "Rate Limiter Service",
+      "Redis (state store)",
+      "Configuration Store"
+    ],
+    "estimated_users": "API with per-user 100 req/min budgets across a gateway fleet",
+    "category": "hld",
+    "subcategory": "Infrastructure",
+    "scale_estimation": "State per user is tiny (tokens + timestamp, ~100B). 1M users ~= 100MB in Redis. Each request costs 1 Redis RTT (~1ms) + logic; budget <5ms total. Refill math runs locally per request — no background jobs.",
+    "rubric": {
+      "requirements_gathering": {
+        "weight": 15,
+        "excellent": "Asks per-user vs per-key limits, burst policy, failure mode (fail-open vs fail-closed)",
+        "weak": "Picks an algorithm with no stated requirements"
+      },
+      "high_level_design": {
+        "weight": 25,
+        "excellent": "Gateway-side enforcement with shared Redis state",
+        "weak": "In-memory per-instance counters (bypassable across instances)"
+      },
+      "deep_dive": {
+        "weight": 25,
+        "excellent": "Token bucket math: capacity, refill rate, atomic Redis INCR+EXPIRE or Lua",
+        "weak": "Cannot explain how refill works or where state lives"
+      },
+      "scalability": {
+        "weight": 20,
+        "excellent": "Names Redis hot-key contention on global limits; shards or samples",
+        "weak": "No scaling analysis beyond 'use Redis'"
+      },
+      "communication": {
+        "weight": 15,
+        "excellent": "States burst vs sustained trade-off explicitly",
+        "weak": "Cannot justify token bucket vs fixed window"
+      }
+    },
+    "enrichment_provenance": "llm-drafted 2026-09-09, needs human re-review before verified",
+    "review_status": "reviewed"
+  },
+  {
+    "id": "sd-003",
+    "type": "system_design",
+    "title": "Design a Notification Service",
+    "question": "Design a notification service that supports email, SMS, and push notifications. Requirements: 10M users, 1M notifications/hour, 99.9% delivery guarantee.",
+    "topic": "system_design",
+    "sub_topic": "notification_service",
+    "pattern": "system_design",
+    "difficulty": "hard",
+    "companies": [
+      "google",
+      "amazon",
+      "meta",
+      "microsoft"
+    ],
+    "provenance": "human_verified",
+    "trust_status": "reviewed",
+    "source_bank": "system_design_bank",
+    "mental_model": "Queue-based architecture, provider abstraction, retry with exponential backoff, fallback channels.",
+    "solution": {
+      "approach": "Async queue-based: producers push notifications to queue, consumers process and deliver via providers. Retry failed with exponential backoff.",
+      "components": [
+        "Notification API",
+        "Queue (Kafka/RabbitMQ)",
+        "Worker Service",
+        "Provider Adapters (SendGrid/Twilio/APNs)",
+        "Database",
+        "Monitoring"
+      ],
+      "data_model": {
+        "notifications": [
+          "id",
+          "user_id",
+          "type",
+          "channel",
+          "payload",
+          "status",
+          "retry_count",
+          "created_at"
+        ]
+      }
+    },
+    "explanation": "Notification service needs to handle high volume with reliability. Queue decouples producers from delivery. Provider adapters abstract email/SMS/push differences. Retry logic ensures delivery despite transient failures.",
+    "hints": [
+      "Use message queue to decouple sending from delivery",
+      "Different channels have different rate limits and costs",
+      "Implement retry with exponential backoff",
+      "Consider user preferences: quiet hours, channel priority"
+    ],
+    "common_trap": "Sending notifications synchronously during API response. This blocks the request and fails if provider is down.",
+    "reasoning_steps": [
+      "1. Clarify requirements: channels, scale, delivery guarantee",
+      "2. Estimate capacity: 1M notifications/hour",
+      "3. Design async queue architecture",
+      "4. Design provider abstraction",
+      "5. Add retry and fallback logic",
+      "6. Design monitoring and alerting"
+    ],
+    "constraints": "10M users, 1M notifications/hour, 99.9% delivery, <1s latency for push, <5s for email",
+    "follow_up": "How would you handle user preferences and quiet hours? How would you prevent notification spam? Pressure: your SMS provider goes down for an hour during a flash sale — walk me through minute by minute.",
+    "statement": "Design a notification service for 10M users across email, SMS, and push: 1M notifications/hour with 99.9% delivery guarantee.",
+    "requirements": {
+      "functional": [
+        "Send email/SMS/push via providers",
+        "Retry failed sends",
+        "Honor quiet hours and channel priority"
+      ],
+      "non_functional": [
+        "99.9% delivery guarantee",
+        "Push <1s, email <5s",
+        "Survive provider outages"
+      ]
+    },
+    "key_components": [
+      "Notification API",
+      "Queue (Kafka/RabbitMQ)",
+      "Worker Service",
+      "Provider Adapters",
+      "Preference Store",
+      "Monitoring"
+    ],
+    "estimated_users": "10M users, 1M notifications/hour",
+    "category": "hld",
+    "subcategory": "Misc",
+    "scale_estimation": "1M/hour ~= 278/sec avg, ~1.4K/sec at 5x peak. SMS providers cap ~10/sec per number, so pool sender numbers. Retry with exponential backoff (1s, 2s, 4s...) plus dead-letter after N attempts. Queue depth is the early-warning metric.",
+    "rubric": {
+      "requirements_gathering": {
+        "weight": 15,
+        "excellent": "Asks delivery semantics (at-least-once?), channel costs, quiet hours before designing",
+        "weak": "Designs send-path with no reliability questions"
+      },
+      "high_level_design": {
+        "weight": 25,
+        "excellent": "Async queue decoupling producers from providers, with preference store",
+        "weak": "Synchronous sends inside the API request path"
+      },
+      "deep_dive": {
+        "weight": 25,
+        "excellent": "Provider abstraction + retry/backoff + dead-letter + idempotency keys",
+        "weak": "No retry story or unbounded retry storms"
+      },
+      "scalability": {
+        "weight": 20,
+        "excellent": "Names provider rate limits and queue depth as bottlenecks; fallback channels",
+        "weak": "Single provider with no failover plan"
+      },
+      "communication": {
+        "weight": 15,
+        "excellent": "Explains cost/latency trade-off per channel out loud",
+        "weak": "Cannot say why push differs from email operationally"
+      }
+    },
+    "enrichment_provenance": "llm-drafted 2026-09-09, needs human re-review before verified",
+    "review_status": "reviewed"
+  },
+  {
+    "id": "sd-004",
+    "type": "system_design",
+    "title": "Design a Chat System",
+    "question": "Design a chat system like WhatsApp. Requirements: 1:1 chat, group chat (up to 100), message history, online status, read receipts. Support 100M users, 10M messages/day.",
+    "topic": "system_design",
+    "sub_topic": "chat_system",
+    "pattern": "system_design",
+    "difficulty": "hard",
+    "companies": [
+      "google",
+      "amazon",
+      "meta",
+      "microsoft"
+    ],
+    "provenance": "human_verified",
+    "trust_status": "reviewed",
+    "source_bank": "system_design_bank",
+    "mental_model": "WebSocket connections, message queue, NoSQL for message history, presence service for online status.",
+    "solution": {
+      "approach": "WebSocket for real-time, message queue for delivery, NoSQL for history, Redis for presence. Separate services for 1:1 and group chat.",
+      "components": [
+        "Connection Manager",
+        "Message Service",
+        "Group Service",
+        "Presence Service",
+        "Message Store (Cassandra)",
+        "Cache (Redis)"
+      ]
+    },
+    "explanation": "Chat system needs real-time delivery and persistent history. WebSockets provide bidirectional communication. Message queue ensures delivery even when recipient is offline. NoSQL scales for high-volume message storage.",
+    "hints": [
+      "WebSocket connections are stateful — need connection manager",
+      "Group messages need fan-out: one message to N users",
+      "Message history can be partitioned by conversation ID",
+      "Presence service needs heartbeat mechanism"
+    ],
+    "common_trap": "Storing all messages in SQL. At 10M messages/day, SQL won't scale. Use NoSQL with time-based partitioning.",
+    "reasoning_steps": [
+      "1. Clarify requirements: 1:1, group, features, scale",
+      "2. Estimate capacity: 100M users, 10M messages/day",
+      "3. Design connection management",
+      "4. Design message delivery flow",
+      "5. Design message storage",
+      "6. Add presence and read receipts"
+    ],
+    "constraints": "100M users, 10M messages/day, <100ms delivery, 99.9% availability, message history retention 1 year",
+    "follow_up": "How would you handle media messages (images/video)? How would you implement end-to-end encryption? Pressure: 1M users reconnect simultaneously after an outage — what happens?",
+    "statement": "Design a WhatsApp-like chat system: 1:1 and group chat (up to 100), message history, online status, read receipts. 100M users, 10M messages/day.",
+    "requirements": {
+      "functional": [
+        "1:1 and group messaging",
+        "Message history",
+        "Presence and read receipts",
+        "Media messages"
+      ],
+      "non_functional": [
+        "<100ms delivery",
+        "Works offline (store-and-forward)",
+        "1-year history retention"
+      ]
+    },
+    "key_components": [
+      "Connection Manager",
+      "Message Service",
+      "Group Service",
+      "Presence Service",
+      "Message Store (Cassandra)",
+      "Cache (Redis)"
+    ],
+    "estimated_users": "100M users, 10M messages/day",
+    "category": "hld",
+    "subcategory": "Social Media",
+    "scale_estimation": "10M/day ~= 116/sec avg, ~1.2K/sec at 10x peak. Storage at 1KB/message: ~10GB/day, ~3.65TB/year — partition by conversation. ~10% concurrent connections (10M sockets) needs a connection-manager tier (~10-50K sockets/server).",
+    "rubric": {
+      "requirements_gathering": {
+        "weight": 15,
+        "excellent": "Asks online/offline semantics, ordering guarantees, media scope before designing",
+        "weak": "Starts with database schema and no delivery model"
+      },
+      "high_level_design": {
+        "weight": 25,
+        "excellent": "WebSocket tier + queue + NoSQL history + presence service",
+        "weak": "Polling-based chat or single SQL store"
+      },
+      "deep_dive": {
+        "weight": 25,
+        "excellent": "Fan-out for groups, per-conversation partitioning, heartbeat presence",
+        "weak": "Cannot explain how an offline user receives messages"
+      },
+      "scalability": {
+        "weight": 20,
+        "excellent": "Names connection count and hot-group fan-out as bottlenecks",
+        "weak": "No plan for 10M-member... er, 100-member group bursts or reconnect storms"
+      },
+      "communication": {
+        "weight": 15,
+        "excellent": "Narrates the send path end-to-end including failure cases",
+        "weak": "Describes components without connecting them into a flow"
+      }
+    },
+    "enrichment_provenance": "llm-drafted 2026-09-09, needs human re-review before verified",
+    "review_status": "reviewed"
+  },
+  {
+    "id": "sd-005",
+    "type": "system_design",
+    "title": "Design a Payment Processing System",
+    "question": "Design a payment processing system like Stripe. Requirements: process payments, handle refunds, support multiple payment methods, generate receipts. $1B annual volume.",
+    "topic": "system_design",
+    "sub_topic": "payment_system",
+    "pattern": "system_design",
+    "difficulty": "hard",
+    "companies": [
+      "google",
+      "amazon",
+      "microsoft"
+    ],
+    "provenance": "human_verified",
+    "trust_status": "reviewed",
+    "source_bank": "system_design_bank",
+    "mental_model": "Idempotent payment intents, payment gateway abstraction, ledger for double-entry, webhooks for async notification.",
+    "solution": {
+      "approach": "Payment intents with idempotency keys, gateway abstraction for providers, ledger for accounting, webhooks for async updates. Separate authorization and capture.",
+      "components": [
+        "Payment API",
+        "Payment Gateway Adapter",
+        "Ledger Service",
+        "Webhook Service",
+        "Database",
+        "Reconciliation Service"
+      ]
+    },
+    "explanation": "Payment systems need: (1) Idempotency to prevent double-charging, (2) Gateway abstraction for multiple providers, (3) Ledger for double-entry accounting, (4) Webhooks for async notification. Authorization/capture separation enables holds.",
+    "hints": [
+      "Use idempotency keys to prevent duplicate charges",
+      "Separate authorization (hold funds) from capture (transfer funds)",
+      "Maintain a ledger for double-entry accounting",
+      "Webhooks notify merchants asynchronously"
+    ],
+    "common_trap": "Not handling network failures during payment. Always assume requests can fail mid-transaction and design for recovery.",
+    "reasoning_steps": [
+      "1. Clarify: payments, refunds, methods, volume",
+      "2. Estimate: $1B/year = ~$30K/minute",
+      "3. Design payment flow: intent → authorize → capture",
+      "4. Design idempotency",
+      "5. Design gateway abstraction",
+      "6. Add ledger and reconciliation"
+    ],
+    "constraints": "$1B annual volume, 99.99% reliability, <5s payment processing, PCI DSS compliance, idempotent operations",
+    "follow_up": "How would you handle payment disputes? How would you prevent fraud? Pressure: a provider double-notifies a webhook — prove the customer is charged once.",
+    "statement": "Design a Stripe-like payment system: process payments, refunds, multiple methods, receipts. $1B annual volume with zero double-charges.",
+    "requirements": {
+      "functional": [
+        "Authorize and capture payments",
+        "Refunds",
+        "Multiple methods/providers",
+        "Receipts and idempotent retries"
+      ],
+      "non_functional": [
+        "99.99% reliability",
+        "<5s processing",
+        "PCI DSS scope minimization",
+        "Exactly-once charging effect"
+      ]
+    },
+    "key_components": [
+      "Payment API",
+      "Payment Gateway Adapter",
+      "Ledger Service",
+      "Webhook Service",
+      "Database",
+      "Reconciliation Service"
+    ],
+    "estimated_users": "$1B annual volume",
+    "category": "hld",
+    "subcategory": "Finance",
+    "scale_estimation": "$1B/year ~= $32/sec; at $50 average ticket ~= 0.6 payments/sec avg, ~60/sec at 100x peak. Throughput is trivial; correctness is everything. Ledger is append-only double-entry; reconciliation job catches provider drift daily.",
+    "rubric": {
+      "requirements_gathering": {
+        "weight": 15,
+        "excellent": "Asks what 'exactly once' means here, refund windows, provider set, compliance scope",
+        "weak": "Designs happy-path charge flow only"
+      },
+      "high_level_design": {
+        "weight": 25,
+        "excellent": "Intent + authorize/capture split + ledger + webhooks + reconcile loop",
+        "weak": "Direct charge call with no idempotency or ledger"
+      },
+      "deep_dive": {
+        "weight": 25,
+        "excellent": "Idempotency keys end-to-end, double-entry ledger, auth/capture separation",
+        "weak": "Cannot explain what happens when the network fails mid-charge"
+      },
+      "scalability": {
+        "weight": 20,
+        "excellent": "Names reconciliation lag and webhook delivery as the scaling/ops risks, not QPS",
+        "weak": "Scales for volume while ignoring correctness machinery"
+      },
+      "communication": {
+        "weight": 15,
+        "excellent": "Says 'never lose money, never double-charge' and shows where each is enforced",
+        "weak": "Hand-waves failure handling"
+      }
+    },
+    "enrichment_provenance": "llm-drafted 2026-09-09, needs human re-review before verified",
+    "review_status": "reviewed"
+  },
+  {
+    "id": "sd-006",
+    "type": "system_design",
+    "title": "Design a Distributed Job Queue",
+    "question": "Design a distributed job queue like AWS SQS. Requirements: 10M jobs/day, at-least-once delivery, retry with backoff, dead letter queue.",
+    "topic": "system_design",
+    "sub_topic": "job_queue",
+    "pattern": "system_design",
+    "difficulty": "hard",
+    "companies": [
+      "google",
+      "amazon",
+      "microsoft"
+    ],
+    "provenance": "human_verified",
+    "trust_status": "reviewed",
+    "source_bank": "system_design_bank",
+    "mental_model": "Sharded queues, push/pull model, visibility timeout, dead letter queue.",
+    "solution": {
+      "approach": "Sharded message queues with push/pull consumers. Visibility timeout prevents duplicate processing. Dead letter queue captures failed messages.",
+      "components": [
+        "API Gateway",
+        "Shard Manager",
+        "Message Brokers",
+        "Storage",
+        "Dead Letter Queue"
+      ]
+    },
+    "explanation": "Distributed job queue needs sharding for throughput, push/pull for consumers, visibility timeout for at-least-once delivery, and dead letter queue for poison messages.",
+    "hints": [
+      "Shard queues by message type",
+      "Visibility timeout hides message during processing",
+      "Dead letter queue captures messages after max retries",
+      "Consider message ordering requirements"
+    ],
+    "common_trap": "At-most-once delivery loses messages if consumer crashes. Use at-least-once with idempotent consumers.",
+    "reasoning_steps": [
+      "1. Clarify: 10M jobs/day, delivery semantics, retry",
+      "2. Estimate: ~115 jobs/second",
+      "3. Design sharding strategy",
+      "4. Design push/pull model",
+      "5. Add visibility timeout and retry",
+      "6. Design dead letter queue"
+    ],
+    "constraints": "10M jobs/day, at-least-once delivery, <100ms enqueue, <1s dequeue",
+    "follow_up": "How would you handle message ordering? Prevent duplicate processing? Pressure: one poison message is crash-looping every consumer — what do your metrics show and what fires first?",
+    "statement": "Design an SQS-like distributed job queue: 10M jobs/day, at-least-once delivery, retry with backoff, dead-letter queue.",
+    "requirements": {
+      "functional": [
+        "Enqueue/dequeue jobs",
+        "At-least-once delivery",
+        "Retries with backoff",
+        "Dead-letter queue for poison messages"
+      ],
+      "non_functional": [
+        "<100ms enqueue",
+        "<1s dequeue",
+        "Survive broker loss without message loss"
+      ]
+    },
+    "key_components": [
+      "API Gateway",
+      "Shard Manager",
+      "Message Brokers",
+      "Durable Storage",
+      "Dead Letter Queue"
+    ],
+    "estimated_users": "10M jobs/day",
+    "category": "hld",
+    "subcategory": "Infrastructure",
+    "scale_estimation": "10M/day ~= 116/sec avg, ~1.2K/sec at 10x peak. Visibility timeout ~30s bounds redelivery. Shard by queue name; each shard is an independent ordered log. DLQ threshold ~5 receives.",
+    "rubric": {
+      "requirements_gathering": {
+        "weight": 15,
+        "excellent": "Asks ordering needs, duplication tolerance, max job size, retention before designing",
+        "weak": "Assumes FIFO + exactly-once without asking"
+      },
+      "high_level_design": {
+        "weight": 25,
+        "excellent": "Sharded logs + visibility timeout + DLQ + idempotent consumers",
+        "weak": "Single queue with no durability or retry story"
+      },
+      "deep_dive": {
+        "weight": 25,
+        "excellent": "Explains visibility timeout mechanics and why consumers must be idempotent",
+        "weak": "Claims exactly-once delivery from the queue itself"
+      },
+      "scalability": {
+        "weight": 20,
+        "excellent": "Names hot-shard and redelivery storms as bottlenecks; poison-message quarantine",
+        "weak": "No plan for a poison message looping forever"
+      },
+      "communication": {
+        "weight": 15,
+        "excellent": "States the at-least-once contract crisply and where duplicates can appear",
+        "weak": "Confuses at-least-once with exactly-once"
+      }
+    },
+    "enrichment_provenance": "llm-drafted 2026-09-09, needs human re-review before verified",
+    "review_status": "reviewed"
+  },
+  {
+    "id": "sd-007",
+    "type": "system_design",
+    "title": "Design a Real-Time Analytics Dashboard",
+    "question": "Design a real-time analytics dashboard showing user activity, revenue, conversion. Requirements: 100K events/second, <5s latency, 1000 concurrent dashboards.",
+    "topic": "system_design",
+    "sub_topic": "analytics",
+    "pattern": "system_design",
+    "difficulty": "hard",
+    "companies": [
+      "google",
+      "amazon",
+      "meta"
+    ],
+    "provenance": "human_verified",
+    "trust_status": "reviewed",
+    "source_bank": "system_design_bank",
+    "mental_model": "Stream processing (Kafka + Flink), real-time aggregation, materialized views, caching.",
+    "solution": {
+      "approach": "Event streaming with Kafka, stream processing with Flink, materialized views in ClickHouse, caching layer.",
+      "components": [
+        "Event SDK",
+        "Message Queue (Kafka)",
+        "Stream Processor (Flink)",
+        "OLAP Database (ClickHouse)",
+        "Cache (Redis)"
+      ]
+    },
+    "explanation": "Real-time analytics needs event streaming, stream processing, OLAP database for fast queries, and caching for dashboard performance.",
+    "hints": [
+      "Use stream processing for real-time aggregation",
+      "Materialized views pre-compute common queries",
+      "OLAP databases are optimized for analytics",
+      "Cache dashboard results with TTL"
+    ],
+    "common_trap": "Using OLTP database for analytics. Row-based storage doesn't scale for aggregations over millions of rows.",
+    "reasoning_steps": [
+      "1. Clarify: 100K events/sec, <5s latency, 1000 dashboards",
+      "2. Estimate: 100K events/sec = 8.6B events/day",
+      "3. Design event ingestion",
+      "4. Design stream processing",
+      "5. Design storage for aggregations",
+      "6. Design dashboard serving layer"
+    ],
+    "constraints": "100K events/second, <5s end-to-end latency, 1000 concurrent dashboards",
+    "follow_up": "How would you handle late-arriving events? Scale to 1M events/second? Pressure: traffic 10x's during a sale and dashboards go stale — which layer do you scale first and why?",
+    "statement": "Design a real-time analytics dashboard: user activity, revenue, conversion. 100K events/sec, <5s end-to-end latency, 1000 concurrent dashboards.",
+    "requirements": {
+      "functional": [
+        "Ingest event streams",
+        "Real-time aggregations",
+        "Dashboard queries with filters",
+        "Alerting on thresholds"
+      ],
+      "non_functional": [
+        "<5s event-to-glass latency",
+        "1000 concurrent dashboards",
+        "Late/out-of-order events handled"
+      ]
+    },
+    "key_components": [
+      "Event SDK",
+      "Message Queue (Kafka)",
+      "Stream Processor (Flink)",
+      "OLAP Store (ClickHouse)",
+      "Cache (Redis)"
+    ],
+    "estimated_users": "100K events/sec, 1000 dashboards",
+    "category": "hld",
+    "subcategory": "Data",
+    "scale_estimation": "100K/sec = 8.6B events/day; at ~1KB/event ~= 8.6TB/day raw, ~5x compression in columnar store ~= 1.7TB/day; 90-day retention ~= 155TB. Watermarks bound lateness; pre-aggregation (materialized views) keeps dashboard queries <1s.",
+    "rubric": {
+      "requirements_gathering": {
+        "weight": 15,
+        "excellent": "Asks event schema stability, late-data policy, query patterns, freshness SLO before designing",
+        "weak": "Puts dashboards directly on the OLTP database"
+      },
+      "high_level_design": {
+        "weight": 25,
+        "excellent": "Kafka + stream processor + OLAP + cache with pre-aggregation",
+        "weak": "Batch-only pipeline for a realtime SLA"
+      },
+      "deep_dive": {
+        "weight": 25,
+        "excellent": "Watermarks, exactly-once stream semantics, materialized views, TTL cache",
+        "weak": "No answer for late or duplicate events"
+      },
+      "scalability": {
+        "weight": 20,
+        "excellent": "Names dashboard fan-out (1000 concurrent) and hot keys; pre-compute",
+        "weak": "Every dashboard runs full-table scans"
+      },
+      "communication": {
+        "weight": 15,
+        "excellent": "Quantifies the storage math out loud",
+        "weak": "No numbers anywhere in the design"
+      }
+    },
+    "enrichment_provenance": "llm-drafted 2026-09-09, needs human re-review before verified",
+    "review_status": "reviewed"
+  },
+  {
+    "id": "sd-008",
+    "type": "system_design",
+    "title": "Design a Social Media Feed",
+    "question": "Design a social media feed like Twitter/X. Requirements: post tweets, follow others, chronological feed. 500M users, 100M tweets/day.",
+    "topic": "system_design",
+    "sub_topic": "social_feed",
+    "pattern": "system_design",
+    "difficulty": "hard",
+    "companies": [
+      "google",
+      "amazon",
+      "meta",
+      "twitter"
+    ],
+    "provenance": "human_verified",
+    "trust_status": "reviewed",
+    "source_bank": "system_design_bank",
+    "mental_model": "Fan-out-on-write for normal users, fan-out-on-read for celebrities, timeline cache per user.",
+    "solution": {
+      "approach": "Hybrid: fan-out-on-write for regular users, fan-out-on-read for celebrities. Timeline cache for fast reads.",
+      "components": [
+        "Tweet Service",
+        "User Service",
+        "Timeline Service",
+        "Cache (Redis)",
+        "Database (Cassandra)",
+        "Fan-out Workers"
+      ]
+    },
+    "explanation": "Social feed needs fan-out-on-write for normal users and fan-out-on-read for celebrities. Hybrid approach balances write and read costs.",
+    "hints": [
+      "Celebrities with 10M followers need different handling",
+      "Fan-out-on-write: write tweet to all followers' timelines",
+      "Fan-out-on-read: merge celebrity tweets at read time",
+      "Cache recent timeline for fast access"
+    ],
+    "common_trap": "Fan-out-on-write for everyone. A celebrity with 10M followers would trigger 10M writes per tweet. Use hybrid approach.",
+    "reasoning_steps": [
+      "1. Clarify: post tweets, follow, chronological feed",
+      "2. Estimate: 500M users, 100M tweets/day",
+      "3. Design tweet storage",
+      "4. Design follow graph",
+      "5. Design timeline generation",
+      "6. Optimize for celebrities"
+    ],
+    "constraints": "500M users, 100M tweets/day, <200ms feed load, 99.9% availability",
+    "follow_up": "How would you handle ranking tweets by relevance? Detect trending topics? Pressure: a celebrity with 50M followers tweets during the Super Bowl — trace every write.",
+    "statement": "Design a Twitter/X-like feed: post tweets, follow users, chronological timeline. 500M users, 100M tweets/day.",
+    "requirements": {
+      "functional": [
+        "Post tweets",
+        "Follow graph",
+        "Home timeline (chronological)",
+        "Likes/reposts"
+      ],
+      "non_functional": [
+        "<200ms feed load",
+        "Tolerate celebrity-scale fan-out",
+        "99.9% availability"
+      ]
+    },
+    "key_components": [
+      "Tweet Service",
+      "User/Graph Service",
+      "Timeline Service",
+      "Cache (Redis)",
+      "Database (Cassandra)",
+      "Fan-out Workers"
+    ],
+    "estimated_users": "500M users, 100M tweets/day",
+    "category": "hld",
+    "subcategory": "Social Media",
+    "scale_estimation": "Writes: 100M/day ~= 1.2K/sec avg, ~12K/sec peak. Reads: 500M users x ~10 loads ~= 5B/day ~= 58K/sec. Naive fan-out at 200 avg followers = 12K x 200 = 2.4M timeline writes/sec — the number that forces the celebrity hybrid.",
+    "rubric": {
+      "requirements_gathering": {
+        "weight": 15,
+        "excellent": "Asks read/write ratio, celebrity handling, ranking vs chronological before designing",
+        "weak": "Designs tweet storage with no read-path model"
+      },
+      "high_level_design": {
+        "weight": 25,
+        "excellent": "Hybrid fan-out (write for normal, read-merge for celebrities) + timeline cache",
+        "weak": "Pure fan-out-on-write for everyone including 10M-follower accounts"
+      },
+      "deep_dive": {
+        "weight": 25,
+        "excellent": "Follow-graph sharding, timeline cache with TTL, async fan-out workers",
+        "weak": "Cannot compute the fan-out write amplification"
+      },
+      "scalability": {
+        "weight": 20,
+        "excellent": "Names celebrity tweets and timeline cache misses as the bottlenecks",
+        "weak": "No bottleneck analysis; assumes cache always hits"
+      },
+      "communication": {
+        "weight": 15,
+        "excellent": "Does the 2.4M-writes/sec arithmetic live in the interview",
+        "weak": "Avoids all quantitative reasoning"
+      }
+    },
+    "enrichment_provenance": "llm-drafted 2026-09-09, needs human re-review before verified",
+    "review_status": "reviewed"
+  },
+  {
+    "id": "sd-009",
+    "type": "system_design",
+    "title": "Design a Distributed Sliding-Window Rate Limiter",
+    "question": "Design a precise sliding-window rate limiter for a multi-region API: 1000 requests/minute per API key, exact window semantics, clock skew across regions, tiered limits (free vs paid).",
+    "topic": "system_design",
+    "sub_topic": "rate_limiter_distributed",
+    "pattern": "system_design",
+    "difficulty": "hard",
+    "companies": [
+      "google",
+      "amazon",
+      "uber"
+    ],
+    "provenance": "human_verified",
+    "trust_status": "reviewed",
+    "source_bank": "system_design_bank",
+    "mental_model": "Per-key sorted timestamp logs in Redis; exact window counts; tier config drives limits; edge enforcement.",
+    "solution": {
+      "approach": "Sliding-window log per key in Redis (ZADD timestamps, ZREMRANGEBYSCORE expiry). Count in window decides allow/deny. Tier config sets window/limit per plan.",
+      "components": [
+        "Edge Enforcer",
+        "Regional Redis",
+        "Tier Config Service",
+        "Reconciliation Job"
+      ],
+      "algorithms": [
+        "Sliding Window Log",
+        "Sliding Window Counter (hybrid)"
+      ],
+      "data_model": {
+        "window_logs": [
+          "api_key",
+          "timestamps_sorted_set",
+          "tier",
+          "window_seconds"
+        ]
+      }
+    },
+    "explanation": "Sliding-window logs give exact window semantics at O(window) memory, unlike fixed windows with boundary spikes. Regional Redis keeps decisions local; async reconciliation heals cross-region double-spend. Tiers are config, not code branches.",
+    "hints": [
+      "Sorted sets make window expiry a single range-delete",
+      "Exactness costs memory: 1000 timestamps per key",
+      "Clock skew matters only at window edges — bound it, don't eliminate it",
+      "Tiers belong in config so limits change without deploys"
+    ],
+    "common_trap": "Fixed-window counters allow 2x bursts at boundaries (end of one window + start of next). Sliding windows exist precisely to close that hole.",
+    "reasoning_steps": [
+      "1. Clarify: exact semantics, multi-region, tiers",
+      "2. Reject fixed window (boundary bursts) with the 2x math",
+      "3. Design per-key sorted timestamp logs in Redis",
+      "4. Handle clock skew with NTP bounds + reconciliation",
+      "5. Drive tiers from config"
+    ],
+    "constraints": "1000 req/min per key, exact window, <5ms overhead, multi-region clock skew, tiered limits",
+    "follow_up": "How would you implement different rate limits for different user tiers? Pressure: two regions disagree about a key by 40 requests — who wins, and what does the customer see?",
+    "statement": "Design a sliding-window rate limiter for a multi-region public API: exact 1000 req/min per key semantics, region clock skew, and per-tier limits.",
+    "requirements": {
+      "functional": [
+        "Exact sliding-window enforcement",
+        "Per-tier limits",
+        "Multi-region operation"
+      ],
+      "non_functional": [
+        "Precision over memory (unlike fixed window)",
+        "<5ms overhead",
+        "Tolerate seconds of clock skew"
+      ]
+    },
+    "key_components": [
+      "Edge Enforcer",
+      "Regional Redis Clusters",
+      "Window Log Store",
+      "Tier Config Service"
+    ],
+    "estimated_users": "Per-key 1000 req/min budgets across regions",
+    "category": "hld",
+    "subcategory": "Infrastructure",
+    "scale_estimation": "Sliding-window log keeps ~1000 timestamps/key (~16KB); 1M active keys ~= 16GB across the fleet. Cross-region sync is the cost center — NTP bounds skew to ~100ms; decisions use local region state with async reconciliation.",
+    "rubric": {
+      "requirements_gathering": {
+        "weight": 15,
+        "excellent": "Asks exact-vs-approximate needs, region count, tier model before choosing",
+        "weak": "Reuses token bucket with no precision discussion"
+      },
+      "high_level_design": {
+        "weight": 25,
+        "excellent": "Per-key window logs with regional enforcement + reconciliation",
+        "weak": "Single global counter with no skew story"
+      },
+      "deep_dive": {
+        "weight": 25,
+        "excellent": "Boundary-spike math for fixed windows; sorted-set expiry mechanics",
+        "weak": "Cannot explain why fixed windows over-admit"
+      },
+      "scalability": {
+        "weight": 20,
+        "excellent": "Names memory-per-key and cross-region sync as the costs",
+        "weak": "Claims exactness is free"
+      },
+      "communication": {
+        "weight": 15,
+        "excellent": "Argues precision-vs-memory explicitly with numbers",
+        "weak": "Memorizes 'sliding window good' with no reasoning"
+      }
+    },
+    "enrichment_provenance": "llm-drafted 2026-09-09, needs human re-review before verified",
+    "review_status": "reviewed"
+  },
+  {
+    "id": "sd-010",
+    "type": "system_design",
+    "title": "Design a Distributed Cache",
+    "question": "Design a distributed cache like Redis Cluster. Requirements: 1M QPS, 10TB data, automatic failover, consistent hashing.",
+    "topic": "system_design",
+    "sub_topic": "distributed_cache",
+    "pattern": "system_design",
+    "difficulty": "hard",
+    "companies": [
+      "google",
+      "amazon",
+      "meta"
+    ],
+    "provenance": "human_verified",
+    "trust_status": "reviewed",
+    "source_bank": "system_design_bank",
+    "mental_model": "Consistent hashing for sharding, replication for availability, gossip protocol for cluster management.",
+    "solution": {
+      "approach": "Consistent hashing distributes keys. Each node replicates to N neighbors. Gossip protocol detects failures. Proxy routes requests.",
+      "components": [
+        "Proxy",
+        "Shard Manager",
+        "Cache Nodes",
+        "Replication",
+        "Failure Detector"
+      ]
+    },
+    "explanation": "Distributed cache needs consistent hashing for even distribution, replication for availability, and gossip for cluster state.",
+    "hints": [
+      "Consistent hashing minimizes rebalancing",
+      "Replicate each key to N consecutive nodes",
+      "Gossip protocol maintains cluster state",
+      "Proxy layer hides cluster complexity"
+    ],
+    "common_trap": "Modulo hashing (key % N) requires rehashing all keys when N changes. Consistent hashing only moves K/N keys.",
+    "reasoning_steps": [
+      "1. Clarify: 1M QPS, 10TB, failover, sharding",
+      "2. Estimate: 10K QPS per node",
+      "3. Choose consistent hashing",
+      "4. Design replication",
+      "5. Design failure detection",
+      "6. Design proxy layer"
+    ],
+    "constraints": "1M QPS, 10TB data, <1ms p99 latency, 99.99% availability, failover <30s",
+    "follow_up": "How would you handle cache invalidation? Prevent cache stampede? Pressure: 20 nodes flap simultaneously — what does the cluster do?",
+    "statement": "Design a Redis-Cluster-like distributed cache: 1M QPS, 10TB data, automatic failover, consistent hashing.",
+    "requirements": {
+      "functional": [
+        "GET/SET with TTL",
+        "Automatic failover",
+        "Resharding without downtime"
+      ],
+      "non_functional": [
+        "<1ms p99",
+        "99.99% availability",
+        "Failover <30s"
+      ]
+    },
+    "key_components": [
+      "Smart Proxy",
+      "Shard Manager",
+      "Cache Nodes",
+      "Replication",
+      "Failure Detector"
+    ],
+    "estimated_users": "1M QPS, 10TB data",
+    "category": "hld",
+    "subcategory": "Infrastructure",
+    "scale_estimation": "1M QPS / ~10K per node = ~100 primaries; x3 replication = ~300 nodes. 10TB / 100 primaries = ~100GB RAM per node. Consistent hashing with virtual nodes moves only ~K/N keys on membership change (vs ALL keys under modulo hashing).",
+    "rubric": {
+      "requirements_gathering": {
+        "weight": 15,
+        "excellent": "Asks read/write mix, value sizes, consistency needs, eviction policy before designing",
+        "weak": "Jumps to 'use Redis' with no topology"
+      },
+      "high_level_design": {
+        "weight": 25,
+        "excellent": "Proxy + consistent-hash ring + replication + gossip failure detection",
+        "weak": "Single Redis box scaled vertically"
+      },
+      "deep_dive": {
+        "weight": 25,
+        "excellent": "Virtual nodes, replica placement, failover promotion mechanics",
+        "weak": "Cannot explain what happens when a node dies mid-request"
+      },
+      "scalability": {
+        "weight": 20,
+        "excellent": "Names rebalancing storms and hot keys; throttle migration",
+        "weak": "No plan for membership change at all"
+      },
+      "communication": {
+        "weight": 15,
+        "excellent": "Explains the K/N movement math for consistent hashing",
+        "weak": "Says 'consistent hashing good' without the math"
+      }
+    },
+    "enrichment_provenance": "llm-drafted 2026-09-09, needs human re-review before verified",
+    "review_status": "reviewed"
+  },
+  {
+    "id": "sd-011",
+    "type": "system_design",
+    "title": "Design an E-commerce Inventory System",
+    "question": "Design an inventory management system for an e-commerce platform. Requirements: track stock levels, handle concurrent purchases, prevent overselling, support flash sales. 10M products, 100K orders/day.",
+    "topic": "system_design",
+    "sub_topic": "inventory",
+    "pattern": "system_design",
+    "difficulty": "hard",
+    "companies": [
+      "amazon",
+      "flipkart"
+    ],
+    "provenance": "human_verified",
+    "trust_status": "reviewed",
+    "source_bank": "system_design_bank",
+    "mental_model": "Optimistic locking with version numbers, distributed transactions, cache-aside pattern for hot products.",
+    "solution": {
+      "approach": "Use optimistic locking with version numbers for inventory updates. Cache hot products in Redis. Queue for order processing.",
+      "components": [
+        "Inventory Service",
+        "Order Service",
+        "Cache (Redis)",
+        "Database (PostgreSQL)",
+        "Message Queue",
+        "Flash Sale Service"
+      ]
+    },
+    "explanation": "Inventory system needs: (1) Optimistic locking to prevent overselling, (2) Caching for hot products, (3) Queue for async order processing, (4) Flash sale handling with rate limiting.",
+    "hints": [
+      "Use version numbers or atomic operations to prevent overselling",
+      "Cache inventory counts for fast reads",
+      "Flash sales need special handling: rate limiting, queueing",
+      "Consider eventual consistency for non-critical updates"
+    ],
+    "common_trap": "Using simple SELECT then UPDATE. Two concurrent requests can both see stock=1 and both succeed. Use atomic operations or locking.",
+    "reasoning_steps": [
+      "1. Clarify: 10M products, 100K orders/day, flash sales",
+      "2. Estimate: peak vs average load",
+      "3. Design inventory model",
+      "4. Design concurrency control",
+      "5. Add caching for hot products",
+      "6. Design flash sale handling"
+    ],
+    "constraints": "10M products, 100K orders/day, <10ms inventory check, zero overselling, 99.9% availability",
+    "follow_up": "How would you handle distributed inventory across multiple warehouses? How would you prevent hoarding during flash sales? Pressure: payment succeeds but reserve expired — who owns the inconsistency?",
+    "statement": "Design e-commerce inventory for 10M products and 100K orders/day with zero overselling and flash-sale survival.",
+    "requirements": {
+      "functional": [
+        "Track stock per SKU/warehouse",
+        "Reserve on order",
+        "Flash-sale mode",
+        "Restock flows"
+      ],
+      "non_functional": [
+        "<10ms stock checks",
+        "Zero overselling (hard constraint)",
+        "99.9% availability"
+      ]
+    },
+    "key_components": [
+      "Inventory Service",
+      "Order Service",
+      "Cache (Redis)",
+      "Database (PostgreSQL)",
+      "Message Queue",
+      "Flash Sale Service"
+    ],
+    "estimated_users": "10M products, 100K orders/day",
+    "category": "hld",
+    "subcategory": "E-commerce",
+    "scale_estimation": "100K/day ~= 1.2/sec avg; flash peaks hit ~1.2K/sec (1000x). Hot SKUs (top 0.1%) take most contention — atomic DECR in Redis gates them; DB reconciles async. Oversell math: without atomicity, P(collision) ~= 1 - e^(-r^2*t/2N) — at flash rates, collisions are certain, so atomicity is non-negotiable.",
+    "rubric": {
+      "requirements_gathering": {
+        "weight": 15,
+        "excellent": "Asks what zero-oversell really requires, warehouse model, flash expectations",
+        "weak": "Designs catalog browsing with no concurrency story"
+      },
+      "high_level_design": {
+        "weight": 25,
+        "excellent": "Atomic decrement gate + async DB reconcile + flash-sale queueing",
+        "weak": "SELECT-then-UPDATE with no locking"
+      },
+      "deep_dive": {
+        "weight": 25,
+        "excellent": "Optimistic version checks, idempotent reserve/release, warehouse split logic",
+        "weak": "Cannot explain the lost-update race concretely"
+      },
+      "scalability": {
+        "weight": 20,
+        "excellent": "Names hot-SKU contention and DB write amplification; queues absorb bursts",
+        "weak": "Assumes average load during flash sales"
+      },
+      "communication": {
+        "weight": 15,
+        "excellent": "States the oversell guarantee as an invariant and shows the enforcing mechanism",
+        "weak": "Says 'use transactions' with no isolation-level reasoning"
+      }
+    },
+    "enrichment_provenance": "llm-drafted 2026-09-09, needs human re-review before verified",
+    "review_status": "reviewed"
+  },
+  {
+    "id": "sd-012",
+    "type": "system_design",
+    "title": "Design a Write-Through Distributed Cache",
+    "question": "Design a write-through distributed cache for a read-heavy catalog: 1M QPS reads, 10K QPS writes, hot-key skew, thundering-herd protection.",
+    "topic": "system_design",
+    "sub_topic": "distributed_cache_write",
+    "pattern": "system_design",
+    "difficulty": "hard",
+    "companies": [
+      "google",
+      "amazon",
+      "meta"
+    ],
+    "provenance": "human_verified",
+    "trust_status": "reviewed",
+    "source_bank": "system_design_bank",
+    "mental_model": "Writes go through cache to DB synchronously; reads never see stale data beyond TTL; hot keys are replicated, not sharded.",
+    "solution": {
+      "approach": "Write-through writer persists to DB on every write before ack. Read-through proxy loads misses from DB. Hot-key detector replicates top keys. Request coalescing collapses stampedes.",
+      "components": [
+        "Read-Through Proxy",
+        "Cache Fleet",
+        "Write-Through Writer",
+        "Hot-Key Splitter",
+        "Warming Job"
+      ]
+    },
+    "explanation": "Write-through trades write latency for read freshness — right at 100:1 read dominance. Hot-key splitting fixes the skew that consistent hashing alone cannot. Coalescing turns 10K simultaneous miss-storms into 1 DB read.",
+    "hints": [
+      "Write-through is cheap exactly when reads dominate writes",
+      "Hot keys break even perfect hashing — replicate them",
+      "Coalesce concurrent misses into one backend read",
+      "Warm the cache before cutover, not after"
+    ],
+    "common_trap": "Cache-aside with TTL-only expiry serves stale catalog prices after writes. Write-through closes that window by construction.",
+    "reasoning_steps": [
+      "1. Clarify read/write ratio, freshness needs, hot-key reality",
+      "2. Choose write-through for freshness at 100:1 reads",
+      "3. Design read-through proxy + loader",
+      "4. Add hot-key detection and replication",
+      "5. Add stampede coalescing + warming"
+    ],
+    "constraints": "1M read QPS, 10K write QPS, <1ms p99 reads, hot-key skew, cold-start survival",
+    "follow_up": "How would you handle cache invalidation? Prevent cache stampede? Pressure: the DB primary lags 30 seconds behind writes — what do readers see, and who notices first?",
+    "statement": "Design a write-through cache for a read-heavy catalog: 1M read QPS, 10K write QPS, skewed hot keys, thundering-herd protection.",
+    "requirements": {
+      "functional": [
+        "Read-through with loader",
+        "Write-through to DB",
+        "TTL + explicit invalidation",
+        "Hot-key splitting"
+      ],
+      "non_functional": [
+        "<1ms p99 reads",
+        "No stale reads beyond TTL",
+        "Survive cache fleet restart (cold start)"
+      ]
+    },
+    "key_components": [
+      "Read-Through Proxy",
+      "Cache Fleet",
+      "Write-Through Writer",
+      "Hot-Key Splitter",
+      "Warming Job"
+    ],
+    "estimated_users": "1M read QPS, 10K write QPS",
+    "category": "hld",
+    "subcategory": "Infrastructure",
+    "scale_estimation": "Read:write = 100:1, so write-through cost is negligible (~10K/sec) while guaranteeing freshness. Hot keys: top 0.01% of keys take ~50% of reads — replicate hot keys across N nodes or split by suffix. Cold start: warming job replays yesterday's hot set before cutover.",
+    "rubric": {
+      "requirements_gathering": {
+        "weight": 15,
+        "excellent": "Asks read/write ratio, freshness tolerance, hot-key reality before choosing a pattern",
+        "weak": "Defaults to cache-aside with no freshness analysis"
+      },
+      "high_level_design": {
+        "weight": 25,
+        "excellent": "Write-through + read-through proxy + hot-key replication + warming",
+        "weak": "Plain TTL cache with no write path design"
+      },
+      "deep_dive": {
+        "weight": 25,
+        "excellent": "Coalescing mechanics, hot-key detection thresholds, warming sources",
+        "weak": "Cannot explain what happens on total cache loss"
+      },
+      "scalability": {
+        "weight": 20,
+        "excellent": "Names write amplification and hot-key imbalance; quantifies both",
+        "weak": "Assumes uniform key popularity"
+      },
+      "communication": {
+        "weight": 15,
+        "excellent": "Justifies write-through with the 100:1 ratio explicitly",
+        "weak": "Picks a pattern by brand familiarity"
+      }
+    },
+    "enrichment_provenance": "llm-drafted 2026-09-09, needs human re-review before verified",
+    "review_status": "reviewed"
+  }
+]

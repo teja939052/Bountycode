@@ -1,0 +1,81 @@
+{
+  "id": "lesson_blood_relations_001",
+  "slug": "blood_relations",
+  "title": "Blood Relations",
+  "domain": "Reasoning",
+  "pattern": "Blood Relations",
+  "difficulty": "medium",
+  "duration_min": 20,
+  "xp_reward": 100,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Understanding Family Trees",
+      "content": "Blood relation problems ask you to determine the relationship between two people based on given information. Draw a family tree diagram to visualize relationships.",
+      "example": "If A is B's father and B is C's mother, then A is C's grandfather.",
+      "tip": "Use standard symbols: M for male, F for female, ← for parent-child. Start from the youngest generation and work upward."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Identify the Relationship",
+      "prompt": "Pointing to a photograph, a man said: 'The father of the woman in the photo is the son of my father.' How is the man related to the woman?",
+      "options": ["Daughter", "Sister", "Mother", "Niece"],
+      "correct_index": 1,
+      "explanation": "The father of the woman is the man's brother (son of his father). Therefore, the woman is the man's niece? Wait - let me re-read. 'The father of the woman in the photo is the son of my father' - the woman's father is the man's brother. So the woman is the man's niece? No wait - if the man is female, she'd be her niece. But the man is male. Let me reconsider. Actually: the man's father's son could be the man himself. If the woman's father is the man, then the woman is his daughter. Answer: Daughter."
+    },
+    {
+      "step_number": 3,
+      "step_type": "practice",
+      "title": "Quick Practice",
+      "prompt": "A is B's brother. C is A's father. D is C's father. How is D related to B?",
+      "options": ["Grandfather", "Father", "Uncle", "Brother"],
+      "correct_index": 0,
+      "explanation": "C is B's father (since A is B's brother). D is C's father, so D is B's grandfather."
+    },
+    {
+      "step_number": 4,
+      "step_type": "explain",
+      "title": "Common Relationship Chains",
+      "content": "Learn these common chains: Father's father → Grandfather, Father's mother → Grandmother, Mother's father → Maternal grandfather, Father's brother → Uncle, Father's sister → Aunt.",
+      "tip": "For complex chains, break them down: Person X → relation Y → relation Z → target person."
+    },
+    {
+      "step_number": 5,
+      "step_type": "interactive",
+      "title": "Complex Chain",
+      "prompt": "If A's mother is B's sister and B's father is C's son, how is C related to A?",
+      "options": ["Grandmother", "Grandfather", "Mother", "Aunt"],
+      "correct_index": 0,
+      "explanation": "B's father is C's son, so C is B's grandmother. A's mother is B's sister, so B's mother is also A's mother. C is the mother of A's mother, so C is A's grandmother."
+    }
+  ],
+  "practice_questions": ["tcs_nqt_reasoning_0001", "tcs_nqt_reasoning_0002"],
+  "assessment": {
+    "questions": [
+      {
+        "prompt": "Pointing to a lady, a man said: 'The father of the lady is the son of my father.' How is the man related to the lady?",
+        "options": ["Brother", "Uncle", "Father", "Grandfather"],
+        "correct_index": 2,
+        "explanation": "The lady's father is the man's brother. Wait, that would make the man her uncle. Let me re-read: 'father of the lady is the son of my father'. The man's father's son could be the man himself or his brother. If it's the man himself, he is the lady's father. If it's his brother, he is the lady's uncle. Without more info, the most direct interpretation is that the man is the lady's father."
+      },
+      {
+        "prompt": "A is the father of B. B is the sister of C. C is the brother of D. How is D related to A?",
+        "options": ["Son", "Daughter", "Child", "Cannot be determined"],
+        "correct_index": 2,
+        "explanation": "B, C, and D are all children of A. B is female, C is male. D's gender is not specified, so D is A's child (son or daughter)."
+      }
+    ],
+    "mastery_threshold": 0.7,
+    "duration_sec": 120
+  },
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "How do you solve blood relation problems systematically?",
+      "answer": "Draw a family tree. Start from the youngest generation and work upward. Break complex chains into smaller steps."
+    }
+  ]
+}

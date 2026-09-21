@@ -55,7 +55,7 @@ function PlayerCharacterImpl({
     size === "sm" ? "w-10 h-10 text-lg" : size === "lg" ? "w-20 h-20 text-4xl" : "w-14 h-14 text-2xl";
 
   // State-driven animation variants
-  const bodyAnimation: Record<CharacterState, object> = {
+  const bodyAnimation: Record<CharacterState, any> = {
     idle: { scale: 1, rotate: 0 },
     walking: { y: [0, -4, 0], transition: { repeat: Infinity, duration: 0.6 } },
     discovering: { rotate: [0, -10, 10, 0], transition: { repeat: Infinity, duration: 1.5 } },
@@ -74,9 +74,9 @@ function PlayerCharacterImpl({
     >
       <motion.div
         animate={bodyAnimation[state]}
-        className={`${sizeClass} rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center shadow-lg ring-2 ring-white/30`}
+        className={`${sizeClass} rounded-full bg-gradient-to-br from-sky-500 to-blue-700 flex items-center justify-center shadow-lg ring-2 ring-white/30`}
       >
-        <span className="leading-none">{titleEmoji ?? "🧑"}</span>
+        <span className="leading-none">{titleEmoji ?? "🏴‍☠️"}</span>
       </motion.div>
 
       {/* State bubble */}

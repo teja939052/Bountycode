@@ -25,6 +25,7 @@ from app.data.curriculum import (
 from app.data.lesson_content import get_lesson_content
 # Enrich curriculum with JavaScript track and extra content
 import app.data.curriculum_enrichment  # noqa: F401
+from app.database import srs_collection
 
 router = APIRouter(prefix="/api/v1/learning", tags=["learning"])
 
@@ -144,7 +145,7 @@ async def list_levels(language_id: str = VALID_LANG_ID, user=Depends(get_current
             "lessons_completed": lessons_completed,
             "progress_pct": round(lessons_completed / total * 100) if total > 0 else 0,
             "total_xp": level.get("total_xp", 0),
-            "xp_earned": sum(l["xp"] for l in level["lessons"] if l["id"] in completed),
+            "xp_earned": sum(l["diamonds"] for l in level["lessons"] if l["id"] in completed),
             "practice_lessons": quest_counts.get("practice", 0),
             "challenge_lessons": quest_counts.get("challenge", 0),
             "project_lessons": quest_counts.get("project", 0),
@@ -251,7 +252,7 @@ async def complete_lesson_route(
     lesson_id: str = VALID_LESSON_ID,
     user=Depends(get_current_user),
 ):
-    """Mark a lesson as completed and award XP."""
+    """Mark a lesson as completed and award Diamonds."""
     lesson = get_lesson(language_id, level_id, lesson_id)
     if not lesson:
         raise HTTPException(status_code=404, detail="Lesson not found")
@@ -265,7 +266,7 @@ async def complete_lesson_route(
     if lesson_id in progress.get("completed_lessons", []):
         return {"message": "Already completed", "xp_gained": 0, "already_completed": True}
 
-    result = await complete_lesson(user["id"], language_id, lesson_id, lesson["xp"])
+    result = await complete_lesson(user["id"], language_id, lesson_id, lesson["diamonds"], role=user.get("role") or user.get("target_role") or "sde")
     return result
 
 
@@ -285,7 +286,6 @@ async def get_variable_discovery_lesson(user=Depends(get_current_user)):
     """
     from app.data.lesson_content import VARIABLE_DISCOVERY_CONTENT
     from app.services.spaced_repetition import SpacedRepetitionEngine
-    from app.database import srs_collection
 
     concept_id = VARIABLE_DISCOVERY_CONTENT["srs_concept"]
     mastery_concept = VARIABLE_DISCOVERY_CONTENT["mastery_concept"]
@@ -335,13 +335,12 @@ async def get_variable_discovery_lesson(user=Depends(get_current_user)):
 async def complete_variable_discovery(user=Depends(get_current_user)):
     """Complete the Variable/State vertical slice lesson.
     
-    Awards XP, enrolls user in SRS for the variables concept,
+    Awards Diamonds, enrolls user in SRS for the variables concept,
     updates mastery, and checks for boss badge.
     """
     from app.data.lesson_content import VARIABLE_DISCOVERY_CONTENT
     from app.services.spaced_repetition import SpacedRepetitionEngine, ReviewGrade
     from app.services.gamification import record_practice
-    from app.database import srs_collection
 
     user_id = user["id"]
     concept_id = VARIABLE_DISCOVERY_CONTENT["srs_concept"]
@@ -378,7 +377,7 @@ async def complete_variable_discovery(user=Depends(get_current_user)):
         await srs_collection().insert_one(doc)
 
     xp_result = await record_practice(
-        user_id, "lesson", score=10.0, metadata={"lesson_id": "variable-discovery"}
+        user_id, "lesson", score=10.0, metadata={"lesson_id": "variable-discovery"}, role=user.get("role") or user.get("target_role") or "sde"
     )
 
     badge_awarded = None
@@ -392,7 +391,7 @@ async def complete_variable_discovery(user=Depends(get_current_user)):
     return {
         "success": True,
         "message": "Variable discovery lesson completed!",
-        "xp_gained": final_xp,
+        "xp_gained": xp_result.get("xp_gained", final_xp),
         "badge_unlocked": "variable_master",
         "boss_defeated": VARIABLE_DISCOVERY_CONTENT["boss_battle"]["title"],
         "srs_concept_enrolled": concept_id,

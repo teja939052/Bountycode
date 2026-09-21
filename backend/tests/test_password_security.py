@@ -195,9 +195,9 @@ class TestFinalizeUser:
             "email": "test@example.com",
             "name": "Test User",
             "plan": "pro",
-            "xp": 100,
+            "diamonds": 100,
         }
         result = _finalize_user(user)
         assert result["name"] == "Test User"
         assert result["plan"] == "pro"
-        assert result["xp"] == 100
+        assert result["diamonds"] == 100

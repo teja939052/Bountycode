@@ -25,8 +25,8 @@ export const world = [
 export const howItWorks = [
   { word: "Learn.", line: "Bite-size lessons across 7 languages. No walls of text." },
   { word: "Practice.", line: "Daily quests, streaks, and code that actually runs." },
-  { word: "Level up.", line: "XP, calm boss battles, and a skill radar that guides you." },
-  { word: "Get placed.", line: "Company mocks, ATS-ready resume, and salary coaching." },
+  { word: "Level up.", line: "Diamonds, calm boss battles, and a skill radar that guides you." },
+  { word: "Get placed.", line: "Company mocks and ATS-ready resume." },
 ];
 
 export const coreFeatures = [
@@ -34,14 +34,14 @@ export const coreFeatures = [
   { icon: MessageSquare, title: "AI Mock Interviews", desc: "Company-specific questions with calm, instant AI feedback after each round." },
   { icon: FileText, title: "Resume & ATS", desc: "Upload, get an honest ATS score, and rewrite bullets that actually pass." },
   { icon: Target, title: "Aptitude Drills", desc: "Quant, logical, verbal, and technical questions for campus tests." },
-  { icon: TrendingUp, title: "Progress Tracking", desc: "Streaks, XP, and weak-area detection — you always know what's next." },
+  { icon: TrendingUp, title: "Progress Tracking", desc: "Streaks, Diamonds, and weak-area detection — you always know what's next." },
   { icon: Users, title: "Company Prep", desc: "53+ company guides with patterns, behavioral questions, and experiences." },
 ];
 
 export const testimonials = [
   { name: "Priya S.", role: "SDE at Amazon", text: "The aptitude drills and mock interviews felt exactly like the real thing. I cleared 5 company tests in one month.", tone: "bg-nature-blossom/20 text-nature-blossom" },
   { name: "Rahul V.", role: "TCS NQT Ranker", text: "I used the question bank and ATS scanner daily. The progress heatmap kept me accountable.", tone: "bg-nature-blossom/20 text-nature-blossom" },
-  { name: "Ananya M.", role: "PM at Google", text: "The resume optimizer and salary coach helped me negotiate a 40% higher offer.", tone: "bg-nature-blossom/20 text-nature-blossom" },
+  { name: "Ananya M.", role: "PM at Google", text: "The resume optimizer and mock interviews helped me land my dream offer.", tone: "bg-nature-blossom/20 text-nature-blossom" },
 ];
 
 export const plans = [
@@ -50,7 +50,7 @@ export const plans = [
     price: "$0",
     cadence: "Monthly reset",
     note: "Everything you need to build the habit.",
-    features: ["3 interviews / month", "3 resume reviews / month", "5 aptitude tests / month", "3 cover letters / month"],
+    features: ["3 interviews / month", "3 resume reviews / month", "5 aptitude tests / month"],
     cta: "Start free",
     featured: false,
   },

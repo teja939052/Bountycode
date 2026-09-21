@@ -157,7 +157,7 @@ export function Achievement({
             `}>
               {title}
               {xpReward && (
-                <span className="ml-2 inline-flex items-center gap-1 text-xs font-mono text-xp font-semibold">
+                <span className="ml-2 inline-flex items-center gap-1 text-xs font-mono text-diamonds font-semibold">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 12 9.27 2.91 8.26 9 2 12z" />
                   </svg>

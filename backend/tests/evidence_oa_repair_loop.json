@@ -1,0 +1,907 @@
+{
+  "run_at": "2026-09-20T14:05:00.566407+00:00",
+  "email": "evidence-355e32e3@example.com",
+  "target_topic": "percentages",
+  "chain": [
+    {
+      "label": "1 register",
+      "payload": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNmFhZmU4MDcyNDI1MTQ3Nzk0OGFmOWJhIiwiZXhwIjoxNzkwNTE3ODk1LCJpYXQiOjE3ODk5MTMwOTUsInR5cGUiOiJhY2Nlc3MifQ.HEVSxdoHFCr5piewhIifEY_bMFavW056w-Ckz_6G-aM",
+        "user": {
+          "id": "6aafe80724251477948af9ba",
+          "email": "evidence-355e32e3@example.com",
+          "name": "E2E Evidence",
+          "plan": "free"
+        }
+      }
+    },
+    {
+      "label": "2 start",
+      "payload": {
+        "session_id": "6aafe80724251477948af9bf",
+        "company": "tcs",
+        "mode": "calm",
+        "blueprint": {
+          "aptitude": 0.2,
+          "logical": 0.2,
+          "verbal": 0.2,
+          "cs_fundamentals": 0.15,
+          "coding": 0.25
+        },
+        "marking_scheme": {
+          "correct": 1,
+          "wrong": 0,
+          "skip": 0,
+          "provenance": "pattern-relevant: NQT publicly reports no negative marking in most cycles",
+          "exam_key": "tcs_nqt"
+        },
+        "stage_budgets": [
+          {
+            "id": "foundation",
+            "title": "Foundation",
+            "budget_minutes": 55.0
+          },
+          {
+            "id": "advanced",
+            "title": "Advanced",
+            "budget_minutes": 25.0
+          }
+        ],
+        "exam_structure": {
+          "title": "TCS NQT",
+          "duration_minutes": 190,
+          "stages": [
+            {
+              "id": "foundation",
+              "title": "Foundation",
+              "sections": [
+                "aptitude",
+                "verbal",
+                "logical"
+              ],
+              "note": "Foundation \u2014 65 questions. aptitude: 20q, verbal: 25q, logical: 20q"
+            },
+            {
+              "id": "advanced",
+              "title": "Advanced",
+              "sections": [
+                "aptitude",
+                "coding"
+              ],
+              "note": "Advanced \u2014 17 questions. aptitude: 15q, coding: 2q"
+            }
+          ],
+          "provenance": "pattern_relevant"
+        },
+        "duration_minutes": 60,
+        "ends_at": "2026-09-20T15:04:55.915151+00:00",
+        "integrity_enabled": false,
+        "total_questions": 12,
+        "questions": [
+          {
+            "question_uid": "aptitude-0",
+            "section": "aptitude",
+            "section_label": "Numerical Ability",
+            "kind": "mcq",
+            "question": "(Successive percent) A price is raised by 20% then reduced by 20%. The net change is:",
+            "options": {
+              "A": "Option 1",
+              "B": "Option 2",
+              "C": "Option 3",
+              "D": "Option 4"
+            },
+            "time_limit": 300,
+            "difficulty": "easy",
+            "topic": "percentages",
+            "sub_topic": "successive percentage change",
+            "trust_status": "verified",
+            "source_bank": "verified_placement_questions",
+            "verification_version": 1,
+            "question_id": "apt-001",
+            "stage": "foundation",
+            "verified_by_takers": null
+          },
+          {
+            "question_uid": "aptitude-1",
+            "section": "aptitude",
+            "section_label": "Numerical Ability",
+            "kind": "mcq",
+            "question": "(Time & Work) A completes a job in 12 days, B in 18 days. Working together, they finish in:",
+            "options": {
+              "A": "Option 1",
+              "B": "Option 2",
+              "C": "Option 3",
+              "D": "Option 4"
+            },
+            "time_limit": 300,
+            "difficulty": "medium",
+            "topic": "time-work",
+            "sub_topic": "work-rate",
+            "trust_status": "verified",
+            "source_bank": "verified_placement_questions",
+            "verification_version": 1,
+            "question_id": "apt-002",
+            "stage": "foundation",
+            "verified_by_takers": null
+          },
+          {
+            "question_uid": "aptitude-2",
+            "section": "aptitude",
+            "section_label": "Numerical Ability",
+            "kind": "mcq",
+            "question": "(Profit & Loss) Bought for Rs 500, sold for Rs 575. The profit percentage is:",
+            "options": {
+              "A": "Option 1",
+              "B": "Option 2",
+              "C": "Option 3",
+              "D": "Option 4"
+            },
+            "time_limit": 300,
+            "difficulty": "easy",
+            "topic": "profit-loss",
+            "sub_topic": "profit percentage",
+            "trust_status": "verified",
+            "source_bank": "verified_placement_questions",
+            "verification_version": 1,
+            "question_id": "apt-003",
+            "stage": "foundation",
+            "verified_by_takers": null
+          },
+          {
+            "question_uid": "verbal-0",
+            "section": "verbal",
+            "section_label": "Verbal Ability",
+            "kind": "mcq",
+            "question": "(Synonym) Closest synonym of 'ABUNDANT':",
+            "options": {
+              "A": "Option 1",
+              "B": "Option 2",
+              "C": "Option 3",
+              "D": "Option 4"
+            },
+            "time_limit": 300,
+            "difficulty": "easy",
+            "topic": "synonym",
+            "sub_topic": "word meaning",
+            "trust_status": "verified",
+            "source_bank": "verified_placement_questions",
+            "verification_version": 1,
+            "question_id": "verb-004",
+            "stage": "foundation",
+            "verified_by_takers": null
+          },
+          {
+            "question_uid": "verbal-1",
+            "section": "verbal",
+            "section_label": "Verbal Ability",
+            "kind": "mcq",
+            "question": "(Antonym) Opposite of 'TRANSPARENT':",
+            "options": {
+              "A": "Option 1",
+              "B": "Option 2",
+              "C": "Option 3",
+              "D": "Option 4"
+            },
+            "time_limit": 300,
+            "difficulty": "easy",
+            "topic": "antonym",
+            "sub_topic": "opposite meaning",
+            "trust_status": "verified",
+            "source_bank": "verified_placement_questions",
+            "verification_version": 1,
+            "question_id": "verb-005",
+            "stage": "foundation",
+            "verified_by_takers": null
+          },
+          {
+            "question_uid": "verbal-2",
+            "section": "verbal",
+            "section_label": "Verbal Ability",
+            "kind": "mcq",
+            "question": "(Analogy) Doctor : Hospital :: Teacher : ?",
+            "options": {
+              "A": "Option 1",
+              "B": "Option 2",
+              "C": "Option 3",
+              "D": "Option 4"
+            },
+            "time_limit": 300,
+            "difficulty": "easy",
+            "topic": "analogy",
+            "sub_topic": "word pair",
+            "trust_status": "verified",
+            "source_bank": "verified_placement_questions",
+            "verification_version": 1,
+            "question_id": "verb-006",
+            "stage": "foundation",
+            "verified_by_takers": null
+          },
+          {
+            "question_uid": "verbal-3",
+            "section": "verbal",
+            "section_label": "Verbal Ability",
+            "kind": "mcq",
+            "question": "(Fill-in) Despite the heavy rain, the match ____.",
+            "options": {
+              "A": "Option 1",
+              "B": "Option 2",
+              "C": "Option 3",
+              "D": "Option 4"
+            },
+            "time_limit": 300,
+            "difficulty": "easy",
+            "topic": "sentence-completion",
+            "sub_topic": "cloze",
+            "trust_status": "verified",
+            "source_bank": "verified_placement_questions",
+            "verification_version": 1,
+            "question_id": "verb-007",
+            "stage": "foundation",
+            "verified_by_takers": null
+          },
+          {
+            "question_uid": "logical-0",
+            "section": "logical",
+            "section_label": "Reasoning Ability",
+            "kind": "mcq",
+            "question": "(Series) Find the next term: 2, 5, 10, 17, 26, ?",
+            "options": {
+              "A": "Option 1",
+              "B": "Option 2",
+              "C": "Option 3",
+              "D": "Option 4"
+            },
+            "time_limit": 300,
+            "difficulty": "easy",
+            "topic": "series",
+            "sub_topic": "difference pattern",
+            "trust_status": "verified",
+            "source_bank": "verified_placement_questions",
+            "verification_version": null,
+            "question_id": "log-001",
+            "stage": "foundation",
+            "verified_by_takers": null
+          },
+          {
+            "question_uid": "logical-1",
+            "section": "logical",
+            "section_label": "Reasoning Ability",
+            "kind": "mcq",
+            "question": "(Coding-Decoding) If CAT is coded as DBU, how is DOG coded?",
+            "options": {
+              "A": "Option 1",
+              "B": "Option 2",
+              "C": "Option 3",
+              "D": "Option 4"
+            },
+            "time_limit": 300,
+            "difficulty": "medium",
+            "topic": "coding-decoding",
+            "sub_topic": "letter shift",
+            "trust_status": "verified",
+            "source_bank": "verified_placement_questions",
+            "verification_version": null,
+            "question_id": "log-002",
+            "stage": "foundation",
+            "verified_by_takers": null
+          },
+          {
+            "question_uid": "logical-2",
+            "section": "logical",
+            "section_label": "Reasoning Ability",
+            "kind": "mcq",
+            "question": "(Arrangement) Five friends A,B,C,D,E sit in a row. B is to the immediate right of A. C is at one end. D sits between A and C. Who is at the other end?",
+            "options": {
+              "A": "Option 1",
+              "B": "Option 2",
+              "C": "Option 3",
+              "D": "Option 4"
+            },
+            "time_limit": 300,
+            "difficulty": "hard",
+            "topic": "seating",
+            "sub_topic": "linear arrangement",
+            "trust_status": "verified",
+            "source_bank": "verified_placement_questions",
+            "verification_version": null,
+            "question_id": "log-003",
+            "stage": "foundation",
+            "verified_by_takers": null
+          },
+          {
+            "question_uid": "logical-3",
+            "section": "logical",
+            "section_label": "Reasoning Ability",
+            "kind": "mcq",
+            "question": "(Blood relation) Pointing to a man, 'He is my father's only son's father.' Who is he?",
+            "options": {
+              "A": "Option 1",
+              "B": "Option 2",
+              "C": "Option 3",
+              "D": "Option 4"
+            },
+            "time_limit": 300,
+            "difficulty": "hard",
+            "topic": "blood-relations",
+            "sub_topic": "single relation",
+            "trust_status": "verified",
+            "source_bank": "verified_placement_questions",
+            "verification_version": 1,
+            "question_id": "log-004",
+            "stage": "foundation",
+            "verified_by_takers": null
+          },
+          {
+            "question_uid": "coding-0",
+            "section": "coding",
+            "section_label": "Coding",
+            "kind": "code",
+            "question": "Two Sum: find indices of two numbers that add to a target",
+            "description": "Two Sum: find indices of two numbers that add to a target",
+            "starter_code": {
+              "python": "def two_sum(nums, target):\n    # your implementation here\n    pass"
+            },
+            "language": "python",
+            "test_cases": [
+              {
+                "input": "[[2, 7, 11, 15], 9]",
+                "expected": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "input": "[[3, 2, 4], 6]",
+                "expected": [
+                  1,
+                  2
+                ]
+              },
+              {
+                "input": "[[3, 3], 6]",
+                "expected": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "input": [
+                  [
+                    -1,
+                    -2,
+                    -3,
+                    -4,
+                    -5
+                  ],
+                  -8
+                ],
+                "expected": [
+                  2,
+                  4
+                ]
+              },
+              {
+                "input": [
+                  [
+                    0,
+                    4,
+                    3,
+                    0
+                  ],
+                  0
+                ],
+                "expected": [
+                  0,
+                  3
+                ]
+              }
+            ],
+            "time_limit": 1500,
+            "difficulty": "easy",
+            "topic": "arrays",
+            "function_name": "two_sum",
+            "trust_status": "verified",
+            "source_bank": "verified_placement_questions",
+            "verification_version": 1,
+            "question_id": "verify-001",
+            "stage": "advanced",
+            "verified_by_takers": null
+          }
+        ],
+        "negative_marking": false,
+        "back_navigation": false,
+        "section_switching": false
+      }
+    },
+    {
+      "label": "3 submit answers",
+      "payload": {
+        "received": 12,
+        "session_id": "6aafe80724251477948af9bf"
+      }
+    },
+    {
+      "label": "4 complete",
+      "payload": {
+        "session_id": "6aafe80724251477948af9bf",
+        "company": "tcs",
+        "mode": "calm",
+        "overall_readiness": 78.3,
+        "verdict": "INTERVIEW READY",
+        "readiness_message": "You are 78.3% ready for TCS NQT",
+        "marking_scheme": {
+          "correct": 1,
+          "wrong": 0,
+          "skip": 0,
+          "provenance": "pattern-relevant: NQT publicly reports no negative marking in most cycles",
+          "exam_key": "tcs_nqt"
+        },
+        "raw_marks": 110.0,
+        "max_marks": 111.0,
+        "section_scores": {
+          "Numerical Ability": 66.7,
+          "Verbal Ability": 100.0,
+          "Reasoning Ability": 100.0,
+          "Coding": 100.0
+        },
+        "section_scores_raw": {
+          "aptitude": 66.7,
+          "verbal": 100.0,
+          "logical": 100.0,
+          "coding": 100.0
+        },
+        "score_breakdown": {
+          "aptitude": {
+            "avg": 66.7,
+            "correct": 2,
+            "total": 3
+          },
+          "verbal": {
+            "avg": 100.0,
+            "correct": 4,
+            "total": 4
+          },
+          "logical": {
+            "avg": 100.0,
+            "correct": 4,
+            "total": 4
+          },
+          "coding": {
+            "avg": 100.0,
+            "correct": 1,
+            "total": 1
+          }
+        },
+        "strong_areas": [
+          "Verbal Ability",
+          "Reasoning Ability"
+        ],
+        "weak_areas": [
+          "Numerical Ability",
+          "Verbal Ability",
+          "Reasoning Ability"
+        ],
+        "time_intelligence": {
+          "by_section": {
+            "Numerical Ability": {
+              "avg_minutes": 0.3,
+              "total_minutes": 1.0,
+              "questions": 3
+            },
+            "Verbal Ability": {
+              "avg_minutes": 0.3,
+              "total_minutes": 1.3,
+              "questions": 4
+            },
+            "Reasoning Ability": {
+              "avg_minutes": 0.3,
+              "total_minutes": 1.3,
+              "questions": 4
+            },
+            "Coding": {
+              "avg_minutes": 2.0,
+              "total_minutes": 2.0,
+              "questions": 1
+            }
+          },
+          "advice": [
+            "You spend 6.0x longer on arrays problems. Consider abandoning after ~12 min if stuck.",
+            "Allocate time by section weight; autosave is on \u2014 don't re-edit submitted answers."
+          ]
+        },
+        "questions_answered": 12,
+        "total_questions": 12,
+        "integrity_signals": {},
+        "tab_switch_count": 0,
+        "fullscreen_exits": 0,
+        "scorecard": [
+          {
+            "question_uid": "aptitude-0",
+            "section": "aptitude",
+            "section_label": "Numerical Ability",
+            "score": 0.0,
+            "marks_awarded": 0.0,
+            "max_marks": 1.0,
+            "time_taken": 20,
+            "difficulty": "easy",
+            "topic": "percentages"
+          },
+          {
+            "question_uid": "aptitude-1",
+            "section": "aptitude",
+            "section_label": "Numerical Ability",
+            "score": 100.0,
+            "marks_awarded": 1.0,
+            "max_marks": 1.0,
+            "time_taken": 20,
+            "difficulty": "medium",
+            "topic": "time-work"
+          },
+          {
+            "question_uid": "aptitude-2",
+            "section": "aptitude",
+            "section_label": "Numerical Ability",
+            "score": 100.0,
+            "marks_awarded": 1.0,
+            "max_marks": 1.0,
+            "time_taken": 20,
+            "difficulty": "easy",
+            "topic": "profit-loss"
+          },
+          {
+            "question_uid": "verbal-0",
+            "section": "verbal",
+            "section_label": "Verbal Ability",
+            "score": 100.0,
+            "marks_awarded": 1.0,
+            "max_marks": 1.0,
+            "time_taken": 20,
+            "difficulty": "easy",
+            "topic": "synonym"
+          },
+          {
+            "question_uid": "verbal-1",
+            "section": "verbal",
+            "section_label": "Verbal Ability",
+            "score": 100.0,
+            "marks_awarded": 1.0,
+            "max_marks": 1.0,
+            "time_taken": 20,
+            "difficulty": "easy",
+            "topic": "antonym"
+          },
+          {
+            "question_uid": "verbal-2",
+            "section": "verbal",
+            "section_label": "Verbal Ability",
+            "score": 100.0,
+            "marks_awarded": 1.0,
+            "max_marks": 1.0,
+            "time_taken": 20,
+            "difficulty": "easy",
+            "topic": "analogy"
+          },
+          {
+            "question_uid": "verbal-3",
+            "section": "verbal",
+            "section_label": "Verbal Ability",
+            "score": 100.0,
+            "marks_awarded": 1.0,
+            "max_marks": 1.0,
+            "time_taken": 20,
+            "difficulty": "easy",
+            "topic": "sentence-completion"
+          },
+          {
+            "question_uid": "logical-0",
+            "section": "logical",
+            "section_label": "Reasoning Ability",
+            "score": 100.0,
+            "marks_awarded": 1.0,
+            "max_marks": 1.0,
+            "time_taken": 20,
+            "difficulty": "easy",
+            "topic": "series"
+          },
+          {
+            "question_uid": "logical-1",
+            "section": "logical",
+            "section_label": "Reasoning Ability",
+            "score": 100.0,
+            "marks_awarded": 1.0,
+            "max_marks": 1.0,
+            "time_taken": 20,
+            "difficulty": "medium",
+            "topic": "coding-decoding"
+          },
+          {
+            "question_uid": "logical-2",
+            "section": "logical",
+            "section_label": "Reasoning Ability",
+            "score": 100.0,
+            "marks_awarded": 1.0,
+            "max_marks": 1.0,
+            "time_taken": 20,
+            "difficulty": "hard",
+            "topic": "seating"
+          },
+          {
+            "question_uid": "logical-3",
+            "section": "logical",
+            "section_label": "Reasoning Ability",
+            "score": 100.0,
+            "marks_awarded": 1.0,
+            "max_marks": 1.0,
+            "time_taken": 20,
+            "difficulty": "hard",
+            "topic": "blood-relations"
+          },
+          {
+            "question_uid": "coding-0",
+            "section": "coding",
+            "section_label": "Coding",
+            "score": 100.0,
+            "marks_awarded": 100.0,
+            "max_marks": 100.0,
+            "time_taken": 120,
+            "difficulty": "easy",
+            "topic": "arrays"
+          }
+        ],
+        "next_missions": [
+          {
+            "title": "Practice Numerical Ability (target 75%+)",
+            "to": "/aptitude",
+            "action": "practice"
+          },
+          {
+            "title": "Practice Verbal Ability (target 75%+)",
+            "to": "/question-bank?topic=verbal",
+            "action": "practice"
+          },
+          {
+            "title": "Practice Reasoning Ability (target 75%+)",
+            "to": "/question-bank?topic=logical",
+            "action": "practice"
+          },
+          {
+            "title": "Drill arrays timed sets \u2014 you lose the most time here",
+            "to": "/question-bank?topic=arrays",
+            "action": "drill"
+          }
+        ],
+        "diagnosis": {
+          "overall_score": 91.66666666666666,
+          "correct": 11,
+          "total": 12,
+          "section_analysis": {
+            "aptitude": {
+              "score": 2,
+              "total": 3,
+              "percentage": 66.66666666666666,
+              "strength": "medium"
+            },
+            "verbal": {
+              "score": 4,
+              "total": 4,
+              "percentage": 100.0,
+              "strength": "strong"
+            },
+            "logical": {
+              "score": 4,
+              "total": 4,
+              "percentage": 100.0,
+              "strength": "strong"
+            },
+            "coding": {
+              "score": 1,
+              "total": 1,
+              "percentage": 100.0,
+              "strength": "strong"
+            }
+          },
+          "time_analysis": {
+            "average_seconds": 28.333333333333332,
+            "slow_questions": [
+              11
+            ],
+            "time_management": "good"
+          },
+          "weaknesses": [
+            "aptitude"
+          ],
+          "diagnostic_message": "Strong performance. Focus on maintaining consistency.",
+          "repair_missions": [
+            {
+              "skill": "aptitude",
+              "priority": "high",
+              "recommended_actions": [
+                "Review aptitude fundamentals",
+                "Practice 5 aptitude problems",
+                "Take aptitude quiz"
+              ]
+            }
+          ],
+          "next_action": "advance",
+          "skill_weaknesses": [
+            {
+              "skill": "percentages",
+              "correct": 0,
+              "total": 1,
+              "pct": 0.0,
+              "avg_time_s": 20.0,
+              "slow_count": 0
+            }
+          ],
+          "primary_weakness": "percentages",
+          "repair_chain": [
+            "Concept lesson: percentages",
+            "Guided problem: percentages",
+            "3 verified practice: percentages",
+            "SRS review"
+          ],
+          "retest_condition": ">=80% across 3 verified questions on primary weakness"
+        },
+        "repair_missions": [
+          {
+            "skill": "percentages",
+            "mission_title": "Repair: percentages",
+            "recommended_lessons": [
+              "apt-2"
+            ],
+            "recommended_exercises": [],
+            "recommended_quizzes": [
+              "sde-quiz-1",
+              "ds-quiz-1",
+              "ml-quiz-1"
+            ],
+            "retest_verified_ids": [
+              "apt-001",
+              "apt-013",
+              "apt-014"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "5 missions list",
+      "payload": {
+        "has_repairs": true,
+        "missions": [
+          {
+            "id": "repair:6aafe80724251477948af9ba:1789913099",
+            "user_id": "6aafe80724251477948af9ba",
+            "title": "Repair: percentages",
+            "weaknesses": [
+              "percentages"
+            ],
+            "recommended_lessons": [
+              "apt-2"
+            ],
+            "recommended_exercises": [],
+            "recommended_quizzes": [
+              "sde-quiz-1",
+              "ds-quiz-1",
+              "ml-quiz-1"
+            ],
+            "status": "pending",
+            "created_at": "2026-09-20T14:04:59.897498+00:00",
+            "completed_at": "",
+            "misconception_tag": null,
+            "remediation_steps": [],
+            "interactive_drill": {}
+          }
+        ],
+        "total_weaknesses": 1,
+        "next_recommended": {
+          "id": "repair:6aafe80724251477948af9ba:1789913099",
+          "user_id": "6aafe80724251477948af9ba",
+          "title": "Repair: percentages",
+          "weaknesses": [
+            "percentages"
+          ],
+          "recommended_lessons": [
+            "apt-2"
+          ],
+          "recommended_exercises": [],
+          "recommended_quizzes": [
+            "sde-quiz-1",
+            "ds-quiz-1",
+            "ml-quiz-1"
+          ],
+          "status": "pending",
+          "created_at": "2026-09-20T14:04:59.897498+00:00",
+          "completed_at": "",
+          "misconception_tag": null,
+          "remediation_steps": [],
+          "interactive_drill": {}
+        }
+      }
+    },
+    {
+      "label": "6 retest",
+      "payload": {
+        "skill": "percentages",
+        "count": 3,
+        "retest_condition": ">=80% across retest questions on this weakness",
+        "questions": [
+          {
+            "id": "q_03496",
+            "type": "system_design",
+            "question": "Design a Write-Through Distributed Cache",
+            "topic": "system_design",
+            "sub_topic": "distributed_cache_write",
+            "difficulty": "hard",
+            "provenance": "",
+            "trust_status": "verified",
+            "kind": "mcq",
+            "options": []
+          },
+          {
+            "id": "q_03495",
+            "type": "system_design",
+            "question": "Design an E-commerce Inventory System",
+            "topic": "system_design",
+            "sub_topic": "inventory",
+            "difficulty": "hard",
+            "provenance": "",
+            "trust_status": "verified",
+            "kind": "mcq",
+            "options": []
+          },
+          {
+            "id": "q_03494",
+            "type": "system_design",
+            "question": "Design a Distributed Cache",
+            "topic": "system_design",
+            "sub_topic": "distributed_cache",
+            "difficulty": "hard",
+            "provenance": "",
+            "trust_status": "verified",
+            "kind": "mcq",
+            "options": []
+          }
+        ]
+      }
+    },
+    {
+      "label": "7 retest submit",
+      "payload": {
+        "skill": "percentages",
+        "correct": 3,
+        "total": 3,
+        "pct": 100,
+        "passed": true,
+        "verdict": "advance",
+        "results": [
+          {
+            "question_id": "q_03496",
+            "topic": "system_design",
+            "kind": "mcq",
+            "correct": true
+          },
+          {
+            "question_id": "q_03495",
+            "topic": "system_design",
+            "kind": "mcq",
+            "correct": true
+          },
+          {
+            "question_id": "q_03494",
+            "topic": "system_design",
+            "kind": "mcq",
+            "correct": true
+          }
+        ]
+      }
+    },
+    {
+      "label": "8 mission complete",
+      "payload": {
+        "completed": true,
+        "mission_id": "repair:6aafe80724251477948af9ba:1789913099"
+      }
+    }
+  ]
+}

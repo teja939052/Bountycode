@@ -91,7 +91,7 @@ export default function DailyDrill() {
         <div className="grid grid-cols-3 gap-4 mb-8">
           {[
             { icon: Flame, value: user?.streak || 0, label: "Day Streak", color: "text-orange-500" },
-            { icon: Zap, value: user?.xp || 0, label: "Total XP", color: "text-yellow-500" },
+            { icon: Zap, value: user?.diamonds || 0, label: "Total Diamonds", color: "text-yellow-500" },
             { icon: Trophy, value: user?.level || 1, label: "Level", color: "text-primary-500" },
           ].map((stat, i) => (
             <AnimatedCard key={stat.label} delay={i * 0.05} className="card text-center">
@@ -189,7 +189,7 @@ export default function DailyDrill() {
                   {result.correct || 0} out of {result.total || 5} correct
                 </p>
                 {result.xp_gained && (
-                  <p className="text-lg font-semibold text-yellow-600 mb-6">+{result.xp_gained} XP earned!</p>
+                  <p className="text-lg font-semibold text-yellow-600 mb-6">+{result.xp_gained} Diamonds earned!</p>
                 )}
                 <button
                   onClick={loadDrill}

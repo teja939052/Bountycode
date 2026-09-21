@@ -1,0 +1,9 @@
+Starting with 14320 questions
+Working: 6161
+Quarantined: 8159
+
+By type: {'coding': 5846, 'aptitude': 87, 'logical': 31, 'verbal': 20, 'sql': 54, 'interview': 99, 'cs_fundamentals': 4, 'system_design': 12, 'cs': 8}
+By trust: {'main': 2806, 'verified': 341, 'promoted': 21, 'unverified': 2993}
+By difficulty: {'easy': 1244, 'medium': 3554, 'hard': 1363}
+
+Written to app/data/questions_bank_working.json

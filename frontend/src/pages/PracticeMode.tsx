@@ -228,7 +228,7 @@ export default function PracticeMode() {
                   {feedback.score >= 8 ? "Excellent work!" : feedback.score >= 5 ? "Good attempt!" : "Keep practicing!"}
                 </p>
                 {feedback.xp_gained > 0 && (
-                  <p className="text-sm mt-2 text-text-primary/80">+{feedback.xp_gained} XP earned</p>
+                  <p className="text-sm mt-2 text-text-primary/80">+{feedback.xp_gained} Diamonds earned</p>
                 )}
               </div>
 

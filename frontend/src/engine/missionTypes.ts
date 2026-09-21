@@ -30,7 +30,7 @@ export interface MissionStep {
   content: string;
   novaDialogue?: NovaDialogue[];
   config: StepConfig;
-  xp: number;
+  diamonds: number;
   required?: string[];
 }
 
@@ -109,7 +109,7 @@ export interface ReinforcementMission {
   description: string;
   targetSkill: string;
   steps: MissionStep[];
-  xp: number;
+  diamonds: number;
 }
 
 export interface MissionState {

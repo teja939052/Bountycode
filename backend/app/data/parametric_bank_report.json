@@ -1,0 +1,28 @@
+{
+ "total": 6600,
+ "families": {
+  "pct_of": 500,
+  "pct_change": 300,
+  "profit_loss": 500,
+  "ratio": 400,
+  "average": 300,
+  "std": 400,
+  "time_work": 400,
+  "si": 300,
+  "ci": 200,
+  "npr": 200,
+  "prob": 200,
+  "num_series": 500,
+  "odd_one": 300,
+  "letter_series": 200,
+  "direction": 200,
+  "mixed_series": 300,
+  "bin_dec": 300,
+  "hex_dec": 200,
+  "bitwise": 300,
+  "bigo": 200,
+  "code_output": 400
+ },
+ "trust": "automated_checked (needs human sampling before TRUSTED)",
+ "note": "Deterministic oracles, seeded RNG. Not served by default."
+}

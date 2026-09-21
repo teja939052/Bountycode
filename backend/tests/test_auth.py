@@ -204,3 +204,63 @@ async def test_rate_limiting_login(client, clean_db):
     
     assert last_status == 429
 
+
+@pytest.mark.asyncio
+async def test_health_endpoint(client):
+    """Test health endpoint returns 200."""
+    response = await client.get("/health")
+    assert response.status_code == 200
+    data = response.json()
+    assert "status" in data
+    assert "version" in data
+
+
+@pytest.mark.asyncio
+async def test_questions_browse_requires_auth(client):
+    """Test questions browse requires authentication."""
+    response = await client.get("/api/v1/questions/browse")
+    assert response.status_code == 401
+
+
+@pytest.mark.asyncio
+async def test_gamification_profile_requires_auth(client):
+    """Test gamification profile requires authentication."""
+    response = await client.get("/api/v1/gamification/profile")
+    assert response.status_code == 401
+
+
+@pytest.mark.asyncio
+async def test_protected_route_with_token(client, clean_db):
+    """Test protected route with valid token."""
+    # Register and login
+    await client.post(
+        "/api/v1/auth/register",
+        json={
+            "email": "route_test@example.com",
+            "name": "Route Test",
+            "password": "SecurePass123!"
+        }
+    )
+    login_resp = await client.post(
+        "/api/v1/auth/login",
+        json={
+            "email": "route_test@example.com",
+            "password": "SecurePass123!"
+        }
+    )
+    assert login_resp.status_code == 200
+    token = login_resp.json().get("token")
+    
+    # Access protected route
+    response = await client.get(
+        "/api/v1/auth/me",
+        headers={"Authorization": f"Bearer {token}"}
+    )
+    assert response.status_code == 200
+    data = response.json()
+    assert data["email"] == "route_test@example.com"
+    
+    # Cleanup
+    await users_collection().delete_many({"email": "route_test@example.com"})
+
+
