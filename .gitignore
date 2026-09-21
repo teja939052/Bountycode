@@ -64,7 +64,7 @@ coverage/
 *.sw?
 
 # Project specific
-placementpro.log
+BountyCode.log
 *.db
 *.sqlite
 .env

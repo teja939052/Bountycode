@@ -2,6 +2,8 @@
 System Design Section — AI evaluation, model answers, and practice.
 Covers architecture, scalability, distributed systems, and design patterns.
 """
+import json
+import os
 from datetime import datetime, timezone, timedelta
 from fastapi import APIRouter, Depends, HTTPException, Query
 from typing import Optional, List
@@ -11,10 +13,30 @@ from app.database import (
     system_design_tests_collection, system_design_leaderboard_collection,
     users_collection
 )
-from app.services.ai import chat_completion, parse_json
+from app.services.ai_core import chat_completion, parse_json
 from app.services.gamification import record_practice
 
 router = APIRouter(prefix="/api/v1/system-design-tests", tags=["system-design-tests"])
+
+# Canonical System Design bank (single source of truth). Question content lives
+# in files under app/data/, never MongoDB.
+_SD_BANK_PATH = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "system_design_bank.json"
+)
+_SD_BANK_CACHE = None
+
+
+def _load_sd_bank() -> List[dict]:
+    """Load the canonical system design bank once and cache it."""
+    global _SD_BANK_CACHE
+    if _SD_BANK_CACHE is None:
+        try:
+            with open(_SD_BANK_PATH, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            _SD_BANK_CACHE = [p for p in data if isinstance(p, dict) and p.get("id")]
+        except Exception:
+            _SD_BANK_CACHE = []
+    return _SD_BANK_CACHE
 
 # System design categories
 SD_CATEGORIES = {
@@ -125,21 +147,7 @@ async def list_problems(
     user=Depends(get_current_user),
 ):
     """List system design problems with filtering."""
-    # Load problems from all modules
-    from scripts.system_design_problems import SYSTEM_DESIGN_PROBLEMS
-    from scripts.hld_problems import HLD_PROBLEMS
-    from scripts.hld_problems_batch2 import HLD_BATCH2
-    from scripts.hld_extra import HLD_EXTRA
-    from scripts.hld_final import HLD_FINAL
-    from scripts.lld_problems import LLD_PROBLEMS
-    from scripts.lld_problems_batch2 import LLD_BATCH2
-    from scripts.lld_final import LLD_FINAL
-    from scripts.lld_extra import LLD_EXTRA
-    from scripts.lld_final2 import LLD_FINAL2
-    from scripts.lld_final3 import LLD_FINAL3
-    from scripts.lld_ultra import LLD_ULTRA
-
-    problems = SYSTEM_DESIGN_PROBLEMS.copy() + HLD_PROBLEMS.copy() + HLD_BATCH2.copy() + HLD_EXTRA.copy() + HLD_FINAL.copy() + LLD_PROBLEMS.copy() + LLD_BATCH2.copy() + LLD_FINAL.copy() + LLD_EXTRA.copy() + LLD_FINAL2.copy() + LLD_FINAL3.copy() + LLD_ULTRA.copy()
+    problems = _load_sd_bank()
 
     if type:
         problems = [p for p in problems if p.get("category") == type]
@@ -163,9 +171,7 @@ async def list_problems(
 @router.get("/problem/{problem_id}")
 async def get_problem(problem_id: str, user=Depends(get_current_user)):
     """Get a specific system design problem with full details."""
-    from scripts.system_design_problems import SYSTEM_DESIGN_PROBLEMS
-
-    problem = next((p for p in SYSTEM_DESIGN_PROBLEMS if p["id"] == problem_id), None)
+    problem = next((p for p in _load_sd_bank() if p["id"] == problem_id), None)
     if not problem:
         raise HTTPException(status_code=404, detail="Problem not found")
 
@@ -179,9 +185,7 @@ async def evaluate_system_design(
     user=Depends(get_current_user),
 ):
     """AI-evaluate a system design answer with detailed rubric scoring."""
-    from scripts.system_design_problems import SYSTEM_DESIGN_PROBLEMS
-
-    problem = next((p for p in SYSTEM_DESIGN_PROBLEMS if p["id"] == problem_id), None)
+    problem = next((p for p in _load_sd_bank() if p["id"] == problem_id), None)
     if not problem:
         raise HTTPException(status_code=404, detail="Problem not found")
 
@@ -267,21 +271,19 @@ Be specific, constructive, and thorough. Compare against industry standards."""
 
     # Record gamification
     score = evaluation.get("overall_score", 5)
-    xp = score * 10
-    await record_practice(user["id"], "system_design", score)
+    diamonds = score * 10
+    await record_practice(user["id"], "system_design", score, role=user.get("role") or user.get("target_role") or "sde")
 
     return {
         "evaluation": evaluation,
-        "xp_gained": xp,
+        "xp_gained": diamonds,
     }
 
 
 @router.get("/model-answer/{problem_id}")
 async def get_model_answer(problem_id: str, user=Depends(get_current_user)):
     """Get AI-generated model answer for a system design problem."""
-    from scripts.system_design_problems import SYSTEM_DESIGN_PROBLEMS
-
-    problem = next((p for p in SYSTEM_DESIGN_PROBLEMS if p["id"] == problem_id), None)
+    problem = next((p for p in _load_sd_bank() if p["id"] == problem_id), None)
     if not problem:
         raise HTTPException(status_code=404, detail="Problem not found")
 

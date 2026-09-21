@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useCallback } from "react";
 import { useLearningGuide } from "../hooks/useLearningGuide";
 import { Play, Check, Trophy, Zap } from "lucide-react";
 import api from "../services/api";
@@ -105,7 +105,7 @@ export function MiniProjectLesson({
       attempts: state.attempts + 1,
     });
 
-    // Award XP
+    // Award Diamonds
     awardXP(50);
 
     onComplete({
@@ -150,14 +150,14 @@ export function MiniProjectLesson({
       </div>
 
       {/* Execution Results */}
-      {state.executionResult !== null || state.executionError !== null && (
-        <div className="mb-4 p-4 rounded-xl border-t-4 {
+      {(state.executionResult !== null || state.executionError !== null) && (
+        <div className={`mb-4 p-4 rounded-xl border-t-4 ${
           state.executionError
             ? "bg-error/10 border border-error/20 text-error"
             : state.isRunning
             ? "bg-primary/20 border border-primary text-primary"
             : ""
-        }">
+        }`}>
           {state.executionError && <p className="text-error text-sm mb-2">⚠ {state.executionError}</p>}
           {state.executionResult && <p className="font-mono text-sm line-clamp-3">{state.executionResult}</p>}
         </div>
@@ -169,9 +169,9 @@ export function MiniProjectLesson({
           <p className="text-text-muted text-sm mb-2">Test Results:</p>
           <div className="grid grid-cols-2 gap-2">
             {state.testResults.map((result, i) => (
-              <div key={i} className={result.passed ? "bg-success/10 border border-success/20 text-success" : "bg-error/10 border border-error/20 text-error">
+              <div key={i} className={result.passed ? "bg-success/10 border border-success/20 text-success" : "bg-error/10 border border-error/20 text-error"}>
                 <span className="font-medium">{result.passed ? "✅ Pass" : "❌ Fail"}</span>
-                <span className="text-xs ml-2">{result.output.substring(0, 50)}${result.output.length > 50 ? "..." : ""}</span>
+                <span className="text-xs ml-2">{result.output.substring(0, 50)}{result.output.length > 50 ? "..." : ""}</span>
               </div>
             ))}
           </div>

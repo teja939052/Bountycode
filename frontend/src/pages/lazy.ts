@@ -25,7 +25,6 @@ const routeImportFns = {
   PatternPage: () => import("./PatternPage"),
   CompanyTrack: () => import("./CompanyTrack"),
   MyProgress: () => import("./MyProgress"),
-  CompanyMocks: () => import("./CompanyMocks"),
   AlumniExperiences: () => import("./AlumniExperiences"),
   PlacementDrives: () => import("./PlacementDrives"),
   CareerProfile: () => import("./CareerProfile"),
@@ -42,6 +41,7 @@ const routeImportFns = {
   ResumeATS: () => import("./ResumeATS"),
   LearningHub: () => import("./LearningHub"),
   LessonPage: () => import("./LessonPage"),
+  LessonPlayer: () => import("./LessonPlayer"),
   AdminDashboard: () => import("./AdminDashboard"),
   AdminContentCorpus: () => import("./AdminContentCorpus"),
   Topics: () => import("./Topics"),
@@ -62,7 +62,6 @@ const routeImportFns = {
   PwaSetup: () => import("./PwaSetup"),
   StudentDashboard: () => import("./StudentDashboard"),
   StudyTimer: () => import("./StudyTimer"),
-  StudyGoals: () => import("./StudyGoals"),
   Terms: () => import("./Terms"),
   Privacy: () => import("./Privacy"),
   Practice: () => import("./Practice"),
@@ -73,6 +72,13 @@ const routeImportFns = {
   TcsNqtSimulation: () => import("./TcsNqtSimulation"),
   ExamMemorySubmission: () => import("./ExamMemorySubmission"),
   AdminExamReview: () => import("./AdminExamReview"),
+  ReadinessHeatmap: () => import("./ReadinessHeatmap"),
+  EvidenceDashboard: () => import("./EvidenceDashboard"),
+  Target: () => import("./Target"),
+  Skills: () => import("./Skills"),
+  Profile: () => import("./Profile"),
+  Mission: () => import("./Mission"),
+  MissionResult: () => import("./MissionResult"),
 };
 
 const preload: Record<string, () => void> = {};
@@ -140,7 +146,6 @@ const PracticeMode = lazy(() => import("./PracticeMode"));
 const PatternPage = lazy(() => import("./PatternPage"));
 const CompanyTrack = lazy(() => import("./CompanyTrack"));
 const MyProgress = lazy(() => import("./MyProgress"));
-const CompanyMocks = lazy(() => import("./CompanyMocks"));
 const AlumniExperiences = lazy(() => import("./AlumniExperiences"));
 const PlacementDrives = lazy(() => import("./PlacementDrives"));
 const CareerProfile = lazy(() => import("./CareerProfile"));
@@ -157,6 +162,7 @@ const MockOA = lazy(() => import("./MockOA"));
 const ResumeATS = lazy(() => import("./ResumeATS"));
 const LearningHub = lazy(() => import("./LearningHub"));
 const LessonPage = lazy(() => import("./LessonPage"));
+const LessonPlayer = lazy(() => import("./LessonPlayer"));
 const AdminDashboard = lazy(() => import("./AdminDashboard"));
 const AdminContentCorpus = lazy(() => import("./AdminContentCorpus"));
 const Topics = lazy(() => import("./Topics"));
@@ -179,7 +185,6 @@ const FreeTrial = lazy(() => import('./FreeTrial'));
 const PwaSetup = lazy(() => import('./PwaSetup'));
 const StudentDashboard = lazy(() => import('./StudentDashboard'));
 const StudyTimer = lazy(() => import('./StudyTimer'));
-const StudyGoals = lazy(() => import('./StudyGoals'));
 const Terms = lazy(() => import('./Terms'));
 const Privacy = lazy(() => import('./Privacy'));
 const Practice = lazy(() => import('./Practice'));
@@ -190,6 +195,13 @@ const Concepts = lazy(() => import('./Concepts'));
 const TcsNqtSimulation = lazy(() => import('./TcsNqtSimulation'));
 const ExamMemorySubmission = lazy(() => import('./ExamMemorySubmission'));
 const AdminExamReview = lazy(() => import('./AdminExamReview'));
+const ReadinessHeatmap = lazy(() => import('./ReadinessHeatmap'));
+const EvidenceDashboard = lazy(() => import('./EvidenceDashboard'));
+const Target = lazy(() => import('./Target'));
+const Skills = lazy(() => import('./Skills'));
+const Profile = lazy(() => import('./Profile'));
+const Mission = lazy(() => import('./Mission'));
+const MissionResult = lazy(() => import('./MissionResult'));
 export {
   Login,
   Register,
@@ -213,7 +225,6 @@ export {
   PatternPage,
   CompanyTrack,
   MyProgress,
-  CompanyMocks,
   AlumniExperiences,
   PlacementDrives,
   CareerProfile,
@@ -230,6 +241,7 @@ export {
   ResumeATS,
   LearningHub,
   LessonPage,
+  LessonPlayer,
   AdminDashboard,
   AdminContentCorpus,
   Topics,
@@ -252,7 +264,6 @@ export {
   PwaSetup,
   StudentDashboard,
   StudyTimer,
-  StudyGoals,
   Terms,
   Privacy,
   Practice,
@@ -263,4 +274,11 @@ export {
   TcsNqtSimulation,
   ExamMemorySubmission,
   AdminExamReview,
+  ReadinessHeatmap,
+  EvidenceDashboard,
+  Target,
+  Skills,
+  Profile,
+  Mission,
+  MissionResult,
 };

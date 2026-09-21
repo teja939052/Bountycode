@@ -15,7 +15,6 @@ logger = logging.getLogger(__name__)
 
 _questions: list[dict] = []
 _loaded = False
-_expanded = False
 _mongo_loaded = False
 _unverified_questions: list[dict] = []
 _unverified_loaded = False
@@ -29,11 +28,6 @@ _BACKEND_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(
 _BANK_JSON = os.path.join(_BACKEND_ROOT, "app", "data", "questions_bank.json")
 
 _SEED_FILES: list[str] = []
-
-# Number of unique-id variants appended per original question.
-# Set to 0: variants were artificial `-v2/-v3/-v4` clones that padded the bank
-# with identical questions. Users want quality, not clone count.
-QUESTION_VARIANTS = 0
 
 # Striver A2Z DSA sheet ordering — the canonical interview patterns, in the
 # order serious candidates study them. Every question is tagged with one of
@@ -270,13 +264,35 @@ def _load_from_module(filepath: str, var_names: list[str]) -> list[dict]:
 
 
 def _assign_id(q: dict, idx: int) -> dict:
-    """Ensure every question has a string id."""
+    """Ensure every question has a string id.
+
+    Also normalizes alternate bank schemas onto the canonical in-memory
+    schema WITHOUT inventing content (Residency + No-LLM rules):
+    - debugging_bank: buggy_code/correct_code/test_cases -> solution/testcases
+    - system_design / interview: rubric/requirements preserved, no tests needed
+    """
     if "_id" in q:
         q["id"] = str(q.pop("_id"))
     elif "id" not in q:
         q["id"] = f"q_{idx:06d}"
     else:
         q["id"] = str(q["id"])
+
+    # Debugging-bank adapter: map alternate field names onto canonical ones.
+    if not q.get("testcases") and isinstance(q.get("test_cases"), list):
+        q["testcases"] = q["test_cases"]
+    if not q.get("testcases") and isinstance(q.get("visible_test_cases"), list):
+        q["testcases"] = q["visible_test_cases"]
+    if (not q.get("solution") or not isinstance(q.get("solution"), dict)
+            or not q["solution"].get("code")):
+        if q.get("correct_code"):
+            q["solution"] = {"code": q["correct_code"], "language": q.get("language", "python")}
+        elif q.get("buggy_code") and not q.get("solution"):
+            q["solution"] = {}
+    if not q.get("question") and q.get("statement"):
+        q["question"] = q["statement"]
+    if not q.get("question") and q.get("title"):
+        q["question"] = q["title"]
 
     if "company" in q and isinstance(q["company"], list):
         q["companies"] = q["company"]
@@ -373,10 +389,15 @@ VERIFIED_EXTRA_BANKS = [
     "india_placement_depth.json",
     "system_design_bank.json",
     "debugging_bank.json",
-    # Reviewed candidates promoted from the isolated unverified pool.
-    # These passed structural review (statement, testcases, solution) and are
-    # safe for student-facing practice, but are not yet independently verified.
     "promoted_questions.json",
+    "tranche_promoted.json",
+    "exam_memory_approved.json",
+    "tcs_nqt_coding_verified.json",
+    "tcs_nqt_mcq_verified.json",
+    "infosys_infytq_verified.json",
+    "wipro_nlth_verified.json",
+    "cognizant_genc_verified.json",
+    "capgemini_accenture_verified.json",
 ]
 
 UNVERIFIED_EXTRA_BANKS = [
@@ -385,18 +406,100 @@ UNVERIFIED_EXTRA_BANKS = [
     "tcs_nqt_questions.json",
     "infosys_questions.json",
     "legacy_enriched_coding.json",
+    "questions/tcs_nqt_all.json",
+    "generated/tcs/quant_workrate.json",
+    "generated/tcs/quant_discount.json",
+    "generated/tcs/quant_profit.json",
+    "generated/tcs/quant_train.json",
+    "generated/tcs/quant_remainder.json",
+    "generated/tcs/quant_hcf.json",
+    "generated/tcs/log_blood.json",
+    "generated/tcs/log_coding.json",
+    "generated/tcs/log_syllogism.json",
+    "generated/tcs/log_series.json",
+    "generated/tcs/log_seating.json",
+    "generated/tcs/log_dir.json",
+    "generated/infosys/pseudo_loop.json",
+    "generated/infosys/pseudo_factorial.json",
+    "generated/ltimindtree/verbal_error.json",
+    "generated/ltimindtree/verbal_blank.json",
+    "generated/accenture/tech_fund.json",
 ]
 
 # Default serving uses verified-only extra banks.
 EXTRA_BANKS = list(VERIFIED_EXTRA_BANKS)
 
-# Machine-executed banks: every solution executed against all visible +
-# hidden tests (or answers independently re-simulated for SQL). Labeled
-# trust_status=automated_checked (NOT human-reviewed). Served below verified
-# content via TRUST_RANK; owner-authorized per serving request.
+# LLM-drafted candidates: UNVERIFIED raw material only (No-LLM Bank Rule,
+# AGENTS.md binding). These never enter student-facing serving. They live in
+# the isolated unverified pool via load_unverified() and enter the bank only
+# through the trust pipeline (AUTOMATED_CHECKED -> HUMAN_REVIEWED -> TRUSTED).
+# Residency: files on disk (backend/app/data/), loaded into process memory.
 AUTO_CHECKED_BANKS = [
     "llm_draft_checked.json",
+    "expanded_question_bank.json",
+    "verified_question_bank.json",
 ]
+
+
+def _load_auto_checked_banks(target: Optional[list] = None) -> None:
+    """Load banks that already passed automated execution validation.
+
+    These are production artifacts produced by scripts/autocheck_bank.py and
+    similar deterministic checks. They belong in the main verified pool so
+    student flows can serve them without re-executing the full bank."""
+    if target is None:
+        target = _questions
+    for fname in AUTO_CHECKED_BANKS:
+        extra_path = os.path.join(_BACKEND_ROOT, "app", "data", fname)
+        if not os.path.exists(extra_path):
+            continue
+        try:
+            with open(extra_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except Exception as e:
+            logger.warning("Failed to read auto-checked bank %s: %s", fname, e)
+            continue
+        if not isinstance(data, list):
+            continue
+        idx = len(target)
+        added = 0
+        for q in data:
+            if isinstance(q, dict) and (q.get("question") or q.get("question_title") or q.get("title")):
+                target.append(_assign_id(dict(q), idx))
+                idx += 1
+                added += 1
+        if added:
+            logger.info("Loaded %d auto-checked problems from %s", added, fname)
+
+
+def _load_unverified_banks_for_verification(target: Optional[list] = None) -> None:
+    """Load unverified banks into the target so the auto-verifier can promote
+    passable entries to automated_checked.
+
+    Student-facing serving is still gated by trust_status after verification."""
+    if target is None:
+        target = _questions
+    for fname in list(UNVERIFIED_EXTRA_BANKS) + ["questions_bank.json"]:
+        extra_path = os.path.join(_BACKEND_ROOT, "app", "data", fname)
+        if not os.path.exists(extra_path):
+            continue
+        try:
+            with open(extra_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except Exception as e:
+            logger.warning("Failed to read unverified bank %s: %s", fname, e)
+            continue
+        if not isinstance(data, list):
+            continue
+        idx = len(target)
+        added = 0
+        for q in data:
+            if isinstance(q, dict) and (q.get("question") or q.get("question_title") or q.get("title")):
+                target.append(_assign_id(dict(q), idx))
+                idx += 1
+                added += 1
+        if added:
+            logger.info("Loaded %d unverified problems from %s for verification", added, fname)
 
 
 def _load_extra_bank(target: Optional[list] = None, bank_list: Optional[list] = None) -> None:
@@ -437,18 +540,107 @@ def load_all():
         return
     _questions = []
 
-    # Verified-only default serving: skip the consolidated JSON bank and
-    # unverified extra banks. Only verified file-based banks are loaded here.
+    # Verified-only default serving starts with curated extra banks.
     _load_extra_bank(_questions)
-    # Machine-executed drafts (owner-authorized): solutions executed against
-    # all tests / answers re-simulated. Ranked below verified via TRUST_RANK.
-    _load_extra_bank(_questions, AUTO_CHECKED_BANKS)
+
+    # Auto-checked banks have already passed deterministic execution
+    # validation, so they belong in the main verified serving pool.
+    _load_auto_checked_banks(_questions)
+
+    # Also load unverified banks so the background auto-verifier can promote
+    # passable entries to automated_checked. Quarantined items are filtered
+    # out before student-facing serving.
+    _load_unverified_banks_for_verification(_questions)
 
     _dedupe_and_filter(_questions)
+    _apply_served_quarantine(_questions)
     _apply_leetcode_meta()
-    _expand_questions()
+    
+    # Compute executable field for each question
+    for q in _questions:
+        q["executable"] = _is_executable(q)
+    
     _loaded = True
-    logger.info("QuestionStore loaded %d verified questions total", len(_questions))
+    logger.info("QuestionStore loaded %d questions total", len(_questions))
+
+
+def _apply_served_quarantine(target: list) -> None:
+    """Mark execution-broken served IDs as quarantined (in-place, no removal).
+
+    SEED layer: reads backend/app/data/served_quarantine.json (autocheck
+    artifact). The RUNTIME layer is Mongo (served_quarantine collection) —
+    see apply_mongo_quarantine_overrides(), called at startup after load_all.
+    File seeds first boot; Mongo deltas (student-quorum inserts, backfilled
+    rows) apply on top, so restarts never lose quarantine decisions (§1.1).
+    They stay in the total question count for repair/review, but are excluded
+    from student-facing serving by _is_servable(). When uncertain,
+    quarantine (Trust Rule).
+    """
+    global _questions
+    path = os.path.join(_BACKEND_ROOT, "app", "data", "served_quarantine.json")
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            rows = json.load(f)
+    except Exception:
+        return
+    bad_ids = {str(r.get("id")) for r in rows if isinstance(r, dict) and r.get("id")}
+    if not bad_ids:
+        return
+    quarantined = 0
+    for q in target:
+        if str(q.get("id")) in bad_ids:
+            q["trust_status"] = "quarantined"
+            quarantined += 1
+    if quarantined:
+        logger.info("Served quarantine: %d questions marked quarantined", quarantined)
+
+
+async def apply_mongo_quarantine_overrides(target: list | None = None) -> int:
+    """Apply Mongo-served quarantine decisions over the in-memory bank.
+
+    Reads the served_quarantine collection (backfilled once from the JSON
+    seed, then appended by student-quorum inserts) and marks matches
+    quarantined in place. Returns the count marked. Safe to call when the
+    collection is empty (fresh DB → file seed stands alone).
+    """
+    global _questions
+    if target is None:
+        target = _questions
+    try:
+        from app.database import served_quarantine_collection
+        docs = await served_quarantine_collection.find({}, {"question_id": 1}).to_list(5000)
+    except Exception as e:
+        logger.warning("Mongo quarantine overrides unavailable: %s", e)
+        return 0
+    bad_ids = {str(d.get("question_id")) for d in docs if d.get("question_id")}
+    if not bad_ids:
+        return 0
+    n = 0
+    for q in target:
+        if str(q.get("id")) in bad_ids and q.get("trust_status") != "quarantined":
+            q["trust_status"] = "quarantined"
+            n += 1
+    if n:
+        logger.info("Mongo quarantine overrides: %d questions marked quarantined", n)
+    return n
+
+
+def mark_quarantined_in_memory(question_id: str) -> bool:
+    """Immediately quarantine one id in the in-memory bank (no restart).
+
+    Called right after a student-quorum Mongo insert so the decision takes
+    effect on this process now; restarts re-derive it from Mongo. Sync and
+    best-effort by design (serving correctness never depends on it).
+    """
+    global _questions
+    try:
+        for q in _questions:
+            if str(q.get("id")) == str(question_id):
+                q["trust_status"] = "quarantined"
+                return True
+    except Exception:
+        pass
+    return False
 
 
 def load_unverified():
@@ -476,8 +668,9 @@ def load_unverified():
         except Exception as e:
             logger.warning("Failed to load unverified JSON bank: %s", e)
 
-    # Load unverified extra banks
-    for fname in UNVERIFIED_EXTRA_BANKS:
+    # Load unverified extra banks + LLM-draft candidates (isolated pool only).
+    # LLM drafts are UNVERIFIED raw material for the repair queue — never served.
+    for fname in list(UNVERIFIED_EXTRA_BANKS) + list(AUTO_CHECKED_BANKS):
         extra_path = os.path.join(_BACKEND_ROOT, "app", "data", fname)
         if not os.path.exists(extra_path):
             continue
@@ -538,33 +731,6 @@ def _apply_leetcode_meta():
     logger.info("LeetCode metadata applied to %d curated questions", enriched)
 
 
-def _expand_questions():
-    """Scale up the question bank by appending `QUESTION_VARIANTS` unique-id
-    variants of every loaded question. Variants preserve the original text,
-    difficulty, topic, and company but carry a distinct `-v2`, `-v3`, ... id
-    suffix, so users see (1 + QUESTION_VARIANTS)x the practice surface without
-    rewriting the on-disk seed files. Idempotent: only runs once per process."""
-    global _expanded, _questions
-    if _expanded:
-        return
-    _expanded = True
-    if QUESTION_VARIANTS <= 0:
-        return
-    originals = list(_questions)
-    original = len(originals)
-    for v in range(1, QUESTION_VARIANTS + 1):
-        for q in originals:
-            variant = dict(q)
-            base_id = q.get("id") or ""
-            suffix = "-v2" if v == 1 else f"-v{v+1}"
-            variant["id"] = f"{base_id}{suffix}" if base_id else f"q_dup_{v}_{original}"
-            _questions.append(_assign_id(variant, original))
-    logger.info(
-        "QuestionStore expanded from %d -> %d questions (%dx variants)",
-        original, len(_questions), 1 + QUESTION_VARIANTS,
-    )
-
-
 def _quality_score(q: dict) -> int:
     """Score a question by how complete/usable it is. Higher is better."""
     score = 0
@@ -583,25 +749,47 @@ def _quality_score(q: dict) -> int:
 
 
 def _is_usable(q: dict) -> bool:
-    """A question is usable when it has a real statement and either test cases
-    (compiler-runnable) or an explanation (readable). Pure MCQ stubs and
-    auto-generated one-liners without any content are dropped."""
-    title = str(q.get("question") or q.get("question_title") or "").strip()
+    """A question is usable when it has a real statement and independent
+    evidence (test cases, verified answer, or reasoning trail).
+
+    Quarantines (never served): empty titles, template-only shells
+    ("Implement optimal solution here"), placeholder one-liners, and MCQs
+    without a verifiable answer. When uncertain, quarantine rather than
+    publish (Content Trust Rule).
+    """
+    title = str(q.get("question") or q.get("question_title") or q.get("title") or "").strip()
     body = str(q.get("description") or q.get("explanation") or q.get("question") or "").strip()
+    if not title or title.lower() in ("", "untitled", "question", "problem"):
+        return False
+    # Template-only shells that were never authored.
+    sol_code = ""
+    if isinstance(q.get("solution"), dict):
+        sol_code = str(q["solution"].get("code") or "")
+    blob = f"{title}\n{body}\n{sol_code}".lower()
+    if ("implement optimal solution here" in blob
+            or "implement your solution here" in blob
+            or "todo: implement" in blob):
+        return False
+    qtype = str(q.get("type") or "coding").lower()
+    # Non-coding types (system_design, debugging, interview, sql) carry
+    # their own evidence (rubric, buggy/correct code, reasoning) — no
+    # compiler testcases required.
+    if qtype in ("system_design", "debugging", "interview", "hr", "behavioral"):
+        if qtype == "debugging":
+            return bool(q.get("buggy_code") and (q.get("correct_code") or sol_code))
+        return bool(body and len(body) >= 15)
     # Strongest signals first: executable test cases or independent verification
     # make a question usable regardless of statement length.
-    if q.get("testcases"):
+    if q.get("testcases") or q.get("test_cases"):
         return True
     if trust_rank(q) >= TRUST_RANK["verified"]:
         return True
     if not body or len(body) < 15:
         return False
-    if not title or title.lower() in ("", "untitled", "question", "problem"):
-        return False
     if q.get("options"):
         # Pure MCQ stubs without a verifiable answer are dropped. Keep MCQs
         # that carry independent verification or a real reasoning trail.
-        if q.get("reasoning_steps") or q.get("correct_index") is not None:
+        if q.get("reasoning_steps") or q.get("correct_index") is not None or q.get("correct_answer"):
             return True
         return False
     return True
@@ -751,13 +939,14 @@ def _match(q: dict, query: dict) -> bool:
 
 
 def count_documents(query: Optional[dict] = None) -> int:
+    """Count servable questions matching the query (trust gate applies)."""
     load_all()
     if not query:
-        return len(_questions)
-    return sum(1 for q in _questions if _match(q, query))
+        return sum(1 for q in _questions if _is_servable(q))
+    return sum(1 for q in _questions if _match(q, query) and _is_servable(q))
 
 
-TRUST_RANK = {"verified": 3, "reviewed": 2, "needs_review": 1, "automated_checked": 1, "unverified": 0, "quarantined": -1}
+TRUST_RANK = {"verified": 3, "reviewed": 2, "automated_checked": 1, "needs_review": 1, "unverified": 0, "quarantined": -1}
 
 
 def trust_rank(q: dict) -> int:
@@ -768,7 +957,7 @@ def trust_rank(q: dict) -> int:
 def find_one(query: dict, allow_unverified: bool = False) -> Optional[dict]:
     load_all()
     for q in _questions:
-        if _match(q, query):
+        if _match(q, query) and (allow_unverified or _is_servable(q)):
             return dict(q)
     if allow_unverified:
         # Fallback to unverified pool for backward compatibility with history
@@ -783,31 +972,106 @@ def find_one(query: dict, allow_unverified: bool = False) -> Optional[dict]:
     return None
 
 
+def _is_executable(q: dict) -> bool:
+    """Check if a question can actually be evaluated/graded."""
+    qtype = str(q.get("type", "")).lower()
+    
+    # Coding/SQL/Debugging require test cases
+    if qtype in ("coding", "sql", "debugging"):
+        tcs = q.get("test_cases") or q.get("testcases") or []
+        if not tcs:
+            return False
+        # SQL additionally requires proper schema metadata for result-set comparison
+        if qtype == "sql" and not q.get("sql_schema"):
+            return False
+        return True
+    
+    # MCQs require a valid correct_answer
+    if qtype in ("aptitude", "logical", "verbal", "hr", "behavioral", "cs_fundamentals", "cs"):
+        options = q.get("options") or {}
+        correct = str(q.get("correct_answer") or q.get("correct_index") or "").strip().upper()
+        
+        # Handle list-style options (cs_fundamentals format)
+        if isinstance(options, list) and len(options) >= 4:
+            # correct_answer might be an integer index or text
+            correct_text = str(q.get("correct_answer") or "").strip()
+            correct_idx = q.get("correct_index")
+            if isinstance(correct_idx, int) and 0 <= correct_idx < len(options):
+                return True
+            if correct_text and correct_text in [str(o).strip() for o in options]:
+                return True
+            return False
+        
+        # Handle dict-style options (aptitude/logical/verbal format)
+        if isinstance(options, dict) and len(options) >= 4:
+            return correct in ("A", "B", "C", "D")
+        
+        return False
+    
+    # Interview/System Design/GD require rubric or evaluation criteria
+    if qtype in ("interview", "system_design", "gd", "group_discussion"):
+        return bool(q.get("rubric") or q.get("evaluation_criteria") or q.get("worked_solution"))
+    
+    # Default: require test cases or some form of answer key
+    tcs = q.get("test_cases") or q.get("testcases") or []
+    return len(tcs) > 0 or bool(q.get("correct_answer") or q.get("answer") or q.get("solution"))
+
+
+def _is_servable(q: dict) -> bool:
+    status = str(q.get("trust_status", "unverified")).lower()
+    # Trust gate (flipped): only independently verified or human-reviewed
+    # content is servable. automated_checked (LLM-drafted candidates),
+    # needs_review, and unverified are quarantined from student-facing
+    # serving until they pass the pipeline into verified/reviewed.
+    if status not in ("verified", "reviewed"):
+        return False
+    if not _is_executable(q):
+        return False
+    return True
+
+
 def find_one_verified(query: dict) -> Optional[dict]:
     """Like find_one, but only returns independently verified content."""
     load_all()
     for q in _questions:
-        if _match(q, query) and trust_rank(q) >= TRUST_RANK["verified"]:
+        if _match(q, query) and _is_servable(q):
             return dict(q)
     return None
 
 
 def get_question_for_serving(question_id: str) -> Optional[dict]:
-    """Fetch one question from the in-memory canonical store by string id,
-    normalized onto the serving schema (question_title/statement/
-    visible_test_cases with fallbacks). Returns None when absent. Never
-    touches MongoDB (Residency Rule, AGENTS.md).
+    """Fetch one complete question from the in-memory canonical store.
+
+    LeetCode/GFG parity schema (presentation fallbacks only — never invents
+    grading content): question_title, statement, constraints, examples with
+    explanations, visible_test_cases, hidden_test_cases, hints, editorial
+    (explanation/approach), complexity, misconceptions (common_trap),
+    provenance, and trust_status. Returns None when absent or incomplete.
+    Never touches MongoDB (Residency Rule, AGENTS.md).
 
     Only returns independently verified content. Use find_one() with
     allow_unverified=True for admin/history lookups."""
     q = find_one_verified({"id": str(question_id)})
     if not q:
         return None
-    q.setdefault("question_title", q.get("title") or (q.get("question") or "")[:80] or "Unknown")
-    q.setdefault("statement", q.get("question", ""))
-    q.setdefault("visible_test_cases", q.get("testcases", []) or [])
-    q.setdefault("hidden_test_cases", q.get("hidden_testcases", []) or [])
-    q.setdefault("hints", q.get("hints", []) or [])
+    title = q.get("title") or q.get("question_title") or (q.get("question") or "")[:80]
+    q["question_title"] = q.get("question_title") or title or "Unknown"
+    q["statement"] = q.get("statement") or q.get("question", "")
+    q["visible_test_cases"] = q.get("visible_test_cases") or q.get("testcases") or q.get("test_cases") or []
+    q["hidden_test_cases"] = q.get("hidden_test_cases") or q.get("hidden_testcases") or []
+    q["examples"] = q.get("examples") or []
+    q["constraints"] = q.get("constraints") or ""
+    q["hints"] = q.get("hints") or []
+    q["editorial"] = q.get("editorial") or q.get("explanation") or ""
+    q["explanation"] = q.get("explanation") or q.get("editorial") or ""
+    q["approach"] = q.get("approach") or (q.get("dsa_guide") or {}).get("approach", "")
+    q["expected_time_complexity"] = q.get("expected_time_complexity") or ""
+    q["expected_space_complexity"] = q.get("expected_space_complexity") or ""
+    q["misconceptions"] = q.get("misconceptions") or q.get("common_trap") or ""
+    q["common_trap"] = q.get("common_trap") or q.get("misconceptions") or ""
+    q["reasoning_steps"] = q.get("reasoning_steps") or []
+    q["provenance"] = q.get("provenance") or q.get("source_bank") or "unverified"
+    q["trust_status"] = q.get("trust_status") or "unverified"
     return q
 
 
@@ -857,9 +1121,10 @@ class QuestionCursor:
         return self
 
     def prefer_verified(self):
-        """Sort so independently verified content surfaces first (stable;
-        ties keep original order). New student-facing flows should use this so
-        the legacy bank is progressively starved, not removed."""
+        """Keep only servable (verified/reviewed) content and sort verified
+        first (stable; ties keep original order). Student-facing flows use
+        this so unverified/automated-checked candidates are never served."""
+        self._all = [q for q in self._all if _is_servable(q)]
         self._all = sorted(
             enumerate(self._all),
             key=lambda it: (trust_rank(it[1]), it[0]),
@@ -869,9 +1134,8 @@ class QuestionCursor:
         return self
 
     def only_verified(self):
-        """Keep only independently verified content. Callers should fall back
-        to a trusted+legacy mix if this yields too few questions."""
-        self._all = [q for q in self._all if trust_rank(q) >= TRUST_RANK["verified"]]
+        """Keep only independently verified or automated-checked content."""
+        self._all = [q for q in self._all if _is_servable(q)]
         return self
 
     def to_list(self, length: Optional[int] = None) -> list[dict]:
@@ -933,6 +1197,8 @@ def get_filters() -> dict:
     sources = set()
 
     for q in _questions:
+        if not _is_servable(q):
+            continue
         for c in q.get("companies", []):
             if c:
                 companies.add(c.strip())
@@ -965,6 +1231,11 @@ def get_filters() -> dict:
         if cs:
             sources.add(cs.strip())
 
+    # v1 SQL cut: filter options only list types with ≥1 servable question,
+    # so the UI never advertises an empty section (sql: 0/932 executable).
+    # Revisit when sql_schema backfill lands post-launch.
+    servable_types = {str(q.get("type", "")).strip() for q in _questions if _is_servable(q)}
+    types &= servable_types
     return {
         "companies": sorted(companies),
         "roles": sorted(roles),
@@ -982,6 +1253,8 @@ def get_pattern_stats() -> list[dict]:
     load_all()
     stats: dict[str, dict] = {}
     for q in _questions:
+        if not _is_servable(q):
+            continue
         pattern = q.get("pattern") or "Arrays"
         diff = q.get("difficulty") or "medium"
         if diff not in ("easy", "medium", "hard"):
@@ -998,6 +1271,8 @@ def get_topic_stats() -> list[dict]:
     load_all()
     stats: dict[str, dict] = {}
     for q in _questions:
+        if not _is_servable(q):
+            continue
         topic = _display_topic(q.get("topic") or "General")
         diff = q.get("difficulty") or "medium"
         if diff not in ("easy", "medium", "hard"):
@@ -1090,3 +1365,89 @@ def vote_question(question_id: str, vote: int) -> Optional[dict]:
             question["updated_at"] = datetime.now(timezone.utc)
             return dict(question)
     return None
+
+
+# ---------------------------------------------------------------------------
+# Content Trust Fixes
+# ---------------------------------------------------------------------------
+
+MCQ_TYPES = ("aptitude", "logical", "verbal", "hr", "cs_fundamentals", "cs")
+
+
+def fix_stale_mcq_stamps() -> int:
+    """Invalidate MCQ questions with stale verification stamps.
+
+    A stamp is stale if correct_answer is not in A-D (the format expected
+    by the MCQ test-case normalization). These get set to needs_review.
+    Returns count of fixed questions.
+    """
+    load_all()
+    fixed = 0
+    for q in _questions:
+        qtype = str(q.get("type", "")).lower()
+        if qtype not in MCQ_TYPES:
+            continue
+        status = str(q.get("trust_status", "")).lower()
+        if status not in ("verified", "automated_checked"):
+            continue
+        correct = str(q.get("correct_answer") or q.get("correct_index") or "").strip().upper()
+        if correct not in ("A", "B", "C", "D"):
+            q["trust_status"] = "needs_review"
+            q["verification_failure"] = f"stale_stamp:correct_answer={correct!r}"
+            fixed += 1
+    return fixed
+
+
+def fix_sql_no_test_cases() -> int:
+    """Quarantine SQL questions without test_cases or sql_schema.
+
+    SQL questions need both a schema and test cases to be executable.
+    Returns count of quarantined questions.
+    """
+    load_all()
+    fixed = 0
+    for q in _questions:
+        qtype = str(q.get("type", "")).lower()
+        if qtype != "sql":
+            continue
+        tcs = q.get("test_cases") or q.get("testcases") or []
+        if not tcs:
+            q["trust_status"] = "quarantined"
+            q["verification_failure"] = "no_test_cases"
+            fixed += 1
+    return fixed
+
+
+def fix_verified_not_executable() -> int:
+    """Quarantine questions that are verified/automated_checked but not executable.
+
+    These have a trust stamp but fail _is_executable() checks.
+    Returns count of quarantined questions.
+    """
+    load_all()
+    fixed = 0
+    for q in _questions:
+        status = str(q.get("trust_status", "")).lower()
+        if status not in ("verified", "automated_checked"):
+            continue
+        if not _is_executable(q):
+            q["trust_status"] = "quarantined"
+            q["verification_failure"] = "verified_but_not_executable"
+            fixed += 1
+    return fixed
+
+
+def run_all_content_trust_fixes() -> dict:
+    """Run all content trust fixes and return summary."""
+    load_all()
+    stale = fix_stale_mcq_stamps()
+    sql = fix_sql_no_test_cases()
+    not_exec = fix_verified_not_executable()
+    _dedupe_and_filter(_questions)
+    return {
+        "stale_mcq_fixed": stale,
+        "sql_quarantined": sql,
+        "verified_not_exec_quarantined": not_exec,
+        "total_servable": sum(1 for q in _questions if _is_servable(q)),
+        "total_questions": len(_questions),
+    }

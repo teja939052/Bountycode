@@ -1,4 +1,15 @@
-"""Worlds 10-12: Production, Projects, Creative."""
+"""Worlds 10-12: Production, Projects, Creative.
+
+Part of the canonical 12-world structure:
+  foundations -> searchlands -> sorting -> recursion -> linked -> stack ->
+  queue -> hashing -> trees -> graphs -> dynamic -> alpine
+
+Worlds 10-12 occupy the final portion of that chain.
+DO NOT add, remove, or reorder worlds without updating:
+  - CANONICAL_WORLDS in backend/scripts/verify_world_governance.py
+  - frontend/src/pages/Landing.tsx headline copy
+  - Any tests referencing world count or prereq chain
+"""
 from __future__ import annotations
 
 from app.content.lesson_definitions import (
@@ -49,14 +60,17 @@ RELIABILITY_TOWN = TownDefinition(
         LessonDefinition(
             id="rel-boss", title="Reliability Boss", icon="🐉", kind="boss", order=3,
             concept="transfer", mental_model="Design a reliable system: monitoring, circuit breakers, graceful degradation.",
-            canonical_skill="production.reliability", xp=100, estimated_minutes=20,
+            canonical_skill="production.reliability", diamonds=100, estimated_minutes=20,
             engineering_context="In a real reliability review, you'd design: monitoring dashboards, alert thresholds, circuit breaker configs, retry policies, and fallback strategies. This boss tests that combination.",
             builds_toward="Production Engineering — complete reliability design",
             steps=[
                 LessonStep(step_type="mastery", title="Design for Failure",
                     function_name="design_reliable", signature="def design_reliable() -> dict:",
                     description="Return: monitoring signals, alert thresholds, circuit breaker config, and fallback strategy.",
-                    test_cases=[{"input":[],"expected":"design"}], hidden_tests=3),
+                    test_cases=[{"input":[],"expected":"design"}], hidden_tests=3,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Set up monitoring", "Implement circuit breakers", "Design graceful degradation"],
         ),
@@ -83,7 +97,10 @@ SECURITY_TOWN = TownDefinition(
                     languages=["python", "java", "cpp", "c"],
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
-                    test_cases=[{"input":["test@example.com"],"expected":True}], hidden_tests=4),
+                    test_cases=[{"input":["test@example.com"],"expected":True}], hidden_tests=4,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Validate user input for security"],
             unlocks="sec-2",
@@ -106,14 +123,17 @@ SECURITY_TOWN = TownDefinition(
         LessonDefinition(
             id="sec-boss", title="Security Boss", icon="🐉", kind="boss", order=3,
             concept="transfer", mental_model="Secure an API: validate input, enforce least privilege, encrypt data.",
-            canonical_skill="production.security", xp=100, estimated_minutes=20,
+            canonical_skill="production.security", diamonds=100, estimated_minutes=20,
             engineering_context="In a real security review, you'd check: input validation on all endpoints, authentication/authorization, encryption at rest and in transit, and least-privilege access. This boss tests that complete review.",
             builds_toward="Production Engineering — complete security review",
             steps=[
                 LessonStep(step_type="mastery", title="Secure an API Endpoint",
                     function_name="secure_endpoint", signature="def secure_endpoint() -> dict:",
                     description="Return security measures: input validation, auth check, rate limiting, encryption.",
-                    test_cases=[{"input":[],"expected":"security"}], hidden_tests=3),
+                    test_cases=[{"input":[],"expected":"security"}], hidden_tests=3,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Validate input", "Enforce least privilege", "Design secure APIs"],
         ),
@@ -152,7 +172,10 @@ URL_SHORTENER_TOWN = TownDefinition(
                     languages=["python", "java", "cpp", "c"],
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
-                    test_cases=[{"input":[],"expected":"endpoints"}], hidden_tests=3),
+                    test_cases=[{"input":[],"expected":"endpoints"}], hidden_tests=3,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Design API endpoints for a complete system"],
             unlocks="url-2",
@@ -171,7 +194,10 @@ URL_SHORTENER_TOWN = TownDefinition(
                     languages=["python", "java", "cpp", "c"],
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
-                    test_cases=[{"input":[],"expected":"schema"}], hidden_tests=3),
+                    test_cases=[{"input":[],"expected":"schema"}], hidden_tests=3,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Design database schemas for projects"],
             unlocks="url-3",
@@ -194,7 +220,7 @@ URL_SHORTENER_TOWN = TownDefinition(
         LessonDefinition(
             id="url-boss", title="Deploy It", icon="🚀", kind="boss", order=4,
             concept="transfer", mental_model="Complete project: API + database + cache + tests + deploy.",
-            canonical_skill="projects.system_build", xp=150, estimated_minutes=30,
+            canonical_skill="projects.system_build", diamonds=150, estimated_minutes=30,
             why_this_matters="Building it locally isn't enough. Real engineers ship. Deployment — even to a free tier — proves you can take a project from idea to production.",
             engineering_context="In a real project, you'd deploy to AWS/GCP: containerize with Docker, deploy to ECS/Cloud Run, set up a database, configure a custom domain, and add monitoring. That's the full lifecycle.",
             builds_toward="Project Engineering — shipping complete products",
@@ -202,7 +228,10 @@ URL_SHORTENER_TOWN = TownDefinition(
                 LessonStep(step_type="mastery", title="Deployment Plan",
                     function_name="deployment_plan", signature="def deployment_plan() -> dict:",
                     description="Return: containerization, hosting, database setup, domain config, monitoring.",
-                    test_cases=[{"input":[],"expected":"plan"}], hidden_tests=3),
+                    test_cases=[{"input":[],"expected":"plan"}], hidden_tests=3,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Design APIs", "Add databases", "Apply caching", "Deploy complete systems"],
         ),
@@ -241,7 +270,10 @@ OPEN_ENDED_TOWN = TownDefinition(
                     languages=["python", "java", "cpp", "c"],
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
-                    test_cases=[{"input":[],"expected":"statement"}], hidden_tests=3),
+                    test_cases=[{"input":[],"expected":"statement"}], hidden_tests=3,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Define problems clearly before solving them"],
             unlocks="creative-2",
@@ -260,7 +292,10 @@ OPEN_ENDED_TOWN = TownDefinition(
                     languages=["python", "java", "cpp", "c"],
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
-                    test_cases=[{"input":[],"expected":"architecture"}], hidden_tests=3),
+                    test_cases=[{"input":[],"expected":"architecture"}], hidden_tests=3,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Design system architectures with trade-offs"],
             unlocks="creative-3",
@@ -279,7 +314,10 @@ OPEN_ENDED_TOWN = TownDefinition(
                     languages=["python", "java", "cpp", "c"],
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
-                    test_cases=[{"input":[],"expected":"readme"}], hidden_tests=3),
+                    test_cases=[{"input":[],"expected":"readme"}], hidden_tests=3,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Write clear technical documentation"],
             unlocks="creative-boss",
@@ -287,7 +325,7 @@ OPEN_ENDED_TOWN = TownDefinition(
         LessonDefinition(
             id="creative-boss", title="Ship Your Portfolio", icon="🏆", kind="boss", order=4,
             concept="transfer", mental_model="Define, design, build, document, deploy. The complete engineering cycle.",
-            canonical_skill="creative.independent", xp=200, estimated_minutes=45,
+            canonical_skill="creative.independent", diamonds=200, estimated_minutes=45,
             why_this_matters="Your portfolio is what gets you hired. Not certificates — projects. A complete project with docs, tests, and deployment proves you can ship. That's what interviewers want to see.",
             engineering_context="In real job searches, candidates with deployed projects get 3x more interviews. A GitHub repo with a live demo, clean README, and documented trade-offs is worth more than any certification.",
             builds_toward="Job Readiness — portfolio that gets you hired",
@@ -295,7 +333,10 @@ OPEN_ENDED_TOWN = TownDefinition(
                 LessonStep(step_type="mastery", title="Complete Project",
                     function_name="complete_project", signature="def complete_project() -> dict:",
                     description="Return: problem statement, architecture, implementation plan, docs, deployment.",
-                    test_cases=[{"input":[],"expected":"project"}], hidden_tests=3),
+                    test_cases=[{"input":[],"expected":"project"}], hidden_tests=3,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Define problems", "Design solutions", "Document work", "Ship complete projects"],
         ),

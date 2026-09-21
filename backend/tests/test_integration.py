@@ -10,7 +10,7 @@ import re
 
 class TestParseJson:
     def setup_method(self):
-        from app.services.ai import parse_json
+        from app.services.ai_core import parse_json
         self.parse = parse_json
 
     def test_clean_json(self):
@@ -63,29 +63,29 @@ class TestParseJson:
 
 class TestAssignCompanies:
     def test_default_returns_2_to_5(self):
-        from app.services.ai import assign_companies
+        from app.services.ai_core import assign_companies
         for _ in range(50):
             companies = assign_companies()
             assert 2 <= len(companies) <= 5
 
     def test_no_duplicates(self):
-        from app.services.ai import assign_companies
+        from app.services.ai_core import assign_companies
         for _ in range(50):
             companies = assign_companies()
             assert len(set(companies)) == len(companies)
 
     def test_respects_count(self):
-        from app.services.ai import assign_companies
+        from app.services.ai_core import assign_companies
         result = assign_companies(count=2)
         assert len(result) == 2
 
     def test_clamps_extreme_counts(self):
-        from app.services.ai import assign_companies
+        from app.services.ai_core import assign_companies
         assert len(assign_companies(count=0)) == 2  # min 2
         assert len(assign_companies(count=100)) <= 5  # max 5
 
     def test_returns_known_companies(self):
-        from app.services.ai import assign_companies, COMPANY_TAGS
+        from app.services.ai_core import assign_companies, COMPANY_TAGS
         for _ in range(50):
             for c in assign_companies():
                 assert c in COMPANY_TAGS
@@ -307,7 +307,7 @@ class TestCurriculum:
         lesson = get_lesson("c", "l01", "c-l01-01")
         assert lesson is not None
         assert "title" in lesson
-        assert "xp" in lesson
+        assert "diamonds" in lesson
 
     def test_get_next_lesson(self):
         from app.data.curriculum import get_lesson, get_next_lesson
@@ -345,8 +345,8 @@ class TestCurriculum:
                 for lesson in level["lessons"]:
                     assert "id" in lesson, f"Lesson missing id in {lang['name']} {lid}"
                     assert "title" in lesson
-                    assert "xp" in lesson
-                    assert lesson["xp"] > 0
+                    assert "diamonds" in lesson
+                    assert lesson["diamonds"] > 0
 
     def test_level_themes_count(self):
         from app.data.curriculum import LEVEL_THEMES
@@ -391,23 +391,23 @@ class TestRouteRegistration:
         """Verify all core route modules import without error."""
         from app.routes import (
             auth, interview, resume, billing, aptitude, cover_letter,
-            system_design, salary, company_prep, coding, gamification,
-            free_practice, predictor, real_features, questions,
+            system_design, coding, gamification,
+            free_practice, questions,
             career_profile, practice, analytics, ai_feedback,
             profile_stats, compiler, problems,
             daily_challenge, playlists,
-            cards, submissions, progress, features,
-            battles, aptitude_tests,
+            submissions, progress, features,
+            aptitude_tests,
             indian_placement, placement_questions,
             dsa_fingerprint, learning, analytics_admin,
         )
 
     def test_extended_route_modules_importable(self):
         """Verify extended routes (may have deeper dependency chains)."""
-        from app.routes import hook_model, enhanced, student_features, enterprise, trial
-        from app.routes import discussions, company_mocks, personal_dashboard, readiness
+        from app.routes import enhanced, student_features, enterprise, trial
+        from app.routes import discussions, company_mocks, personal_dashboard
         from app.routes import ai_debugger, concepts, company_conversion
-        from app.routes import visualizations, distributions, mock_interview
+        from app.routes import visualizations, distributions
         from app.routes import system_design_tests, aptitude_tests
         # If we get here, all imports succeeded
         assert True

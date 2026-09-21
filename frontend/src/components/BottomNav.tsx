@@ -47,7 +47,7 @@ export default function BottomNav() {
               <Trophy size={11} style={{ color: tier.color }} />
               <span className="font-bold" style={{ color: tier.color }}>{tier.name} League</span>
               <span className="text-gray-400">
-                #{league.rank} of {league.of} · {league.weekly_xp || 0} XP
+                #{league.rank} of {league.of} · {league.weekly_xp || 0} Diamonds
               </span>
               {league.promoted_next_week && <span className="text-emerald-400">&uarr; promoting</span>}
               {league.relegated_next_week && <span className="text-red-400">&darr; relegation</span>}

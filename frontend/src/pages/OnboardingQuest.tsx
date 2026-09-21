@@ -41,11 +41,11 @@ const QUEST_STEPS = [
   },
   {
     id: "step-3",
-    title: "Earn Your First XP",
+    title: "Earn Your First Diamonds",
     description:
       "Complete the lesson and watch your progress climb. Gamification keeps you hooked.",
     type: "action",
-    action: "Complete a lesson to earn XP",
+    action: "Complete a lesson to earn Diamonds",
     target: "/learn/c",
   },
   {
@@ -61,7 +61,7 @@ const QUEST_STEPS = [
     id: "step-5",
     title: "Go Pro for Unlimited Access",
     description:
-      "Free users get 3 lessons per month. Pro unlocks everything for $9/mo or lock in lifetime for $39.",
+      "Free users get 3 lessons per month. Pro unlocks everything for ₹99/mo or ₹899/yr.",
     type: "conversion",
     action: "Upgrade to Pro",
     target: "/pricing",
@@ -81,7 +81,7 @@ const STEP_GLYPHS: Record<string, React.ReactNode> = {
 const MENTOR_LINES: Record<string, string> = {
   "step-1": "First, pick your weapon. Every voyage starts with the tool you'll carry.",
   "step-2": "Code before you feel ready. The fastest way to learn is to run something real.",
-  "step-3": "XP is your compass. It always points toward the next island.",
+  "step-3": "Diamonds is your compass. It always points toward the next island.",
   "step-4": "Steady sailors outpace sprinters. Show up tomorrow — that's the whole trick.",
   "step-5": "Free waters only go so far. Pro charts the entire sea.",
 };
@@ -308,10 +308,10 @@ export default function OnboardingQuest() {
                   </div>
                 )}
 
-                {/* XP reward badge */}
+                {/* Diamonds reward badge */}
                 <div className="flex items-center justify-center gap-2 text-sm font-semibold text-wood">
                   <Star size={14} className="text-reward" />
-                  <span>+10 XP on completion</span>
+                  <span>+10 Diamonds on completion</span>
                 </div>
 
                 {/* Action button */}

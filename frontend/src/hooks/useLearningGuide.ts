@@ -56,7 +56,7 @@ export function useLearningGuide(userId: string) {
   });
 
   const awardXP = useMutation({
-    mutationFn: (amount: number) => api.post(`/api/v1/learning-guide/xp/${userId}`),
+    mutationFn: (amount: number) => api.post(`/api/v1/learning-guide/diamonds/${userId}`),
     onSuccess: () => {
       refetch();
     },

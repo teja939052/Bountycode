@@ -322,146 +322,248 @@
   "tcs": {
     "mock_config": {
       "name": "TCS NQT Mock Test",
-      "description": "Simulates TCS NQT: Aptitude (40 min) + Coding (1 problem, 45 min) + MCQ (10 min)",
+      "description": "Abridged TCS NQT 2026-pattern simulation (15 questions). The real NQT has two separate stages: Foundation (65Q/75min: Numerical 20 + Verbal 25 + Reasoning 20) and Advanced (15Q/25min Aptitude + 2 problems/90min Coding with partial marks), 190 min total, no negative marking, sections lock permanently. This mock samples each section.",
       "total_questions": 15,
       "time_limit_minutes": 95,
+      "pattern_version": "2026-abridged",
+      "full_pattern": {
+        "foundation": {
+          "questions": 65,
+          "minutes": 75,
+          "sections": {
+            "numerical_ability": {
+              "questions": 20,
+              "minutes": 25
+            },
+            "verbal_ability": {
+              "questions": 25,
+              "minutes": 25
+            },
+            "reasoning_ability": {
+              "questions": 20,
+              "minutes": 25
+            }
+          }
+        },
+        "advanced_aptitude": {
+          "questions": 15,
+          "minutes": 25
+        },
+        "advanced_coding": {
+          "problems": 2,
+          "minutes": 90,
+          "partial_marks": true
+        },
+        "total_minutes": 190,
+        "negative_marking": false,
+        "section_switching": false,
+        "back_navigation": false
+      },
       "sections": [
         {
-          "name": "Aptitude + Reasoning",
-          "type": "aptitude",
-          "count": 10,
-          "time_minutes": 40,
-          "questions": [
-            {
-              "id": "q_000084",
-              "title": "Given array of positive integers and target, return minimal ",
-              "pattern": "sliding-window",
-              "difficulty": "easy",
-              "type": "aptitude"
-            },
-            {
-              "id": "q_000000",
-              "title": "Given an array of integers nums sorted in non-decreasing ord",
-              "pattern": "binary-search",
-              "difficulty": "easy",
-              "type": "aptitude"
-            },
-            {
-              "id": "q_000014",
-              "title": "Given array nums, return the majority element (appears more ",
-              "pattern": "hash-table",
-              "difficulty": "easy",
-              "type": "aptitude"
-            },
-            {
-              "id": "q_000016",
-              "title": "Find all numbers that disappear in an array of length n with",
-              "pattern": "hash-table",
-              "difficulty": "easy",
-              "type": "aptitude"
-            },
-            {
-              "id": "q_000030",
-              "title": "Given array nums, move all zeros to the end while maintainin",
-              "pattern": "two-pointers",
-              "difficulty": "easy",
-              "type": "aptitude"
-            },
-            {
-              "id": "q_000040",
-              "title": "Given two integer arrays, return their intersection (unique ",
-              "pattern": "hash-table",
-              "difficulty": "easy",
-              "type": "aptitude"
-            },
-            {
-              "id": "q_000046",
-              "title": "Given array nums, return running sum where runningSum[i]=sum",
-              "pattern": "prefix-sum",
-              "difficulty": "easy",
-              "type": "aptitude"
-            },
-            {
-              "id": "q_000062",
-              "title": "Given a sorted array and target, find two numbers that sum t",
-              "pattern": "two-pointers",
-              "difficulty": "easy",
-              "type": "aptitude"
-            },
-            {
-              "id": "q_000068",
-              "title": "Merge two sorted arrays nums1 (size m+n) and nums2 (size n) ",
-              "pattern": "two-pointers",
-              "difficulty": "easy",
-              "type": "aptitude"
-            },
-            {
-              "id": "q_000082",
-              "title": "Given sorted array nums, remove duplicates in-place. Return ",
-              "pattern": "two-pointers",
-              "difficulty": "easy",
-              "type": "aptitude"
-            }
-          ]
-        },
-        {
-          "name": "Verbal Ability",
+          "name": "Numerical Ability",
           "type": "aptitude",
           "count": 5,
           "time_minutes": 20,
           "questions": [
             {
-              "id": "q_000086",
-              "title": "Given binary array nums and int k, return max consecutive 1s",
-              "pattern": "sliding-window",
+              "id": "apt-001",
+              "title": "(Successive percent) A price is raised by 20% then reduced b",
+              "pattern": "misc",
               "difficulty": "easy",
-              "type": "aptitude"
+              "type": "aptitude",
+              "trust_status": "verified",
+              "provenance": "pattern-relevant to TCS NQT / Infosys",
+              "source_bank": "verified_placement_questions"
             },
             {
-              "id": "q_000106",
-              "title": "Given string with '(',')','{','}','[',']', determine if inpu",
-              "pattern": "stack",
-              "difficulty": "easy",
-              "type": "aptitude"
+              "id": "apt-002",
+              "title": "(Time & Work) A completes a job in 12 days, B in 18 days. Wo",
+              "pattern": "misc",
+              "difficulty": "medium",
+              "type": "aptitude",
+              "trust_status": "verified",
+              "provenance": "pattern-relevant to TCS NQT / Infosys / Cognizant",
+              "source_bank": "verified_placement_questions"
             },
             {
-              "id": "q_000110",
-              "title": "Given array temperatures, return array answer[i]=days to wai",
-              "pattern": "stack",
+              "id": "apt-003",
+              "title": "(Profit & Loss) Bought for Rs 500, sold for Rs 575. The prof",
+              "pattern": "misc",
               "difficulty": "easy",
-              "type": "aptitude"
+              "type": "aptitude",
+              "trust_status": "verified",
+              "provenance": "pattern-relevant to TCS NQT / Wipro / Capgemini",
+              "source_bank": "verified_placement_questions"
             },
             {
-              "id": "q_000126",
-              "title": "Given sorted array of distinct integers and target, return t",
-              "pattern": "binary-search",
-              "difficulty": "easy",
-              "type": "aptitude"
+              "id": "apt-004",
+              "title": "(Ratio) A invests Rs 2000, B invests Rs 3000 in a venture. P",
+              "pattern": "misc",
+              "difficulty": "medium",
+              "type": "aptitude",
+              "trust_status": "verified",
+              "provenance": "pattern-relevant to Infosys / Accenture",
+              "source_bank": "verified_placement_questions"
             },
             {
-              "id": "q_000150",
-              "title": "Reverse a singly linked list iteratively.\n\nExample: head=[1,",
-              "pattern": "two-pointers",
-              "difficulty": "easy",
-              "type": "aptitude"
+              "id": "apt-005",
+              "title": "(Speed) A train travels 120 km at 40 km/h, then 120 km at 60",
+              "pattern": "misc",
+              "difficulty": "medium",
+              "type": "aptitude",
+              "trust_status": "verified",
+              "provenance": "pattern-relevant to TCS NQT / Infosys",
+              "source_bank": "verified_placement_questions"
             }
           ]
         },
         {
-          "name": "Coding Problem",
+          "name": "Verbal Ability",
+          "type": "verbal",
+          "count": 5,
+          "time_minutes": 20,
+          "questions": [
+            {
+              "id": "verb-001",
+              "title": "(Synonym) Select the closest synonym of 'EPHEMERAL'.",
+              "pattern": "misc",
+              "difficulty": "medium",
+              "type": "verbal",
+              "trust_status": "verified",
+              "provenance": "pattern-relevant to Infosys",
+              "source_bank": "verified_placement_questions"
+            },
+            {
+              "id": "verb-002",
+              "title": "(Grammar) Choose the correct sentence.",
+              "pattern": "misc",
+              "difficulty": "medium",
+              "type": "verbal",
+              "trust_status": "verified",
+              "provenance": "pattern-relevant to Accenture",
+              "source_bank": "verified_placement_questions"
+            },
+            {
+              "id": "verb-003",
+              "title": "(Antonym) Select the antonym of 'AMICABLE'.",
+              "pattern": "misc",
+              "difficulty": "medium",
+              "type": "verbal",
+              "trust_status": "verified",
+              "provenance": "pattern-relevant to Infosys",
+              "source_bank": "verified_placement_questions"
+            },
+            {
+              "id": "verb-004",
+              "title": "(Synonym) Closest synonym of 'ABUNDANT':",
+              "pattern": "misc",
+              "difficulty": "easy",
+              "type": "verbal",
+              "trust_status": "verified",
+              "provenance": "pattern_relevant to TCS NQT / Infosys",
+              "source_bank": "verified_placement_questions"
+            },
+            {
+              "id": "verb-005",
+              "title": "(Antonym) Opposite of 'TRANSPARENT':",
+              "pattern": "misc",
+              "difficulty": "easy",
+              "type": "verbal",
+              "trust_status": "verified",
+              "provenance": "pattern_relevant to TCS NQT / Infosys",
+              "source_bank": "verified_placement_questions"
+            }
+          ]
+        },
+        {
+          "name": "Reasoning Ability",
+          "type": "logical",
+          "count": 3,
+          "time_minutes": 15,
+          "questions": [
+            {
+              "id": "log-001",
+              "title": "(Series) Find the next term: 2, 5, 10, 17, 26, ?",
+              "pattern": "misc",
+              "difficulty": "easy",
+              "type": "logical",
+              "trust_status": "verified",
+              "provenance": "pattern-relevant to TCS NQT",
+              "source_bank": "verified_placement_questions"
+            },
+            {
+              "id": "log-002",
+              "title": "(Coding-Decoding) If CAT is coded as DBU, how is DOG coded?",
+              "pattern": "misc",
+              "difficulty": "medium",
+              "type": "logical",
+              "trust_status": "verified",
+              "provenance": "pattern-relevant to TCS NQT",
+              "source_bank": "verified_placement_questions"
+            },
+            {
+              "id": "log-003",
+              "title": "(Arrangement) Five friends A,B,C,D,E sit in a row. B is to t",
+              "pattern": "misc",
+              "difficulty": "hard",
+              "type": "logical",
+              "trust_status": "verified",
+              "provenance": "pattern-relevant to TCS NQT",
+              "source_bank": "verified_placement_questions"
+            }
+          ]
+        },
+        {
+          "name": "Coding Problems",
           "type": "coding",
-          "count": 1,
-          "time_minutes": 45,
-          "questions": []
+          "count": 2,
+          "time_minutes": 40,
+          "questions": [
+            {
+              "id": "verify-001",
+              "title": "Two Sum: find indices of two numbers that add to a target",
+              "pattern": "hashing",
+              "difficulty": "easy",
+              "type": "coding",
+              "trust_status": "verified",
+              "provenance": "pattern-relevant to TCS NQT / Infosys (independently verified)",
+              "source_bank": "verified_placement_questions"
+            },
+            {
+              "id": "verify-002",
+              "title": "Maximum Subarray Sum",
+              "pattern": "dynamic programming",
+              "difficulty": "medium",
+              "type": "coding",
+              "trust_status": "verified",
+              "provenance": "pattern-relevant to TCS NQT / Infosys (independently verified)",
+              "source_bank": "verified_placement_questions"
+            }
+          ]
         }
       ],
       "patterns": [
-        "two-sum",
-        "sliding-window",
-        "binary-search",
-        "hash-table",
-        "strings"
-      ]
+        "percentages",
+        "time-work",
+        "profit-loss",
+        "ratio-proportion",
+        "speed-distance-time",
+        "synonym",
+        "antonym",
+        "sentence-correction",
+        "series",
+        "coding-decoding",
+        "seating",
+        "hashing",
+        "dynamic programming"
+      ],
+      "content_trust": {
+        "aptitude": "verified_placement_questions.json — independent correct_answer + options per question",
+        "verbal": "verified_placement_questions.json — independent correct_answer + options per question",
+        "logical": "verified_placement_questions.json — independent correct_answer + options per question",
+        "coding": "verified_placement_questions.json — independent visible_testcases + hidden_testcases per question"
+      }
     },
     "booking_slots": {
       "duration_minutes": 40,
@@ -477,12 +579,19 @@
     },
     "total_questions": 15,
     "patterns_covered": [
-      "two-pointers",
-      "prefix-sum",
-      "binary-search",
-      "hash-table",
-      "stack",
-      "sliding-window"
+      "percentages",
+      "time-work",
+      "profit-loss",
+      "ratio-proportion",
+      "speed-distance-time",
+      "synonym",
+      "antonym",
+      "sentence-correction",
+      "series",
+      "coding-decoding",
+      "seating",
+      "hashing",
+      "dynamic programming"
     ],
     "avg_quality": 32.0
   }

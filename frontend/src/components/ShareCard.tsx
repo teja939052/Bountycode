@@ -4,7 +4,7 @@ import { getLevelForXP, getLevelColor } from './XPBar';
 
 export default function ShareCard({ user, stats, onClose }) {
   const cardRef = useRef(null);
-  const level = getLevelForXP(user?.xp || 0);
+  const level = getLevelForXP(user?.diamonds || 0);
   const levelColor = getLevelColor(level);
 
   const handleDownload = useCallback(async () => {
@@ -65,7 +65,7 @@ export default function ShareCard({ user, stats, onClose }) {
           {[
             { value: stats?.total_solved || 0, label: 'Problems', color: '#22C55E' },
             { value: `${stats?.streak || 0}🔥`, label: 'Day Streak', color: '#EAB308' },
-            { value: (user?.xp || 0).toLocaleString(), label: 'XP', color: '#3B82F6' },
+            { value: (user?.diamonds || 0).toLocaleString(), label: 'Diamonds', color: '#3B82F6' },
           ].map((stat) => (
             <div key={stat.label} className="bg-[#0B0C10] p-4 text-center">
               <p className="text-xl font-display font-black" style={{ color: stat.color }}>{stat.value}</p>

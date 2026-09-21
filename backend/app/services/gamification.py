@@ -1,22 +1,20 @@
 """Gamification service module.
 
 This module contains the complete gamification system including:
-- Level/XP/streak math and progression
+- Level/Diamonds/streak math and progression
 - Tower titles, boss battles
 - Power-ups, challenges, badges
 - Daily bonuses, mystery boxes
 - Practice recording and profile management
 
-Intended modular split (follow-up refactor):
-- gamification_core.py: _calculate_level, _calculate_xp, calculate_streak_multiplier
-- gamification_config.py: TOWER_TITLES, BOSS_BATTLES, POWER_UPS, BADGES, etc.
-- gamification_actions.py: record_practice, claim_daily_bonus, open_mystery_box
-- gamification_challenges.py: weekly/monthly challenge logic
+Extracted split (behavioral no-op):
+- gamification_core.py: pure constants (titles, bosses, zones, power-ups,
+  streak multipliers) and pure math helpers (Diamonds, level, stars, multipliers).
+  All are re-exported below, so consumers are unchanged.
 """
 from datetime import datetime, timezone, timedelta
 from app.database import users_collection, gamification_collection, get_client
 from bson import ObjectId
-import math
 import logging
 from app.services.usage import can_use_feature, mark_feature_used
 
@@ -24,557 +22,41 @@ logger = logging.getLogger(__name__)
 
 # Activity types that auto-record a milestone on the placement timeline.
 
-# ─── Placement Tower: Level titles ───
-TOWER_TITLES = {
-    1: ("Hatchling", "🐣"),
-    5: ("Novice", "🌱"),
-    10: ("Apprentice", "🌿"),
-    15: ("Student", "📚"),
-    20: ("Learner", "📖"),
-    25: ("Adept", "⚔️"),
-    30: ("Problem Solver", "🧩"),
-    35: ("Code Knight", "🗡️"),
-    40: ("Code Warrior", "🚀"),
-    45: ("Tactician", "🎯"),
-    50: ("Interview Pro", "🏆"),
-    55: ("Algorithm Adept", "🔬"),
-    60: ("Data Structures Expert", "💡"),
-    65: ("Architect", "🏗️"),
-    70: ("Algorithm Master", "🔥"),
-    75: ("System Sage", "🧙"),
-    80: ("Code Sage", "⚡"),
-    85: ("Byte Lord", "🌐"),
-    90: ("Legendary Programmer", "🏅"),
-    95: ("Code Overlord", "👁️"),
-    100: ("God of Code", "👑"),
-}
+from app.services.gamification_core import (
+    TOWER_TITLES, BOSS_BATTLES, FOREST_ZONES, SEASONAL_STORMS, POWER_UPS,
+    STREAK_MULTIPLIERS, WEEKLY_CHALLENGES, MONTHLY_CHALLENGES, BADGES,
+    ACTIVITY_COUNTER_FIELD, BADGE_CONDITIONS, badge_condition_met,
+    VOYAGE_RANKS, voyage_rank_for_level, normalize_badge_ids,
+    _calculate_xp, _calculate_level, xp_for_level,
+    xp_for_next_level, get_title_for_level, forest_zone_for_level,
+    seasonal_storm_for_boss, alias_boss_with_storm, compute_forest_state,
+    calculate_streak_multiplier, calculate_stars, get_xp_with_multiplier,
+    get_role_xp_multiplier, get_level_color, get_role_badge_priority,
+    get_role_champion_title, get_company_title_progression,
+    calculate_proof, calculate_bounty, proof_for_xp, bounty_for_coins,
+    PROOF_BY_ACTIVITY, BOUNTY_BY_ACTIVITY,
+)
 
-# ─── Boss definitions ───
-BOSS_BATTLES = {
-    10:  {"name": "Sliding Window Dragon", "emoji": "🐉", "topic": "sliding_window", "difficulty": "hard", "required_score": 70},
-    20:  {"name": "DP Wizard", "emoji": "🧙", "topic": "dynamic_programming", "difficulty": "hard", "required_score": 70},
-    30:  {"name": "Graph Knight", "emoji": "🗡️", "topic": "graph", "difficulty": "hard", "required_score": 70},
-    40:  {"name": "System Design King", "emoji": "🏰", "topic": "system_design", "difficulty": "hard", "required_score": 70},
-    50:  {"name": "Interview Emperor", "emoji": "👑", "topic": "behavioral", "difficulty": "hard", "required_score": 70},
-    60:  {"name": "Algorithm Overlord", "emoji": "🔥", "topic": "algorithm", "difficulty": "hard", "required_score": 70},
-    70:  {"name": "Data Structure God", "emoji": "🌌", "topic": "data_structure", "difficulty": "hard", "required_score": 70},
-    80:  {"name": "Code Lightning", "emoji": "⚡", "topic": "optimization", "difficulty": "hard", "required_score": 70},
-     90:  {"name": "Placement Master", "emoji": "🎯", "topic": "all", "difficulty": "hard", "required_score": 70},
-     100: {"name": "The Final Boss", "emoji": "🏆", "topic": "ultimate", "difficulty": "expert", "required_score": 80},
-}
 
-# ─── Forest Journey: Nature zones (10 bands of 10 levels) ───
-# Levels 1-100 map onto a single growing tree's journey through a forest.
-# This is a display-only, additive layer on top of the existing tower; the
-# stored XP/level/boss data is unchanged.
-FOREST_ZONES = [
-    {"index": 0, "name": "Seedling Grove",  "level_min": 1,  "level_max": 10,  "stage": "seedling",   "emoji": "🌱", "color": "#a7f3d0", "description": "You sprout. Tiny roots, big potential."},
-    {"index": 1, "name": "Sapling Orchard", "level_min": 11, "level_max": 20,  "stage": "sapling",    "emoji": "🌿", "color": "#86efac", "description": "Flexible, fast-growing, reaching for the light."},
-    {"index": 2, "name": "Young Forest",    "level_min": 21, "level_max": 30,  "stage": "young",      "emoji": "🌳", "color": "#4ade80", "description": "The grove thickens; branches learn to hold weight."},
-    {"index": 3, "name": "Canopy Trail",    "level_min": 31, "level_max": 40,  "stage": "canopy",     "emoji": "🍃", "color": "#22c55e", "description": "You climb above the undergrowth toward the sun."},
-    {"index": 4, "name": "Fruiting Tree",   "level_min": 41, "level_max": 50,  "stage": "fruiting",   "emoji": "🍎", "color": "#16a34a", "description": "Knowledge starts bearing fruit others can share."},
-    {"index": 5, "name": "Ancient Woods",   "level_min": 51, "level_max": 60,  "stage": "ancient",    "emoji": "🌲", "color": "#15803d", "description": "Deep roots, deep rings, quiet resilience."},
-    {"index": 6, "name": "Summit Grove",    "level_min": 61, "level_max": 70,  "stage": "summit",     "emoji": "⛰️", "color": "#166534", "description": "Rare air. Only the tallest trees stand here."},
-    {"index": 7, "name": "Crown Canopy",    "level_min": 71, "level_max": 80,  "stage": "crown",      "emoji": "👑", "color": "#14532d", "description": "You crown the forest — the view is yours."},
-    {"index": 8, "name": "Legend Tree",     "level_min": 81, "level_max": 90,  "stage": "legend",     "emoji": "🌟", "color": "#0f766e", "description": "Stories are told about trees like you."},
-    {"index": 9, "name": "World Tree",      "level_min": 91, "level_max": 100, "stage": "world",      "emoji": "🌍", "color": "#065f46", "description": "Your roots hold up the sky. The forest is you."},
-]
-
-# ─── Seasonal Storms: boss battles reimagined as nature ───
-# Each boss level (multiple of 10) maps to a seasonal storm alias. Display
-# only — original boss mechanics and stored data are unchanged.
-SEASONAL_STORMS = {
-    10:  {"name": "Monsoon Gale",      "emoji": "🌧️", "element": "rain"},
-    20:  {"name": "Autumn Blight",     "emoji": "🍂", "element": "decay"},
-    30:  {"name": "Thunderhead",       "emoji": "⛈️", "element": "storm"},
-    40:  {"name": "Storm Surge",       "emoji": "🌊", "element": "flood"},
-    50:  {"name": "Wildfire Season",   "emoji": "🔥", "element": "fire"},
-    60:  {"name": "Frost Front",       "emoji": "❄️", "element": "frost"},
-    70:  {"name": "Dust Storm",        "emoji": "🌪️", "element": "wind"},
-    80:  {"name": "Tropical Cyclone",  "emoji": "🌀", "element": "cyclone"},
-    90:  {"name": "Supercell",         "emoji": "⚡", "element": "lightning"},
-    100: {"name": "The Primal Storm",  "emoji": "🌌", "element": "primal"},
-}
-
-# ─── Power-up definitions ───
-POWER_UPS = {
-    "extra_time":   {"name": "Extra Time", "emoji": "⏰", "description": "+5 minutes on timed test", "rarity": "common", "cost": 10},
-    "hint_reveal":  {"name": "Hint Reveal", "emoji": "💡", "description": "Show 1 hint for free", "rarity": "common", "cost": 15},
-    "retry":        {"name": "Retry", "emoji": "🔄", "description": "One extra attempt per problem", "rarity": "uncommon", "cost": 25},
-    "double_xp":    {"name": "Double XP", "emoji": "⚡", "description": "2x XP for 1 hour", "rarity": "rare", "cost": 50},
-    "skip_boss":    {"name": "Skip Boss", "emoji": "🛡️", "description": "Skip one boss battle", "rarity": "rare", "cost": 75},
-    "show_answer":  {"name": "Show Answer", "emoji": "🎯", "description": "Reveal answer (use wisely!)", "rarity": "legendary", "cost": 100},
-    "speed_boost":  {"name": "Speed Boost", "emoji": "🚀", "description": "30s bonus on timed tests", "rarity": "common", "cost": 8},
-    "shield":       {"name": "Shield", "emoji": "🛡️", "description": "Block 1 wrong answer penalty", "rarity": "uncommon", "cost": 30},
-    "x2_coins":     {"name": "Double Coins", "emoji": "🪙", "description": "2x coins for 1 hour", "rarity": "rare", "cost": 60},
-    "auto_save":    {"name": "Auto-Save", "emoji": "💾", "description": "Auto-save code every 30s", "rarity": "common", "cost": 12},
-    "night_mode":   {"name": "Night Mode", "emoji": "🌙", "description": "Dark theme for coding", "rarity": "common", "cost": 5},
-    "focus_mode":   {"name": "Focus Mode", "emoji": "🎧", "description": "Hide distractions for 25 min", "rarity": "uncommon", "cost": 35},
-}
-
-# ─── Streak multiplier tiers ───
-STREAK_MULTIPLIERS = [
-    (0,   1.0, 0),
-    (3,   1.2, 10),
-    (7,   1.5, 50),
-    (14,  2.0, 100),
-    (30,  3.0, 300),
-    (60,  4.0, 500),
-    (100, 5.0, 1000),
-]
-
-# ─── Weekly challenge templates ───
-WEEKLY_CHALLENGES = [
-    {"id": "solve_10", "name": "Solve 10 problems", "target": 10, "metric": "problems_solved", "xp_reward": 100},
-    {"id": "streak_7", "name": "Maintain 7-day streak", "target": 7, "metric": "streak", "xp_reward": 50},
-    {"id": "aptitude_90", "name": "Score 90%+ on 3 aptitude tests", "target": 3, "metric": "aptitude_90plus", "xp_reward": 100},
-    {"id": "interview_3", "name": "Complete 3 mock interviews", "target": 3, "metric": "interviews", "xp_reward": 75},
-    {"id": "hard_3", "name": "Solve 3 hard problems", "target": 3, "metric": "hard_solved", "xp_reward": 150},
-    {"id": "coding_5", "name": "Complete 5 coding challenges", "target": 5, "metric": "coding", "xp_reward": 120},
-    {"id": "company_2", "name": "Prep for 2 companies", "target": 2, "metric": "company_prep", "xp_reward": 80},
-    {"id": "resume_1", "name": "Build 1 resume", "target": 1, "metric": "resumes", "xp_reward": 60},
-    {"id": "questions_10", "name": "Answer 10 questions", "target": 10, "metric": "question_bank", "xp_reward": 90},
-    {"id": "streak_14", "name": "14-day streak", "target": 14, "metric": "streak", "xp_reward": 200},
-]
-
-MONTHLY_CHALLENGES = [
-    {"id": "level_30", "name": "Reach level 30", "target": 30, "metric": "level", "xp_reward": 500},
-    {"id": "solve_50", "name": "Solve 50 problems", "target": 50, "metric": "problems_solved", "xp_reward": 300},
-    {"id": "interview_5", "name": "Complete 5 mock interviews", "target": 5, "metric": "interviews", "xp_reward": 300},
-    {"id": "streak_30", "name": "30-day streak", "target": 30, "metric": "streak", "xp_reward": 500},
-    {"id": "level_50", "name": "Reach level 50", "target": 50, "metric": "level", "xp_reward": 1000},
-    {"id": "solve_100", "name": "Solve 100 problems", "target": 100, "metric": "problems_solved", "xp_reward": 800},
-    {"id": "coding_20", "name": "Complete 20 coding challenges", "target": 20, "metric": "coding", "xp_reward": 600},
-    {"id": "aptitude_20", "name": "Complete 20 aptitude tests", "target": 20, "metric": "aptitude", "xp_reward": 400},
-    {"id": "hard_10", "name": "Solve 10 hard problems", "target": 10, "metric": "hard_solved", "xp_reward": 500},
-    {"id": "perfect_5", "name": "Get 5 perfect scores", "target": 5, "metric": "perfect_scores", "xp_reward": 750},
-]
-
-# Badge definitions
-BADGES = {
-    # Interview badges
-    "first_interview": {
-        "name": "First Steps",
-        "description": "Complete your first mock interview",
-        "icon": "🎯",
-        "category": "interview",
-    },
-    "interview_10": {
-        "name": "Interview Pro",
-        "description": "Complete 10 mock interviews",
-        "icon": "🏆",
-        "category": "interview",
-    },
-    "interview_50": {
-        "name": "Interview Master",
-        "description": "Complete 50 mock interviews",
-        "icon": "👑",
-        "category": "interview",
-    },
-    "perfect_score": {
-        "name": "Perfect Score",
-        "description": "Score 10/10 in any interview",
-        "icon": "⭐",
-        "category": "interview",
-    },
-    "high_score_streak": {
-        "name": "On Fire",
-        "description": "Score 8+ in 5 consecutive interviews",
-        "icon": "🔥",
-        "category": "interview",
-    },
-
-    # Resume badges
-    "first_resume": {
-        "name": "Resume Rookie",
-        "description": "Create your first resume",
-        "icon": "📄",
-        "category": "resume",
-    },
-    "ats_master": {
-        "name": "ATS Master",
-        "description": "Achieve 90+ ATS score",
-        "icon": "🤖",
-        "category": "resume",
-    },
-    "resume_10": {
-        "name": "Resume Builder",
-        "description": "Create 10 resumes",
-        "icon": "📝",
-        "category": "resume",
-    },
-
-    # Aptitude badges
-    "first_aptitude": {
-        "name": "Aptitude Starter",
-        "description": "Complete your first aptitude test",
-        "icon": "🧮",
-        "category": "aptitude",
-    },
-    "aptitude_perfect": {
-        "name": "Aptitude Wizard",
-        "description": "Score 100% on any aptitude test",
-        "icon": "🧙",
-        "category": "aptitude",
-    },
-    "aptitude_50": {
-        "name": "Aptitude Champion",
-        "description": "Complete 50 aptitude tests",
-        "icon": "🏅",
-        "category": "aptitude",
-    },
-
-    # Coding badges
-    "first_coding": {
-        "name": "Code Warrior",
-        "description": "Complete your first coding challenge",
-        "icon": "💻",
-        "category": "coding",
-    },
-    "coding_10": {
-        "name": "Coding Ninja",
-        "description": "Complete 10 coding challenges",
-        "icon": "🥷",
-        "category": "coding",
-    },
-    "hard_problem": {
-        "name": "Hard Problem Solver",
-        "description": "Solve a hard difficulty problem",
-        "icon": "💪",
-        "category": "coding",
-    },
-
-    # Streak badges
-    "streak_3": {
-        "name": "Consistent",
-        "description": "3-day practice streak",
-        "icon": "📅",
-        "category": "streak",
-    },
-    "streak_7": {
-        "name": "Dedicated",
-        "description": "7-day practice streak",
-        "icon": "🗓️",
-        "category": "streak",
-    },
-    "streak_30": {
-        "name": "Unstoppable",
-        "description": "30-day practice streak",
-        "icon": "🚀",
-        "category": "streak",
-    },
-
-    # Company badges
-    "company_ready": {
-        "name": "Company Ready",
-        "description": "Score 80+ readiness for any company",
-        "icon": "🎯",
-        "category": "company",
-    },
-
-    # System design
-    "first_system_design": {
-        "name": "Architect",
-        "description": "Complete your first system design",
-        "icon": "🏗️",
-        "category": "system_design",
-    },
-    "system_design_master": {
-        "name": "System Design Master",
-        "description": "Score 9+ on a system design question",
-        "icon": "🏛️",
-        "category": "system_design",
-    },
-
-    # Coding badges (expanded)
-    "coding_25": {
-        "name": "Code Challenger",
-        "description": "Complete 25 coding challenges",
-        "icon": "💻",
-        "category": "coding",
-    },
-    "coding_50": {
-        "name": "Code Expert",
-        "description": "Complete 50 coding challenges",
-        "icon": "👨‍💻",
-        "category": "coding",
-    },
-    "coding_100": {
-        "name": "Code Legend",
-        "description": "Complete 100 coding challenges",
-        "icon": "👑",
-        "category": "coding",
-    },
-    "easy_10": {
-        "name": "Easy Does It",
-        "description": "Solve 10 easy problems",
-        "icon": "🟢",
-        "category": "coding",
-    },
-    "medium_10": {
-        "name": "Medium Mover",
-        "description": "Solve 10 medium problems",
-        "icon": "🟡",
-        "category": "coding",
-    },
-    "hard_5": {
-        "name": "Hard Hacker",
-        "description": "Solve 5 hard problems",
-        "icon": "🔴",
-        "category": "coding",
-    },
-    "speed_run": {
-        "name": "Speed Runner",
-        "description": "Solve a problem in under 5 minutes",
-        "icon": "⚡",
-        "category": "coding",
-    },
-    "first_accepted": {
-        "name": "First Accept",
-        "description": "Get your first accepted solution",
-        "icon": "✅",
-        "category": "coding",
-    },
-    "streak_5_coding": {
-        "name": "Coding Streak",
-        "description": "5-day coding streak",
-        "icon": "🔥",
-        "category": "coding",
-    },
-
-    # Question bank badges
-    "question_10": {
-        "name": "Question Novice",
-        "description": "Answer 10 questions",
-        "icon": "📝",
-        "category": "question_bank",
-    },
-    "question_50": {
-        "name": "Question Master",
-        "description": "Answer 50 questions",
-        "icon": "📚",
-        "category": "question_bank",
-    },
-    "question_100": {
-        "name": "Question Guru",
-        "description": "Answer 100 questions",
-        "icon": "🧠",
-        "category": "question_bank",
-    },
-
-    # Daily challenge badges
-    "daily_3": {
-        "name": "Daily Devotee",
-        "description": "Complete 3 daily challenges",
-        "icon": "📅",
-        "category": "daily",
-    },
-    "daily_10": {
-        "name": "Daily Devotee Pro",
-        "description": "Complete 10 daily challenges",
-        "icon": "🏅",
-        "category": "daily",
-    },
-    "daily_30": {
-        "name": "Daily Champion",
-        "description": "Complete 30 daily challenges",
-        "icon": "🏆",
-        "category": "daily",
-    },
-
-    # Tower badges
-    "tower_floor_1": {
-        "name": "Floor 1 Clear",
-        "description": "Reach level 10",
-        "icon": "🏰",
-        "category": "tower",
-    },
-    "tower_floor_5": {
-        "name": "Floor 5 Clear",
-        "description": "Reach level 50",
-        "icon": "🏯",
-        "category": "tower",
-    },
-    "tower_floor_10": {
-        "name": "Tower Conqueror",
-        "description": "Reach level 100",
-        "icon": "👑",
-        "category": "tower",
-    },
-    "boss_1": {
-        "name": "Boss Slayer",
-        "description": "Defeat your first boss",
-        "icon": "🐉",
-        "category": "tower",
-    },
-    "boss_5": {
-        "name": "Boss Hunter",
-        "description": "Defeat 5 bosses",
-        "icon": "🎯",
-        "category": "tower",
-    },
-    "boss_10": {
-        "name": "Boss Eliminator",
-        "description": "Defeat 10 bosses",
-        "icon": "💀",
-        "category": "tower",
-    },
-
-    # Power-up badges
-    "powerup_10": {
-        "name": "Power-Up Collector",
-        "description": "Use 10 power-ups",
-        "icon": "🎁",
-        "category": "powerups",
-    },
-    "powerup_50": {
-        "name": "Power-Up Master",
-        "description": "Use 50 power-ups",
-        "icon": "🎮",
-        "category": "powerups",
-    },
-
-    # Streak badges (expanded)
-    "streak_5": {
-        "name": "Getting Warm",
-        "description": "5-day practice streak",
-        "icon": "🌡️",
-        "category": "streak",
-    },
-    "streak_14": {
-        "name": "Two Weeks",
-        "description": "14-day practice streak",
-        "icon": "📅",
-        "category": "streak",
-    },
-    "streak_60": {
-        "name": "Month Master",
-        "description": "60-day practice streak",
-        "icon": "📆",
-        "category": "streak",
-    },
-    "streak_100": {
-        "name": "Centurion",
-        "description": "100-day practice streak",
-        "icon": "💯",
-        "category": "streak",
-    },
-
-    # Perfect score badges
-    "perfect_3": {
-        "name": "Triple Perfect",
-        "description": "Get 3 perfect scores",
-        "icon": "🌟",
-        "category": "perfect",
-    },
-    "perfect_10": {
-        "name": "Perfect Ten",
-        "description": "Get 10 perfect scores",
-        "icon": "💫",
-        "category": "perfect",
-    },
-
-    # Company prep badges
-    "company_5": {
-        "name": "Company Scout",
-        "description": "Prep for 5 companies",
-        "icon": "🏢",
-        "category": "company",
-    },
-    "company_20": {
-        "name": "Company Expert",
-        "description": "Prep for 20 companies",
-        "icon": "🏭",
-        "category": "company",
-    },
-    "company_53": {
-        "name": "Company Master",
-        "description": "Prep for all 53+ companies",
-        "icon": "🌍",
-        "category": "company",
-    },
-
-    # Resume badges (expanded)
-    "resume_5": {
-        "name": "Resume Writer",
-        "description": "Create 5 resumes",
-        "icon": "📄",
-        "category": "resume",
-    },
-    "resume_25": {
-        "name": "Resume Pro",
-        "description": "Create 25 resumes",
-        "icon": "📋",
-        "category": "resume",
-    },
-    "ats_95": {
-        "name": "ATS Elite",
-        "description": "Achieve 95+ ATS score",
-        "icon": "🎯",
-        "category": "resume",
-    },
-
-    # Aptitude badges (expanded)
-    "aptitude_10": {
-        "name": "Aptitude Regular",
-        "description": "Complete 10 aptitude tests",
-        "icon": "🧮",
-        "category": "aptitude",
-    },
-    "aptitude_25": {
-        "name": "Aptitude Expert",
-        "description": "Complete 25 aptitude tests",
-        "icon": "📊",
-        "category": "aptitude",
-    },
-    "aptitude_100": {
-        "name": "Aptitude God",
-        "description": "Complete 100 aptitude tests",
-        "icon": "🧠",
-        "category": "aptitude",
-    },
-
-    # Behavioral badges
-    "behavioral_5": {
-        "name": "Behavioral Pro",
-        "description": "Complete 5 behavioral interviews",
-        "icon": "💬",
-        "category": "behavioral",
-    },
-    "behavioral_20": {
-        "name": "Behavioral Expert",
-        "description": "Complete 20 behavioral interviews",
-        "icon": "🎤",
-        "category": "behavioral",
-    },
-
-    # Learning badges
-    "lesson_5": {
-        "name": "Lesson Learner",
-        "description": "Complete 5 lessons",
-        "icon": "📖",
-        "category": "learning",
-    },
-    "lesson_20": {
-        "name": "Lesson Master",
-        "description": "Complete 20 lessons",
-        "icon": "🎓",
-        "category": "learning",
-    },
-    "language_3": {
-        "name": "Polyglot",
-        "description": "Start 3 language paths",
-        "icon": "🌐",
-        "category": "learning",
-    },
-}
+async def get_forest_state(user_id: str) -> dict:
+    """Lightweight forest-journey payload for a user."""
+    profile = await get_gamification_profile(user_id)
+    if "forest_state" in profile:
+        return profile["forest_state"]
+    return compute_forest_state(
+        level=profile.get("level", 1),
+        diamonds=profile.get("diamonds", 0),
+        streak=profile.get("streak", 0),
+        badges=profile.get("badges", []),
+        bosses_defeated=profile.get("bosses_defeated", []),
+    )
 
 
 async def initialize_gamification(user_id: str):
     """Initialize gamification profile for a new user."""
     profile = {
         "user_id": user_id,
-        "xp": 0,
+        "diamonds": 0,
         "level": 1,
         "streak": 0,
         "longest_streak": 0,
@@ -586,6 +68,13 @@ async def initialize_gamification(user_id: str):
         "total_aptitude": 0,
         "total_coding": 0,
         "total_system_design": 0,
+        "target_company": None,
+        "proof": 0,
+        "bounty": 0,
+        # Per-activity counters for power-up / perfect-score badge families
+        # (incremented by use_power_up / record_practice respectively).
+        "total_powerups_used": 0,
+        "total_perfect_scores": 0,
         # Tower fields
         "stars_total": 0,
         "stars_per_problem": {},
@@ -602,6 +91,12 @@ async def initialize_gamification(user_id: str):
         "monthly_challenges": [],
         "weekly_league_xp": 0,
         "weekly_league_week": None,
+        "current_combo": 0,
+        "max_combo": 0,
+        "last_combo_at": None,
+        "daily_login_streak": 0,
+        "last_daily_login_date": None,
+        "achievements": [],
         "created_at": datetime.now(timezone.utc),
         "updated_at": datetime.now(timezone.utc),
     }
@@ -610,10 +105,44 @@ async def initialize_gamification(user_id: str):
     return profile
 
 
-async def record_practice(user_id: str, activity_type: str, score: float = 0, metadata: dict = None):
-    """Record a practice activity and update gamification with tower mechanics."""
+async def record_practice(user_id: str, activity_type: str, score: float = 0, metadata: dict = None, role: str = None, activity_id: str = None):
+    """Record a practice activity and update gamification with tower mechanics.
+
+    LAW: this is the ONLY writer of diamonds/coins/stars/streak/combo/badges/
+    weekly_league_xp. Callers pass a 0-10 pedagogical score (never Diamonds) and a
+    canonical activity_type; world/level/language travel in metadata.
+
+    Every award appends one immutable gamification_events row (inputs +
+    outputs + policy version) so profile.diamonds == sum(ledger) is checkable.
+    activity_id is caller-supplied when the caller has a stable identity
+    for the attempt (else a uuid); endpoint-level atomic claims remain the
+    dedupe mechanism (see worlds complete, challenge claims).
+    """
+    import uuid as _uuid
+    event_id = _uuid.uuid4().hex
+    act_id = activity_id or event_id
+    if role is None:
+        try:
+            from bson import ObjectId
+            from app.database import users_collection
+            user_doc = await users_collection.find_one({"_id": ObjectId(user_id)})
+            role = (user_doc.get("role") or user_doc.get("target_role") or "sde") if user_doc else "sde"
+        except Exception:
+            role = "sde"
     now = datetime.now(timezone.utc)
     today = now.date()
+
+    # Score normalization: the canonical contract is 0-10, but several
+    # callers historically pass 0-100 (aptitude percent, coding percent).
+    # Values >10 are treated as percent and scaled — otherwise every such
+    # caller silently mints perfect bonuses and 3 stars for partial work
+    # (the daily_challenge class of bug). Badge checks below keep the RAW
+    # caller scale: they are tuned per activity (e.g. aptitude_perfect>=100).
+    try:
+        _score_num = float(score or 0)
+    except (TypeError, ValueError):
+        _score_num = 0.0
+    score10 = round(_score_num / 10, 1) if _score_num > 10 else round(_score_num, 1)
 
     profile = await gamification_collection.find_one({"user_id": user_id})
     if not profile:
@@ -630,6 +159,16 @@ async def record_practice(user_id: str, activity_type: str, score: float = 0, me
         "daily_goal_count": 0,
         "daily_goal_target": 5,
         "daily_goal_date": None,
+        "current_combo": 0,
+        "max_combo": 0,
+        "last_combo_at": None,
+        "daily_login_streak": 0,
+        "last_daily_login_date": None,
+        "achievements": [],
+        # Lazy-migrated counter seed for existing profiles (the $inc below
+        # creates them anyway; seeding keeps them visible in get_gamification_profile).
+        "total_powerups_used": 0,
+        "total_perfect_scores": 0,
     }
     missing = {k: v for k, v in tower_defaults.items() if k not in profile}
     if missing:
@@ -684,31 +223,127 @@ async def record_practice(user_id: str, activity_type: str, score: float = 0, me
     else:
         daily_goal_count = 1
 
-    # Calculate XP with multiplier
-    base_xp = _calculate_xp(activity_type, score)
+    # Combo tracking: rapid-fire activities multiply Diamonds
+    # Mongo returns naive datetimes (tz_aware=False driver default) while
+    # `now` is aware — normalize before subtracting, or every comparison
+    # raises TypeError into the bare except and combo silently never grows.
+    last_combo_at = _naive_utc(profile.get("last_combo_at"))
+    current_combo = profile.get("current_combo", 0)
+    max_combo = profile.get("max_combo", 0)
+    if last_combo_at:
+        try:
+            combo_delta = (_naive_utc(now) - last_combo_at).total_seconds()
+            if combo_delta < COMBO_WINDOW_SECONDS:
+                current_combo += 1
+            else:
+                current_combo = 1
+        except Exception:
+            current_combo = 1
+    else:
+        current_combo = 1
+    max_combo = max(max_combo, current_combo)
+    combo_mult = _combo_multiplier(current_combo)
+
+    # Calculate Diamonds with multiplier (normalized 0-10 score)
+    base_xp = _calculate_xp(activity_type, score10, role=role)
     xp_gained = get_xp_with_multiplier(base_xp, new_streak, is_first_today)
 
-    # Calculate stars
+    # Calculate stars (normalized 0-10 score)
     time_taken = metadata.get("time_taken") if metadata else None
-    stars = calculate_stars(score, time_taken)
+    stars = calculate_stars(score10, time_taken)
 
     # Coins earned
     coins_earned = 10 + (stars * 5)  # 15-25 coins per activity
 
-    # Apply active Double XP power-up (time-limited, set via use_power_up)
+    # Proof/Bounty: earned alongside Diamonds/Coins but never spent on
+    # power-ups. Proof = mastery signal, Bounty = cosmetic currency.
+    proof_earned = calculate_proof(activity_type)
+    bounty_earned = calculate_bounty(activity_type)
+
+    # Apply active Double Diamonds power-up (time-limited, set via use_power_up)
     dxp_expires = profile.get("double_xp_expires")
+    dxp_active = False
     if dxp_expires:
         try:
             exp_dt = datetime.fromisoformat(str(dxp_expires))
             if exp_dt > now:
+                dxp_active = True
                 xp_gained = int(xp_gained * 2)
                 coins_earned = int(coins_earned * 2)
         except (ValueError, TypeError):
             pass
 
-    # Update counters
-    counter_field = f"total_{activity_type}s"
+    # Apply combo multiplier
+    if combo_mult > 1.0:
+        xp_gained = int(xp_gained * combo_mult)
+        coins_earned = int(coins_earned * combo_mult)
+
+    # Performance-linked bonus (NO RNG — deterministic skill signals only).
+    # Replaces the old 5% random "critical hit": every bonus must tell a
+    # story (independent solve / precise solve), never "you got lucky".
+    # See BOUNTYCODE_GAME_ENGINE_V2.md §8.
+    hint_used = bool((metadata or {}).get("used_hint") or (metadata or {}).get("hint_used"))
+    try:
+        time_num = float(time_taken) if time_taken is not None else None
+    except (TypeError, ValueError):
+        time_num = None
+    # Precision: solved quickly AND correctly (≤5 min on a problem activity).
+    is_quick = time_num is not None and 0 <= time_num <= 300
+    precision_hit = score10 >= 9 and is_quick
+    # Independent: correct without a hint consumed.
+    independent_hit = not hint_used and score10 >= 8
+    performance_mult = 1.0
+    performance_reasons = []
+    if precision_hit:
+        performance_mult *= 1.25
+        performance_reasons.append("precision")
+    elif independent_hit:
+        performance_mult *= 1.5
+        performance_reasons.append("independent")
+    if performance_mult > 1.0:
+        xp_gained = int(xp_gained * performance_mult)
+        coins_earned = int(coins_earned * performance_mult)
+    critical_hit = False
+    critical_bonus = 0
+
+    # Update counters — canonical activity counter (see ACTIVITY_COUNTER_FIELD
+    # in gamification_core): the historical f"total_{activity_type}s" produced
+    # total_aptitudes/total_codings that no reader consumed, while badges,
+    # models, tiers, placement_engine and daily_drill all read the singular
+    # canonical fields. Writing the canonical field keeps every counter-based
+    # badge (aptitude/coding/system_design families) actually earnable.
+    counter_field = ACTIVITY_COUNTER_FIELD.get(activity_type, f"total_{activity_type}s")
     week_id = _league_week_id()
+    # ISO-week lazy reset (UTC), as its OWN write before the award below:
+    # same-update $set+$inc ordering on one field is not something to rely
+    # on. The $ne filter collapses concurrent resets; without this reset,
+    # "weekly" is all-time accumulation and every rank from it is a lie.
+    # Last week's snapshot is frozen for the recap screen.
+    if profile.get("weekly_league_week") != week_id:
+        await gamification_collection.update_one(
+            {"user_id": user_id, "weekly_league_week": {"$ne": week_id}},
+            {"$set": {
+                "weekly_league_week": week_id,
+                "weekly_league_xp": 0,
+                "weekly_league_last": {
+                    "week": profile.get("weekly_league_week"),
+                    "diamonds": profile.get("weekly_league_xp", 0),
+                    "rank": profile.get("weekly_league_rank"),
+                },
+            }},
+        )
+    # Monthly league mirrors the weekly pattern (YYYY-MM key). The
+    # leaderboard's monthly tab sorts on this; without it "monthly" would
+    # silently show all-time exactly like the old weekly lie.
+    month_id = now.strftime("%Y-%m")
+    if profile.get("monthly_league_month") != month_id:
+        await gamification_collection.update_one(
+            {"user_id": user_id, "monthly_league_month": {"$ne": month_id}},
+            {"$set": {
+                "monthly_league_month": month_id,
+                "monthly_league_xp": 0,
+            }},
+        )
     update_ops = {
         "$set": {
             "last_practice_date": now,
@@ -717,13 +352,20 @@ async def record_practice(user_id: str, activity_type: str, score: float = 0, me
             "daily_goal_count": daily_goal_count,
             "daily_goal_date": today.isoformat(),
             "weekly_league_week": week_id,
+            "current_combo": current_combo,
+            "max_combo": max_combo,
+            "last_combo_at": now,
         },
         "$inc": {
-            "xp": xp_gained,
+            "diamonds": xp_gained,
             "coins": coins_earned,
+            "proof": proof_earned,
+            "bounty": bounty_earned,
             "stars_total": stars,
             counter_field: 1,
+            "total_perfect_scores": 1 if score10 >= 10 else 0,
             "weekly_league_xp": xp_gained,
+            "monthly_league_xp": xp_gained,
         },
         "$currentDate": {"updated_at": True},
     }
@@ -743,14 +385,14 @@ async def record_practice(user_id: str, activity_type: str, score: float = 0, me
         client = get_client()
         async with await client.start_session() as session:
             async with session.start_transaction():
-                # 1. Record activity (streak, XP, coins, counters)
+                # 1. Record activity (streak, Diamonds, coins, counters)
                 coll = gamification_collection()
                 await coll.update_one({"user_id": user_id}, update_ops, session=session)
 
                 # 2. Re-read profile within transaction for consistent level calc
                 profile = await coll.find_one({"user_id": user_id}, session=session)
                 old_level = profile.get("level", 1)
-                new_level = _calculate_level(profile.get("xp", 0))
+                new_level = _calculate_level(profile.get("diamonds", 0))
                 level_up = new_level != old_level
 
                 if level_up:
@@ -771,7 +413,7 @@ async def record_practice(user_id: str, activity_type: str, score: float = 0, me
         await gamification_collection.update_one({"user_id": user_id}, update_ops)
         profile = await gamification_collection.find_one({"user_id": user_id})
         old_level = profile.get("level", 1)
-        new_level = _calculate_level(profile.get("xp", 0))
+        new_level = _calculate_level(profile.get("diamonds", 0))
         level_up = new_level != old_level
 
         if level_up:
@@ -784,6 +426,11 @@ async def record_practice(user_id: str, activity_type: str, score: float = 0, me
     # Check for new badges
     new_badges = await _check_badges(user_id, activity_type, score, new_streak)
 
+    # Check achievement chains after badges update
+    badge_ids = [b.get("id") for b in new_badges] if new_badges else []
+    all_badge_ids = normalize_badge_ids(list(profile.get("badges", [])) + badge_ids)
+    new_achievements = await _check_achievement_chains(user_id, all_badge_ids)
+
     # Check streak milestone chests (real inventory rewards at 7/14/30/60/100 days)
     milestone_rewards = await _check_streak_milestones(user_id, new_streak, old_streak)
 
@@ -792,18 +439,39 @@ async def record_practice(user_id: str, activity_type: str, score: float = 0, me
     is_boss_defeated = boss_level in (profile.get("bosses_defeated") or [])
 
     # Auto-check boss eligibility after recording the activity
-    boss_result = await check_boss_eligibility(user_id, score, activity_type)
+    boss_result = await check_boss_eligibility(user_id, score10, activity_type)
 
     result = {
+        "event_id": event_id,
+        "activity_id": act_id,
         "xp_gained": xp_gained,
         "coins_earned": coins_earned,
         "stars_earned": stars,
+        # Antecedents for the RewardShowcase: the frontend renders these
+        # verbatim and must never back-compute base from the total.
+        "base_xp": base_xp,
+        "multipliers": {
+            "streak": calculate_streak_multiplier(new_streak)[0],
+            "combo": combo_mult,
+            "first_of_day": is_first_today,
+            "performance": performance_mult,
+            "performance_reasons": performance_reasons,
+            "double_xp": bool(dxp_active),
+        },
         "new_streak": new_streak,
         "new_badges": new_badges,
+        "new_achievements": new_achievements,
         "level": new_level,
         "level_up": level_up,
         "old_level": old_level,
         "is_first_today": is_first_today,
+        "combo": {
+            "current": current_combo,
+            "max": max_combo,
+            "multiplier": combo_mult,
+        },
+        "critical_hit": critical_hit,
+        "critical_bonus": critical_bonus,
         "boss_level": boss_level if boss_level and not is_boss_defeated else None,
         "streak_multiplier": calculate_streak_multiplier(new_streak)[0],
         "streak_frozen": streak_frozen_today,
@@ -811,238 +479,184 @@ async def record_practice(user_id: str, activity_type: str, score: float = 0, me
         "daily_goal_count": daily_goal_count,
         "daily_goal_target": profile.get("daily_goal_target", 5),
         "milestone": milestone_rewards,
-        "milestone_xp_bonus": sum(r["items"].get("coins", 0) for r in milestone_rewards.values()),
+        "milestone_coins_bonus": sum(r["items"].get("coins", 0) for r in milestone_rewards.values()),
     }
 
     if boss_result:
         result["boss_defeated"] = boss_result
 
+    # Immutable reward ledger (audit trail, not dedupe mechanism — endpoint
+    # atomic claims remain the dedupe layer). One row per award: inputs,
+    # outputs, policy version. Reconcile: sum(xp_awarded) per user == delta
+    # of profile.diamonds over the same window (modulo pre-ledger history).
+    try:
+        from app.database import gamification_events_collection
+        await gamification_events_collection.insert_one({
+            "event_id": event_id,
+            "user_id": user_id,
+            "activity_id": act_id,
+            "activity_type": activity_type,
+            "score": score10,
+            "score_raw": score,
+            "base_xp": base_xp,
+            "multipliers": {
+                "streak": calculate_streak_multiplier(new_streak)[0],
+                "combo": combo_mult,
+                "first_of_day": is_first_today,
+                "performance": performance_mult,
+                "performance_reasons": performance_reasons,
+                "double_xp": bool(dxp_active),
+            },
+            "xp_awarded": xp_gained,
+            "coins_awarded": coins_earned,
+            "stars_awarded": stars,
+            "new_badges": [b.get("id") if isinstance(b, dict) else b for b in (new_badges or [])],
+            "level_after": new_level,
+            "reward_policy_version": REWARD_POLICY_VERSION,
+            "metadata": metadata or {},
+            "created_at": now,
+        })
+    except Exception as exc:
+        logger.warning(f"Reward ledger insert failed for {user_id}: {exc}")
+
     return result
 
 
-def _calculate_xp(activity_type: str, score: float) -> int:
-    """Calculate XP gained from an activity — Candy Crush style."""
-    base_xp = {
-        "interview": 50,
-        "resume": 25,
-        "aptitude": 25,
-        "coding": 40,
-        "system_design": 50,
-        "cover_letter": 20,
-        "question_bank": 35,
-        "daily_challenge": 60,
-        "tower": 75,
-        "boss_battle": 100,
-        "practice": 20,
-        "lesson": 15,
-        "behavioral": 30,
-    }.get(activity_type, 10)
-
-    # Difficulty bonus for coding/question_bank
-    if activity_type in ("coding", "question_bank"):
-        if score >= 9:
-            base_xp = 80  # Hard problem
-        elif score >= 7:
-            base_xp = 40  # Medium
-        else:
-            base_xp = 20  # Easy
-
-    # Perfect score bonus
-    if score >= 10:
-        base_xp += 40
-
-    # High score bonus
-    if score >= 8:
-        base_xp += 20
-
-    return base_xp
+REWARD_POLICY_VERSION = "2026.1"
 
 
-def _calculate_level(xp: int) -> int:
-    """Calculate level from exponential curve: XP_needed(level) = 100 * level."""
-    if xp <= 0:
-        return 1
-    # level = floor(sqrt(xp / 50))
-    return max(1, min(100, int(math.sqrt(xp / 50)) + 1))
+async def award_bonus_xp(user_id: str, diamonds: int, coins: int, reason: str, metadata: dict | None = None) -> bool:
+    """Award bonus Diamonds/coins outside the normal activity pipeline (boss defeats,
+    daily bonuses, challenge claims, etc.). Writes a ledger row so
+    profile.diamonds == sum(ledger) reconciliation holds.
 
-
-def xp_for_level(level: int) -> int:
-    """Total XP needed to reach a level."""
-    return ((level - 1) ** 2) * 50
-
-
-def xp_for_next_level(level: int) -> int:
-    """XP needed to go from current level to next."""
-    return (level ** 2) * 50
-
-
-def get_title_for_level(level: int) -> tuple:
-    """Get title and emoji for a level."""
-    title = "Hatchling"
-    emoji = "🐣"
-    for threshold, (t, e) in sorted(TOWER_TITLES.items()):
-        if level >= threshold:
-            title, emoji = t, e
-    return title, emoji
-
-
-# ─── Forest Journey helpers ───
-
-def forest_zone_for_level(level: int) -> dict:
-    """Return the nature zone a level belongs to (1-based bands of 10 levels)."""
-    band = min(9, (max(1, level) - 1) // 10)
-    return FOREST_ZONES[band]
-
-
-def seasonal_storm_for_boss(level: int) -> dict | None:
-    """Return the seasonal storm alias for a boss level, or None if not a boss."""
-    return SEASONAL_STORMS.get(level)
-
-
-def alias_boss_with_storm(boss: dict | None, level: int) -> dict | None:
-    """Merge the seasonal-storm alias into a boss dict without mutating it."""
-    if not boss:
-        return None
-    merged = dict(boss)
-    storm = SEASONAL_STORMS.get(level)
-    if storm:
-        merged["storm"] = storm
-        merged["storm_name"] = storm["name"]
-        merged["storm_emoji"] = storm["emoji"]
-    return merged
-
-
-def compute_forest_state(level: int, xp: int, streak: int, badges: list, bosses_defeated: list) -> dict:
-    """Derive the nature-themed gamification state from existing tower data.
-
-    Purely additive/derived — nothing here mutates stored data:
-      - XP        -> sunlight
-      - streak    -> waterings
-      - badges    -> seeds
-      - bosses    -> storms cleared
-      - level     -> growth rings (one ring per level)
+    This is the ONLY acceptable way to write Diamonds/coins outside record_practice().
     """
-    zone = forest_zone_for_level(level)
-    span = max(1, zone["level_max"] - zone["level_min"])
-    zone_progress = min(1.0, (level - zone["level_min"]) / span)
-    boss_level = level if level % 10 == 0 and level <= 100 else None
-    defeated = list(bosses_defeated or [])
-    current_storm = None
-    if boss_level and boss_level not in defeated:
-        current_storm = seasonal_storm_for_boss(boss_level)
-    return {
-        "current_zone": zone,
-        "zone_index": zone["index"],
-        "zones_total": len(FOREST_ZONES),
-        "tree_stage": zone["stage"],
-        "growth_rings": level,
-        "sunlight": xp,
-        "waterings": streak or 0,
-        "seeds": len(badges or []),
-        "storms_cleared": len(defeated),
-        "current_storm": current_storm,
-        "zone_progress": round(zone_progress, 4),
-    }
+    import uuid as _uuid
+    from datetime import datetime, timezone
+    diamonds = int(diamonds or 0)
+    coins = int(coins or 0)
+    if diamonds <= 0 and coins <= 0:
+        return False
+
+    now = datetime.now(timezone.utc)
+    update_ops: dict = {}
+    if diamonds > 0:
+        update_ops["$inc"] = {"diamonds": diamonds}
+    if coins > 0:
+        if "$inc" in update_ops:
+            update_ops["$inc"]["coins"] = coins
+        else:
+            update_ops["$inc"] = {"coins": coins}
+    update_ops["$currentDate"] = {"updated_at": True}
+
+    await gamification_collection.update_one({"user_id": user_id}, update_ops)
+
+    # Recalculate level after Diamonds award
+    profile = await gamification_collection.find_one({"user_id": user_id})
+    new_level = _calculate_level(profile.get("diamonds", 0))
+    if new_level != profile.get("level", 1):
+        await gamification_collection.update_one(
+            {"user_id": user_id},
+            {"$set": {"level": new_level}},
+        )
+
+    # Write ledger row for reconciliation
+    try:
+        from app.database import gamification_events_collection
+        await gamification_events_collection.insert_one({
+            "event_id": _uuid.uuid4().hex,
+            "user_id": user_id,
+            "activity_id": _uuid.uuid4().hex,
+            "activity_type": f"bonus_{reason}",
+            "score": 0,
+            "score_raw": 0,
+            "base_xp": diamonds,
+            "multipliers": {},
+            "xp_awarded": diamonds,
+            "coins_awarded": coins,
+            "stars_awarded": 0,
+            "new_badges": [],
+            "level_after": new_level,
+            "reward_policy_version": REWARD_POLICY_VERSION,
+            "metadata": {"reason": reason, **(metadata or {})},
+            "created_at": now,
+        })
+    except Exception as exc:
+        logger.warning(f"Bonus Diamonds ledger insert failed for {user_id}: {exc}")
+    return True
 
 
-async def get_forest_state(user_id: str) -> dict:
-    """Lightweight forest-journey payload for a user."""
-    profile = await get_gamification_profile(user_id)
-    if "forest_state" in profile:
-        return profile["forest_state"]
-    return compute_forest_state(
-        level=profile.get("level", 1),
-        xp=profile.get("xp", 0),
-        streak=profile.get("streak", 0),
-        badges=profile.get("badges", []),
-        bosses_defeated=profile.get("bosses_defeated", []),
+async def spend_xp(user_id: str, amount: int, reason: str, metadata: dict | None = None) -> bool:
+    """Spend Diamonds (shop purchases). The engine-side counterpart to awards.
+
+    Atomic $gte guard: concurrent double-buys collapse to exactly one debit
+    (loser sees insufficient funds). Writes a negative ledger row so
+    reconcile (profile.diamonds == sum(ledger)) holds across spends too.
+    Returns True when debited, False when funds are insufficient.
+    """
+    import uuid as _uuid
+    from datetime import datetime, timezone
+    amount = int(amount or 0)
+    if amount <= 0:
+        return False
+    res = await gamification_collection.update_one(
+        {"user_id": user_id, "diamonds": {"$gte": amount}},
+        {"$inc": {"diamonds": -amount}},
     )
+    if res.matched_count == 0:
+        return False
+    try:
+        from app.database import gamification_events_collection
+        await gamification_events_collection.insert_one({
+            "event_id": _uuid.uuid4().hex,
+            "user_id": user_id,
+            "activity_id": _uuid.uuid4().hex,
+            "activity_type": "shop_spend",
+            "score": 0,
+            "score_raw": 0,
+            "base_xp": 0,
+            "multipliers": {},
+            "xp_awarded": -amount,
+            "coins_awarded": 0,
+            "stars_awarded": 0,
+            "new_badges": [],
+            "level_after": None,
+            "reward_policy_version": REWARD_POLICY_VERSION,
+            "metadata": {"reason": reason, **(metadata or {})},
+            "created_at": datetime.now(timezone.utc),
+        })
+    except Exception as exc:
+        logger.warning(f"Reward ledger insert failed for {user_id}: {exc}")
+    return True
 
 
-def calculate_streak_multiplier(streak: int) -> tuple:
-    """Returns (multiplier, bonus_xp) for a streak."""
-    mult = 1.0
-    bonus = 0
-    for min_streak, m, b in STREAK_MULTIPLIERS:
-        if streak >= min_streak:
-            mult, bonus = m, b
-    return mult, bonus
-
-
-def calculate_stars(score: float, time_taken: int = None, is_optimal: bool = False) -> int:
-    """Calculate 1-3 stars based on performance."""
-    stars = 1
-    if score >= 7:
-        stars = 2
-    if score >= 9 and (time_taken is None or time_taken < 300):
-        stars = 3
-    return stars
-
-
-def get_xp_with_multiplier(base_xp: int, streak: int, is_first_today: bool = False) -> int:
-    """Apply streak multiplier and first-solve-of-day bonus."""
-    mult, bonus = calculate_streak_multiplier(streak)
-    xp = int(base_xp * mult) + bonus
-    if is_first_today:
-        xp *= 2  # Double XP first solve
-    return xp
 
 
 async def _check_badges(user_id: str, activity_type: str, score: float, streak: int) -> list:
-    """Check and award new badges."""
+    """Evaluate every catalogued badge condition against the profile + event.
+
+    Conditions live declaratively in BADGE_CONDITIONS (gamification_core).
+    A badge with no condition can never be earned — the CI parity test
+    rejects that. Score-based conditions keep the RAW caller scale per
+    activity (interview/system_design 0-10, aptitude/coding/resume 0-100);
+    the ENGINE computes level from Diamonds server-side. Badges are written
+    as string IDs via $addToSet (idempotent by construction).
+    """
     profile = await gamification_collection.find_one({"user_id": user_id})
-    existing_badges = set(profile.get("badges", []))
+    if not profile:
+        return []
+    existing_badges = set(normalize_badge_ids(profile.get("badges", [])))
     new_badges = []
-
-    badge_checks = {
-        "interview": [
-            ("first_interview", lambda p: p.get("total_interviews", 0) >= 1),
-            ("interview_10", lambda p: p.get("total_interviews", 0) >= 10),
-            ("interview_50", lambda p: p.get("total_interviews", 0) >= 50),
-            ("perfect_score", lambda p: score >= 10),
-            ("high_score_streak", lambda p: score >= 8),
-        ],
-        "resume": [
-            ("first_resume", lambda p: p.get("total_resumes", 0) >= 1),
-            ("ats_master", lambda p: score >= 90),
-            ("resume_10", lambda p: p.get("total_resumes", 0) >= 10),
-        ],
-        "aptitude": [
-            ("first_aptitude", lambda p: p.get("total_aptitude", 0) >= 1),
-            ("aptitude_perfect", lambda p: score >= 100),
-            ("aptitude_50", lambda p: p.get("total_aptitude", 0) >= 50),
-        ],
-        "coding": [
-            ("first_coding", lambda p: p.get("total_coding", 0) >= 1),
-            ("coding_10", lambda p: p.get("total_coding", 0) >= 10),
-            ("hard_problem", lambda p: score >= 8),
-        ],
-        "system_design": [
-            ("first_system_design", lambda p: p.get("total_system_design", 0) >= 1),
-            ("system_design_master", lambda p: score >= 9),
-        ],
-        "question_bank": [
-            ("first_coding", lambda p: p.get("total_question_bank", 0) >= 1),
-            ("hard_problem", lambda p: score >= 8),
-        ],
-    }
-
-    # Check streak badges
-    if streak >= 3:
-        badge_checks.setdefault("streak", []).append(("streak_3", lambda p: True))
-    if streak >= 7:
-        badge_checks.setdefault("streak", []).append(("streak_7", lambda p: True))
-    if streak >= 30:
-        badge_checks.setdefault("streak", []).append(("streak_30", lambda p: True))
-
-    for badge_id, check_fn in badge_checks.get(activity_type, []):
-        if badge_id not in existing_badges and check_fn(profile):
+    for badge_id, condition in BADGE_CONDITIONS.items():
+        if badge_id in existing_badges:
+            continue
+        if badge_condition_met(condition, profile, activity_type, score, streak):
             new_badges.append(badge_id)
             await gamification_collection.update_one(
                 {"user_id": user_id},
-                {"$push": {"badges": badge_id}},
+                {"$addToSet": {"badges": badge_id}},
             )
-
     return [BADGES[b] for b in new_badges if b in BADGES]
 
 
@@ -1235,6 +849,12 @@ async def ensure_tower_fields(user_id: str):
         "first_solve_today": None,
         "weekly_challenges": [],
         "monthly_challenges": [],
+        "current_combo": 0,
+        "max_combo": 0,
+        "last_combo_at": None,
+        "daily_login_streak": 0,
+        "last_daily_login_date": None,
+        "achievements": [],
     }
 
     missing = {k: v for k, v in defaults.items() if k not in profile}
@@ -1253,8 +873,20 @@ async def get_gamification_profile(user_id: str) -> dict:
     if not profile:
         profile = await initialize_gamification(user_id)
 
-    level = _calculate_level(profile.get("xp", 0))
-    title, emoji = get_title_for_level(level)
+    # Derive role from user doc so it stays in sync with auth/profile state
+    user_role = "sde"
+    try:
+        from bson import ObjectId
+        user_doc = await users_collection.find_one({"_id": ObjectId(user_id)})
+        if user_doc:
+            user_role = user_doc.get("role") or user_doc.get("target_role") or "sde"
+    except Exception:
+        user_role = "sde"
+
+    level = _calculate_level(profile.get("diamonds", 0))
+    target_company = profile.get("target_company")
+    title, emoji = get_title_for_level(level, company_id=target_company)
+    rank_title, rank_emoji, rank_tier = voyage_rank_for_level(level)
     mult, bonus = calculate_streak_multiplier(profile.get("streak", 0))
 
     # Current boss info
@@ -1264,27 +896,44 @@ async def get_gamification_profile(user_id: str) -> dict:
         current_boss = alias_boss_with_storm(BOSS_BATTLES.get(boss_level), boss_level)
 
     profile["id"] = str(profile.pop("_id"))
-    profile["badges_details"] = [BADGES[b] for b in profile.get("badges", []) if b in BADGES]
+    profile["badges"] = normalize_badge_ids(profile.get("badges", []))
+    profile["badges_details"] = [
+        {**BADGES[b], "id": b}
+        for b in profile["badges"]
+        if b in BADGES
+    ]
     profile["level"] = level
-    profile["xp_to_next_level"] = xp_for_next_level(level) - profile.get("xp", 0)
+    profile["xp_to_next_level"] = xp_for_next_level(level) - profile.get("diamonds", 0)
     profile["xp_for_current_level"] = xp_for_level(level)
+    # Explicit progress numbers so the client never recomputes the curve:
+    # into = diamonds earned inside this level, span = level width.
+    profile["xp_into_level"] = max(0, profile.get("diamonds", 0) - xp_for_level(level))
+    profile["xp_level_span"] = max(1, xp_for_next_level(level) - xp_for_level(level))
     profile["title"] = title
     profile["title_emoji"] = emoji
+    profile["rank_title"] = rank_title
+    profile["rank_emoji"] = rank_emoji
+    profile["rank_tier"] = rank_tier
     profile["streak_multiplier"] = mult
     profile["streak_bonus_xp"] = bonus
     profile["current_boss"] = current_boss
     profile["boss_level"] = boss_level
+    profile["role"] = user_role
     profile["forest_state"] = compute_forest_state(
         level=level,
-        xp=profile.get("xp", 0),
+        diamonds=profile.get("diamonds", 0),
         streak=profile.get("streak", 0),
         badges=profile.get("badges", []),
         bosses_defeated=profile.get("bosses_defeated", []),
     )
     profile["power_ups"] = profile.get("power_ups", POWER_UPS.fromkeys([k for k in POWER_UPS], 0))
     profile["coins"] = profile.get("coins", 0)
+    profile["bounty"] = profile.get("bounty", 0)
+    profile["proof"] = profile.get("proof", 0)
     profile["stars_total"] = profile.get("stars_total", 0)
     profile["streak_freezes"] = profile.get("streak_freezes", 0)
+    profile["color"] = get_level_color(level)
+    profile["target_company"] = target_company
 
     # Daily goal
     now = datetime.now(timezone.utc)
@@ -1299,6 +948,15 @@ async def get_gamification_profile(user_id: str) -> dict:
     profile["daily_goal_count"] = daily_goal_count
     profile["daily_goal_target"] = profile.get("daily_goal_target", 5)
     profile["daily_goal_completed"] = daily_goal_count >= profile.get("daily_goal_target", 5)
+
+    profile["current_combo"] = profile.get("current_combo", 0)
+    profile["max_combo"] = profile.get("max_combo", 0)
+    profile["combo_multiplier"] = _combo_multiplier(profile.get("current_combo", 0))
+    profile["daily_login_streak"] = profile.get("daily_login_streak", 0)
+    profile["last_daily_login_date"] = profile.get("last_daily_login_date")
+    profile["achievements"] = profile.get("achievements", [])
+    profile["badge_priority"] = get_role_badge_priority(user_role)
+    profile["champion_title"] = get_role_champion_title(user_role)
 
     return profile
 
@@ -1342,9 +1000,10 @@ async def check_boss_eligibility(user_id: str, activity_score: float, activity_t
         {"user_id": user_id},
         {
             "$push": {"bosses_defeated": level},
-            "$inc": {"xp": bonus_xp, "coins": bonus_coins},
         },
     )
+    # Award boss bonus through canonical pipeline (Gamification Law)
+    await award_bonus_xp(user_id, bonus_xp, bonus_coins, "boss_defeat", {"boss_level": level})
 
     return {
         "boss_defeated": True,
@@ -1372,7 +1031,7 @@ async def use_power_up(user_id: str, power_up_id: str) -> dict:
         await gamification_collection.update_one(
             {"user_id": user_id},
             {
-                "$inc": {f"power_ups.{power_up_id}": -1},
+                "$inc": {f"power_ups.{power_up_id}": -1, "total_powerups_used": 1},
                 "$set": {"double_xp_expires": expires_at.isoformat()},
             },
         )
@@ -1384,7 +1043,7 @@ async def use_power_up(user_id: str, power_up_id: str) -> dict:
         }
     await gamification_collection.update_one(
         {"user_id": user_id},
-        {"$inc": {f"power_ups.{power_up_id}": -1}},
+        {"$inc": {f"power_ups.{power_up_id}": -1, "total_powerups_used": 1}},
     )
     return {"success": True, "power_up": POWER_UPS[power_up_id]}
 
@@ -1415,7 +1074,7 @@ STREAK_FREEZE_COST = 50  # coins
 STREAK_REPAIR_COST = 100  # coins — restores a broken streak (Duolingo "Streak Repair")
 
 # Daily login bonus calendar (Duolingo-style escalating streak calendar).
-# Bonus pays out as XP (10 → 50) + coins; coins only unlock at tier 3+.
+# Bonus pays out as Diamonds (10 → 50) + coins; coins only unlock at tier 3+.
 DAILY_BONUS_TIERS = {
     0: {"coins": 0},
     1: {"coins": 0},
@@ -1533,7 +1192,7 @@ async def buy_streak_repair(user_id: str, user: dict = None) -> dict:
     return {"success": True, "cost": cost, "message": message}
 
 
-# ─── Streak Milestone Chests (real inventory rewards, not just XP) ───
+# ─── Streak Milestone Chests (real inventory rewards, not just Diamonds) ───
 
 # Research (Duolingo teardown): milestone celebrations must deliver *real*
 # in-game value, not symbolic confetti. Each chest grants functional items.
@@ -1552,7 +1211,7 @@ async def _check_streak_milestones(user_id: str, new_streak: int, old_streak: in
 
     Returns a dict describing the milestone chest opened (or empty). Mirrors
     Duolingo's "milestone = chest of real value" design: functional items
-    (freezes, XP boosts, coins) the user can hold.
+    (freezes, Diamonds boosts, coins) the user can hold.
     """
     profile = await gamification_collection.find_one({"user_id": user_id})
     if not profile:
@@ -1643,18 +1302,36 @@ LEAGUE_TIERS = [
     {"key": "diamond", "name": "Diamond",  "icon": "♦️", "min_xp": 10000,"color": "#B9F2FF"},
 ]
 
-
 def _league_week_id() -> str:
-    """ISO week id (Sunday boundary) so leagues reset weekly."""
+    """UTC ISO week id (Monday boundary). Single week definition for the
+    whole league system — do not introduce wall-clock/IST variants."""
     now = datetime.now(timezone.utc)
     iso_year, iso_week, _ = now.isocalendar()
     return f"{iso_year}-W{iso_week:02d}"
 
 
-def _league_for_xp(xp: int):
+def _naive_utc(dt):
+    """Strip tzinfo for arithmetic against naive Mongo datetimes.
+
+    The driver returns naive UTC (tz_aware=False) while code uses aware
+    `now`; subtracting mixed types raises TypeError. All datetimes here
+    are UTC by convention (see app/utils/timeutil.py), so dropping tzinfo
+    is comparison-safe. Returns None for unparseable input.
+    """
+    try:
+        if isinstance(dt, str):
+            dt = datetime.fromisoformat(dt)
+        if isinstance(dt, datetime) and dt.tzinfo is not None:
+            return dt.replace(tzinfo=None)
+        return dt if isinstance(dt, datetime) else None
+    except Exception:
+        return None
+
+
+def _league_for_xp(diamonds: int):
     tier = LEAGUE_TIERS[0]
     for t in LEAGUE_TIERS:
-        if xp >= t["min_xp"]:
+        if diamonds >= t["min_xp"]:
             tier = t
     return tier
 
@@ -1663,7 +1340,7 @@ async def get_league_status(user_id: str) -> dict:
     """Compute the user's weekly league tier + rank within their cohort.
 
     Cohort: all users with season_xp this week (stored in season_xp_collection
-    with season_id matching the weekly league id). Rank is by weekly XP.
+    with season_id matching the weekly league id). Rank is by weekly Diamonds.
     Mirrors Duolingo-style weekly reset + promotion/relegation.
     """
     week_id = _league_week_id()
@@ -1772,36 +1449,79 @@ async def get_challenges(user_id: str) -> dict:
 
 
 async def claim_challenge_reward(user_id: str, challenge_type: str, challenge_id: str) -> dict:
-    """Claim a completed challenge reward."""
-    profile = await gamification_collection.find_one({"user_id": user_id})
+    """Claim a completed challenge reward.
+
+    Atomic single-update claim: the array-filter matches only an
+    unclaimed+completed element, so concurrent double-claims collapse to
+    exactly one award (modified_count 0 => already claimed). Read-then-write
+    here would double-award under concurrent double-taps.
+    """
+    profile = await gamification_collection.find_one(
+        {"user_id": user_id}, {"diamonds": 1})
+    if not profile:
+        return {"success": False, "message": "Profile not found"}
     field = f"{challenge_type}_challenges"
-    challenges = profile.get(field, [])
+    # Need the reward amount; read is fine — the AWARD below is conditional.
+    full = await gamification_collection.find_one(
+        {"user_id": user_id}, {field: 1})
+    reward = 0
+    for ch in (full.get(field, []) if full else []):
+        if ch.get("id") == challenge_id and ch.get("completed"):
+            reward = int(ch.get("xp_reward", 0) or 0)
+            break
+    if not reward:
+        return {"success": False, "message": "Challenge not completed or already claimed"}
+    # The $elemMatch in the query is the mutex: the doc matches only while
+    # an unclaimed+completed element exists, so concurrent double-claims
+    # collapse to exactly one award. (modified_count can't be the signal —
+    # the unconditional $inc would mark every attempt modified.)
+    res = await gamification_collection.update_one(
+        {"user_id": user_id,
+         field: {"$elemMatch": {"id": challenge_id, "completed": True, "claimed": False}}},
+        {
+            "$set": {f"{field}.$[c].claimed": True},
+        },
+        array_filters=[{"c.id": challenge_id}],
+    )
+    if res.matched_count == 0:
+        return {"success": False, "message": "Challenge not completed or already claimed"}
+    # Award challenge reward through canonical pipeline (Gamification Law)
+    await award_bonus_xp(user_id, reward, reward // 5, "challenge_claim", {"challenge_id": challenge_id})
+    return {"success": True, "xp_earned": reward}
 
-    for ch in challenges:
-        if ch["id"] == challenge_id and ch["completed"] and not ch["claimed"]:
-            ch["claimed"] = True
-            await gamification_collection.update_one(
-                {"user_id": user_id},
-                {
-                    "$set": {field: challenges},
-                    "$inc": {"xp": ch["xp_reward"], "coins": ch["xp_reward"] // 5},
-                },
-            )
-            return {"success": True, "xp_earned": ch["xp_reward"]}
 
-    return {"success": False, "message": "Challenge not completed or already claimed"}
-
-
-async def get_leaderboard(limit: int = 10) -> list:
-    """Get the top users by XP."""
-    cursor = gamification_collection.find().sort("xp", -1).limit(limit)
+async def get_leaderboard(limit: int = 10, timeframe: str = "all", level_min: int | None = None, level_max: int | None = None) -> list:
+    """Top users by Diamonds. timeframe actually filters: weekly/monthly sort on
+    the period counters (which reset), all on lifetime diamonds."""
+    field = {"weekly": "weekly_league_xp", "monthly": "monthly_league_xp"}.get(
+        (timeframe or "all").lower(), "diamonds")
+    query: dict = {}
+    if level_min is not None or level_max is not None:
+        query["level"] = {}
+        if level_min is not None:
+            query["level"]["$gte"] = level_min
+        if level_max is not None:
+            query["level"]["$lte"] = level_max
+    cursor = gamification_collection.find(query).sort(field, -1).limit(limit)
 
     leaderboard = []
     async for doc in cursor:
+        level = doc.get("level") or _calculate_level(doc.get("diamonds", 0))
+        title, emoji = get_title_for_level(level)
+        rank_title, rank_emoji, rank_tier = voyage_rank_for_level(level)
+        color = get_level_color(level)
         leaderboard.append({
             "user_id": doc.get("user_id", ""),
-            "xp": doc.get("xp", 0),
-            "level": _calculate_level(doc.get("xp", 0)),
+            "diamonds": doc.get("diamonds", 0),
+            "period_xp": doc.get(field, 0),
+            "timeframe": (timeframe or "all").lower(),
+            "level": level,
+            "title": title,
+            "title_emoji": emoji,
+            "rank_title": rank_title,
+            "rank_emoji": rank_emoji,
+            "rank_tier": rank_tier,
+            "color": color,
             "streak": doc.get("streak", 0),
             "badges_count": len(doc.get("badges", [])),
         })
@@ -1809,8 +1529,73 @@ async def get_leaderboard(limit: int = 10) -> list:
     return leaderboard
 
 
+async def get_league_leaderboard(user_id: str, timeframe: str = "weekly", band_size: int = 5) -> dict:
+    """Level-band league leaderboard.
+
+    Groups users into bands of `band_size` levels. Sorts each band by the
+    requested timeframe counter. Marks top/bottom users with promotion/
+    demotion zones so the UI can render honest league state.
+    """
+    profile = await gamification_collection.find_one({"user_id": user_id})
+    if not profile:
+        profile = await initialize_gamification(user_id)
+    my_level = profile.get("level") or _calculate_level(profile.get("diamonds", 0))
+    band_start = ((my_level - 1) // band_size) * band_size + 1
+    band_end = band_start + band_size - 1
+    field = {"weekly": "weekly_league_xp", "monthly": "monthly_league_xp"}.get(
+        (timeframe or "weekly").lower(), "diamonds"
+    )
+    cursor = gamification_collection.find({
+        "level": {"$gte": band_start, "$lte": band_end}
+    }).sort(field, -1)
+
+    entries = []
+    async for doc in cursor:
+        level = doc.get("level") or _calculate_level(doc.get("diamonds", 0))
+        title, emoji = get_title_for_level(level)
+        rank_title, rank_emoji, rank_tier = voyage_rank_for_level(level)
+        color = get_level_color(level)
+        entries.append({
+            "user_id": doc.get("user_id", ""),
+            "diamonds": doc.get("diamonds", 0),
+            "period_xp": doc.get(field, 0),
+            "timeframe": (timeframe or "weekly").lower(),
+            "level": level,
+            "title": title,
+            "title_emoji": emoji,
+            "rank_title": rank_title,
+            "rank_emoji": rank_emoji,
+            "rank_tier": rank_tier,
+            "color": color,
+            "streak": doc.get("streak", 0),
+            "badges_count": len(doc.get("badges", [])),
+        })
+
+    total = len(entries)
+    promotion_cut = max(1, int(total * 0.1))
+    demotion_cut = total - max(1, int(total * 0.1))
+    for idx, entry in enumerate(entries):
+        if idx < promotion_cut:
+            entry["zone"] = "promotion"
+        elif idx >= demotion_cut:
+            entry["zone"] = "demotion"
+        else:
+            entry["zone"] = "safe"
+
+    my_index = next((i for i, e in enumerate(entries) if e["user_id"] == user_id), None)
+    return {
+        "entries": entries,
+        "user_index": my_index,
+        "user_rank": (my_index + 1) if my_index is not None else None,
+        "band_start": band_start,
+        "band_end": band_end,
+        "timeframe": (timeframe or "weekly").lower(),
+        "total": total,
+    }
+
+
 async def get_nearby_leaderboard(user_id: str, radius: int = 5, limit: int = 10) -> list:
-    """Relative leaderboard: users near *your* XP rank (not absolute top).
+    """Relative leaderboard: users near *your* Diamonds rank (not absolute top).
 
     Returns `radius` users above and below the caller's rank, plus the caller.
     Per the gamification literature, relative ("tiered") leaderboards keep
@@ -1819,23 +1604,33 @@ async def get_nearby_leaderboard(user_id: str, radius: int = 5, limit: int = 10)
     profile = await gamification_collection.find_one({"user_id": user_id})
     if not profile:
         profile = await initialize_gamification(user_id)
-    my_xp = profile.get("xp", 0)
+    my_xp = profile.get("diamonds", 0)
 
-    above = gamification_collection.find({"xp": {"$gt": my_xp}}).sort("xp", 1).limit(radius)
+    above = gamification_collection.find({"diamonds": {"$gt": my_xp}}).sort("diamonds", 1).limit(radius)
     below = (
-        gamification_collection.find({"xp": {"$lt": my_xp}})
-        .sort("xp", -1)
+        gamification_collection.find({"diamonds": {"$lt": my_xp}})
+        .sort("diamonds", -1)
         .limit(radius)
     )
 
     async def _compact(cursor):
         out = []
         async for doc in cursor:
+            level = _calculate_level(doc.get("diamonds", 0))
+            title, emoji = get_title_for_level(level)
+            rank_title, rank_emoji, rank_tier = voyage_rank_for_level(level)
+            color = get_level_color(level)
             out.append(
                 {
                     "user_id": doc.get("user_id", ""),
-                    "xp": doc.get("xp", 0),
-                    "level": _calculate_level(doc.get("xp", 0)),
+                    "diamonds": doc.get("diamonds", 0),
+                    "level": level,
+                    "title": title,
+                    "title_emoji": emoji,
+                    "rank_title": rank_title,
+                    "rank_emoji": rank_emoji,
+                    "rank_tier": rank_tier,
+                    "color": color,
                     "streak": doc.get("streak", 0),
                     "badges_count": len(doc.get("badges", [])),
                 }
@@ -1844,15 +1639,31 @@ async def get_nearby_leaderboard(user_id: str, radius: int = 5, limit: int = 10)
 
     above_rows = await _compact(above)
     below_rows = await _compact(below)
+    my_level = _calculate_level(my_xp)
+    my_title, my_emoji = get_title_for_level(my_level)
+    my_rank, my_rank_emoji, my_tier = voyage_rank_for_level(my_level)
+    my_color = get_level_color(my_level)
     me = {
         "user_id": user_id,
-        "xp": my_xp,
-        "level": _calculate_level(my_xp),
+        "diamonds": my_xp,
+        "level": my_level,
+        "title": my_title,
+        "title_emoji": my_emoji,
+        "rank_title": my_rank,
+        "rank_emoji": my_rank_emoji,
+        "rank_tier": my_tier,
+        "color": my_color,
         "streak": profile.get("streak", 0),
         "badges_count": len(profile.get("badges", [])),
         "is_me": True,
+        "rank": len(below_rows) + 1,
     }
-    return below_rows + [me] + above_rows
+    return {
+        "entries": below_rows + [me] + above_rows,
+        "user_rank": len(below_rows) + 1,
+        "user_xp": my_xp,
+        "next_entry_xp": above_rows[0]["diamonds"] if above_rows else my_xp,
+    }
 
 
 async def get_streak_status(user_id: str) -> dict:
@@ -1897,14 +1708,14 @@ async def get_daily_bonus_history(user_id: str, limit: int = 30) -> dict:
     login_streak = profile.get("daily_bonus_login_streak", 0)
     last_date = profile.get("last_daily_bonus_date")
 
-    # 60-day calendar grid (most recent 60 days), each cell flagged claimed + xp.
+    # 60-day calendar grid (most recent 60 days), each cell flagged claimed + diamonds.
     calendar = _daily_bonus_calendar_grid(history_sorted, login_streak)
 
     return {
         "login_streak": login_streak,
         "last_claimed": last_date,
         "history": [
-            {**h, "count": h.get("xp", 0)} for h in history_sorted[:limit]
+            {**h, "count": h.get("diamonds", 0)} for h in history_sorted[:limit]
         ],
         "calendar": calendar,
     }
@@ -1913,7 +1724,7 @@ async def get_daily_bonus_history(user_id: str, limit: int = 30) -> dict:
 def _daily_bonus_calendar_grid(history: list, login_streak: int, days: int = 60) -> list:
     """Build a 60-day login-bonus calendar grid for heatmaps.
 
-    Each entry: {date, claimed, xp, coins, badge}. Unclaimed prior days count
+    Each entry: {date, claimed, diamonds, coins, badge}. Unclaimed prior days count
     as a broken-streak break; today is flagged separately for the frontend.
     """
     today = datetime.now(timezone.utc).date()
@@ -1926,7 +1737,7 @@ def _daily_bonus_calendar_grid(history: list, login_streak: int, days: int = 60)
         entry = {
             "date": d_key,
             "claimed": h is not None,
-            "xp": h.get("xp", 0) if h else 0,
+            "diamonds": h.get("diamonds", 0) if h else 0,
             "coins": h.get("coins", 0) if h else 0,
             "badge": h.get("badge") if h else None,
         }
@@ -1969,42 +1780,51 @@ async def claim_daily_bonus(user_id: str) -> dict:
 
     bonus_tier = min(login_streak, 6)
     bonus_rewards = DAILY_BONUS_TIERS[bonus_tier]
+    badge_unlocked = None
     if random.random() < 0.1 or bonus_tier >= 5:
-        badge_id = f"daily_bonus_{random.randint(1, 100)}"
-        badge_unlocked = {
-            "id": badge_id,
-            "name": "Lucky Streak",
-            "description": "Unlocked from daily bonus!",
-            "icon": "🍀",
-        }
-        badges = profile.get("badges", [])
-        badges.append({**badge_unlocked, "earned_at": now.isoformat()})
+        # LAW: badges are canonical string IDs, awarded idempotently.
+        # The old path appended ad-hoc objects with random ids (unbounded
+        # growth + crashed profile reads on unhashable dicts).
         await gamification_collection.update_one(
             {"user_id": user_id},
-            {"$set": {"badges": badges}}
+            {"$addToSet": {"badges": "lucky_streak"}},
         )
+        badge_unlocked = {"id": "lucky_streak", **BADGES["lucky_streak"]}
 
     total_xp = xp_bonus + streak_bonus
     coin_reward = bonus_rewards.get("coins", 0)
 
-    await gamification_collection.update_one(
-        {"user_id": user_id},
+    # Atomic daily claim: the date guard in the filter collapses concurrent
+    # double-claims to exactly one award (same race family as challenge
+    # claims and world completions).
+    claimed = await gamification_collection.update_one(
+        {"user_id": user_id, "last_daily_bonus_date": {"$ne": today}},
         {
             "$set": {
                 "last_daily_bonus_date": today,
                 "daily_bonus_login_streak": login_streak + 1,
             },
-            "$inc": {"xp": total_xp, "coins": coin_reward},
             "$push": {
                 "daily_bonus_history": {
                     "date": today,
-                    "xp": total_xp,
+                    "diamonds": total_xp,
                     "coins": coin_reward,
                     "badge": badge_unlocked["id"] if badge_unlocked else None,
                 }
             },
         }
     )
+    if claimed.matched_count == 0:
+        return {
+            "claimed": False,
+            "xp_bonus": 0,
+            "streak_bonus": 0,
+            "badge_unlocked": None,
+            "message": "Already claimed today",
+        }
+
+    # Award daily bonus through canonical pipeline (Gamification Law)
+    await award_bonus_xp(user_id, total_xp, coin_reward, "daily_bonus", {"login_streak": login_streak + 1})
 
     return {
         "claimed": True,
@@ -2015,3 +1835,222 @@ async def claim_daily_bonus(user_id: str) -> dict:
         "bonus_tier": bonus_tier,
         "badge_unlocked": badge_unlocked,
     }
+
+
+# ─── Combo System ───
+
+COMBO_MULTIPLIERS = [
+    (0, 1.0),
+    (3, 1.25),
+    (5, 1.5),
+    (8, 2.0),
+    (12, 2.5),
+    (20, 3.0),
+]
+
+COMBO_WINDOW_SECONDS = 90
+
+# ─── Daily Login Calendar ───
+
+DAILY_LOGIN_REWARDS = [
+    {"day": 1, "diamonds": 10,  "coins": 5,  "power_up": None,         "label": "Day 1"},
+    {"day": 2, "diamonds": 15,  "coins": 10, "power_up": "hint_reveal", "label": "Day 2"},
+    {"day": 3, "diamonds": 25,  "coins": 15, "power_up": None,         "label": "Day 3"},
+    {"day": 4, "diamonds": 40,  "coins": 25, "power_up": "speed_boost","label": "Day 4"},
+    {"day": 5, "diamonds": 60,  "coins": 40, "power_up": None,         "label": "Day 5"},
+    {"day": 6, "diamonds": 100, "coins": 60, "power_up": "double_xp",  "label": "Day 6"},
+    {"day": 7, "diamonds": 200, "coins": 100,"power_up": "skip_boss",  "label": "Day 7 — Jackpot"},
+]
+
+# ─── Achievement Chains ───
+
+ACHIEVEMENT_CHAINS = {
+    "interview_mastery": {
+        "name": "Interview Mastery",
+        "description": "Complete all interview badges",
+        "emoji": "🎯",
+        "badges_required": ["first_interview", "interview_10", "interview_50", "perfect_score", "high_score_streak"],
+        "reward": {"diamonds": 500, "coins": 200, "title": "Interview Master"},
+    },
+    "coding_mastery": {
+        "name": "Coding Mastery",
+        "description": "Complete all coding badges",
+        "emoji": "💻",
+        "badges_required": ["first_coding", "coding_10", "coding_25", "coding_50", "coding_100", "hard_problem", "first_accepted"],
+        "reward": {"diamonds": 800, "coins": 350, "title": "Code Legend"},
+    },
+    "streak_mastery": {
+        "name": "Streak Mastery",
+        "description": "Earn all streak badges",
+        "emoji": "🔥",
+        "badges_required": ["streak_3", "streak_7", "streak_30"],
+        "reward": {"diamonds": 300, "coins": 150, "title": "Unstoppable"},
+    },
+    "aptitude_mastery": {
+        "name": "Aptitude Mastery",
+        "description": "Complete all aptitude badges",
+        "emoji": "🧮",
+        "badges_required": ["first_aptitude", "aptitude_perfect", "aptitude_50"],
+        "reward": {"diamonds": 400, "coins": 180, "title": "Aptitude Wizard"},
+    },
+}
+
+
+def _combo_multiplier(combo: int) -> float:
+    mult = 1.0
+    for threshold, m in COMBO_MULTIPLIERS:
+        if combo >= threshold:
+            mult = m
+    return mult
+
+
+async def _check_achievement_chains(user_id: str, badges: list) -> list:
+    profile = await gamification_collection.find_one({"user_id": user_id})
+    if not profile:
+        return []
+    existing = set(profile.get("achievements", []))
+    new_achievements = []
+    for chain_id, chain in ACHIEVEMENT_CHAINS.items():
+        if chain_id in existing:
+            continue
+        required = set(chain.get("badges_required", []))
+        if required.issubset(set(badges or [])):
+            new_achievements.append(chain)
+            await gamification_collection.update_one(
+                {"user_id": user_id},
+                {"$push": {"achievements": chain_id}},
+            )
+            # Pay the declared chain reward — an "achievement" whose reward is
+            # shown but never paid is a lie (BOUNTYCODE_GAME_ENGINE_V2 §10).
+            # Diamonds + coins flow through the canonical pipeline + ledger.
+            reward = chain.get("reward", {})
+            await award_bonus_xp(
+                user_id,
+                int(reward.get("diamonds", 0) or 0),
+                int(reward.get("coins", 0) or 0),
+                f"achievement_{chain_id}",
+                {"chain_id": chain_id, "title": reward.get("title")},
+            )
+            if reward.get("title"):
+                titles = list(profile.get("titles", []) or [])
+                if reward["title"] not in titles:
+                    titles.append(reward["title"])
+                    await gamification_collection.update_one(
+                        {"user_id": user_id},
+                        {"$set": {"titles": titles}},
+                    )
+    return new_achievements
+
+
+async def get_combo_status(user_id: str) -> dict:
+    profile = await gamification_collection.find_one({"user_id": user_id})
+    if not profile:
+        return {"current_combo": 0, "max_combo": 0, "multiplier": 1.0, "combo_decay_seconds": 0, "decay_warning": False}
+    now = datetime.now(timezone.utc)
+    last_combo_at = profile.get("last_combo_at")
+    decay_seconds = 0
+    decay_warning = False
+    if last_combo_at:
+        try:
+            if isinstance(last_combo_at, str):
+                last_combo_at = datetime.fromisoformat(last_combo_at)
+            delta = (_naive_utc(now) - _naive_utc(last_combo_at)).total_seconds()
+            decay_seconds = max(0, int(COMBO_WINDOW_SECONDS - delta))
+            decay_warning = decay_seconds <= 10 and decay_seconds > 0
+        except Exception:
+            decay_seconds = 0
+            decay_warning = False
+    return {
+        "current_combo": profile.get("current_combo", 0),
+        "max_combo": profile.get("max_combo", 0),
+        "multiplier": _combo_multiplier(profile.get("current_combo", 0)),
+        "combo_decay_seconds": decay_seconds,
+        "decay_warning": decay_warning,
+    }
+
+
+async def get_daily_login_calendar(user_id: str, days: int = 7) -> dict:
+    profile = await gamification_collection.find_one({"user_id": user_id})
+    if not profile:
+        return {"streak": 0, "calendar": [], "next_reward": DAILY_LOGIN_REWARDS[0]}
+    login_streak = profile.get("daily_login_streak", 0)
+    last_login = profile.get("last_daily_login_date")
+    calendar = []
+    for reward in DAILY_LOGIN_REWARDS[:days]:
+        claimed = False
+        if last_login:
+            try:
+                last_d = datetime.fromisoformat(last_login).date()
+                claimed = login_streak >= reward["day"]
+            except Exception:
+                claimed = False
+        calendar.append({**reward, "claimed": claimed})
+    next_reward = None
+    for reward in DAILY_LOGIN_REWARDS:
+        if not any(c["day"] == reward["day"] and c["claimed"] for c in calendar):
+            next_reward = reward
+            break
+    return {
+        "streak": login_streak,
+        "calendar": calendar,
+        "next_reward": next_reward,
+    }
+
+
+async def claim_daily_login(user_id: str) -> dict:
+    now = datetime.now(timezone.utc)
+    today = now.strftime("%Y-%m-%d")
+    profile = await gamification_collection.find_one({"user_id": user_id})
+    if not profile:
+        profile = await initialize_gamification(user_id)
+    last_login = profile.get("last_daily_login_date")
+    if last_login == today:
+        return {"claimed": False, "message": "Already claimed today", "streak": profile.get("daily_login_streak", 0)}
+    yesterday = (now - timedelta(days=1)).strftime("%Y-%m-%d")
+    login_streak = profile.get("daily_login_streak", 0)
+    if last_login == yesterday:
+        login_streak += 1
+    elif last_login != today:
+        login_streak = 1
+    reward = DAILY_LOGIN_REWARDS[min(login_streak, len(DAILY_LOGIN_REWARDS)) - 1]
+    updates = {
+        "$set": {
+            "last_daily_login_date": today,
+            "daily_login_streak": login_streak,
+        },
+    }
+    if reward.get("power_up"):
+        updates["$inc"] = {f"power_ups.{reward['power_up']}": 1}
+    await gamification_collection.update_one({"user_id": user_id}, updates)
+    # Award daily login Diamonds/coins through canonical pipeline (Gamification Law)
+    await award_bonus_xp(user_id, reward["diamonds"], reward["coins"], "daily_login", {"login_streak": login_streak})
+    return {
+        "claimed": True,
+        "streak": login_streak,
+        "reward": reward,
+        "diamonds": reward["diamonds"],
+        "coins": reward["coins"],
+    }
+
+
+async def get_achievement_chains(user_id: str) -> dict:
+    profile = await gamification_collection.find_one({"user_id": user_id})
+    if not profile:
+        profile = await initialize_gamification(user_id)
+    badges = profile.get("badges", [])
+    achievements = profile.get("achievements", [])
+    result = []
+    for chain_id, chain in ACHIEVEMENT_CHAINS.items():
+        required = set(chain.get("badges_required", []))
+        progress = {
+            "chain_id": chain_id,
+            "name": chain["name"],
+            "description": chain["description"],
+            "emoji": chain["emoji"],
+            "completed": chain_id in achievements,
+            "progress": len(required & set(badges)),
+            "total": len(required),
+            "reward": chain.get("reward"),
+        }
+        result.append(progress)
+    return {"chains": result}

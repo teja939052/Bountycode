@@ -102,6 +102,15 @@ APTITUDE_SUB_CATEGORY_GUIDELINES = {
 - % change, ratio, average, growth rate (CAGR)
 - Approximation: "closest to" options, eliminate by magnitude
 - Multi-chart correlation (table + pie, line + bar)""",
+
+    "time-work": """Focus on WORK RATE problems:
+- Individual rates: A does work in x days → rate = 1/x
+- Combined work: rates add, not times; use (xy)/(x+y) for two workers
+- Alternating work: track cumulative work across cycles, handle partial days
+- Pipes & cisterns: filling/leaking rates, negative rates for outlets
+- Efficiency changes: "A is twice as efficient as B" → rate(A) = 2×rate(B)
+- Man-days/work-days: total work = workers × days × hours/day
+- Include questions where students commonly add times instead of rates""",
 }
 
 

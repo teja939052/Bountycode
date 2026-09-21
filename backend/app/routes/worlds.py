@@ -7,22 +7,26 @@ World
 Persistence
   completed_competencies["<world_id>:<level_id>"] in gamification collection
   skill_graph via update_skill_score (category derived from canonical_skill)
-  XP via record_practice(activity_type=<world_id>)
+  Diamonds via record_practice(activity_type=<world_id>)
   SRS via srs_cards_collection (canonical spaced_repetition)
 
 Routes (all under /api/v1/worlds, auth required):
   GET  /{world_id}                  → world definition + user progress overlay
   GET  /{world_id}/progress         → progress only (character pos, unlocked)
   POST /{world_id}/levels/{id}/attempt  → deterministic judge + hint ladder
-  POST /{world_id}/levels/{id}/complete → mark done, XP, mastery, unlock
+  POST /{world_id}/levels/{id}/complete → mark done, Diamonds, mastery, unlock
   POST /{world_id}/levels/{id}/hint     → record hint usage (instrumentation)
 """
 
 from __future__ import annotations
 
 import re
+import asyncio
+import logging
 from datetime import datetime, timezone
 from typing import Optional
+
+logger = logging.getLogger(__name__)
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
@@ -139,6 +143,173 @@ def judge_level(lvl: LevelBase, code: str) -> tuple[bool, str, Optional[int]]:
     return True, lvl.success.world_reaction, None
 
 
+# ─────────────────────────────────────────────
+# Real judge — grade journeys by execution, not just regex
+# ─────────────────────────────────────────────
+
+_SUPPORTED_RUNTIMES = {"python", "java", "cpp", "c"}
+
+
+def _normalize_answer(s: str) -> str:
+    return " ".join(str(s or "").strip().lower().split())
+
+
+def _looks_like_runnable_code(s: str) -> bool:
+    s = (s or "").strip()
+    if not s:
+        return False
+    if "\n" in s:
+        return True
+    return bool(re.search(r"=|\+|-|\*|/|print\s*\(|def\s+|return\s+|\binput\s*\(", s))
+
+
+def _text_pass(actual: str, expected: str) -> bool:
+    """Tolerant answer comparison for predict/retrieval/break_step.
+
+    Exact-normalized match always passes. Short canonical answers (a number or a
+    word) must match in full so '18' can never pass by containment inside
+    'the tip is 10'. Longer answers may pass by containment either way.
+    """
+    a = _normalize_answer(actual)
+    e = _normalize_answer(expected)
+    if not e or not a:
+        return False
+    if a == e:
+        return True
+    if len(e) <= 6:
+        return False
+    return e in a or a in e
+
+
+async def _run_student_code(code: str, language: str) -> dict | None:
+    """Execute via the canonical judge engine.
+
+    Returns the engine result dict on success, or None when the execution
+    backend is unavailable (infra). Callers must fall back to static grading —
+    a student must never be failed because Piston is down.
+    """
+    try:
+        from app.services.code_executor import CodeExecutionEngine
+        engine = CodeExecutionEngine()
+        lang = (language or "python").lower()
+        if lang not in _SUPPORTED_RUNTIMES:
+            lang = "python"
+        result = await engine.execute_code(code or "", lang, "", timeout=5)
+        return result if isinstance(result, dict) and "success" in result else None
+    except Exception:
+        return None
+
+
+def _failure_error(result: dict) -> str:
+    """Best human-readable failure reason from a run result dict."""
+    return (result.get("error") or result.get("compile_error") or result.get("stderr") or "").strip()
+
+
+def _evidence(student: dict | None, reference: dict | None = None, **extra) -> dict | None:
+    """Build the run-output evidence block shown to the student.
+
+    Only present when a real execution actually happened. Contains what the
+    student's program printed/raised plus the expected ground truth, so a wrong
+    answer becomes a lesson instead of just a red message.
+    """
+    if not student:
+        return None
+    return {
+        "stdout": (student.get("stdout") or "").strip(),
+        "stderr": (student.get("stderr") or "").strip(),
+        "error": _failure_error(student),
+        "expected": (reference.get("stdout") or "").strip() if reference else None,
+        **extra,
+    }
+
+
+async def _judge_execution(
+    student_code: str, reference_code: str, language: str
+) -> tuple[bool, str, dict | None] | None:
+    """Run the student's code AND the canonical answer; compare normalized stdout.
+
+    Returns (passed, message, evidence) when the reference actually ran (ground
+    truth), or None when the backend is unavailable / the reference is not runnable.
+    """
+    if not _looks_like_runnable_code(reference_code):
+        return None
+    student, reference = await asyncio.gather(
+        _run_student_code(student_code, language),
+        _run_student_code(reference_code, language),
+    )
+    if student is None or reference is None:
+        return None
+    # The canonical answer must run clean; if it does not, do not trust execution.
+    if not reference.get("success"):
+        return None
+    expected_out = _normalize_answer(reference.get("stdout"))
+    if not student.get("success"):
+        err = _failure_error(student)
+        return False, f"Your code failed to run{': ' + err if err else '.'}", _evidence(student, reference)
+    actual_out = _normalize_answer(student.get("stdout"))
+    if actual_out == expected_out:
+        return True, "Correct! Your program runs and produces the expected output.", _evidence(student, reference)
+    # A canonical answer that prints nothing cannot distinguish implementations —
+    # a clean run is sufficient evidence then.
+    if not expected_out:
+        return True, "Correct! Your program runs cleanly.", _evidence(student, reference)
+    return (
+        False,
+        f"Not yet. Your program printed: «{actual_out or '(nothing)'}». Expected: «{expected_out}».",
+        _evidence(student, reference),
+    )
+
+
+async def _judge_code_run(
+    student_code: str, language: str, lvl: LevelBase
+) -> tuple[bool, str, Optional[int], dict | None] | None:
+    """Execution + authored-pattern judge for code/build steps.
+
+    Runs the student's code; only then applies the level's required_patterns so a
+    payload that merely matches text but crashes is never accepted.
+    Returns None when the backend is unavailable (regex-only fallback upstream).
+    """
+    run = await _run_student_code(student_code, language)
+    if run is None:
+        return None
+    if not run.get("success"):
+        err = _failure_error(run)
+        return False, f"Your code failed to run{': ' + err if err else '.'}", 0, _evidence(run)
+    passed, message, hint_idx = judge_level(lvl, student_code)
+    return passed, message, hint_idx, _evidence(run)
+
+
+async def _judge_break_step(
+    student_code: str, broken_code: str, expected_failure: str, language: str
+) -> tuple[bool, str, dict | None]:
+    """Grade the student's prediction of what happens when broken code runs.
+
+    Grounds truth in the ACTUAL runtime failure when the engine is available;
+    falls back to the authored expected_failure (tolerant text match) otherwise.
+    Accepts either source of truth so an authored expectation that disagrees with
+    the real interpreter does not penalize the student.
+    """
+    truth = _normalize_answer(expected_failure)
+    truth_hits = bool(truth) and _text_pass(student_code, truth)
+    run = await _run_student_code(broken_code, language)
+    if run is None:
+        if truth_hits:
+            return True, "Correct! That is exactly what happens.", None
+        return False, f"Not quite. The expected failure is: {truth or 'a runtime error'}. Try again.", None
+    if run.get("success"):
+        # Broken code ran clean — the failure is conceptual, so use the authored truth.
+        if truth_hits:
+            return True, "Correct!", _evidence(run)
+        return False, f"Not quite. The expected failure is: {truth or 'a runtime error'}. Try again.", _evidence(run)
+    err = _failure_error(run)
+    types = re.findall(r"\b([A-Z][A-Za-z_]*Error)\b", err)
+    failure_type = types[-1] if types else err
+    evidence = _evidence(run, expected=truth or None, error_type=failure_type)
+    if _text_pass(student_code, failure_type) or truth_hits:
+        return True, f"Correct! Running it raises {failure_type}.", evidence
+    return False, f"Not quite. Running the code raises: {failure_type[:200]}. Try again.", evidence
+
+
 def stars_for_entry(entry: Dict[str, Any]) -> int:
     """1-3 stars from persisted evidence (0-100 best score + hints used).
 
@@ -233,10 +404,10 @@ async def _record_skill_touch(user_id: str, canonical_skill: str, passed: bool):
         pass
 
 
-async def _award_xp(user_id: str, world_id: str, xp: int, meta: dict | None = None, role: str = "sde"):
-    """Award XP for a world-level completion via the canonical gamification service.
+async def _award_xp(user_id: str, world_id: str, diamonds: int, meta: dict | None = None, role: str = "sde"):
+    """Award Diamonds for a world-level completion via the canonical gamification service.
 
-    LAW: record_practice is the ONLY writer of XP. There is no fallback
+    LAW: record_practice is the ONLY writer of Diamonds. There is no fallback
     $inc/$set path — a silent fallback is how mastery got polluted, and a
     smaller wrong number is worse than an explicit pending flag.
 
@@ -248,7 +419,7 @@ async def _award_xp(user_id: str, world_id: str, xp: int, meta: dict | None = No
 
     On engine failure the caller persists the completion entry with
     rewards_pending=True and returns completed:true + rewards_pending:true
-    (entry saved, XP missing but flagged, never silently short). Raises.
+    (entry saved, Diamonds missing but flagged, never silently short). Raises.
     Skill-graph mastery is NOT affected (fixed 85/True via
     ``_record_skill_touch``); map stars are NOT affected (entry best_score).
     Returns the ``record_practice`` result (with ``xp_gained``).
@@ -265,12 +436,12 @@ async def _award_xp(user_id: str, world_id: str, xp: int, meta: dict | None = No
     # routinely larger by design (streak / first-of-day / combo / crit).
     _log.debug(
         "xp_award user=%s world=%s level=%s nominal=%s stored=%s",
-        user_id, world_id, meta.get("level_id"), xp, stored,
+        user_id, world_id, meta.get("level_id"), diamonds, stored,
     )
-    if stored is not None and int(stored) < int(xp):
+    if stored is not None and int(stored) < int(diamonds):
         _log.warning(
             "xp_underpay user=%s world=%s level=%s nominal=%s stored=%s",
-            user_id, world_id, meta.get("level_id"), xp, stored,
+            user_id, world_id, meta.get("level_id"), diamonds, stored,
         )
     return result
 
@@ -307,7 +478,7 @@ async def _build_progress(world: World, user_id: str) -> dict:
                     "mastery_before": prog.get("mastery_before"),
                     "mastery_after": prog.get("mastery_after"),
                     "unlocked": _is_unlocked(lvl.id, all_ids, completed, world_prefix),
-                    "xp": lvl.success.xp if isinstance(lvl, LevelBase) else 0,
+                    "diamonds": lvl.success.diamonds if isinstance(lvl, LevelBase) else 0,
                 }
             )
 
@@ -339,6 +510,7 @@ async def _build_progress(world: World, user_id: str) -> dict:
 
 class AttemptRequest(BaseModel):
     code: str = ""
+    language: str = "python"
     time_spent_seconds: int = 0
     step_type: str = "code"
 
@@ -350,13 +522,33 @@ class HintRequest(BaseModel):
 
 @router.get("/{world_id}")
 async def get_world_view(world_id: str, user=Depends(get_current_user)):
-    """World definition with per-level unlocked/completed overlay."""
+    """World definition with per-level unlocked/completed overlay.
+
+    Levels are ordered by relevance to the student's target_role and
+    target_company when those are set on the user profile. Canonical
+    order is preserved within each relevance bucket.
+    """
     world = get_world(world_id)
     progress = await _build_progress(world, user["id"])
+    target_role = (user.get("target_role") or user.get("role") or "").strip().lower()
+    target_company = (user.get("target_company") or "").strip().lower()
+
+    def _relevance(lvl):
+        role_match = bool(target_role and getattr(lvl, "role_relevance", None) and target_role in (lvl.role_relevance or "").lower())
+        company_match = bool(target_company and getattr(lvl, "company_relevance", None) and target_company in (lvl.company_relevance or "").lower())
+        if role_match and company_match:
+            return 0
+        if role_match:
+            return 1
+        if company_match:
+            return 2
+        return 3
+
     towns_out = []
     for town in world.towns:
+        sorted_levels = sorted(town.levels, key=lambda l: (_relevance(l), l.order))
         levels_out = []
-        for lvl in town.levels:
+        for lvl in sorted_levels:
             ov = next((x for x in progress["levels"] if x["id"] == lvl.id), {})
             levels_out.append(
                 {
@@ -369,19 +561,23 @@ async def get_world_view(world_id: str, user=Depends(get_current_user)):
                     "mental_model": lvl.mental_model or lvl.concept,
                     "canonical_skill": lvl.canonical_skill,
                     "maps_to_competency": lvl.maps_to_competency,
+                    "role_relevance": getattr(lvl, "role_relevance", None),
+                    "company_relevance": getattr(lvl, "company_relevance", None),
                     "story": lvl.story.model_dump() if hasattr(lvl.story, "model_dump") else lvl.story.dict(),
                     "tutor": lvl.tutor.model_dump() if hasattr(lvl.tutor, "model_dump") else lvl.tutor.dict(),
                     "discover": lvl.discover.model_dump() if hasattr(lvl.discover, "model_dump") else lvl.discover.dict(),
                     "manipulate": lvl.manipulate.model_dump() if hasattr(lvl.manipulate, "model_dump") else lvl.manipulate.dict(),
                     "predict": lvl.predict.model_dump() if hasattr(lvl, "predict") and lvl.predict else None,
                     "build": lvl.build.model_dump() if hasattr(lvl, "build") and lvl.build else None,
-                    "break": lvl.break_step.model_dump() if hasattr(lvl, "break_step") and lvl.break_step else None,
+                    "break_step": lvl.break_step.model_dump() if hasattr(lvl, "break_step") and lvl.break_step else None,
                     "debug": lvl.debug.model_dump() if hasattr(lvl, "debug") and lvl.debug else None,
                     "code": lvl.code.model_dump() if hasattr(lvl.code, "model_dump") else lvl.code.dict(),
                     "checks": lvl.checks.model_dump() if hasattr(lvl.checks, "model_dump") else lvl.checks.dict(),
                     "hints": lvl.hints,
                     "retrieval": lvl.retrieval.model_dump() if hasattr(lvl, "retrieval") and lvl.retrieval else None,
                     "transfer": lvl.transfer.model_dump() if hasattr(lvl, "transfer") and lvl.transfer else None,
+                    "mastery": getattr(lvl, "mastery", None),
+                    "mastery_evidence": getattr(lvl, "mastery_evidence", []),
                     "mastery_threshold": lvl.mastery_threshold,
                     "estimated_minutes": lvl.estimated_minutes,
                     "success": lvl.success.model_dump() if hasattr(lvl.success, "model_dump") else lvl.success.dict(),
@@ -389,7 +585,7 @@ async def get_world_view(world_id: str, user=Depends(get_current_user)):
                     "unlocked": ov.get("unlocked", False),
                     "score": ov.get("score", 0),
                     "attempts": ov.get("attempts", 0),
-                    "xp": ov.get("xp", lvl.success.xp),
+                    "diamonds": ov.get("diamonds", lvl.success.diamonds),
                 }
             )
         town_payload = town.model_dump() if hasattr(town, "model_dump") else town.dict()
@@ -402,6 +598,11 @@ async def get_world_view(world_id: str, user=Depends(get_current_user)):
         "world": {**world_out, "towns": towns_out},
         "progress": progress,
         "mastery": {_canonical_skill_for_level(world.towns[0].levels[0]) if world.towns and world.towns[0].levels else "coding.variables": mastery},
+        "content_routing": {
+            "target_role": target_role or None,
+            "target_company": target_company or None,
+            "sort_key": "role_relevance, company_relevance, order",
+        },
     }
 
 
@@ -450,22 +651,86 @@ async def attempt_level(world_id: str, level_id: str, req: AttemptRequest, user=
         raise HTTPException(status_code=403, detail="Level locked. Complete previous levels first.")
 
     mastery_before = await _get_skill_score(user["id"])
-    step_type = getattr(req, "step_type", "code") or "code"
+    step_type = (getattr(req, "step_type", "code") or "code").strip().lower()
+    language = (req.language or "python").strip().lower()
+    if language not in _SUPPORTED_RUNTIMES:
+        language = "python"
 
-    if step_type == "predict" and hasattr(lvl, "predict") and lvl.predict:
-        passed = req.code.strip().lower() == lvl.predict.answer.strip().lower()
-        message = lvl.predict.explanation or ("Correct!" if passed else f"Not quite. Expected: {lvl.predict.answer}")
-        hint_idx = None
-    elif step_type == "retrieval" and hasattr(lvl, "retrieval") and lvl.retrieval:
-        passed = req.code.strip().lower() == lvl.retrieval.answer.strip().lower()
-        message = lvl.retrieval.explanation or ("Correct!" if passed else f"Not quite. Expected: {lvl.retrieval.answer}")
-        hint_idx = None
-        if passed:
-            await _ensure_srs_card(user["id"], f"{world_id}:{level_id}:retrieval", is_correct=True, difficulty="easy")
+    passed = False
+    message = ""
+    hint_idx: Optional[int] = None
+    evidence: dict | None = None
+
+    if step_type == "predict":
+        if (hasattr(lvl, "predict") and lvl.predict and (lvl.predict.answer or "").strip()):
+            # Real input, real canonical grading — tolerant comparator so a
+            # student who nails the failure type is not punished for phrasing.
+            passed = _text_pass(req.code, lvl.predict.answer)
+            message = lvl.predict.explanation or ("Correct!" if passed else f"Not quite. Expected: {lvl.predict.answer}")
         else:
-            await _ensure_srs_card(user["id"], f"{world_id}:{level_id}:retrieval", is_correct=False, difficulty="medium")
+            logger.warning("content_fallback world=%s level=%s step_type=predict reason=missing_content", world_id, level_id)
+            passed, message, hint_idx = judge_level(lvl, req.code)
+    elif step_type == "manipulate":
+        if (hasattr(lvl, "manipulate") and lvl.manipulate and (lvl.manipulate.answer or "").strip()):
+            passed = _text_pass(req.code, lvl.manipulate.answer)
+            message = lvl.manipulate.hint or ("Correct!" if passed else f"Not quite. Expected: {lvl.manipulate.answer}")
+            hint_idx = None
+        else:
+            logger.warning("content_fallback world=%s level=%s step_type=manipulate reason=missing_content", world_id, level_id)
+            passed, message, hint_idx = judge_level(lvl, req.code)
+    elif step_type == "retrieval":
+        if (hasattr(lvl, "retrieval") and lvl.retrieval and (lvl.retrieval.answer or "").strip()):
+            passed = _text_pass(req.code, lvl.retrieval.answer)
+            message = lvl.retrieval.explanation or ("Correct!" if passed else f"Not quite. Expected: {lvl.retrieval.answer}")
+            hint_idx = None
+            if passed:
+                await _ensure_srs_card(user["id"], f"{world_id}:{level_id}:retrieval", is_correct=True, difficulty="easy")
+            else:
+                await _ensure_srs_card(user["id"], f"{world_id}:{level_id}:retrieval", is_correct=False, difficulty="medium")
+        else:
+            logger.warning("content_fallback world=%s level=%s step_type=retrieval reason=missing_content", world_id, level_id)
+            passed, message, hint_idx = judge_level(lvl, req.code)
+    elif step_type == "transfer":
+        if (hasattr(lvl, "transfer") and lvl.transfer and (lvl.transfer.answer or "").strip()):
+            verdict = await _judge_execution(req.code, lvl.transfer.answer, language)
+            if verdict is not None:
+                passed, message, evidence = verdict
+            elif _text_pass(req.code, lvl.transfer.answer):
+                passed, message = True, "Correct!"
+            else:
+                passed, message, hint_idx = judge_level(lvl, req.code)
+        else:
+            logger.warning("content_fallback world=%s level=%s step_type=transfer reason=missing_content", world_id, level_id)
+            passed, message, hint_idx = judge_level(lvl, req.code)
+    elif step_type == "break_step":
+        if (hasattr(lvl, "break_step") and lvl.break_step):
+            passed, message, evidence = await _judge_break_step(req.code, lvl.break_step.broken_code, lvl.break_step.expected_failure, language)
+        else:
+            logger.warning("content_fallback world=%s level=%s step_type=break_step reason=missing_content", world_id, level_id)
+            passed, message, hint_idx = judge_level(lvl, req.code)
+    elif step_type == "debug":
+        if (hasattr(lvl, "debug") and lvl.debug and (lvl.debug.answer or "").strip()):
+            verdict = await _judge_execution(req.code, lvl.debug.answer, language)
+            if verdict is not None:
+                passed, message, evidence = verdict
+            else:
+                passed, message, hint_idx = judge_level(lvl, req.code)
+        else:
+            logger.warning("content_fallback world=%s level=%s step_type=debug reason=missing_content", world_id, level_id)
+            passed, message, hint_idx = judge_level(lvl, req.code)
     else:
-        passed, message, hint_idx = judge_level(lvl, req.code)
+        # code / build — run the code for real, then apply authored patterns.
+        verdict = await _judge_code_run(req.code, language, lvl)
+        if verdict is not None:
+            passed, message, hint_idx, evidence = verdict
+        elif step_type in ("predict", "retrieval"):
+            logger.warning(
+                "content_fallback world=%s level=%s step_type=%s reason=missing_content",
+                world_id, level_id, step_type,
+            )
+            passed, message, hint_idx = judge_level(lvl, req.code)
+        else:
+            passed, message, hint_idx = judge_level(lvl, req.code)
 
     key = f"{world_id}:{level_id}"
     doc = await gamification_collection.find_one({"user_id": user["id"]}) or {"user_id": user["id"], "completed_competencies": {}}
@@ -497,9 +762,10 @@ async def attempt_level(world_id: str, level_id: str, req: AttemptRequest, user=
         difficulty = "hard" if lvl.kind == "boss" else ("medium" if lvl.order >= 4 else "easy")
         await _ensure_srs_card(user["id"], f"{world_id}:{level_id}", is_correct=False, difficulty=difficulty)
 
-    xp_preview = lvl.success.xp if isinstance(lvl, LevelBase) else 0
+    xp_preview = lvl.success.diamonds if isinstance(lvl, LevelBase) else 0
+    run_output = evidence or None
     if passed:
-        return {"passed": True, "message": message, "hint_index": None, "xp_preview": xp_preview, "mastery_before": mastery_before, "mastery_after": mastery_after}
+        return {"passed": True, "message": message, "hint_index": None, "xp_preview": xp_preview, "mastery_before": mastery_before, "mastery_after": mastery_after, "run_output": run_output}
     else:
         return {
             "passed": False,
@@ -508,6 +774,7 @@ async def attempt_level(world_id: str, level_id: str, req: AttemptRequest, user=
             "hint": lvl.hints[hint_idx] if hint_idx is not None else lvl.hints[0],
             "mastery_before": mastery_before,
             "mastery_after": mastery_after,
+            "run_output": run_output,
         }
 
 
@@ -535,7 +802,7 @@ async def complete_level(world_id: str, level_id: str, req: AttemptRequest, user
     key = f"{world_id}:{level_id}"
     # Idempotency, including CONCURRENT double-tap: the claim below is a
     # single atomic op. Of two requests landing at the same instant, exactly
-    # one matches the "not completed" filter and proceeds to award XP; the
+    # one matches the "not completed" filter and proceeds to award Diamonds; the
     # loser sees no match and returns deduplicated. A plain read-then-write
     # check cannot guarantee this. Ship position derives from completed
     # flags, so the character can never advance twice from one completion.
@@ -574,7 +841,7 @@ async def complete_level(world_id: str, level_id: str, req: AttemptRequest, user
     entry["boss_passed"] = lvl.kind == "boss"
     comp[key] = entry
 
-    xp_gain = lvl.success.xp if isinstance(lvl, LevelBase) else 0
+    xp_gain = lvl.success.diamonds if isinstance(lvl, LevelBase) else 0
     update: dict = {"completed_competencies": comp, "updated_at": now}
     # Persist the completion entry BEFORE awarding: if the reward engine
     # fails, the entry (and a rewards_pending flag) still lands — a failed

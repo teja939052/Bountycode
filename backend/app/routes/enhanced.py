@@ -9,7 +9,7 @@ from app.services.behavioral_engine import BehavioralEngine
 from app.services.free_ats_tool import FreeATSTool
 from app.services.ats_semantic import semantic_score
 from app.services.monetization import check_feature_access, record_feature_usage
-from app.services.ai import chat_completion, parse_json
+from app.services.ai_core import chat_completion, parse_json
 
 router = APIRouter(prefix="/api/v1/enhanced", tags=["enhanced"])
 
@@ -207,7 +207,7 @@ async def creative_mind(req: CreativeMindRequest, user=Depends(get_current_user)
     if not access["allowed"]:
         raise HTTPException(status_code=403, detail=access.get("upgrade_message", "Daily limit reached"))
 
-    system_prompt = f"""You are PlacementPro's creative coding coach.
+    system_prompt = f"""You are BountyCode's creative coding coach.
 Turn the problem into something memorable, motivating, and practical.
 Stay accurate, but make the answer feel like a mini adventure or boss battle.
 

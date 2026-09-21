@@ -1,0 +1,125 @@
+{
+ "db": "placementpro",
+ "collections": [
+  {
+   "collection": "battles",
+   "docs_before": 0,
+   "backed_up_docs": 0,
+   "dropped": true
+  },
+  {
+   "collection": "campus_events",
+   "docs_before": 0,
+   "backed_up_docs": 0,
+   "dropped": true
+  },
+  {
+   "collection": "campus_leaderboard",
+   "docs_before": 0,
+   "backed_up_docs": 0,
+   "dropped": true
+  },
+  {
+   "collection": "campus_profiles",
+   "docs_before": 0,
+   "backed_up_docs": 0,
+   "dropped": true
+  },
+  {
+   "collection": "campus_winners",
+   "docs_before": 0,
+   "backed_up_docs": 0,
+   "dropped": true
+  },
+  {
+   "collection": "chat_messages",
+   "docs_before": 0,
+   "backed_up_docs": 0,
+   "dropped": true
+  },
+  {
+   "collection": "company_prep",
+   "docs_before": 0,
+   "backed_up_docs": 0,
+   "dropped": true
+  },
+  {
+   "collection": "curated_questions",
+   "docs_before": 0,
+   "backed_up_docs": 0,
+   "dropped": true
+  },
+  {
+   "collection": "debug_logs",
+   "docs_before": 277,
+   "backed_up_docs": 277,
+   "dropped": true
+  },
+  {
+   "collection": "friend_requests",
+   "docs_before": 0,
+   "backed_up_docs": 0,
+   "dropped": true
+  },
+  {
+   "collection": "friends",
+   "docs_before": 0,
+   "backed_up_docs": 0,
+   "dropped": true
+  },
+  {
+   "collection": "language_levels",
+   "docs_before": 0,
+   "backed_up_docs": 0,
+   "dropped": true
+  },
+  {
+   "collection": "language_modules",
+   "docs_before": 0,
+   "backed_up_docs": 0,
+   "dropped": true
+  },
+  {
+   "collection": "language_progress",
+   "docs_before": 0,
+   "backed_up_docs": 0,
+   "dropped": true
+  },
+  {
+   "collection": "matchmaking_queue",
+   "docs_before": 0,
+   "backed_up_docs": 0,
+   "dropped": true
+  },
+  {
+   "collection": "mock_tests",
+   "docs_before": 0,
+   "backed_up_docs": 0,
+   "dropped": true
+  },
+  {
+   "collection": "pulse_battles",
+   "docs_before": 0,
+   "backed_up_docs": 0,
+   "dropped": true
+  },
+  {
+   "collection": "pulse_daily",
+   "docs_before": 0,
+   "backed_up_docs": 0,
+   "dropped": true
+  },
+  {
+   "collection": "ranks",
+   "docs_before": 0,
+   "backed_up_docs": 0,
+   "dropped": true
+  },
+  {
+   "collection": "shares",
+   "docs_before": 0,
+   "backed_up_docs": 0,
+   "dropped": true
+  }
+ ]
+}

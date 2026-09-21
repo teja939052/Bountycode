@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import api from "../services/api";
 import Spinner from "../components/ui/Spinner";
 import CelebrationOverlay from "../components/CelebrationOverlay";
+import RepairPanel from "../components/RepairPanel";
 import { motion } from "framer-motion";
 import { Brain, Clock, CheckCircle, XCircle, ArrowRight, BookOpen, Puzzle, Search } from "lucide-react";
 
@@ -130,7 +131,7 @@ export default function AptitudeTest() {
   const completeTest = async () => {
     setLoading(true);
     try {
-      const data = await api.completeAptitudeTest(testId, timeTaken);
+      const data = await api.completeAptitudeTest(testId, timeTaken, answers, category, questions);
       setResult(data);
       setStep("results");
       if (data.percentage >= 80) {
@@ -166,9 +167,9 @@ export default function AptitudeTest() {
             </p>
           </motion.div>
 
-          {/* Mass Recruiter full exams */}
+          {/* Company mock papers (mass-recruiter exams now live here) */}
           <Link
-            to="/mass-recruiter"
+            to="/company-mocks"
             className="bounty-card mb-8 flex items-center gap-4 p-4 transition-transform hover:scale-[1.01]"
           >
             <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-ocean/10 text-ocean">
@@ -368,6 +369,8 @@ export default function AptitudeTest() {
               </div>
             ))}
           </div>
+
+          <RepairPanel />
 
           <div className="flex gap-4 mt-8">
             <button onClick={() => { setStep("select"); setResult(null); }} className="flex-1 btn-primary text-center">

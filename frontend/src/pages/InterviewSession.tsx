@@ -4,7 +4,8 @@ import api from "../services/api";
 import Spinner from "../components/ui/Spinner";
 import SuccessGlow from "../components/SuccessGlow";
 import CelebrationOverlay from "../components/CelebrationOverlay";
-import XPPopup from "../components/XPPopup";
+import DiamondsPopup from "../components/XPPopup";
+import RepairPanel from "../components/RepairPanel";
 import { motion, AnimatePresence } from "framer-motion";
 import useReducedMotion from "../hooks/useReducedMotion";
 import {
@@ -132,6 +133,15 @@ export default function InterviewSession() {
       });
 
       setFeedback(data.feedback);
+      if (data.eval_pending) {
+        // Grading hiccup: answer is saved server-side, score stays as-is.
+        // Same question is re-asked so the student can retry grading.
+        setError("Grading hiccup — your answer is saved. Tap submit to retry grading.");
+        setQuestion(data.next_question);
+        setAnswer(answer);
+        setLoading(false);
+        return;
+      }
       setScore(data.current_score);
       setReaction(null);
       triggerReaction(data.reaction);
@@ -283,50 +293,52 @@ export default function InterviewSession() {
             </div>
           )}
 
-          <div className="space-y-4 mb-8">
-            {result.questions?.map((q, i) => (
-              <motion.div
-                key={i}
-                className="card"
-                initial={reduced ? {} : { opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.05 }}
-              >
-                <div className="flex items-start justify-between mb-3">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      {q.is_follow_up && (
-                        <span className="text-[10px] bg-cyber-purple/20 text-cyber-purple px-2 py-0.5 rounded-full font-mono">Follow-up</span>
+           <div className="space-y-4 mb-8">
+             {result.questions?.map((q, i) => (
+               <motion.div
+                 key={i}
+                 className="card"
+                 initial={reduced ? {} : { opacity: 0, y: 20 }}
+                 animate={{ opacity: 1, y: 0 }}
+                 transition={{ delay: i * 0.05 }}
+               >
+                 <div className="flex items-start justify-between mb-3">
+                   <div className="flex-1">
+                     <div className="flex items-center gap-2 mb-1">
+                       {q.is_follow_up && (
+                         <span className="text-[10px] bg-cyber-purple/20 text-cyber-purple px-2 py-0.5 rounded-full font-mono">Follow-up</span>
+                       )}
+                       <span className={`text-[10px] px-2 py-0.5 rounded-full font-mono ${DIFFICULTY_COLORS[q.difficulty] || ""}`}>{q.difficulty}</span>
+                     </div>
+                     <h3 className="font-display font-bold text-text-primary text-sm">Q{i + 1}: {q.question}</h3>
+                   </div>
+                   <span className={`text-sm font-display font-bold px-3 py-1 rounded-full shrink-0 border ${getScoreColor(q.score)}`}>{q.score}/10</span>
+                 </div>
+                  <p className="text-brand-secondary font-mono text-xs mb-3">Your answer: {q.answer}</p>
+
+                 {q.feedback && (
+                   <div className="bg-space-panel border border-space-border rounded-lg p-4 text-xs space-y-2 font-mono">
+                      {q.feedback.strengths?.length > 0 && (
+                        <div><span className="text-brand-emerald">Strengths: </span><span className="text-brand-secondary">{q.feedback.strengths.join(", ")}</span></div>
                       )}
-                      <span className={`text-[10px] px-2 py-0.5 rounded-full font-mono ${DIFFICULTY_COLORS[q.difficulty] || ""}`}>{q.difficulty}</span>
-                    </div>
-                    <h3 className="font-display font-bold text-text-primary text-sm">Q{i + 1}: {q.question}</h3>
-                  </div>
-                  <span className={`text-sm font-display font-bold px-3 py-1 rounded-full shrink-0 border ${getScoreColor(q.score)}`}>{q.score}/10</span>
-                </div>
-                 <p className="text-brand-secondary font-mono text-xs mb-3">Your answer: {q.answer}</p>
+                      {q.feedback.improvements?.length > 0 && (
+                        <div><span className="text-brand-coral">Improve: </span><span className="text-brand-secondary">{q.feedback.improvements.join(", ")}</span></div>
+                      )}
+                      {q.feedback.better_answer && (
+                        <details className="mt-2">
+                          <summary className="text-brand-secondary cursor-pointer hover:text-brand-primary">See improved answer</summary>
+                          <p className="text-brand-secondary mt-2 bg-surface-base p-3 rounded-lg border border-surface-border">{q.feedback.better_answer}</p>
+                        </details>
+                      )}
+                   </div>
+                 )}
+               </motion.div>
+             ))}
+           </div>
 
-                {q.feedback && (
-                  <div className="bg-space-panel border border-space-border rounded-lg p-4 text-xs space-y-2 font-mono">
-                     {q.feedback.strengths?.length > 0 && (
-                       <div><span className="text-brand-emerald">Strengths: </span><span className="text-brand-secondary">{q.feedback.strengths.join(", ")}</span></div>
-                     )}
-                     {q.feedback.improvements?.length > 0 && (
-                       <div><span className="text-brand-coral">Improve: </span><span className="text-brand-secondary">{q.feedback.improvements.join(", ")}</span></div>
-                     )}
-                     {q.feedback.better_answer && (
-                       <details className="mt-2">
-                         <summary className="text-brand-secondary cursor-pointer hover:text-brand-primary">See improved answer</summary>
-                         <p className="text-brand-secondary mt-2 bg-surface-base p-3 rounded-lg border border-surface-border">{q.feedback.better_answer}</p>
-                       </details>
-                     )}
-                  </div>
-                )}
-              </motion.div>
-            ))}
-          </div>
+           <RepairPanel />
 
-          <div className="flex gap-4">
+           <div className="flex gap-4">
             <Link to="/interview" className="flex-1 btn-primary text-center flex items-center justify-center gap-2">
               <RotateCcw size={16} /> Engage Again
             </Link>

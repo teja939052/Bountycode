@@ -1,0 +1,15 @@
+{
+  "repair": {
+    "total": 2835,
+    "regenerated_tcs": 34,
+    "still_failing": 2801
+  },
+  "verification": {
+    "total": 2835,
+    "passed": 394,
+    "failed": 2286,
+    "quarantined": 155,
+    "skipped": 8941
+  },
+  "servable": 9335
+}

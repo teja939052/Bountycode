@@ -33,7 +33,7 @@ PRICING_URL = f"{FRONTEND_URL}/pricing"
 def _brand() -> str:
     return (
         '<p style="font-family:monospace;color:#38bdf8;font-size:18px;font-weight:bold;'
-        'margin:0 0 16px">PlacementPro</p>'
+        'margin:0 0 16px">BountyCode</p>'
     )
 
 
@@ -51,16 +51,16 @@ def _wrap(inner: str) -> str:
         "background:#0b1020;color:#e5e7eb;font-family:sans-serif'>"
         f"{_brand()}{inner}"
         "<p style='margin-top:24px;font-size:12px;color:#64748b'>"
-        "You received this because you signed up at PlacementPro.</p>"
+        "You received this because you signed up at BountyCode.</p>"
         "</div>"
     )
 
 
 def welcome_email(name: str):
-    subject = "Welcome to PlacementPro — your first AI interview is 60 seconds away"
+    subject = "Welcome to BountyCode — your first AI interview is 60 seconds away"
     inner = (
         f"<h1 style='font-size:20px;margin:0 0 12px'>Hi {name or 'there'}, you're in.</h1>"
-        "<p style='line-height:1.5'>PlacementPro gives you unlimited AI mock interviews, "
+        "<p style='line-height:1.5'>BountyCode gives you unlimited AI mock interviews, "
         "resume optimization, and 53 company-specific prep kits. Most users land their "
         "first actionable feedback within 5 minutes.</p>"
         "<p style='margin:20px 0'>" + _button("Start your first interview", f"{FRONTEND_URL}/interview") + "</p>"
@@ -71,7 +71,7 @@ def welcome_email(name: str):
 
 
 def trial_started_email(name: str, days: int = 7):
-    subject = f"Your PlacementPro Pro trial is live — {days} days of unlimited practice"
+    subject = f"Your BountyCode Pro trial is live — {days} days of unlimited practice"
     inner = (
         f"<h1 style='font-size:20px;margin:0 0 12px'>Hi {name or 'there'}, you now have Pro.</h1>"
         "<p style='line-height:1.5'>Everything is unlocked for the next "
@@ -99,13 +99,26 @@ def limit_reached_email(name: str, feature: str):
 
 
 def trial_expired_email(name: str):
-    subject = "Your PlacementPro trial ended — keep your momentum with Pro"
+    subject = "Your BountyCode trial ended — keep your momentum with Pro"
     inner = (
         f"<h1 style='font-size:20px;margin:0 0 12px'>Hi {name or 'there'}, your trial just ended.</h1>"
         "<p style='line-height:1.5'>You had unlimited practice for a week. Users who keep a daily "
         "streak are the ones who walk into real interviews calm and prepared.</p>"
         "<p style='margin:20px 0'>" + _button("Continue with Pro — $19/mo", PRICING_URL) + "</p>"
         "<p style='line-height:1.5;color:#94a3b8'>Yearly is $99 (less than $8.25/mo). No gap in your progress.</p>"
+    )
+    return subject, _wrap(inner)
+
+
+def password_reset_email(name: str, reset_link: str):
+    subject = "Reset your BountyCode password"
+    inner = (
+        f"<h1 style='font-size:20px;margin:0 0 12px'>Hi {name or 'there'}, reset your password.</h1>"
+        "<p style='line-height:1.5'>We received a request to reset your BountyCode password. "
+        "This link expires in 15 minutes.</p>"
+        f"<p style='margin:20px 0'>{_button('Reset password', reset_link)}</p>"
+        "<p style='line-height:1.5;color:#94a3b8'>If you didn't request this, you can safely ignore this email. "
+        "Your password will not change.</p>"
     )
     return subject, _wrap(inner)
 

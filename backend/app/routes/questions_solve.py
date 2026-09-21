@@ -188,10 +188,19 @@ Be direct, constructive, and specific. If the answer is vague, say so. If it's w
 
     score = feedback.get("score", 5)
 
+    # Skill linkage + attempt order for the evidence layer (same canonical
+    # mapping the LearningEvent below uses; attempt from history already read).
+    from app.services.skill_taxonomy import canonical_skill_id as _canon
+    _raw_topic = question.get("topic", "")
+    _tags = list(question.get("topics") or []) + list(question.get("tags") or [])
+    _skill_id = _canon(_raw_topic) or (_canon(_tags[0]) if _tags else None) or "coding.uncategorized"
+
     answer_doc = {
         "user_id": user["id"],
         "question_id": qid,
         "answer": req.answer,
+        "skill_id": _skill_id,
+        "attempt_number": len(previous) + 1,
         "score": score,
         "is_correct": feedback.get("is_correct", is_correct),
         "feedback": feedback.get("feedback", ""),
@@ -413,6 +422,15 @@ async def submit_code_for_question(
                 metadata={"all_passed": all_passed, "passed_count": passed_count, "total": total},
             )
 
+            # Attempt order for the evidence layer (best-effort; falls back to 1).
+            try:
+                from app.database import learning_events_collection
+                _prior_solves = await learning_events_collection().count_documents({
+                    "user_id": user["id"], "question_id": question_id,
+                    "activity_type": "question_solve"})
+            except Exception:
+                _prior_solves = 0
+
             await emit_learning_event(user["id"], {
                 "activity_type": "question_solve",
                 "source": "question_bank",
@@ -422,7 +440,7 @@ async def submit_code_for_question(
                 "score": score,
                 "time_spent_seconds": payload.get("time_spent", 0),
                 "hints_used": payload.get("hints_used", 0),
-                "attempt_number": 1,
+                "attempt_number": _prior_solves + 1,
                 "diagnosis_codes": diagnosis["codes"] if isinstance(diagnosis, dict) else [],
                 "trust_status": question.get("trust_status"),
                 "source_bank": question.get("source_bank"),

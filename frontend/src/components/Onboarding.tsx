@@ -16,7 +16,7 @@ const STEPS = [
   {
     icon: Code,
     title: "584+ Problems Await",
-    description: "Coding, aptitude, system design, behavioral — all tagged with 53 companies. Solve, earn XP, level up.",
+    description: "Coding, aptitude, system design, behavioral — all tagged with 53 companies. Solve, earn Diamonds, level up.",
     color: "text-cyber-green",
     bg: "bg-cyber-green/10",
     action: { label: "Try a Problem", to: "/questions" },

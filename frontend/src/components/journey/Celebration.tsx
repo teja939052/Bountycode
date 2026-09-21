@@ -3,17 +3,17 @@ import { motion, AnimatePresence } from "framer-motion";
 
 interface CelebrationProps {
   show: boolean;
-  xp?: number;
+  diamonds?: number;
   onComplete?: () => void;
 }
 
 /**
- * Celebration overlay — confetti + XP burst + mastery message.
+ * Celebration overlay — confetti + Diamonds burst + mastery message.
  *
  * Uses Framer Motion for smooth physics-based confetti.
  * Respects prefers-reduced-motion (Framer Motion handles automatically).
  */
-export function Celebration({ show, xp = 50, onComplete }: CelebrationProps) {
+export function Celebration({ show, diamonds = 50, onComplete }: CelebrationProps) {
   const [visible, setVisible] = useState(false);
 
   const handleComplete = useCallback(() => {
@@ -38,7 +38,7 @@ export function Celebration({ show, xp = 50, onComplete }: CelebrationProps) {
           exit={{ opacity: 0 }}
           className="fixed inset-0 z-[60] pointer-events-none flex items-center justify-center"
           aria-live="polite"
-          aria-label={`Mastered! +${xp} XP`}
+          aria-label={`Mastered! +${diamonds} Diamonds`}
         >
           {/* Confetti */}
           <div className="absolute inset-0 overflow-hidden">
@@ -70,7 +70,7 @@ export function Celebration({ show, xp = 50, onComplete }: CelebrationProps) {
             ))}
           </div>
 
-          {/* XP burst card */}
+          {/* Diamonds burst card */}
           <motion.div
             initial={{ scale: 0.3, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -100,7 +100,7 @@ export function Celebration({ show, xp = 50, onComplete }: CelebrationProps) {
               transition={{ delay: 0.5, type: "spring" }}
               className="mt-2 text-yellow-600 font-bold text-lg"
             >
-              +{xp} XP
+              +{diamonds} Diamonds
             </motion.div>
             <motion.p
               initial={{ opacity: 0 }}

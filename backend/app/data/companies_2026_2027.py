@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-"""PlacementPro company and hiring-calendar data for 2026-2027.
+"""BountyCode company and hiring-calendar data for 2026-2027.
 
 This module provides a static dataset of companies that recruit from
-PlacementPro users, along with a month-by-month hiring calendar for the
+BountyCode users, along with a month-by-month hiring calendar for the
 2026-2027 cycle. It is intentionally dependency-free (standard library
 only) so it can be imported by the FastAPI backend without side effects.
 

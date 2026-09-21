@@ -43,7 +43,7 @@ async def pause_session(user_id: str, session_id: str) -> dict:
 
 
 async def complete_session(user_id: str, session_id: str) -> dict:
-    """Complete a study session. Calculates focus score and grants XP."""
+    """Complete a study session. Calculates focus score and grants Diamonds."""
     now = datetime.now(timezone.utc)
     gam = await gamification_collection.find_one({"user_id": user_id}) or {}
     sessions = gam.get("study_sessions", [])

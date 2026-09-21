@@ -1,27 +1,4 @@
 import { requestWithRetry as request } from "./request.ts";
-export const mockInterviewApi = {
-  start(config: Record<string, any> = {}) {
-    return request("/api/v1/mock-interview/start", {
-      method: "POST",
-      body: JSON.stringify(config),
-    });
-  },
-
-  submitAnswer(sessionId, questionIndex, code, language) {
-    return request(`/api/v1/mock-interview/${sessionId}/submit`, {
-      method: "POST",
-      body: JSON.stringify({ question_index: questionIndex, code, language }),
-    });
-  },
-
-  getStatus(sessionId) {
-    return request(`/api/v1/mock-interview/${sessionId}/status`);
-  },
-
-  getHistory() {
-    return request("/api/v1/mock-interview/history");
-  },
-};
 
 export const personalDashboardApi = {
   get() {
@@ -30,6 +7,29 @@ export const personalDashboardApi = {
 
   getRecommendations() {
     return request("/api/v1/dashboard/recommendations");
+  },
+};
+
+export const evidenceApi = {
+  getMyPerformance(role = "sde", company: string | null = null) {
+    const params = new URLSearchParams();
+    params.set("role", role);
+    if (company) params.set("company", company);
+    return request(`/api/v1/evidence/my-performance?${params.toString()}`);
+  },
+
+  getHeatmap() {
+    return request("/api/v1/evidence/heatmap");
+  },
+
+  getFailures(patternId: string | null = null) {
+    const params = patternId ? `?pattern_id=${encodeURIComponent(patternId)}` : "";
+    return request(`/api/v1/evidence/failures${params}`);
+  },
+
+  getTimeTrend(patternId: string | null = null) {
+    const params = patternId ? `?pattern_id=${encodeURIComponent(patternId)}` : "";
+    return request(`/api/v1/evidence/time-trend${params}`);
   },
 };
 
@@ -44,6 +44,16 @@ export const dsaFingerprintApi = {
 
   getCompanyFingerprint(companyId) {
     return request(`/api/v1/fingerprint/company/${companyId}`);
+  },
+};
+
+export const progressApi = {
+  getHeatmap(days = 365) {
+    return request(`/api/v1/progress/heatmap?days=${days}`);
+  },
+
+  getStreak() {
+    return request("/api/v1/progress/streak");
   },
 };
 

@@ -1,4 +1,4 @@
-# Backend startup script for PlacementPro
+# Backend startup script for BountyCode
 # Run from anywhere: .\backend\start_backend.ps1
 $ErrorActionPreference = "Stop"
 

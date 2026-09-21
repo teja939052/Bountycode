@@ -7,7 +7,7 @@ then calculates clearance probability for each of the 53 companies.
 from fastapi import APIRouter, Depends
 from app.database import (
     solved_problems_collection, submissions_collection,
-    curated_questions_collection, aptitude_collection,
+    aptitude_collection,
     gamification_collection
 )
 from app.middleware.auth import get_current_user
@@ -193,57 +193,29 @@ def calculate_company_probability(
 @router.get("/skill-profile")
 async def get_skill_profile(user=Depends(get_current_user)):
     """Build the user's DSA/skill fingerprint from all solved problems and test history."""
+    # Question content resolved from the in-memory canonical store
+    # (Residency Rule): never MongoDB.
+    from app.services import question_store
     solved_col = solved_problems_collection()
     submissions_col = submissions_collection()
-    questions_col = curated_questions_collection()
     aptitude_col = aptitude_collection()
     gamification_col = gamification_collection()
 
     # Aggregate solved problems by topic and difficulty
     topic_stats = defaultdict(lambda: {"solved": 0, "easy": 0, "medium": 0, "hard": 0, "total_submissions": 0})
 
-    pipeline = [
-        {"$match": {"user_id": user["id"]}},
-        {"$lookup": {
-            "from": "curated_questions",
-            "localField": "question_id",
-            "foreignField": "_id",
-            "as": "question"
-        }},
-        {"$unwind": {"path": "$question", "preserveNullAndEmptyArrays": True}},
-        {"$group": {
-            "_id": {"topic": "$question.topic", "difficulty": "$question.difficulty"},
-            "count": {"$sum": 1}
-        }}
-    ]
-
-    async for doc in solved_col.aggregate(pipeline):
-        topic = normalize_topic(doc["_id"].get("topic", "Other"))
-        diff = doc["_id"].get("difficulty", "medium")
-        count = doc["count"]
-        topic_stats[topic]["solved"] += count
-        topic_stats[topic][diff] = topic_stats[topic].get(diff, 0) + count
+    async for s in solved_col.find({"user_id": user["id"]}):
+        q = question_store.find_one({"id": str(s.get("question_id", ""))}) or {}
+        topic = normalize_topic(q.get("topic", "Other"))
+        diff = q.get("difficulty", "medium")
+        topic_stats[topic]["solved"] += 1
+        topic_stats[topic][diff] = topic_stats[topic].get(diff, 0) + 1
 
     # Also get from submissions (includes failed attempts)
-    submission_pipeline = [
-        {"$match": {"user_id": user["id"]}},
-        {"$lookup": {
-            "from": "curated_questions",
-            "localField": "question_id",
-            "foreignField": "_id",
-            "as": "question"
-        }},
-        {"$unwind": {"path": "$question", "preserveNullAndEmptyArrays": True}},
-        {"$group": {
-            "_id": "$question.topic",
-            "total": {"$sum": 1},
-            "passed": {"$sum": {"$cond": [{"$eq": ["$status", "passed"]}, 1, 0]}}
-        }}
-    ]
-
-    async for doc in submissions_col.aggregate(submission_pipeline):
-        topic = normalize_topic(doc.get("_id", "Other"))
-        topic_stats[topic]["total_submissions"] = doc.get("total", 0)
+    async for s in submissions_col.find({"user_id": user["id"]}):
+        q = question_store.find_one({"id": str(s.get("question_id", ""))}) or {}
+        topic = normalize_topic(q.get("topic", "Other"))
+        topic_stats[topic]["total_submissions"] = topic_stats[topic].get("total_submissions", 0) + 1
 
     # Get aptitude test scores
     aptitude_pipeline = [
@@ -267,7 +239,7 @@ async def get_skill_profile(user=Depends(get_current_user)):
 
     # Get gamification data
     gamification = await gamification_col.find_one({"user_id": user["id"]})
-    total_xp = gamification.get("xp", 0) if gamification else 0
+    total_xp = gamification.get("diamonds", 0) if gamification else 0
     streak = gamification.get("streak", 0) if gamification else 0
 
     # Calculate score per topic (0-100)
@@ -323,7 +295,7 @@ async def get_skill_profile(user=Depends(get_current_user)):
         "weakest": weakest,
         "aptitude_scores": aptitude_scores,
         "gamification": {
-            "xp": total_xp,
+            "diamonds": total_xp,
             "streak": streak,
         },
     }
@@ -332,33 +304,19 @@ async def get_skill_profile(user=Depends(get_current_user)):
 @router.get("/company-predictions")
 async def get_company_predictions(user=Depends(get_current_user)):
     """Get clearance probability for all 53 companies based on user's skill profile."""
-    # Get skill profile (reuse logic)
+    # Get skill profile (reuse logic) — in-memory store (Residency Rule)
+    from app.services import question_store
     solved_col = solved_problems_collection()
-    questions_col = curated_questions_collection()
     aptitude_col = aptitude_collection()
 
     topic_stats = defaultdict(lambda: {"solved": 0, "easy": 0, "medium": 0, "hard": 0})
 
-    pipeline = [
-        {"$match": {"user_id": user["id"]}},
-        {"$lookup": {
-            "from": "curated_questions",
-            "localField": "question_id",
-            "foreignField": "_id",
-            "as": "question"
-        }},
-        {"$unwind": {"path": "$question", "preserveNullAndEmptyArrays": True}},
-        {"$group": {
-            "_id": {"topic": "$question.topic", "difficulty": "$question.difficulty"},
-            "count": {"$sum": 1}
-        }}
-    ]
-
-    async for doc in solved_col.aggregate(pipeline):
-        topic = normalize_topic(doc["_id"].get("topic", "Other"))
-        diff = doc["_id"].get("difficulty", "medium")
-        topic_stats[topic]["solved"] += doc["count"]
-        topic_stats[topic][diff] = topic_stats[topic].get(diff, 0) + doc["count"]
+    async for s in solved_col.find({"user_id": user["id"]}):
+        q = question_store.find_one({"id": str(s.get("question_id", ""))}) or {}
+        topic = normalize_topic(q.get("topic", "Other"))
+        diff = q.get("difficulty", "medium")
+        topic_stats[topic]["solved"] += 1
+        topic_stats[topic][diff] = topic_stats[topic].get(diff, 0) + 1
 
     # Calculate scores
     MAX_EXPECTED = {"easy": 50, "medium": 30, "hard": 15}
@@ -405,32 +363,26 @@ async def get_company_predictions(user=Depends(get_current_user)):
 
 @router.get("/company/{company_id}")
 async def get_company_detail_prediction(company_id: str, user=Depends(get_current_user)):
-    """Get detailed prediction for a specific company with gap analysis."""
+    """Get detailed prediction for a specific company with gap analysis.
+
+    Residency Rule: question text from in-memory canonical store; MongoDB
+    holds student state (solved rows) only.
+    """
+    from app.services import question_store
+
     solved_col = solved_problems_collection()
     aptitude_col = aptitude_collection()
 
     topic_stats = defaultdict(lambda: {"solved": 0, "easy": 0, "medium": 0, "hard": 0})
 
-    pipeline = [
-        {"$match": {"user_id": user["id"]}},
-        {"$lookup": {
-            "from": "curated_questions",
-            "localField": "question_id",
-            "foreignField": "_id",
-            "as": "question"
-        }},
-        {"$unwind": {"path": "$question", "preserveNullAndEmptyArrays": True}},
-        {"$group": {
-            "_id": {"topic": "$question.topic", "difficulty": "$question.difficulty"},
-            "count": {"$sum": 1}
-        }}
-    ]
-
-    async for doc in solved_col.aggregate(pipeline):
-        topic = normalize_topic(doc["_id"].get("topic", "Other"))
-        diff = doc["_id"].get("difficulty", "medium")
-        topic_stats[topic]["solved"] += doc["count"]
-        topic_stats[topic][diff] = topic_stats[topic].get(diff, 0) + doc["count"]
+    async for s in solved_col.find({"user_id": user["id"]}, {"question_id": 1}):
+        q = question_store.find_one(
+            {"id": str(s.get("question_id", ""))}, allow_unverified=True
+        ) or {}
+        topic = normalize_topic(q.get("topic", "Other"))
+        diff = q.get("difficulty", "medium")
+        topic_stats[topic]["solved"] += 1
+        topic_stats[topic][diff] = topic_stats[topic].get(diff, 0) + 1
 
     MAX_EXPECTED = {"easy": 50, "medium": 30, "hard": 15}
     user_skills = {}
@@ -449,18 +401,25 @@ async def get_company_detail_prediction(company_id: str, user=Depends(get_curren
 
     pred = calculate_company_probability(user_skills, company_id)
 
-    # Generate recommended problems for gaps
+    # Generate recommended problems for gaps (verified in-memory bank only)
+    solved_ids = set()
+    async for s in solved_col.find({"user_id": user["id"]}, {"question_id": 1}):
+        solved_ids.add(str(s.get("question_id", "")))
     recommendations = []
     for gap in pred.get("gaps", [])[:3]:
         topic = gap["topic"]
-        # Find unsolved problems in this topic
+        # Find unsolved verified problems in this topic
         recs = []
-        async for q in questions_col.find({"topic": topic}).limit(3):
+        for q in question_store.find({"topic": topic}).only_verified().to_list()[:10]:
+            if str(q.get("id")) in solved_ids:
+                continue
             recs.append({
-                "question": q.get("question_title", "Practice this topic"),
+                "question": q.get("question_title") or q.get("title") or (q.get("question") or "")[:80],
                 "difficulty": q.get("difficulty", "medium"),
-                "company": q.get("company", ""),
+                "company": q.get("companies") or q.get("company", ""),
             })
+            if len(recs) >= 3:
+                break
         recommendations.append({
             "topic": topic,
             "gap_severity": "high" if gap["gap"] > 20 else "medium" if gap["gap"] > 10 else "low",

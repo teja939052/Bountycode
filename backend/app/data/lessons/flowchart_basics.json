@@ -1,0 +1,86 @@
+{
+  "id": "lesson_flowchart_basics_001",
+  "slug": "flowchart_basics",
+  "title": "Flowchart Basics",
+  "domain": "Programming Logic",
+  "pattern": "Flowchart Basics",
+  "difficulty": "easy",
+  "duration_min": 15,
+  "xp_reward": 80,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "What is a Flowchart?",
+      "content": "A flowchart is a visual representation of a process or algorithm using standardized symbols. It shows the sequence of steps, decisions, and loops in a program.",
+      "example": "Start → Input age → Is age >= 18? → Yes: Print 'Adult' / No: Print 'Minor' → End",
+      "tip": "Learn the 4 main symbols: Oval (Start/End), Rectangle (Process), Diamond (Decision), Parallelogram (Input/Output)."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Identify the Symbol",
+      "prompt": "In a flowchart, which shape represents a decision/condition?",
+      "options": ["Rectangle", "Oval", "Diamond", "Parallelogram"],
+      "correct_index": 2,
+      "explanation": "A diamond shape is used for decision points where the flow can branch based on a condition (Yes/No)."
+    },
+    {
+      "step_number": 3,
+      "step_type": "practice",
+      "title": "Trace the Flow",
+      "prompt": "Consider this flowchart: Start → Input x → Is x > 0? → Yes: Print 'Positive' → End. What is the output if x = -5?",
+      "options": ["Positive", "Negative", "Zero", "Error"],
+      "correct_index": 1,
+      "explanation": "Since x = -5 is NOT > 0, the 'No' branch would be taken (not shown but implied). The flowchart only shows what happens when x > 0. For x = -5, nothing is printed, or there's an implicit 'No' branch."
+    },
+    {
+      "step_number": 4,
+      "step_type": "explain",
+      "title": "Loops in Flowcharts",
+      "content": "Loops are represented by arrows going back to an earlier step. Common loop structures: while loop (check condition first), do-while (execute first, check later), for loop (fixed iterations).",
+      "example": "For i = 1 to 5: Print i. This is a loop that runs 5 times. In a flowchart, this uses a decision diamond to check if i <= 5."
+    },
+    {
+      "step_number": 5,
+      "step_type": "interactive",
+      "title": "Count the Iterations",
+      "prompt": "In a flowchart: i = 1 → Print i → i = i + 1 → Is i <= 3? → Yes: go back to Print. How many times is 'Print i' executed?",
+      "options": ["2 times", "3 times", "4 times", "Infinite times"],
+      "correct_index": 1,
+      "explanation": "The loop prints i=1, then checks i<=3 (1<=3 is true), loops back, prints i=2, checks, loops back, prints i=3, checks (3<=3 is true), loops back, prints i=4, checks (4<=3 is false), exits. Wait - let me re-read: i starts at 1, prints 1, increments to 2, checks 2<=3 (yes), prints 2, increments to 3, checks 3<=3 (yes), prints 3, increments to 4, checks 4<=3 (no), exits. So 'Print i' executes 3 times."
+    }
+  ],
+  "practice_questions": ["tcs_nqt_programming_0001", "tcs_nqt_programming_0002"],
+  "assessment": {
+    "questions": [
+      {
+        "prompt": "Which symbol is used for Input/Output in a flowchart?",
+        "options": ["Rectangle", "Diamond", "Parallelogram", "Oval"],
+        "correct_index": 2,
+        "explanation": "Parallelogram is used for input/output operations like reading data or displaying results."
+      },
+      {
+        "prompt": "In a flowchart, arrows represent:",
+        "options": [
+          "Data storage",
+          "Flow of control",
+          "Decision points",
+          "Input/output"
+        ],
+        "correct_index": 1,
+        "explanation": "Arrows (flowlines) show the direction of flow from one step to the next."
+      }
+    ],
+    "mastery_threshold": 0.7,
+    "duration_sec": 120
+  },
+  "srs_cards": [
+    {
+      "type": "symbols",
+      "question": "What are the 4 main flowchart symbols and their meanings?",
+      "answer": "Oval = Start/End, Rectangle = Process, Diamond = Decision, Parallelogram = Input/Output."
+    }
+  ]
+}

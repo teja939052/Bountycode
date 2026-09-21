@@ -105,7 +105,7 @@ async def get_today_problem(user=Depends(get_current_user)):
 
     gam_col = gamification_collection()
     gam_doc = await gam_col.find_one({"user_id": user["id"]})
-    xp = gam_doc.get("xp", 0) if gam_doc else 0
+    diamonds = gam_doc.get("diamonds", 0) if gam_doc else 0
 
     return {
         "date": day_key,
@@ -182,13 +182,18 @@ async def submit_daily_problem(
         "completed_at": datetime.now(timezone.utc),
     })
 
-    if all_passed:
-        gam_col = gamification_collection()
-        await gam_col.update_one(
-            {"user_id": user["id"]},
-            {"$inc": {"xp": xp_gained, "daily_streak": 1}},
-            upsert=True,
-        )
+    # Canonical reward (LAW): 0-10 score from the pass rate. The old path
+    # $inc'd diamonds + a write-only daily_streak directly (nothing ever read
+    # daily_streak); streak/combo/badges/league now come from the engine.
+    from app.services.gamification import record_practice
+    score_10 = round(passed / total * 10, 1) if total > 0 else 10.0
+    result = await record_practice(
+        user["id"], "coding", score_10,
+        {"problem_id": problem_id, "language": language,
+         "skill_id": "coding.daily", "passed": passed, "total": total},
+        role=user.get("role") or user.get("target_role") or "sde",
+    )
+    xp_gained = int((result or {}).get("xp_gained", 0))
 
     return {
         "all_passed": all_passed,

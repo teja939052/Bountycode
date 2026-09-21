@@ -19,6 +19,7 @@ import { Emblem } from "../components/emblems";
 import { GROUP_META, GROUP_ORDER, topicGroup } from "../utils/topicGroups";
 import VirtualList from "../components/ui/VirtualList";
 import { QuestionCardSkeleton } from "../components/ui/Skeleton";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 interface QuestionFilters {
   company: string;
@@ -85,6 +86,10 @@ const SORT_OPTIONS = [
 ];
 
 export default function QuestionBank() {
+  usePageMeta(
+    "Question Bank — Coding, Aptitude & Company-wise Practice",
+    "Browse verified coding, aptitude and company-tagged placement questions with hidden test cases."
+  );
   const { user } = useAuthStore();
   const navigate = useNavigate();
   const [selected, setSelected] = useState<QuestionFilters>({ company: "", role: "", type: "", difficulty: "", topic: "", sub_topic: "", pattern: "", source: "", search: "" });
@@ -109,7 +114,7 @@ export default function QuestionBank() {
     1,
     80
   );
-  const { data: solvedMap, isLoading: solvedLoading } = useSolvedStatus([]);
+  const { data: solvedStatuses, isLoading: solvedLoading } = useSolvedStatus([]);
 
   const questions = browseData?.questions || [];
   const stats = statsData;
@@ -354,7 +359,7 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
                   <div className="text-[10px] font-mono uppercase tracking-[0.3em] text-text-primary/70">Featured today</div>
                   <h2 className="mt-1 text-xl sm:text-2xl font-bold truncate">{dailyChallenge.problem.question_title || dailyChallenge.problem.question || "Today's Problem"}</h2>
                   <p className="mt-2 text-sm text-text-primary/85">
-                    {dailyChallenge.config?.category} · {dailyChallenge.config?.focus} · {dailyChallenge.streak_bonus || 0} XP bonus
+                    {dailyChallenge.config?.category} · {dailyChallenge.config?.focus} · {dailyChallenge.streak_bonus || 0} Diamonds bonus
                   </p>
                 </div>
               </div>

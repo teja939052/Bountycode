@@ -1,4 +1,4 @@
-# 📚 INDEX: PlacementPro Production-Ready Communication Fixes
+# 📚 INDEX: BountyCode Production-Ready Communication Fixes
 
 This index maps all resources for fixing "routes are always crashing" and "communication is often crashing" issues.
 

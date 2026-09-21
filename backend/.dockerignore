@@ -1,0 +1,16 @@
+venv
+.venv
+__pycache__
+*.pyc
+*.pyo
+.env
+.env.*
+!.env.example
+tests
+.pytest_cache
+.data
+data/email_outbox.log
+data/invoices
+scripts/generate_*_questions.py
+*.log
+.git

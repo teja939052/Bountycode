@@ -1,5 +1,5 @@
 """
-Learning Hub service — progress tracking, XP rewards, daily goals, quick practice.
+Learning Hub service — progress tracking, Diamonds rewards, daily goals, quick practice.
 """
 from datetime import datetime, timezone, timedelta
 from app.database import learning_progress_collection, users_collection, get_client
@@ -36,8 +36,8 @@ async def get_language_progress(user_id: str, language_id: str):
     })
 
 
-async def complete_lesson(user_id: str, language_id: str, lesson_id: str, xp: int):
-    """Mark a lesson as completed and award XP."""
+async def complete_lesson(user_id: str, language_id: str, lesson_id: str, diamonds: int, role: str = "sde"):
+    """Mark a lesson as completed and award Diamonds."""
     now = datetime.now(timezone.utc)
     today = now.strftime("%Y-%m-%d")
     existing = await learning_progress_collection.find_one(
@@ -81,7 +81,7 @@ async def complete_lesson(user_id: str, language_id: str, lesson_id: str, xp: in
         }
 
     # ─── Transactional lesson completion ───
-    # Wraps: lesson add + XP inc + daily goal bonus in a MongoDB transaction
+    # Wraps: lesson add + Diamonds inc + daily goal bonus in a MongoDB transaction
     # for atomicity on replica-set deployments (Atlas free tier uses RS).
     try:
         client = get_client()
@@ -103,9 +103,9 @@ async def complete_lesson(user_id: str, language_id: str, lesson_id: str, xp: in
                             "daily_completed": lesson_id,
                         },
                         "$inc": {
-                            "total_xp": xp,
+                            "total_xp": diamonds,
                             "total_lessons_completed": 1,
-                            f"languages.{language_id}.total_xp": xp,
+                            f"languages.{language_id}.total_xp": diamonds,
                         },
                         "$set": {
                             "updated_at": now.isoformat(),
@@ -190,9 +190,9 @@ async def complete_lesson(user_id: str, language_id: str, lesson_id: str, xp: in
                     "daily_completed": lesson_id,
                 },
                 "$inc": {
-                    "total_xp": xp,
+                    "total_xp": diamonds,
                     "total_lessons_completed": 1,
-                    f"languages.{language_id}.total_xp": xp,
+                    f"languages.{language_id}.total_xp": diamonds,
                 },
                 "$set": {
                     "updated_at": now.isoformat(),
@@ -250,8 +250,8 @@ async def complete_lesson(user_id: str, language_id: str, lesson_id: str, xp: in
         refreshed_total_xp = (refreshed.get("total_xp", 0) if refreshed else 0) + bonus_xp
 
     return {
-        "xp_gained": xp + bonus_xp,
-        "base_xp": xp,
+        "xp_gained": diamonds + bonus_xp,
+        "base_xp": diamonds,
         "bonus_xp": bonus_xp,
         "total_xp": refreshed_total_xp,
         "daily_completed": daily_completed,
@@ -304,7 +304,7 @@ async def get_quick_practice(language_id: str, count: int = 6):
 
 
 async def get_leaderboard(limit: int = 20):
-    """Get top learners by total XP."""
+    """Get top learners by total Diamonds."""
     cursor = learning_progress_collection.find(
         {"total_xp": {"$gt": 0}},
         {"user_id": 1, "total_xp": 1, "total_lessons_completed": 1}

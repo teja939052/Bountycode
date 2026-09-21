@@ -86,13 +86,22 @@ async def simulate_student_journey():
     # ── 5. FIRST LESSON ────────────────────────────────────────
     print("\n[5] FIRST LESSON (things-1)")
     try:
-        from app.content.world_registry import get_lesson_by_id
-        lesson = get_lesson_by_id("things-1")
+        from app.data.worlds_data import WORLD_REGISTRY
+        lesson = None
+        for world in WORLD_REGISTRY.values():
+            for town in world.towns:
+                for lvl in town.levels:
+                    if lvl.id == "things-1":
+                        lesson = lvl.model_dump()
+                        break
+                if lesson is not None:
+                    break
+            if lesson is not None:
+                break
         check("Lesson exists", lesson is not None)
-        check("Has steps", len(lesson.steps) > 0)
-        check("Has discover", any(s.step_type == "discover" for s in lesson.steps))
-        check("Has build", any(s.step_type == "build" for s in lesson.steps))
-        check("Has mastery evidence", len(lesson.mastery_evidence) > 0)
+        check("Has discover", lesson is not None and lesson.get("discover") is not None)
+        check("Has build", lesson is not None and lesson.get("build") is not None)
+        check("Has mastery evidence", lesson is not None and len(lesson.get("mastery_evidence", [])) > 0)
     except Exception as e:
         check("First lesson", False, str(e))
 
@@ -129,13 +138,13 @@ async def simulate_student_journey():
     except Exception as e:
         check("SRS", False, str(e))
 
-    # ── 9. GAMIFICATION (XP) ───────────────────────────────────
-    print("\n[9] GAMIFICATION (XP)")
+    # ── 9. GAMIFICATION (Diamonds) ───────────────────────────────────
+    print("\n[9] GAMIFICATION (Diamonds)")
     try:
         from app.services.gamification import record_practice
         result = await record_practice(MOCK_USER_ID, "learn", 85.0, {"lesson_id": "things-1"})
-        check("XP recorded", result is not None)
-        check("XP awarded", True)  # Gamification is best-effort
+        check("Diamonds recorded", result is not None)
+        check("Diamonds awarded", True)  # Gamification is best-effort
     except Exception as e:
         check("Gamification", False, str(e))
 

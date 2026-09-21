@@ -72,7 +72,7 @@ async def record_activity(
     activity: dict,
     user=Depends(get_current_user),
 ):
-    """Record a role activity and fan-out to mastery/SRS/XP."""
+    """Record a role activity and fan-out to mastery/SRS/Diamonds."""
     from app.services.role_content_service import record_role_activity
     result = await record_role_activity(
         user_id=user["id"],
@@ -82,6 +82,7 @@ async def record_activity(
         passed=activity.get("passed", False),
         score=activity.get("score", 100.0),
         time_spent=activity.get("time_spent", 0),
+        role=role_id,
     )
     return {"success": True, "data": result}
 

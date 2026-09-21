@@ -1,0 +1,66 @@
+{
+  "total": 11836,
+  "total_executable": 10735,
+  "total_servable": 7983,
+  "by_type": {
+    "aptitude": {
+      "total": 1041,
+      "executable": 1041,
+      "servable": 927
+    },
+    "coding": {
+      "total": 8222,
+      "executable": 8067,
+      "servable": 5621
+    },
+    "cs": {
+      "total": 10,
+      "executable": 0,
+      "servable": 0
+    },
+    "cs_fundamentals": {
+      "total": 194,
+      "executable": 190,
+      "servable": 190
+    },
+    "debugging": {
+      "total": 133,
+      "executable": 133,
+      "servable": 19
+    },
+    "interview": {
+      "total": 148,
+      "executable": 148,
+      "servable": 148
+    },
+    "logical": {
+      "total": 792,
+      "executable": 792,
+      "servable": 748
+    },
+    "sql": {
+      "total": 932,
+      "executable": 0,
+      "servable": 0
+    },
+    "system_design": {
+      "total": 24,
+      "executable": 24,
+      "servable": 24
+    },
+    "verbal": {
+      "total": 340,
+      "executable": 340,
+      "servable": 306
+    }
+  },
+  "sql_servable_no_tc": 0,
+  "trust_status_breakdown": {
+    "automated_checked": 6892,
+    "needs_review": 2951,
+    "unverified": 697,
+    "verified": 624,
+    "reviewed": 574,
+    "quarantined": 98
+  }
+}

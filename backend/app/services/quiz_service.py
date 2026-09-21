@@ -6,14 +6,14 @@ Provides multiple modes of practice:
   - Practice: Free practice with full solutions and hints
   - Quiz: Timed multiple choice without hints
   - Mock Interview: Realistic interview simulation with timer and pressure
-  - Speed Run: Race against time for XP
+  - Speed Run: Race against time for Diamonds
   - Learning Path: Adaptive progression through curriculum
   - Boss Battle: Challenge rounds with multiple questions
   - Code Golf: Shortest code wins
 
 Each mode tracks:
   - Score, time, attempts
-  - XP earned, badges unlocked
+  - Diamonds earned, badges unlocked
   - Streak progress
   - Weak areas for recommendation
 """
@@ -34,6 +34,8 @@ QUESTION_FILES = [
     "app/content/questions/curated/curated.json",
     "app/content/questions/curated/learning_objects.json",
     "app/content/questions/curated/placement_questions.json",
+    "app/data/sql_practice_bank.json",
+    "app/data/interview_practice_bank.json",
 ]
 
 _questions_cache = None
@@ -244,7 +246,7 @@ def build_quiz(
                 "question": q.get("question", ""),
                 "topic": q.get("topic", ""),
                 "difficulty": q.get("difficulty", "medium"),
-                "xp_reward": q.get("xp_reward", 10) * 2,  # Bonus XP
+                "xp_reward": q.get("xp_reward", 10) * 2,  # Bonus Diamonds
             }
         else:  # practice or quiz
             q_data = {
@@ -295,7 +297,7 @@ def submit_quiz_answer(
     time_taken_seconds: float,
     hints_used: int = 0,
 ) -> Dict[str, Any]:
-    """Evaluate a submitted answer and return feedback + XP."""
+    """Evaluate a submitted answer and return feedback + Diamonds."""
     question = get_question_by_id(question_id)
     if not question:
         return {"error": "Question not found"}
@@ -310,12 +312,12 @@ def submit_quiz_answer(
         # For coding problems, we trust the user's self-evaluation
         is_correct = user_answer.strip().lower() in ["true", "1", "yes", "solved"]
 
-    # Calculate XP
+    # Calculate Diamonds
     base_xp = question.get("xp_reward", 10)
     xp_earned = 0
     if is_correct:
         xp_earned = base_xp
-        # Time bonus (faster = more XP)
+        # Time bonus (faster = more Diamonds)
         if time_taken_seconds < 300:  # < 5 min
             xp_earned = int(xp_earned * 1.5)
         elif time_taken_seconds < 600:  # < 10 min
@@ -490,7 +492,7 @@ def build_boss_battle(
         "total_questions": len(selected),
         "time_limit_seconds": 60 * 60,  # 1 hour
         "rewards": {
-            "xp_per_question": "2x base XP",
+            "xp_per_question": "2x base Diamonds",
             "completion_bonus": 100,
             "perfect_run_bonus": 200,
         },
@@ -553,7 +555,7 @@ def calculate_quiz_results(
     total_hints = sum(a.get("hints_used", 0) for a in answers)
 
     # Topic-wise breakdown
-    topic_stats = defaultdict(lambda: {"correct": 0, "total": 0, "xp": 0})
+    topic_stats = defaultdict(lambda: {"correct": 0, "total": 0, "diamonds": 0})
     for i, q in enumerate(questions):
         if i < len(answers):
             ans = answers[i]
@@ -561,7 +563,7 @@ def calculate_quiz_results(
             topic_stats[topic]["total"] += 1
             if ans.get("is_correct"):
                 topic_stats[topic]["correct"] += 1
-            topic_stats[topic]["xp"] += ans.get("xp_earned", 0)
+            topic_stats[topic]["diamonds"] += ans.get("xp_earned", 0)
 
     # Difficulty-wise
     diff_stats = defaultdict(lambda: {"correct": 0, "total": 0})

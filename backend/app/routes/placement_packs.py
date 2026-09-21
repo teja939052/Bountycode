@@ -13,6 +13,7 @@ from app.content.curriculum.role_curriculum import (
 )
 import os
 import json
+from app.database import interview_bookings_collection
 from pathlib import Path
 
 BACKEND_ROOT = Path(__file__).resolve().parents[2]
@@ -399,7 +400,6 @@ async def book_mock_interview(
     if not slot_id or not scheduled_at:
         raise HTTPException(400, detail="slot_id and scheduled_at required")
 
-    from app.database import interview_bookings_collection
     from datetime import datetime
 
     booking = {

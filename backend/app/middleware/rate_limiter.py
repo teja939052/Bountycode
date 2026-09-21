@@ -1,4 +1,4 @@
-"""Rate limiting middleware and utilities for PlacementPro.
+"""Rate limiting middleware and utilities for BountyCode.
 
 Provides IP-based rate limiting with optional Redis backend, login attempt
 tracking with lockout, and cleanup of expired in-memory entries.

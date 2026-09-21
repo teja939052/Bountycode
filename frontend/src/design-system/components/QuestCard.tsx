@@ -19,7 +19,7 @@ interface QuestCardProps {
 const typeStyles: Record<QuestCardProps["type"], string> = {
   main: `border-l-4 border-brand-primary`,
   side: `border-l-4 border-info`,
-  daily: `border-l-4 border-xp`,
+  daily: `border-l-4 border-diamonds`,
   boss: `border-l-4 border-boss`,
 };
 
@@ -122,7 +122,7 @@ export function QuestCard({
             >
               {title}
               {xpReward && (
-                <span className="ml-2 inline-flex items-center gap-1 text-xs font-mono text-xp font-semibold">
+                <span className="ml-2 inline-flex items-center gap-1 text-xs font-mono text-diamonds font-semibold">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 12 9.27 2.91 8.26 9 2 12z" />
                   </svg>
@@ -155,7 +155,7 @@ export function QuestCard({
                     px-2 py-0.5 rounded-${radii.badge} text-xs font-medium
                     ${tag === "main" ? "bg-brand-mint text-brand-deep" : ""}
                     ${tag === "side" ? "bg-info/10 text-info" : ""}
-                    ${tag === "daily" ? "bg-xp/10 text-xp" : ""}
+                    ${tag === "daily" ? "bg-diamonds/10 text-diamonds" : ""}
                     ${tag === "boss" ? "bg-boss/10 text-boss" : ""}
                     ${tag === "new" ? "bg-success/10 text-success" : ""}
                   `}

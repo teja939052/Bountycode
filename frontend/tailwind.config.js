@@ -151,6 +151,7 @@ export default {
       },
       fontFamily: {
         display: ["Manrope", "Inter", "system-ui", "sans-serif"],
+        round: ['"Baloo 2"', "Nunito", "Quicksand", "system-ui", "sans-serif"],
         mono: ["JetBrains Mono", "Fira Code", "monospace"],
         body: ["Inter", "system-ui", "sans-serif"],
       },

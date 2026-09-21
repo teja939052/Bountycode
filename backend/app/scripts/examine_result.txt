@@ -1,0 +1,90 @@
+Questions with MISSING type: 3400
+
+First 3 MISSING type questions:
+
+--- Question 1 ---
+Keys: ['id', 'title', 'topic', 'difficulty', 'pattern', 'companies', 'description', 'constraints', 'complexities', 'test_cases', 'boilerplate', 'tags', 'hints', 'solution', 'related_topics']
+  id: arr-e-0001
+  title: Maximum subarray sum with {variant}
+  topic: arrays
+  difficulty: easy
+  pattern: kadane
+  companies: ['Twitter', 'Airbnb', 'Apple']
+  description: Maximum subarray sum with {variant}
+
+You are given an input satisfying the const
+  constraints: 1 <= n <= 10?, -10? <= nums[i] <= 10?
+  complexities: ['O(n)']
+  test_cases: [{'input': {'nums': [20, 25, -80], 'target': -37}, 'output': 'computed', 'hidden
+  boilerplate: {'python': 'class Solution:\n    def solve(self, *args):\n        # arrays solut
+  tags: ['arrays', 'easy', 'Twitter', 'Airbnb']
+  hints: ['Track max ending at each position', 'Reset when sum goes negative']
+  solution: def maxSubArray(self, nums):
+    max_ending_here = max_so_far = nums[0]
+    for 
+  related_topics: ['two-pointers', 'sliding-window', 'prefix-sum', 'hash-map']
+
+--- Question 2 ---
+Keys: ['id', 'title', 'topic', 'difficulty', 'pattern', 'companies', 'description', 'constraints', 'complexities', 'test_cases', 'boilerplate', 'tags', 'hints', 'solution', 'related_topics']
+  id: arr-e-0002
+  title: Find {k} elements that sum to target
+  topic: arrays
+  difficulty: easy
+  pattern: two-sum-variant
+  companies: ['Google', 'Meta']
+  description: Find {k} elements that sum to target
+
+You are given an input satisfying the cons
+  constraints: 1 <= n <= 10?, -10? <= nums[i] <= 10?
+  complexities: ['O(n)', 'O(n log n)', 'O(n?)']
+  test_cases: [{'input': {'nums': [2, 7, 11, 15], 'target': 9}, 'output': [0, 1], 'hidden': Fa
+  boilerplate: {'python': 'class Solution:\n    def solve(self, *args):\n        # arrays solut
+  tags: ['arrays', 'easy', 'Google', 'Meta']
+  hints: ['Use a hash map for O(n) lookup', 'Sort + two pointers for O(n log n)']
+  solution: def twoSum(self, nums, target):
+    seen = {}
+    for i, num in enumerate(nums):
+  related_topics: ['two-pointers', 'sliding-window', 'prefix-sum', 'hash-map']
+
+--- Question 3 ---
+Keys: ['id', 'title', 'topic', 'difficulty', 'pattern', 'companies', 'description', 'constraints', 'complexities', 'test_cases', 'boilerplate', 'tags', 'hints', 'solution', 'related_topics']
+  id: arr-h-0003
+  title: Subarray sum equals K / Range sum queries
+  topic: arrays
+  difficulty: hard
+  pattern: prefix-sum
+  companies: ['Meta', 'Airbnb']
+  description: Subarray sum equals K / Range sum queries
+
+You are given an input satisfying the
+  constraints: 1 <= n <= 10?, -10? <= nums[i] <= 10?
+  complexities: ['O(n)', 'O(n log n)']
+  test_cases: [{'input': {'nums': [-84, -19, 91, 82, -76, -68, -25, 67, 51, 28, -54, -65, -79,
+  boilerplate: {'python': 'class Solution:\n    def solve(self, *args):\n        # arrays solut
+  tags: ['arrays', 'hard', 'Meta', 'Airbnb']
+  hints: ['Precompute prefix sums', 'Hash map for subarray sum equals K', 'Consider advan
+  solution: # prefix-sum solution template
+# Implement optimal solution here
+  related_topics: ['two-pointers', 'sliding-window', 'prefix-sum', 'hash-map']
+
+
+=== CODING QUESTIONS (2879) ===
+Keys in first coding q: ['type', 'company', 'role', 'difficulty', 'topic', 'sub_topic', 'question', 'options', 'correct_answer', 'explanation', 'hints', 'solution', 'frequency', 'source', 'submitted_by', 'upvotes', 'downvotes', 'reported', 'id']
+With test_cases: 0
+With solution: 2879
+Solution keys: ['code', 'language', 'time_complexity', 'space_complexity']
+
+=== APTITUDE (50) ===
+Keys: ['type', 'id', 'question', 'description', 'difficulty', 'topic', 'sub_topic', 'company', 'role', 'company_frequency', 'acceptance_rate', 'total_submissions', 'examples', 'testcases', 'solution', 'hints', 'xp_points', 'frequency_score', 'uploaded_by', 'upvotes', 'downvotes', 'views', 'created_at', 'updated_at', 'is_hidden']
+Has correct_answer: False
+Has options: False
+
+=== LOGICAL (30) ===
+Keys: ['type', 'id', 'question', 'description', 'difficulty', 'topic', 'sub_topic', 'company', 'role', 'company_frequency', 'acceptance_rate', 'total_submissions', 'examples', 'testcases', 'solution', 'hints', 'xp_points', 'frequency_score', 'uploaded_by', 'upvotes', 'downvotes', 'views', 'created_at', 'updated_at', 'is_hidden']
+Has correct_answer: False
+Has options: False
+
+=== VERBAL (20) ===
+Keys: ['type', 'id', 'question', 'description', 'difficulty', 'topic', 'sub_topic', 'company', 'role', 'company_frequency', 'acceptance_rate', 'total_submissions', 'examples', 'testcases', 'solution', 'hints', 'xp_points', 'frequency_score', 'uploaded_by', 'upvotes', 'downvotes', 'views', 'created_at', 'updated_at', 'is_hidden']
+Has correct_answer: False
+Has options: False

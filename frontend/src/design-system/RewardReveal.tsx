@@ -115,7 +115,7 @@ export function RewardReveal({ data, onContinue }: RewardRevealProps) {
             </div>
           )}
           <div className="rounded-xl border border-border bg-surface-2 p-3">
-            <p className="text-[10px] font-bold uppercase tracking-wider text-text-muted">XP</p>
+            <p className="text-[10px] font-bold uppercase tracking-wider text-text-muted">Diamonds</p>
             <p className="font-display mt-1 text-lg font-extrabold text-reward">+{data.xpEarned}</p>
           </div>
         </div>

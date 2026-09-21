@@ -34,6 +34,9 @@ class RepairMission(BaseModel):
     status: str = "pending"  # pending, in_progress, completed
     created_at: str = ""
     completed_at: str = ""
+    misconception_tag: Optional[str] = None
+    remediation_steps: List[str] = Field(default_factory=list)
+    interactive_drill: Dict[str, Any] = Field(default_factory=dict)
 
 
 async def create_repair_mission(
@@ -85,9 +88,9 @@ async def create_repair_mission(
 
 def _find_lessons_for_skills(skills: List[str]) -> List[str]:
     """Find lessons that teach the given skills."""
-    from app.content.world_registry import ALL_WORLDS
+    from app.data.worlds_data import WORLD_REGISTRY
     lesson_ids = []
-    for world in ALL_WORLDS.values():
+    for world in WORLD_REGISTRY.values():
         for town in world.towns:
             for lesson in town.lessons:
                 if any(s in lesson.concept or s in lesson.canonical_skill for s in skills):
@@ -156,3 +159,64 @@ async def get_repair_recommendations(user_id: str) -> Dict[str, Any]:
         "total_weaknesses": len(set(w for m in missions for w in m.weaknesses)),
         "next_recommended": missions[0].model_dump() if missions else None,
     }
+
+
+async def create_repair_mission_from_misconception(
+    user_id: str,
+    misconception_tag: str,
+    repair_title: str,
+    remediation_steps: List[str],
+    interactive_drill: Dict[str, Any],
+    source_question_id: Optional[str] = None,
+) -> Optional[RepairMission]:
+    """Create a repair mission from a tagged MCQ misconception.
+
+    Args:
+        user_id: The student
+        misconception_tag: The misconception class (e.g. "units_conversion_error")
+        repair_title: Human-readable title for the repair mission
+        remediation_steps: Step-by-step remediation guide
+        interactive_drill: Diagnostic drill config for retest
+        source_question_id: Optional originating question
+
+    Returns:
+        RepairMission if created, None if already exists or storage fails
+    """
+    from datetime import datetime, timezone
+
+    try:
+        from app.database import user_weaknesses_collection, repair_missions_collection
+
+        # Record the weakness trigger
+        await user_weaknesses_collection.update_one(
+            {"user_id": user_id, "misconception_tag": misconception_tag},
+            {
+                "$inc": {"trigger_count": 1},
+                "$set": {"last_triggered": datetime.now(timezone.utc).isoformat(), "status": "remediation_queued"},
+                "$setOnInsert": {"user_id": user_id, "misconception_tag": misconception_tag},
+            },
+            upsert=True,
+        )
+
+        # Check if an active repair mission already exists for this tag
+        existing = await repair_missions_collection.find_one(
+            {"user_id": user_id, "misconception_tag": misconception_tag, "status": {"$ne": "completed"}}
+        )
+        if existing:
+            return None
+
+        mission = RepairMission(
+            id=f"repair:{user_id}:{misconception_tag}:{int(datetime.now(timezone.utc).timestamp())}",
+            user_id=user_id,
+            title=repair_title,
+            weaknesses=[misconception_tag],
+            misconception_tag=misconception_tag,
+            remediation_steps=remediation_steps,
+            interactive_drill=interactive_drill,
+            created_at=datetime.now(timezone.utc).isoformat(),
+        )
+
+        await repair_missions_collection.insert_one(mission.model_dump())
+        return mission
+    except Exception:
+        return None

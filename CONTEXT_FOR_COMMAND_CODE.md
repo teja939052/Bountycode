@@ -1,4 +1,4 @@
-# PlacementPro — Complete Context Handoff for Command Code
+# BountyCode — Complete Context Handoff for Command Code
 
 > This document is the single source of truth. Read AGENTS.md, FUTURE.md, and README.md too.
 > Last updated: August 2026
@@ -7,7 +7,7 @@
 
 ## 1. What This Is
 
-**PlacementPro** — AI-powered placement/job-search prep platform (students + professionals). Built by a solo founder with MimoCode (AI). Freemium SaaS targeting:
+**BountyCode** — AI-powered placement/job-search prep platform (students + professionals). Built by a solo founder with MimoCode (AI). Freemium SaaS targeting:
 - **Indian students** (campus placements: TCS, Infosys, Wipro, aptitude tests)
 - **US/Global job seekers** (behavioral interviews, resume optimization, salary negotiation, system design)
 - **Professionals** (career changers, job switchers, FAANG aspirants)

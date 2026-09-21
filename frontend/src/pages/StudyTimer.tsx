@@ -75,8 +75,14 @@ export default function StudyTimer() {
     const minutes = Math.max(1, Math.ceil(completed / 60));
     try {
       const res = await api.studyTimer.completeSession(activeSession.session_id, minutes);
-      window.dispatchEvent(new CustomEvent("xp-gained", { detail: { xp: res.score } }));
-      toast.success(`+${res.score} XP • ${minutes} min focused`);
+      window.dispatchEvent(new CustomEvent("diamonds-gained", {
+        detail: {
+          diamonds: res.score,
+          badges: res.new_badges || [],
+          critical: res.critical_hit ? { bonus: res.critical_bonus || 0 } : null,
+        }
+      }));
+      toast.success(`+${res.score} Diamonds • ${minutes} min focused`);
       loadStats();
     } catch {
       toast.error("Failed to save session");
@@ -134,7 +140,7 @@ export default function StudyTimer() {
             <Timer className="text-brand-sky" size={28} />
             Study Timer
           </h1>
-          <p className="text-text-secondary mt-1">Pomodoro & custom focus sessions. Earn XP for every minute studied.</p>
+          <p className="text-text-secondary mt-1">Pomodoro & custom focus sessions. Earn Diamonds for every minute studied.</p>
           {!isPro && (
             <Link to="/pricing" className="inline-block mt-2 text-xs font-mono text-brand-sky hover:underline">
               Upgrade to Pro for custom durations

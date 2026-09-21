@@ -5,7 +5,7 @@ interface ProgressBarProps {
   value: number;
   max?: number;
   size?: "sm" | "md" | "lg" | "xl";
-  color?: "primary" | "xp" | "achievement" | "boss" | "info" | "success" | "warning";
+  color?: "primary" | "diamonds" | "achievement" | "boss" | "info" | "success" | "warning";
   showLabel?: boolean;
   label?: ReactNode;
   animated?: boolean;
@@ -23,7 +23,7 @@ const sizeStyles: Record<ProgressBarProps["size"], string> = {
 
 const colorStyles: Record<ProgressBarProps["color"], string> = {
   primary: colors.brand.primary,
-  xp: colors.semantic.xp,
+  diamonds: colors.semantic.diamonds,
   achievement: colors.semantic.achievement,
   boss: colors.semantic.boss,
   info: colors.semantic.info,

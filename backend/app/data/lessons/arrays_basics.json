@@ -1,0 +1,86 @@
+{
+  "id": "lesson_arrays_basics_001",
+  "slug": "arrays_basics",
+  "title": "Arrays Basics",
+  "domain": "DSA",
+  "pattern": "Arrays",
+  "difficulty": "easy",
+  "duration_min": 20,
+  "xp_reward": 100,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "What is an Array?",
+      "content": "An array is a collection of elements of the same type stored at contiguous memory locations. Each element is accessed by its index (position).",
+      "example": "arr = [10, 20, 30, 40, 50]. arr[0] = 10, arr[2] = 30. Indexing starts at 0.",
+      "tip": "Array access is O(1) — instant. But insertion/deletion in the middle is O(n) because elements must shift."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Access Elements",
+      "prompt": "Given arr = [5, 10, 15, 20, 25], what is arr[3]?",
+      "options": ["15", "20", "10", "25"],
+      "correct_index": 1,
+      "explanation": "arr[3] accesses the element at index 3, which is the 4th element: 20. Remember: indexing starts at 0."
+    },
+    {
+      "step_number": 3,
+      "step_type": "practice",
+      "title": "Array Traversal",
+      "prompt": "What is the time complexity of traversing all elements of an array of size n?",
+      "options": ["O(1)", "O(log n)", "O(n)", "O(n²)"],
+      "correct_index": 2,
+      "explanation": "We must visit each element exactly once, so the time complexity is O(n)."
+    },
+    {
+      "step_number": 4,
+      "step_type": "explain",
+      "title": "Common Array Operations",
+      "content": "Common operations: Search (O(n) linear, O(log n) binary if sorted), Insert at end (O(1) amortized), Insert in middle (O(n) due to shifting), Delete from middle (O(n) due to shifting).",
+      "example": "Inserting at index 2 in [1, 2, 3, 4] requires shifting elements at indices 2 and 3 rightward: [1, 2, new, 3, 4]."
+    },
+    {
+      "step_number": 5,
+      "step_type": "interactive",
+      "title": "Two-Pointer Preview",
+      "prompt": "To find if a pair of numbers in a sorted array sums to a target, which technique is most efficient?",
+      "options": ["Brute force O(n²)", "Two pointers O(n)", "Binary search O(n log n)", "Hash set O(n)"],
+      "correct_index": 1,
+      "explanation": "Two pointers (left at start, right at end) can find a pair in O(n) for sorted arrays. Move left pointer forward if sum < target, right pointer backward if sum > target."
+    }
+  ],
+  "practice_questions": ["tcs_nqt_dsa_0001", "tcs_nqt_dsa_0002"],
+  "assessment": {
+    "questions": [
+      {
+        "prompt": "What is the time complexity of accessing an element by index in an array?",
+        "options": ["O(1)", "O(n)", "O(log n)", "O(n²)"],
+        "correct_index": 0,
+        "explanation": "Array access by index is O(1) because the memory address is calculated directly: base_address + index × element_size."
+      },
+      {
+        "prompt": "Which operation is most expensive on an array?",
+        "options": [
+          "Accessing first element",
+          "Accessing last element",
+          "Inserting in the middle",
+          "Updating an element"
+        ],
+        "correct_index": 2,
+        "explanation": "Inserting in the middle requires shifting all subsequent elements, making it O(n). Accessing first/last elements and updating are O(1)."
+      }
+    ],
+    "mastery_threshold": 0.7,
+    "duration_sec": 120
+  },
+  "srs_cards": [
+    {
+      "type": "complexity",
+      "question": "What is the time complexity of array operations: access, insert at end, insert in middle, delete from middle?",
+      "answer": "Access: O(1), insert at end: O(1) amortized, insert in middle: O(n), delete from middle: O(n)."
+    }
+  ]
+}

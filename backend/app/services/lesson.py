@@ -4,7 +4,7 @@ Lesson service — serves the vertical slice lesson content and grades code subm
 Responsibilities:
   - Serve lesson content (story, steps, challenges)
   - Run user code against test cases via the code execution engine
-  - Record completion: XP, SRS enrollment, mastery update
+  - Record completion: Diamonds, SRS enrollment, mastery update
 """
 from typing import Dict, List, Any, Optional
 import ast
@@ -374,7 +374,9 @@ class LessonService:
             elif q["type"] == "debug":
                 expected_fix = q.get("fix", "")
                 actual = str(answers.get(f"q{i}", "")).strip()
-                correct = actual == expected_fix.strip()
+                expected_norm = " ".join(expected_fix.strip().split())
+                actual_norm = " ".join(actual.split())
+                correct = actual_norm == expected_norm
                 results.append({
                     "index": i,
                     "type": q["type"],
@@ -403,18 +405,77 @@ class LessonService:
         user_id: str,
         score: float,
         time_spent_seconds: int = 0,
+        role: str = "sde",
     ) -> Dict[str, Any]:
-        """Record lesson completion: XP, SRS enrollment, mastery update."""
-        # Record XP via gamification
+        """Record lesson completion: Diamonds, SRS enrollment, mastery update.
+
+        Idempotent: a retry/double-tap that does not beat the stored
+        best score awards no Diamonds (no double-credit, no double-advance).
+        A strictly better score records the improvement and awards Diamonds.
+        """
+        from app.database import gamification_collection as _gc
+
+        comp_key = "code_foundations:" + self._lesson.get("world_progression", {}).get(
+            "competency_id", self._lesson["lesson_id"]
+        )
+        # Atomic improvement-claim: of concurrent duplicate submits, exactly
+        # one wins the "score beats stored best" filter and awards Diamonds; the
+        # losers record attempts only. A read-then-write best check cannot
+        # guarantee this under a real double-tap.
+        _best_path = f"completed_competencies.{comp_key}.best_score"
+        await _gc.update_one(
+            {"user_id": user_id},
+            {"$setOnInsert": {"user_id": user_id, "completed_competencies": {}}},
+            upsert=True,
+        )
+        _claimed = await _gc.find_one_and_update(
+            {"user_id": user_id, "$or": [
+                {_best_path: {"$exists": False}},
+                {_best_path: {"$lt": float(score)}},
+            ]},
+            {"$set": {"updated_at": utcnow()}},
+        )
+
+        if _claimed is None:
+            await self._record_competency(user_id, score)
+            # Replay without improvement: no Diamonds (no double-credit), but the
+            # replay WAS verified practice — touch last_practice_date so a
+            # student replaying to protect a streak doesn't silently lose it
+            # when the next real activity sees a stale date. Streak for
+            # showing up, Diamonds only for improving. Zero other mutations.
+            try:
+                await _gc.update_one(
+                    {"user_id": user_id},
+                    {"$set": {"last_practice_date": utcnow()}},
+                )
+            except Exception:
+                pass
+            return {
+                "xp_gained": 0,
+                "deduplicated": True,
+                "streak_protected": True,
+                "level": None,
+                "level_up": False,
+                "srs_enrolled": False,
+                "lesson_xp": self._lesson["xp_reward"],
+                "mastery_unlocked": score >= self._lesson["assessment"]["mastery_threshold"],
+            }
+
+        # Record Diamonds via gamification
         xp_result = await record_practice(
             user_id=user_id,
             activity_type="lesson",
             score=score / 10,  # gamification expects 0-10 scale
             metadata={"lesson_id": self._lesson["lesson_id"], "time_spent": time_spent_seconds},
+            role=role,
         )
 
-        # Enroll in SRS
-        srs_enrolled = await self._enroll_srs(user_id)
+        mastery_unlocked = score >= self._lesson["assessment"]["mastery_threshold"]
+
+        # Enroll in SRS only if mastery is achieved
+        srs_enrolled = False
+        if mastery_unlocked:
+            srs_enrolled = await self._enroll_srs(user_id)
 
         # Record competency completion
         await self._record_competency(user_id, score)
@@ -425,7 +486,7 @@ class LessonService:
             "level_up": xp_result.get("level_up", False),
             "srs_enrolled": srs_enrolled,
             "lesson_xp": self._lesson["xp_reward"],
-            "mastery_unlocked": score >= self._lesson["assessment"]["mastery_threshold"],
+            "mastery_unlocked": mastery_unlocked,
         }
 
     async def _enroll_srs(self, user_id: str) -> bool:
@@ -462,13 +523,21 @@ class LessonService:
         return True
 
     async def _record_competency(self, user_id: str, score: float) -> None:
-        """Record competency completion in the gamification collection."""
+        """Record competency completion in the gamification collection.
+
+        best_score ratchets only upward and attempts accumulate, so a
+        student who struggled then recovered shows the recovery —
+        never a clobbered low from a later retry.
+        """
         from app.database import gamification_collection
         from app.services.skill_assessment import SKILL_CATEGORIES, update_skill_score
 
         comp_key = "code_foundations:" + self._lesson.get("world_progression", {}).get(
             "competency_id", self._lesson["lesson_id"]
         )
+
+        _doc = await gamification_collection.find_one({"user_id": user_id}) or {}
+        _prev = _doc.get("completed_competencies", {}).get(comp_key, {})
 
         await gamification_collection.update_one(
             {"user_id": user_id},
@@ -477,7 +546,8 @@ class LessonService:
                     f"completed_competencies.{comp_key}": {
                         "completed": True,
                         "score": score,
-                        "best_score": score,
+                        "best_score": max(float(_prev.get("best_score", 0) or 0), float(score)),
+                        "attempts": int(_prev.get("attempts", 0) or 0) + 1,
                         "completed_at": utcnow().isoformat(),
                     },
                     "updated_at": utcnow(),

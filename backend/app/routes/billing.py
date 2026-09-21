@@ -24,13 +24,13 @@ FRONTEND_URL = settings.CORS_ORIGINS.split(",")[0].strip() if settings.CORS_ORIG
 
 PAYPAL_BASE = "https://api-m.sandbox.paypal.com" if settings.PAYPAL_MODE == "sandbox" else "https://api-m.paypal.com"
 
-# Pricing ladder (recurring must always be < lifetime, and yearly < 12x monthly):
-#   monthly < yearly(≈5-6x monthly) < lifetime(≈8-12x monthly)
+# Pricing ladder (yearly < 12x monthly):
+#   monthly < yearly < lifetime
 #   team/enterprise priced per seat/month with yearly ≈ 10x monthly.
 PRICING = {
     "pro_monthly": {"INR": {"amount": "99.00", "currency": "INR"}, "USD": {"amount": "19.00", "currency": "USD"}},
     "lifetime": {"INR": {"amount": "1499.00", "currency": "INR"}, "USD": {"amount": "149.00", "currency": "USD"}},
-    "pro_yearly": {"INR": {"amount": "499.00", "currency": "INR"}, "USD": {"amount": "99.00", "currency": "USD"}},
+    "pro_yearly": {"INR": {"amount": "899.00", "currency": "INR"}, "USD": {"amount": "99.00", "currency": "USD"}},
     "team": {"INR": {"amount": "12250.00", "currency": "INR"}, "USD": {"amount": "145.00", "currency": "USD"}},
     "team_yearly": {"INR": {"amount": "119900.00", "currency": "INR"}, "USD": {"amount": "1499.00", "currency": "USD"}},
     "enterprise_monthly": {"INR": {"amount": "66392.00", "currency": "INR"}, "USD": {"amount": "99.00", "currency": "USD"}},
@@ -148,7 +148,7 @@ async def create_checkout(request: Request, user=Depends(get_current_user)):
     access_token = await get_paypal_access_token()
     data = await _create_paypal_order(
         access_token, price_key, final_amount,
-        f"PlacementPro Pro Monthly x{seats} ({price_key['currency']} {price_key['amount']}/seat)",
+        f"BountyCode Pro Monthly x{seats} ({price_key['currency']} {price_key['amount']}/seat)",
         user["id"], seats
     )
 
@@ -207,7 +207,7 @@ async def create_lifetime_checkout(request: Request, user=Depends(get_current_us
     access_token = await get_paypal_access_token()
     data = await _create_paypal_order(
         access_token, price_key, final_amount,
-        f"PlacementPro Lifetime ({price_key['currency']} {price_key['amount']})",
+        f"BountyCode Lifetime ({price_key['currency']} {price_key['amount']})",
         user["id"]
     )
 
@@ -265,7 +265,7 @@ async def create_yearly_checkout(request: Request, user=Depends(get_current_user
     access_token = await get_paypal_access_token()
     data = await _create_paypal_order(
         access_token, price_key, final_amount,
-        f"PlacementPro Pro Yearly ({price_key['currency']} {price_key['amount']})",
+        f"BountyCode Pro Yearly ({price_key['currency']} {price_key['amount']})",
         user["id"]
     )
 
@@ -335,7 +335,7 @@ async def create_team_checkout(request: Request, user=Depends(get_current_user))
     access_token = await get_paypal_access_token()
     data = await _create_paypal_order(
         access_token, price_key, final_amount,
-        f"PlacementPro Team ({seats} seats, {price_key['currency']} {price_key['amount']}/seat/mo)",
+        f"BountyCode Team ({seats} seats, {price_key['currency']} {price_key['amount']}/seat/mo)",
         user["id"], seats
     )
 
@@ -405,7 +405,7 @@ async def create_enterprise_checkout(request: Request, user=Depends(get_current_
     access_token = await get_paypal_access_token()
     data = await _create_paypal_order(
         access_token, price_key, final_amount,
-        f"PlacementPro Enterprise ({seats} seats, {price_key['currency']} {price_key['amount']}/seat/mo)",
+        f"BountyCode Enterprise ({seats} seats, {price_key['currency']} {price_key['amount']}/seat/mo)",
         user["id"], seats
     )
 
@@ -467,7 +467,7 @@ async def create_stripe_checkout(request: Request, user=Depends(get_current_user
                 "currency": price_key["currency"].lower(),
                 "unit_amount": int(float(price_key["amount"]) * 100),
                 "product_data": {
-                    "name": f"PlacementPro {plan}",
+                    "name": f"BountyCode {plan}",
                     "description": f"Plan: {plan}, Seats: {seats}",
                 },
             },
@@ -555,7 +555,7 @@ async def capture_paypal_order(request: Request, user=Depends(get_current_user))
                 {"$set": {"status": "completed", "captured_at": datetime.now(timezone.utc)}},
             )
             try:
-                invoice = invoice_service.generate_invoice(
+                invoice = await invoice_service.generate_invoice(
                     user=user,
                     plan=payment_doc.get("plan", new_plan),
                     amount=float(payment_doc.get("amount", 0)),
@@ -636,7 +636,7 @@ async def paypal_webhook(request: Request):
                     status="completed",
                 )
                 try:
-                    invoice_service.generate_invoice(
+                    await invoice_service.generate_invoice(
                         user=user,
                         plan=new_plan,
                         amount=paid_amount,
@@ -740,13 +740,13 @@ async def billing_status(user=Depends(get_current_user)):
 @router.get("/invoices")
 async def list_invoices(user=Depends(get_current_user)):
     """List the current user's invoices (metadata only)."""
-    return {"invoices": invoice_service.get_user_invoices(user["id"])}
+    return {"invoices": await invoice_service.get_user_invoices(user["id"])}
 
 
 @router.get("/invoices/{invoice_id}")
 async def get_invoice(invoice_id: str, request: Request, user=Depends(get_current_user)):
     """Fetch a single invoice as JSON, or HTML with ?format=html."""
-    invoice = invoice_service.get_invoice(invoice_id)
+    invoice = await invoice_service.get_invoice(invoice_id)
     if not invoice or invoice.get("customer", {}).get("user_id") != str(user["id"]):
         raise HTTPException(status_code=404, detail="Invoice not found")
     if request.query_params.get("format") == "html":
@@ -938,7 +938,7 @@ async def razorpay_webhook(request: Request):
         user = await users_collection.find_one({"_id": ObjectId(user_id)})
         if user:
             try:
-                invoice_service.generate_invoice(
+                await invoice_service.generate_invoice(
                     user=user,
                     plan=new_plan,
                     amount=amount,

@@ -5,6 +5,7 @@ import api from "../services/api";
 import Spinner from "../components/ui/Spinner";
 import CelebrationOverlay from "../components/CelebrationOverlay";
 import RepairPanel from "../components/RepairPanel";
+import TestTakerAttestation from "../components/TestTakerAttestation";
 import { useMockSession, type Section } from "../hooks/useMockSession";
 import type { OASession, SubmitOAItem } from "../services/api/oa";
 import {
@@ -24,6 +25,7 @@ import {
   Target,
   Eye,
   EyeOff,
+  Database,
 } from "lucide-react";
 
 const COMPANIES = [
@@ -83,6 +85,28 @@ const COMPANIES = [
     color: "cyber-amber",
   },
   {
+    id: "capgemini",
+    name: "Capgemini",
+    logo: "🔆",
+    duration: 45,
+    questionCount: 20,
+    difficulty: "medium",
+    sections: ["Quant", "Logical", "Verbal", "Technical"],
+    description: "Capgemini online assessment pattern",
+    color: "cyber-amber",
+  },
+  {
+    id: "ibm",
+    name: "IBM",
+    logo: "🔷",
+    duration: 45,
+    questionCount: 20,
+    difficulty: "medium",
+    sections: ["Quant", "Logical", "Verbal", "Technical"],
+    description: "IBM entry-level Cognitive Ability round",
+    color: "cyber-blue",
+  },
+  {
     id: "hcl",
     name: "HCL Tech",
     logo: "🟢",
@@ -111,6 +135,19 @@ const SECTION_CATEGORIES = {
   Logical: "logical",
   Verbal: "verbal",
   Technical: "technical",
+};
+
+const OA_TO_MEMORY_EXAM: Record<string, string> = {
+  tcs: "tcs_nqt",
+  infosys: "infytq",
+  wipro: "wipro_nlth",
+  cognizant: "cognizant_genc",
+  accenture: "accenture",
+  capgemini: "capgemini_amcat",
+  ibm: "ibm_entry",
+  hcl: "other",
+  tech_mahindra: "other",
+  general: "other",
 };
 
 const DURATION_OPTIONS = [
@@ -195,12 +232,23 @@ function QuestionPalette({
   );
 }
 
-function ScoreRing({ percentage, size = 180 }: { percentage: number; size?: number }) {
+function ScoreRing({
+  percentage,
+  size = 180,
+  tone,
+}: {
+  percentage: number;
+  size?: number;
+  tone?: "neutral";
+}) {
   const r = (size - 16) / 2;
   const circ = 2 * Math.PI * r;
-  const offset = circ * (1 - percentage / 100);
+  const offset =
+    tone === "neutral" ? circ : circ * (1 - percentage / 100);
   const color =
-    percentage >= 80
+    tone === "neutral"
+      ? "#9CA3AF"
+      : percentage >= 80
       ? "#4BB543"
       : percentage >= 50
       ? "#F59E0B"
@@ -238,10 +286,12 @@ function ScoreRing({ percentage, size = 180 }: { percentage: number; size?: numb
           className="font-display font-black text-4xl"
           style={{ color }}
         >
-          {percentage}%
+          {tone === "neutral" ? "—" : `${percentage}%`}
         </span>
         <span className="font-mono text-xs text-gray-500 mt-1">
-          {percentage >= 80
+          {tone === "neutral"
+            ? "NOT GRADED"
+            : percentage >= 80
             ? "ELITE"
             : percentage >= 60
             ? "GOOD"
@@ -262,6 +312,7 @@ interface OAQuestion extends Record<string, unknown> {
   language?: string;
   options?: Record<string, unknown>[];
   question?: string;
+  verified_by_takers?: number;
 }
 
 interface AnswerResult {
@@ -288,23 +339,78 @@ export default function MockOA() {
   const [reviewMode, setReviewMode] = useState(false);
   const [showExplanation, setShowExplanation] = useState<Record<number, boolean>>({});
   const [sections, setSections] = useState<Section[]>([]);
+  const [resultLoading, setResultLoading] = useState(false);
   const timerRef = useRef(null);
 
   const mockSession = useMockSession({
     mockId: sessionId,
     sections,
     onExamComplete: (sessionState) => {
-      setResult({
-        percentage: 0,
-        correct: 0,
-        wrong: 0,
-        unattempted: questions.length,
-        timeTaken: timeTaken,
-        answers: sessionState.answers,
-        tabViolations: sessionState.tabViolationsCount,
-        isExamComplete: true,
-      });
+      // Finalize on the BACKEND `/complete` endpoint. This is the only path
+      // that grades answers, runs competence diagnosis, and persists repair
+      // missions (fail → diagnose → repair → retest). Building the result
+      // client-side skips all of it — so we always POST complete first and
+      // only fall back to a placeholder on transport failure.
       setStep("results");
+      setResultLoading(true);
+      const fallback = () =>
+        setResult({
+          percentage: 0,
+          correct: 0,
+          wrong: 0,
+          unattempted: questions.length,
+          timeTaken: timeTaken,
+          answers: sessionState.answers,
+          tabViolations: sessionState.tabViolationsCount,
+          isExamComplete: true,
+          unreachable: true,
+        });
+      api
+        .oa.complete(sessionId)
+        .then((data: any) => {
+          // Reconcile real per-question correctness from the server scorecard
+          // so section breakdown + review rings reflect actual grading.
+          const scorecard: any[] = Array.isArray(data?.scorecard)
+            ? data.scorecard
+            : [];
+          if (scorecard.length) {
+            setSubmittedAnswers((prev) => {
+              const next: Record<number, AnswerResult> = { ...prev };
+              scorecard.forEach((pq: any) => {
+                const idx = questions.findIndex((q) => {
+                  const uid = (q as any)?.question_uid;
+                  return String(uid) === String(pq?.question_uid);
+                });
+                if (idx >= 0) {
+                  next[idx] = {
+                    ...(next[idx] ?? {}),
+                    is_correct: Number(pq?.score) >= 100,
+                  };
+                }
+              });
+              return next;
+            });
+          }
+          const readiness = Number(data?.overall_readiness);
+          setResult({
+            ...data,
+            percentage: Number.isFinite(readiness)
+              ? Math.max(0, Math.min(100, Math.round(readiness)))
+              : Math.round(
+                  ((Number(data?.correct_count) || 0) /
+                    (Number(data?.total_questions) ||
+                      questions.length ||
+                      1)) *
+                    100
+                ),
+            timeTaken: Number(data?.time_taken) || timeTaken,
+            tabViolations: sessionState.tabViolationsCount,
+            answers: sessionState.answers,
+            isExamComplete: true,
+          });
+        })
+        .catch(fallback)
+        .finally(() => setResultLoading(false));
     },
   });
 
@@ -397,6 +503,7 @@ export default function MockOA() {
       setTimeTaken(0);
       setReviewMode(false);
       setResult(null);
+      setResultLoading(false);
       setStep("test");
       mockSession.triggerFullscreen().catch(() => {});
     } catch (err) {
@@ -694,6 +801,7 @@ export default function MockOA() {
                   <p className="font-display font-bold text-text-primary text-lg leading-relaxed mt-3">
                     {q.question}
                   </p>
+                  <TestTakerAttestation count={q.verified_by_takers} />
                 </div>
 
                 <div className="space-y-2.5 mb-6">
@@ -910,15 +1018,44 @@ export default function MockOA() {
   if (step === "results" && result) {
     const total = questions.length;
     const pct = typeof result.percentage === "number" ? result.percentage : 0;
+    const diag: any = result?.diagnosis ?? null;
+    const skills: any[] = Array.isArray(diag?.skill_weaknesses)
+      ? diag.skill_weaknesses.slice(0, 3)
+      : [];
+    const primary =
+      typeof diag?.primary_weakness === "string"
+        ? diag.primary_weakness
+        : skills[0]?.skill ?? null;
+    const chain: string[] = Array.isArray(diag?.repair_chain)
+      ? diag.repair_chain
+      : [];
+    const retestCond =
+      typeof diag?.retest_condition === "string"
+        ? diag.retest_condition
+        : "";
+    const unreachable = result?.unreachable === true;
 
     return (
       <div className="page-surface min-h-screen py-6 px-4">
         <CelebrationOverlay
-          show={showCelebration}
+          show={showCelebration && !unreachable}
           type="perfect"
           message="OA Destroyed!"
         />
         <div className="max-w-5xl mx-auto">
+          {unreachable && (
+            <div className="mb-6 border-2 border-dashed border-cyber-amber/60 bg-cyber-amber/10 rounded-xl p-4 text-center">
+              <p className="font-display font-bold text-cyber-amber mb-1">
+                Couldn't reach the server
+              </p>
+              <p className="font-mono text-xs text-gray-400">
+                Your answers could not be submitted for grading. The scores
+                shown here are placeholders — no OA result was recorded and no
+                repair mission was started. Please check your connection and
+                retry the attempt.
+              </p>
+            </div>
+          )}
           {/* Header */}
           <motion.div
             className="card mb-8 text-center"
@@ -926,10 +1063,15 @@ export default function MockOA() {
             animate={{ opacity: 1, y: 0 }}
           >
             <span className="section-subheader mb-4 block">
-              Assessment Complete
+              {unreachable
+                ? "Submission Interrupted"
+                : "Assessment Complete"}
             </span>
             <div className="flex justify-center mb-6">
-              <ScoreRing percentage={pct} />
+              <ScoreRing
+                percentage={pct}
+                tone={unreachable ? "neutral" : undefined}
+              />
             </div>
             <div className="flex items-center justify-center gap-6 mb-4">
               <div className="text-center">
@@ -986,7 +1128,9 @@ export default function MockOA() {
             </p>
           </motion.div>
 
-          {/* Section Breakdown */}
+          {/* Section Breakdown — hidden on transport-failure fallback: 0%
+              is meaningless when answers never reached the server. */}
+          {!unreachable && (
           <motion.div
             className="mb-8"
             initial={{ opacity: 0, y: 20 }}
@@ -1043,11 +1187,133 @@ export default function MockOA() {
               })}
             </div>
           </motion.div>
+          )}
 
-          {/* Repair Missions — closed-loop return path */}
-          <RepairPanel />
+          {/* Weakness Diagnosis — the actionable repair path produced by the
+              backend competence diagnosis. Hidden when no weak skill exists. */}
+          {skills.length > 0 && (
+            <motion.div
+              className="mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.13 }}
+            >
+              <h2 className="section-header text-lg mb-4 flex items-center gap-2">
+                <Target size={20} className="text-cyber-red" />
+                Weakness Diagnosis
+              </h2>
+              <div className="card p-5">
+                {primary && (
+                  <p className="mb-4 flex items-center gap-2 font-display font-bold text-sm">
+                    <AlertTriangle
+                      size={16}
+                      className="text-cyber-amber shrink-0"
+                    />
+                    Primary weakness:
+                    <span className="text-cyber-red capitalize">
+                      {primary}
+                    </span>
+                  </p>
+                )}
+                <div className="grid sm:grid-cols-3 gap-4 mb-4">
+                  {skills.map((w) => (
+                    <div
+                      key={w.skill}
+                      className="rounded-xl border border-black/5 bg-surface-2 p-3"
+                    >
+                      <p className="font-display font-bold text-text-primary text-sm mb-1 capitalize">
+                        {w.skill}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <span
+                          className={`font-mono text-xl font-black ${
+                            w.pct < 40
+                              ? "text-cyber-red"
+                              : "text-cyber-amber"
+                          }`}
+                        >
+                          {Math.round(w.pct)}%
+                        </span>
+                        <span className="font-mono text-xs text-gray-500">
+                          {w.correct}/{w.total} correct
+                        </span>
+                      </div>
+                      <div className="mt-2 flex flex-wrap gap-1.5 font-mono text-[10px]">
+                        {Number(w.slow_count) > 0 && (
+                          <span className="rounded bg-cyber-amber/10 px-1.5 py-0.5 text-cyber-amber">
+                            {w.slow_count} slow
+                          </span>
+                        )}
+                        <span className="rounded bg-black/10 px-1.5 py-0.5 text-text-muted">
+                          ~{Math.round(Number(w.avg_time_s))}s avg
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                {(chain.length > 0 || retestCond) && (
+                  <div className="space-y-3 border-t border-black/5 pt-4">
+                    {chain.length > 0 && (
+                      <div>
+                        <p className="mb-2 font-mono text-[10px] text-text-muted uppercase tracking-wide">
+                          Repair Path
+                        </p>
+                        <ol className="space-y-1">
+                          {chain.map((step, i) => (
+                            <li
+                              key={i}
+                              className="flex items-center gap-2 font-mono text-xs text-gray-300"
+                            >
+                              <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded bg-cyber-red/10 text-[10px] font-bold text-cyber-red">
+                                {i + 1}
+                              </span>
+                              {step}
+                            </li>
+                          ))}
+                        </ol>
+                      </div>
+                    )}
+                    {retestCond && (
+                      <p className="font-mono text-[10px] text-gray-500">
+                        Retest condition:{" "}
+                        <span className="text-cyber-green">
+                          {retestCond}
+                        </span>
+                      </p>
+                    )}
+                    <div className="pt-1">
+                      <button
+                        onClick={() =>
+                          document
+                            .getElementById("repair-missions")
+                            ?.scrollIntoView({
+                              behavior: "smooth",
+                              block: "start",
+                            })
+                        }
+                        className="btn-primary text-xs"
+                      >
+                        Focus &amp; Retest <ArrowRight size={14} />
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          )}
 
-          {/* Question Review Toggle */}
+          {/* Repair Missions — closed-loop return path. Never shown on a
+              transport-failure fallback: no grade was recorded, so there is
+              nothing to repair. */}
+          {!unreachable && (
+            <div id="repair-missions">
+              <RepairPanel />
+            </div>
+          )}
+
+          {/* Question Review Toggle — hidden on transport-failure fallback;
+              per-question correctness is unknown because no scorecard exists. */}
+          {!unreachable && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -1195,10 +1461,24 @@ export default function MockOA() {
               })}
             </div>
           </motion.div>
+          )}
+
+          <Link
+            to={{ pathname: "/exam-memory/submit", search: `?exam=${OA_TO_MEMORY_EXAM[company.id] || "other"}` }}
+            className="block rounded-3xl px-6 py-5 mt-10 text-center font-display font-black text-base sm:text-lg text-space-void transition-all duration-200 hover:scale-[1.015] hover:shadow-lg"
+            style={{ backgroundColor: "#D4A843", color: "#0a0a0a" }}
+          >
+            <span className="flex items-center justify-center gap-3">
+              <Database size={20} /> Just took the real {company.name}? Report what you remember
+            </span>
+            <span className="block font-mono text-[10px] font-normal mt-1 opacity-70 tracking-wide">
+              Your recollections help build the verified question bank for future test-takers
+            </span>
+          </Link>
 
           {/* Action Buttons */}
           <motion.div
-            className="flex gap-4 mt-10"
+            className="flex gap-4 mt-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
@@ -1235,8 +1515,13 @@ export default function MockOA() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-screen flex flex-col items-center justify-center gap-3">
       <Spinner size="lg" />
+      {resultLoading && (
+        <p className="font-mono text-xs text-text-muted">
+          Finalizing assessment — grading answers &amp; diagnosing weaknesses…
+        </p>
+      )}
     </div>
   );
 }

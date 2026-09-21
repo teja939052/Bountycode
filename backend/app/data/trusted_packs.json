@@ -1,13 +1,13 @@
 {
   "_meta": {
     "version": 1,
-    "purpose": "10 trusted placement assessment packs built from the shared independently-verified question pool (verified_placement_questions.json, 104 verified). Section mixes + timing + difficulty over verified content ONLY. Provenance is pattern_relevant (never fabricated historical company questions).",
+    "purpose": "10 trusted placement assessment packs built from the shared independently-verified question pool (verified_placement_questions.json, 254 verified). Section mixes + timing + difficulty over verified content ONLY. Provenance is pattern_relevant (never fabricated historical company questions).",
     "verified_universe": {
-      "coding": 30,
-      "aptitude": 35,
-      "cs_fundamentals": 19,
-      "logical": 10,
-      "verbal": 10
+      "coding": 135,
+      "aptitude": 50,
+      "cs_fundamentals": 39,
+      "logical": 15,
+      "verbal": 15
     },
     "trusted_pack_flag": "verified_only=true at OA start; any required verified section with insufficient stock is dropped rather than backfilled with legacy content."
   },

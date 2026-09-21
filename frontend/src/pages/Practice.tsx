@@ -1,5 +1,5 @@
 import SectionPage from "../components/SectionPage";
-import { Code2, ListChecks, Hash, Dumbbell, Package, FileCode, Video, Terminal, PlaySquare } from "lucide-react";
+import { Code2, ListChecks, Hash, Dumbbell, Package, FileCode, Video, Terminal, PlaySquare, GraduationCap } from "lucide-react";
 
 export default function Practice() {
   return (
@@ -12,6 +12,7 @@ export default function Practice() {
           label: "Simulations",
           items: [
             { to: "/mock-oa", label: "Mock OA", desc: "Timed online assessment simulator", icon: FileCode },
+            { to: "/tcs-nqt", label: "TCS NQT", desc: "Two-stage NQT-format simulation", icon: GraduationCap },
             { to: "/interview-booking", label: "Mock Interview", desc: "Live 1:1 mock interview", icon: Video },
             { to: "/company-mocks", label: "Company Mocks", desc: "Company-specific test series", icon: Package },
           ],

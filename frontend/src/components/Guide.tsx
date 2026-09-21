@@ -62,7 +62,7 @@ const STATE_CONFIG: Record<
   },
   complete: {
     title: "Mission Complete! 🎉",
-    subtitle: "Great job finishing this module! You earned some XP and a bounty. Ready for the next one?",
+    subtitle: "Great job finishing this module! You earned some Diamonds and a bounty. Ready for the next one?",
     action: {
       type: "claim",
       label: "Claim Bounty →",

@@ -101,7 +101,7 @@ async def build_quiz_session(req: QuizRequest, user=Depends(get_current_user)):
 
 @router.post("/answer")
 async def submit_answer(submission: AnswerSubmission, user=Depends(get_current_user)):
-    """Submit an answer and get feedback + XP."""
+    """Submit an answer and get feedback + Diamonds."""
     result = submit_quiz_answer(
         quiz_id=submission.quiz_id,
         question_id=submission.question_id,

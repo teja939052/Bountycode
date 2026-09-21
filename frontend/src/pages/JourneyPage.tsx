@@ -6,7 +6,7 @@ import {
   Sparkles, ChevronDown, RotateCcw,
   Target, Brain, Swords, Play,
 } from "lucide-react";
-import { useQueryClient } from "@tanstack/react-query";
+import { useQueryClient, useQuery } from "@tanstack/react-query";
 import { useJourneyState, type JourneyWorld, type JourneyLevel } from "../hooks/useJourneyState";
 import { useGamificationProfile } from "../hooks/useGamificationProfile";
 import useAuthStore from "../store/authStore";
@@ -118,7 +118,7 @@ function MapVoyageSection({
             status: "current",
             mastery: Math.round(node.best_score),
             attempts: node.attempts,
-            xp: node.xp,
+            diamonds: node.diamonds,
             recovered: node.recovered === true,
           });
           activeLevelRecovered.current = node.recovered === true;
@@ -135,7 +135,7 @@ export default function JourneyPage() {
   const [activeLevel, setActiveLevel] = useState<JourneyLevel | null>(null);
   const [activeWorldId, setActiveWorldId] = useState<string | null>(null);
   const [banner, setBanner] = useState<{
-    xp: number; stars?: number; combo?: number; streakMult?: number;
+    diamonds: number; stars?: number; combo?: number; streakMult?: number;
     critical?: boolean; recovered?: boolean;
   } | null>(null);
   const [showAllWorlds, setShowAllWorlds] = useState(false);
@@ -151,14 +151,9 @@ export default function JourneyPage() {
   }, [queryClient]);
 
   const handleContinue = useCallback((level: JourneyLevel, worldId: string) => {
-    // World-1 ("foundations") levels route to the rich full-loop LessonPage.
-    if (worldId === "foundations") {
-      navigate(`/lesson/${level.id}`);
-      return;
-    }
     setActiveLevel(level);
     setActiveWorldId(worldId);
-  }, [navigate]);
+  }, []);
 
   const handleCloseLevel = useCallback(() => {
     setActiveLevel(null);
@@ -166,17 +161,17 @@ export default function JourneyPage() {
     refreshMap();
   }, [refreshMap]);
 
-  const handleLevelMastered = useCallback((xp: number, detail?: {
+  const handleLevelMastered = useCallback((diamonds: number, detail?: {
     stars?: number; reward?: Record<string, unknown>; xp_nominal?: number;
   }) => {
     setActiveLevel(null);
     setActiveWorldId(null);
     // One primary confirmation per event (juice standard): the result
     // banner renders the canonical award straight from the complete
-    // response — stars, XP, combo/streak/crit. No second fetch, no math.
+    // response — stars, Diamonds, combo/streak/crit. No second fetch, no math.
     const reward = detail?.reward ?? {};
     setBanner({
-      xp,
+      diamonds,
       stars: typeof detail?.stars === "number" ? detail.stars : undefined,
       combo: typeof reward.combo === "number" ? reward.combo : 0,
       streakMult: typeof reward.streak_multiplier === "number" ? reward.streak_multiplier : 1,
@@ -193,60 +188,6 @@ export default function JourneyPage() {
 
   const [voyageWorld, setVoyageWorld] = useState<string | undefined>(undefined);
 
-  // Fetch full world content for the current level to show real learning content
-  const { data: worldContent } = useQuery({
-    queryKey: ["world", "content", currentWorld?.id],
-    queryFn: () => api.journey.getWorldView(currentWorld!.id),
-    enabled: !!currentWorld?.id,
-    staleTime: 60_000,
-  });
-
-  // Extract current level content from world data
-  const currentLevelContent = useMemo(() => {
-    if (!worldContent?.world?.towns) return null;
-    const world = worldContent.world as Record<string, unknown>;
-    const towns = world.towns as Array<Record<string, unknown>>;
-    for (const town of towns) {
-      const levels = town.levels as Array<Record<string, unknown>> | undefined;
-      if (!levels) continue;
-      const found = levels.find((l) => l.id === currentLevel?.id);
-      if (found) return found as Record<string, unknown>;
-    }
-    return null;
-  }, [worldContent, currentLevel?.id]);
-
-  if (isLoading) {
-    return (
-      <div className="min-h-[80vh] flex flex-col items-center justify-center gap-4">
-        <div className="h-12 w-12 animate-spin rounded-full border-3 border-primary/20 border-t-primary" />
-        <p className="text-sm text-text-muted">Loading your journey…</p>
-      </div>
-    );
-  }
-
-  if (isError || !state) {
-    return (
-      <div className="min-h-[70vh] flex flex-col items-center justify-center gap-4 px-6 text-center">
-        <p className="text-lg font-semibold">Journey unavailable</p>
-        <Link to="/dashboard" className="text-sm text-primary underline">Back to dashboard</Link>
-      </div>
-    );
-  }
-
-  const { character, worlds = [], stats } = state;
-  const currentWorld = worlds.find(
-    (w: JourneyWorld) => w.id === character.position?.world_id,
-  );
-  const currentLevel = currentWorld?.towns
-    ?.flatMap((t) => t.levels)
-    ?.find((l: JourneyLevel) => l.id === character.position?.level_id);
-
-  const todayReviews = state.today?.reviews || [];
-  const todayPractice = state.today?.practice || [];
-  const todayChallenge = state.today?.challenge;
-const todayRole = state.today?.role_activity;
-
-  // ---- Pattern readiness (backend endpoint) ----
   const [patternReadiness, setPatternReadiness] = useState<{
     patternId: string;
     masteryPercent: number;
@@ -269,21 +210,23 @@ const todayRole = state.today?.role_activity;
     companyReadiness: null,
   });
 
+  const [mockInfluence, setMockInfluence] = useState<{
+    totalScore: number;
+    passingScore: number;
+    passed: boolean;
+    company: string;
+  } | null>(null);
+
   useEffect(() => {
-    // Fetch pattern-readiness once on mount; the endpoint requires auth
-    // so it will return 401 when unauthenticated — the UI gracefully falls back.
     (async () => {
       try {
         const res = await api.questions.getPatternReadiness("sliding-window");
         setPatternReadiness(res);
-        // Compose company readiness from the same verified data:
-        // overall % = mastery % (honest, no fake zeros); sections = pattern topics;
-        // weakest section = the first pattern topic (or "—" if none).
         setCompanyReadiness({
           overallPercent: res.masteryPercent,
           sections: ["sliding-window", "two-pointers", "binary-search", "hashing", "strings"].slice(0, 3),
           nextUpId: res.nextPattern || null,
-          weakestSection: "min-swaps-group-ones", // first canonical weak problem
+          weakestSection: "min-swaps-group-ones",
           weakestTitle: "Min swaps to gather ones",
         });
       } catch (e) {
@@ -292,23 +235,7 @@ const todayRole = state.today?.role_activity;
     })();
   }, []);
 
-  // ---- Mock completion → readiness refresh ----
-  // When the mock results are available (e.g. from localStorage or a
-  // post‑completion payload), compose a mock‑influenced readiness
-  // that sits beside the pure‑pattern %.  The copy below is honest:
-  // it notes that the % reflects verified pattern mastery, and the
-  // mock result is shown as a supplementary data point.
-  const [mockInfluence, setMockInfluence] = useState<{
-    totalScore: number;
-    passingScore: number;
-    passed: boolean;
-    company: string;
-  } | null>(null);
-
-  // Simulate a recent mock completion for demonstration:
-  // In a real app this would be triggered by the mock‑completion handler.
   useEffect(() => {
-    // If the app has stored mock results, use them; otherwise no‑op.
     const stored = localStorage.getItem("mock_completion_TCS");
     if (stored) {
       const data = JSON.parse(stored);
@@ -318,12 +245,10 @@ const todayRole = state.today?.role_activity;
         passed: data.passed,
         company: data.company,
       });
-      // Remove from storage so it isn’t applied repeatedly.
       localStorage.removeItem("mock_completion_TCS");
     }
   }, []);
 
-  // Company readiness composes from available signals (no new engine)
   const [companyReadiness, setCompanyReadiness] = useState<{
     overallPercent: number;
     sections: string[];
@@ -338,14 +263,54 @@ const todayRole = state.today?.role_activity;
     weakestTitle: null,
   });
 
-  // If we have a user‑enrolled company track, we could compose readiness
-  // from the track overview here. For now we keep a minimal honest %.
+  const { character, worlds = [], stats } = state || {};
+  const currentWorld = worlds.find(
+    (w: JourneyWorld) => w.id === character?.position?.world_id,
+  );
+  const currentLevel = currentWorld?.towns
+    ?.flatMap((t) => t.levels)
+    ?.find((l: JourneyLevel) => l.id === character?.position?.level_id);
 
-  // ─── LEVEL MAP header + mission panels (hybrid) ───
-  // All numbers derive from canonical state: useJourneyState (worlds,
-  // levels, company track) + useGamificationProfile (daily goal, streak,
-  // stars, rank). No new queries, no new engines.
+  const { data: worldContent } = useQuery({
+    queryKey: ["world", "content", currentWorld?.id],
+    queryFn: () => api.journey.getWorldView(currentWorld!.id),
+    enabled: !!currentWorld?.id,
+    staleTime: 60_000,
+  });
+
+  const currentLevelContent = useMemo(() => {
+    if (!worldContent?.world?.towns) return null;
+    const world = worldContent.world as Record<string, unknown>;
+    const towns = world.towns as Array<Record<string, unknown>>;
+    for (const town of towns) {
+      const levels = town.levels as Array<Record<string, unknown>> | undefined;
+      if (!levels) continue;
+      const found = levels.find((l) => l.id === currentLevel?.id);
+      if (found) return found as Record<string, unknown>;
+    }
+    return null;
+  }, [worldContent, currentLevel?.id]);
+
   const { data: gp } = useGamificationProfile();
+
+  if (isLoading) {
+    return (
+      <div className="min-h-[80vh] flex flex-col items-center justify-center gap-4">
+        <div className="h-12 w-12 animate-spin rounded-full border-3 border-primary/20 border-t-primary" />
+        <p className="text-sm text-text-muted">Loading your journey…</p>
+      </div>
+    );
+  }
+
+  if (isError || !state) {
+    return (
+      <div className="min-h-[70vh] flex flex-col items-center justify-center gap-4 px-6 text-center">
+        <p className="text-lg font-semibold">Journey unavailable</p>
+        <Link to="/dashboard" className="text-sm text-primary underline">Back to dashboard</Link>
+      </div>
+    );
+  }
+
   const worldLevels = currentWorld?.towns?.flatMap((t) => t.levels) ?? [];
   const clearedLevels = worldLevels.filter((l) => l.status === "completed");
   const lastVictory = [...clearedLevels].sort((a, b) => b.order - a.order)[0] ?? null;
@@ -359,6 +324,11 @@ const todayRole = state.today?.role_activity;
   const rankEmoji = (gp?.title_emoji as string | undefined) || "🛡️";
   const missionStreak = typeof gp?.streak === "number" ? gp.streak : stats.streak;
   const missionStars = typeof gp?.stars_total === "number" ? gp.stars_total : 0;
+
+  const todayReviews = state.today?.reviews || [];
+  const todayPractice = state.today?.practice || [];
+  const todayChallenge = state.today?.challenge;
+  const todayRole = state.today?.role_activity;
 
   return (
     <div className="min-h-screen bg-base">
@@ -398,7 +368,7 @@ const todayRole = state.today?.role_activity;
                 </div>
               ) : (
                 <p className="mt-3 font-mono text-xs text-muted">
-                  Level {stats.level} · {stats.xp.toLocaleString()} XP · {stats.streak} day streak
+                  Level {stats.level} · {stats.diamonds.toLocaleString()} Diamonds · {stats.streak} day streak
                 </p>
               )}
               <Link to="/career-profile" className="mt-2 inline-block font-mono text-xs font-semibold tracking-widest text-[#E8590C] hover:underline">
@@ -461,12 +431,12 @@ const todayRole = state.today?.role_activity;
                       {currentLevel.title.toUpperCase()}
                     </h3>
                     <p className="mt-1 font-mono text-[11px] uppercase text-gray-500">
-                       {currentLevel.kind === "boss" ? "Boss Island" : "Stage"} {currentLevel.order} · {currentLevel.xp} XP reward
+                       {currentLevel.kind === "boss" ? "Boss Island" : "Stage"} {currentLevel.order} · {currentLevel.diamonds} Diamonds reward
                     </p>
                     <div className="mt-3 grid grid-cols-3 gap-2 text-center">
                       <div className="rounded-lg bg-white/70 px-2 py-2 ring-1 ring-black/5">
-                        <p className="text-base font-black text-gray-900">+{currentLevel.xp}</p>
-                        <p className="font-mono text-[9px] uppercase text-gray-400">XP</p>
+                        <p className="text-base font-black text-gray-900">+{currentLevel.diamonds}</p>
+                        <p className="font-mono text-[9px] uppercase text-gray-400">Diamonds</p>
                       </div>
                       <div className="rounded-lg bg-white/70 px-2 py-2 ring-1 ring-black/5">
                         <p className="flex items-center justify-center gap-1 text-base font-black text-gray-900">
@@ -500,7 +470,7 @@ const todayRole = state.today?.role_activity;
                 </div>
                 {lastVictory ? (
                   <>
-                    <p className="mt-1 text-2xl font-black text-[#F4532F]">+{lastVictory.xp} XP</p>
+                    <p className="mt-1 text-2xl font-black text-[#F4532F]">+{lastVictory.diamonds} Diamonds</p>
                     <p className="mt-0.5 text-xs text-gray-500">
                       {lastVictory.title} cleared · mastery {lastVictory.mastery}%
                     </p>
@@ -538,7 +508,7 @@ const todayRole = state.today?.role_activity;
 
               <div className="flex items-start gap-4">
                 <PlayerCharacter
-                  state={celebrate ? "mastery" : "discovering"}
+                  state={"discovering"}
                   titleEmoji={character.title_emoji}
                   size="lg"
                 />
@@ -638,7 +608,7 @@ const todayRole = state.today?.role_activity;
                   <Flame className="w-3 h-3 text-orange-500" /> {stats.streak} day streak
                 </span>
                 <span>·</span>
-                <span>{currentLevel.xp} XP reward</span>
+                <span>{currentLevel.diamonds} Diamonds reward</span>
               </div>
             </motion.div>
           ) : (
@@ -773,7 +743,7 @@ const todayRole = state.today?.role_activity;
                     </span>
                   </div>
                   <span className="text-[10px] text-accent-secondary font-medium bg-accent-secondary/10 px-2 py-1 rounded-full">
-                    +{todayChallenge.xp_reward} XP
+                    +{todayChallenge.xp_reward} Diamonds
                   </span>
                 </div>
               )}
@@ -800,9 +770,9 @@ const todayRole = state.today?.role_activity;
               {currentWorld.towns.map((town) => {
                 const townComplete = town.levels.every((l) => l.status === "completed");
                 // Coddy-style section summary, all derived from the town's
-                // own levels (already in state): counts, XP on offer, boss.
+                // own levels (already in state): counts, Diamonds on offer, boss.
                 const townDone = town.levels.filter((l) => l.status === "completed").length;
-                const townXp = town.levels.reduce((s, l) => s + (l.xp || 0), 0);
+                const townXp = town.levels.reduce((s, l) => s + (l.diamonds || 0), 0);
                 const townBoss = town.levels.some((l) => l.kind === "boss");
                 const townPct = town.levels.length > 0 ? Math.round((townDone / town.levels.length) * 100) : 0;
                 const nextUp = town.levels.find((l) => l.status !== "completed" && l.status !== "locked");
@@ -821,7 +791,7 @@ const todayRole = state.today?.role_activity;
                       <div className="mt-1 flex items-center gap-2 text-[11px] text-text-muted">
                         <span className="font-semibold">{townDone}/{town.levels.length} lessons</span>
                         <span>·</span>
-                        <span>{townXp} XP on offer</span>
+                        <span>{townXp} Diamonds on offer</span>
                         {nextUp && <span className="ml-auto font-bold text-primary">Start →</span>}
                       </div>
                       <div className="mt-1.5 h-1 overflow-hidden rounded-full bg-zinc-100">
@@ -891,6 +861,7 @@ const todayRole = state.today?.role_activity;
             level={activeLevel}
             onClose={handleCloseLevel}
             onMastered={handleLevelMastered}
+            worldContent={currentLevelContent}
           />
         )}
       </AnimatePresence>

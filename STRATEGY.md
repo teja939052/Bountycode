@@ -1,4 +1,4 @@
-# PlacementPro — Codedex-Style Gamification Strategy
+# BountyCode — Codedex-Style Gamification Strategy
 
 ## Core Philosophy
 Transform placement preparation into an addictive RPG experience, optimized for both **Indian campus hiring** (mass recruiters, aptitude tests) and **US tech hiring** (FAANG, behavioral, system design).

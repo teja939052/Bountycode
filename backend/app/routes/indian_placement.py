@@ -3,12 +3,11 @@ Indian Company Placement Mock Tests.
 Company-specific aptitude, coding, and HR rounds matching real campus placement patterns.
 """
 from datetime import datetime, timezone, timedelta
+import random
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from typing import Optional, List
-from bson import ObjectId
 from app.middleware.auth import get_current_user
-from app.database import curated_questions_collection
 from app.data.indian_companies import (
     INDIAN_COMPANIES, get_all_companies, get_company_detail, get_company_mock_sections
 )
@@ -47,7 +46,7 @@ async def get_mock_config(company_id: str):
 
 @router.get("/{company_id}/hr-questions")
 async def get_hr_questions(company_id: str):
-    """Get commonly asked HR/behavioral questions for this company."""
+    """Get pattern-relevant HR/behavioral questions for this company (pattern alignment, never historically-asked claims)."""
     company = INDIAN_COMPANIES.get(company_id.lower())
     if not company:
         raise HTTPException(status_code=404, detail="Company not found")
@@ -60,7 +59,7 @@ async def get_hr_questions(company_id: str):
 
 @router.get("/{company_id}/coding-patterns")
 async def get_coding_patterns(company_id: str):
-    """Get commonly asked coding patterns for this company."""
+    """Get pattern-relevant coding patterns for this company (pattern alignment, never historically-asked claims)."""
     company = INDIAN_COMPANIES.get(company_id.lower())
     if not company:
         raise HTTPException(status_code=404, detail="Company not found")
@@ -79,7 +78,8 @@ class StartPlacementTestRequest(BaseModel):
 @router.post("/start-mock")
 async def start_placement_mock(req: StartPlacementTestRequest, user=Depends(get_current_user)):
     """Start a company-specific placement mock test.
-    Pulls real questions from the curated_questions collection matching the company's pattern.
+    Pulls verified questions from the in-memory canonical bank matching the
+    company's pattern. Thin sections serve fewer real questions — no padding.
     """
     company = INDIAN_COMPANIES.get(req.company_id.lower())
     if not company:
@@ -89,7 +89,13 @@ async def start_placement_mock(req: StartPlacementTestRequest, user=Depends(get_
     if not sections:
         raise HTTPException(status_code=400, detail="No test sections available")
 
-    collection = curated_questions_collection()
+    # Verified company bank first (in-memory, Residency Rule + No-LLM Bank
+    # Rule): explicit company tags over TRUSTED stock, general verified
+    # backfill. Thin sections serve FEWER REAL questions — never fabricated
+    # placeholders, never invented answers.
+    from app.services import question_store
+    bank = question_store.company_verified_bank(req.company_id)
+    tagged_ids = {q.get("id") for q in bank["items"]}
 
     # If specific section requested, filter to that
     target_sections = sections["sections"]
@@ -119,31 +125,16 @@ async def start_placement_mock(req: StartPlacementTestRequest, user=Depends(get_
                 if topics:
                     query["topic"] = {"$in": topics}
 
-            pipeline = [
-                {"$match": query},
-                {"$sample": {"size": min(section["questions"], 5)}},
-                {"$project": {
-                    "question_title": 1, "statement": 1, "difficulty": 1,
-                    "topics": 1, "visible_test_cases": 1, "constraints": 1,
-                    "examples": 1, "hints": 1, "solution": 1,
-                }}
-            ]
+            pool = question_store.find(query).only_verified().to_list()
+            pool.sort(key=lambda q: (0 if q.get("id") in tagged_ids else 1,))
 
             section_questions = []
-            async for doc in collection.aggregate(pipeline):
-                doc["id"] = str(doc.pop("_id"))
+            for q in random.sample(pool, min(section["questions"], 5, len(pool))) if pool else []:
+                doc = question_store.get_question_for_serving(q.get("id")) or dict(q)
+                doc["id"] = str(q.get("id", ""))
+                for k in ("solution", "hidden_test_cases", "hidden_testcases"):
+                    doc.pop(k, None)
                 section_questions.append(doc)
-
-            # If not enough DB questions, pad with AI-generated ones
-            remaining = section["questions"] - len(section_questions)
-            for _ in range(remaining):
-                section_questions.append({
-                    "id": f"ai_{_}",
-                    "question_title": f"Practice: {section['topics'][_ % len(section['topics'])]}",
-                    "statement": f"Solve a problem related to {section['topics'][_ % len(section['topics'])]}",
-                    "difficulty": section.get("difficulty", "easy"),
-                    "is_ai_generated": True,
-                })
 
             all_questions.append({
                 "section_name": section["name"],
@@ -153,34 +144,21 @@ async def start_placement_mock(req: StartPlacementTestRequest, user=Depends(get_
             })
 
         else:
-            # Aptitude/Verbal/English sections - use MCQs from curated_questions
-            query = {"type": {"$in": ["aptitude", "behavioral"]}}
-
-            pipeline = [
-                {"$match": query},
-                {"$sample": {"size": min(section["questions"], 10)}},
-                {"$project": {
-                    "question": 1, "options": 1, "correct_answer": 1,
-                    "explanation": 1, "topic": 1, "difficulty": 1,
-                }}
-            ]
+            # Aptitude/Verbal/English sections — verified MCQs, client-safe:
+            # answer keys and explanations are never exposed.
+            pool = question_store.find(
+                {"type": {"$in": ["aptitude", "behavioral"]}}
+            ).only_verified().to_list()
+            pool.sort(key=lambda q: (0 if q.get("id") in tagged_ids else 1,))
 
             section_questions = []
-            async for doc in collection.aggregate(pipeline):
-                doc["id"] = str(doc.pop("_id"))
+            for q in random.sample(pool, min(section["questions"], 10, len(pool))) if pool else []:
+                doc = question_store.get_question_for_serving(q.get("id")) or dict(q)
+                doc["id"] = str(q.get("id", ""))
+                for k in ("correct_answer", "correct_index", "_correct_index",
+                           "_explanation", "explanation", "solution"):
+                    doc.pop(k, None)
                 section_questions.append(doc)
-
-            remaining = section["questions"] - len(section_questions)
-            for _ in range(remaining):
-                topic = section.get("topics", ["General"])[_ % len(section.get("topics", ["General"]))]
-                section_questions.append({
-                    "id": f"apt_{_}",
-                    "question": f"Practice question on {topic}",
-                    "options": ["Option A", "Option B", "Option C", "Option D"],
-                    "correct_answer": "Option A",
-                    "topic": topic,
-                    "is_ai_generated": True,
-                })
 
             all_questions.append({
                 "section_name": section["name"],

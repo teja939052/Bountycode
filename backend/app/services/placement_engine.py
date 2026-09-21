@@ -875,7 +875,7 @@ class PlacementEngine:
         """Get specific resources for skill improvement."""
         resources = {
             "dsa": [
-                "Use PlacementPro's company-specific coding challenges",
+                "Use BountyCode's company-specific coding challenges",
                 "Review cheat sheet for common patterns",
                 "Practice progressive hints for stuck problems",
             ],

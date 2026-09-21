@@ -70,6 +70,10 @@ class LessonStep(BaseModel):
     fix_steps: List[str] = Field(default_factory=list)
     # --- retrieve / transfer ---
     context: str = ""
+    # --- adaptive repair ---
+    repair_steps: List[Dict[str, Any]] = Field(default_factory=list)
+    passing_score: int = 70
+    max_attempts: int = 3
 
 
 class LessonDefinition(BaseModel):
@@ -88,7 +92,7 @@ class LessonDefinition(BaseModel):
     mental_model: str = ""
     canonical_skill: str = ""
     estimated_minutes: int = 12
-    xp: int = 50
+    diamonds: int = 50
     # Narrative wrapper
     location: str = ""
     npc: str = ""

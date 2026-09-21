@@ -6,13 +6,12 @@ from typing import Optional
 import secrets
 import logging
 import asyncio
-import smtplib
 import httpx
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-from app.services.email import send_email, welcome_email
+from app.services.email import send_email, welcome_email, password_reset_email
 from app.models.user import UserCreate, UserLogin, UpdateProfileRequest, ChangePasswordRequest
 from app.database import users_collection
+from bson import ObjectId
+from bson import ObjectId as _ObjectId
 from app.middleware.auth import (
     hash_password,
     verify_password,
@@ -93,7 +92,6 @@ async def register(req: UserCreate, response: Response, request: Request = None)
         "interviews_used": 0,
         "resumes_used": 0,
         "aptitude_used": 0,
-        "cover_letters_used": 0,
         "monthly_reset_date": now,
         "created_at": now,
         "last_active": now,
@@ -112,6 +110,18 @@ async def register(req: UserCreate, response: Response, request: Request = None)
     refresh_token, refresh_jti = create_refresh_token(user_id)
     set_auth_cookie(response, token)
     set_auth_cookie(response, refresh_token, cookie_name="pp_refresh_token", max_age=settings.JWT_REFRESH_EXPIRY_DAYS * 86400)
+
+    # Beta funnel: track signup completion
+    try:
+        from app.services.analytics_service import track_event
+        asyncio.create_task(track_event(
+            event="beta_signup_complete",
+            path="/api/v1/auth/register",
+            user_id=user_id,
+            meta={"email": req.email, "name": req.name},
+        ))
+    except Exception:
+        pass
     await users_collection.update_one(
         {"_id": result.inserted_id},
         {"$set": {"refresh_jti": refresh_jti}},
@@ -162,7 +172,6 @@ async def login(req: UserLogin, response: Response, request: Request):
 
 @router.post("/refresh")
 async def refresh_token(request: Request, response: Response):
-    from bson import ObjectId
 
     refresh_token = request.cookies.get("pp_refresh_token")
     if not refresh_token:
@@ -208,7 +217,6 @@ async def logout(response: Response, user=Depends(optional_get_current_user)):
     # longer be rotated. Done best-effort: if there's no valid access token
     # we still clear the cookies client-side.
     if user:
-        from bson import ObjectId as _ObjectId
         await users_collection.update_one(
             {"_id": _ObjectId(user["id"])},
             {"$unset": {"refresh_jti": ""}},
@@ -259,7 +267,7 @@ async def get_user_state(user=Depends(get_current_user)):
         "name": user.get("name") or "",
         "plan": plan,
         "level": user.get("level", 1),
-        "xp": user.get("xp", 0),
+        "diamonds": user.get("diamonds", 0),
         "streak": user.get("streak", 0),
         "readiness": None,
         "categories": {},
@@ -323,8 +331,6 @@ _MISSION_BY_CATEGORY = {
 
 @router.post("/update-profile")
 async def update_profile(req: UpdateProfileRequest, user=Depends(get_current_user)):
-    from bson import ObjectId
-
     updates = {}
     if req.name:
         updates["name"] = req.name
@@ -343,8 +349,6 @@ async def update_profile(req: UpdateProfileRequest, user=Depends(get_current_use
 
 @router.post("/change-password")
 async def change_password(req: ChangePasswordRequest, user=Depends(get_current_user)):
-    from bson import ObjectId
-
     valid, msg = PasswordValidator.validate(req.new_password)
     if not valid:
         raise HTTPException(status_code=400, detail=msg)
@@ -369,7 +373,7 @@ async def change_password(req: ChangePasswordRequest, user=Depends(get_current_u
 async def forgot_password(req: ForgotPasswordRequest):
     user = await users_collection.find_one({"email": req.email})
     if not user:
-        return {"message": "If an account exists with this email, a reset token has been generated."}
+        return {"message": "If an account exists with this email, a reset link has been sent."}
 
     token = secrets.token_urlsafe(32)
     expires_at = datetime.now(timezone.utc) + timedelta(minutes=15)
@@ -379,32 +383,11 @@ async def forgot_password(req: ForgotPasswordRequest):
         {"$set": {"reset_token": token, "reset_token_expires": expires_at}},
     )
 
-    reset_link = f"{settings.CORS_ORIGINS.split(',')[0].strip()}/reset-password?token={token}&email={req.email}"
-    
-    if settings.SMTP_HOST and settings.SMTP_USER and settings.SMTP_PASSWORD:
-        try:
-            msg = MIMEMultipart()
-            msg["From"] = settings.SMTP_FROM
-            msg["To"] = req.email
-            msg["Subject"] = "Reset your PlacementPro password"
-            body = f"""Hi {user.get('name', '')},
+    frontend_origin = settings.CORS_ORIGINS.split(",")[0].strip().rstrip("/")
+    reset_link = f"{frontend_origin}/reset-password?token={token}&email={req.email}"
 
-Click the link below to reset your password. This link expires in 15 minutes.
-
-{reset_link}
-
-If you didn't request this, ignore this email.
-"""
-            msg.attach(MIMEText(body, "plain"))
-            
-            with smtplib.SMTP(settings.SMTP_HOST, settings.SMTP_PORT) as server:
-                server.starttls()
-                server.login(settings.SMTP_USER, settings.SMTP_PASSWORD)
-                server.send_message(msg)
-        except Exception as e:
-            logger.error(f"Failed to send reset email: {e}")
-    else:
-        logger.warning(f"SMTP not configured. Reset link for {req.email}: {reset_link}")
+    subject, html = password_reset_email(user.get("name"), reset_link)
+    await send_email(req.email, subject, html)
 
     return {"message": "If an account exists with this email, a reset link has been sent."}
 
@@ -449,7 +432,6 @@ class OnboardingData(BaseModel):
 
 @router.get("/onboarding-status")
 async def onboarding_status(user=Depends(get_current_user)):
-    from bson import ObjectId
     db_user = await users_collection.find_one({"_id": ObjectId(user["id"])})
     onboarding = db_user.get("onboarding", {}) if db_user else {}
     return {
@@ -460,7 +442,6 @@ async def onboarding_status(user=Depends(get_current_user)):
 
 @router.post("/onboarding-complete")
 async def onboarding_complete(req: OnboardingData, user=Depends(get_current_user)):
-    from bson import ObjectId
     onboarding = {
         "completed": True,
         "class": req.klass,
@@ -472,6 +453,19 @@ async def onboarding_complete(req: OnboardingData, user=Depends(get_current_user
         {"_id": ObjectId(user["id"])},
         {"$set": {"onboarding": onboarding}}
     )
+
+    # Beta funnel: track onboarding completion
+    try:
+        from app.services.analytics_service import track_event
+        asyncio.create_task(track_event(
+            event="beta_onboarding_complete",
+            path="/api/v1/auth/onboarding-complete",
+            user_id=user["id"],
+            meta={"klass": req.klass, "target_companies": req.target_companies},
+        ))
+    except Exception:
+        pass
+
     return {"status": "ok", "onboarding": onboarding}
 
 
@@ -572,7 +566,6 @@ async def google_callback(request: Request, response: Response):
             "interviews_used": 0,
             "resumes_used": 0,
             "aptitude_used": 0,
-            "cover_letters_used": 0,
             "monthly_reset_date": now,
             "created_at": now,
             "last_active": now,

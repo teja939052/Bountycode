@@ -1,4 +1,4 @@
-import { requestWithRetry as request } from "./request.ts";
+import { requestWithRetry as request, requestBlob } from "./request.ts";
 
 export type OAMode = "calm" | "pressure" | "boss";
 
@@ -114,5 +114,9 @@ export const oaApi = {
         at: Date.now() / 1000,
       }),
     });
+  },
+
+  async downloadReadinessReport(sessionId: string): Promise<Blob> {
+    return requestBlob(`/api/v1/oa/${encodeURIComponent(sessionId)}/readiness-report`);
   },
 };

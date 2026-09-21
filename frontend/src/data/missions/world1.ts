@@ -27,7 +27,7 @@ export const WORLD_1_MISSIONS: any[] = [
           { id: "first_mission", text: "Your first mission is waiting. The bounty board is broken — every player's score is being reset to zero. Let's fix it.", mood: "curious" },
         ],
         config: {},
-        xp: 10,
+        diamonds: 10,
         required: [],
       },
       {
@@ -43,7 +43,7 @@ export const WORLD_1_MISSIONS: any[] = [
           expectedOutput: "Player: Arjun\nScore: 0\nLevel: 1",
           interactive: true,
         },
-        xp: 15,
+        diamonds: 15,
       },
       {
         id: "step_3",
@@ -64,7 +64,7 @@ export const WORLD_1_MISSIONS: any[] = [
           correctAnswer: "a",
           explanation: "print() outputs the value without quotes. The quotes in the code are just delimiters for the string.",
         },
-        xp: 20,
+        diamonds: 20,
       },
       {
         id: "step_4",
@@ -90,7 +90,7 @@ export const WORLD_1_MISSIONS: any[] = [
             "Make sure the types match: name is a string, score and level are integers.",
           ],
         },
-        xp: 30,
+        diamonds: 30,
       },
       {
         id: "step_5",
@@ -106,7 +106,7 @@ export const WORLD_1_MISSIONS: any[] = [
           correctSet: ["", -1, "Player@#$%"],
           explanation: "Empty names, negative scores, and special characters are edge cases your code should handle. The game should validate inputs.",
         },
-        xp: 15,
+        diamonds: 15,
       },
       {
         id: "step_6",
@@ -122,7 +122,7 @@ export const WORLD_1_MISSIONS: any[] = [
           error: "TypeError: can only concatenate str (not \"int\") to str",
           hint: "You can't add strings and integers directly. Convert the numbers to strings first.",
         },
-        xp: 25,
+        diamonds: 25,
       },
       {
         id: "step_7",
@@ -146,7 +146,7 @@ export const WORLD_1_MISSIONS: any[] = [
           hiddenTests: 5,
           masteryThreshold: 70,
         },
-        xp: 50,
+        diamonds: 50,
       },
     ],
     bossStep: {
@@ -168,7 +168,7 @@ export const WORLD_1_MISSIONS: any[] = [
         hiddenTests: 5,
         masteryThreshold: 70,
       },
-      xp: 50,
+      diamonds: 50,
     },
     reinforcementMissions: [
       {
@@ -176,7 +176,7 @@ export const WORLD_1_MISSIONS: any[] = [
         title: "Variables Reinforcement",
         description: "Practice storing and manipulating player data with variables.",
         targetSkill: "variables",
-        xp: 30,
+        diamonds: 30,
         steps: [
           {
             id: "r1",
@@ -191,7 +191,7 @@ export const WORLD_1_MISSIONS: any[] = [
                 { input: ["Arjun", 150, 2], expected: {"name": "Arjun", "score": 150, "level": 2, "xp_to_next": 200} },
               ],
             },
-            xp: 20,
+            diamonds: 20,
           },
           {
             id: "r2",
@@ -207,10 +207,10 @@ export const WORLD_1_MISSIONS: any[] = [
                 { input: [{"name": "Priya", "score": 50, "level": 1}], expected: {"name": "Priya", "score": 50, "level": 1} },
               ],
             },
-            xp: 20,
+            diamonds: 20,
           },
         ],
-        xp: 40,
+        diamonds: 40,
       },
     ],
   },
@@ -239,7 +239,7 @@ export const WORLD_1_MISSIONS: any[] = [
           { id: "vars_story", text: "Variables are the computer's memory. Each one is a labeled drawer. Put data in, label it, retrieve it later.", mood: "curious" },
         ],
         config: {},
-        xp: 10,
+        diamonds: 10,
       },
       {
         id: "v2",
@@ -250,7 +250,7 @@ export const WORLD_1_MISSIONS: any[] = [
           codeSnippet: "player_name = \"Arjun\"\nplayer_score = 150\nplayer_level = 2\nis_active = True\n\nprint(player_name)\nprint(player_score)\nprint(player_level)\nprint(is_active)\nprint(type(player_name))\nprint(type(player_score))",
           expectedOutput: "Arjun\n150\n2\nTrue\n<class 'str'>\n<class 'int'>",
         },
-        xp: 15,
+        diamonds: 15,
       },
       {
         id: "v3",
@@ -268,7 +268,7 @@ export const WORLD_1_MISSIONS: any[] = [
           correctAnswer: "b",
           explanation: "x = 5, then x = x + 5 makes x = 10. The second assignment overwrites the first.",
         },
-        xp: 20,
+        diamonds: 20,
       },
       {
         id: "v4",
@@ -278,12 +278,12 @@ export const WORLD_1_MISSIONS: any[] = [
         config: {
           functionName: "update_stats",
           signature: "def update_stats(stats: dict, event: str, value: int) -> dict:",
-          description: "Update player stats dict. Events: 'score' (add value), 'level' (set), 'xp' (add). Return updated stats.",
+          description: "Update player stats dict. Events: 'score' (add value), 'level' (set), 'diamonds' (add). Return updated stats.",
           starterCode: "def update_stats(stats: dict, event: str, value: int) -> dict:\n    # Your code here\n    pass",
           testCases: [
-            { input: [{"score": 0, "level": 1, "xp": 0}, "score", 50], expected: {"score": 50, "level": 1, "xp": 0} },
-            { input: [{"score": 50, "level": 1, "xp": 0}, "xp", 100], expected: {"score": 50, "level": 1, "xp": 100} },
-            { input: [{"score": 100, "level": 1, "xp": 0}, "level", 2], expected: {"score": 100, "level": 2, "xp": 0} },
+            { input: [{"score": 0, "level": 1, "diamonds": 0}, "score", 50], expected: {"score": 50, "level": 1, "diamonds": 0} },
+            { input: [{"score": 50, "level": 1, "diamonds": 0}, "diamonds", 100], expected: {"score": 50, "level": 1, "diamonds": 100} },
+            { input: [{"score": 100, "level": 1, "diamonds": 0}, "level", 2], expected: {"score": 100, "level": 2, "diamonds": 0} },
           ],
           hiddenTests: 3,
           hints: [
@@ -291,7 +291,7 @@ export const WORLD_1_MISSIONS: any[] = [
             "Modify the dict in place and return it.",
           ],
         },
-        xp: 30,
+        diamonds: 30,
       },
       {
         id: "v5",
@@ -304,7 +304,7 @@ export const WORLD_1_MISSIONS: any[] = [
           correctSet: ["score = 'hello'", "level = 'two'", "active = 'yes'"],
           explanation: "Putting strings where numbers are expected breaks math operations. Type consistency matters.",
         },
-        xp: 15,
+        diamonds: 15,
       },
       {
         id: "v6",
@@ -317,7 +317,7 @@ export const WORLD_1_MISSIONS: any[] = [
           error: "Logic error: name should be string, score should be int",
           hint: "Check what type each variable should be. The values are assigned to the wrong variables.",
         },
-        xp: 25,
+        diamonds: 25,
       },
       {
         id: "v7",
@@ -339,7 +339,7 @@ export const WORLD_1_MISSIONS: any[] = [
           hiddenTests: 5,
           masteryThreshold: 70,
         },
-        xp: 50,
+        diamonds: 50,
       },
     ],
     bossStep: {
@@ -361,7 +361,7 @@ export const WORLD_1_MISSIONS: any[] = [
         hiddenTests: 5,
         masteryThreshold: 70,
       },
-      xp: 50,
+      diamonds: 50,
     },
     reinforcementMissions: [
       {
@@ -369,7 +369,7 @@ export const WORLD_1_MISSIONS: any[] = [
         title: "Reassignment Practice",
         description: "Practice changing variable values over time.",
         targetSkill: "reassignment",
-        xp: 30,
+        diamonds: 30,
         steps: [
           {
             id: "rr1",
@@ -385,10 +385,10 @@ export const WORLD_1_MISSIONS: any[] = [
                 { input: [[("lose", 50)]], expected: 0 },
               ],
             },
-            xp: 20,
+            diamonds: 20,
           },
         ],
-        xp: 20,
+        diamonds: 20,
       },
     ],
   },

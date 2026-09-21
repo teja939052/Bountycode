@@ -1,0 +1,265 @@
+{
+  "pattern": "Sliding Window",
+  "description": "Master the sliding window technique for substring/subarray problems. Recognize when to use it, understand the invariant, and apply it to 15 carefully curated problems.",
+  "difficulty": "medium",
+  "estimated_hours": 8,
+
+  "concept_lesson": {
+    "title": "Pattern Recognition: Sliding Window",
+    "intuition": "Instead of checking every subarray (O(n²)), we maintain a 'window' that slides across the array. Expand the window to include elements, shrink it when a constraint is violated. The key insight: we only visit each element at most twice (once by right pointer, once by left pointer), giving O(n) amortized time.",
+    "when_to_apply": [
+      "Problem asks for longest/shortest subarray or substring",
+      "Problem has a constraint that can be checked incrementally (e.g., all unique characters, sum ≤ K)",
+      "Brute force would check all O(n²) subarrays",
+      "Input is a contiguous sequence (array or string)"
+    ],
+    "universal_template": {
+      "python": "def sliding_window(arr):\n    left = 0\n    window_state = {}  # or a Counter, set, etc.\n    result = 0\n    \n    for right in range(len(arr)):\n        # 1. Expand: include arr[right] in window\n        window_state[arr[right]] = window_state.get(arr[right], 0) + 1\n        \n        # 2. Shrink: while window is invalid, move left\n        while window_invalid(window_state):\n            window_state[arr[left]] -= 1\n            if window_state[arr[left]] == 0:\n                del window_state[arr[left]]\n            left += 1\n        \n        # 3. Update answer\n        result = max(result, right - left + 1)\n    \n    return result",
+      "annotations": {
+        "Expand": "Always O(1) — just include the new element",
+        "Shrink": "Amortized O(1) — left moves at most n times total",
+        "window_invalid": "The constraint check. Different for every problem.",
+        "result update": "Some problems track max, some track min, some count"
+      }
+    },
+    "fixed_vs_variable": {
+      "fixed": "Window size is constant (k). Just sum the first k, then slide: add right, remove left. O(n).",
+      "variable": "Window size changes based on constraint. Expand right freely, shrink left when invalid. Still O(n) amortized."
+    }
+  },
+
+  "pattern_recognition_quiz": [
+    {
+      "problemStatement": "Find the maximum sum of any subarray of size K.",
+      "options": ["Two Pointers", "Sliding Window (Fixed)", "Binary Search", "Dynamic Programming"],
+      "correctIndex": 1,
+      "explanation": "Fixed window size K — classic fixed sliding window. Sum first K elements, then slide: add new element, remove old.",
+      "pattern": "Sliding Window (Fixed)"
+    },
+    {
+      "problemStatement": "Find the length of the longest substring with at most K distinct characters.",
+      "options": ["Sliding Window (Variable)", "Hash Map only", "Divide and Conquer", "Greedy"],
+      "correctIndex": 0,
+      "explanation": "Variable window: expand right, shrink left when distinct count exceeds K. The window size changes based on the constraint.",
+      "pattern": "Sliding Window (Variable)"
+    },
+    {
+      "problemStatement": "Given an array of positive integers and a target sum, find the minimum length subarray with sum ≥ target.",
+      "options": ["Binary Search", "Sliding Window (Variable)", "Prefix Sum", "Stack"],
+      "correctIndex": 1,
+      "explanation": "Expand until sum ≥ target, then shrink from left to minimize length. Classic variable window with a 'shrink when valid' pattern.",
+      "pattern": "Sliding Window (Variable)"
+    }
+  ],
+
+  "problems": [
+    {
+      "id": "sw_001",
+      "title": "Maximum Average Subarray I",
+      "difficulty": "easy",
+      "statement": "Given an integer array nums and an integer k, find the contiguous subarray of length k that has the maximum average value. Return the maximum average.",
+      "constraints": ["1 ≤ k ≤ nums.length ≤ 10⁵", "-10⁴ ≤ nums[i] ≤ 10⁴"],
+      "examples": [
+        {"input": "nums = [1,12,-5,-6,50,3], k = 4", "output": "12.75", "explanation": "Maximum average is (12 + (-5) + (-6) + 50) / 4 = 51 / 4 = 12.75"}
+      ],
+      "hints": [
+        "Since k is fixed, you don't need to check all subarrays. Sum the first k elements, then slide.",
+        "When sliding right, add the new element and remove the old one: window_sum += nums[right] - nums[left]",
+        "Track the maximum sum seen so far, then divide by k at the end."
+      ],
+      "editorial": {
+        "intuition": "Fixed window of size k. Compute sum of first window, then slide: subtract leftmost, add rightmost.",
+        "approach": "1. Sum first k elements. 2. For each subsequent position, slide window by adding new element and removing old. 3. Track max sum. 4. Return max_sum / k.",
+        "brute_force": {"code": "max_avg = float('-inf')\nfor i in range(len(nums) - k + 1):\n    avg = sum(nums[i:i+k]) / k\n    max_avg = max(max_avg, avg)\nreturn max_avg", "complexity": {"time": "O(n*k)", "space": "O(1)"}},
+        "optimized": {"code": "window_sum = sum(nums[:k])\nmax_sum = window_sum\nfor i in range(k, len(nums)):\n    window_sum += nums[i] - nums[i-k]\n    max_sum = max(max_sum, window_sum)\nreturn max_sum / k", "complexity": {"time": "O(n)", "space": "O(1)"}},
+        "edge_cases": ["k equals array length", "all negative numbers", "single element array"],
+        "common_mistakes": ["Using floating point for intermediate sums (precision loss)", "Forgetting to handle k = len(nums)"]
+      },
+      "company_tags": ["Amazon", "Google"],
+      "test_cases": [
+        {"input": "[1,12,-5,-6,50,3] 4", "expected": "12.75"},
+        {"input": "[5] 1", "expected": "5.0"},
+        {"input": "[-1,-2,-3,-4] 2", "expected": "-1.5"}
+      ],
+      "hidden_test_cases": [
+        {"input": "[0,4,0,3,2] 1", "expected": "4.0"},
+        {"input": "[1,0,0,0,1] 4", "expected": "0.25"}
+      ],
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)",
+      "related_problems": ["sw_002", "sw_003"],
+      "interview_followups": ["What if the array is streaming (infinite)?", "Can you solve it with O(1) space?"]
+    },
+    {
+      "id": "sw_002",
+      "title": "Maximum Sum Subarray of Size K",
+      "difficulty": "easy",
+      "statement": "Given an array of integers and a number k, find the maximum sum of any contiguous subarray of size k.",
+      "constraints": ["1 ≤ k ≤ arr.length ≤ 10⁵"],
+      "examples": [
+        {"input": "arr = [2, 1, 5, 1, 3, 2], k = 3", "output": "9", "explanation": "Subarray [5, 1, 3] has the maximum sum of 9"}
+      ],
+      "hints": [
+        "Sum the first k elements to get the initial window sum.",
+        "For each subsequent window, add the new element and subtract the element that's leaving.",
+        "Keep track of the maximum window sum seen."
+      ],
+      "editorial": {
+        "intuition": "Fixed window: maintain a running sum of k elements. Slide by adding right, removing left.",
+        "approach": "1. Compute sum of first k elements. 2. Slide: window_sum += arr[i] - arr[i-k]. 3. Track max.",
+        "brute_force": {"code": "max_sum = float('-inf')\nfor i in range(len(arr) - k + 1):\n    max_sum = max(max_sum, sum(arr[i:i+k]))\nreturn max_sum", "complexity": {"time": "O(n*k)", "space": "O(1)"}},
+        "optimized": {"code": "window_sum = sum(arr[:k])\nmax_sum = window_sum\nfor i in range(k, len(arr)):\n    window_sum += arr[i] - arr[i-k]\n    max_sum = max(max_sum, window_sum)\nreturn max_sum", "complexity": {"time": "O(n)", "space": "O(1)"}},
+        "edge_cases": ["k equals array length", "all zeros", "single element"],
+        "common_mistakes": ["Off-by-one in the loop range", "Not initializing max_sum with the first window"]
+      },
+      "company_tags": ["TCS", "Infosys"],
+      "test_cases": [
+        {"input": "[2,1,5,1,3,2] 3", "expected": "9"},
+        {"input": "[1,4,2,10,2] 3", "expected": "16"}
+      ],
+      "hidden_test_cases": [
+        {"input": "[100,200,300,400] 2", "expected": "700"},
+        {"input": "[-1,-2,-3,-4] 2", "expected": "-3"}
+      ],
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)",
+      "related_problems": ["sw_001", "sw_003"],
+      "interview_followups": ["What if k could be any size from 1 to n?", "What if the array is circular?"]
+    },
+    {
+      "id": "sw_003",
+      "title": "Longest Substring Without Repeating Characters",
+      "difficulty": "medium",
+      "statement": "Given a string s, find the length of the longest substring without repeating characters.",
+      "constraints": ["0 ≤ s.length ≤ 5 × 10⁴", "s consists of English letters, digits, symbols and spaces"],
+      "examples": [
+        {"input": "s = \"abcabcbb\"", "output": "3", "explanation": "The answer is \"abc\", with length 3."},
+        {"input": "s = \"bbbbb\"", "output": "1", "explanation": "The answer is \"b\", with length 1."}
+      ],
+      "hints": [
+        "Use a set or map to track characters in the current window.",
+        "Expand the right pointer. When you hit a duplicate, shrink from the left until it's gone.",
+        "At each step, update the maximum window size: max_len = max(max_len, right - left + 1)."
+      ],
+      "editorial": {
+        "intuition": "Variable window: expand right to include new chars. When a duplicate appears, shrink left until the duplicate is removed. The window always contains unique characters.",
+        "approach": "1. Use a set to track chars in window. 2. Expand right: if s[right] not in set, add it and update max. 3. If duplicate, shrink left: remove s[left] and increment left. 4. Repeat.",
+        "brute_force": {"code": "max_len = 0\nfor i in range(len(s)):\n    seen = set()\n    for j in range(i, len(s)):\n        if s[j] in seen:\n            break\n        seen.add(s[j])\n        max_len = max(max_len, j - i + 1)\nreturn max_len", "complexity": {"time": "O(n²)", "space": "O(min(n, alphabet))"}},
+        "optimized": {"code": "char_set = set()\nleft = 0\nmax_len = 0\nfor right in range(len(s)):\n    while s[right] in char_set:\n        char_set.remove(s[left])\n        left += 1\n    char_set.add(s[right])\n    max_len = max(max_len, right - left + 1)\nreturn max_len", "complexity": {"time": "O(n)", "space": "O(min(n, alphabet))"}},
+        "edge_cases": ["empty string", "all unique characters", "all same characters", "single character"],
+        "common_mistakes": ["Using a set and not removing chars from the left", "Forgetting to update max_len after shrinking"]
+      },
+      "company_tags": ["Amazon", "Google", "Microsoft"],
+      "test_cases": [
+        {"input": "\"abcabcbb\"", "expected": "3"},
+        {"input": "\"bbbbb\"", "expected": "1"},
+        {"input": "\"pwwkew\"", "expected": "3"}
+      ],
+      "hidden_test_cases": [
+        {"input": "\" \"", "expected": "1"},
+        {"input": "\"\"", "expected": "0"},
+        {"input": "\"au\"", "expected": "2"}
+      ],
+      "time_complexity": "O(n)",
+      "space_complexity": "O(min(n, 26))",
+      "related_problems": ["sw_004", "sw_005"],
+      "interview_followups": ["What if you need to return the actual substring, not just the length?", "What if the string is streaming?"]
+    },
+    {
+      "id": "sw_004",
+      "title": "Longest Substring with At Most K Distinct Characters",
+      "difficulty": "medium",
+      "statement": "Given a string s and an integer k, find the length of the longest substring that contains at most k distinct characters.",
+      "constraints": ["1 ≤ s.length ≤ 5 × 10⁴", "0 ≤ k ≤ 50"],
+      "examples": [
+        {"input": "s = \"eceba\", k = 2", "output": "3", "explanation": "The longest substring is \"ece\", with length 3."}
+      ],
+      "hints": [
+        "Use a hash map to count characters in the current window.",
+        "Expand right. When distinct count > k, shrink from the left until distinct ≤ k.",
+        "Update max_len at each step (after shrinking, the window is valid)."
+      ],
+      "editorial": {
+        "intuition": "Variable window with a 'distinct count' constraint. The map makes it easy to add/remove chars and track distinct count.",
+        "approach": "1. Use a dict for char counts. 2. Expand right, increment count. 3. While len(dict) > k, decrement count of s[left], remove if 0, increment left. 4. Update max_len.",
+        "optimized": {"code": "from collections import defaultdict\nchar_count = defaultdict(int)\nleft = 0\nmax_len = 0\nfor right in range(len(s)):\n    char_count[s[right]] += 1\n    while len(char_count) > k:\n        char_count[s[left]] -= 1\n        if char_count[s[left]] == 0:\n            del char_count[s[left]]\n        left += 1\n    max_len = max(max_len, right - left + 1)\nreturn max_len", "complexity": {"time": "O(n)", "space": "O(k)"}},
+        "edge_cases": ["k = 0", "k >= unique characters in string", "all same characters"],
+        "common_mistakes": ["Forgetting to remove key from dict when count reaches 0", "Not updating max_len after shrinking"]
+      },
+      "company_tags": ["Amazon", "Microsoft"],
+      "test_cases": [
+        {"input": "\"eceba\" 2", "expected": "3"},
+        {"input": "\"aaa\" 1", "expected": "3"}
+      ],
+      "hidden_test_cases": [
+        {"input": "\"abcbbbb\" 2", "expected": "6"},
+        {"input": "\"\" 1", "expected": "0"}
+      ],
+      "time_complexity": "O(n)",
+      "space_complexity": "O(k)",
+      "related_problems": ["sw_003", "sw_005"],
+      "interview_followups": ["What if you need to return the actual substring?", "How would you solve it for K distinct characters in a sorted array?"]
+    },
+    {
+      "id": "sw_005",
+      "title": "Minimum Window Substring",
+      "difficulty": "hard",
+      "statement": "Given two strings s and t, find the minimum window substring of s such that every character in t (including duplicates) is included in the window. If there is no such substring, return the empty string.",
+      "constraints": ["m == s.length", "n == t.length", "1 ≤ m, n ≤ 10⁵", "s and t consist of uppercase and lowercase English letters"],
+      "examples": [
+        {"input": "s = \"ADOBECODEBANC\", t = \"ABC\"", "output": "BANC", "explanation": "The minimum window substring 'BANC' includes 'A', 'B', and 'C' from string t."}
+      ],
+      "hints": [
+        "First, count what characters t needs (and how many of each).",
+        "Expand right until all required characters are in the window. Then shrink from the left to minimize.",
+        "The answer is the minimum-length valid window seen during the process."
+      ],
+      "editorial": {
+        "intuition": "Two-phase: expand until the window satisfies the constraint (contains all of t), then shrink to minimize. Track the minimum valid window.",
+        "approach": "1. Build need map from t. 2. Expand right, decrement need. 3. When all needs ≤ 0, window is valid. 4. Shrink left while valid, update min. 5. Return min window.",
+        "optimized": {"code": "from collections import Counter\nneed = Counter(t)\nmissing = len(t)\nleft = 0\nstart, end = 0, float('inf')\nfor right in range(len(s)):\n    if need[s[right]] > 0:\n        missing -= 1\n    need[s[right]] -= 1\n    while missing == 0:\n        if right - left < end - start:\n            start, end = left, right\n        need[s[left]] += 1\n        if need[s[left]] > 0:\n            missing += 1\n        left += 1\nreturn s[start:end+1] if end < float('inf') else ''", "complexity": {"time": "O(n)", "space": "O(k) where k is charset size"}},
+        "edge_cases": ["t is longer than s", "no valid window exists", "t has duplicate characters", "s and t are the same"],
+        "common_mistakes": ["Using > 0 instead of >= 0 for need check", "Forgetting to handle the case where no valid window exists"]
+      },
+      "company_tags": ["Meta", "Amazon", "Google", "Microsoft"],
+      "test_cases": [
+        {"input": "\"ADOBECODEBANC\" \"ABC\"", "expected": "BANC"},
+        {"input": "\"a\" \"a\"", "expected": "a"}
+      ],
+      "hidden_test_cases": [
+        {"input": "\"a\" \"aa\"", "expected": ""},
+        {"input": "\"abc\" \"cba\"", "expected": "abc"}
+      ],
+      "time_complexity": "O(n)",
+      "space_complexity": "O(k)",
+      "related_problems": ["sw_003", "sw_004"],
+      "interview_followups": ["What if t contains uppercase and lowercase differently?", "Can you do it in O(1) extra space?"]
+    }
+  ],
+
+  "repair_activities": [
+    {
+      "trigger_mistake": "Forgot to remove character from map when count reaches 0",
+      "task": "Trace through: s = 'aba', k = 2. At step 3 (right=2), the map has {a:1, b:1}. What happens when we try to add the second 'a'?",
+      "simpler_example": "s = 'ab', k = 1. Trace: right=0, map={a:1}. right=1, map={a:1,b:1}, len=2 > 1. Shrink: remove a, map={b:1}, left=1."
+    },
+    {
+      "trigger_mistake": "Not updating max_len after shrinking",
+      "task": "In Longest Substring Without Repeating Characters, after shrinking the window, why must you update max_len?",
+      "simpler_example": "s = 'abcba'. After finding 'abc' (len=3), we shrink to 'cb' (len=2). The max is still 3. But if we find 'cba' later (len=3), we update again."
+    },
+    {
+      "trigger_mistake": "Off-by-one in window size calculation",
+      "task": "Window from index 2 to 5 inclusive. What is the size? What is right - left + 1?",
+      "simpler_example": "left=2, right=5. Size = 5 - 2 + 1 = 4. The formula is always right - left + 1 for inclusive windows."
+    }
+  ],
+
+  "srs_cards": [
+    {"type": "pattern_recognition", "question": "When you see 'longest/shortest subarray/substring with constraint', what pattern applies?", "answer": "Sliding Window"},
+    {"type": "complexity", "question": "Why is sliding window O(n) even though left moves inside the for loop?", "answer": "Because left moves at most n times total across all iterations (amortized analysis). Each element is visited at most twice."},
+    {"type": "edge_case", "question": "What happens if the string is empty in Longest Substring Without Repeating Characters?", "answer": "Return 0. The for loop never executes, max_len stays 0."},
+    {"type": "variation", "question": "How does the template change for 'fixed window' vs 'variable window' problems?", "answer": "Fixed: no while loop, just add/remove. Variable: while loop to shrink when constraint violated."},
+    {"type": "template", "question": "Write the 3 core lines of the sliding window template.", "answer": "1. Expand: include arr[right]. 2. Shrink: while invalid, remove arr[left], left++. 3. Update: result = max/min(result, window_size)."}
+  ]
+}

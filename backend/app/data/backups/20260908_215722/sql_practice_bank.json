@@ -1,0 +1,2783 @@
+[
+  {
+    "id": "sql-001",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "basic_select",
+    "difficulty": "easy",
+    "question": "Given a table Employees with columns (id, name, department, salary, age), write a query to select names of employees in the 'Engineering' department with salary greater than 60000.",
+    "correct_answer": "SELECT name FROM Employees WHERE department = 'Engineering' AND salary > 60000;",
+    "options": [
+      "SELECT name FROM Employees WHERE department = 'Engineering' OR salary > 60000;",
+      "SELECT name FROM Employees WHERE department = 'Engineering' AND salary > 60000;",
+      "SELECT * FROM Employees WHERE salary > 60000;",
+      "SELECT name FROM Engineering WHERE salary > 60000;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT name FROM Employees WHERE department = 'Engineering' AND salary > 60000;",
+      "explanation": "Use WHERE with AND to combine two conditions: department match and salary threshold."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'Alice','Engineering',70000,28),(2,'Bob','HR',50000,30),(3,'Charlie','Engineering',55000,25)]",
+        "expected": "Alice"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Employees: [(1,'Dave','Engineering',60001,29),(2,'Eve','Engineering',60000,31)]",
+        "expected": "Dave"
+      }
+    ],
+    "hints": [
+      "Use WHERE clause to filter rows",
+      "Combine conditions with AND",
+      "Only select the name column"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture",
+      "cognizant"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "10-15 minutes"
+  },
+  {
+    "id": "sql-002",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "order_by",
+    "difficulty": "easy",
+    "question": "Given a table Products(id, name, price, category), write a query to select all products ordered by price in descending order.",
+    "correct_answer": "SELECT * FROM Products ORDER BY price DESC;",
+    "options": [
+      "SELECT * FROM Products SORT BY price DESC;",
+      "SELECT * FROM Products ORDER BY price DESC;",
+      "SELECT * FROM Products ORDER price DESC;",
+      "SELECT * FROM Products WHERE price DESC;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT * FROM Products ORDER BY price DESC;",
+      "explanation": "ORDER BY sorts results. DESC means descending order. Use * to select all columns."
+    },
+    "testcases": [
+      {
+        "input": "Products: [(1,'A',100,'X'),(2,'B',200,'Y'),(3,'C',150,'X')]",
+        "expected": "B(200), C(150), A(100)"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Products: [(1,'A',50,'X'),(2,'B',50,'Y')]",
+        "expected": "A(50), B(50) [tie preserves insertion order or depends on DB]"
+      }
+    ],
+    "hints": [
+      "Use ORDER BY to sort",
+      "Use DESC for descending",
+      "* selects all columns"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "10-15 minutes"
+  },
+  {
+    "id": "sql-003",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "aggregation",
+    "difficulty": "easy",
+    "question": "Given a table Orders(id, customer_id, amount, order_date), write a query to count the total number of orders placed.",
+    "correct_answer": "SELECT COUNT(*) FROM Orders;",
+    "options": [
+      "SELECT SUM(*) FROM Orders;",
+      "SELECT COUNT(id) FROM Orders;",
+      "SELECT COUNT(*) FROM Orders;",
+      "SELECT TOTAL(*) FROM Orders;"
+    ],
+    "correct_index": 2,
+    "solution": {
+      "code": "SELECT COUNT(*) FROM Orders;",
+      "explanation": "COUNT(*) counts all rows. COUNT(column) counts non-NULL values in that column. SUM is for numeric totals, not counts."
+    },
+    "testcases": [
+      {
+        "input": "Orders: [(1,101,200,'2024-01-01'),(2,102,300,'2024-01-02'),(3,101,150,'2024-01-03')]",
+        "expected": "3"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Orders: []",
+        "expected": "0"
+      }
+    ],
+    "hints": [
+      "Use COUNT(*) to count all rows",
+      "SUM adds values, COUNT counts rows"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "10-15 minutes"
+  },
+  {
+    "id": "sql-004",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "group_by",
+    "difficulty": "easy",
+    "question": "Given a table Employees(id, name, department, salary), write a query to find how many employees are in each department.",
+    "correct_answer": "SELECT department, COUNT(*) as employee_count FROM Employees GROUP BY department;",
+    "options": [
+      "SELECT department, COUNT(*) FROM Employees;",
+      "SELECT department, COUNT(*) FROM Employees GROUP BY department;",
+      "SELECT department, COUNT(*) FROM Employees WHERE department IS NOT NULL;",
+      "SELECT COUNT(department) FROM Employees GROUP BY department;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT department, COUNT(*) as employee_count FROM Employees GROUP BY department;",
+      "explanation": "GROUP BY groups rows by department. COUNT(*) counts employees in each group. Non-aggregated columns in SELECT must appear in GROUP BY."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'A','Eng',70000),(2,'B','HR',50000),(3,'C','Eng',80000),(4,'D','HR',60000)]",
+        "expected": "Eng: 2, HR: 2"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Employees: [(1,'A','Eng',70000)]",
+        "expected": "Eng: 1"
+      }
+    ],
+    "hints": [
+      "Group by department",
+      "Use COUNT(*) to count per group"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture",
+      "cognizant"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "10-15 minutes"
+  },
+  {
+    "id": "sql-005",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "distinct",
+    "difficulty": "easy",
+    "question": "Given a table Orders(id, customer_id, amount), write a query to find how many distinct customers placed orders.",
+    "correct_answer": "SELECT COUNT(DISTINCT customer_id) FROM Orders;",
+    "options": [
+      "SELECT COUNT(customer_id) FROM Orders;",
+      "SELECT DISTINCT COUNT(customer_id) FROM Orders;",
+      "SELECT COUNT(DISTINCT customer_id) FROM Orders;",
+      "SELECT COUNT(*) FROM (SELECT DISTINCT customer_id FROM Orders);"
+    ],
+    "correct_index": 2,
+    "solution": {
+      "code": "SELECT COUNT(DISTINCT customer_id) FROM Orders;",
+      "explanation": "DISTINCT removes duplicates before counting. COUNT(customer_id) counts all rows including duplicates."
+    },
+    "testcases": [
+      {
+        "input": "Orders: [(1,101,200),(2,102,300),(3,101,150)]",
+        "expected": "2"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Orders: [(1,101,200),(2,101,300),(3,101,150)]",
+        "expected": "1"
+      }
+    ],
+    "hints": [
+      "Use DISTINCT inside COUNT()",
+      "COUNT(column) doesn't remove duplicates"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "role": [
+      "student",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "10-15 minutes"
+  },
+  {
+    "id": "sql-006",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "inner_join",
+    "difficulty": "easy",
+    "question": "Join employees with their departments using an INNER JOIN. Given Employees(id, name, dept_id) and Departments(dept_id, dept_name), write a query to list each employee name alongside their department name.",
+    "correct_answer": "SELECT e.name, d.dept_name FROM Employees e INNER JOIN Departments d ON e.dept_id = d.dept_id;",
+    "options": [
+      "SELECT e.name, d.dept_name FROM Employees e, Departments d WHERE e.dept_id = d.dept_id;",
+      "SELECT e.name, d.dept_name FROM Employees e INNER JOIN Departments d ON e.dept_id = d.dept_id;",
+      "SELECT name, dept_name FROM Employees, Departments;",
+      "SELECT e.name, d.dept_name FROM Employees e LEFT JOIN Departments d ON e.dept_id = d.dept_id;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT e.name, d.dept_name FROM Employees e INNER JOIN Departments d ON e.dept_id = d.dept_id;",
+      "explanation": "INNER JOIN matches rows where dept_id exists in both tables. Table aliases (e, d) make queries shorter."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'A',10),(2,'B',20)]; Departments: [(10,'Eng'),(20,'HR')]",
+        "expected": "A-Eng, B-HR"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Employees: [(1,'A',10),(2,'B',99)]; Departments: [(10,'Eng')]",
+        "expected": "A-Eng (B excluded because dept 99 doesn't exist)"
+      }
+    ],
+    "hints": [
+      "Use INNER JOIN to combine tables",
+      "Match on the common column dept_id",
+      "Use aliases for readability"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture",
+      "cognizant"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "10-15 minutes"
+  },
+  {
+    "id": "sql-007",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "null_handling",
+    "difficulty": "easy",
+    "question": "Given a table Employees(id, name, manager_id), write a query to find employees with no manager (i.e., manager_id is NULL).",
+    "correct_answer": "SELECT name FROM Employees WHERE manager_id IS NULL;",
+    "options": [
+      "SELECT name FROM Employees WHERE manager_id = NULL;",
+      "SELECT name FROM Employees WHERE manager_id IS NULL;",
+      "SELECT name FROM Employees WHERE manager_id = 'NULL';",
+      "SELECT name FROM Employees WHERE NOT manager_id;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT name FROM Employees WHERE manager_id IS NULL;",
+      "explanation": "NULL represents unknown/missing data. Use IS NULL (not = NULL) to test for NULL values. = NULL always returns NULL/unknown."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'A',NULL),(2,'B',1),(3,'C',NULL)]",
+        "expected": "A, C"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Employees: [(1,'A',1),(2,'B',2)]",
+        "expected": "empty"
+      }
+    ],
+    "hints": [
+      "Use IS NULL, not = NULL",
+      "NULL means no value assigned"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "role": [
+      "student",
+      "sde"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "10-15 minutes"
+  },
+  {
+    "id": "sql-008",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "date_filtering",
+    "difficulty": "easy",
+    "question": "Given a table Orders(id, order_date, amount) where order_date is a DATE type, write a query to find all orders placed in the year 2024.",
+    "correct_answer": "SELECT * FROM Orders WHERE YEAR(order_date) = 2024;",
+    "options": [
+      "SELECT * FROM Orders WHERE order_date = '2024';",
+      "SELECT * FROM Orders WHERE order_date LIKE '2024%';",
+      "SELECT * FROM Orders WHERE YEAR(order_date) = 2024;",
+      "SELECT * FROM Orders WHERE order_date BETWEEN '2024-01-01' AND '2024-12-31';"
+    ],
+    "correct_index": 2,
+    "solution": {
+      "code": "SELECT * FROM Orders WHERE YEAR(order_date) = 2024;",
+      "explanation": "YEAR() extracts the year from a date. BETWEEN works too but may miss time components depending on DB. LIKE only works if date is stored as string."
+    },
+    "testcases": [
+      {
+        "input": "Orders: [(1,'2024-01-15',100),(2,'2023-12-31',200),(3,'2024-06-20',150)]",
+        "expected": "orders 1 and 3"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Orders: [(1,'2024-12-31 23:59:59',100)]",
+        "expected": "order 1"
+      }
+    ],
+    "hints": [
+      "Use YEAR() function to extract year",
+      "Avoid comparing full date to just year string"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture"
+    ],
+    "role": [
+      "student",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "10-15 minutes"
+  },
+  {
+    "id": "sql-009",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "group_by_having",
+    "difficulty": "medium",
+    "question": "Given a table Orders(id, customer_id, amount), write a query to find customers who placed more than 3 orders.",
+    "correct_answer": "SELECT customer_id, COUNT(*) as order_count FROM Orders GROUP BY customer_id HAVING COUNT(*) > 3;",
+    "options": [
+      "SELECT customer_id, COUNT(*) FROM Orders GROUP BY customer_id WHERE COUNT(*) > 3;",
+      "SELECT customer_id, COUNT(*) FROM Orders WHERE COUNT(*) > 3 GROUP BY customer_id;",
+      "SELECT customer_id, COUNT(*) as order_count FROM Orders GROUP BY customer_id HAVING COUNT(*) > 3;",
+      "SELECT customer_id FROM Orders HAVING COUNT(*) > 3;"
+    ],
+    "correct_index": 2,
+    "solution": {
+      "code": "SELECT customer_id, COUNT(*) as order_count FROM Orders GROUP BY customer_id HAVING COUNT(*) > 3;",
+      "explanation": "GROUP BY groups by customer. HAVING filters groups after aggregation (WHERE filters rows before aggregation)."
+    },
+    "testcases": [
+      {
+        "input": "Orders: [(1,101,200),(2,102,300),(3,101,150),(4,101,100),(5,102,250),(6,102,180),(7,102,220),(8,103,300)]",
+        "expected": "102 (4 orders)"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Orders: [(1,101,200),(2,101,300)]",
+        "expected": "empty (no customer has > 3 orders)"
+      }
+    ],
+    "hints": [
+      "Use GROUP BY to group by customer",
+      "Use HAVING to filter groups, not WHERE",
+      "COUNT(*) counts rows per group"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture",
+      "cognizant"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "15-20 minutes"
+  },
+  {
+    "id": "sql-010",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "subquery_where",
+    "difficulty": "medium",
+    "question": "Given Employees(id, name, salary, department) and Departments(dept_id, dept_name, avg_salary), write a query to find employees who earn more than their department's average salary. Use a subquery.",
+    "correct_answer": "SELECT name FROM Employees e WHERE salary > (SELECT AVG(salary) FROM Employees WHERE department = e.department);",
+    "options": [
+      "SELECT name FROM Employees WHERE salary > AVG(salary) GROUP BY department;",
+      "SELECT name FROM Employees e WHERE salary > (SELECT AVG(salary) FROM Employees WHERE department = e.department);",
+      "SELECT name FROM Employees e WHERE salary > (SELECT AVG(salary) FROM Departments WHERE dept_id = e.department);",
+      "SELECT name, salary FROM Employees GROUP BY department HAVING salary > AVG(salary);"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT name FROM Employees e WHERE salary > (SELECT AVG(salary) FROM Employees WHERE department = e.department);",
+      "explanation": "Correlated subquery references outer query (e.department). It computes department average for each employee's department and compares."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'A','Eng',70000),(2,'B','Eng',50000),(3,'C','HR',60000),(4,'D','HR',55000)]",
+        "expected": "A (70000 > 60000 Eng avg)"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Employees: [(1,'A','Eng',60000),(2,'B','Eng',60000)]",
+        "expected": "empty (both equal to avg)"
+      }
+    ],
+    "hints": [
+      "Use a correlated subquery in WHERE",
+      "Reference outer table alias in subquery",
+      "AVG(salary) computes mean per group"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "15-20 minutes"
+  },
+  {
+    "id": "sql-011",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "left_join",
+    "difficulty": "medium",
+    "question": "List every employee with their department name, even if they have no department assigned. Given Employees(id, name, dept_id) and Departments(dept_id, dept_name), use a LEFT JOIN to include unmatched employees.",
+    "correct_answer": "SELECT e.name, d.dept_name FROM Employees e LEFT JOIN Departments d ON e.dept_id = d.dept_id;",
+    "options": [
+      "SELECT e.name, d.dept_name FROM Employees e INNER JOIN Departments d ON e.dept_id = d.dept_id;",
+      "SELECT e.name, d.dept_name FROM Employees e RIGHT JOIN Departments d ON e.dept_id = d.dept_id;",
+      "SELECT e.name, d.dept_name FROM Employees e LEFT JOIN Departments d ON e.dept_id = d.dept_id;",
+      "SELECT e.name, d.dept_name FROM Employees e FULL JOIN Departments d ON e.dept_id = d.dept_id;"
+    ],
+    "correct_index": 2,
+    "solution": {
+      "code": "SELECT e.name, d.dept_name FROM Employees e LEFT JOIN Departments d ON e.dept_id = d.dept_id;",
+      "explanation": "LEFT JOIN keeps all rows from left table (Employees) and matches from right. Unmatched rows show NULL for right table columns."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'A',10),(2,'B',NULL)]; Departments: [(10,'Eng')]",
+        "expected": "A-Eng, B-NULL"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Employees: [(1,'A',NULL)]; Departments: [(10,'Eng')]",
+        "expected": "A-NULL"
+      }
+    ],
+    "hints": [
+      "Use LEFT JOIN to keep all employees",
+      "LEFT JOIN shows NULL when no match"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "15-20 minutes"
+  },
+  {
+    "id": "sql-012",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "self_join",
+    "difficulty": "medium",
+    "question": "Map each employee to their manager name using a self-referential join. Given Employees(id, name, manager_id), write a query that lists every employee with their manager name from the same table.",
+    "correct_answer": "SELECT e.name AS employee, m.name AS manager FROM Employees e LEFT JOIN Employees m ON e.manager_id = m.id;",
+    "options": [
+      "SELECT e.name, m.name FROM Employees e, Employees m WHERE e.manager_id = m.id;",
+      "SELECT e.name AS employee, m.name AS manager FROM Employees e LEFT JOIN Employees m ON e.manager_id = m.id;",
+      "SELECT e.name, m.name FROM Employees e JOIN Employees m ON e.id = m.manager_id;",
+      "SELECT name, manager_id FROM Employees ORDER BY manager_id;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT e.name AS employee, m.name AS manager FROM Employees e LEFT JOIN Employees m ON e.manager_id = m.id;",
+      "explanation": "Self JOIN treats the same table as two instances. LEFT JOIN ensures employees without managers (CEO) still appear with NULL manager."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'A',NULL),(2,'B',1),(3,'C',1)]",
+        "expected": "A-NULL, B-A, C-A"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Employees: [(1,'A',1)]",
+        "expected": "A-A (self-reference)"
+      }
+    ],
+    "hints": [
+      "Join the table to itself",
+      "Use LEFT JOIN to keep all employees",
+      "Alias the table twice (e and m)"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture",
+      "cognizant"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "15-20 minutes"
+  },
+  {
+    "id": "sql-013",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "cte",
+    "difficulty": "medium",
+    "question": "Given a table Orders(id, customer_id, amount, order_date), use a CTE to calculate total amount spent by each customer, then return customer_id and total.",
+    "correct_answer": "WITH CustomerTotal AS (SELECT customer_id, SUM(amount) as total FROM Orders GROUP BY customer_id) SELECT customer_id, total FROM CustomerTotal;",
+    "options": [
+      "WITH CustomerTotal AS (SELECT customer_id, SUM(amount) FROM Orders) SELECT customer_id, total FROM CustomerTotal;",
+      "WITH CustomerTotal AS (SELECT customer_id, SUM(amount) as total FROM Orders GROUP BY customer_id) SELECT customer_id, total FROM CustomerTotal;",
+      "WITH CustomerTotal SELECT customer_id, SUM(amount) as total FROM Orders GROUP BY customer_id;",
+      "SELECT customer_id, SUM(amount) as total FROM Orders;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "WITH CustomerTotal AS (SELECT customer_id, SUM(amount) as total FROM Orders GROUP BY customer_id) SELECT customer_id, total FROM CustomerTotal;",
+      "explanation": "CTE (WITH clause) defines a temporary result set. The outer query selects from it. GROUP BY is required when using aggregate with non-aggregated column."
+    },
+    "testcases": [
+      {
+        "input": "Orders: [(1,101,200),(2,102,300),(3,101,150)]",
+        "expected": "101: 350, 102: 300"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Orders: [(1,101,200)]",
+        "expected": "101: 200"
+      }
+    ],
+    "hints": [
+      "Use WITH to define a CTE",
+      "GROUP BY customer_id in the CTE",
+      "Reference CTE name in outer SELECT"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "15-20 minutes"
+  },
+  {
+    "id": "sql-014",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "case_statement",
+    "difficulty": "medium",
+    "question": "Given a table Employees(id, name, salary), write a query to list each employee's name and a salary grade: 'High' if salary > 80000, 'Medium' if salary > 50000, otherwise 'Low'.",
+    "correct_answer": "SELECT name, CASE WHEN salary > 80000 THEN 'High' WHEN salary > 50000 THEN 'Medium' ELSE 'Low' END as grade FROM Employees;",
+    "options": [
+      "SELECT name, IF(salary > 80000, 'High', IF(salary > 50000, 'Medium', 'Low')) FROM Employees;",
+      "SELECT name, CASE WHEN salary > 80000 THEN 'High' WHEN salary > 50000 THEN 'Medium' ELSE 'Low' END as grade FROM Employees;",
+      "SELECT name, DECODE(salary, 'High', 'Medium', 'Low') FROM Employees;",
+      "SELECT name, IIF(salary > 80000, 'High', IIF(salary > 50000, 'Medium', 'Low')) FROM Employees;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT name, CASE WHEN salary > 80000 THEN 'High' WHEN salary > 50000 THEN 'Medium' ELSE 'Low' END as grade FROM Employees;",
+      "explanation": "CASE evaluates conditions in order and returns first match. ELSE handles remaining rows. Works in standard SQL (not DB-specific like IF/IIF)."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'A',90000),(2,'B',60000),(3,'C',40000)]",
+        "expected": "A-High, B-Medium, C-Low"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Employees: [(1,'A',80000),(2,'B',50000)]",
+        "expected": "A-Medium (not >80000), B-Low (not >50000)"
+      }
+    ],
+    "hints": [
+      "Use CASE WHEN for conditional logic",
+      "Order conditions from highest to lowest",
+      "Use ELSE for the default case"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "15-20 minutes"
+  },
+  {
+    "id": "sql-015",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "coalesce",
+    "difficulty": "medium",
+    "question": "Given a table Employees(id, name, bonus) where bonus can be NULL, write a query to show each employee's name and bonus, displaying 0 instead of NULL.",
+    "correct_answer": "SELECT name, COALESCE(bonus, 0) as bonus FROM Employees;",
+    "options": [
+      "SELECT name, ISNULL(bonus, 0) FROM Employees;",
+      "SELECT name, IFNULL(bonus, 0) FROM Employees;",
+      "SELECT name, COALESCE(bonus, 0) as bonus FROM Employees;",
+      "SELECT name, NVL(bonus, 0) FROM Employees;"
+    ],
+    "correct_index": 2,
+    "solution": {
+      "code": "SELECT name, COALESCE(bonus, 0) as bonus FROM Employees;",
+      "explanation": "COALESCE returns first non-NULL value. It's standard SQL. ISNULL/IFNULL/NVL are DB-specific equivalents. COALESCE is preferred for portability."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'A',1000),(2,'B',NULL),(3,'C',500)]",
+        "expected": "A-1000, B-0, C-500"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Employees: [(1,'A',NULL),(2,'B',NULL)]",
+        "expected": "A-0, B-0"
+      }
+    ],
+    "hints": [
+      "Use COALESCE to replace NULL",
+      "COALESCE returns first non-NULL value"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "role": [
+      "student",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "15-20 minutes"
+  },
+  {
+    "id": "sql-016",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "window_row_number",
+    "difficulty": "medium",
+    "question": "Given a table Employees(id, name, salary, department), write a query to assign a row number to each employee within their department, ordered by salary descending.",
+    "correct_answer": "SELECT name, department, salary, ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) as rn FROM Employees;",
+    "options": [
+      "SELECT name, ROW_NUMBER(department, salary DESC) FROM Employees;",
+      "SELECT name, department, salary, ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) as rn FROM Employees;",
+      "SELECT name, department, salary, ROW_NUMBER(salary DESC) FROM Employees GROUP BY department;",
+      "SELECT name, department, salary, ROW_NUMBER() OVER (ORDER BY salary DESC) FROM Employees;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT name, department, salary, ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) as rn FROM Employees;",
+      "explanation": "ROW_NUMBER() assigns unique sequential numbers. PARTITION BY restarts numbering per department. ORDER BY determines the order within each partition."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'A','Eng',70000),(2,'B','HR',60000),(3,'C','Eng',80000),(4,'D','HR',55000)]",
+        "expected": "C-Eng-80000-rn1, A-Eng-70000-rn2, B-HR-60000-rn1, D-HR-55000-rn2"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Employees: [(1,'A','Eng',70000),(2,'B','Eng',70000)]",
+        "expected": "A-rn1, B-rn2 (unique even with ties)"
+      }
+    ],
+    "hints": [
+      "Use ROW_NUMBER() window function",
+      "PARTITION BY restarts per group",
+      "ORDER BY determines sequence"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 25,
+    "estimated_time": "20-25 minutes"
+  },
+  {
+    "id": "sql-017",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "window_rank",
+    "difficulty": "medium",
+    "question": "Assign row numbers to employees within each department ordered by salary descending. Given Employees(id, name, salary, department), use ROW_NUMBER() so every employee gets a unique sequential number per department.",
+    "correct_answer": "SELECT name, department, salary, RANK() OVER (PARTITION BY department ORDER BY salary DESC) as rank FROM Employees;",
+    "options": [
+      "SELECT name, RANK(salary) FROM Employees GROUP BY department;",
+      "SELECT name, department, salary, RANK() OVER (PARTITION BY department ORDER BY salary DESC) as rank FROM Employees;",
+      "SELECT name, department, salary, DENSE_RANK() OVER (PARTITION BY department ORDER BY salary DESC) as rank FROM Employees;",
+      "SELECT name, ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) as rank FROM Employees;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT name, department, salary, RANK() OVER (PARTITION BY department ORDER BY salary DESC) as rank FROM Employees;",
+      "explanation": "RANK() gives same rank to ties, then skips next rank (1,1,3). DENSE_RANK() doesn't skip (1,1,2). ROW_NUMBER() gives unique ranks even for ties."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'A','Eng',70000),(2,'B','Eng',70000),(3,'C','HR',60000)]",
+        "expected": "A-rk1, B-rk1, C-rk1"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Employees: [(1,'A','Eng',70000),(2,'B','Eng',60000),(3,'C','Eng',60000)]",
+        "expected": "A-rk1, B-rk2, C-rk2"
+      }
+    ],
+    "hints": [
+      "Use RANK() for same-salary ties",
+      "RANK skips numbers after ties (1,1,3)",
+      "DENSE_RANK doesn't skip (1,1,2)"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 25,
+    "estimated_time": "20-25 minutes"
+  },
+  {
+    "id": "sql-018",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "running_total",
+    "difficulty": "medium",
+    "question": "Given a table Orders(id, order_date, amount), write a query to calculate a running total of order amounts ordered by order_date.",
+    "correct_answer": "SELECT order_date, amount, SUM(amount) OVER (ORDER BY order_date) as running_total FROM Orders;",
+    "options": [
+      "SELECT order_date, SUM(amount) as running_total FROM Orders GROUP BY order_date;",
+      "SELECT order_date, amount, SUM(amount) OVER (ORDER BY order_date) as running_total FROM Orders;",
+      "SELECT order_date, amount, SUM(amount) OVER (PARTITION BY order_date) as running_total FROM Orders;",
+      "SELECT order_date, amount, SUM(amount) as running_total FROM Orders ORDER BY order_date;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT order_date, amount, SUM(amount) OVER (ORDER BY order_date) as running_total FROM Orders;",
+      "explanation": "Window SUM() OVER ORDER BY computes cumulative total. GROUP BY collapses rows (wrong for running total). PARTITION BY restarts per group."
+    },
+    "testcases": [
+      {
+        "input": "Orders: [(1,'2024-01-01',100),(2,'2024-01-02',200),(3,'2024-01-03',150)]",
+        "expected": "100, 300, 450"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Orders: [(1,'2024-01-01',100),(2,'2024-01-01',200)]",
+        "expected": "100, 300"
+      }
+    ],
+    "hints": [
+      "Use SUM() as window function",
+      "OVER ORDER BY gives cumulative sum",
+      "Don't use GROUP BY for running total"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 25,
+    "estimated_time": "20-25 minutes"
+  },
+  {
+    "id": "sql-019",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "top_n_per_group",
+    "difficulty": "hard",
+    "question": "Given a table Employees(id, name, salary, department), write a query to find the top 2 highest-paid employees in each department. Use a window function.",
+    "correct_answer": "SELECT name, department, salary FROM (SELECT name, department, salary, ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) as rn FROM Employees) t WHERE rn <= 2;",
+    "options": [
+      "SELECT name, department, salary FROM Employees GROUP BY department ORDER BY salary DESC LIMIT 2;",
+      "SELECT name, department, salary FROM (SELECT name, department, salary, ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) as rn FROM Employees) t WHERE rn <= 2;",
+      "SELECT name, department, salary FROM Employees WHERE salary IN (SELECT MAX(salary) FROM Employees GROUP BY department);",
+      "SELECT name, department, salary FROM Employees ORDER BY department, salary DESC LIMIT 2;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT name, department, salary FROM (SELECT name, department, salary, ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) as rn FROM Employees) t WHERE rn <= 2;",
+      "explanation": "Window function assigns rank per department. Outer query filters top 2. Without window function, LIMIT gives global top 2, not per department."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'A','Eng',90000),(2,'B','Eng',80000),(3,'C','HR',70000),(4,'D','HR',60000),(5,'E','HR',65000)]",
+        "expected": "A-Eng-90k, B-Eng-80k, C-HR-70k, E-HR-65k"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Employees: [(1,'A','Eng',70000),(2,'B','Eng',70000),(3,'C','Eng',60000)]",
+        "expected": "A and B (both 70k, tie broken arbitrarily by ROW_NUMBER)"
+      }
+    ],
+    "hints": [
+      "Use ROW_NUMBER() window function",
+      "Wrap in subquery to filter by rank",
+      "PARTITION BY department, ORDER BY salary DESC"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture",
+      "cognizant"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "25-30 minutes"
+  },
+  {
+    "id": "sql-020",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "correlated_subquery",
+    "difficulty": "hard",
+    "question": "Given a table Employees(id, name, salary, department), write a query to find employees who earn strictly more than the average salary of their own department. Use a correlated subquery.",
+    "correct_answer": "SELECT name FROM Employees e WHERE salary > (SELECT AVG(salary) FROM Employees WHERE department = e.department);",
+    "options": [
+      "SELECT name FROM Employees WHERE salary > AVG(salary) GROUP BY department;",
+      "SELECT name FROM Employees e WHERE salary > (SELECT AVG(salary) FROM Employees WHERE department = e.department);",
+      "SELECT name FROM Employees e WHERE salary > (SELECT AVG(salary) FROM Departments WHERE dept_id = e.department);",
+      "SELECT name, AVG(salary) FROM Employees GROUP BY department HAVING salary > AVG(salary);"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT name FROM Employees e WHERE salary > (SELECT AVG(salary) FROM Employees WHERE department = e.department);",
+      "explanation": "Correlated subquery references outer query alias. For each row, it computes average of that employee's department and compares."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'A','Eng',90000),(2,'B','Eng',70000),(3,'C','HR',50000),(4,'D','HR',40000)]",
+        "expected": "A (90k > 80k Eng avg), C (50k > 45k HR avg)"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Employees: [(1,'A','Eng',80000),(2,'B','Eng',80000)]",
+        "expected": "empty (both equal to avg 80k)"
+      }
+    ],
+    "hints": [
+      "Reference outer table alias in subquery",
+      "Compute department average per row",
+      "Use > not >= for strictly more"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture",
+      "cognizant"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "25-30 minutes"
+  },
+  {
+    "id": "sql-021",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "complex_join_aggregation",
+    "difficulty": "hard",
+    "question": "Given Employees(id, name, dept_id, salary), Departments(dept_id, dept_name, location), and Projects(id, name, dept_id, budget), write a query to show for each department: dept_name, number of employees, and total project budget. Include departments with no projects.",
+    "correct_answer": "SELECT d.dept_name, COUNT(e.id) as emp_count, COALESCE(SUM(p.budget), 0) as total_budget FROM Departments d LEFT JOIN Employees e ON d.dept_id = e.dept_id LEFT JOIN Projects p ON d.dept_id = p.dept_id GROUP BY d.dept_id, d.dept_name;",
+    "options": [
+      "SELECT d.dept_name, COUNT(e.id), SUM(p.budget) FROM Departments d JOIN Employees e ON d.dept_id = e.dept_id JOIN Projects p ON d.dept_id = p.dept_id GROUP BY d.dept_name;",
+      "SELECT d.dept_name, COUNT(e.id) as emp_count, COALESCE(SUM(p.budget), 0) as total_budget FROM Departments d LEFT JOIN Employees e ON d.dept_id = e.dept_id LEFT JOIN Projects p ON d.dept_id = p.dept_id GROUP BY d.dept_id, d.dept_name;",
+      "SELECT d.dept_name, COUNT(e.id), COALESCE(SUM(p.budget), 0) FROM Departments d LEFT JOIN Projects p ON d.dept_id = p.dept_id GROUP BY d.dept_name;",
+      "SELECT d.dept_name, COUNT(*), SUM(p.budget) FROM Departments d, Employees e, Projects p WHERE d.dept_id = e.dept_id AND d.dept_id = p.dept_id GROUP BY d.dept_name;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT d.dept_name, COUNT(e.id) as emp_count, COALESCE(SUM(p.budget), 0) as total_budget FROM Departments d LEFT JOIN Employees e ON d.dept_id = e.dept_id LEFT JOIN Projects p ON d.dept_id = p.dept_id GROUP BY d.dept_id, d.dept_name;",
+      "explanation": "Start from Departments to keep all departments. LEFT JOIN employees and projects. COALESCE handles NULL budget for departments with no projects. COUNT(e.id) counts only matching employees (NULLs ignored)."
+    },
+    "testcases": [
+      {
+        "input": "Depts: [(10,'Eng','NY')]; Employees: [(1,'A',10,70000),(2,'B',10,80000)]; Projects: [(1,'X',10,50000)]",
+        "expected": "Eng: 2 employees, budget 50000"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Depts: [(10,'Eng','NY'),(20,'HR','SF')]; Employees: [(1,'A',10,70000)]; Projects: []",
+        "expected": "Eng: 1 emp, 0 budget; HR: 0 emp, 0 budget"
+      }
+    ],
+    "hints": [
+      "Start from Departments to include all",
+      "Use LEFT JOIN for optional relationships",
+      "COALESCE converts NULL to 0"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture",
+      "cognizant"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 35,
+    "estimated_time": "30-35 minutes"
+  },
+  {
+    "id": "sql-022",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "recursive_cte",
+    "difficulty": "hard",
+    "question": "Build an organizational hierarchy from a self-referencing manager_id. Given Employees(id, name, manager_id), use a recursive CTE to show each employee with their depth level starting from the CEO.",
+    "correct_answer": "WITH RECURSIVE OrgChart AS (SELECT id, name, manager_id, 1 as level FROM Employees WHERE manager_id IS NULL UNION ALL SELECT e.id, e.name, e.manager_id, oc.level + 1 FROM Employees e INNER JOIN OrgChart oc ON e.manager_id = oc.id) SELECT id, name, level FROM OrgChart ORDER BY level, id;",
+    "options": [
+      "WITH RECURSIVE OrgChart AS (SELECT id, name, manager_id, 1 FROM Employees WHERE manager_id IS NULL UNION ALL SELECT e.id, e.name, e.manager_id, oc.level + 1 FROM Employees e INNER JOIN OrgChart oc ON e.manager_id = oc.id) SELECT id, name, level FROM OrgChart;",
+      "WITH OrgChart AS (SELECT id, name, manager_id, 1 as level FROM Employees WHERE manager_id IS NULL UNION ALL SELECT e.id, e.name, e.manager_id, oc.level + 1 FROM Employees e INNER JOIN OrgChart oc ON e.manager_id = oc.id) SELECT id, name, level FROM OrgChart ORDER BY level, id;",
+      "SELECT id, name, manager_id, 1 as level FROM Employees WHERE manager_id IS NULL UNION ALL SELECT e.id, e.name, e.manager_id, oc.level + 1 FROM Employees e INNER JOIN OrgChart oc ON e.manager_id = oc.id;",
+      "WITH RECURSIVE OrgChart AS (SELECT id, name, manager_id, 1 as level FROM Employees UNION ALL SELECT e.id, e.name, e.manager_id, oc.level + 1 FROM Employees e INNER JOIN OrgChart oc ON e.manager_id = oc.id) SELECT * FROM OrgChart;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "WITH RECURSIVE OrgChart AS (SELECT id, name, manager_id, 1 as level FROM Employees WHERE manager_id IS NULL UNION ALL SELECT e.id, e.name, e.manager_id, oc.level + 1 FROM Employees e INNER JOIN OrgChart oc ON e.manager_id = oc.id) SELECT id, name, level FROM OrgChart ORDER BY level, id;",
+      "explanation": "Recursive CTE has anchor member (CEO, level 1) and recursive member (joins back to CTE). Each recursion adds one level. Terminates when no more rows to join."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'CEO',NULL),(2,'VP',1),(3,'Mgr',2),(4,'Dev',3)]",
+        "expected": "CEO-lvl1, VP-lvl2, Mgr-lvl3, Dev-lvl4"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Employees: [(1,'A',NULL),(2,'B',1),(3,'C',2),(4,'D',1)]",
+        "expected": "A-lvl1, B-lvl2, D-lvl2, C-lvl3"
+      }
+    ],
+    "hints": [
+      "Use WITH RECURSIVE for recursive CTE",
+      "Anchor member selects root (CEO)",
+      "Recursive member joins CTE to table",
+      "Add 1 to level each recursion"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture",
+      "cognizant"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 40,
+    "estimated_time": "30-35 minutes"
+  },
+  {
+    "id": "sql-023",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "duplicate_detection",
+    "difficulty": "hard",
+    "question": "Given a table Orders(id, customer_id, product_id, order_date, amount), write a query to find duplicate orders (same customer and product on the same date), showing the duplicate keys and count.",
+    "correct_answer": "SELECT customer_id, product_id, order_date, COUNT(*) as duplicate_count FROM Orders GROUP BY customer_id, product_id, order_date HAVING COUNT(*) > 1;",
+    "options": [
+      "SELECT customer_id, product_id, order_date FROM Orders HAVING COUNT(*) > 1;",
+      "SELECT customer_id, product_id, order_date, COUNT(*) as duplicate_count FROM Orders GROUP BY customer_id, product_id, order_date HAVING COUNT(*) > 1;",
+      "SELECT customer_id, product_id, order_date, COUNT(*) FROM Orders WHERE COUNT(*) > 1 GROUP BY customer_id, product_id, order_date;",
+      "SELECT customer_id, product_id, order_date FROM Orders GROUP BY customer_id, product_id, order_date WHERE COUNT(*) > 1;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT customer_id, product_id, order_date, COUNT(*) as duplicate_count FROM Orders GROUP BY customer_id, product_id, order_date HAVING COUNT(*) > 1;",
+      "explanation": "GROUP BY the combination that defines a duplicate. HAVING filters groups with count > 1. COUNT(*) counts occurrences of each combination."
+    },
+    "testcases": [
+      {
+        "input": "Orders: [(1,101,1,'2024-01-01',100),(2,101,1,'2024-01-01',100),(3,102,2,'2024-01-02',200)]",
+        "expected": "101,1,2024-01-01: count 2"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Orders: [(1,101,1,'2024-01-01',100),(2,101,2,'2024-01-01',100)]",
+        "expected": "empty (different products)"
+      }
+    ],
+    "hints": [
+      "Group by all columns that define a duplicate",
+      "Use HAVING to filter groups with count > 1",
+      "COUNT(*) counts occurrences per group"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "25-30 minutes"
+  },
+  {
+    "id": "sql-024",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "performance_reasoning",
+    "difficulty": "hard",
+    "question": "A query SELECT * FROM Orders WHERE YEAR(order_date) = 2024 takes 14 seconds on 50M rows. What is the most likely cause and what should you investigate first?",
+    "correct_answer": "Function on column (YEAR()) prevents index usage on order_date, causing full table scan. Investigate execution plan and consider range query: order_date >= '2024-01-01' AND order_date < '2025-01-01'.",
+    "options": [
+      "The table has too many rows - add more indexes",
+      "Function on column prevents index usage, causing full table scan. Use range query instead.",
+      "YEAR() is too slow - use EXTRACT() instead",
+      "The server is overloaded - add more CPU"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT * FROM Orders WHERE order_date >= '2024-01-01' AND order_date < '2025-01-01';",
+      "explanation": "Applying a function to a column (YEAR(order_date)) makes the index on order_date unusable. The DB must scan all rows. Range predicates allow index seeks."
+    },
+    "testcases": [
+      {
+        "input": "Scenario: 50M rows, index on order_date, query uses YEAR() function",
+        "expected": "Full table scan due to function on indexed column"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Scenario: Same query rewritten as range predicate",
+        "expected": "Index seek possible, orders of magnitude faster"
+      }
+    ],
+    "hints": [
+      "Think about index usage",
+      "Functions on columns break indexes",
+      "Check execution plan for full scans"
+    ],
+    "companies": [
+      "amazon",
+      "google",
+      "microsoft",
+      "meta"
+    ],
+    "role": [
+      "sde",
+      "data-analyst",
+      "backend-engineer"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 40,
+    "estimated_time": "20-25 minutes"
+  },
+  {
+    "id": "sql-025",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "string_functions",
+    "difficulty": "easy",
+    "question": "Given a table Employees(id, name, email), write a query to extract the domain part of each employee's email (the part after @).",
+    "correct_answer": "SELECT name, SUBSTRING_INDEX(email, '@', -1) as domain FROM Employees;",
+    "options": [
+      "SELECT name, SUBSTRING(email, '@', -1) FROM Employees;",
+      "SELECT name, SPLIT_PART(email, '@', 2) as domain FROM Employees;",
+      "SELECT name, SUBSTRING_INDEX(email, '@', -1) as domain FROM Employees;",
+      "SELECT name, RIGHT(email, CHARINDEX('@', email)) as domain FROM Employees;"
+    ],
+    "correct_index": 2,
+    "solution": {
+      "code": "SELECT name, SUBSTRING_INDEX(email, '@', -1) as domain FROM Employees;",
+      "explanation": "SUBSTRING_INDEX(str, delim, -1) returns the part after the last delimiter. SPLIT_PART is PostgreSQL. RIGHT+CHARINDEX is SQL Server style. Standard SQL uses SUBSTRING with POSITION."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'A','alice@example.com'),(2,'B','bob@test.org')]",
+        "expected": "A-example.com, B-test.org"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Employees: [(1,'A','a@b.c')]",
+        "expected": "b.c"
+      }
+    ],
+    "hints": [
+      "Use string function to split on '@'",
+      "Take the part after the delimiter",
+      "Different DBs have different functions"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "role": [
+      "student",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "10-15 minutes"
+  },
+  {
+    "id": "sql-026",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "second_highest",
+    "difficulty": "medium",
+    "question": "Given a table Employees(id, name, salary), write a query to find the second highest salary.",
+    "correct_answer": "SELECT MAX(salary) as second_highest FROM Employees WHERE salary < (SELECT MAX(salary) FROM Employees);",
+    "options": [
+      "SELECT MAX(salary) FROM Employees LIMIT 1 OFFSET 1;",
+      "SELECT MAX(salary) as second_highest FROM Employees WHERE salary < (SELECT MAX(salary) FROM Employees);",
+      "SELECT TOP 2 salary FROM Employees ORDER BY salary DESC;",
+      "SELECT salary FROM Employees ORDER BY salary DESC LIMIT 1,1;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT MAX(salary) as second_highest FROM Employees WHERE salary < (SELECT MAX(salary) FROM Employees);",
+      "explanation": "Subquery finds maximum salary. Outer query finds maximum among salaries strictly less than that. Handles ties correctly (if two people have max salary, second highest is the next distinct value)."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'A',100000),(2,'B',80000),(3,'C',60000)]",
+        "expected": "80000"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Employees: [(1,'A',100000),(2,'B',100000),(3,'C',80000)]",
+        "expected": "80000 (not 100000)"
+      }
+    ],
+    "hints": [
+      "Find max, then find max below it",
+      "Use < not <= to skip ties with highest",
+      "Subquery approach is portable across DBs"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "15-20 minutes"
+  },
+  {
+    "id": "sql-027",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "normalization",
+    "difficulty": "medium",
+    "question": "A table Orders(order_id, customer_name, customer_address, product_name, product_price, order_date) has repeating customer info for each order. Which normal form is violated and why?",
+    "correct_answer": "Not in 1NF/2NF because non-key attributes (customer_name, customer_address) depend on part of a composite key or are repeated. Should split into Customers and Orders tables.",
+    "options": [
+      "1NF - because customer_name is not atomic",
+      "2NF - because non-key attributes depend on part of composite key or are repeated across rows",
+      "3NF - because of transitive dependency",
+      "BCNF - because of overlapping candidate keys"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "CREATE TABLE Customers (customer_id INT PRIMARY KEY, name VARCHAR(100), address VARCHAR(255)); CREATE TABLE Orders (order_id INT PRIMARY KEY, customer_id INT, product_id INT, order_date DATE, FOREIGN KEY (customer_id) REFERENCES Customers(customer_id));",
+      "explanation": "Repeating customer data violates 2NF (partial dependency on non-key attribute) and 1NF (repeating groups if order has multiple products). Normalization splits into Customers and Orders with foreign key."
+    },
+    "testcases": [
+      {
+        "input": "Orders table with customer_name repeated in multiple rows",
+        "expected": "Violates 2NF - customer data depends on customer, not order"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Normalized: Customers(cid, name, addr), Orders(oid, cid, pid, date, qty)",
+        "expected": "Each fact stored once, linked by key"
+      }
+    ],
+    "hints": [
+      "Identify repeating non-key data",
+      "Customer info depends on customer, not order",
+      "Split into separate tables with keys"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture",
+      "cognizant"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 25,
+    "estimated_time": "20-25 minutes"
+  },
+  {
+    "id": "sql-028",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "nullif",
+    "difficulty": "medium",
+    "question": "Given a table Sales(id, product, units_sold, units_returned), write a query to calculate net units sold (units_sold - units_returned), treating NULL returns as 0.",
+    "correct_answer": "SELECT product, units_sold - COALESCE(units_returned, 0) as net_units FROM Sales;",
+    "options": [
+      "SELECT product, units_sold - units_returned FROM Sales;",
+      "SELECT product, units_sold - COALESCE(units_returned, 0) as net_units FROM Sales;",
+      "SELECT product, units_sold - IFNULL(units_returned) FROM Sales;",
+      "SELECT product, units_sold - NULLIF(units_returned, 0) FROM Sales;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT product, units_sold - COALESCE(units_returned, 0) as net_units FROM Sales;",
+      "explanation": "COALESCE converts NULL to 0 before subtraction. Without it, any arithmetic with NULL yields NULL. NULLIF returns NULL when arguments match (opposite of what's needed here)."
+    },
+    "testcases": [
+      {
+        "input": "Sales: [(1,'A',100,20),(2,'B',200,NULL),(3,'C',150,50)]",
+        "expected": "A: 80, B: 200, C: 100"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Sales: [(1,'A',100,0),(2,'B',200,200)]",
+        "expected": "A: 100, B: 0"
+      }
+    ],
+    "hints": [
+      "COALESCE replaces NULL with a value",
+      "NULL in arithmetic propagates to NULL",
+      "NULLIF is for converting values to NULL"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "15-20 minutes"
+  },
+  {
+    "id": "sql-029",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "dense_rank",
+    "difficulty": "medium",
+    "question": "Rank employees by salary within each department using dense ranking so ties share the same rank without gaps. Given Employees(id, name, salary, department), use DENSE_RANK() ordered by salary descending.",
+    "correct_answer": "SELECT name, department, salary, DENSE_RANK() OVER (PARTITION BY department ORDER BY salary DESC) as rank FROM Employees;",
+    "options": [
+      "SELECT name, DENSE_RANK(salary) OVER (PARTITION BY department) FROM Employees;",
+      "SELECT name, department, salary, DENSE_RANK() OVER (PARTITION BY department ORDER BY salary DESC) as rank FROM Employees;",
+      "SELECT name, department, salary, RANK() OVER (PARTITION BY department ORDER BY salary DESC) as rank FROM Employees;",
+      "SELECT name, ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) as rank FROM Employees;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT name, department, salary, DENSE_RANK() OVER (PARTITION BY department ORDER BY salary DESC) as rank FROM Employees;",
+      "explanation": "DENSE_RANK assigns consecutive ranks without gaps when ties occur (1,2,2,3). RANK skips after ties (1,2,2,4). ROW_NUMBER gives unique ranks even with ties."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'A','Eng',90000),(2,'B','Eng',90000),(3,'C','Eng',80000)]",
+        "expected": "A-rk1, B-rk1, C-rk2"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Employees: [(1,'A','Eng',90000),(2,'B','Eng',80000),(3,'C','Eng',70000)]",
+        "expected": "A-rk1, B-rk2, C-rk3"
+      }
+    ],
+    "hints": [
+      "Use DENSE_RANK for consecutive ranks",
+      "DENSE_RANK doesn't skip after ties",
+      "Compare with RANK and ROW_NUMBER"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 25,
+    "estimated_time": "20-25 minutes"
+  },
+  {
+    "id": "sql-030",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "right_join",
+    "difficulty": "easy",
+    "question": "Show all departments and any employees assigned to them using a reversed join. Given Employees(id, name, dept_id) and Departments(dept_id, dept_name), start from Departments and LEFT JOIN Employees.",
+    "correct_answer": "SELECT d.dept_name, e.name FROM Departments d LEFT JOIN Employees e ON d.dept_id = e.dept_id;",
+    "options": [
+      "SELECT d.dept_name, e.name FROM Departments d LEFT JOIN Employees e ON d.dept_id = e.dept_id;",
+      "SELECT d.dept_name, e.name FROM Employees e LEFT JOIN Departments d ON e.dept_id = d.dept_id;",
+      "SELECT d.dept_name, e.name FROM Departments d RIGHT JOIN Employees e ON d.dept_id = e.dept_id;",
+      "SELECT d.dept_name, e.name FROM Departments d INNER JOIN Employees e ON d.dept_id = e.dept_id;"
+    ],
+    "correct_index": 0,
+    "solution": {
+      "code": "SELECT d.dept_name, e.name FROM Departments d LEFT JOIN Employees e ON d.dept_id = e.dept_id;",
+      "explanation": "Start from Departments (right side of concept). LEFT JOIN keeps all departments. Departments with no employees show NULL for employee name."
+    },
+    "testcases": [
+      {
+        "input": "Depts: [(10,'Eng'),(20,'HR')]; Employees: [(1,'A',10)]",
+        "expected": "Eng-A, HR-NULL"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Depts: [(10,'Eng')]; Employees: []",
+        "expected": "Eng-NULL"
+      }
+    ],
+    "hints": [
+      "Start from Departments to keep all",
+      "LEFT JOIN keeps all rows from left table",
+      "INNER JOIN would exclude departments with no employees"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "10-15 minutes"
+  },
+  {
+    "id": "sql-031",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "string_functions_2",
+    "difficulty": "easy",
+    "question": "Given a table Employees(id, name), write a query to convert all names to uppercase.",
+    "correct_answer": "SELECT id, UPPER(name) as name FROM Employees;",
+    "options": [
+      "SELECT id, UCASE(name) FROM Employees;",
+      "SELECT id, UPPER(name) as name FROM Employees;",
+      "SELECT id, TO_UPPER(name) FROM Employees;",
+      "SELECT id, CAPITALIZE(name) FROM Employees;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT id, UPPER(name) as name FROM Employees;",
+      "explanation": "UPPER() is standard SQL for converting to uppercase. UCASE is MySQL-specific alias. TO_UPPER and CAPITALIZE are not standard SQL string functions."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'alice'),(2,'Bob')]",
+        "expected": "ALICE, BOB"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Employees: [(1,''),(2,'A')]",
+        "expected": "empty string, A"
+      }
+    ],
+    "hints": [
+      "Use UPPER() for standard SQL",
+      "UCASE works in MySQL but not all DBs",
+      "Standard SQL prefers UPPER/LOWER"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "role": [
+      "student",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "10-15 minutes"
+  },
+  {
+    "id": "sql-032",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "group_concat",
+    "difficulty": "medium",
+    "question": "Given a table Orders(id, customer_id, product_name), write a query to list each customer and the comma-separated list of products they ordered.",
+    "correct_answer": "SELECT customer_id, GROUP_CONCAT(product_name ORDER BY product_name SEPARATOR ', ') as products FROM Orders GROUP BY customer_id;",
+    "options": [
+      "SELECT customer_id, CONCAT(product_name) FROM Orders GROUP BY customer_id;",
+      "SELECT customer_id, GROUP_CONCAT(product_name ORDER BY product_name SEPARATOR ', ') as products FROM Orders GROUP BY customer_id;",
+      "SELECT customer_id, LISTAGG(product_name, ', ') FROM Orders;",
+      "SELECT customer_id, STRING_AGG(product_name, ', ') as products FROM Orders GROUP BY customer_id;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT customer_id, GROUP_CONCAT(product_name ORDER BY product_name SEPARATOR ', ') as products FROM Orders GROUP BY customer_id;",
+      "explanation": "GROUP_CONCAT (MySQL) aggregates strings. STRING_AGG is standard SQL / PostgreSQL. LISTAGG is Oracle. All achieve the same: comma-separated list per group."
+    },
+    "testcases": [
+      {
+        "input": "Orders: [(1,101,'A'),(2,101,'B'),(3,102,'C')]",
+        "expected": "101: A, B; 102: C"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Orders: [(1,101,'B'),(2,101,'A')]",
+        "expected": "101: A, B (ordered alphabetically)"
+      }
+    ],
+    "hints": [
+      "Use GROUP_CONCAT or STRING_AGG",
+      "GROUP BY customer_id",
+      "ORDER BY inside aggregate for sorted list"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 25,
+    "estimated_time": "20-25 minutes"
+  },
+  {
+    "id": "sql-033",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "except",
+    "difficulty": "medium",
+    "question": "Given two tables Customers(id, name) and PremiumCustomers(id, name), write a query to find customers who are in Customers but NOT in PremiumCustomers.",
+    "correct_answer": "SELECT id, name FROM Customers EXCEPT SELECT id, name FROM PremiumCustomers;",
+    "options": [
+      "SELECT id, name FROM Customers MINUS SELECT id, name FROM PremiumCustomers;",
+      "SELECT id, name FROM Customers EXCEPT SELECT id, name FROM PremiumCustomers;",
+      "SELECT id, name FROM Customers WHERE id NOT IN (SELECT id FROM PremiumCustomers);",
+      "SELECT id, name FROM Customers LEFT JOIN PremiumCustomers ON Customers.id = PremiumCustomers.id WHERE PremiumCustomers.id IS NULL;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT id, name FROM Customers EXCEPT SELECT id, name FROM PremiumCustomers;",
+      "explanation": "EXCEPT (standard SQL) returns distinct rows from left query not in right. MINUS is Oracle equivalent. NOT IN / LEFT JOIN alternatives work but EXCEPT is cleaner. EXCEPT removes duplicates; EXCEPT ALL preserves them."
+    },
+    "testcases": [
+      {
+        "input": "Customers: [(1,'A'),(2,'B'),(3,'C')]; Premium: [(2,'B')]",
+        "expected": "A, C"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Customers: [(1,'A'),(2,'B')]; Premium: [(1,'A'),(2,'B'),(3,'C')]",
+        "expected": "empty"
+      }
+    ],
+    "hints": [
+      "Use EXCEPT for set difference",
+      "MINUS is Oracle-specific",
+      "EXCEPT removes duplicates automatically"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "15-20 minutes"
+  },
+  {
+    "id": "sql-034",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "interview_performance",
+    "difficulty": "hard",
+    "question": "You are given a slow query that joins Orders and Customers and takes 45 seconds. The execution plan shows a nested loop join scanning the entire Orders table for each customer. What is the problem and how do you fix it?",
+    "correct_answer": "Missing index on foreign key (Orders.customer_id). Nested loop with full table scan is O(n*m). Add index on Orders.customer_id so join becomes index seek. Consider hash join or increasing join_buffer_size if in-memory.",
+    "options": [
+      "Add more CPU to speed up nested loops",
+      "Missing index on foreign key causes full scan per row. Add index on Orders.customer_id. Consider hash join for large datasets.",
+      "Rewrite query using subqueries",
+      "Partition the Orders table"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "CREATE INDEX idx_orders_customer_id ON Orders(customer_id);",
+      "explanation": "Nested loop without index scans entire inner table per outer row (O(n*m)). Index on join column enables index seek (O(n log m)). Hash join is better for large datasets without suitable indexes."
+    },
+    "testcases": [
+      {
+        "input": "Execution plan: nested loop, full Orders scan per Customer row",
+        "expected": "Root cause: missing index on Orders.customer_id"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Same query after adding index",
+        "expected": "Index seek, order of magnitude faster"
+      }
+    ],
+    "hints": [
+      "Look at join type in execution plan",
+      "Nested loop needs index on inner table",
+      "Foreign keys should be indexed"
+    ],
+    "companies": [
+      "amazon",
+      "google",
+      "microsoft",
+      "meta"
+    ],
+    "role": [
+      "sde",
+      "backend-engineer",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 40,
+    "estimated_time": "25-30 minutes"
+  },
+  {
+    "id": "sql-035",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "intersect",
+    "difficulty": "medium",
+    "question": "Given two tables ProductsA(id, name) and ProductsB(id, name), write a query to find products that appear in BOTH tables.",
+    "correct_answer": "SELECT id, name FROM ProductsA INTERSECT SELECT id, name FROM ProductsB;",
+    "options": [
+      "SELECT id, name FROM ProductsA INNER JOIN ProductsB ON ProductsA.id = ProductsB.id;",
+      "SELECT id, name FROM ProductsA INTERSECT SELECT id, name FROM ProductsB;",
+      "SELECT id, name FROM ProductsA WHERE id IN (SELECT id FROM ProductsB);",
+      "SELECT id, name FROM ProductsA, ProductsB WHERE ProductsA.id = ProductsB.id;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT id, name FROM ProductsA INTERSECT SELECT id, name FROM ProductsB;",
+      "explanation": "INTERSECT returns distinct rows common to both queries. INNER JOIN also works but may produce duplicates if either table has duplicates. INTERSECT removes duplicates automatically."
+    },
+    "testcases": [
+      {
+        "input": "A: [(1,'X'),(2,'Y'),(3,'Z')]; B: [(2,'Y'),(3,'Z'),(4,'W')]",
+        "expected": "Y, Z"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "A: [(1,'X'),(1,'X')]; B: [(1,'X')]",
+        "expected": "X (INTERSECT removes duplicates)"
+      }
+    ],
+    "hints": [
+      "Use INTERSECT for common rows",
+      "INTERSECT removes duplicates",
+      "INNER JOIN may produce duplicates"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "15-20 minutes"
+  },
+  {
+    "id": "sql-036",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "with_clause_filter",
+    "difficulty": "medium",
+    "question": "Given a table Orders(id, customer_id, amount, order_date), use a CTE to first find the top 3 customers by total spending, then query their details.",
+    "correct_answer": "WITH CustomerSpending AS (SELECT customer_id, SUM(amount) as total_spent FROM Orders GROUP BY customer_id), TopCustomers AS (SELECT customer_id FROM CustomerSpending ORDER BY total_spent DESC LIMIT 3) SELECT cs.customer_id, cs.total_spent FROM CustomerSpending cs INNER JOIN TopCustomers tc ON cs.customer_id = tc.customer_id;",
+    "options": [
+      "WITH TopCustomers AS (SELECT customer_id FROM Orders GROUP BY customer_id ORDER BY SUM(amount) DESC LIMIT 3) SELECT * FROM TopCustomers;",
+      "WITH CustomerSpending AS (SELECT customer_id, SUM(amount) as total_spent FROM Orders GROUP BY customer_id), TopCustomers AS (SELECT customer_id FROM CustomerSpending ORDER BY total_spent DESC LIMIT 3) SELECT cs.customer_id, cs.total_spent FROM CustomerSpending cs INNER JOIN TopCustomers tc ON cs.customer_id = tc.customer_id;",
+      "SELECT customer_id, SUM(amount) FROM Orders GROUP BY customer_id ORDER BY SUM(amount) DESC LIMIT 3;",
+      "WITH CustomerSpending AS (SELECT customer_id, SUM(amount) FROM Orders GROUP BY customer_id LIMIT 3) SELECT * FROM CustomerSpending;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "WITH CustomerSpending AS (SELECT customer_id, SUM(amount) as total_spent FROM Orders GROUP BY customer_id), TopCustomers AS (SELECT customer_id FROM CustomerSpending ORDER BY total_spent DESC LIMIT 3) SELECT cs.customer_id, cs.total_spent FROM CustomerSpending cs INNER JOIN TopCustomers tc ON cs.customer_id = tc.customer_id;",
+      "explanation": "Chain CTEs: first compute spending per customer, then select top 3 from that CTE. Join back to get full details. ORDER BY in CTE requires LIMIT (or equivalent) in many DBs."
+    },
+    "testcases": [
+      {
+        "input": "Orders: [(1,101,200),(2,102,300),(3,101,150),(4,103,400),(5,102,250)]",
+        "expected": "103: 400, 102: 550, 101: 350"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Orders: [(1,101,200)]",
+        "expected": "101: 200"
+      }
+    ],
+    "hints": [
+      "Chain multiple CTEs with commas",
+      "First CTE: aggregate spending",
+      "Second CTE: select top from first CTE"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 25,
+    "estimated_time": "20-25 minutes"
+  },
+  {
+    "id": "sql-037",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "full_outer_join",
+    "difficulty": "medium",
+    "question": "Return every employee row and every department row, including unmatched sides. Given Employees(id, name, dept_id) and Departments(dept_id, dept_name), use FULL OUTER JOIN so neither side is dropped.",
+    "correct_answer": "SELECT e.name, d.dept_name FROM Employees e FULL OUTER JOIN Departments d ON e.dept_id = d.dept_id;",
+    "options": [
+      "SELECT e.name, d.dept_name FROM Employees e FULL OUTER JOIN Departments d ON e.dept_id = d.dept_id;",
+      "SELECT e.name, d.dept_name FROM Employees e LEFT JOIN Departments d ON e.dept_id = d.dept_id;",
+      "SELECT e.name, d.dept_name FROM Employees e RIGHT JOIN Departments d ON e.dept_id = d.dept_id;",
+      "SELECT e.name, d.dept_name FROM Employees e INNER JOIN Departments d ON e.dept_id = d.dept_id;"
+    ],
+    "correct_index": 0,
+    "solution": {
+      "code": "SELECT e.name, d.dept_name FROM Employees e FULL OUTER JOIN Departments d ON e.dept_id = d.dept_id;",
+      "explanation": "FULL OUTER JOIN returns all rows from both tables. Unmatched rows show NULL from the other table. MySQL doesn't support FULL OUTER JOIN natively; use LEFT UNION RIGHT as workaround."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'A',10),(2,'B',NULL)]; Departments: [(10,'Eng'),(20,'HR')]",
+        "expected": "A-Eng, B-NULL, NULL-HR"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Employees: [(1,'A',10)]; Departments: [(20,'HR')]",
+        "expected": "A-Eng, NULL-HR (no match for HR)"
+      }
+    ],
+    "hints": [
+      "FULL OUTER JOIN keeps all rows from both tables",
+      "Use LEFT JOIN UNION RIGHT JOIN in MySQL",
+      "NULL appears on both sides for unmatched rows"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 25,
+    "estimated_time": "20-25 minutes"
+  },
+  {
+    "id": "sql-038",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "transaction_isolation",
+    "difficulty": "hard",
+    "question": "You run: BEGIN; UPDATE Accounts SET balance = balance - 100 WHERE id = 1; UPDATE Accounts SET balance = balance + 100 WHERE id = 2; COMMIT; Two concurrent transactions do this simultaneously. Which isolation level prevents lost updates?",
+    "correct_answer": "SERIALIZABLE or REPEATABLE READ with proper locking. READ COMMITTED alone does not prevent lost updates because both transactions read balance before either commits.",
+    "options": [
+      "READ UNCOMMITTED prevents lost updates",
+      "READ COMMITTED prevents lost updates",
+      "REPEATABLE READ or SERIALIZABLE prevents lost updates by locking rows or detecting conflicts",
+      "No isolation level prevents lost updates"
+    ],
+    "correct_index": 2,
+    "solution": {
+      "code": "SET TRANSACTION ISOLATION LEVEL SERIALIZABLE; BEGIN; UPDATE Accounts SET balance = balance - 100 WHERE id = 1; UPDATE Accounts SET balance = balance + 100 WHERE id = 2; COMMIT;",
+      "explanation": "Lost update occurs when two transactions read same value, modify, and write back. SERIALIZABLE runs transactions sequentially. REPEATABLE READ uses locks. READ COMMITTED only blocks writes, not reads."
+    },
+    "testcases": [
+      {
+        "input": "T1: read balance=500, T2: read balance=500, T1: write 400, T2: write 600",
+        "expected": "Lost update: final balance 600 (should be 500 or error)"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "With SERIALIZABLE: T1 commits first, T2 sees updated balance and recalculates",
+        "expected": "Correct final balance, no lost update"
+      }
+    ],
+    "hints": [
+      "Think about what each isolation level guarantees",
+      "Lost update = both read old value, both write new",
+      "Serializable prevents concurrent modification"
+    ],
+    "companies": [
+      "amazon",
+      "google",
+      "microsoft",
+      "meta"
+    ],
+    "role": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 40,
+    "estimated_time": "25-30 minutes"
+  },
+  {
+    "id": "sql-039",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "lag_lead",
+    "difficulty": "hard",
+    "question": "Given a table StockPrices(id, symbol, price_date, price), write a query to show each day's price along with the previous day's price and the day-over-day change.",
+    "correct_answer": "SELECT symbol, price_date, price, LAG(price) OVER (PARTITION BY symbol ORDER BY price_date) as prev_price, price - LAG(price) OVER (PARTITION BY symbol ORDER BY price_date) as price_change FROM StockPrices;",
+    "options": [
+      "SELECT symbol, price_date, price, LAG(price) OVER (PARTITION BY symbol ORDER BY price_date) as prev_price, price - LAG(price) OVER (PARTITION BY symbol ORDER BY price_date) as price_change FROM StockPrices;",
+      "SELECT symbol, price_date, price, LEAD(price) OVER (PARTITION BY symbol ORDER BY price_date) as prev_price FROM StockPrices;",
+      "SELECT symbol, price_date, price, price - LAG(price) OVER (ORDER BY price_date) as price_change FROM StockPrices;",
+      "SELECT symbol, price_date, price, LAG(price) as prev_price FROM StockPrices GROUP BY symbol, price_date;"
+    ],
+    "correct_index": 0,
+    "solution": {
+      "code": "SELECT symbol, price_date, price, LAG(price) OVER (PARTITION BY symbol ORDER BY price_date) as prev_price, price - LAG(price) OVER (PARTITION BY symbol ORDER BY price_date) as price_change FROM StockPrices;",
+      "explanation": "LAG() accesses previous row. LEAD() accesses next row. PARTITION BY symbol ensures comparison within same stock. ORDER BY defines sequence."
+    },
+    "testcases": [
+      {
+        "input": "StockPrices: [(1,'AAPL','2024-01-01',150),(2,'AAPL','2024-01-02',155),(3,'AAPL','2024-01-03',153)]",
+        "expected": "AAPL 1/1: prev=NULL, chg=NULL; 1/2: prev=150, chg=5; 1/3: prev=155, chg=-2"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "StockPrices: [(1,'AAPL','2024-01-01',150),(2,'GOOG','2024-01-01',2800)]",
+        "expected": "AAPL: prev=NULL; GOOG: prev=NULL (different symbols, no cross comparison)"
+      }
+    ],
+    "hints": [
+      "Use LAG() to get previous row value",
+      "PARTITION BY symbol for per-stock comparison",
+      "LEAD gives next row, not previous"
+    ],
+    "companies": [
+      "amazon",
+      "google",
+      "microsoft",
+      "meta"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 35,
+    "estimated_time": "25-30 minutes"
+  },
+  {
+    "id": "sql-040",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "filtered_aggregation",
+    "difficulty": "medium",
+    "question": "Given a table Orders(id, customer_id, amount, status), write a query to show for each customer: total amount, number of completed orders, and number of pending orders.",
+    "correct_answer": "SELECT customer_id, SUM(amount) as total_amount, SUM(CASE WHEN status = 'completed' THEN 1 ELSE 0 END) as completed_orders, SUM(CASE WHEN status = 'pending' THEN 1 ELSE 0 END) as pending_orders FROM Orders GROUP BY customer_id;",
+    "options": [
+      "SELECT customer_id, SUM(amount), COUNT(status='completed'), COUNT(status='pending') FROM Orders GROUP BY customer_id;",
+      "SELECT customer_id, SUM(amount) as total_amount, SUM(CASE WHEN status = 'completed' THEN 1 ELSE 0 END) as completed_orders, SUM(CASE WHEN status = 'pending' THEN 1 ELSE 0 END) as pending_orders FROM Orders GROUP BY customer_id;",
+      "SELECT customer_id, SUM(amount), COUNT(CASE WHEN status = 'completed' THEN 1 END), COUNT(CASE WHEN status = 'pending' THEN 1 END) FROM Orders GROUP BY customer_id;",
+      "SELECT customer_id, SUM(amount), FILTER(WHERE status='completed'), FILTER(WHERE status='pending') FROM Orders GROUP BY customer_id;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT customer_id, SUM(amount) as total_amount, SUM(CASE WHEN status = 'completed' THEN 1 ELSE 0 END) as completed_orders, SUM(CASE WHEN status = 'pending' THEN 1 ELSE 0 END) as pending_orders FROM Orders GROUP BY customer_id;",
+      "explanation": "Conditional aggregation uses CASE inside aggregate. SUM(CASE WHEN ... THEN 1 ELSE 0 END) counts condition matches. FILTER (WHERE) is PostgreSQL-specific standard but less portable."
+    },
+    "testcases": [
+      {
+        "input": "Orders: [(1,101,100,'completed'),(2,101,200,'pending'),(3,101,150,'completed'),(4,102,300,'pending')]",
+        "expected": "101: total=450, completed=2, pending=1; 102: total=300, completed=0, pending=1"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Orders: [(1,101,100,'shipped')]",
+        "expected": "101: total=100, completed=0, pending=0"
+      }
+    ],
+    "hints": [
+      "Use CASE inside SUM for conditional count",
+      "GROUP BY customer_id",
+      "SUM ignores NULL, so CASE can return NULL"
+    ],
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 25,
+    "estimated_time": "20-25 minutes"
+  },
+  {
+    "id": "sql-041",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "constraints",
+    "difficulty": "easy",
+    "question": "Given a table Employees(id, name, email, age), write a CREATE TABLE statement ensuring: id is PRIMARY KEY, email must be UNIQUE, age must be greater than 18, and name cannot be NULL.",
+    "correct_answer": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100) NOT NULL, email VARCHAR(100) UNIQUE, age INT CHECK (age > 18));",
+    "options": [
+      "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100), email VARCHAR(100), age INT CHECK (age > 18));",
+      "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100) NOT NULL, email VARCHAR(100) UNIQUE, age INT CHECK (age > 18));",
+      "CREATE TABLE Employees (id INT PRIMARY KEY NOT NULL, name VARCHAR(100) UNIQUE, email VARCHAR(100) NOT NULL, age INT CHECK (age > 18));",
+      "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100) NOT NULL, email VARCHAR(100), age INT CHECK (age >= 18));"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "CREATE TABLE Employees (id INT PRIMARY KEY, name VARCHAR(100) NOT NULL, email VARCHAR(100) UNIQUE, age INT CHECK (age > 18));",
+      "explanation": "PRIMARY KEY uniquely identifies rows. NOT NULL prevents empty values. UNIQUE prevents duplicates. CHECK enforces domain rules."
+    },
+    "testcases": [
+      {
+        "input": "CREATE TABLE with constraints: name='', email='a@b.com', age=20",
+        "expected": "INSERT fails: name is NULL/empty"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Attempt duplicate email insert",
+        "expected": "UNIQUE constraint violation"
+      }
+    ],
+    "hints": [
+      "Use PRIMARY KEY for id",
+      "Use NOT NULL for required columns",
+      "Use UNIQUE for email",
+      "Use CHECK for age rule"
+    ],
+    "companies": ["tcs", "infosys", "wipro", "accenture"],
+    "role": ["student", "sde", "data-analyst"],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "10-15 minutes"
+  },
+  {
+    "id": "sql-042",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "acid",
+    "difficulty": "medium",
+    "question": "A bank transfer moves $100 from Account A to Account B. The system deducts $100 from A, then crashes before adding to B. Which ACID property was violated and why?",
+    "correct_answer": "Atomicity was violated. A transaction must be all-or-nothing. If any step fails, the entire transaction should roll back. Here the partial completion left the database in an inconsistent state.",
+    "options": [
+      "Isolation - other transactions saw intermediate state",
+      "Atomicity - transaction was not all-or-nothing",
+      "Consistency - balances don't match",
+      "Durability - changes were lost after crash"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "BEGIN; UPDATE Accounts SET balance = balance - 100 WHERE id = A; UPDATE Accounts SET balance = balance + 100 WHERE id = B; COMMIT;",
+      "explanation": "Atomicity ensures transactions complete entirely or not at all. Without it, crashes can leave partial changes. Atomicity is typically implemented via rollback segments / write-ahead logs."
+    },
+    "testcases": [
+      {
+        "input": "T: deduct A (OK), crash before credit B",
+        "expected": "Atomicity violated - partial transaction"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "With rollback: deduct A (OK), crash -> rollback both",
+        "expected": "Atomicity preserved - no partial state"
+      }
+    ],
+    "hints": [
+      "Think about all-or-nothing guarantee",
+      "Transaction should be indivisible",
+      "Crash between steps breaks this"
+    ],
+    "companies": ["amazon", "google", "microsoft", "meta"],
+    "role": ["sde", "backend-engineer"],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 25,
+    "estimated_time": "15-20 minutes"
+  },
+  {
+    "id": "sql-043",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "indexes",
+    "difficulty": "medium",
+    "question": "A query SELECT * FROM Users WHERE email = 'alice@example.com' takes 800ms on 10M rows. After adding an index on email, it takes 5ms. Why did the index help, and what is the tradeoff?",
+    "correct_answer": "Index creates a B-tree structure allowing O(log n) lookup instead of O(n) full scan. Tradeoff: indexes speed up reads but slow down INSERT/UPDATE/DELETE because the index must be maintained.",
+    "options": [
+      "Index caches entire table in memory",
+      "Index provides O(log n) lookup via B-tree, trading slower writes for faster reads",
+      "Index compresses the table",
+      "Index eliminates need for WHERE clause"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "CREATE INDEX idx_users_email ON Users(email);",
+      "explanation": "Indexes are separate structures (typically B-trees) that map column values to row locations. They avoid full table scans but add overhead on writes."
+    },
+    "testcases": [
+      {
+        "input": "10M rows, no index, equality filter on email",
+        "expected": "Full table scan ~O(n)"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Same query with index",
+        "expected": "Index seek ~O(log n)"
+      }
+    ],
+    "hints": [
+      "Think about data structure used by indexes",
+      "B-tree allows fast lookup",
+      "Tradeoff: read vs write performance"
+    ],
+    "companies": ["amazon", "google", "microsoft", "meta"],
+    "role": ["sde", "backend-engineer", "data-analyst"],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 25,
+    "estimated_time": "20-25 minutes"
+  },
+  {
+    "id": "sql-044",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "stored_procedures",
+    "difficulty": "hard",
+    "question": "Write a stored procedure TransferFunds that transfers an amount between two account IDs, with validation that source account has sufficient balance and both accounts exist. Raise an error if validation fails.",
+    "correct_answer": "CREATE PROCEDURE TransferFunds(IN from_id INT, IN to_id INT, IN amount DECIMAL(10,2)) BEGIN DECLARE source_balance DECIMAL(10,2); START TRANSACTION; SELECT balance INTO source_balance FROM Accounts WHERE id = from_id FOR UPDATE; IF source_balance < amount THEN ROLLBACK; SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Insufficient funds'; ELSE UPDATE Accounts SET balance = balance - amount WHERE id = from_id; UPDATE Accounts SET balance = balance + amount WHERE id = to_id; COMMIT; END IF; END;",
+    "options": [
+      "CREATE PROCEDURE TransferFunds ... UPDATE Accounts SET balance = balance - amount WHERE id = from_id; UPDATE Accounts SET balance = balance + amount WHERE id = to_id;",
+      "CREATE PROCEDURE TransferFunds(IN from_id INT, IN to_id INT, IN amount DECIMAL(10,2)) BEGIN DECLARE source_balance DECIMAL(10,2); START TRANSACTION; SELECT balance INTO source_balance FROM Accounts WHERE id = from_id FOR UPDATE; IF source_balance < amount THEN ROLLBACK; SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Insufficient funds'; ELSE UPDATE Accounts SET balance = balance - amount WHERE id = from_id; UPDATE Accounts SET balance = balance + amount WHERE id = to_id; COMMIT; END IF; END;",
+      "CREATE PROCEDURE TransferFunds ... SELECT balance FROM Accounts WHERE id = from_id; IF balance < amount THEN ...",
+      "CREATE FUNCTION TransferFunds ... RETURN INT"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "CREATE PROCEDURE TransferFunds(IN from_id INT, IN to_id INT, IN amount DECIMAL(10,2)) BEGIN DECLARE source_balance DECIMAL(10,2); START TRANSACTION; SELECT balance INTO source_balance FROM Accounts WHERE id = from_id FOR UPDATE; IF source_balance < amount THEN ROLLBACK; SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Insufficient funds'; ELSE UPDATE Accounts SET balance = balance - amount WHERE id = from_id; UPDATE Accounts SET balance = balance + amount WHERE id = to_id; COMMIT; END IF; END;",
+      "explanation": "Stored procedures encapsulate business logic. FOR UPDATE locks the row. Transaction ensures atomicity. SIGNAL raises custom errors. Functions return values; procedures don't."
+    },
+    "testcases": [
+      {
+        "input": "Accounts: [(1,500),(2,300)]; TransferFunds(1,2,600)",
+        "expected": "Error: insufficient funds, no changes"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Concurrent TransferFunds(1,2,200) and TransferFunds(1,3,400)",
+        "expected": "Second fails or one succeeds, never overdraws"
+      }
+    ],
+    "hints": [
+      "Use FOR UPDATE to lock the row",
+      "Wrap in transaction",
+      "Use SIGNAL or RAISE to throw error"
+    ],
+    "companies": ["amazon", "google", "microsoft"],
+    "role": ["sde", "backend-engineer"],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 40,
+    "estimated_time": "30-35 minutes"
+  },
+  {
+    "id": "sql-045",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "schema_design",
+    "difficulty": "medium",
+    "question": "Design a database schema for an e-commerce platform with Users, Products, Orders, and OrderItems. Specify tables, columns, primary keys, foreign keys, and relationships.",
+    "correct_answer": "Users(user_id PK, name, email, created_at). Products(product_id PK, name, price, stock). Orders(order_id PK, user_id FK->Users, order_date, total). OrderItems(order_item_id PK, order_id FK->Orders, product_id FK->Products, quantity, subtotal). One-to-many: Users->Orders, Orders->OrderItems, Products->OrderItems.",
+    "options": [
+      "Users, Products, Orders with all fields in one table",
+      "Users(user_id PK,...), Products(product_id PK,...), Orders(order_id PK, user_id FK,...), OrderItems(order_item_id PK, order_id FK, product_id FK,...)",
+      "Users, Products, Orders, OrderItems with no foreign keys",
+      "Users, Products, Orders with OrderItems embedded as JSON"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "CREATE TABLE Users (user_id INT PRIMARY KEY, name VARCHAR(100), email VARCHAR(100)); CREATE TABLE Products (product_id INT PRIMARY KEY, name VARCHAR(100), price DECIMAL(10,2)); CREATE TABLE Orders (order_id INT PRIMARY KEY, user_id INT, order_date DATE, FOREIGN KEY (user_id) REFERENCES Users(user_id)); CREATE TABLE OrderItems (order_item_id INT PRIMARY KEY, order_id INT, product_id INT, quantity INT, FOREIGN KEY (order_id) REFERENCES Orders(order_id), FOREIGN KEY (product_id) REFERENCES Products(product_id));",
+      "explanation": "Normalized schema avoids redundancy. One-to-many relationships use foreign keys. OrderItems is a junction table linking Orders and Products with quantity details."
+    },
+    "testcases": [
+      {
+        "input": "Insert user, product, order, orderitem",
+        "expected": "All inserts succeed with valid FKs"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Insert OrderItem with invalid order_id",
+        "expected": "FK constraint violation"
+      }
+    ],
+    "hints": [
+      "Identify entities and relationships",
+      "Use foreign keys for relationships",
+      "Separate order headers from line items"
+    ],
+    "companies": ["tcs", "infosys", "wipro", "accenture", "cognizant"],
+    "role": ["student", "sde", "data-analyst"],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 30,
+    "estimated_time": "25-30 minutes"
+  },
+  {
+    "id": "sql-046",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "query_tuning",
+    "difficulty": "hard",
+    "question": "A report query joining 5 tables with WHERE, GROUP BY, and ORDER BY takes 12 seconds. The execution plan shows filesort and temporary table. Which changes would most improve performance?",
+    "correct_answer": "Add composite index on the most selective JOIN + WHERE columns, avoid SELECT *, reduce joined tables via denormalization or pre-aggregation, and ensure GROUP BY columns are indexed.",
+    "options": [
+      "Add more RAM to the server",
+      "Rewrite query with fewer JOINs, add composite index on filter/join columns, avoid SELECT *",
+      "Use subqueries instead of JOINs",
+      "Increase sort_buffer_size"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "CREATE INDEX idx_orders_customer_date ON Orders(customer_id, order_date); CREATE INDEX idx_orderitems_order_id ON OrderItems(order_id);",
+      "explanation": "Tuning focuses on reducing rows early: composite indexes for multi-column filters, covering indexes to avoid table lookups, and simplifying query structure."
+    },
+    "testcases": [
+      {
+        "input": "5-table join with filesort, temp table",
+        "expected": "Plan shows expensive operations"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "After adding composite index on join+filter columns",
+        "expected": "Index merge or ref access, no filesort"
+      }
+    ],
+    "hints": [
+      "Look at filesort and temporary table in plan",
+      "Composite indexes help multi-column filters",
+      "Fewer rows earlier = faster query"
+    ],
+    "companies": ["amazon", "google", "microsoft", "meta"],
+    "role": ["sde", "backend-engineer", "data-analyst"],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 40,
+    "estimated_time": "25-30 minutes"
+  },
+  {
+    "id": "sql-047",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "execution_plan",
+    "difficulty": "hard",
+    "question": "You run EXPLAIN on a query and see type=ALL (full table scan), key=NULL, rows=10M. What does this mean and what is the first action you would take?",
+    "correct_answer": "Full table scan on 10M rows with no index usage. First action: add an index on the WHERE/JOIN columns. key=NULL means no index selected. type=ALL is worst-case access pattern.",
+    "options": [
+      "Query is already optimal for this data size",
+      "Full table scan, no index used. Add index on filter/join columns.",
+      "Increase query cache size",
+      "Use SELECT * to speed up"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "EXPLAIN SELECT * FROM Orders WHERE customer_id = 101; -- type=ALL, key=NULL\nCREATE INDEX idx_orders_customer ON Orders(customer_id);\nEXPLAIN SELECT * FROM Orders WHERE customer_id = 101; -- type=ref, key=idx_orders_customer",
+      "explanation": "EXPLAIN shows access plan. type=ALL means full scan. key=NULL means no index. Adding appropriate index converts to range/ref access."
+    },
+    "testcases": [
+      {
+        "input": "EXPLAIN output: type=ALL, key=NULL, rows=10000000",
+        "expected": "No index, full scan"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "EXPLAIN after adding index on filtered column",
+        "expected": "type=ref or range, key=<index_name>, rows<<10000000"
+      }
+    ],
+    "hints": [
+      "type=ALL means full table scan",
+      "key=NULL means no index used",
+      "Add index on WHERE/JOIN columns"
+    ],
+    "companies": ["amazon", "google", "microsoft", "meta"],
+    "role": ["sde", "backend-engineer", "data-analyst"],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 40,
+    "estimated_time": "20-25 minutes"
+  },
+  {
+    "id": "sql-048",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "partitioning",
+    "difficulty": "hard",
+    "question": "A table Orders has 200M rows. Queries filtering by order_date are slow. Which partitioning strategy would help and why?",
+    "correct_answer": "Range partitioning by order_date (e.g., by month or year). Queries with date predicates can prune partitions, scanning only relevant subsets instead of all 200M rows.",
+    "options": [
+      "Hash partitioning on order_id",
+      "Range partitioning by order_date enables partition pruning for date filters",
+      "Key partitioning on customer_id",
+      "No partitioning - add more indexes"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "CREATE TABLE Orders (...) PARTITION BY RANGE (YEAR(order_date)) (PARTITION p2023 VALUES LESS THAN (2024), PARTITION p2024 VALUES LESS THAN (2025), PARTITION p2025 VALUES LESS THAN (2026));",
+      "explanation": "Partitioning splits large table into smaller pieces. Range on date lets DB prune irrelevant partitions. Hash distributes evenly but doesn't help date filters."
+    },
+    "testcases": [
+      {
+        "input": "200M rows, query WHERE order_date BETWEEN '2024-01-01' AND '2024-06-30'",
+        "expected": "Without partition: 200M rows scanned; with range partition: only 2024 partition scanned"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Query on non-partition column",
+        "expected": "All partitions scanned (no pruning)"
+      }
+    ],
+    "hints": [
+      "Think about partition pruning",
+      "Range on date for date filters",
+      "Partitions are like filtered sub-tables"
+    ],
+    "companies": ["amazon", "google", "microsoft"],
+    "role": ["sde", "backend-engineer", "data-analyst"],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 40,
+    "estimated_time": "25-30 minutes"
+  },
+  {
+    "id": "sql-049",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "olap",
+    "difficulty": "medium",
+    "question": "What is the primary difference between OLTP and OLAP databases, and which SQL features are typically used in OLAP?",
+    "correct_answer": "OLTP is transactional (many small writes, normalized schema, ACID). OLAP is analytical (few large reads, denormalized schema, complex aggregations). OLAP uses GROUP BY, window functions, CTEs, CUBE/ROLLUP.",
+    "options": [
+      "OLTP uses SELECT, OLAP uses INSERT",
+      "OLTP is for transactions (normalized, small writes), OLAP is for analytics (denormalized, aggregations, window functions)",
+      "OLAP is always faster than OLTP",
+      "OLTP uses indexes, OLAP does not"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "-- OLAP example\nSELECT region, product, SUM(sales) FROM Sales GROUP BY CUBE (region, product);",
+      "explanation": "OLTP optimizes for write concurrency and consistency. OLAP optimizes for read-heavy analytical queries with pre-aggregated, denormalized data (star/snowflake schemas)."
+    },
+    "testcases": [
+      {
+        "input": "OLTP: 1000 concurrent small transactions",
+        "expected": "Normalized, indexed, row-level locking"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "OLAP: monthly sales report across 5 years",
+        "expected": "Denormalized fact table, aggregations, window functions"
+      }
+    ],
+    "hints": [
+      "OLTP = transactional, OLAP = analytical",
+      "OLAP uses aggregations and denormalization",
+      "Star schema is common in OLAP"
+    ],
+    "companies": ["tcs", "infosys", "wipro", "accenture"],
+    "role": ["student", "sde", "data-analyst"],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 25,
+    "estimated_time": "15-20 minutes"
+  },
+  {
+    "id": "sql-050",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "star_schema",
+    "difficulty": "medium",
+    "question": "In a star schema for retail sales, what are the Fact table and Dimension tables? Give an example with Sales as fact and Product, Store, Time as dimensions.",
+    "correct_answer": "Fact table: Sales(sale_id, product_id FK, store_id FK, time_id FK, quantity, revenue). Dimension tables: Product(product_id PK, name, category), Store(store_id PK, location, region), Time(time_id PK, date, month, quarter, year).",
+    "options": [
+      "Fact table stores dimensions, dimension tables store measures",
+      "Fact table stores measures (sales), dimension tables store descriptive attributes (product, store, time)",
+      "All tables are the same in star schema",
+      "Star schema has no foreign keys"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "CREATE TABLE Sales (sale_id INT, product_id INT, store_id INT, time_id INT, quantity INT, revenue DECIMAL(10,2), FOREIGN KEY (product_id) REFERENCES Product(product_id), ...);",
+      "explanation": "Star schema centralizes measures in a fact table connected to descriptive dimension tables. Enables fast aggregations. Snowflake schema normalizes dimensions further."
+    },
+    "testcases": [
+      {
+        "input": "Sales fact with Product/Store/Time dimensions",
+        "expected": "One fact row references multiple dimension rows"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Query: total revenue by product category and store region",
+        "expected": "JOIN Sales->Product->Store, GROUP BY category, region"
+      }
+    ],
+    "hints": [
+      "Fact tables hold measurable events",
+      "Dimension tables hold descriptive data",
+      "Fact tables have foreign keys to dimensions"
+    ],
+    "companies": ["tcs", "infosys", "wipro", "accenture"],
+    "role": ["student", "sde", "data-analyst"],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 25,
+    "estimated_time": "20-25 minutes"
+  },
+  {
+    "id": "sql-051",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "security",
+    "difficulty": "easy",
+    "question": "A new analyst needs to read all tables in the Sales schema but cannot modify data. Which SQL command grants this access?",
+    "correct_answer": "GRANT SELECT ON ALL TABLES IN SCHEMA Sales TO analyst_role;",
+    "options": [
+      "GRANT ALL ON SCHEMA Sales TO analyst;",
+      "GRANT SELECT ON ALL TABLES IN SCHEMA Sales TO analyst_role;",
+      "GRANT READ ON Sales.* TO analyst;",
+      "ALLOW SELECT ON Sales TO analyst;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "GRANT SELECT ON ALL TABLES IN SCHEMA Sales TO analyst_role; REVOKE INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA Sales FROM analyst_role;",
+      "explanation": "GRANT gives privileges. SELECT allows reads only. REVOKE removes privileges. Principle of least privilege: give minimum access needed."
+    },
+    "testcases": [
+      {
+        "input": "Analyst with only SELECT tries UPDATE",
+        "expected": "Permission denied"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "DBA runs GRANT SELECT on new table",
+        "expected": "Analyst can read new table immediately"
+      }
+    ],
+    "hints": [
+      "Use GRANT for permissions",
+      "SELECT is read-only",
+      "Apply to schema for all tables"
+    ],
+    "companies": ["tcs", "infosys", "wipro"],
+    "role": ["student", "sde", "data-analyst"],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "10-15 minutes"
+  },
+  {
+    "id": "sql-052",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "data_manipulation",
+    "difficulty": "easy",
+    "question": "Write SQL to insert a new employee (name='Alice', dept_id=10, salary=70000) and then update the HR department's location to 'Building B' in a single transaction.",
+    "correct_answer": "BEGIN; INSERT INTO Employees (name, dept_id, salary) VALUES ('Alice', 10, 70000); UPDATE Departments SET location = 'Building B' WHERE dept_id = 10; COMMIT;",
+    "options": [
+      "INSERT INTO Employees VALUES ('Alice', 10, 70000); UPDATE Departments SET location = 'Building B';",
+      "BEGIN; INSERT INTO Employees (name, dept_id, salary) VALUES ('Alice', 10, 70000); UPDATE Departments SET location = 'Building B' WHERE dept_id = 10; COMMIT;",
+      "INSERT INTO Employees (name, dept_id, salary) VALUES ('Alice', 10, 70000); UPDATE Departments SET location = 'Building B' WHERE dept_id = 10;",
+      "BEGIN TRANSACTION; INSERT; UPDATE; END TRANSACTION;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "BEGIN; INSERT INTO Employees (name, dept_id, salary) VALUES ('Alice', 10, 70000); UPDATE Departments SET location = 'Building B' WHERE dept_id = 10; COMMIT;",
+      "explanation": "Transaction groups multiple changes. BEGIN starts, COMMIT saves. If any fails, ROLLBACK undoes all. Without transaction, partial changes may persist on failure."
+    },
+    "testcases": [
+      {
+        "input": "Transaction: INSERT succeeds, UPDATE fails",
+        "expected": "Both roll back (or INSERT persists depending on DB settings)"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Both succeed in transaction",
+        "expected": "Both committed atomically"
+      }
+    ],
+    "hints": [
+      "Use BEGIN/COMMIT for transaction",
+      "List columns explicitly in INSERT",
+      "Both changes commit or rollback together"
+    ],
+    "companies": ["tcs", "infosys", "wipro", "accenture"],
+    "role": ["student", "sde", "data-analyst"],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "10-15 minutes"
+  },
+  {
+    "id": "sql-053",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "multiple_joins",
+    "difficulty": "medium",
+    "question": "Given Orders(order_id, customer_id, product_id, amount), Customers(customer_id, name, country), Products(product_id, name, category), write a query to show each order with customer name, product name, and category.",
+    "correct_answer": "SELECT o.order_id, c.name AS customer, p.name AS product, p.category FROM Orders o INNER JOIN Customers c ON o.customer_id = c.customer_id INNER JOIN Products p ON o.product_id = p.product_id;",
+    "options": [
+      "SELECT * FROM Orders, Customers, Products;",
+      "SELECT o.order_id, c.name AS customer, p.name AS product, p.category FROM Orders o INNER JOIN Customers c ON o.customer_id = c.customer_id INNER JOIN Products p ON o.product_id = p.product_id;",
+      "SELECT o.order_id, c.name, p.name FROM Orders o LEFT JOIN Customers c ON o.customer_id = c.customer_id;",
+      "SELECT order_id, name, name FROM Orders, Customers, Products WHERE Orders.customer_id = Customers.customer_id AND Orders.product_id = Products.product_id;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT o.order_id, c.name AS customer, p.name AS product, p.category FROM Orders o INNER JOIN Customers c ON o.customer_id = c.customer_id INNER JOIN Products p ON o.product_id = p.product_id;",
+      "explanation": "Chain INNER JOINs. Each JOIN adds one table. ON specifies the matching column. Aliases (o, c, p) make it readable."
+    },
+    "testcases": [
+      {
+        "input": "Orders: [(1,101,1,200)]; Customers: [(101,'A','US')]; Products: [(1,'Bike','Sports')]",
+        "expected": "1-A-Bike-Sports"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Order with missing customer or product",
+        "expected": "INNER JOIN excludes; LEFT JOIN includes with NULL"
+      }
+    ],
+    "hints": [
+      "JOIN Orders to Customers",
+      "JOIN result to Products",
+      "Use aliases for clarity"
+    ],
+    "companies": ["tcs", "infosys", "wipro", "accenture", "cognizant"],
+    "role": ["student", "sde", "data-analyst"],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 20,
+    "estimated_time": "15-20 minutes"
+  },
+  {
+    "id": "sql-054",
+    "type": "sql",
+    "topic": "sql",
+    "sub_topic": "views",
+    "difficulty": "easy",
+    "question": "Create a view ActiveEmployees that shows employee name and department for all employees with salary > 60000, then query from it.",
+    "correct_answer": "CREATE VIEW ActiveEmployees AS SELECT e.name, d.dept_name FROM Employees e INNER JOIN Departments d ON e.dept_id = d.dept_id WHERE e.salary > 60000; SELECT * FROM ActiveEmployees;",
+    "options": [
+      "CREATE VIEW ActiveEmployees SELECT name, dept_name FROM Employees WHERE salary > 60000;",
+      "CREATE VIEW ActiveEmployees AS SELECT e.name, d.dept_name FROM Employees e INNER JOIN Departments d ON e.dept_id = d.dept_id WHERE e.salary > 60000; SELECT * FROM ActiveEmployees;",
+      "CREATE TABLE ActiveEmployees AS SELECT ...",
+      "CREATE VIEW AS SELECT * FROM Employees WHERE salary > 60000;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "CREATE VIEW ActiveEmployees AS SELECT e.name, d.dept_name FROM Employees e INNER JOIN Departments d ON e.dept_id = d.dept_id WHERE e.salary > 60000; SELECT * FROM ActiveEmployees;",
+      "explanation": "Views are virtual tables. CREATE VIEW AS stores a query definition. Querying the view runs the underlying query. Views simplify complex queries and provide security abstraction."
+    },
+    "testcases": [
+      {
+        "input": "Create view, then SELECT * FROM ActiveEmployees",
+        "expected": "Returns same result as underlying query"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "INSERT into view (if updatable)",
+        "expected": "May propagate to base table or fail if not updatable"
+      }
+    ],
+    "hints": [
+      "Use CREATE VIEW AS",
+      "View wraps a SELECT query",
+      "Query the view like a table"
+    ],
+    "companies": ["tcs", "infosys", "wipro"],
+    "role": ["student", "sde", "data-analyst"],
+    "provenance": "author-verified-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "verified",
+    "stage": "placement",
+    "xp_reward": 15,
+    "estimated_time": "10-15 minutes"
+  }
+]

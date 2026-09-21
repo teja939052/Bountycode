@@ -163,7 +163,7 @@ export default function Enterprise() {
                           <tr className="text-left text-gray-500 border-b border-space-border">
                             <th className="pb-2 font-medium">Student</th>
                             <th className="pb-2 font-medium">Level</th>
-                            <th className="pb-2 font-medium">XP</th>
+                            <th className="pb-2 font-medium">Diamonds</th>
                             <th className="pb-2 font-medium">Skill Score</th>
                             <th className="pb-2 font-medium">Streak</th>
                           </tr>
@@ -173,7 +173,7 @@ export default function Enterprise() {
                             <tr key={s.user_id || i} className="border-b border-gray-800/50">
                               <td className="py-2 font-mono text-xs text-gray-400">{s.user_id?.slice(-6) || "???"}</td>
                               <td className="py-2 text-gray-300">{s.level}</td>
-                              <td className="py-2 text-gray-300">{s.xp}</td>
+                              <td className="py-2 text-gray-300">{s.diamonds}</td>
                               <td className="py-2">
                                 <span className={`font-medium ${s.overall_score >= 70 ? "text-green-400" : s.overall_score >= 40 ? "text-yellow-400" : "text-red-400"}`}>
                                   {s.overall_score}

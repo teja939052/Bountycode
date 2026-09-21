@@ -141,10 +141,6 @@ export default function LevelMap() {
 
   const handleSelect = (level: JourneyLevel, wid: string) => {
     if (level.status === "locked") return;
-    if (wid === "foundations") {
-      navigate(`/lesson/${level.id}`);
-      return;
-    }
     setActiveLevel(level);
     setActiveWorldId(wid);
   };
@@ -315,7 +311,7 @@ export default function LevelMap() {
                   </span>
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-semibold text-[#4B4B4B]">{entry.name}</p>
-                    <p className="text-xs text-[#999]">{entry.xp?.toLocaleString?.() ?? 0} XP</p>
+                    <p className="text-xs text-[#999]">{entry.diamonds?.toLocaleString?.() ?? 0} Diamonds</p>
                   </div>
                 </div>
               ))}

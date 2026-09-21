@@ -60,7 +60,7 @@ export const colors = {
     bossSoft: "#FDEDEC",
     rare: "#8B6BD9",
     rareSoft: "#F3F0FA",
-    xp: "#EAB74D",
+    diamonds: "#EAB74D",
     achievement: "#EAB74D",
     info: "#4A90E2",
     locked: "#94A3B8",

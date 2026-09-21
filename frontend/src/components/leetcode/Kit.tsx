@@ -52,9 +52,9 @@ export function LNav() {
         <div className="h-7 w-7 rounded-md bg-[#ffa116] flex items-center justify-center text-black font-black text-sm">
           P
         </div>
-        <span className="text-sm font-bold text-[#e9e9e9] tracking-tight">
-          PlacementPro
-        </span>
+         <span className="text-sm font-bold text-[#e9e9e9] tracking-tight">
+           BountyCode
+         </span>
       </div>
       <nav className="flex-1 space-y-0.5">
         {NAV_ITEMS.map((item) => {

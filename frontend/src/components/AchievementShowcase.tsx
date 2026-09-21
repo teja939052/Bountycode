@@ -19,12 +19,21 @@ const BADGE_RARITY = {
 };
 
 const GLOW_COLORS = {
-  common: 'rgba(156,163,175,0.08)',
-  uncommon: 'rgba(34,197,94,0.12)',
+  common: 'rgba(156,163,175,0.10)',
+  uncommon: 'rgba(34,197,94,0.14)',
   rare: 'rgba(59,130,246,0.18)',
   epic: 'rgba(168,85,247,0.22)',
   legendary: 'rgba(234,179,8,0.28)',
   mythic: 'rgba(236,72,153,0.32)',
+};
+
+const RARITY_LABEL = {
+  common: 'Common',
+  uncommon: 'Uncommon',
+  rare: 'Rare',
+  epic: 'Epic',
+  legendary: 'Legendary',
+  mythic: 'Mythic',
 };
 
 export default function AchievementShowcase({ badges = [], maxDisplay = 8, showTitle = true }) {
@@ -59,35 +68,44 @@ export default function AchievementShowcase({ badges = [], maxDisplay = 8, showT
         initial="hidden"
         animate="visible"
         key={badges.join(',')}
-        className="flex flex-wrap gap-3"
+        className="grid grid-cols-4 sm:grid-cols-6 gap-3"
       >
         {displayBadges.map((badge) => {
-          const info = BADGE_RARITY[badge] || { rarity: 'common', color: '#9CA3AF', emoji: '🏅', title: badge };
+          const info = BADGE_RARITY[badge as keyof typeof BADGE_RARITY] || { rarity: 'common', color: '#9CA3AF', emoji: '🏅', title: badge };
+          const glow = GLOW_COLORS[info.rarity as keyof typeof GLOW_COLORS] || GLOW_COLORS.common;
           return (
             <motion.div
               key={badge}
               variants={itemVariants}
-              whileHover={{ scale: 1.15, rotate: 5, zIndex: 10 }}
-              className="relative flex flex-col items-center gap-1 cursor-pointer group"
+              whileHover={{ scale: 1.12, rotate: 4, zIndex: 10 }}
+              className="relative flex flex-col items-center gap-1.5 cursor-pointer group"
             >
               <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center text-xl transition-all duration-300"
+                className="gamification-border-gradient w-full aspect-square rounded-2xl flex items-center justify-center text-2xl transition-transform duration-300"
                 style={{
-                  background: `linear-gradient(135deg, ${info.color}18, ${info.color}08)`,
-                  border: `2px solid ${info.color}30`,
-                  boxShadow: `0 0 12px ${GLOW_COLORS[info.rarity]}`,
+                  background: 'linear-gradient(135deg, rgba(255,255,255,0.55), rgba(255,255,255,0.35))',
+                  boxShadow: `0 0 18px ${glow}`,
                 }}
               >
-                {info.emoji}
+                <span className="relative z-10">{info.emoji}</span>
               </div>
-              <span className="text-[8px] font-mono text-gray-500 group-hover:text-gray-300 transition-colors text-center leading-tight w-14 truncate">
+              <span className="text-[8px] font-mono text-gray-500 group-hover:text-gray-300 transition-colors text-center leading-tight w-full truncate">
                 {info.title}
               </span>
+              <span
+                className="text-[8px] font-mono px-1.5 py-0.5 rounded-full"
+                style={{
+                  backgroundColor: `${info.color}18`,
+                  color: info.color,
+                  border: `1px solid ${info.color}30`,
+                }}
+              >
+                {RARITY_LABEL[info.rarity as keyof typeof RARITY_LABEL] || info.rarity}
+              </span>
 
-              {/* Rarity indicator dot */}
               <div
-                className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full"
-                style={{ backgroundColor: info.color }}
+                className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full"
+                style={{ backgroundColor: info.color, boxShadow: `0 0 8px ${info.color}60` }}
               />
             </motion.div>
           );
@@ -95,10 +113,10 @@ export default function AchievementShowcase({ badges = [], maxDisplay = 8, showT
 
         {remaining > 0 && (
           <motion.div
-            whileHover={{ scale: 1.1 }}
-            className="flex flex-col items-center gap-1 cursor-pointer"
+            whileHover={{ scale: 1.08 }}
+            className="flex flex-col items-center gap-1.5 cursor-pointer"
           >
-            <div className="w-12 h-12 rounded-xl flex items-center justify-center text-xs font-mono font-bold text-gray-500 bg-gray-800/50 border border-gray-700/30">
+            <div className="w-full aspect-square rounded-2xl flex items-center justify-center text-xs font-mono font-bold text-gray-500 bg-gray-800/40 border border-gray-700/25">
               +{remaining}
             </div>
             <span className="text-[8px] font-mono text-gray-600">more</span>
@@ -106,8 +124,8 @@ export default function AchievementShowcase({ badges = [], maxDisplay = 8, showT
         )}
 
         {badges.length === 0 && (
-          <div className="text-center py-6 w-full">
-            <div className="text-2xl mb-2">🏅</div>
+          <div className="text-center py-6 w-full col-span-full">
+            <div className="text-3xl mb-2">🏅</div>
             <p className="text-xs text-gray-500 font-mono">Complete activities to earn badges!</p>
           </div>
         )}

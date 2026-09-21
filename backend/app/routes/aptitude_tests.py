@@ -283,7 +283,7 @@ async def complete_test(test_id: str, user=Depends(get_current_user)):
     if test.get("started_at"):
         time_taken = (datetime.now(timezone.utc) - test["started_at"]).total_seconds()
 
-    # Calculate XP
+    # Calculate Diamonds
     test_config = TEST_CONFIGS.get(test.get("config", "standard"), TEST_CONFIGS["standard"])
     xp_earned = correct * test_config["xp_per_question"]
 
@@ -305,7 +305,7 @@ async def complete_test(test_id: str, user=Depends(get_current_user)):
     )
 
     # Record gamification
-    await record_practice(user["id"], "aptitude", score)
+    await record_practice(user["id"], "aptitude", score, role=user.get("role") or user.get("target_role") or "sde")
 
     # Update leaderboard
     await update_leaderboard(user["id"], user.get("name", "User"), score, correct, total, time_taken)

@@ -2,7 +2,7 @@ import React, { createContext, useContext, useCallback, useRef, useState } from 
 import soundEngine from './SoundEngine';
 import ScreenJuiceOverlay from './ScreenJuiceOverlay';
 import FloatingTextOverlay from './FloatingTextOverlay';
-import CeremonyOverlay from './CeremonyOverlay';
+import CelebrationOverlay from '../components/CelebrationOverlay';
 
 export interface JuiceContextValue {
   play: (soundName: string) => void;
@@ -34,21 +34,21 @@ export function useJuice() {
   return ctx;
 }
 
-export function JuiceProvider({ children }) {
-  const [activeCeremonies, setActiveCeremonies] = useState([]);
-  const [floatingTexts, setFloatingTexts] = useState([]);
-  const [screenJuice, setScreenJuice] = useState(null);
+export function JuiceProvider({ children }: { children: React.ReactNode }) {
+  const [activeCeremonies, setActiveCeremonies] = useState<{ id: number; type: string; data: unknown; duration: number }[]>([]);
+  const [floatingTexts, setFloatingTexts] = useState<{ id: number; text: string; type: string; x: number; y: number; color?: string; size?: string }[]>([]);
+  const [screenJuice, setScreenJuice] = useState<{ type: string; color?: string; intensity?: number; duration?: number; text?: string; subtext?: string } | null>(null);
 
   const floatingIdRef = useRef(0);
   const ceremonyIdRef = useRef(0);
 
-  const play = useCallback((soundName) => {
+  const play = useCallback((soundName: string) => {
     if (soundEngine[soundName]) {
       soundEngine[soundName]();
     }
   }, []);
 
-  const showFloatingText = useCallback(({ text, type = 'xp', x, y, color, size = 'text-2xl' }) => {
+  const showFloatingText = useCallback(({ text, type = 'diamonds', x, y, color, size = 'text-2xl' }: { text: string; type?: string; x: number; y: number; color?: string; size?: string }) => {
     const id = ++floatingIdRef.current;
     const item = { id, text, type, x, y, color, size };
     setFloatingTexts(prev => [...prev, item]);
@@ -57,15 +57,15 @@ export function JuiceProvider({ children }) {
     }, 1800);
   }, []);
 
-  const showXP = useCallback((amount, x, y, big = false) => {
+  const showXP = useCallback((amount: number, x: number, y: number, big = false) => {
     if (big) {
       play('xpBig');
     } else {
       play('xpCollect');
     }
     showFloatingText({
-      text: `+${amount} XP`,
-      type: 'xp',
+      text: `+${amount} Diamonds`,
+      type: 'diamonds',
       x,
       y,
       color: '#a78bfa',
@@ -73,7 +73,7 @@ export function JuiceProvider({ children }) {
     });
   }, [play, showFloatingText]);
 
-  const showCoins = useCallback((amount, x, y) => {
+  const showCoins = useCallback((amount: number, x: number, y: number) => {
     play('xpCollect');
     showFloatingText({
       text: `+${amount} 🪙`,
@@ -84,10 +84,11 @@ export function JuiceProvider({ children }) {
     });
   }, [play, showFloatingText]);
 
-  const showLevelUp = useCallback((level) => {
+  const showLevelUp = useCallback((level: number) => {
     play('levelUp');
+    const id = ++ceremonyIdRef.current;
     setActiveCeremonies(prev => [...prev, {
-      id: ++ceremonyIdRef.current,
+      id,
       type: 'levelup',
       data: { level },
       duration: 3000,
@@ -97,8 +98,8 @@ export function JuiceProvider({ children }) {
     for (let i = 0; i < 8; i++) {
       setTimeout(() => {
         showFloatingText({
-          text: `+${Math.floor(Math.random() * 50 + 20)} XP`,
-          type: 'xp',
+          text: `+${Math.floor(Math.random() * 50 + 20)} Diamonds`,
+          type: 'diamonds',
           x: Math.random() * window.innerWidth,
           y: Math.random() * window.innerHeight * 0.5,
           color: '#a78bfa',
@@ -108,7 +109,7 @@ export function JuiceProvider({ children }) {
     }
   }, [play, showFloatingText]);
 
-  const showStreakCeremony = useCallback((days) => {
+  const showStreakCeremony = useCallback((days: number) => {
     play('streakFire');
     const id = ++ceremonyIdRef.current;
     setActiveCeremonies(prev => [...prev, {
@@ -124,7 +125,7 @@ export function JuiceProvider({ children }) {
     }, 3500);
   }, [play]);
 
-  const showBadgeUnlock = useCallback((badge) => {
+  const showBadgeUnlock = useCallback((badge: unknown) => {
     play('badgeUnlock');
     const id = ++ceremonyIdRef.current;
     setActiveCeremonies(prev => [...prev, {
@@ -140,7 +141,7 @@ export function JuiceProvider({ children }) {
     }, 4000);
   }, [play]);
 
-  const showCardReveal = useCallback((card) => {
+  const showCardReveal = useCallback((card: unknown) => {
     play('cardFlip');
     const id = ++ceremonyIdRef.current;
     setActiveCeremonies(prev => [...prev, {
@@ -154,7 +155,7 @@ export function JuiceProvider({ children }) {
     }, 3500);
   }, [play]);
 
-  const showBossDefeat = useCallback((boss) => {
+  const showBossDefeat = useCallback((boss: unknown) => {
     play('bossDefeat');
     const id = ++ceremonyIdRef.current;
     setActiveCeremonies(prev => [...prev, {
@@ -170,7 +171,7 @@ export function JuiceProvider({ children }) {
     }, 4500);
   }, [play]);
 
-  const showDailyLogin = useCallback((reward, streak) => {
+  const showDailyLogin = useCallback((reward: unknown, streak: number) => {
     play('dailyLogin');
     const id = ++ceremonyIdRef.current;
     setActiveCeremonies(prev => [...prev, {
@@ -186,7 +187,7 @@ export function JuiceProvider({ children }) {
     }, 5000);
   }, [play]);
 
-  const showAchievement = useCallback((chain) => {
+  const showAchievement = useCallback((chain: unknown) => {
     play('achievement');
     const id = ++ceremonyIdRef.current;
     setActiveCeremonies(prev => [...prev, {
@@ -202,10 +203,20 @@ export function JuiceProvider({ children }) {
     }, 5500);
   }, [play]);
 
-  const showCriticalHit = useCallback((text, subtext) => {
+  const showCriticalHit = useCallback((text: string, subtext: string) => {
     play('criticalHit');
+    const id = ++ceremonyIdRef.current;
+    setActiveCeremonies(prev => [...prev, {
+      id,
+      type: 'critical',
+      data: { title: text, subtitle: subtext },
+      duration: 1500,
+    }]);
     setScreenJuice({ type: 'chromatic', color: 'rgba(245,158,11,0.3)', duration: 600, text, subtext });
     setTimeout(() => setScreenJuice(null), 600);
+    setTimeout(() => {
+      setActiveCeremonies(prev => prev.filter(c => c.id !== id));
+    }, 1500);
   }, [play]);
 
   const screenShake = useCallback((intensity = 6, duration = 350) => {
@@ -218,7 +229,7 @@ export function JuiceProvider({ children }) {
     setTimeout(() => setScreenJuice(null), duration);
   }, []);
 
-  const dismissCeremony = useCallback((id) => {
+  const dismissCeremony = useCallback((id: number) => {
     setActiveCeremonies(prev => prev.filter(c => c.id !== id));
   }, []);
 
@@ -232,7 +243,7 @@ export function JuiceProvider({ children }) {
     soundEnabled: soundEngine.enabled,
     toggleSound: () => soundEngine.toggle(),
     soundVolume: soundEngine.volume,
-    setSoundVolume: (v) => soundEngine.setVolume(v),
+    setSoundVolume: (v: number) => soundEngine.setVolume(v),
   };
 
   return (
@@ -240,10 +251,13 @@ export function JuiceProvider({ children }) {
       {children}
       <ScreenJuiceOverlay juice={screenJuice} />
       <FloatingTextOverlay texts={floatingTexts} />
-      <CeremonyOverlay
-        ceremonies={activeCeremonies}
-        onDismiss={dismissCeremony}
-        play={play}
+      <CelebrationOverlay
+        show={activeCeremonies.length > 0}
+        type={activeCeremonies[activeCeremonies.length - 1]?.type || "confetti"}
+        title={(activeCeremonies[activeCeremonies.length - 1]?.data as { title?: string })?.title}
+        subtitle={(activeCeremonies[activeCeremonies.length - 1]?.data as { subtitle?: string })?.subtitle}
+        diamonds={(activeCeremonies[activeCeremonies.length - 1]?.data as { diamonds?: number })?.diamonds}
+        onClose={dismissCeremony.bind(null, activeCeremonies[activeCeremonies.length - 1]?.id)}
       />
     </JuiceContext.Provider>
   );

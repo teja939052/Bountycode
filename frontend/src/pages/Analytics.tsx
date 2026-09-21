@@ -84,7 +84,7 @@ export default function Analytics() {
             {[
               { label: "Applications", value: overview.total_applications, sub: `${overview.applications_30d} this month`, color: "text-blue-600", icon: Briefcase },
               { label: "Offers", value: overview.offers_received, sub: `${overview.offer_rate}% offer rate`, color: "text-green-600", icon: Award },
-              { label: "XP", value: overview.xp, sub: `Level ${overview.level}`, color: "text-yellow-600", icon: Zap },
+              { label: "Diamonds", value: overview.diamonds, sub: `Level ${overview.level}`, color: "text-yellow-600", icon: Zap },
               { label: "Skill Score", value: overview.overall_skill_score, sub: `${overview.streak} day streak`, color: "text-teal-600", icon: TrendingUp },
             ].map((s, i) => (
               <AnimatedCard key={s.label} delay={i * 0.05} className="card">

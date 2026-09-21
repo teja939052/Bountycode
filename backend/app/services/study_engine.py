@@ -47,6 +47,14 @@ from app.services.gamification import (
     get_gamification_profile,
 )
 from app.services.spaced_repetition import get_due_cards, SRSState, ReviewGrade
+from app.services.skill_taxonomy import canonical_skill_id
+from app.models.learning_event import (
+    LearningEventIn, CONCEPT_GAP, PATTERN_RECOGNITION,
+    IMPLEMENTATION_ERROR, EDGE_CASE_FAILURE, COMPLEXITY_ERROR,
+    TIME_MANAGEMENT, CARELESS_ERROR, KNOWLEDGE_RECALL,
+    TRANSFER_FAILURE, DEBUGGING, COMMUNICATION_DEPTH,
+    TRADEOFF_REASONING, REQUIREMENT_MISREAD,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -73,23 +81,23 @@ async def _get_next_mission(user_id: str) -> Optional[Dict[str, Any]]:
     Returns ``None`` when all worlds are complete.
     """
     from app.database import gamification_collection
-    from app.content.world_registry import ALL_WORLDS, get_world
+    from app.data.worlds_data import WORLD_REGISTRY
 
     doc = await gamification_collection.find_one({"user_id": user_id}) or {}
     completed = doc.get("completed_competencies", {})
 
     # Prefer the world the student is farthest into.
     active_world_id = None
-    for world in sorted(ALL_WORLDS.values(), key=lambda w: w.order):
+    for world in sorted(WORLD_REGISTRY.values(), key=lambda w: w.order):
         wprefix = world.id + ":"
         if any(k.startswith(wprefix) for k in completed):
             active_world_id = world.id
 
     if not active_world_id:
-        first = sorted(ALL_WORLDS.values(), key=lambda w: w.order)[0]
+        first = sorted(WORLD_REGISTRY.values(), key=lambda w: w.order)[0]
         active_world_id = first.id
 
-    world = get_world(active_world_id)
+    world = WORLD_REGISTRY.get(active_world_id)
 
     all_ids: List[str] = []
     for town in world.towns:
@@ -129,11 +137,13 @@ def _get_lesson_content(level_id: str) -> Optional[Dict[str, Any]]:
     if level_id in _LESSON_CONTENT_CACHE:
         return _LESSON_CONTENT_CACHE[level_id]
     try:
-        from app.content.world_registry import get_lesson_by_id
-        lesson = get_lesson_by_id(level_id)
-        if lesson:
-            _LESSON_CONTENT_CACHE[level_id] = lesson.model_dump()
-            return _LESSON_CONTENT_CACHE[level_id]
+        from app.data.worlds_data import WORLD_REGISTRY
+        for world in WORLD_REGISTRY.values():
+            for town in world.towns:
+                for lvl in town.levels:
+                    if lvl.id == level_id:
+                        _LESSON_CONTENT_CACHE[level_id] = lvl.model_dump()
+                        return _LESSON_CONTENT_CACHE[level_id]
     except Exception:
         pass
     return None
@@ -175,7 +185,7 @@ def _serialize_level_for_frontend(
             "best_score": entry.get("best_score", 0),
         },
         "estimated_minutes": getattr(lvl, "estimated_minutes", 12),
-        "xp_reward": getattr(lvl, "xp", 50),
+        "xp_reward": getattr(lvl, "diamonds", 50),
         "lesson_content": _get_lesson_content(lvl.id),
     }
 
@@ -223,47 +233,80 @@ async def _get_practice_tasks(
     weak_areas: List[Dict[str, Any]],
     limit: int = 3,
 ) -> List[Dict[str, Any]]:
-    """Pick 1â€“3 weak-skill practice tasks from the question bank.
+    """Pick 1–3 weak-skill practice tasks from the question bank.
 
     Uses ``adaptive_learning.detect_weak_areas`` for priority ordering and
-    pulls a few random accepted questions per weak domain from
-    ``curated_questions`` so the practice is *relevant*, not random.
+    pulls a few random accepted questions per weak domain from the in-memory
+    canonical store so the practice is *relevant*, not random.
+
+    When a company track is enrolled, practice tasks are filtered to
+    company-relevant topics (company requirement × student weakness ×
+    prerequisite × evidence freshness × assessment relevance).
     """
-    from app.database import curated_questions_collection
+    # In-memory canonical store only (Residency Rule): never MongoDB.
+    from app.services import question_store
+
+    # ── Read user goal for company-aware filtering ──
+    company_relevant_topics: List[str] = []
+    try:
+        from app.database import users_collection
+        user_doc = await users_collection().find_one({"user_id": user_id}) or {}
+        company_track = user_doc.get("company_track", "")
+        if company_track:
+            from app.data.learning_paths import COMPANY_TRACKS
+            track = COMPANY_TRACKS.get(company_track)
+            if track:
+                # Collect all topics from all sections
+                for section in track.get("sections", []):
+                    for topic in section.get("topics", []):
+                        for sub in topic.get("sub_topics", []):
+                            company_relevant_topics.append(sub)
+    except Exception:
+        pass
 
     tasks: List[Dict[str, Any]] = []
     for area in weak_areas[:limit]:
         domain_id = area["domain_id"]
-        # Map the adaptive-learning domain id back to a skill concept that
-        # the question bank tags with.  Many tags already match (e.g.
-        # "arrays_hashing", "sql"), but guard with a fallback.
         topics: List[str] = []
         for tag in (domain_id, area.get("skill", "")):
             if tag:
                 topics.append(tag)
 
-        col = curated_questions_collection()
         query: Dict[str, Any] = {}
         if topics:
             query["topic"] = {"$in": topics}
 
         pool: List[Dict[str, Any]] = []
         try:
-            async for q in col.find(query).limit(50):
-                pool.append(q)
+            pool = question_store.find(query).prefer_verified().to_list()[:50]
         except Exception as exc:
             logger.warning("question-bank fetch failed for %s: %s", domain_id, exc)
             pool = []
 
+        # �� Company-aware filtering: prefer questions tagged with
+        # company-relevant topics when a company track is enrolled ��
+        if company_relevant_topics and pool:
+            lowered = [str(t).lower() for t in company_relevant_topics]
+
+            def _tagged(q: dict) -> bool:
+                hay = list(q.get("topics") or []) + list(q.get("tags") or [])
+                hay += [q.get("topic", ""), q.get("sub_topic", ""),
+                        q.get("pattern", "")]
+                hay += list(q.get("companies") or [])
+                hay_l = [str(h).lower() for h in hay if h]
+                return any(t in hay_l for t in lowered)
+
+            company_pool = [q for q in pool if _tagged(q)]
+            if company_pool:
+                pool = company_pool
+
         if not pool:
-            # Fallback: just surface the weak-area metadata so the student
-            # always gets something actionable.
             tasks.append({
                 "type": "practice",
                 "kind": "weak_area",
                 "domain_id": domain_id,
                 "title": area.get("name", domain_id),
-                "emoji": area.get("emoji", "ðŸ“Œ"),
+                "emoji": area.get("emoji", "📌"),
                 "skill": domain_id,
                 "reason": area.get("reason"),
                 "mastery": area.get("mastery"),
@@ -353,6 +396,67 @@ async def _get_user_role(user_id: str) -> Optional[str]:
     return None
 
 
+# â”€â”€â”€ 6. COMPANY MISSION â€” company-aligned daily objective â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+async def _get_company_mission(user_id: str) -> Optional[Dict[str, Any]]:
+    """Get the next company-aligned mission for the student.
+
+    When a company track is enrolled, surfaces:
+    - Company-specific coding patterns
+    - Company exam-pattern practice
+    - Company HR question practice
+    """
+    try:
+        from app.database import users_collection
+        user = await users_collection.find_one({"user_id": user_id})
+        if not user:
+            return None
+
+        company_track = user.get("company_track", "")
+        target_company = user.get("target_company", "")
+        if not company_track and not target_company:
+            return None
+
+        from app.data.learning_paths import COMPANY_TRACKS
+        track = COMPANY_TRACKS.get(company_track)
+        if not track:
+            return None
+
+        # Find the first incomplete section
+        from app.database import user_company_tracks_collection
+        progress = await user_company_tracks_collection.find_one(
+            {"user_id": user_id, "track_id": company_track}
+        )
+        if not progress:
+            return None
+
+        sections = progress.get("sections", {})
+        for sec_id, sec_data in sections.items():
+            if sec_data.get("completed"):
+                continue
+            modules = sec_data.get("modules", {})
+            for mod_id, mod_data in modules.items():
+                if mod_data.get("completed"):
+                    continue
+                return {
+                    "type": "company_mission",
+                    "title": f"{track['name']}: {sec_data.get('title', 'Practice')}",
+                    "description": mod_data.get("module_id", ""),
+                    "kind": "company_track",
+                    "company": track.get("company_id", ""),
+                    "track_id": company_track,
+                    "section_id": sec_id,
+                    "module_id": mod_id,
+                    "estimated_minutes": 30,
+                    "xp_reward": 50,
+                    "action": "company_track",
+                }
+
+        return None
+    except Exception:
+        return None
+
+
 # â”€â”€â”€ Orchestrator â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async def get_today(user_id: str, force_refresh: bool = False) -> Dict[str, Any]:
@@ -399,6 +503,9 @@ async def get_today(user_id: str, force_refresh: bool = False) -> Dict[str, Any]
     # â”€â”€ Role-specific activities (if role selected) â”€â”€
     role_activity = await _get_role_activity(user_id)
 
+    # Company-aligned mission (if company track enrolled)
+    company_mission = await _get_company_mission(user_id)
+
     # Gamification context for the header tile.
     try:
         g = await get_gamification_profile(user_id)
@@ -421,6 +528,7 @@ async def get_today(user_id: str, force_refresh: bool = False) -> Dict[str, Any]
         "practice": practice,
         "challenge": challenge,
         "role_activity": role_activity,
+        "company_mission": company_mission,
     }
 
     est = 0
@@ -431,6 +539,8 @@ async def get_today(user_id: str, force_refresh: bool = False) -> Dict[str, Any]
     est += sum(t.get("estimated_minutes", 10) for t in practice); task_count += len(practice)
     if challenge:
         est += challenge.get("estimated_minutes", 12); task_count += 1
+    if company_mission:
+        est += company_mission.get("estimated_minutes", 30); task_count += 1
 
     plan["totals"] = {"estimated_minutes": est, "task_count": task_count}
 
@@ -450,8 +560,9 @@ async def get_today(user_id: str, force_refresh: bool = False) -> Dict[str, Any]
 async def record_activity(
     user_id: str,
     activity: Dict[str, Any],
+    role: str = "sde",
 ) -> Dict[str, Any]:
-    """Record one LearningEvent and fan-out to mastery / SRS / XP.
+    """Record one LearningEvent and fan-out to mastery / SRS / Diamonds.
 
     This is the *canonical* completion sink.  Existing routes that call
     ``record_practice`` / ``update_skill_score`` directly are left in place
@@ -471,21 +582,26 @@ async def record_activity(
     result: Dict[str, Any] = {"recorded": False}
 
     activity_type = activity.get("type", "practice")
-    skill_id = activity.get("skill_id", "")
+    raw_skill_id = activity.get("skill_id", "")
+    # Normalize any subsystem naming to canonical domain.subskill
+    skill_id = canonical_skill_id(raw_skill_id) or raw_skill_id or None
     passed = bool(activity.get("passed", False))
     score = float(activity.get("score", 100.0 if passed else 0.0))
     time_spent = int(activity.get("time_spent", 0))
+    diagnosis_codes = list(activity.get("diagnosis_codes", []))
 
     # â”€â”€ Mastery update â”€â”€
     mastery_before = None
+    mastery_after = None
     if skill_id:
         try:
             from app.services.skill_assessment import update_skill_score
-            parts = skill_id.split(".")
-            category = parts[0] if parts else "coding"
-            sub = parts[1] if len(parts) > 1 else "general"
+            from app.services.skill_taxonomy import resolve_skill_to_category, resolve_skill_to_competency
+            category = resolve_skill_to_category(skill_id)
+            sub = resolve_skill_to_competency(skill_id)
             mastery_before = await _fetch_skill_score(user_id, category)
             await update_skill_score(user_id, category, sub, score, passed)
+            mastery_after = await _fetch_skill_score(user_id, category)
         except Exception as exc:
             logger.warning("mastery update failed for %s: %s", user_id, exc)
 
@@ -498,25 +614,29 @@ async def record_activity(
             prob_id = skill_id or activity.get("competency_id")
             col = srs_cards_collection()
             existing = await col.find_one({"user_id": user_id, "problem_id": prob_id})
+            engine = SpacedRepetitionEngine()
+            grade = ReviewGrade.GOOD if passed else ReviewGrade.AGAIN
             if existing:
+                existing.pop("_id", None)
                 state = SRSState(**existing)
-                grade = ReviewGrade.GOOD if passed else ReviewGrade.AGAIN
-                engine = SpacedRepetitionEngine()
                 state = engine.review(state, grade)
-                await col.update_one(
-                    {"user_id": user_id, "problem_id": prob_id},
-                    {"$set": asdict(state)},
-                    upsert=True,
-                )
+            else:
+                state = engine.create_new_card(concept_id=prob_id, user_id=user_id)
+                state = engine.review(state, grade)
+            await col.update_one(
+                {"user_id": user_id, "problem_id": prob_id},
+                {"$set": asdict(state)},
+                upsert=True,
+            )
     except Exception as exc:
         logger.warning("SRS update skipped for %s: %s", user_id, exc)
 
-    # â”€â”€ Gamification / XP â”€â”€
-    xp = _xp_for_activity(activity_type, score, passed)
+    # â”€â”€ Gamification / Diamonds â”€â”€
+    diamonds = _xp_for_activity(activity_type, score, passed)
     try:
         await record_practice(
             user_id,
-            activity=activity_type,
+            activity_type=activity_type,
             score=score,
             metadata={
                 "skill_id": skill_id,
@@ -530,12 +650,50 @@ async def record_activity(
                 "source_bank": activity.get("source_bank"),
                 "verification_version": activity.get("verification_version"),
             },
+            role=role,
         )
-        result["xp_awarded"] = xp
+        result["xp_awarded"] = diamonds
         result["xp_applied"] = True
     except Exception as exc:
         logger.warning("gamification record failed for %s: %s", user_id, exc)
         result["xp_applied"] = False
+
+    # â”€â”€ Persist canonical LearningEvent â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    try:
+        from app.database import learning_events_collection
+        from app.models.learning_event import LearningEventIn
+        event_in = LearningEventIn(
+            activity_type=activity_type,
+            source=activity.get("source", "study_engine"),
+            skill_id=skill_id,
+            subskill_id=activity.get("subskill_id"),
+            question_id=activity.get("question_id"),
+            assessment_id=activity.get("assessment_id"),
+            role=activity.get("role"),
+            company=activity.get("company"),
+            passed=passed,
+            score=score,
+            time_spent_seconds=time_spent,
+            hints_used=int(activity.get("hints_used", 0)),
+            attempt_number=int(activity.get("attempts", 1)),
+            mastery_before=mastery_before,
+            mastery_after=mastery_after,
+            diagnosis_codes=diagnosis_codes,
+            repair_id=activity.get("repair_id"),
+            metadata={
+                "source_bank": activity.get("source_bank"),
+                "trust_status": activity.get("trust_status"),
+                "verification_version": activity.get("verification_version"),
+            },
+        )
+        await learning_events_collection().insert_one({
+            "user_id": user_id,
+            "timestamp": datetime.now(timezone.utc),
+            **event_in.model_dump(exclude_none=True),
+        })
+        result["event_id"] = "recorded"
+    except Exception as exc:
+        logger.warning("LearningEvent persistence failed for %s: %s", user_id, exc)
 
     result.update({
         "recorded": True,
@@ -543,10 +701,57 @@ async def record_activity(
         "skill_id": skill_id,
         "passed": passed,
         "score": score,
-        "xp": xp,
+        "diamonds": diamonds,
         "mastery_before": mastery_before,
+        "mastery_after": mastery_after,
+        "diagnosis_codes": diagnosis_codes,
     })
     return result
+
+
+async def emit_learning_event(user_id: str, event_data: Dict[str, Any]) -> Optional[str]:
+    """Emit a single canonical LearningEvent without the full fan-out.
+
+    Use this from routes that produce evidence (OA, interview, question
+    submission, repair, retest, SRS) but don't need the full mastery/SRS/Diamonds
+    recalculation that record_activity performs.
+
+    Returns the persisted event _id, or None on failure.
+    """
+    raw_skill = event_data.get("skill_id", "")
+    skill_id = canonical_skill_id(raw_skill) or raw_skill or None
+    try:
+        from app.database import learning_events_collection
+        from app.models.learning_event import LearningEventIn
+        event_in = LearningEventIn(
+            activity_type=event_data.get("activity_type", "practice"),
+            source=event_data.get("source", "unknown"),
+            skill_id=skill_id,
+            subskill_id=event_data.get("subskill_id"),
+            question_id=event_data.get("question_id"),
+            assessment_id=event_data.get("assessment_id"),
+            role=event_data.get("role"),
+            company=event_data.get("company"),
+            passed=event_data.get("passed", False),
+            score=event_data.get("score"),
+            time_spent_seconds=int(event_data.get("time_spent_seconds", 0)),
+            hints_used=int(event_data.get("hints_used", 0)),
+            attempt_number=int(event_data.get("attempt_number", 1)),
+            mastery_before=event_data.get("mastery_before"),
+            mastery_after=event_data.get("mastery_after"),
+            diagnosis_codes=event_data.get("diagnosis_codes", []),
+            repair_id=event_data.get("repair_id"),
+            metadata=event_data.get("metadata", {}),
+        )
+        result = await learning_events_collection().insert_one({
+            "user_id": user_id,
+            "timestamp": datetime.now(timezone.utc),
+            **event_in.model_dump(exclude_none=True),
+        })
+        return str(result.inserted_id)
+    except Exception as exc:
+        logger.warning("emit_learning_event failed for %s: %s", user_id, exc)
+        return None
 
 
 async def _fetch_skill_score(user_id: str, category: str) -> Optional[float]:
@@ -563,7 +768,7 @@ async def _fetch_skill_score(user_id: str, category: str) -> Optional[float]:
 
 
 def _xp_for_activity(activity_type: str, score: float, passed: bool) -> int:
-    """Map a completed activity to XP.  Mirrors gamification._calculate_xp
+    """Map a completed activity to Diamonds.  Mirrors gamification._calculate_xp
     shape so the two stay in sync without importing the private helper."""
     base = {
         "learn": 30,
@@ -767,3 +972,73 @@ async def diagnose_mock_oa(user_id: str, responses: Dict[str, Any]) -> Dict[str,
         "repair_missions": repair_missions,
         "next_action": "advance" if percentage >= 70 else "repair",
     }
+
+
+async def record_attempt_diagnostics(
+    user_id: str,
+    question_id: str,
+    selected_option_index: int,
+    question_options: List[Any],
+) -> Optional[Dict[str, Any]]:
+    """Record diagnostics for a single MCQ attempt.
+
+    If the selected option carries a misconception_tag, queue a targeted
+    repair mission and record the weakness trigger.
+
+    Args:
+        user_id: The student
+        question_id: Question attempted
+        selected_option_index: Zero-based index of chosen option
+        question_options: Raw options list from the question document
+
+    Returns:
+        Repair mission payload if a misconception was tagged, else None
+    """
+    if selected_option_index < 0 or selected_option_index >= len(question_options):
+        return None
+
+    selected_option = question_options[selected_option_index]
+
+    # Support both plain-string options and dict metadata options
+    if isinstance(selected_option, dict):
+        tag = selected_option.get("misconception_tag")
+        option_text = selected_option.get("text", "")
+    elif isinstance(selected_option, str):
+        tag = None
+        option_text = selected_option
+    else:
+        return None
+
+    if not tag:
+        return None
+
+    try:
+        from app.database import user_weaknesses_collection
+        from datetime import datetime, timezone
+
+        await user_weaknesses_collection.update_one(
+            {"user_id": user_id, "misconception_tag": tag},
+            {
+                "$inc": {"trigger_count": 1},
+                "$set": {
+                    "last_triggered": datetime.now(timezone.utc).isoformat(),
+                    "status": "remediation_queued",
+                },
+                "$setOnInsert": {
+                    "user_id": user_id,
+                    "misconception_tag": tag,
+                    "question_id": question_id,
+                    "option_text": option_text,
+                },
+            },
+            upsert=True,
+        )
+
+        return {
+            "type": "repair_mission",
+            "misconception_tag": tag,
+            "question_id": question_id,
+            "option_text": option_text,
+        }
+    except Exception:
+        return None

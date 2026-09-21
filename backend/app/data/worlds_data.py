@@ -31,24 +31,44 @@ def _checks(required, forbidden=None, hint_triggers=None):
     return Checks(required_patterns=required, forbidden=forbidden or [], hint_triggers=hint_triggers or [])
 
 
-def _success(world_before, world_after, world_reaction, reward_text, byte_line, xp):
-    return Success(world_before=world_before, world_after=world_after, world_reaction=world_reaction, reward_text=reward_text, byte_line=byte_line, xp=xp)
+def _success(world_before, world_after, world_reaction, reward_text, byte_line, diamonds):
+    return Success(world_before=world_before, world_after=world_after, world_reaction=world_reaction, reward_text=reward_text, byte_line=byte_line, diamonds=diamonds)
 
 
-def _boss_success(world_before, world_after, world_reaction, reward_text, byte_line, xp):
-    return _success(world_before, world_after, world_reaction, reward_text, byte_line, xp)
+def _boss_success(world_before, world_after, world_reaction, reward_text, byte_line, diamonds):
+    return _success(world_before, world_after, world_reaction, reward_text, byte_line, diamonds)
 
 
-def _reward(xp=0, coins=0, badges=None, unlocks_town=None, unlocks_world=None, title=None):
-    return Reward(xp=xp, coins=coins, badges=badges or [], unlocks_town=unlocks_town, unlocks_world=unlocks_world, title=title)
+def _reward(diamonds=0, coins=0, badges=None, unlocks_town=None, unlocks_world=None, title=None):
+    return Reward(diamonds=diamonds, coins=coins, badges=badges or [], unlocks_town=unlocks_town, unlocks_world=unlocks_world, title=title)
+
+def _predict(prompt, answer, explanation=""):
+    return Predict(prompt=prompt, answer=answer, explanation=explanation)
 
 
-def _level(id, title, icon, order, concept, mental_model, canonical_skill, maps_to, story, tutor, discover, manipulate, code, checks, hints, success, predict=None, build=None, break_step=None, debug=None, retrieval=None, transfer=None, mastery_threshold=None, estimated_minutes=None, unlocks=None):
-    return Level(id=id, title=title, kind="level", icon=icon, order=order, concept=concept, mental_model=mental_model, canonical_skill=canonical_skill, maps_to_competency=maps_to, story=story, tutor=tutor, discover=discover, manipulate=manipulate, predict=predict, build=build, break_step=break_step, debug=debug, code=code, checks=checks, hints=hints, retrieval=retrieval, transfer=transfer, mastery_threshold=mastery_threshold, estimated_minutes=estimated_minutes, success=success, unlocks=unlocks)
+def _break_step(prompt, broken_code, expected_failure=""):
+    return BreakStep(prompt=prompt, broken_code=broken_code, expected_failure=expected_failure)
 
 
-def _boss(id, title, icon, order, concept, mental_model, canonical_skill, maps_to, story, tutor, discover, manipulate, code, checks, hints, success, reward, predict=None, build=None, break_step=None, debug=None, retrieval=None, transfer=None, mastery_threshold=80, estimated_minutes=None, unlocks=None):
-    return Boss(id=id, title=title, kind="boss", icon=icon, order=order, concept=concept, mental_model=mental_model, canonical_skill=canonical_skill, maps_to_competency=maps_to, story=story, tutor=tutor, discover=discover, manipulate=manipulate, predict=predict, build=build, break_step=break_step, debug=debug, code=code, checks=checks, hints=hints, retrieval=retrieval, transfer=transfer, mastery_threshold=mastery_threshold, estimated_minutes=estimated_minutes, success=success, reward=reward, unlocks=unlocks)
+def _debug(prompt, buggy_code, fix_steps=None, answer=""):
+    return Debug(prompt=prompt, buggy_code=buggy_code, fix_steps=fix_steps or [], answer=answer)
+
+
+def _retrieval(prompt, answer, explanation=""):
+    return Retrieval(prompt=prompt, answer=answer, explanation=explanation)
+
+
+def _transfer(prompt, answer, context=""):
+    return Transfer(prompt=prompt, answer=answer, context=context)
+
+
+
+def _level(id, title, icon, order, concept, mental_model, canonical_skill, maps_to, story, tutor, discover, manipulate, code, checks, hints, success, predict=None, build=None, break_step=None, debug=None, retrieval=None, transfer=None, mastery_threshold=None, estimated_minutes=None, unlocks=None, role_relevance=None, company_relevance=None):
+    return Level(id=id, title=title, kind="level", icon=icon, order=order, concept=concept, mental_model=mental_model, canonical_skill=canonical_skill, maps_to_competency=maps_to, role_relevance=role_relevance, company_relevance=company_relevance, story=story, tutor=tutor, discover=discover, manipulate=manipulate, predict=predict, build=build, break_step=break_step, debug=debug, code=code, checks=checks, hints=hints, retrieval=retrieval, transfer=transfer, mastery_threshold=mastery_threshold, estimated_minutes=estimated_minutes, success=success, unlocks=unlocks)
+
+
+def _boss(id, title, icon, order, concept, mental_model, canonical_skill, maps_to, story, tutor, discover, manipulate, code, checks, hints, success, reward, predict=None, build=None, break_step=None, debug=None, retrieval=None, transfer=None, mastery_threshold=80, estimated_minutes=None, unlocks=None, role_relevance=None, company_relevance=None):
+    return Boss(id=id, title=title, kind="boss", icon=icon, order=order, concept=concept, mental_model=mental_model, canonical_skill=canonical_skill, maps_to_competency=maps_to, role_relevance=role_relevance, company_relevance=company_relevance, story=story, tutor=tutor, discover=discover, manipulate=manipulate, predict=predict, build=build, break_step=break_step, debug=debug, code=code, checks=checks, hints=hints, retrieval=retrieval, transfer=transfer, mastery_threshold=mastery_threshold, estimated_minutes=estimated_minutes, success=success, reward=reward, unlocks=unlocks)
 
 
 def _make_town(id, name, icon, description, order, mental_model, canonical_skills, competencies, levels):
@@ -118,7 +138,7 @@ WORLD_FOUNDATIONS = World(
                 _checks([r"apples\s*=\s*12",r"bread\s*=\s*4",r"coins\s*=\s*30",r"total\s*=\s*apples\s*\+\s*bread",r"print\s*\(\s*total\s*\)"]),
                 ["What facts does the stockroom need the program to hold? What does the elder want announced?","You learned Remembering, Naming, Organizing, Using — which ones does this emergency need?","Try three remembered facts for the stock, then compute the total and announce it.","Reveal:\napples = 12\nbread = 4\ncoins = 30\ntotal = apples + bread\nprint(total)"],
                 _success("🏚️ Ledger broken · 📦 ??? · 🔇 Silent","🏚️ → 🏘️ Restored · 📦 12/4/30 · 📢 16 announced · 🌿 Path opens","The hut restores! Ledgers glow, crates align. The village is saved — the path to the next town opens. 🌿","🏆 Village Restored — Remembering → Using MASTERED. Next: Kinds of Things!","You did not copy — you transferred. That is mastery.",50),
-                _reward(xp=50,coins=25,badges=["variables-master"],unlocks_town="town-2-types")),
+                _reward(diamonds=50,coins=25,badges=["variables-master"],unlocks_town="town-2-types")),
         ]),
     ]
 )
@@ -168,7 +188,7 @@ WORLD_SEARCHLANDS = World(
                 _checks([r"for\s",r"range\s*\(",r"break"]),
                 ["Start from the first scroll.","You can stop as soon as you find it — no need to check the rest.","Use break to stop early."],
                 _success("🏛️ Vault sealed · 📜 Missing","🏛️ Vault open · 📜 Found","The ancient scroll is recovered! The temple is saved.","Search Mastery — you can find anything by looking.","Every search starts with a line.",40),
-                _reward(xp=40,coins=20,badges=["search-novice"],unlocks_town="town-2-binary")),
+                _reward(diamonds=40,coins=20,badges=["search-novice"],unlocks_town="town-2-binary")),
         ]),
         _make_town("binary", "Binary Search Borough", "🏘️", "Divide and conquer. Cut the search space in half each time.", 2, "Divide and Conquer", ["searching.binary"], ["binary-search", "logarithmic", "sorted"], [
             _level("b-1","The Sorted Shelf","📚",1,"binary search","Halving","searching.binary","searching.binary",
@@ -179,7 +199,12 @@ WORLD_SEARCHLANDS = World(
                 _code("Find the target using binary search on a sorted list.","books = ['Ant','Bear','Cat','Dragon','Eagle','Fox','Goat','Hawk']\n","target = 'Dragon'\nlo, hi = 0, len(books)-1\nwhile lo <= hi:\n    mid = (lo+hi)//2\n    if books[mid] == target: print(mid); break\n    elif books[mid] < target: lo = mid+1\n    else: hi = mid-1"),
                 _checks([r"while\s+lo",r"mid\s*=\s*\(lo\s*\+\s*hi\)",r"books\[mid\]"]),
                 ["The books are sorted — use that!","Check the middle first.","If target is bigger, discard the left half."],
-                _success("📚 Full shelf · 🔍 Slow scan","📚 Sorted shelf · ⚡ Found at mid","The librarian is amazed — you found it in 2 checks!","Binary Search — halve the problem each time.","Sorted data unlocks speed.",25)),
+                _success("📚 Full shelf · 🔍 Slow scan","📚 Sorted shelf · ⚡ Found at mid","The librarian is amazed — you found it in 2 checks!","Binary Search — halve the problem each time.","Sorted data unlocks speed.",25),
+                predict=_predict("If the list is [1,3,5,7] and target is 4, what does the first mid check return?","index 1 (value 3)","Binary search compares the middle element and decides the direction."),
+                break_step=_break_step("What happens if you write `while lo < hi` for a list of length 1?","lo, hi = 0, 0\nwhile lo < hi:\n    mid = (lo+hi)//2\n    print(nums[mid])\n","Target at index 0 is skipped"),
+                 debug=_debug("Fix the off-by-one: this search can miss the first element.","def search(books, target):\n    lo, hi = 0, len(books)\n    while lo < hi:\n        mid = (lo+hi)//2\n        if books[mid] == target: return mid\n        elif books[mid] < target: lo = mid+1\n        else: hi = mid\n    return -1", fix_steps=["Use `hi = len(books)-1` and `while lo <= hi` so the first element is reachable."], answer="lo, hi = 0, len(books)-1\nwhile lo <= hi:\n    mid = (lo+hi)//2\n    if books[mid] == target: return mid\n    elif books[mid] < target: lo = mid+1\n    else: hi = mid\nreturn -1"),
+                retrieval=_retrieval("What is the worst-case time complexity of binary search?","O(log n)","Each step halves the search space."),
+                transfer=_transfer("Find the first occurrence of target 3 in [1,2,3,3,3,4,5].","nums = [1,2,3,3,3,4,5]\ntarget = 3\nlo, hi = 0, len(nums)-1\nans = -1\nwhile lo <= hi:\n    mid = (lo+hi)//2\n    if nums[mid] == target:\n        ans = mid\n        hi = mid-1\n    elif nums[mid] < target:\n        lo = mid+1\n    else:\n        hi = mid-1\nprint(ans)","Same search, but keep searching left after finding a match.")),
             _level("b-2","The Guess Game","🎯",2,"logarithmic","Estimating","searching.binary","searching.binary",
                 _story("Binary Borough Square","Game Master Gus","Guess a number from 1 to 100 in as few tries as possible."),
                 _tutor("Byte","🧭","Each guess eliminates half the possibilities. That is O(log n)!","With 100 numbers, you need at most 7 guesses. With 1000, only 10."),
@@ -207,7 +232,7 @@ WORLD_SEARCHLANDS = World(
                 _checks([r"lo\s*=\s*lo\s*\+\s*1",r"pages\[mid\]\s*<\s*target"]),
                 ["When target is not found, lo is the insertion point.","Use `lo < hi` instead of `lo <= hi`.","This finds the lower bound."],
                 _success("📖 Page missing · 🔍 Lost","📖 Position found · ✅ Inserted","The tome is complete! The archive is restored.","Search Legend — you master binary search.","Finding where things belong is as powerful as finding them.",45),
-                _reward(xp=45,coins=25,badges=["search-legend"],unlocks_town="town-3-sorting")),
+                _reward(diamonds=45,coins=25,badges=["search-legend"],unlocks_town="town-3-sorting")),
         ]),
     ]
 )
@@ -248,7 +273,7 @@ WORLD_SORTING = World(
                 _checks([r"swapped",r"break",r"bars\[j\]"]),
                 ["The simple approach works for any size.","Early exit helps when nearly sorted.","Correctness matters more than speed."],
                 _success("🏆 Bars scattered · 🔨 Chaos","🏆 Bars ordered · ✅ Archive complete","The grand archive is sorted! The kingdom celebrates.","Sort Mastery — you can order anything.","Simple, correct, reliable.",40),
-                _reward(xp=40,coins=20,badges=["sort-forger"],unlocks_town="town-2-merge")),
+                _reward(diamonds=40,coins=20,badges=["sort-forger"],unlocks_town="town-2-merge")),
         ]),
         _make_town("merge", "Merge Hall", "🔗", "Divide, sort, merge. The elegant recursive approach.", 2, "Divide and Conquer", ["sorting.merge"], ["merge-sort", "recursion", "merging"], [
             _level("m-1","The Split","✂️",1,"merge sort","Dividing","sorting.merge","sorting.merge",
@@ -278,7 +303,7 @@ WORLD_SORTING = World(
                 _checks([r"merge_sort",r"merge\s*\(",r"return\s*res"]),
                 ["Divide recursively, then merge.","The merge step is the key.","O(n log n) — efficient for any size."],
                 _success("👑 Data chaotic · 📊 Unsorted","👑 Data ordered · ✅ Census complete","The kingdom's census is perfectly sorted!","Merge Legend — O(n log n) elegance.","Divide, conquer, merge.",45),
-                _reward(xp=45,coins=25,badges=["merge-master"],unlocks_town="town-3-recursion")),
+                _reward(diamonds=45,coins=25,badges=["merge-master"],unlocks_town="town-3-recursion")),
         ]),
     ]
 )
@@ -319,7 +344,7 @@ WORLD_RECURSION = World(
                 _checks([r"if\s+n\s*==\s*0",r"return\s*1",r"return\s*2\s*\*"]),
                 ["Each step reduces the problem by 1.","2^10 = 2 × 2^9 = 2 × 2 × 2^8 ...","The base case is 2^0 = 1."],
                 _success("🏔️ Base camp only · 🏔️ Not summited","🏔️ Summit reached · ✅ View from top","You see the entire recursive mountain from the top!","Recursion Master — you can climb any recursive problem.","Base case + recursive case = solution.",40),
-                _reward(xp=40,coins=20,badges=["recursion-base"],unlocks_town="town-2-divide")),
+                _reward(diamonds=40,coins=20,badges=["recursion-base"],unlocks_town="town-2-divide")),
         ]),
         _make_town("divide", "Divide Peak", "🏔️", "Recursive division. Break problems into independent sub-problems.", 2, "Divide and Conquer", ["recursion.divide"], ["divide-conquer", "recursive-structure", "combine"], [
             _level("d-1","The Split Path","🛤️",1,"divide and conquer","Splitting","recursion.divide","recursion.divide",
@@ -349,7 +374,7 @@ WORLD_RECURSION = World(
                 _checks([r"dc_sum",r"arr\[:mid\]",r"arr\[mid:\]"]),
                 ["Base case: single element or empty.","Split and recurse on both halves.","Combine by adding the two sums."],
                 _success("👑 Problem whole · ❌ Not divided","👑 Problem solved · ✅ Master of divide","The master problem is solved with pure divide and conquer!","Divide Legend — recursive problem mastery.","Split, solve, combine.",45),
-                _reward(xp=45,coins=25,badges=["divide-master"],unlocks_town="town-3-trees")),
+                _reward(diamonds=45,coins=25,badges=["divide-master"],unlocks_town="town-3-trees")),
         ]),
     ]
 )
@@ -390,7 +415,7 @@ WORLD_LINKED = World(
                 _checks([r"prev\s*=\s*None",r"next_node",r"current\.next\s*=\s*prev"]),
                 ["Three pointers: prev, current, next.","Flip each pointer to the previous node.","Move all three forward."],
                 _success("🔄 Chain forward · ❌ Not reversed","🔄 Chain reversed · ✅ Tail is head","The chain now flows backward! The tail is the new head.","Linked Master — reverse any chain.","Pointer manipulation mastery.",40),
-                _reward(xp=40,coins=20,badges=["linked-master"],unlocks_town="town-2-stack")),
+                _reward(diamonds=40,coins=20,badges=["linked-master"],unlocks_town="town-2-stack")),
         ]),
     ]
 )
@@ -431,7 +456,7 @@ WORLD_STACK = World(
                 _checks([r"def\s+",r"return",r"print\(main"]),
                 ["Each function call pushes a frame.","The deepest call returns first.","The call stack is LIFO."],
                 _success("📞 No frames · ❌ Lost","📞 Frames tracked · ✅ Stack understood","The call stack is fully understood!","Stack Master — understand LIFO in practice.","Every function call is a stack operation.",40),
-                _reward(xp=40,coins=20,badges=["stack-master"],unlocks_town="town-2-queue")),
+                _reward(diamonds=40,coins=20,badges=["stack-master"],unlocks_town="town-2-queue")),
         ]),
     ]
 )
@@ -472,7 +497,7 @@ WORLD_QUEUE = World(
                 _checks([r"sort",r"lambda",r"jobs"]),
                 ["Sort jobs by priority.","Print each job in order.","Track pages and priority."],
                 _success("🖨️ Queue chaotic · ❌ Not scheduled","🖨️ Queue ordered · ✅ All printed","All documents printed in priority order!","Queue Master — real-world scheduling.","Queues power real-world systems.",40),
-                _reward(xp=40,coins=20,badges=["queue-master"],unlocks_town="town-2-hash")),
+                _reward(diamonds=40,coins=20,badges=["queue-master"],unlocks_town="town-2-hash")),
         ]),
     ]
 )
@@ -513,7 +538,7 @@ WORLD_HASHING = World(
                 _checks([r"_hash",r"buckets",r"enumerate"]),
                 ["Hash the key to find the bucket.","Search the chain for the key.","Update if found, append if new."],
                 _success("📖 No dictionary · ❌ Slow lookup","📖 Dictionary built · ✅ O(1) lookup","The dictionary works at lightning speed!","Hash Master — build a hash map from scratch.","O(1) average case for all operations.",40),
-                _reward(xp=40,coins=20,badges=["hash-master"],unlocks_town="town-2-tree")),
+                _reward(diamonds=40,coins=20,badges=["hash-master"],unlocks_town="town-2-tree")),
         ]),
     ]
 )
@@ -554,7 +579,7 @@ WORLD_TREES = World(
                 _checks([r"if\s+not\s+node",r"if\s+val\s*==",r"search\(node\.left"]),
                 ["Compare with current node.","Go left if smaller, right if larger.","Return True if found, False if not."],
                 _success("🔍 No BST · ❌ Linear search","🔍 BST built · ✅ O(log n) search","The BST enables fast searching!","Tree Master — BST operations.","Logarithmic search on a tree.",40),
-                _reward(xp=40,coins=20,badges=["tree-master"],unlocks_town="town-2-graph")),
+                _reward(diamonds=40,coins=20,badges=["tree-master"],unlocks_town="town-2-graph")),
         ]),
     ]
 )
@@ -595,7 +620,7 @@ WORLD_GRAPHS = World(
                 _checks([r"deque",r"visited",r"path\s*\+"]),
                 ["Model the network as a graph.","BFS finds shortest connection chain.","Track visited to avoid infinite loops."],
                 _success("🌐 Network unmapped · ❌ Lost","🌐 Network mapped · ✅ Shortest path found","The social network is fully analyzed!","Graph Master — BFS on real networks.","BFS powers social network analysis.",40),
-                _reward(xp=40,coins=20,badges=["graph-master"],unlocks_town="town-2-dp")),
+                _reward(diamonds=40,coins=20,badges=["graph-master"],unlocks_town="town-2-dp")),
         ]),
     ]
 )
@@ -636,7 +661,7 @@ WORLD_DYNAMIC = World(
                 _checks([r"dp\s*=\s*\[\[0\]",r"dp\[i\]\[w\]",r"max\("]),
                 ["Build a 2D DP table.","For each item and capacity, decide: take or skip.","The optimal value is in dp[n][capacity]."],
                 _success("🎒 No optimization · ❌ Greedy fails","🎒 Knapsack solved · ✅ Optimal","The knapsack is optimally filled!","DP Master — knapsack optimization.","Dynamic programming for combinatorial optimization.",40),
-                _reward(xp=40,coins=20,badges=["dp-master"],unlocks_town="town-2-alpine")),
+                _reward(diamonds=40,coins=20,badges=["dp-master"],unlocks_town="town-2-alpine")),
         ]),
     ]
 )
@@ -677,7 +702,7 @@ WORLD_ALPINE = World(
                 _checks([r"deque",r"sorted",r"bfs"]),
                 ["BFS for shortest path.","Sort paths by length.","Cache results for repeated queries."],
                 _success("👑 Challenge incomplete · ❌ Failed","👑 Challenge complete · ✅ Grand Master","You have mastered all algorithms! The Alpine Summit is yours!","Algorithm Master — the peak of coding knowledge.","All skills combined into mastery.",50),
-                _reward(xp=50,coins=50,badges=["alpine-master"],title="Grand Master")),
+                _reward(diamonds=50,coins=50,badges=["alpine-master"],title="Grand Master")),
         ]),
     ]
 )
@@ -699,3 +724,134 @@ WORLD_REGISTRY: dict[str, World] = {
     "dynamic": WORLD_DYNAMIC,
     "alpine": WORLD_ALPINE,
 }
+
+from app.models.world import (
+    Boss, BreakStep, Build, Checks, Code, Debug, Discover, Level,
+    Manipulate, Predict, Retrieval, Story, Success, Town, Transfer,
+    Tutor, World, Reward,
+)
+
+
+def _to_level(lesson):
+    mastery_step = next((s for s in lesson.steps if s.step_type == "mastery"), None)
+    base = dict(
+        id=lesson.id,
+        title=lesson.title,
+        kind=lesson.kind,
+        icon=lesson.icon,
+        order=lesson.order,
+        concept=lesson.concept,
+        mental_model=lesson.mental_model,
+        canonical_skill=lesson.canonical_skill,
+        maps_to_competency=lesson.canonical_skill or None,
+        role_relevance=getattr(lesson, "role_relevance", None),
+        company_relevance=getattr(lesson, "company_relevance", None),
+        story=Story(location=lesson.location or "", npc=lesson.npc or "", line=lesson.npc_line or ""),
+        tutor=Tutor(name="Mentor", avatar="🧭", discover=lesson.tutor_discover or "", explain=lesson.tutor_explain or lesson.mental_model or ""),
+        discover=Discover(visual="", interaction="", prompt=lesson.mental_model or lesson.title, answer="", values=None),
+        manipulate=Manipulate(type="", template="", answer="", blocks=None, hint=lesson.mental_model),
+        predict=None,
+        build=None,
+        break_step=None,
+        debug=None,
+        code=Code(prompt=lesson.why_this_matters or lesson.title, starter="", placeholder="", language="python"),
+        checks=Checks(required_patterns=[], forbidden=[], hint_triggers=[]),
+        hints=[step.hint for step in lesson.steps if step.hint],
+        retrieval=None,
+        transfer=None,
+        mastery=mastery_step.title if mastery_step else None,
+        mastery_evidence=lesson.mastery_evidence or [],
+        mastery_threshold=70 if lesson.kind != "boss" else 80,
+        estimated_minutes=lesson.estimated_minutes,
+        reward=Reward(diamonds=lesson.diamonds, coins=0, badges=[], unlocks_town=lesson.unlocks or None, unlocks_world=None, title=None),
+        success=Success(world_before=None, world_after=None, world_reaction="", reward_text=lesson.why_this_matters or "", byte_line=None, diamonds=lesson.diamonds),
+        unlocks=lesson.unlocks or None,
+        languages=getattr(lesson, "languages", ["python", "java", "cpp", "c"]),
+        starter_code_per_language=getattr(lesson, "starter_code", {}),
+        signatures_per_language=getattr(lesson, "signatures", {}),
+        test_cases=[],
+        hidden_tests=0,
+        repair_steps=[],
+        passing_score=70,
+        max_attempts=3,
+        function_name="",
+        signature="",
+        description="",
+        why_this_matters=getattr(lesson, "why_this_matters", ""),
+        engineering_context=getattr(lesson, "engineering_context", ""),
+        builds_toward=getattr(lesson, "builds_toward", ""),
+    )
+    if lesson.kind == "boss":
+        return Boss(**base)
+    return Level(**base)
+
+
+def _to_world(world_id, wd):
+    towns_out = []
+    for td in wd.towns:
+        levels_out = []
+        for lesson in td.lessons:
+            levels_out.append(_to_level(lesson))
+        towns_out.append(
+            Town(
+                id=td.id,
+                name=td.name,
+                icon=td.icon,
+                description=td.description,
+                order=td.order,
+                mental_model=td.mental_model,
+                canonical_skills=td.canonical_skills,
+                competencies=td.competencies,
+                levels=levels_out,
+                boss=levels_out[-1] if levels_out and levels_out[-1].kind == "boss" else None,
+            )
+        )
+    return World(
+        id=wd.id,
+        name=wd.name,
+        subtitle=wd.subtitle or "",
+        description=wd.description or "",
+        icon=wd.icon,
+        order=wd.order,
+        theme=wd.theme or "",
+        recommended_roles=getattr(wd, "recommended_roles", []),
+        recommended_companies=getattr(wd, "recommended_companies", []),
+        prerequisites=getattr(wd, "prerequisites", []),
+        towns=towns_out,
+        completion_reward=None,
+    )
+
+
+try:
+    from app.content.world1_foundations import WORLD_1_FOUNDATIONS
+    from app.content.world2_problem_solver import WORLD_2_PROBLEM_SOLVER
+    from app.content.worlds_3_to_12_expanded import (
+        WORLD_3_BUILD_SYSTEMS,
+        WORLD_4_WORK_WITH_DATA,
+        WORLD_5_SOFTWARE_ENGINEERING,
+        WORLD_6_UNDER_PRESSURE,
+        WORLD_7_HIRING_ARENA,
+        WORLD_8_COMPANY_MISSIONS,
+        WORLD_9_AI_ENGINEERING,
+        WORLD_10_PRODUCTION,
+        WORLD_11_PROJECTS,
+        WORLD_12_CREATIVE,
+    )
+
+    for _wd in [
+        WORLD_1_FOUNDATIONS,
+        WORLD_2_PROBLEM_SOLVER,
+        WORLD_3_BUILD_SYSTEMS,
+        WORLD_4_WORK_WITH_DATA,
+        WORLD_5_SOFTWARE_ENGINEERING,
+        WORLD_6_UNDER_PRESSURE,
+        WORLD_7_HIRING_ARENA,
+        WORLD_8_COMPANY_MISSIONS,
+        WORLD_9_AI_ENGINEERING,
+        WORLD_10_PRODUCTION,
+        WORLD_11_PROJECTS,
+        WORLD_12_CREATIVE,
+    ]:
+        WORLD_REGISTRY[_wd.id] = _to_world(_wd.id, _wd)
+except Exception:
+    pass

@@ -291,14 +291,14 @@ export default function ChallengePacks() {
                     {selectedChallenge.difficulty}
                   </span>
                   <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-nature-bark text-nature-blossom border border-nature-leaf/30 flex items-center gap-1">
-                    <Zap className="w-3 h-3" /> +{selectedChallenge.xp_reward} XP
+                    <Zap className="w-3 h-3" /> +{selectedChallenge.xp_reward} Diamonds
                   </span>
                 </div>
               </div>
             </div>
 
             <div className="prose prose-sm max-w-none text-text-secondary mb-6">
-              {selectedChallenge.statement || selectedChallenge.description || "Solve this coding challenge to earn XP and collect this card."}
+              {selectedChallenge.statement || selectedChallenge.description || "Solve this coding challenge to earn Diamonds and collect this card."}
             </div>
 
             {selectedChallenge.tags && selectedChallenge.tags.length > 0 && (

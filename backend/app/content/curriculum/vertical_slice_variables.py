@@ -123,7 +123,7 @@ VERTICAL_SLICE = {
                     {"input": ["Diana", 23, 100], "expected": "Name: Diana, Age: 23, Score: 100"},
                     {"input": ["Eve", 21, 88], "expected": "Name: Eve, Age: 21, Score: 88"},
                 ],
-                "xp": 40,
+                "diamonds": 40,
                 "scaffolded_hints": [
                     {"level": 1, "text": "Use three assignment statements: name_var = name, etc."},
                     {"level": 2, "text": "Use an f-string: f\"Name: {name_var}, Age: {age_var}, Score: {score_var}\""},
@@ -146,7 +146,7 @@ VERTICAL_SLICE = {
                     {"input": [-5, 5], "expected": (5, -5)},
                     {"input": [100, 200], "expected": (200, 100)},
                 ],
-                "xp": 50,
+                "diamonds": 50,
                 "scaffolded_hints": [
                     {"level": 1, "text": "Try: a, b = b, a"},
                     {"level": 2, "text": "Python evaluates the right side first, then assigns left to right."},
@@ -172,7 +172,7 @@ VERTICAL_SLICE = {
                     {"input": ["2.5"], "expected": 2.5},
                     {"input": ["3.0"], "expected": 3.0},
                 ],
-                "xp": 60,
+                "diamonds": 60,
                 "scaffolded_hints": [
                     {"level": 1, "text": "Use try/except blocks. Try int(value) first."},
                     {"level": 2, "text": "If int() raises ValueError, try float(value). If that also raises, return str(value)."},
@@ -212,7 +212,7 @@ VERTICAL_SLICE = {
             {"input": [500.0, [{"type": "interest"}, {"type": "deposit", "amount": 100}, {"type": "withdrawal", "amount": 50}]], "expected": {"final_balance": 561.0, "transactions_processed": 3, "failed": []}},
         ],
         "time_limit_minutes": 8,
-        "xp": 100,
+        "diamonds": 100,
         "scaffolded_hints": [
             {"level": 1, "text": "Start with balance = initial_balance. Loop through transactions."},
             {"level": 2, "text": "For each transaction, check the type. Update balance only if valid."},
@@ -257,7 +257,7 @@ VERTICAL_SLICE = {
             },
         ],
         "mastery_threshold": 70,
-        "xp": 150,
+        "diamonds": 150,
     },
     "srs_enrollment": {
         "concept_id": "programming_fundamentals:variables",

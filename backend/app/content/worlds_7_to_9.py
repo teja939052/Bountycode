@@ -1,4 +1,15 @@
-"""Worlds 7-9: Hiring Arena, Company Missions, AI Engineering."""
+"""Worlds 7-9: Hiring Arena, Company Missions, AI Engineering.
+
+Part of the canonical 12-world structure:
+  foundations -> searchlands -> sorting -> recursion -> linked -> stack ->
+  queue -> hashing -> trees -> graphs -> dynamic -> alpine
+
+Worlds 7-9 occupy the final portion of that chain.
+DO NOT add, remove, or reorder worlds without updating:
+  - CANONICAL_WORLDS in backend/scripts/verify_world_governance.py
+  - frontend/src/pages/Landing.tsx headline copy
+  - Any tests referencing world count or prereq chain
+"""
 from __future__ import annotations
 
 from app.content.lesson_definitions import (
@@ -60,7 +71,10 @@ CODING_INTERVIEW_TOWN = TownDefinition(
                     languages=["python", "java", "cpp", "c"],
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
-                    test_cases=[{"input":[[1,3,5,7,9],5],"expected":2}], hidden_tests=5),
+                    test_cases=[{"input":[[1,3,5,7,9],5],"expected":2}], hidden_tests=5,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Test code with edge cases", "Trace through manually"],
             unlocks="coding-boss",
@@ -68,14 +82,17 @@ CODING_INTERVIEW_TOWN = TownDefinition(
         LessonDefinition(
             id="coding-boss", title="Coding Boss", icon="🐉", kind="boss", order=4,
             concept="transfer", mental_model="Full interview simulation: clarify, think aloud, code, test.",
-            canonical_skill="interview.coding", xp=100, estimated_minutes=25,
+            canonical_skill="interview.coding", diamonds=100, estimated_minutes=25,
             engineering_context="A real interview gives you 30-45 minutes: 5 min clarification, 20 min coding, 5 min testing. This boss simulates that full cycle under time pressure.",
             builds_toward="Interview Performance — full interview simulation",
             steps=[
                 LessonStep(step_type="mastery", title="Merge Two Sorted Lists",
                     function_name="merge_sorted", signature="def merge_sorted(a: list, b: list) -> list:",
                     description="Merge two sorted lists into one sorted list. O(n+m) time.",
-                    test_cases=[{"input":[[1,3,5],[2,4,6]],"expected":[1,2,3,4,5,6]}], hidden_tests=5),
+                    test_cases=[{"input":[[1,3,5],[2,4,6]],"expected":[1,2,3,4,5,6]}], hidden_tests=5,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Clarify requirements", "Think aloud", "Implement correctly", "Test thoroughly"],
         ),
@@ -137,14 +154,17 @@ SYSTEM_DESIGN_TOWN = TownDefinition(
         LessonDefinition(
             id="sd-boss", title="System Design Boss", icon="🐉", kind="boss", order=4,
             concept="transfer", mental_model="Full system design: requirements → estimate → design → trade-offs.",
-            canonical_skill="sd.system_design", xp=100, estimated_minutes=30,
+            canonical_skill="sd.system_design", diamonds=100, estimated_minutes=30,
             engineering_context="In a real system design interview, you'd design a complete system (e.g., a chat service) covering: API design, data model, storage choice, caching, and scaling strategy.",
             builds_toward="System Design Interviews — complete system design",
             steps=[
                 LessonStep(step_type="mastery", title="Design a URL Shortener",
                     function_name="design_url_shortener", signature="def design_url_shortener() -> dict:",
                     description="Return design: API endpoints, data model, storage choice, and scaling strategy.",
-                    test_cases=[{"input":[],"expected":"design"}], hidden_tests=3),
+                    test_cases=[{"input":[],"expected":"design"}], hidden_tests=3,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Gather requirements", "Estimate capacity", "Design data model", "Analyze trade-offs"],
         ),
@@ -200,7 +220,10 @@ AMAZON_TOWN = TownDefinition(
                     languages=["python", "java", "cpp", "c"],
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
-                    test_cases=[{"input":[],"expected":"STAR"}], hidden_tests=3),
+                    test_cases=[{"input":[],"expected":"STAR"}], hidden_tests=3,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Structure behavioral answers with STAR"],
             unlocks="amz-boss",
@@ -208,14 +231,17 @@ AMAZON_TOWN = TownDefinition(
         LessonDefinition(
             id="amz-boss", title="Amazon Boss", icon="🐉", kind="boss", order=3,
             concept="transfer", mental_model="Full behavioral + technical round in Amazon style.",
-            canonical_skill="company.amazon", xp=100, estimated_minutes=20,
+            canonical_skill="company.amazon", diamonds=100, estimated_minutes=20,
             engineering_context="A real Amazon loop: 1 technical round, 1 system design, 2 behavioral (each mapping to leadership principles). This boss tests whether you can connect technical work to leadership principles.",
             builds_toward="Company Interviews — full Amazon loop simulation",
             steps=[
                 LessonStep(step_type="mastery", title="Leadership + Technical",
                     function_name="amazon_answer", signature="def amazon_answer() -> dict:",
                     description="Return: technical solution + which leadership principle it demonstrates + STAR format.",
-                    test_cases=[{"input":[],"expected":"answer"}], hidden_tests=3),
+                    test_cases=[{"input":[],"expected":"answer"}], hidden_tests=3,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Apply leadership principles", "Use STAR method", "Connect technical to behavioral"],
         ),
@@ -256,7 +282,10 @@ LLM_TOWN = TownDefinition(
                     languages=["python", "java", "cpp", "c"],
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
-                    test_cases=[{"input":[],"expected":"prompt"}], hidden_tests=3),
+                    test_cases=[{"input":[],"expected":"prompt"}], hidden_tests=3,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Write effective prompts with context and format"],
             unlocks="llm-2",
@@ -292,7 +321,10 @@ LLM_TOWN = TownDefinition(
                     languages=["python", "java", "cpp", "c"],
                     starter_code={"python": "def solution(): pass", "java": "public static int solution() { return 0; }", "cpp": "int solution() { return 0; }", "c": "int solution() { return 0; }"},
                     signatures={"python": "def solution():", "java": "public static int solution()", "cpp": "int solution()", "c": "int solution()"},
-                    test_cases=[{"input":[],"expected":"eval"}], hidden_tests=3),
+                    test_cases=[{"input":[],"expected":"eval"}], hidden_tests=3,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Design evaluation suites for AI systems"],
             unlocks="llm-boss",
@@ -300,14 +332,17 @@ LLM_TOWN = TownDefinition(
         LessonDefinition(
             id="llm-boss", title="AI Engineering Boss", icon="🐉", kind="boss", order=4,
             concept="transfer", mental_model="Design a complete AI feature: prompt, RAG, evaluation.",
-            canonical_skill="ai.llm_engineering", xp=100, estimated_minutes=25,
+            canonical_skill="ai.llm_engineering", diamonds=100, estimated_minutes=25,
             engineering_context="In a real AI feature (e.g., 'AI support agent'), you'd design: the system prompt, RAG over company docs, evaluation suite, and guardrails. This boss tests that complete design.",
             builds_toward="AI Engineering — complete AI feature design",
             steps=[
                 LessonStep(step_type="mastery", title="Design an AI Agent",
                     function_name="design_ai_agent", signature="def design_ai_agent() -> dict:",
                     description="Return: prompt strategy, RAG architecture, evaluation plan, and guardrails.",
-                    test_cases=[{"input":[],"expected":"design"}], hidden_tests=3),
+                    test_cases=[{"input":[],"expected":"design"}], hidden_tests=3,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,),
             ],
             mastery_evidence=["Engineer prompts", "Design RAG pipelines", "Build evaluation suites", "Combine into complete AI feature"],
         ),
