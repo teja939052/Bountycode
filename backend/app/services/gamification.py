@@ -885,7 +885,10 @@ async def get_gamification_profile(user_id: str) -> dict:
 
     level = _calculate_level(profile.get("diamonds", 0))
     target_company = profile.get("target_company")
-    title, emoji = get_title_for_level(level, company_id=target_company)
+    # NOTE: the module-level get_title_for_level() below shadows the
+    # company-aware gamification_core import, so call the core explicitly.
+    from app.services.gamification_core import get_title_for_level as _core_title_for_level
+    title, emoji = _core_title_for_level(level, company_id=target_company)
     rank_title, rank_emoji, rank_tier = voyage_rank_for_level(level)
     mult, bonus = calculate_streak_multiplier(profile.get("streak", 0))
 

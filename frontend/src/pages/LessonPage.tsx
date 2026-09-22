@@ -1066,8 +1066,7 @@ export default function LessonPage() {
                 </p>
               </motion.div>
             )}
-          </motion.div>
-            <div className="flex justify-end">
+            <div className="flex justify-end mt-4">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -1077,6 +1076,7 @@ export default function LessonPage() {
                 Continue to Mastery <ChevronRight size={16} />
               </motion.button>
             </div>
+          </motion.div>
         )}
 
         {/* MASTERY PHASE */}

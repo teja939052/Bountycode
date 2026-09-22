@@ -1,0 +1,1002 @@
+[
+  {
+    "id": "verbal_synonym_0000",
+    "question": "Synonym of 'Happy'?",
+    "pattern": "synonym",
+    "skill": "synonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Synonym of 'Happy'?",
+      "options": [
+        "A. Joyful",
+        "B. Small",
+        "C. Bad",
+        "D. Fast"
+      ],
+      "correct_answer": "A. Joyful",
+      "explanation": "'Joyful' is a synonym of 'Happy'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.238140+00:00",
+    "updated_at": "2026-09-21T12:53:32.238140+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_synonym_0001",
+    "question": "Synonym of 'Big'?",
+    "pattern": "synonym",
+    "skill": "synonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Synonym of 'Big'?",
+      "options": [
+        "A. Bad",
+        "B. Slow",
+        "C. Hot",
+        "D. Large"
+      ],
+      "correct_answer": "D. Large",
+      "explanation": "'Large' is a synonym of 'Big'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.238140+00:00",
+    "updated_at": "2026-09-21T12:53:32.238140+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_synonym_0002",
+    "question": "Synonym of 'Fast'?",
+    "pattern": "synonym",
+    "skill": "synonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Synonym of 'Fast'?",
+      "options": [
+        "A. Good",
+        "B. Angry",
+        "C. Sad",
+        "D. Quick"
+      ],
+      "correct_answer": "D. Quick",
+      "explanation": "'Quick' is a synonym of 'Fast'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.239663+00:00",
+    "updated_at": "2026-09-21T12:53:32.239663+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_synonym_0003",
+    "question": "Synonym of 'Smart'?",
+    "pattern": "synonym",
+    "skill": "synonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Synonym of 'Smart'?",
+      "options": [
+        "A. Intelligent",
+        "B. Slow",
+        "C. Angry",
+        "D. Good"
+      ],
+      "correct_answer": "A. Intelligent",
+      "explanation": "'Intelligent' is a synonym of 'Smart'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.239663+00:00",
+    "updated_at": "2026-09-21T12:53:32.239663+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_synonym_0004",
+    "question": "Synonym of 'Angry'?",
+    "pattern": "synonym",
+    "skill": "synonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Synonym of 'Angry'?",
+      "options": [
+        "A. Furious",
+        "B. Angry",
+        "C. Bad",
+        "D. Fast"
+      ],
+      "correct_answer": "A. Furious",
+      "explanation": "'Furious' is a synonym of 'Angry'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.239663+00:00",
+    "updated_at": "2026-09-21T12:53:32.239663+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_synonym_0005",
+    "question": "Synonym of 'Brave'?",
+    "pattern": "synonym",
+    "skill": "synonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Synonym of 'Brave'?",
+      "options": [
+        "A. Cold",
+        "B. Big",
+        "C. Courageous",
+        "D. Sad"
+      ],
+      "correct_answer": "C. Courageous",
+      "explanation": "'Courageous' is a synonym of 'Brave'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.239663+00:00",
+    "updated_at": "2026-09-21T12:53:32.239663+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_synonym_0006",
+    "question": "Synonym of 'Calm'?",
+    "pattern": "synonym",
+    "skill": "synonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Synonym of 'Calm'?",
+      "options": [
+        "A. Peaceful",
+        "B. Good",
+        "C. Big",
+        "D. Fast"
+      ],
+      "correct_answer": "A. Peaceful",
+      "explanation": "'Peaceful' is a synonym of 'Calm'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.239663+00:00",
+    "updated_at": "2026-09-21T12:53:32.239663+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_synonym_0007",
+    "question": "Synonym of 'Clever'?",
+    "pattern": "synonym",
+    "skill": "synonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Synonym of 'Clever'?",
+      "options": [
+        "A. Sad",
+        "B. Good",
+        "C. Big",
+        "D. Wise"
+      ],
+      "correct_answer": "D. Wise",
+      "explanation": "'Wise' is a synonym of 'Clever'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.239663+00:00",
+    "updated_at": "2026-09-21T12:53:32.239663+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_synonym_0008",
+    "question": "Synonym of 'Cold'?",
+    "pattern": "synonym",
+    "skill": "synonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Synonym of 'Cold'?",
+      "options": [
+        "A. Angry",
+        "B. Bad",
+        "C. Chilly",
+        "D. Hot"
+      ],
+      "correct_answer": "C. Chilly",
+      "explanation": "'Chilly' is a synonym of 'Cold'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.239663+00:00",
+    "updated_at": "2026-09-21T12:53:32.239663+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_synonym_0009",
+    "question": "Synonym of 'Cruel'?",
+    "pattern": "synonym",
+    "skill": "synonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Synonym of 'Cruel'?",
+      "options": [
+        "A. Big",
+        "B. Hot",
+        "C. Harsh",
+        "D. Small"
+      ],
+      "correct_answer": "C. Harsh",
+      "explanation": "'Harsh' is a synonym of 'Cruel'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.240197+00:00",
+    "updated_at": "2026-09-21T12:53:32.240197+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_synonym_0010",
+    "question": "Synonym of 'Dark'?",
+    "pattern": "synonym",
+    "skill": "synonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Synonym of 'Dark'?",
+      "options": [
+        "A. Bad",
+        "B. Fast",
+        "C. Small",
+        "D. Dim"
+      ],
+      "correct_answer": "D. Dim",
+      "explanation": "'Dim' is a synonym of 'Dark'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.240197+00:00",
+    "updated_at": "2026-09-21T12:53:32.240197+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_synonym_0011",
+    "question": "Synonym of 'Dear'?",
+    "pattern": "synonym",
+    "skill": "synonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Synonym of 'Dear'?",
+      "options": [
+        "A. Good",
+        "B. Beloved",
+        "C. Angry",
+        "D. Cold"
+      ],
+      "correct_answer": "B. Beloved",
+      "explanation": "'Beloved' is a synonym of 'Dear'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.240197+00:00",
+    "updated_at": "2026-09-21T12:53:32.240197+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_synonym_0012",
+    "question": "Synonym of 'Eager'?",
+    "pattern": "synonym",
+    "skill": "synonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Synonym of 'Eager'?",
+      "options": [
+        "A. Enthusiastic",
+        "B. Angry",
+        "C. Fast",
+        "D. Small"
+      ],
+      "correct_answer": "A. Enthusiastic",
+      "explanation": "'Enthusiastic' is a synonym of 'Eager'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.240197+00:00",
+    "updated_at": "2026-09-21T12:53:32.240197+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_synonym_0013",
+    "question": "Synonym of 'Easy'?",
+    "pattern": "synonym",
+    "skill": "synonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Synonym of 'Easy'?",
+      "options": [
+        "A. Big",
+        "B. Simple",
+        "C. Angry",
+        "D. Small"
+      ],
+      "correct_answer": "B. Simple",
+      "explanation": "'Simple' is a synonym of 'Easy'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.240197+00:00",
+    "updated_at": "2026-09-21T12:53:32.240197+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_synonym_0014",
+    "question": "Synonym of 'Empty'?",
+    "pattern": "synonym",
+    "skill": "synonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Synonym of 'Empty'?",
+      "options": [
+        "A. Bare",
+        "B. Slow",
+        "C. Small",
+        "D. Cold"
+      ],
+      "correct_answer": "A. Bare",
+      "explanation": "'Bare' is a synonym of 'Empty'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.240197+00:00",
+    "updated_at": "2026-09-21T12:53:32.240197+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_synonym_0015",
+    "question": "Synonym of 'Famous'?",
+    "pattern": "synonym",
+    "skill": "synonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Synonym of 'Famous'?",
+      "options": [
+        "A. Slow",
+        "B. Renowned",
+        "C. Bad",
+        "D. Big"
+      ],
+      "correct_answer": "B. Renowned",
+      "explanation": "'Renowned' is a synonym of 'Famous'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.240197+00:00",
+    "updated_at": "2026-09-21T12:53:32.240197+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_synonym_0016",
+    "question": "Synonym of 'Funny'?",
+    "pattern": "synonym",
+    "skill": "synonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Synonym of 'Funny'?",
+      "options": [
+        "A. Humorous",
+        "B. Small",
+        "C. Slow",
+        "D. Sad"
+      ],
+      "correct_answer": "A. Humorous",
+      "explanation": "'Humorous' is a synonym of 'Funny'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.240197+00:00",
+    "updated_at": "2026-09-21T12:53:32.240197+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_synonym_0017",
+    "question": "Synonym of 'Gentle'?",
+    "pattern": "synonym",
+    "skill": "synonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Synonym of 'Gentle'?",
+      "options": [
+        "A. Kind",
+        "B. Big",
+        "C. Fast",
+        "D. Slow"
+      ],
+      "correct_answer": "A. Kind",
+      "explanation": "'Kind' is a synonym of 'Gentle'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.240197+00:00",
+    "updated_at": "2026-09-21T12:53:32.240197+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_synonym_0018",
+    "question": "Synonym of 'Giant'?",
+    "pattern": "synonym",
+    "skill": "synonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Synonym of 'Giant'?",
+      "options": [
+        "A. Cold",
+        "B. Huge",
+        "C. Slow",
+        "D. Fast"
+      ],
+      "correct_answer": "B. Huge",
+      "explanation": "'Huge' is a synonym of 'Giant'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.240197+00:00",
+    "updated_at": "2026-09-21T12:53:32.240197+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_synonym_0019",
+    "question": "Synonym of 'Glad'?",
+    "pattern": "synonym",
+    "skill": "synonym",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Synonym of 'Glad'?",
+      "options": [
+        "A. Fast",
+        "B. Pleased",
+        "C. Angry",
+        "D. Big"
+      ],
+      "correct_answer": "B. Pleased",
+      "explanation": "'Pleased' is a synonym of 'Glad'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.240197+00:00",
+    "updated_at": "2026-09-21T12:53:32.240197+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  }
+]

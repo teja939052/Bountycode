@@ -653,16 +653,6 @@ def xp_for_next_level(level: int) -> int:
     return (level ** 2) * 50
 
 
-def get_title_for_level(level: int) -> tuple:
-    """Get title and emoji for a level."""
-    title = "Hatchling"
-    emoji = "🐣"
-    for threshold, (t, e) in sorted(TOWER_TITLES.items()):
-        if level >= threshold:
-            title, emoji = t, e
-    return title, emoji
-
-
 # ─── Voyage ranks: the canonical status ladder ───
 # Derived from the same `level` field as tower titles — no new currency,
 # no stored state. Six tiers so rank-tier jumps stay rare enough for

@@ -1,0 +1,1472 @@
+[
+  {
+    "id": "quant_pipes_0000",
+    "question": "Pipe A fills tank in 2h, B in 2h, C empties in 2h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 2h, B in 2h, C empties in 2h. All open together, time to fill?",
+      "options": [
+        "A. 2 h",
+        "B. 2 h",
+        "C. 2 h",
+        "D. 6 h"
+      ],
+      "correct_answer": "A. 2 h",
+      "explanation": "Net rate = 1/2 + 1/2 - 1/2 = 0.5000 -> 2 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.139052+00:00",
+    "updated_at": "2026-09-21T12:53:32.139052+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_pipes_0001",
+    "question": "Pipe A fills tank in 2h, B in 3h, C empties in 2h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 2h, B in 3h, C empties in 2h. All open together, time to fill?",
+      "options": [
+        "A. 2 h",
+        "B. 7 h",
+        "C. 3 h",
+        "D. 3 h"
+      ],
+      "correct_answer": "C. 3 h",
+      "explanation": "Net rate = 1/2 + 1/3 - 1/2 = 0.3333 -> 3 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.139052+00:00",
+    "updated_at": "2026-09-21T12:53:32.139052+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_pipes_0002",
+    "question": "Pipe A fills tank in 2h, B in 3h, C empties in 3h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 2h, B in 3h, C empties in 3h. All open together, time to fill?",
+      "options": [
+        "A. 3 h",
+        "B. 2 h",
+        "C. 2 h",
+        "D. 8 h"
+      ],
+      "correct_answer": "B. 2 h",
+      "explanation": "Net rate = 1/2 + 1/3 - 1/3 = 0.5000 -> 2 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.139052+00:00",
+    "updated_at": "2026-09-21T12:53:32.139052+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_pipes_0003",
+    "question": "Pipe A fills tank in 2h, B in 4h, C empties in 2h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 2h, B in 4h, C empties in 2h. All open together, time to fill?",
+      "options": [
+        "A. 4 h",
+        "B. 4 h",
+        "C. 2 h",
+        "D. 8 h"
+      ],
+      "correct_answer": "A. 4 h",
+      "explanation": "Net rate = 1/2 + 1/4 - 1/2 = 0.2500 -> 4 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.139052+00:00",
+    "updated_at": "2026-09-21T12:53:32.140365+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_pipes_0004",
+    "question": "Pipe A fills tank in 2h, B in 4h, C empties in 4h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 2h, B in 4h, C empties in 4h. All open together, time to fill?",
+      "options": [
+        "A. 4 h",
+        "B. 2 h",
+        "C. 10 h",
+        "D. 2 h"
+      ],
+      "correct_answer": "B. 2 h",
+      "explanation": "Net rate = 1/2 + 1/4 - 1/4 = 0.5000 -> 2 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.140365+00:00",
+    "updated_at": "2026-09-21T12:53:32.145099+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_pipes_0005",
+    "question": "Pipe A fills tank in 2h, B in 5h, C empties in 2h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 2h, B in 5h, C empties in 2h. All open together, time to fill?",
+      "options": [
+        "A. 5 h",
+        "B. 5 h",
+        "C. 9 h",
+        "D. 2 h"
+      ],
+      "correct_answer": "A. 5 h",
+      "explanation": "Net rate = 1/2 + 1/5 - 1/2 = 0.2000 -> 5 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.145099+00:00",
+    "updated_at": "2026-09-21T12:53:32.146094+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_pipes_0006",
+    "question": "Pipe A fills tank in 2h, B in 5h, C empties in 5h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 2h, B in 5h, C empties in 5h. All open together, time to fill?",
+      "options": [
+        "A. 2 h",
+        "B. 5 h",
+        "C. 12 h",
+        "D. 2 h"
+      ],
+      "correct_answer": "A. 2 h",
+      "explanation": "Net rate = 1/2 + 1/5 - 1/5 = 0.5000 -> 2 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.147099+00:00",
+    "updated_at": "2026-09-21T12:53:32.147099+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_pipes_0007",
+    "question": "Pipe A fills tank in 2h, B in 6h, C empties in 2h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 2h, B in 6h, C empties in 2h. All open together, time to fill?",
+      "options": [
+        "A. 6 h",
+        "B. 10 h",
+        "C. 2 h",
+        "D. 6 h"
+      ],
+      "correct_answer": "A. 6 h",
+      "explanation": "Net rate = 1/2 + 1/6 - 1/2 = 0.1667 -> 6 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.147099+00:00",
+    "updated_at": "2026-09-21T12:53:32.147099+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_pipes_0008",
+    "question": "Pipe A fills tank in 2h, B in 6h, C empties in 3h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 2h, B in 6h, C empties in 3h. All open together, time to fill?",
+      "options": [
+        "A. 3 h",
+        "B. 2 h",
+        "C. 11 h",
+        "D. 6 h"
+      ],
+      "correct_answer": "A. 3 h",
+      "explanation": "Net rate = 1/2 + 1/6 - 1/3 = 0.3333 -> 3 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.147099+00:00",
+    "updated_at": "2026-09-21T12:53:32.147099+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_pipes_0009",
+    "question": "Pipe A fills tank in 2h, B in 6h, C empties in 6h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 2h, B in 6h, C empties in 6h. All open together, time to fill?",
+      "options": [
+        "A. 2 h",
+        "B. 6 h",
+        "C. 2 h",
+        "D. 14 h"
+      ],
+      "correct_answer": "A. 2 h",
+      "explanation": "Net rate = 1/2 + 1/6 - 1/6 = 0.5000 -> 2 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.148105+00:00",
+    "updated_at": "2026-09-21T12:53:32.148105+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_pipes_0010",
+    "question": "Pipe A fills tank in 2h, B in 7h, C empties in 2h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 2h, B in 7h, C empties in 2h. All open together, time to fill?",
+      "options": [
+        "A. 7 h",
+        "B. 11 h",
+        "C. 2 h",
+        "D. 7 h"
+      ],
+      "correct_answer": "A. 7 h",
+      "explanation": "Net rate = 1/2 + 1/7 - 1/2 = 0.1429 -> 7 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.148105+00:00",
+    "updated_at": "2026-09-21T12:53:32.148105+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_pipes_0011",
+    "question": "Pipe A fills tank in 2h, B in 7h, C empties in 7h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 2h, B in 7h, C empties in 7h. All open together, time to fill?",
+      "options": [
+        "A. 2 h",
+        "B. 16 h",
+        "C. 2 h",
+        "D. 7 h"
+      ],
+      "correct_answer": "A. 2 h",
+      "explanation": "Net rate = 1/2 + 1/7 - 1/7 = 0.5000 -> 2 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.148105+00:00",
+    "updated_at": "2026-09-21T12:53:32.148105+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_pipes_0012",
+    "question": "Pipe A fills tank in 2h, B in 8h, C empties in 2h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 2h, B in 8h, C empties in 2h. All open together, time to fill?",
+      "options": [
+        "A. 2 h",
+        "B. 12 h",
+        "C. 8 h",
+        "D. 8 h"
+      ],
+      "correct_answer": "C. 8 h",
+      "explanation": "Net rate = 1/2 + 1/8 - 1/2 = 0.1250 -> 8 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.148105+00:00",
+    "updated_at": "2026-09-21T12:53:32.148105+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_pipes_0013",
+    "question": "Pipe A fills tank in 2h, B in 8h, C empties in 8h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 2h, B in 8h, C empties in 8h. All open together, time to fill?",
+      "options": [
+        "A. 18 h",
+        "B. 2 h",
+        "C. 2 h",
+        "D. 8 h"
+      ],
+      "correct_answer": "B. 2 h",
+      "explanation": "Net rate = 1/2 + 1/8 - 1/8 = 0.5000 -> 2 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.149101+00:00",
+    "updated_at": "2026-09-21T12:53:32.149101+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_pipes_0014",
+    "question": "Pipe A fills tank in 2h, B in 9h, C empties in 2h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 2h, B in 9h, C empties in 2h. All open together, time to fill?",
+      "options": [
+        "A. 9 h",
+        "B. 9 h",
+        "C. 13 h",
+        "D. 2 h"
+      ],
+      "correct_answer": "A. 9 h",
+      "explanation": "Net rate = 1/2 + 1/9 - 1/2 = 0.1111 -> 9 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.149101+00:00",
+    "updated_at": "2026-09-21T12:53:32.149101+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_pipes_0015",
+    "question": "Pipe A fills tank in 2h, B in 9h, C empties in 9h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 2h, B in 9h, C empties in 9h. All open together, time to fill?",
+      "options": [
+        "A. 20 h",
+        "B. 2 h",
+        "C. 2 h",
+        "D. 9 h"
+      ],
+      "correct_answer": "B. 2 h",
+      "explanation": "Net rate = 1/2 + 1/9 - 1/9 = 0.5000 -> 2 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.149101+00:00",
+    "updated_at": "2026-09-21T12:53:32.149101+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_pipes_0016",
+    "question": "Pipe A fills tank in 2h, B in 10h, C empties in 2h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 2h, B in 10h, C empties in 2h. All open together, time to fill?",
+      "options": [
+        "A. 14 h",
+        "B. 10 h",
+        "C. 2 h",
+        "D. 10 h"
+      ],
+      "correct_answer": "B. 10 h",
+      "explanation": "Net rate = 1/2 + 1/10 - 1/2 = 0.1000 -> 10 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.149101+00:00",
+    "updated_at": "2026-09-21T12:53:32.149101+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_pipes_0017",
+    "question": "Pipe A fills tank in 2h, B in 10h, C empties in 10h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 2h, B in 10h, C empties in 10h. All open together, time to fill?",
+      "options": [
+        "A. 22 h",
+        "B. 2 h",
+        "C. 10 h",
+        "D. 2 h"
+      ],
+      "correct_answer": "B. 2 h",
+      "explanation": "Net rate = 1/2 + 1/10 - 1/10 = 0.5000 -> 2 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.149101+00:00",
+    "updated_at": "2026-09-21T12:53:32.149101+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_pipes_0018",
+    "question": "Pipe A fills tank in 2h, B in 11h, C empties in 2h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 2h, B in 11h, C empties in 2h. All open together, time to fill?",
+      "options": [
+        "A. 2 h",
+        "B. 11 h",
+        "C. 15 h",
+        "D. 11 h"
+      ],
+      "correct_answer": "B. 11 h",
+      "explanation": "Net rate = 1/2 + 1/11 - 1/2 = 0.0909 -> 11 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.149101+00:00",
+    "updated_at": "2026-09-21T12:53:32.149101+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_pipes_0019",
+    "question": "Pipe A fills tank in 2h, B in 11h, C empties in 11h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 2h, B in 11h, C empties in 11h. All open together, time to fill?",
+      "options": [
+        "A. 24 h",
+        "B. 2 h",
+        "C. 2 h",
+        "D. 11 h"
+      ],
+      "correct_answer": "B. 2 h",
+      "explanation": "Net rate = 1/2 + 1/11 - 1/11 = 0.5000 -> 2 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.149101+00:00",
+    "updated_at": "2026-09-21T12:53:32.149101+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_pipes_0020",
+    "question": "Pipe A fills tank in 3h, B in 2h, C empties in 2h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 3h, B in 2h, C empties in 2h. All open together, time to fill?",
+      "options": [
+        "A. 2 h",
+        "B. 3 h",
+        "C. 7 h",
+        "D. 3 h"
+      ],
+      "correct_answer": "B. 3 h",
+      "explanation": "Net rate = 1/3 + 1/2 - 1/2 = 0.3333 -> 3 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.150098+00:00",
+    "updated_at": "2026-09-21T12:53:32.150098+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_pipes_0021",
+    "question": "Pipe A fills tank in 3h, B in 2h, C empties in 3h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 3h, B in 2h, C empties in 3h. All open together, time to fill?",
+      "options": [
+        "A. 8 h",
+        "B. 3 h",
+        "C. 2 h",
+        "D. 2 h"
+      ],
+      "correct_answer": "C. 2 h",
+      "explanation": "Net rate = 1/3 + 1/2 - 1/3 = 0.5000 -> 2 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.150098+00:00",
+    "updated_at": "2026-09-21T12:53:32.150098+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_pipes_0022",
+    "question": "Pipe A fills tank in 3h, B in 3h, C empties in 2h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 3h, B in 3h, C empties in 2h. All open together, time to fill?",
+      "options": [
+        "A. 6 h",
+        "B. 2 h",
+        "C. 3 h",
+        "D. 8 h"
+      ],
+      "correct_answer": "A. 6 h",
+      "explanation": "Net rate = 1/3 + 1/3 - 1/2 = 0.1667 -> 6 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.150098+00:00",
+    "updated_at": "2026-09-21T12:53:32.150098+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_pipes_0023",
+    "question": "Pipe A fills tank in 3h, B in 3h, C empties in 3h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 3h, B in 3h, C empties in 3h. All open together, time to fill?",
+      "options": [
+        "A. 3 h",
+        "B. 9 h",
+        "C. 3 h",
+        "D. 3 h"
+      ],
+      "correct_answer": "A. 3 h",
+      "explanation": "Net rate = 1/3 + 1/3 - 1/3 = 0.3333 -> 3 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.150098+00:00",
+    "updated_at": "2026-09-21T12:53:32.150098+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_pipes_0024",
+    "question": "Pipe A fills tank in 3h, B in 3h, C empties in 6h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 3h, B in 3h, C empties in 6h. All open together, time to fill?",
+      "options": [
+        "A. 2 h",
+        "B. 6 h",
+        "C. 12 h",
+        "D. 3 h"
+      ],
+      "correct_answer": "A. 2 h",
+      "explanation": "Net rate = 1/3 + 1/3 - 1/6 = 0.5000 -> 2 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.150098+00:00",
+    "updated_at": "2026-09-21T12:53:32.150098+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_pipes_0025",
+    "question": "Pipe A fills tank in 3h, B in 4h, C empties in 2h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 3h, B in 4h, C empties in 2h. All open together, time to fill?",
+      "options": [
+        "A. 4 h",
+        "B. 2 h",
+        "C. 9 h",
+        "D. 12 h"
+      ],
+      "correct_answer": "D. 12 h",
+      "explanation": "Net rate = 1/3 + 1/4 - 1/2 = 0.0833 -> 12 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.150098+00:00",
+    "updated_at": "2026-09-21T12:53:32.150098+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_pipes_0026",
+    "question": "Pipe A fills tank in 3h, B in 4h, C empties in 3h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 3h, B in 4h, C empties in 3h. All open together, time to fill?",
+      "options": [
+        "A. 4 h",
+        "B. 3 h",
+        "C. 4 h",
+        "D. 10 h"
+      ],
+      "correct_answer": "A. 4 h",
+      "explanation": "Net rate = 1/3 + 1/4 - 1/3 = 0.2500 -> 4 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.150098+00:00",
+    "updated_at": "2026-09-21T12:53:32.150098+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_pipes_0027",
+    "question": "Pipe A fills tank in 3h, B in 4h, C empties in 4h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 3h, B in 4h, C empties in 4h. All open together, time to fill?",
+      "options": [
+        "A. 3 h",
+        "B. 11 h",
+        "C. 3 h",
+        "D. 4 h"
+      ],
+      "correct_answer": "A. 3 h",
+      "explanation": "Net rate = 1/3 + 1/4 - 1/4 = 0.3333 -> 3 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.150098+00:00",
+    "updated_at": "2026-09-21T12:53:32.150098+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_pipes_0028",
+    "question": "Pipe A fills tank in 3h, B in 5h, C empties in 2h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 3h, B in 5h, C empties in 2h. All open together, time to fill?",
+      "options": [
+        "A. 5 h",
+        "B. 2 h",
+        "C. 10 h",
+        "D. 30 h"
+      ],
+      "correct_answer": "D. 30 h",
+      "explanation": "Net rate = 1/3 + 1/5 - 1/2 = 0.0333 -> 30 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.150098+00:00",
+    "updated_at": "2026-09-21T12:53:32.150098+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_pipes_0029",
+    "question": "Pipe A fills tank in 3h, B in 5h, C empties in 3h. All open together, time to fill?",
+    "pattern": "pipes",
+    "skill": "pipes",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Pipe A fills tank in 3h, B in 5h, C empties in 3h. All open together, time to fill?",
+      "options": [
+        "A. 5 h",
+        "B. 5 h",
+        "C. 11 h",
+        "D. 3 h"
+      ],
+      "correct_answer": "A. 5 h",
+      "explanation": "Net rate = 1/3 + 1/5 - 1/3 = 0.2000 -> 5 h"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.150098+00:00",
+    "updated_at": "2026-09-21T12:53:32.150098+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  }
+]

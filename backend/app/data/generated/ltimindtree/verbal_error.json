@@ -1,0 +1,1002 @@
+[
+  {
+    "id": "verbal_error_0000",
+    "question": "Identify the error: Neither of the boys were playing.",
+    "pattern": "error-spotting",
+    "skill": "error-spotting",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Identify the error: Neither of the boys were playing.",
+      "options": [
+        "A. Part 1",
+        "B. Part 2",
+        "C. Part 3",
+        "D. No error"
+      ],
+      "correct_answer": "A. Part 1",
+      "explanation": "Neither takes singular verb"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.225592+00:00",
+    "updated_at": "2026-09-21T12:53:32.225592+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "LTIMindtree",
+      "Wipro",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_error_0001",
+    "question": "Identify the error: Neither of the boys were playing.",
+    "pattern": "error-spotting",
+    "skill": "error-spotting",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Identify the error: Neither of the boys were playing.",
+      "options": [
+        "A. Part 1",
+        "B. Part 2",
+        "C. Part 3",
+        "D. No error"
+      ],
+      "correct_answer": "B. Part 2",
+      "explanation": "Neither takes singular verb"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.225592+00:00",
+    "updated_at": "2026-09-21T12:53:32.225592+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "LTIMindtree",
+      "Wipro",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_error_0002",
+    "question": "Identify the error: Neither of the boys were playing.",
+    "pattern": "error-spotting",
+    "skill": "error-spotting",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Identify the error: Neither of the boys were playing.",
+      "options": [
+        "A. Part 1",
+        "B. Part 2",
+        "C. Part 3",
+        "D. No error"
+      ],
+      "correct_answer": "C. Part 3",
+      "explanation": "Neither takes singular verb"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.225592+00:00",
+    "updated_at": "2026-09-21T12:53:32.225592+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "LTIMindtree",
+      "Wipro",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_error_0003",
+    "question": "Identify the error: Neither of the boys were playing.",
+    "pattern": "error-spotting",
+    "skill": "error-spotting",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Identify the error: Neither of the boys were playing.",
+      "options": [
+        "A. Part 1",
+        "B. Part 2",
+        "C. Part 3",
+        "D. No error"
+      ],
+      "correct_answer": "D. No error",
+      "explanation": "Neither takes singular verb"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.225592+00:00",
+    "updated_at": "2026-09-21T12:53:32.225592+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "LTIMindtree",
+      "Wipro",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_error_0004",
+    "question": "Identify the error: She have been working here since 2019.",
+    "pattern": "error-spotting",
+    "skill": "error-spotting",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Identify the error: She have been working here since 2019.",
+      "options": [
+        "A. Part 1",
+        "B. Part 2",
+        "C. Part 3",
+        "D. No error"
+      ],
+      "correct_answer": "A. Part 1",
+      "explanation": "Present perfect: has + past participle"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.225592+00:00",
+    "updated_at": "2026-09-21T12:53:32.225592+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "LTIMindtree",
+      "Wipro",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_error_0005",
+    "question": "Identify the error: She have been working here since 2019.",
+    "pattern": "error-spotting",
+    "skill": "error-spotting",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Identify the error: She have been working here since 2019.",
+      "options": [
+        "A. Part 1",
+        "B. Part 2",
+        "C. Part 3",
+        "D. No error"
+      ],
+      "correct_answer": "B. Part 2",
+      "explanation": "Present perfect: has + past participle"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.225592+00:00",
+    "updated_at": "2026-09-21T12:53:32.225592+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "LTIMindtree",
+      "Wipro",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_error_0006",
+    "question": "Identify the error: She have been working here since 2019.",
+    "pattern": "error-spotting",
+    "skill": "error-spotting",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Identify the error: She have been working here since 2019.",
+      "options": [
+        "A. Part 1",
+        "B. Part 2",
+        "C. Part 3",
+        "D. No error"
+      ],
+      "correct_answer": "C. Part 3",
+      "explanation": "Present perfect: has + past participle"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.227593+00:00",
+    "updated_at": "2026-09-21T12:53:32.227593+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "LTIMindtree",
+      "Wipro",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_error_0007",
+    "question": "Identify the error: She have been working here since 2019.",
+    "pattern": "error-spotting",
+    "skill": "error-spotting",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Identify the error: She have been working here since 2019.",
+      "options": [
+        "A. Part 1",
+        "B. Part 2",
+        "C. Part 3",
+        "D. No error"
+      ],
+      "correct_answer": "D. No error",
+      "explanation": "Present perfect: has + past participle"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.230113+00:00",
+    "updated_at": "2026-09-21T12:53:32.230113+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "LTIMindtree",
+      "Wipro",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_error_0008",
+    "question": "Identify the error: One of my friends are coming.",
+    "pattern": "error-spotting",
+    "skill": "error-spotting",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Identify the error: One of my friends are coming.",
+      "options": [
+        "A. Part 1",
+        "B. Part 2",
+        "C. Part 3",
+        "D. No error"
+      ],
+      "correct_answer": "A. Part 1",
+      "explanation": "One of + plural noun takes singular verb"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.230113+00:00",
+    "updated_at": "2026-09-21T12:53:32.230113+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "LTIMindtree",
+      "Wipro",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_error_0009",
+    "question": "Identify the error: One of my friends are coming.",
+    "pattern": "error-spotting",
+    "skill": "error-spotting",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Identify the error: One of my friends are coming.",
+      "options": [
+        "A. Part 1",
+        "B. Part 2",
+        "C. Part 3",
+        "D. No error"
+      ],
+      "correct_answer": "B. Part 2",
+      "explanation": "One of + plural noun takes singular verb"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.230113+00:00",
+    "updated_at": "2026-09-21T12:53:32.230113+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "LTIMindtree",
+      "Wipro",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_error_0010",
+    "question": "Identify the error: One of my friends are coming.",
+    "pattern": "error-spotting",
+    "skill": "error-spotting",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Identify the error: One of my friends are coming.",
+      "options": [
+        "A. Part 1",
+        "B. Part 2",
+        "C. Part 3",
+        "D. No error"
+      ],
+      "correct_answer": "C. Part 3",
+      "explanation": "One of + plural noun takes singular verb"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.231139+00:00",
+    "updated_at": "2026-09-21T12:53:32.231139+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "LTIMindtree",
+      "Wipro",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_error_0011",
+    "question": "Identify the error: One of my friends are coming.",
+    "pattern": "error-spotting",
+    "skill": "error-spotting",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Identify the error: One of my friends are coming.",
+      "options": [
+        "A. Part 1",
+        "B. Part 2",
+        "C. Part 3",
+        "D. No error"
+      ],
+      "correct_answer": "D. No error",
+      "explanation": "One of + plural noun takes singular verb"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.231139+00:00",
+    "updated_at": "2026-09-21T12:53:32.231139+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "LTIMindtree",
+      "Wipro",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_error_0012",
+    "question": "Identify the error: He is more ______ than his brother.",
+    "pattern": "error-spotting",
+    "skill": "error-spotting",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Identify the error: He is more ______ than his brother.",
+      "options": [
+        "A. Part 1",
+        "B. Part 2",
+        "C. Part 3",
+        "D. No error"
+      ],
+      "correct_answer": "A. Part 1",
+      "explanation": "Comparative: more + adjective (no -er) is wrong"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.231139+00:00",
+    "updated_at": "2026-09-21T12:53:32.231139+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "LTIMindtree",
+      "Wipro",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_error_0013",
+    "question": "Identify the error: He is more ______ than his brother.",
+    "pattern": "error-spotting",
+    "skill": "error-spotting",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Identify the error: He is more ______ than his brother.",
+      "options": [
+        "A. Part 1",
+        "B. Part 2",
+        "C. Part 3",
+        "D. No error"
+      ],
+      "correct_answer": "B. Part 2",
+      "explanation": "Comparative: more + adjective (no -er) is wrong"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.231139+00:00",
+    "updated_at": "2026-09-21T12:53:32.231139+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "LTIMindtree",
+      "Wipro",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_error_0014",
+    "question": "Identify the error: He is more ______ than his brother.",
+    "pattern": "error-spotting",
+    "skill": "error-spotting",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Identify the error: He is more ______ than his brother.",
+      "options": [
+        "A. Part 1",
+        "B. Part 2",
+        "C. Part 3",
+        "D. No error"
+      ],
+      "correct_answer": "C. Part 3",
+      "explanation": "Comparative: more + adjective (no -er) is wrong"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.231139+00:00",
+    "updated_at": "2026-09-21T12:53:32.231139+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "LTIMindtree",
+      "Wipro",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_error_0015",
+    "question": "Identify the error: He is more ______ than his brother.",
+    "pattern": "error-spotting",
+    "skill": "error-spotting",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Identify the error: He is more ______ than his brother.",
+      "options": [
+        "A. Part 1",
+        "B. Part 2",
+        "C. Part 3",
+        "D. No error"
+      ],
+      "correct_answer": "D. No error",
+      "explanation": "Comparative: more + adjective (no -er) is wrong"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.231139+00:00",
+    "updated_at": "2026-09-21T12:53:32.231139+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "LTIMindtree",
+      "Wipro",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_error_0016",
+    "question": "Identify the error: The team are winning.",
+    "pattern": "error-spotting",
+    "skill": "error-spotting",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Identify the error: The team are winning.",
+      "options": [
+        "A. Part 1",
+        "B. Part 2",
+        "C. Part 3",
+        "D. No error"
+      ],
+      "correct_answer": "A. Part 1",
+      "explanation": "Collective noun takes singular verb in American English"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.231139+00:00",
+    "updated_at": "2026-09-21T12:53:32.231139+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "LTIMindtree",
+      "Wipro",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_error_0017",
+    "question": "Identify the error: The team are winning.",
+    "pattern": "error-spotting",
+    "skill": "error-spotting",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Identify the error: The team are winning.",
+      "options": [
+        "A. Part 1",
+        "B. Part 2",
+        "C. Part 3",
+        "D. No error"
+      ],
+      "correct_answer": "B. Part 2",
+      "explanation": "Collective noun takes singular verb in American English"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.231139+00:00",
+    "updated_at": "2026-09-21T12:53:32.231139+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "LTIMindtree",
+      "Wipro",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_error_0018",
+    "question": "Identify the error: The team are winning.",
+    "pattern": "error-spotting",
+    "skill": "error-spotting",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Identify the error: The team are winning.",
+      "options": [
+        "A. Part 1",
+        "B. Part 2",
+        "C. Part 3",
+        "D. No error"
+      ],
+      "correct_answer": "C. Part 3",
+      "explanation": "Collective noun takes singular verb in American English"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.231139+00:00",
+    "updated_at": "2026-09-21T12:53:32.231139+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "LTIMindtree",
+      "Wipro",
+      "TCS"
+    ]
+  },
+  {
+    "id": "verbal_error_0019",
+    "question": "Identify the error: The team are winning.",
+    "pattern": "error-spotting",
+    "skill": "error-spotting",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Identify the error: The team are winning.",
+      "options": [
+        "A. Part 1",
+        "B. Part 2",
+        "C. Part 3",
+        "D. No error"
+      ],
+      "correct_answer": "D. No error",
+      "explanation": "Collective noun takes singular verb in American English"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.231139+00:00",
+    "updated_at": "2026-09-21T12:53:32.231139+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "LTIMindtree",
+      "Wipro",
+      "TCS"
+    ]
+  }
+]

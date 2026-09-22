@@ -1,0 +1,737 @@
+[
+  {
+    "id": "pseudo_bit_0000",
+    "question": "Result of 5 & 3?",
+    "pattern": "bitwise",
+    "skill": "bitwise",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Result of 5 & 3?",
+      "options": [
+        "A. 1",
+        "B. 4",
+        "C. 8",
+        "D. 3"
+      ],
+      "correct_answer": "A. 1",
+      "explanation": "Bitwise result: 1"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.287216+00:00",
+    "updated_at": "2026-09-21T12:53:32.287216+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "pseudo_bit_0001",
+    "question": "Result of 5 | 3?",
+    "pattern": "bitwise",
+    "skill": "bitwise",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Result of 5 | 3?",
+      "options": [
+        "A. 7",
+        "B. 0",
+        "C. 2",
+        "D. 5"
+      ],
+      "correct_answer": "A. 7",
+      "explanation": "Bitwise result: 7"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.287216+00:00",
+    "updated_at": "2026-09-21T12:53:32.287216+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "pseudo_bit_0002",
+    "question": "Result of 5 ^ 3?",
+    "pattern": "bitwise",
+    "skill": "bitwise",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Result of 5 ^ 3?",
+      "options": [
+        "A. 6",
+        "B. 0",
+        "C. 4",
+        "D. 5"
+      ],
+      "correct_answer": "A. 6",
+      "explanation": "Bitwise result: 6"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.287216+00:00",
+    "updated_at": "2026-09-21T12:53:32.287216+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "pseudo_bit_0003",
+    "question": "Result of ~5?",
+    "pattern": "bitwise",
+    "skill": "bitwise",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Result of ~5?",
+      "options": [
+        "A. 4",
+        "B. 5",
+        "C. -6",
+        "D. 3"
+      ],
+      "correct_answer": "C. -6",
+      "explanation": "Bitwise result: -6"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.287763+00:00",
+    "updated_at": "2026-09-21T12:53:32.287763+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "pseudo_bit_0004",
+    "question": "Result of 5 << 1?",
+    "pattern": "bitwise",
+    "skill": "bitwise",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Result of 5 << 1?",
+      "options": [
+        "A. 7",
+        "B. 10",
+        "C. 4",
+        "D. 5"
+      ],
+      "correct_answer": "B. 10",
+      "explanation": "Bitwise result: 10"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.287763+00:00",
+    "updated_at": "2026-09-21T12:53:32.287763+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "pseudo_bit_0005",
+    "question": "Result of 5 >> 1?",
+    "pattern": "bitwise",
+    "skill": "bitwise",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Result of 5 >> 1?",
+      "options": [
+        "A. 2",
+        "B. 7",
+        "C. 15",
+        "D. 3"
+      ],
+      "correct_answer": "A. 2",
+      "explanation": "Bitwise result: 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.287763+00:00",
+    "updated_at": "2026-09-21T12:53:32.287763+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "pseudo_bit_0006",
+    "question": "Result of 12 & 10?",
+    "pattern": "bitwise",
+    "skill": "bitwise",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Result of 12 & 10?",
+      "options": [
+        "A. 8",
+        "B. 8",
+        "C. 4",
+        "D. 7"
+      ],
+      "correct_answer": "A. 8",
+      "explanation": "Bitwise result: 8"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.287763+00:00",
+    "updated_at": "2026-09-21T12:53:32.287763+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "pseudo_bit_0007",
+    "question": "Result of 12 | 10?",
+    "pattern": "bitwise",
+    "skill": "bitwise",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Result of 12 | 10?",
+      "options": [
+        "A. 0",
+        "B. 15",
+        "C. 14",
+        "D. 5"
+      ],
+      "correct_answer": "C. 14",
+      "explanation": "Bitwise result: 14"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.287763+00:00",
+    "updated_at": "2026-09-21T12:53:32.287763+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "pseudo_bit_0008",
+    "question": "Result of 12 ^ 10?",
+    "pattern": "bitwise",
+    "skill": "bitwise",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Result of 12 ^ 10?",
+      "options": [
+        "A. 6",
+        "B. 3",
+        "C. 7",
+        "D. 5"
+      ],
+      "correct_answer": "A. 6",
+      "explanation": "Bitwise result: 6"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.287763+00:00",
+    "updated_at": "2026-09-21T12:53:32.287763+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "pseudo_bit_0009",
+    "question": "Result of 15 & 7?",
+    "pattern": "bitwise",
+    "skill": "bitwise",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Result of 15 & 7?",
+      "options": [
+        "A. 0",
+        "B. 7",
+        "C. 2",
+        "D. 3"
+      ],
+      "correct_answer": "B. 7",
+      "explanation": "Bitwise result: 7"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.287763+00:00",
+    "updated_at": "2026-09-21T12:53:32.287763+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "pseudo_bit_0010",
+    "question": "Result of 15 | 7?",
+    "pattern": "bitwise",
+    "skill": "bitwise",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Result of 15 | 7?",
+      "options": [
+        "A. 15",
+        "B. 0",
+        "C. 2",
+        "D. 1"
+      ],
+      "correct_answer": "A. 15",
+      "explanation": "Bitwise result: 15"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.288407+00:00",
+    "updated_at": "2026-09-21T12:53:32.288407+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "pseudo_bit_0011",
+    "question": "Result of 15 ^ 7?",
+    "pattern": "bitwise",
+    "skill": "bitwise",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Result of 15 ^ 7?",
+      "options": [
+        "A. 8",
+        "B. 2",
+        "C. 15",
+        "D. 1"
+      ],
+      "correct_answer": "A. 8",
+      "explanation": "Bitwise result: 8"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.288407+00:00",
+    "updated_at": "2026-09-21T12:53:32.288407+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "pseudo_bit_0012",
+    "question": "Result of 8 << 2?",
+    "pattern": "bitwise",
+    "skill": "bitwise",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Result of 8 << 2?",
+      "options": [
+        "A. 0",
+        "B. 2",
+        "C. 32",
+        "D. 7"
+      ],
+      "correct_answer": "C. 32",
+      "explanation": "Bitwise result: 32"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.288407+00:00",
+    "updated_at": "2026-09-21T12:53:32.288407+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "pseudo_bit_0013",
+    "question": "Result of 32 >> 2?",
+    "pattern": "bitwise",
+    "skill": "bitwise",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Result of 32 >> 2?",
+      "options": [
+        "A. 8",
+        "B. 2",
+        "C. 5",
+        "D. 0"
+      ],
+      "correct_answer": "A. 8",
+      "explanation": "Bitwise result: 8"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.288407+00:00",
+    "updated_at": "2026-09-21T12:53:32.288407+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "pseudo_bit_0014",
+    "question": "Result of 7 & 7?",
+    "pattern": "bitwise",
+    "skill": "bitwise",
+    "domain": "Pseudocode",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Result of 7 & 7?",
+      "options": [
+        "A. 7",
+        "B. 5",
+        "C. 4",
+        "D. 1"
+      ],
+      "correct_answer": "A. 7",
+      "explanation": "Bitwise result: 7"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.288407+00:00",
+    "updated_at": "2026-09-21T12:53:32.288407+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  }
+]

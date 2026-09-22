@@ -1,0 +1,1002 @@
+[
+  {
+    "id": "log_series_0000",
+    "question": "Find the next number: 18, 23, 28, 33, 38, 43, ?",
+    "pattern": "series-completion",
+    "skill": "series-completion",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Find the next number: 18, 23, 28, 33, 38, 43, ?",
+      "options": [
+        "A. 43",
+        "B. 48",
+        "C. 52",
+        "D. 56"
+      ],
+      "correct_answer": "B. 48",
+      "explanation": "Arithmetic progression: a=18, d=5. Next = a + 6d = 48"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.211517+00:00",
+    "updated_at": "2026-09-21T12:53:32.211517+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "Wipro",
+      "LTIMindtree",
+      "TCS"
+    ]
+  },
+  {
+    "id": "log_series_0001",
+    "question": "Find the next number: 19, 21, 23, 25, 27, 29, ?",
+    "pattern": "series-completion",
+    "skill": "series-completion",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Find the next number: 19, 21, 23, 25, 27, 29, ?",
+      "options": [
+        "A. 32",
+        "B. 29",
+        "C. 38",
+        "D. 31"
+      ],
+      "correct_answer": "D. 31",
+      "explanation": "Arithmetic progression: a=19, d=2. Next = a + 6d = 31"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.211517+00:00",
+    "updated_at": "2026-09-21T12:53:32.211517+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "Wipro",
+      "LTIMindtree",
+      "TCS"
+    ]
+  },
+  {
+    "id": "log_series_0002",
+    "question": "Find the next number: 18, 22, 26, 30, 34, 38, ?",
+    "pattern": "series-completion",
+    "skill": "series-completion",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Find the next number: 18, 22, 26, 30, 34, 38, ?",
+      "options": [
+        "A. 35",
+        "B. 42",
+        "C. 52",
+        "D. 45"
+      ],
+      "correct_answer": "B. 42",
+      "explanation": "Arithmetic progression: a=18, d=4. Next = a + 6d = 42"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.211517+00:00",
+    "updated_at": "2026-09-21T12:53:32.211517+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "Wipro",
+      "LTIMindtree",
+      "TCS"
+    ]
+  },
+  {
+    "id": "log_series_0003",
+    "question": "Find the next number: 15, 20, 25, 30, 35, 40, ?",
+    "pattern": "series-completion",
+    "skill": "series-completion",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Find the next number: 15, 20, 25, 30, 35, 40, ?",
+      "options": [
+        "A. 46",
+        "B. 37",
+        "C. 49",
+        "D. 45"
+      ],
+      "correct_answer": "D. 45",
+      "explanation": "Arithmetic progression: a=15, d=5. Next = a + 6d = 45"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.212518+00:00",
+    "updated_at": "2026-09-21T12:53:32.212518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "Wipro",
+      "LTIMindtree",
+      "TCS"
+    ]
+  },
+  {
+    "id": "log_series_0004",
+    "question": "Find the next number: 19, 25, 31, 37, 43, 49, ?",
+    "pattern": "series-completion",
+    "skill": "series-completion",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Find the next number: 19, 25, 31, 37, 43, 49, ?",
+      "options": [
+        "A. 58",
+        "B. 55",
+        "C. 65",
+        "D. 64"
+      ],
+      "correct_answer": "B. 55",
+      "explanation": "Arithmetic progression: a=19, d=6. Next = a + 6d = 55"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.212518+00:00",
+    "updated_at": "2026-09-21T12:53:32.212518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "Wipro",
+      "LTIMindtree",
+      "TCS"
+    ]
+  },
+  {
+    "id": "log_series_0005",
+    "question": "Find the next number: 7, 11, 15, 19, 23, 27, ?",
+    "pattern": "series-completion",
+    "skill": "series-completion",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Find the next number: 7, 11, 15, 19, 23, 27, ?",
+      "options": [
+        "A. 22",
+        "B. 31",
+        "C. 32",
+        "D. 39"
+      ],
+      "correct_answer": "B. 31",
+      "explanation": "Arithmetic progression: a=7, d=4. Next = a + 6d = 31"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.212518+00:00",
+    "updated_at": "2026-09-21T12:53:32.212518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "Wipro",
+      "LTIMindtree",
+      "TCS"
+    ]
+  },
+  {
+    "id": "log_series_0006",
+    "question": "Find the next number: 11, 16, 21, 26, 31, 36, ?",
+    "pattern": "series-completion",
+    "skill": "series-completion",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Find the next number: 11, 16, 21, 26, 31, 36, ?",
+      "options": [
+        "A. 49",
+        "B. 40",
+        "C. 39",
+        "D. 41"
+      ],
+      "correct_answer": "D. 41",
+      "explanation": "Arithmetic progression: a=11, d=5. Next = a + 6d = 41"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.212518+00:00",
+    "updated_at": "2026-09-21T12:53:32.212518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "Wipro",
+      "LTIMindtree",
+      "TCS"
+    ]
+  },
+  {
+    "id": "log_series_0007",
+    "question": "Find the next number: 2, 7, 12, 17, 22, 27, ?",
+    "pattern": "series-completion",
+    "skill": "series-completion",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Find the next number: 2, 7, 12, 17, 22, 27, ?",
+      "options": [
+        "A. 32",
+        "B. 64",
+        "C. 26",
+        "D. 42"
+      ],
+      "correct_answer": "A. 32",
+      "explanation": "Arithmetic progression: a=2, d=5. Next = a + 6d = 32"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.212518+00:00",
+    "updated_at": "2026-09-21T12:53:32.212518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "Wipro",
+      "LTIMindtree",
+      "TCS"
+    ]
+  },
+  {
+    "id": "log_series_0008",
+    "question": "Find the next number: 8, 15, 22, 29, 36, 43, ?",
+    "pattern": "series-completion",
+    "skill": "series-completion",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Find the next number: 8, 15, 22, 29, 36, 43, ?",
+      "options": [
+        "A. 50",
+        "B. 55",
+        "C. 58",
+        "D. 44"
+      ],
+      "correct_answer": "A. 50",
+      "explanation": "Arithmetic progression: a=8, d=7. Next = a + 6d = 50"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.212518+00:00",
+    "updated_at": "2026-09-21T12:53:32.212518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "Wipro",
+      "LTIMindtree",
+      "TCS"
+    ]
+  },
+  {
+    "id": "log_series_0009",
+    "question": "Find the next number: 13, 21, 29, 37, 45, 53, ?",
+    "pattern": "series-completion",
+    "skill": "series-completion",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Find the next number: 13, 21, 29, 37, 45, 53, ?",
+      "options": [
+        "A. 61",
+        "B. 53",
+        "C. 113",
+        "D. 71"
+      ],
+      "correct_answer": "A. 61",
+      "explanation": "Arithmetic progression: a=13, d=8. Next = a + 6d = 61"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.212518+00:00",
+    "updated_at": "2026-09-21T12:53:32.212518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "Wipro",
+      "LTIMindtree",
+      "TCS"
+    ]
+  },
+  {
+    "id": "log_series_0010",
+    "question": "Find the next number: 15, 23, 31, 39, 47, 55, ?",
+    "pattern": "series-completion",
+    "skill": "series-completion",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Find the next number: 15, 23, 31, 39, 47, 55, ?",
+      "options": [
+        "A. 163",
+        "B. 71",
+        "C. 53",
+        "D. 63"
+      ],
+      "correct_answer": "D. 63",
+      "explanation": "Arithmetic progression: a=15, d=8. Next = a + 6d = 63"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.212518+00:00",
+    "updated_at": "2026-09-21T12:53:32.212518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "Wipro",
+      "LTIMindtree",
+      "TCS"
+    ]
+  },
+  {
+    "id": "log_series_0011",
+    "question": "Find the next number: 12, 14, 16, 18, 20, 22, ?",
+    "pattern": "series-completion",
+    "skill": "series-completion",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Find the next number: 12, 14, 16, 18, 20, 22, ?",
+      "options": [
+        "A. 26",
+        "B. 31",
+        "C. 24",
+        "D. 20"
+      ],
+      "correct_answer": "C. 24",
+      "explanation": "Arithmetic progression: a=12, d=2. Next = a + 6d = 24"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.213518+00:00",
+    "updated_at": "2026-09-21T12:53:32.213518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "Wipro",
+      "LTIMindtree",
+      "TCS"
+    ]
+  },
+  {
+    "id": "log_series_0012",
+    "question": "Find the next number: 9, 15, 21, 27, 33, 39, ?",
+    "pattern": "series-completion",
+    "skill": "series-completion",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Find the next number: 9, 15, 21, 27, 33, 39, ?",
+      "options": [
+        "A. 45",
+        "B. 119",
+        "C. 52",
+        "D. 44"
+      ],
+      "correct_answer": "A. 45",
+      "explanation": "Arithmetic progression: a=9, d=6. Next = a + 6d = 45"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.213518+00:00",
+    "updated_at": "2026-09-21T12:53:32.213518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "Wipro",
+      "LTIMindtree",
+      "TCS"
+    ]
+  },
+  {
+    "id": "log_series_0013",
+    "question": "Find the next number: 11, 12, 13, 14, 15, 16, ?",
+    "pattern": "series-completion",
+    "skill": "series-completion",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Find the next number: 11, 12, 13, 14, 15, 16, ?",
+      "options": [
+        "A. 8",
+        "B. 10",
+        "C. 17",
+        "D. 27"
+      ],
+      "correct_answer": "C. 17",
+      "explanation": "Arithmetic progression: a=11, d=1. Next = a + 6d = 17"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.213518+00:00",
+    "updated_at": "2026-09-21T12:53:32.213518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "Wipro",
+      "LTIMindtree",
+      "TCS"
+    ]
+  },
+  {
+    "id": "log_series_0014",
+    "question": "Find the next number: 6, 14, 22, 30, 38, 46, ?",
+    "pattern": "series-completion",
+    "skill": "series-completion",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Find the next number: 6, 14, 22, 30, 38, 46, ?",
+      "options": [
+        "A. 57",
+        "B. 54",
+        "C. 44",
+        "D. 58"
+      ],
+      "correct_answer": "B. 54",
+      "explanation": "Arithmetic progression: a=6, d=8. Next = a + 6d = 54"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.213518+00:00",
+    "updated_at": "2026-09-21T12:53:32.213518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "Wipro",
+      "LTIMindtree",
+      "TCS"
+    ]
+  },
+  {
+    "id": "log_series_0015",
+    "question": "Find the next number: 10, 13, 16, 19, 22, 25, ?",
+    "pattern": "series-completion",
+    "skill": "series-completion",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Find the next number: 10, 13, 16, 19, 22, 25, ?",
+      "options": [
+        "A. 38",
+        "B. 28",
+        "C. 26",
+        "D. 20"
+      ],
+      "correct_answer": "B. 28",
+      "explanation": "Arithmetic progression: a=10, d=3. Next = a + 6d = 28"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.213518+00:00",
+    "updated_at": "2026-09-21T12:53:32.213518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "Wipro",
+      "LTIMindtree",
+      "TCS"
+    ]
+  },
+  {
+    "id": "log_series_0016",
+    "question": "Find the next number: 12, 15, 18, 21, 24, 27, ?",
+    "pattern": "series-completion",
+    "skill": "series-completion",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Find the next number: 12, 15, 18, 21, 24, 27, ?",
+      "options": [
+        "A. 21",
+        "B. 30",
+        "C. 40",
+        "D. 32"
+      ],
+      "correct_answer": "B. 30",
+      "explanation": "Arithmetic progression: a=12, d=3. Next = a + 6d = 30"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.213518+00:00",
+    "updated_at": "2026-09-21T12:53:32.213518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "Wipro",
+      "LTIMindtree",
+      "TCS"
+    ]
+  },
+  {
+    "id": "log_series_0017",
+    "question": "Find the next number: 14, 16, 18, 20, 22, 24, ?",
+    "pattern": "series-completion",
+    "skill": "series-completion",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Find the next number: 14, 16, 18, 20, 22, 24, ?",
+      "options": [
+        "A. 19",
+        "B. 16",
+        "C. 26",
+        "D. 22"
+      ],
+      "correct_answer": "C. 26",
+      "explanation": "Arithmetic progression: a=14, d=2. Next = a + 6d = 26"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.213518+00:00",
+    "updated_at": "2026-09-21T12:53:32.213518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "Wipro",
+      "LTIMindtree",
+      "TCS"
+    ]
+  },
+  {
+    "id": "log_series_0018",
+    "question": "Find the next number: 19, 23, 27, 31, 35, 39, ?",
+    "pattern": "series-completion",
+    "skill": "series-completion",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Find the next number: 19, 23, 27, 31, 35, 39, ?",
+      "options": [
+        "A. 33",
+        "B. 49",
+        "C. 47",
+        "D. 43"
+      ],
+      "correct_answer": "D. 43",
+      "explanation": "Arithmetic progression: a=19, d=4. Next = a + 6d = 43"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.213518+00:00",
+    "updated_at": "2026-09-21T12:53:32.213518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "Wipro",
+      "LTIMindtree",
+      "TCS"
+    ]
+  },
+  {
+    "id": "log_series_0019",
+    "question": "Find the next number: 4, 11, 18, 25, 32, 39, ?",
+    "pattern": "series-completion",
+    "skill": "series-completion",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Find the next number: 4, 11, 18, 25, 32, 39, ?",
+      "options": [
+        "A. 51",
+        "B. 46",
+        "C. 38",
+        "D. 40"
+      ],
+      "correct_answer": "B. 46",
+      "explanation": "Arithmetic progression: a=4, d=7. Next = a + 6d = 46"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.213518+00:00",
+    "updated_at": "2026-09-21T12:53:32.213518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "Wipro",
+      "LTIMindtree",
+      "TCS"
+    ]
+  }
+]

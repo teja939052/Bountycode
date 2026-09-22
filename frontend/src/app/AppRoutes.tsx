@@ -79,6 +79,7 @@ import {
   Profile,
   Mission,
   MissionResult,
+  SlidingWindowMission,
 } from "../pages/lazy";
 import ProtectedRoute from "../components/ProtectedRoute";
 import OnboardingGuard from "../components/OnboardingGuard";
@@ -144,6 +145,9 @@ export function AnimatedRoutes() {
         {/* V4 internal wiring: universal Mission Shell (roads, not nav) */}
         <Route path="/mission/:missionId" element={<Mission />} />
         <Route path="/mission/:missionId/result" element={<MissionResult />} />
+        {/* Flagship guided mission: Sliding Window (World 1) */}
+        <Route path="/mission/sliding-window" element={<SlidingWindowMission />} />
+        <Route path="/mission/sliding-window/result" element={<MissionResult />} />
         <Route path="/me" element={<Navigate to="/profile" replace />} />
         <Route
           path="/journey"

@@ -7,8 +7,7 @@
  */
 import type {
   CoverLetterRequest,
-  LinkedInRequest,
-  SalaryNegotiationRequest
+  LinkedInRequest
 } from '.././model'
 
 /**
@@ -61,35 +60,6 @@ export const createLinkedinAboutApiV1ToolsLinkedinAboutPost = async (linkedInReq
     method: 'POST',
     body: JSON.stringify(
       linkedInRequest,)
-  }
-
-  )
-  const data = await res.json()
-
-  return { status: res.status, data }
-}
-
-/**
- * @summary Get Salary Negotiation Tips
- */
-export type getSalaryNegotiationTipsApiV1ToolsSalaryNegotiationPostResponse = {
-  data: unknown;
-  status: number;
-}
-
-export const getGetSalaryNegotiationTipsApiV1ToolsSalaryNegotiationPostUrl = () => {
-
-
-  return `/api/v1/tools/salary-negotiation`
-}
-
-export const getSalaryNegotiationTipsApiV1ToolsSalaryNegotiationPost = async (salaryNegotiationRequest: SalaryNegotiationRequest, options?: RequestInit): Promise<getSalaryNegotiationTipsApiV1ToolsSalaryNegotiationPostResponse> => {
-  const res = await fetch(getGetSalaryNegotiationTipsApiV1ToolsSalaryNegotiationPostUrl(),
-  {      
-    ...options,
-    method: 'POST',
-    body: JSON.stringify(
-      salaryNegotiationRequest,)
   }
 
   )

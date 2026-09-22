@@ -12,7 +12,6 @@ import ComboWarningOverlay from "../juice/ComboWarningOverlay";
 import RouteErrorBoundary from "../components/RouteErrorBoundary";
 
 const Onboarding = lazy(() => import("../components/Onboarding"));
-const DiamondsPopup = lazy(() => import("../components/XPPopup"));
 const RewardShowcase = lazy(() => import("../components/RewardShowcase"));
 const BottomNav = lazy(() => import("../components/BottomNav"));
 
@@ -22,15 +21,6 @@ export function PageSuspense({ children }: { children: React.ReactNode }) {
 
 export default function AppContent() {
   const { showXP } = useJuice();
-  const [xpPopup, setXpPopup] = useState({
-    show: false,
-    diamonds: 0,
-    level: 0,
-    streak: 0,
-    badges: [] as string[],
-    critical: false,
-    criticalBonus: 0,
-  });
   const [rewardShowcase, setRewardShowcase] = useState<{
     visible: boolean;
     breakdown: {
@@ -63,18 +53,9 @@ export default function AppContent() {
   useEffect(() => {
     const handler = (e: Event) => {
       const detail = (e as CustomEvent).detail || {};
-      const { diamonds, level, streak, badges, critical } = detail;
+      const { diamonds } = detail;
       if (diamonds) {
         const isBig = (diamonds || 0) >= 100;
-        setXpPopup({
-          show: true,
-          diamonds,
-          level: level || 0,
-          streak: streak || 0,
-          badges: (badges as string[]) || [],
-          critical: critical || false,
-          criticalBonus: (critical as { bonus?: number } | undefined)?.bonus || 0,
-        });
         showXP(diamonds, window.innerWidth / 2, window.innerHeight / 2, isBig);
       }
     };
@@ -190,16 +171,6 @@ export default function AppContent() {
           <CookieBanner />
           <Suspense fallback={null}>
             <Onboarding />
-            <XPPopup
-              show={xpPopup.show}
-              xpGained={xpPopup.diamonds}
-              level={xpPopup.level}
-              streak={xpPopup.streak}
-              newBadges={xpPopup.badges}
-              critical={xpPopup.critical}
-              criticalBonus={xpPopup.criticalBonus}
-              onClose={() => setXpPopup((prev) => ({ ...prev, show: false }))}
-            />
             <Suspense fallback={null}>
               <RewardShowcase
                 visible={rewardShowcase.visible}

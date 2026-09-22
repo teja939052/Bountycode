@@ -295,8 +295,6 @@ export * from './resetPasswordRequest';
 export * from './reviewQueueApiV1PeerReviewQueueGetParams';
 export * from './rewardClaimRequest';
 export * from './rubberDuckDebugApiV1AiDebuggerRubberDuckPostParams';
-export * from './salaryBenchmarkRequest';
-export * from './salaryNegotiationRequest';
 export * from './saveOfferRequest';
 export * from './searchApiV1CompanyDirectorySearchGetParams';
 export * from './searchMessagesApiV1ChatSearchGetParams';

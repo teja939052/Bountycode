@@ -1,0 +1,492 @@
+[
+  {
+    "id": "code_dp_0000",
+    "question": "What does this DP function return?\ndef fib(n):\n  if n <= 1: return n\n  dp = [0]*(n+1)\n  dp[1] = 1\n  for i in range(2, n+1): dp[i] = dp[i-1] + dp[i-2]\n  return dp[n]\nprint(fib(6))",
+    "pattern": "dynamic-programming",
+    "skill": "dynamic-programming",
+    "domain": "Coding",
+    "difficulty": "hard",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this DP function return?\ndef fib(n):\n  if n <= 1: return n\n  dp = [0]*(n+1)\n  dp[1] = 1\n  for i in range(2, n+1): dp[i] = dp[i-1] + dp[i-2]\n  return dp[n]\nprint(fib(6))",
+      "options": [
+        "A. True",
+        "B. 8",
+        "C. 5",
+        "D. 3"
+      ],
+      "correct_answer": "B. 8",
+      "explanation": "DP result: 8"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.301098+00:00",
+    "updated_at": "2026-09-21T12:53:32.301098+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "code_dp_0001",
+    "question": "What does this DP function return?\ndef climb(n):\n  if n <= 1: return 1\n  dp = [0]*(n+1)\n  dp[0] = dp[1] = 1\n  for i in range(2, n+1): dp[i] = dp[i-1] + dp[i-2]\n  return dp[n]\nprint(climb(4))",
+    "pattern": "dynamic-programming",
+    "skill": "dynamic-programming",
+    "domain": "Coding",
+    "difficulty": "hard",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this DP function return?\ndef climb(n):\n  if n <= 1: return 1\n  dp = [0]*(n+1)\n  dp[0] = dp[1] = 1\n  for i in range(2, n+1): dp[i] = dp[i-1] + dp[i-2]\n  return dp[n]\nprint(climb(4))",
+      "options": [
+        "A. 220",
+        "B. 5",
+        "C. 8",
+        "D. 3"
+      ],
+      "correct_answer": "B. 5",
+      "explanation": "DP result: 5"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.301098+00:00",
+    "updated_at": "2026-09-21T12:53:32.301098+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "code_dp_0002",
+    "question": "What does this DP function return?\ndef max_sum(arr):\n  if not arr: return 0\n  dp = [0]*len(arr)\n  dp[0] = arr[0]\n  for i in range(1, len(arr)): dp[i] = max(arr[i], dp[i-1]+arr[i])\n  return max(dp)\nprint(max_sum([-2,1,-3,4,-1,2,1,-5,4]))",
+    "pattern": "dynamic-programming",
+    "skill": "dynamic-programming",
+    "domain": "Coding",
+    "difficulty": "hard",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this DP function return?\ndef max_sum(arr):\n  if not arr: return 0\n  dp = [0]*len(arr)\n  dp[0] = arr[0]\n  for i in range(1, len(arr)): dp[i] = max(arr[i], dp[i-1]+arr[i])\n  return max(dp)\nprint(max_sum([-2,1,-3,4,-1,2,1,-5,4]))",
+      "options": [
+        "A. 0",
+        "B. 6",
+        "C. False",
+        "D. 220"
+      ],
+      "correct_answer": "B. 6",
+      "explanation": "DP result: 6"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.301098+00:00",
+    "updated_at": "2026-09-21T12:53:32.301098+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "code_dp_0003",
+    "question": "What does this DP function return?\ndef coin_change(coins, amt):\n  dp = [float('inf')]*(amt+1)\n  dp[0] = 0\n  for c in coins:\n    for i in range(c, amt+1): dp[i] = min(dp[i], dp[i-c]+1)\n  return dp[amt] if dp[amt] != float('inf') else -1\nprint(coin_change([1,2,5], 11))",
+    "pattern": "dynamic-programming",
+    "skill": "dynamic-programming",
+    "domain": "Coding",
+    "difficulty": "hard",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this DP function return?\ndef coin_change(coins, amt):\n  dp = [float('inf')]*(amt+1)\n  dp[0] = 0\n  for c in coins:\n    for i in range(c, amt+1): dp[i] = min(dp[i], dp[i-c]+1)\n  return dp[amt] if dp[amt] != float('inf') else -1\nprint(coin_change([1,2,5], 11))",
+      "options": [
+        "A. 220",
+        "B. True",
+        "C. 8",
+        "D. 3"
+      ],
+      "correct_answer": "D. 3",
+      "explanation": "DP result: 3"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.301098+00:00",
+    "updated_at": "2026-09-21T12:53:32.304118+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "code_dp_0004",
+    "question": "What does this DP function return?\ndef knapsack(w, wt, val, n):\n  dp = [[0]*(w+1) for _ in range(n+1)]\n  for i in range(1, n+1):\n    for j in range(w+1):\n      if wt[i-1] <= j: dp[i][j] = max(val[i-1]+dp[i-1][j-wt[i-1]], dp[i-1][j])\n      else: dp[i][j] = dp[i-1][j]\n  return dp[n][w]\nprint(knapsack(50, [10,20,30], [60,100,120], 3))",
+    "pattern": "dynamic-programming",
+    "skill": "dynamic-programming",
+    "domain": "Coding",
+    "difficulty": "hard",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this DP function return?\ndef knapsack(w, wt, val, n):\n  dp = [[0]*(w+1) for _ in range(n+1)]\n  for i in range(1, n+1):\n    for j in range(w+1):\n      if wt[i-1] <= j: dp[i][j] = max(val[i-1]+dp[i-1][j-wt[i-1]], dp[i-1][j])\n      else: dp[i][j] = dp[i-1][j]\n  return dp[n][w]\nprint(knapsack(50, [10,20,30], [60,100,120], 3))",
+      "options": [
+        "A. 220",
+        "B. 0",
+        "C. 10",
+        "D. False"
+      ],
+      "correct_answer": "A. 220",
+      "explanation": "DP result: 220"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.304118+00:00",
+    "updated_at": "2026-09-21T12:53:32.304118+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "code_dp_0005",
+    "question": "What does this DP function return?\ndef lcs(s1, s2):\n  m, n = len(s1), len(s2)\n  dp = [[0]*(n+1) for _ in range(m+1)]\n  for i in range(1, m+1):\n    for j in range(1, n+1):\n      if s1[i-1]==s2[j-1]: dp[i][j] = dp[i-1][j-1]+1\n      else: dp[i][j] = max(dp[i-1][j], dp[i][j-1])\n  return dp[m][n]\nprint(lcs('ABCDE', 'ACE'))",
+    "pattern": "dynamic-programming",
+    "skill": "dynamic-programming",
+    "domain": "Coding",
+    "difficulty": "hard",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this DP function return?\ndef lcs(s1, s2):\n  m, n = len(s1), len(s2)\n  dp = [[0]*(n+1) for _ in range(m+1)]\n  for i in range(1, m+1):\n    for j in range(1, n+1):\n      if s1[i-1]==s2[j-1]: dp[i][j] = dp[i-1][j-1]+1\n      else: dp[i][j] = max(dp[i-1][j], dp[i][j-1])\n  return dp[m][n]\nprint(lcs('ABCDE', 'ACE'))",
+      "options": [
+        "A. True",
+        "B. 3",
+        "C. -1",
+        "D. 0"
+      ],
+      "correct_answer": "B. 3",
+      "explanation": "DP result: 3"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.304118+00:00",
+    "updated_at": "2026-09-21T12:53:32.304118+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "code_dp_0006",
+    "question": "What does this DP function return?\ndef edit_dist(s1, s2):\n  m, n = len(s1), len(s2)\n  dp = [[0]*(n+1) for _ in range(m+1)]\n  for i in range(m+1): dp[i][0] = i\n  for j in range(n+1): dp[0][j] = j\n  for i in range(1, m+1):\n    for j in range(1, n+1):\n      if s1[i-1]==s2[j-1]: dp[i][j] = dp[i-1][j-1]\n      else: dp[i][j] = 1+min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1])\n  return dp[m][n]\nprint(edit_dist('horse', 'ros'))",
+    "pattern": "dynamic-programming",
+    "skill": "dynamic-programming",
+    "domain": "Coding",
+    "difficulty": "hard",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this DP function return?\ndef edit_dist(s1, s2):\n  m, n = len(s1), len(s2)\n  dp = [[0]*(n+1) for _ in range(m+1)]\n  for i in range(m+1): dp[i][0] = i\n  for j in range(n+1): dp[0][j] = j\n  for i in range(1, m+1):\n    for j in range(1, n+1):\n      if s1[i-1]==s2[j-1]: dp[i][j] = dp[i-1][j-1]\n      else: dp[i][j] = 1+min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1])\n  return dp[m][n]\nprint(edit_dist('horse', 'ros'))",
+      "options": [
+        "A. 0",
+        "B. 3",
+        "C. True",
+        "D. 220"
+      ],
+      "correct_answer": "B. 3",
+      "explanation": "DP result: 3"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.304118+00:00",
+    "updated_at": "2026-09-21T12:53:32.304118+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "code_dp_0007",
+    "question": "What does this DP function return?\ndef can_partition(nums):\n  s = sum(nums)\n  if s%2 != 0: return False\n  target = s//2\n  dp = [False]*(target+1)\n  dp[0] = True\n  for num in nums:\n    for i in range(target, num-1, -1): dp[i] = dp[i] or dp[i-num]\n  return dp[target]\nprint(can_partition([1,5,11,5]))",
+    "pattern": "dynamic-programming",
+    "skill": "dynamic-programming",
+    "domain": "Coding",
+    "difficulty": "hard",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this DP function return?\ndef can_partition(nums):\n  s = sum(nums)\n  if s%2 != 0: return False\n  target = s//2\n  dp = [False]*(target+1)\n  dp[0] = True\n  for num in nums:\n    for i in range(target, num-1, -1): dp[i] = dp[i] or dp[i-num]\n  return dp[target]\nprint(can_partition([1,5,11,5]))",
+      "options": [
+        "A. 6",
+        "B. False",
+        "C. True",
+        "D. -1"
+      ],
+      "correct_answer": "C. True",
+      "explanation": "DP result: True"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.304118+00:00",
+    "updated_at": "2026-09-21T12:53:32.304118+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "code_dp_0008",
+    "question": "What does this DP function return?\ndef subset_sum(nums, target):\n  dp = [False]*(target+1)\n  dp[0] = True\n  for num in nums:\n    for i in range(target, num-1, -1): dp[i] = dp[i] or dp[i-num]\n  return dp[target]\nprint(subset_sum([3,34,4,12,5,2], 9))",
+    "pattern": "dynamic-programming",
+    "skill": "dynamic-programming",
+    "domain": "Coding",
+    "difficulty": "hard",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this DP function return?\ndef subset_sum(nums, target):\n  dp = [False]*(target+1)\n  dp[0] = True\n  for num in nums:\n    for i in range(target, num-1, -1): dp[i] = dp[i] or dp[i-num]\n  return dp[target]\nprint(subset_sum([3,34,4,12,5,2], 9))",
+      "options": [
+        "A. 5",
+        "B. True",
+        "C. 220",
+        "D. -1"
+      ],
+      "correct_answer": "B. True",
+      "explanation": "DP result: True"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.304118+00:00",
+    "updated_at": "2026-09-21T12:53:32.304118+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "code_dp_0009",
+    "question": "What does this DP function return?\ndef rod_cut(price, n):\n  dp = [0]*(n+1)\n  for i in range(1, n+1):\n    for j in range(i): dp[i] = max(dp[i], price[j]+dp[i-j-1])\n  return dp[n]\nprint(rod_cut([1,5,8,9], 4))",
+    "pattern": "dynamic-programming",
+    "skill": "dynamic-programming",
+    "domain": "Coding",
+    "difficulty": "hard",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this DP function return?\ndef rod_cut(price, n):\n  dp = [0]*(n+1)\n  for i in range(1, n+1):\n    for j in range(i): dp[i] = max(dp[i], price[j]+dp[i-j-1])\n  return dp[n]\nprint(rod_cut([1,5,8,9], 4))",
+      "options": [
+        "A. 3",
+        "B. 8",
+        "C. 6",
+        "D. 10"
+      ],
+      "correct_answer": "D. 10",
+      "explanation": "DP result: 10"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.304118+00:00",
+    "updated_at": "2026-09-21T12:53:32.304118+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  }
+]

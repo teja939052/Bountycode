@@ -1,0 +1,1962 @@
+[
+  {
+    "id": "log_seating_0000",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. E",
+        "B. D",
+        "C. B",
+        "D. C"
+      ],
+      "correct_answer": "C. B",
+      "explanation": "Constraints force order: ...A C B... -> middle = B"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.214516+00:00",
+    "updated_at": "2026-09-21T12:53:32.214516+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0001",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. A",
+        "B. C",
+        "C. E",
+        "D. D"
+      ],
+      "correct_answer": "A. A",
+      "explanation": "Constraints force order: ...A C B... -> middle = A"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.214516+00:00",
+    "updated_at": "2026-09-21T12:53:32.214516+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0002",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. E",
+        "B. C",
+        "C. D",
+        "D. A"
+      ],
+      "correct_answer": "C. D",
+      "explanation": "Constraints force order: ...A C B... -> middle = D"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.214516+00:00",
+    "updated_at": "2026-09-21T12:53:32.214516+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0003",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. C",
+        "B. A",
+        "C. D",
+        "D. E"
+      ],
+      "correct_answer": "A. C",
+      "explanation": "Constraints force order: ...A C B... -> middle = C"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.214516+00:00",
+    "updated_at": "2026-09-21T12:53:32.214516+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0004",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. D",
+        "B. E",
+        "C. A",
+        "D. C"
+      ],
+      "correct_answer": "A. D",
+      "explanation": "Constraints force order: ...A C B... -> middle = D"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.214516+00:00",
+    "updated_at": "2026-09-21T12:53:32.214516+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0005",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. D",
+        "B. E",
+        "C. B",
+        "D. C"
+      ],
+      "correct_answer": "B. E",
+      "explanation": "Constraints force order: ...A C B... -> middle = E"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.214516+00:00",
+    "updated_at": "2026-09-21T12:53:32.214516+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0006",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. A",
+        "B. E",
+        "C. D",
+        "D. C"
+      ],
+      "correct_answer": "B. E",
+      "explanation": "Constraints force order: ...A C B... -> middle = E"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.215030+00:00",
+    "updated_at": "2026-09-21T12:53:32.215030+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0007",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. B",
+        "B. C",
+        "C. A",
+        "D. D"
+      ],
+      "correct_answer": "A. B",
+      "explanation": "Constraints force order: ...A C B... -> middle = B"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.215030+00:00",
+    "updated_at": "2026-09-21T12:53:32.215030+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0008",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. E",
+        "B. B",
+        "C. A",
+        "D. D"
+      ],
+      "correct_answer": "D. D",
+      "explanation": "Constraints force order: ...A C B... -> middle = D"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.215030+00:00",
+    "updated_at": "2026-09-21T12:53:32.215030+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0009",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. C",
+        "B. D",
+        "C. B",
+        "D. E"
+      ],
+      "correct_answer": "D. E",
+      "explanation": "Constraints force order: ...A C B... -> middle = E"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.215030+00:00",
+    "updated_at": "2026-09-21T12:53:32.215030+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0010",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. A",
+        "B. D",
+        "C. C",
+        "D. B"
+      ],
+      "correct_answer": "D. B",
+      "explanation": "Constraints force order: ...A C B... -> middle = B"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.215030+00:00",
+    "updated_at": "2026-09-21T12:53:32.215030+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0011",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. D",
+        "B. A",
+        "C. B",
+        "D. E"
+      ],
+      "correct_answer": "C. B",
+      "explanation": "Constraints force order: ...A C B... -> middle = B"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.215030+00:00",
+    "updated_at": "2026-09-21T12:53:32.215030+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0012",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. A",
+        "B. C",
+        "C. B",
+        "D. E"
+      ],
+      "correct_answer": "C. B",
+      "explanation": "Constraints force order: ...A C B... -> middle = B"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.215030+00:00",
+    "updated_at": "2026-09-21T12:53:32.215030+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0013",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. B",
+        "B. D",
+        "C. C",
+        "D. E"
+      ],
+      "correct_answer": "D. E",
+      "explanation": "Constraints force order: ...A C B... -> middle = E"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.215030+00:00",
+    "updated_at": "2026-09-21T12:53:32.215030+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0014",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. D",
+        "B. B",
+        "C. E",
+        "D. C"
+      ],
+      "correct_answer": "D. C",
+      "explanation": "Constraints force order: ...A C B... -> middle = C"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.215030+00:00",
+    "updated_at": "2026-09-21T12:53:32.215030+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0015",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. A",
+        "B. E",
+        "C. B",
+        "D. D"
+      ],
+      "correct_answer": "A. A",
+      "explanation": "Constraints force order: ...A C B... -> middle = A"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.215030+00:00",
+    "updated_at": "2026-09-21T12:53:32.215030+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0016",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. D",
+        "B. B",
+        "C. E",
+        "D. C"
+      ],
+      "correct_answer": "B. B",
+      "explanation": "Constraints force order: ...A C B... -> middle = B"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.215030+00:00",
+    "updated_at": "2026-09-21T12:53:32.215030+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0017",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. A",
+        "B. D",
+        "C. B",
+        "D. E"
+      ],
+      "correct_answer": "C. B",
+      "explanation": "Constraints force order: ...A C B... -> middle = B"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.215030+00:00",
+    "updated_at": "2026-09-21T12:53:32.215030+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0018",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. C",
+        "B. B",
+        "C. D",
+        "D. A"
+      ],
+      "correct_answer": "C. D",
+      "explanation": "Constraints force order: ...A C B... -> middle = D"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.215030+00:00",
+    "updated_at": "2026-09-21T12:53:32.215030+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0019",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. C",
+        "B. A",
+        "C. D",
+        "D. E"
+      ],
+      "correct_answer": "C. D",
+      "explanation": "Constraints force order: ...A C B... -> middle = D"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.215030+00:00",
+    "updated_at": "2026-09-21T12:53:32.215030+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0020",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. D",
+        "B. B",
+        "C. E",
+        "D. A"
+      ],
+      "correct_answer": "D. A",
+      "explanation": "Constraints force order: ...A C B... -> middle = A"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.215030+00:00",
+    "updated_at": "2026-09-21T12:53:32.215030+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0021",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. C",
+        "B. A",
+        "C. D",
+        "D. E"
+      ],
+      "correct_answer": "B. A",
+      "explanation": "Constraints force order: ...A C B... -> middle = A"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.215030+00:00",
+    "updated_at": "2026-09-21T12:53:32.216050+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0022",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. C",
+        "B. D",
+        "C. A",
+        "D. B"
+      ],
+      "correct_answer": "C. A",
+      "explanation": "Constraints force order: ...A C B... -> middle = A"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.216050+00:00",
+    "updated_at": "2026-09-21T12:53:32.216050+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0023",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. A",
+        "B. B",
+        "C. E",
+        "D. C"
+      ],
+      "correct_answer": "B. B",
+      "explanation": "Constraints force order: ...A C B... -> middle = B"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.216050+00:00",
+    "updated_at": "2026-09-21T12:53:32.216050+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0024",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. A",
+        "B. B",
+        "C. D",
+        "D. C"
+      ],
+      "correct_answer": "A. A",
+      "explanation": "Constraints force order: ...A C B... -> middle = A"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.216050+00:00",
+    "updated_at": "2026-09-21T12:53:32.216050+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0025",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. A",
+        "B. C",
+        "C. D",
+        "D. B"
+      ],
+      "correct_answer": "C. D",
+      "explanation": "Constraints force order: ...A C B... -> middle = D"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.216050+00:00",
+    "updated_at": "2026-09-21T12:53:32.216050+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0026",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. E",
+        "B. A",
+        "C. D",
+        "D. C"
+      ],
+      "correct_answer": "A. E",
+      "explanation": "Constraints force order: ...A C B... -> middle = E"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.216050+00:00",
+    "updated_at": "2026-09-21T12:53:32.216050+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0027",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. D",
+        "B. C",
+        "C. E",
+        "D. B"
+      ],
+      "correct_answer": "C. E",
+      "explanation": "Constraints force order: ...A C B... -> middle = E"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.216050+00:00",
+    "updated_at": "2026-09-21T12:53:32.216050+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0028",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. C",
+        "B. A",
+        "C. B",
+        "D. D"
+      ],
+      "correct_answer": "D. D",
+      "explanation": "Constraints force order: ...A C B... -> middle = D"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.216050+00:00",
+    "updated_at": "2026-09-21T12:53:32.216050+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0029",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. E",
+        "B. D",
+        "C. C",
+        "D. B"
+      ],
+      "correct_answer": "B. D",
+      "explanation": "Constraints force order: ...A C B... -> middle = D"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.216050+00:00",
+    "updated_at": "2026-09-21T12:53:32.216050+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0030",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. B",
+        "B. D",
+        "C. C",
+        "D. A"
+      ],
+      "correct_answer": "C. C",
+      "explanation": "Constraints force order: ...A C B... -> middle = C"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.216050+00:00",
+    "updated_at": "2026-09-21T12:53:32.216050+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0031",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. A",
+        "B. B",
+        "C. C",
+        "D. E"
+      ],
+      "correct_answer": "A. A",
+      "explanation": "Constraints force order: ...A C B... -> middle = A"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.216050+00:00",
+    "updated_at": "2026-09-21T12:53:32.216050+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0032",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. E",
+        "B. D",
+        "C. B",
+        "D. A"
+      ],
+      "correct_answer": "C. B",
+      "explanation": "Constraints force order: ...A C B... -> middle = B"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.216050+00:00",
+    "updated_at": "2026-09-21T12:53:32.216050+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0033",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. D",
+        "B. C",
+        "C. A",
+        "D. E"
+      ],
+      "correct_answer": "A. D",
+      "explanation": "Constraints force order: ...A C B... -> middle = D"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.216050+00:00",
+    "updated_at": "2026-09-21T12:53:32.216050+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0034",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. A",
+        "B. B",
+        "C. D",
+        "D. E"
+      ],
+      "correct_answer": "A. A",
+      "explanation": "Constraints force order: ...A C B... -> middle = A"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.216050+00:00",
+    "updated_at": "2026-09-21T12:53:32.216050+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0035",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. A",
+        "B. C",
+        "C. E",
+        "D. B"
+      ],
+      "correct_answer": "A. A",
+      "explanation": "Constraints force order: ...A C B... -> middle = A"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.217050+00:00",
+    "updated_at": "2026-09-21T12:53:32.217050+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0036",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. A",
+        "B. B",
+        "C. D",
+        "D. C"
+      ],
+      "correct_answer": "C. D",
+      "explanation": "Constraints force order: ...A C B... -> middle = D"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.217050+00:00",
+    "updated_at": "2026-09-21T12:53:32.217050+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0037",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. D",
+        "B. E",
+        "C. B",
+        "D. A"
+      ],
+      "correct_answer": "B. E",
+      "explanation": "Constraints force order: ...A C B... -> middle = E"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.217050+00:00",
+    "updated_at": "2026-09-21T12:53:32.217050+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0038",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. E",
+        "B. D",
+        "C. C",
+        "D. B"
+      ],
+      "correct_answer": "D. B",
+      "explanation": "Constraints force order: ...A C B... -> middle = B"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.217050+00:00",
+    "updated_at": "2026-09-21T12:53:32.217050+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_seating_0039",
+    "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+    "pattern": "seating-linear",
+    "skill": "seating-linear",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A, B, C, D, E sit in a row. A not at ends. B is right of A. C is between A and B. Who is in middle?",
+      "options": [
+        "A. A",
+        "B. C",
+        "C. D",
+        "D. E"
+      ],
+      "correct_answer": "C. D",
+      "explanation": "Constraints force order: ...A C B... -> middle = D"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.217050+00:00",
+    "updated_at": "2026-09-21T12:53:32.217050+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree"
+    ]
+  }
+]

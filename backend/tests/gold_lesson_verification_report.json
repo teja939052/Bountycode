@@ -1,0 +1,739 @@
+[
+  [
+    "Two Pointers",
+    "arrays-1",
+    {
+      "lesson_id": "arrays-1",
+      "title": "Two Pointers",
+      "found": true,
+      "missing_steps": [],
+      "steps": {
+        "discover": {
+          "present": true,
+          "title": "The Mirror Room",
+          "errors": [],
+          "pass": true
+        },
+        "predict": {
+          "present": true,
+          "title": "Predict the Path",
+          "errors": [],
+          "pass": true
+        },
+        "manipulate": {
+          "present": true,
+          "title": "Trace the Pointers",
+          "errors": [],
+          "pass": true
+        },
+        "build": {
+          "present": true,
+          "title": "Two Sum Sorted",
+          "errors": [],
+          "pass": true
+        },
+        "break": {
+          "present": true,
+          "title": "What Breaks?",
+          "errors": [],
+          "pass": true
+        },
+        "debug": {
+          "present": true,
+          "title": "Fix the Broken Code",
+          "errors": [],
+          "pass": true
+        },
+        "retrieve": {
+          "present": true,
+          "title": "Recall: Two Pointers",
+          "errors": [],
+          "pass": true
+        },
+        "transfer": {
+          "present": true,
+          "title": "Transfer: Container With Most Water",
+          "errors": [],
+          "pass": true
+        },
+        "mastery": {
+          "present": true,
+          "title": "Prove It: 3Sum",
+          "errors": [],
+          "pass": true
+        }
+      },
+      "overall": "PASS"
+    }
+  ],
+  [
+    "Sliding Window",
+    "arrays-2",
+    {
+      "lesson_id": "arrays-2",
+      "title": "Sliding Window",
+      "found": true,
+      "missing_steps": [],
+      "steps": {
+        "discover": {
+          "present": true,
+          "title": "The Festival Queue",
+          "errors": [],
+          "pass": true
+        },
+        "predict": {
+          "present": true,
+          "title": "Predict the Window",
+          "errors": [],
+          "pass": true
+        },
+        "manipulate": {
+          "present": true,
+          "title": "Trace the Window",
+          "errors": [],
+          "pass": true
+        },
+        "build": {
+          "present": true,
+          "title": "Longest Unique Substring",
+          "errors": [],
+          "pass": true
+        },
+        "break": {
+          "present": true,
+          "title": "Break the Window",
+          "errors": [],
+          "pass": true
+        },
+        "debug": {
+          "present": true,
+          "title": "Debug the Sliding Window",
+          "errors": [],
+          "pass": true
+        },
+        "retrieve": {
+          "present": true,
+          "title": "Recall: Sliding Window",
+          "errors": [],
+          "pass": true
+        },
+        "transfer": {
+          "present": true,
+          "title": "Transfer: Min Window Substring",
+          "errors": [],
+          "pass": true
+        },
+        "mastery": {
+          "present": true,
+          "title": "Prove It: Fruit Into Baskets",
+          "errors": [],
+          "pass": true
+        }
+      },
+      "overall": "PASS"
+    }
+  ],
+  [
+    "Hash Map Lookup",
+    "arrays-3",
+    {
+      "lesson_id": "arrays-3",
+      "title": "Hash Map Lookup",
+      "found": true,
+      "missing_steps": [],
+      "steps": {
+        "discover": {
+          "present": true,
+          "title": "The Locker Room",
+          "errors": [],
+          "pass": true
+        },
+        "predict": {
+          "present": true,
+          "title": "Predict the Map",
+          "errors": [],
+          "pass": true
+        },
+        "manipulate": {
+          "present": true,
+          "title": "Count with a Hash Map",
+          "errors": [],
+          "pass": true
+        },
+        "build": {
+          "present": true,
+          "title": "Two Sum Unsorted",
+          "errors": [],
+          "pass": true
+        },
+        "break": {
+          "present": true,
+          "title": "What Breaks?",
+          "errors": [],
+          "pass": true
+        },
+        "debug": {
+          "present": true,
+          "title": "Debug the Hash Map",
+          "errors": [],
+          "pass": true
+        },
+        "retrieve": {
+          "present": true,
+          "title": "Recall: Hash Maps",
+          "errors": [],
+          "pass": true
+        },
+        "transfer": {
+          "present": true,
+          "title": "Transfer: Group Anagrams",
+          "errors": [],
+          "pass": true
+        },
+        "mastery": {
+          "present": true,
+          "title": "Prove It: Top K Frequent",
+          "errors": [],
+          "pass": true
+        }
+      },
+      "overall": "PASS"
+    }
+  ],
+  [
+    "Binary Search",
+    "arrays-4",
+    {
+      "lesson_id": "arrays-4",
+      "title": "Binary Search",
+      "found": true,
+      "missing_steps": [],
+      "steps": {
+        "discover": {
+          "present": true,
+          "title": "The Bisect",
+          "errors": [],
+          "pass": true
+        },
+        "predict": {
+          "present": true,
+          "title": "How Many Steps?",
+          "errors": [],
+          "pass": true
+        },
+        "manipulate": {
+          "present": true,
+          "title": "Trace the Search",
+          "errors": [],
+          "pass": true
+        },
+        "build": {
+          "present": true,
+          "title": "Binary Search",
+          "errors": [],
+          "pass": true
+        },
+        "break": {
+          "present": true,
+          "title": "What Breaks?",
+          "errors": [],
+          "pass": true
+        },
+        "debug": {
+          "present": true,
+          "title": "Debug the Search",
+          "errors": [],
+          "pass": true
+        },
+        "retrieve": {
+          "present": true,
+          "title": "Recall: Binary Search",
+          "errors": [],
+          "pass": true
+        },
+        "transfer": {
+          "present": true,
+          "title": "Transfer: Search in Rotated Array",
+          "errors": [],
+          "pass": true
+        },
+        "mastery": {
+          "present": true,
+          "title": "Prove It: Find Peak",
+          "errors": [],
+          "pass": true
+        }
+      },
+      "overall": "PASS"
+    }
+  ],
+  [
+    "Prefix Sum",
+    "arrays-5",
+    {
+      "lesson_id": "arrays-5",
+      "title": "Prefix Sum",
+      "found": true,
+      "missing_steps": [],
+      "steps": {
+        "discover": {
+          "present": true,
+          "title": "The Running Total",
+          "errors": [],
+          "pass": true
+        },
+        "predict": {
+          "present": true,
+          "title": "Range Query",
+          "errors": [],
+          "pass": true
+        },
+        "manipulate": {
+          "present": true,
+          "title": "Build the Prefix Array",
+          "errors": [],
+          "pass": true
+        },
+        "build": {
+          "present": true,
+          "title": "Range Sum Query",
+          "errors": [],
+          "pass": true
+        },
+        "break": {
+          "present": true,
+          "title": "What Breaks?",
+          "errors": [],
+          "pass": true
+        },
+        "debug": {
+          "present": true,
+          "title": "Debug the Prefix Sum",
+          "errors": [],
+          "pass": true
+        },
+        "retrieve": {
+          "present": true,
+          "title": "Recall: Prefix Sum",
+          "errors": [],
+          "pass": true
+        },
+        "transfer": {
+          "present": true,
+          "title": "Transfer: Subarray Sum Equals K",
+          "errors": [],
+          "pass": true
+        },
+        "mastery": {
+          "present": true,
+          "title": "Prove It: Product Except Self",
+          "errors": [],
+          "pass": true
+        }
+      },
+      "overall": "PASS"
+    }
+  ],
+  [
+    "DFS",
+    "trees-1",
+    {
+      "lesson_id": "trees-1",
+      "title": "Depth-First Search",
+      "found": true,
+      "missing_steps": [],
+      "steps": {
+        "discover": {
+          "present": true,
+          "title": "The Family Tree",
+          "errors": [],
+          "pass": true
+        },
+        "predict": {
+          "present": true,
+          "title": "Traversal Order",
+          "errors": [],
+          "pass": true
+        },
+        "manipulate": {
+          "present": true,
+          "title": "Trace the Recursion",
+          "errors": [],
+          "pass": true
+        },
+        "build": {
+          "present": true,
+          "title": "Max Depth",
+          "errors": [],
+          "pass": true
+        },
+        "break": {
+          "present": true,
+          "title": "What Breaks?",
+          "errors": [],
+          "pass": true
+        },
+        "debug": {
+          "present": true,
+          "title": "Debug the DFS",
+          "errors": [],
+          "pass": true
+        },
+        "retrieve": {
+          "present": true,
+          "title": "Recall: DFS",
+          "errors": [],
+          "pass": true
+        },
+        "transfer": {
+          "present": true,
+          "title": "Transfer: Path Sum",
+          "errors": [],
+          "pass": true
+        },
+        "mastery": {
+          "present": true,
+          "title": "Prove It: Maximum Depth",
+          "errors": [],
+          "pass": true
+        }
+      },
+      "overall": "PASS"
+    }
+  ],
+  [
+    "BFS",
+    "trees-2",
+    {
+      "lesson_id": "trees-2",
+      "title": "Breadth-First Search",
+      "found": true,
+      "missing_steps": [],
+      "steps": {
+        "discover": {
+          "present": true,
+          "title": "The Water Ripple",
+          "errors": [],
+          "pass": true
+        },
+        "predict": {
+          "present": true,
+          "title": "Queue Order",
+          "errors": [],
+          "pass": true
+        },
+        "manipulate": {
+          "present": true,
+          "title": "Trace the Queue",
+          "errors": [],
+          "pass": true
+        },
+        "build": {
+          "present": true,
+          "title": "Level Order",
+          "errors": [],
+          "pass": true
+        },
+        "break": {
+          "present": true,
+          "title": "What Breaks?",
+          "errors": [],
+          "pass": true
+        },
+        "debug": {
+          "present": true,
+          "title": "Debug the BFS",
+          "errors": [],
+          "pass": true
+        },
+        "retrieve": {
+          "present": true,
+          "title": "Recall: BFS",
+          "errors": [],
+          "pass": true
+        },
+        "transfer": {
+          "present": true,
+          "title": "Transfer: Right Side View",
+          "errors": [],
+          "pass": true
+        },
+        "mastery": {
+          "present": true,
+          "title": "Prove It: Level Order",
+          "errors": [],
+          "pass": true
+        }
+      },
+      "overall": "PASS"
+    }
+  ],
+  [
+    "Graph Traversal",
+    "graphs-1",
+    {
+      "lesson_id": "graphs-1",
+      "title": "Graph Traversal",
+      "found": true,
+      "missing_steps": [],
+      "steps": {
+        "discover": {
+          "present": true,
+          "title": "The City Map",
+          "errors": [],
+          "pass": true
+        },
+        "predict": {
+          "present": true,
+          "title": "BFS Order",
+          "errors": [],
+          "pass": true
+        },
+        "manipulate": {
+          "present": true,
+          "title": "Trace the BFS",
+          "errors": [],
+          "pass": true
+        },
+        "build": {
+          "present": true,
+          "title": "Count Components",
+          "errors": [],
+          "pass": true
+        },
+        "break": {
+          "present": true,
+          "title": "What Breaks?",
+          "errors": [],
+          "pass": true
+        },
+        "debug": {
+          "present": true,
+          "title": "Debug the BFS",
+          "errors": [],
+          "pass": true
+        },
+        "retrieve": {
+          "present": true,
+          "title": "Recall: BFS",
+          "errors": [],
+          "pass": true
+        },
+        "transfer": {
+          "present": true,
+          "title": "Transfer: Number of Islands",
+          "errors": [],
+          "pass": true
+        },
+        "mastery": {
+          "present": true,
+          "title": "Prove It: Clone Graph",
+          "errors": [],
+          "pass": true
+        }
+      },
+      "overall": "PASS"
+    }
+  ],
+  [
+    "Topological Sort",
+    "graphs-2",
+    {
+      "lesson_id": "graphs-2",
+      "title": "Topological Sort",
+      "found": true,
+      "missing_steps": [],
+      "steps": {
+        "discover": {
+          "present": true,
+          "title": "The Course Schedule",
+          "errors": [],
+          "pass": true
+        },
+        "predict": {
+          "present": true,
+          "title": "Predict the Order",
+          "errors": [],
+          "pass": true
+        },
+        "manipulate": {
+          "present": true,
+          "title": "Trace Kahn's Algorithm",
+          "errors": [],
+          "pass": true
+        },
+        "build": {
+          "present": true,
+          "title": "Course Schedule",
+          "errors": [],
+          "pass": true
+        },
+        "break": {
+          "present": true,
+          "title": "What Breaks?",
+          "errors": [],
+          "pass": true
+        },
+        "debug": {
+          "present": true,
+          "title": "Debug the Sort",
+          "errors": [],
+          "pass": true
+        },
+        "retrieve": {
+          "present": true,
+          "title": "Recall: Topo Sort",
+          "errors": [],
+          "pass": true
+        },
+        "transfer": {
+          "present": true,
+          "title": "Transfer: Alien Dictionary",
+          "errors": [],
+          "pass": true
+        },
+        "mastery": {
+          "present": true,
+          "title": "Prove It: Course Schedule II",
+          "errors": [],
+          "pass": true
+        }
+      },
+      "overall": "PASS"
+    }
+  ],
+  [
+    "Memoization",
+    "dp-1",
+    {
+      "lesson_id": "dp-1",
+      "title": "Memoization",
+      "found": true,
+      "missing_steps": [],
+      "steps": {
+        "discover": {
+          "present": true,
+          "title": "The Fibonacci Spiral",
+          "errors": [],
+          "pass": true
+        },
+        "predict": {
+          "present": true,
+          "title": "Predict the Cache",
+          "errors": [],
+          "pass": true
+        },
+        "manipulate": {
+          "present": true,
+          "title": "Trace the Cache",
+          "errors": [],
+          "pass": true
+        },
+        "build": {
+          "present": true,
+          "title": "Climbing Stairs",
+          "errors": [],
+          "pass": true
+        },
+        "break": {
+          "present": true,
+          "title": "What Breaks?",
+          "errors": [],
+          "pass": true
+        },
+        "debug": {
+          "present": true,
+          "title": "Debug the Memo",
+          "errors": [],
+          "pass": true
+        },
+        "retrieve": {
+          "present": true,
+          "title": "Recall: Memoization",
+          "errors": [],
+          "pass": true
+        },
+        "transfer": {
+          "present": true,
+          "title": "Transfer: House Robber",
+          "errors": [],
+          "pass": true
+        },
+        "mastery": {
+          "present": true,
+          "title": "Prove It: Climbing Stairs",
+          "errors": [],
+          "pass": true
+        }
+      },
+      "overall": "PASS"
+    }
+  ],
+  [
+    "Tabulation",
+    "dp-2",
+    {
+      "lesson_id": "dp-2",
+      "title": "Tabulation",
+      "found": true,
+      "missing_steps": [],
+      "steps": {
+        "discover": {
+          "present": true,
+          "title": "The Table",
+          "errors": [],
+          "pass": true
+        },
+        "predict": {
+          "present": true,
+          "title": "Predict the Table",
+          "errors": [],
+          "pass": true
+        },
+        "manipulate": {
+          "present": true,
+          "title": "Fill the Table",
+          "errors": [],
+          "pass": true
+        },
+        "build": {
+          "present": true,
+          "title": "Coin Change",
+          "errors": [],
+          "pass": true
+        },
+        "break": {
+          "present": true,
+          "title": "What Breaks?",
+          "errors": [],
+          "pass": true
+        },
+        "debug": {
+          "present": true,
+          "title": "Debug the DP",
+          "errors": [],
+          "pass": true
+        },
+        "retrieve": {
+          "present": true,
+          "title": "Recall: Tabulation",
+          "errors": [],
+          "pass": true
+        },
+        "transfer": {
+          "present": true,
+          "title": "Transfer: Unique Paths",
+          "errors": [],
+          "pass": true
+        },
+        "mastery": {
+          "present": true,
+          "title": "Prove It: Edit Distance",
+          "errors": [],
+          "pass": true
+        }
+      },
+      "overall": "PASS"
+    }
+  ]
+]

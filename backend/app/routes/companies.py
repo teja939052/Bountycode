@@ -1,5 +1,5 @@
 """Company journey API endpoints."""
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 
 from app.middleware.auth import get_current_user
 from app.content.company_journeys import (
@@ -8,6 +8,7 @@ from app.content.company_journeys import (
     get_all_companies,
     evaluate_stage,
 )
+from app.services.company_roadmap import generate_roadmap
 
 router = APIRouter(prefix="/api/v1/companies", tags=["companies"])
 
@@ -61,3 +62,51 @@ async def evaluate_stage_performance(
         }
 
     return result
+
+
+@router.get("/roadmap")
+async def get_company_roadmap(
+    company: str = Query(..., description="Target company"),
+    role: str = Query("sde", description="Target role"),
+    timeline_days: int = Query(30, description="Timeline in days"),
+    daily_minutes: int = Query(60, description="Daily study minutes"),
+    user=Depends(get_current_user),
+):
+    """Generate a personalized company-first roadmap."""
+    from app.services.readiness_engine import compute_readiness
+
+    readiness = await compute_readiness(user["id"], company=company)
+    skill_graph = {
+        "categories": readiness.get("category_scores") or readiness.get("categories") or {},
+    }
+    roadmap = generate_roadmap(
+        target_company=company,
+        skill_graph=skill_graph,
+        timeline_days=timeline_days,
+        daily_minutes=daily_minutes,
+        target_role=role,
+    )
+    return {
+        "company": company,
+        "role": role,
+        "timeline_days": timeline_days,
+        "daily_minutes": daily_minutes,
+        "overall_readiness": roadmap.overall_readiness,
+        "domain_scores": roadmap.domain_scores,
+        "missions": [
+            {
+                "title": m.title,
+                "category": m.category,
+                "topic": m.topic,
+                "pattern": m.pattern,
+                "minutes": m.minutes,
+                "question_count": m.question_count,
+                "difficulty": m.difficulty,
+                "company_relevance": m.company_relevance,
+                "reason": m.reason,
+            }
+            for m in roadmap.missions
+        ],
+        "milestones": roadmap.milestones,
+        "next_focus": roadmap.next_focus,
+    }

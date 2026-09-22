@@ -1,0 +1,1502 @@
+[
+  {
+    "id": "quant_si_0000",
+    "question": "Simple interest on ₹1000 at 5% for 1 years?",
+    "pattern": "si",
+    "skill": "si",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Simple interest on ₹1000 at 5% for 1 years?",
+      "options": [
+        "A. ₹50",
+        "B. ₹50",
+        "C. ₹1000",
+        "D. ₹100"
+      ],
+      "correct_answer": "A. ₹50",
+      "explanation": "SI = P*R*T/100 = 1000*5*1/100 = 50"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.188151+00:00",
+    "updated_at": "2026-09-21T12:53:32.188151+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "quant_si_0001",
+    "question": "Simple interest on ₹1000 at 5% for 2 years?",
+    "pattern": "si",
+    "skill": "si",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Simple interest on ₹1000 at 5% for 2 years?",
+      "options": [
+        "A. ₹100",
+        "B. ₹102",
+        "C. ₹1000",
+        "D. ₹202"
+      ],
+      "correct_answer": "A. ₹100",
+      "explanation": "SI = P*R*T/100 = 1000*5*2/100 = 100"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.189152+00:00",
+    "updated_at": "2026-09-21T12:53:32.189152+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "quant_ci_0002",
+    "question": "Compound interest on ₹1000 at 5% for 3 years?",
+    "pattern": "ci",
+    "skill": "ci",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.95,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Compound interest on ₹1000 at 5% for 3 years?",
+      "options": [
+        "A. ₹157",
+        "B. ₹150",
+        "C. ₹1000",
+        "D. ₹307"
+      ],
+      "correct_answer": "A. ₹157",
+      "explanation": "CI = P*(1+R/100)^T - P = 1157 - 1000 = 157"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.189152+00:00",
+    "updated_at": "2026-09-21T12:53:32.189152+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Cognizant",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_si_0003",
+    "question": "Simple interest on ₹1000 at 5% for 5 years?",
+    "pattern": "si",
+    "skill": "si",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Simple interest on ₹1000 at 5% for 5 years?",
+      "options": [
+        "A. ₹250",
+        "B. ₹276",
+        "C. ₹1000",
+        "D. ₹526"
+      ],
+      "correct_answer": "A. ₹250",
+      "explanation": "SI = P*R*T/100 = 1000*5*5/100 = 250"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.189152+00:00",
+    "updated_at": "2026-09-21T12:53:32.189152+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "quant_ci_0004",
+    "question": "Compound interest on ₹1000 at 8% for 1 years?",
+    "pattern": "ci",
+    "skill": "ci",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.95,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Compound interest on ₹1000 at 8% for 1 years?",
+      "options": [
+        "A. ₹80",
+        "B. ₹80",
+        "C. ₹1000",
+        "D. ₹160"
+      ],
+      "correct_answer": "A. ₹80",
+      "explanation": "CI = P*(1+R/100)^T - P = 1080 - 1000 = 80"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.189152+00:00",
+    "updated_at": "2026-09-21T12:53:32.189152+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Cognizant",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_ci_0005",
+    "question": "Compound interest on ₹1000 at 8% for 2 years?",
+    "pattern": "ci",
+    "skill": "ci",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.95,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Compound interest on ₹1000 at 8% for 2 years?",
+      "options": [
+        "A. ₹166",
+        "B. ₹160",
+        "C. ₹1000",
+        "D. ₹326"
+      ],
+      "correct_answer": "A. ₹166",
+      "explanation": "CI = P*(1+R/100)^T - P = 1166 - 1000 = 166"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.189152+00:00",
+    "updated_at": "2026-09-21T12:53:32.189152+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Cognizant",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_si_0006",
+    "question": "Simple interest on ₹1000 at 8% for 3 years?",
+    "pattern": "si",
+    "skill": "si",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Simple interest on ₹1000 at 8% for 3 years?",
+      "options": [
+        "A. ₹240",
+        "B. ₹259",
+        "C. ₹1000",
+        "D. ₹499"
+      ],
+      "correct_answer": "A. ₹240",
+      "explanation": "SI = P*R*T/100 = 1000*8*3/100 = 240"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.189152+00:00",
+    "updated_at": "2026-09-21T12:53:32.189152+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "quant_si_0007",
+    "question": "Simple interest on ₹1000 at 8% for 5 years?",
+    "pattern": "si",
+    "skill": "si",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Simple interest on ₹1000 at 8% for 5 years?",
+      "options": [
+        "A. ₹400",
+        "B. ₹469",
+        "C. ₹1000",
+        "D. ₹869"
+      ],
+      "correct_answer": "A. ₹400",
+      "explanation": "SI = P*R*T/100 = 1000*8*5/100 = 400"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.189152+00:00",
+    "updated_at": "2026-09-21T12:53:32.189152+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "quant_si_0008",
+    "question": "Simple interest on ₹1000 at 10% for 1 years?",
+    "pattern": "si",
+    "skill": "si",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Simple interest on ₹1000 at 10% for 1 years?",
+      "options": [
+        "A. ₹100",
+        "B. ₹100",
+        "C. ₹1000",
+        "D. ₹200"
+      ],
+      "correct_answer": "A. ₹100",
+      "explanation": "SI = P*R*T/100 = 1000*10*1/100 = 100"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.189152+00:00",
+    "updated_at": "2026-09-21T12:53:32.189152+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "quant_ci_0009",
+    "question": "Compound interest on ₹1000 at 10% for 2 years?",
+    "pattern": "ci",
+    "skill": "ci",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.95,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Compound interest on ₹1000 at 10% for 2 years?",
+      "options": [
+        "A. ₹210",
+        "B. ₹200",
+        "C. ₹1000",
+        "D. ₹410"
+      ],
+      "correct_answer": "A. ₹210",
+      "explanation": "CI = P*(1+R/100)^T - P = 1210 - 1000 = 210"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.189152+00:00",
+    "updated_at": "2026-09-21T12:53:32.189152+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Cognizant",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_si_0010",
+    "question": "Simple interest on ₹1000 at 10% for 3 years?",
+    "pattern": "si",
+    "skill": "si",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Simple interest on ₹1000 at 10% for 3 years?",
+      "options": [
+        "A. ₹300",
+        "B. ₹331",
+        "C. ₹1000",
+        "D. ₹631"
+      ],
+      "correct_answer": "A. ₹300",
+      "explanation": "SI = P*R*T/100 = 1000*10*3/100 = 300"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.189152+00:00",
+    "updated_at": "2026-09-21T12:53:32.189152+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "quant_ci_0011",
+    "question": "Compound interest on ₹1000 at 10% for 5 years?",
+    "pattern": "ci",
+    "skill": "ci",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.95,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Compound interest on ₹1000 at 10% for 5 years?",
+      "options": [
+        "A. ₹610",
+        "B. ₹500",
+        "C. ₹1000",
+        "D. ₹1110"
+      ],
+      "correct_answer": "A. ₹610",
+      "explanation": "CI = P*(1+R/100)^T - P = 1610 - 1000 = 610"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.189152+00:00",
+    "updated_at": "2026-09-21T12:53:32.189152+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Cognizant",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_ci_0012",
+    "question": "Compound interest on ₹1000 at 12% for 1 years?",
+    "pattern": "ci",
+    "skill": "ci",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.95,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Compound interest on ₹1000 at 12% for 1 years?",
+      "options": [
+        "A. ₹120",
+        "B. ₹120",
+        "C. ₹1000",
+        "D. ₹240"
+      ],
+      "correct_answer": "A. ₹120",
+      "explanation": "CI = P*(1+R/100)^T - P = 1120 - 1000 = 120"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.189152+00:00",
+    "updated_at": "2026-09-21T12:53:32.189152+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Cognizant",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_si_0013",
+    "question": "Simple interest on ₹1000 at 12% for 2 years?",
+    "pattern": "si",
+    "skill": "si",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Simple interest on ₹1000 at 12% for 2 years?",
+      "options": [
+        "A. ₹240",
+        "B. ₹254",
+        "C. ₹1000",
+        "D. ₹494"
+      ],
+      "correct_answer": "A. ₹240",
+      "explanation": "SI = P*R*T/100 = 1000*12*2/100 = 240"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.189152+00:00",
+    "updated_at": "2026-09-21T12:53:32.189152+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "quant_ci_0014",
+    "question": "Compound interest on ₹1000 at 12% for 3 years?",
+    "pattern": "ci",
+    "skill": "ci",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.95,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Compound interest on ₹1000 at 12% for 3 years?",
+      "options": [
+        "A. ₹404",
+        "B. ₹360",
+        "C. ₹1000",
+        "D. ₹764"
+      ],
+      "correct_answer": "A. ₹404",
+      "explanation": "CI = P*(1+R/100)^T - P = 1404 - 1000 = 404"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.189152+00:00",
+    "updated_at": "2026-09-21T12:53:32.189152+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Cognizant",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_ci_0015",
+    "question": "Compound interest on ₹1000 at 12% for 5 years?",
+    "pattern": "ci",
+    "skill": "ci",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.95,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Compound interest on ₹1000 at 12% for 5 years?",
+      "options": [
+        "A. ₹762",
+        "B. ₹600",
+        "C. ₹1000",
+        "D. ₹1362"
+      ],
+      "correct_answer": "A. ₹762",
+      "explanation": "CI = P*(1+R/100)^T - P = 1762 - 1000 = 762"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.189152+00:00",
+    "updated_at": "2026-09-21T12:53:32.189152+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Cognizant",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_ci_0016",
+    "question": "Compound interest on ₹2000 at 5% for 1 years?",
+    "pattern": "ci",
+    "skill": "ci",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.95,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Compound interest on ₹2000 at 5% for 1 years?",
+      "options": [
+        "A. ₹100",
+        "B. ₹100",
+        "C. ₹2000",
+        "D. ₹200"
+      ],
+      "correct_answer": "A. ₹100",
+      "explanation": "CI = P*(1+R/100)^T - P = 2100 - 2000 = 100"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.189152+00:00",
+    "updated_at": "2026-09-21T12:53:32.189152+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Cognizant",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_si_0017",
+    "question": "Simple interest on ₹2000 at 5% for 2 years?",
+    "pattern": "si",
+    "skill": "si",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Simple interest on ₹2000 at 5% for 2 years?",
+      "options": [
+        "A. ₹200",
+        "B. ₹205",
+        "C. ₹2000",
+        "D. ₹405"
+      ],
+      "correct_answer": "A. ₹200",
+      "explanation": "SI = P*R*T/100 = 2000*5*2/100 = 200"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.190502+00:00",
+    "updated_at": "2026-09-21T12:53:32.190502+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "quant_ci_0018",
+    "question": "Compound interest on ₹2000 at 5% for 3 years?",
+    "pattern": "ci",
+    "skill": "ci",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.95,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Compound interest on ₹2000 at 5% for 3 years?",
+      "options": [
+        "A. ₹315",
+        "B. ₹300",
+        "C. ₹2000",
+        "D. ₹615"
+      ],
+      "correct_answer": "A. ₹315",
+      "explanation": "CI = P*(1+R/100)^T - P = 2315 - 2000 = 315"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.190502+00:00",
+    "updated_at": "2026-09-21T12:53:32.190502+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Cognizant",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_ci_0019",
+    "question": "Compound interest on ₹2000 at 5% for 5 years?",
+    "pattern": "ci",
+    "skill": "ci",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.95,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Compound interest on ₹2000 at 5% for 5 years?",
+      "options": [
+        "A. ₹552",
+        "B. ₹500",
+        "C. ₹2000",
+        "D. ₹1052"
+      ],
+      "correct_answer": "A. ₹552",
+      "explanation": "CI = P*(1+R/100)^T - P = 2552 - 2000 = 552"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.190502+00:00",
+    "updated_at": "2026-09-21T12:53:32.190502+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Cognizant",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_si_0020",
+    "question": "Simple interest on ₹2000 at 8% for 1 years?",
+    "pattern": "si",
+    "skill": "si",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Simple interest on ₹2000 at 8% for 1 years?",
+      "options": [
+        "A. ₹160",
+        "B. ₹160",
+        "C. ₹2000",
+        "D. ₹320"
+      ],
+      "correct_answer": "A. ₹160",
+      "explanation": "SI = P*R*T/100 = 2000*8*1/100 = 160"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.190502+00:00",
+    "updated_at": "2026-09-21T12:53:32.190502+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "quant_ci_0021",
+    "question": "Compound interest on ₹2000 at 8% for 2 years?",
+    "pattern": "ci",
+    "skill": "ci",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.95,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Compound interest on ₹2000 at 8% for 2 years?",
+      "options": [
+        "A. ₹332",
+        "B. ₹320",
+        "C. ₹2000",
+        "D. ₹652"
+      ],
+      "correct_answer": "A. ₹332",
+      "explanation": "CI = P*(1+R/100)^T - P = 2332 - 2000 = 332"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.190502+00:00",
+    "updated_at": "2026-09-21T12:53:32.190502+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Cognizant",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_si_0022",
+    "question": "Simple interest on ₹2000 at 8% for 3 years?",
+    "pattern": "si",
+    "skill": "si",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Simple interest on ₹2000 at 8% for 3 years?",
+      "options": [
+        "A. ₹480",
+        "B. ₹519",
+        "C. ₹2000",
+        "D. ₹999"
+      ],
+      "correct_answer": "A. ₹480",
+      "explanation": "SI = P*R*T/100 = 2000*8*3/100 = 480"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.190502+00:00",
+    "updated_at": "2026-09-21T12:53:32.191502+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "quant_ci_0023",
+    "question": "Compound interest on ₹2000 at 8% for 5 years?",
+    "pattern": "ci",
+    "skill": "ci",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.95,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Compound interest on ₹2000 at 8% for 5 years?",
+      "options": [
+        "A. ₹938",
+        "B. ₹800",
+        "C. ₹2000",
+        "D. ₹1738"
+      ],
+      "correct_answer": "A. ₹938",
+      "explanation": "CI = P*(1+R/100)^T - P = 2938 - 2000 = 938"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.191502+00:00",
+    "updated_at": "2026-09-21T12:53:32.191502+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Cognizant",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_si_0024",
+    "question": "Simple interest on ₹2000 at 10% for 1 years?",
+    "pattern": "si",
+    "skill": "si",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Simple interest on ₹2000 at 10% for 1 years?",
+      "options": [
+        "A. ₹200",
+        "B. ₹200",
+        "C. ₹2000",
+        "D. ₹400"
+      ],
+      "correct_answer": "A. ₹200",
+      "explanation": "SI = P*R*T/100 = 2000*10*1/100 = 200"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.191502+00:00",
+    "updated_at": "2026-09-21T12:53:32.191502+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "quant_ci_0025",
+    "question": "Compound interest on ₹2000 at 10% for 2 years?",
+    "pattern": "ci",
+    "skill": "ci",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.95,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Compound interest on ₹2000 at 10% for 2 years?",
+      "options": [
+        "A. ₹420",
+        "B. ₹400",
+        "C. ₹2000",
+        "D. ₹820"
+      ],
+      "correct_answer": "A. ₹420",
+      "explanation": "CI = P*(1+R/100)^T - P = 2420 - 2000 = 420"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.191502+00:00",
+    "updated_at": "2026-09-21T12:53:32.191502+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Cognizant",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_ci_0026",
+    "question": "Compound interest on ₹2000 at 10% for 3 years?",
+    "pattern": "ci",
+    "skill": "ci",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.95,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Compound interest on ₹2000 at 10% for 3 years?",
+      "options": [
+        "A. ₹662",
+        "B. ₹600",
+        "C. ₹2000",
+        "D. ₹1262"
+      ],
+      "correct_answer": "A. ₹662",
+      "explanation": "CI = P*(1+R/100)^T - P = 2662 - 2000 = 662"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.191502+00:00",
+    "updated_at": "2026-09-21T12:53:32.191502+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Cognizant",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_si_0027",
+    "question": "Simple interest on ₹2000 at 10% for 5 years?",
+    "pattern": "si",
+    "skill": "si",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Simple interest on ₹2000 at 10% for 5 years?",
+      "options": [
+        "A. ₹1000",
+        "B. ₹1221",
+        "C. ₹2000",
+        "D. ₹2221"
+      ],
+      "correct_answer": "A. ₹1000",
+      "explanation": "SI = P*R*T/100 = 2000*10*5/100 = 1000"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.191502+00:00",
+    "updated_at": "2026-09-21T12:53:32.191502+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "quant_si_0028",
+    "question": "Simple interest on ₹2000 at 12% for 1 years?",
+    "pattern": "si",
+    "skill": "si",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Simple interest on ₹2000 at 12% for 1 years?",
+      "options": [
+        "A. ₹240",
+        "B. ₹240",
+        "C. ₹2000",
+        "D. ₹480"
+      ],
+      "correct_answer": "A. ₹240",
+      "explanation": "SI = P*R*T/100 = 2000*12*1/100 = 240"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.191502+00:00",
+    "updated_at": "2026-09-21T12:53:32.191502+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "quant_ci_0029",
+    "question": "Compound interest on ₹2000 at 12% for 2 years?",
+    "pattern": "ci",
+    "skill": "ci",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.95,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Compound interest on ₹2000 at 12% for 2 years?",
+      "options": [
+        "A. ₹508",
+        "B. ₹480",
+        "C. ₹2000",
+        "D. ₹988"
+      ],
+      "correct_answer": "A. ₹508",
+      "explanation": "CI = P*(1+R/100)^T - P = 2508 - 2000 = 508"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.191502+00:00",
+    "updated_at": "2026-09-21T12:53:32.191502+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Cognizant",
+      "Wipro"
+    ]
+  }
+]

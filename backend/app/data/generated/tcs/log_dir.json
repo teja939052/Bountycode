@@ -1,0 +1,1962 @@
+[
+  {
+    "id": "log_dir_0000",
+    "question": "Start at origin. Go 5 km N, turn right 3 km E, turn right 5 km S. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 5 km N, turn right 3 km E, turn right 5 km S. Distance & direction from start?",
+      "options": [
+        "A. A. 3 km East",
+        "B. B. 3 km N",
+        "C. C. 10 km total",
+        "D. D. 5 km E"
+      ],
+      "correct_answer": "A. 3 km East",
+      "explanation": "Net displacement: 3 km East"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.217050+00:00",
+    "updated_at": "2026-09-21T12:53:32.217050+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0001",
+    "question": "Start at origin. Go 5 km N, turn right 3 km E, turn right 5 km S. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 5 km N, turn right 3 km E, turn right 5 km S. Distance & direction from start?",
+      "options": [
+        "A. A. 3 km East",
+        "B. B. 3 km N",
+        "C. C. 10 km total",
+        "D. D. 5 km E"
+      ],
+      "correct_answer": "A. 3 km East",
+      "explanation": "Net displacement: 3 km East"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.217050+00:00",
+    "updated_at": "2026-09-21T12:53:32.217050+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0002",
+    "question": "Start at origin. Go 5 km N, turn right 3 km E, turn right 5 km S. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 5 km N, turn right 3 km E, turn right 5 km S. Distance & direction from start?",
+      "options": [
+        "A. A. 3 km East",
+        "B. B. 3 km N",
+        "C. C. 10 km total",
+        "D. D. 5 km E"
+      ],
+      "correct_answer": "A. 3 km East",
+      "explanation": "Net displacement: 3 km East"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.217050+00:00",
+    "updated_at": "2026-09-21T12:53:32.217050+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0003",
+    "question": "Start at origin. Go 5 km N, turn right 3 km E, turn right 5 km S. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 5 km N, turn right 3 km E, turn right 5 km S. Distance & direction from start?",
+      "options": [
+        "A. A. 3 km East",
+        "B. B. 3 km N",
+        "C. C. 10 km total",
+        "D. D. 5 km E"
+      ],
+      "correct_answer": "A. 3 km East",
+      "explanation": "Net displacement: 3 km East"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.217050+00:00",
+    "updated_at": "2026-09-21T12:53:32.217050+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0004",
+    "question": "Start at origin. Go 5 km N, turn right 3 km E, turn right 5 km S. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 5 km N, turn right 3 km E, turn right 5 km S. Distance & direction from start?",
+      "options": [
+        "A. A. 3 km East",
+        "B. B. 3 km N",
+        "C. C. 10 km total",
+        "D. D. 5 km E"
+      ],
+      "correct_answer": "A. 3 km East",
+      "explanation": "Net displacement: 3 km East"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.217050+00:00",
+    "updated_at": "2026-09-21T12:53:32.217050+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0005",
+    "question": "Start at origin. Go 5 km N, turn right 3 km E, turn right 5 km S. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 5 km N, turn right 3 km E, turn right 5 km S. Distance & direction from start?",
+      "options": [
+        "A. A. 3 km East",
+        "B. B. 3 km N",
+        "C. C. 10 km total",
+        "D. D. 5 km E"
+      ],
+      "correct_answer": "A. 3 km East",
+      "explanation": "Net displacement: 3 km East"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.217050+00:00",
+    "updated_at": "2026-09-21T12:53:32.217050+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0006",
+    "question": "Start at origin. Go 5 km N, turn right 3 km E, turn right 5 km S. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 5 km N, turn right 3 km E, turn right 5 km S. Distance & direction from start?",
+      "options": [
+        "A. A. 3 km East",
+        "B. B. 3 km N",
+        "C. C. 10 km total",
+        "D. D. 5 km E"
+      ],
+      "correct_answer": "A. 3 km East",
+      "explanation": "Net displacement: 3 km East"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.217050+00:00",
+    "updated_at": "2026-09-21T12:53:32.217050+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0007",
+    "question": "Start at origin. Go 5 km N, turn right 3 km E, turn right 5 km S. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 5 km N, turn right 3 km E, turn right 5 km S. Distance & direction from start?",
+      "options": [
+        "A. A. 3 km East",
+        "B. B. 3 km N",
+        "C. C. 10 km total",
+        "D. D. 5 km E"
+      ],
+      "correct_answer": "A. 3 km East",
+      "explanation": "Net displacement: 3 km East"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.217050+00:00",
+    "updated_at": "2026-09-21T12:53:32.217050+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0008",
+    "question": "Start at origin. Go 4 km E, turn right 6 km S, turn right 4 km W. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 4 km E, turn right 6 km S, turn right 4 km W. Distance & direction from start?",
+      "options": [
+        "A. A. 6 km South",
+        "B. B. 6 km E",
+        "C. C. 8 km total",
+        "D. D. 6 km S"
+      ],
+      "correct_answer": "A. 6 km South",
+      "explanation": "Net displacement: 6 km South"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.217050+00:00",
+    "updated_at": "2026-09-21T12:53:32.217050+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0009",
+    "question": "Start at origin. Go 4 km E, turn right 6 km S, turn right 4 km W. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 4 km E, turn right 6 km S, turn right 4 km W. Distance & direction from start?",
+      "options": [
+        "A. A. 6 km South",
+        "B. B. 6 km E",
+        "C. C. 8 km total",
+        "D. D. 6 km S"
+      ],
+      "correct_answer": "A. 6 km South",
+      "explanation": "Net displacement: 6 km South"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.218051+00:00",
+    "updated_at": "2026-09-21T12:53:32.218051+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0010",
+    "question": "Start at origin. Go 4 km E, turn right 6 km S, turn right 4 km W. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 4 km E, turn right 6 km S, turn right 4 km W. Distance & direction from start?",
+      "options": [
+        "A. A. 6 km South",
+        "B. B. 6 km E",
+        "C. C. 8 km total",
+        "D. D. 6 km S"
+      ],
+      "correct_answer": "A. 6 km South",
+      "explanation": "Net displacement: 6 km South"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.218051+00:00",
+    "updated_at": "2026-09-21T12:53:32.218051+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0011",
+    "question": "Start at origin. Go 4 km E, turn right 6 km S, turn right 4 km W. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 4 km E, turn right 6 km S, turn right 4 km W. Distance & direction from start?",
+      "options": [
+        "A. A. 6 km South",
+        "B. B. 6 km E",
+        "C. C. 8 km total",
+        "D. D. 6 km S"
+      ],
+      "correct_answer": "A. 6 km South",
+      "explanation": "Net displacement: 6 km South"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.218051+00:00",
+    "updated_at": "2026-09-21T12:53:32.218051+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0012",
+    "question": "Start at origin. Go 4 km E, turn right 6 km S, turn right 4 km W. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 4 km E, turn right 6 km S, turn right 4 km W. Distance & direction from start?",
+      "options": [
+        "A. A. 6 km South",
+        "B. B. 6 km E",
+        "C. C. 8 km total",
+        "D. D. 6 km S"
+      ],
+      "correct_answer": "A. 6 km South",
+      "explanation": "Net displacement: 6 km South"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.218051+00:00",
+    "updated_at": "2026-09-21T12:53:32.218051+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0013",
+    "question": "Start at origin. Go 4 km E, turn right 6 km S, turn right 4 km W. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 4 km E, turn right 6 km S, turn right 4 km W. Distance & direction from start?",
+      "options": [
+        "A. A. 6 km South",
+        "B. B. 6 km E",
+        "C. C. 8 km total",
+        "D. D. 6 km S"
+      ],
+      "correct_answer": "A. 6 km South",
+      "explanation": "Net displacement: 6 km South"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.218051+00:00",
+    "updated_at": "2026-09-21T12:53:32.218051+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0014",
+    "question": "Start at origin. Go 4 km E, turn right 6 km S, turn right 4 km W. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 4 km E, turn right 6 km S, turn right 4 km W. Distance & direction from start?",
+      "options": [
+        "A. A. 6 km South",
+        "B. B. 6 km E",
+        "C. C. 8 km total",
+        "D. D. 6 km S"
+      ],
+      "correct_answer": "A. 6 km South",
+      "explanation": "Net displacement: 6 km South"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.218051+00:00",
+    "updated_at": "2026-09-21T12:53:32.218051+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0015",
+    "question": "Start at origin. Go 4 km E, turn right 6 km S, turn right 4 km W. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 4 km E, turn right 6 km S, turn right 4 km W. Distance & direction from start?",
+      "options": [
+        "A. A. 6 km South",
+        "B. B. 6 km E",
+        "C. C. 8 km total",
+        "D. D. 6 km S"
+      ],
+      "correct_answer": "A. 6 km South",
+      "explanation": "Net displacement: 6 km South"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.218051+00:00",
+    "updated_at": "2026-09-21T12:53:32.218051+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0016",
+    "question": "Start at origin. Go 10 km N, turn right 8 km W, turn right 10 km S. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 10 km N, turn right 8 km W, turn right 10 km S. Distance & direction from start?",
+      "options": [
+        "A. A. 8 km West",
+        "B. B. 8 km N",
+        "C. C. 20 km total",
+        "D. D. 10 km W"
+      ],
+      "correct_answer": "A. 8 km West",
+      "explanation": "Net displacement: 8 km West"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.218051+00:00",
+    "updated_at": "2026-09-21T12:53:32.218051+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0017",
+    "question": "Start at origin. Go 10 km N, turn right 8 km W, turn right 10 km S. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 10 km N, turn right 8 km W, turn right 10 km S. Distance & direction from start?",
+      "options": [
+        "A. A. 8 km West",
+        "B. B. 8 km N",
+        "C. C. 20 km total",
+        "D. D. 10 km W"
+      ],
+      "correct_answer": "A. 8 km West",
+      "explanation": "Net displacement: 8 km West"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.218051+00:00",
+    "updated_at": "2026-09-21T12:53:32.218051+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0018",
+    "question": "Start at origin. Go 10 km N, turn right 8 km W, turn right 10 km S. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 10 km N, turn right 8 km W, turn right 10 km S. Distance & direction from start?",
+      "options": [
+        "A. A. 8 km West",
+        "B. B. 8 km N",
+        "C. C. 20 km total",
+        "D. D. 10 km W"
+      ],
+      "correct_answer": "A. 8 km West",
+      "explanation": "Net displacement: 8 km West"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.218051+00:00",
+    "updated_at": "2026-09-21T12:53:32.218051+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0019",
+    "question": "Start at origin. Go 10 km N, turn right 8 km W, turn right 10 km S. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 10 km N, turn right 8 km W, turn right 10 km S. Distance & direction from start?",
+      "options": [
+        "A. A. 8 km West",
+        "B. B. 8 km N",
+        "C. C. 20 km total",
+        "D. D. 10 km W"
+      ],
+      "correct_answer": "A. 8 km West",
+      "explanation": "Net displacement: 8 km West"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.218051+00:00",
+    "updated_at": "2026-09-21T12:53:32.218051+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0020",
+    "question": "Start at origin. Go 10 km N, turn right 8 km W, turn right 10 km S. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 10 km N, turn right 8 km W, turn right 10 km S. Distance & direction from start?",
+      "options": [
+        "A. A. 8 km West",
+        "B. B. 8 km N",
+        "C. C. 20 km total",
+        "D. D. 10 km W"
+      ],
+      "correct_answer": "A. 8 km West",
+      "explanation": "Net displacement: 8 km West"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.218051+00:00",
+    "updated_at": "2026-09-21T12:53:32.218051+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0021",
+    "question": "Start at origin. Go 10 km N, turn right 8 km W, turn right 10 km S. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 10 km N, turn right 8 km W, turn right 10 km S. Distance & direction from start?",
+      "options": [
+        "A. A. 8 km West",
+        "B. B. 8 km N",
+        "C. C. 20 km total",
+        "D. D. 10 km W"
+      ],
+      "correct_answer": "A. 8 km West",
+      "explanation": "Net displacement: 8 km West"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.218051+00:00",
+    "updated_at": "2026-09-21T12:53:32.218051+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0022",
+    "question": "Start at origin. Go 10 km N, turn right 8 km W, turn right 10 km S. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 10 km N, turn right 8 km W, turn right 10 km S. Distance & direction from start?",
+      "options": [
+        "A. A. 8 km West",
+        "B. B. 8 km N",
+        "C. C. 20 km total",
+        "D. D. 10 km W"
+      ],
+      "correct_answer": "A. 8 km West",
+      "explanation": "Net displacement: 8 km West"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.218051+00:00",
+    "updated_at": "2026-09-21T12:53:32.218051+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0023",
+    "question": "Start at origin. Go 10 km N, turn right 8 km W, turn right 10 km S. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 10 km N, turn right 8 km W, turn right 10 km S. Distance & direction from start?",
+      "options": [
+        "A. A. 8 km West",
+        "B. B. 8 km N",
+        "C. C. 20 km total",
+        "D. D. 10 km W"
+      ],
+      "correct_answer": "A. 8 km West",
+      "explanation": "Net displacement: 8 km West"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.218051+00:00",
+    "updated_at": "2026-09-21T12:53:32.218051+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0024",
+    "question": "Start at origin. Go 6 km S, turn right 4 km E, turn right 6 km N. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 6 km S, turn right 4 km E, turn right 6 km N. Distance & direction from start?",
+      "options": [
+        "A. A. 4 km East",
+        "B. B. 4 km S",
+        "C. C. 12 km total",
+        "D. D. 6 km E"
+      ],
+      "correct_answer": "A. 4 km East",
+      "explanation": "Net displacement: 4 km East"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.218051+00:00",
+    "updated_at": "2026-09-21T12:53:32.218051+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0025",
+    "question": "Start at origin. Go 6 km S, turn right 4 km E, turn right 6 km N. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 6 km S, turn right 4 km E, turn right 6 km N. Distance & direction from start?",
+      "options": [
+        "A. A. 4 km East",
+        "B. B. 4 km S",
+        "C. C. 12 km total",
+        "D. D. 6 km E"
+      ],
+      "correct_answer": "A. 4 km East",
+      "explanation": "Net displacement: 4 km East"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.218051+00:00",
+    "updated_at": "2026-09-21T12:53:32.218051+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0026",
+    "question": "Start at origin. Go 6 km S, turn right 4 km E, turn right 6 km N. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 6 km S, turn right 4 km E, turn right 6 km N. Distance & direction from start?",
+      "options": [
+        "A. A. 4 km East",
+        "B. B. 4 km S",
+        "C. C. 12 km total",
+        "D. D. 6 km E"
+      ],
+      "correct_answer": "A. 4 km East",
+      "explanation": "Net displacement: 4 km East"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.218051+00:00",
+    "updated_at": "2026-09-21T12:53:32.218051+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0027",
+    "question": "Start at origin. Go 6 km S, turn right 4 km E, turn right 6 km N. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 6 km S, turn right 4 km E, turn right 6 km N. Distance & direction from start?",
+      "options": [
+        "A. A. 4 km East",
+        "B. B. 4 km S",
+        "C. C. 12 km total",
+        "D. D. 6 km E"
+      ],
+      "correct_answer": "A. 4 km East",
+      "explanation": "Net displacement: 4 km East"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.219046+00:00",
+    "updated_at": "2026-09-21T12:53:32.219046+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0028",
+    "question": "Start at origin. Go 6 km S, turn right 4 km E, turn right 6 km N. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 6 km S, turn right 4 km E, turn right 6 km N. Distance & direction from start?",
+      "options": [
+        "A. A. 4 km East",
+        "B. B. 4 km S",
+        "C. C. 12 km total",
+        "D. D. 6 km E"
+      ],
+      "correct_answer": "A. 4 km East",
+      "explanation": "Net displacement: 4 km East"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.219046+00:00",
+    "updated_at": "2026-09-21T12:53:32.219046+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0029",
+    "question": "Start at origin. Go 6 km S, turn right 4 km E, turn right 6 km N. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 6 km S, turn right 4 km E, turn right 6 km N. Distance & direction from start?",
+      "options": [
+        "A. A. 4 km East",
+        "B. B. 4 km S",
+        "C. C. 12 km total",
+        "D. D. 6 km E"
+      ],
+      "correct_answer": "A. 4 km East",
+      "explanation": "Net displacement: 4 km East"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.219046+00:00",
+    "updated_at": "2026-09-21T12:53:32.219046+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0030",
+    "question": "Start at origin. Go 6 km S, turn right 4 km E, turn right 6 km N. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 6 km S, turn right 4 km E, turn right 6 km N. Distance & direction from start?",
+      "options": [
+        "A. A. 4 km East",
+        "B. B. 4 km S",
+        "C. C. 12 km total",
+        "D. D. 6 km E"
+      ],
+      "correct_answer": "A. 4 km East",
+      "explanation": "Net displacement: 4 km East"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.219046+00:00",
+    "updated_at": "2026-09-21T12:53:32.219046+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0031",
+    "question": "Start at origin. Go 6 km S, turn right 4 km E, turn right 6 km N. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 6 km S, turn right 4 km E, turn right 6 km N. Distance & direction from start?",
+      "options": [
+        "A. A. 4 km East",
+        "B. B. 4 km S",
+        "C. C. 12 km total",
+        "D. D. 6 km E"
+      ],
+      "correct_answer": "A. 4 km East",
+      "explanation": "Net displacement: 4 km East"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.219046+00:00",
+    "updated_at": "2026-09-21T12:53:32.219046+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0032",
+    "question": "Start at origin. Go 7 km E, turn right 5 km N, turn right 7 km W. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 7 km E, turn right 5 km N, turn right 7 km W. Distance & direction from start?",
+      "options": [
+        "A. A. 5 km North",
+        "B. B. 5 km E",
+        "C. C. 14 km total",
+        "D. D. 7 km N"
+      ],
+      "correct_answer": "A. 5 km North",
+      "explanation": "Net displacement: 5 km North"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.219046+00:00",
+    "updated_at": "2026-09-21T12:53:32.219046+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0033",
+    "question": "Start at origin. Go 7 km E, turn right 5 km N, turn right 7 km W. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 7 km E, turn right 5 km N, turn right 7 km W. Distance & direction from start?",
+      "options": [
+        "A. A. 5 km North",
+        "B. B. 5 km E",
+        "C. C. 14 km total",
+        "D. D. 7 km N"
+      ],
+      "correct_answer": "A. 5 km North",
+      "explanation": "Net displacement: 5 km North"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.219046+00:00",
+    "updated_at": "2026-09-21T12:53:32.219046+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0034",
+    "question": "Start at origin. Go 7 km E, turn right 5 km N, turn right 7 km W. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 7 km E, turn right 5 km N, turn right 7 km W. Distance & direction from start?",
+      "options": [
+        "A. A. 5 km North",
+        "B. B. 5 km E",
+        "C. C. 14 km total",
+        "D. D. 7 km N"
+      ],
+      "correct_answer": "A. 5 km North",
+      "explanation": "Net displacement: 5 km North"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.219046+00:00",
+    "updated_at": "2026-09-21T12:53:32.219046+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0035",
+    "question": "Start at origin. Go 7 km E, turn right 5 km N, turn right 7 km W. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 7 km E, turn right 5 km N, turn right 7 km W. Distance & direction from start?",
+      "options": [
+        "A. A. 5 km North",
+        "B. B. 5 km E",
+        "C. C. 14 km total",
+        "D. D. 7 km N"
+      ],
+      "correct_answer": "A. 5 km North",
+      "explanation": "Net displacement: 5 km North"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.219046+00:00",
+    "updated_at": "2026-09-21T12:53:32.219046+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0036",
+    "question": "Start at origin. Go 7 km E, turn right 5 km N, turn right 7 km W. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 7 km E, turn right 5 km N, turn right 7 km W. Distance & direction from start?",
+      "options": [
+        "A. A. 5 km North",
+        "B. B. 5 km E",
+        "C. C. 14 km total",
+        "D. D. 7 km N"
+      ],
+      "correct_answer": "A. 5 km North",
+      "explanation": "Net displacement: 5 km North"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.219046+00:00",
+    "updated_at": "2026-09-21T12:53:32.219046+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0037",
+    "question": "Start at origin. Go 7 km E, turn right 5 km N, turn right 7 km W. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 7 km E, turn right 5 km N, turn right 7 km W. Distance & direction from start?",
+      "options": [
+        "A. A. 5 km North",
+        "B. B. 5 km E",
+        "C. C. 14 km total",
+        "D. D. 7 km N"
+      ],
+      "correct_answer": "A. 5 km North",
+      "explanation": "Net displacement: 5 km North"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.219046+00:00",
+    "updated_at": "2026-09-21T12:53:32.219046+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0038",
+    "question": "Start at origin. Go 7 km E, turn right 5 km N, turn right 7 km W. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 7 km E, turn right 5 km N, turn right 7 km W. Distance & direction from start?",
+      "options": [
+        "A. A. 5 km North",
+        "B. B. 5 km E",
+        "C. C. 14 km total",
+        "D. D. 7 km N"
+      ],
+      "correct_answer": "A. 5 km North",
+      "explanation": "Net displacement: 5 km North"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.219046+00:00",
+    "updated_at": "2026-09-21T12:53:32.219046+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "log_dir_0039",
+    "question": "Start at origin. Go 7 km E, turn right 5 km N, turn right 7 km W. Distance & direction from start?",
+    "pattern": "direction-sense",
+    "skill": "direction-sense",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Start at origin. Go 7 km E, turn right 5 km N, turn right 7 km W. Distance & direction from start?",
+      "options": [
+        "A. A. 5 km North",
+        "B. B. 5 km E",
+        "C. C. 14 km total",
+        "D. D. 7 km N"
+      ],
+      "correct_answer": "A. 5 km North",
+      "explanation": "Net displacement: 5 km North"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.219046+00:00",
+    "updated_at": "2026-09-21T12:53:32.219046+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  }
+]

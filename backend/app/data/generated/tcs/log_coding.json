@@ -1,0 +1,2502 @@
+[
+  {
+    "id": "log_coding_0000",
+    "question": "'HELLO' is coded as 'IFMMP' (forward shift by 1). How is 'TEST' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'HELLO' is coded as 'IFMMP' (forward shift by 1). How is 'TEST' coded?",
+      "options": [
+        "A. RIRW",
+        "B. XSHH",
+        "C. IEDT",
+        "D. UFTU"
+      ],
+      "correct_answer": "D. UFTU",
+      "explanation": "Apply same forward shift by 1 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.194303+00:00",
+    "updated_at": "2026-09-21T12:53:32.194303+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0001",
+    "question": "'HELLO' is coded as 'JGNNQ' (forward shift by 2). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'HELLO' is coded as 'JGNNQ' (forward shift by 2). How is 'CODE' coded?",
+      "options": [
+        "A. UHBD",
+        "B. DVYE",
+        "C. NKWP",
+        "D. EQFG"
+      ],
+      "correct_answer": "D. EQFG",
+      "explanation": "Apply same forward shift by 2 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.194303+00:00",
+    "updated_at": "2026-09-21T12:53:32.194303+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0002",
+    "question": "'HELLO' is coded as 'KHOOR' (forward shift by 3). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'HELLO' is coded as 'KHOOR' (forward shift by 3). How is 'CODE' coded?",
+      "options": [
+        "A. NUPP",
+        "B. KJUB",
+        "C. UGYJ",
+        "D. FRGH"
+      ],
+      "correct_answer": "D. FRGH",
+      "explanation": "Apply same forward shift by 3 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.194303+00:00",
+    "updated_at": "2026-09-21T12:53:32.194303+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0003",
+    "question": "'HELLO' is coded as 'GDKKN' (backward shift by 1). How is 'TEST' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'HELLO' is coded as 'GDKKN' (backward shift by 1). How is 'TEST' coded?",
+      "options": [
+        "A. RXXB",
+        "B. MZPF",
+        "C. SDRS",
+        "D. FNFB"
+      ],
+      "correct_answer": "C. SDRS",
+      "explanation": "Apply same backward shift by 1 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.194303+00:00",
+    "updated_at": "2026-09-21T12:53:32.194303+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0004",
+    "question": "'HELLO' is coded as 'FCJJM' (backward shift by 2). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'HELLO' is coded as 'FCJJM' (backward shift by 2). How is 'CODE' coded?",
+      "options": [
+        "A. KJOU",
+        "B. AMBC",
+        "C. JSTD",
+        "D. RQPE"
+      ],
+      "correct_answer": "B. AMBC",
+      "explanation": "Apply same backward shift by 2 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.194303+00:00",
+    "updated_at": "2026-09-21T12:53:32.194303+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0005",
+    "question": "'WORLD' is coded as 'XPSME' (forward shift by 1). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'WORLD' is coded as 'XPSME' (forward shift by 1). How is 'CODE' coded?",
+      "options": [
+        "A. WFAX",
+        "B. DPEF",
+        "C. ZDKF",
+        "D. XOUI"
+      ],
+      "correct_answer": "B. DPEF",
+      "explanation": "Apply same forward shift by 1 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.194303+00:00",
+    "updated_at": "2026-09-21T12:53:32.194303+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0006",
+    "question": "'WORLD' is coded as 'YQTNF' (forward shift by 2). How is 'TEST' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'WORLD' is coded as 'YQTNF' (forward shift by 2). How is 'TEST' coded?",
+      "options": [
+        "A. VGUV",
+        "B. NQKC",
+        "C. MVDF",
+        "D. FTUM"
+      ],
+      "correct_answer": "A. VGUV",
+      "explanation": "Apply same forward shift by 2 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.195303+00:00",
+    "updated_at": "2026-09-21T12:53:32.195303+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0007",
+    "question": "'WORLD' is coded as 'ZRUOG' (forward shift by 3). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'WORLD' is coded as 'ZRUOG' (forward shift by 3). How is 'CODE' coded?",
+      "options": [
+        "A. KJSX",
+        "B. HOYI",
+        "C. HAIM",
+        "D. FRGH"
+      ],
+      "correct_answer": "D. FRGH",
+      "explanation": "Apply same forward shift by 3 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.195303+00:00",
+    "updated_at": "2026-09-21T12:53:32.195303+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0008",
+    "question": "'WORLD' is coded as 'VNQKC' (backward shift by 1). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'WORLD' is coded as 'VNQKC' (backward shift by 1). How is 'CODE' coded?",
+      "options": [
+        "A. WHBV",
+        "B. BNCD",
+        "C. MVQW",
+        "D. DOJF"
+      ],
+      "correct_answer": "B. BNCD",
+      "explanation": "Apply same backward shift by 1 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.195303+00:00",
+    "updated_at": "2026-09-21T12:53:32.195303+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0009",
+    "question": "'WORLD' is coded as 'UMPJB' (backward shift by 2). How is 'TEST' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'WORLD' is coded as 'UMPJB' (backward shift by 2). How is 'TEST' coded?",
+      "options": [
+        "A. RCQR",
+        "B. EOXT",
+        "C. UJLT",
+        "D. HHEP"
+      ],
+      "correct_answer": "A. RCQR",
+      "explanation": "Apply same backward shift by 2 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.195303+00:00",
+    "updated_at": "2026-09-21T12:53:32.195303+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0010",
+    "question": "'PRIYA' is coded as 'QSJZB' (forward shift by 1). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'PRIYA' is coded as 'QSJZB' (forward shift by 1). How is 'CODE' coded?",
+      "options": [
+        "A. DPEF",
+        "B. YRZV",
+        "C. GYHV",
+        "D. YTZC"
+      ],
+      "correct_answer": "A. DPEF",
+      "explanation": "Apply same forward shift by 1 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.195303+00:00",
+    "updated_at": "2026-09-21T12:53:32.195303+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0011",
+    "question": "'PRIYA' is coded as 'RTKAC' (forward shift by 2). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'PRIYA' is coded as 'RTKAC' (forward shift by 2). How is 'CODE' coded?",
+      "options": [
+        "A. CSDB",
+        "B. RQGS",
+        "C. EQFG",
+        "D. REFK"
+      ],
+      "correct_answer": "C. EQFG",
+      "explanation": "Apply same forward shift by 2 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.195303+00:00",
+    "updated_at": "2026-09-21T12:53:32.196306+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0012",
+    "question": "'PRIYA' is coded as 'SULBD' (forward shift by 3). How is 'TEST' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'PRIYA' is coded as 'SULBD' (forward shift by 3). How is 'TEST' coded?",
+      "options": [
+        "A. WSPC",
+        "B. WHVW",
+        "C. QOZB",
+        "D. OEQN"
+      ],
+      "correct_answer": "B. WHVW",
+      "explanation": "Apply same forward shift by 3 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.196306+00:00",
+    "updated_at": "2026-09-21T12:53:32.196306+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0013",
+    "question": "'PRIYA' is coded as 'OQHXZ' (backward shift by 1). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'PRIYA' is coded as 'OQHXZ' (backward shift by 1). How is 'CODE' coded?",
+      "options": [
+        "A. JXAM",
+        "B. ROVZ",
+        "C. IAXG",
+        "D. BNCD"
+      ],
+      "correct_answer": "D. BNCD",
+      "explanation": "Apply same backward shift by 1 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.196306+00:00",
+    "updated_at": "2026-09-21T12:53:32.196306+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0014",
+    "question": "'PRIYA' is coded as 'NPGWY' (backward shift by 2). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'PRIYA' is coded as 'NPGWY' (backward shift by 2). How is 'CODE' coded?",
+      "options": [
+        "A. AMBC",
+        "B. JNFY",
+        "C. BCPB",
+        "D. LWCR"
+      ],
+      "correct_answer": "A. AMBC",
+      "explanation": "Apply same backward shift by 2 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.196306+00:00",
+    "updated_at": "2026-09-21T12:53:32.196306+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0015",
+    "question": "'INDIA' is coded as 'JOEJB' (forward shift by 1). How is 'TEST' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'INDIA' is coded as 'JOEJB' (forward shift by 1). How is 'TEST' coded?",
+      "options": [
+        "A. MCVV",
+        "B. LMOM",
+        "C. REUL",
+        "D. UFTU"
+      ],
+      "correct_answer": "D. UFTU",
+      "explanation": "Apply same forward shift by 1 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.197827+00:00",
+    "updated_at": "2026-09-21T12:53:32.197827+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0016",
+    "question": "'INDIA' is coded as 'KPFKC' (forward shift by 2). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'INDIA' is coded as 'KPFKC' (forward shift by 2). How is 'CODE' coded?",
+      "options": [
+        "A. EQFG",
+        "B. QEXH",
+        "C. AYAJ",
+        "D. OVXR"
+      ],
+      "correct_answer": "A. EQFG",
+      "explanation": "Apply same forward shift by 2 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.197827+00:00",
+    "updated_at": "2026-09-21T12:53:32.197827+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0017",
+    "question": "'INDIA' is coded as 'LQGLD' (forward shift by 3). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'INDIA' is coded as 'LQGLD' (forward shift by 3). How is 'CODE' coded?",
+      "options": [
+        "A. HHOL",
+        "B. FRGH",
+        "C. EIGX",
+        "D. YDBZ"
+      ],
+      "correct_answer": "B. FRGH",
+      "explanation": "Apply same forward shift by 3 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.197827+00:00",
+    "updated_at": "2026-09-21T12:53:32.197827+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0018",
+    "question": "'INDIA' is coded as 'HMCHZ' (backward shift by 1). How is 'TEST' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'INDIA' is coded as 'HMCHZ' (backward shift by 1). How is 'TEST' coded?",
+      "options": [
+        "A. VWBH",
+        "B. TBOT",
+        "C. HGCD",
+        "D. SDRS"
+      ],
+      "correct_answer": "D. SDRS",
+      "explanation": "Apply same backward shift by 1 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.197827+00:00",
+    "updated_at": "2026-09-21T12:53:32.197827+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0019",
+    "question": "'INDIA' is coded as 'GLBGY' (backward shift by 2). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'INDIA' is coded as 'GLBGY' (backward shift by 2). How is 'CODE' coded?",
+      "options": [
+        "A. AMBC",
+        "B. HRGY",
+        "C. JHXS",
+        "D. YBEQ"
+      ],
+      "correct_answer": "A. AMBC",
+      "explanation": "Apply same backward shift by 2 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.197827+00:00",
+    "updated_at": "2026-09-21T12:53:32.197827+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0020",
+    "question": "'TRAIN' is coded as 'USBJO' (forward shift by 1). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'TRAIN' is coded as 'USBJO' (forward shift by 1). How is 'CODE' coded?",
+      "options": [
+        "A. DPEF",
+        "B. IBRS",
+        "C. QHNJ",
+        "D. HJEV"
+      ],
+      "correct_answer": "A. DPEF",
+      "explanation": "Apply same forward shift by 1 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.197827+00:00",
+    "updated_at": "2026-09-21T12:53:32.198852+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0021",
+    "question": "'TRAIN' is coded as 'VTCKP' (forward shift by 2). How is 'TEST' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'TRAIN' is coded as 'VTCKP' (forward shift by 2). How is 'TEST' coded?",
+      "options": [
+        "A. UVMZ",
+        "B. RPBL",
+        "C. VGUV",
+        "D. QKWN"
+      ],
+      "correct_answer": "C. VGUV",
+      "explanation": "Apply same forward shift by 2 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.198852+00:00",
+    "updated_at": "2026-09-21T12:53:32.198852+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0022",
+    "question": "'TRAIN' is coded as 'WUDLQ' (forward shift by 3). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'TRAIN' is coded as 'WUDLQ' (forward shift by 3). How is 'CODE' coded?",
+      "options": [
+        "A. WEZO",
+        "B. MFYR",
+        "C. PHHJ",
+        "D. FRGH"
+      ],
+      "correct_answer": "D. FRGH",
+      "explanation": "Apply same forward shift by 3 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.198852+00:00",
+    "updated_at": "2026-09-21T12:53:32.198852+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0023",
+    "question": "'TRAIN' is coded as 'SQZHM' (backward shift by 1). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'TRAIN' is coded as 'SQZHM' (backward shift by 1). How is 'CODE' coded?",
+      "options": [
+        "A. NRQE",
+        "B. KUCO",
+        "C. BNCD",
+        "D. MHIG"
+      ],
+      "correct_answer": "C. BNCD",
+      "explanation": "Apply same backward shift by 1 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.198852+00:00",
+    "updated_at": "2026-09-21T12:53:32.198852+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0024",
+    "question": "'TRAIN' is coded as 'RPYGL' (backward shift by 2). How is 'TEST' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'TRAIN' is coded as 'RPYGL' (backward shift by 2). How is 'TEST' coded?",
+      "options": [
+        "A. TTBC",
+        "B. RCQR",
+        "C. GZYS",
+        "D. BIMV"
+      ],
+      "correct_answer": "B. RCQR",
+      "explanation": "Apply same backward shift by 2 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.198852+00:00",
+    "updated_at": "2026-09-21T12:53:32.198852+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0025",
+    "question": "'PLANE' is coded as 'QMBOF' (forward shift by 1). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'PLANE' is coded as 'QMBOF' (forward shift by 1). How is 'CODE' coded?",
+      "options": [
+        "A. GXDX",
+        "B. DPEF",
+        "C. YPHW",
+        "D. KJAG"
+      ],
+      "correct_answer": "B. DPEF",
+      "explanation": "Apply same forward shift by 1 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.198852+00:00",
+    "updated_at": "2026-09-21T12:53:32.198852+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0026",
+    "question": "'PLANE' is coded as 'RNCPG' (forward shift by 2). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'PLANE' is coded as 'RNCPG' (forward shift by 2). How is 'CODE' coded?",
+      "options": [
+        "A. MORU",
+        "B. EQFG",
+        "C. RKYJ",
+        "D. LJIL"
+      ],
+      "correct_answer": "B. EQFG",
+      "explanation": "Apply same forward shift by 2 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.198852+00:00",
+    "updated_at": "2026-09-21T12:53:32.198852+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0027",
+    "question": "'PLANE' is coded as 'SODQH' (forward shift by 3). How is 'TEST' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'PLANE' is coded as 'SODQH' (forward shift by 3). How is 'TEST' coded?",
+      "options": [
+        "A. KGLK",
+        "B. NBSH",
+        "C. WHVW",
+        "D. ZXPY"
+      ],
+      "correct_answer": "C. WHVW",
+      "explanation": "Apply same forward shift by 3 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.198852+00:00",
+    "updated_at": "2026-09-21T12:53:32.198852+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0028",
+    "question": "'PLANE' is coded as 'OKZMD' (backward shift by 1). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'PLANE' is coded as 'OKZMD' (backward shift by 1). How is 'CODE' coded?",
+      "options": [
+        "A. BNCD",
+        "B. NJEG",
+        "C. KHMS",
+        "D. RSSX"
+      ],
+      "correct_answer": "A. BNCD",
+      "explanation": "Apply same backward shift by 1 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.198852+00:00",
+    "updated_at": "2026-09-21T12:53:32.198852+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0029",
+    "question": "'PLANE' is coded as 'NJYLC' (backward shift by 2). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'PLANE' is coded as 'NJYLC' (backward shift by 2). How is 'CODE' coded?",
+      "options": [
+        "A. UXPO",
+        "B. FXZL",
+        "C. AMBC",
+        "D. IYPX"
+      ],
+      "correct_answer": "C. AMBC",
+      "explanation": "Apply same backward shift by 2 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.198852+00:00",
+    "updated_at": "2026-09-21T12:53:32.198852+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0030",
+    "question": "'SMART' is coded as 'TNBSU' (forward shift by 1). How is 'TEST' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'SMART' is coded as 'TNBSU' (forward shift by 1). How is 'TEST' coded?",
+      "options": [
+        "A. BYAN",
+        "B. UFTU",
+        "C. QBCV",
+        "D. FRUB"
+      ],
+      "correct_answer": "B. UFTU",
+      "explanation": "Apply same forward shift by 1 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.200320+00:00",
+    "updated_at": "2026-09-21T12:53:32.200320+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0031",
+    "question": "'SMART' is coded as 'UOCTV' (forward shift by 2). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'SMART' is coded as 'UOCTV' (forward shift by 2). How is 'CODE' coded?",
+      "options": [
+        "A. EQFG",
+        "B. CWEA",
+        "C. GQOL",
+        "D. BTUV"
+      ],
+      "correct_answer": "A. EQFG",
+      "explanation": "Apply same forward shift by 2 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.200320+00:00",
+    "updated_at": "2026-09-21T12:53:32.200320+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0032",
+    "question": "'SMART' is coded as 'VPDUW' (forward shift by 3). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'SMART' is coded as 'VPDUW' (forward shift by 3). How is 'CODE' coded?",
+      "options": [
+        "A. XIRJ",
+        "B. AARR",
+        "C. NAAQ",
+        "D. FRGH"
+      ],
+      "correct_answer": "D. FRGH",
+      "explanation": "Apply same forward shift by 3 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.200320+00:00",
+    "updated_at": "2026-09-21T12:53:32.200320+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0033",
+    "question": "'SMART' is coded as 'RLZQS' (backward shift by 1). How is 'TEST' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'SMART' is coded as 'RLZQS' (backward shift by 1). How is 'TEST' coded?",
+      "options": [
+        "A. TQIL",
+        "B. SDRS",
+        "C. ZFDD",
+        "D. QEHG"
+      ],
+      "correct_answer": "B. SDRS",
+      "explanation": "Apply same backward shift by 1 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.200320+00:00",
+    "updated_at": "2026-09-21T12:53:32.200320+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0034",
+    "question": "'SMART' is coded as 'QKYPR' (backward shift by 2). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'SMART' is coded as 'QKYPR' (backward shift by 2). How is 'CODE' coded?",
+      "options": [
+        "A. HWHJ",
+        "B. LMOS",
+        "C. VCUU",
+        "D. AMBC"
+      ],
+      "correct_answer": "D. AMBC",
+      "explanation": "Apply same backward shift by 2 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.200320+00:00",
+    "updated_at": "2026-09-21T12:53:32.200320+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0035",
+    "question": "'CODES' is coded as 'DPEFT' (forward shift by 1). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'CODES' is coded as 'DPEFT' (forward shift by 1). How is 'CODE' coded?",
+      "options": [
+        "A. MMRP",
+        "B. DPEF",
+        "C. FCPN",
+        "D. BUAW"
+      ],
+      "correct_answer": "B. DPEF",
+      "explanation": "Apply same forward shift by 1 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.200320+00:00",
+    "updated_at": "2026-09-21T12:53:32.200320+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0036",
+    "question": "'CODES' is coded as 'EQFGU' (forward shift by 2). How is 'TEST' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'CODES' is coded as 'EQFGU' (forward shift by 2). How is 'TEST' coded?",
+      "options": [
+        "A. WSPI",
+        "B. QBHG",
+        "C. BCVI",
+        "D. VGUV"
+      ],
+      "correct_answer": "D. VGUV",
+      "explanation": "Apply same forward shift by 2 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.200320+00:00",
+    "updated_at": "2026-09-21T12:53:32.200320+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0037",
+    "question": "'CODES' is coded as 'FRGHV' (forward shift by 3). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'CODES' is coded as 'FRGHV' (forward shift by 3). How is 'CODE' coded?",
+      "options": [
+        "A. FRGH",
+        "B. AGSE",
+        "C. YWMC",
+        "D. JFSH"
+      ],
+      "correct_answer": "A. FRGH",
+      "explanation": "Apply same forward shift by 3 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.201593+00:00",
+    "updated_at": "2026-09-21T12:53:32.201593+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0038",
+    "question": "'CODES' is coded as 'BNCDR' (backward shift by 1). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'CODES' is coded as 'BNCDR' (backward shift by 1). How is 'CODE' coded?",
+      "options": [
+        "A. ZWXC",
+        "B. QXLB",
+        "C. MYXE",
+        "D. BNCD"
+      ],
+      "correct_answer": "D. BNCD",
+      "explanation": "Apply same backward shift by 1 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.201593+00:00",
+    "updated_at": "2026-09-21T12:53:32.201593+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0039",
+    "question": "'CODES' is coded as 'AMBCQ' (backward shift by 2). How is 'TEST' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'CODES' is coded as 'AMBCQ' (backward shift by 2). How is 'TEST' coded?",
+      "options": [
+        "A. TTMY",
+        "B. RCQR",
+        "C. CKTY",
+        "D. KAUI"
+      ],
+      "correct_answer": "B. RCQR",
+      "explanation": "Apply same backward shift by 2 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.201593+00:00",
+    "updated_at": "2026-09-21T12:53:32.201593+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0040",
+    "question": "'TRUST' is coded as 'USVTU' (forward shift by 1). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'TRUST' is coded as 'USVTU' (forward shift by 1). How is 'CODE' coded?",
+      "options": [
+        "A. LRMN",
+        "B. MCYT",
+        "C. DPEF",
+        "D. FVSV"
+      ],
+      "correct_answer": "C. DPEF",
+      "explanation": "Apply same forward shift by 1 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.201593+00:00",
+    "updated_at": "2026-09-21T12:53:32.201593+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0041",
+    "question": "'TRUST' is coded as 'VTWUV' (forward shift by 2). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'TRUST' is coded as 'VTWUV' (forward shift by 2). How is 'CODE' coded?",
+      "options": [
+        "A. CIEM",
+        "B. WZUE",
+        "C. XMKL",
+        "D. EQFG"
+      ],
+      "correct_answer": "D. EQFG",
+      "explanation": "Apply same forward shift by 2 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.201593+00:00",
+    "updated_at": "2026-09-21T12:53:32.201593+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0042",
+    "question": "'TRUST' is coded as 'WUXVW' (forward shift by 3). How is 'TEST' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'TRUST' is coded as 'WUXVW' (forward shift by 3). How is 'TEST' coded?",
+      "options": [
+        "A. JOLY",
+        "B. IDEC",
+        "C. WHVW",
+        "D. FNOR"
+      ],
+      "correct_answer": "C. WHVW",
+      "explanation": "Apply same forward shift by 3 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.201593+00:00",
+    "updated_at": "2026-09-21T12:53:32.201593+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0043",
+    "question": "'TRUST' is coded as 'SQTRS' (backward shift by 1). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'TRUST' is coded as 'SQTRS' (backward shift by 1). How is 'CODE' coded?",
+      "options": [
+        "A. CLRC",
+        "B. TTZK",
+        "C. BNCD",
+        "D. MAJN"
+      ],
+      "correct_answer": "C. BNCD",
+      "explanation": "Apply same backward shift by 1 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.201593+00:00",
+    "updated_at": "2026-09-21T12:53:32.201593+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0044",
+    "question": "'TRUST' is coded as 'RPSQR' (backward shift by 2). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'TRUST' is coded as 'RPSQR' (backward shift by 2). How is 'CODE' coded?",
+      "options": [
+        "A. MFEI",
+        "B. SQFV",
+        "C. JIPE",
+        "D. AMBC"
+      ],
+      "correct_answer": "D. AMBC",
+      "explanation": "Apply same backward shift by 2 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.207514+00:00",
+    "updated_at": "2026-09-21T12:53:32.207514+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0045",
+    "question": "'CODES' is coded as 'DPEFT' (forward shift by 1). How is 'TEST' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'CODES' is coded as 'DPEFT' (forward shift by 1). How is 'TEST' coded?",
+      "options": [
+        "A. ZCLI",
+        "B. UFTU",
+        "C. HXUP",
+        "D. INJP"
+      ],
+      "correct_answer": "B. UFTU",
+      "explanation": "Apply same forward shift by 1 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.207514+00:00",
+    "updated_at": "2026-09-21T12:53:32.207514+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0046",
+    "question": "'CODES' is coded as 'EQFGU' (forward shift by 2). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'CODES' is coded as 'EQFGU' (forward shift by 2). How is 'CODE' coded?",
+      "options": [
+        "A. EQFG",
+        "B. KTMZ",
+        "C. KOKN",
+        "D. EJAM"
+      ],
+      "correct_answer": "A. EQFG",
+      "explanation": "Apply same forward shift by 2 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.208520+00:00",
+    "updated_at": "2026-09-21T12:53:32.208520+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0047",
+    "question": "'CODES' is coded as 'FRGHV' (forward shift by 3). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'CODES' is coded as 'FRGHV' (forward shift by 3). How is 'CODE' coded?",
+      "options": [
+        "A. TWGP",
+        "B. FRGH",
+        "C. KFMK",
+        "D. JXWU"
+      ],
+      "correct_answer": "B. FRGH",
+      "explanation": "Apply same forward shift by 3 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.208520+00:00",
+    "updated_at": "2026-09-21T12:53:32.208520+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0048",
+    "question": "'CODES' is coded as 'BNCDR' (backward shift by 1). How is 'TEST' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'CODES' is coded as 'BNCDR' (backward shift by 1). How is 'TEST' coded?",
+      "options": [
+        "A. GSRF",
+        "B. KMIZ",
+        "C. MLDS",
+        "D. SDRS"
+      ],
+      "correct_answer": "D. SDRS",
+      "explanation": "Apply same backward shift by 1 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.208520+00:00",
+    "updated_at": "2026-09-21T12:53:32.208520+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  },
+  {
+    "id": "log_coding_0049",
+    "question": "'CODES' is coded as 'AMBCQ' (backward shift by 2). How is 'CODE' coded?",
+    "pattern": "coding-decoding",
+    "skill": "coding-decoding",
+    "domain": "Logical Reasoning",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.75
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "'CODES' is coded as 'AMBCQ' (backward shift by 2). How is 'CODE' coded?",
+      "options": [
+        "A. AMBC",
+        "B. ZNVP",
+        "C. JWCZ",
+        "D. WGOZ"
+      ],
+      "correct_answer": "A. AMBC",
+      "explanation": "Apply same backward shift by 2 to each letter"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.208520+00:00",
+    "updated_at": "2026-09-21T12:53:32.208520+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "LTIMindtree"
+    ]
+  }
+]

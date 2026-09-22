@@ -4,7 +4,6 @@ import api from "../services/api";
 import Spinner from "../components/ui/Spinner";
 import SuccessGlow from "../components/SuccessGlow";
 import CelebrationOverlay from "../components/CelebrationOverlay";
-import DiamondsPopup from "../components/XPPopup";
 import RepairPanel from "../components/RepairPanel";
 import { motion, AnimatePresence } from "framer-motion";
 import useReducedMotion from "../hooks/useReducedMotion";
@@ -66,8 +65,6 @@ export default function InterviewSession() {
   const [showReaction, setShowReaction] = useState(false);
   const [timer, setTimer] = useState(0);
   const [showCelebration, setShowCelebration] = useState(false);
-  const [xpData, setXpData] = useState(null);
-  const [showXP, setShowXP] = useState(false);
   const [error, setError] = useState("");
   const [glowBurst, setGlowBurst] = useState(0);
   const [initialized, setInitialized] = useState(!!initialState.question);
@@ -207,7 +204,6 @@ export default function InterviewSession() {
     return (
       <div className="min-h-screen py-12 px-4">
         <CelebrationOverlay show={showCelebration} type="perfect" message="Outstanding Performance!" />
-        <XPPopup show={showXP} {...xpData} onClose={() => setShowXP(false)} />
         <div className="max-w-4xl mx-auto">
           <motion.div
             className="card mb-8 text-center"

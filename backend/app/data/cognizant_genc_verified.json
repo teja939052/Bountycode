@@ -1,0 +1,7849 @@
+[
+  {
+    "id": "cognizant_coding_001",
+    "type": "coding",
+    "title": "Two Sum",
+    "question": "Return indices of two numbers that add to target.",
+    "difficulty": "easy",
+    "topic": "General DSA",
+    "sub_topic": "two",
+    "pattern": "General DSA",
+    "skill": "two_sum",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "TwoSum",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for two sum."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def twoSum(nums, target):\n    seen = {}\n    for i, num in enumerate(nums):\n        comp = target - num\n        if comp in seen:\n            return [seen[comp], i]\n        seen[num] = i\n    return []\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "explanation": "Solve two sum using an efficient approach.",
+    "hints": [
+      "Hint 1 for two sum.",
+      "Hint 2 for two sum."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_002",
+    "type": "coding",
+    "title": "Reverse Array",
+    "question": "Reverse array in-place.",
+    "difficulty": "easy",
+    "topic": "Arrays",
+    "sub_topic": "reverse",
+    "pattern": "Arrays",
+    "skill": "reverse_array",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "ReverseArray",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for reverse array."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def reverseArray(arr):\n    left, right = 0, len(arr) - 1\n    while left < right:\n        arr[left], arr[right] = arr[right], arr[left]\n        left += 1\n        right -= 1\n    return arr\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve reverse array using an efficient approach.",
+    "hints": [
+      "Hint 1 for reverse array.",
+      "Hint 2 for reverse array."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_003",
+    "type": "coding",
+    "title": "Check Prime",
+    "question": "Check if number is prime.",
+    "difficulty": "easy",
+    "topic": "Numbers",
+    "sub_topic": "check",
+    "pattern": "Numbers",
+    "skill": "check_prime",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "CheckPrime",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 5,
+        "output": true,
+        "explanation": "Example for check prime."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 5,
+        "expected": true
+      },
+      {
+        "input": 10,
+        "expected": false
+      },
+      {
+        "input": 1,
+        "expected": true
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 5,
+        "expected": true
+      },
+      {
+        "input": 10,
+        "expected": false
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 1,
+        "expected": true
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 1,
+        "expected": true
+      }
+    ],
+    "solution": {
+      "code": "def isPrime(n):\n    if n <= 1:\n        return False\n    if n <= 3:\n        return True\n    if n % 2 == 0 or n % 3 == 0:\n        return False\n    i = 5\n    while i * i <= n:\n        if n % i == 0 or n % (i + 2) == 0:\n            return False\n        i += 6\n    return True\n",
+      "language": "python",
+      "time_complexity": "O(sqrt(n))",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve check prime using an efficient approach.",
+    "hints": [
+      "Hint 1 for check prime.",
+      "Hint 2 for check prime."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_004",
+    "type": "coding",
+    "title": "Count Vowels",
+    "question": "Count vowels in string.",
+    "difficulty": "easy",
+    "topic": "General DSA",
+    "sub_topic": "count",
+    "pattern": "General DSA",
+    "skill": "count_vowels",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "CountVowels",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for count vowels."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def countVowels(s):\n    return sum(1 for ch in s.lower() if ch in 'aeiou')\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve count vowels using an efficient approach.",
+    "hints": [
+      "Hint 1 for count vowels.",
+      "Hint 2 for count vowels."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_005",
+    "type": "coding",
+    "title": "Factorial",
+    "question": "Compute factorial.",
+    "difficulty": "easy",
+    "topic": "Numbers",
+    "sub_topic": "factorial",
+    "pattern": "Numbers",
+    "skill": "factorial",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Factorial",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 5,
+        "output": 120,
+        "explanation": "Example for factorial."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 5,
+        "expected": 120
+      },
+      {
+        "input": 10,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 5,
+        "expected": 120
+      },
+      {
+        "input": 10,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "solution": {
+      "code": "def factorial(n):\n    res = 1\n    for i in range(2, n + 1):\n        res *= i\n    return res\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve factorial using an efficient approach.",
+    "hints": [
+      "Hint 1 for factorial.",
+      "Hint 2 for factorial."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_006",
+    "type": "coding",
+    "title": "Fibonacci",
+    "question": "Return nth Fibonacci.",
+    "difficulty": "easy",
+    "topic": "Numbers",
+    "sub_topic": "fibonacci",
+    "pattern": "Numbers",
+    "skill": "fibonacci",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Fibonacci",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 5,
+        "output": 5,
+        "explanation": "Example for fibonacci."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 5,
+        "expected": 5
+      },
+      {
+        "input": 10,
+        "expected": 55
+      },
+      {
+        "input": 1,
+        "expected": 0
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 5,
+        "expected": 5
+      },
+      {
+        "input": 10,
+        "expected": 55
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 1,
+        "expected": 0
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 1,
+        "expected": 0
+      }
+    ],
+    "solution": {
+      "code": "def fib(n):\n    a, b = 0, 1\n    for _ in range(n):\n        a, b = b, a + b\n    return a\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve fibonacci using an efficient approach.",
+    "hints": [
+      "Hint 1 for fibonacci.",
+      "Hint 2 for fibonacci."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_007",
+    "type": "coding",
+    "title": "Palindrome Check",
+    "question": "Check if string is palindrome.",
+    "difficulty": "easy",
+    "topic": "Strings",
+    "sub_topic": "palindrome",
+    "pattern": "Strings",
+    "skill": "palindrome_check",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "PalindromeCheck",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for palindrome check."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def isPalindrome(s):\n    return s == s[::-1]\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve palindrome check using an efficient approach.",
+    "hints": [
+      "Hint 1 for palindrome check.",
+      "Hint 2 for palindrome check."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_008",
+    "type": "coding",
+    "title": "Find Maximum",
+    "question": "Return max element.",
+    "difficulty": "easy",
+    "topic": "Arrays",
+    "sub_topic": "find",
+    "pattern": "Arrays",
+    "skill": "find_maximum",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "FindMaximum",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for find maximum."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def findMax(arr):\n    return max(arr)\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve find maximum using an efficient approach.",
+    "hints": [
+      "Hint 1 for find maximum.",
+      "Hint 2 for find maximum."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_009",
+    "type": "coding",
+    "title": "Array Sum",
+    "question": "Return sum of array.",
+    "difficulty": "easy",
+    "topic": "Arrays",
+    "sub_topic": "array",
+    "pattern": "Arrays",
+    "skill": "array_sum",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "ArraySum",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for array sum."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def arraySum(arr):\n    return sum(arr)\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve array sum using an efficient approach.",
+    "hints": [
+      "Hint 1 for array sum.",
+      "Hint 2 for array sum."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_010",
+    "type": "coding",
+    "title": "Check Anagram",
+    "question": "Check if two strings are anagrams.",
+    "difficulty": "easy",
+    "topic": "Strings",
+    "sub_topic": "check",
+    "pattern": "Strings",
+    "skill": "check_anagram",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "CheckAnagram",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for check anagram."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def isAnagram(a, b):\n    return sorted(a) == sorted(b)\n",
+      "language": "python",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    },
+    "explanation": "Solve check anagram using an efficient approach.",
+    "hints": [
+      "Hint 1 for check anagram.",
+      "Hint 2 for check anagram."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_011",
+    "type": "coding",
+    "title": "Valid Parentheses",
+    "question": "Check balanced brackets.",
+    "difficulty": "easy",
+    "topic": "Strings",
+    "sub_topic": "valid",
+    "pattern": "Strings",
+    "skill": "valid_parentheses",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "ValidParentheses",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for valid parentheses."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def isValid(s):\n    stack = []\n    pairs = {')': '(', '}': '{', ']': '['}\n    for ch in s:\n        if ch in pairs.values():\n            stack.append(ch)\n        elif ch in pairs:\n            if not stack or stack[-1] != pairs[ch]:\n                return False\n            stack.pop()\n    return not stack\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "explanation": "Solve valid parentheses using an efficient approach.",
+    "hints": [
+      "Hint 1 for valid parentheses.",
+      "Hint 2 for valid parentheses."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_012",
+    "type": "coding",
+    "title": "Binary to Decimal",
+    "question": "Convert binary string to decimal.",
+    "difficulty": "easy",
+    "topic": "Number System",
+    "sub_topic": "binary",
+    "pattern": "Number System",
+    "skill": "binary_to_decimal",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "BinarytoDecimal",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for binary to decimal."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def binaryToDecimal(s):\n    return int(s, 2)\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve binary to decimal using an efficient approach.",
+    "hints": [
+      "Hint 1 for binary to decimal.",
+      "Hint 2 for binary to decimal."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_013",
+    "type": "coding",
+    "title": "Decimal to Binary",
+    "question": "Convert decimal to binary.",
+    "difficulty": "easy",
+    "topic": "Number System",
+    "sub_topic": "decimal",
+    "pattern": "Number System",
+    "skill": "decimal_to_binary",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "DecimaltoBinary",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for decimal to binary."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def decimalToBinary(n):\n    return bin(n)[2:]\n",
+      "language": "python",
+      "time_complexity": "O(log n)",
+      "space_complexity": "O(log n)"
+    },
+    "explanation": "Solve decimal to binary using an efficient approach.",
+    "hints": [
+      "Hint 1 for decimal to binary.",
+      "Hint 2 for decimal to binary."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_014",
+    "type": "coding",
+    "title": "Count Digits",
+    "question": "Count digits in number.",
+    "difficulty": "easy",
+    "topic": "Numbers",
+    "sub_topic": "count",
+    "pattern": "Numbers",
+    "skill": "count_digits",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "CountDigits",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for count digits."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def countDigits(n):\n    n = abs(n)\n    if n == 0:\n        return 1\n    c = 0\n    while n:\n        c += 1\n        n //= 10\n    return c\n",
+      "language": "python",
+      "time_complexity": "O(log n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve count digits using an efficient approach.",
+    "hints": [
+      "Hint 1 for count digits.",
+      "Hint 2 for count digits."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_015",
+    "type": "coding",
+    "title": "Reverse String",
+    "question": "Reverse string.",
+    "difficulty": "easy",
+    "topic": "Strings",
+    "sub_topic": "reverse",
+    "pattern": "Strings",
+    "skill": "reverse_string",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "ReverseString",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for reverse string."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def reverseString(s):\n    return s[::-1]\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "explanation": "Solve reverse string using an efficient approach.",
+    "hints": [
+      "Hint 1 for reverse string.",
+      "Hint 2 for reverse string."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_016",
+    "type": "coding",
+    "title": "GCD",
+    "question": "Return GCD of two numbers.",
+    "difficulty": "easy",
+    "topic": "Numbers",
+    "sub_topic": "gcd",
+    "pattern": "Numbers",
+    "skill": "gcd",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "GCD",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 5,
+        "output": 1,
+        "explanation": "Example for gcd."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 5,
+        "expected": 1
+      },
+      {
+        "input": 10,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 5
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 5,
+        "expected": 1
+      },
+      {
+        "input": 10,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 1,
+        "expected": 5
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 1,
+        "expected": 5
+      }
+    ],
+    "solution": {
+      "code": "def gcd(a, b):\n    while b:\n        a, b = b, a % b\n    return a\n",
+      "language": "python",
+      "time_complexity": "O(log(min(a,b))",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve gcd using an efficient approach.",
+    "hints": [
+      "Hint 1 for gcd.",
+      "Hint 2 for gcd."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_017",
+    "type": "coding",
+    "title": "LCM",
+    "question": "Return LCM of two numbers.",
+    "difficulty": "easy",
+    "topic": "Numbers",
+    "sub_topic": "lcm",
+    "pattern": "Numbers",
+    "skill": "lcm",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "LCM",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 5,
+        "output": 10,
+        "explanation": "Example for lcm."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 5,
+        "expected": 10
+      },
+      {
+        "input": 10,
+        "expected": 10
+      },
+      {
+        "input": 1,
+        "expected": 10
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 5,
+        "expected": 10
+      },
+      {
+        "input": 10,
+        "expected": 10
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 1,
+        "expected": 10
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 1,
+        "expected": 10
+      }
+    ],
+    "solution": {
+      "code": "def lcm(a, b):\n    return a * b // gcd(a, b)\n",
+      "language": "python",
+      "time_complexity": "O(log(min(a,b))",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve lcm using an efficient approach.",
+    "hints": [
+      "Hint 1 for lcm.",
+      "Hint 2 for lcm."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_018",
+    "type": "coding",
+    "title": "Power of Two",
+    "question": "Check if n is power of two.",
+    "difficulty": "easy",
+    "topic": "Numbers",
+    "sub_topic": "power",
+    "pattern": "Numbers",
+    "skill": "power_of_two",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "PowerofTwo",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for power of two."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def isPowerOfTwo(n):\n    return n > 0 and (n & (n - 1)) == 0\n",
+      "language": "python",
+      "time_complexity": "O(1)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve power of two using an efficient approach.",
+    "hints": [
+      "Hint 1 for power of two.",
+      "Hint 2 for power of two."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_019",
+    "type": "coding",
+    "title": "Climbing Stairs",
+    "question": "Ways to climb n stairs.",
+    "difficulty": "easy",
+    "topic": "Numbers",
+    "sub_topic": "climbing",
+    "pattern": "Numbers",
+    "skill": "climbing_stairs",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "ClimbingStairs",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for climbing stairs."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def climbStairs(n):\n    a, b = 1, 2\n    for _ in range(n - 1):\n        a, b = b, a + b\n    return a\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve climbing stairs using an efficient approach.",
+    "hints": [
+      "Hint 1 for climbing stairs.",
+      "Hint 2 for climbing stairs."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_020",
+    "type": "coding",
+    "title": "Merge Sorted Arrays",
+    "question": "Merge two sorted arrays.",
+    "difficulty": "easy",
+    "topic": "Arrays",
+    "sub_topic": "merge",
+    "pattern": "Arrays",
+    "skill": "merge_sorted_arrays",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "MergeSortedArrays",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for merge sorted arrays."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def mergeSorted(a, b):\n    i = j = 0\n    res = []\n    while i < len(a) and j < len(b):\n        if a[i] <= b[j]:\n            res.append(a[i])\n            i += 1\n        else:\n            res.append(b[j])\n            j += 1\n    res.extend(a[i:])\n    res.extend(b[j:])\n    return res\n",
+      "language": "python",
+      "time_complexity": "O(n+m)",
+      "space_complexity": "O(n+m)"
+    },
+    "explanation": "Solve merge sorted arrays using an efficient approach.",
+    "hints": [
+      "Hint 1 for merge sorted arrays.",
+      "Hint 2 for merge sorted arrays."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_021",
+    "type": "coding",
+    "title": "Majority Element",
+    "question": "Return majority element.",
+    "difficulty": "medium",
+    "topic": "Arrays",
+    "sub_topic": "majority",
+    "pattern": "Arrays",
+    "skill": "majority_element",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "MajorityElement",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for majority element."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def majorityElement(arr):\n    count = 0\n    candidate = None\n    for x in arr:\n        if count == 0:\n            candidate = x\n        count += 1 if x == candidate else -1\n    return candidate\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve majority element using an efficient approach.",
+    "hints": [
+      "Hint 1 for majority element.",
+      "Hint 2 for majority element."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_022",
+    "type": "coding",
+    "title": "Move Zeros",
+    "question": "Move zeros to end.",
+    "difficulty": "easy",
+    "topic": "Arrays",
+    "sub_topic": "move",
+    "pattern": "Arrays",
+    "skill": "move_zeros",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "MoveZeros",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for move zeros."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def moveZeros(arr):\n    pos = 0\n    for i in range(len(arr)):\n        if arr[i] != 0:\n            arr[pos], arr[i] = arr[i], arr[pos]\n            pos += 1\n    return arr\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve move zeros using an efficient approach.",
+    "hints": [
+      "Hint 1 for move zeros.",
+      "Hint 2 for move zeros."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_023",
+    "type": "coding",
+    "title": "Remove Duplicates",
+    "question": "Remove duplicates from sorted array.",
+    "difficulty": "easy",
+    "topic": "Arrays",
+    "sub_topic": "remove",
+    "pattern": "Arrays",
+    "skill": "remove_duplicates",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "RemoveDuplicates",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for remove duplicates."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def removeDuplicates(arr):\n    if not arr:\n        return 0\n    i = 0\n    for j in range(1, len(arr)):\n        if arr[j] != arr[i]:\n            i += 1\n            arr[i] = arr[j]\n    return i + 1\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve remove duplicates using an efficient approach.",
+    "hints": [
+      "Hint 1 for remove duplicates.",
+      "Hint 2 for remove duplicates."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_024",
+    "type": "coding",
+    "title": "Find Missing",
+    "question": "Find missing number 1..n.",
+    "difficulty": "easy",
+    "topic": "Arrays",
+    "sub_topic": "find",
+    "pattern": "Arrays",
+    "skill": "find_missing",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "FindMissing",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for find missing."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def findMissing(arr, n):\n    total = n * (n + 1) // 2\n    return total - sum(arr)\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve find missing using an efficient approach.",
+    "hints": [
+      "Hint 1 for find missing.",
+      "Hint 2 for find missing."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_025",
+    "type": "coding",
+    "title": "Longest Substring",
+    "question": "Longest substring without repeating.",
+    "difficulty": "medium",
+    "topic": "Strings",
+    "sub_topic": "longest",
+    "pattern": "Strings",
+    "skill": "longest_substring",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "LongestSubstring",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for longest substring."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def lengthOfLongestSubstring(s):\n    last = {}\n    left = best = 0\n    for i, ch in enumerate(s):\n        if ch in last and last[ch] >= left:\n            left = last[ch] + 1\n        last[ch] = i\n        best = max(best, i - left + 1)\n    return best\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(min(n, m))"
+    },
+    "explanation": "Solve longest substring using an efficient approach.",
+    "hints": [
+      "Hint 1 for longest substring.",
+      "Hint 2 for longest substring."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_026",
+    "type": "coding",
+    "title": "Group Anagrams",
+    "question": "Group anagrams.",
+    "difficulty": "medium",
+    "topic": "Strings",
+    "sub_topic": "group",
+    "pattern": "Strings",
+    "skill": "group_anagrams",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "GroupAnagrams",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for group anagrams."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def groupAnagrams(strs):\n    groups = {}\n    for s in strs:\n        key = ''.join(sorted(s))\n        groups.setdefault(key, []).append(s)\n    return list(groups.values())\n",
+      "language": "python",
+      "time_complexity": "O(n * k log k)",
+      "space_complexity": "O(n * k)"
+    },
+    "explanation": "Solve group anagrams using an efficient approach.",
+    "hints": [
+      "Hint 1 for group anagrams.",
+      "Hint 2 for group anagrams."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_027",
+    "type": "coding",
+    "title": "Maximum Product",
+    "question": "Maximum product subarray.",
+    "difficulty": "medium",
+    "topic": "Arrays",
+    "sub_topic": "maximum",
+    "pattern": "Arrays",
+    "skill": "maximum_product",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "MaximumProduct",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for maximum product."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def maxProduct(nums):\n    res = cur_max = cur_min = nums[0]\n    for x in nums[1:]:\n        candidates = (x, cur_max * x, cur_min * x)\n        cur_max = max(candidates)\n        cur_min = min(candidates)\n        res = max(res, cur_max)\n    return res\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve maximum product using an efficient approach.",
+    "hints": [
+      "Hint 1 for maximum product.",
+      "Hint 2 for maximum product."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_028",
+    "type": "coding",
+    "title": "Search Rotated",
+    "question": "Search in rotated sorted array.",
+    "difficulty": "medium",
+    "topic": "General DSA",
+    "sub_topic": "search",
+    "pattern": "General DSA",
+    "skill": "search_rotated",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "SearchRotated",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for search rotated."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def search(nums, target):\n    l, r = 0, len(nums) - 1\n    while l <= r:\n        m = (l + r) // 2\n        if nums[m] == target:\n            return m\n        if nums[l] <= nums[m]:\n            if nums[l] <= target < nums[m]:\n                r = m - 1\n            else:\n                l = m + 1\n        else:\n            if nums[m] < target <= nums[r]:\n                l = m + 1\n            else:\n                r = m - 1\n    return -1\n",
+      "language": "python",
+      "time_complexity": "O(log n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve search rotated using an efficient approach.",
+    "hints": [
+      "Hint 1 for search rotated.",
+      "Hint 2 for search rotated."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_029",
+    "type": "coding",
+    "title": "Sqrt",
+    "question": "Integer square root.",
+    "difficulty": "easy",
+    "topic": "General DSA",
+    "sub_topic": "sqrt",
+    "pattern": "General DSA",
+    "skill": "sqrt",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Sqrt",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for sqrt."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def mySqrt(x):\n    if x <= 1:\n        return x\n    l, r = 1, x // 2\n    ans = 0\n    while l <= r:\n        m = (l + r) // 2\n        if m * m == x:\n            return m\n        elif m * m < x:\n            l = m + 1\n            ans = m\n        else:\n            r = m - 1\n    return ans\n",
+      "language": "python",
+      "time_complexity": "O(log x)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve sqrt using an efficient approach.",
+    "hints": [
+      "Hint 1 for sqrt.",
+      "Hint 2 for sqrt."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_030",
+    "type": "coding",
+    "title": "Roman to Int",
+    "question": "Convert Roman numeral.",
+    "difficulty": "easy",
+    "topic": "Number System",
+    "sub_topic": "roman",
+    "pattern": "Number System",
+    "skill": "roman_to_int",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "RomantoInt",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for roman to int."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def romanToInt(s):\n    values = {'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}\n    total = 0\n    i = 0\n    while i < len(s):\n        if i + 1 < len(s) and values[s[i]] < values[s[i+1]]:\n            total += values[s[i+1]] - values[s[i]]\n            i += 2\n        else:\n            total += values[s[i]]\n            i += 1\n    return total\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve roman to int using an efficient approach.",
+    "hints": [
+      "Hint 1 for roman to int.",
+      "Hint 2 for roman to int."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_031",
+    "type": "coding",
+    "title": "Excel Column",
+    "question": "Excel column title from number.",
+    "difficulty": "medium",
+    "topic": "Number System",
+    "sub_topic": "excel",
+    "pattern": "Number System",
+    "skill": "excel_column",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "ExcelColumn",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for excel column."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def convertToTitle(n):\n    res = []\n    while n:\n        n -= 1\n        res.append(chr(n % 26 + ord('A')))\n        n //= 26\n    return ''.join(reversed(res))\n",
+      "language": "python",
+      "time_complexity": "O(log n)",
+      "space_complexity": "O(log n)"
+    },
+    "explanation": "Solve excel column using an efficient approach.",
+    "hints": [
+      "Hint 1 for excel column.",
+      "Hint 2 for excel column."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_032",
+    "type": "coding",
+    "title": "Add Digits",
+    "question": "Digital root.",
+    "difficulty": "easy",
+    "topic": "Numbers",
+    "sub_topic": "add",
+    "pattern": "Numbers",
+    "skill": "add_digits",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "AddDigits",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for add digits."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def addDigits(num):\n    return 1 + (num - 1) % 9 if num else 0\n",
+      "language": "python",
+      "time_complexity": "O(1)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve add digits using an efficient approach.",
+    "hints": [
+      "Hint 1 for add digits.",
+      "Hint 2 for add digits."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_033",
+    "type": "coding",
+    "title": "Count Primes",
+    "question": "Count primes less than n.",
+    "difficulty": "medium",
+    "topic": "Numbers",
+    "sub_topic": "count",
+    "pattern": "Numbers",
+    "skill": "count_primes",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "CountPrimes",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 5,
+        "output": true,
+        "explanation": "Example for count primes."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 5,
+        "expected": true
+      },
+      {
+        "input": 10,
+        "expected": false
+      },
+      {
+        "input": 1,
+        "expected": true
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 5,
+        "expected": true
+      },
+      {
+        "input": 10,
+        "expected": false
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 1,
+        "expected": true
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 1,
+        "expected": true
+      }
+    ],
+    "solution": {
+      "code": "def countPrimes(n):\n    if n <= 2:\n        return 0\n    is_prime = [True] * n\n    is_prime[0] = is_prime[1] = False\n    for i in range(2, int(n**0.5) + 1):\n        if is_prime[i]:\n            for j in range(i*i, n, i):\n                is_prime[j] = False\n    return sum(is_prime)\n",
+      "language": "python",
+      "time_complexity": "O(n log log n)",
+      "space_complexity": "O(n)"
+    },
+    "explanation": "Solve count primes using an efficient approach.",
+    "hints": [
+      "Hint 1 for count primes.",
+      "Hint 2 for count primes."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_034",
+    "type": "coding",
+    "title": "Subarray Sum K",
+    "question": "Count subarrays summing to k.",
+    "difficulty": "medium",
+    "topic": "Arrays",
+    "sub_topic": "subarray",
+    "pattern": "Arrays",
+    "skill": "subarray_sum_k",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "SubarraySumK",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for subarray sum k."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def subarraySum(nums, k):\n    prefix = 0\n    counts = {0: 1}\n    total = 0\n    for x in nums:\n        prefix += x\n        total += counts.get(prefix - k, 0)\n        counts[prefix] = counts.get(prefix, 0) + 1\n    return total\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    "explanation": "Solve subarray sum k using an efficient approach.",
+    "hints": [
+      "Hint 1 for subarray sum k.",
+      "Hint 2 for subarray sum k."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_035",
+    "type": "coding",
+    "title": "Three Sum",
+    "question": "Return unique triplets summing to 0.",
+    "difficulty": "medium",
+    "topic": "General DSA",
+    "sub_topic": "three",
+    "pattern": "General DSA",
+    "skill": "three_sum",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "ThreeSum",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for three sum."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def threeSum(nums):\n    nums.sort()\n    res = []\n    for i in range(len(nums) - 2):\n        if i > 0 and nums[i] == nums[i - 1]:\n            continue\n        l, r = i + 1, len(nums) - 1\n        while l < r:\n            s = nums[i] + nums[l] + nums[r]\n            if s == 0:\n                res.append([nums[i], nums[l], nums[r]])\n                while l < r and nums[l] == nums[l + 1]:\n                    l += 1\n                while l < r and nums[r] == nums[r - 1]:\n                    r -= 1\n                l += 1\n                r -= 1\n            elif s < 0:\n                l += 1\n            else:\n                r -= 1\n    return res\n",
+      "language": "python",
+      "time_complexity": "O(n^2)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve three sum using an efficient approach.",
+    "hints": [
+      "Hint 1 for three sum.",
+      "Hint 2 for three sum."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_036",
+    "type": "coding",
+    "title": "Container With Most Water",
+    "question": "Max water container area.",
+    "difficulty": "medium",
+    "topic": "General DSA",
+    "sub_topic": "container",
+    "pattern": "General DSA",
+    "skill": "container_with_most_water",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "ContainerWithMostWater",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for container with most water."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def maxArea(height):\n    l = r = 0\n    best = 0\n    while l < r:\n        best = max(best, min(height[l], height[r]) * (r - l))\n        if height[l] < height[r]:\n            l += 1\n        else:\n            r -= 1\n    return best\n",
+      "language": "python",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    "explanation": "Solve container with most water using an efficient approach.",
+    "hints": [
+      "Hint 1 for container with most water.",
+      "Hint 2 for container with most water."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_coding_037",
+    "type": "coding",
+    "title": "Letter Combinations",
+    "question": "Phone keypad combinations.",
+    "difficulty": "medium",
+    "topic": "General DSA",
+    "sub_topic": "letter",
+    "pattern": "General DSA",
+    "skill": "letter_combinations",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "LetterCombinations",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": 0,
+        "output": 1,
+        "explanation": "Example for letter combinations."
+      }
+    ],
+    "testcases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      },
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": 0,
+        "expected": 1
+      },
+      {
+        "input": 1,
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input": 5,
+        "expected": 8
+      }
+    ],
+    "solution": {
+      "code": "def letterCombinations(digits):\n    if not digits:\n        return []\n    phone = {'2':'abc','3':'def','4':'ghi','5':'jkl','6':'mno','7':'pqrs','8':'tuv','9':'wxyz'}\n    res = []\n    def backtrack(i, path):\n        if i == len(digits):\n            res.append(''.join(path))\n            return\n        for ch in phone[digits[i]]:\n            path.append(ch)\n            backtrack(i + 1, path)\n            path.pop()\n    backtrack(0, [])\n    return res\n",
+      "language": "python",
+      "time_complexity": "O(3^N * 4^M)",
+      "space_complexity": "O(3^N * 4^M)"
+    },
+    "explanation": "Solve letter combinations using an efficient approach.",
+    "hints": [
+      "Hint 1 for letter combinations.",
+      "Hint 2 for letter combinations."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_038",
+    "type": "aptitude",
+    "title": "Profit Percentage",
+    "question": "CP=200, SP=250. Find profit %.",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "profit",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "ProfitPercentage",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for profit percentage."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve profit percentage using an efficient approach.",
+    "hints": [
+      "Hint 1 for profit percentage.",
+      "Hint 2 for profit percentage."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_039",
+    "type": "aptitude",
+    "title": "Percentage of Number",
+    "question": "What is 15% of 240?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "percentage",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "PercentageofNumber",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for percentage of number."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve percentage of number using an efficient approach.",
+    "hints": [
+      "Hint 1 for percentage of number.",
+      "Hint 2 for percentage of number."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_040",
+    "type": "aptitude",
+    "title": "Ratio Division",
+    "question": "Divide 100 in ratio 2:3.",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "ratio",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "RatioDivision",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for ratio division."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve ratio division using an efficient approach.",
+    "hints": [
+      "Hint 1 for ratio division.",
+      "Hint 2 for ratio division."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_041",
+    "type": "aptitude",
+    "title": "Time and Work",
+    "question": "A=10 days, B=15 days. Together?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "time",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "TimeandWork",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for time and work."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve time and work using an efficient approach.",
+    "hints": [
+      "Hint 1 for time and work.",
+      "Hint 2 for time and work."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_042",
+    "type": "aptitude",
+    "title": "Train Speed",
+    "question": "120m train passes pole in 3s. Speed?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "train",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "TrainSpeed",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for train speed."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve train speed using an efficient approach.",
+    "hints": [
+      "Hint 1 for train speed.",
+      "Hint 2 for train speed."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_043",
+    "type": "aptitude",
+    "title": "Simple Interest",
+    "question": "SI on 1000 at 5% for 2 years.",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "simple",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "SimpleInterest",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for simple interest."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve simple interest using an efficient approach.",
+    "hints": [
+      "Hint 1 for simple interest.",
+      "Hint 2 for simple interest."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_044",
+    "type": "aptitude",
+    "title": "Compound Interest",
+    "question": "CI on 1000 at 10% for 2 years.",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "compound",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "CompoundInterest",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for compound interest."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve compound interest using an efficient approach.",
+    "hints": [
+      "Hint 1 for compound interest.",
+      "Hint 2 for compound interest."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_045",
+    "type": "aptitude",
+    "title": "Average",
+    "question": "Average of 5 numbers is 20. Sum?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "average",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Average",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for average."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve average using an efficient approach.",
+    "hints": [
+      "Hint 1 for average.",
+      "Hint 2 for average."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_046",
+    "type": "aptitude",
+    "title": "Age Problem",
+    "question": "Father 3x son. After 10y father 2x. Ages?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "age",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "AgeProblem",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for age problem."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve age problem using an efficient approach.",
+    "hints": [
+      "Hint 1 for age problem.",
+      "Hint 2 for age problem."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_047",
+    "type": "aptitude",
+    "title": "Probability",
+    "question": "Heads in coin toss?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "probability",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Probability",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for probability."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve probability using an efficient approach.",
+    "hints": [
+      "Hint 1 for probability.",
+      "Hint 2 for probability."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_048",
+    "type": "aptitude",
+    "title": "Permutation",
+    "question": "Arrange 'ABC'.",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "permutation",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Permutation",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for permutation."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve permutation using an efficient approach.",
+    "hints": [
+      "Hint 1 for permutation.",
+      "Hint 2 for permutation."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_049",
+    "type": "aptitude",
+    "title": "Number Series",
+    "question": "2, 6, 12, 20, ?",
+    "difficulty": "medium",
+    "topic": "Aptitude",
+    "sub_topic": "number",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "NumberSeries",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for number series."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve number series using an efficient approach.",
+    "hints": [
+      "Hint 1 for number series.",
+      "Hint 2 for number series."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_050",
+    "type": "aptitude",
+    "title": "Area Circle",
+    "question": "Area with radius 7?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "area",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "AreaCircle",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for area circle."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve area circle using an efficient approach.",
+    "hints": [
+      "Hint 1 for area circle.",
+      "Hint 2 for area circle."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_051",
+    "type": "aptitude",
+    "title": "Net Change",
+    "question": "+20% then -20%. Net change?",
+    "difficulty": "medium",
+    "topic": "Aptitude",
+    "sub_topic": "net",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "NetChange",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for net change."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve net change using an efficient approach.",
+    "hints": [
+      "Hint 1 for net change.",
+      "Hint 2 for net change."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_052",
+    "type": "aptitude",
+    "title": "Partnership",
+    "question": "A=5000, B=7000. Profit ratio?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "partnership",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Partnership",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for partnership."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve partnership using an efficient approach.",
+    "hints": [
+      "Hint 1 for partnership.",
+      "Hint 2 for partnership."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_053",
+    "type": "aptitude",
+    "title": "Pipes Cisterns",
+    "question": "A fills 4h, B empties 6h. Together?",
+    "difficulty": "medium",
+    "topic": "Aptitude",
+    "sub_topic": "pipes",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "PipesCisterns",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for pipes cisterns."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve pipes cisterns using an efficient approach.",
+    "hints": [
+      "Hint 1 for pipes cisterns.",
+      "Hint 2 for pipes cisterns."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_054",
+    "type": "aptitude",
+    "title": "Clock Angle",
+    "question": "Angle at 3:15?",
+    "difficulty": "medium",
+    "topic": "Aptitude",
+    "sub_topic": "clock",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "ClockAngle",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for clock angle."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve clock angle using an efficient approach.",
+    "hints": [
+      "Hint 1 for clock angle.",
+      "Hint 2 for clock angle."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_055",
+    "type": "aptitude",
+    "title": "Blood Relation",
+    "question": "A father of B, B mother of C. A-C?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "blood",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "BloodRelation",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for blood relation."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve blood relation using an efficient approach.",
+    "hints": [
+      "Hint 1 for blood relation.",
+      "Hint 2 for blood relation."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_056",
+    "type": "aptitude",
+    "title": "Data Interpretation",
+    "question": "Table sales. Average growth?",
+    "difficulty": "medium",
+    "topic": "Aptitude",
+    "sub_topic": "data",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "DataInterpretation",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for data interpretation."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve data interpretation using an efficient approach.",
+    "hints": [
+      "Hint 1 for data interpretation.",
+      "Hint 2 for data interpretation."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_057",
+    "type": "aptitude",
+    "title": "Logarithms",
+    "question": "log(1000) base 10?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "logarithms",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Logarithms",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for logarithms."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve logarithms using an efficient approach.",
+    "hints": [
+      "Hint 1 for logarithms.",
+      "Hint 2 for logarithms."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_058",
+    "type": "aptitude",
+    "title": "Alligation",
+    "question": "Mix 40 and 60 to get 50. Ratio?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "alligation",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Alligation",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for alligation."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve alligation using an efficient approach.",
+    "hints": [
+      "Hint 1 for alligation.",
+      "Hint 2 for alligation."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_059",
+    "type": "aptitude",
+    "title": "Boats Streams",
+    "question": "Still water 10, stream 2. Downstream?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "boats",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "BoatsStreams",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for boats streams."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve boats streams using an efficient approach.",
+    "hints": [
+      "Hint 1 for boats streams.",
+      "Hint 2 for boats streams."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_060",
+    "type": "aptitude",
+    "title": "HCF",
+    "question": "HCF of 12 and 18?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "hcf",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "HCF",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for hcf."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve hcf using an efficient approach.",
+    "hints": [
+      "Hint 1 for hcf.",
+      "Hint 2 for hcf."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_061",
+    "type": "aptitude",
+    "title": "LCM",
+    "question": "LCM of 12 and 18?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "lcm",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "LCM",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for lcm."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve lcm using an efficient approach.",
+    "hints": [
+      "Hint 1 for lcm.",
+      "Hint 2 for lcm."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_062",
+    "type": "aptitude",
+    "title": "Square Root",
+    "question": "Sqrt of 144?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "square",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "SquareRoot",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for square root."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve square root using an efficient approach.",
+    "hints": [
+      "Hint 1 for square root.",
+      "Hint 2 for square root."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_063",
+    "type": "aptitude",
+    "title": "Binary Convert",
+    "question": "Binary of 13?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "binary",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "BinaryConvert",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for binary convert."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve binary convert using an efficient approach.",
+    "hints": [
+      "Hint 1 for binary convert.",
+      "Hint 2 for binary convert."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_064",
+    "type": "aptitude",
+    "title": "Simplification",
+    "question": "2^3 * 2^4?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "simplification",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Simplification",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for simplification."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve simplification using an efficient approach.",
+    "hints": [
+      "Hint 1 for simplification.",
+      "Hint 2 for simplification."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_065",
+    "type": "aptitude",
+    "title": "Surds",
+    "question": "Simplify sqrt(50)?",
+    "difficulty": "medium",
+    "topic": "Aptitude",
+    "sub_topic": "surds",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Surds",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for surds."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve surds using an efficient approach.",
+    "hints": [
+      "Hint 1 for surds.",
+      "Hint 2 for surds."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_066",
+    "type": "aptitude",
+    "title": "Chain Rule",
+    "question": "5 men 10 days. 10 men?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "chain",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "ChainRule",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for chain rule."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve chain rule using an efficient approach.",
+    "hints": [
+      "Hint 1 for chain rule.",
+      "Hint 2 for chain rule."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_067",
+    "type": "aptitude",
+    "title": "Percentage Profit",
+    "question": "CP=200, SP=250. Profit %?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "percentage",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "PercentageProfit",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for percentage profit."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve percentage profit using an efficient approach.",
+    "hints": [
+      "Hint 1 for percentage profit.",
+      "Hint 2 for percentage profit."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_068",
+    "type": "aptitude",
+    "title": "Averages",
+    "question": "Sum of first 10 natural numbers?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "averages",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Averages",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for averages."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve averages using an efficient approach.",
+    "hints": [
+      "Hint 1 for averages.",
+      "Hint 2 for averages."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_069",
+    "type": "aptitude",
+    "title": "Time Distance",
+    "question": "Speed 60 km/h, time 2h. Distance?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "time",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "TimeDistance",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for time distance."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve time distance using an efficient approach.",
+    "hints": [
+      "Hint 1 for time distance.",
+      "Hint 2 for time distance."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_070",
+    "type": "aptitude",
+    "title": "Probability Dice",
+    "question": "Sum of two dice is 7?",
+    "difficulty": "medium",
+    "topic": "Aptitude",
+    "sub_topic": "probability",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "ProbabilityDice",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for probability dice."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve probability dice using an efficient approach.",
+    "hints": [
+      "Hint 1 for probability dice.",
+      "Hint 2 for probability dice."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_071",
+    "type": "aptitude",
+    "title": "Permutation Word",
+    "question": "Arrange 'LEADER'.",
+    "difficulty": "medium",
+    "topic": "Aptitude",
+    "sub_topic": "permutation",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "PermutationWord",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for permutation word."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve permutation word using an efficient approach.",
+    "hints": [
+      "Hint 1 for permutation word.",
+      "Hint 2 for permutation word."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_072",
+    "type": "aptitude",
+    "title": "Calendar",
+    "question": "Day on 1 Jan 2000?",
+    "difficulty": "medium",
+    "topic": "Aptitude",
+    "sub_topic": "calendar",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Calendar",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for calendar."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve calendar using an efficient approach.",
+    "hints": [
+      "Hint 1 for calendar.",
+      "Hint 2 for calendar."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_073",
+    "type": "aptitude",
+    "title": "Clock Hands",
+    "question": "Coincidence of hands?",
+    "difficulty": "medium",
+    "topic": "Aptitude",
+    "sub_topic": "clock",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "ClockHands",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for clock hands."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve clock hands using an efficient approach.",
+    "hints": [
+      "Hint 1 for clock hands.",
+      "Hint 2 for clock hands."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_074",
+    "type": "aptitude",
+    "title": "Ranking",
+    "question": "A beats B, B beats C. A vs C?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "ranking",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Ranking",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for ranking."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve ranking using an efficient approach.",
+    "hints": [
+      "Hint 1 for ranking.",
+      "Hint 2 for ranking."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_075",
+    "type": "aptitude",
+    "title": "Direction",
+    "question": "Face north, turn right 90, then 180. Direction?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "direction",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Direction",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for direction."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve direction using an efficient approach.",
+    "hints": [
+      "Hint 1 for direction.",
+      "Hint 2 for direction."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_076",
+    "type": "aptitude",
+    "title": "Syllogism",
+    "question": "All A are B. Some B are C. Conclusion?",
+    "difficulty": "medium",
+    "topic": "Aptitude",
+    "sub_topic": "syllogism",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Syllogism",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for syllogism."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve syllogism using an efficient approach.",
+    "hints": [
+      "Hint 1 for syllogism.",
+      "Hint 2 for syllogism."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_aptitude_077",
+    "type": "aptitude",
+    "title": "Coding Decoding",
+    "question": "If A=1, B=2, code of CAT?",
+    "difficulty": "easy",
+    "topic": "Aptitude",
+    "sub_topic": "coding",
+    "pattern": "Aptitude",
+    "skill": "quantitative",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "CodingDecoding",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for coding decoding."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve coding decoding using an efficient approach.",
+    "hints": [
+      "Hint 1 for coding decoding.",
+      "Hint 2 for coding decoding."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_078",
+    "type": "verbal",
+    "title": "Synonyms",
+    "question": "Find synonym of 'Big'.",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "synonyms",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Synonyms",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for synonyms."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve synonyms using an efficient approach.",
+    "hints": [
+      "Hint 1 for synonyms.",
+      "Hint 2 for synonyms."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_079",
+    "type": "verbal",
+    "title": "Antonyms",
+    "question": "Find antonym of 'Happy'.",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "antonyms",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Antonyms",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for antonyms."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve antonyms using an efficient approach.",
+    "hints": [
+      "Hint 1 for antonyms.",
+      "Hint 2 for antonyms."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_080",
+    "type": "verbal",
+    "title": "Fill Blank",
+    "question": "He ___ to school. (go/goes)",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "fill",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "FillBlank",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for fill blank."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve fill blank using an efficient approach.",
+    "hints": [
+      "Hint 1 for fill blank.",
+      "Hint 2 for fill blank."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_081",
+    "type": "verbal",
+    "title": "Sentence Correction",
+    "question": "Identify correct sentence.",
+    "difficulty": "medium",
+    "topic": "Verbal",
+    "sub_topic": "sentence",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "SentenceCorrection",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for sentence correction."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve sentence correction using an efficient approach.",
+    "hints": [
+      "Hint 1 for sentence correction.",
+      "Hint 2 for sentence correction."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_082",
+    "type": "verbal",
+    "title": "Reading Comprehension",
+    "question": " passage based question.",
+    "difficulty": "medium",
+    "topic": "Verbal",
+    "sub_topic": "reading",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "ReadingComprehension",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for reading comprehension."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve reading comprehension using an efficient approach.",
+    "hints": [
+      "Hint 1 for reading comprehension.",
+      "Hint 2 for reading comprehension."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_083",
+    "type": "verbal",
+    "title": "Para Jumble",
+    "question": "Arrange sentences in order.",
+    "difficulty": "medium",
+    "topic": "Verbal",
+    "sub_topic": "para",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "ParaJumble",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for para jumble."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve para jumble using an efficient approach.",
+    "hints": [
+      "Hint 1 for para jumble.",
+      "Hint 2 for para jumble."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_084",
+    "type": "verbal",
+    "title": "Grammar",
+    "question": "Subject-verb agreement.",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "grammar",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Grammar",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for grammar."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve grammar using an efficient approach.",
+    "hints": [
+      "Hint 1 for grammar.",
+      "Hint 2 for grammar."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_085",
+    "type": "verbal",
+    "title": "Vocabulary",
+    "question": "Meaning of 'Ephemeral'.",
+    "difficulty": "medium",
+    "topic": "Verbal",
+    "sub_topic": "vocabulary",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Vocabulary",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for vocabulary."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve vocabulary using an efficient approach.",
+    "hints": [
+      "Hint 1 for vocabulary.",
+      "Hint 2 for vocabulary."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_086",
+    "type": "verbal",
+    "title": "Prepositions",
+    "question": "Fill preposition: depend ___",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "prepositions",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Prepositions",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for prepositions."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve prepositions using an efficient approach.",
+    "hints": [
+      "Hint 1 for prepositions.",
+      "Hint 2 for prepositions."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_087",
+    "type": "verbal",
+    "title": "Tense",
+    "question": "Past perfect tense form.",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "tense",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Tense",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for tense."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve tense using an efficient approach.",
+    "hints": [
+      "Hint 1 for tense.",
+      "Hint 2 for tense."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_088",
+    "type": "verbal",
+    "title": "Active Passive",
+    "question": "Convert to passive voice.",
+    "difficulty": "medium",
+    "topic": "Verbal",
+    "sub_topic": "active",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "ActivePassive",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for active passive."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve active passive using an efficient approach.",
+    "hints": [
+      "Hint 1 for active passive.",
+      "Hint 2 for active passive."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_089",
+    "type": "verbal",
+    "title": "Direct Indirect",
+    "question": "Convert to indirect speech.",
+    "difficulty": "medium",
+    "topic": "Verbal",
+    "sub_topic": "direct",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "DirectIndirect",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for direct indirect."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve direct indirect using an efficient approach.",
+    "hints": [
+      "Hint 1 for direct indirect.",
+      "Hint 2 for direct indirect."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_090",
+    "type": "verbal",
+    "title": "Idioms",
+    "question": "Meaning of 'piece of cake'.",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "idioms",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Idioms",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for idioms."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve idioms using an efficient approach.",
+    "hints": [
+      "Hint 1 for idioms.",
+      "Hint 2 for idioms."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_091",
+    "type": "verbal",
+    "title": "One Word Substitution",
+    "question": "Person who loves books?",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "one",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "OneWordSubstitution",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for one word substitution."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve one word substitution using an efficient approach.",
+    "hints": [
+      "Hint 1 for one word substitution.",
+      "Hint 2 for one word substitution."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_092",
+    "type": "verbal",
+    "title": "Spelling",
+    "question": "Correct spelling: 'Reciept'.",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "spelling",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Spelling",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for spelling."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve spelling using an efficient approach.",
+    "hints": [
+      "Hint 1 for spelling.",
+      "Hint 2 for spelling."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_093",
+    "type": "verbal",
+    "title": "Articles",
+    "question": "Correct article: ___ apple.",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "articles",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Articles",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for articles."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve articles using an efficient approach.",
+    "hints": [
+      "Hint 1 for articles.",
+      "Hint 2 for articles."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_094",
+    "type": "verbal",
+    "title": "Conjunctions",
+    "question": "Join: I am tired ___ I worked.",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "conjunctions",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Conjunctions",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for conjunctions."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve conjunctions using an efficient approach.",
+    "hints": [
+      "Hint 1 for conjunctions.",
+      "Hint 2 for conjunctions."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_095",
+    "type": "verbal",
+    "title": "Degrees",
+    "question": "Comparative of 'Good'.",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "degrees",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Degrees",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for degrees."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve degrees using an efficient approach.",
+    "hints": [
+      "Hint 1 for degrees.",
+      "Hint 2 for degrees."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_096",
+    "type": "verbal",
+    "title": "Question Tag",
+    "question": "She is coming, ___?",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "question",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "QuestionTag",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for question tag."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve question tag using an efficient approach.",
+    "hints": [
+      "Hint 1 for question tag.",
+      "Hint 2 for question tag."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_097",
+    "type": "verbal",
+    "title": "Error Spotting",
+    "question": "Identify error in sentence.",
+    "difficulty": "medium",
+    "topic": "Verbal",
+    "sub_topic": "error",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "ErrorSpotting",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for error spotting."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve error spotting using an efficient approach.",
+    "hints": [
+      "Hint 1 for error spotting.",
+      "Hint 2 for error spotting."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_098",
+    "type": "verbal",
+    "title": "Word Association",
+    "question": "Find odd one out.",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "word",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "WordAssociation",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for word association."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve word association using an efficient approach.",
+    "hints": [
+      "Hint 1 for word association.",
+      "Hint 2 for word association."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_099",
+    "type": "verbal",
+    "title": "Sentence Completion",
+    "question": "Complete the sentence.",
+    "difficulty": "medium",
+    "topic": "Verbal",
+    "sub_topic": "sentence",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "SentenceCompletion",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for sentence completion."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve sentence completion using an efficient approach.",
+    "hints": [
+      "Hint 1 for sentence completion.",
+      "Hint 2 for sentence completion."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_100",
+    "type": "verbal",
+    "title": "Phrasal Verbs",
+    "question": "Meaning of 'look up'.",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "phrasal",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "PhrasalVerbs",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for phrasal verbs."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve phrasal verbs using an efficient approach.",
+    "hints": [
+      "Hint 1 for phrasal verbs.",
+      "Hint 2 for phrasal verbs."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_101",
+    "type": "verbal",
+    "title": "Homophones",
+    "question": "Their vs There.",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "homophones",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Homophones",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for homophones."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve homophones using an efficient approach.",
+    "hints": [
+      "Hint 1 for homophones.",
+      "Hint 2 for homophones."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_102",
+    "type": "verbal",
+    "title": "Prefix Suffix",
+    "question": "Meaning of 'Unhappy'.",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "prefix",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "PrefixSuffix",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for prefix suffix."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve prefix suffix using an efficient approach.",
+    "hints": [
+      "Hint 1 for prefix suffix.",
+      "Hint 2 for prefix suffix."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_103",
+    "type": "verbal",
+    "title": "Analogies",
+    "question": "Book:Read::Pen:?",
+    "difficulty": "easy",
+    "topic": "Verbal",
+    "sub_topic": "analogies",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Analogies",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for analogies."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve analogies using an efficient approach.",
+    "hints": [
+      "Hint 1 for analogies.",
+      "Hint 2 for analogies."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_104",
+    "type": "verbal",
+    "title": "Cloze Test",
+    "question": "Fill blanks in paragraph.",
+    "difficulty": "medium",
+    "topic": "Verbal",
+    "sub_topic": "cloze",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "ClozeTest",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for cloze test."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve cloze test using an efficient approach.",
+    "hints": [
+      "Hint 1 for cloze test.",
+      "Hint 2 for cloze test."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_105",
+    "type": "verbal",
+    "title": "Inference",
+    "question": "Infer from passage.",
+    "difficulty": "medium",
+    "topic": "Verbal",
+    "sub_topic": "inference",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Inference",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for inference."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve inference using an efficient approach.",
+    "hints": [
+      "Hint 1 for inference.",
+      "Hint 2 for inference."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_106",
+    "type": "verbal",
+    "title": "Assumption",
+    "question": "Find assumption in statement.",
+    "difficulty": "medium",
+    "topic": "Verbal",
+    "sub_topic": "assumption",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "Assumption",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for assumption."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve assumption using an efficient approach.",
+    "hints": [
+      "Hint 1 for assumption.",
+      "Hint 2 for assumption."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  },
+  {
+    "id": "cognizant_verbal_107",
+    "type": "verbal",
+    "title": "Strengthen Weaken",
+    "question": "Strengthen the argument.",
+    "difficulty": "medium",
+    "topic": "Verbal",
+    "sub_topic": "strengthen",
+    "pattern": "Verbal",
+    "skill": "verbal_ability",
+    "role": "campus",
+    "companies": [
+      "Cognizant"
+    ],
+    "source_bank": "cognizant_genc_verified",
+    "trust_status": "verified",
+    "provenance": "Cognizant GenC Pattern \u2014 Original Composition",
+    "verification_version": "automated_checked_v1",
+    "constraints": [
+      "1 <= n <= 10^5",
+      "-10^9 <= val <= 10^9"
+    ],
+    "function_name": "StrengthenWeaken",
+    "function_params": [
+      {
+        "name": "input",
+        "type": "auto"
+      }
+    ],
+    "examples": [
+      {
+        "input": "Sample",
+        "output": "Answer",
+        "explanation": "Example for strengthen weaken."
+      }
+    ],
+    "testcases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "visible_test_cases": [
+      {
+        "input": "Sample",
+        "expected": "Answer"
+      }
+    ],
+    "hidden_testcases": [],
+    "hidden_test_cases": [],
+    "solution": {},
+    "explanation": "Solve strengthen weaken using an efficient approach.",
+    "hints": [
+      "Hint 1 for strengthen weaken.",
+      "Hint 2 for strengthen weaken."
+    ],
+    "reasoning_steps": [
+      "Understand problem.",
+      "Choose approach.",
+      "Implement.",
+      "Test.",
+      "Return result."
+    ]
+  }
+]

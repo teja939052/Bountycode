@@ -14,10 +14,11 @@ const SECTION_ICONS = {
 
 const TABS = [
   { id: 'overview', label: 'Overview', icon: '📋' },
+  { id: 'readiness', label: 'Readiness', icon: '🎯' },
   { id: 'exam', label: 'Exam Pattern', icon: '📝' },
   { id: 'coding', label: 'Coding', icon: '💻' },
   { id: 'hr', label: 'HR Round', icon: '🗣️' },
-  { id: 'mock', label: 'Take Mock', icon: '🎯' },
+  { id: 'mock', label: 'Take Mock', icon: '🚀' },
 ];
 
 export default function IndianPlacement() {
@@ -27,6 +28,7 @@ export default function IndianPlacement() {
   const [mockConfig, setMockConfig] = useState(null);
   const [hrData, setHrData] = useState(null);
   const [codingData, setCodingData] = useState(null);
+  const [readinessData, setReadinessData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [detailLoading, setDetailLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('overview');
@@ -59,15 +61,18 @@ export default function IndianPlacement() {
     setActiveTab('overview');
     setMockStarted(false);
     setMockSections(null);
+    setReadinessData(null);
     try {
-      const [detailRes, hrRes, codingRes] = await Promise.all([
+      const [detailRes, hrRes, codingRes, readinessRes] = await Promise.all([
         fetch(`/api/v1/indian-placement/${encodeURIComponent(companyId)}`, { credentials: 'include' }).then(r => r.ok ? r.json() : null).catch(() => null),
         fetch(`/api/v1/indian-placement/${encodeURIComponent(companyId)}/hr-questions`, { credentials: 'include' }).then(r => r.ok ? r.json() : null).catch(() => null),
         fetch(`/api/v1/indian-placement/${encodeURIComponent(companyId)}/coding-patterns`, { credentials: 'include' }).then(r => r.ok ? r.json() : null).catch(() => null),
+        fetch(`/api/v1/adaptive/readiness?company=${encodeURIComponent(companyId)}`, { credentials: 'include' }).then(r => r.ok ? r.json() : null).catch(() => null),
       ]);
       setDetail(detailRes);
       setHrData(hrRes);
       setCodingData(codingRes);
+      setReadinessData(readinessRes?.data || readinessRes);
     } catch {}
     setDetailLoading(false);
   };
@@ -231,6 +236,10 @@ export default function IndianPlacement() {
               </div>
             )}
 
+            {activeTab === 'readiness' && (
+              <ReadinessTab companyId={selected} readiness={readinessData} />
+            )}
+
             {activeTab === 'exam' && detail && (
               <ExamPatternTab detail={detail} />
             )}
@@ -334,6 +343,111 @@ function ExamPatternTab({ detail }) {
             </motion.div>
           ))}
         </div>
+      </Card>
+    </div>
+  );
+}
+
+function ReadinessTab({ companyId, readiness }) {
+  const [roadmap, setRoadmap] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    (async () => {
+      if (!companyId) return;
+      setLoading(true);
+      try {
+        const res = await fetch(`/api/v1/company/roadmap?company=${encodeURIComponent(companyId)}`, { credentials: 'include' });
+        const data = await res.json().catch(() => null);
+        if (active && data) setRoadmap(data);
+      } catch {}
+      if (active) setLoading(false);
+    })();
+    return () => { active = false; };
+  }, [companyId]);
+
+  const d = readiness?.data || readiness || {};
+  const overall = d.overall_readiness ?? d.overall ?? 0;
+  const level = d.readiness_level || "";
+  const categories = d.categories || d.category_scores || {};
+  const target = d.target_readiness;
+  const blockers = target?.blockers || [];
+  const nextAction = target?.next_action;
+
+  return (
+    <div className="space-y-4">
+      <Card rarity="rare" hoverEffect={false}>
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-400">Your Readiness</h3>
+          <span className="text-xs font-mono text-cyber-blue">{level || "Calculating..."}</span>
+        </div>
+        <div className="mb-4">
+          <div className="flex items-center justify-between text-sm mb-2">
+            <span className="text-4xl font-black stat-numeral text-text-primary">{Math.round(overall)}%</span>
+            <span className="text-sm text-gray-400">Overall for {companyId?.toUpperCase()}</span>
+          </div>
+          <div className="h-2.5 rounded-full bg-gray-700/30 overflow-hidden">
+            <div className="h-full rounded-full bg-cyber-blue transition-all duration-700 ease-out" style={{ width: `${Math.min(100, Math.max(0, overall))}%` }} />
+          </div>
+        </div>
+        {blockers.length > 0 && (
+          <div className="mb-4 rounded-xl border border-red-500/20 bg-red-500/10 p-4">
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-red-400 mb-2">
+              <AlertCircle size={14} /> Blockers
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {blockers.map((b, i) => (
+                <span key={i} className="inline-flex items-center gap-1 rounded-full bg-red-500/15 px-2.5 py-1 text-xs font-medium text-red-300">
+                  <span className="h-1.5 w-1.5 rounded-full bg-red-500" />
+                  {(b.skill_id || b).replace(/_/g, " ")}
+                </span>
+              ))}
+            </div>
+            {nextAction && (
+              <p className="mt-2 text-xs text-red-300">
+                Next focus: <span className="font-bold">{(nextAction.skill_id || "").replace(/_/g, " ")}</span>
+              </p>
+            )}
+          </div>
+        )}
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          {Object.entries(categories).map(([key, val]) => {
+            const score = typeof val === "number" ? val : (val as any)?.score || 0;
+            const label = key.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+            return (
+              <div key={key} className="flex flex-col items-center text-center rounded-xl border border-gray-700/30 p-3">
+                <div className="text-lg font-bold text-text-primary">{Math.round(score)}%</div>
+                <div className="text-[10px] text-gray-500 uppercase">{label}</div>
+              </div>
+            );
+          })}
+        </div>
+      </Card>
+
+      <Card rarity="uncommon" hoverEffect={false}>
+        <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-400 mb-3">30-Day Roadmap</h3>
+        {loading ? (
+          <div className="space-y-2">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <div key={i} className="h-12 rounded-lg bg-gray-800/40 border border-gray-700/20 animate-pulse" />
+            ))}
+          </div>
+        ) : roadmap?.missions?.length > 0 ? (
+          <div className="space-y-2">
+            {roadmap.missions.slice(0, 7).map((m, i) => (
+              <div key={i} className="flex items-center gap-3 p-3 rounded-lg bg-gray-800/30 border border-gray-700/20">
+                <span className="w-6 h-6 rounded-md bg-cyber-blue/15 text-cyber-blue flex items-center justify-center text-[10px] font-bold font-mono shrink-0">D{i + 1}</span>
+                <div className="min-w-0">
+                  <p className="text-xs text-gray-300 font-mono truncate">{m.title || `${m.category}: ${m.topic}`}</p>
+                  <p className="text-[10px] text-gray-500">{m.minutes} min • {m.difficulty}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="text-xs text-gray-500">No roadmap generated yet. Start practicing to build your personalized plan.</p>
+        )}
       </Card>
     </div>
   );

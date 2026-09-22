@@ -1,0 +1,1002 @@
+[
+  {
+    "id": "verbal_cloze_0000",
+    "question": "The company is known ___ its innovative products.",
+    "pattern": "cloze",
+    "skill": "cloze",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "The company is known ___ its innovative products.",
+      "options": [
+        "A. for",
+        "B. for",
+        "C. better",
+        "D. an"
+      ],
+      "correct_answer": "A. for",
+      "explanation": "'for' fits the context"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.259805+00:00",
+    "updated_at": "2026-09-21T12:53:32.260806+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_cloze_0001",
+    "question": "She ___ the project before the deadline.",
+    "pattern": "cloze",
+    "skill": "cloze",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "She ___ the project before the deadline.",
+      "options": [
+        "A. proves",
+        "B. completed",
+        "C. for",
+        "D. completed"
+      ],
+      "correct_answer": "B. completed",
+      "explanation": "'completed' fits the context"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.260806+00:00",
+    "updated_at": "2026-09-21T12:53:32.260806+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_cloze_0002",
+    "question": "The results were ___ than expected.",
+    "pattern": "cloze",
+    "skill": "cloze",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "The results were ___ than expected.",
+      "options": [
+        "A. faced",
+        "B. better",
+        "C. proves",
+        "D. postponed"
+      ],
+      "correct_answer": "B. better",
+      "explanation": "'better' fits the context"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.260806+00:00",
+    "updated_at": "2026-09-21T12:53:32.260806+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_cloze_0003",
+    "question": "He has been working ___ three hours.",
+    "pattern": "cloze",
+    "skill": "cloze",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "He has been working ___ three hours.",
+      "options": [
+        "A. on",
+        "B. for",
+        "C. proves",
+        "D. completed"
+      ],
+      "correct_answer": "B. for",
+      "explanation": "'for' fits the context"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.260806+00:00",
+    "updated_at": "2026-09-21T12:53:32.260806+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_cloze_0004",
+    "question": "The team ___ the challenge successfully.",
+    "pattern": "cloze",
+    "skill": "cloze",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "The team ___ the challenge successfully.",
+      "options": [
+        "A. an",
+        "B. joined",
+        "C. faced",
+        "D. excited"
+      ],
+      "correct_answer": "C. faced",
+      "explanation": "'faced' fits the context"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.260806+00:00",
+    "updated_at": "2026-09-21T12:53:32.260806+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_cloze_0005",
+    "question": "She is very ___ about the new product.",
+    "pattern": "cloze",
+    "skill": "cloze",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "She is very ___ about the new product.",
+      "options": [
+        "A. proves",
+        "B. excited",
+        "C. postponed",
+        "D. joined"
+      ],
+      "correct_answer": "B. excited",
+      "explanation": "'excited' fits the context"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.260806+00:00",
+    "updated_at": "2026-09-21T12:53:32.260806+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_cloze_0006",
+    "question": "The data ___ to be accurate.",
+    "pattern": "cloze",
+    "skill": "cloze",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "The data ___ to be accurate.",
+      "options": [
+        "A. proves",
+        "B. postponed",
+        "C. better",
+        "D. for"
+      ],
+      "correct_answer": "A. proves",
+      "explanation": "'proves' fits the context"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.260806+00:00",
+    "updated_at": "2026-09-21T12:53:32.260806+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_cloze_0007",
+    "question": "We must act ___ this issue immediately.",
+    "pattern": "cloze",
+    "skill": "cloze",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "We must act ___ this issue immediately.",
+      "options": [
+        "A. an",
+        "B. postponed",
+        "C. proves",
+        "D. on"
+      ],
+      "correct_answer": "D. on",
+      "explanation": "'on' fits the context"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.260806+00:00",
+    "updated_at": "2026-09-21T12:53:32.260806+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_cloze_0008",
+    "question": "He is ___ engineer with 10 years of experience.",
+    "pattern": "cloze",
+    "skill": "cloze",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "He is ___ engineer with 10 years of experience.",
+      "options": [
+        "A. completed",
+        "B. an",
+        "C. proves",
+        "D. for"
+      ],
+      "correct_answer": "B. an",
+      "explanation": "'an' fits the context"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.260806+00:00",
+    "updated_at": "2026-09-21T12:53:32.260806+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_cloze_0009",
+    "question": "The meeting was ___ to next Monday.",
+    "pattern": "cloze",
+    "skill": "cloze",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "The meeting was ___ to next Monday.",
+      "options": [
+        "A. postponed",
+        "B. postponed",
+        "C. on",
+        "D. faced"
+      ],
+      "correct_answer": "A. postponed",
+      "explanation": "'postponed' fits the context"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.260806+00:00",
+    "updated_at": "2026-09-21T12:53:32.260806+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_cloze_0010",
+    "question": "She ___ the company for five years.",
+    "pattern": "cloze",
+    "skill": "cloze",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "She ___ the company for five years.",
+      "options": [
+        "A. has joined",
+        "B. joined",
+        "C. excited",
+        "D. proves"
+      ],
+      "correct_answer": "A. has joined",
+      "explanation": "'has joined' fits the context"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.260806+00:00",
+    "updated_at": "2026-09-21T12:53:32.261807+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_cloze_0011",
+    "question": "The results were ___ than expected.",
+    "pattern": "cloze",
+    "skill": "cloze",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "The results were ___ than expected.",
+      "options": [
+        "A. better",
+        "B. joined",
+        "C. postponed",
+        "D. better"
+      ],
+      "correct_answer": "A. better",
+      "explanation": "'better' fits the context"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.261807+00:00",
+    "updated_at": "2026-09-21T12:53:32.261807+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_cloze_0012",
+    "question": "He is ___ to the new role.",
+    "pattern": "cloze",
+    "skill": "cloze",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "He is ___ to the new role.",
+      "options": [
+        "A. completed",
+        "B. faced",
+        "C. adapting",
+        "D. better"
+      ],
+      "correct_answer": "C. adapting",
+      "explanation": "'adapting' fits the context"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.261807+00:00",
+    "updated_at": "2026-09-21T12:53:32.261807+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_cloze_0013",
+    "question": "The project ___ successfully last month.",
+    "pattern": "cloze",
+    "skill": "cloze",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "The project ___ successfully last month.",
+      "options": [
+        "A. an",
+        "B. completed",
+        "C. was completed",
+        "D. on"
+      ],
+      "correct_answer": "C. was completed",
+      "explanation": "'was completed' fits the context"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.261807+00:00",
+    "updated_at": "2026-09-21T12:53:32.261807+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_cloze_0014",
+    "question": "She ___ the challenge with confidence.",
+    "pattern": "cloze",
+    "skill": "cloze",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "She ___ the challenge with confidence.",
+      "options": [
+        "A. faced",
+        "B. completed",
+        "C. better",
+        "D. faced"
+      ],
+      "correct_answer": "A. faced",
+      "explanation": "'faced' fits the context"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.261807+00:00",
+    "updated_at": "2026-09-21T12:53:32.261807+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_cloze_0015",
+    "question": "The team ___ the target on time.",
+    "pattern": "cloze",
+    "skill": "cloze",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "The team ___ the target on time.",
+      "options": [
+        "A. achieved",
+        "B. better",
+        "C. completed",
+        "D. an"
+      ],
+      "correct_answer": "A. achieved",
+      "explanation": "'achieved' fits the context"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.263177+00:00",
+    "updated_at": "2026-09-21T12:53:32.263177+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_cloze_0016",
+    "question": "He ___ the proposal to the board.",
+    "pattern": "cloze",
+    "skill": "cloze",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "He ___ the proposal to the board.",
+      "options": [
+        "A. proves",
+        "B. excited",
+        "C. completed",
+        "D. presented"
+      ],
+      "correct_answer": "D. presented",
+      "explanation": "'presented' fits the context"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.263177+00:00",
+    "updated_at": "2026-09-21T12:53:32.263177+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_cloze_0017",
+    "question": "The results ___ significant improvement.",
+    "pattern": "cloze",
+    "skill": "cloze",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "The results ___ significant improvement.",
+      "options": [
+        "A. excited",
+        "B. better",
+        "C. faced",
+        "D. showed"
+      ],
+      "correct_answer": "D. showed",
+      "explanation": "'showed' fits the context"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.263177+00:00",
+    "updated_at": "2026-09-21T12:53:32.263177+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_cloze_0018",
+    "question": "She ___ the problem quickly.",
+    "pattern": "cloze",
+    "skill": "cloze",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "She ___ the problem quickly.",
+      "options": [
+        "A. faced",
+        "B. solved",
+        "C. on",
+        "D. postponed"
+      ],
+      "correct_answer": "B. solved",
+      "explanation": "'solved' fits the context"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.263177+00:00",
+    "updated_at": "2026-09-21T12:53:32.263177+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_cloze_0019",
+    "question": "The company ___ its goals this quarter.",
+    "pattern": "cloze",
+    "skill": "cloze",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "The company ___ its goals this quarter.",
+      "options": [
+        "A. on",
+        "B. joined",
+        "C. for",
+        "D. met"
+      ],
+      "correct_answer": "D. met",
+      "explanation": "'met' fits the context"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.263177+00:00",
+    "updated_at": "2026-09-21T12:53:32.263177+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  }
+]

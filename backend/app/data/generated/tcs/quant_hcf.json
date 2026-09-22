@@ -1,0 +1,1852 @@
+[
+  {
+    "id": "quant_hcf_0000",
+    "question": "LCM of 12 and 16?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 12 and 16?",
+      "options": [
+        "A. 16",
+        "B. 4",
+        "C. 192",
+        "D. 48"
+      ],
+      "correct_answer": "D. 48",
+      "explanation": "LCM(12,16) = 12*16/gcd(12,16) = 192/4 = 48"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.176400+00:00",
+    "updated_at": "2026-09-21T12:53:32.176400+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0001",
+    "question": "LCM of 12 and 20?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 12 and 20?",
+      "options": [
+        "A. 4",
+        "B. 60",
+        "C. 20",
+        "D. 240"
+      ],
+      "correct_answer": "B. 60",
+      "explanation": "LCM(12,20) = 12*20/gcd(12,20) = 240/4 = 60"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.176400+00:00",
+    "updated_at": "2026-09-21T12:53:32.176400+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0002",
+    "question": "LCM of 12 and 21?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 12 and 21?",
+      "options": [
+        "A. 252",
+        "B. 21",
+        "C. 3",
+        "D. 84"
+      ],
+      "correct_answer": "D. 84",
+      "explanation": "LCM(12,21) = 12*21/gcd(12,21) = 252/3 = 84"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.176400+00:00",
+    "updated_at": "2026-09-21T12:53:32.176400+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0003",
+    "question": "LCM of 12 and 24?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 12 and 24?",
+      "options": [
+        "A. 24",
+        "B. 288",
+        "C. 24",
+        "D. 12"
+      ],
+      "correct_answer": "A. 24",
+      "explanation": "LCM(12,24) = 12*24/gcd(12,24) = 288/12 = 24"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.176400+00:00",
+    "updated_at": "2026-09-21T12:53:32.176400+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0004",
+    "question": "LCM of 12 and 25?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 12 and 25?",
+      "options": [
+        "A. 300",
+        "B. 300",
+        "C. 25",
+        "D. 1"
+      ],
+      "correct_answer": "A. 300",
+      "explanation": "LCM(12,25) = 12*25/gcd(12,25) = 300/1 = 300"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.176400+00:00",
+    "updated_at": "2026-09-21T12:53:32.176400+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0005",
+    "question": "LCM of 12 and 28?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 12 and 28?",
+      "options": [
+        "A. 84",
+        "B. 336",
+        "C. 28",
+        "D. 4"
+      ],
+      "correct_answer": "A. 84",
+      "explanation": "LCM(12,28) = 12*28/gcd(12,28) = 336/4 = 84"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.176400+00:00",
+    "updated_at": "2026-09-21T12:53:32.176400+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0006",
+    "question": "LCM of 12 and 30?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 12 and 30?",
+      "options": [
+        "A. 360",
+        "B. 30",
+        "C. 6",
+        "D. 60"
+      ],
+      "correct_answer": "D. 60",
+      "explanation": "LCM(12,30) = 12*30/gcd(12,30) = 360/6 = 60"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.177423+00:00",
+    "updated_at": "2026-09-21T12:53:32.177423+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0007",
+    "question": "LCM of 12 and 35?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 12 and 35?",
+      "options": [
+        "A. 420",
+        "B. 1",
+        "C. 420",
+        "D. 35"
+      ],
+      "correct_answer": "A. 420",
+      "explanation": "LCM(12,35) = 12*35/gcd(12,35) = 420/1 = 420"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.177423+00:00",
+    "updated_at": "2026-09-21T12:53:32.177423+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0008",
+    "question": "LCM of 15 and 16?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 15 and 16?",
+      "options": [
+        "A. 240",
+        "B. 240",
+        "C. 16",
+        "D. 1"
+      ],
+      "correct_answer": "A. 240",
+      "explanation": "LCM(15,16) = 15*16/gcd(15,16) = 240/1 = 240"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.177423+00:00",
+    "updated_at": "2026-09-21T12:53:32.177423+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0009",
+    "question": "LCM of 15 and 20?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 15 and 20?",
+      "options": [
+        "A. 5",
+        "B. 20",
+        "C. 60",
+        "D. 300"
+      ],
+      "correct_answer": "C. 60",
+      "explanation": "LCM(15,20) = 15*20/gcd(15,20) = 300/5 = 60"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.177423+00:00",
+    "updated_at": "2026-09-21T12:53:32.177423+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0010",
+    "question": "LCM of 15 and 21?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 15 and 21?",
+      "options": [
+        "A. 21",
+        "B. 3",
+        "C. 105",
+        "D. 315"
+      ],
+      "correct_answer": "C. 105",
+      "explanation": "LCM(15,21) = 15*21/gcd(15,21) = 315/3 = 105"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.177423+00:00",
+    "updated_at": "2026-09-21T12:53:32.177423+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0011",
+    "question": "LCM of 15 and 24?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 15 and 24?",
+      "options": [
+        "A. 24",
+        "B. 360",
+        "C. 120",
+        "D. 3"
+      ],
+      "correct_answer": "C. 120",
+      "explanation": "LCM(15,24) = 15*24/gcd(15,24) = 360/3 = 120"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.177423+00:00",
+    "updated_at": "2026-09-21T12:53:32.177423+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0012",
+    "question": "LCM of 15 and 25?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 15 and 25?",
+      "options": [
+        "A. 25",
+        "B. 75",
+        "C. 5",
+        "D. 375"
+      ],
+      "correct_answer": "B. 75",
+      "explanation": "LCM(15,25) = 15*25/gcd(15,25) = 375/5 = 75"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.177423+00:00",
+    "updated_at": "2026-09-21T12:53:32.177423+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0013",
+    "question": "LCM of 15 and 28?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 15 and 28?",
+      "options": [
+        "A. 420",
+        "B. 420",
+        "C. 1",
+        "D. 28"
+      ],
+      "correct_answer": "A. 420",
+      "explanation": "LCM(15,28) = 15*28/gcd(15,28) = 420/1 = 420"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.177423+00:00",
+    "updated_at": "2026-09-21T12:53:32.182158+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0014",
+    "question": "LCM of 15 and 30?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 15 and 30?",
+      "options": [
+        "A. 450",
+        "B. 15",
+        "C. 30",
+        "D. 30"
+      ],
+      "correct_answer": "C. 30",
+      "explanation": "LCM(15,30) = 15*30/gcd(15,30) = 450/15 = 30"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.182158+00:00",
+    "updated_at": "2026-09-21T12:53:32.182158+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0015",
+    "question": "LCM of 15 and 35?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 15 and 35?",
+      "options": [
+        "A. 525",
+        "B. 35",
+        "C. 105",
+        "D. 5"
+      ],
+      "correct_answer": "C. 105",
+      "explanation": "LCM(15,35) = 15*35/gcd(15,35) = 525/5 = 105"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.182158+00:00",
+    "updated_at": "2026-09-21T12:53:32.182158+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0016",
+    "question": "LCM of 18 and 20?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 18 and 20?",
+      "options": [
+        "A. 360",
+        "B. 20",
+        "C. 2",
+        "D. 180"
+      ],
+      "correct_answer": "D. 180",
+      "explanation": "LCM(18,20) = 18*20/gcd(18,20) = 360/2 = 180"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.182158+00:00",
+    "updated_at": "2026-09-21T12:53:32.182158+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0017",
+    "question": "LCM of 18 and 21?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 18 and 21?",
+      "options": [
+        "A. 3",
+        "B. 21",
+        "C. 126",
+        "D. 378"
+      ],
+      "correct_answer": "C. 126",
+      "explanation": "LCM(18,21) = 18*21/gcd(18,21) = 378/3 = 126"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.182158+00:00",
+    "updated_at": "2026-09-21T12:53:32.182158+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0018",
+    "question": "LCM of 18 and 24?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 18 and 24?",
+      "options": [
+        "A. 72",
+        "B. 432",
+        "C. 24",
+        "D. 6"
+      ],
+      "correct_answer": "A. 72",
+      "explanation": "LCM(18,24) = 18*24/gcd(18,24) = 432/6 = 72"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.182158+00:00",
+    "updated_at": "2026-09-21T12:53:32.182158+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0019",
+    "question": "LCM of 18 and 25?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 18 and 25?",
+      "options": [
+        "A. 450",
+        "B. 1",
+        "C. 25",
+        "D. 450"
+      ],
+      "correct_answer": "A. 450",
+      "explanation": "LCM(18,25) = 18*25/gcd(18,25) = 450/1 = 450"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.182158+00:00",
+    "updated_at": "2026-09-21T12:53:32.182158+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0020",
+    "question": "LCM of 18 and 28?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 18 and 28?",
+      "options": [
+        "A. 2",
+        "B. 28",
+        "C. 504",
+        "D. 252"
+      ],
+      "correct_answer": "D. 252",
+      "explanation": "LCM(18,28) = 18*28/gcd(18,28) = 504/2 = 252"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.183151+00:00",
+    "updated_at": "2026-09-21T12:53:32.183151+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0021",
+    "question": "LCM of 18 and 30?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 18 and 30?",
+      "options": [
+        "A. 90",
+        "B. 540",
+        "C. 30",
+        "D. 6"
+      ],
+      "correct_answer": "A. 90",
+      "explanation": "LCM(18,30) = 18*30/gcd(18,30) = 540/6 = 90"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.183151+00:00",
+    "updated_at": "2026-09-21T12:53:32.183151+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0022",
+    "question": "LCM of 18 and 35?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 18 and 35?",
+      "options": [
+        "A. 35",
+        "B. 1",
+        "C. 630",
+        "D. 630"
+      ],
+      "correct_answer": "C. 630",
+      "explanation": "LCM(18,35) = 18*35/gcd(18,35) = 630/1 = 630"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.183151+00:00",
+    "updated_at": "2026-09-21T12:53:32.183151+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0023",
+    "question": "LCM of 20 and 21?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 20 and 21?",
+      "options": [
+        "A. 420",
+        "B. 21",
+        "C. 420",
+        "D. 1"
+      ],
+      "correct_answer": "A. 420",
+      "explanation": "LCM(20,21) = 20*21/gcd(20,21) = 420/1 = 420"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.183151+00:00",
+    "updated_at": "2026-09-21T12:53:32.183151+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0024",
+    "question": "LCM of 20 and 24?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 20 and 24?",
+      "options": [
+        "A. 24",
+        "B. 120",
+        "C. 480",
+        "D. 4"
+      ],
+      "correct_answer": "B. 120",
+      "explanation": "LCM(20,24) = 20*24/gcd(20,24) = 480/4 = 120"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.183151+00:00",
+    "updated_at": "2026-09-21T12:53:32.183151+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0025",
+    "question": "LCM of 20 and 25?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 20 and 25?",
+      "options": [
+        "A. 5",
+        "B. 25",
+        "C. 100",
+        "D. 500"
+      ],
+      "correct_answer": "C. 100",
+      "explanation": "LCM(20,25) = 20*25/gcd(20,25) = 500/5 = 100"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.183151+00:00",
+    "updated_at": "2026-09-21T12:53:32.183151+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0026",
+    "question": "LCM of 20 and 28?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 20 and 28?",
+      "options": [
+        "A. 560",
+        "B. 140",
+        "C. 4",
+        "D. 28"
+      ],
+      "correct_answer": "B. 140",
+      "explanation": "LCM(20,28) = 20*28/gcd(20,28) = 560/4 = 140"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.183151+00:00",
+    "updated_at": "2026-09-21T12:53:32.183151+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0027",
+    "question": "LCM of 20 and 30?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 20 and 30?",
+      "options": [
+        "A. 60",
+        "B. 600",
+        "C. 10",
+        "D. 30"
+      ],
+      "correct_answer": "A. 60",
+      "explanation": "LCM(20,30) = 20*30/gcd(20,30) = 600/10 = 60"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.183151+00:00",
+    "updated_at": "2026-09-21T12:53:32.183151+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0028",
+    "question": "LCM of 20 and 35?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 20 and 35?",
+      "options": [
+        "A. 700",
+        "B. 35",
+        "C. 5",
+        "D. 140"
+      ],
+      "correct_answer": "D. 140",
+      "explanation": "LCM(20,35) = 20*35/gcd(20,35) = 700/5 = 140"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.183151+00:00",
+    "updated_at": "2026-09-21T12:53:32.183151+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0029",
+    "question": "LCM of 24 and 25?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 24 and 25?",
+      "options": [
+        "A. 1",
+        "B. 25",
+        "C. 600",
+        "D. 600"
+      ],
+      "correct_answer": "C. 600",
+      "explanation": "LCM(24,25) = 24*25/gcd(24,25) = 600/1 = 600"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.183151+00:00",
+    "updated_at": "2026-09-21T12:53:32.183151+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0030",
+    "question": "LCM of 24 and 28?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 24 and 28?",
+      "options": [
+        "A. 4",
+        "B. 28",
+        "C. 168",
+        "D. 672"
+      ],
+      "correct_answer": "C. 168",
+      "explanation": "LCM(24,28) = 24*28/gcd(24,28) = 672/4 = 168"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.183151+00:00",
+    "updated_at": "2026-09-21T12:53:32.183151+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0031",
+    "question": "LCM of 24 and 30?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 24 and 30?",
+      "options": [
+        "A. 120",
+        "B. 6",
+        "C. 30",
+        "D. 720"
+      ],
+      "correct_answer": "A. 120",
+      "explanation": "LCM(24,30) = 24*30/gcd(24,30) = 720/6 = 120"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.183151+00:00",
+    "updated_at": "2026-09-21T12:53:32.183151+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0032",
+    "question": "LCM of 24 and 35?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 24 and 35?",
+      "options": [
+        "A. 840",
+        "B. 35",
+        "C. 840",
+        "D. 1"
+      ],
+      "correct_answer": "A. 840",
+      "explanation": "LCM(24,35) = 24*35/gcd(24,35) = 840/1 = 840"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.183151+00:00",
+    "updated_at": "2026-09-21T12:53:32.183151+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0033",
+    "question": "LCM of 25 and 28?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 25 and 28?",
+      "options": [
+        "A. 1",
+        "B. 700",
+        "C. 700",
+        "D. 28"
+      ],
+      "correct_answer": "B. 700",
+      "explanation": "LCM(25,28) = 25*28/gcd(25,28) = 700/1 = 700"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.183151+00:00",
+    "updated_at": "2026-09-21T12:53:32.183151+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0034",
+    "question": "LCM of 25 and 30?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 25 and 30?",
+      "options": [
+        "A. 750",
+        "B. 30",
+        "C. 150",
+        "D. 5"
+      ],
+      "correct_answer": "C. 150",
+      "explanation": "LCM(25,30) = 25*30/gcd(25,30) = 750/5 = 150"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.184155+00:00",
+    "updated_at": "2026-09-21T12:53:32.184155+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0035",
+    "question": "LCM of 25 and 35?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 25 and 35?",
+      "options": [
+        "A. 875",
+        "B. 35",
+        "C. 5",
+        "D. 175"
+      ],
+      "correct_answer": "D. 175",
+      "explanation": "LCM(25,35) = 25*35/gcd(25,35) = 875/5 = 175"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.184155+00:00",
+    "updated_at": "2026-09-21T12:53:32.184155+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_hcf_0036",
+    "question": "LCM of 30 and 35?",
+    "pattern": "hcf-lcm",
+    "skill": "hcf-lcm",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "LCM of 30 and 35?",
+      "options": [
+        "A. 5",
+        "B. 1050",
+        "C. 35",
+        "D. 210"
+      ],
+      "correct_answer": "D. 210",
+      "explanation": "LCM(30,35) = 30*35/gcd(30,35) = 1050/5 = 210"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.184155+00:00",
+    "updated_at": "2026-09-21T12:53:32.184155+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  }
+]

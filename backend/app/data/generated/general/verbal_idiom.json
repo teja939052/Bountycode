@@ -1,0 +1,1252 @@
+[
+  {
+    "id": "verbal_idiom_0000",
+    "question": "What does 'Break the ice' mean?",
+    "pattern": "idiom-meaning",
+    "skill": "idiom-meaning",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does 'Break the ice' mean?",
+      "options": [
+        "A. Start a conversation",
+        "B. Eat quickly",
+        "C. Run fast",
+        "D. Start a fight"
+      ],
+      "correct_answer": "A. Start a conversation",
+      "explanation": "'Break the ice' means 'Start a conversation'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.242232+00:00",
+    "updated_at": "2026-09-21T12:53:32.242232+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_idiom_0001",
+    "question": "What does 'Bite the bullet' mean?",
+    "pattern": "idiom-meaning",
+    "skill": "idiom-meaning",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does 'Bite the bullet' mean?",
+      "options": [
+        "A. Start a fight",
+        "B. Think deeply",
+        "C. Face a difficult situation",
+        "D. Save money"
+      ],
+      "correct_answer": "C. Face a difficult situation",
+      "explanation": "'Bite the bullet' means 'Face a difficult situation'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.243233+00:00",
+    "updated_at": "2026-09-21T12:53:32.243233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_idiom_0002",
+    "question": "What does 'Cost an arm and a leg' mean?",
+    "pattern": "idiom-meaning",
+    "skill": "idiom-meaning",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does 'Cost an arm and a leg' mean?",
+      "options": [
+        "A. Speak loudly",
+        "B. Work hard",
+        "C. Very expensive",
+        "D. Sleep well"
+      ],
+      "correct_answer": "C. Very expensive",
+      "explanation": "'Cost an arm and a leg' means 'Very expensive'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.243233+00:00",
+    "updated_at": "2026-09-21T12:53:32.243233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_idiom_0003",
+    "question": "What does 'Hit the nail on the head' mean?",
+    "pattern": "idiom-meaning",
+    "skill": "idiom-meaning",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does 'Hit the nail on the head' mean?",
+      "options": [
+        "A. Be exactly right",
+        "B. Run fast",
+        "C. Work hard",
+        "D. Think deeply"
+      ],
+      "correct_answer": "A. Be exactly right",
+      "explanation": "'Hit the nail on the head' means 'Be exactly right'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.243233+00:00",
+    "updated_at": "2026-09-21T12:53:32.243233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_idiom_0004",
+    "question": "What does 'Piece of cake' mean?",
+    "pattern": "idiom-meaning",
+    "skill": "idiom-meaning",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does 'Piece of cake' mean?",
+      "options": [
+        "A. Think deeply",
+        "B. Very easy",
+        "C. Eat quickly",
+        "D. Save money"
+      ],
+      "correct_answer": "B. Very easy",
+      "explanation": "'Piece of cake' means 'Very easy'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.243233+00:00",
+    "updated_at": "2026-09-21T12:53:32.243233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_idiom_0005",
+    "question": "What does 'Under the weather' mean?",
+    "pattern": "idiom-meaning",
+    "skill": "idiom-meaning",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does 'Under the weather' mean?",
+      "options": [
+        "A. Think deeply",
+        "B. Speak loudly",
+        "C. Feeling ill",
+        "D. Sleep well"
+      ],
+      "correct_answer": "C. Feeling ill",
+      "explanation": "'Under the weather' means 'Feeling ill'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.243233+00:00",
+    "updated_at": "2026-09-21T12:53:32.243233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_idiom_0006",
+    "question": "What does 'Spill the beans' mean?",
+    "pattern": "idiom-meaning",
+    "skill": "idiom-meaning",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does 'Spill the beans' mean?",
+      "options": [
+        "A. Sleep well",
+        "B. Work hard",
+        "C. Reveal a secret",
+        "D. Think deeply"
+      ],
+      "correct_answer": "C. Reveal a secret",
+      "explanation": "'Spill the beans' means 'Reveal a secret'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.243233+00:00",
+    "updated_at": "2026-09-21T12:53:32.243233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_idiom_0007",
+    "question": "What does 'Burn the midnight oil' mean?",
+    "pattern": "idiom-meaning",
+    "skill": "idiom-meaning",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does 'Burn the midnight oil' mean?",
+      "options": [
+        "A. Eat quickly",
+        "B. Work hard",
+        "C. Sleep well",
+        "D. Study/work late"
+      ],
+      "correct_answer": "D. Study/work late",
+      "explanation": "'Burn the midnight oil' means 'Study/work late'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.243233+00:00",
+    "updated_at": "2026-09-21T12:53:32.243233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_idiom_0008",
+    "question": "What does 'A blessing in disguise' mean?",
+    "pattern": "idiom-meaning",
+    "skill": "idiom-meaning",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does 'A blessing in disguise' mean?",
+      "options": [
+        "A. Save money",
+        "B. Good thing that seemed bad",
+        "C. Sleep well",
+        "D. Run fast"
+      ],
+      "correct_answer": "B. Good thing that seemed bad",
+      "explanation": "'A blessing in disguise' means 'Good thing that seemed bad'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.243233+00:00",
+    "updated_at": "2026-09-21T12:53:32.243233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_idiom_0009",
+    "question": "What does 'Beat around the bush' mean?",
+    "pattern": "idiom-meaning",
+    "skill": "idiom-meaning",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does 'Beat around the bush' mean?",
+      "options": [
+        "A. Sleep well",
+        "B. Think deeply",
+        "C. Avoid the point",
+        "D. Work hard"
+      ],
+      "correct_answer": "C. Avoid the point",
+      "explanation": "'Beat around the bush' means 'Avoid the point'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.243233+00:00",
+    "updated_at": "2026-09-21T12:53:32.243233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_idiom_0010",
+    "question": "What does 'Catch someone's eye' mean?",
+    "pattern": "idiom-meaning",
+    "skill": "idiom-meaning",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does 'Catch someone's eye' mean?",
+      "options": [
+        "A. Think deeply",
+        "B. Attract attention",
+        "C. Sleep well",
+        "D. Speak loudly"
+      ],
+      "correct_answer": "B. Attract attention",
+      "explanation": "'Catch someone's eye' means 'Attract attention'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.243233+00:00",
+    "updated_at": "2026-09-21T12:53:32.243233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_idiom_0011",
+    "question": "What does 'Cut corners' mean?",
+    "pattern": "idiom-meaning",
+    "skill": "idiom-meaning",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does 'Cut corners' mean?",
+      "options": [
+        "A. Think deeply",
+        "B. Run fast",
+        "C. Do something poorly to save money",
+        "D. Eat quickly"
+      ],
+      "correct_answer": "C. Do something poorly to save money",
+      "explanation": "'Cut corners' means 'Do something poorly to save money'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.243233+00:00",
+    "updated_at": "2026-09-21T12:53:32.243233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_idiom_0012",
+    "question": "What does 'Get out of hand' mean?",
+    "pattern": "idiom-meaning",
+    "skill": "idiom-meaning",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does 'Get out of hand' mean?",
+      "options": [
+        "A. Speak loudly",
+        "B. Become uncontrollable",
+        "C. Work hard",
+        "D. Think deeply"
+      ],
+      "correct_answer": "B. Become uncontrollable",
+      "explanation": "'Get out of hand' means 'Become uncontrollable'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.243233+00:00",
+    "updated_at": "2026-09-21T12:53:32.243233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_idiom_0013",
+    "question": "What does 'In the same boat' mean?",
+    "pattern": "idiom-meaning",
+    "skill": "idiom-meaning",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does 'In the same boat' mean?",
+      "options": [
+        "A. Start a fight",
+        "B. Think deeply",
+        "C. Save money",
+        "D. In the same situation"
+      ],
+      "correct_answer": "D. In the same situation",
+      "explanation": "'In the same boat' means 'In the same situation'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.244231+00:00",
+    "updated_at": "2026-09-21T12:53:32.244231+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_idiom_0014",
+    "question": "What does 'Let the cat out of the bag' mean?",
+    "pattern": "idiom-meaning",
+    "skill": "idiom-meaning",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does 'Let the cat out of the bag' mean?",
+      "options": [
+        "A. Reveal a secret",
+        "B. Save money",
+        "C. Sleep well",
+        "D. Start a fight"
+      ],
+      "correct_answer": "A. Reveal a secret",
+      "explanation": "'Let the cat out of the bag' means 'Reveal a secret'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.244231+00:00",
+    "updated_at": "2026-09-21T12:53:32.244231+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_idiom_0015",
+    "question": "What does 'On the ball' mean?",
+    "pattern": "idiom-meaning",
+    "skill": "idiom-meaning",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does 'On the ball' mean?",
+      "options": [
+        "A. Alert and competent",
+        "B. Eat quickly",
+        "C. Start a fight",
+        "D. Think deeply"
+      ],
+      "correct_answer": "A. Alert and competent",
+      "explanation": "'On the ball' means 'Alert and competent'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.244231+00:00",
+    "updated_at": "2026-09-21T12:53:32.244231+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_idiom_0016",
+    "question": "What does 'Pull someone's leg' mean?",
+    "pattern": "idiom-meaning",
+    "skill": "idiom-meaning",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does 'Pull someone's leg' mean?",
+      "options": [
+        "A. Joke with someone",
+        "B. Work hard",
+        "C. Think deeply",
+        "D. Speak loudly"
+      ],
+      "correct_answer": "A. Joke with someone",
+      "explanation": "'Pull someone's leg' means 'Joke with someone'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.244231+00:00",
+    "updated_at": "2026-09-21T12:53:32.244231+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_idiom_0017",
+    "question": "What does 'Once in a blue moon' mean?",
+    "pattern": "idiom-meaning",
+    "skill": "idiom-meaning",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does 'Once in a blue moon' mean?",
+      "options": [
+        "A. Very rarely",
+        "B. Save money",
+        "C. Sleep well",
+        "D. Work hard"
+      ],
+      "correct_answer": "A. Very rarely",
+      "explanation": "'Once in a blue moon' means 'Very rarely'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.244231+00:00",
+    "updated_at": "2026-09-21T12:53:32.244231+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_idiom_0018",
+    "question": "What does 'The ball is in your court' mean?",
+    "pattern": "idiom-meaning",
+    "skill": "idiom-meaning",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does 'The ball is in your court' mean?",
+      "options": [
+        "A. It's your decision",
+        "B. Speak loudly",
+        "C. Eat quickly",
+        "D. Work hard"
+      ],
+      "correct_answer": "A. It's your decision",
+      "explanation": "'The ball is in your court' means 'It's your decision'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.244231+00:00",
+    "updated_at": "2026-09-21T12:53:32.244231+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_idiom_0019",
+    "question": "What does 'Up in the air' mean?",
+    "pattern": "idiom-meaning",
+    "skill": "idiom-meaning",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does 'Up in the air' mean?",
+      "options": [
+        "A. Save money",
+        "B. Not decided",
+        "C. Think deeply",
+        "D. Speak loudly"
+      ],
+      "correct_answer": "B. Not decided",
+      "explanation": "'Up in the air' means 'Not decided'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.244231+00:00",
+    "updated_at": "2026-09-21T12:53:32.244231+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_idiom_0020",
+    "question": "What does 'Against the clock' mean?",
+    "pattern": "idiom-meaning",
+    "skill": "idiom-meaning",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does 'Against the clock' mean?",
+      "options": [
+        "A. Run fast",
+        "B. Rushed for time",
+        "C. Save money",
+        "D. Speak loudly"
+      ],
+      "correct_answer": "B. Rushed for time",
+      "explanation": "'Against the clock' means 'Rushed for time'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.244231+00:00",
+    "updated_at": "2026-09-21T12:53:32.244231+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_idiom_0021",
+    "question": "What does 'Back to the drawing board' mean?",
+    "pattern": "idiom-meaning",
+    "skill": "idiom-meaning",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does 'Back to the drawing board' mean?",
+      "options": [
+        "A. Speak loudly",
+        "B. Start over",
+        "C. Run fast",
+        "D. Work hard"
+      ],
+      "correct_answer": "B. Start over",
+      "explanation": "'Back to the drawing board' means 'Start over'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.244231+00:00",
+    "updated_at": "2026-09-21T12:53:32.244231+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_idiom_0022",
+    "question": "What does 'Bite off more than you can chew' mean?",
+    "pattern": "idiom-meaning",
+    "skill": "idiom-meaning",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does 'Bite off more than you can chew' mean?",
+      "options": [
+        "A. Eat quickly",
+        "B. Sleep well",
+        "C. Save money",
+        "D. Take on too much"
+      ],
+      "correct_answer": "D. Take on too much",
+      "explanation": "'Bite off more than you can chew' means 'Take on too much'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.244231+00:00",
+    "updated_at": "2026-09-21T12:53:32.244231+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_idiom_0023",
+    "question": "What does 'Cut to the chase' mean?",
+    "pattern": "idiom-meaning",
+    "skill": "idiom-meaning",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does 'Cut to the chase' mean?",
+      "options": [
+        "A. Work hard",
+        "B. Speak loudly",
+        "C. Sleep well",
+        "D. Get to the point"
+      ],
+      "correct_answer": "D. Get to the point",
+      "explanation": "'Cut to the chase' means 'Get to the point'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.244231+00:00",
+    "updated_at": "2026-09-21T12:53:32.244231+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_idiom_0024",
+    "question": "What does 'Hit the sack' mean?",
+    "pattern": "idiom-meaning",
+    "skill": "idiom-meaning",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does 'Hit the sack' mean?",
+      "options": [
+        "A. Start a fight",
+        "B. Sleep well",
+        "C. Eat quickly",
+        "D. Go to bed"
+      ],
+      "correct_answer": "D. Go to bed",
+      "explanation": "'Hit the sack' means 'Go to bed'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.244231+00:00",
+    "updated_at": "2026-09-21T12:53:32.244231+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ]
+  }
+]

@@ -90,6 +90,9 @@ class LearningEventIn(BaseModel):
     diagnosis_codes: List[str] = Field(default_factory=list,
         description="Structured WHY codes — see ALL_DIAGNOSIS_CODES")
     repair_id: Optional[str] = None
+    idempotency_key: Optional[str] = Field(None, description="Caller-supplied "
+        "idempotency key. record_activity() returns the prior result without "
+        "re-awarding when this key was already recorded for the user.")
     metadata: Dict[str, Any] = Field(default_factory=dict)
 
 
@@ -126,4 +129,5 @@ class LearningEventOut(BaseModel):
     mastery_after: Optional[float] = None
     diagnosis_codes: List[str] = Field(default_factory=list)
     repair_id: Optional[str] = None
+    idempotency_key: Optional[str] = None
     metadata: Dict[str, Any] = Field(default_factory=dict)

@@ -1,0 +1,2002 @@
+[
+  {
+    "id": "log_syllogism_0000",
+    "question": "Statements: All pens are books. Some books are red. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: All pens are books. Some books are red. Which conclusion logically follows?",
+      "options": [
+        "A. Both follow",
+        "B. Only I follows",
+        "C. Neither follows",
+        "D. Only II follows"
+      ],
+      "correct_answer": "D. Only II follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.208520+00:00",
+    "updated_at": "2026-09-21T12:53:32.208520+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0001",
+    "question": "Statements: All pens are books. Some books are red. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: All pens are books. Some books are red. Which conclusion logically follows?",
+      "options": [
+        "A. Both follow",
+        "B. Only II follows",
+        "C. Only I follows",
+        "D. Neither follows"
+      ],
+      "correct_answer": "D. Neither follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.209518+00:00",
+    "updated_at": "2026-09-21T12:53:32.209518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0002",
+    "question": "Statements: All pens are books. Some books are red. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: All pens are books. Some books are red. Which conclusion logically follows?",
+      "options": [
+        "A. Only I follows",
+        "B. Only II follows",
+        "C. Both follow",
+        "D. Neither follows"
+      ],
+      "correct_answer": "A. Only I follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.209518+00:00",
+    "updated_at": "2026-09-21T12:53:32.209518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0003",
+    "question": "Statements: All pens are books. Some books are red. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: All pens are books. Some books are red. Which conclusion logically follows?",
+      "options": [
+        "A. Only II follows",
+        "B. Only I follows",
+        "C. Neither follows",
+        "D. Both follow"
+      ],
+      "correct_answer": "A. Only II follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.209518+00:00",
+    "updated_at": "2026-09-21T12:53:32.209518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0004",
+    "question": "Statements: All pens are books. Some books are red. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: All pens are books. Some books are red. Which conclusion logically follows?",
+      "options": [
+        "A. Only I follows",
+        "B. Neither follows",
+        "C. Both follow",
+        "D. Only II follows"
+      ],
+      "correct_answer": "B. Neither follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.209518+00:00",
+    "updated_at": "2026-09-21T12:53:32.209518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0005",
+    "question": "Statements: All pens are books. Some books are red. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: All pens are books. Some books are red. Which conclusion logically follows?",
+      "options": [
+        "A. Neither follows",
+        "B. Only II follows",
+        "C. Both follow",
+        "D. Only I follows"
+      ],
+      "correct_answer": "C. Both follow",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.209518+00:00",
+    "updated_at": "2026-09-21T12:53:32.209518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0006",
+    "question": "Statements: All pens are books. Some books are red. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: All pens are books. Some books are red. Which conclusion logically follows?",
+      "options": [
+        "A. Only II follows",
+        "B. Both follow",
+        "C. Only I follows",
+        "D. Neither follows"
+      ],
+      "correct_answer": "A. Only II follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.209518+00:00",
+    "updated_at": "2026-09-21T12:53:32.209518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0007",
+    "question": "Statements: All pens are books. Some books are red. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: All pens are books. Some books are red. Which conclusion logically follows?",
+      "options": [
+        "A. Only II follows",
+        "B. Neither follows",
+        "C. Only I follows",
+        "D. Both follow"
+      ],
+      "correct_answer": "D. Both follow",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.209518+00:00",
+    "updated_at": "2026-09-21T12:53:32.209518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0008",
+    "question": "Statements: No cats are dogs. All dogs are animals. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: No cats are dogs. All dogs are animals. Which conclusion logically follows?",
+      "options": [
+        "A. Only I follows",
+        "B. Neither follows",
+        "C. Only II follows",
+        "D. Both follow"
+      ],
+      "correct_answer": "B. Neither follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.209518+00:00",
+    "updated_at": "2026-09-21T12:53:32.209518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0009",
+    "question": "Statements: No cats are dogs. All dogs are animals. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: No cats are dogs. All dogs are animals. Which conclusion logically follows?",
+      "options": [
+        "A. Neither follows",
+        "B. Only II follows",
+        "C. Only I follows",
+        "D. Both follow"
+      ],
+      "correct_answer": "A. Neither follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.209518+00:00",
+    "updated_at": "2026-09-21T12:53:32.209518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0010",
+    "question": "Statements: No cats are dogs. All dogs are animals. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: No cats are dogs. All dogs are animals. Which conclusion logically follows?",
+      "options": [
+        "A. Neither follows",
+        "B. Only I follows",
+        "C. Only II follows",
+        "D. Both follow"
+      ],
+      "correct_answer": "A. Neither follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.209518+00:00",
+    "updated_at": "2026-09-21T12:53:32.209518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0011",
+    "question": "Statements: No cats are dogs. All dogs are animals. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: No cats are dogs. All dogs are animals. Which conclusion logically follows?",
+      "options": [
+        "A. Only I follows",
+        "B. Both follow",
+        "C. Neither follows",
+        "D. Only II follows"
+      ],
+      "correct_answer": "C. Neither follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.209518+00:00",
+    "updated_at": "2026-09-21T12:53:32.209518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0012",
+    "question": "Statements: No cats are dogs. All dogs are animals. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: No cats are dogs. All dogs are animals. Which conclusion logically follows?",
+      "options": [
+        "A. Both follow",
+        "B. Only II follows",
+        "C. Only I follows",
+        "D. Neither follows"
+      ],
+      "correct_answer": "C. Only I follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.209518+00:00",
+    "updated_at": "2026-09-21T12:53:32.209518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0013",
+    "question": "Statements: No cats are dogs. All dogs are animals. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: No cats are dogs. All dogs are animals. Which conclusion logically follows?",
+      "options": [
+        "A. Both follow",
+        "B. Only II follows",
+        "C. Only I follows",
+        "D. Neither follows"
+      ],
+      "correct_answer": "D. Neither follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.209518+00:00",
+    "updated_at": "2026-09-21T12:53:32.209518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0014",
+    "question": "Statements: No cats are dogs. All dogs are animals. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: No cats are dogs. All dogs are animals. Which conclusion logically follows?",
+      "options": [
+        "A. Neither follows",
+        "B. Only II follows",
+        "C. Only I follows",
+        "D. Both follow"
+      ],
+      "correct_answer": "A. Neither follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.209518+00:00",
+    "updated_at": "2026-09-21T12:53:32.209518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0015",
+    "question": "Statements: No cats are dogs. All dogs are animals. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: No cats are dogs. All dogs are animals. Which conclusion logically follows?",
+      "options": [
+        "A. Both follow",
+        "B. Only II follows",
+        "C. Neither follows",
+        "D. Only I follows"
+      ],
+      "correct_answer": "A. Both follow",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.209518+00:00",
+    "updated_at": "2026-09-21T12:53:32.209518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0016",
+    "question": "Statements: All students pass. Some students are athletes. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: All students pass. Some students are athletes. Which conclusion logically follows?",
+      "options": [
+        "A. Neither follows",
+        "B. Only I follows",
+        "C. Both follow",
+        "D. Only II follows"
+      ],
+      "correct_answer": "B. Only I follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.209518+00:00",
+    "updated_at": "2026-09-21T12:53:32.209518+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0017",
+    "question": "Statements: All students pass. Some students are athletes. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: All students pass. Some students are athletes. Which conclusion logically follows?",
+      "options": [
+        "A. Only I follows",
+        "B. Both follow",
+        "C. Neither follows",
+        "D. Only II follows"
+      ],
+      "correct_answer": "D. Only II follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.210515+00:00",
+    "updated_at": "2026-09-21T12:53:32.210515+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0018",
+    "question": "Statements: All students pass. Some students are athletes. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: All students pass. Some students are athletes. Which conclusion logically follows?",
+      "options": [
+        "A. Both follow",
+        "B. Only I follows",
+        "C. Neither follows",
+        "D. Only II follows"
+      ],
+      "correct_answer": "B. Only I follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.210515+00:00",
+    "updated_at": "2026-09-21T12:53:32.210515+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0019",
+    "question": "Statements: All students pass. Some students are athletes. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: All students pass. Some students are athletes. Which conclusion logically follows?",
+      "options": [
+        "A. Both follow",
+        "B. Only I follows",
+        "C. Only II follows",
+        "D. Neither follows"
+      ],
+      "correct_answer": "B. Only I follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.210515+00:00",
+    "updated_at": "2026-09-21T12:53:32.210515+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0020",
+    "question": "Statements: All students pass. Some students are athletes. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: All students pass. Some students are athletes. Which conclusion logically follows?",
+      "options": [
+        "A. Only I follows",
+        "B. Only II follows",
+        "C. Both follow",
+        "D. Neither follows"
+      ],
+      "correct_answer": "D. Neither follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.210515+00:00",
+    "updated_at": "2026-09-21T12:53:32.210515+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0021",
+    "question": "Statements: All students pass. Some students are athletes. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: All students pass. Some students are athletes. Which conclusion logically follows?",
+      "options": [
+        "A. Only II follows",
+        "B. Neither follows",
+        "C. Both follow",
+        "D. Only I follows"
+      ],
+      "correct_answer": "B. Neither follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.210515+00:00",
+    "updated_at": "2026-09-21T12:53:32.210515+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0022",
+    "question": "Statements: All students pass. Some students are athletes. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: All students pass. Some students are athletes. Which conclusion logically follows?",
+      "options": [
+        "A. Only II follows",
+        "B. Only I follows",
+        "C. Neither follows",
+        "D. Both follow"
+      ],
+      "correct_answer": "A. Only II follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.210515+00:00",
+    "updated_at": "2026-09-21T12:53:32.210515+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0023",
+    "question": "Statements: All students pass. Some students are athletes. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: All students pass. Some students are athletes. Which conclusion logically follows?",
+      "options": [
+        "A. Only I follows",
+        "B. Both follow",
+        "C. Neither follows",
+        "D. Only II follows"
+      ],
+      "correct_answer": "B. Both follow",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.210515+00:00",
+    "updated_at": "2026-09-21T12:53:32.210515+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0024",
+    "question": "Statements: All apples are fruits. Some fruits are sweet. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: All apples are fruits. Some fruits are sweet. Which conclusion logically follows?",
+      "options": [
+        "A. Both follow",
+        "B. Only II follows",
+        "C. Only I follows",
+        "D. Neither follows"
+      ],
+      "correct_answer": "D. Neither follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.210515+00:00",
+    "updated_at": "2026-09-21T12:53:32.210515+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0025",
+    "question": "Statements: All apples are fruits. Some fruits are sweet. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: All apples are fruits. Some fruits are sweet. Which conclusion logically follows?",
+      "options": [
+        "A. Only I follows",
+        "B. Only II follows",
+        "C. Neither follows",
+        "D. Both follow"
+      ],
+      "correct_answer": "D. Both follow",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.210515+00:00",
+    "updated_at": "2026-09-21T12:53:32.210515+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0026",
+    "question": "Statements: All apples are fruits. Some fruits are sweet. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: All apples are fruits. Some fruits are sweet. Which conclusion logically follows?",
+      "options": [
+        "A. Neither follows",
+        "B. Both follow",
+        "C. Only II follows",
+        "D. Only I follows"
+      ],
+      "correct_answer": "D. Only I follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.210515+00:00",
+    "updated_at": "2026-09-21T12:53:32.210515+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0027",
+    "question": "Statements: All apples are fruits. Some fruits are sweet. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: All apples are fruits. Some fruits are sweet. Which conclusion logically follows?",
+      "options": [
+        "A. Only I follows",
+        "B. Neither follows",
+        "C. Both follow",
+        "D. Only II follows"
+      ],
+      "correct_answer": "A. Only I follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.210515+00:00",
+    "updated_at": "2026-09-21T12:53:32.210515+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0028",
+    "question": "Statements: All apples are fruits. Some fruits are sweet. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: All apples are fruits. Some fruits are sweet. Which conclusion logically follows?",
+      "options": [
+        "A. Both follow",
+        "B. Only I follows",
+        "C. Neither follows",
+        "D. Only II follows"
+      ],
+      "correct_answer": "B. Only I follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.210515+00:00",
+    "updated_at": "2026-09-21T12:53:32.210515+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0029",
+    "question": "Statements: All apples are fruits. Some fruits are sweet. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: All apples are fruits. Some fruits are sweet. Which conclusion logically follows?",
+      "options": [
+        "A. Only II follows",
+        "B. Neither follows",
+        "C. Only I follows",
+        "D. Both follow"
+      ],
+      "correct_answer": "C. Only I follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.210515+00:00",
+    "updated_at": "2026-09-21T12:53:32.210515+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0030",
+    "question": "Statements: All apples are fruits. Some fruits are sweet. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: All apples are fruits. Some fruits are sweet. Which conclusion logically follows?",
+      "options": [
+        "A. Only I follows",
+        "B. Neither follows",
+        "C. Both follow",
+        "D. Only II follows"
+      ],
+      "correct_answer": "D. Only II follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.211517+00:00",
+    "updated_at": "2026-09-21T12:53:32.211517+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0031",
+    "question": "Statements: All apples are fruits. Some fruits are sweet. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: All apples are fruits. Some fruits are sweet. Which conclusion logically follows?",
+      "options": [
+        "A. Only I follows",
+        "B. Neither follows",
+        "C. Both follow",
+        "D. Only II follows"
+      ],
+      "correct_answer": "D. Only II follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.211517+00:00",
+    "updated_at": "2026-09-21T12:53:32.211517+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0032",
+    "question": "Statements: No birds are mammals. All mammals are animals. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: No birds are mammals. All mammals are animals. Which conclusion logically follows?",
+      "options": [
+        "A. Both follow",
+        "B. Only I follows",
+        "C. Neither follows",
+        "D. Only II follows"
+      ],
+      "correct_answer": "B. Only I follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.211517+00:00",
+    "updated_at": "2026-09-21T12:53:32.211517+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0033",
+    "question": "Statements: No birds are mammals. All mammals are animals. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: No birds are mammals. All mammals are animals. Which conclusion logically follows?",
+      "options": [
+        "A. Both follow",
+        "B. Only I follows",
+        "C. Only II follows",
+        "D. Neither follows"
+      ],
+      "correct_answer": "B. Only I follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.211517+00:00",
+    "updated_at": "2026-09-21T12:53:32.211517+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0034",
+    "question": "Statements: No birds are mammals. All mammals are animals. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: No birds are mammals. All mammals are animals. Which conclusion logically follows?",
+      "options": [
+        "A. Neither follows",
+        "B. Only I follows",
+        "C. Only II follows",
+        "D. Both follow"
+      ],
+      "correct_answer": "C. Only II follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.211517+00:00",
+    "updated_at": "2026-09-21T12:53:32.211517+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0035",
+    "question": "Statements: No birds are mammals. All mammals are animals. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: No birds are mammals. All mammals are animals. Which conclusion logically follows?",
+      "options": [
+        "A. Both follow",
+        "B. Neither follows",
+        "C. Only II follows",
+        "D. Only I follows"
+      ],
+      "correct_answer": "B. Neither follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.211517+00:00",
+    "updated_at": "2026-09-21T12:53:32.211517+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0036",
+    "question": "Statements: No birds are mammals. All mammals are animals. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: No birds are mammals. All mammals are animals. Which conclusion logically follows?",
+      "options": [
+        "A. Only I follows",
+        "B. Only II follows",
+        "C. Both follow",
+        "D. Neither follows"
+      ],
+      "correct_answer": "D. Neither follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.211517+00:00",
+    "updated_at": "2026-09-21T12:53:32.211517+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0037",
+    "question": "Statements: No birds are mammals. All mammals are animals. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: No birds are mammals. All mammals are animals. Which conclusion logically follows?",
+      "options": [
+        "A. Only I follows",
+        "B. Both follow",
+        "C. Only II follows",
+        "D. Neither follows"
+      ],
+      "correct_answer": "D. Neither follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.211517+00:00",
+    "updated_at": "2026-09-21T12:53:32.211517+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0038",
+    "question": "Statements: No birds are mammals. All mammals are animals. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: No birds are mammals. All mammals are animals. Which conclusion logically follows?",
+      "options": [
+        "A. Neither follows",
+        "B. Both follow",
+        "C. Only I follows",
+        "D. Only II follows"
+      ],
+      "correct_answer": "B. Both follow",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.211517+00:00",
+    "updated_at": "2026-09-21T12:53:32.211517+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "log_syllogism_0039",
+    "question": "Statements: No birds are mammals. All mammals are animals. Which conclusion logically follows?",
+    "pattern": "syllogism",
+    "skill": "syllogism",
+    "domain": "Logical Reasoning",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Statements: No birds are mammals. All mammals are animals. Which conclusion logically follows?",
+      "options": [
+        "A. Neither follows",
+        "B. Only II follows",
+        "C. Only I follows",
+        "D. Both follow"
+      ],
+      "correct_answer": "B. Only II follows",
+      "explanation": "Apply syllogism rules: universal + particular -> particular follows only if term is distributed"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.211517+00:00",
+    "updated_at": "2026-09-21T12:53:32.211517+00:00",
+    "trust_status": "automated_checked",
+    "type": "logical",
+    "company_tags": [
+      "TCS",
+      "Infosys",
+      "Capgemini"
+    ]
+  }
+]

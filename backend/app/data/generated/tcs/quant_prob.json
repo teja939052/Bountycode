@@ -1,0 +1,541 @@
+[
+  {
+    "id": "quant_prob_0000",
+    "question": "Probability of sum 2 with two dice?",
+    "pattern": "probability-dice",
+    "skill": "probability-dice",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Probability of sum 2 with two dice?",
+      "options": [
+        "A. 5/36",
+        "B. 1/35",
+        "C. 1/6",
+        "D. 1/36"
+      ],
+      "correct_answer": "D. 1/36",
+      "explanation": "Favorable outcomes: 1. Total: 36. P = 1/36"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.187506+00:00",
+    "updated_at": "2026-09-21T12:53:32.187506+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "quant_prob_0001",
+    "question": "Probability of sum 3 with two dice?",
+    "pattern": "probability-dice",
+    "skill": "probability-dice",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Probability of sum 3 with two dice?",
+      "options": [
+        "A. 2/34",
+        "B. 2/36",
+        "C. 1/6",
+        "D. 4/36"
+      ],
+      "correct_answer": "B. 2/36",
+      "explanation": "Favorable outcomes: 2. Total: 36. P = 2/36"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.187506+00:00",
+    "updated_at": "2026-09-21T12:53:32.187506+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "quant_prob_0002",
+    "question": "Probability of sum 4 with two dice?",
+    "pattern": "probability-dice",
+    "skill": "probability-dice",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Probability of sum 4 with two dice?",
+      "options": [
+        "A. 3/36",
+        "B. 3/36",
+        "C. 1/6",
+        "D. 3/33"
+      ],
+      "correct_answer": "A. 3/36",
+      "explanation": "Favorable outcomes: 3. Total: 36. P = 3/36"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.187506+00:00",
+    "updated_at": "2026-09-21T12:53:32.187506+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "quant_prob_0003",
+    "question": "Probability of sum 5 with two dice?",
+    "pattern": "probability-dice",
+    "skill": "probability-dice",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Probability of sum 5 with two dice?",
+      "options": [
+        "A. 2/36",
+        "B. 4/36",
+        "C. 4/32",
+        "D. 1/6"
+      ],
+      "correct_answer": "B. 4/36",
+      "explanation": "Favorable outcomes: 4. Total: 36. P = 4/36"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.187506+00:00",
+    "updated_at": "2026-09-21T12:53:32.187506+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "quant_prob_0004",
+    "question": "Probability of sum 6 with two dice?",
+    "pattern": "probability-dice",
+    "skill": "probability-dice",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Probability of sum 6 with two dice?",
+      "options": [
+        "A. 5/31",
+        "B. 1/36",
+        "C. 1/6",
+        "D. 5/36"
+      ],
+      "correct_answer": "D. 5/36",
+      "explanation": "Favorable outcomes: 5. Total: 36. P = 5/36"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.187506+00:00",
+    "updated_at": "2026-09-21T12:53:32.187506+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "quant_prob_0005",
+    "question": "Probability of sum 7 with two dice?",
+    "pattern": "probability-dice",
+    "skill": "probability-dice",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Probability of sum 7 with two dice?",
+      "options": [
+        "A. 6/36",
+        "B. 0/36",
+        "C. 6/30",
+        "D. 1/6"
+      ],
+      "correct_answer": "A. 6/36",
+      "explanation": "Favorable outcomes: 6. Total: 36. P = 6/36"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.187506+00:00",
+    "updated_at": "2026-09-21T12:53:32.187506+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "quant_prob_0006",
+    "question": "Probability of sum 8 with two dice?",
+    "pattern": "probability-dice",
+    "skill": "probability-dice",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Probability of sum 8 with two dice?",
+      "options": [
+        "A. 5/31",
+        "B. 5/36",
+        "C. 1/36",
+        "D. 1/6"
+      ],
+      "correct_answer": "B. 5/36",
+      "explanation": "Favorable outcomes: 5. Total: 36. P = 5/36"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.187506+00:00",
+    "updated_at": "2026-09-21T12:53:32.187506+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "quant_prob_0007",
+    "question": "Probability of sum 9 with two dice?",
+    "pattern": "probability-dice",
+    "skill": "probability-dice",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Probability of sum 9 with two dice?",
+      "options": [
+        "A. 4/32",
+        "B. 4/36",
+        "C. 1/6",
+        "D. 2/36"
+      ],
+      "correct_answer": "B. 4/36",
+      "explanation": "Favorable outcomes: 4. Total: 36. P = 4/36"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.187506+00:00",
+    "updated_at": "2026-09-21T12:53:32.187506+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "quant_prob_0008",
+    "question": "Probability of sum 10 with two dice?",
+    "pattern": "probability-dice",
+    "skill": "probability-dice",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Probability of sum 10 with two dice?",
+      "options": [
+        "A. 3/36",
+        "B. 3/33",
+        "C. 3/36",
+        "D. 1/6"
+      ],
+      "correct_answer": "A. 3/36",
+      "explanation": "Favorable outcomes: 3. Total: 36. P = 3/36"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.188151+00:00",
+    "updated_at": "2026-09-21T12:53:32.188151+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "quant_prob_0009",
+    "question": "Probability of sum 11 with two dice?",
+    "pattern": "probability-dice",
+    "skill": "probability-dice",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Probability of sum 11 with two dice?",
+      "options": [
+        "A. 1/6",
+        "B. 2/36",
+        "C. 2/34",
+        "D. 4/36"
+      ],
+      "correct_answer": "B. 2/36",
+      "explanation": "Favorable outcomes: 2. Total: 36. P = 2/36"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.188151+00:00",
+    "updated_at": "2026-09-21T12:53:32.188151+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Capgemini"
+    ]
+  },
+  {
+    "id": "quant_prob_0010",
+    "question": "Probability of sum 12 with two dice?",
+    "pattern": "probability-dice",
+    "skill": "probability-dice",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.75,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Probability of sum 12 with two dice?",
+      "options": [
+        "A. 1/35",
+        "B. 1/36",
+        "C. 1/6",
+        "D. 5/36"
+      ],
+      "correct_answer": "B. 1/36",
+      "explanation": "Favorable outcomes: 1. Total: 36. P = 1/36"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.188151+00:00",
+    "updated_at": "2026-09-21T12:53:32.188151+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Capgemini"
+    ]
+  }
+]

@@ -1,0 +1,1002 @@
+[
+  {
+    "id": "verbal_di_0000",
+    "question": "Convert to indirect speech: He said, 'I am tired.'",
+    "pattern": "direct-indirect",
+    "skill": "direct-indirect",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Convert to indirect speech: He said, 'I am tired.'",
+      "options": [
+        "A. He said that he is tired.",
+        "B. He said that he was tired.",
+        "C. He said, 'I am tired.'",
+        "D. She said that she will come tomorrow."
+      ],
+      "correct_answer": "B. He said that he was tired.",
+      "explanation": "Indirect: 'He said that he was tired.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.249240+00:00",
+    "updated_at": "2026-09-21T12:53:32.249240+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_di_0001",
+    "question": "Convert to indirect speech: She said, 'I will come tomorrow.'",
+    "pattern": "direct-indirect",
+    "skill": "direct-indirect",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Convert to indirect speech: She said, 'I will come tomorrow.'",
+      "options": [
+        "A. She said that she would come the next day.",
+        "B. She said, 'I will come tomorrow.'",
+        "C. He said that he is tired.",
+        "D. She said that she will come tomorrow."
+      ],
+      "correct_answer": "A. She said that she would come the next day.",
+      "explanation": "Indirect: 'She said that she would come the next day.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.249240+00:00",
+    "updated_at": "2026-09-21T12:53:32.249240+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_di_0002",
+    "question": "Convert to indirect speech: He said, 'I have finished my work.'",
+    "pattern": "direct-indirect",
+    "skill": "direct-indirect",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Convert to indirect speech: He said, 'I have finished my work.'",
+      "options": [
+        "A. He said that he had finished his work.",
+        "B. She said that she will come tomorrow.",
+        "C. He said, 'I have finished my work.'",
+        "D. He said that he is tired."
+      ],
+      "correct_answer": "A. He said that he had finished his work.",
+      "explanation": "Indirect: 'He said that he had finished his work.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.249240+00:00",
+    "updated_at": "2026-09-21T12:53:32.249240+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_di_0003",
+    "question": "Convert to indirect speech: She said, 'I am reading a book.'",
+    "pattern": "direct-indirect",
+    "skill": "direct-indirect",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Convert to indirect speech: She said, 'I am reading a book.'",
+      "options": [
+        "A. She said, 'I am reading a book.'",
+        "B. He said that he is tired.",
+        "C. She said that she was reading a book.",
+        "D. She said that she will come tomorrow."
+      ],
+      "correct_answer": "C. She said that she was reading a book.",
+      "explanation": "Indirect: 'She said that she was reading a book.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.249240+00:00",
+    "updated_at": "2026-09-21T12:53:32.249240+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_di_0004",
+    "question": "Convert to indirect speech: He said, 'I can do it.'",
+    "pattern": "direct-indirect",
+    "skill": "direct-indirect",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Convert to indirect speech: He said, 'I can do it.'",
+      "options": [
+        "A. He said that he is tired.",
+        "B. She said that she will come tomorrow.",
+        "C. He said that he could do it.",
+        "D. He said, 'I can do it.'"
+      ],
+      "correct_answer": "C. He said that he could do it.",
+      "explanation": "Indirect: 'He said that he could do it.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.249240+00:00",
+    "updated_at": "2026-09-21T12:53:32.249240+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_di_0005",
+    "question": "Convert to indirect speech: She said, 'I was sleeping.'",
+    "pattern": "direct-indirect",
+    "skill": "direct-indirect",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Convert to indirect speech: She said, 'I was sleeping.'",
+      "options": [
+        "A. She said that she had been sleeping.",
+        "B. She said that she will come tomorrow.",
+        "C. He said that he is tired.",
+        "D. She said, 'I was sleeping.'"
+      ],
+      "correct_answer": "A. She said that she had been sleeping.",
+      "explanation": "Indirect: 'She said that she had been sleeping.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.249240+00:00",
+    "updated_at": "2026-09-21T12:53:32.249240+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_di_0006",
+    "question": "Convert to indirect speech: He said, 'I have been waiting.'",
+    "pattern": "direct-indirect",
+    "skill": "direct-indirect",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Convert to indirect speech: He said, 'I have been waiting.'",
+      "options": [
+        "A. He said, 'I have been waiting.'",
+        "B. He said that he is tired.",
+        "C. He said that he had been waiting.",
+        "D. She said that she will come tomorrow."
+      ],
+      "correct_answer": "C. He said that he had been waiting.",
+      "explanation": "Indirect: 'He said that he had been waiting.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.250237+00:00",
+    "updated_at": "2026-09-21T12:53:32.250237+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_di_0007",
+    "question": "Convert to indirect speech: She said, 'I shall help you.'",
+    "pattern": "direct-indirect",
+    "skill": "direct-indirect",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Convert to indirect speech: She said, 'I shall help you.'",
+      "options": [
+        "A. He said that he is tired.",
+        "B. She said that she would help me.",
+        "C. She said that she will come tomorrow.",
+        "D. She said, 'I shall help you.'"
+      ],
+      "correct_answer": "B. She said that she would help me.",
+      "explanation": "Indirect: 'She said that she would help me.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.250237+00:00",
+    "updated_at": "2026-09-21T12:53:32.250237+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_di_0008",
+    "question": "Convert to indirect speech: He said, 'I must go now.'",
+    "pattern": "direct-indirect",
+    "skill": "direct-indirect",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Convert to indirect speech: He said, 'I must go now.'",
+      "options": [
+        "A. He said that he must go then.",
+        "B. He said that he is tired.",
+        "C. She said that she will come tomorrow.",
+        "D. He said, 'I must go now.'"
+      ],
+      "correct_answer": "A. He said that he must go then.",
+      "explanation": "Indirect: 'He said that he must go then.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.250237+00:00",
+    "updated_at": "2026-09-21T12:53:32.250237+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_di_0009",
+    "question": "Convert to indirect speech: She said, 'I might be late.'",
+    "pattern": "direct-indirect",
+    "skill": "direct-indirect",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Convert to indirect speech: She said, 'I might be late.'",
+      "options": [
+        "A. She said that she might be late.",
+        "B. She said that she will come tomorrow.",
+        "C. He said that he is tired.",
+        "D. She said, 'I might be late.'"
+      ],
+      "correct_answer": "A. She said that she might be late.",
+      "explanation": "Indirect: 'She said that she might be late.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.250237+00:00",
+    "updated_at": "2026-09-21T12:53:32.250237+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_di_0010",
+    "question": "Convert to indirect speech: He said, 'I should try harder.'",
+    "pattern": "direct-indirect",
+    "skill": "direct-indirect",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Convert to indirect speech: He said, 'I should try harder.'",
+      "options": [
+        "A. He said that he should try harder.",
+        "B. He said that he is tired.",
+        "C. He said, 'I should try harder.'",
+        "D. She said that she will come tomorrow."
+      ],
+      "correct_answer": "A. He said that he should try harder.",
+      "explanation": "Indirect: 'He said that he should try harder.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.250237+00:00",
+    "updated_at": "2026-09-21T12:53:32.250237+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_di_0011",
+    "question": "Convert to indirect speech: She said, 'I could not attend.'",
+    "pattern": "direct-indirect",
+    "skill": "direct-indirect",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Convert to indirect speech: She said, 'I could not attend.'",
+      "options": [
+        "A. He said that he is tired.",
+        "B. She said that she will come tomorrow.",
+        "C. She said, 'I could not attend.'",
+        "D. She said that she could not attend."
+      ],
+      "correct_answer": "D. She said that she could not attend.",
+      "explanation": "Indirect: 'She said that she could not attend.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.250755+00:00",
+    "updated_at": "2026-09-21T12:53:32.250755+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_di_0012",
+    "question": "Convert to indirect speech: He said, 'I was working hard.'",
+    "pattern": "direct-indirect",
+    "skill": "direct-indirect",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Convert to indirect speech: He said, 'I was working hard.'",
+      "options": [
+        "A. She said that she will come tomorrow.",
+        "B. He said that he is tired.",
+        "C. He said that he had been working hard.",
+        "D. He said, 'I was working hard.'"
+      ],
+      "correct_answer": "C. He said that he had been working hard.",
+      "explanation": "Indirect: 'He said that he had been working hard.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.250755+00:00",
+    "updated_at": "2026-09-21T12:53:32.250755+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_di_0013",
+    "question": "Convert to indirect speech: She said, 'I am not sure.'",
+    "pattern": "direct-indirect",
+    "skill": "direct-indirect",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Convert to indirect speech: She said, 'I am not sure.'",
+      "options": [
+        "A. She said that she will come tomorrow.",
+        "B. She said that she was not sure.",
+        "C. She said, 'I am not sure.'",
+        "D. He said that he is tired."
+      ],
+      "correct_answer": "B. She said that she was not sure.",
+      "explanation": "Indirect: 'She said that she was not sure.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.250755+00:00",
+    "updated_at": "2026-09-21T12:53:32.250755+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_di_0014",
+    "question": "Convert to indirect speech: He said, 'I have seen this before.'",
+    "pattern": "direct-indirect",
+    "skill": "direct-indirect",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Convert to indirect speech: He said, 'I have seen this before.'",
+      "options": [
+        "A. He said that he had seen this before.",
+        "B. He said, 'I have seen this before.'",
+        "C. He said that he is tired.",
+        "D. She said that she will come tomorrow."
+      ],
+      "correct_answer": "A. He said that he had seen this before.",
+      "explanation": "Indirect: 'He said that he had seen this before.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.251778+00:00",
+    "updated_at": "2026-09-21T12:53:32.251778+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_di_0015",
+    "question": "Convert to indirect speech: She said, 'I will be there.'",
+    "pattern": "direct-indirect",
+    "skill": "direct-indirect",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Convert to indirect speech: She said, 'I will be there.'",
+      "options": [
+        "A. She said that she would be there.",
+        "B. She said that she will come tomorrow.",
+        "C. She said, 'I will be there.'",
+        "D. He said that he is tired."
+      ],
+      "correct_answer": "A. She said that she would be there.",
+      "explanation": "Indirect: 'She said that she would be there.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.251778+00:00",
+    "updated_at": "2026-09-21T12:53:32.251778+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_di_0016",
+    "question": "Convert to indirect speech: He said, 'I am learning Python.'",
+    "pattern": "direct-indirect",
+    "skill": "direct-indirect",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Convert to indirect speech: He said, 'I am learning Python.'",
+      "options": [
+        "A. She said that she will come tomorrow.",
+        "B. He said that he was learning Python.",
+        "C. He said, 'I am learning Python.'",
+        "D. He said that he is tired."
+      ],
+      "correct_answer": "B. He said that he was learning Python.",
+      "explanation": "Indirect: 'He said that he was learning Python.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.251778+00:00",
+    "updated_at": "2026-09-21T12:53:32.251778+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_di_0017",
+    "question": "Convert to indirect speech: She said, 'I had already eaten.'",
+    "pattern": "direct-indirect",
+    "skill": "direct-indirect",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Convert to indirect speech: She said, 'I had already eaten.'",
+      "options": [
+        "A. He said that he is tired.",
+        "B. She said, 'I had already eaten.'",
+        "C. She said that she had already eaten.",
+        "D. She said that she will come tomorrow."
+      ],
+      "correct_answer": "C. She said that she had already eaten.",
+      "explanation": "Indirect: 'She said that she had already eaten.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.251778+00:00",
+    "updated_at": "2026-09-21T12:53:32.251778+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_di_0018",
+    "question": "Convert to indirect speech: He said, 'I do not know.'",
+    "pattern": "direct-indirect",
+    "skill": "direct-indirect",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Convert to indirect speech: He said, 'I do not know.'",
+      "options": [
+        "A. She said that she will come tomorrow.",
+        "B. He said that he did not know.",
+        "C. He said that he is tired.",
+        "D. He said, 'I do not know.'"
+      ],
+      "correct_answer": "B. He said that he did not know.",
+      "explanation": "Indirect: 'He said that he did not know.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.251778+00:00",
+    "updated_at": "2026-09-21T12:53:32.251778+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_di_0019",
+    "question": "Convert to indirect speech: She said, 'I am going home.'",
+    "pattern": "direct-indirect",
+    "skill": "direct-indirect",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Convert to indirect speech: She said, 'I am going home.'",
+      "options": [
+        "A. She said that she was going home.",
+        "B. She said that she will come tomorrow.",
+        "C. She said, 'I am going home.'",
+        "D. He said that he is tired."
+      ],
+      "correct_answer": "A. She said that she was going home.",
+      "explanation": "Indirect: 'She said that she was going home.'"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.251778+00:00",
+    "updated_at": "2026-09-21T12:53:32.251778+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  }
+]

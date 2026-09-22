@@ -1,0 +1,752 @@
+[
+  {
+    "id": "code_recursion_0000",
+    "question": "What does this function return?\ndef fact(n):\n  if n <= 1: return 1\n  return n * fact(n-1)\nprint(fact(5))",
+    "pattern": "recursion",
+    "skill": "recursion",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef fact(n):\n  if n <= 1: return 1\n  return n * fact(n-1)\nprint(fact(5))",
+      "options": [
+        "A. [3, 2, 1]",
+        "B. 27",
+        "C. 120",
+        "D. 5"
+      ],
+      "correct_answer": "C. 120",
+      "explanation": "Recursion result: 120"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.297179+00:00",
+    "updated_at": "2026-09-21T12:53:32.297179+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "code_recursion_0001",
+    "question": "What does this function return?\ndef fib(n):\n  if n <= 1: return n\n  return fib(n-1) + fib(n-2)\nprint(fib(6))",
+    "pattern": "recursion",
+    "skill": "recursion",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef fib(n):\n  if n <= 1: return n\n  return fib(n-1) + fib(n-2)\nprint(fib(6))",
+      "options": [
+        "A. True",
+        "B. [5, 4, 3, 2, 1]",
+        "C. 24",
+        "D. 8"
+      ],
+      "correct_answer": "D. 8",
+      "explanation": "Recursion result: 8"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.298407+00:00",
+    "updated_at": "2026-09-21T12:53:32.298407+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "code_recursion_0002",
+    "question": "What does this function return?\ndef sum_n(n):\n  if n <= 0: return 0\n  return n + sum_n(n-1)\nprint(sum_n(5))",
+    "pattern": "recursion",
+    "skill": "recursion",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef sum_n(n):\n  if n <= 0: return 0\n  return n + sum_n(n-1)\nprint(sum_n(5))",
+      "options": [
+        "A. 15",
+        "B. True",
+        "C. 24",
+        "D. 5"
+      ],
+      "correct_answer": "A. 15",
+      "explanation": "Recursion result: 15"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.298407+00:00",
+    "updated_at": "2026-09-21T12:53:32.298407+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "code_recursion_0003",
+    "question": "What does this function return?\ndef power(a, n):\n  if n == 0: return 1\n  return a * power(a, n-1)\nprint(power(2, 4))",
+    "pattern": "recursion",
+    "skill": "recursion",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef power(a, n):\n  if n == 0: return 1\n  return a * power(a, n-1)\nprint(power(2, 4))",
+      "options": [
+        "A. 5",
+        "B. 16",
+        "C. 15",
+        "D. 24"
+      ],
+      "correct_answer": "B. 16",
+      "explanation": "Recursion result: 16"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.298407+00:00",
+    "updated_at": "2026-09-21T12:53:32.298407+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "code_recursion_0004",
+    "question": "What does this function return?\ndef countdown(n):\n  if n <= 0: return []\n  return [n] + countdown(n-1)\nprint(countdown(3))",
+    "pattern": "recursion",
+    "skill": "recursion",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef countdown(n):\n  if n <= 0: return []\n  return [n] + countdown(n-1)\nprint(countdown(3))",
+      "options": [
+        "A. 15",
+        "B. 120",
+        "C. 1",
+        "D. [3, 2, 1]"
+      ],
+      "correct_answer": "D. [3, 2, 1]",
+      "explanation": "Recursion result: [3, 2, 1]"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.298737+00:00",
+    "updated_at": "2026-09-21T12:53:32.298737+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "code_recursion_0005",
+    "question": "What does this function return?\ndef sum_digits(n):\n  if n < 10: return n\n  return n%10 + sum_digits(n//10)\nprint(sum_digits(123))",
+    "pattern": "recursion",
+    "skill": "recursion",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef sum_digits(n):\n  if n < 10: return n\n  return n%10 + sum_digits(n//10)\nprint(sum_digits(123))",
+      "options": [
+        "A. 27",
+        "B. 8",
+        "C. 6",
+        "D. [3, 2, 1]"
+      ],
+      "correct_answer": "C. 6",
+      "explanation": "Recursion result: 6"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.298737+00:00",
+    "updated_at": "2026-09-21T12:53:32.298737+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "code_recursion_0006",
+    "question": "What does this function return?\ndef is_even(n):\n  if n == 0: return True\n  return is_odd(n-1)\ndef is_odd(n):\n  if n == 0: return False\n  return is_even(n-1)\nprint(is_even(4))",
+    "pattern": "recursion",
+    "skill": "recursion",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef is_even(n):\n  if n == 0: return True\n  return is_odd(n-1)\ndef is_odd(n):\n  if n == 0: return False\n  return is_even(n-1)\nprint(is_even(4))",
+      "options": [
+        "A. 13",
+        "B. True",
+        "C. 5",
+        "D. 16"
+      ],
+      "correct_answer": "B. True",
+      "explanation": "Recursion result: True"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.298737+00:00",
+    "updated_at": "2026-09-21T12:53:32.298737+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "code_recursion_0007",
+    "question": "What does this function return?\ndef fib(n):\n  if n <= 1: return n\n  return fib(n-1) + fib(n-2)\nprint(fib(5))",
+    "pattern": "recursion",
+    "skill": "recursion",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef fib(n):\n  if n <= 1: return n\n  return fib(n-1) + fib(n-2)\nprint(fib(5))",
+      "options": [
+        "A. 16",
+        "B. 13",
+        "C. True",
+        "D. 5"
+      ],
+      "correct_answer": "D. 5",
+      "explanation": "Recursion result: 5"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.298737+00:00",
+    "updated_at": "2026-09-21T12:53:32.298737+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "code_recursion_0008",
+    "question": "What does this function return?\ndef fact(n):\n  if n <= 1: return 1\n  return n * fact(n-1)\nprint(fact(0))",
+    "pattern": "recursion",
+    "skill": "recursion",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef fact(n):\n  if n <= 1: return 1\n  return n * fact(n-1)\nprint(fact(0))",
+      "options": [
+        "A. True",
+        "B. 1",
+        "C. 16",
+        "D. 24"
+      ],
+      "correct_answer": "B. 1",
+      "explanation": "Recursion result: 1"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.298737+00:00",
+    "updated_at": "2026-09-21T12:53:32.298737+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "code_recursion_0009",
+    "question": "What does this function return?\ndef sum_n(n):\n  if n <= 0: return 0\n  return n + sum_n(n-1)\nprint(sum_n(10))",
+    "pattern": "recursion",
+    "skill": "recursion",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef sum_n(n):\n  if n <= 0: return 0\n  return n + sum_n(n-1)\nprint(sum_n(10))",
+      "options": [
+        "A. 55",
+        "B. 27",
+        "C. 16",
+        "D. [3, 2, 1]"
+      ],
+      "correct_answer": "A. 55",
+      "explanation": "Recursion result: 55"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.298737+00:00",
+    "updated_at": "2026-09-21T12:53:32.298737+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "code_recursion_0010",
+    "question": "What does this function return?\ndef power(a, n):\n  if n == 0: return 1\n  return a * power(a, n-1)\nprint(power(3, 3))",
+    "pattern": "recursion",
+    "skill": "recursion",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef power(a, n):\n  if n == 0: return 1\n  return a * power(a, n-1)\nprint(power(3, 3))",
+      "options": [
+        "A. [5, 4, 3, 2, 1]",
+        "B. 27",
+        "C. 16",
+        "D. True"
+      ],
+      "correct_answer": "B. 27",
+      "explanation": "Recursion result: 27"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.298737+00:00",
+    "updated_at": "2026-09-21T12:53:32.298737+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "code_recursion_0011",
+    "question": "What does this function return?\ndef countdown(n):\n  if n <= 0: return []\n  return [n] + countdown(n-1)\nprint(countdown(5))",
+    "pattern": "recursion",
+    "skill": "recursion",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef countdown(n):\n  if n <= 0: return []\n  return [n] + countdown(n-1)\nprint(countdown(5))",
+      "options": [
+        "A. 55",
+        "B. [5, 4, 3, 2, 1]",
+        "C. 120",
+        "D. False"
+      ],
+      "correct_answer": "B. [5, 4, 3, 2, 1]",
+      "explanation": "Recursion result: [5, 4, 3, 2, 1]"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.298737+00:00",
+    "updated_at": "2026-09-21T12:53:32.298737+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "code_recursion_0012",
+    "question": "What does this function return?\ndef sum_digits(n):\n  if n < 10: return n\n  return n%10 + sum_digits(n//10)\nprint(sum_digits(999))",
+    "pattern": "recursion",
+    "skill": "recursion",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef sum_digits(n):\n  if n < 10: return n\n  return n%10 + sum_digits(n//10)\nprint(sum_digits(999))",
+      "options": [
+        "A. 55",
+        "B. 27",
+        "C. 13",
+        "D. [5, 4, 3, 2, 1]"
+      ],
+      "correct_answer": "B. 27",
+      "explanation": "Recursion result: 27"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.299401+00:00",
+    "updated_at": "2026-09-21T12:53:32.299401+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "code_recursion_0013",
+    "question": "What does this function return?\ndef fib(n):\n  if n <= 1: return n\n  return fib(n-1) + fib(n-2)\nprint(fib(7))",
+    "pattern": "recursion",
+    "skill": "recursion",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef fib(n):\n  if n <= 1: return n\n  return fib(n-1) + fib(n-2)\nprint(fib(7))",
+      "options": [
+        "A. 27",
+        "B. 16",
+        "C. [5, 4, 3, 2, 1]",
+        "D. 13"
+      ],
+      "correct_answer": "D. 13",
+      "explanation": "Recursion result: 13"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.299401+00:00",
+    "updated_at": "2026-09-21T12:53:32.299401+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "code_recursion_0014",
+    "question": "What does this function return?\ndef fact(n):\n  if n <= 1: return 1\n  return n * fact(n-1)\nprint(fact(4))",
+    "pattern": "recursion",
+    "skill": "recursion",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does this function return?\ndef fact(n):\n  if n <= 1: return 1\n  return n * fact(n-1)\nprint(fact(4))",
+      "options": [
+        "A. [5, 4, 3, 2, 1]",
+        "B. 55",
+        "C. 24",
+        "D. [3, 2, 1]"
+      ],
+      "correct_answer": "C. 24",
+      "explanation": "Recursion result: 24"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.299401+00:00",
+    "updated_at": "2026-09-21T12:53:32.299401+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Wipro",
+      "Infosys",
+      "TCS"
+    ]
+  }
+]

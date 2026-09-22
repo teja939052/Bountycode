@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import api from "../services/api";
 import Spinner from "../components/ui/Spinner";
 import CelebrationOverlay from "../components/CelebrationOverlay";
-import DiamondsPopup from "../components/XPPopup";
 import { HyperdriveStatus } from "../components/space";
 import { motion, AnimatePresence } from "framer-motion";
 import useReducedMotion from "../hooks/useReducedMotion";
@@ -58,8 +57,6 @@ export default function CodingChallenge() {
   const [hints, setHints] = useState([]);
   const [hintLevel, setHintLevel] = useState(0);
   const [showCelebration, setShowCelebration] = useState(false);
-  const [xpData, setXpData] = useState(null);
-  const [showXP, setShowXP] = useState(false);
   const [hyperdriveState, setHyperdriveState] = useState("idle");
   const timerRef = useRef(null);
   const reduced = useReducedMotion();
@@ -161,7 +158,6 @@ export default function CodingChallenge() {
     return (
       <div className="min-h-screen py-12 px-4">
         <CelebrationOverlay show={showCelebration} type="perfect" title="Hyperdrive Engaged!" onClose={() => setShowCelebration(false)} />
-        <XPPopup show={showXP} {...xpData} onClose={() => setShowXP(false)} />
         <div className="max-w-4xl mx-auto">
           <motion.div
             className="text-center mb-10"
@@ -281,7 +277,6 @@ export default function CodingChallenge() {
     return (
       <div className="min-h-screen py-12 px-4">
         <CelebrationOverlay show={showCelebration} type="perfect" title="All Tests Passed!" onClose={() => setShowCelebration(false)} />
-        <XPPopup show={showXP} {...xpData} onClose={() => setShowXP(false)} />
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">

@@ -1,0 +1,884 @@
+[
+  {
+    "id": "quant_remainder_0000",
+    "question": "Remainder when 2^5 is divided by 5?",
+    "pattern": "powers-remainder",
+    "skill": "powers-remainder",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Remainder when 2^5 is divided by 5?",
+      "options": [
+        "A. 2",
+        "B. 0",
+        "C. 4",
+        "D. 3"
+      ],
+      "correct_answer": "A. 2",
+      "explanation": "Cycle: [2, 4, 3, 1]. 5 mod 4 = 0 → 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T04:43:19.979872+00:00",
+    "updated_at": "2026-09-21T04:43:19.980863+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_remainder_0001",
+    "question": "Remainder when 2^9 is divided by 5?",
+    "pattern": "powers-remainder",
+    "skill": "powers-remainder",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Remainder when 2^9 is divided by 5?",
+      "options": [
+        "A. 2",
+        "B. 0",
+        "C. 4",
+        "D. 3"
+      ],
+      "correct_answer": "A. 2",
+      "explanation": "Cycle: [2, 4, 3, 1]. 9 mod 4 = 0 → 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T04:43:19.981175+00:00",
+    "updated_at": "2026-09-21T04:43:19.981175+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_remainder_0002",
+    "question": "Remainder when 2^13 is divided by 5?",
+    "pattern": "powers-remainder",
+    "skill": "powers-remainder",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Remainder when 2^13 is divided by 5?",
+      "options": [
+        "A. 4",
+        "B. 2",
+        "C. 3",
+        "D. 0"
+      ],
+      "correct_answer": "B. 2",
+      "explanation": "Cycle: [2, 4, 3, 1]. 13 mod 4 = 0 → 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T04:43:19.981175+00:00",
+    "updated_at": "2026-09-21T04:43:19.981175+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_remainder_0003",
+    "question": "Remainder when 2^17 is divided by 5?",
+    "pattern": "powers-remainder",
+    "skill": "powers-remainder",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Remainder when 2^17 is divided by 5?",
+      "options": [
+        "A. 0",
+        "B. 3",
+        "C. 4",
+        "D. 2"
+      ],
+      "correct_answer": "D. 2",
+      "explanation": "Cycle: [2, 4, 3, 1]. 17 mod 4 = 0 → 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T04:43:19.981175+00:00",
+    "updated_at": "2026-09-21T04:43:19.981175+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_remainder_0004",
+    "question": "Remainder when 2^21 is divided by 5?",
+    "pattern": "powers-remainder",
+    "skill": "powers-remainder",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Remainder when 2^21 is divided by 5?",
+      "options": [
+        "A. 3",
+        "B. 0",
+        "C. 2",
+        "D. 4"
+      ],
+      "correct_answer": "C. 2",
+      "explanation": "Cycle: [2, 4, 3, 1]. 21 mod 4 = 0 → 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T04:43:19.981175+00:00",
+    "updated_at": "2026-09-21T04:43:19.981175+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_remainder_0005",
+    "question": "Remainder when 2^25 is divided by 5?",
+    "pattern": "powers-remainder",
+    "skill": "powers-remainder",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Remainder when 2^25 is divided by 5?",
+      "options": [
+        "A. 0",
+        "B. 3",
+        "C. 2",
+        "D. 4"
+      ],
+      "correct_answer": "C. 2",
+      "explanation": "Cycle: [2, 4, 3, 1]. 25 mod 4 = 0 → 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T04:43:19.981175+00:00",
+    "updated_at": "2026-09-21T04:43:19.981175+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_remainder_0006",
+    "question": "Remainder when 3^5 is divided by 5?",
+    "pattern": "powers-remainder",
+    "skill": "powers-remainder",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Remainder when 3^5 is divided by 5?",
+      "options": [
+        "A. 3",
+        "B. 1",
+        "C. 0",
+        "D. 4"
+      ],
+      "correct_answer": "A. 3",
+      "explanation": "Cycle: [3, 4, 2, 1]. 5 mod 4 = 0 → 3"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T04:43:19.981175+00:00",
+    "updated_at": "2026-09-21T04:43:19.981175+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_remainder_0007",
+    "question": "Remainder when 3^9 is divided by 5?",
+    "pattern": "powers-remainder",
+    "skill": "powers-remainder",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Remainder when 3^9 is divided by 5?",
+      "options": [
+        "A. 4",
+        "B. 3",
+        "C. 0",
+        "D. 1"
+      ],
+      "correct_answer": "B. 3",
+      "explanation": "Cycle: [3, 4, 2, 1]. 9 mod 4 = 0 → 3"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T04:43:19.981887+00:00",
+    "updated_at": "2026-09-21T04:43:19.981887+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_remainder_0008",
+    "question": "Remainder when 3^13 is divided by 5?",
+    "pattern": "powers-remainder",
+    "skill": "powers-remainder",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Remainder when 3^13 is divided by 5?",
+      "options": [
+        "A. 4",
+        "B. 0",
+        "C. 1",
+        "D. 3"
+      ],
+      "correct_answer": "D. 3",
+      "explanation": "Cycle: [3, 4, 2, 1]. 13 mod 4 = 0 → 3"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T04:43:19.981887+00:00",
+    "updated_at": "2026-09-21T04:43:19.981887+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_remainder_0009",
+    "question": "Remainder when 3^17 is divided by 5?",
+    "pattern": "powers-remainder",
+    "skill": "powers-remainder",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Remainder when 3^17 is divided by 5?",
+      "options": [
+        "A. 0",
+        "B. 1",
+        "C. 4",
+        "D. 3"
+      ],
+      "correct_answer": "D. 3",
+      "explanation": "Cycle: [3, 4, 2, 1]. 17 mod 4 = 0 → 3"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T04:43:19.981887+00:00",
+    "updated_at": "2026-09-21T04:43:19.981887+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_remainder_0010",
+    "question": "Remainder when 3^21 is divided by 5?",
+    "pattern": "powers-remainder",
+    "skill": "powers-remainder",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Remainder when 3^21 is divided by 5?",
+      "options": [
+        "A. 4",
+        "B. 0",
+        "C. 3",
+        "D. 1"
+      ],
+      "correct_answer": "C. 3",
+      "explanation": "Cycle: [3, 4, 2, 1]. 21 mod 4 = 0 → 3"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T04:43:19.981887+00:00",
+    "updated_at": "2026-09-21T04:43:19.981887+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_remainder_0011",
+    "question": "Remainder when 3^25 is divided by 5?",
+    "pattern": "powers-remainder",
+    "skill": "powers-remainder",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Remainder when 3^25 is divided by 5?",
+      "options": [
+        "A. 1",
+        "B. 3",
+        "C. 4",
+        "D. 0"
+      ],
+      "correct_answer": "B. 3",
+      "explanation": "Cycle: [3, 4, 2, 1]. 25 mod 4 = 0 → 3"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T04:43:19.981887+00:00",
+    "updated_at": "2026-09-21T04:43:19.981887+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_remainder_0012",
+    "question": "Remainder when 7^5 is divided by 5?",
+    "pattern": "powers-remainder",
+    "skill": "powers-remainder",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Remainder when 7^5 is divided by 5?",
+      "options": [
+        "A. 3",
+        "B. 0",
+        "C. 2",
+        "D. 4"
+      ],
+      "correct_answer": "C. 2",
+      "explanation": "Cycle: [2, 4, 3, 1]. 5 mod 4 = 0 → 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T04:43:19.981887+00:00",
+    "updated_at": "2026-09-21T04:43:19.981887+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_remainder_0013",
+    "question": "Remainder when 7^9 is divided by 5?",
+    "pattern": "powers-remainder",
+    "skill": "powers-remainder",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Remainder when 7^9 is divided by 5?",
+      "options": [
+        "A. 0",
+        "B. 4",
+        "C. 3",
+        "D. 2"
+      ],
+      "correct_answer": "D. 2",
+      "explanation": "Cycle: [2, 4, 3, 1]. 9 mod 4 = 0 → 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T04:43:19.981887+00:00",
+    "updated_at": "2026-09-21T04:43:19.981887+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_remainder_0014",
+    "question": "Remainder when 7^13 is divided by 5?",
+    "pattern": "powers-remainder",
+    "skill": "powers-remainder",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Remainder when 7^13 is divided by 5?",
+      "options": [
+        "A. 0",
+        "B. 4",
+        "C. 2",
+        "D. 3"
+      ],
+      "correct_answer": "C. 2",
+      "explanation": "Cycle: [2, 4, 3, 1]. 13 mod 4 = 0 → 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T04:43:19.981887+00:00",
+    "updated_at": "2026-09-21T04:43:19.981887+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_remainder_0015",
+    "question": "Remainder when 7^17 is divided by 5?",
+    "pattern": "powers-remainder",
+    "skill": "powers-remainder",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Remainder when 7^17 is divided by 5?",
+      "options": [
+        "A. 4",
+        "B. 2",
+        "C. 0",
+        "D. 3"
+      ],
+      "correct_answer": "B. 2",
+      "explanation": "Cycle: [2, 4, 3, 1]. 17 mod 4 = 0 → 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T04:43:19.981887+00:00",
+    "updated_at": "2026-09-21T04:43:19.981887+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_remainder_0016",
+    "question": "Remainder when 7^21 is divided by 5?",
+    "pattern": "powers-remainder",
+    "skill": "powers-remainder",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Remainder when 7^21 is divided by 5?",
+      "options": [
+        "A. 2",
+        "B. 0",
+        "C. 4",
+        "D. 3"
+      ],
+      "correct_answer": "A. 2",
+      "explanation": "Cycle: [2, 4, 3, 1]. 21 mod 4 = 0 → 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T04:43:19.981887+00:00",
+    "updated_at": "2026-09-21T04:43:19.981887+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_remainder_0017",
+    "question": "Remainder when 7^25 is divided by 5?",
+    "pattern": "powers-remainder",
+    "skill": "powers-remainder",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Remainder when 7^25 is divided by 5?",
+      "options": [
+        "A. 3",
+        "B. 2",
+        "C. 4",
+        "D. 0"
+      ],
+      "correct_answer": "B. 2",
+      "explanation": "Cycle: [2, 4, 3, 1]. 25 mod 4 = 0 → 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T04:43:19.981887+00:00",
+    "updated_at": "2026-09-21T04:43:19.981887+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  }
+]

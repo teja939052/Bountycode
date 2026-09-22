@@ -306,7 +306,7 @@ export default function JourneyPage() {
     return (
       <div className="min-h-[70vh] flex flex-col items-center justify-center gap-4 px-6 text-center">
         <p className="text-lg font-semibold">Journey unavailable</p>
-        <Link to="/dashboard" className="text-sm text-primary underline">Back to dashboard</Link>
+        <Link to="/journey" className="text-sm text-primary underline">Back to journey</Link>
       </div>
     );
   }
@@ -333,6 +333,33 @@ export default function JourneyPage() {
   return (
     <div className="min-h-screen bg-base">
       <main className="mx-auto max-w-[800px] px-4 py-6 space-y-6">
+        {/* ═══ V3: TODAY'S MISSION — one question answered: what next? ═══ */}
+        <section aria-label="Today's mission" className="rounded-3xl border border-orange-200/60 bg-[#FFF7F2] p-5 shadow-sm">
+          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#E8590C]">⚡ Today's mission</p>
+          <h2 className="font-display mt-1 text-xl font-black text-gray-900">
+            {(state as any)?.next_action?.title || (currentLevel ? `Continue: ${currentLevel.title}` : "Start your first mission")}
+          </h2>
+          {(state as any)?.next_action?.reason && (
+            <p className="mt-1 font-mono text-[11px] text-gray-500">Why? {(state as any).next_action.reason}</p>
+          )}
+          {(state as any)?.readiness != null && (
+            <p className="mt-1 font-mono text-[11px] text-gray-500">
+              🎯 {state.company?.target ?? "Placement"} readiness: {Math.round((state as any).readiness)}%
+            </p>
+          )}
+          <div className="mt-3 flex flex-wrap gap-2">
+            {currentLevel && currentWorld && (
+              <button
+                onClick={() => handleContinue(currentLevel, currentWorld.id)}
+                className="flex min-h-[44px] items-center gap-2 rounded-xl bg-[#F4532F] px-5 font-bold text-white shadow-md hover:brightness-105"
+              >
+                <Play size={15} /> START MISSION →
+              </button>
+            )}
+            <Link to="/practice" className="flex min-h-[44px] items-center rounded-xl border border-black/10 bg-white px-4 text-sm font-semibold text-gray-700">Practice freestyle</Link>
+            <Link to="/target" className="flex min-h-[44px] items-center rounded-xl border border-black/10 bg-white px-4 text-sm font-semibold text-gray-700">Change target</Link>
+          </div>
+        </section>
         {/* ═══ LEVEL MAP header (hybrid) ═══ */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
@@ -371,8 +398,8 @@ export default function JourneyPage() {
                   Level {stats.level} · {stats.diamonds.toLocaleString()} Diamonds · {stats.streak} day streak
                 </p>
               )}
-              <Link to="/career-profile" className="mt-2 inline-block font-mono text-xs font-semibold tracking-widest text-[#E8590C] hover:underline">
-                CHANGE FLEET →
+              <Link to="/target" className="mt-2 inline-block font-mono text-xs font-semibold tracking-widest text-[#E8590C] hover:underline">
+                CHANGE TARGET →
               </Link>
             </div>
             <motion.div
