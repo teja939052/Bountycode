@@ -1,0 +1,1002 @@
+[
+  {
+    "id": "verbal_oneword_0000",
+    "question": "A person who never smiles? (One word)",
+    "pattern": "one-word",
+    "skill": "one-word",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A person who never smiles? (One word)",
+      "options": [
+        "A. Optimist",
+        "B. Pragmatist",
+        "C. Gloomy",
+        "D. Idealist"
+      ],
+      "correct_answer": "C. Gloomy",
+      "explanation": "'Gloomy' is the correct one-word answer"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.258805+00:00",
+    "updated_at": "2026-09-21T12:53:32.258805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_oneword_0001",
+    "question": "A person who eats too much? (One word)",
+    "pattern": "one-word",
+    "skill": "one-word",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A person who eats too much? (One word)",
+      "options": [
+        "A. Artist",
+        "B. Doctor",
+        "C. Glutton",
+        "D. Engineer"
+      ],
+      "correct_answer": "C. Glutton",
+      "explanation": "'Glutton' is the correct one-word answer"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.258805+00:00",
+    "updated_at": "2026-09-21T12:53:32.258805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_oneword_0002",
+    "question": "A person who loves books? (One word)",
+    "pattern": "one-word",
+    "skill": "one-word",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A person who loves books? (One word)",
+      "options": [
+        "A. Idealist",
+        "B. Pragmatist",
+        "C. Artist",
+        "D. Bibliophile"
+      ],
+      "correct_answer": "D. Bibliophile",
+      "explanation": "'Bibliophile' is the correct one-word answer"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.258805+00:00",
+    "updated_at": "2026-09-21T12:53:32.258805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_oneword_0003",
+    "question": "A person who hates women? (One word)",
+    "pattern": "one-word",
+    "skill": "one-word",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A person who hates women? (One word)",
+      "options": [
+        "A. Doctor",
+        "B. Misogynist",
+        "C. Engineer",
+        "D. Pragmatist"
+      ],
+      "correct_answer": "B. Misogynist",
+      "explanation": "'Misogynist' is the correct one-word answer"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.258805+00:00",
+    "updated_at": "2026-09-21T12:53:32.258805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_oneword_0004",
+    "question": "A person who hates men? (One word)",
+    "pattern": "one-word",
+    "skill": "one-word",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A person who hates men? (One word)",
+      "options": [
+        "A. Engineer",
+        "B. Pessimist",
+        "C. Misogynist",
+        "D. Realist"
+      ],
+      "correct_answer": "C. Misogynist",
+      "explanation": "'Misogynist' is the correct one-word answer"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.258805+00:00",
+    "updated_at": "2026-09-21T12:53:32.258805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_oneword_0005",
+    "question": "A person who is always hopeful? (One word)",
+    "pattern": "one-word",
+    "skill": "one-word",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A person who is always hopeful? (One word)",
+      "options": [
+        "A. Scientist",
+        "B. Doctor",
+        "C. Optimist",
+        "D. Pragmatist"
+      ],
+      "correct_answer": "C. Optimist",
+      "explanation": "'Optimist' is the correct one-word answer"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.258805+00:00",
+    "updated_at": "2026-09-21T12:53:32.258805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_oneword_0006",
+    "question": "A person who expects the worst? (One word)",
+    "pattern": "one-word",
+    "skill": "one-word",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A person who expects the worst? (One word)",
+      "options": [
+        "A. Optimist",
+        "B. Realist",
+        "C. Doctor",
+        "D. Pessimist"
+      ],
+      "correct_answer": "D. Pessimist",
+      "explanation": "'Pessimist' is the correct one-word answer"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.258805+00:00",
+    "updated_at": "2026-09-21T12:53:32.258805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_oneword_0007",
+    "question": "A person who cannot see? (One word)",
+    "pattern": "one-word",
+    "skill": "one-word",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A person who cannot see? (One word)",
+      "options": [
+        "A. Pragmatist",
+        "B. Blind",
+        "C. Doctor",
+        "D. Realist"
+      ],
+      "correct_answer": "B. Blind",
+      "explanation": "'Blind' is the correct one-word answer"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.258805+00:00",
+    "updated_at": "2026-09-21T12:53:32.258805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_oneword_0008",
+    "question": "A person who cannot hear? (One word)",
+    "pattern": "one-word",
+    "skill": "one-word",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A person who cannot hear? (One word)",
+      "options": [
+        "A. Pessimist",
+        "B. Realist",
+        "C. Idealist",
+        "D. Deaf"
+      ],
+      "correct_answer": "D. Deaf",
+      "explanation": "'Deaf' is the correct one-word answer"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.259805+00:00",
+    "updated_at": "2026-09-21T12:53:32.259805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_oneword_0009",
+    "question": "A person who stutters? (One word)",
+    "pattern": "one-word",
+    "skill": "one-word",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A person who stutters? (One word)",
+      "options": [
+        "A. Stutterer",
+        "B. Artist",
+        "C. Materialist",
+        "D. Pragmatist"
+      ],
+      "correct_answer": "A. Stutterer",
+      "explanation": "'Stutterer' is the correct one-word answer"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.259805+00:00",
+    "updated_at": "2026-09-21T12:53:32.259805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_oneword_0010",
+    "question": "A person who collects stamps? (One word)",
+    "pattern": "one-word",
+    "skill": "one-word",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A person who collects stamps? (One word)",
+      "options": [
+        "A. Materialist",
+        "B. Pessimist",
+        "C. Philatelist",
+        "D. Optimist"
+      ],
+      "correct_answer": "C. Philatelist",
+      "explanation": "'Philatelist' is the correct one-word answer"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.259805+00:00",
+    "updated_at": "2026-09-21T12:53:32.259805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_oneword_0011",
+    "question": "A person who collects coins? (One word)",
+    "pattern": "one-word",
+    "skill": "one-word",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A person who collects coins? (One word)",
+      "options": [
+        "A. Pessimist",
+        "B. Scientist",
+        "C. Numismatist",
+        "D. Artist"
+      ],
+      "correct_answer": "C. Numismatist",
+      "explanation": "'Numismatist' is the correct one-word answer"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.259805+00:00",
+    "updated_at": "2026-09-21T12:53:32.259805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_oneword_0012",
+    "question": "A person who studies insects? (One word)",
+    "pattern": "one-word",
+    "skill": "one-word",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A person who studies insects? (One word)",
+      "options": [
+        "A. Entomologist",
+        "B. Optimist",
+        "C. Pessimist",
+        "D. Artist"
+      ],
+      "correct_answer": "A. Entomologist",
+      "explanation": "'Entomologist' is the correct one-word answer"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.259805+00:00",
+    "updated_at": "2026-09-21T12:53:32.259805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_oneword_0013",
+    "question": "A person who studies stars? (One word)",
+    "pattern": "one-word",
+    "skill": "one-word",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A person who studies stars? (One word)",
+      "options": [
+        "A. Idealist",
+        "B. Astronomer",
+        "C. Optimist",
+        "D. Doctor"
+      ],
+      "correct_answer": "B. Astronomer",
+      "explanation": "'Astronomer' is the correct one-word answer"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.259805+00:00",
+    "updated_at": "2026-09-21T12:53:32.259805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_oneword_0014",
+    "question": "A person who writes code? (One word)",
+    "pattern": "one-word",
+    "skill": "one-word",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A person who writes code? (One word)",
+      "options": [
+        "A. Programmer",
+        "B. Engineer",
+        "C. Idealist",
+        "D. Scientist"
+      ],
+      "correct_answer": "A. Programmer",
+      "explanation": "'Programmer' is the correct one-word answer"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.259805+00:00",
+    "updated_at": "2026-09-21T12:53:32.259805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_oneword_0015",
+    "question": "A person who is afraid of water? (One word)",
+    "pattern": "one-word",
+    "skill": "one-word",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A person who is afraid of water? (One word)",
+      "options": [
+        "A. Optimist",
+        "B. Realist",
+        "C. Materialist",
+        "D. Aquaphobe"
+      ],
+      "correct_answer": "D. Aquaphobe",
+      "explanation": "'Aquaphobe' is the correct one-word answer"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.259805+00:00",
+    "updated_at": "2026-09-21T12:53:32.259805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_oneword_0016",
+    "question": "A person who is afraid of fire? (One word)",
+    "pattern": "one-word",
+    "skill": "one-word",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A person who is afraid of fire? (One word)",
+      "options": [
+        "A. Pragmatist",
+        "B. Materialist",
+        "C. Idealist",
+        "D. Pyrophobe"
+      ],
+      "correct_answer": "D. Pyrophobe",
+      "explanation": "'Pyrophobe' is the correct one-word answer"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.259805+00:00",
+    "updated_at": "2026-09-21T12:53:32.259805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_oneword_0017",
+    "question": "A person who loves music? (One word)",
+    "pattern": "one-word",
+    "skill": "one-word",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A person who loves music? (One word)",
+      "options": [
+        "A. Pessimist",
+        "B. Artist",
+        "C. Melomaniac",
+        "D. Idealist"
+      ],
+      "correct_answer": "C. Melomaniac",
+      "explanation": "'Melomaniac' is the correct one-word answer"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.259805+00:00",
+    "updated_at": "2026-09-21T12:53:32.259805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_oneword_0018",
+    "question": "A person who loves walking? (One word)",
+    "pattern": "one-word",
+    "skill": "one-word",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A person who loves walking? (One word)",
+      "options": [
+        "A. Artist",
+        "B. Pessimist",
+        "C. Pedestrian",
+        "D. Pragmatist"
+      ],
+      "correct_answer": "C. Pedestrian",
+      "explanation": "'Pedestrian' is the correct one-word answer"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.259805+00:00",
+    "updated_at": "2026-09-21T12:53:32.259805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_oneword_0019",
+    "question": "A person who is a night owl? (One word)",
+    "pattern": "one-word",
+    "skill": "one-word",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A person who is a night owl? (One word)",
+      "options": [
+        "A. Doctor",
+        "B. Realist",
+        "C. Nocturnal",
+        "D. Scientist"
+      ],
+      "correct_answer": "C. Nocturnal",
+      "explanation": "'Nocturnal' is the correct one-word answer"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.259805+00:00",
+    "updated_at": "2026-09-21T12:53:32.259805+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Wipro",
+      "TCS",
+      "Infosys"
+    ]
+  }
+]

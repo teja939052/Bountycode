@@ -1,0 +1,737 @@
+[
+  {
+    "id": "code_linkedlist_0000",
+    "question": "What is the output?\nclass Node:\n  def __init__(self, val): self.val = val; self.next = None\nn = Node(5); print(n.val)",
+    "pattern": "linked-list",
+    "skill": "linked-list",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\nclass Node:\n  def __init__(self, val): self.val = val; self.next = None\nn = Node(5); print(n.val)",
+      "options": [
+        "A. 10",
+        "B. 1",
+        "C. 5",
+        "D. True"
+      ],
+      "correct_answer": "C. 5",
+      "explanation": "Linked list result: 5"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.295381+00:00",
+    "updated_at": "2026-09-21T12:53:32.295381+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "code_linkedlist_0001",
+    "question": "What is the output?\nclass Node:\n  def __init__(self, val): self.val = val; self.next = None\nn = Node(5); print(n.next)",
+    "pattern": "linked-list",
+    "skill": "linked-list",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\nclass Node:\n  def __init__(self, val): self.val = val; self.next = None\nn = Node(5); print(n.next)",
+      "options": [
+        "A. 200",
+        "B. 10",
+        "C. 5",
+        "D. None"
+      ],
+      "correct_answer": "D. None",
+      "explanation": "Linked list result: None"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.295985+00:00",
+    "updated_at": "2026-09-21T12:53:32.295985+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "code_linkedlist_0002",
+    "question": "What is the output?\nn1 = Node(1); n2 = Node(2); n1.next = n2; print(n1.next.val)",
+    "pattern": "linked-list",
+    "skill": "linked-list",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\nn1 = Node(1); n2 = Node(2); n1.next = n2; print(n1.next.val)",
+      "options": [
+        "A. 3",
+        "B. 2",
+        "C. 100",
+        "D. 42"
+      ],
+      "correct_answer": "B. 2",
+      "explanation": "Linked list result: 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.295985+00:00",
+    "updated_at": "2026-09-21T12:53:32.295985+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "code_linkedlist_0003",
+    "question": "What is the output?\nclass Node:\n  def __init__(self, val): self.val = val; self.next = None\nn = Node(10); print(n.val)",
+    "pattern": "linked-list",
+    "skill": "linked-list",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\nclass Node:\n  def __init__(self, val): self.val = val; self.next = None\nn = Node(10); print(n.val)",
+      "options": [
+        "A. 10",
+        "B. 2",
+        "C. 42",
+        "D. 1"
+      ],
+      "correct_answer": "A. 10",
+      "explanation": "Linked list result: 10"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.295985+00:00",
+    "updated_at": "2026-09-21T12:53:32.295985+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "code_linkedlist_0004",
+    "question": "What is the output?\nn1 = Node(1); n2 = Node(2); n3 = Node(3); n1.next = n2; n2.next = n3; print(n3.val)",
+    "pattern": "linked-list",
+    "skill": "linked-list",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\nn1 = Node(1); n2 = Node(2); n3 = Node(3); n1.next = n2; n2.next = n3; print(n3.val)",
+      "options": [
+        "A. 100",
+        "B. 10",
+        "C. 1",
+        "D. 3"
+      ],
+      "correct_answer": "D. 3",
+      "explanation": "Linked list result: 3"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.295985+00:00",
+    "updated_at": "2026-09-21T12:53:32.295985+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "code_linkedlist_0005",
+    "question": "What is the output?\nn1 = Node(1); n2 = Node(2); n1.next = n2; print(n1.val)",
+    "pattern": "linked-list",
+    "skill": "linked-list",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\nn1 = Node(1); n2 = Node(2); n1.next = n2; print(n1.val)",
+      "options": [
+        "A. 1",
+        "B. 42",
+        "C. 200",
+        "D. 10"
+      ],
+      "correct_answer": "A. 1",
+      "explanation": "Linked list result: 1"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.295985+00:00",
+    "updated_at": "2026-09-21T12:53:32.295985+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "code_linkedlist_0006",
+    "question": "What is the output?\nclass Node:\n  def __init__(self, val): self.val = val; self.next = None\nn1 = Node(7); n2 = Node(8); n1.next = n2; print(n2.val)",
+    "pattern": "linked-list",
+    "skill": "linked-list",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\nclass Node:\n  def __init__(self, val): self.val = val; self.next = None\nn1 = Node(7); n2 = Node(8); n1.next = n2; print(n2.val)",
+      "options": [
+        "A. 1",
+        "B. 200",
+        "C. 8",
+        "D. 5"
+      ],
+      "correct_answer": "C. 8",
+      "explanation": "Linked list result: 8"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.296570+00:00",
+    "updated_at": "2026-09-21T12:53:32.296570+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "code_linkedlist_0007",
+    "question": "What is the output?\nn1 = Node(1); n2 = Node(2); n3 = Node(3); n1.next = n2; n2.next = n3; print(n1.next.val)",
+    "pattern": "linked-list",
+    "skill": "linked-list",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\nn1 = Node(1); n2 = Node(2); n3 = Node(3); n1.next = n2; n2.next = n3; print(n1.next.val)",
+      "options": [
+        "A. 1",
+        "B. 2",
+        "C. 200",
+        "D. 42"
+      ],
+      "correct_answer": "B. 2",
+      "explanation": "Linked list result: 2"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.296570+00:00",
+    "updated_at": "2026-09-21T12:53:32.296570+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "code_linkedlist_0008",
+    "question": "What is the output?\nn1 = Node(1); n2 = Node(2); n3 = Node(3); n1.next = n2; n2.next = n3; print(n1.next.next.val)",
+    "pattern": "linked-list",
+    "skill": "linked-list",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\nn1 = Node(1); n2 = Node(2); n3 = Node(3); n1.next = n2; n2.next = n3; print(n1.next.next.val)",
+      "options": [
+        "A. 3",
+        "B. 100",
+        "C. 10",
+        "D. 1"
+      ],
+      "correct_answer": "A. 3",
+      "explanation": "Linked list result: 3"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.296570+00:00",
+    "updated_at": "2026-09-21T12:53:32.296570+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "code_linkedlist_0009",
+    "question": "What is the output?\nclass Node:\n  def __init__(self, val): self.val = val; self.next = None\nn = Node(0); print(n.next)",
+    "pattern": "linked-list",
+    "skill": "linked-list",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\nclass Node:\n  def __init__(self, val): self.val = val; self.next = None\nn = Node(0); print(n.next)",
+      "options": [
+        "A. 1",
+        "B. 200",
+        "C. 10",
+        "D. None"
+      ],
+      "correct_answer": "D. None",
+      "explanation": "Linked list result: None"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.296570+00:00",
+    "updated_at": "2026-09-21T12:53:32.296570+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "code_linkedlist_0010",
+    "question": "What is the output?\nn1 = Node(100); n2 = Node(200); n1.next = n2; print(n1.val, n2.val)",
+    "pattern": "linked-list",
+    "skill": "linked-list",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\nn1 = Node(100); n2 = Node(200); n1.next = n2; print(n1.val, n2.val)",
+      "options": [
+        "A. 100 200",
+        "B. 42",
+        "C. 2",
+        "D. 1"
+      ],
+      "correct_answer": "A. 100 200",
+      "explanation": "Linked list result: 100 200"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.296570+00:00",
+    "updated_at": "2026-09-21T12:53:32.296570+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "code_linkedlist_0011",
+    "question": "What is the output?\nn1 = Node(1); n2 = Node(2); n1.next = n2; print(n2.next)",
+    "pattern": "linked-list",
+    "skill": "linked-list",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\nn1 = Node(1); n2 = Node(2); n1.next = n2; print(n2.next)",
+      "options": [
+        "A. 5",
+        "B. 42",
+        "C. 10",
+        "D. None"
+      ],
+      "correct_answer": "D. None",
+      "explanation": "Linked list result: None"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.296570+00:00",
+    "updated_at": "2026-09-21T12:53:32.296570+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "code_linkedlist_0012",
+    "question": "What is the output?\nclass Node:\n  def __init__(self, val): self.val = val; self.next = None\nn = Node(42); print(type(n.val))",
+    "pattern": "linked-list",
+    "skill": "linked-list",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\nclass Node:\n  def __init__(self, val): self.val = val; self.next = None\nn = Node(42); print(type(n.val))",
+      "options": [
+        "A. None",
+        "B. 5",
+        "C. 100",
+        "D. <class 'int'>"
+      ],
+      "correct_answer": "D. <class 'int'>",
+      "explanation": "Linked list result: <class 'int'>"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.296570+00:00",
+    "updated_at": "2026-09-21T12:53:32.297179+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "code_linkedlist_0013",
+    "question": "What is the output?\nn1 = Node(5); n2 = Node(10); n1.next = n2; print(n1.next.val)",
+    "pattern": "linked-list",
+    "skill": "linked-list",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\nn1 = Node(5); n2 = Node(10); n1.next = n2; print(n1.next.val)",
+      "options": [
+        "A. 10",
+        "B. 2",
+        "C. 42",
+        "D. 200"
+      ],
+      "correct_answer": "A. 10",
+      "explanation": "Linked list result: 10"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.297179+00:00",
+    "updated_at": "2026-09-21T12:53:32.297179+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "code_linkedlist_0014",
+    "question": "What is the output?\nn1 = Node(1); n2 = Node(2); n1.next = n2; n2.next = n1; print(n1.val)",
+    "pattern": "linked-list",
+    "skill": "linked-list",
+    "domain": "Coding",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\nn1 = Node(1); n2 = Node(2); n1.next = n2; n2.next = n1; print(n1.val)",
+      "options": [
+        "A. None",
+        "B. 10",
+        "C. 1",
+        "D. 2"
+      ],
+      "correct_answer": "C. 1",
+      "explanation": "Linked list result: 1"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.297179+00:00",
+    "updated_at": "2026-09-21T12:53:32.297179+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro"
+    ]
+  }
+]

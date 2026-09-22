@@ -817,7 +817,14 @@ export default function PatternPage() {
                 <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
                   Manipulate the window, predict the shrink step, then explain why it stays O(n).
                   Each interaction records evidence to the existing study pipeline (skill dsa.sliding_window).
+                  Want it guided? Take the 18-minute mission: Discover → Manipulate → Predict → Build → Break → Debug → Transfer → Prove.
                 </p>
+                <Link
+                  to="/mission/sliding-window"
+                  className="mb-4 inline-flex min-h-[48px] items-center gap-2 rounded-xl bg-[#F4532F] px-5 text-sm font-bold text-white"
+                >
+                  <ChevronRight size={15} /> Start the guided Sliding Window mission →
+                </Link>
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 mb-3">
                   <PatternTracer />
                   <CodeFillInTheBlank />

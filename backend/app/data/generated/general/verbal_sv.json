@@ -1,0 +1,1002 @@
+[
+  {
+    "id": "verbal_sv_0000",
+    "question": "Choose the correct verb: The list of items is on the table.",
+    "pattern": "subject-verb",
+    "skill": "subject-verb",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Choose the correct verb: The list of items is on the table.",
+      "options": [
+        "A. do",
+        "B. is",
+        "C. is",
+        "D. does"
+      ],
+      "correct_answer": "B. is",
+      "explanation": "'is' agrees with the singular subject"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.245236+00:00",
+    "updated_at": "2026-09-21T12:53:32.245236+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_sv_0001",
+    "question": "Choose the correct verb: Neither the students nor the teacher were ready.",
+    "pattern": "subject-verb",
+    "skill": "subject-verb",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Choose the correct verb: Neither the students nor the teacher were ready.",
+      "options": [
+        "A. was",
+        "B. are",
+        "C. was",
+        "D. do"
+      ],
+      "correct_answer": "A. was",
+      "explanation": "'was' agrees with the singular subject"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.245236+00:00",
+    "updated_at": "2026-09-21T12:53:32.245236+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_sv_0002",
+    "question": "Choose the correct verb: Each of the students have completed their homework.",
+    "pattern": "subject-verb",
+    "skill": "subject-verb",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Choose the correct verb: Each of the students have completed their homework.",
+      "options": [
+        "A. was",
+        "B. does",
+        "C. has",
+        "D. is"
+      ],
+      "correct_answer": "C. has",
+      "explanation": "'has' agrees with the singular subject"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.245236+00:00",
+    "updated_at": "2026-09-21T12:53:32.245236+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_sv_0003",
+    "question": "Choose the correct verb: The committee have decided to postpone the meeting.",
+    "pattern": "subject-verb",
+    "skill": "subject-verb",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Choose the correct verb: The committee have decided to postpone the meeting.",
+      "options": [
+        "A. is",
+        "B. has",
+        "C. does",
+        "D. was"
+      ],
+      "correct_answer": "B. has",
+      "explanation": "'has' agrees with the singular subject"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.245236+00:00",
+    "updated_at": "2026-09-21T12:53:32.245236+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_sv_0004",
+    "question": "Choose the correct verb: Neither he nor they are coming.",
+    "pattern": "subject-verb",
+    "skill": "subject-verb",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Choose the correct verb: Neither he nor they are coming.",
+      "options": [
+        "A. were",
+        "B. is",
+        "C. have",
+        "D. is"
+      ],
+      "correct_answer": "B. is",
+      "explanation": "'is' agrees with the singular subject"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.245236+00:00",
+    "updated_at": "2026-09-21T12:53:32.245236+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_sv_0005",
+    "question": "Choose the correct verb: Every man and every woman have the right to vote.",
+    "pattern": "subject-verb",
+    "skill": "subject-verb",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Choose the correct verb: Every man and every woman have the right to vote.",
+      "options": [
+        "A. has",
+        "B. have",
+        "C. are",
+        "D. were"
+      ],
+      "correct_answer": "A. has",
+      "explanation": "'has' agrees with the singular subject"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.245236+00:00",
+    "updated_at": "2026-09-21T12:53:32.245236+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_sv_0006",
+    "question": "Choose the correct verb: The news are very encouraging.",
+    "pattern": "subject-verb",
+    "skill": "subject-verb",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Choose the correct verb: The news are very encouraging.",
+      "options": [
+        "A. do",
+        "B. are",
+        "C. does",
+        "D. is"
+      ],
+      "correct_answer": "D. is",
+      "explanation": "'is' agrees with the singular subject"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.245236+00:00",
+    "updated_at": "2026-09-21T12:53:32.245236+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_sv_0007",
+    "question": "Choose the correct verb: One of the books are missing.",
+    "pattern": "subject-verb",
+    "skill": "subject-verb",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Choose the correct verb: One of the books are missing.",
+      "options": [
+        "A. is",
+        "B. were",
+        "C. have",
+        "D. does"
+      ],
+      "correct_answer": "A. is",
+      "explanation": "'is' agrees with the singular subject"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.245236+00:00",
+    "updated_at": "2026-09-21T12:53:32.245236+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_sv_0008",
+    "question": "Choose the correct verb: The number of students are increasing.",
+    "pattern": "subject-verb",
+    "skill": "subject-verb",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Choose the correct verb: The number of students are increasing.",
+      "options": [
+        "A. does",
+        "B. is",
+        "C. are",
+        "D. was"
+      ],
+      "correct_answer": "B. is",
+      "explanation": "'is' agrees with the singular subject"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.245236+00:00",
+    "updated_at": "2026-09-21T12:53:32.245236+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_sv_0009",
+    "question": "Choose the correct verb: A pair of shoes is on the shelf.",
+    "pattern": "subject-verb",
+    "skill": "subject-verb",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Choose the correct verb: A pair of shoes is on the shelf.",
+      "options": [
+        "A. were",
+        "B. do",
+        "C. are",
+        "D. is"
+      ],
+      "correct_answer": "D. is",
+      "explanation": "'is' agrees with the singular subject"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.245236+00:00",
+    "updated_at": "2026-09-21T12:53:32.245236+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_sv_0010",
+    "question": "Choose the correct verb: The team are playing well today.",
+    "pattern": "subject-verb",
+    "skill": "subject-verb",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Choose the correct verb: The team are playing well today.",
+      "options": [
+        "A. is",
+        "B. does",
+        "C. were",
+        "D. is"
+      ],
+      "correct_answer": "A. is",
+      "explanation": "'is' agrees with the singular subject"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.245236+00:00",
+    "updated_at": "2026-09-21T12:53:32.245236+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_sv_0011",
+    "question": "Choose the correct verb: More than one student has tried.",
+    "pattern": "subject-verb",
+    "skill": "subject-verb",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Choose the correct verb: More than one student has tried.",
+      "options": [
+        "A. has",
+        "B. was",
+        "C. does",
+        "D. were"
+      ],
+      "correct_answer": "A. has",
+      "explanation": "'has' agrees with the singular subject"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.245236+00:00",
+    "updated_at": "2026-09-21T12:53:32.245236+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_sv_0012",
+    "question": "Choose the correct verb: The majority of the vote was in favor.",
+    "pattern": "subject-verb",
+    "skill": "subject-verb",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Choose the correct verb: The majority of the vote was in favor.",
+      "options": [
+        "A. was",
+        "B. was",
+        "C. are",
+        "D. were"
+      ],
+      "correct_answer": "A. was",
+      "explanation": "'was' agrees with the singular subject"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.245236+00:00",
+    "updated_at": "2026-09-21T12:53:32.245236+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_sv_0013",
+    "question": "Choose the correct verb: Half of the pizza are gone.",
+    "pattern": "subject-verb",
+    "skill": "subject-verb",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Choose the correct verb: Half of the pizza are gone.",
+      "options": [
+        "A. have",
+        "B. do",
+        "C. does",
+        "D. is"
+      ],
+      "correct_answer": "D. is",
+      "explanation": "'is' agrees with the singular subject"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.246233+00:00",
+    "updated_at": "2026-09-21T12:53:32.246233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_sv_0014",
+    "question": "Choose the correct verb: Either the teacher or the students are responsible.",
+    "pattern": "subject-verb",
+    "skill": "subject-verb",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Choose the correct verb: Either the teacher or the students are responsible.",
+      "options": [
+        "A. is",
+        "B. is",
+        "C. are",
+        "D. do"
+      ],
+      "correct_answer": "A. is",
+      "explanation": "'is' agrees with the singular subject"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.246233+00:00",
+    "updated_at": "2026-09-21T12:53:32.246233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_sv_0015",
+    "question": "Choose the correct verb: The crew was late for the flight.",
+    "pattern": "subject-verb",
+    "skill": "subject-verb",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Choose the correct verb: The crew was late for the flight.",
+      "options": [
+        "A. is",
+        "B. were",
+        "C. does",
+        "D. was"
+      ],
+      "correct_answer": "D. was",
+      "explanation": "'was' agrees with the singular subject"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.246233+00:00",
+    "updated_at": "2026-09-21T12:53:32.246233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_sv_0016",
+    "question": "Choose the correct verb: Nobody in the room know the answer.",
+    "pattern": "subject-verb",
+    "skill": "subject-verb",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Choose the correct verb: Nobody in the room know the answer.",
+      "options": [
+        "A. knows",
+        "B. are",
+        "C. were",
+        "D. have"
+      ],
+      "correct_answer": "A. knows",
+      "explanation": "'knows' agrees with the singular subject"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.246233+00:00",
+    "updated_at": "2026-09-21T12:53:32.246233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_sv_0017",
+    "question": "Choose the correct verb: The audience were clapping.",
+    "pattern": "subject-verb",
+    "skill": "subject-verb",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Choose the correct verb: The audience were clapping.",
+      "options": [
+        "A. was",
+        "B. does",
+        "C. have",
+        "D. are"
+      ],
+      "correct_answer": "A. was",
+      "explanation": "'was' agrees with the singular subject"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.246233+00:00",
+    "updated_at": "2026-09-21T12:53:32.246233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_sv_0018",
+    "question": "Choose the correct verb: The police are investigating the case.",
+    "pattern": "subject-verb",
+    "skill": "subject-verb",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Choose the correct verb: The police are investigating the case.",
+      "options": [
+        "A. were",
+        "B. is",
+        "C. does",
+        "D. are"
+      ],
+      "correct_answer": "B. is",
+      "explanation": "'is' agrees with the singular subject"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.246233+00:00",
+    "updated_at": "2026-09-21T12:53:32.246233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_sv_0019",
+    "question": "Choose the correct verb: All of the money was spent.",
+    "pattern": "subject-verb",
+    "skill": "subject-verb",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Choose the correct verb: All of the money was spent.",
+      "options": [
+        "A. are",
+        "B. was",
+        "C. is",
+        "D. do"
+      ],
+      "correct_answer": "B. was",
+      "explanation": "'was' agrees with the singular subject"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.246233+00:00",
+    "updated_at": "2026-09-21T12:53:32.246233+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  }
+]

@@ -589,6 +589,62 @@ async def record_activity(
     score = float(activity.get("score", 100.0 if passed else 0.0))
     time_spent = int(activity.get("time_spent", 0))
     diagnosis_codes = list(activity.get("diagnosis_codes", []))
+    idempotency_key = activity.get("idempotency_key")
+
+    # ── Idempotency: same key replayed → prior result, zero re-award ──
+    # Refresh/replay of a completion endpoint must not farm XP or mastery.
+    # Keys are caller-supplied per attempt (e.g. one UUID per mission try).
+    if idempotency_key:
+        try:
+            from app.database import learning_events_collection
+            prior = await learning_events_collection().find_one(
+                {"user_id": user_id, "idempotency_key": idempotency_key})
+            if prior:
+                return {
+                    "recorded": False,
+                    "deduplicated": True,
+                    "activity_type": prior.get("activity_type", activity_type),
+                    "skill_id": prior.get("skill_id", skill_id),
+                    "passed": bool(prior.get("passed", False)),
+                    "score": float(prior.get("score") or 0),
+                    "diamonds": 0,
+                    "xp_awarded": 0,
+                    "xp": 0,
+                    "xp_applied": False,
+                    "mastery_before": prior.get("mastery_before"),
+                    "mastery_after": prior.get("mastery_after"),
+                    "diagnosis_codes": prior.get("diagnosis_codes", []),
+                }
+        except Exception as exc:
+            logger.warning("idempotency lookup failed for %s: %s", user_id, exc)
+
+    # ── Failure → diagnosis + repair mission (close the loop) ──
+    # A failed activity with no caller-supplied codes gets auto-diagnosed,
+    # and a repair mission is opened best-effort (mirrors the OA retest
+    # path). Passes never open repair. Same-key replays hit the idempotency
+    # return above, so repair cannot duplicate for one attempt.
+    repair_id = activity.get("repair_id")
+    if not passed and skill_id:
+        try:
+            if not diagnosis_codes:
+                from app.services.diagnosis import diagnose_question_failure
+                diag = diagnose_question_failure(
+                    score, "", "mcq", {},
+                    metadata={"all_passed": False, "passed_count": 0, "total": 1,
+                              "time_spent": time_spent,
+                              "hints_used": int(activity.get("hints_used", 0))},
+                )
+                if isinstance(diag, dict):
+                    diagnosis_codes = diag.get("codes", []) or diagnosis_codes
+        except Exception as exc:
+            logger.warning("auto-diagnosis failed for %s: %s", user_id, exc)
+        try:
+            from app.services.repair_service import create_repair_mission
+            mission = await create_repair_mission(user_id, [skill_id], source="study_activity")
+            if mission is not None:
+                repair_id = getattr(mission, "id", None)
+        except Exception as exc:
+            logger.warning("auto-repair mission failed for %s: %s", user_id, exc)
 
     # â”€â”€ Mastery update â”€â”€
     mastery_before = None
@@ -634,7 +690,7 @@ async def record_activity(
     # â”€â”€ Gamification / Diamonds â”€â”€
     diamonds = _xp_for_activity(activity_type, score, passed)
     try:
-        await record_practice(
+        prac_result = await record_practice(
             user_id,
             activity_type=activity_type,
             score=score,
@@ -651,11 +707,15 @@ async def record_activity(
                 "verification_version": activity.get("verification_version"),
             },
             role=role,
+            activity_id=idempotency_key or None,
         )
+        if isinstance(prac_result, dict) and prac_result.get("xp_gained") is not None:
+            diamonds = int(prac_result["xp_gained"])
         result["xp_awarded"] = diamonds
         result["xp_applied"] = True
     except Exception as exc:
         logger.warning("gamification record failed for %s: %s", user_id, exc)
+        result["xp_awarded"] = diamonds
         result["xp_applied"] = False
 
     # â”€â”€ Persist canonical LearningEvent â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -679,7 +739,8 @@ async def record_activity(
             mastery_before=mastery_before,
             mastery_after=mastery_after,
             diagnosis_codes=diagnosis_codes,
-            repair_id=activity.get("repair_id"),
+            repair_id=repair_id,
+            idempotency_key=idempotency_key,
             metadata={
                 "source_bank": activity.get("source_bank"),
                 "trust_status": activity.get("trust_status"),
@@ -705,6 +766,7 @@ async def record_activity(
         "mastery_before": mastery_before,
         "mastery_after": mastery_after,
         "diagnosis_codes": diagnosis_codes,
+        "repair_id": repair_id,
     })
     return result
 

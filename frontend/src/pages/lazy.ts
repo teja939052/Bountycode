@@ -79,6 +79,7 @@ const routeImportFns = {
   Profile: () => import("./Profile"),
   Mission: () => import("./Mission"),
   MissionResult: () => import("./MissionResult"),
+  SlidingWindowMission: () => import("./SlidingWindowMission"),
 };
 
 const preload: Record<string, () => void> = {};
@@ -202,6 +203,7 @@ const Skills = lazy(() => import('./Skills'));
 const Profile = lazy(() => import('./Profile'));
 const Mission = lazy(() => import('./Mission'));
 const MissionResult = lazy(() => import('./MissionResult'));
+const SlidingWindowMission = lazy(() => import('./SlidingWindowMission'));
 export {
   Login,
   Register,
@@ -281,4 +283,5 @@ export {
   Profile,
   Mission,
   MissionResult,
+  SlidingWindowMission,
 };

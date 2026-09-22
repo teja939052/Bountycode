@@ -1,0 +1,2002 @@
+[
+  {
+    "id": "verbal_blank_0000",
+    "question": "Fill in the blank: The meeting was put ___ due to rain.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: The meeting was put ___ due to rain.",
+      "options": [
+        "A. off",
+        "B. to",
+        "C. from",
+        "D. at"
+      ],
+      "correct_answer": "A. off",
+      "explanation": "Preposition: put off = postpone"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.231139+00:00",
+    "updated_at": "2026-09-21T12:53:32.231139+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0001",
+    "question": "Fill in the blank: The meeting was put ___ due to rain.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: The meeting was put ___ due to rain.",
+      "options": [
+        "A. with",
+        "B. for",
+        "C. off",
+        "D. at"
+      ],
+      "correct_answer": "C. off",
+      "explanation": "Preposition: put off = postpone"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.231139+00:00",
+    "updated_at": "2026-09-21T12:53:32.231139+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0002",
+    "question": "Fill in the blank: The meeting was put ___ due to rain.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: The meeting was put ___ due to rain.",
+      "options": [
+        "A. off",
+        "B. by",
+        "C. at",
+        "D. with"
+      ],
+      "correct_answer": "A. off",
+      "explanation": "Preposition: put off = postpone"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.232139+00:00",
+    "updated_at": "2026-09-21T12:53:32.232139+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0003",
+    "question": "Fill in the blank: The meeting was put ___ due to rain.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: The meeting was put ___ due to rain.",
+      "options": [
+        "A. off",
+        "B. by",
+        "C. to",
+        "D. for"
+      ],
+      "correct_answer": "A. off",
+      "explanation": "Preposition: put off = postpone"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.232139+00:00",
+    "updated_at": "2026-09-21T12:53:32.232139+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0004",
+    "question": "Fill in the blank: The meeting was put ___ due to rain.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: The meeting was put ___ due to rain.",
+      "options": [
+        "A. from",
+        "B. for",
+        "C. with",
+        "D. off"
+      ],
+      "correct_answer": "D. off",
+      "explanation": "Preposition: put off = postpone"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.232139+00:00",
+    "updated_at": "2026-09-21T12:53:32.232139+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0005",
+    "question": "Fill in the blank: The meeting was put ___ due to rain.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: The meeting was put ___ due to rain.",
+      "options": [
+        "A. at",
+        "B. off",
+        "C. from",
+        "D. with"
+      ],
+      "correct_answer": "B. off",
+      "explanation": "Preposition: put off = postpone"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.232139+00:00",
+    "updated_at": "2026-09-21T12:53:32.232139+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0006",
+    "question": "Fill in the blank: The meeting was put ___ due to rain.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: The meeting was put ___ due to rain.",
+      "options": [
+        "A. from",
+        "B. off",
+        "C. by",
+        "D. at"
+      ],
+      "correct_answer": "B. off",
+      "explanation": "Preposition: put off = postpone"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.232139+00:00",
+    "updated_at": "2026-09-21T12:53:32.232139+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0007",
+    "question": "Fill in the blank: The meeting was put ___ due to rain.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: The meeting was put ___ due to rain.",
+      "options": [
+        "A. at",
+        "B. off",
+        "C. with",
+        "D. for"
+      ],
+      "correct_answer": "B. off",
+      "explanation": "Preposition: put off = postpone"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.232139+00:00",
+    "updated_at": "2026-09-21T12:53:32.232139+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0008",
+    "question": "Fill in the blank: She has been working here ___ 2019.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: She has been working here ___ 2019.",
+      "options": [
+        "A. to",
+        "B. at",
+        "C. since",
+        "D. with"
+      ],
+      "correct_answer": "C. since",
+      "explanation": "Preposition: since + point in time"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.232139+00:00",
+    "updated_at": "2026-09-21T12:53:32.232139+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0009",
+    "question": "Fill in the blank: She has been working here ___ 2019.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: She has been working here ___ 2019.",
+      "options": [
+        "A. for",
+        "B. from",
+        "C. by",
+        "D. since"
+      ],
+      "correct_answer": "D. since",
+      "explanation": "Preposition: since + point in time"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.232139+00:00",
+    "updated_at": "2026-09-21T12:53:32.232139+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0010",
+    "question": "Fill in the blank: She has been working here ___ 2019.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: She has been working here ___ 2019.",
+      "options": [
+        "A. at",
+        "B. by",
+        "C. to",
+        "D. since"
+      ],
+      "correct_answer": "D. since",
+      "explanation": "Preposition: since + point in time"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.232139+00:00",
+    "updated_at": "2026-09-21T12:53:32.232139+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0011",
+    "question": "Fill in the blank: She has been working here ___ 2019.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: She has been working here ___ 2019.",
+      "options": [
+        "A. for",
+        "B. since",
+        "C. from",
+        "D. at"
+      ],
+      "correct_answer": "B. since",
+      "explanation": "Preposition: since + point in time"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.232139+00:00",
+    "updated_at": "2026-09-21T12:53:32.232139+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0012",
+    "question": "Fill in the blank: She has been working here ___ 2019.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: She has been working here ___ 2019.",
+      "options": [
+        "A. since",
+        "B. at",
+        "C. from",
+        "D. to"
+      ],
+      "correct_answer": "A. since",
+      "explanation": "Preposition: since + point in time"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.232139+00:00",
+    "updated_at": "2026-09-21T12:53:32.232139+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0013",
+    "question": "Fill in the blank: She has been working here ___ 2019.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: She has been working here ___ 2019.",
+      "options": [
+        "A. since",
+        "B. from",
+        "C. to",
+        "D. for"
+      ],
+      "correct_answer": "A. since",
+      "explanation": "Preposition: since + point in time"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.233138+00:00",
+    "updated_at": "2026-09-21T12:53:32.233138+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0014",
+    "question": "Fill in the blank: She has been working here ___ 2019.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: She has been working here ___ 2019.",
+      "options": [
+        "A. at",
+        "B. with",
+        "C. since",
+        "D. by"
+      ],
+      "correct_answer": "C. since",
+      "explanation": "Preposition: since + point in time"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.233138+00:00",
+    "updated_at": "2026-09-21T12:53:32.233138+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0015",
+    "question": "Fill in the blank: She has been working here ___ 2019.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: She has been working here ___ 2019.",
+      "options": [
+        "A. since",
+        "B. from",
+        "C. by",
+        "D. for"
+      ],
+      "correct_answer": "A. since",
+      "explanation": "Preposition: since + point in time"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.233138+00:00",
+    "updated_at": "2026-09-21T12:53:32.233138+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0016",
+    "question": "Fill in the blank: He is taller ___ his brother.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: He is taller ___ his brother.",
+      "options": [
+        "A. with",
+        "B. for",
+        "C. than",
+        "D. to"
+      ],
+      "correct_answer": "C. than",
+      "explanation": "Comparative: taller than"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.233138+00:00",
+    "updated_at": "2026-09-21T12:53:32.233138+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0017",
+    "question": "Fill in the blank: He is taller ___ his brother.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: He is taller ___ his brother.",
+      "options": [
+        "A. to",
+        "B. with",
+        "C. than",
+        "D. for"
+      ],
+      "correct_answer": "C. than",
+      "explanation": "Comparative: taller than"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.233138+00:00",
+    "updated_at": "2026-09-21T12:53:32.233138+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0018",
+    "question": "Fill in the blank: He is taller ___ his brother.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: He is taller ___ his brother.",
+      "options": [
+        "A. to",
+        "B. from",
+        "C. than",
+        "D. at"
+      ],
+      "correct_answer": "C. than",
+      "explanation": "Comparative: taller than"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.233138+00:00",
+    "updated_at": "2026-09-21T12:53:32.233138+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0019",
+    "question": "Fill in the blank: He is taller ___ his brother.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: He is taller ___ his brother.",
+      "options": [
+        "A. for",
+        "B. at",
+        "C. than",
+        "D. from"
+      ],
+      "correct_answer": "C. than",
+      "explanation": "Comparative: taller than"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.233138+00:00",
+    "updated_at": "2026-09-21T12:53:32.233138+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0020",
+    "question": "Fill in the blank: He is taller ___ his brother.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: He is taller ___ his brother.",
+      "options": [
+        "A. with",
+        "B. than",
+        "C. by",
+        "D. from"
+      ],
+      "correct_answer": "B. than",
+      "explanation": "Comparative: taller than"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.233138+00:00",
+    "updated_at": "2026-09-21T12:53:32.233138+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0021",
+    "question": "Fill in the blank: He is taller ___ his brother.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: He is taller ___ his brother.",
+      "options": [
+        "A. with",
+        "B. to",
+        "C. than",
+        "D. for"
+      ],
+      "correct_answer": "C. than",
+      "explanation": "Comparative: taller than"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.233138+00:00",
+    "updated_at": "2026-09-21T12:53:32.233138+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0022",
+    "question": "Fill in the blank: He is taller ___ his brother.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: He is taller ___ his brother.",
+      "options": [
+        "A. for",
+        "B. than",
+        "C. from",
+        "D. at"
+      ],
+      "correct_answer": "B. than",
+      "explanation": "Comparative: taller than"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.233138+00:00",
+    "updated_at": "2026-09-21T12:53:32.233138+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0023",
+    "question": "Fill in the blank: He is taller ___ his brother.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: He is taller ___ his brother.",
+      "options": [
+        "A. from",
+        "B. for",
+        "C. than",
+        "D. at"
+      ],
+      "correct_answer": "C. than",
+      "explanation": "Comparative: taller than"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.233138+00:00",
+    "updated_at": "2026-09-21T12:53:32.233138+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0024",
+    "question": "Fill in the blank: The book is ___ the table.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: The book is ___ the table.",
+      "options": [
+        "A. with",
+        "B. to",
+        "C. on",
+        "D. for"
+      ],
+      "correct_answer": "C. on",
+      "explanation": "Preposition: on for surfaces"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.233138+00:00",
+    "updated_at": "2026-09-21T12:53:32.233138+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0025",
+    "question": "Fill in the blank: The book is ___ the table.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: The book is ___ the table.",
+      "options": [
+        "A. from",
+        "B. to",
+        "C. with",
+        "D. on"
+      ],
+      "correct_answer": "D. on",
+      "explanation": "Preposition: on for surfaces"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.233138+00:00",
+    "updated_at": "2026-09-21T12:53:32.233138+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0026",
+    "question": "Fill in the blank: The book is ___ the table.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: The book is ___ the table.",
+      "options": [
+        "A. with",
+        "B. on",
+        "C. for",
+        "D. at"
+      ],
+      "correct_answer": "B. on",
+      "explanation": "Preposition: on for surfaces"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.234136+00:00",
+    "updated_at": "2026-09-21T12:53:32.234136+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0027",
+    "question": "Fill in the blank: The book is ___ the table.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: The book is ___ the table.",
+      "options": [
+        "A. with",
+        "B. for",
+        "C. at",
+        "D. on"
+      ],
+      "correct_answer": "D. on",
+      "explanation": "Preposition: on for surfaces"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.234136+00:00",
+    "updated_at": "2026-09-21T12:53:32.234136+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0028",
+    "question": "Fill in the blank: The book is ___ the table.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: The book is ___ the table.",
+      "options": [
+        "A. to",
+        "B. from",
+        "C. on",
+        "D. for"
+      ],
+      "correct_answer": "C. on",
+      "explanation": "Preposition: on for surfaces"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.234136+00:00",
+    "updated_at": "2026-09-21T12:53:32.234136+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0029",
+    "question": "Fill in the blank: The book is ___ the table.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: The book is ___ the table.",
+      "options": [
+        "A. with",
+        "B. at",
+        "C. on",
+        "D. from"
+      ],
+      "correct_answer": "C. on",
+      "explanation": "Preposition: on for surfaces"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.234136+00:00",
+    "updated_at": "2026-09-21T12:53:32.234136+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0030",
+    "question": "Fill in the blank: The book is ___ the table.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: The book is ___ the table.",
+      "options": [
+        "A. by",
+        "B. on",
+        "C. at",
+        "D. for"
+      ],
+      "correct_answer": "B. on",
+      "explanation": "Preposition: on for surfaces"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.234136+00:00",
+    "updated_at": "2026-09-21T12:53:32.234136+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0031",
+    "question": "Fill in the blank: The book is ___ the table.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: The book is ___ the table.",
+      "options": [
+        "A. on",
+        "B. to",
+        "C. at",
+        "D. from"
+      ],
+      "correct_answer": "A. on",
+      "explanation": "Preposition: on for surfaces"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.234136+00:00",
+    "updated_at": "2026-09-21T12:53:32.234136+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0032",
+    "question": "Fill in the blank: I am _terested ___ learn_g.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: I am _terested ___ learn_g.",
+      "options": [
+        "A. to",
+        "B. with",
+        "C. from",
+        "D. in"
+      ],
+      "correct_answer": "D. in",
+      "explanation": "Preposition: interested in"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.234136+00:00",
+    "updated_at": "2026-09-21T12:53:32.234136+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0033",
+    "question": "Fill in the blank: I am _terested ___ learn_g.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: I am _terested ___ learn_g.",
+      "options": [
+        "A. with",
+        "B. in",
+        "C. by",
+        "D. for"
+      ],
+      "correct_answer": "B. in",
+      "explanation": "Preposition: interested in"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.234136+00:00",
+    "updated_at": "2026-09-21T12:53:32.234136+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0034",
+    "question": "Fill in the blank: I am _terested ___ learn_g.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: I am _terested ___ learn_g.",
+      "options": [
+        "A. in",
+        "B. from",
+        "C. at",
+        "D. to"
+      ],
+      "correct_answer": "A. in",
+      "explanation": "Preposition: interested in"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.234136+00:00",
+    "updated_at": "2026-09-21T12:53:32.234136+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0035",
+    "question": "Fill in the blank: I am _terested ___ learn_g.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: I am _terested ___ learn_g.",
+      "options": [
+        "A. in",
+        "B. to",
+        "C. with",
+        "D. at"
+      ],
+      "correct_answer": "A. in",
+      "explanation": "Preposition: interested in"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.234136+00:00",
+    "updated_at": "2026-09-21T12:53:32.234136+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0036",
+    "question": "Fill in the blank: I am _terested ___ learn_g.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: I am _terested ___ learn_g.",
+      "options": [
+        "A. with",
+        "B. in",
+        "C. for",
+        "D. to"
+      ],
+      "correct_answer": "B. in",
+      "explanation": "Preposition: interested in"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.234136+00:00",
+    "updated_at": "2026-09-21T12:53:32.234136+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0037",
+    "question": "Fill in the blank: I am _terested ___ learn_g.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: I am _terested ___ learn_g.",
+      "options": [
+        "A. with",
+        "B. to",
+        "C. by",
+        "D. in"
+      ],
+      "correct_answer": "D. in",
+      "explanation": "Preposition: interested in"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.234136+00:00",
+    "updated_at": "2026-09-21T12:53:32.234136+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0038",
+    "question": "Fill in the blank: I am _terested ___ learn_g.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: I am _terested ___ learn_g.",
+      "options": [
+        "A. for",
+        "B. in",
+        "C. at",
+        "D. to"
+      ],
+      "correct_answer": "B. in",
+      "explanation": "Preposition: interested in"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.234136+00:00",
+    "updated_at": "2026-09-21T12:53:32.234136+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "verbal_blank_0039",
+    "question": "Fill in the blank: I am _terested ___ learn_g.",
+    "pattern": "fill-blanks",
+    "skill": "fill-blanks",
+    "domain": "Verbal",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.95,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Fill in the blank: I am _terested ___ learn_g.",
+      "options": [
+        "A. at",
+        "B. for",
+        "C. by",
+        "D. in"
+      ],
+      "correct_answer": "D. in",
+      "explanation": "Preposition: interested in"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.235140+00:00",
+    "updated_at": "2026-09-21T12:53:32.235140+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  }
+]

@@ -1,0 +1,2502 @@
+[
+  {
+    "id": "quant_train_0000",
+    "question": "A train 100 m long passes a platform 350 m long at 54.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 100 m long passes a platform 350 m long at 54.0 km/h. Time to cross?",
+      "options": [
+        "A. 60 s",
+        "B. 30 s",
+        "C. 54.0 km/h",
+        "D. 15 s"
+      ],
+      "correct_answer": "B. 30 s",
+      "explanation": "Speed=54.0 km/h = 15 m/s. Time = (100+350)/15 = 30 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.113549+00:00",
+    "updated_at": "2026-09-21T12:53:32.113549+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0001",
+    "question": "A train 100 m long passes a platform 600 m long at 126.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 100 m long passes a platform 600 m long at 126.0 km/h. Time to cross?",
+      "options": [
+        "A. 10 s",
+        "B. 20 s",
+        "C. 40 s",
+        "D. 126.0 km/h"
+      ],
+      "correct_answer": "B. 20 s",
+      "explanation": "Speed=126.0 km/h = 35 m/s. Time = (100+600)/35 = 20 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.113549+00:00",
+    "updated_at": "2026-09-21T12:53:32.113549+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0002",
+    "question": "A train 100 m long passes a platform 1000 m long at 39.6 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 100 m long passes a platform 1000 m long at 39.6 km/h. Time to cross?",
+      "options": [
+        "A. 50 s",
+        "B. 200 s",
+        "C. 100 s",
+        "D. 39.6 km/h"
+      ],
+      "correct_answer": "C. 100 s",
+      "explanation": "Speed=39.6 km/h = 11 m/s. Time = (100+1000)/11 = 100 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.114546+00:00",
+    "updated_at": "2026-09-21T12:53:32.114546+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0003",
+    "question": "A train 150 m long passes a platform 500 m long at 36.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 150 m long passes a platform 500 m long at 36.0 km/h. Time to cross?",
+      "options": [
+        "A. 65 s",
+        "B. 130 s",
+        "C. 36.0 km/h",
+        "D. 32 s"
+      ],
+      "correct_answer": "A. 65 s",
+      "explanation": "Speed=36.0 km/h = 10 m/s. Time = (150+500)/10 = 65 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.114546+00:00",
+    "updated_at": "2026-09-21T12:53:32.114546+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0004",
+    "question": "A train 150 m long passes a platform 900 m long at 108.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 150 m long passes a platform 900 m long at 108.0 km/h. Time to cross?",
+      "options": [
+        "A. 35 s",
+        "B. 17 s",
+        "C. 70 s",
+        "D. 108.0 km/h"
+      ],
+      "correct_answer": "A. 35 s",
+      "explanation": "Speed=108.0 km/h = 30 m/s. Time = (150+900)/30 = 35 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.114546+00:00",
+    "updated_at": "2026-09-21T12:53:32.114546+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0005",
+    "question": "A train 150 m long passes a platform 1000 m long at 36.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 150 m long passes a platform 1000 m long at 36.0 km/h. Time to cross?",
+      "options": [
+        "A. 230 s",
+        "B. 36.0 km/h",
+        "C. 57 s",
+        "D. 115 s"
+      ],
+      "correct_answer": "D. 115 s",
+      "explanation": "Speed=36.0 km/h = 10 m/s. Time = (150+1000)/10 = 115 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.114546+00:00",
+    "updated_at": "2026-09-21T12:53:32.114546+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0006",
+    "question": "A train 200 m long passes a platform 500 m long at 72.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 200 m long passes a platform 500 m long at 72.0 km/h. Time to cross?",
+      "options": [
+        "A. 17 s",
+        "B. 35 s",
+        "C. 70 s",
+        "D. 72.0 km/h"
+      ],
+      "correct_answer": "B. 35 s",
+      "explanation": "Speed=72.0 km/h = 20 m/s. Time = (200+500)/20 = 35 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.114546+00:00",
+    "updated_at": "2026-09-21T12:53:32.114546+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0007",
+    "question": "A train 200 m long passes a platform 950 m long at 36.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 200 m long passes a platform 950 m long at 36.0 km/h. Time to cross?",
+      "options": [
+        "A. 115 s",
+        "B. 230 s",
+        "C. 36.0 km/h",
+        "D. 57 s"
+      ],
+      "correct_answer": "A. 115 s",
+      "explanation": "Speed=36.0 km/h = 10 m/s. Time = (200+950)/10 = 115 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.114546+00:00",
+    "updated_at": "2026-09-21T12:53:32.114546+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0008",
+    "question": "A train 200 m long passes a platform 1000 m long at 43.2 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 200 m long passes a platform 1000 m long at 43.2 km/h. Time to cross?",
+      "options": [
+        "A. 100 s",
+        "B. 50 s",
+        "C. 43.2 km/h",
+        "D. 200 s"
+      ],
+      "correct_answer": "A. 100 s",
+      "explanation": "Speed=43.2 km/h = 12 m/s. Time = (200+1000)/12 = 100 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.114546+00:00",
+    "updated_at": "2026-09-21T12:53:32.114546+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0009",
+    "question": "A train 250 m long passes a platform 950 m long at 144.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 250 m long passes a platform 950 m long at 144.0 km/h. Time to cross?",
+      "options": [
+        "A. 15 s",
+        "B. 30 s",
+        "C. 60 s",
+        "D. 144.0 km/h"
+      ],
+      "correct_answer": "B. 30 s",
+      "explanation": "Speed=144.0 km/h = 40 m/s. Time = (250+950)/40 = 30 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.114546+00:00",
+    "updated_at": "2026-09-21T12:53:32.114546+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0010",
+    "question": "A train 300 m long passes a platform 250 m long at 36.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 300 m long passes a platform 250 m long at 36.0 km/h. Time to cross?",
+      "options": [
+        "A. 36.0 km/h",
+        "B. 55 s",
+        "C. 27 s",
+        "D. 110 s"
+      ],
+      "correct_answer": "B. 55 s",
+      "explanation": "Speed=36.0 km/h = 10 m/s. Time = (300+250)/10 = 55 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.115967+00:00",
+    "updated_at": "2026-09-21T12:53:32.115967+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0011",
+    "question": "A train 300 m long passes a platform 400 m long at 100.8 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 300 m long passes a platform 400 m long at 100.8 km/h. Time to cross?",
+      "options": [
+        "A. 25 s",
+        "B. 100.8 km/h",
+        "C. 12 s",
+        "D. 50 s"
+      ],
+      "correct_answer": "A. 25 s",
+      "explanation": "Speed=100.8 km/h = 28 m/s. Time = (300+400)/28 = 25 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.115967+00:00",
+    "updated_at": "2026-09-21T12:53:32.115967+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0012",
+    "question": "A train 300 m long passes a platform 650 m long at 90.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 300 m long passes a platform 650 m long at 90.0 km/h. Time to cross?",
+      "options": [
+        "A. 90.0 km/h",
+        "B. 38 s",
+        "C. 76 s",
+        "D. 19 s"
+      ],
+      "correct_answer": "B. 38 s",
+      "explanation": "Speed=90.0 km/h = 25 m/s. Time = (300+650)/25 = 38 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.115967+00:00",
+    "updated_at": "2026-09-21T12:53:32.115967+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0013",
+    "question": "A train 350 m long passes a platform 50 m long at 144.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 350 m long passes a platform 50 m long at 144.0 km/h. Time to cross?",
+      "options": [
+        "A. 10 s",
+        "B. 144.0 km/h",
+        "C. 20 s",
+        "D. 5 s"
+      ],
+      "correct_answer": "A. 10 s",
+      "explanation": "Speed=144.0 km/h = 40 m/s. Time = (350+50)/40 = 10 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.115967+00:00",
+    "updated_at": "2026-09-21T12:53:32.115967+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0014",
+    "question": "A train 350 m long passes a platform 300 m long at 36.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 350 m long passes a platform 300 m long at 36.0 km/h. Time to cross?",
+      "options": [
+        "A. 130 s",
+        "B. 32 s",
+        "C. 36.0 km/h",
+        "D. 65 s"
+      ],
+      "correct_answer": "D. 65 s",
+      "explanation": "Speed=36.0 km/h = 10 m/s. Time = (350+300)/10 = 65 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.115967+00:00",
+    "updated_at": "2026-09-21T12:53:32.115967+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0015",
+    "question": "A train 350 m long passes a platform 700 m long at 108.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 350 m long passes a platform 700 m long at 108.0 km/h. Time to cross?",
+      "options": [
+        "A. 35 s",
+        "B. 108.0 km/h",
+        "C. 70 s",
+        "D. 17 s"
+      ],
+      "correct_answer": "A. 35 s",
+      "explanation": "Speed=108.0 km/h = 30 m/s. Time = (350+700)/30 = 35 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.116969+00:00",
+    "updated_at": "2026-09-21T12:53:32.116969+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0016",
+    "question": "A train 350 m long passes a platform 750 m long at 90.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 350 m long passes a platform 750 m long at 90.0 km/h. Time to cross?",
+      "options": [
+        "A. 22 s",
+        "B. 88 s",
+        "C. 44 s",
+        "D. 90.0 km/h"
+      ],
+      "correct_answer": "C. 44 s",
+      "explanation": "Speed=90.0 km/h = 25 m/s. Time = (350+750)/25 = 44 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.116969+00:00",
+    "updated_at": "2026-09-21T12:53:32.116969+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0017",
+    "question": "A train 350 m long passes a platform 900 m long at 36.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 350 m long passes a platform 900 m long at 36.0 km/h. Time to cross?",
+      "options": [
+        "A. 250 s",
+        "B. 36.0 km/h",
+        "C. 62 s",
+        "D. 125 s"
+      ],
+      "correct_answer": "D. 125 s",
+      "explanation": "Speed=36.0 km/h = 10 m/s. Time = (350+900)/10 = 125 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.116969+00:00",
+    "updated_at": "2026-09-21T12:53:32.116969+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0018",
+    "question": "A train 400 m long passes a platform 0 m long at 144.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 400 m long passes a platform 0 m long at 144.0 km/h. Time to cross?",
+      "options": [
+        "A. 5 s",
+        "B. 20 s",
+        "C. 10 s",
+        "D. 144.0 km/h"
+      ],
+      "correct_answer": "C. 10 s",
+      "explanation": "Speed=144.0 km/h = 40 m/s. Time = (400+0)/40 = 10 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.116969+00:00",
+    "updated_at": "2026-09-21T12:53:32.116969+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0019",
+    "question": "A train 400 m long passes a platform 200 m long at 86.4 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 400 m long passes a platform 200 m long at 86.4 km/h. Time to cross?",
+      "options": [
+        "A. 25 s",
+        "B. 50 s",
+        "C. 86.4 km/h",
+        "D. 12 s"
+      ],
+      "correct_answer": "A. 25 s",
+      "explanation": "Speed=86.4 km/h = 24 m/s. Time = (400+200)/24 = 25 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.116969+00:00",
+    "updated_at": "2026-09-21T12:53:32.116969+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0020",
+    "question": "A train 400 m long passes a platform 500 m long at 129.6 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 400 m long passes a platform 500 m long at 129.6 km/h. Time to cross?",
+      "options": [
+        "A. 25 s",
+        "B. 12 s",
+        "C. 50 s",
+        "D. 129.6 km/h"
+      ],
+      "correct_answer": "A. 25 s",
+      "explanation": "Speed=129.6 km/h = 36 m/s. Time = (400+500)/36 = 25 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.116969+00:00",
+    "updated_at": "2026-09-21T12:53:32.116969+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0021",
+    "question": "A train 400 m long passes a platform 550 m long at 136.8 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 400 m long passes a platform 550 m long at 136.8 km/h. Time to cross?",
+      "options": [
+        "A. 25 s",
+        "B. 136.8 km/h",
+        "C. 50 s",
+        "D. 12 s"
+      ],
+      "correct_answer": "A. 25 s",
+      "explanation": "Speed=136.8 km/h = 38 m/s. Time = (400+550)/38 = 25 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.116969+00:00",
+    "updated_at": "2026-09-21T12:53:32.116969+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0022",
+    "question": "A train 450 m long passes a platform 50 m long at 90.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 450 m long passes a platform 50 m long at 90.0 km/h. Time to cross?",
+      "options": [
+        "A. 20 s",
+        "B. 40 s",
+        "C. 90.0 km/h",
+        "D. 10 s"
+      ],
+      "correct_answer": "A. 20 s",
+      "explanation": "Speed=90.0 km/h = 25 m/s. Time = (450+50)/25 = 20 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.116969+00:00",
+    "updated_at": "2026-09-21T12:53:32.116969+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0023",
+    "question": "A train 450 m long passes a platform 350 m long at 72.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 450 m long passes a platform 350 m long at 72.0 km/h. Time to cross?",
+      "options": [
+        "A. 20 s",
+        "B. 40 s",
+        "C. 72.0 km/h",
+        "D. 80 s"
+      ],
+      "correct_answer": "B. 40 s",
+      "explanation": "Speed=72.0 km/h = 20 m/s. Time = (450+350)/20 = 40 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.117974+00:00",
+    "updated_at": "2026-09-21T12:53:32.117974+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0024",
+    "question": "A train 450 m long passes a platform 750 m long at 57.6 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 450 m long passes a platform 750 m long at 57.6 km/h. Time to cross?",
+      "options": [
+        "A. 57.6 km/h",
+        "B. 150 s",
+        "C. 37 s",
+        "D. 75 s"
+      ],
+      "correct_answer": "D. 75 s",
+      "explanation": "Speed=57.6 km/h = 16 m/s. Time = (450+750)/16 = 75 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.117974+00:00",
+    "updated_at": "2026-09-21T12:53:32.117974+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0025",
+    "question": "A train 500 m long passes a platform 450 m long at 36.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 500 m long passes a platform 450 m long at 36.0 km/h. Time to cross?",
+      "options": [
+        "A. 190 s",
+        "B. 95 s",
+        "C. 47 s",
+        "D. 36.0 km/h"
+      ],
+      "correct_answer": "B. 95 s",
+      "explanation": "Speed=36.0 km/h = 10 m/s. Time = (500+450)/10 = 95 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.117974+00:00",
+    "updated_at": "2026-09-21T12:53:32.117974+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0026",
+    "question": "A train 500 m long passes a platform 500 m long at 144.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 500 m long passes a platform 500 m long at 144.0 km/h. Time to cross?",
+      "options": [
+        "A. 25 s",
+        "B. 144.0 km/h",
+        "C. 12 s",
+        "D. 50 s"
+      ],
+      "correct_answer": "A. 25 s",
+      "explanation": "Speed=144.0 km/h = 40 m/s. Time = (500+500)/40 = 25 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.119155+00:00",
+    "updated_at": "2026-09-21T12:53:32.119155+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0027",
+    "question": "A train 550 m long passes a platform 150 m long at 90.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 550 m long passes a platform 150 m long at 90.0 km/h. Time to cross?",
+      "options": [
+        "A. 28 s",
+        "B. 56 s",
+        "C. 90.0 km/h",
+        "D. 14 s"
+      ],
+      "correct_answer": "A. 28 s",
+      "explanation": "Speed=90.0 km/h = 25 m/s. Time = (550+150)/25 = 28 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.120157+00:00",
+    "updated_at": "2026-09-21T12:53:32.120157+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0028",
+    "question": "A train 550 m long passes a platform 200 m long at 90.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 550 m long passes a platform 200 m long at 90.0 km/h. Time to cross?",
+      "options": [
+        "A. 90.0 km/h",
+        "B. 60 s",
+        "C. 15 s",
+        "D. 30 s"
+      ],
+      "correct_answer": "D. 30 s",
+      "explanation": "Speed=90.0 km/h = 25 m/s. Time = (550+200)/25 = 30 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.120157+00:00",
+    "updated_at": "2026-09-21T12:53:32.120157+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0029",
+    "question": "A train 550 m long passes a platform 500 m long at 54.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 550 m long passes a platform 500 m long at 54.0 km/h. Time to cross?",
+      "options": [
+        "A. 35 s",
+        "B. 140 s",
+        "C. 70 s",
+        "D. 54.0 km/h"
+      ],
+      "correct_answer": "C. 70 s",
+      "explanation": "Speed=54.0 km/h = 15 m/s. Time = (550+500)/15 = 70 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.120157+00:00",
+    "updated_at": "2026-09-21T12:53:32.120157+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0030",
+    "question": "A train 550 m long passes a platform 800 m long at 36.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 550 m long passes a platform 800 m long at 36.0 km/h. Time to cross?",
+      "options": [
+        "A. 36.0 km/h",
+        "B. 67 s",
+        "C. 270 s",
+        "D. 135 s"
+      ],
+      "correct_answer": "D. 135 s",
+      "explanation": "Speed=36.0 km/h = 10 m/s. Time = (550+800)/10 = 135 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.120157+00:00",
+    "updated_at": "2026-09-21T12:53:32.120157+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0031",
+    "question": "A train 550 m long passes a platform 850 m long at 50.4 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 550 m long passes a platform 850 m long at 50.4 km/h. Time to cross?",
+      "options": [
+        "A. 50 s",
+        "B. 200 s",
+        "C. 100 s",
+        "D. 50.4 km/h"
+      ],
+      "correct_answer": "C. 100 s",
+      "explanation": "Speed=50.4 km/h = 14 m/s. Time = (550+850)/14 = 100 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.120157+00:00",
+    "updated_at": "2026-09-21T12:53:32.120157+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0032",
+    "question": "A train 600 m long passes a platform 100 m long at 72.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 600 m long passes a platform 100 m long at 72.0 km/h. Time to cross?",
+      "options": [
+        "A. 35 s",
+        "B. 72.0 km/h",
+        "C. 17 s",
+        "D. 70 s"
+      ],
+      "correct_answer": "A. 35 s",
+      "explanation": "Speed=72.0 km/h = 20 m/s. Time = (600+100)/20 = 35 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.120157+00:00",
+    "updated_at": "2026-09-21T12:53:32.120157+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0033",
+    "question": "A train 600 m long passes a platform 200 m long at 144.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 600 m long passes a platform 200 m long at 144.0 km/h. Time to cross?",
+      "options": [
+        "A. 40 s",
+        "B. 20 s",
+        "C. 10 s",
+        "D. 144.0 km/h"
+      ],
+      "correct_answer": "B. 20 s",
+      "explanation": "Speed=144.0 km/h = 40 m/s. Time = (600+200)/40 = 20 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.121151+00:00",
+    "updated_at": "2026-09-21T12:53:32.121151+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0034",
+    "question": "A train 600 m long passes a platform 250 m long at 90.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 600 m long passes a platform 250 m long at 90.0 km/h. Time to cross?",
+      "options": [
+        "A. 17 s",
+        "B. 90.0 km/h",
+        "C. 68 s",
+        "D. 34 s"
+      ],
+      "correct_answer": "D. 34 s",
+      "explanation": "Speed=90.0 km/h = 25 m/s. Time = (600+250)/25 = 34 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.121151+00:00",
+    "updated_at": "2026-09-21T12:53:32.121151+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0035",
+    "question": "A train 600 m long passes a platform 450 m long at 108.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 600 m long passes a platform 450 m long at 108.0 km/h. Time to cross?",
+      "options": [
+        "A. 17 s",
+        "B. 108.0 km/h",
+        "C. 70 s",
+        "D. 35 s"
+      ],
+      "correct_answer": "D. 35 s",
+      "explanation": "Speed=108.0 km/h = 30 m/s. Time = (600+450)/30 = 35 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.121151+00:00",
+    "updated_at": "2026-09-21T12:53:32.121151+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0036",
+    "question": "A train 600 m long passes a platform 550 m long at 36.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 600 m long passes a platform 550 m long at 36.0 km/h. Time to cross?",
+      "options": [
+        "A. 36.0 km/h",
+        "B. 230 s",
+        "C. 115 s",
+        "D. 57 s"
+      ],
+      "correct_answer": "C. 115 s",
+      "explanation": "Speed=36.0 km/h = 10 m/s. Time = (600+550)/10 = 115 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.121151+00:00",
+    "updated_at": "2026-09-21T12:53:32.121151+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0037",
+    "question": "A train 600 m long passes a platform 800 m long at 90.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 600 m long passes a platform 800 m long at 90.0 km/h. Time to cross?",
+      "options": [
+        "A. 28 s",
+        "B. 90.0 km/h",
+        "C. 112 s",
+        "D. 56 s"
+      ],
+      "correct_answer": "D. 56 s",
+      "explanation": "Speed=90.0 km/h = 25 m/s. Time = (600+800)/25 = 56 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.121151+00:00",
+    "updated_at": "2026-09-21T12:53:32.121151+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0038",
+    "question": "A train 650 m long passes a platform 550 m long at 144.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 650 m long passes a platform 550 m long at 144.0 km/h. Time to cross?",
+      "options": [
+        "A. 15 s",
+        "B. 144.0 km/h",
+        "C. 30 s",
+        "D. 60 s"
+      ],
+      "correct_answer": "C. 30 s",
+      "explanation": "Speed=144.0 km/h = 40 m/s. Time = (650+550)/40 = 30 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.121151+00:00",
+    "updated_at": "2026-09-21T12:53:32.121151+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0039",
+    "question": "A train 750 m long passes a platform 450 m long at 36.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 750 m long passes a platform 450 m long at 36.0 km/h. Time to cross?",
+      "options": [
+        "A. 240 s",
+        "B. 120 s",
+        "C. 60 s",
+        "D. 36.0 km/h"
+      ],
+      "correct_answer": "B. 120 s",
+      "explanation": "Speed=36.0 km/h = 10 m/s. Time = (750+450)/10 = 120 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.121151+00:00",
+    "updated_at": "2026-09-21T12:53:32.121151+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0040",
+    "question": "A train 750 m long passes a platform 850 m long at 115.2 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 750 m long passes a platform 850 m long at 115.2 km/h. Time to cross?",
+      "options": [
+        "A. 100 s",
+        "B. 50 s",
+        "C. 115.2 km/h",
+        "D. 25 s"
+      ],
+      "correct_answer": "B. 50 s",
+      "explanation": "Speed=115.2 km/h = 32 m/s. Time = (750+850)/32 = 50 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.121151+00:00",
+    "updated_at": "2026-09-21T12:53:32.121151+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0041",
+    "question": "A train 750 m long passes a platform 900 m long at 118.8 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 750 m long passes a platform 900 m long at 118.8 km/h. Time to cross?",
+      "options": [
+        "A. 50 s",
+        "B. 25 s",
+        "C. 118.8 km/h",
+        "D. 100 s"
+      ],
+      "correct_answer": "A. 50 s",
+      "explanation": "Speed=118.8 km/h = 33 m/s. Time = (750+900)/33 = 50 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.121151+00:00",
+    "updated_at": "2026-09-21T12:53:32.121151+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0042",
+    "question": "A train 800 m long passes a platform 200 m long at 72.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 800 m long passes a platform 200 m long at 72.0 km/h. Time to cross?",
+      "options": [
+        "A. 100 s",
+        "B. 72.0 km/h",
+        "C. 50 s",
+        "D. 25 s"
+      ],
+      "correct_answer": "C. 50 s",
+      "explanation": "Speed=72.0 km/h = 20 m/s. Time = (800+200)/20 = 50 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.121151+00:00",
+    "updated_at": "2026-09-21T12:53:32.121151+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0043",
+    "question": "A train 800 m long passes a platform 700 m long at 72.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 800 m long passes a platform 700 m long at 72.0 km/h. Time to cross?",
+      "options": [
+        "A. 72.0 km/h",
+        "B. 150 s",
+        "C. 37 s",
+        "D. 75 s"
+      ],
+      "correct_answer": "D. 75 s",
+      "explanation": "Speed=72.0 km/h = 20 m/s. Time = (800+700)/20 = 75 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.122154+00:00",
+    "updated_at": "2026-09-21T12:53:32.122154+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0044",
+    "question": "A train 800 m long passes a platform 800 m long at 90.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 800 m long passes a platform 800 m long at 90.0 km/h. Time to cross?",
+      "options": [
+        "A. 64 s",
+        "B. 128 s",
+        "C. 90.0 km/h",
+        "D. 32 s"
+      ],
+      "correct_answer": "A. 64 s",
+      "explanation": "Speed=90.0 km/h = 25 m/s. Time = (800+800)/25 = 64 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.122154+00:00",
+    "updated_at": "2026-09-21T12:53:32.122154+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0045",
+    "question": "A train 850 m long passes a platform 200 m long at 36.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 850 m long passes a platform 200 m long at 36.0 km/h. Time to cross?",
+      "options": [
+        "A. 36.0 km/h",
+        "B. 210 s",
+        "C. 105 s",
+        "D. 52 s"
+      ],
+      "correct_answer": "C. 105 s",
+      "explanation": "Speed=36.0 km/h = 10 m/s. Time = (850+200)/10 = 105 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.122154+00:00",
+    "updated_at": "2026-09-21T12:53:32.122154+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0046",
+    "question": "A train 850 m long passes a platform 300 m long at 82.8 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 850 m long passes a platform 300 m long at 82.8 km/h. Time to cross?",
+      "options": [
+        "A. 25 s",
+        "B. 50 s",
+        "C. 100 s",
+        "D. 82.8 km/h"
+      ],
+      "correct_answer": "B. 50 s",
+      "explanation": "Speed=82.8 km/h = 23 m/s. Time = (850+300)/23 = 50 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.122154+00:00",
+    "updated_at": "2026-09-21T12:53:32.122154+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0047",
+    "question": "A train 850 m long passes a platform 400 m long at 90.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 850 m long passes a platform 400 m long at 90.0 km/h. Time to cross?",
+      "options": [
+        "A. 100 s",
+        "B. 50 s",
+        "C. 25 s",
+        "D. 90.0 km/h"
+      ],
+      "correct_answer": "B. 50 s",
+      "explanation": "Speed=90.0 km/h = 25 m/s. Time = (850+400)/25 = 50 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.122154+00:00",
+    "updated_at": "2026-09-21T12:53:32.122154+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0048",
+    "question": "A train 850 m long passes a platform 950 m long at 90.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 850 m long passes a platform 950 m long at 90.0 km/h. Time to cross?",
+      "options": [
+        "A. 72 s",
+        "B. 90.0 km/h",
+        "C. 36 s",
+        "D. 144 s"
+      ],
+      "correct_answer": "A. 72 s",
+      "explanation": "Speed=90.0 km/h = 25 m/s. Time = (850+950)/25 = 72 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.122154+00:00",
+    "updated_at": "2026-09-21T12:53:32.122154+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_train_0049",
+    "question": "A train 900 m long passes a platform 1000 m long at 90.0 km/h. Time to cross?",
+    "pattern": "trains-platform",
+    "skill": "trains-platform",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.95
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "A train 900 m long passes a platform 1000 m long at 90.0 km/h. Time to cross?",
+      "options": [
+        "A. 76 s",
+        "B. 38 s",
+        "C. 90.0 km/h",
+        "D. 152 s"
+      ],
+      "correct_answer": "A. 76 s",
+      "explanation": "Speed=90.0 km/h = 25 m/s. Time = (900+1000)/25 = 76 s"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.122154+00:00",
+    "updated_at": "2026-09-21T12:53:32.122154+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "LTIMindtree",
+      "Wipro"
+    ]
+  }
+]

@@ -1,0 +1,247 @@
+[
+  {
+    "id": "quant_age_0000",
+    "question": "Father is 3x son's age. In 10 years, father will be 2x son. Son's present age?",
+    "pattern": "ages-ratio",
+    "skill": "ages-ratio",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Father is 3x son's age. In 10 years, father will be 2x son. Son's present age?",
+      "options": [
+        "A. 30",
+        "B. 15",
+        "C. 10",
+        "D. 5"
+      ],
+      "correct_answer": "C. 10 years",
+      "explanation": "Son = s, Father = 3s. In 10y: 3s+10 = 2(s+10) -> s = 10"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.171331+00:00",
+    "updated_at": "2026-09-21T12:53:32.171331+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_age_0001",
+    "question": "Father is 4x son's age. In 20 years, father will be 2x son. Son's present age?",
+    "pattern": "ages-ratio",
+    "skill": "ages-ratio",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Father is 4x son's age. In 20 years, father will be 2x son. Son's present age?",
+      "options": [
+        "A. 5",
+        "B. 40",
+        "C. 15",
+        "D. 10"
+      ],
+      "correct_answer": "D. 10 years",
+      "explanation": "Son = s, Father = 4s. In 20y: 4s+20 = 2(s+20) -> s = 10"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.171331+00:00",
+    "updated_at": "2026-09-21T12:53:32.171331+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_age_0002",
+    "question": "Father is 3x son's age. In 12 years, father will be 2x son. Son's present age?",
+    "pattern": "ages-ratio",
+    "skill": "ages-ratio",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Father is 3x son's age. In 12 years, father will be 2x son. Son's present age?",
+      "options": [
+        "A. 7",
+        "B. 17",
+        "C. 12",
+        "D. 36"
+      ],
+      "correct_answer": "C. 12 years",
+      "explanation": "Son = s, Father = 3s. In 12y: 3s+12 = 2(s+12) -> s = 12"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.171331+00:00",
+    "updated_at": "2026-09-21T12:53:32.171331+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_age_0003",
+    "question": "Father is 3x son's age. In 15 years, father will be 2x son. Son's present age?",
+    "pattern": "ages-ratio",
+    "skill": "ages-ratio",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Father is 3x son's age. In 15 years, father will be 2x son. Son's present age?",
+      "options": [
+        "A. 15",
+        "B. 20",
+        "C. 10",
+        "D. 45"
+      ],
+      "correct_answer": "A. 15 years",
+      "explanation": "Son = s, Father = 3s. In 15y: 3s+15 = 2(s+15) -> s = 15"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.171331+00:00",
+    "updated_at": "2026-09-21T12:53:32.171331+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  },
+  {
+    "id": "quant_age_0004",
+    "question": "Father is 3x son's age. In 20 years, father will be 2x son. Son's present age?",
+    "pattern": "ages-ratio",
+    "skill": "ages-ratio",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Father is 3x son's age. In 20 years, father will be 2x son. Son's present age?",
+      "options": [
+        "A. 15",
+        "B. 20",
+        "C. 25",
+        "D. 60"
+      ],
+      "correct_answer": "B. 20 years",
+      "explanation": "Son = s, Father = 3s. In 20y: 3s+20 = 2(s+20) -> s = 20"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.171331+00:00",
+    "updated_at": "2026-09-21T12:53:32.171331+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "Infosys",
+      "TCS"
+    ]
+  }
+]

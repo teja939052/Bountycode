@@ -1,0 +1,2502 @@
+[
+  {
+    "id": "quant_discount_0000",
+    "question": "Two successive discounts of 10% and 5% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 10% and 5% are given. What is the effective discount?",
+      "options": [
+        "A. 15%",
+        "B. 0%",
+        "C. 14%",
+        "D. 5%"
+      ],
+      "correct_answer": "C. 14%",
+      "explanation": "Effective = 100 - (100-10)*(100-5)/100 = 14%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.071872+00:00",
+    "updated_at": "2026-09-21T12:53:32.071872+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0001",
+    "question": "Two successive discounts of 10% and 10% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 10% and 10% are given. What is the effective discount?",
+      "options": [
+        "A. 0%",
+        "B. 20%",
+        "C. 19%",
+        "D. 0%"
+      ],
+      "correct_answer": "C. 19%",
+      "explanation": "Effective = 100 - (100-10)*(100-10)/100 = 19%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.071872+00:00",
+    "updated_at": "2026-09-21T12:53:32.071872+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0002",
+    "question": "Two successive discounts of 10% and 15% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 10% and 15% are given. What is the effective discount?",
+      "options": [
+        "A. 24%",
+        "B. 25%",
+        "C. 0%",
+        "D. 5%"
+      ],
+      "correct_answer": "A. 24%",
+      "explanation": "Effective = 100 - (100-10)*(100-15)/100 = 24%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.072416+00:00",
+    "updated_at": "2026-09-21T12:53:32.072416+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0003",
+    "question": "Two successive discounts of 10% and 20% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 10% and 20% are given. What is the effective discount?",
+      "options": [
+        "A. 0%",
+        "B. 30%",
+        "C. 10%",
+        "D. 28%"
+      ],
+      "correct_answer": "D. 28%",
+      "explanation": "Effective = 100 - (100-10)*(100-20)/100 = 28%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.072416+00:00",
+    "updated_at": "2026-09-21T12:53:32.072416+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0004",
+    "question": "Two successive discounts of 10% and 25% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 10% and 25% are given. What is the effective discount?",
+      "options": [
+        "A. 15%",
+        "B. 0%",
+        "C. 35%",
+        "D. 32%"
+      ],
+      "correct_answer": "D. 32%",
+      "explanation": "Effective = 100 - (100-10)*(100-25)/100 = 32%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.087589+00:00",
+    "updated_at": "2026-09-21T12:53:32.087589+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0005",
+    "question": "Two successive discounts of 10% and 30% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 10% and 30% are given. What is the effective discount?",
+      "options": [
+        "A. 37%",
+        "B. 40%",
+        "C. 0%",
+        "D. 20%"
+      ],
+      "correct_answer": "A. 37%",
+      "explanation": "Effective = 100 - (100-10)*(100-30)/100 = 37%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.087589+00:00",
+    "updated_at": "2026-09-21T12:53:32.087589+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0006",
+    "question": "Two successive discounts of 10% and 35% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 10% and 35% are given. What is the effective discount?",
+      "options": [
+        "A. 0%",
+        "B. 42%",
+        "C. 25%",
+        "D. 45%"
+      ],
+      "correct_answer": "B. 42%",
+      "explanation": "Effective = 100 - (100-10)*(100-35)/100 = 42%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.087589+00:00",
+    "updated_at": "2026-09-21T12:53:32.087589+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0007",
+    "question": "Two successive discounts of 10% and 40% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 10% and 40% are given. What is the effective discount?",
+      "options": [
+        "A. 50%",
+        "B. 0%",
+        "C. 30%",
+        "D. 46%"
+      ],
+      "correct_answer": "D. 46%",
+      "explanation": "Effective = 100 - (100-10)*(100-40)/100 = 46%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.087589+00:00",
+    "updated_at": "2026-09-21T12:53:32.087589+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0008",
+    "question": "Two successive discounts of 10% and 45% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 10% and 45% are given. What is the effective discount?",
+      "options": [
+        "A. 55%",
+        "B. 0%",
+        "C. 50%",
+        "D. 35%"
+      ],
+      "correct_answer": "C. 50%",
+      "explanation": "Effective = 100 - (100-10)*(100-45)/100 = 50%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.087589+00:00",
+    "updated_at": "2026-09-21T12:53:32.087589+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0009",
+    "question": "Two successive discounts of 10% and 50% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 10% and 50% are given. What is the effective discount?",
+      "options": [
+        "A. 0%",
+        "B. 40%",
+        "C. 60%",
+        "D. 55%"
+      ],
+      "correct_answer": "D. 55%",
+      "explanation": "Effective = 100 - (100-10)*(100-50)/100 = 55%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.087589+00:00",
+    "updated_at": "2026-09-21T12:53:32.087589+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0010",
+    "question": "Two successive discounts of 15% and 5% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 15% and 5% are given. What is the effective discount?",
+      "options": [
+        "A. 19%",
+        "B. 20%",
+        "C. 10%",
+        "D. 0%"
+      ],
+      "correct_answer": "A. 19%",
+      "explanation": "Effective = 100 - (100-15)*(100-5)/100 = 19%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.087589+00:00",
+    "updated_at": "2026-09-21T12:53:32.087589+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0011",
+    "question": "Two successive discounts of 15% and 10% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 15% and 10% are given. What is the effective discount?",
+      "options": [
+        "A. 24%",
+        "B. 5%",
+        "C. 0%",
+        "D. 25%"
+      ],
+      "correct_answer": "A. 24%",
+      "explanation": "Effective = 100 - (100-15)*(100-10)/100 = 24%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.101542+00:00",
+    "updated_at": "2026-09-21T12:53:32.101542+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0012",
+    "question": "Two successive discounts of 15% and 15% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 15% and 15% are given. What is the effective discount?",
+      "options": [
+        "A. 28%",
+        "B. 0%",
+        "C. 0%",
+        "D. 30%"
+      ],
+      "correct_answer": "A. 28%",
+      "explanation": "Effective = 100 - (100-15)*(100-15)/100 = 28%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.101542+00:00",
+    "updated_at": "2026-09-21T12:53:32.101542+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0013",
+    "question": "Two successive discounts of 15% and 20% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 15% and 20% are given. What is the effective discount?",
+      "options": [
+        "A. 35%",
+        "B. 0%",
+        "C. 5%",
+        "D. 32%"
+      ],
+      "correct_answer": "D. 32%",
+      "explanation": "Effective = 100 - (100-15)*(100-20)/100 = 32%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.101542+00:00",
+    "updated_at": "2026-09-21T12:53:32.101542+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0014",
+    "question": "Two successive discounts of 15% and 25% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 15% and 25% are given. What is the effective discount?",
+      "options": [
+        "A. 10%",
+        "B. 0%",
+        "C. 36%",
+        "D. 40%"
+      ],
+      "correct_answer": "C. 36%",
+      "explanation": "Effective = 100 - (100-15)*(100-25)/100 = 36%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.101542+00:00",
+    "updated_at": "2026-09-21T12:53:32.101542+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0015",
+    "question": "Two successive discounts of 15% and 30% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 15% and 30% are given. What is the effective discount?",
+      "options": [
+        "A. 15%",
+        "B. 40%",
+        "C. 45%",
+        "D. 0%"
+      ],
+      "correct_answer": "B. 40%",
+      "explanation": "Effective = 100 - (100-15)*(100-30)/100 = 40%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.101542+00:00",
+    "updated_at": "2026-09-21T12:53:32.101542+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0016",
+    "question": "Two successive discounts of 15% and 35% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 15% and 35% are given. What is the effective discount?",
+      "options": [
+        "A. 50%",
+        "B. 0%",
+        "C. 45%",
+        "D. 20%"
+      ],
+      "correct_answer": "C. 45%",
+      "explanation": "Effective = 100 - (100-15)*(100-35)/100 = 45%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.101542+00:00",
+    "updated_at": "2026-09-21T12:53:32.101542+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0017",
+    "question": "Two successive discounts of 15% and 40% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 15% and 40% are given. What is the effective discount?",
+      "options": [
+        "A. 0%",
+        "B. 25%",
+        "C. 55%",
+        "D. 49%"
+      ],
+      "correct_answer": "D. 49%",
+      "explanation": "Effective = 100 - (100-15)*(100-40)/100 = 49%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.101542+00:00",
+    "updated_at": "2026-09-21T12:53:32.101542+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0018",
+    "question": "Two successive discounts of 15% and 45% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 15% and 45% are given. What is the effective discount?",
+      "options": [
+        "A. 60%",
+        "B. 0%",
+        "C. 53%",
+        "D. 30%"
+      ],
+      "correct_answer": "C. 53%",
+      "explanation": "Effective = 100 - (100-15)*(100-45)/100 = 53%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.101542+00:00",
+    "updated_at": "2026-09-21T12:53:32.101542+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0019",
+    "question": "Two successive discounts of 15% and 50% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 15% and 50% are given. What is the effective discount?",
+      "options": [
+        "A. 0%",
+        "B. 65%",
+        "C. 58%",
+        "D. 35%"
+      ],
+      "correct_answer": "C. 58%",
+      "explanation": "Effective = 100 - (100-15)*(100-50)/100 = 58%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.101542+00:00",
+    "updated_at": "2026-09-21T12:53:32.101542+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0020",
+    "question": "Two successive discounts of 20% and 5% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 20% and 5% are given. What is the effective discount?",
+      "options": [
+        "A. 24%",
+        "B. 25%",
+        "C. 15%",
+        "D. 0%"
+      ],
+      "correct_answer": "A. 24%",
+      "explanation": "Effective = 100 - (100-20)*(100-5)/100 = 24%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.101542+00:00",
+    "updated_at": "2026-09-21T12:53:32.102543+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0021",
+    "question": "Two successive discounts of 20% and 10% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 20% and 10% are given. What is the effective discount?",
+      "options": [
+        "A. 10%",
+        "B. 28%",
+        "C. 0%",
+        "D. 30%"
+      ],
+      "correct_answer": "B. 28%",
+      "explanation": "Effective = 100 - (100-20)*(100-10)/100 = 28%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.102543+00:00",
+    "updated_at": "2026-09-21T12:53:32.102543+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0022",
+    "question": "Two successive discounts of 20% and 15% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 20% and 15% are given. What is the effective discount?",
+      "options": [
+        "A. 32%",
+        "B. 0%",
+        "C. 5%",
+        "D. 35%"
+      ],
+      "correct_answer": "A. 32%",
+      "explanation": "Effective = 100 - (100-20)*(100-15)/100 = 32%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.102543+00:00",
+    "updated_at": "2026-09-21T12:53:32.102543+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0023",
+    "question": "Two successive discounts of 20% and 20% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 20% and 20% are given. What is the effective discount?",
+      "options": [
+        "A. 36%",
+        "B. 40%",
+        "C. 0%",
+        "D. 0%"
+      ],
+      "correct_answer": "A. 36%",
+      "explanation": "Effective = 100 - (100-20)*(100-20)/100 = 36%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.102543+00:00",
+    "updated_at": "2026-09-21T12:53:32.102543+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0024",
+    "question": "Two successive discounts of 20% and 25% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 20% and 25% are given. What is the effective discount?",
+      "options": [
+        "A. 45%",
+        "B. 0%",
+        "C. 40%",
+        "D. 5%"
+      ],
+      "correct_answer": "C. 40%",
+      "explanation": "Effective = 100 - (100-20)*(100-25)/100 = 40%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.102543+00:00",
+    "updated_at": "2026-09-21T12:53:32.102543+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0025",
+    "question": "Two successive discounts of 20% and 30% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 20% and 30% are given. What is the effective discount?",
+      "options": [
+        "A. 50%",
+        "B. 10%",
+        "C. 44%",
+        "D. 0%"
+      ],
+      "correct_answer": "C. 44%",
+      "explanation": "Effective = 100 - (100-20)*(100-30)/100 = 44%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.102543+00:00",
+    "updated_at": "2026-09-21T12:53:32.102543+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0026",
+    "question": "Two successive discounts of 20% and 35% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 20% and 35% are given. What is the effective discount?",
+      "options": [
+        "A. 55%",
+        "B. 15%",
+        "C. 0%",
+        "D. 48%"
+      ],
+      "correct_answer": "D. 48%",
+      "explanation": "Effective = 100 - (100-20)*(100-35)/100 = 48%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.102543+00:00",
+    "updated_at": "2026-09-21T12:53:32.102543+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0027",
+    "question": "Two successive discounts of 20% and 40% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 20% and 40% are given. What is the effective discount?",
+      "options": [
+        "A. 60%",
+        "B. 52%",
+        "C. 20%",
+        "D. 0%"
+      ],
+      "correct_answer": "B. 52%",
+      "explanation": "Effective = 100 - (100-20)*(100-40)/100 = 52%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.102543+00:00",
+    "updated_at": "2026-09-21T12:53:32.102543+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0028",
+    "question": "Two successive discounts of 20% and 45% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 20% and 45% are given. What is the effective discount?",
+      "options": [
+        "A. 56%",
+        "B. 25%",
+        "C. 65%",
+        "D. 0%"
+      ],
+      "correct_answer": "A. 56%",
+      "explanation": "Effective = 100 - (100-20)*(100-45)/100 = 56%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.102543+00:00",
+    "updated_at": "2026-09-21T12:53:32.102543+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0029",
+    "question": "Two successive discounts of 20% and 50% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 20% and 50% are given. What is the effective discount?",
+      "options": [
+        "A. 70%",
+        "B. 60%",
+        "C. 0%",
+        "D. 30%"
+      ],
+      "correct_answer": "B. 60%",
+      "explanation": "Effective = 100 - (100-20)*(100-50)/100 = 60%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.102543+00:00",
+    "updated_at": "2026-09-21T12:53:32.102543+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0030",
+    "question": "Two successive discounts of 25% and 5% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 25% and 5% are given. What is the effective discount?",
+      "options": [
+        "A. 0%",
+        "B. 30%",
+        "C. 20%",
+        "D. 29%"
+      ],
+      "correct_answer": "D. 29%",
+      "explanation": "Effective = 100 - (100-25)*(100-5)/100 = 29%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.102543+00:00",
+    "updated_at": "2026-09-21T12:53:32.103548+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0031",
+    "question": "Two successive discounts of 25% and 10% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 25% and 10% are given. What is the effective discount?",
+      "options": [
+        "A. 0%",
+        "B. 35%",
+        "C. 32%",
+        "D. 15%"
+      ],
+      "correct_answer": "C. 32%",
+      "explanation": "Effective = 100 - (100-25)*(100-10)/100 = 32%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.103548+00:00",
+    "updated_at": "2026-09-21T12:53:32.103548+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0032",
+    "question": "Two successive discounts of 25% and 15% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 25% and 15% are given. What is the effective discount?",
+      "options": [
+        "A. 10%",
+        "B. 40%",
+        "C. 36%",
+        "D. 0%"
+      ],
+      "correct_answer": "C. 36%",
+      "explanation": "Effective = 100 - (100-25)*(100-15)/100 = 36%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.103548+00:00",
+    "updated_at": "2026-09-21T12:53:32.103548+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0033",
+    "question": "Two successive discounts of 25% and 20% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 25% and 20% are given. What is the effective discount?",
+      "options": [
+        "A. 0%",
+        "B. 45%",
+        "C. 5%",
+        "D. 40%"
+      ],
+      "correct_answer": "D. 40%",
+      "explanation": "Effective = 100 - (100-25)*(100-20)/100 = 40%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.103548+00:00",
+    "updated_at": "2026-09-21T12:53:32.103548+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0034",
+    "question": "Two successive discounts of 25% and 25% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 25% and 25% are given. What is the effective discount?",
+      "options": [
+        "A. 0%",
+        "B. 44%",
+        "C. 0%",
+        "D. 50%"
+      ],
+      "correct_answer": "B. 44%",
+      "explanation": "Effective = 100 - (100-25)*(100-25)/100 = 44%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.103548+00:00",
+    "updated_at": "2026-09-21T12:53:32.103548+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0035",
+    "question": "Two successive discounts of 25% and 30% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 25% and 30% are given. What is the effective discount?",
+      "options": [
+        "A. 55%",
+        "B. 48%",
+        "C. 0%",
+        "D. 5%"
+      ],
+      "correct_answer": "B. 48%",
+      "explanation": "Effective = 100 - (100-25)*(100-30)/100 = 48%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.103548+00:00",
+    "updated_at": "2026-09-21T12:53:32.103548+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0036",
+    "question": "Two successive discounts of 25% and 35% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 25% and 35% are given. What is the effective discount?",
+      "options": [
+        "A. 10%",
+        "B. 51%",
+        "C. 0%",
+        "D. 60%"
+      ],
+      "correct_answer": "B. 51%",
+      "explanation": "Effective = 100 - (100-25)*(100-35)/100 = 51%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.103548+00:00",
+    "updated_at": "2026-09-21T12:53:32.103548+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0037",
+    "question": "Two successive discounts of 25% and 40% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 25% and 40% are given. What is the effective discount?",
+      "options": [
+        "A. 0%",
+        "B. 65%",
+        "C. 15%",
+        "D. 55%"
+      ],
+      "correct_answer": "D. 55%",
+      "explanation": "Effective = 100 - (100-25)*(100-40)/100 = 55%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.103548+00:00",
+    "updated_at": "2026-09-21T12:53:32.103548+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0038",
+    "question": "Two successive discounts of 25% and 45% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 25% and 45% are given. What is the effective discount?",
+      "options": [
+        "A. 70%",
+        "B. 20%",
+        "C. 59%",
+        "D. 0%"
+      ],
+      "correct_answer": "C. 59%",
+      "explanation": "Effective = 100 - (100-25)*(100-45)/100 = 59%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.103548+00:00",
+    "updated_at": "2026-09-21T12:53:32.103548+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0039",
+    "question": "Two successive discounts of 25% and 50% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 25% and 50% are given. What is the effective discount?",
+      "options": [
+        "A. 0%",
+        "B. 62%",
+        "C. 75%",
+        "D. 25%"
+      ],
+      "correct_answer": "B. 62%",
+      "explanation": "Effective = 100 - (100-25)*(100-50)/100 = 62%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.103548+00:00",
+    "updated_at": "2026-09-21T12:53:32.103548+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0040",
+    "question": "Two successive discounts of 30% and 5% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 30% and 5% are given. What is the effective discount?",
+      "options": [
+        "A. 35%",
+        "B. 25%",
+        "C. 0%",
+        "D. 34%"
+      ],
+      "correct_answer": "D. 34%",
+      "explanation": "Effective = 100 - (100-30)*(100-5)/100 = 34%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.103548+00:00",
+    "updated_at": "2026-09-21T12:53:32.103548+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0041",
+    "question": "Two successive discounts of 30% and 10% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 30% and 10% are given. What is the effective discount?",
+      "options": [
+        "A. 0%",
+        "B. 40%",
+        "C. 20%",
+        "D. 37%"
+      ],
+      "correct_answer": "D. 37%",
+      "explanation": "Effective = 100 - (100-30)*(100-10)/100 = 37%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.103548+00:00",
+    "updated_at": "2026-09-21T12:53:32.103548+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0042",
+    "question": "Two successive discounts of 30% and 15% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 30% and 15% are given. What is the effective discount?",
+      "options": [
+        "A. 45%",
+        "B. 0%",
+        "C. 15%",
+        "D. 40%"
+      ],
+      "correct_answer": "D. 40%",
+      "explanation": "Effective = 100 - (100-30)*(100-15)/100 = 40%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.103548+00:00",
+    "updated_at": "2026-09-21T12:53:32.103548+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0043",
+    "question": "Two successive discounts of 30% and 20% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 30% and 20% are given. What is the effective discount?",
+      "options": [
+        "A. 44%",
+        "B. 0%",
+        "C. 10%",
+        "D. 50%"
+      ],
+      "correct_answer": "A. 44%",
+      "explanation": "Effective = 100 - (100-30)*(100-20)/100 = 44%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.103548+00:00",
+    "updated_at": "2026-09-21T12:53:32.103548+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0044",
+    "question": "Two successive discounts of 30% and 25% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 30% and 25% are given. What is the effective discount?",
+      "options": [
+        "A. 48%",
+        "B. 5%",
+        "C. 0%",
+        "D. 55%"
+      ],
+      "correct_answer": "A. 48%",
+      "explanation": "Effective = 100 - (100-30)*(100-25)/100 = 48%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.103548+00:00",
+    "updated_at": "2026-09-21T12:53:32.103548+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0045",
+    "question": "Two successive discounts of 30% and 30% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 30% and 30% are given. What is the effective discount?",
+      "options": [
+        "A. 0%",
+        "B. 51%",
+        "C. 0%",
+        "D. 60%"
+      ],
+      "correct_answer": "B. 51%",
+      "explanation": "Effective = 100 - (100-30)*(100-30)/100 = 51%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.104547+00:00",
+    "updated_at": "2026-09-21T12:53:32.104547+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0046",
+    "question": "Two successive discounts of 30% and 35% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 30% and 35% are given. What is the effective discount?",
+      "options": [
+        "A. 54%",
+        "B. 0%",
+        "C. 65%",
+        "D. 5%"
+      ],
+      "correct_answer": "A. 54%",
+      "explanation": "Effective = 100 - (100-30)*(100-35)/100 = 54%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.104547+00:00",
+    "updated_at": "2026-09-21T12:53:32.104547+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0047",
+    "question": "Two successive discounts of 30% and 40% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 30% and 40% are given. What is the effective discount?",
+      "options": [
+        "A. 58%",
+        "B. 70%",
+        "C. 10%",
+        "D. 0%"
+      ],
+      "correct_answer": "A. 58%",
+      "explanation": "Effective = 100 - (100-30)*(100-40)/100 = 58%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.104547+00:00",
+    "updated_at": "2026-09-21T12:53:32.104547+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0048",
+    "question": "Two successive discounts of 30% and 45% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 30% and 45% are given. What is the effective discount?",
+      "options": [
+        "A. 75%",
+        "B. 15%",
+        "C. 0%",
+        "D. 62%"
+      ],
+      "correct_answer": "D. 62%",
+      "explanation": "Effective = 100 - (100-30)*(100-45)/100 = 62%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.104547+00:00",
+    "updated_at": "2026-09-21T12:53:32.104547+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "quant_discount_0049",
+    "question": "Two successive discounts of 30% and 50% are given. What is the effective discount?",
+    "pattern": "successive-discount",
+    "skill": "successive-discount",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.5,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.95,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Two successive discounts of 30% and 50% are given. What is the effective discount?",
+      "options": [
+        "A. 20%",
+        "B. 0%",
+        "C. 80%",
+        "D. 65%"
+      ],
+      "correct_answer": "D. 65%",
+      "explanation": "Effective = 100 - (100-30)*(100-50)/100 = 65%"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.104547+00:00",
+    "updated_at": "2026-09-21T12:53:32.104547+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ]
+  }
+]

@@ -1,0 +1,1962 @@
+[
+  {
+    "id": "quant_clock_0000",
+    "question": "Angle between clock hands at 1:00?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 1:00?",
+      "options": [
+        "A. 30°",
+        "B. 150°",
+        "C. 330°",
+        "D. 15°"
+      ],
+      "correct_answer": "A. 30°",
+      "explanation": "Hour hand: 1*30 + 0*0.5 = 30.0°. Minute hand: 0*6 = 0°. Angle = 30°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.135959+00:00",
+    "updated_at": "2026-09-21T12:53:32.135959+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0001",
+    "question": "Angle between clock hands at 1:15?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 1:15?",
+      "options": [
+        "A. 307°",
+        "B. 127°",
+        "C. 26°",
+        "D. 52°"
+      ],
+      "correct_answer": "D. 52°",
+      "explanation": "Hour hand: 1*30 + 15*0.5 = 37.5°. Minute hand: 15*6 = 90°. Angle = 52°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.135959+00:00",
+    "updated_at": "2026-09-21T12:53:32.135959+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0002",
+    "question": "Angle between clock hands at 1:30?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 1:30?",
+      "options": [
+        "A. 135°",
+        "B. 225°",
+        "C. 67°",
+        "D. 45°"
+      ],
+      "correct_answer": "A. 135°",
+      "explanation": "Hour hand: 1*30 + 30*0.5 = 45.0°. Minute hand: 30*6 = 180°. Angle = 135°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.135959+00:00",
+    "updated_at": "2026-09-21T12:53:32.135959+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0003",
+    "question": "Angle between clock hands at 1:45?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 1:45?",
+      "options": [
+        "A. 37°",
+        "B. 217°",
+        "C. 142°",
+        "D. 71°"
+      ],
+      "correct_answer": "C. 142°",
+      "explanation": "Hour hand: 1*30 + 45*0.5 = 52.5°. Minute hand: 45*6 = 270°. Angle = 142°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.137053+00:00",
+    "updated_at": "2026-09-21T12:53:32.137053+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0004",
+    "question": "Angle between clock hands at 2:00?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 2:00?",
+      "options": [
+        "A. 30°",
+        "B. 60°",
+        "C. 300°",
+        "D. 120°"
+      ],
+      "correct_answer": "B. 60°",
+      "explanation": "Hour hand: 2*30 + 0*0.5 = 60.0°. Minute hand: 0*6 = 0°. Angle = 60°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.137053+00:00",
+    "updated_at": "2026-09-21T12:53:32.137053+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0005",
+    "question": "Angle between clock hands at 2:15?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 2:15?",
+      "options": [
+        "A. 157°",
+        "B. 22°",
+        "C. 11°",
+        "D. 337°"
+      ],
+      "correct_answer": "B. 22°",
+      "explanation": "Hour hand: 2*30 + 15*0.5 = 67.5°. Minute hand: 15*6 = 90°. Angle = 22°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.137053+00:00",
+    "updated_at": "2026-09-21T12:53:32.137053+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0006",
+    "question": "Angle between clock hands at 2:30?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 2:30?",
+      "options": [
+        "A. 75°",
+        "B. 255°",
+        "C. 105°",
+        "D. 52°"
+      ],
+      "correct_answer": "C. 105°",
+      "explanation": "Hour hand: 2*30 + 30*0.5 = 75.0°. Minute hand: 30*6 = 180°. Angle = 105°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.137053+00:00",
+    "updated_at": "2026-09-21T12:53:32.137053+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0007",
+    "question": "Angle between clock hands at 2:45?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 2:45?",
+      "options": [
+        "A. 187°",
+        "B. 86°",
+        "C. 7°",
+        "D. 172°"
+      ],
+      "correct_answer": "D. 172°",
+      "explanation": "Hour hand: 2*30 + 45*0.5 = 82.5°. Minute hand: 45*6 = 270°. Angle = 172°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.137053+00:00",
+    "updated_at": "2026-09-21T12:53:32.137053+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0008",
+    "question": "Angle between clock hands at 3:00?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 3:00?",
+      "options": [
+        "A. 90°",
+        "B. 270°",
+        "C. 45°",
+        "D. 90°"
+      ],
+      "correct_answer": "A. 90°",
+      "explanation": "Hour hand: 3*30 + 0*0.5 = 90.0°. Minute hand: 0*6 = 0°. Angle = 90°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.137053+00:00",
+    "updated_at": "2026-09-21T12:53:32.137053+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0009",
+    "question": "Angle between clock hands at 3:15?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 3:15?",
+      "options": [
+        "A. 7°",
+        "B. 3°",
+        "C. 172°",
+        "D. 352°"
+      ],
+      "correct_answer": "A. 7°",
+      "explanation": "Hour hand: 3*30 + 15*0.5 = 97.5°. Minute hand: 15*6 = 90°. Angle = 7°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.137053+00:00",
+    "updated_at": "2026-09-21T12:53:32.137053+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0010",
+    "question": "Angle between clock hands at 3:30?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 3:30?",
+      "options": [
+        "A. 285°",
+        "B. 105°",
+        "C. 75°",
+        "D. 37°"
+      ],
+      "correct_answer": "C. 75°",
+      "explanation": "Hour hand: 3*30 + 30*0.5 = 105.0°. Minute hand: 30*6 = 180°. Angle = 75°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.137053+00:00",
+    "updated_at": "2026-09-21T12:53:32.137053+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0011",
+    "question": "Angle between clock hands at 3:45?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 3:45?",
+      "options": [
+        "A. 202°",
+        "B. 157°",
+        "C. 78°",
+        "D. 22°"
+      ],
+      "correct_answer": "B. 157°",
+      "explanation": "Hour hand: 3*30 + 45*0.5 = 112.5°. Minute hand: 45*6 = 270°. Angle = 157°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.137053+00:00",
+    "updated_at": "2026-09-21T12:53:32.137053+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0012",
+    "question": "Angle between clock hands at 4:00?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 4:00?",
+      "options": [
+        "A. 240°",
+        "B. 60°",
+        "C. 120°",
+        "D. 60°"
+      ],
+      "correct_answer": "C. 120°",
+      "explanation": "Hour hand: 4*30 + 0*0.5 = 120.0°. Minute hand: 0*6 = 0°. Angle = 120°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.137053+00:00",
+    "updated_at": "2026-09-21T12:53:32.137053+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0013",
+    "question": "Angle between clock hands at 4:15?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 4:15?",
+      "options": [
+        "A. 37°",
+        "B. 322°",
+        "C. 142°",
+        "D. 18°"
+      ],
+      "correct_answer": "A. 37°",
+      "explanation": "Hour hand: 4*30 + 15*0.5 = 127.5°. Minute hand: 15*6 = 90°. Angle = 37°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.137053+00:00",
+    "updated_at": "2026-09-21T12:53:32.137053+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0014",
+    "question": "Angle between clock hands at 4:30?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 4:30?",
+      "options": [
+        "A. 22°",
+        "B. 315°",
+        "C. 135°",
+        "D. 45°"
+      ],
+      "correct_answer": "D. 45°",
+      "explanation": "Hour hand: 4*30 + 30*0.5 = 135.0°. Minute hand: 30*6 = 180°. Angle = 45°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.137053+00:00",
+    "updated_at": "2026-09-21T12:53:32.137053+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0015",
+    "question": "Angle between clock hands at 4:45?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 4:45?",
+      "options": [
+        "A. 232°",
+        "B. 52°",
+        "C. 127°",
+        "D. 63°"
+      ],
+      "correct_answer": "C. 127°",
+      "explanation": "Hour hand: 4*30 + 45*0.5 = 142.5°. Minute hand: 45*6 = 270°. Angle = 127°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.137053+00:00",
+    "updated_at": "2026-09-21T12:53:32.137053+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0016",
+    "question": "Angle between clock hands at 5:00?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 5:00?",
+      "options": [
+        "A. 150°",
+        "B. 210°",
+        "C. 30°",
+        "D. 75°"
+      ],
+      "correct_answer": "A. 150°",
+      "explanation": "Hour hand: 5*30 + 0*0.5 = 150.0°. Minute hand: 0*6 = 0°. Angle = 150°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.137053+00:00",
+    "updated_at": "2026-09-21T12:53:32.138053+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0017",
+    "question": "Angle between clock hands at 5:15?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 5:15?",
+      "options": [
+        "A. 67°",
+        "B. 292°",
+        "C. 112°",
+        "D. 33°"
+      ],
+      "correct_answer": "A. 67°",
+      "explanation": "Hour hand: 5*30 + 15*0.5 = 157.5°. Minute hand: 15*6 = 90°. Angle = 67°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.138053+00:00",
+    "updated_at": "2026-09-21T12:53:32.138053+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0018",
+    "question": "Angle between clock hands at 5:30?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 5:30?",
+      "options": [
+        "A. 7°",
+        "B. 15°",
+        "C. 345°",
+        "D. 165°"
+      ],
+      "correct_answer": "B. 15°",
+      "explanation": "Hour hand: 5*30 + 30*0.5 = 165.0°. Minute hand: 30*6 = 180°. Angle = 15°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.138053+00:00",
+    "updated_at": "2026-09-21T12:53:32.138053+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0019",
+    "question": "Angle between clock hands at 5:45?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 5:45?",
+      "options": [
+        "A. 262°",
+        "B. 82°",
+        "C. 97°",
+        "D. 48°"
+      ],
+      "correct_answer": "C. 97°",
+      "explanation": "Hour hand: 5*30 + 45*0.5 = 172.5°. Minute hand: 45*6 = 270°. Angle = 97°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.138053+00:00",
+    "updated_at": "2026-09-21T12:53:32.138053+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0020",
+    "question": "Angle between clock hands at 6:00?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 6:00?",
+      "options": [
+        "A. 90°",
+        "B. 180°",
+        "C. 0°",
+        "D. 180°"
+      ],
+      "correct_answer": "B. 180°",
+      "explanation": "Hour hand: 6*30 + 0*0.5 = 180.0°. Minute hand: 0*6 = 0°. Angle = 180°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.138053+00:00",
+    "updated_at": "2026-09-21T12:53:32.138053+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0021",
+    "question": "Angle between clock hands at 6:15?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 6:15?",
+      "options": [
+        "A. 262°",
+        "B. 97°",
+        "C. 82°",
+        "D. 48°"
+      ],
+      "correct_answer": "B. 97°",
+      "explanation": "Hour hand: 6*30 + 15*0.5 = 187.5°. Minute hand: 15*6 = 90°. Angle = 97°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.138053+00:00",
+    "updated_at": "2026-09-21T12:53:32.138053+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0022",
+    "question": "Angle between clock hands at 6:30?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 6:30?",
+      "options": [
+        "A. 165°",
+        "B. 345°",
+        "C. 15°",
+        "D. 7°"
+      ],
+      "correct_answer": "C. 15°",
+      "explanation": "Hour hand: 6*30 + 30*0.5 = 195.0°. Minute hand: 30*6 = 180°. Angle = 15°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.138053+00:00",
+    "updated_at": "2026-09-21T12:53:32.138053+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0023",
+    "question": "Angle between clock hands at 6:45?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 6:45?",
+      "options": [
+        "A. 33°",
+        "B. 112°",
+        "C. 67°",
+        "D. 292°"
+      ],
+      "correct_answer": "C. 67°",
+      "explanation": "Hour hand: 6*30 + 45*0.5 = 202.5°. Minute hand: 45*6 = 270°. Angle = 67°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.138053+00:00",
+    "updated_at": "2026-09-21T12:53:32.138053+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0024",
+    "question": "Angle between clock hands at 7:00?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 7:00?",
+      "options": [
+        "A. 75°",
+        "B. 30°",
+        "C. 210°",
+        "D. 150°"
+      ],
+      "correct_answer": "D. 150°",
+      "explanation": "Hour hand: 7*30 + 0*0.5 = 210.0°. Minute hand: 0*6 = 0°. Angle = 150°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.138053+00:00",
+    "updated_at": "2026-09-21T12:53:32.138053+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0025",
+    "question": "Angle between clock hands at 7:15?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 7:15?",
+      "options": [
+        "A. 52°",
+        "B. 63°",
+        "C. 232°",
+        "D. 127°"
+      ],
+      "correct_answer": "D. 127°",
+      "explanation": "Hour hand: 7*30 + 15*0.5 = 217.5°. Minute hand: 15*6 = 90°. Angle = 127°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.138053+00:00",
+    "updated_at": "2026-09-21T12:53:32.138053+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0026",
+    "question": "Angle between clock hands at 7:30?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 7:30?",
+      "options": [
+        "A. 135°",
+        "B. 45°",
+        "C. 315°",
+        "D. 22°"
+      ],
+      "correct_answer": "B. 45°",
+      "explanation": "Hour hand: 7*30 + 30*0.5 = 225.0°. Minute hand: 30*6 = 180°. Angle = 45°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.138053+00:00",
+    "updated_at": "2026-09-21T12:53:32.138053+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0027",
+    "question": "Angle between clock hands at 7:45?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 7:45?",
+      "options": [
+        "A. 18°",
+        "B. 322°",
+        "C. 142°",
+        "D. 37°"
+      ],
+      "correct_answer": "D. 37°",
+      "explanation": "Hour hand: 7*30 + 45*0.5 = 232.5°. Minute hand: 45*6 = 270°. Angle = 37°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.138053+00:00",
+    "updated_at": "2026-09-21T12:53:32.138053+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0028",
+    "question": "Angle between clock hands at 8:00?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 8:00?",
+      "options": [
+        "A. 120°",
+        "B. 60°",
+        "C. 60°",
+        "D. 240°"
+      ],
+      "correct_answer": "A. 120°",
+      "explanation": "Hour hand: 8*30 + 0*0.5 = 240.0°. Minute hand: 0*6 = 0°. Angle = 120°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.138053+00:00",
+    "updated_at": "2026-09-21T12:53:32.138053+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0029",
+    "question": "Angle between clock hands at 8:15?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 8:15?",
+      "options": [
+        "A. 78°",
+        "B. 202°",
+        "C. 22°",
+        "D. 157°"
+      ],
+      "correct_answer": "D. 157°",
+      "explanation": "Hour hand: 8*30 + 15*0.5 = 247.5°. Minute hand: 15*6 = 90°. Angle = 157°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.138053+00:00",
+    "updated_at": "2026-09-21T12:53:32.138053+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0030",
+    "question": "Angle between clock hands at 8:30?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 8:30?",
+      "options": [
+        "A. 75°",
+        "B. 105°",
+        "C. 37°",
+        "D. 285°"
+      ],
+      "correct_answer": "A. 75°",
+      "explanation": "Hour hand: 8*30 + 30*0.5 = 255.0°. Minute hand: 30*6 = 180°. Angle = 75°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.139052+00:00",
+    "updated_at": "2026-09-21T12:53:32.139052+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0031",
+    "question": "Angle between clock hands at 8:45?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 8:45?",
+      "options": [
+        "A. 172°",
+        "B. 3°",
+        "C. 352°",
+        "D. 7°"
+      ],
+      "correct_answer": "D. 7°",
+      "explanation": "Hour hand: 8*30 + 45*0.5 = 262.5°. Minute hand: 45*6 = 270°. Angle = 7°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.139052+00:00",
+    "updated_at": "2026-09-21T12:53:32.139052+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0032",
+    "question": "Angle between clock hands at 9:00?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 9:00?",
+      "options": [
+        "A. 90°",
+        "B. 45°",
+        "C. 270°",
+        "D. 90°"
+      ],
+      "correct_answer": "A. 90°",
+      "explanation": "Hour hand: 9*30 + 0*0.5 = 270.0°. Minute hand: 0*6 = 0°. Angle = 90°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.139052+00:00",
+    "updated_at": "2026-09-21T12:53:32.139052+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0033",
+    "question": "Angle between clock hands at 9:15?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 9:15?",
+      "options": [
+        "A. 86°",
+        "B. 172°",
+        "C. 187°",
+        "D. 7°"
+      ],
+      "correct_answer": "B. 172°",
+      "explanation": "Hour hand: 9*30 + 15*0.5 = 277.5°. Minute hand: 15*6 = 90°. Angle = 172°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.139052+00:00",
+    "updated_at": "2026-09-21T12:53:32.139052+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0034",
+    "question": "Angle between clock hands at 9:30?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 9:30?",
+      "options": [
+        "A. 75°",
+        "B. 255°",
+        "C. 105°",
+        "D. 52°"
+      ],
+      "correct_answer": "C. 105°",
+      "explanation": "Hour hand: 9*30 + 30*0.5 = 285.0°. Minute hand: 30*6 = 180°. Angle = 105°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.139052+00:00",
+    "updated_at": "2026-09-21T12:53:32.139052+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0035",
+    "question": "Angle between clock hands at 9:45?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 9:45?",
+      "options": [
+        "A. 337°",
+        "B. 157°",
+        "C. 22°",
+        "D. 11°"
+      ],
+      "correct_answer": "C. 22°",
+      "explanation": "Hour hand: 9*30 + 45*0.5 = 292.5°. Minute hand: 45*6 = 270°. Angle = 22°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.139052+00:00",
+    "updated_at": "2026-09-21T12:53:32.139052+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0036",
+    "question": "Angle between clock hands at 10:00?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 10:00?",
+      "options": [
+        "A. 300°",
+        "B. 120°",
+        "C. 30°",
+        "D. 60°"
+      ],
+      "correct_answer": "D. 60°",
+      "explanation": "Hour hand: 10*30 + 0*0.5 = 300.0°. Minute hand: 0*6 = 0°. Angle = 60°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.139052+00:00",
+    "updated_at": "2026-09-21T12:53:32.139052+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0037",
+    "question": "Angle between clock hands at 10:15?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 10:15?",
+      "options": [
+        "A. 71°",
+        "B. 217°",
+        "C. 37°",
+        "D. 142°"
+      ],
+      "correct_answer": "D. 142°",
+      "explanation": "Hour hand: 10*30 + 15*0.5 = 307.5°. Minute hand: 15*6 = 90°. Angle = 142°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.139052+00:00",
+    "updated_at": "2026-09-21T12:53:32.139052+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0038",
+    "question": "Angle between clock hands at 10:30?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 10:30?",
+      "options": [
+        "A. 67°",
+        "B. 135°",
+        "C. 45°",
+        "D. 225°"
+      ],
+      "correct_answer": "B. 135°",
+      "explanation": "Hour hand: 10*30 + 30*0.5 = 315.0°. Minute hand: 30*6 = 180°. Angle = 135°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.139052+00:00",
+    "updated_at": "2026-09-21T12:53:32.139052+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "quant_clock_0039",
+    "question": "Angle between clock hands at 10:45?",
+    "pattern": "clock-angle",
+    "skill": "clock-angle",
+    "domain": "Quantitative Aptitude",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.95,
+      "wipro": 0.5,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "Angle between clock hands at 10:45?",
+      "options": [
+        "A. 52°",
+        "B. 26°",
+        "C. 307°",
+        "D. 127°"
+      ],
+      "correct_answer": "A. 52°",
+      "explanation": "Hour hand: 10*30 + 45*0.5 = 322.5°. Minute hand: 45*6 = 270°. Angle = 52°"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.139052+00:00",
+    "updated_at": "2026-09-21T12:53:32.139052+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Infosys"
+    ]
+  }
+]

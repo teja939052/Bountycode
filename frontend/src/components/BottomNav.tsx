@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Compass, Code2, ClipboardList, User, Building2, Trophy, Flame, type LucideIcon } from 'lucide-react';
+import { Compass, Code2, User, Building2, Trophy, Flame, type LucideIcon } from 'lucide-react';
 import useAuthStore from '../store/authStore';
 import { useGamificationState } from '../hooks/useGamificationState';
 
@@ -10,13 +10,13 @@ interface NavItem {
   label: string;
 }
 
+// V3 unified nav: Journey / Practice / Target / Skills / Profile (5 max)
 const NAV_ITEMS: NavItem[] = [
   { to: '/journey', icon: Compass, label: 'Journey' },
   { to: '/practice', icon: Code2, label: 'Practice' },
-  { to: '/mock-oa', icon: ClipboardList, label: 'Mock OA' },
-  { to: '/interview', icon: User, label: 'AI Interview' },
-  { to: '/company-tracks', icon: Building2, label: 'Companies' },
-  { to: '/career-profile', icon: User, label: 'Profile' },
+  { to: '/target', icon: Building2, label: 'Target' },
+  { to: '/skills', icon: Trophy, label: 'Skills' },
+  { to: '/profile', icon: User, label: 'Profile' },
 ];
 
 export default function BottomNav() {

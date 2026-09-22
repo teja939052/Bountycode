@@ -1,0 +1,1002 @@
+[
+  {
+    "id": "pseudo_string_0000",
+    "question": "What is the output?\ns = 'hello'; print(s.upper())",
+    "pattern": "string-ops",
+    "skill": "string-ops",
+    "domain": "Pseudocode",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ns = 'hello'; print(s.upper())",
+      "options": [
+        "A. HELLO",
+        "B. hello",
+        "C. test",
+        "D. 123"
+      ],
+      "correct_answer": "A. HELLO",
+      "explanation": "String result: HELLO"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.276973+00:00",
+    "updated_at": "2026-09-21T12:53:32.277971+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_string_0001",
+    "question": "What is the output?\ns = 'WORLD'; print(s.lower())",
+    "pattern": "string-ops",
+    "skill": "string-ops",
+    "domain": "Pseudocode",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ns = 'WORLD'; print(s.lower())",
+      "options": [
+        "A. 5",
+        "B. test",
+        "C. HELLO",
+        "D. world"
+      ],
+      "correct_answer": "D. world",
+      "explanation": "String result: world"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.277971+00:00",
+    "updated_at": "2026-09-21T12:53:32.277971+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_string_0002",
+    "question": "What is the output?\ns = 'hello'; print(len(s))",
+    "pattern": "string-ops",
+    "skill": "string-ops",
+    "domain": "Pseudocode",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ns = 'hello'; print(len(s))",
+      "options": [
+        "A. 5",
+        "B. hello",
+        "C. 5",
+        "D. Python"
+      ],
+      "correct_answer": "A. 5",
+      "explanation": "String result: 5"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.277971+00:00",
+    "updated_at": "2026-09-21T12:53:32.277971+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_string_0003",
+    "question": "What is the output?\ns = 'Python'; print(s[0])",
+    "pattern": "string-ops",
+    "skill": "string-ops",
+    "domain": "Pseudocode",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ns = 'Python'; print(s[0])",
+      "options": [
+        "A. test",
+        "B. P",
+        "C. 5",
+        "D. hello"
+      ],
+      "correct_answer": "B. P",
+      "explanation": "String result: P"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.277971+00:00",
+    "updated_at": "2026-09-21T12:53:32.277971+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_string_0004",
+    "question": "What is the output?\ns = 'Python'; print(s[-1])",
+    "pattern": "string-ops",
+    "skill": "string-ops",
+    "domain": "Pseudocode",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ns = 'Python'; print(s[-1])",
+      "options": [
+        "A. test",
+        "B. Python",
+        "C. n",
+        "D. 5"
+      ],
+      "correct_answer": "C. n",
+      "explanation": "String result: n"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.277971+00:00",
+    "updated_at": "2026-09-21T12:53:32.277971+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_string_0005",
+    "question": "What is the output?\ns = 'hello world'; print(s.replace('hello', 'hi'))",
+    "pattern": "string-ops",
+    "skill": "string-ops",
+    "domain": "Pseudocode",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ns = 'hello world'; print(s.replace('hello', 'hi'))",
+      "options": [
+        "A. world",
+        "B. abc",
+        "C. hi world",
+        "D. Python"
+      ],
+      "correct_answer": "C. hi world",
+      "explanation": "String result: hi world"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.277971+00:00",
+    "updated_at": "2026-09-21T12:53:32.277971+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_string_0006",
+    "question": "What is the output?\ns = 'Python'; print(s + ' rules')",
+    "pattern": "string-ops",
+    "skill": "string-ops",
+    "domain": "Pseudocode",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ns = 'Python'; print(s + ' rules')",
+      "options": [
+        "A. world",
+        "B. HELLO",
+        "C. Python rules",
+        "D. 123"
+      ],
+      "correct_answer": "C. Python rules",
+      "explanation": "String result: Python rules"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.277971+00:00",
+    "updated_at": "2026-09-21T12:53:32.277971+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_string_0007",
+    "question": "What is the output?\ns = 'abc'; print(s * 3)",
+    "pattern": "string-ops",
+    "skill": "string-ops",
+    "domain": "Pseudocode",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ns = 'abc'; print(s * 3)",
+      "options": [
+        "A. world",
+        "B. Python",
+        "C. abcabcabc",
+        "D. hello"
+      ],
+      "correct_answer": "C. abcabcabc",
+      "explanation": "String result: abcabcabc"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.277971+00:00",
+    "updated_at": "2026-09-21T12:53:32.277971+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_string_0008",
+    "question": "What is the output?\ns = 'hello'; print(s + '!' + s)",
+    "pattern": "string-ops",
+    "skill": "string-ops",
+    "domain": "Pseudocode",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ns = 'hello'; print(s + '!' + s)",
+      "options": [
+        "A. Python",
+        "B. hello!hello",
+        "C. HELLO",
+        "D. abc"
+      ],
+      "correct_answer": "B. hello!hello",
+      "explanation": "String result: hello!hello"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.278659+00:00",
+    "updated_at": "2026-09-21T12:53:32.278659+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_string_0009",
+    "question": "What is the output?\ns = 'Python is fun'; print(s[:6])",
+    "pattern": "string-ops",
+    "skill": "string-ops",
+    "domain": "Pseudocode",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ns = 'Python is fun'; print(s[:6])",
+      "options": [
+        "A. HELLO",
+        "B. test",
+        "C. 5",
+        "D. Python"
+      ],
+      "correct_answer": "D. Python",
+      "explanation": "String result: Python"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.278659+00:00",
+    "updated_at": "2026-09-21T12:53:32.278659+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_string_0010",
+    "question": "What is the output?\ns = 'Programming'; print(s[3:7])",
+    "pattern": "string-ops",
+    "skill": "string-ops",
+    "domain": "Pseudocode",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ns = 'Programming'; print(s[3:7])",
+      "options": [
+        "A. gram",
+        "B. 123",
+        "C. world",
+        "D. HELLO"
+      ],
+      "correct_answer": "A. gram",
+      "explanation": "String result: gram"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.278659+00:00",
+    "updated_at": "2026-09-21T12:53:32.278659+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_string_0011",
+    "question": "What is the output?\ns = 'Hello World'; print(s.split())",
+    "pattern": "string-ops",
+    "skill": "string-ops",
+    "domain": "Pseudocode",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ns = 'Hello World'; print(s.split())",
+      "options": [
+        "A. ['Hello', 'World']",
+        "B. world",
+        "C. HELLO",
+        "D. 123"
+      ],
+      "correct_answer": "A. ['Hello', 'World']",
+      "explanation": "String result: ['Hello', 'World']"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.278659+00:00",
+    "updated_at": "2026-09-21T12:53:32.278659+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_string_0012",
+    "question": "What is the output?\ns = 'a,b,c'; print(s.split(','))",
+    "pattern": "string-ops",
+    "skill": "string-ops",
+    "domain": "Pseudocode",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ns = 'a,b,c'; print(s.split(','))",
+      "options": [
+        "A. ['a', 'b', 'c']",
+        "B. hello",
+        "C. 123",
+        "D. test"
+      ],
+      "correct_answer": "A. ['a', 'b', 'c']",
+      "explanation": "String result: ['a', 'b', 'c']"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.278659+00:00",
+    "updated_at": "2026-09-21T12:53:32.278659+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_string_0013",
+    "question": "What is the output?\ns = 'hello'; print(s[1:4])",
+    "pattern": "string-ops",
+    "skill": "string-ops",
+    "domain": "Pseudocode",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ns = 'hello'; print(s[1:4])",
+      "options": [
+        "A. 5",
+        "B. 123",
+        "C. Python",
+        "D. ell"
+      ],
+      "correct_answer": "D. ell",
+      "explanation": "String result: ell"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.278659+00:00",
+    "updated_at": "2026-09-21T12:53:32.278659+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_string_0014",
+    "question": "What is the output?\ns = 'Python'; print(s[1:4])",
+    "pattern": "string-ops",
+    "skill": "string-ops",
+    "domain": "Pseudocode",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ns = 'Python'; print(s[1:4])",
+      "options": [
+        "A. 123",
+        "B. yth",
+        "C. Python",
+        "D. HELLO"
+      ],
+      "correct_answer": "B. yth",
+      "explanation": "String result: yth"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.278659+00:00",
+    "updated_at": "2026-09-21T12:53:32.278659+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_string_0015",
+    "question": "What is the output?\ns = 'Testing'; print(s[2:5])",
+    "pattern": "string-ops",
+    "skill": "string-ops",
+    "domain": "Pseudocode",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ns = 'Testing'; print(s[2:5])",
+      "options": [
+        "A. HELLO",
+        "B. world",
+        "C. sti",
+        "D. abc"
+      ],
+      "correct_answer": "C. sti",
+      "explanation": "String result: sti"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.278659+00:00",
+    "updated_at": "2026-09-21T12:53:32.278659+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_string_0016",
+    "question": "What is the output?\ns = 'abcdef'; print(s[2:5])",
+    "pattern": "string-ops",
+    "skill": "string-ops",
+    "domain": "Pseudocode",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ns = 'abcdef'; print(s[2:5])",
+      "options": [
+        "A. cde",
+        "B. 5",
+        "C. HELLO",
+        "D. world"
+      ],
+      "correct_answer": "A. cde",
+      "explanation": "String result: cde"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.278659+00:00",
+    "updated_at": "2026-09-21T12:53:32.278659+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_string_0017",
+    "question": "What is the output?\ns = 'Hello'; print(s + ' ' + 'World')",
+    "pattern": "string-ops",
+    "skill": "string-ops",
+    "domain": "Pseudocode",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ns = 'Hello'; print(s + ' ' + 'World')",
+      "options": [
+        "A. Hello World",
+        "B. abc",
+        "C. 5",
+        "D. test"
+      ],
+      "correct_answer": "A. Hello World",
+      "explanation": "String result: Hello World"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.278659+00:00",
+    "updated_at": "2026-09-21T12:53:32.278659+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_string_0018",
+    "question": "What is the output?\ns = 'code'; print(s * 2)",
+    "pattern": "string-ops",
+    "skill": "string-ops",
+    "domain": "Pseudocode",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ns = 'code'; print(s * 2)",
+      "options": [
+        "A. codecode",
+        "B. 123",
+        "C. hello",
+        "D. 5"
+      ],
+      "correct_answer": "A. codecode",
+      "explanation": "String result: codecode"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.279763+00:00",
+    "updated_at": "2026-09-21T12:53:32.279763+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  },
+  {
+    "id": "pseudo_string_0019",
+    "question": "What is the output?\ns = 'test'; print(s + str(123))",
+    "pattern": "string-ops",
+    "skill": "string-ops",
+    "domain": "Pseudocode",
+    "difficulty": "easy",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.95,
+      "infosys": 0.75,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What is the output?\ns = 'test'; print(s + str(123))",
+      "options": [
+        "A. Python",
+        "B. test123",
+        "C. 5",
+        "D. test"
+      ],
+      "correct_answer": "B. test123",
+      "explanation": "String result: test123"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.279763+00:00",
+    "updated_at": "2026-09-21T12:53:32.279763+00:00",
+    "trust_status": "automated_checked",
+    "type": "aptitude",
+    "company_tags": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ]
+  }
+]

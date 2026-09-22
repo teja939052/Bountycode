@@ -18,9 +18,9 @@ except Exception:
 
 # Question bank access
 def get_company_questions(company: str, difficulty: Optional[str] = None, limit: int = 50):
-    """Get company-specific questions from the question store."""
+    """Get company-specific questions from the question store (servable only)."""
     questions = question_store.find({"company": {"$in": [company]}})
-    qs = question_store.find({"company": {"$in": [company]}}).to_list()
+    qs = question_store.find({"company": {"$in": [company]}}).only_verified().to_list()
     # Filter by difficulty if specified
     if difficulty:
         qs = [q for q in qs if q.get("difficulty") == difficulty]

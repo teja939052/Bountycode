@@ -1,0 +1,1002 @@
+[
+  {
+    "id": "verbal_vocab_0000",
+    "question": "What does the underlined word mean? 'ambiguous' in 'The ambiguous instructions caused confusion.'?",
+    "pattern": "vocabulary-context",
+    "skill": "vocabulary-context",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does the underlined word mean? 'ambiguous' in 'The ambiguous instructions caused confusion.'?",
+      "options": [
+        "A. Complete",
+        "B. Careful",
+        "C. Unclear",
+        "D. Continued"
+      ],
+      "correct_answer": "C. Unclear",
+      "explanation": "'Unclear' is the correct meaning"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.264178+00:00",
+    "updated_at": "2026-09-21T12:53:32.264178+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_vocab_0001",
+    "question": "What does the underlined word mean? 'robust' in 'The robust system handled all failures.'?",
+    "pattern": "vocabulary-context",
+    "skill": "vocabulary-context",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does the underlined word mean? 'robust' in 'The robust system handled all failures.'?",
+      "options": [
+        "A. Strong",
+        "B. Delicate",
+        "C. Detailed",
+        "D. Changing"
+      ],
+      "correct_answer": "A. Strong",
+      "explanation": "'Strong' is the correct meaning"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.264178+00:00",
+    "updated_at": "2026-09-21T12:53:32.264178+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_vocab_0002",
+    "question": "What does the underlined word mean? 'meticulous' in 'The meticulous review caught every error.'?",
+    "pattern": "vocabulary-context",
+    "skill": "vocabulary-context",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does the underlined word mean? 'meticulous' in 'The meticulous review caught every error.'?",
+      "options": [
+        "A. Careful",
+        "B. Detailed",
+        "C. Delicate",
+        "D. Duplicate"
+      ],
+      "correct_answer": "A. Careful",
+      "explanation": "'Careful' is the correct meaning"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.264178+00:00",
+    "updated_at": "2026-09-21T12:53:32.264178+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_vocab_0003",
+    "question": "What does the underlined word mean? 'dynamic' in 'The dynamic environment kept everyone alert.'?",
+    "pattern": "vocabulary-context",
+    "skill": "vocabulary-context",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does the underlined word mean? 'dynamic' in 'The dynamic environment kept everyone alert.'?",
+      "options": [
+        "A. Changing",
+        "B. Delicate",
+        "C. Urgent",
+        "D. Detailed"
+      ],
+      "correct_answer": "A. Changing",
+      "explanation": "'Changing' is the correct meaning"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.264178+00:00",
+    "updated_at": "2026-09-21T12:53:32.264178+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_vocab_0004",
+    "question": "What does the underlined word mean? 'critical' in 'The critical deadline was tomorrow.'?",
+    "pattern": "vocabulary-context",
+    "skill": "vocabulary-context",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does the underlined word mean? 'critical' in 'The critical deadline was tomorrow.'?",
+      "options": [
+        "A. Delicate",
+        "B. Continued",
+        "C. Urgent",
+        "D. Detailed"
+      ],
+      "correct_answer": "C. Urgent",
+      "explanation": "'Urgent' is the correct meaning"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.264692+00:00",
+    "updated_at": "2026-09-21T12:53:32.264692+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_vocab_0005",
+    "question": "What does the underlined word mean? 'innovative' in 'The innovative solution impressed everyone.'?",
+    "pattern": "vocabulary-context",
+    "skill": "vocabulary-context",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does the underlined word mean? 'innovative' in 'The innovative solution impressed everyone.'?",
+      "options": [
+        "A. Changing",
+        "B. Creative",
+        "C. Creative",
+        "D. Strong"
+      ],
+      "correct_answer": "B. Creative",
+      "explanation": "'Creative' is the correct meaning"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.264692+00:00",
+    "updated_at": "2026-09-21T12:53:32.264692+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_vocab_0006",
+    "question": "What does the underlined word mean? 'fragile' in 'The fragile system crashed easily.'?",
+    "pattern": "vocabulary-context",
+    "skill": "vocabulary-context",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does the underlined word mean? 'fragile' in 'The fragile system crashed easily.'?",
+      "options": [
+        "A. Delicate",
+        "B. Urgent",
+        "C. Duplicate",
+        "D. Delicate"
+      ],
+      "correct_answer": "A. Delicate",
+      "explanation": "'Delicate' is the correct meaning"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.264692+00:00",
+    "updated_at": "2026-09-21T12:53:32.265333+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_vocab_0007",
+    "question": "What does the underlined word mean? 'comprehensive' in 'The comprehensive report covered everything.'?",
+    "pattern": "vocabulary-context",
+    "skill": "vocabulary-context",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does the underlined word mean? 'comprehensive' in 'The comprehensive report covered everything.'?",
+      "options": [
+        "A. Duplicate",
+        "B. Detailed",
+        "C. Changing",
+        "D. Complete"
+      ],
+      "correct_answer": "D. Complete",
+      "explanation": "'Complete' is the correct meaning"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.265333+00:00",
+    "updated_at": "2026-09-21T12:53:32.265333+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_vocab_0008",
+    "question": "What does the underlined word mean? 'persistent' in 'The persistent effort paid off.'?",
+    "pattern": "vocabulary-context",
+    "skill": "vocabulary-context",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does the underlined word mean? 'persistent' in 'The persistent effort paid off.'?",
+      "options": [
+        "A. Detailed",
+        "B. Continued",
+        "C. Delicate",
+        "D. Changing"
+      ],
+      "correct_answer": "B. Continued",
+      "explanation": "'Continued' is the correct meaning"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.265333+00:00",
+    "updated_at": "2026-09-21T12:53:32.265333+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_vocab_0009",
+    "question": "What does the underlined word mean? 'elaborate' in 'The elaborate plan was well received.'?",
+    "pattern": "vocabulary-context",
+    "skill": "vocabulary-context",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does the underlined word mean? 'elaborate' in 'The elaborate plan was well received.'?",
+      "options": [
+        "A. Detailed",
+        "B. Urgent",
+        "C. Creative",
+        "D. Detailed"
+      ],
+      "correct_answer": "A. Detailed",
+      "explanation": "'Detailed' is the correct meaning"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.265333+00:00",
+    "updated_at": "2026-09-21T12:53:32.265333+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_vocab_0010",
+    "question": "What does the underlined word mean? 'redundant' in 'The redundant system had backups.'?",
+    "pattern": "vocabulary-context",
+    "skill": "vocabulary-context",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does the underlined word mean? 'redundant' in 'The redundant system had backups.'?",
+      "options": [
+        "A. Careful",
+        "B. Duplicate",
+        "C. Duplicate",
+        "D. Urgent"
+      ],
+      "correct_answer": "B. Duplicate",
+      "explanation": "'Duplicate' is the correct meaning"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.265333+00:00",
+    "updated_at": "2026-09-21T12:53:32.265333+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_vocab_0011",
+    "question": "What does the underlined word mean? 'sequential' in 'The sequential process followed steps.'?",
+    "pattern": "vocabulary-context",
+    "skill": "vocabulary-context",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does the underlined word mean? 'sequential' in 'The sequential process followed steps.'?",
+      "options": [
+        "A. Creative",
+        "B. Continued",
+        "C. Careful",
+        "D. Ordered"
+      ],
+      "correct_answer": "D. Ordered",
+      "explanation": "'Ordered' is the correct meaning"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.265980+00:00",
+    "updated_at": "2026-09-21T12:53:32.265980+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_vocab_0012",
+    "question": "What does the underlined word mean? 'complex' in 'The complex algorithm was hard to understand.'?",
+    "pattern": "vocabulary-context",
+    "skill": "vocabulary-context",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does the underlined word mean? 'complex' in 'The complex algorithm was hard to understand.'?",
+      "options": [
+        "A. Complicated",
+        "B. Delicate",
+        "C. Careful",
+        "D. Strong"
+      ],
+      "correct_answer": "A. Complicated",
+      "explanation": "'Complicated' is the correct meaning"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.265980+00:00",
+    "updated_at": "2026-09-21T12:53:32.265980+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_vocab_0013",
+    "question": "What does the underlined word mean? 'efficient' in 'The efficient process saved time.'?",
+    "pattern": "vocabulary-context",
+    "skill": "vocabulary-context",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does the underlined word mean? 'efficient' in 'The efficient process saved time.'?",
+      "options": [
+        "A. Urgent",
+        "B. Careful",
+        "C. Effective",
+        "D. Strong"
+      ],
+      "correct_answer": "C. Effective",
+      "explanation": "'Effective' is the correct meaning"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.265980+00:00",
+    "updated_at": "2026-09-21T12:53:32.266590+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_vocab_0014",
+    "question": "What does the underlined word mean? 'flexible' in 'The flexible policy allowed changes.'?",
+    "pattern": "vocabulary-context",
+    "skill": "vocabulary-context",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does the underlined word mean? 'flexible' in 'The flexible policy allowed changes.'?",
+      "options": [
+        "A. Strong",
+        "B. Adaptable",
+        "C. Delicate",
+        "D. Detailed"
+      ],
+      "correct_answer": "B. Adaptable",
+      "explanation": "'Adaptable' is the correct meaning"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.266590+00:00",
+    "updated_at": "2026-09-21T12:53:32.266590+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_vocab_0015",
+    "question": "What does the underlined word mean? 'secure' in 'The secure system prevented breaches.'?",
+    "pattern": "vocabulary-context",
+    "skill": "vocabulary-context",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does the underlined word mean? 'secure' in 'The secure system prevented breaches.'?",
+      "options": [
+        "A. Changing",
+        "B. Safe",
+        "C. Strong",
+        "D. Complete"
+      ],
+      "correct_answer": "B. Safe",
+      "explanation": "'Safe' is the correct meaning"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.266590+00:00",
+    "updated_at": "2026-09-21T12:53:32.266590+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_vocab_0016",
+    "question": "What does the underlined word mean? 'transparent' in 'The transparent process was open.'?",
+    "pattern": "vocabulary-context",
+    "skill": "vocabulary-context",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does the underlined word mean? 'transparent' in 'The transparent process was open.'?",
+      "options": [
+        "A. Urgent",
+        "B. Complete",
+        "C. Clear",
+        "D. Creative"
+      ],
+      "correct_answer": "C. Clear",
+      "explanation": "'Clear' is the correct meaning"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.266590+00:00",
+    "updated_at": "2026-09-21T12:53:32.266590+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_vocab_0017",
+    "question": "What does the underlined word mean? 'scalable' in 'The scalable solution handled growth.'?",
+    "pattern": "vocabulary-context",
+    "skill": "vocabulary-context",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does the underlined word mean? 'scalable' in 'The scalable solution handled growth.'?",
+      "options": [
+        "A. Continued",
+        "B. Delicate",
+        "C. Careful",
+        "D. Expandable"
+      ],
+      "correct_answer": "D. Expandable",
+      "explanation": "'Expandable' is the correct meaning"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.266590+00:00",
+    "updated_at": "2026-09-21T12:53:32.266590+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_vocab_0018",
+    "question": "What does the underlined word mean? 'resilient' in 'The resilient system recovered quickly.'?",
+    "pattern": "vocabulary-context",
+    "skill": "vocabulary-context",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does the underlined word mean? 'resilient' in 'The resilient system recovered quickly.'?",
+      "options": [
+        "A. Creative",
+        "B. Strong",
+        "C. Careful",
+        "D. Complete"
+      ],
+      "correct_answer": "B. Strong",
+      "explanation": "'Strong' is the correct meaning"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.266590+00:00",
+    "updated_at": "2026-09-21T12:53:32.266590+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  },
+  {
+    "id": "verbal_vocab_0019",
+    "question": "What does the underlined word mean? 'intuitive' in 'The intuitive interface was easy to use.'?",
+    "pattern": "vocabulary-context",
+    "skill": "vocabulary-context",
+    "domain": "Verbal",
+    "difficulty": "medium",
+    "difficulty_calibrated": false,
+    "company_relevance": {
+      "tcs": 0.75,
+      "infosys": 0.95,
+      "wipro": 0.75,
+      "cognizant": 0.5,
+      "capgemini": 0.5,
+      "accenture": 0.5,
+      "tech_mahindra": 0.5,
+      "ltimindtree": 0.5
+    },
+    "time_estimate_sec": 90,
+    "time_limit_sec": 120,
+    "question_type": "MCQ",
+    "content": {
+      "question": "What does the underlined word mean? 'intuitive' in 'The intuitive interface was easy to use.'?",
+      "options": [
+        "A. Continued",
+        "B. Natural",
+        "C. Changing",
+        "D. Urgent"
+      ],
+      "correct_answer": "B. Natural",
+      "explanation": "'Natural' is the correct meaning"
+    },
+    "hints": [],
+    "common_mistakes": [],
+    "prerequisites": [],
+    "follow_up_patterns": [],
+    "verified": false,
+    "verified_by": null,
+    "verified_at": null,
+    "source": "Generated-template-v1",
+    "created_at": "2026-09-21T12:53:32.266590+00:00",
+    "updated_at": "2026-09-21T12:53:32.266590+00:00",
+    "trust_status": "automated_checked",
+    "type": "verbal",
+    "company_tags": [
+      "Infosys",
+      "TCS",
+      "Wipro"
+    ]
+  }
+]

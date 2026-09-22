@@ -277,7 +277,7 @@ export const gamificationApi = {
     return request("/api/v1/gamification/profile/title-progression");
   },
 
-  getReadinessScore(company?: string): Promise<{
+  getCompanyReadinessBreakdown(company?: string): Promise<{
     overall_readiness: number;
     domain_scores: Record<string, number>;
     per_company_scores: Record<string, unknown>;

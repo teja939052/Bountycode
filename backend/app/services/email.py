@@ -76,7 +76,7 @@ def trial_started_email(name: str, days: int = 7):
         f"<h1 style='font-size:20px;margin:0 0 12px'>Hi {name or 'there'}, you now have Pro.</h1>"
         "<p style='line-height:1.5'>Everything is unlocked for the next "
         f"{days} days: unlimited AI interviews, resume optimization, system design, "
-        "coding challenges, and salary negotiation coaching.</p>"
+        "coding challenges, and placement mock tests.</p>"
         "<p style='margin:20px 0'>" + _button("Make the most of Pro", f"{FRONTEND_URL}/dashboard") + "</p>"
         "<p style='line-height:1.5;color:#94a3b8'>We'll remind you before it ends. "
         "No card was charged. " + _button("Keep Pro after the trial", PRICING_URL) + "</p>"

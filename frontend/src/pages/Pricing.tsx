@@ -365,6 +365,10 @@ export default function Pricing() {
           </div>
         )}
 
+        {/* V3 §7 — ONE tier ₹99/mo. Student code STUDENT50 → ₹49/mo with .edu.in/.ac.in email. Coupon box below applies it. */}
+        <div className="text-center mb-4 text-xs font-mono text-text-muted">
+          Job Seeker — ₹99/mo · Students: enter <span className="font-bold text-primary">STUDENT50</span> below with your college email → ₹49/mo
+        </div>
         {/* Coupon code input */}
         <div className="flex justify-center mb-8">
           <div className="flex items-center gap-2 max-w-sm w-full">

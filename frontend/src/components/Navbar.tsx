@@ -27,15 +27,16 @@ import {
 import BackgroundSwitcher from "../components/background/BackgroundSwitcher";
 import { useLocation } from "react-router-dom";
 
-/* Primary IA — canonical navigation.
-    Six hubs: Journey, Practice, Mock OA, AI Interview, Company Tracks, Profile. */
+/* Primary IA — V3 unified: ONE Journey, 5 items max.
+   Journey / Practice / Target / Skills / Profile.
+   Everything else (OA, repair, interview, SRS, mock, lesson) is an
+   implementation detail reached FROM the Journey, not nav. */
 const PRIMARY_LINKS: NavItem[] = [
   { to: "/journey", label: "Journey", icon: Compass },
   { to: "/practice", label: "Practice", icon: Code2 },
-  { to: "/mock-oa", label: "Mock OA", icon: ClipboardList },
-  { to: "/interview", label: "AI Interview", icon: User },
-  { to: "/company-tracks", label: "Companies", icon: Building2 },
-  { to: "/career-profile", label: "Profile", icon: User },
+  { to: "/target", label: "Target", icon: Building2 },
+  { to: "/skills", label: "Skills", icon: Trophy },
+  { to: "/profile", label: "Profile", icon: User },
 ];
 
 export default function Navbar() {
