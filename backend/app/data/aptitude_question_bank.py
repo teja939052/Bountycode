@@ -623,10 +623,18 @@ def get_questions_by_difficulty(category: str, difficulty: str) -> List[Dict[str
     """Get questions filtered by difficulty level."""
     return [q for q in get_questions_by_category(category) if q["difficulty"] == difficulty]
 
-def get_random_questions(category: str, count: int = 5) -> List[Dict[str, Any]]:
-    """Get random questions from a category."""
+def get_random_questions(category: str, count: int = 5, topic: str = None) -> List[Dict[str, Any]]:
+    """Get random questions from a category, optionally narrowed to a topic.
+
+    Falls back to the whole category when the topic filter matches nothing,
+    so fine-grained frontend sub-categories never 400 for lack of coverage.
+    """
     import random
     questions = get_questions_by_category(category)
+    if topic:
+        narrowed = [q for q in questions if (q.get("topic") or "") == topic]
+        if narrowed:
+            questions = narrowed
     return random.sample(questions, min(count, len(questions)))
 
 def get_question_by_id(question_id: str) -> Optional[Dict[str, Any]]:
