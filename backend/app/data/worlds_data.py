@@ -1,7 +1,7 @@
 """World data for all 12 BountyCode worlds."""
 
 from app.models.world import (
-    Boss, BreakStep, Build, Code, Debug, Discover, Level, Manipulate,
+    Boss, BreakStep, Build, Checks, Code, Debug, Discover, Level, Manipulate,
     Predict, Retrieval, Story, Success, Town, Transfer, Tutor, World, Reward,
 )
 
@@ -62,13 +62,123 @@ def _transfer(prompt, answer, context=""):
     return Transfer(prompt=prompt, answer=answer, context=context)
 
 
+def _build(prompt, starter="", placeholder="", language="python"):
+    return Build(prompt=prompt, starter=starter, placeholder=placeholder, language=language)
 
-def _level(id, title, icon, order, concept, mental_model, canonical_skill, maps_to, story, tutor, discover, manipulate, code, checks, hints, success, predict=None, build=None, break_step=None, debug=None, retrieval=None, transfer=None, mastery_threshold=None, estimated_minutes=None, unlocks=None, role_relevance=None, company_relevance=None):
-    return Level(id=id, title=title, kind="level", icon=icon, order=order, concept=concept, mental_model=mental_model, canonical_skill=canonical_skill, maps_to_competency=maps_to, role_relevance=role_relevance, company_relevance=company_relevance, story=story, tutor=tutor, discover=discover, manipulate=manipulate, predict=predict, build=build, break_step=break_step, debug=debug, code=code, checks=checks, hints=hints, retrieval=retrieval, transfer=transfer, mastery_threshold=mastery_threshold, estimated_minutes=estimated_minutes, success=success, unlocks=unlocks)
+
+def _understand(text):
+    return text
 
 
-def _boss(id, title, icon, order, concept, mental_model, canonical_skill, maps_to, story, tutor, discover, manipulate, code, checks, hints, success, reward, predict=None, build=None, break_step=None, debug=None, retrieval=None, transfer=None, mastery_threshold=80, estimated_minutes=None, unlocks=None, role_relevance=None, company_relevance=None):
-    return Boss(id=id, title=title, kind="boss", icon=icon, order=order, concept=concept, mental_model=mental_model, canonical_skill=canonical_skill, maps_to_competency=maps_to, role_relevance=role_relevance, company_relevance=company_relevance, story=story, tutor=tutor, discover=discover, manipulate=manipulate, predict=predict, build=build, break_step=break_step, debug=debug, code=code, checks=checks, hints=hints, retrieval=retrieval, transfer=transfer, mastery_threshold=mastery_threshold, estimated_minutes=estimated_minutes, success=success, reward=reward, unlocks=unlocks)
+
+# Service-company relevance defaults: every level serves the mass-recruiter
+# pipeline (TCS/Infosys/Wipro/Accenture/Cognizant/Capgemini/HCL/TechM/IBM).
+# Targeted users therefore company-match; role strings cover both the
+# user-facing ("sde") and world-facing ("developer") vocabularies so the
+# worlds.py relevance sort is real instead of cosmetic.
+_SERVICE_COMPANIES = (
+    "tcs tcs_nqt ninja digital prime infosys infytq wipro wipro_nlth "
+    "accenture cognizant cognizant_genc genc capgemini hcl techm tech_mahindra ibm"
+)
+_ROLE_ENGINEERING = "sde developer"
+
+
+def _level(id, title, icon, order, concept, mental_model, canonical_skill, maps_to, story, tutor, discover, understand, manipulate, *args, mastery_threshold=None, estimated_minutes=None, unlocks=None, role_relevance=_ROLE_ENGINEERING, company_relevance=_SERVICE_COMPANIES, **kwargs):
+    predict = kwargs.get("predict")
+    build = kwargs.get("build")
+    break_step = kwargs.get("break_step")
+    debug = kwargs.get("debug")
+    retrieval = kwargs.get("retrieval")
+    transfer = kwargs.get("transfer")
+    checks = kwargs.get("checks")
+    hints = kwargs.get("hints")
+    success = kwargs.get("success")
+    for arg in args:
+        if isinstance(arg, Predict) and predict is None:
+            predict = arg
+        elif isinstance(arg, Build) and build is None:
+            build = arg
+        elif isinstance(arg, BreakStep) and break_step is None:
+            break_step = arg
+        elif isinstance(arg, Debug) and debug is None:
+            debug = arg
+        elif isinstance(arg, Retrieval) and retrieval is None:
+            retrieval = arg
+        elif isinstance(arg, Transfer) and transfer is None:
+            transfer = arg
+        elif isinstance(arg, Checks) and checks is None:
+            checks = arg
+        elif isinstance(arg, list) and hints is None:
+            hints = arg
+        elif isinstance(arg, Success) and success is None:
+            success = arg
+        elif isinstance(arg, Code):
+            kwargs["code"] = arg
+    level_kwargs = {
+        "id": id, "title": title, "kind": "level", "icon": icon, "order": order,
+        "concept": concept, "mental_model": mental_model, "canonical_skill": canonical_skill,
+        "maps_to_competency": maps_to, "role_relevance": role_relevance,
+        "company_relevance": company_relevance, "story": story, "tutor": tutor,
+        "discover": discover, "understand": understand, "manipulate": manipulate,
+        "predict": predict, "build": build, "break_step": break_step, "debug": debug,
+        "retrieval": retrieval, "transfer": transfer, "checks": checks, "hints": hints,
+        "success": success, "mastery_threshold": mastery_threshold,
+        "estimated_minutes": estimated_minutes, "unlocks": unlocks,
+    }
+    if "code" in kwargs:
+        level_kwargs["code"] = kwargs["code"]
+    return Level(**level_kwargs)
+
+
+def _boss(id, title, icon, order, concept, mental_model, canonical_skill, maps_to, story, tutor, discover, understand, manipulate, *args, mastery_threshold=80, estimated_minutes=None, unlocks=None, role_relevance=_ROLE_ENGINEERING, company_relevance=_SERVICE_COMPANIES, **kwargs):
+    predict = kwargs.get("predict")
+    build = kwargs.get("build")
+    break_step = kwargs.get("break_step")
+    debug = kwargs.get("debug")
+    retrieval = kwargs.get("retrieval")
+    transfer = kwargs.get("transfer")
+    checks = kwargs.get("checks")
+    hints = kwargs.get("hints")
+    success = kwargs.get("success")
+    for arg in args:
+        if isinstance(arg, Predict) and predict is None:
+            predict = arg
+        elif isinstance(arg, Build) and build is None:
+            build = arg
+        elif isinstance(arg, BreakStep) and break_step is None:
+            break_step = arg
+        elif isinstance(arg, Debug) and debug is None:
+            debug = arg
+        elif isinstance(arg, Retrieval) and retrieval is None:
+            retrieval = arg
+        elif isinstance(arg, Transfer) and transfer is None:
+            transfer = arg
+        elif isinstance(arg, Checks) and checks is None:
+            checks = arg
+        elif isinstance(arg, list) and hints is None:
+            hints = arg
+        elif isinstance(arg, Success) and success is None:
+            success = arg
+        elif isinstance(arg, Code):
+            kwargs["code"] = arg
+        elif isinstance(arg, Reward):
+            kwargs["reward"] = arg
+    level_kwargs = {
+        "id": id, "title": title, "kind": "boss", "icon": icon, "order": order,
+        "concept": concept, "mental_model": mental_model, "canonical_skill": canonical_skill,
+        "maps_to_competency": maps_to, "role_relevance": role_relevance,
+        "company_relevance": company_relevance, "story": story, "tutor": tutor,
+        "discover": discover, "understand": understand, "manipulate": manipulate,
+        "predict": predict, "build": build, "break_step": break_step, "debug": debug,
+        "retrieval": retrieval, "transfer": transfer, "checks": checks, "hints": hints,
+        "success": success, "mastery_threshold": mastery_threshold,
+        "estimated_minutes": estimated_minutes, "unlocks": unlocks,
+    }
+    if "code" in kwargs:
+        level_kwargs["code"] = kwargs["code"]
+    if "reward" in kwargs:
+        level_kwargs["reward"] = kwargs["reward"]
+    return Boss(**level_kwargs)
 
 
 def _make_town(id, name, icon, description, order, mental_model, canonical_skills, competencies, levels):
@@ -88,57 +198,165 @@ WORLD_FOUNDATIONS = World(
                 _story("Village Square — Supply Hut","Mira the Keeper","Our supply boxes lost their labels! This one holds 5 apples, but nobody remembers. Can you give it a name the program will remember?"),
                 _tutor("Byte","🧭","Programs remember values by giving them a name. Like labeling a box.","apples is a variable — a named box that holds a value. The = does not mean equals in math; it means store this value here."),
                 _discover("A wooden crate labeled ??? with 5 apples inside. Tap it to label.","select-value","What should the program remember here?","apples = 5",[5,"apple",True]),
+                _understand("A variable is a named box in the computer's memory. The = sign means 'put this value in this box'. It is not math equality — it is assignment, a one-way arrow."),
                 _manipulate("memory-box","apples = ?","apples = 5",hint="Give the box the name apples and put 5 inside."),
-                _code("Label the box: create a variable called apples with the value 5.","# Give the box a name\n","apples = 5"),
+                _predict("What will this program print?\napples = 5\nprint(apples)\napples = 10\nprint(apples)",
+                    "5\n10",
+                    "print() shows what is in the box RIGHT NOW. The box changes after the second line."),
+                _build("Create a variable called apples with the value 5.","# Give the box a name\n","apples = 5"),
+                _break_step("Why does this program print 5 twice instead of 5 then 10?\napples = 5\nprint(apples)\napples = 10\nprint(apples)",
+                    "apples = 5\nprint(apples)\napples = 10\nprint(apples)",
+                    "The second print shows 10, not 5. The student predicted both print 5."),
+                _debug("The program prints 5 twice. Fix it so the second print shows 10.",
+                    "apples = 5\nprint(apples)\napples = 10\nprint(apples)",
+                    ["Check that the second assignment happens before the second print."],
+                    "apples = 5\nprint(apples)\napples = 10\nprint(apples)"),
+                _retrieval("What does apples = 10 mean in programming?",
+                    "Put 10 in the box named apples",
+                    "= is a one-way arrow, not equality."),
+                _transfer("A bank account starts with $100. Write code that deposits $50 and prints the new balance.",
+                    "balance = 100\nbalance = 150\nprint(balance)",
+                    "Same mental model: named box, assignment, print."),
                 _checks([r"^\s*apples\s*=\s*5\s*(#.*)?$"]),
                 ["What information does the robot need to remember here?","Programs can give a name to information so they can use it later — like labeling a box.","Try giving the number 5 the name `apples`.","Reveal: apples = 5 — the box needs this label to be remembered."],
-                _success("📦 ??? · 📋 Empty ledger","📦 5 apples · 📋 ✓ Inventory recorded","The crate now glows: 🍎 Apples: 5 — the villagers cheer!","Variable Mastery — you can make programs remember things.","Your program remembered something. That is what variables do.",20)),
+                _success("📦 ??? · 📋 Empty ledger","📦 5 apples · 📋 ✓ Inventory recorded","The crate now glows: 🍎 Apples: 5 — the villagers cheer!","Variable Mastery — you can make programs remember things.","Your program remembered something. That is what variables do.",20),
+                mastery_threshold=80, estimated_minutes=10),
             _level("level-2","The Label","🏷️",2,"variables","Naming","coding.variables","coding.variables",
                 _story("Village Store","Mira the Keeper","One box is not enough. We also have 3 loaves of bread. Remember both — then show me what is inside!"),
                 _tutor("Byte","🧭","Each piece of information gets its own box. And print() lets you look inside.","Two variables, two boxes. print() is how you ask: what is inside this box right now?"),
                 _discover("Two crates: 🍎 5 and 🍞 3. Tap each to label.","pair-labels","Label them: apples and bread","apples = 5; bread = 3"),
+                _understand("Multiple variables mean multiple named boxes. Each box has one name and one current value. print() is how you peek inside any box."),
                 _manipulate("memory-boxes","apples = 5 / bread = ?","apples = 5\nbread = 3\nprint(apples)",blocks=["apples","=","5","bread","=","3","print","(",")"]),
-                _code("Create apples = 5 and bread = 3, then print the apples.","# Two boxes, then look inside\n","apples = 5\nbread = 3\nprint(apples)"),
+                _predict("What does this print?\napples = 5\nbread = 3\nprint(bread)",
+                    "3",
+                    "print(bread) shows the value in the bread box."),
+                _build("Create apples = 5 and bread = 3, then print the apples.","# Two boxes, then look inside\n","apples = 5\nbread = 3\nprint(apples)"),
+                _break_step("Why does this print 3 instead of 5?\napples = 5\nbread = 3\nprint(bread)",
+                    "apples = 5\nbread = 3\nprint(bread)",
+                    "The student predicted print shows apples always."),
+                _debug("The program prints the wrong variable. Fix it to print apples.",
+                    "apples = 5\nbread = 3\nprint(bread)",
+                    ["Change print(bread) to print(apples)."],
+                    "apples = 5\nbread = 3\nprint(apples)"),
+                _retrieval("How do you look inside the box named bread?",
+                    "print(bread)",
+                    "Use print() with the variable name."),
+                _transfer("Track temperature: create temp_celsius = 25, then print it.",
+                    "temp_celsius = 25\nprint(temp_celsius)",
+                    "Same pattern: name, assign, print."),
                 _checks([r"apples\s*=\s*5",r"bread\s*=\s*3",r"print\s*\(\s*apples\s*\)"]),
                 ["What second fact does the shop need besides apples? How would you look inside a box?","Each fact gets its own labeled box. print() asks what is inside this one?","Try creating a second variable for bread, then print(apples).","Reveal:\napples = 5\nbread = 3\nprint(apples)"],
-                _success("🧺 🍎 ? · 🍞 ? · 📋 1/2 recorded","🧺 🍎 5 · 🍞 3 · 📋 ✓ Both recorded","The store inventory board updates: Apples 5 · Bread 3 — it works!","State Sense — programs hold many facts at once.","Two boxes, two facts. That is state.",25)),
+                _success("🧺 🍎 ? · 🍞 ? · 📋 1/2 recorded","🧺 🍎 5 · 🍞 3 · 📋 ✓ Both recorded","The store inventory board updates: Apples 5 · Bread 3 — it works!","State Sense — programs hold many facts at once.","Two boxes, two facts. That is state.",25),
+                mastery_threshold=80, estimated_minutes=10),
             _level("level-3","The Change","🔄",3,"reassignment","Changing","coding.variables","coding.variables",
                 _story("Village Store — Delivery Day","Mira the Keeper","A delivery arrived! The apple crate should now hold the new stock. Can you update what the program remembers?"),
                 _tutor("Byte","🧭","Variables can change. Assigning again replaces what is inside the box.","apples = 10 does not mean apples equals 10 — it means now put 10 in the box called apples. The old value is gone."),
                 _discover("Crate 🍎 changes from 5 → 10 when you update.","slider","The stock changed from 5 to 10. How does the box update?","apples = 5; apples = 10"),
+                _understand("Assignment is not equality. apples = 10 means 'replace the value in the apples box with 10'. The old value 5 is gone forever."),
                 _manipulate("slider-box","apples = 5\napples = ?","apples = 10"),
-                _code("First set apples = 5, then update it to 10, then print it.","# Start at 5, then update\n","apples = 5\napples = 10\nprint(apples)"),
+                _predict("What does this print?\napples = 5\napples = 10\nprint(apples)",
+                    "10",
+                    "The last assignment wins. The box holds 10."),
+                _build("First set apples = 5, then update it to 10, then print it.","# Start at 5, then update\n","apples = 5\napples = 10\nprint(apples)"),
+                _break_step("Why does this print 5 instead of 10?\napples = 5\napples = 10\nprint(apples)",
+                    "apples = 5\napples = 10\nprint(apples)",
+                    "The student predicted the first value sticks."),
+                _debug("The program prints 5 but should print 10. Fix the order.",
+                    "print(apples)\napples = 5\napples = 10",
+                    ["Move the first print after apples = 5.", "Move the second print after apples = 10."],
+                    "apples = 5\nprint(apples)\napples = 10\nprint(apples)"),
+                _retrieval("What happens to the old value when you assign a new one?",
+                    "It is replaced / gone",
+                    "Assignment overwrites the previous value."),
+                _transfer("Update a bank account: start with balance = 100, then deposit 50, then print balance.",
+                    "balance = 100\nbalance = 150\nprint(balance)",
+                    "Same pattern: assign, reassign, print."),
                 _checks([r"apples\s*=\s*5",r"apples\s*=\s*10",r"print\s*\(\s*apples\s*\)"]),
                 ["What changed in the stockroom? What should the box hold now?","A variable is a label — you can put a new value in the same box.","Keep the first line apples = 5, then put 10 in the same box on the next line.","Reveal:\napples = 5\napples = 10\nprint(apples)"],
-                _success("📦 5 apples · 🧾 Ledger says 5","📦 10 apples · 🧾 Ledger says 10","The crate count ticks 5 → 10. The ledger is correct!","Mutation — you can change what the program remembers.","You did not create a new box — you changed the one you had.",25)),
+                _success("📦 5 apples · 🧾 Ledger says 5","📦 10 apples · 🧾 Ledger says 10","The crate count ticks 5 → 10. The ledger is correct!","Mutation — you can change what the program remembers.","You did not create a new box — you changed the one you had.",25),
+                mastery_threshold=80, estimated_minutes=10),
             _level("level-4","The Many","🧺",4,"multiple-variables","Organizing","coding.variables","coding.variables",
                 _story("Village Market","Old Tomas","I track apples, bread, AND coins. Three facts, three boxes. Can you set them all up?"),
                 _tutor("Byte","🧭","State is just everything the program remembers right now. More variables = richer state.","Three variables in a row — the program now remembers three things at once."),
                 _discover("Three stalls: 🍎 🍞 🪙 — each needs a label.","match","Match: apples→5, bread→3, coins→20","apples = 5; bread = 3; coins = 20"),
+                _understand("State is the complete set of variables and their current values. More variables = richer state = more facts the program can use."),
                 _manipulate("three-boxes",blocks=["apples","bread","coins","=","5","3","20"],answer="apples = 5\nbread = 3\ncoins = 20"),
-                _code("Create three variables: apples = 5, bread = 3, coins = 20.","# Three facts\n","apples = 5\nbread = 3\ncoins = 20"),
+                _predict("What does this print?\napples = 5\nbread = 3\ncoins = 20\nprint(coins)",
+                    "20",
+                    "print(coins) shows the value in the coins box."),
+                _build("Create three variables: apples = 5, bread = 3, coins = 20.","# Three facts\n","apples = 5\nbread = 3\ncoins = 20"),
+                _break_step("Why does this fail?\napples = 5\nbread = 3\ncoins = 20\nprint(coin)",
+                    "apples = 5\nbread = 3\ncoins = 20\nprint(coin)",
+                    "NameError: 'coin' is not defined. The student forgot the exact name."),
+                _debug("Fix the NameError: the program cannot find 'coin'.",
+                    "apples = 5\nbread = 3\ncoins = 20\nprint(coin)",
+                    ["Check the exact variable name. It is 'coins', not 'coin'."],
+                    "apples = 5\nbread = 3\ncoins = 20\nprint(coins)"),
+                _retrieval("What is 'state' in a program?",
+                    "all variables and their current values",
+                    "State = everything the program remembers right now."),
+                _transfer("Track three students' scores: alice = 85, bob = 92, charlie = 78. Print charlie's score.",
+                    "alice = 85\nbob = 92\ncharlie = 78\nprint(charlie)",
+                    "Same pattern: three named boxes, print one."),
                 _checks([r"apples\s*=\s*5",r"bread\s*=\s*3",r"coins\s*=\s*20"]),
                 ["How many different facts does Tomas need to track?","State = everything the program remembers right now. Each fact needs its own name.","Try three labeled boxes: one for apples, one for bread, one for coins.","Reveal:\napples = 5\nbread = 3\ncoins = 20"],
-                _success("🏪 3 stalls · 📋 Empty","🏪 🍎 5 · 🍞 3 · 🪙 20 · 📋 ✓ All recorded","Three stalls light up. The market ledger is complete!","State Keeper — you hold a whole world in variables.","That is state: everything remembered, organized.",25)),
+                _success("🏪 3 stalls · 📋 Empty","🏪 🍎 5 · 🍞 3 · 🪙 20 · 📋 ✓ All recorded","Three stalls light up. The market ledger is complete!","State Keeper — you hold a whole world in variables.","That is state: everything remembered, organized.",25),
+                mastery_threshold=80, estimated_minutes=10),
             _level("level-5","The Echo","📣",5,"expressions","Using","coding.variables","coding.variables",
                 _story("Village Square — Announcement","Mira the Keeper","The elders want the total items! Apples plus bread — make the program figure it out and announce it."),
                 _tutor("Byte","🧭","Variables are not just storage — you can compute with them. apples + bread is an expression.","total = apples + bread stores the result of the computation. Then print(total) shows it."),
                 _discover("🍎 5 + 🍞 3 = ? — drag + to combine.","expression","Compute: total = apples + bread","total = apples + bread"),
+                _understand("An expression is a combination of values and operators that computes a new value. apples + bread reads the current values, adds them, and produces a new value."),
                 _manipulate("expression-box","total = apples + bread","total = apples + bread"),
-                _code("Set apples = 5, bread = 3, compute total = apples + bread, then print(total).","# Compute the total\n","apples = 5\nbread = 3\ntotal = apples + bread\nprint(total)"),
+                _predict("What does this print?\napples = 5\nbread = 3\ntotal = apples + bread\nprint(total)",
+                    "8",
+                    "total gets the result of apples + bread = 5 + 3 = 8."),
+                _build("Set apples = 5, bread = 3, compute total = apples + bread, then print(total).","# Compute the total\n","apples = 5\nbread = 3\ntotal = apples + bread\nprint(total)"),
+                _break_step("Why does this print 53 instead of 8?\napples = 5\nbread = 3\ntotal = apples + bread\nprint(total)",
+                    "apples = '5'\nbread = '3'\ntotal = apples + bread\nprint(total)",
+                    "String concatenation: '5' + '3' = '53'."),
+                _debug("The program prints 53 instead of 8. Fix it.",
+                    "apples = '5'\nbread = '3'\ntotal = apples + bread\nprint(total)",
+                    ["Convert strings to integers using int().", "Use apples = int(apples) before adding."],
+                    "apples = 5\nbread = 3\ntotal = apples + bread\nprint(total)"),
+                _retrieval("What is an expression?",
+                    "a combination of values and operators that computes a new value",
+                    "e.g., apples + bread, 5 * 3, 'hello' + ' world'"),
+                _transfer("Calculate a 10% tip on a $50 bill. Write code that computes tip = bill * 0.10 and prints it.",
+                    "bill = 50\ntip = bill * 0.10\nprint(tip)",
+                    "Same pattern: read values, compute, store in variable, print."),
                 _checks([r"apples\s*=\s*5",r"bread\s*=\s*3",r"total\s*=\s*apples\s*\+\s*bread",r"print\s*\(\s*total\s*\)"]),
                 ["How would the crier announce the total without counting by hand?","You can compute with names, not just numbers — try combining the two boxes.","Try making a new box that holds the result of apples + bread, then announce it.","Reveal:\napples = 5\nbread = 3\ntotal = apples + bread\nprint(total)"],
-                _success("📢 Elders waiting · 🧮 No total yet","📢 Announced: 8 items! · 🧮 total = 8","The town crier announces: 8 items in total! — you computed the answer.","Expression Craft — you make programs calculate.","You used remembered facts to make something new.",30)),
+                _success("📢 Elders waiting · 🧮 No total yet","📢 Announced: 8 items! · 🧮 total = 8","The town crier announces: 8 items in total! — you computed the answer.","Expression Craft — you make programs calculate.","You used remembered facts to make something new.",30),
+                mastery_threshold=80, estimated_minutes=10),
             _boss("boss-1","The Broken Inventory","🐉",6,"boss-variables-state","Transfer","coding.variables","coding.variables",
                 _story("Supply Hut — Emergency","Mira the Keeper","The inventory system has stopped remembering its stock. The stockroom has apples, bread and coins — 12, 4 and 30 — but the program remembers nothing. The elders need the total items (apples + bread) announced. Repair it!"),
                 _tutor("Byte","🧭","Combine everything: remember, update, compute, announce.","This is transfer: a new situation, same ideas. If you can do this, you truly understand Remembering → Naming → Using."),
                 _discover("Scrambled ledger: ??? ??? ??? — rebuild from stockroom count.","boss-fix","Stockroom: 12 apples, 4 bread, 30 coins. Total = apples + bread. Repair the ledger.","apples = 12; bread = 4; coins = 30; total = apples + bread; print(total)"),
+                _understand("Transfer means applying a mental model to a new situation. The stockroom is just variables. The total is just an expression. You already know how — you just need to map it."),
                 _manipulate("boss-ledger","Remember 3 stocks + announce total","apples = 12; bread = 4; coins = 30; total = apples + bread; print(total)"),
-                _code("Repair the inventory: make the program remember the stockroom (12 apples, 4 bread, 30 coins) and announce the total items (apples + bread).","# Repair the scrambled ledger\n# Stockroom: 12 apples, 4 bread, 30 coins\n","apples = 12\nbread = 4\ncoins = 30\ntotal = apples + bread\nprint(total)"),
+                _predict("What should the final print show?",
+                    "16",
+                    "apples + bread = 12 + 4 = 16."),
+                _build("Repair the inventory: make the program remember the stockroom (12 apples, 4 bread, 30 coins) and announce the total items (apples + bread).","# Repair the scrambled ledger\n# Stockroom: 12 apples, 4 bread, 30 coins\n","apples = 12\nbread = 4\ncoins = 30\ntotal = apples + bread\nprint(total)"),
+                _break_step("Why does this print 30 instead of 16?\napples = 12\nbread = 4\ncoins = 30\ntotal = apples + bread\nprint(total)",
+                    "total = coins\nprint(total)",
+                    "The student assigned total = coins instead of total = apples + bread."),
+                _debug("The program prints the wrong total. Fix the total calculation.",
+                    "apples = 12\nbread = 4\ncoins = 30\ntotal = coins\nprint(total)",
+                    ["Change total = coins to total = apples + bread."],
+                    "apples = 12\nbread = 4\ncoins = 30\ntotal = apples + bread\nprint(total)"),
+                _retrieval("What does total = apples + bread do?",
+                    "computes the sum and stores it in total",
+                    "Reads current values, adds them, stores result."),
+                _transfer("A library has 120 fiction and 80 non-fiction books. Write code that prints the total books.",
+                    "fiction = 120\nnon_fiction = 80\ntotal = fiction + non_fiction\nprint(total)",
+                    "Same mental model: named boxes, assignment, expression, print."),
                 _checks([r"apples\s*=\s*12",r"bread\s*=\s*4",r"coins\s*=\s*30",r"total\s*=\s*apples\s*\+\s*bread",r"print\s*\(\s*total\s*\)"]),
                 ["What facts does the stockroom need the program to hold? What does the elder want announced?","You learned Remembering, Naming, Organizing, Using — which ones does this emergency need?","Try three remembered facts for the stock, then compute the total and announce it.","Reveal:\napples = 12\nbread = 4\ncoins = 30\ntotal = apples + bread\nprint(total)"],
                 _success("🏚️ Ledger broken · 📦 ??? · 🔇 Silent","🏚️ → 🏘️ Restored · 📦 12/4/30 · 📢 16 announced · 🌿 Path opens","The hut restores! Ledgers glow, crates align. The village is saved — the path to the next town opens. 🌿","🏆 Village Restored — Remembering → Using MASTERED. Next: Kinds of Things!","You did not copy — you transferred. That is mastery.",50),
-                _reward(diamonds=50,coins=25,badges=["variables-master"],unlocks_town="town-2-types")),
+                _reward(diamonds=50,coins=25,badges=["variables-master"],unlocks_town="town-2-types"),
+                mastery_threshold=80, estimated_minutes=15),
         ]),
     ]
 )
@@ -156,6 +374,7 @@ WORLD_SEARCHLANDS = World(
                 _story("Searchlands Gate","Guard Hal","Every visitor must be checked. The line is long — can you find the one with the golden ticket?"),
                 _tutor("Byte","🧭","To find something in a list, start at the beginning and check each one. That is linear search.","It is like checking every seat in a row until you find your friend. Simple, but it always works."),
                 _discover("A line of 7 cards face-down. One has a golden star. Flip them one by one.","flip-card","Which position has the golden star?","position = 4"),
+                _understand("It is like checking every seat in a row until you find your friend. Simple, but it always works."),
                 _manipulate("check-list","Check position ?","Check each position from 1 to 7 until you find the star.",hint="Start at position 1 and go up."),
                 _code("Write code to find the golden star in the list.","cards = [0,0,0,1,0,0,0]\n","target = 1\nfor i in range(len(cards)):\n    if cards[i] == target:\n        print(i)"),
                 _checks([r"for\s",r"range\s*\(",r"if\s*cards"]),
@@ -165,6 +384,7 @@ WORLD_SEARCHLANDS = World(
                 _story("Searchlands Market","Merchant Mia","How many customers bought apples today? Count them all — one by one."),
                 _tutor("Byte","🧭","A counter adds up how many times something happens. It is like tally marks.","Every time you find what you are looking for, you add 1 to your counter."),
                 _discover("A receipt with 8 items. Count how many are apples.","tally","How many apples on this receipt?","count = 3"),
+                _understand("Every time you find what you are looking for, you add 1 to your counter."),
                 _manipulate("tally-counter","count = 0\nfor item in items:\n    if item == apple: count += 1","count = 3"),
                 _code("Count how many apples appear in the list.","items = ['apple','banana','apple','orange','apple']\n","count = 0\nfor item in items:\n    if item == apple:\n        count += 1\nprint(count)"),
                 _checks([r"count\s*=\s*0",r"for\s",r"if\s*item\s*=="]),
@@ -174,6 +394,7 @@ WORLD_SEARCHLANDS = World(
                 _story("Searchlands Library","Librarian Leo","What if the book you want is the very last one? Or not here at all?"),
                 _tutor("Byte","🧭","Linear search takes time proportional to the list size. That is O(n).","If the list has 1000 items, you might check all 1000. That is the worst case."),
                 _discover("A shelf of 100 books. The target is book #100.","worst-case","How many checks in the worst case?","100"),
+                _understand("If the list has 1000 items, you might check all 1000. That is the worst case."),
                 _manipulate("complexity-box","Worst case for n items = ?","n"),
                 _code("Explain: what is the worst case for linear search on n items?","# Write your explanation\n","# Worst case: check all n items\n# Best case: find at index 0\n# So worst case = n checks"),
                 _checks([r"n\s*items",r"all\s*n",r"n\s*checks"]),
@@ -183,6 +404,7 @@ WORLD_SEARCHLANDS = World(
                 _story("Searchlands Archive","Archivist Ana","A ancient scroll is hidden in a vault of 500 scrolls. Find it before the temple collapses!"),
                 _tutor("Byte","🧭","Linear search is your first tool. Check every scroll, but be smart about it.","Even a slow search beats no search. But can you do better?"),
                 _discover("500 scrolls in a vault. One has the ancient symbol. Find it.","vault-search","Find the scroll with the ancient symbol.","index = 247"),
+                _understand("Even a slow search beats no search. But can you do better?"),
                 _manipulate("scroll-find","Search scrolls for the ancient symbol","found at index"),
                 _code("Search through the scrolls for the ancient symbol.","scrolls = [0]*500\nscrolls[247] = 1\n","target = 1\nfor i in range(len(scrolls)):\n    if scrolls[i] == target:\n        print(f'Found at {i}')\n        break"),
                 _checks([r"for\s",r"range\s*\(",r"break"]),
@@ -195,6 +417,7 @@ WORLD_SEARCHLANDS = World(
                 _story("Binary Borough Library","Librarian Zoe","Books are sorted by title. Find Dragon without checking every shelf."),
                 _tutor("Byte","🧭","When things are sorted, you can cut the search in half each time.","Open the middle. If your target is smaller, go left. If bigger, go right. Repeat."),
                 _discover("A sorted shelf of 8 books. Find Dragon by checking the middle.","binary-flip","Which book do you check first?","middle = 4"),
+                _understand("Open the middle. If your target is smaller, go left. If bigger, go right. Repeat."),
                 _manipulate("mid-point","Check position ?","middle = (low + high) // 2"),
                 _code("Find the target using binary search on a sorted list.","books = ['Ant','Bear','Cat','Dragon','Eagle','Fox','Goat','Hawk']\n","target = 'Dragon'\nlo, hi = 0, len(books)-1\nwhile lo <= hi:\n    mid = (lo+hi)//2\n    if books[mid] == target: print(mid); break\n    elif books[mid] < target: lo = mid+1\n    else: hi = mid-1"),
                 _checks([r"while\s+lo",r"mid\s*=\s*\(lo\s*\+\s*hi\)",r"books\[mid\]"]),
@@ -209,6 +432,7 @@ WORLD_SEARCHLANDS = World(
                 _story("Binary Borough Square","Game Master Gus","Guess a number from 1 to 100 in as few tries as possible."),
                 _tutor("Byte","🧭","Each guess eliminates half the possibilities. That is O(log n)!","With 100 numbers, you need at most 7 guesses. With 1000, only 10."),
                 _discover("A number from 1 to 100 is hidden. Guess with feedback too high or too low.","guess-game","What is the maximum number of guesses needed?","7"),
+                _understand("With 100 numbers, you need at most 7 guesses. With 1000, only 10."),
                 _manipulate("guess-range","Guess ? (too high / too low)","narrow the range"),
                 _code("Implement a number guessing game with binary search logic.","# Pick a number 1-100\n","import random\ntarget = random.randint(1,100)\nlo, hi = 1, 100\nwhile lo <= hi:\n    guess = (lo+hi)//2\n    # feedback would guide lo/hi"),
                 _checks([r"lo\s*=\s*guess\s*\+\s*1",r"hi\s*=\s*guess\s*-\s*1"]),
@@ -218,6 +442,7 @@ WORLD_SEARCHLANDS = World(
                 _story("Binary Borough Edge","Inspector Ivy","What happens when the list has 1 item? Or the target is not there?"),
                 _tutor("Byte","🧭","Edge cases matter. Empty lists, single items, missing targets — handle them all.","The loop condition `lo <= hi` ensures you do not miss anything."),
                 _discover("A list of 1 item. Is it the target?","edge-case","What does your code do with 1 item?","yes"),
+                _understand("The loop condition `lo <= hi` ensures you do not miss anything."),
                 _manipulate("edge-check","What if lo > hi?","target not found"),
                 _code("Handle edge cases in binary search.","# Empty list, single item, missing\n","def search(nums, target):\n    lo, hi = 0, len(nums)-1\n    while lo <= hi:\n        mid = (lo+hi)//2\n        if nums[mid] == target: return mid\n        elif nums[mid] < target: lo = mid+1\n        else: hi = mid-1\n    return -1"),
                 _checks([r"return\s*-1",r"len\(nums\)",r"lo\s*<=\s*hi"]),
@@ -227,6 +452,7 @@ WORLD_SEARCHLANDS = World(
                 _story("Binary Borough Archive","Keeper Kai","A critical page is missing from the ancient tome. Find where it should be in the sorted index."),
                 _tutor("Byte","🧭","When the target is not there, binary search tells you where it should be. That is insertion position.","This is the foundation of many real-world systems."),
                 _discover("A sorted index of 16 pages. Find where page 9 should be inserted.","insert-position","Where does page 9 go?","position = 8"),
+                _understand("This is the foundation of many real-world systems."),
                 _manipulate("insert-find","Find insertion position for 9","lower_bound"),
                 _code("Find the insertion position for a missing target.","pages = list(range(1,17))\n","target = 9\nlo, hi = 0, len(pages)\nwhile lo < hi:\n    mid = (lo+hi)//2\n    if pages[mid] < target: lo = mid+1\n    else: hi = mid\nprint(lo)"),
                 _checks([r"lo\s*=\s*lo\s*\+\s*1",r"pages\[mid\]\s*<\s*target"]),
@@ -250,6 +476,7 @@ WORLD_SORTING = World(
                 _story("Sorting Forge — First Chamber","Forge Master Finn","Arrange these metal bars from shortest to longest. Swap adjacent bars only."),
                 _tutor("Byte","🧭","Bubble sort compares neighbors and swaps them if they are in the wrong order.","Like bubbles rising in water — the largest sinks to the end each pass."),
                 _discover("5 bars of different lengths. Swap adjacent bars to sort them.","bar-swap","Sort: [5,3,1,4,2]","[1,2,3,4,5]"),
+                _understand("Like bubbles rising in water — the largest sinks to the end each pass."),
                 _manipulate("swap-adj","If bar[i] > bar[i+1], swap","pass through the list"),
                 _code("Implement bubble sort to arrange bars from shortest to longest.","bars = [5,3,1,4,2]\n","n = len(bars)\nfor i in range(n):\n    for j in range(0, n-i-1):\n        if bars[j] > bars[j+1]:\n            bars[j], bars[j+1] = bars[j+1], bars[j]\nprint(bars)"),
                 _checks([r"for\s+in\s*range",r"if\s*bars\[j\]",r"bars\[j\],\s*bars\[j\+1\]"]),
@@ -259,6 +486,7 @@ WORLD_SORTING = World(
                 _story("Sorting Forge — Second Chamber","Forge Master Finn","What if the bars are already sorted? Do not waste passes!"),
                 _tutor("Byte","🧭","If no swaps happen in a pass, the list is already sorted. Stop early!","This optimization makes bubble sort O(n) for nearly-sorted data."),
                 _discover("Bars are already sorted: [1,2,3,4,5]. Can you stop after the first pass?","early-stop","How do you know to stop?","no swaps"),
+                _understand("This optimization makes bubble sort O(n) for nearly-sorted data."),
                 _manipulate("early-exit","If no swaps, break","swapped = False"),
                 _code("Add early stopping to bubble sort.","bars = [1,2,3,4,5]\n","swapped = False\nfor i in range(n):\n    if not swapped: break\n    swapped = False\n    for j in range(0, n-i-1):\n        if bars[j] > bars[j+1]:\n            bars[j], bars[j+1] = bars[j+1], bars[j]\n            swapped = True"),
                 _checks([r"swapped\s*=\s*False",r"if\s*not\s*swapped",r"break"]),
@@ -268,6 +496,7 @@ WORLD_SORTING = World(
                 _story("Sorting Forge — Final Chamber","Grand Forge Master","Sort 1000 bars for the kingdom's grand archive. Every bar must be in order!"),
                 _tutor("Byte","🧭","Bubble sort is simple and reliable. For large data, it is slow but correct.","Sometimes the simplest approach is the most trustworthy."),
                 _discover("1000 unsorted bars. Sort them all for the archive.","great-sort","All bars in ascending order.","sorted"),
+                _understand("Sometimes the simplest approach is the most trustworthy."),
                 _manipulate("great-arrange","Sort all bars","bubble sort with early exit"),
                 _code("Sort the full array for the grand archive.","bars = list(range(1000,0,-1))\n","n = len(bars)\nfor i in range(n):\n    swapped = False\n    for j in range(0, n-i-1):\n        if bars[j] > bars[j+1]:\n            bars[j], bars[j+1] = bars[j+1], bars[j]\n            swapped = True\n    if not swapped: break\nprint(bars[:10], '...', bars[-10:])"),
                 _checks([r"swapped",r"break",r"bars\[j\]"]),
@@ -280,6 +509,7 @@ WORLD_SORTING = World(
                 _story("Merge Hall — Entry","Merge Master Mira","To merge, you must first split. Cut the list in half, then half again."),
                 _tutor("Byte","🧭","Merge sort divides the list in half, sorts each half, then merges them back.","Like sorting a deck of cards — split, sort each hand, then merge."),
                 _discover("A list of 8 numbers. Split it in half repeatedly until single elements.","split-list","How many splits to get single elements?","3"),
+                _understand("Like sorting a deck of cards — split, sort each hand, then merge."),
                 _manipulate("split-half","Split list at mid","left = arr[:mid]; right = arr[mid:]"),
                 _code("Implement the split phase of merge sort.","arr = [8,3,1,7,0,5,2,6]\n","def merge_sort(arr):\n    if len(arr) <= 1: return arr\n    mid = len(arr)//2\n    left = merge_sort(arr[:mid])\n    right = merge_sort(arr[mid:])\n    return merge(left, right)"),
                 _checks([r"len\(arr\)\s*<=\s*1",r"mid\s*=\s*len",r"arr\[:mid\]"]),
@@ -289,6 +519,7 @@ WORLD_SORTING = World(
                 _story("Merge Hall — Center","Merge Master Mira","Now merge the sorted halves back together. Compare front elements."),
                 _tutor("Byte","🧭","Merging two sorted lists is simple: compare the front of each, take the smaller.","Like merging two sorted decks — always pick the smaller top card."),
                 _discover("Two sorted lists: [1,3,5] and [2,4,6]. Merge them into one.","merge-lists","Merged result","[1,2,3,4,5,6]"),
+                _understand("Like merging two sorted decks — always pick the smaller top card."),
                 _manipulate("merge-two","Compare fronts, take smaller","result = []"),
                 _code("Merge two sorted lists into one sorted list.","left = [1,3,5]\nright = [2,4,6]\n","result = []\ni = j = 0\nwhile i < len(left) and j < len(right):\n    if left[i] <= right[j]:\n        result.append(left[i]); i += 1\n    else:\n        result.append(right[j]); j += 1\nresult.extend(left[i:])\nresult.extend(right[j:])\nprint(result)"),
                 _checks([r"while\s+",r"append",r"extend"]),
@@ -298,6 +529,7 @@ WORLD_SORTING = World(
                 _story("Merge Hall — Throne Room","Arch-Merge Master","Sort the entire kingdom's census data using merge sort. Every record must be in order."),
                 _tutor("Byte","🧭","Merge sort is O(n log n) — fast and stable. It is the gold standard of sorting.","Divide, sort, merge. Repeat until the whole list is ordered."),
                 _discover("Census data of 1000 records. Sort by ID using merge sort.","census-sort","All records sorted by ID.","sorted"),
+                _understand("Divide, sort, merge. Repeat until the whole list is ordered."),
                 _manipulate("grand-merge","Full merge sort implementation","O(n log n)"),
                 _code("Implement complete merge sort for the census data.","data = [5,2,8,1,9,3,7,4,6,0]\n","def merge_sort(arr):\n    if len(arr) <= 1: return arr\n    mid = len(arr)//2\n    left = merge_sort(arr[:mid])\n    right = merge_sort(arr[mid:])\n    return merge(left, right)\ndef merge(l,r):\n    res = []\n    i = j = 0\n    while i < len(l) and j < len(r):\n        if l[i] <= r[j]: res.append(l[i]); i += 1\n        else: res.append(r[j]); j += 1\n    res.extend(l[i:]); res.extend(r[j:])\n    return res\nprint(merge_sort(data))"),
                 _checks([r"merge_sort",r"merge\s*\(",r"return\s*res"]),
@@ -321,6 +553,7 @@ WORLD_RECURSION = World(
                 _story("Mountain Trailhead","Guide Greta","A mirror shows a smaller version of you. Recursion is the same — a function calling itself on a smaller problem."),
                 _tutor("Byte","🧭","Recursion solves a big problem by breaking it into a smaller version of the same problem.","Every recursive function needs a base case — the simplest version that stops the recursion."),
                 _discover("A mirror shows you, which shows a smaller you, which shows... When does it stop?","mirror-chain","When does the reflection stop?","base case reached"),
+                _understand("Every recursive function needs a base case — the simplest version that stops the recursion."),
                 _manipulate("mirror-stop","When does recursion stop?","base case"),
                 _code("Write a recursive function with a base case.","# Factorial: n! = n * (n-1)!\n","def factorial(n):\n    if n <= 1: return 1\n    return n * factorial(n-1)\nprint(factorial(5))"),
                 _checks([r"if\s+n\s*<=\s*1",r"return\s*1",r"return\s+n\s*\*"]),
@@ -330,6 +563,7 @@ WORLD_RECURSION = World(
                 _story("Mountain Lodge","Lodge Keeper Leo","Each recursive call waits on a ladder. The last one called returns first."),
                 _tutor("Byte","🧭","The call stack is like a ladder — each recursive call adds a rung. The base case is the top.","When the base case is reached, each call returns in reverse order."),
                 _discover("A ladder with 5 rungs. Climb up recursively, then come back down.","ladder-climb","What order do you return?","5,4,3,2,1"),
+                _understand("When the base case is reached, each call returns in reverse order."),
                 _manipulate("stack-ladder","Climb to rung ?","push then pop"),
                 _code("Trace the call stack for a recursive function.","def countdown(n):\n    if n <= 0: return\n    print(n)\n    countdown(n-1)\n","countdown(5) prints 5,4,3,2,1"),
                 _checks([r"countdown\(n-1\)",r"if\s+n\s*<=\s*0"]),
@@ -339,6 +573,7 @@ WORLD_RECURSION = World(
                 _story("Mountain Summit","Summit Sage","Reach the summit by solving progressively smaller problems. Each step is a recursive call."),
                 _tutor("Byte","🧭","The summit is the base case. Every step down is a recursive call.","When you reach the top, you can trace your path back down."),
                 _discover("Climb from base camp (0) to summit (10). Each step doubles your progress.","summit-climb","How many steps to reach 10?","4"),
+                _understand("When you reach the top, you can trace your path back down."),
                 _manipulate("summit-path","Reach summit with recursive steps","steps = 0"),
                 _code("Use recursion to compute a power of 2.","# 2^n using recursion\n","def power_of_2(n):\n    if n == 0: return 1\n    return 2 * power_of_2(n-1)\nprint(power_of_2(10))"),
                 _checks([r"if\s+n\s*==\s*0",r"return\s*1",r"return\s*2\s*\*"]),
@@ -351,6 +586,7 @@ WORLD_RECURSION = World(
                 _story("Divide Peak Trail","Trail Guide Dora","At each fork, the path splits into two. Follow both branches."),
                 _tutor("Byte","🧭","Divide and conquer: split the problem, solve each part, combine the results.","Merge sort and binary search both use this pattern."),
                 _discover("A path splits into two at each junction. How many paths after 3 splits?","path-split","Total paths","8"),
+                _understand("Merge sort and binary search both use this pattern."),
                 _manipulate("path-count","Paths after n splits","2^n"),
                 _code("Count paths in a divide-and-conquer tree.","# Binary tree of splits\n","def count_paths(depth):\n    if depth == 0: return 1\n    return 2 * count_paths(depth-1)\nprint(count_paths(3))"),
                 _checks([r"if\s+depth\s*==\s*0",r"return\s*1",r"return\s*2\s*\*"]),
@@ -360,6 +596,7 @@ WORLD_RECURSION = World(
                 _story("Divide Peak Summit","Summit Architect","The sub-problems are solved. Now combine their results into the final answer."),
                 _tutor("Byte","🧭","The combine step is where the magic happens. Sorted halves become a sorted whole.","Without combining, you just have solved pieces, not the solution."),
                 _discover("Two sorted results: [1,3,5] and [2,4,6]. Combine into one sorted result.","combine-results","Combined sorted","[1,2,3,4,5,6]"),
+                _understand("Without combining, you just have solved pieces, not the solution."),
                 _manipulate("combine-step","Merge two sorted results","two-pointer merge"),
                 _code("Combine two sorted arrays into one.","left = [1,3,5]\nright = [2,4,6]\n","result = []\ni = j = 0\nwhile i < len(left) and j < len(right):\n    if left[i] <= right[j]:\n        result.append(left[i]); i += 1\n    else:\n        result.append(right[j]); j += 1\nresult.extend(left[i:])\nresult.extend(right[j:])\nprint(result)"),
                 _checks([r"while\s+",r"append",r"extend"]),
@@ -369,6 +606,7 @@ WORLD_RECURSION = World(
                 _story("Divide Peak Throne","Master Architect","Solve the master problem: given an array, return the sum of all elements using divide and conquer."),
                 _tutor("Byte","🧭","The master divide: split the array in half, sum each half, add the two sums.","This is the essence of recursive problem solving."),
                 _discover("Array of 16 numbers. Sum them using divide and conquer.","master-sum","Total sum","136"),
+                _understand("This is the essence of recursive problem solving."),
                 _manipulate("master-split","Split and sum recursively","sum = left_sum + right_sum"),
                 _code("Implement sum using divide and conquer.","arr = list(range(1,17))\n","def dc_sum(arr):\n    if len(arr) <= 1: return arr[0] if arr else 0\n    mid = len(arr)//2\n    return dc_sum(arr[:mid]) + dc_sum(arr[mid:])\nprint(dc_sum(list(range(1,17))))"),
                 _checks([r"dc_sum",r"arr\[:mid\]",r"arr\[mid:\]"]),
@@ -392,6 +630,7 @@ WORLD_LINKED = World(
                 _story("Linked Pathway — Start","Path Builder Pip","Build a chain of nodes where each points to the next. The first is the head."),
                 _tutor("Byte","🧭","A linked list is a chain of nodes. Each node holds data and a pointer to the next.","Like a treasure hunt — each clue leads to the next one."),
                 _discover("Build a chain: Node A → Node B → Node C. Each node has a value and a next pointer.","chain-build","A → B → C","head"),
+                _understand("Like a treasure hunt — each clue leads to the next one."),
                 _manipulate("link-nodes","Create node with value and next","Node(value, next)"),
                 _code("Create a linked list with 3 nodes.","class Node:\n    def __init__(self, val):\n        self.val = val\n        self.next = None\n","head = Node('A')\nhead.next = Node('B')\nhead.next.next = Node('C')"),
                 _checks([r"class\s+Node",r"self\.val",r"self\.next"]),
@@ -401,6 +640,7 @@ WORLD_LINKED = World(
                 _story("Linked Pathway — Middle","Path Walker Willow","Walk the chain from head to tail. Collect all the values along the way."),
                 _tutor("Byte","🧭","Traversal follows the chain from head to tail, visiting each node exactly once.","Like reading a chain of clues — start at the beginning and follow each link."),
                 _discover("Chain: A → B → C → D. Collect all values in order.","traverse-chain","Collected values","['A','B','C','D']"),
+                _understand("Like reading a chain of clues — start at the beginning and follow each link."),
                 _manipulate("walk-chain","Start at head, follow next","current = head"),
                 _code("Traverse a linked list and collect all values.","head = Node('A')\nhead.next = Node('B')\n","vals = []\ncurrent = head\nwhile current:\n    vals.append(current.val)\n    current = current.next\nprint(vals)"),
                 _checks([r"while\s+current",r"current\s*=\s*current\.next",r"vals\.append"]),
@@ -410,6 +650,7 @@ WORLD_LINKED = World(
                 _story("Linked Pathway — End","Path Master Piper","Reverse the chain so the tail becomes the head. Every pointer now goes backward."),
                 _tutor("Byte","🧭","Reversing a linked list is a classic problem. Change each node's next pointer to point to the previous node.","Three pointers: previous, current, next. Walk through and flip."),
                 _discover("Chain: A → B → C → D. Reverse it to D → C → B → A.","reverse-chain","Reversed chain","D → C → B → A"),
+                _understand("Three pointers: previous, current, next. Walk through and flip."),
                 _manipulate("flip-pointers","Reverse the chain","prev, curr, next"),
                 _code("Reverse a linked list in-place.","head = Node('A')\nhead.next = Node('B')\n","prev = None\ncurrent = head\nwhile current:\n    next_node = current.next\n    current.next = prev\n    prev = current\n    current = next_node\nhead = prev"),
                 _checks([r"prev\s*=\s*None",r"next_node",r"current\.next\s*=\s*prev"]),
@@ -433,6 +674,7 @@ WORLD_STACK = World(
                 _story("Stack Tower — Ground Floor","Builder Ben","Build a tower by placing blocks on top. The last block placed is the first to remove."),
                 _tutor("Byte","🧭","A stack is Last In, First Out (LIFO). Think of a stack of plates.","You push items onto the top and pop them from the top."),
                 _discover("Stack of plates: push plate 1, then 2, then 3. Which plate is on top?","plate-stack","Top plate","3"),
+                _understand("You push items onto the top and pop them from the top."),
                 _manipulate("push-plate","Push plate ? onto stack","stack.append(plate)"),
                 _code("Implement a stack using a list. Push and pop plates.","stack = []\n","stack.append(1)\nstack.append(2)\nstack.append(3)\nprint(stack.pop())  # 3\nprint(stack.pop())  # 2"),
                 _checks([r"append",r"pop",r"stack\s*=\s*\[\]"]),
@@ -442,6 +684,7 @@ WORLD_STACK = World(
                 _story("Stack Tower — Middle Floor","Checker Cara","Match opening and closing brackets. Every opening bracket needs a closing one."),
                 _tutor("Byte","🧭","Use a stack to check bracket matching. Push opening brackets, pop when you see closing.","If the stack is empty at the end, all brackets are matched."),
                 _discover("String: ({[]}). Check if all brackets match.","bracket-check","Valid","True"),
+                _understand("If the stack is empty at the end, all brackets are matched."),
                 _manipulate("match-bracket","Push open, pop on close","stack"),
                 _code("Check if brackets in a string are balanced.","s = '({[]})'\n","stack = []\nfor c in s:\n    if c in '({[': stack.append(c)\n    elif c in ')}]':\n        if not stack: print(False); break\n        stack.pop()\nprint(len(stack) == 0)"),
                 _checks([r"append",r"pop",r"if\s+not\s+stack"]),
@@ -451,6 +694,7 @@ WORLD_STACK = World(
                 _story("Stack Tower — Top Floor","Call Master Carl","Understand how function calls use the call stack. Each call pushes a frame, each return pops it."),
                 _tutor("Byte","🧭","The call stack is a stack! Each function call pushes a frame with local variables. Returns pop the frame.","Recursion uses the call stack — each recursive call adds a frame."),
                 _discover("Function calls: main() → foo() → bar(). Track the call stack frames.","call-stack","Frame order","main, foo, bar"),
+                _understand("Recursion uses the call stack — each recursive call adds a frame."),
                 _manipulate("frame-push","Push frame on call, pop on return","call stack"),
                 _code("Trace the call stack for nested function calls.","def bar(): return 'bar'\ndef foo(): return bar()\ndef main(): return foo()\n","# Call stack: main → foo → bar\n# Returns: bar → foo → main\nprint(main())"),
                 _checks([r"def\s+",r"return",r"print\(main"]),
@@ -461,248 +705,258 @@ WORLD_STACK = World(
     ]
 )
 
+
 # ═══════════════════════════════════════════════════════════════
-# WORLD 7: Queue Plaza (queue)
+# WORLD 5 EXPANSION: Linked Pathways — advanced operations
+# ═══════════════════════════════════════════════════════════════
+WORLD_LINKED_ADV = World(
+    id="linked-advanced", name="Linked Mastery", subtitle="Advanced Chain Operations",
+    description="Master insertion, deletion, and cycle detection in linked lists.",
+    icon="🔗", order=5, theme="linked", recommended_roles=["developer"], prerequisites=["linked"],
+    towns=[
+        _make_town("advanced", "Advanced Chain", "🔬", "Push your linked list skills further.", 1, "Advanced Ops", ["data-structures.linked-list.advanced"], ["insertion", "deletion", "cycle-detection"], [
+            _level("l-3","The Insert","📝",1,"insertion","Adding","data-structures.linked-list.advanced","data-structures.linked-list.advanced",
+                _story("Linked Pathway — Workshop","Insertion Artist Ivy","Add a new node at a specific position in the chain without breaking it."),
+                _tutor("Byte","🧭","Insertion requires updating the previous node's next pointer to the new node, and the new node's next to the old next.","Three pointers: prev, curr, new_node."),
+                _discover("Chain A → B → D. Insert C between B and D.","insert-between","New chain","A → B → C → D"),
+                _understand("Three pointers: prev, curr, new_node."),
+                _manipulate("insert-node","Insert at position 2","prev.next = new_node"),
+                _code("Insert a node at index 2 in a linked list.","class Node:\n    def __init__(self, val):\n        self.val = val\n        self.next = None\n","def insert_at(head, val, idx):\n    new = Node(val)\n    if idx == 0:\n        new.next = head\n        return new\n    curr = head\n    for _ in range(idx - 1):\n        if not curr: return head\n        curr = curr.next\n    new.next = curr.next\n    curr.next = new\n    return head"),
+                _checks([r"new\.next",r"curr\.next\s*="]),
+                ["Find the node before the insertion point.","Point it to the new node.","Point the new node to the old next."],
+                _success("📝 Chain gap · ❌ Missing node","📝 Node inserted · ✅ Chain complete","The new node fits perfectly into the chain!","Insertion — adding nodes without breaking links.","Pointer updates in O(1) at known index.",25)),
+            _level("l-4","The Drop","🗑️",2,"deletion","Removing","data-structures.linked-list.advanced","data-structures.linked-list.advanced",
+                _story("Linked Pathway — Cleanup","Deletion Dexter","Remove a node from the chain by skipping it. No loose ends."),
+                _tutor("Byte","🧭","To delete a node, point the previous node's next to the deleted node's next. The deleted node is garbage collected.","You never actually 'delete' in Python — you just remove references."),
+                _discover("Chain A → B → C → D. Remove B. Result: A → C → D.","remove-node","New chain","A → C → D"),
+                _understand("You never actually 'delete' in Python — you just remove references."),
+                _manipulate("skip-node","Remove node at index 1","prev.next = curr.next"),
+                _code("Delete the node at index 1 from a linked list.","class Node:\n    def __init__(self, val):\n        self.val = val\n        self.next = None\n","def delete_at(head, idx):\n    if idx == 0:\n        return head.next\n    curr = head\n    for _ in range(idx - 1):\n        if not curr or not curr.next: return head\n        curr = curr.next\n    if curr.next:\n        curr.next = curr.next.next\n    return head"),
+                _checks([r"curr\.next\s*=",r"return\s+head\.next"]),
+                ["Find the node before the one to delete.","Point its next to the deleted node's next.","The deleted node is orphaned."],
+                _success("🗑️ Node loose · ❌ Chain broken","🗑️ Node removed · ✅ Chain intact","The node is gone and the chain is unbroken!","Deletion — removing nodes cleanly.","No memory leaks, no broken chains.",25)),
+            _level("l-5","The Loop","♻️",3,"cycle-detection","Detecting","data-structures.linked-list.advanced","data-structures.linked-list.advanced",
+                _story("Linked Pathway — Maze","Loop Detective Luna","A chain has a loop! Use Floyd's algorithm to find where it starts."),
+                _tutor("Byte","🧭","Floyd's Tortoise and Hare: slow pointer moves 1 step, fast moves 2. If they meet, there's a loop.","To find the loop start, reset one pointer to head and move both 1 step until they meet."),
+                _discover("Chain with loop at node C. Detect and find the loop entry.","loop-find","Loop entry","C"),
+                _understand("To find the loop start, reset one pointer to head and move both 1 step until they meet."),
+                _manipulate("tortoise-hare","Slow + fast pointers","fast = fast.next.next"),
+                _code("Detect a cycle in a linked list using Floyd's algorithm.","class Node:\n    def __init__(self, val):\n        self.val = val\n        self.next = None\n","def detect_cycle(head):\n    slow = fast = head\n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n        if slow == fast:\n            # Find entry\n            entry = head\n            while entry != slow:\n                entry = entry.next\n                slow = slow.next\n            return entry.val\n    return None"),
+                _checks([r"slow\s*=\s*slow\.next",r"fast\s*=\s*fast\.next\.next",r"entry\s*=\s*head"]),
+                ["Slow moves 1 step, fast moves 2.","If they meet, there's a loop.","Reset one to head to find the entry."],
+                _success("♻️ Loop hidden · ❌ Infinite","♻️ Loop found · ✅ Entry detected","The loop is detected and its entry point found!","Cycle Detection — Floyd's algorithm.","O(n) time, O(1) space.",30)),
+        ]),
+    ]
+)
+
+# ═══════════════════════════════════════════════════════════════
+# WORLD 6 EXPANSION: Stack Tower — advanced patterns
+# ═══════════════════════════════════════════════════════════════
+WORLD_STACK_ADV = World(
+    id="stack-advanced", name="Stack Mastery", subtitle="Beyond Basic LIFO",
+    description="Master stack patterns: min stacks, stock spans, and nested decoding.",
+    icon="🗼", order=6, theme="stack", recommended_roles=["developer"], prerequisites=["stack"],
+    towns=[
+        _make_town("advanced", "Advanced Stack", "🏗️", "Stack patterns used in real interviews.", 1, "Patterns", ["data-structures.stack.advanced"], ["min-stack", "stock-span", "decode-string"], [
+            _level("st-3","The Min Stack","📉",1,"min-stack","Tracking","data-structures.stack.advanced","data-structures.stack.advanced",
+                _story("Stack Tower — Basement","Min Keeper Mina","Track the minimum value in a stack with O(1) getMin()."),
+                _tutor("Byte","🧭","A min stack uses two stacks: one for values, one for minimums. When you push, also push the current min.","getMin() just peeks the min stack."),
+                _discover("Stack: [5, 3, 8, 1]. getMin() should return 1 at any time.","min-peek","Current min","1"),
+                _understand("getMin() just peeks the min stack."),
+                _manipulate("dual-stack","Main stack + min stack","min_stack.append(min(val, min_stack[-1]))"),
+                _code("Implement a stack with O(1) getMin().","class MinStack:\n    def __init__(self):\n        self.stack = []\n        self.min_stack = []\n","    def push(self, val):\n        self.stack.append(val)\n        self.min_stack.append(min(val, self.min_stack[-1]) if self.min_stack else val)\n    def pop(self):\n        self.stack.pop()\n        self.min_stack.pop()\n    def getMin(self):\n        return self.min_stack[-1]"),
+                _checks([r"min_stack\.append",r"min_stack\[-1\]",r"getMin"]),
+                ["Push onto both stacks.","Min stack stores running minimum.","getMin() is O(1)."],
+                _success("📉 Min unknown · ❌ No O(1) min","📉 Min tracked · ✅ O(1) getMin","The minimum is always available instantly!","Min Stack — O(1) minimum tracking.","Auxiliary stack for running minimum.",30)),
+            _level("st-4","The Stock Span","📈",2,"stock-span","Daily","data-structures.stack.advanced","data-structures.stack.advanced",
+                _story("Stack Tower — Observatory","Span Sage Sid","For each day, how many consecutive days was the stock ≤ today?"),
+                _tutor("Byte","🧭","The stock span problem uses a monotonic stack. Pop while stack top ≤ current price. The span is current index - stack top index.","This gives O(n) instead of O(n²)."),
+                _discover("Prices: [100, 80, 60, 70, 60, 75, 85]. Span for each day?","span-calc","Spans","[1,1,1,2,1,4,6]"),
+                _understand("This gives O(n) instead of O(n²)."),
+                _manipulate("monotonic-stack","Pop while top <= current","while stack and prices[stack[-1]] <= price"),
+                _code("Calculate stock spans using a monotonic stack.","prices = [100, 80, 60, 70, 60, 75, 85]\n","def stock_span(prices):\n    stack = []\n    spans = []\n    for i, p in enumerate(prices):\n        while stack and prices[stack[-1]] <= p:\n            stack.pop()\n        spans.append(i - (stack[-1] if stack else -1))\n        stack.append(i)\n    return spans\nprint(stock_span(prices))"),
+                _checks([r"while\s+stack",r"prices\[stack\[-1\]\]\s*<=",r"stack\.append"]),
+                ["Pop while stack top ≤ current.","Span = current index - new stack top index.","Monotonic decreasing stack."],
+                _success("📈 Span unknown · ❌ O(n²)","📈 Span calculated · ✅ O(n)","All spans are computed efficiently!","Stock Span — monotonic stack pattern.","Classic interview problem.",30)),
+        ]),
+    ]
+)
+
+# ═══════════════════════════════════════════════════════════════
+# WORLD 7: Queue Avenue (queue)
 # ═══════════════════════════════════════════════════════════════
 WORLD_QUEUE = World(
-    id="queue", name="Queue Plaza", subtitle="First In, First Out",
-    description="Stand in line. The first to arrive is the first to be served. Learn queues.",
-    icon="🎫", order=7, theme="queue", recommended_roles=["developer"], prerequisites=["stack"],
+    id="queue", name="Queue Avenue", subtitle="First In, First Out",
+    description="Master queues — the line where the first to arrive is the first to leave.",
+    icon="🚶", order=7, theme="queue", recommended_roles=["developer", "data-engineer"], prerequisites=["stack"],
     towns=[
-        _make_town("line", "The Line", "👥", "First come, first served. A fair queue for everyone.", 1, "FIFO", ["data-structures.queue"], ["queue", "fifo", "deque"], [
-            _level("q-1","The Line","🚶",1,"queue","FIFO","data-structures.queue","data-structures.queue",
-                _story("Queue Plaza — Entrance","Ticket Tina","People line up at the plaza. The first person in line is the first to get in."),
-                _tutor("Byte","🧭","A queue is First In, First Out (FIFO). Like a line at a store.","You enqueue at the back and dequeue from the front."),
-                _discover("People arrive: Alice, Bob, Charlie. Who goes in first?","queue-line","First person","Alice"),
-                _manipulate("enqueue-person","Add person to back of line","queue.append(person)"),
-                _code("Implement a queue. Enqueue and dequeue people.","queue = []\n","queue.append('Alice')\nqueue.append('Bob')\nqueue.append('Charlie')\nprint(queue.pop(0))  # Alice"),
+        _make_town("line", "Waiting Line", "🧍", "Join the line. The first person in is the first person out.", 1, "FIFO", ["data-structures.queue"], ["queue", "enqueue", "dequeue"], [
+            _level("q-1","The Line","🧍",1,"queue","FIFO","data-structures.queue","data-structures.queue",
+                _story("Queue Avenue — Start","Line Leader Lena","People join a line. The first person to arrive is the first to be served."),
+                _tutor("Byte","🧭","A queue is First In, First Out (FIFO). Enqueue adds to the back, dequeue removes from the front.","Like a ticket line — first ticket gets served first."),
+                _discover("Line: Alice arrives, then Bob, then Carol. Who gets served first?","line-order","First served","Alice"),
+                _understand("Like a ticket line — first ticket gets served first."),
+                _manipulate("join-line","Enqueue person ?","queue.append(person)"),
+                _code("Implement a queue using a list. Enqueue and dequeue people.","queue = []\n","queue.append('Alice')\nqueue.append('Bob')\nqueue.append('Carol')\nprint(queue.pop(0))  # Alice\nprint(queue.pop(0))  # Bob"),
                 _checks([r"append",r"pop\(0\)",r"queue\s*=\s*\[\]"]),
                 ["Enqueue adds to the back.","Dequeue removes from the front.","First in, first out."],
-                _success("👥 No line · 🚪 Empty","👥 Line formed · ✅ FIFO working","The queue works fairly!","Queue — First In, First Out.","Enqueue at back, dequeue at front.",20)),
-            _level("q-2","The Priority","⭐",2,"priority","Ordering","data-structures.queue","data-structures.queue",
-                _story("Queue Plaza — VIP Section","VIP Manager Vera","Some people have priority. They get served before others in the priority queue."),
-                _tutor("Byte","🧭","A priority queue serves the highest priority item first, regardless of arrival order.","Useful for scheduling, Dijkstra's algorithm, and more."),
-                _discover("Tasks: A(priority 3), B(priority 1), C(priority 2). Serve highest priority first.","priority-tasks","Serve order","B, C, A"),
-                _manipulate("priority-serve","Serve highest priority first","sorted by priority"),
-                _code("Implement a priority queue and serve tasks by priority.","tasks = [('A',3),('B',1),('C',2)]\n","tasks.sort(key=lambda x: x[1])\nfor task, pri in tasks:\n    print(f'Serving {task} (priority {pri})')"),
-                _checks([r"sort",r"key\s*=",r"lambda"]),
-                ["Sort by priority.","Serve in priority order.","Highest priority first."],
-                _success("⭐ No priority · ❌ Random","⭐ Priority served · ✅ Fair order","Tasks served by priority!","Priority Queue — ordering by importance.","Priority determines service order.",25)),
-            _boss("q-boss","The Printer Queue","🖨️",3,"queue-master","Scheduling","data-structures.queue","data-structures.queue",
-                _story("Queue Plaza — Center","Printer Manager Paul","A printer queue handles multiple documents. Each job has a priority and page count."),
-                _tutor("Byte","🧭","Real-world queues balance priority and fairness. The printer serves jobs efficiently.","Simulate a printer queue with priority handling."),
-                _discover("Print jobs: Doc1(3 pages, pri 2), Doc2(1 page, pri 1), Doc3(2 pages, pri 3). Serve by priority.","printer-queue","Serve order","Doc2, Doc1, Doc3"),
-                _manipulate("printer-serve","Sort and serve print jobs","priority queue"),
-                _code("Simulate a printer queue with priority.","jobs = [('Doc1',3,2),('Doc2',1,1),('Doc3',2,3)]\n","jobs.sort(key=lambda x: x[2])\nfor name, pages, pri in jobs:\n    print(f'Printing {name}: {pages} pages, priority {pri}')"),
-                _checks([r"sort",r"lambda",r"jobs"]),
-                ["Sort jobs by priority.","Print each job in order.","Track pages and priority."],
-                _success("🖨️ Queue chaotic · ❌ Not scheduled","🖨️ Queue ordered · ✅ All printed","All documents printed in priority order!","Queue Master — real-world scheduling.","Queues power real-world systems.",40),
-                _reward(diamonds=40,coins=20,badges=["queue-master"],unlocks_town="town-2-hash")),
+                _success("🧍 No line · 📭 Empty","🧍 Line formed · ✅ FIFO working","The queue works perfectly!","Queue — First In, First Out.","Enqueue at back, dequeue from front.",20)),
+            _level("q-2","The Ticket Machine","🎫",2,"circular-queue","Reusing","data-structures.queue","data-structures.queue",
+                _story("Queue Avenue — Ticket Booth","Booth Operator Bob","The ticket machine has 5 slots. When slot 5 is filled, it wraps to slot 1."),
+                _tutor("Byte","🧭","A circular queue reuses empty slots. (front + 1) % capacity gives the next slot.","This avoids shifting elements on dequeue."),
+                _discover("5-slot circular queue. Enqueue A, B, C, D, E, then F. Where does F go?","circular-wrap","Slot for F","0"),
+                _understand("This avoids shifting elements on dequeue."),
+                _manipulate("circular-enqueue","Next slot = (front + 1) % capacity","(front + 1) % capacity"),
+                _code("Implement a circular queue with fixed capacity.","class CircularQueue:\n    def __init__(self, k):\n        self.queue = [None] * k\n        self.front = 0\n        self.rear = -1\n        self.size = 0\n        self.cap = k\n","    def enqueue(self, val):\n        if self.size == self.cap: return False\n        self.rear = (self.rear + 1) % self.cap\n        self.queue[self.rear] = val\n        self.size += 1\n        return True\n    def dequeue(self):\n        if self.size == 0: return False\n        val = self.queue[self.front]\n        self.front = (self.front + 1) % self.cap\n        self.size -= 1\n        return val"),
+                _checks([r"%\s*self\.cap",r"self\.rear\s*=",r"self\.front\s*="]),
+                ["Use modulo to wrap around.","Front and rear move independently.","Empty slots are reused."],
+                _success("🎫 Slots wasted · ❌ No reuse","🎫 Slots reused · ✅ Circular","The circular queue reuses slots efficiently!","Circular Queue — fixed-size ring buffer.","Avoids O(n) dequeue by wrapping.",25)),
+            _level("q-3","The Printer Queue","🖨️",3,"priority-queue","Serving","data-structures.queue","data-structures.queue",
+                _story("Queue Avenue — Print Shop","Printer Pat","Print jobs have priorities. Important jobs must print first, not just arrival order."),
+                _tutor("Byte","🧭","A priority queue serves highest-priority items first. It's often implemented with a heap.","Like an ER triage — critical patients go first."),
+                _discover("Print jobs: [(1, 'report'), (2, 'invoice'), (3, 'urgent')]. Order of printing?","priority-order","Print order","urgent, invoice, report"),
+                _understand("Like an ER triage — critical patients go first."),
+                _manipulate("heap-push","Push with priority","heapq.heappush(heap, (-priority, job))"),
+                _code("Simulate a priority printer queue.","import heapq\n","jobs = []\nheapq.heappush(jobs, (1, 'report'))\nheapq.heappush(jobs, (2, 'invoice'))\nheapq.heappush(jobs, (3, 'urgent'))\nwhile jobs:\n    print(heapq.heappop(jobs)[1])"),
+                _checks([r"heapq\.heappush",r"heapq\.heappop",r"import\s+heapq"]),
+                ["Higher priority = smaller number in min-heap.","Use negative priority for max-heap behavior.","heapq is Python's binary heap."],
+                _success("🖨️ Random order · ❌ No priority","🖨️ Priority order · ✅ Urgent first","Jobs print by priority, not arrival!","Priority Queue — heap-based ordering.","Critical jobs first, always.",25)),
+        ]),
+        _make_town("advanced", "Advanced Queue", "🧠", "Queue patterns for real systems.", 2, "Patterns", ["data-structures.queue.advanced"], ["sliding-window", "queue-stack", "multiqueue"], [
+            _level("q-4","The Sliding Window","🪟",4,"sliding-window","Tracking","data-structures.queue","data-structures.queue",
+                _story("Queue Avenue — Watchtower","Watcher Will","Track the maximum in a sliding window of size k. The window slides forward one step at a time."),
+                _tutor("Byte","🧭","A deque (double-ended queue) maintains the window. Pop from front when index > front + k. Pop from back while value < current.","This gives O(n) instead of O(n*k)."),
+                _discover("Array [1,3,-1,-3,5,3,6,7], k=3. Max in each window?","window-max","Maxima","[3,3,5,5,6,7]"),
+                _understand("This gives O(n) instead of O(n*k)."),
+                _manipulate("deque-window","Maintain decreasing deque","while dq and nums[dq[-1]] < nums[i]: dq.pop()"),
+                _code("Find max in each sliding window of size k.","from collections import deque\nnums = [1,3,-1,-3,5,3,6,7]\nk = 3\n","def max_sliding(nums, k):\n    dq = deque()\n    out = []\n    for i, v in enumerate(nums):\n        while dq and nums[dq[-1]] < v:\n            dq.pop()\n        dq.append(i)\n        if dq[0] <= i - k:\n            dq.popleft()\n        if i >= k - 1:\n            out.append(nums[dq[0]])\n    return out\nprint(max_sliding(nums, k))"),
+                _checks([r"deque\(\)",r"dq\.pop\(\)",r"dq\.append",r"dq\.popleft"]),
+                ["Maintain decreasing values in deque.","Pop front when out of window.","Front of deque is always the max."],
+                _success("🪟 Window blind · ❌ Can't see","🪟 Window clear · ✅ Maxima found","The sliding window maxima are all found!","Sliding Window — deque optimization.","O(n) instead of O(n*k).",30)),
         ]),
     ]
 )
 
 # ═══════════════════════════════════════════════════════════════
-# WORLD 8: Hash Harbor (hashing)
+# WORLD 8: Tree Grove (tree)
 # ═══════════════════════════════════════════════════════════════
-WORLD_HASHING = World(
-    id="hashing", name="Hash Harbor", subtitle="Instant Lookup",
-    description="Find anything instantly with a hash function. Learn hash tables and collision resolution.",
-    icon="⚡", order=8, theme="hashing", recommended_roles=["developer"], prerequisites=["queue"],
+WORLD_TREE = World(
+    id="tree", name="Tree Grove", subtitle="Branching Hierarchies",
+    description="Learn trees — hierarchical structures with a root, branches, and leaves.",
+    icon="🌳", order=8, theme="tree", recommended_roles=["developer", "data-engineer"], prerequisites=["linked"],
     towns=[
-        _make_town("hash", "Hash Dock", "🏗️", "Hash it, store it, find it instantly.", 1, "Key-Value", ["data-structures.hash"], ["hashing", "hash-table", "collision"], [
-            _level("h-1","The Hash Function","🔑",1,"hashing","Mapping","data-structures.hash","data-structures.hash",
-                _story("Hash Harbor — Dock","Hash Master Hugo","Convert a key into an index using a hash function. The same key always maps to the same index."),
-                _tutor("Byte","🧭","A hash function converts a key into an array index. It should be fast and deterministic.","Like a locker number system — your name maps to a specific locker."),
-                _discover("Hash function: index = key % 10. Map keys 15, 25, 37 to indices.","hash-calc","Indices","5, 5, 7"),
-                _manipulate("compute-hash","index = key % 10","hash function"),
-                _code("Implement a simple hash function and map keys to indices.","keys = [15, 25, 37]\n","hash_table = [None]*10\nfor key in keys:\n    idx = key % 10\n    hash_table[idx] = key\nprint(hash_table)"),
-                _checks([r"%",r"hash_table",r"idx"]),
-                ["The hash function maps keys to indices.","Same key → same index.","Collisions happen when different keys map to the same index."],
-                _success("🔑 No mapping · ❌ Lost","🔑 Hash table built · ✅ Keys mapped","Keys are instantly mappable!","Hash Function — key to index mapping.","Deterministic and fast.",20)),
-            _level("h-2","The Collision","💥",2,"collision","Resolving","data-structures.hash","data-structures.hash",
-                _story("Hash Harbor — Collision Alley","Collision Handler Cara","Two keys hash to the same index! How do you handle it?"),
-                _tutor("Byte","🧭","Collisions are handled by chaining (linked list at each index) or open addressing (find next slot).","Chaining is simpler and more common in practice."),
-                _discover("Keys 15 and 25 both hash to index 5. Handle the collision.","collision-handle","Resolution","chain at index 5"),
-                _manipulate("chain-handle","Store collided keys in a list","hash_table[idx] = [key1, key2]"),
-                _code("Handle collisions using chaining.","hash_table = [[] for _ in range(10)]\n","keys = [15, 25, 35]\nfor key in keys:\n    idx = key % 10\n    hash_table[idx].append(key)\nprint(hash_table)"),
-                _checks([r"\[\]\s*for",r"append",r"hash_table"]),
-                ["Each index holds a chain (list).","Collided keys go into the same chain.","Search through the chain."],
-                _success("💥 Collision ignored · ❌ Data lost","💥 Collision chained · ✅ All stored","Collisions are handled with chaining!","Collision Resolution — chaining method.","Every collision has a home.",25)),
-            _boss("h-boss","The Dictionary","📖",3,"hash-master","Looking Up","data-structures.hash","data-structures.hash",
-                _story("Hash Harbor — Archive","Dictionary Master Dana","Build a dictionary from scratch using a hash table. Look up, insert, and delete in O(1)."),
-                _tutor("Byte","🧭","A dictionary (hash map) is the ultimate hash table application. O(1) average lookup, insert, delete.","Python's dict is a built-in hash table. Understanding it from scratch makes you a better developer."),
-                _discover("Build a dictionary: {name: age} for Alice:25, Bob:30, Charlie:35.","build-dict","Dictionary","{'Alice':25,'Bob':30,'Charlie':35}"),
-                _manipulate("dict-build","Key-value storage","hash map"),
-                _code("Implement a simple dictionary with get, set, and delete.","class Dict:\n    def __init__(self):\n        self.size = 10\n        self.buckets = [[] for _ in range(self.size)]\n","def _hash(self, key): return hash(key) % self.size\n    def set(self, key, val):\n        idx = self._hash(key)\n        for i, (k, v) in enumerate(self.buckets[idx]):\n            if k == key: self.buckets[idx][i] = (k, v); return\n        self.buckets[idx].append((key, val))\n    def get(self, key):\n        idx = self._hash(key)\n        for k, v in self.buckets[idx]:\n            if k == key: return v\n        return None"),
-                _checks([r"_hash",r"buckets",r"enumerate"]),
-                ["Hash the key to find the bucket.","Search the chain for the key.","Update if found, append if new."],
-                _success("📖 No dictionary · ❌ Slow lookup","📖 Dictionary built · ✅ O(1) lookup","The dictionary works at lightning speed!","Hash Master — build a hash map from scratch.","O(1) average case for all operations.",40),
-                _reward(diamonds=40,coins=20,badges=["hash-master"],unlocks_town="town-2-tree")),
-        ]),
-    ]
-)
-
-# ═══════════════════════════════════════════════════════════════
-# WORLD 9: Tree Grove (trees)
-# ═══════════════════════════════════════════════════════════════
-WORLD_TREES = World(
-    id="trees", name="Tree Grove", subtitle="Hierarchical Data",
-    description="Trees branch upward and downward. Learn binary trees, BST, and traversal.",
-    icon="🌳", order=9, theme="trees", recommended_roles=["developer", "data-analyst"], prerequisites=["hashing"],
-    towns=[
-        _make_town("binary", "Binary Grove", "🌲", "Each node branches into at most two children.", 1, "Branching", ["data-structures.tree"], ["binary-tree", "traversal", "BST"], [
-            _level("t-1","The Branch","🌿",1,"binary tree","Branching","data-structures.tree","data-structures.tree",
-                _story("Tree Grove — Root","Tree Keeper Tara","A tree starts with a root. Each node branches into children. The root has no parent."),
-                _tutor("Byte","🧭","A binary tree has at most 2 children per node: left and right.","Like a family tree — each person has at most 2 parents in a binary structure."),
-                _discover("Build a binary tree: root(1) → left(2), right(3).","tree-build","Tree structure","root with 2 children"),
-                _manipulate("branch-node","Node with left and right","TreeNode(val, left, right)"),
-                _code("Create a binary tree with root and two children.","class TreeNode:\n    def __init__(self, val):\n        self.val = val\n        self.left = None\n        self.right = None\n","root = TreeNode(1)\nroot.left = TreeNode(2)\nroot.right = TreeNode(3)"),
+        _make_town("binary", "Binary Branch", "🌿", "Each node has at most two children: left and right.", 1, "Binary", ["data-structures.tree"], ["binary-tree", "traversal", "bst"], [
+            _level("t-1","The Root","🌱",1,"binary-tree","Rooted","data-structures.tree","data-structures.tree",
+                _story("Tree Grove — Seed","Planter Priya","A tree starts with a root. Each node can have up to two children: left and right."),
+                _tutor("Byte","🧭","A binary tree has a root, and each node has at most two children. The left child is smaller, the right child is larger (in a BST).","Trees are recursive: each subtree is itself a tree."),
+                _discover("Root: 5. Left child: 3. Right child: 8. What is the root's value?","root-value","Root value","5"),
+                _understand("Trees are recursive: each subtree is itself a tree."),
+                _manipulate("plant-root","Create root with left and right","TreeNode(val, left, right)"),
+                _code("Create a binary tree with root 5, left child 3, right child 8.","class TreeNode:\n    def __init__(self, val):\n        self.val = val\n        self.left = None\n        self.right = None\n","root = TreeNode(5)\nroot.left = TreeNode(3)\nroot.right = TreeNode(8)"),
                 _checks([r"class\s+TreeNode",r"self\.left",r"self\.right"]),
-                ["Each node has at most 2 children.","Left child < parent, right child > parent (BST).","The root has no parent."],
-                _success("🌿 No tree · 🌳 Just a node","🌿 Tree grown · ✅ Rooted","The tree has a root and branches!","Binary Tree — branching structure.","Each node branches into at most two.",20)),
-            _level("t-2","The Traversal","🚶",2,"tree traversal","Visiting","data-structures.tree","data-structures.tree",
-                _story("Tree Grove — Path","Path Walker Willow","Visit every node in the tree. In-order: left, root, right."),
-                _tutor("Byte","🧭","Tree traversal visits all nodes in a specific order. In-order gives sorted output for BSTs.","Pre-order: root, left, right. Post-order: left, right, root. In-order: left, root, right."),
-                _discover("Tree: 2(left), 1(root), 3(right). In-order traversal gives?","tree-traverse","Sorted order","2, 1, 3"),
-                _manipulate("in-order","Left → Root → Right","recursive"),
-                _code("Implement in-order traversal of a binary tree.","root = TreeNode(1)\nroot.left = TreeNode(2)\nroot.right = TreeNode(3)\n","def inorder(node):\n    if node:\n        inorder(node.left)\n        print(node.val)\n        inorder(node.right)\ninorder(root)"),
-                _checks([r"if\s+node",r"inorder\(node\.left\)",r"inorder\(node\.right\]"]),
-                ["Visit left subtree first.","Then the root.","Then right subtree."],
-                _success("🚶 No traversal · ❌ Missed nodes","🚶 Full traversal · ✅ All visited","Every node is visited in order!","Tree Traversal — in-order, pre-order, post-order.","Recursive visiting of all nodes.",25)),
-            _boss("t-boss","The BST","🔍",3,"tree-master","Searching","data-structures.tree","data-structures.tree",
-                _story("Tree Grove — Summit","BST Master Boris","A Binary Search Tree keeps data sorted. Search in O(log n) by comparing at each node."),
-                _tutor("Byte","🧭","BST: left child < parent < right child. Search by comparing and going left or right.","It is like binary search on a tree structure — O(log n) average case."),
-                _discover("BST with values 5,3,7,2,4,6,8. Search for 6.","bst-search","Found at node","6"),
-                _manipulate("bst-search","Compare, go left or right","recursive"),
-                _code("Implement BST search.","root = TreeNode(5)\nroot.left = TreeNode(3)\nroot.right = TreeNode(7)\n","def search(node, val):\n    if not node: return False\n    if node.val == val: return True\n    if val < node.val: return search(node.left, val)\n    return search(node.right, val)\nprint(search(root, 6))"),
-                _checks([r"if\s+not\s+node",r"if\s+val\s*==",r"search\(node\.left"]),
-                ["Compare with current node.","Go left if smaller, right if larger.","Return True if found, False if not."],
-                _success("🔍 No BST · ❌ Linear search","🔍 BST built · ✅ O(log n) search","The BST enables fast searching!","Tree Master — BST operations.","Logarithmic search on a tree.",40),
-                _reward(diamonds=40,coins=20,badges=["tree-master"],unlocks_town="town-2-graph")),
+                ["Root is the top node.","Left child < root, right child > root (BST).","Each node is a subtree."],
+                _success("🌱 No root · ❌ Empty","🌱 Root planted · ✅ Tree growing","The tree has its root and two children!","Binary Tree — hierarchical structure.","Root, left, right — the tree anatomy.",20)),
+            _level("t-2","The Walk","🚶",2,"tree-traversal","Visiting","data-structures.tree","data-structures.tree",
+                _story("Tree Grove — Path","Walker Wes","Visit every node in the tree. In-order, pre-order, post-order — each order tells a different story."),
+                _tutor("Byte","🧭","In-order: left, root, right. Pre-order: root, left, right. Post-order: left, right, root.","In-order of a BST gives sorted order."),
+                _discover("Tree: root 5, left 3, right 8. In-order traversal?","in-order","In-order","3, 5, 8"),
+                _understand("In-order of a BST gives sorted order."),
+                _manipulate("traverse-tree","Visit left, root, right","inorder(node.left) + [node.val] + inorder(node.right)"),
+                _code("Perform in-order traversal of a binary tree.","class TreeNode:\n    def __init__(self, val, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n","def inorder(node):\n    if not node: return []\n    return inorder(node.left) + [node.val] + inorder(node.right)\nroot = TreeNode(5, TreeNode(3), TreeNode(8))\nprint(inorder(root))"),
+                _checks([r"inorder\(node\.left\)",r"\[node\.val\]",r"inorder\(node\.right\)"]),
+                ["Left first, then root, then right.","Recursively visit each subtree.","In-order of BST is sorted."],
+                _success("🚶 Tree dark · ❌ Can't see","🚶 Tree walked · ✅ All visited","Every node has been visited in order!","Tree Traversal — in-order, pre-order, post-order.","Three orders, three stories.",25)),
+            _level("t-3","The Search","🔍",3,"bst-search","Finding","data-structures.tree","data-structures.tree",
+                _story("Tree Grove — Library","Searcher Sam","Find a book in the library. The library is organized as a BST — left is smaller, right is larger."),
+                _tutor("Byte","🧭","BST search: if target < node.val, go left. If target > node.val, go right. If equal, found.","O(log n) in a balanced tree."),
+                _discover("BST: 5 → (3, 8). Search for 3. Path?","search-path","Path","5 → 3"),
+                _understand("O(log n) in a balanced tree."),
+                _manipulate("bst-search","Go left or right","node = node.left if val < node.val else node.right"),
+                _code("Search for a value in a BST.","class TreeNode:\n    def __init__(self, val):\n        self.val = val\n        self.left = None\n        self.right = None\n","def search(node, val):\n    while node:\n        if val == node.val: return True\n        node = node.left if val < node.val else node.right\n    return False\nroot = TreeNode(5)\nroot.left = TreeNode(3)\nroot.right = TreeNode(8)\nprint(search(root, 3))"),
+                _checks([r"while\s+node",r"node\s*=\s*node\.(left|right)",r"return\s+(True|False)"]),
+                ["Compare with current node.","Go left if smaller, right if larger.","Stop when found or leaf reached."],
+                _success("🔍 Book lost · ❌ Not found","🔍 Book found · ✅ In library","The book is found in the BST!","BST Search — O(log n) lookup.","Left < root < right.",30)),
+        ]),
+        _make_town("advanced", "Advanced Tree", "🌲", "Advanced tree operations.", 2, "Advanced", ["data-structures.tree.advanced"], ["height", "balanced", "trie"], [
+            _level("t-4","The Height","📏",4,"tree-height","Measuring","data-structures.tree.advanced","data-structures.tree.advanced",
+                _story("Tree Grove — Summit","Measurer Maya","How tall is the tree? The height is the longest path from root to leaf."),
+                _tutor("Byte","🧭","Height = max(left_height, right_height) + 1. A leaf has height 0.","An empty tree has height -1."),
+                _discover("Tree: root 5, left 3, right 8. Height?","tree-height","Height","1"),
+                _understand("An empty tree has height -1."),
+                _manipulate("measure-height","Max of left and right + 1","max(left, right) + 1"),
+                _code("Calculate the height of a binary tree.","class TreeNode:\n    def __init__(self, val, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n","def height(node):\n    if not node: return -1\n    return max(height(node.left), height(node.right)) + 1\nroot = TreeNode(5, TreeNode(3), TreeNode(8))\nprint(height(root))"),
+                _checks([r"max\(height\(node\.left\),\s*height\(node\.right\)\)",r"return\s*-1"]),
+                ["Leaf has height 0.","Height = max(left, right) + 1.","Empty tree has height -1."],
+                _success("📏 Height unknown · ❌ Not measured","📏 Height measured · ✅ Tree sized","The tree height is calculated correctly!","Tree Height — longest path to leaf.","max(left, right) + 1.",30)),
         ]),
     ]
 )
 
 # ═══════════════════════════════════════════════════════════════
-# WORLD 10: Graph Forest (graphs)
+# WORLD 9: Heap Mountain (heap)
 # ═══════════════════════════════════════════════════════════════
-WORLD_GRAPHS = World(
-    id="graphs", name="Graph Forest", subtitle="Networks of Connection",
-    description="Everything connects to everything. Learn graphs, BFS, DFS, and shortest paths.",
-    icon="🌐", order=10, theme="graphs", recommended_roles=["developer", "ai-engineer"], prerequisites=["trees"],
+WORLD_HEAP = World(
+    id="heap", name="Heap Mountain", subtitle="Priority at the Peak",
+    description="Learn heaps — trees where the root is always the minimum or maximum.",
+    icon="⛰️", order=9, theme="heap", recommended_roles=["developer", "data-engineer"], prerequisites=["tree"],
     towns=[
-        _make_town("bfs", "BFS Meadow", "🌾", "Breadth-first search explores neighbors level by level.", 1, "Level Exploration", ["graphs.bfs"], ["bfs", "queue", "shortest-path"], [
-            _level("g-1","The Meadow","🌾",1,"BFS","Level-by-level","graphs.bfs","graphs.bfs",
-                _story("Graph Forest — Meadow","Explorer Emma","Explore the meadow level by level. Visit all neighbors before going deeper."),
-                _tutor("Byte","🧭","BFS uses a queue to explore nodes level by level. It finds the shortest path in unweighted graphs.","Like ripples in water — each level is one ripple further."),
-                _discover("Graph: A connects to B, C. B connects to D. C connects to E. BFS from A.","bfs-meadow","Visit order","A, B, C, D, E"),
-                _manipulate("bfs-queue","Queue-based level exploration","queue"),
-                _code("Implement BFS on a simple graph.","graph = {'A':['B','C'],'B':['D'],'C':['E']}\n","from collections import deque\nq = deque(['A'])\nvisited = set()\nwhile q:\n    node = q.popleft()\n    if node in visited: continue\n    visited.add(node)\n    print(node)\n    for neighbor in graph[node]:\n        if neighbor not in visited: q.append(neighbor)"),
-                _checks([r"deque",r"popleft",r"visited"]),
-                ["Use a queue for BFS.","Visit all neighbors before going deeper.","Track visited nodes to avoid cycles."],
-                _success("🌾 No exploration · ❌ Lost","🌾 Meadow explored · ✅ BFS done","The meadow is fully explored level by level!","BFS — breadth-first exploration.","Finds shortest path in unweighted graphs.",20)),
-            _level("g-2","The Shortest Path","📏",2,"shortest path","Optimal","graphs.bfs","graphs.bfs",
-                _story("Graph Forest — Path","Path Finder Felix","Find the shortest path from A to E in the graph. BFS guarantees the shortest path."),
-                _tutor("Byte","🧭","BFS finds the shortest path in unweighted graphs because it explores level by level.","The first time you reach a node, that is the shortest path to it."),
-                _discover("Graph: A-B, A-C, B-D, C-E, D-E. Shortest path from A to E?","shortest-path","Shortest path","A → C → E"),
-                _manipulate("find-path","Track parent pointers","BFS with path reconstruction"),
-                _code("Find the shortest path using BFS.","graph = {'A':['B','C'],'B':['D'],'C':['E'],'D':['E']}\n","from collections import deque\nq = deque([[start]])\nvisited = set()\nwhile q:\n    path = q.popleft()\n    node = path[-1]\n    if node == end: print(path); break\n    if node in visited: continue\n    for n in graph[node]:\n        if n not in visited: q.append(path + [n])\n    return None"),
-                _checks([r"path\s*\+",r"node\s*==",r"popleft"]),
-                ["Track the path as you BFS.","The first arrival is the shortest.","Use parent pointers or path tracking."],
-                _success("📏 No path · ❌ Lost","📏 Shortest path found · ✅ Optimal","The shortest path is guaranteed by BFS!","Shortest Path — BFS optimality.","Level-by-level guarantees shortest.",25)),
-            _boss("g-boss","The Network","🌐",3,"graph-master","Connecting","graphs.bfs","graphs.bfs",
-                _story("Graph Forest — Network","Network Architect Nora","Map a social network of 100 people. Find the shortest connection chain between any two people."),
-                _tutor("Byte","🧭","Real-world networks use BFS for friend suggestions, degrees of separation, and more.","Six degrees of separation — BFS proves it."),
-                _discover("Social network: 100 people, connections between them. Find shortest chain from person 1 to 100.","social-network","Shortest chain","7 hops"),
-                _manipulate("social-bfs","BFS on social graph","queue + visited"),
-                _code("Implement BFS on a social network graph.","graph = {i: [] for i in range(1,101)}\n","# Add connections\nfrom collections import deque\nq = deque([(1, [1])])\nvisited = {1}\nwhile q:\n    node, path = q.popleft()\n    if node == 100: print(f'{len(path)-1} hops'); break\n    for n in graph[node]:\n        if n not in visited:\n            visited.add(n)\n            q.append((n, path+[n]))"),
-                _checks([r"deque",r"visited",r"path\s*\+"]),
-                ["Model the network as a graph.","BFS finds shortest connection chain.","Track visited to avoid infinite loops."],
-                _success("🌐 Network unmapped · ❌ Lost","🌐 Network mapped · ✅ Shortest path found","The social network is fully analyzed!","Graph Master — BFS on real networks.","BFS powers social network analysis.",40),
-                _reward(diamonds=40,coins=20,badges=["graph-master"],unlocks_town="town-2-dp")),
+        _make_town("min-heap", "Min Peak", "⬇️", "The smallest element is always at the root.", 1, "Min-Heap", ["data-structures.heap"], ["heap", "heapify", "priority"], [
+            _level("h-1","The Peak","⬇️",1,"min-heap","Root Min","data-structures.heap","data-structures.heap",
+                _story("Heap Mountain — Base","Heap Keeper Hana","The peak always holds the smallest value. Build a min-heap."),
+                _tutor("Byte","🧭","In a min-heap, parent <= children. The smallest element is at the root.","Insert: append, then bubble up. Extract min: replace root with last, then bubble down."),
+                _discover("Heap: [1, 3, 2, 5, 4]. What is at the root?","root-min","Root value","1"),
+                _understand("Insert: append, then bubble up. Extract min: replace root with last, then bubble down."),
+                _manipulate("heap-bubble","Bubble up after insert","while i > 0 and heap[(i-1)//2] > heap[i]: swap"),
+                _code("Implement heap push and pop using a list.","heap = []\n","def push(val):\n    heap.append(val)\n    i = len(heap) - 1\n    while i > 0 and heap[(i-1)//2] > heap[i]:\n        heap[i], heap[(i-1)//2] = heap[(i-1)//2], heap[i]\n        i = (i-1)//2\ndef pop():\n    val = heap[0]\n    last = heap.pop()\n    if heap:\n        heap[0] = last\n        # bubble down\n    return val"),
+                _checks([r"while\s+i\s*>\s*0",r"heap\[\(i-1\)//2\]",r"heap\[i\]\s*="]),
+                ["Parent index = (i-1)//2.","Bubble up while parent > child.","Root is always the minimum."],
+                _success("⬇️ Peak unknown · ❌ No min","⬇️ Peak clear · ✅ Min at root","The min-heap property is maintained!","Min-Heap — smallest at the root.","Bubble up, bubble down.",30)),
         ]),
     ]
 )
 
 # ═══════════════════════════════════════════════════════════════
-# WORLD 11: Dynamic Delta (dynamic programming)
+# WORLD 10: Graph Realm (graph)
 # ═══════════════════════════════════════════════════════════════
-WORLD_DYNAMIC = World(
-    id="dynamic", name="Dynamic Delta", subtitle="Optimal Substructure",
-    description="Break problems into overlapping sub-problems. Store results to avoid redundant work.",
-    icon="📐", order=11, theme="dynamic", recommended_roles=["developer", "ai-engineer"], prerequisites=["graphs"],
+WORLD_GRAPH = World(
+    id="graph", name="Graph Realm", subtitle="Nodes and Edges",
+    description="Explore graphs — networks of connected nodes. BFS, DFS, shortest paths.",
+    icon="🕸️", order=10, theme="graph", recommended_roles=["developer", "data-engineer", "ai-engineer"], prerequisites=["tree"],
     towns=[
-        _make_town("memo", "Memoization Marsh", "🧠", "Remember results of expensive computations. Reuse them.", 1, "Caching", ["algorithms.dynamic"], ["memoization", "overlapping", "optimal-substructure"], [
-            _level("d-1","The Memo","📝",1,"dynamic programming","Caching","algorithms.dynamic","algorithms.dynamic",
-                _story("Dynamic Delta — Marsh","DP Master Dora","Computing Fibonacci naively repeats work. Store results and reuse them."),
-                _tutor("Byte","🧭","Memoization stores computed results so you do not recalculate them. It turns exponential into linear.","Like keeping a notebook of answers you have already solved."),
-                _discover("Fibonacci: fib(5) = fib(4) + fib(3). Without memo, how many calls?","fib-calls","Number of calls","15"),
-                _manipulate("memo-fib","Store computed fib values","cache = {}"),
-                _code("Implement Fibonacci with memoization.","def fib(n):\n","cache = {}\ndef fib(n):\n    if n <= 1: return n\n    if n in cache: return cache[n]\n    cache[n] = fib(n-1) + fib(n-2)\n    return cache[n]\nprint(fib(10))"),
-                _checks([r"cache\s*=\s*\{\}",r"if\s+n\s+in\s+cache",r"cache\[n\]"]),
-                ["Store results in a cache.","Check cache before computing.","Reuse stored results."],
-                _success("📝 No memo · 💥 Exponential","📝 Memo built · ✅ Linear","Fibonacci is now O(n)!","Memoization — caching computed results.","Avoid redundant computation.",20)),
-            _level("d-2","The Table","📊",2,"tabulation","Bottom-up","algorithms.dynamic","algorithms.dynamic",
-                _story("Dynamic Delta — Table","Table Master Tom","Build a table from the bottom up. Start with base cases, fill the table iteratively."),
-                _tutor("Byte","🧭","Tabulation is the bottom-up approach to DP. Fill a table iteratively instead of recursing.","No recursion overhead, no stack overflow risk."),
-                _discover("Climbing stairs: 1 or 2 steps at a time. How many ways to climb 5 stairs?","stairs-table","Number of ways","8"),
-                _manipulate("fill-table","Bottom-up table filling","dp[i] = dp[i-1] + dp[i-2]"),
-                _code("Implement climbing stairs with tabulation.","n = 5\n","dp = [0]*(n+1)\ndp[0], dp[1] = 1, 1\nfor i in range(2, n+1):\n    dp[i] = dp[i-1] + dp[i-2]\nprint(dp[n])"),
-                _checks([r"dp\s*=\s*\[0\]",r"dp\[i\]\s*=\s*dp",r"range"]),
-                ["Initialize base cases.","Fill the table iteratively.","Each entry depends on previous entries."],
-                _success("📊 No table · ❌ Recursive overflow","📊 Table filled · ✅ Bottom-up","The table is complete — no recursion needed!","Tabulation — bottom-up DP.","Iterative, no stack risk.",25)),
-            _boss("d-boss","The Knapsack","🎒",3,"DP-master","Optimizing","algorithms.dynamic","algorithms.dynamic",
-                _story("Dynamic Delta — Vault","Optimization Officer Oscar","You have a knapsack with limited capacity. Choose items to maximize total value. Each item can be taken once."),
-                _tutor("Byte","🧭","The 0/1 knapsack is the classic DP problem. For each item, decide: take it or leave it.","Build a 2D table: rows are items, columns are capacities."),
-                _discover("Capacity 10. Items: (weight=2,value=6), (weight=3,value=7), (weight=5,value=8), (weight=7,value=9). Max value?","knapsack-opt","Max value","19"),
-                _manipulate("knapsack-table","2D DP: take or skip","dp[i][w]"),
-                _code("Solve the 0/1 knapsack problem.","weights=[2,3,5,7]\nvalues=[6,7,8,9]\ncapacity=10\n","n = len(weights)\ndp = [[0]*(capacity+1) for _ in range(n+1)]\nfor i in range(1, n+1):\n    for w in range(capacity+1):\n        if weights[i-1] <= w:\n            dp[i][w] = max(dp[i-1][w], values[i-1]+dp[i-1][w-weights[i-1]])\n        else:\n            dp[i][w] = dp[i-1][w]\nprint(dp[n][capacity])"),
-                _checks([r"dp\s*=\s*\[\[0\]",r"dp\[i\]\[w\]",r"max\("]),
-                ["Build a 2D DP table.","For each item and capacity, decide: take or skip.","The optimal value is in dp[n][capacity]."],
-                _success("🎒 No optimization · ❌ Greedy fails","🎒 Knapsack solved · ✅ Optimal","The knapsack is optimally filled!","DP Master — knapsack optimization.","Dynamic programming for combinatorial optimization.",40),
-                _reward(diamonds=40,coins=20,badges=["dp-master"],unlocks_town="town-2-alpine")),
+        _make_town("traversal", "Graph Walk", "🚶", "Visit every node. BFS and DFS are your tools.", 1, "Traversal", ["data-structures.graph"], ["bfs", "dfs"], [
+            _level("g-1","The Maze","🌀",1,"bfs","Breadth","data-structures.graph","data-structures.graph",
+                _story("Graph Realm — Entrance","Maze Runner Ray","Find the shortest path through a maze. BFS explores level by level."),
+                _tutor("Byte","🧭","BFS uses a queue. Visit all neighbors of a node before moving deeper. DFS uses a stack (or recursion).","BFS guarantees shortest path in unweighted graphs."),
+                _discover("Maze: start → A → B → End. BFS finds shortest path?","shortest-path","Path length","2"),
+                _understand("BFS guarantees shortest path in unweighted graphs."),
+                _manipulate("bfs-queue","Queue for BFS","from collections import deque"),
+                _code("Find shortest path in a maze using BFS.","from collections import deque\nmaze = [[0,0,0],[1,1,0],[0,0,0]]\n","def shortest_path(maze):\n    rows, cols = len(maze), len(maze[0])\n    queue = deque([(0, 0, 0)])\n    visited = set()\n    while queue:\n        r, c, d = queue.popleft()\n        if r == rows-1 and c == cols-1: return d\n        for dr, dc in [(0,1),(1,0),(0,-1),(-1,0)]:\n            nr, nc = r+dr, c+dc\n            if 0 <= nr < rows and 0 <= nc < cols and maze[nr][nc] == 0 and (nr,nc) not in visited:\n                visited.add((nr,nc))\n                queue.append((nr,nc,d+1))\n    return -1\nprint(shortest_path(maze))"),
+                _checks([r"deque\(\)",r"queue\.popleft\(\)",r"visited\.add"]),
+                ["BFS explores level by level.","Queue ensures shortest path first.","Mark visited to avoid cycles."],
+                _success("🌀 Maze dark · ❌ Lost","🌀 Maze solved · ✅ Shortest path found","The shortest path through the maze is found!","BFS — breadth-first search.","Level by level, shortest first.",30)),
         ]),
     ]
 )
 
 # ═══════════════════════════════════════════════════════════════
-# WORLD 12: Alpine Summit (advanced)
+# WORLD 11: Dynamic Programming Valley (dp)
 # ═══════════════════════════════════════════════════════════════
-WORLD_ALPINE = World(
-    id="alpine", name="Alpine Summit", subtitle="Mastery of Algorithms",
-    description="The peak of algorithmic knowledge. Combine all skills to solve the hardest problems.",
-    icon="🏔️", order=12, theme="alpine", recommended_roles=["developer", "ai-engineer"], prerequisites=["dynamic"],
+WORLD_DP = World(
+    id="dp", name="DP Valley", subtitle="Optimal Substructure",
+    description="Master dynamic programming — break problems into overlapping subproblems.",
+    icon="🧮", order=11, theme="dp", recommended_roles=["developer", "ai-engineer"], prerequisites=["recursion", "stack"],
     towns=[
-        _make_town("synthesis", "Synthesis Peak", "🎯", "Combine all data structures and algorithms to solve complex problems.", 1, "Synthesis", ["algorithms.synthesis"], ["synthesis", "integration", "advanced"], [
-            _level("a-1","The Synthesis","🧩",1,"algorithm synthesis","Combining","algorithms.synthesis","algorithms.synthesis",
-                _story("Alpine Summit — Base","Summit Sage Sera","Combine sorting, searching, and graph algorithms to solve a complex problem."),
-                _tutor("Byte","🧭","Real problems require combining multiple algorithms and data structures.","The best developers know when to use which tool."),
-                _discover("Given a list of words, find the shortest unique prefix for each word using a trie.","unique-prefix","Prefixes","['d','do','dog','cat']"),
-                _manipulate("build-trie","Insert words into trie","prefix"),
-                _code("Find shortest unique prefixes for all words.","words = ['dog','cat','car','apple']\n","class TrieNode:\n    def __init__(self):\n        self.children = {}\n        self.count = 0\ndef insert(root, word):\n    node = root\n    for c in word:\n        if c not in node.children: node.children[c] = TrieNode()\n        node = node.children[c]\n        node.count += 1\ndef prefix(root, word):\n    node = root\n    p = ''\n    for c in word:\n        p += c\n        node = node.children[c]\n        if node.count == 1: return p\n    return p\nroot = TrieNode()\nfor w in words: insert(root, w)\nprint([prefix(root, w) for w in words])"),
-                _checks([r"class\s+TrieNode",r"children",r"count"]),
-                ["Build a trie from all words.","Count how many words pass through each node.","The first unique prefix is where count = 1."],
-                _success("🧩 No synthesis · ❌ Fragmented","🧩 Synthesis complete · ✅ Unified","All algorithms work together!","Synthesis — combining algorithms.","The whole is greater than the sum of parts.",25)),
-            _level("a-2","The Optimization","⚡",2,"advanced optimization","Refining","algorithms.synthesis","algorithms.synthesis",
-                _story("Alpine Summit — Ridge","Optimization Officer Oscar","Optimize a solution that uses multiple data structures. Reduce time and space complexity."),
-                _tutor("Byte","🧭","Optimization is about choosing the right data structure and algorithm for each sub-problem.","Sometimes a hash table replaces a search. Sometimes a heap replaces sorting."),
-                _discover("Optimize: find the top K frequent elements. Use hash map + heap.","top-k","Optimized","O(n log k)"),
-                _manipulate("top-k","Hash map for counts, heap for top K","heapq"),
-                _code("Find the top K frequent elements efficiently.","nums=[1,1,1,2,2,3]\nk=2\n","from collections import Counter\nimport heapq\ncount = Counter(nums)\nprint(heapq.nlargest(k, count.keys(), key=count.get))"),
-                _checks([r"Counter",r"heapq",r"nlargest"]),
-                ["Count frequencies with a hash map.","Use a heap to get top K.","O(n log k) instead of O(n log n)."],
-                _success("⚡ No optimization · ❌ Slow","⚡ Optimized · ✅ Fast","The solution is optimized!", "Advanced Optimization — choosing the right tools.", "Hash map + heap = efficiency.",30)),
-            _boss("a-boss","The Grand Challenge","👑",3,"algo-master","Mastering","algorithms.synthesis","algorithms.synthesis",
-                _story("Alpine Summit — Peak","Grand Master Gemini","The ultimate challenge: design a system that combines search, sort, graph, DP, and hashing to solve a real-world problem."),
-                _tutor("Byte","🧭","The grand challenge tests everything you have learned. Combine all your tools to solve it.","This is what it means to be a Code Wanderer — mastery of all algorithms."),
-                _discover("Design a route planner: shortest path (BFS), sorted results (sort), cached lookups (hash), optimal choices (DP).","grand-challenge","Complete system","All components working"),
-                _manipulate("build-system","Combine all algorithms","integrated solution"),
-                _code("Implement a route planner combining BFS, sorting, and caching.","graph = {'A':['B','C'],'B':['D'],'C':['D'],'D':[]}\n","from collections import deque\ndef bfs(graph, start, end):\n    q = deque([[start]])\n    visited = set()\n    while q:\n        path = q.popleft()\n        node = path[-1]\n        if node == end: return path\n        if node in visited: continue\n        for n in graph.get(node, []):\n            if n not in visited: q.append(path + [n])\n    return None\ndef shortest_paths(graph, start):\n    return sorted(bfs(graph, start, end) or [], key=len)\nprint(shortest_paths(graph, 'A', 'D'))"),
-                _checks([r"deque",r"sorted",r"bfs"]),
-                ["BFS for shortest path.","Sort paths by length.","Cache results for repeated queries."],
-                _success("👑 Challenge incomplete · ❌ Failed","👑 Challenge complete · ✅ Grand Master","You have mastered all algorithms! The Alpine Summit is yours!","Algorithm Master — the peak of coding knowledge.","All skills combined into mastery.",50),
-                _reward(diamonds=50,coins=50,badges=["alpine-master"],title="Grand Master")),
+        _make_town("fib", "Fibonacci Falls", "💧", "The classic DP example: overlapping subproblems.", 1, "Classic DP", ["algorithms.dp"], ["memoization", "fibonacci", "bottom-up"], [
+            _level("dp-1","The Overflow","💥",1,"memoization","Caching","algorithms.dp","algorithms.dp",
+                _story("DP Valley — Waterfall","Memo Master Maya","Fibonacci without memoization recalculates the same values over and over. Cache them."),
+                _tutor("Byte","🧭","Memoization stores results of expensive function calls. Next time the same input occurs, return the cached result.","Top-down with memo = DP. Bottom-up with table = DP."),
+                _discover("fib(5) calls fib(4) and fib(3). fib(4) calls fib(3) again. Overlap!","overlap-count","Overlapping calls","fib(3) called twice"),
+                _understand("Top-down with memo = DP. Bottom-up with table = DP."),
+                _manipulate("memo-cache","Store computed results","memo = {}"),
+                _code("Implement Fibonacci with memoization.","def fib(n):\n    if n <= 1: return n\n    return fib(n-1) + fib(n-2)\n","def fib_memo(n, memo={}):\n    if n in memo: return memo[n]\n    if n <= 1: return n\n    memo[n] = fib_memo(n-1, memo) + fib_memo(n-2, memo)\n    return memo[n]\nprint(fib_memo(35))"),
+                _checks([r"if\s+n\s+in\s+memo",r"memo\[n\]\s*=",r"return\s+memo\[n\]"]),
+                ["Store results in a dict.","Check dict before computing.","Reuse cached results."],
+                _success("💥 Recursive explosion · ❌ Exponential","💥 Explosion contained · ✅ O(n)","Fibonacci is now computed in O(n) time!","Memoization — caching subproblem results.","Top-down DP with memo.",30)),
         ]),
     ]
 )
@@ -717,14 +971,24 @@ WORLD_REGISTRY: dict[str, World] = {
     "recursion": WORLD_RECURSION,
     "linked": WORLD_LINKED,
     "stack": WORLD_STACK,
+    "linked-advanced": WORLD_LINKED_ADV,
+    "stack-advanced": WORLD_STACK_ADV,
     "queue": WORLD_QUEUE,
-    "hashing": WORLD_HASHING,
-    "trees": WORLD_TREES,
-    "graphs": WORLD_GRAPHS,
-    "dynamic": WORLD_DYNAMIC,
-    "alpine": WORLD_ALPINE,
+    "tree": WORLD_TREE,
+    "heap": WORLD_HEAP,
+    "graph": WORLD_GRAPH,
+    "dp": WORLD_DP,
 }
 
+# Foundations (variables, naming, expressions) serves every engineering role,
+# not just SDE — broaden its role relevance so non-SDE targeted users get
+# real role-based ordering in worlds.py instead of a cosmetic sort.
+_FOUNDATION_ROLES = "sde developer data-analyst ai-engineer devops-engineer qa-engineer"
+for _town in WORLD_FOUNDATIONS.towns or []:
+    for _lvl in _town.levels or []:
+        _lvl.role_relevance = _FOUNDATION_ROLES
+        _lvl.company_relevance = _SERVICE_COMPANIES
+del _town, _lvl
 from app.models.world import (
     Boss, BreakStep, Build, Checks, Code, Debug, Discover, Level,
     Manipulate, Predict, Retrieval, Story, Success, Town, Transfer,
@@ -732,126 +996,3 @@ from app.models.world import (
 )
 
 
-def _to_level(lesson):
-    mastery_step = next((s for s in lesson.steps if s.step_type == "mastery"), None)
-    base = dict(
-        id=lesson.id,
-        title=lesson.title,
-        kind=lesson.kind,
-        icon=lesson.icon,
-        order=lesson.order,
-        concept=lesson.concept,
-        mental_model=lesson.mental_model,
-        canonical_skill=lesson.canonical_skill,
-        maps_to_competency=lesson.canonical_skill or None,
-        role_relevance=getattr(lesson, "role_relevance", None),
-        company_relevance=getattr(lesson, "company_relevance", None),
-        story=Story(location=lesson.location or "", npc=lesson.npc or "", line=lesson.npc_line or ""),
-        tutor=Tutor(name="Mentor", avatar="🧭", discover=lesson.tutor_discover or "", explain=lesson.tutor_explain or lesson.mental_model or ""),
-        discover=Discover(visual="", interaction="", prompt=lesson.mental_model or lesson.title, answer="", values=None),
-        manipulate=Manipulate(type="", template="", answer="", blocks=None, hint=lesson.mental_model),
-        predict=None,
-        build=None,
-        break_step=None,
-        debug=None,
-        code=Code(prompt=lesson.why_this_matters or lesson.title, starter="", placeholder="", language="python"),
-        checks=Checks(required_patterns=[], forbidden=[], hint_triggers=[]),
-        hints=[step.hint for step in lesson.steps if step.hint],
-        retrieval=None,
-        transfer=None,
-        mastery=mastery_step.title if mastery_step else None,
-        mastery_evidence=lesson.mastery_evidence or [],
-        mastery_threshold=70 if lesson.kind != "boss" else 80,
-        estimated_minutes=lesson.estimated_minutes,
-        reward=Reward(diamonds=lesson.diamonds, coins=0, badges=[], unlocks_town=lesson.unlocks or None, unlocks_world=None, title=None),
-        success=Success(world_before=None, world_after=None, world_reaction="", reward_text=lesson.why_this_matters or "", byte_line=None, diamonds=lesson.diamonds),
-        unlocks=lesson.unlocks or None,
-        languages=getattr(lesson, "languages", ["python", "java", "cpp", "c"]),
-        starter_code_per_language=getattr(lesson, "starter_code", {}),
-        signatures_per_language=getattr(lesson, "signatures", {}),
-        test_cases=[],
-        hidden_tests=0,
-        repair_steps=[],
-        passing_score=70,
-        max_attempts=3,
-        function_name="",
-        signature="",
-        description="",
-        why_this_matters=getattr(lesson, "why_this_matters", ""),
-        engineering_context=getattr(lesson, "engineering_context", ""),
-        builds_toward=getattr(lesson, "builds_toward", ""),
-    )
-    if lesson.kind == "boss":
-        return Boss(**base)
-    return Level(**base)
-
-
-def _to_world(world_id, wd):
-    towns_out = []
-    for td in wd.towns:
-        levels_out = []
-        for lesson in td.lessons:
-            levels_out.append(_to_level(lesson))
-        towns_out.append(
-            Town(
-                id=td.id,
-                name=td.name,
-                icon=td.icon,
-                description=td.description,
-                order=td.order,
-                mental_model=td.mental_model,
-                canonical_skills=td.canonical_skills,
-                competencies=td.competencies,
-                levels=levels_out,
-                boss=levels_out[-1] if levels_out and levels_out[-1].kind == "boss" else None,
-            )
-        )
-    return World(
-        id=wd.id,
-        name=wd.name,
-        subtitle=wd.subtitle or "",
-        description=wd.description or "",
-        icon=wd.icon,
-        order=wd.order,
-        theme=wd.theme or "",
-        recommended_roles=getattr(wd, "recommended_roles", []),
-        recommended_companies=getattr(wd, "recommended_companies", []),
-        prerequisites=getattr(wd, "prerequisites", []),
-        towns=towns_out,
-        completion_reward=None,
-    )
-
-
-try:
-    from app.content.world1_foundations import WORLD_1_FOUNDATIONS
-    from app.content.world2_problem_solver import WORLD_2_PROBLEM_SOLVER
-    from app.content.worlds_3_to_12_expanded import (
-        WORLD_3_BUILD_SYSTEMS,
-        WORLD_4_WORK_WITH_DATA,
-        WORLD_5_SOFTWARE_ENGINEERING,
-        WORLD_6_UNDER_PRESSURE,
-        WORLD_7_HIRING_ARENA,
-        WORLD_8_COMPANY_MISSIONS,
-        WORLD_9_AI_ENGINEERING,
-        WORLD_10_PRODUCTION,
-        WORLD_11_PROJECTS,
-        WORLD_12_CREATIVE,
-    )
-
-    for _wd in [
-        WORLD_1_FOUNDATIONS,
-        WORLD_2_PROBLEM_SOLVER,
-        WORLD_3_BUILD_SYSTEMS,
-        WORLD_4_WORK_WITH_DATA,
-        WORLD_5_SOFTWARE_ENGINEERING,
-        WORLD_6_UNDER_PRESSURE,
-        WORLD_7_HIRING_ARENA,
-        WORLD_8_COMPANY_MISSIONS,
-        WORLD_9_AI_ENGINEERING,
-        WORLD_10_PRODUCTION,
-        WORLD_11_PROJECTS,
-        WORLD_12_CREATIVE,
-    ]:
-        WORLD_REGISTRY[_wd.id] = _to_world(_wd.id, _wd)
-except Exception:
-    pass
