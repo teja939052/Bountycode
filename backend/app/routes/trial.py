@@ -1,5 +1,5 @@
-from fastapi import APIRouter, Depends, HTTPException
-from pydantic import BaseModel
+"""Pro trial lifecycle: start a 7-day no-card trial and check its status."""
+from fastapi import APIRouter, Depends
 from app.middleware.auth import get_current_user
 from app.services.trial import start_trial, check_trial_status, cancel_trial
 
@@ -7,18 +7,15 @@ router = APIRouter(prefix="/api/v1/trial", tags=["trial"])
 
 
 @router.post("/start")
-async def start_user_trial(user=Depends(get_current_user)):
-    existing = await check_trial_status(user["id"])
-    if existing.get("active"):
-        return existing
+async def start(user=Depends(get_current_user)):
     return await start_trial(user["id"])
 
 
 @router.get("/status")
-async def get_trial_status(user=Depends(get_current_user)):
+async def status(user=Depends(get_current_user)):
     return await check_trial_status(user["id"])
 
 
 @router.post("/cancel")
-async def cancel_user_trial(user=Depends(get_current_user)):
+async def cancel(user=Depends(get_current_user)):
     return await cancel_trial(user["id"])

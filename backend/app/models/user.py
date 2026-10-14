@@ -29,7 +29,7 @@ class UserInDB(BaseModel):
     password_hash: str
     plan: str = "free"
     paypal_customer_id: Optional[str] = None
-    paypal_order_id: Optional[str] = None
+    razorpay_order_id: Optional[str] = None
     plan_pending: Optional[str] = None
     interviews_used: int = 0
     resumes_used: int = 0

@@ -92,7 +92,7 @@ def limit_reached_email(name: str, feature: str):
         f"<p style='line-height:1.5'>You just used your free <b>{feature_label}</b> for this month. "
         "The users who improve fastest are the ones who practice without limits.</p>"
         "<p style='margin:20px 0'>" + _button("Unlock unlimited — Upgrade to Pro", PRICING_URL) + "</p>"
-        "<p style='line-height:1.5;color:#94a3b8'>Pro is $19/mo (yearly $99). Your monthly limits reset, "
+        "<p style='line-height:1.5;color:#94a3b8'>Pro is ₹99/mo. Your monthly limits reset, "
         "but your progress doesn't have to wait.</p>"
     )
     return subject, _wrap(inner)
@@ -104,8 +104,8 @@ def trial_expired_email(name: str):
         f"<h1 style='font-size:20px;margin:0 0 12px'>Hi {name or 'there'}, your trial just ended.</h1>"
         "<p style='line-height:1.5'>You had unlimited practice for a week. Users who keep a daily "
         "streak are the ones who walk into real interviews calm and prepared.</p>"
-        "<p style='margin:20px 0'>" + _button("Continue with Pro — $19/mo", PRICING_URL) + "</p>"
-        "<p style='line-height:1.5;color:#94a3b8'>Yearly is $99 (less than $8.25/mo). No gap in your progress.</p>"
+        "<p style='margin:20px 0'>" + _button("Continue with Pro — ₹99/mo", PRICING_URL) + "</p>"
+        "<p style='line-height:1.5;color:#94a3b8'>Yearly is ₹899 (less than ₹8.25/mo). No gap in your progress.</p>"
     )
     return subject, _wrap(inner)
 
@@ -119,6 +119,18 @@ def password_reset_email(name: str, reset_link: str):
         f"<p style='margin:20px 0'>{_button('Reset password', reset_link)}</p>"
         "<p style='line-height:1.5;color:#94a3b8'>If you didn't request this, you can safely ignore this email. "
         "Your password will not change.</p>"
+    )
+    return subject, _wrap(inner)
+
+
+def verification_email(name: str, verify_link: str):
+    subject = "Verify your BountyCode email"
+    inner = (
+        f"<h1 style='font-size:20px;margin:0 0 12px'>Hi {name or 'there'}, one quick step.</h1>"
+        "<p style='line-height:1.5'>Confirm this email address to unlock Pro checkout. "
+        "This link expires in 24 hours.</p>"
+        f"<p style='margin:20px 0'>{_button('Verify my email', verify_link)}</p>"
+        "<p style='line-height:1.5;color:#94a3b8'>If you didn't sign up, you can safely ignore this email.</p>"
     )
     return subject, _wrap(inner)
 
