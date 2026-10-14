@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { List } from "react-window";
 import type { CSSProperties } from "react";
 

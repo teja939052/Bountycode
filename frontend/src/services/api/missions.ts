@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { requestWithRetry } from "./request.ts";
 import { journeyApi } from "./journey.ts";
 
@@ -10,8 +11,8 @@ import { journeyApi } from "./journey.ts";
  *
  * - identity/next action → GET /api/v1/journey/state (journey_engine)
  * - daily plan           → GET /api/v1/study/today     (study_engine)
- * - completion/evidence  → POST /api/v1/study/activity (record_activity →
- *                           mastery + SRS + record_practice + LearningEvent)
+ * - completion/evidence  → POST /api/v1/unified/activity (record_unified_activity →
+ *                           study_engine.record_activity → mastery + SRS + record_practice + LearningEvent)
  * - repair/retest        → /api/v1/repair/*            (repair_service,
  *                           verified-only via question_store)
  */

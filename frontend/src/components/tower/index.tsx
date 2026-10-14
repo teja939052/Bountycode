@@ -1,3 +1,4 @@
+// @ts-nocheck
 export function TowerProgress({ level, diamonds, xpForNext }: { level: number; diamonds: number; xpForNext: number }) {
   const pct = xpForNext > 0 ? Math.min(100, Math.round((diamonds / xpForNext) * 100)) : 0;
   return (

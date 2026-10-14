@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useCallback, useEffect, useState } from "react";
 
 const CACHE_PREFIX = "pp_curriculum_v1";

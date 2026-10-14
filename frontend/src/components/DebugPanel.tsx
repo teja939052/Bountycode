@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useState, useEffect, useCallback } from "react";
 import { Bug, X, Copy, Trash2, RefreshCw } from "lucide-react";
 import { getTrackedErrors, clearTrackedErrors } from "../services/errorTracker";

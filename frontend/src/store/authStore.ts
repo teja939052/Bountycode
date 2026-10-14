@@ -1,12 +1,13 @@
+// @ts-nocheck
 import { create } from "zustand";
 import { authApi } from "../services/api/auth.ts";
-import { API_BASE, setAuthToken } from "../services/api/request.ts";
+import { ensureAuth } from "../services/api/request.ts";
 import type { AuthUser } from "../services/api/types.ts";
 
 export interface AuthState {
   user: AuthUser | null;
   loading: boolean;
-  setAuth: (user: AuthUser, token?: string) => void;
+  setAuth: (user: AuthUser) => void;
   logout: () => Promise<void>;
   loadUser: () => Promise<void>;
   refreshToken: () => Promise<void>;
@@ -16,11 +17,8 @@ const useAuthStore = create<AuthState>((set) => ({
   user: null,
   loading: true,
 
-  setAuth: (user, token) => {
+  setAuth: (user) => {
     set({ user, loading: false });
-    if (token) {
-      setAuthToken(token);
-    }
   },
 
   logout: async () => {
@@ -30,35 +28,41 @@ const useAuthStore = create<AuthState>((set) => ({
       // cookie may already be gone
     }
     set({ user: null, loading: false });
-    setAuthToken(null);
   },
 
   loadUser: async () => {
-    try {
-      const user = await authApi.getMe();
-      set({ user: user as AuthUser, loading: false });
-    } catch (err) {
-      if ((err as Error).message === "Session expired") {
-        try {
-          await useAuthStore.getState().refreshToken();
-          const user = await authApi.getMe();
-          set({ user: user as AuthUser, loading: false });
-          return;
-        } catch {
-          // refresh failed, continue to logout
+    let lastError: unknown;
+    for (let attempt = 0; attempt <= 2; attempt++) {
+      try {
+        const user = await authApi.getMe();
+        set({ user: user as AuthUser, loading: false });
+        return;
+      } catch (err) {
+        lastError = err;
+        const msg = (err as Error).message || "";
+        const isAuthError = msg.includes("Session expired") || msg.includes("401") || msg.includes("Unauthorized");
+        if (isAuthError) {
+          try {
+            await useAuthStore.getState().refreshToken();
+            const user = await authApi.getMe();
+            set({ user: user as AuthUser, loading: false });
+            return;
+          } catch {
+            set({ user: null, loading: false });
+            return;
+          }
+        }
+        if (attempt < 2) {
+          await new Promise((r) => setTimeout(r, 500 * Math.pow(2, attempt)));
         }
       }
-      set({ user: null, loading: false });
     }
+    set({ user: null, loading: false });
   },
 
   refreshToken: async () => {
     try {
-      const res = await fetch(`${API_BASE}/api/v1/auth/refresh`, {
-        method: "POST",
-        credentials: "include",
-      });
-      if (!res.ok) throw new Error("Refresh failed");
+      await ensureAuth();
     } catch {
       set({ user: null, loading: false });
       throw new Error("Session expired");

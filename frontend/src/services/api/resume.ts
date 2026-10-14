@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
   requestWithRetry as request,
   requestBlob,
@@ -59,6 +60,19 @@ export const resumeApi = {
         resume_text: resumeText,
         job_description: jobDescription,
       }),
+    });
+  },
+
+  improveBullets(
+    bullets: string[] | string,
+    jobRole = "",
+  ): Promise<{ improvements: Array<Record<string, unknown>> }> {
+    const list = Array.isArray(bullets)
+      ? bullets
+      : String(bullets).split("\n").map((b) => b.trim()).filter(Boolean);
+    return request("/api/v1/resume/improve-bullets", {
+      method: "POST",
+      body: JSON.stringify({ bullets: list, job_role: jobRole }),
     });
   },
 

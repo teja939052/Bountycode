@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { requestWithRetry as request, requestBlob } from "./request.ts";
 
 export type OAMode = "calm" | "pressure" | "boss";

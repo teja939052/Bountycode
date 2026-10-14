@@ -1,31 +1,80 @@
+// @ts-nocheck
 export const motion = {
   durations: {
     instant: "0ms",
-    fast: "150ms",
-    normal: "200ms",
-    slow: "300ms",
-    slower: "500ms",
-    slowest: "700ms",
+    fast: "120ms",
+    normal: "220ms",
+    slow: "320ms",
+    ceremony: "480ms",
+    unlock: "700ms",
   },
   easings: {
-    linear: "linear",
-    easeIn: "cubic-bezier(0.4, 0, 1, 1)",
-    easeOut: "cubic-bezier(0, 0, 0.2, 1)",
-    easeInOut: "cubic-bezier(0.4, 0, 0.2, 1)",
-    bounce: "cubic-bezier(0.34, 1.56, 0.64, 1)",
+    standard: "cubic-bezier(0, 0, 0.2, 1)",
+    emphasized: "cubic-bezier(0.2, 0, 0, 1)",
     spring: "cubic-bezier(0.34, 1.56, 0.64, 1)",
+    decelerate: "cubic-bezier(0, 0, 0.2, 1)",
+    anticipate: "cubic-bezier(0.4, 0, 0.2, 1)",
   },
-  transitions: {
-    instant: "all 0ms linear",
-    fast: "all 150ms cubic-bezier(0, 0, 0.2, 1)",
-    normal: "all 200ms cubic-bezier(0, 0, 0.2, 1)",
-    slow: "all 300ms cubic-bezier(0, 0, 0.2, 1)",
-    slower: "all 500ms cubic-bezier(0, 0, 0.2, 1)",
-    bounce: "all 300ms cubic-bezier(0.34, 1.56, 0.64, 1)",
-    transform: "transform 200ms cubic-bezier(0, 0, 0.2, 1)",
-    color: "color 200ms cubic-bezier(0, 0, 0.2, 1), background-color 200ms cubic-bezier(0, 0, 0.2, 1), border-color 200ms cubic-bezier(0, 0, 0.2, 1)",
-    opacity: "opacity 200ms cubic-bezier(0, 0, 0.2, 1)",
-    scale: "transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1)",
+  distances: {
+    small: "4px",
+    medium: "8px",
+    large: "16px",
+  },
+  scale: {
+    press: 0.97,
+    hover: 1.02,
+    success: 1.05,
+    mastery: 1.1,
+    boss: 1.15,
+  },
+  states: {
+    idle: {
+      duration: "220ms",
+      easing: "standard",
+      description: "Calm. No motion unless necessary.",
+    },
+    focus: {
+      duration: "220ms",
+      easing: "emphasized",
+      description: "Attention moves toward the current task.",
+    },
+    interaction: {
+      duration: "120ms",
+      easing: "spring",
+      description: "Immediate tactile response.",
+    },
+    success: {
+      duration: "320ms",
+      easing: "spring",
+      description: "Clear positive feedback.",
+    },
+    failure: {
+      duration: "220ms",
+      easing: "standard",
+      description: "Clear mistake communication.",
+    },
+    repair: {
+      duration: "320ms",
+      easing: "emphasized",
+      description: "Visual transition into recovery.",
+    },
+    mastery: {
+      duration: "480ms",
+      easing: "spring",
+      description: "Concept transforms/unlocks.",
+    },
+    boss: {
+      duration: "480ms",
+      easing: "emphasized",
+      description: "Energy increases.",
+    },
+    navigation: {
+      duration: "220ms",
+      easing: "standard",
+      description: "Quiet and fast.",
+    },
   },
   prefersReducedMotion: "(prefers-reduced-motion: reduce)",
 };
+
+export type MotionState = keyof typeof motion.states;

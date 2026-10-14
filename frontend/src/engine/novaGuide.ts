@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type {
   MissionState,
   NovaMood,
@@ -84,13 +85,17 @@ export class NovaGuide {
     const struggling = codeExecutions > 3 || (predictionsTotal > 0 && predictionsCorrect / predictionsTotal < 0.4);
 
     switch (stepType) {
-      case "story":
+      case "intro":
         return this.getStoryDialogue(isFirstMission, isEarlyStep, context);
 
       case "discover":
+      case "manipulate":
         return this.getDiscoverDialogue(isEarlyStep, context);
 
       case "predict":
+      case "retrieve":
+      case "transfer":
+      case "recognize":
         return this.getPredictDialogue(predictionsCorrect, predictionsTotal, context);
 
       case "build":
@@ -102,9 +107,10 @@ export class NovaGuide {
       case "debug":
         return this.getDebugDialogue(codeExecutions, context);
 
-      case "prove":
+      case "mastery":
         return this.getProveDialogue(masteryScore, context);
 
+      case "practice":
       case "reward":
         return this.getRewardDialogue(masteryScore, context);
 

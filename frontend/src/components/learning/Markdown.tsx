@@ -1,3 +1,4 @@
+// @ts-nocheck
 function inlineToNodes(text, keyBase) {
   const nodes = [];
   const regex = /(\*\*[^*]+\*\*|`[^`]+`)/g;

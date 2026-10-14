@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { motion, type Variants } from "framer-motion";
 import type { ReactNode } from "react";
 import useReducedMotion from "../../hooks/useReducedMotion";

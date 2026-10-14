@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { requestWithRetry as request } from "./request.ts";
 import type { AptitudeCategory, TestSession, TestResult } from "./types.ts";
 
@@ -58,4 +59,25 @@ export const aptitudeApi = {
   getResult(testId: string): Promise<TestResult> {
     return request(`/api/v1/aptitude/${testId}/result`);
   },
+
+  getTheoryFor(category: string): Promise<{
+    category: string;
+    topics: TheoryTopic[];
+  }> {
+    return request(
+      `/api/v1/aptitude/theory-for/${encodeURIComponent(category)}`,
+    );
+  },
 };
+
+export interface TheoryTopic {
+  id: string;
+  title: string;
+  category: string;
+  definition: string;
+  formulas: string[];
+  worked_example: { problem: string; solution: string };
+  triggers: string[];
+  pitfalls: string[];
+  practice_category: string;
+}

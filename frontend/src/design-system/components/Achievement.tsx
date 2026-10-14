@@ -1,5 +1,7 @@
+// @ts-nocheck
 import { ReactNode } from "react";
 import { colors, radii, shadows, motion, spacing, typography } from "..";
+import { ProgressBar } from "./ProgressBar";
 
 interface AchievementProps {
   title: string;

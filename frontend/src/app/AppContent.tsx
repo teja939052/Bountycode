@@ -10,8 +10,8 @@ import { AnimatedRoutes } from "./AppRoutes";
 import ComboCounter from "../components/ComboCounter";
 import ComboWarningOverlay from "../juice/ComboWarningOverlay";
 import RouteErrorBoundary from "../components/RouteErrorBoundary";
+import SearchModal from "../components/SearchModal";
 
-const Onboarding = lazy(() => import("../components/Onboarding"));
 const RewardShowcase = lazy(() => import("../components/RewardShowcase"));
 const BottomNav = lazy(() => import("../components/BottomNav"));
 
@@ -158,40 +158,38 @@ export default function AppContent() {
     <>
       <div className="min-h-screen flex flex-col relative">
         <CustomCursor />
-        <div className="relative z-10 flex flex-col min-h-screen">
-          <Navbar />
-          <main className="flex-1" id="main-content" role="main">
-            <PageSuspense>
-              <RouteErrorBoundary>
-                <AnimatedRoutes />
-              </RouteErrorBoundary>
-            </PageSuspense>
-          </main>
-          <Footer />
-          <CookieBanner />
-          <Suspense fallback={null}>
-            <Onboarding />
-            <Suspense fallback={null}>
-              <RewardShowcase
-                visible={rewardShowcase.visible}
-                breakdown={rewardShowcase.breakdown}
-                onContinue={() => setRewardShowcase((prev) => ({ ...prev, visible: false }))}
-              />
-            </Suspense>
-            <ComboCounter
-              combo={currentCombo}
-              multiplier={comboMultiplier}
-              visible={currentCombo >= 2}
-            />
-            <ComboWarningOverlay
-              seconds={(combo?.combo_decay_seconds as number | undefined) ?? 0}
-              visible={currentCombo >= 3}
-            />
-          </Suspense>
-          <Suspense fallback={null}>
-            <BottomNav />
-          </Suspense>
-        </div>
+      <div className="relative z-10 flex flex-col min-h-screen">
+        <Navbar />
+        <main className="flex-1" id="main-content" role="main">
+          <PageSuspense>
+            <RouteErrorBoundary>
+              <AnimatedRoutes />
+            </RouteErrorBoundary>
+          </PageSuspense>
+        </main>
+        <Footer />
+        <CookieBanner />
+        <Suspense fallback={null}>
+          <RewardShowcase
+            visible={rewardShowcase.visible}
+            breakdown={rewardShowcase.breakdown}
+            onContinue={() => setRewardShowcase((prev) => ({ ...prev, visible: false }))}
+          />
+          <ComboCounter
+            combo={currentCombo}
+            multiplier={comboMultiplier}
+            visible={currentCombo >= 2}
+          />
+          <ComboWarningOverlay
+            seconds={combo?.combo_decay_seconds as number | undefined ?? 0}
+            visible={currentCombo >= 3}
+          />
+        </Suspense>
+        <Suspense fallback={null}>
+          <BottomNav />
+        </Suspense>
+        <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
+      </div>
         <div className="h-16 md:hidden" />
       </div>
     </>

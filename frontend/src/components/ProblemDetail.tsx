@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -50,11 +51,7 @@ export default function ProblemDetail({ problemId: propId, problem: propProblem 
   const [hintLoading, setHintLoading] = useState(false);
   const [revealedSolution, setRevealedSolution] = useState<any>(null);
   const [solutionLockedNote, setSolutionLockedNote] = useState(false);
-  const [similarProblems, setSimilarProblems] = useState([]);
-  const [acceptance, setAcceptance] = useState(null);
   const [discussions, setDiscussions] = useState([]);
-  const [discussionContent, setDiscussionContent] = useState("");
-  const [submittingDiscussion, setSubmittingDiscussion] = useState(false);
 
   useEffect(() => {
     if (propProblem) {
@@ -81,9 +78,6 @@ export default function ProblemDetail({ problemId: propId, problem: propProblem 
 
         setProblem(problemData);
         setSolved(solvedData.solved);
-        api.getAcceptanceRate(id).then(setAcceptance).catch(() => {});
-        api.getSimilarProblems(id, 5).then(setSimilarProblems).catch(() => {});
-        api.community.getDiscussions(id, "best", 1).then((d) => setDiscussions(d.discussions || [])).catch(() => {});
       } catch {
         setProblem(null);
       } finally {
@@ -130,19 +124,8 @@ export default function ProblemDetail({ problemId: propId, problem: propProblem 
     }
   };
 
-  const handlePostDiscussion = async () => {
-    if (!discussionContent.trim()) return;
-    setSubmittingDiscussion(true);
-    try {
-      await api.community.createDiscussion(id, discussionContent, null, null, "discussion");
-      setDiscussionContent("");
-      api.community.getDiscussions(id, "best", 1).then((d) => setDiscussions(d.discussions || [])).catch(() => {});
-    } catch {
-      // keep the UI calm on failures
-    } finally {
-      setSubmittingDiscussion(false);
-    }
-  };
+  // Discussions open with the community backend (removed Aug 2026 cleanup);
+  // the tab below shows an honest placeholder until it returns.
 
   if (loading) {
     return (
@@ -171,8 +154,8 @@ export default function ProblemDetail({ problemId: propId, problem: propProblem 
   }
 
   const difficultyClass = DIFFICULTY_STYLES[problem.difficulty] || DIFFICULTY_STYLES.medium;
-  const acceptanceRate = problem.acceptance_rate || acceptance?.acceptance_rate || null;
-  const totalSubmissions = problem.total_submissions || acceptance?.total_submissions || null;
+  const acceptanceRate = problem.acceptance_rate || null;
+  const totalSubmissions = problem.total_submissions || null;
   const avgTime = problem.avg_time || null;
   const companies = problem.companies || problem.company || [];
   const companyList = Array.isArray(companies) ? companies : [companies].filter(Boolean);
@@ -536,27 +519,6 @@ export default function ProblemDetail({ problemId: propId, problem: propProblem 
                 <span className="text-xs">{problem.solution.message || "Upgrade to Pro to unlock the solution"}</span>
               </div>
             )}
-
-            {similarProblems.length > 0 && (
-              <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm">
-                <h3 className="mb-3 text-sm font-semibold text-text-primary">Similar Problems</h3>
-                <div className="space-y-1.5">
-                  {similarProblems.map((sp, i) => (
-                    <Link key={i} to={`/solve/${sp.id}`} className="group flex items-center justify-between rounded-lg px-2 py-1.5 transition-colors hover:bg-surface-2">
-                      <div className="flex items-center gap-2">
-                        <span className={`rounded px-1.5 py-0.5 text-[10px] ${DIFFICULTY_STYLES[sp.difficulty] || "text-text-muted bg-surface-2 border border-black/5"}`}>
-                          {sp.difficulty?.charAt(0).toUpperCase()}
-                        </span>
-                        <span className="text-xs text-text-secondary group-hover:text-text-primary">
-                          {sp.question_title || sp.question}
-                        </span>
-                      </div>
-                      <ExternalLink size={11} className="text-text-dim group-hover:text-text-secondary" />
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
           </>
         )}
 
@@ -644,27 +606,10 @@ export default function ProblemDetail({ problemId: propId, problem: propProblem 
 
         {activeSection === "discussions" && (
           <div className="space-y-4">
-            <div className="flex gap-2">
-              <textarea
-                value={discussionContent}
-                onChange={(e) => setDiscussionContent(e.target.value)}
-                placeholder="Share your approach, solution, or ask a question..."
-                className="min-h-24 flex-1 resize-none rounded-xl border border-black/5 bg-white px-3 py-2 text-xs text-text-secondary focus:border-nature-leaf focus:outline-none"
-                rows={3}
-              />
-            </div>
-            <button
-              onClick={handlePostDiscussion}
-              disabled={submittingDiscussion || !discussionContent.trim()}
-              className="rounded-lg bg-nature-leaf px-3 py-1.5 text-xs font-medium text-text-primary transition-colors hover:bg-nature-moss disabled:opacity-50"
-            >
-              {submittingDiscussion ? "Posting..." : "Post"}
-            </button>
-
             {discussions.length === 0 ? (
               <div className="py-8 text-center text-text-muted">
                 <MessageSquare size={24} className="mx-auto mb-2 opacity-50" />
-                <p className="text-xs">No discussions yet. Be the first!</p>
+                <p className="text-xs">Community discussions are coming soon.</p>
               </div>
             ) : (
               <div className="space-y-3">

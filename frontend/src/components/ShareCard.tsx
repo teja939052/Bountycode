@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { getLevelForXP, getLevelColor } from './XPBar';

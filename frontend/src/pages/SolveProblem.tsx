@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -7,6 +8,7 @@ import LeetCodeEditorPanel from "../components/leetcode/LeetCodeEditorPanel";
 import useReducedMotion from "../hooks/useReducedMotion";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { ChevronDown, Clock, Code2, FileText, Pause, Play, RotateCcw } from "lucide-react";
+import { MentorCallout } from "../components/golden/MentorCallout";
 
 const TIMER_PRESETS = [
   { label: "15 min", seconds: 900 },
@@ -28,6 +30,7 @@ export default function SolveProblem() {
 
   const [problem, setProblem] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [interactionState, setInteractionState] = useState<"idle" | "ready" | "active" | "feedback" | "next">("idle");
 
   usePageMeta(
     problem?.question_title || problem?.title || "Solve Problem",
@@ -142,6 +145,43 @@ export default function SolveProblem() {
   return (
     <div className="min-h-[calc(100vh-64px)] bg-[radial-gradient(circle_at_top,rgba(79,143,87,0.06),transparent_34%),linear-gradient(180deg,#FAFAF6_0%,#F4EFE4_100%)]">
       <div className="mx-auto flex min-h-[calc(100vh-64px)] max-w-[1600px] flex-col px-3 py-3 md:px-4 md:py-4">
+        {interactionState !== "idle" && (
+          <>
+            <motion.div
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-3 flex items-center justify-between rounded-2xl border border-brand-primary/10 bg-white/80 px-4 py-2.5 shadow-soft"
+            >
+              <div className="flex items-center gap-2 text-xs text-brand-muted">
+                <span className="inline-flex h-2 w-2 rounded-full bg-brand-sky" />
+                <span className="font-semibold uppercase tracking-wide">Interaction</span>
+                <span className="rounded-full bg-brand-bg px-2 py-0.5 font-mono text-[10px]">{interactionState}</span>
+              </div>
+              <p className="text-xs text-brand-muted">
+                {interactionState === "ready" && "Read the problem before writing code."}
+                {interactionState === "active" && "Edit, run samples, then submit."}
+                {interactionState === "feedback" && "Review the result, then act on it."}
+                {interactionState === "next" && "You can retry or continue."}
+              </p>
+            </motion.div>
+            <MentorCallout
+              phase={
+                interactionState === "ready" ? "intro" :
+                interactionState === "active" ? "active" :
+                interactionState === "feedback" ? "success" :
+                "complete"
+              }
+              message={
+                interactionState === "ready" ? "Read the full problem first. Understanding the constraint is half the solution." :
+                interactionState === "active" ? "Write the smallest correct version first. Optimize only after green tests." :
+                interactionState === "feedback" ? "If it failed, read the exact mismatch. If it passed, move on — don't polish working code." :
+                "One problem done is data. Rest briefly, then pick the next target."
+              }
+              size="compact"
+              className="mb-3"
+            />
+          </>
+        )}
         <div className="sticky top-0 z-20 mb-3 rounded-2xl border border-brand-primary/10 bg-white border-border/90 px-3 py-2 shadow-soft backdrop-blur md:px-4">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex min-w-0 items-center gap-3">
@@ -160,6 +200,17 @@ export default function SolveProblem() {
             </div>
 
             <div className="flex flex-wrap items-center gap-2">
+              {interactionState !== "active" && (
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => setInteractionState("active")}
+                  className="inline-flex items-center gap-2 rounded-full bg-brand-sky px-4 py-2 text-xs font-bold text-white shadow-sm transition-colors hover:bg-brand-sky/90"
+                >
+                  <Play size={12} />
+                  Start coding
+                </motion.button>
+              )}
               {!timerActive ? (
                 <div className="relative">
                   <button

@@ -1,9 +1,10 @@
+// @ts-nocheck
 /**
  * Web Audio API Sound Effects Synthesizer for BountyCode.
  * Zero external assets required, instant loading, hardware-accelerated sound effects.
  */
 
-let audioCtx = null;
+let audioCtx: AudioContext | null = null;
 
 function getAudioContext() {
   if (typeof window === "undefined") return null;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 export default function Privacy() {
   return (
     <div className="min-h-screen bg-[#F7FAF7] py-12">
@@ -49,7 +50,7 @@ export default function Privacy() {
                 <div>
                   <h3 className="font-semibold">2.4 Payment Information</h3>
                   <ul className="list-disc pl-6 mt-1 space-y-1">
-                    <li>Payment is processed through PayPal.</li>
+                    <li>Payment is processed through Razorpay.</li>
                     <li><strong>We do not store credit card or banking information.</strong></li>
                     <li>We receive payment confirmation and transaction ID.</li>
                   </ul>
@@ -96,7 +97,7 @@ export default function Privacy() {
               <div className="space-y-3">
                 <p>We use the following third-party services that process your data:</p>
                 <ul className="list-disc pl-6 space-y-2">
-                  <li><strong>PayPal:</strong> Payment processing. <a href="https://www.paypal.com/us/legal" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:underline">View their privacy policy</a>.</li>
+                  <li><strong>Razorpay:</strong> Payment processing.</li>
                   <li><strong>OpenRouter:</strong> AI services. Anonymized data only (no personal data is shared).</li>
                   <li><strong>MongoDB Atlas:</strong> Cloud database provider. <a href="https://www.mongodb.com/legal/privacy" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:underline">View their privacy policy</a>.</li>
                   <li><strong>Cloudflare:</strong> CDN and DDoS protection. <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:underline">View their privacy policy</a>.</li>

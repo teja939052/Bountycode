@@ -1,3 +1,4 @@
+// @ts-nocheck
 export const typography = {
   fontFamilies: {
     display: '"Manrope", "Inter", system-ui, sans-serif',

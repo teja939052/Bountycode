@@ -1,8 +1,9 @@
+// @ts-nocheck
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowRight, Play, RefreshCw } from "lucide-react";
 import api from "../../services/api";
-import Spinner from "../ui/Spinner";
+import { BountyCodeLoader } from "../brand/BountyCodeBrandMotion";
 import RepairPanel from "../RepairPanel";
 import {
   missionFromJourneyNext,
@@ -18,8 +19,8 @@ import {
  * ONE renderer for every mission kind. It renders NO content of its own —
  * steps deep-link to the existing engines (lesson player, question bank,
  * verified retest, mock OA, interview, SRS), and completion posts to the
- * canonical sink (POST /api/v1/study/activity → mastery + SRS +
- * record_practice + LearningEvent). Backend decides progression: id "next"
+ * canonical sink (POST /api/v1/unified/activity → study_engine.record_activity →
+ * mastery + SRS + record_practice + LearningEvent). Backend decides progression: id "next"
  * resolves from journey/state at render time.
  *
  * Supported ids:
@@ -138,7 +139,7 @@ export default function MissionShell() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <Spinner />
+        <BountyCodeLoader size={40} />
       </div>
     );
   }

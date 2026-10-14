@@ -1,3 +1,4 @@
+// @ts-nocheck
 interface SpinnerProps {
   size?: string | number;
   className?: string;

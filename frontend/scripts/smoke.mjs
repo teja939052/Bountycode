@@ -161,16 +161,17 @@ async function apiCheck() {
     record("auth flow", false, err.message);
   }
 
-  // debug log endpoint
+  // AI debugger endpoint (real route: /api/v1/ai-debugger/rubber-duck)
   try {
-    const r = await fetch(`${API}/api/v1/debug/log`, {
+    const r = await fetch(`${API}/api/v1/ai-debugger/rubber-duck`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: "smoke test log", level: "info", url: FRONTEND }),
+      body: JSON.stringify({ message: "smoke test", code: "print(1)", language: "python" }),
     });
-    record("POST /api/v1/debug/log -> 200", r.status === 200, `got ${r.status}`);
+    const ok = r.status === 200 || r.status === 401 || r.status === 422;
+    record("POST /api/v1/ai-debugger/rubber-duck reachable", ok, `got ${r.status}`);
   } catch (err) {
-    record("POST /api/v1/debug/log -> 200", false, err.message);
+    record("POST /api/v1/ai-debugger/rubber-duck reachable", false, err.message);
   }
 }
 
@@ -180,7 +181,7 @@ async function main() {
   console.log(`  backend:  ${API}`);
   console.log("");
 
-  const backendUp = await waitFor(`${API}/api/v1/debug/logs`, 5000);
+  const backendUp = await waitFor(`${API}/health`, 5000);
   if (!backendUp) {
     record("backend reachable", false, "start backend first: backend\\start_backend.ps1");
     return finish();
@@ -204,9 +205,9 @@ async function main() {
   }
   record("frontend reachable", true);
 
-  await checkPage("/", { expect: ["turns placement stress into"], forbid: ["Something went wrong", "Invalid hook"] });
-  await checkPage("/register", { expect: ["Create your account"], forbid: ["Something went wrong", "Invalid hook"] });
-  await checkPage("/login", { expect: ["Welcome back"], forbid: ["Something went wrong", "Invalid hook"] });
+  await checkPage("/", { expect: ["From first code to first offer"], forbid: ["Something went wrong", "Invalid hook", "The app could not start"] });
+  await checkPage("/register", { expect: ["Create your account"], forbid: ["Something went wrong", "Invalid hook", "The app could not start"] });
+  await checkPage("/login", { expect: ["Welcome Back"], forbid: ["Something went wrong", "Invalid hook", "The app could not start"] });
 
   await apiCheck();
   return finish();

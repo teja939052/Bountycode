@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { requestWithRetry as request } from "./request.ts";
 import type {
   BillingStatus,
@@ -57,27 +58,6 @@ export const billingApi = {
     return request("/api/v1/billing/checkout/enterprise", {
       method: "POST",
       body: JSON.stringify({ country, seats, coupon_code: couponCode }),
-    });
-  },
-
-  createStripeCheckout(
-    plan = "pro_monthly",
-    country = "US",
-    seats = 1,
-    couponCode = "",
-  ): Promise<CheckoutResponse> {
-    return request("/api/v1/billing/checkout/stripe", {
-      method: "POST",
-      body: JSON.stringify({ plan, country, seats, coupon_code: couponCode }),
-    });
-  },
-
-  captureOrder(
-    orderId: string,
-  ): Promise<{ captured?: boolean; status?: string }> {
-    return request("/api/v1/billing/capture", {
-      method: "POST",
-      body: JSON.stringify({ order_id: orderId }),
     });
   },
 

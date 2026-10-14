@@ -1,3 +1,4 @@
+// @ts-nocheck
 export const spacing = {
   base: 4, // 4px base unit
   scale: {

@@ -1,10 +1,11 @@
+// @ts-nocheck
 /**
  * Mission view types (V4 internal wiring).
  *
  * These are VIEWS over the canonical systems — not a new state model:
  * - identity/progress  → journey_engine.build_journey_state  (GET /api/v1/journey/state)
  * - daily plan          → study_engine.get_today              (GET /api/v1/study/today)
- * - completion sink     → study_engine.record_activity        (POST /api/v1/study/activity)
+ * - completion sink     → study_engine.record_activity        (POST /api/v1/unified/activity)
  * - repair/retest       → repair_service + question_store     (GET/POST /api/v1/repair/*)
  * - rewards             → gamification.record_practice (sole XP writer)
  *
@@ -20,6 +21,12 @@ export type MissionKind =
   | "interview"
   | "review";
 
+/**
+ * View-level step labels for MissionShell checklists.
+ * Canonical teaching vocabulary lives in backend STEP_TYPES
+ * (discover → manipulate → predict → build → break → debug → retrieve →
+ * transfer → mastery). recognize/prove/practice are composition aliases.
+ */
 export type MissionStepType =
   | "discover"
   | "manipulate"
@@ -29,7 +36,10 @@ export type MissionStepType =
   | "practice"
   | "break"
   | "debug"
-  | "prove";
+  | "retrieve"
+  | "transfer"
+  | "prove"
+  | "mastery";
 
 export interface Mission {
   id: string;

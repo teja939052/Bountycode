@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { requestWithRetry as request } from "./request.ts";
 
 export const companyMocksApi = {

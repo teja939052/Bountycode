@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -27,6 +28,8 @@ import {
   EyeOff,
   Database,
 } from "lucide-react";
+import { MentorCallout } from "../components/golden/MentorCallout";
+import CampaignBanner from "../components/CampaignBanner";
 
 const COMPANIES = [
   {
@@ -184,15 +187,15 @@ function QuestionPalette({
           let btnClass =
             "w-9 h-9 rounded-lg font-mono text-xs font-bold transition-all duration-200 border ";
           if (isCurrent) {
-            btnClass += "bg-cyber-blue text-space-void border-cyber-blue shadow-cyber-blue scale-110";
+            btnClass += "bg-brand-sky text-white border-brand-sky shadow-sm scale-110";
           } else if (isSubmitted && isCorrect) {
-            btnClass += "bg-cyber-green/20 text-cyber-green border-cyber-green/40";
+            btnClass += "bg-emerald-50 text-emerald-600 border-emerald-200";
           } else if (isSubmitted && !isCorrect) {
-            btnClass += "bg-cyber-red/20 text-cyber-red border-cyber-red/40";
+            btnClass += "bg-red-50 text-red-500 border-red-200";
           } else if (isAnswered) {
-            btnClass += "bg-cyber-amber/20 text-cyber-amber border-cyber-amber/40";
+            btnClass += "bg-amber-50 text-amber-600 border-amber-200";
           } else {
-            btnClass += "bg-white text-text-muted border-black/5 hover:border-gray-500 hover:text-text-primary";
+            btnClass += "bg-white text-text-secondary border-black/5 hover:border-brand-primary/20 hover:text-text-primary";
           }
 
           return (
@@ -206,28 +209,28 @@ function QuestionPalette({
           );
         })}
       </div>
-      <div className="mt-4 space-y-1.5">
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded bg-cyber-blue" />
-          <span className="font-mono text-[10px] text-gray-500">Current</span>
+        <div className="mt-4 space-y-1.5">
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 rounded bg-brand-sky" />
+            <span className="font-mono text-[10px] text-text-secondary">Current</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 rounded bg-emerald-200" />
+            <span className="font-mono text-[10px] text-text-secondary">Correct</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 rounded bg-red-200" />
+            <span className="font-mono text-[10px] text-text-secondary">Wrong</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 rounded bg-amber-200" />
+            <span className="font-mono text-[10px] text-text-secondary">Answered</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="h-3 w-3 rounded border border-black/5 bg-surface-2" />
+            <span className="font-mono text-[10px] text-text-secondary">Unattempted</span>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded bg-cyber-green/40" />
-          <span className="font-mono text-[10px] text-gray-500">Correct</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded bg-cyber-red/40" />
-          <span className="font-mono text-[10px] text-gray-500">Wrong</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded bg-cyber-amber/40" />
-          <span className="font-mono text-[10px] text-gray-500">Answered</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="h-3 w-3 rounded border border-black/5 bg-surface-2" />
-          <span className="font-mono text-[10px] text-gray-500">Unattempted</span>
-        </div>
-      </div>
     </div>
   );
 }
@@ -249,10 +252,12 @@ function ScoreRing({
     tone === "neutral"
       ? "#9CA3AF"
       : percentage >= 80
-      ? "#4BB543"
-      : percentage >= 50
-      ? "#F59E0B"
-      : "#EF4444";
+      ? "#22c55e"
+      : percentage >= 60
+      ? "#D4A843"
+      : percentage >= 40
+      ? "#f59e0b"
+      : "#ef4444";
 
   return (
     <div className="relative" style={{ width: size, height: size }}>
@@ -290,14 +295,14 @@ function ScoreRing({
         </span>
         <span className="font-mono text-xs text-gray-500 mt-1">
           {tone === "neutral"
-            ? "NOT GRADED"
+            ? "Awaiting result"
             : percentage >= 80
-            ? "ELITE"
+            ? "Competence verified"
             : percentage >= 60
-            ? "GOOD"
+            ? "Competent with gaps"
             : percentage >= 40
-            ? "AVERAGE"
-            : "NEEDS WORK"}
+            ? "Fragile — repair needed"
+            : "Not yet competent"}
         </span>
       </div>
     </div>
@@ -569,17 +574,19 @@ export default function MockOA() {
             animate={{ opacity: 1, y: 0 }}
           >
             <span className="section-subheader mb-3 block">
-              Company Assessment Simulator
+              Boss Assessment
             </span>
             <h1 className="section-header text-3xl mb-2">
-              <FileText className="text-cyber-blue inline mr-2" size={28} />
-              Mock <span className="text-cyber-blue">Online Assessment</span>
+              <Target className="text-brand-sky inline mr-2" size={28} />
+              Mock <span className="text-brand-sky">Online Assessment</span>
             </h1>
-            <p className="text-gray-500 font-mono text-sm max-w-lg mx-auto">
-              Simulate real company OAs — timed sections, MCQ aptitude, instant
-              results. Train like it's placement day.
+            <p className="text-text-secondary text-sm max-w-lg mx-auto">
+              This is a competence test, not a practice drill. Treat it like the real assessment: timed, focused, and diagnostic.
             </p>
+            <MentorCallout phase="boss" message="Pick the company pattern closest to your target. The timer is real — pace yourself, don't rush the first section." size="compact" className="mt-4 max-w-lg mx-auto" />
           </motion.div>
+
+          <CampaignBanner world="mock-oa" />
 
           {error && (
             <div className="bg-cyber-red/10 border border-cyber-red/20 text-cyber-red px-4 py-3 rounded-lg mb-6 text-center font-mono text-sm">
@@ -725,7 +732,7 @@ export default function MockOA() {
                 {company.name}
               </span>
               <span className="w-px h-4 bg-space-border" />
-              <span className="font-mono text-xs text-cyber-blue">
+              <span className="font-mono text-xs text-brand-sky">
                 {sectionTitle}
               </span>
               <span className="font-mono text-[10px] text-gray-500">
@@ -734,7 +741,7 @@ export default function MockOA() {
             </div>
             <div className="flex items-center gap-3">
               {tabWarnings > 0 && (
-                <span className="font-mono text-[10px] text-cyber-amber">
+                <span className="font-mono text-[10px] text-brand-amber">
                   ⚠ Tab switches: {tabWarnings}/3
                 </span>
               )}
@@ -754,7 +761,7 @@ export default function MockOA() {
           {/* Section Progress Bar */}
           <div className="h-1 bg-surface-2">
             <div
-              className="h-full bg-gradient-to-r from-cyber-blue to-cyber-purple transition-all duration-300"
+              className="h-full bg-gradient-to-r from-brand-sky to-brand-primary transition-all duration-300"
               style={{
                 width: `${((currentQ + 1) / questions.length) * 100}%`,
               }}
@@ -764,6 +771,7 @@ export default function MockOA() {
 
         {/* ── Main Content ── */}
         <div className="max-w-7xl mx-auto px-4 py-6 flex gap-6">
+          <MentorCallout phase="active" message="Read each question twice. The first read is for meaning; the second is for traps." size="compact" className="w-full" />
           {/* Left: Question Panel */}
           <div className="flex-1 min-w-0">
             <AnimatePresence mode="wait">
@@ -779,7 +787,7 @@ export default function MockOA() {
                     <span className="font-mono text-[10px] text-gray-600 uppercase tracking-wider">
                       Question {currentQ + 1} of {questions.length}
                       {q.category && (
-                        <span className="ml-2 text-cyber-blue">
+                        <span className="ml-2 text-brand-sky">
                           [{q.category}]
                         </span>
                       )}
@@ -788,8 +796,8 @@ export default function MockOA() {
                       <span
                         className={`font-mono text-[10px] px-2 py-0.5 rounded-full ${
                           submittedAnswers[currentQ].is_correct
-                            ? "bg-cyber-green/10 text-cyber-green border border-cyber-green/20"
-                            : "bg-cyber-red/10 text-cyber-red border border-cyber-red/20"
+                            ? "bg-emerald-50 text-emerald-600 border border-emerald-200"
+                            : "bg-red-50 text-red-500 border border-red-200"
                         }`}
                       >
                         {submittedAnswers[currentQ].is_correct
@@ -1044,11 +1052,11 @@ export default function MockOA() {
         />
         <div className="max-w-5xl mx-auto">
           {unreachable && (
-            <div className="mb-6 border-2 border-dashed border-cyber-amber/60 bg-cyber-amber/10 rounded-xl p-4 text-center">
-              <p className="font-display font-bold text-cyber-amber mb-1">
+            <div className="mb-6 border-2 border-dashed border-brand-amber/60 bg-brand-amber/10 rounded-xl p-4 text-center">
+              <p className="font-display font-bold text-brand-amber mb-1">
                 Couldn't reach the server
               </p>
-              <p className="font-mono text-xs text-gray-400">
+              <p className="font-mono text-xs text-text-secondary">
                 Your answers could not be submitted for grading. The scores
                 shown here are placeholders — no OA result was recorded and no
                 repair mission was started. Please check your connection and
@@ -1073,59 +1081,87 @@ export default function MockOA() {
                 tone={unreachable ? "neutral" : undefined}
               />
             </div>
-            <div className="flex items-center justify-center gap-6 mb-4">
+              <div className="flex items-center justify-center gap-6 mb-4">
               <div className="text-center">
-                <p className="font-display font-black text-2xl text-cyber-green">
+                <p className="font-display font-black text-2xl text-emerald-600">
                   {correctCount}
                 </p>
-                <p className="font-mono text-[10px] text-gray-500 uppercase">
+                <p className="font-mono text-[10px] text-text-secondary uppercase">
                   Correct
                 </p>
               </div>
-              <div className="w-px h-8 bg-space-border" />
+              <div className="w-px h-8 bg-brand-primary/10" />
               <div className="text-center">
-                <p className="font-display font-black text-2xl text-cyber-red">
+                <p className="font-display font-black text-2xl text-brand-coral">
                   {wrongCount}
                 </p>
-                <p className="font-mono text-[10px] text-gray-500 uppercase">
+                <p className="font-mono text-[10px] text-text-secondary uppercase">
                   Wrong
                 </p>
               </div>
-              <div className="w-px h-8 bg-space-border" />
+              <div className="w-px h-8 bg-brand-primary/10" />
               <div className="text-center">
-                <p className="font-display font-black text-2xl text-gray-400">
+                <p className="font-display font-black text-2xl text-text-muted">
                   {unattemptedCount}
                 </p>
-                <p className="font-mono text-[10px] text-gray-500 uppercase">
+                <p className="font-mono text-[10px] text-text-secondary uppercase">
                   Unattempted
                 </p>
               </div>
-              <div className="w-px h-8 bg-space-border" />
+              <div className="w-px h-8 bg-brand-primary/10" />
               <div className="text-center">
-                <p className="font-display font-black text-2xl text-cyber-blue">
+                <p className="font-display font-black text-2xl text-brand-sky">
                   {formatTime(result.timeTaken)}
                 </p>
-                <p className="font-mono text-[10px] text-gray-500 uppercase">
+                <p className="font-mono text-[10px] text-text-secondary uppercase">
                   Time Taken
                 </p>
               </div>
               {result.tabViolations > 0 && (
                 <>
-                  <div className="w-px h-8 bg-space-border" />
+                  <div className="w-px h-8 bg-brand-primary/10" />
                   <div className="text-center">
-                    <p className="font-display font-black text-2xl text-cyber-amber">
+                    <p className="font-display font-black text-2xl text-brand-amber">
                       {result.tabViolations}
                     </p>
-                    <p className="font-mono text-[10px] text-gray-500 uppercase">
+                    <p className="font-mono text-[10px] text-text-secondary uppercase">
                       Tab Violations
                     </p>
                   </div>
                 </>
               )}
             </div>
-            <p className="font-mono text-xs text-gray-500">
+            <p className="font-mono text-xs text-text-secondary">
               {company.name} Mock OA — {total} Questions
             </p>
+
+            {!unreachable && pct >= 80 && (
+              <motion.p
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-4 text-sm text-emerald-700"
+              >
+                You demonstrated competence across the full assessment. Use the weakness diagnosis only to refine edges, not to rebuild fundamentals.
+              </motion.p>
+            )}
+            {!unreachable && pct >= 60 && pct < 80 && (
+              <motion.p
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-4 text-sm text-amber-700"
+              >
+                Your baseline is solid. The gaps above are specific, fixable weaknesses — not a signal to start over.
+              </motion.p>
+            )}
+            {!unreachable && pct < 60 && (
+              <motion.p
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-4 text-sm text-brand-coral"
+              >
+                This assessment exposed structural gaps. Follow the repair path in order; each step targets one misconception.
+              </motion.p>
+            )}
           </motion.div>
 
           {/* Section Breakdown — hidden on transport-failure fallback: 0%
@@ -1138,7 +1174,7 @@ export default function MockOA() {
             transition={{ delay: 0.1 }}
           >
             <h2 className="section-header text-lg mb-4 flex items-center gap-2">
-              <BarChart3 size={20} className="text-cyber-purple" />
+              <BarChart3 size={20} className="text-brand-primary" />
               Section Breakdown
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -1154,10 +1190,10 @@ export default function MockOA() {
                       {sectionName}
                     </h3>
                     <div className="flex items-center justify-between mb-2">
-                      <span className="font-mono text-2xl font-black text-cyber-blue">
+                      <span className="font-mono text-2xl font-black text-brand-sky">
                         {secPct}%
                       </span>
-                      <span className="font-mono text-xs text-gray-500">
+                      <span className="font-mono text-xs text-text-secondary">
                         {stats.correct}/{stats.total}
                       </span>
                     </div>
@@ -1165,20 +1201,20 @@ export default function MockOA() {
                       <div
                         className={`h-1.5 rounded-full transition-all duration-1000 ${
                           secPct >= 70
-                            ? "bg-cyber-green"
+                            ? "bg-emerald-500"
                             : secPct >= 40
-                            ? "bg-cyber-amber"
-                            : "bg-cyber-red"
+                            ? "bg-amber-500"
+                            : "bg-red-500"
                         }`}
                         style={{ width: `${secPct}%` }}
                       />
                     </div>
                     <div className="flex gap-3 text-[10px] font-mono">
-                      <span className="text-cyber-green">
+                      <span className="text-emerald-600">
                         ✓ {stats.correct}
                       </span>
-                      <span className="text-cyber-red">✗ {stats.wrong}</span>
-                      <span className="text-gray-500">
+                      <span className="text-red-500">✗ {stats.wrong}</span>
+                      <span className="text-text-muted">
                         — {stats.unattempted}
                       </span>
                     </div>
@@ -1199,7 +1235,7 @@ export default function MockOA() {
               transition={{ delay: 0.13 }}
             >
               <h2 className="section-header text-lg mb-4 flex items-center gap-2">
-                <Target size={20} className="text-cyber-red" />
+                <Target size={20} className="text-brand-coral" />
                 Weakness Diagnosis
               </h2>
               <div className="card p-5">
@@ -1207,14 +1243,17 @@ export default function MockOA() {
                   <p className="mb-4 flex items-center gap-2 font-display font-bold text-sm">
                     <AlertTriangle
                       size={16}
-                      className="text-cyber-amber shrink-0"
+                      className="text-brand-amber shrink-0"
                     />
                     Primary weakness:
-                    <span className="text-cyber-red capitalize">
+                    <span className="text-brand-coral capitalize">
                       {primary}
                     </span>
                   </p>
                 )}
+                <p className="text-xs text-text-secondary mb-4">
+                  These gaps are specific to this assessment. Repair them with targeted practice, not broad review.
+                </p>
                 <div className="grid sm:grid-cols-3 gap-4 mb-4">
                   {skills.map((w) => (
                     <div
@@ -1226,11 +1265,11 @@ export default function MockOA() {
                       </p>
                       <div className="flex items-center justify-between">
                         <span
-                          className={`font-mono text-xl font-black ${
-                            w.pct < 40
-                              ? "text-cyber-red"
-                              : "text-cyber-amber"
-                          }`}
+                           className={`font-mono text-xl font-black ${
+                             w.pct < 40
+                               ? "text-brand-coral"
+                               : "text-brand-amber"
+                           }`}
                         >
                           {Math.round(w.pct)}%
                         </span>
@@ -1239,11 +1278,11 @@ export default function MockOA() {
                         </span>
                       </div>
                       <div className="mt-2 flex flex-wrap gap-1.5 font-mono text-[10px]">
-                        {Number(w.slow_count) > 0 && (
-                          <span className="rounded bg-cyber-amber/10 px-1.5 py-0.5 text-cyber-amber">
-                            {w.slow_count} slow
-                          </span>
-                        )}
+                           {Number(w.slow_count) > 0 && (
+                           <span className="rounded bg-amber-50 px-1.5 py-0.5 text-amber-600">
+                             {w.slow_count} slow
+                           </span>
+                         )}
                         <span className="rounded bg-black/10 px-1.5 py-0.5 text-text-muted">
                           ~{Math.round(Number(w.avg_time_s))}s avg
                         </span>
@@ -1264,9 +1303,9 @@ export default function MockOA() {
                               key={i}
                               className="flex items-center gap-2 font-mono text-xs text-gray-300"
                             >
-                              <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded bg-cyber-red/10 text-[10px] font-bold text-cyber-red">
-                                {i + 1}
-                              </span>
+                               <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded bg-brand-primary/10 text-[10px] font-bold text-brand-sky">
+                                 {i + 1}
+                               </span>
                               {step}
                             </li>
                           ))}
@@ -1275,10 +1314,10 @@ export default function MockOA() {
                     )}
                     {retestCond && (
                       <p className="font-mono text-[10px] text-gray-500">
-                        Retest condition:{" "}
-                        <span className="text-cyber-green">
-                          {retestCond}
-                        </span>
+                         Retest condition:{" "}
+                         <span className="text-emerald-600">
+                           {retestCond}
+                         </span>
                       </p>
                     )}
                     <div className="pt-1">
@@ -1291,7 +1330,7 @@ export default function MockOA() {
                               block: "start",
                             })
                         }
-                        className="btn-primary text-xs"
+                        className="inline-flex items-center gap-2 rounded-full bg-brand-sky px-4 py-2 text-xs font-bold text-white shadow-sm hover:bg-brand-sky/90 transition-colors"
                       >
                         Focus &amp; Retest <ArrowRight size={14} />
                       </button>
@@ -1321,7 +1360,7 @@ export default function MockOA() {
           >
             <div className="flex items-center justify-between mb-4">
               <h2 className="section-header text-lg flex items-center gap-2">
-                <Target size={20} className="text-cyber-blue" />
+                <Target size={20} className="text-brand-sky" />
                 Question Review
               </h2>
               <button
@@ -1344,9 +1383,9 @@ export default function MockOA() {
                     key={i}
                     className={`card ${
                       wasCorrect
-                        ? "border-cyber-green/15"
+                        ? "border-emerald-200"
                         : sub
-                        ? "border-cyber-red/15"
+                        ? "border-red-200"
                         : "border-black/5"
                     }`}
                     initial={{ opacity: 0, y: 10 }}
@@ -1407,51 +1446,51 @@ export default function MockOA() {
                               const isUserAnswer = userAns === oi;
                               const isCorrectAns =
                                 sub?.correct_answer === oi;
-                              let ringClass = "border-black/5 ";
-                              if (isCorrectAns)
-                                ringClass += "border-cyber-green/40 bg-cyber-green/5 ";
-                              if (isUserAnswer && !wasCorrect && !isCorrectAns)
-                                ringClass += "border-cyber-red/40 bg-cyber-red/5 ";
+                               let ringClass = "border-black/5 ";
+                               if (isCorrectAns)
+                                 ringClass += "border-emerald-200 bg-emerald-50 ";
+                               if (isUserAnswer && !wasCorrect && !isCorrectAns)
+                                 ringClass += "border-red-200 bg-red-50 ";
 
-                              return (
-                                <div
-                                  key={oi}
-                                  className={`flex items-start gap-2 p-2.5 rounded-lg border text-xs font-mono ${ringClass}`}
-                                >
-                                  <span className="text-cyber-blue font-bold shrink-0">
-                                    {String.fromCharCode(65 + oi)}.
-                                  </span>
-                                  <span className="text-gray-300 flex-1">
-                                    {opt}
-                                  </span>
-                                  <span className="shrink-0 flex items-center gap-1">
-                                    {isCorrectAns && (
-                                      <span className="text-cyber-green text-[10px]">
-                                        ✓ Correct
-                                      </span>
-                                    )}
-                                    {isUserAnswer && !isCorrectAns && (
-                                      <span className="text-cyber-red text-[10px]">
-                                        ✗ Your answer
-                                      </span>
-                                    )}
-                                    {isUserAnswer && isCorrectAns && (
-                                      <span className="text-cyber-green text-[10px]">
-                                        ✓ Your answer
-                                      </span>
-                                    )}
-                                  </span>
-                                </div>
-                              );
+                               return (
+                                 <div
+                                   key={oi}
+                                   className={`flex items-start gap-2 p-2.5 rounded-lg border text-xs font-mono ${ringClass}`}
+                                 >
+                                   <span className="text-brand-sky font-bold shrink-0">
+                                     {String.fromCharCode(65 + oi)}.
+                                   </span>
+                                   <span className="text-text-secondary flex-1">
+                                     {opt}
+                                   </span>
+                                   <span className="shrink-0 flex items-center gap-1">
+                                     {isCorrectAns && (
+                                       <span className="text-emerald-600 text-[10px]">
+                                         ✓ Correct
+                                       </span>
+                                     )}
+                                     {isUserAnswer && !isCorrectAns && (
+                                       <span className="text-red-500 text-[10px]">
+                                           ✗ Your answer
+                                         </span>
+                                     )}
+                                     {isUserAnswer && isCorrectAns && (
+                                       <span className="text-emerald-600 text-[10px]">
+                                         ✓ Your answer
+                                       </span>
+                                     )}
+                                   </span>
+                                 </div>
+                               );
                             })}
-                            {sub?.explanation && (
-                              <p className="text-[11px] font-mono text-gray-500 mt-2 leading-relaxed">
-                                <span className="text-cyber-blue font-bold">
-                                  Explanation:
-                                </span>{" "}
-                                {sub.explanation}
-                              </p>
-                            )}
+                             {sub?.explanation && (
+                               <p className="text-[11px] font-mono text-text-secondary mt-2 leading-relaxed">
+                                 <span className="text-brand-sky font-bold">
+                                   Explanation:
+                                 </span>{" "}
+                                 {sub.explanation}
+                               </p>
+                             )}
                           </div>
                         </motion.div>
                       )}

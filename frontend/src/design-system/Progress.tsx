@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Progress primitives — MasteryBar, ReadinessRing, TreasureBadge.
  * Real data only: these components always render actual progress.

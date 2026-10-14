@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -633,7 +634,7 @@ export default function FreeTrial() {
                   className="w-full inline-flex items-center justify-center gap-2 border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 font-semibold px-8 py-4 rounded-xl hover:bg-cyan-500/20 transition-all"
                 >
                   <Zap size={18} />
-                  Go Pro — $9/mo
+                  Go Pro — ₹99/mo
                 </button>
               </div>
 

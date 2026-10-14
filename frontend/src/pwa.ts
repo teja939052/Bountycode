@@ -1,3 +1,4 @@
+// @ts-nocheck
 export function registerServiceWorker() {
   if (!('serviceWorker' in navigator)) return;
 

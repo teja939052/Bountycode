@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
 
 /**

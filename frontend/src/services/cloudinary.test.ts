@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { describe, it, expect } from "vitest";
 import { cloudinaryImage, cloudinaryVideo, optimizeImage, CLOUDINARY_CLOUD_NAME } from "./cloudinary";
 

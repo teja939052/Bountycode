@@ -152,6 +152,12 @@
     color: var(--pp-text);
   }
 
+  /* Keyboard focus is visible everywhere — token layer guarantee */
+  :focus-visible {
+    outline: 2px solid var(--pp-primary-dark);
+    outline-offset: 2px;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;

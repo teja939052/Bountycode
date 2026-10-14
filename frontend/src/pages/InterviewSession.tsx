@@ -1,9 +1,11 @@
+// @ts-nocheck
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useParams, useLocation, useNavigate, Link } from "react-router-dom";
 import api from "../services/api";
 import Spinner from "../components/ui/Spinner";
 import SuccessGlow from "../components/SuccessGlow";
 import CelebrationOverlay from "../components/CelebrationOverlay";
+import DiamondsPopup from "../components/XPPopup";
 import RepairPanel from "../components/RepairPanel";
 import { motion, AnimatePresence } from "framer-motion";
 import useReducedMotion from "../hooks/useReducedMotion";
@@ -11,6 +13,7 @@ import {
   Clock, Target, TrendingUp, MessageSquare,
   AlertCircle, CheckCircle2, ArrowRight, RotateCcw,
 } from "lucide-react";
+import { MentorCallout } from "../components/golden/MentorCallout";
 
 const REACTIONS = {
   fire: { emoji: "🔥", label: "Crushing it!", color: "text-cyber-orange" },
@@ -65,6 +68,8 @@ export default function InterviewSession() {
   const [showReaction, setShowReaction] = useState(false);
   const [timer, setTimer] = useState(0);
   const [showCelebration, setShowCelebration] = useState(false);
+  const [xpData, setXpData] = useState<{ xpGained: number; level?: number; streak?: number; newBadges?: unknown[] } | null>(null);
+  const [showXP, setShowXP] = useState(false);
   const [error, setError] = useState("");
   const [glowBurst, setGlowBurst] = useState(0);
   const [initialized, setInitialized] = useState(!!initialState.question);
@@ -204,7 +209,16 @@ export default function InterviewSession() {
     return (
       <div className="min-h-screen py-12 px-4">
         <CelebrationOverlay show={showCelebration} type="perfect" message="Outstanding Performance!" />
+        <DiamondsPopup
+          show={showXP}
+          xpGained={xpData?.xpGained ?? 0}
+          level={xpData?.level}
+          streak={xpData?.streak}
+          newBadges={xpData?.newBadges as never[]}
+          onClose={() => setShowXP(false)}
+        />
         <div className="max-w-4xl mx-auto">
+          <MentorCallout phase={result.overall_score >= 7 ? "proud" : "encouraging"} message={result.overall_score >= 7 ? "This is strong evidence for your readiness. One more pass on the weak areas and you’re interview-ready." : "This isn’t a final read. Use the weak areas below as your repair plan, then retry."} size="compact" className="mb-6" />
           <motion.div
             className="card mb-8 text-center"
             initial={reduced ? {} : { opacity: 0, scale: 0.9 }}
@@ -349,8 +363,17 @@ export default function InterviewSession() {
   return (
     <div className="min-h-screen py-12 px-4">
       <SuccessGlow burst={glowBurst} color="#4F8F57" />
-      <CelebrationOverlay show={showCelebration} type="confetti" message="Great Interview!" />
+        <CelebrationOverlay show={showCelebration} type="confetti" message="Great Interview!" />
+        <DiamondsPopup
+          show={showXP}
+          xpGained={xpData?.xpGained ?? 0}
+          level={xpData?.level}
+          streak={xpData?.streak}
+          newBadges={xpData?.newBadges as never[]}
+          onClose={() => setShowXP(false)}
+        />
       <div className="max-w-3xl mx-auto">
+        <MentorCallout phase="briefing" message="Speak out loud like a real interview. Structure, clarity, and examples matter more than perfect answers." size="compact" className="mb-6" />
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">

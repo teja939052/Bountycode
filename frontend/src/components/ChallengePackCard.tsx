@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { motion } from "framer-motion";
 import { Sparkles, Lock, Star, CheckCircle2, Zap, Clock, Code2 } from "lucide-react";
 

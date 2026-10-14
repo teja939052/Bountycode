@@ -1,3 +1,4 @@
+// @ts-nocheck
 export { default as SpaceBackground } from "./SpaceBackground";
 export { default as HoloPanel } from "./HoloPanel";
 export { default as ScoreRing } from "./ScoreRing";

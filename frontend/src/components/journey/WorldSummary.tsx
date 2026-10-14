@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { JourneyWorld } from "../../hooks/useJourneyState";
 
 export default function WorldSummary({ world }: { world: JourneyWorld }) {

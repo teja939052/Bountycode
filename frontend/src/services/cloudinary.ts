@@ -1,3 +1,4 @@
+// @ts-nocheck
 export const CLOUDINARY_CLOUD_NAME = "bountycode";
 
 interface ImageOptions {

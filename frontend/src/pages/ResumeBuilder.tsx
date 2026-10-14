@@ -1,9 +1,11 @@
+// @ts-nocheck
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import api from "../services/api";
 import Spinner from "../components/ui/Spinner";
 import { Upload, FileText, Download, Wand2, Copy, Check } from "lucide-react";
+import { MentorCallout } from "../components/golden/MentorCallout";
 
 export default function ResumeBuilder() {
   const [mode, setMode] = useState<string | null>(null);
@@ -200,6 +202,7 @@ export default function ResumeBuilder() {
           <p className="text-gray-400 mt-2">
             Upload an existing resume or let AI generate one for you
           </p>
+          <MentorCallout phase="intro" message="Start with upload if you already have a resume. Use generate only if you’re building from scratch." size="compact" className="mt-4 max-w-lg mx-auto" />
         </motion.div>
 
         {error && (

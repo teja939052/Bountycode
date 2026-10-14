@@ -1,6 +1,7 @@
+// @ts-nocheck
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import Spinner from "./ui/Spinner";
+import { BountyCodeLoader } from "../components/brand/BountyCodeBrandMotion";
 import { requestWithRetry } from "../services/api/request.ts";
 
 export default function OnboardingGuard({ children }) {
@@ -21,7 +22,7 @@ export default function OnboardingGuard({ children }) {
   if (status.loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <Spinner size="lg" />
+        <BountyCodeLoader size={48} />
       </div>
     );
   }

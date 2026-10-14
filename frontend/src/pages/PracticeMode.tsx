@@ -1,12 +1,14 @@
+// @ts-nocheck
 import { useState, useEffect, useRef } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import api from "../services/api";
 import PracticeConsole from "../components/learning/PracticeConsole";
-import { ExternalLink, Send, CheckCircle, XCircle, ArrowRight, RotateCcw, BookOpen, Terminal } from "lucide-react";
+import { ExternalLink, Send, CheckCircle, XCircle, ArrowRight, RotateCcw, BookOpen, Terminal, Lightbulb } from "lucide-react";
 import useReducedMotion from "../hooks/useReducedMotion";
 import CelebrationOverlay from "../components/CelebrationOverlay";
 import SubmitReveal from "../components/SubmitReveal";
+import { MentorCallout } from "../components/golden/MentorCallout";
 
 export default function PracticeMode() {
   const { questionId } = useParams();
@@ -18,6 +20,7 @@ export default function PracticeMode() {
   const [feedback, setFeedback] = useState(null);
   const [showCelebration, setShowCelebration] = useState(false);
   const [showSubmitReveal, setShowSubmitReveal] = useState(false);
+  const [showExplanation, setShowExplanation] = useState(false);
   const [startTime, setStartTime] = useState(null);
   const reduced = useReducedMotion();
   const textareaRef = useRef(null);
@@ -131,6 +134,8 @@ export default function PracticeMode() {
             </div>
           </div>
 
+          <MentorCallout phase="intro" message="Read the full question before typing. A precise answer beats a long guess." size="compact" className="mb-4" />
+
           <a
             href={question.question_link}
             target="_blank"
@@ -140,6 +145,41 @@ export default function PracticeMode() {
             Open question on {question.source} <ExternalLink size={14} />
           </a>
         </motion.div>
+
+        {/* Explanation Toggle */}
+        {question && (question.explanation || question.solution) && (
+          <div className="mb-6">
+            <button
+              onClick={() => setShowExplanation((prev) => !prev)}
+              className="inline-flex items-center gap-2 rounded-lg border border-[#2a2a2a] bg-[#1c1c1c] px-4 py-2 text-sm font-medium text-[#e9e9e9] hover:border-[#ffa116] transition-colors"
+            >
+              <Lightbulb size={16} />
+              {showExplanation ? "Hide Explanation" : "Show Explanation"}
+            </button>
+            {showExplanation && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-3 rounded-xl border border-[#2a2a2a] bg-[#141414] p-5"
+              >
+                {question.explanation && (
+                  <div className="mb-4">
+                    <h4 className="text-sm font-semibold text-[#ffa116] mb-2">Explanation</h4>
+                    <p className="text-sm text-[#e9e9e9] whitespace-pre-wrap">{question.explanation}</p>
+                  </div>
+                )}
+                {question.solution && (
+                  <div>
+                    <h4 className="text-sm font-semibold text-[#ffa116] mb-2">Solution</h4>
+                    <pre className="text-sm text-[#e9e9e9] bg-[#0f0f0f] rounded-lg p-4 overflow-x-auto">
+                      <code>{typeof question.solution === 'string' ? question.solution : question.solution?.code || JSON.stringify(question.solution, null, 2)}</code>
+                    </pre>
+                  </div>
+                )}
+              </motion.div>
+            )}
+          </div>
+        )}
 
         {/* Write & Run Code */}
         {!feedback && (

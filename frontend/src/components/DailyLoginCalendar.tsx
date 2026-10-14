@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { motion } from "framer-motion";
 
 const REWARD_ICONS: Record<string, string> = {

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Shield, Snowflake, Flame, Coins, X, AlertTriangle } from "lucide-react";

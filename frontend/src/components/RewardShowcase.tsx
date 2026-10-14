@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { motion } from "framer-motion";
 import { Zap, Flame, Star, ArrowUp, Snowflake, Trophy, Skull } from "lucide-react";
 

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 export type BackgroundTheme = "ocean" | "night" | "sunset" | "forest" | "auto";

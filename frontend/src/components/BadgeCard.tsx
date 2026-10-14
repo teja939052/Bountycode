@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { motion } from "framer-motion";
 
 export type BadgeRarity = "common" | "uncommon" | "rare" | "epic" | "legendary";

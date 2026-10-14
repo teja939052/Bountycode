@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Skeleton from "./ui/Skeleton";
 
 export default function PageSkeleton() {

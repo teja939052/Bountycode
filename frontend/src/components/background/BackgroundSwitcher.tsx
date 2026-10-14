@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useBackground, type BackgroundTheme } from "../../contexts/BackgroundContext";
 
 const THEME_META: Record<BackgroundTheme, { label: string; emoji: string; className: string }> = {

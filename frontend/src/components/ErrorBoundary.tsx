@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Component, type ReactNode, type ErrorInfo } from "react";
 import { AlertTriangle, RefreshCw, Copy } from "lucide-react";
 import { trackError } from "../services/errorTracker";

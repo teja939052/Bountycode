@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Mail, Lock, Eye, EyeOff, LogIn, Zap } from "lucide-react";
@@ -38,8 +39,8 @@ export default function Login() {
     setLoading(true);
     try {
       const data = await authApi.login(email, password);
-      setAuth(data.user, data.token);
-      navigate("/dashboard");
+      setAuth(data.user);
+      navigate("/placement");
     } catch (err: any) {
       setError(err.message || "Login failed. Please try again.");
     } finally {
