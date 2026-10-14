@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from typing import Optional
 from app.middleware.auth import get_current_user
 from app.services.ai_feedback import sentence_level_feedback
+from app.services.usage import require_daily_ai_quota
 
 router = APIRouter(prefix="/api/v1/feedback", tags=["ai-feedback"])
 
@@ -14,7 +15,7 @@ class SentenceFeedbackRequest(BaseModel):
 
 
 @router.post("/sentence-level")
-async def sentence_feedback(req: SentenceFeedbackRequest, user=Depends(get_current_user)):
+async def sentence_feedback(req: SentenceFeedbackRequest, user=Depends(require_daily_ai_quota)):
     if not req.answer or not req.answer.strip():
         raise HTTPException(status_code=400, detail="Answer is required")
 

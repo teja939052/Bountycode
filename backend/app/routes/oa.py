@@ -29,6 +29,7 @@ from app.data.aptitude_question_bank import (
 )
 from app.data.behavioral_question_bank import get_random_question, get_questions_by_category
 from app.config import get_settings
+from app.services.usage import plan_required
 
 try:
     from app.data.company_blueprints import company_blueprints as _BLUEPRINT_DATA
@@ -1174,10 +1175,7 @@ async def start_oa(company: str, req: StartOARequest, user=Depends(get_current_u
             "user_id": user["id"], "created_at": {"$gte": start_month}
         })
         if used >= OA_FREE_LIMIT:
-            raise HTTPException(
-                status_code=403,
-                detail=f"Free tier OA limit reached ({OA_FREE_LIMIT}). Upgrade to Pro for unlimited company OAs.",
-            )
+            raise plan_required(user, "interview")
 
     blueprint = _resolve_blueprint(company, req.role)
     exact_dist = _blueprint_exact_distribution(company, req.role)

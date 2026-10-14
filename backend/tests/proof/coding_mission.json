@@ -1,0 +1,622 @@
+{
+  "domain": "coding",
+  "level": "foundations:level-1",
+  "started_at": "2026-10-02T06:33:43.557638+00:00",
+  "steps": [
+    {
+      "phase": "start",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:coding:5901d1690221",
+        "domain": "coding",
+        "current_step": 0,
+        "total_steps": 9,
+        "step_name": "discover",
+        "step": {
+          "step_index": 0,
+          "step_name": "discover",
+          "concept": "variables",
+          "mental_model": "Remembering",
+          "story": {
+            "location": "Village Square \u2014 Supply Hut",
+            "npc": "Mira the Keeper",
+            "line": "Our supply boxes lost their labels! This one holds 5 apples, but nobody remembers. Can you give it a name the program will remember?"
+          },
+          "tutor": {
+            "name": "Byte",
+            "avatar": "\ud83e\udded",
+            "discover": "Programs remember values by giving them a name. Like labeling a box.",
+            "explain": "apples is a variable \u2014 a named box that holds a value. The = does not mean equals in math; it means store this value here."
+          },
+          "discover": {
+            "visual": "A wooden crate labeled ??? with 5 apples inside. Tap it to label.",
+            "interaction": "select-value",
+            "prompt": "What should the program remember here?",
+            "answer": "apples = 5",
+            "values": [
+              5,
+              "apple",
+              true
+            ]
+          },
+          "code": {
+            "prompt": "",
+            "starter": "",
+            "placeholder": "",
+            "language": "python"
+          },
+          "checks": {
+            "required_patterns": [
+              "^\\s*apples\\s*=\\s*5\\s*(#.*)?$"
+            ],
+            "forbidden": [],
+            "hint_triggers": []
+          },
+          "hints": [
+            "What information does the robot need to remember here?",
+            "Programs can give a name to information so they can use it later \u2014 like labeling a box.",
+            "Try giving the number 5 the name `apples`.",
+            "Reveal: apples = 5 \u2014 the box needs this label to be remembered."
+          ],
+          "mastery_threshold": 80
+        },
+        "diagnosis": null,
+        "mastery_threshold": 80,
+        "company": "",
+        "role": "sde"
+      }
+    },
+    {
+      "phase": "submit_discover",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:coding:5901d1690221",
+        "passed": true,
+        "score": 100.0,
+        "message": "The crate now glows: \ud83c\udf4e Apples: 5 \u2014 the villagers cheer!",
+        "evidence": {
+          "stdout": "",
+          "stderr": "",
+          "error": "",
+          "expected": null
+        },
+        "feedback": {},
+        "diagnosis": null,
+        "reteach_required": false,
+        "mastery_unlocked": false,
+        "reward": {},
+        "current_step": 1,
+        "next_step": {
+          "step_index": 1,
+          "step_name": "understand",
+          "step": {
+            "step_index": 1,
+            "step_name": "understand",
+            "concept": "variables",
+            "mental_model": "Remembering",
+            "story": {
+              "location": "Village Square \u2014 Supply Hut",
+              "npc": "Mira the Keeper",
+              "line": "Our supply boxes lost their labels! This one holds 5 apples, but nobody remembers. Can you give it a name the program will remember?"
+            },
+            "tutor": {
+              "name": "Byte",
+              "avatar": "\ud83e\udded",
+              "discover": "Programs remember values by giving them a name. Like labeling a box.",
+              "explain": "apples is a variable \u2014 a named box that holds a value. The = does not mean equals in math; it means store this value here."
+            },
+            "understand": "A variable is a named box in the computer's memory. The = sign means 'put this value in this box'. It is not math equality \u2014 it is assignment, a one-way arrow.",
+            "code": {
+              "prompt": "",
+              "starter": "",
+              "placeholder": "",
+              "language": "python"
+            },
+            "checks": {
+              "required_patterns": [
+                "^\\s*apples\\s*=\\s*5\\s*(#.*)?$"
+              ],
+              "forbidden": [],
+              "hint_triggers": []
+            },
+            "hints": [
+              "What information does the robot need to remember here?",
+              "Programs can give a name to information so they can use it later \u2014 like labeling a box.",
+              "Try giving the number 5 the name `apples`.",
+              "Reveal: apples = 5 \u2014 the box needs this label to be remembered."
+            ],
+            "mastery_threshold": 80
+          }
+        },
+        "total_steps": 9
+      }
+    },
+    {
+      "phase": "submit_understand",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:coding:5901d1690221",
+        "passed": false,
+        "score": 0.0,
+        "message": "Write some code to try!",
+        "evidence": {
+          "stdout": "",
+          "stderr": "",
+          "error": "",
+          "expected": null
+        },
+        "feedback": {},
+        "diagnosis": null,
+        "reteach_required": false,
+        "mastery_unlocked": false,
+        "reward": {},
+        "current_step": 1,
+        "next_step": {
+          "step_index": 1,
+          "step_name": "understand",
+          "step": {
+            "step_index": 1,
+            "step_name": "understand",
+            "concept": "variables",
+            "mental_model": "Remembering",
+            "story": {
+              "location": "Village Square \u2014 Supply Hut",
+              "npc": "Mira the Keeper",
+              "line": "Our supply boxes lost their labels! This one holds 5 apples, but nobody remembers. Can you give it a name the program will remember?"
+            },
+            "tutor": {
+              "name": "Byte",
+              "avatar": "\ud83e\udded",
+              "discover": "Programs remember values by giving them a name. Like labeling a box.",
+              "explain": "apples is a variable \u2014 a named box that holds a value. The = does not mean equals in math; it means store this value here."
+            },
+            "understand": "A variable is a named box in the computer's memory. The = sign means 'put this value in this box'. It is not math equality \u2014 it is assignment, a one-way arrow.",
+            "code": {
+              "prompt": "",
+              "starter": "",
+              "placeholder": "",
+              "language": "python"
+            },
+            "checks": {
+              "required_patterns": [
+                "^\\s*apples\\s*=\\s*5\\s*(#.*)?$"
+              ],
+              "forbidden": [],
+              "hint_triggers": []
+            },
+            "hints": [
+              "What information does the robot need to remember here?",
+              "Programs can give a name to information so they can use it later \u2014 like labeling a box.",
+              "Try giving the number 5 the name `apples`.",
+              "Reveal: apples = 5 \u2014 the box needs this label to be remembered."
+            ],
+            "mastery_threshold": 80
+          }
+        },
+        "total_steps": 9
+      }
+    },
+    {
+      "phase": "submit_manipulate",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:coding:5901d1690221",
+        "passed": true,
+        "score": 100.0,
+        "message": "Give the box the name apples and put 5 inside.",
+        "evidence": {},
+        "feedback": {},
+        "diagnosis": null,
+        "reteach_required": false,
+        "mastery_unlocked": false,
+        "reward": {},
+        "current_step": 3,
+        "next_step": {
+          "step_index": 3,
+          "step_name": "predict",
+          "step": {
+            "step_index": 3,
+            "step_name": "predict",
+            "concept": "variables",
+            "mental_model": "Remembering",
+            "story": {
+              "location": "Village Square \u2014 Supply Hut",
+              "npc": "Mira the Keeper",
+              "line": "Our supply boxes lost their labels! This one holds 5 apples, but nobody remembers. Can you give it a name the program will remember?"
+            },
+            "tutor": {
+              "name": "Byte",
+              "avatar": "\ud83e\udded",
+              "discover": "Programs remember values by giving them a name. Like labeling a box.",
+              "explain": "apples is a variable \u2014 a named box that holds a value. The = does not mean equals in math; it means store this value here."
+            },
+            "predict": {
+              "prompt": "What will this program print?\napples = 5\nprint(apples)\napples = 10\nprint(apples)",
+              "answer": "5\n10",
+              "explanation": "print() shows what is in the box RIGHT NOW. The box changes after the second line."
+            },
+            "code": {
+              "prompt": "",
+              "starter": "",
+              "placeholder": "",
+              "language": "python"
+            },
+            "checks": {
+              "required_patterns": [
+                "^\\s*apples\\s*=\\s*5\\s*(#.*)?$"
+              ],
+              "forbidden": [],
+              "hint_triggers": []
+            },
+            "hints": [
+              "What information does the robot need to remember here?",
+              "Programs can give a name to information so they can use it later \u2014 like labeling a box.",
+              "Try giving the number 5 the name `apples`.",
+              "Reveal: apples = 5 \u2014 the box needs this label to be remembered."
+            ],
+            "mastery_threshold": 80
+          }
+        },
+        "total_steps": 9
+      }
+    },
+    {
+      "phase": "submit_predict",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:coding:5901d1690221",
+        "passed": true,
+        "score": 100.0,
+        "message": "print() shows what is in the box RIGHT NOW. The box changes after the second line.",
+        "evidence": {},
+        "feedback": {},
+        "diagnosis": null,
+        "reteach_required": false,
+        "mastery_unlocked": false,
+        "reward": {},
+        "current_step": 4,
+        "next_step": {
+          "step_index": 4,
+          "step_name": "build",
+          "step": {
+            "step_index": 4,
+            "step_name": "build",
+            "concept": "variables",
+            "mental_model": "Remembering",
+            "story": {
+              "location": "Village Square \u2014 Supply Hut",
+              "npc": "Mira the Keeper",
+              "line": "Our supply boxes lost their labels! This one holds 5 apples, but nobody remembers. Can you give it a name the program will remember?"
+            },
+            "tutor": {
+              "name": "Byte",
+              "avatar": "\ud83e\udded",
+              "discover": "Programs remember values by giving them a name. Like labeling a box.",
+              "explain": "apples is a variable \u2014 a named box that holds a value. The = does not mean equals in math; it means store this value here."
+            },
+            "build": {
+              "prompt": "Create a variable called apples with the value 5.",
+              "starter": "# Give the box a name\n",
+              "placeholder": "apples = 5",
+              "language": "python"
+            },
+            "code": {
+              "prompt": "",
+              "starter": "",
+              "placeholder": "",
+              "language": "python"
+            },
+            "checks": {
+              "required_patterns": [
+                "^\\s*apples\\s*=\\s*5\\s*(#.*)?$"
+              ],
+              "forbidden": [],
+              "hint_triggers": []
+            },
+            "hints": [
+              "What information does the robot need to remember here?",
+              "Programs can give a name to information so they can use it later \u2014 like labeling a box.",
+              "Try giving the number 5 the name `apples`.",
+              "Reveal: apples = 5 \u2014 the box needs this label to be remembered."
+            ],
+            "mastery_threshold": 80
+          }
+        },
+        "total_steps": 9
+      }
+    },
+    {
+      "phase": "submit_build",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:coding:5901d1690221",
+        "passed": true,
+        "score": 100.0,
+        "message": "The crate now glows: \ud83c\udf4e Apples: 5 \u2014 the villagers cheer!",
+        "evidence": {
+          "stdout": "",
+          "stderr": "",
+          "error": "",
+          "expected": null
+        },
+        "feedback": {},
+        "diagnosis": null,
+        "reteach_required": false,
+        "mastery_unlocked": false,
+        "reward": {},
+        "current_step": 5,
+        "next_step": {
+          "step_index": 5,
+          "step_name": "break_step",
+          "step": {
+            "step_index": 5,
+            "step_name": "break_step",
+            "concept": "variables",
+            "mental_model": "Remembering",
+            "story": {
+              "location": "Village Square \u2014 Supply Hut",
+              "npc": "Mira the Keeper",
+              "line": "Our supply boxes lost their labels! This one holds 5 apples, but nobody remembers. Can you give it a name the program will remember?"
+            },
+            "tutor": {
+              "name": "Byte",
+              "avatar": "\ud83e\udded",
+              "discover": "Programs remember values by giving them a name. Like labeling a box.",
+              "explain": "apples is a variable \u2014 a named box that holds a value. The = does not mean equals in math; it means store this value here."
+            },
+            "break_step": {
+              "prompt": "Why does this program print 5 twice instead of 5 then 10?\napples = 5\nprint(apples)\napples = 10\nprint(apples)",
+              "broken_code": "apples = 5\nprint(apples)\napples = 10\nprint(apples)",
+              "expected_failure": "The second print shows 10, not 5. The student predicted both print 5."
+            },
+            "code": {
+              "prompt": "",
+              "starter": "",
+              "placeholder": "",
+              "language": "python"
+            },
+            "checks": {
+              "required_patterns": [
+                "^\\s*apples\\s*=\\s*5\\s*(#.*)?$"
+              ],
+              "forbidden": [],
+              "hint_triggers": []
+            },
+            "hints": [
+              "What information does the robot need to remember here?",
+              "Programs can give a name to information so they can use it later \u2014 like labeling a box.",
+              "Try giving the number 5 the name `apples`.",
+              "Reveal: apples = 5 \u2014 the box needs this label to be remembered."
+            ],
+            "mastery_threshold": 80
+          }
+        },
+        "total_steps": 9
+      }
+    },
+    {
+      "phase": "submit_break_step",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:coding:5901d1690221",
+        "passed": false,
+        "score": 0.0,
+        "message": "Not quite. The expected failure is: the second print shows 10, not 5. the student predicted both print 5.. Try again.",
+        "evidence": {},
+        "feedback": {},
+        "diagnosis": null,
+        "reteach_required": false,
+        "mastery_unlocked": false,
+        "reward": {},
+        "current_step": 5,
+        "next_step": {
+          "step_index": 5,
+          "step_name": "break_step",
+          "step": {
+            "step_index": 5,
+            "step_name": "break_step",
+            "concept": "variables",
+            "mental_model": "Remembering",
+            "story": {
+              "location": "Village Square \u2014 Supply Hut",
+              "npc": "Mira the Keeper",
+              "line": "Our supply boxes lost their labels! This one holds 5 apples, but nobody remembers. Can you give it a name the program will remember?"
+            },
+            "tutor": {
+              "name": "Byte",
+              "avatar": "\ud83e\udded",
+              "discover": "Programs remember values by giving them a name. Like labeling a box.",
+              "explain": "apples is a variable \u2014 a named box that holds a value. The = does not mean equals in math; it means store this value here."
+            },
+            "break_step": {
+              "prompt": "Why does this program print 5 twice instead of 5 then 10?\napples = 5\nprint(apples)\napples = 10\nprint(apples)",
+              "broken_code": "apples = 5\nprint(apples)\napples = 10\nprint(apples)",
+              "expected_failure": "The second print shows 10, not 5. The student predicted both print 5."
+            },
+            "code": {
+              "prompt": "",
+              "starter": "",
+              "placeholder": "",
+              "language": "python"
+            },
+            "checks": {
+              "required_patterns": [
+                "^\\s*apples\\s*=\\s*5\\s*(#.*)?$"
+              ],
+              "forbidden": [],
+              "hint_triggers": []
+            },
+            "hints": [
+              "What information does the robot need to remember here?",
+              "Programs can give a name to information so they can use it later \u2014 like labeling a box.",
+              "Try giving the number 5 the name `apples`.",
+              "Reveal: apples = 5 \u2014 the box needs this label to be remembered."
+            ],
+            "mastery_threshold": 80
+          }
+        },
+        "total_steps": 9
+      }
+    },
+    {
+      "phase": "submit_debug",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:coding:5901d1690221",
+        "passed": true,
+        "score": 100.0,
+        "message": "Correct! Your program runs and produces the expected output.",
+        "evidence": {},
+        "feedback": {},
+        "diagnosis": null,
+        "reteach_required": false,
+        "mastery_unlocked": false,
+        "reward": {},
+        "current_step": 7,
+        "next_step": {
+          "step_index": 7,
+          "step_name": "retrieval",
+          "step": {
+            "step_index": 7,
+            "step_name": "retrieval",
+            "concept": "variables",
+            "mental_model": "Remembering",
+            "story": {
+              "location": "Village Square \u2014 Supply Hut",
+              "npc": "Mira the Keeper",
+              "line": "Our supply boxes lost their labels! This one holds 5 apples, but nobody remembers. Can you give it a name the program will remember?"
+            },
+            "tutor": {
+              "name": "Byte",
+              "avatar": "\ud83e\udded",
+              "discover": "Programs remember values by giving them a name. Like labeling a box.",
+              "explain": "apples is a variable \u2014 a named box that holds a value. The = does not mean equals in math; it means store this value here."
+            },
+            "retrieval": {
+              "prompt": "What does apples = 10 mean in programming?",
+              "answer": "Put 10 in the box named apples",
+              "explanation": "= is a one-way arrow, not equality."
+            },
+            "code": {
+              "prompt": "",
+              "starter": "",
+              "placeholder": "",
+              "language": "python"
+            },
+            "checks": {
+              "required_patterns": [
+                "^\\s*apples\\s*=\\s*5\\s*(#.*)?$"
+              ],
+              "forbidden": [],
+              "hint_triggers": []
+            },
+            "hints": [
+              "What information does the robot need to remember here?",
+              "Programs can give a name to information so they can use it later \u2014 like labeling a box.",
+              "Try giving the number 5 the name `apples`.",
+              "Reveal: apples = 5 \u2014 the box needs this label to be remembered."
+            ],
+            "mastery_threshold": 80
+          }
+        },
+        "total_steps": 9
+      }
+    },
+    {
+      "phase": "submit_retrieval",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:coding:5901d1690221",
+        "passed": false,
+        "score": 0.0,
+        "message": "= is a one-way arrow, not equality.",
+        "evidence": {},
+        "feedback": {},
+        "diagnosis": null,
+        "reteach_required": false,
+        "mastery_unlocked": false,
+        "reward": {},
+        "current_step": 7,
+        "next_step": {
+          "step_index": 7,
+          "step_name": "retrieval",
+          "step": {
+            "step_index": 7,
+            "step_name": "retrieval",
+            "concept": "variables",
+            "mental_model": "Remembering",
+            "story": {
+              "location": "Village Square \u2014 Supply Hut",
+              "npc": "Mira the Keeper",
+              "line": "Our supply boxes lost their labels! This one holds 5 apples, but nobody remembers. Can you give it a name the program will remember?"
+            },
+            "tutor": {
+              "name": "Byte",
+              "avatar": "\ud83e\udded",
+              "discover": "Programs remember values by giving them a name. Like labeling a box.",
+              "explain": "apples is a variable \u2014 a named box that holds a value. The = does not mean equals in math; it means store this value here."
+            },
+            "retrieval": {
+              "prompt": "What does apples = 10 mean in programming?",
+              "answer": "Put 10 in the box named apples",
+              "explanation": "= is a one-way arrow, not equality."
+            },
+            "code": {
+              "prompt": "",
+              "starter": "",
+              "placeholder": "",
+              "language": "python"
+            },
+            "checks": {
+              "required_patterns": [
+                "^\\s*apples\\s*=\\s*5\\s*(#.*)?$"
+              ],
+              "forbidden": [],
+              "hint_triggers": []
+            },
+            "hints": [
+              "What information does the robot need to remember here?",
+              "Programs can give a name to information so they can use it later \u2014 like labeling a box.",
+              "Try giving the number 5 the name `apples`.",
+              "Reveal: apples = 5 \u2014 the box needs this label to be remembered."
+            ],
+            "mastery_threshold": 80
+          }
+        },
+        "total_steps": 9
+      }
+    },
+    {
+      "phase": "submit_transfer",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:coding:5901d1690221",
+        "passed": true,
+        "score": 100.0,
+        "message": "",
+        "evidence": {},
+        "feedback": {},
+        "diagnosis": null,
+        "reteach_required": false,
+        "mastery_unlocked": true,
+        "reward": {
+          "diamonds": 0,
+          "combo": 0,
+          "streak_multiplier": 1.0,
+          "critical_hit": false
+        },
+        "current_step": 9,
+        "total_steps": 9
+      }
+    }
+  ],
+  "session_id": "lesson:coding:5901d1690221",
+  "mastery_unlocked": true,
+  "reward": {
+    "diamonds": 0,
+    "combo": 0,
+    "streak_multiplier": 1.0,
+    "critical_hit": false
+  },
+  "completed_at": "2026-10-02T06:34:00.252927+00:00"
+}

@@ -1,0 +1,160 @@
+{
+  "id": "data-structures.queue",
+  "title": "Queue",
+  "domain": "data-structures",
+  "concept": "Queue",
+  "skill_id": "data-structures.queue.queue",
+  "tags": [
+    "data-structures",
+    "service-companies",
+    "tcs",
+    "infosys",
+    "wipro"
+  ],
+  "difficulty": "medium",
+  "estimated_minutes": 20,
+  "mastery_threshold": 75,
+  "why_it_matters": "FIFO structure; enqueue at back, dequeue at front.",
+  "prerequisites": [],
+  "misconceptions": [
+    {
+      "code": "coding_array_index_error",
+      "signature": "Student mishandles pointers/indices in data structure operations.",
+      "reteach_route": "bug_surgery",
+      "reteach_action": "show_array_index_visual"
+    }
+  ],
+  "captain_byte": {
+    "intro": "Welcome to Queue. This is a core data-structures concept for placement prep. Follow the steps carefully.",
+    "correct": [
+      "Exactly right!",
+      "Perfect!",
+      "You have got it!"
+    ],
+    "wrong": [
+      "Not quite. Review the step and try again.",
+      "Close! Think about what the concept really means."
+    ],
+    "after_break": "Now you see the broken assumption. Repair it and move on.",
+    "after_mastery": "You have mastered Queue. This will appear in your next test.",
+    "retry_prompt": "Give it another shot. You are close."
+  },
+  "discover": {
+    "prompt": "Read this Queue problem carefully. Identify what is being asked.",
+    "interaction_kind": "mcq_read"
+  },
+  "understand": {
+    "prompt": "The key idea for Queue: understand the core mechanism before applying it.",
+    "interaction_kind": "read_explanation",
+    "explanation": "Queue requires understanding the core principle before applying it."
+  },
+  "manipulate": {
+    "prompt": "Practice: apply Queue to a simple example.",
+    "interaction_kind": "numeric_input",
+    "answer": "See explanation"
+  },
+  "predict": {
+    "prompt": "Predict the outcome for this Queue scenario.",
+    "interaction_kind": "numeric_input",
+    "answer": "See explanation"
+  },
+  "build": {
+    "prompt": "Write or construct a solution for this Queue problem.",
+    "interaction_kind": "word_problem",
+    "answer": "Solution for Queue"
+  },
+  "break_step": {
+    "prompt": "What is wrong with this Queue approach?",
+    "interaction_kind": "mcq_diagnose",
+    "broken_code": "# broken Queue approach",
+    "expected_failure": "Does not handle edge cases"
+  },
+  "debug": {
+    "prompt": "Fix the Queue error.",
+    "interaction_kind": "formula_fix",
+    "correct_code": "# fixed Queue approach"
+  },
+  "retrieval": {
+    "prompt": "Recall the key formula or rule for Queue.",
+    "interaction_kind": "recall_formula",
+    "answer": "Key insight for Queue"
+  },
+  "transfer": {
+    "prompt": "Apply Queue to a new context.",
+    "interaction_kind": "word_problem",
+    "answer": "See explanation"
+  },
+  "practice": [
+    {
+      "kind": "mcq",
+      "prompt": "Practice 1: Apply Queue to solve this problem.",
+      "answer": "See explanation",
+      "explanation": "This demonstrates Queue in a placement context.",
+      "difficulty": "medium",
+      "company_tags": [],
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ]
+    },
+    {
+      "kind": "numeric",
+      "prompt": "Practice 2: Apply Queue to solve this problem.",
+      "answer": "See explanation",
+      "explanation": "This demonstrates Queue in a placement context.",
+      "difficulty": "medium",
+      "company_tags": []
+    },
+    {
+      "kind": "word_problem",
+      "prompt": "Practice 3: Apply Queue to solve this problem.",
+      "answer": "See explanation",
+      "explanation": "This demonstrates Queue in a placement context.",
+      "difficulty": "medium",
+      "company_tags": []
+    }
+  ],
+  "proof": [
+    {
+      "id": "queue-p1",
+      "prompt": "Prove your Queue skill: explain the solution to this problem.",
+      "answer_format": "text",
+      "correct": "Correct application of Queue",
+      "explanation": "This tests understanding of Queue.",
+      "time_limit_seconds": 60,
+      "company_tags": []
+    },
+    {
+      "id": "queue-p2",
+      "prompt": "Prove your Queue skill: explain the solution to this problem.",
+      "answer_format": "text",
+      "correct": "Correct application of Queue",
+      "explanation": "This tests understanding of Queue.",
+      "time_limit_seconds": 60,
+      "company_tags": []
+    }
+  ],
+  "srs_key_points": [
+    "Core principle of Queue",
+    "Common pitfall in Queue",
+    "When to apply Queue"
+  ],
+  "company_variants": [
+    {
+      "company": "data-structures",
+      "role": "sde",
+      "difficulty": "medium",
+      "extra_practice": [],
+      "proof_questions": []
+    }
+  ],
+  "srs_review_intervals": [
+    1,
+    3,
+    7,
+    14,
+    30
+  ]
+}

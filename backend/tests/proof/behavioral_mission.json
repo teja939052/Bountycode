@@ -1,0 +1,454 @@
+{
+  "domain": "behavioral",
+  "company": "amazon",
+  "role": "sde",
+  "started_at": "2026-10-02T06:34:00.271296+00:00",
+  "steps": [
+    {
+      "phase": "start",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:behavioral:e850dfe089e9",
+        "domain": "behavioral",
+        "current_step": 0,
+        "total_steps": 9,
+        "step_name": "discover",
+        "step": {
+          "step_index": 0,
+          "step_name": "discover",
+          "domain": "behavioral",
+          "company": "amazon",
+          "role": "sde",
+          "concept": "general",
+          "content": {
+            "prompt": "Here is a behavioral question commonly asked at amazon. Read it and think about a relevant experience from your career.",
+            "question": "Tell me about a time you demonstrated strong problem-solving skills at amazon.",
+            "tips": "Think about a specific situation where you had to analyze a complex problem and find a solution."
+          },
+          "interaction_kind": "read_question",
+          "mastery_threshold": 75
+        },
+        "diagnosis": null,
+        "mastery_threshold": 75,
+        "company": "amazon",
+        "role": "sde"
+      }
+    },
+    {
+      "phase": "submit_discover",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:behavioral:e850dfe089e9",
+        "passed": true,
+        "score": 100.0,
+        "message": "Read the question carefully.",
+        "evidence": {},
+        "feedback": {},
+        "diagnosis": null,
+        "reteach_required": false,
+        "mastery_unlocked": false,
+        "reward": {},
+        "current_step": 1,
+        "next_step": {
+          "step_index": 1,
+          "step_name": "understand",
+          "step": {
+            "step_index": 1,
+            "step_name": "understand",
+            "domain": "behavioral",
+            "company": "amazon",
+            "role": "sde",
+            "concept": "general",
+            "content": {
+              "prompt": "STAR is the gold-standard structure for behavioral answers. Each letter stands for a component your answer must contain.",
+              "components": {
+                "S": {
+                  "label": "Situation",
+                  "description": "Set the context: when, where, what was happening?"
+                },
+                "T": {
+                  "label": "Task",
+                  "description": "What was your specific responsibility or goal?"
+                },
+                "A": {
+                  "label": "Action",
+                  "description": "What did YOU personally do? Use 'I' statements."
+                },
+                "R": {
+                  "label": "Result",
+                  "description": "What was the outcome? Quantify with metrics if possible."
+                }
+              }
+            },
+            "interaction_kind": "read_explanation",
+            "mastery_threshold": 75
+          }
+        },
+        "total_steps": 9
+      }
+    },
+    {
+      "phase": "submit_understand",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:behavioral:e850dfe089e9",
+        "passed": true,
+        "score": 100.0,
+        "message": "Explain the STAR framework in your own words.",
+        "evidence": {},
+        "feedback": {},
+        "diagnosis": null,
+        "reteach_required": false,
+        "mastery_unlocked": false,
+        "reward": {},
+        "current_step": 2,
+        "next_step": {
+          "step_index": 2,
+          "step_name": "manipulate",
+          "step": {
+            "step_index": 2,
+            "step_name": "manipulate",
+            "domain": "behavioral",
+            "company": "amazon",
+            "role": "sde",
+            "concept": "general",
+            "content": {
+              "prompt": "Identify which STAR component each sentence belongs to.",
+              "sentences": [
+                {
+                  "text": "Our team was facing a critical production outage at 2 AM.",
+                  "component": "S"
+                },
+                {
+                  "text": "I was the on-call engineer responsible for restoring service.",
+                  "component": "T"
+                },
+                {
+                  "text": "I identified the root cause and rolled back the deploy within 15 minutes.",
+                  "component": "A"
+                },
+                {
+                  "text": "This reduced downtime by 90% compared to the previous incident.",
+                  "component": "R"
+                }
+              ]
+            },
+            "interaction_kind": "mcq_classify",
+            "mastery_threshold": 75
+          }
+        },
+        "total_steps": 9
+      }
+    },
+    {
+      "phase": "submit_manipulate",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:behavioral:e850dfe089e9",
+        "passed": false,
+        "score": 0.0,
+        "message": "Classify the sentence.",
+        "evidence": {},
+        "feedback": {},
+        "diagnosis": null,
+        "reteach_required": false,
+        "mastery_unlocked": false,
+        "reward": {},
+        "current_step": 2,
+        "next_step": {
+          "step_index": 2,
+          "step_name": "manipulate",
+          "step": {
+            "step_index": 2,
+            "step_name": "manipulate",
+            "domain": "behavioral",
+            "company": "amazon",
+            "role": "sde",
+            "concept": "general",
+            "content": {
+              "prompt": "Identify which STAR component each sentence belongs to.",
+              "sentences": [
+                {
+                  "text": "Our team was facing a critical production outage at 2 AM.",
+                  "component": "S"
+                },
+                {
+                  "text": "I was the on-call engineer responsible for restoring service.",
+                  "component": "T"
+                },
+                {
+                  "text": "I identified the root cause and rolled back the deploy within 15 minutes.",
+                  "component": "A"
+                },
+                {
+                  "text": "This reduced downtime by 90% compared to the previous incident.",
+                  "component": "R"
+                }
+              ]
+            },
+            "interaction_kind": "mcq_classify",
+            "mastery_threshold": 75
+          }
+        },
+        "total_steps": 9
+      }
+    },
+    {
+      "phase": "submit_predict",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:behavioral:e850dfe089e9",
+        "passed": true,
+        "score": 50.0,
+        "message": "What is the biggest weakness in this answer?",
+        "evidence": {},
+        "feedback": {},
+        "diagnosis": null,
+        "reteach_required": false,
+        "mastery_unlocked": false,
+        "reward": {},
+        "current_step": 4,
+        "next_step": {
+          "step_index": 4,
+          "step_name": "build",
+          "step": {
+            "step_index": 4,
+            "step_name": "build",
+            "domain": "behavioral",
+            "company": "amazon",
+            "role": "sde",
+            "concept": "general",
+            "content": {
+              "prompt": "Write the Situation and Task for this behavioral question: 'Tell me about a time you handled a difficult stakeholder at amazon.'",
+              "guidelines": [
+                "Describe the context in 2-3 sentences.",
+                "State your specific responsibility.",
+                "Use past tense."
+              ]
+            },
+            "interaction_kind": "guided_writing",
+            "mastery_threshold": 75
+          }
+        },
+        "total_steps": 9
+      }
+    },
+    {
+      "phase": "submit_build",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:behavioral:e850dfe089e9",
+        "passed": false,
+        "score": 30.0,
+        "message": "Heuristic STAR score: 30.0/100",
+        "evidence": {},
+        "feedback": {
+          "star_breakdown": {
+            "situation": 60,
+            "task": 60,
+            "action": 0,
+            "result": 0
+          },
+          "mode": "heuristic"
+        },
+        "diagnosis": null,
+        "reteach_required": false,
+        "mastery_unlocked": false,
+        "reward": {},
+        "current_step": 4,
+        "next_step": {
+          "step_index": 4,
+          "step_name": "build",
+          "step": {
+            "step_index": 4,
+            "step_name": "build",
+            "domain": "behavioral",
+            "company": "amazon",
+            "role": "sde",
+            "concept": "general",
+            "content": {
+              "prompt": "Write the Situation and Task for this behavioral question: 'Tell me about a time you handled a difficult stakeholder at amazon.'",
+              "guidelines": [
+                "Describe the context in 2-3 sentences.",
+                "State your specific responsibility.",
+                "Use past tense."
+              ]
+            },
+            "interaction_kind": "guided_writing",
+            "mastery_threshold": 75
+          }
+        },
+        "total_steps": 9
+      }
+    },
+    {
+      "phase": "submit_break_step",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:behavioral:e850dfe089e9",
+        "passed": true,
+        "score": 100.0,
+        "message": "Diagnose the answer.",
+        "evidence": {},
+        "feedback": {},
+        "diagnosis": null,
+        "reteach_required": false,
+        "mastery_unlocked": false,
+        "reward": {},
+        "current_step": 6,
+        "next_step": {
+          "step_index": 6,
+          "step_name": "debug",
+          "step": {
+            "step_index": 6,
+            "step_name": "debug",
+            "domain": "behavioral",
+            "company": "amazon",
+            "role": "sde",
+            "concept": "general",
+            "content": {
+              "prompt": "Improve this answer by adding specific actions and quantifiable results.",
+              "weak_answer": "I helped improve the system performance.",
+              "improvement_guide": [
+                "Add the specific actions YOU took (migrations, indexing, caching).",
+                "Add before/after metrics (latency, throughput, error rate).",
+                "Use 'I' statements throughout."
+              ]
+            },
+            "interaction_kind": "guided_improvement",
+            "mastery_threshold": 75
+          }
+        },
+        "total_steps": 9
+      }
+    },
+    {
+      "phase": "submit_debug",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:behavioral:e850dfe089e9",
+        "passed": false,
+        "score": 7.5,
+        "message": "Improved answer score: 7.5/100",
+        "evidence": {},
+        "feedback": {
+          "star_breakdown": {
+            "situation": 0,
+            "task": 0,
+            "action": 0,
+            "result": 30
+          }
+        },
+        "diagnosis": null,
+        "reteach_required": false,
+        "mastery_unlocked": false,
+        "reward": {},
+        "current_step": 6,
+        "next_step": {
+          "step_index": 6,
+          "step_name": "debug",
+          "step": {
+            "step_index": 6,
+            "step_name": "debug",
+            "domain": "behavioral",
+            "company": "amazon",
+            "role": "sde",
+            "concept": "general",
+            "content": {
+              "prompt": "Improve this answer by adding specific actions and quantifiable results.",
+              "weak_answer": "I helped improve the system performance.",
+              "improvement_guide": [
+                "Add the specific actions YOU took (migrations, indexing, caching).",
+                "Add before/after metrics (latency, throughput, error rate).",
+                "Use 'I' statements throughout."
+              ]
+            },
+            "interaction_kind": "guided_improvement",
+            "mastery_threshold": 75
+          }
+        },
+        "total_steps": 9
+      }
+    },
+    {
+      "phase": "submit_retrieval",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:behavioral:e850dfe089e9",
+        "passed": true,
+        "score": 100.0,
+        "message": "Recall the 4 STAR components.",
+        "evidence": {},
+        "feedback": {},
+        "diagnosis": null,
+        "reteach_required": false,
+        "mastery_unlocked": false,
+        "reward": {},
+        "current_step": 8,
+        "next_step": {
+          "step_index": 8,
+          "step_name": "transfer",
+          "step": {
+            "step_index": 8,
+            "step_name": "transfer",
+            "domain": "behavioral",
+            "company": "amazon",
+            "role": "sde",
+            "concept": "general",
+            "content": {
+              "prompt": "Write a complete STAR answer for: 'Tell me about a time you influenced a decision at amazon despite strong opposition.'",
+              "guidelines": [
+                "Include all 4 STAR components.",
+                "Use 'I' statements for the Action section.",
+                "Quantify the Result with at least one metric."
+              ]
+            },
+            "interaction_kind": "full_star_answer",
+            "mastery_threshold": 75
+          }
+        },
+        "total_steps": 9
+      }
+    },
+    {
+      "phase": "submit_transfer",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:behavioral:e850dfe089e9",
+        "passed": true,
+        "score": 60.0,
+        "message": "Heuristic STAR score: 60.0/100",
+        "evidence": {},
+        "feedback": {
+          "star_breakdown": {
+            "situation": 60,
+            "task": 60,
+            "action": 30,
+            "result": 90
+          },
+          "mode": "heuristic"
+        },
+        "diagnosis": null,
+        "reteach_required": false,
+        "mastery_unlocked": true,
+        "reward": {
+          "diamonds": 0,
+          "combo": 0,
+          "streak_multiplier": 1.0,
+          "critical_hit": false
+        },
+        "current_step": 9,
+        "total_steps": 9
+      }
+    }
+  ],
+  "session_id": "lesson:behavioral:e850dfe089e9",
+  "mastery_unlocked": true,
+  "reward": {
+    "diamonds": 0,
+    "combo": 0,
+    "streak_multiplier": 1.0,
+    "critical_hit": false
+  },
+  "completed_at": "2026-10-02T06:34:03.814847+00:00"
+}

@@ -1,0 +1,285 @@
+{
+  "id": "reasoning.seating_arrangement",
+  "title": "Seating Arrangement",
+  "domain": "reasoning",
+  "concept": "Seating Arrangement",
+  "skill_id": "reasoning.seating_arrangement",
+  "tags": [
+    "reasoning",
+    "logical",
+    "tcs",
+    "infosys",
+    "wipro",
+    "service-companies"
+  ],
+  "difficulty": "medium",
+  "estimated_minutes": 20,
+  "mastery_threshold": 75,
+  "why_it_matters": "Seating arrangement tests logical placement under multiple constraints. It appears in TCS NQT and Infosys reasoning sections.",
+  "prerequisites": [],
+  "misconceptions": [
+    {
+      "code": "reasoning_ordering_error",
+      "signature": "Student freezes the first mentioned person and ignores facing direction.",
+      "reteach_route": "visual_state",
+      "reteach_action": "show_fixed_reference_and_facing"
+    },
+    {
+      "code": "reasoning_constraint_omission",
+      "signature": "Student ignores 'to the left of' when building the arrangement.",
+      "reteach_route": "worked_example",
+      "reteach_action": "show_left_right_relative_to_facing"
+    }
+  ],
+  "captain_byte": {
+    "intro": "Seating arrangement is a logic grid. Fix one reference, then place everyone relative to it.",
+    "correct": [
+      "Correct placement.",
+      "You respected the constraints.",
+      "Right position."
+    ],
+    "wrong": [
+      "Fix one reference person first.",
+      "Left/right depends on facing direction.",
+      "Check all constraints before finalizing."
+    ],
+    "after_break": "You found the placement error. Now rebuild the arrangement from the fixed reference.",
+    "after_mastery": "You can now solve seating arrangements fast. That's placement-ready reasoning skill.",
+    "retry_prompt": "Try again. Fix one reference person and facing direction first."
+  },
+  "discover": {
+    "visual_primitives": [
+      "highlight",
+      "compare",
+      "transform"
+    ],
+    "steps": [
+      {
+        "action": "see_line",
+        "narration": "A, B, C sit in a line. A is left of B. B is left of C. Order?",
+        "interaction": {
+          "type": "choose_outcome",
+          "prompt": "What is the left-to-right order?",
+          "options": [
+            {
+              "id": "a",
+              "text": "A B C",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "C B A",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "B A C",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "text": "A C B",
+              "correct": false
+            }
+          ],
+          "explanation": "A left of B, B left of C → A-B-C."
+        }
+      },
+      {
+        "action": "see_facing",
+        "narration": "If they face north, 'left of' means west from each person's view.",
+        "interaction": {
+          "type": "choose_outcome",
+          "prompt": "Facing north, A is left of B. Where is A?",
+          "options": [
+            {
+              "id": "a",
+              "text": "West of B",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "East of B",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "North of B",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "text": "South of B",
+              "correct": false
+            }
+          ],
+          "explanation": "Facing north, left is west."
+        }
+      }
+    ],
+    "conclusion": "Fix one reference. Place others relative to it. Left/right depends on facing direction. Check all constraints before finalizing."
+  },
+  "understand": "Seating arrangements use relative positions: left, right, opposite, between, next to. Facing direction changes left/right. Circular arrangements wrap around. Linear arrangements have ends.",
+  "manipulate": {
+    "prompt": "A, B, C sit in a line. A is between B and C. B is at the left end. Order?",
+    "answer": "B A C",
+    "hint": "B is fixed at left. A is between B and C → B-A-C.",
+    "interaction_kind": "ordering"
+  },
+  "predict": {
+    "prompt": "Four people sit around a table. A is right of B. C is opposite D. Who is left of A?",
+    "answer": "B",
+    "options": [
+      "B",
+      "C",
+      "D",
+      "Cannot determine"
+    ],
+    "interaction_kind": "mcq_classify"
+  },
+  "build": {
+    "prompt": "Arrange A, B, C, D in a line. A is left of B. C is between A and D. D is at the right end.",
+    "answer": "A C D B",
+    "explanation": "D fixed at right. C between A and D. A left of B.",
+    "interaction_kind": "ordering"
+  },
+  "break_step": {
+    "prompt": "A student places A left of B as A on the left side of the page. What is wrong?",
+    "common_mistake": "Confusing viewer's left/right with the person's left/right when facing direction is not fixed.",
+    "correct_reasoning": "Left/right depends on facing direction. Fix facing first.",
+    "interaction_kind": "mcq_diagnose"
+  },
+  "debug": {
+    "prompt": "Fix: 'A is left of B' when facing south.",
+    "correct_reasoning": "Facing south, left is east.",
+    "interaction_kind": "mcq_diagnose"
+  },
+  "retrieval": {
+    "prompt": "What does 'left of' depend on?",
+    "answer": "Facing direction",
+    "alternative": [
+      "facing",
+      "orientation"
+    ],
+    "interaction_kind": "recall_formula"
+  },
+  "transfer": {
+    "prompt": "Five people sit in a line. P is left of Q. R is between P and S. T is at the right end. Order?",
+    "answer": "P R S Q T",
+    "explanation": "T fixed right. R between P and S. P left of Q.",
+    "interaction_kind": "ordering"
+  },
+  "practice": [
+    {
+      "kind": "mcq",
+      "prompt": "A is between B and C. B is left of A. Order?",
+      "answer": "B A C",
+      "options": [
+        "A B C",
+        "B A C",
+        "C A B",
+        "B C A"
+      ],
+      "explanation": "B left of A, A between B and C → B-A-C.",
+      "difficulty": "easy",
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ]
+    },
+    {
+      "kind": "mcq",
+      "prompt": "Four people face north. A is right of B. Who is left of B?",
+      "answer": "Cannot determine",
+      "options": [
+        "A",
+        "C",
+        "D",
+        "Cannot determine"
+      ],
+      "explanation": "Only one relation given; not enough to determine all positions.",
+      "difficulty": "medium",
+      "company_tags": [
+        "tcs",
+        "infosys"
+      ]
+    },
+    {
+      "kind": "mcq",
+      "prompt": "Practice 1: Apply Seating Arrangement to solve this problem.",
+      "answer": "See explanation",
+      "explanation": "This demonstrates Seating Arrangement in a placement context.",
+      "difficulty": "medium",
+      "company_tags": [],
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ]
+    }
+  ],
+  "proof": [
+    {
+      "id": "p1",
+      "prompt": "Six people sit in a circle. A is opposite B. C is left of A. D is right of B. Find positions of C and D relative to A.",
+      "answer_format": "text",
+      "correct": "C is left of A; D is right of B",
+      "explanation": "Use fixed reference A and relative directions.",
+      "time_limit_seconds": 90,
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ]
+    },
+    {
+      "id": "seating_arrangement-p2",
+      "prompt": "Prove your Seating Arrangement skill: explain the solution to this problem.",
+      "answer_format": "text",
+      "correct": "Correct application of Seating Arrangement",
+      "explanation": "This tests understanding of Seating Arrangement.",
+      "time_limit_seconds": 60,
+      "company_tags": []
+    }
+  ],
+  "company_variants": [
+    {
+      "company": "tcs",
+      "role": "sde",
+      "difficulty": "medium",
+      "extra_practice": [
+        "tcs_seating_linear",
+        "tcs_seating_circular"
+      ],
+      "proof_questions": [
+        {
+          "id": "tcs-p1",
+          "prompt": "TCS: A, B, C, D sit in a line facing north. B is at one end. C is between A and D. Who is second from left?",
+          "answer_format": "text",
+          "correct": "A",
+          "explanation": "B at end, C between A and D → B-C-A-D or B-A-C-D depending on constraints.",
+          "time_limit_seconds": 90,
+          "company_tags": [
+            "tcs"
+          ]
+        }
+      ]
+    }
+  ],
+  "srs_key_points": [
+    "Fix one reference person and facing direction.",
+    "Left/right depends on facing.",
+    "Linear arrangements have ends.",
+    "Circular arrangements wrap around.",
+    "Check all constraints before finalizing."
+  ],
+  "srs_review_intervals": [
+    1,
+    3,
+    7,
+    14,
+    30
+  ]
+}

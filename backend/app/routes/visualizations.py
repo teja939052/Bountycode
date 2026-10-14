@@ -9,6 +9,7 @@ from typing import Optional, List, Dict, Any
 from app.middleware.auth import get_current_user
 from app.services.ai_core import chat_completion, parse_json
 from app.services.code_tracer import execute_with_trace, detect_algorithm_type
+from app.services.usage import require_pro_for_ai
 
 router = APIRouter(prefix="/api/v1/visualizations", tags=["visualizations"])
 
@@ -1025,7 +1026,7 @@ async def get_template(template_id: str):
 async def generate_visualization(
     question_id: str,
     test_case_input: str,
-    user=Depends(get_current_user),
+    user=Depends(require_pro_for_ai),
 ):
     """Generate a step-by-step visualization for a problem's execution."""
     # In-memory canonical store only (Residency Rule): never MongoDB.
@@ -1101,7 +1102,7 @@ Make the steps clear, educational, and easy to follow. Show variable states at e
 
 
 @router.post("/trace")
-async def generate_code_trace(req: TraceRequest, user=Depends(get_current_user)):
+async def generate_code_trace(req: TraceRequest, user=Depends(require_pro_for_ai)):
     """Generate a step-by-step trace for arbitrary user code.
     For Python: uses AST-level instrumentation (real execution trace).
     For other languages: uses AI-generated traces.

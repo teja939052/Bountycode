@@ -1,7 +1,7 @@
 from datetime import datetime, timezone
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Query
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, List
 from app.models.resume import GenerateResume, OptimizeRequest
 from app.database import users_collection, resumes_collection
 from app.middleware.auth import get_current_user
@@ -11,12 +11,16 @@ from app.services.export import export_to_docx, export_to_pdf
 from app.services.ats_semantic import semantic_score, section_scores, semantic_gaps
 from app.services.ats_enhanced import calculate_ats_score as keyword_ats_score
 from app.services.gamification import record_practice
+from app.services.monetization import check_feature_access, record_feature_usage
+from app.services.resume_engine import ResumeEngine
+from app.services.usage import require_pro_for_ai, plan_required
 from app.config import get_settings
 from bson import ObjectId
 from fastapi.responses import StreamingResponse
 
 router = APIRouter(prefix="/api/v1/resume", tags=["resume"])
 settings = get_settings()
+resume_engine = ResumeEngine()
 
 
 def validate_pdf_content(content: bytes) -> bool:
@@ -31,6 +35,28 @@ class SemanticScoreRequest(BaseModel):
 class RuleBasedATSRequest(BaseModel):
     resume_text: str
     job_description: str = ""
+
+
+class ImproveBulletRequest(BaseModel):
+    bullet: str
+    job_role: str = ""
+
+
+class ImproveBulletsRequest(BaseModel):
+    bullets: List[str]
+    job_role: str = ""
+
+
+class TailorResumeRequest(BaseModel):
+    resume_text: str
+    job_description: str
+    job_role: str = ""
+
+
+class MissingBulletRequest(BaseModel):
+    resume_text: str
+    job_description: str
+    missing_skill: str
 
 
 @router.post("/analyze-rulebased")
@@ -102,12 +128,9 @@ async def semantic_ats_score(req: SemanticScoreRequest, user=Depends(get_current
 
 
 @router.post("/upload")
-async def upload_resume(file: UploadFile = File(...), user=Depends(get_current_user)):
+async def upload_resume(file: UploadFile = File(...), user=Depends(require_pro_for_ai)):
     if user.get("plan") == "free" and user.get("resumes_used", 0) >= settings.FREE_TIER_RESUME_LIMIT:
-        raise HTTPException(
-            status_code=403,
-            detail=f"Free tier limit reached ({settings.FREE_TIER_RESUME_LIMIT} resumes). Upgrade to Pro.",
-        )
+        raise plan_required(user, "resume", remaining=settings.FREE_TIER_RESUME_LIMIT - user.get("resumes_used", 0))
 
     if not file.filename or not file.filename.lower().endswith(".pdf"):
         raise HTTPException(status_code=400, detail="Only PDF files are supported")
@@ -155,12 +178,9 @@ async def upload_resume(file: UploadFile = File(...), user=Depends(get_current_u
 
 
 @router.post("/generate")
-async def generate_resume(req: GenerateResume, user=Depends(get_current_user)):
+async def generate_resume(req: GenerateResume, user=Depends(require_pro_for_ai)):
     if user.get("plan") == "free" and user.get("resumes_used", 0) >= settings.FREE_TIER_RESUME_LIMIT:
-        raise HTTPException(
-            status_code=403,
-            detail=f"Free tier limit reached ({settings.FREE_TIER_RESUME_LIMIT} resumes). Upgrade to Pro.",
-        )
+        raise plan_required(user, "resume", remaining=settings.FREE_TIER_RESUME_LIMIT - user.get("resumes_used", 0))
 
     content = await generate_resume_content(
         req.name, req.email, req.target_role, req.experience, req.education, req.skills
@@ -193,7 +213,7 @@ async def generate_resume(req: GenerateResume, user=Depends(get_current_user)):
 
 
 @router.post("/optimize")
-async def optimize_resume(req: OptimizeRequest, user=Depends(get_current_user)):
+async def optimize_resume(req: OptimizeRequest, user=Depends(require_pro_for_ai)):
     try:
         resume = await resumes_collection.find_one({"_id": ObjectId(req.resume_id)})
     except Exception:
@@ -290,3 +310,62 @@ async def get_resume_history(user=Depends(get_current_user)):
         })
 
     return {"resumes": resumes}
+
+
+# ============================================
+# ENHANCED RESUME FEATURES (migrated from enhanced.py)
+# ============================================
+
+@router.post("/improve-bullet")
+async def improve_single_bullet(req: ImproveBulletRequest, user=Depends(require_pro_for_ai)):
+    access = await check_feature_access(user["id"], "resume_bullet_improve")
+    if not access["allowed"]:
+        raise plan_required(user, "resume")
+
+    result = await resume_engine.improve_bullet_strict(req.bullet, req.job_role)
+    await record_feature_usage(user["id"], "resume_bullet_improve")
+    return result
+
+
+@router.post("/improve-bullets")
+async def improve_multiple_bullets(req: ImproveBulletsRequest, user=Depends(require_pro_for_ai)):
+    access = await check_feature_access(user["id"], "resume_bullet_improve")
+    if not access["allowed"]:
+        raise plan_required(user, "resume")
+
+    results = []
+    for bullet in req.bullets:
+        if bullet.strip():
+            result = await resume_engine.improve_bullet_strict(bullet, req.job_role)
+            results.append(result)
+            await record_feature_usage(user["id"], "resume_bullet_improve")
+    return {"improvements": results}
+
+
+@router.post("/ats-checklist")
+async def get_ats_checklist(req: ImproveBulletRequest, user=Depends(get_current_user)):
+    return resume_engine.verify_ats_formatting(req.bullet)
+
+
+@router.post("/tailor")
+async def tailor_resume(req: TailorResumeRequest, user=Depends(get_current_user)):
+    access = await check_feature_access(user["id"], "resume_tailor")
+    if not access["allowed"]:
+        raise plan_required(user, "resume")
+
+    result = await resume_engine.tailor_resume_strict(req.resume_text, req.job_description, req.job_role)
+    await record_feature_usage(user["id"], "resume_tailor")
+    return result
+
+
+@router.post("/missing-bullet")
+async def generate_missing_bullet(req: MissingBulletRequest, user=Depends(get_current_user)):
+    access = await check_feature_access(user["id"], "missing_bullet_generator")
+    if not access["allowed"]:
+        raise plan_required(user, "resume")
+
+    result = await resume_engine.generate_missing_bullet(
+        req.resume_text, req.job_description, req.missing_skill
+    )
+    await record_feature_usage(user["id"], "missing_bullet_generator")
+    return result

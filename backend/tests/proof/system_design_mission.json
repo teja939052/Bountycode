@@ -1,0 +1,483 @@
+{
+  "domain": "system_design",
+  "topic": "url_shortener",
+  "started_at": "2026-10-02T06:34:03.833943+00:00",
+  "steps": [
+    {
+      "phase": "start",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:system_design:7ebc3931a5c8",
+        "domain": "system_design",
+        "current_step": 0,
+        "total_steps": 9,
+        "step_name": "discover",
+        "step": {
+          "step_index": 0,
+          "step_name": "discover",
+          "domain": "system_design",
+          "company": "general",
+          "role": "sde",
+          "concept": "general",
+          "content": {
+            "prompt": "Read this system design question carefully. Understand what users need and what scale we are targeting.",
+            "question": "Design a URL shortener like bit.ly that handles 10M daily active users.",
+            "requirements": [
+              "Shorten long URLs to 6-8 character codes",
+              "Redirect short URLs to original long URLs",
+              "Custom short URLs for premium users",
+              "Analytics: click count, referrer, geo"
+            ],
+            "non_functional": [
+              "99.9% availability",
+              "<100ms redirect latency",
+              "10M DAU"
+            ]
+          },
+          "interaction_kind": "read_requirements",
+          "mastery_threshold": 70
+        },
+        "diagnosis": null,
+        "mastery_threshold": 70,
+        "company": "",
+        "role": "sde"
+      }
+    },
+    {
+      "phase": "submit_discover",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:system_design:7ebc3931a5c8",
+        "passed": true,
+        "score": 100.0,
+        "message": "Study the content.",
+        "evidence": {},
+        "feedback": {},
+        "diagnosis": null,
+        "reteach_required": false,
+        "mastery_unlocked": false,
+        "reward": {},
+        "current_step": 1,
+        "next_step": {
+          "step_index": 1,
+          "step_name": "understand",
+          "step": {
+            "step_index": 1,
+            "step_name": "understand",
+            "domain": "system_design",
+            "company": "general",
+            "role": "sde",
+            "concept": "general",
+            "content": {
+              "prompt": "System design is about trade-offs. Here are the key dimensions you must consider for every design.",
+              "dimensions": [
+                {
+                  "name": "Scalability",
+                  "description": "Can the system handle 10x growth?"
+                },
+                {
+                  "name": "Availability",
+                  "description": "What is the uptime target? How do we handle failures?"
+                },
+                {
+                  "name": "Consistency",
+                  "description": "Do all users see the same data? (CAP theorem)"
+                },
+                {
+                  "name": "Latency",
+                  "description": "How fast must the system respond?"
+                },
+                {
+                  "name": "Cost",
+                  "description": "What is the infrastructure cost at scale?"
+                }
+              ]
+            },
+            "interaction_kind": "read_explanation",
+            "mastery_threshold": 70
+          }
+        },
+        "total_steps": 9
+      }
+    },
+    {
+      "phase": "submit_understand",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:system_design:7ebc3931a5c8",
+        "passed": true,
+        "score": 100.0,
+        "message": "Study the content.",
+        "evidence": {},
+        "feedback": {},
+        "diagnosis": null,
+        "reteach_required": false,
+        "mastery_unlocked": false,
+        "reward": {},
+        "current_step": 2,
+        "next_step": {
+          "step_index": 2,
+          "step_name": "manipulate",
+          "step": {
+            "step_index": 2,
+            "step_name": "manipulate",
+            "domain": "system_design",
+            "company": "general",
+            "role": "sde",
+            "concept": "general",
+            "content": {
+              "prompt": "Match each system design component to its primary purpose.",
+              "components": [
+                {
+                  "name": "Load Balancer",
+                  "purpose": "Distribute traffic across servers",
+                  "correct_match": "Traffic distribution"
+                },
+                {
+                  "name": "CDN",
+                  "purpose": "Cache static content near users",
+                  "correct_match": "Edge caching"
+                },
+                {
+                  "name": "Redis Cluster",
+                  "purpose": "Low-latency key-value cache",
+                  "correct_match": "In-memory caching"
+                },
+                {
+                  "name": "Message Queue",
+                  "purpose": "Decouple producers and consumers",
+                  "correct_match": "Async processing"
+                },
+                {
+                  "name": "Database Sharding",
+                  "purpose": "Partition data across nodes",
+                  "correct_match": "Horizontal scaling"
+                }
+              ]
+            },
+            "interaction_kind": "mcq_match",
+            "mastery_threshold": 70
+          }
+        },
+        "total_steps": 9
+      }
+    },
+    {
+      "phase": "submit_manipulate",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:system_design:7ebc3931a5c8",
+        "passed": false,
+        "score": 0.0,
+        "message": "Matched 0/5 components.",
+        "evidence": {},
+        "feedback": {},
+        "diagnosis": null,
+        "reteach_required": false,
+        "mastery_unlocked": false,
+        "reward": {},
+        "current_step": 2,
+        "next_step": {
+          "step_index": 2,
+          "step_name": "manipulate",
+          "step": {
+            "step_index": 2,
+            "step_name": "manipulate",
+            "domain": "system_design",
+            "company": "general",
+            "role": "sde",
+            "concept": "general",
+            "content": {
+              "prompt": "Match each system design component to its primary purpose.",
+              "components": [
+                {
+                  "name": "Load Balancer",
+                  "purpose": "Distribute traffic across servers",
+                  "correct_match": "Traffic distribution"
+                },
+                {
+                  "name": "CDN",
+                  "purpose": "Cache static content near users",
+                  "correct_match": "Edge caching"
+                },
+                {
+                  "name": "Redis Cluster",
+                  "purpose": "Low-latency key-value cache",
+                  "correct_match": "In-memory caching"
+                },
+                {
+                  "name": "Message Queue",
+                  "purpose": "Decouple producers and consumers",
+                  "correct_match": "Async processing"
+                },
+                {
+                  "name": "Database Sharding",
+                  "purpose": "Partition data across nodes",
+                  "correct_match": "Horizontal scaling"
+                }
+              ]
+            },
+            "interaction_kind": "mcq_match",
+            "mastery_threshold": 70
+          }
+        },
+        "total_steps": 9
+      }
+    },
+    {
+      "phase": "submit_predict",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:system_design:7ebc3931a5c8",
+        "passed": true,
+        "score": 100.0,
+        "message": "Identify the bottleneck.",
+        "evidence": {},
+        "feedback": {},
+        "diagnosis": null,
+        "reteach_required": false,
+        "mastery_unlocked": false,
+        "reward": {},
+        "current_step": 4,
+        "next_step": {
+          "step_index": 4,
+          "step_name": "build",
+          "step": {
+            "step_index": 4,
+            "step_name": "build",
+            "domain": "system_design",
+            "company": "general",
+            "role": "sde",
+            "concept": "general",
+            "content": {
+              "prompt": "Sketch the high-level architecture for a URL shortener. List the components and describe the data flow.",
+              "components_to_include": [
+                "Load Balancer",
+                "API Servers",
+                "Redis Cache",
+                "MySQL Sharded",
+                "CDN"
+              ],
+              "data_flow": "Client \u2192 CDN \u2192 Load Balancer \u2192 API Server \u2192 Redis \u2192 MySQL"
+            },
+            "interaction_kind": "guided_design",
+            "mastery_threshold": 70
+          }
+        },
+        "total_steps": 9
+      }
+    },
+    {
+      "phase": "submit_build",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:system_design:7ebc3931a5c8",
+        "passed": false,
+        "score": 45.0,
+        "message": "Mentioned 3/21 key dimensions.",
+        "evidence": {},
+        "feedback": {
+          "mode": "heuristic",
+          "dimensions_mentioned": 3
+        },
+        "diagnosis": null,
+        "reteach_required": false,
+        "mastery_unlocked": false,
+        "reward": {},
+        "current_step": 4,
+        "next_step": {
+          "step_index": 4,
+          "step_name": "build",
+          "step": {
+            "step_index": 4,
+            "step_name": "build",
+            "domain": "system_design",
+            "company": "general",
+            "role": "sde",
+            "concept": "general",
+            "content": {
+              "prompt": "Sketch the high-level architecture for a URL shortener. List the components and describe the data flow.",
+              "components_to_include": [
+                "Load Balancer",
+                "API Servers",
+                "Redis Cache",
+                "MySQL Sharded",
+                "CDN"
+              ],
+              "data_flow": "Client \u2192 CDN \u2192 Load Balancer \u2192 API Server \u2192 Redis \u2192 MySQL"
+            },
+            "interaction_kind": "guided_design",
+            "mastery_threshold": 70
+          }
+        },
+        "total_steps": 9
+      }
+    },
+    {
+      "phase": "submit_break_step",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:system_design:7ebc3931a5c8",
+        "passed": true,
+        "score": 100.0,
+        "message": "Identify the failure point.",
+        "evidence": {},
+        "feedback": {},
+        "diagnosis": null,
+        "reteach_required": false,
+        "mastery_unlocked": false,
+        "reward": {},
+        "current_step": 6,
+        "next_step": {
+          "step_index": 6,
+          "step_name": "debug",
+          "step": {
+            "step_index": 6,
+            "step_name": "debug",
+            "domain": "system_design",
+            "company": "general",
+            "role": "sde",
+            "concept": "general",
+            "content": {
+              "prompt": "Fix this design by adding the missing critical components.",
+              "broken_design": "One server, one database, no cache, no load balancer",
+              "fixes_required": [
+                "Add load balancer",
+                "Add Redis cache",
+                "Shard database",
+                "Add CDN",
+                "Add monitoring"
+              ]
+            },
+            "interaction_kind": "guided_improvement",
+            "mastery_threshold": 70
+          }
+        },
+        "total_steps": 9
+      }
+    },
+    {
+      "phase": "submit_debug",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:system_design:7ebc3931a5c8",
+        "passed": true,
+        "score": 100.0,
+        "message": "Applied 5/5 critical fixes.",
+        "evidence": {},
+        "feedback": {},
+        "diagnosis": null,
+        "reteach_required": false,
+        "mastery_unlocked": false,
+        "reward": {},
+        "current_step": 7,
+        "next_step": {
+          "step_index": 7,
+          "step_name": "retrieval",
+          "step": {
+            "step_index": 7,
+            "step_name": "retrieval",
+            "domain": "system_design",
+            "company": "general",
+            "role": "sde",
+            "concept": "general",
+            "content": {
+              "prompt": "What are the 5 key trade-offs you must discuss for every system design?",
+              "answer": "Scalability, availability, consistency, latency, cost",
+              "explanation": "Every system design decision involves trade-offs. You must discuss at least 3 dimensions."
+            },
+            "interaction_kind": "recall_dimensions",
+            "mastery_threshold": 70
+          }
+        },
+        "total_steps": 9
+      }
+    },
+    {
+      "phase": "submit_retrieval",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:system_design:7ebc3931a5c8",
+        "passed": true,
+        "score": 100.0,
+        "message": "Recalled 5/5 dimensions.",
+        "evidence": {},
+        "feedback": {},
+        "diagnosis": null,
+        "reteach_required": false,
+        "mastery_unlocked": false,
+        "reward": {},
+        "current_step": 8,
+        "next_step": {
+          "step_index": 8,
+          "step_name": "transfer",
+          "step": {
+            "step_index": 8,
+            "step_name": "transfer",
+            "domain": "system_design",
+            "company": "general",
+            "role": "sde",
+            "concept": "general",
+            "content": {
+              "prompt": "Design a notification service for general that pushes 100M notifications/day.",
+              "requirements": [
+                "Push notifications to mobile and web",
+                "Support email, SMS, and in-app notifications",
+                "User preferences: opt-in/out per channel",
+                "Retry failed deliveries with exponential backoff",
+                "Rate limiting per user"
+              ],
+              "components_to_consider": [
+                "API Gateway",
+                "Notification Service",
+                "Message Queue",
+                "Worker Pool",
+                "Third-party APIs",
+                "User Preference DB",
+                "Analytics Store"
+              ]
+            },
+            "interaction_kind": "full_design",
+            "mastery_threshold": 70
+          }
+        },
+        "total_steps": 9
+      }
+    },
+    {
+      "phase": "submit_transfer",
+      "status": 200,
+      "body": {
+        "session_id": "lesson:system_design:7ebc3931a5c8",
+        "passed": true,
+        "score": 100.0,
+        "message": "Mentioned 8/21 key dimensions.",
+        "evidence": {},
+        "feedback": {
+          "mode": "heuristic",
+          "dimensions_mentioned": 8
+        },
+        "diagnosis": null,
+        "reteach_required": false,
+        "mastery_unlocked": true,
+        "reward": {
+          "diamonds": 0,
+          "combo": 0,
+          "streak_multiplier": 1.0,
+          "critical_hit": false
+        },
+        "current_step": 9,
+        "total_steps": 9
+      }
+    }
+  ],
+  "session_id": "lesson:system_design:7ebc3931a5c8",
+  "mastery_unlocked": true,
+  "reward": {
+    "diamonds": 0,
+    "combo": 0,
+    "streak_multiplier": 1.0,
+    "critical_hit": false
+  },
+  "completed_at": "2026-10-02T06:34:06.286517+00:00"
+}

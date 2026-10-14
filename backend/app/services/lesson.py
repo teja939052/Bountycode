@@ -14,6 +14,7 @@ from app.services.code_executor import CodeExecutionEngine
 from app.services.local_sandbox import execute_local_python_batch
 from app.services.spaced_repetition import SpacedRepetitionEngine
 from app.services.gamification import record_practice
+from app.services.misconception_diagnosis import diagnose_misconception
 from app.database import srs_collection
 from app.utils.timeutil import utcnow
 
@@ -44,8 +45,38 @@ class LessonService:
     # ──────────────────────────────────────────────────────────────────
 
     def get_lesson(self) -> Dict[str, Any]:
-        """Return the full lesson content for this lesson."""
-        return self._lesson
+        """Return the full lesson content for this lesson.
+
+        A lesson that ships its own authored `captain_byte` keeps it. Lessons
+        shipping no block — or the generic placeholder — get a real one from
+        the deterministic library. `mentor` is attached on every response so
+        the client has one canonical framing for this lesson.
+
+        Always a shallow copy: the shared registry dict is never mutated.
+        """
+        from app.services.mentor_service import mentor_block_for_lesson, resolve_captain_byte
+
+        lesson = self._lesson
+        # Unknown slug: no lesson, no speech. Never a fake mentor.
+        if not lesson:
+            return dict(lesson)
+
+        out = dict(lesson)
+
+        block = mentor_block_for_lesson(lesson)
+        if block:
+            out["captain_byte"] = block
+
+        out["mentor"] = resolve_captain_byte(
+            canonical_skill=(
+                lesson.get("canonical_skill")
+                or (lesson.get("srs_concept_tag") or "").strip()
+            ),
+            lesson_slug=lesson.get("lesson_id") or "",
+            moment="intro",
+            fallback_block=lesson.get("captain_byte"),
+        )
+        return out
 
     def get_step(self, step_key: str) -> Optional[Dict[str, Any]]:
         """Return a specific step from the guided_build or assessment.
@@ -65,6 +96,10 @@ class LessonService:
             return lesson["prediction"]
         if section == "transfer_challenge":
             return lesson["transfer_challenge"]
+        if section == "explain":
+            return lesson.get("explain")
+        if section == "break":
+            return lesson.get("break")
 
         if section == "guided_build" and idx is not None:
             steps = lesson["guided_build"]["steps"]
@@ -321,16 +356,130 @@ class LessonService:
                 return False
         return a == b
 
+    def _mentor(
+        self,
+        moment: str,
+        learner_state: Optional[Dict[str, Any]] = None,
+    ) -> Dict[str, Any]:
+        """Resolve Captain Byte for a moment of this lesson. One adapter."""
+        from app.services.mentor_service import resolve_captain_byte
+
+        return resolve_captain_byte(
+            canonical_skill=(
+                self._lesson.get("canonical_skill")
+                or (self._lesson.get("srs_concept_tag") or "").strip()
+            ),
+            lesson_slug=self._lesson.get("lesson_id") or "",
+            moment=moment,
+            learner_state=learner_state,
+            fallback_block=self._lesson.get("captain_byte"),
+        )
+
+    def _diagnose_misconception(self, stage: str, answer: Any, result: Dict[str, Any]) -> Dict[str, Any]:
+        """Run misconception diagnosis when learner answer is wrong."""
+        concept = (
+            self._lesson.get("canonical_skill")
+            or (self._lesson.get("srs_concept_tag") or "").strip()
+            or self._lesson.get("lesson_id", "")
+        )
+        action = f"{stage}_wrong" if not result.get("correct") else f"{stage}_correct"
+        trace = [{"type": action, "data": {"answer": str(answer), "stage": stage}}]
+        return diagnose_misconception(
+            action_trace=trace,
+            concept=concept,
+        )
+
     def check_prediction(self, answer_key: str) -> Dict[str, Any]:
         """Check the user's answer to the prediction question."""
         options = self._lesson["prediction"]["options"]
+        opt = next((o for o in options if o["id"] == answer_key), None)
+        correct = bool(opt.get("correct")) if opt else False
+        result = {
+            "correct": correct,
+            "explanation": opt.get("explanation", "") if opt else "Invalid answer",
+            "mentor": self._mentor("correct_1" if correct else "wrong_1"),
+        }
+        result["misconception"] = self._diagnose_misconception("prediction", answer_key, result)
+        return result
+
+    def check_explain(self, answer: str) -> Dict[str, Any]:
+        """Grade a natural-language explanation (Explaining stage).
+
+        Correct when the answer contains at least one expected keyword and
+        reaches the minimum length. Any-match semantics mirror the concept
+        questions in the assessment: the goal is a passing verbal proof, not
+        an exact string match.
+        """
+        section = self._lesson.get("explain") or {}
+        keywords = [str(k).lower() for k in section.get("keywords", [])]
+        min_words = int(section.get("min_words", 0) or 0) if section else 0
+
+        text = (answer or "").strip()
+        word_count = len(text.split())
+        matched_keywords = sorted({
+            kw for kw in keywords if kw and kw.lower() in text.lower()
+        })
+
+        correct = bool(matched_keywords) and word_count >= min_words
+        result = {
+            "correct": correct,
+            "matched_keywords": matched_keywords,
+            "word_count": word_count,
+            "min_words": min_words,
+            "model_answer": section.get("model_answer", ""),
+            "intention": section.get("intention", ""),
+            "mentor": self._mentor("correct_1" if correct else "wrong_1"),
+        }
+        result["misconception"] = self._diagnose_misconception("explain", answer, result)
+        return result
+
+    def check_break(self, diagnosis: str, fix: str) -> Dict[str, Any]:
+        """Grade the Breaking stage: diagnosis choice + one-line fix.
+
+        The fix is matched with whitespace normalisation (same rule as the
+        assessment debug questions) so a student can re-indent or respace
+        freely. The diagnosis must match the option marked as the cause.
+        """
+        section = self._lesson.get("break") or {}
+        diagnosis_why = ""
+        diagnosis_correct = False
+
+        options = (section.get("diagnosis") or {}).get("options", [])
         for opt in options:
-            if opt["id"] == answer_key:
-                return {
-                    "correct": opt["correct"],
-                    "explanation": opt["explanation"],
-                }
-        return {"correct": False, "explanation": "Invalid answer"}
+            if opt.get("id") == diagnosis:
+                diagnosis_correct = bool(opt.get("correct"))
+                diagnosis_why = opt.get("why", "")
+                break
+
+        expected_fix = str(section.get("fix", "") or "").strip()
+        expected_norm = " ".join(expected_fix.split())
+        actual_norm = " ".join(str(fix or "").split())
+        if expected_norm:
+            fix_correct = actual_norm == expected_norm
+        else:
+            fix_correct = True
+
+        passed = diagnosis_correct and fix_correct
+        # Two misses in one stage (diagnosis AND fix) is a repeated
+        # misconception — the second line; a single miss is the first.
+        if passed:
+            moment = "correct_1"
+        elif not diagnosis_correct and not fix_correct:
+            moment = "wrong_2"
+        else:
+            moment = "wrong_1"
+
+        result = {
+            "diagnosis_correct": diagnosis_correct,
+            "fix_correct": fix_correct,
+            "passed": passed,
+            "diagnosis_why": diagnosis_why,
+            "fix": section.get("fix", ""),
+            "explanation": section.get("explanation", ""),
+            "mentor": self._mentor(moment),
+        }
+        result["misconception"] = self._diagnose_misconception("break", f"{diagnosis}|{fix}", result)
+        return result
 
     def check_assessment(
         self,
@@ -388,13 +537,17 @@ class LessonService:
                     earned += 1
 
         score = round(earned / total * 100, 1) if total > 0 else 0
-        return {
+        passed = score >= self._lesson["assessment"]["mastery_threshold"]
+        result = {
             "score": score,
-            "passed": score >= self._lesson["assessment"]["mastery_threshold"],
+            "passed": passed,
             "earned": earned,
             "total": total,
             "results": results,
+            "mentor": self._mentor("after_mastery" if passed else "retry_prompt"),
         }
+        result["misconception"] = self._diagnose_misconception("assessment", answers, result)
+        return result
 
     # ──────────────────────────────────────────────────────────────────
     # Completion & rewards
@@ -459,6 +612,12 @@ class LessonService:
                 "srs_enrolled": False,
                 "lesson_xp": self._lesson["xp_reward"],
                 "mastery_unlocked": score >= self._lesson["assessment"]["mastery_threshold"],
+                "mentor": self._mentor(
+                    "after_mastery"
+                    if score >= self._lesson["assessment"]["mastery_threshold"]
+                    else "retry_prompt",
+                    learner_state={"stage": "result", "timed": False},
+                ),
             }
 
         # Record Diamonds via gamification
@@ -487,6 +646,10 @@ class LessonService:
             "srs_enrolled": srs_enrolled,
             "lesson_xp": self._lesson["xp_reward"],
             "mastery_unlocked": mastery_unlocked,
+            "mentor": self._mentor(
+                "after_mastery" if mastery_unlocked else "retry_prompt",
+                learner_state={"stage": "result"},
+            ),
         }
 
     async def _enroll_srs(self, user_id: str) -> bool:

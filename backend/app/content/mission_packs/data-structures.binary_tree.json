@@ -1,0 +1,160 @@
+{
+  "id": "data-structures.binary_tree",
+  "title": "Binary Tree",
+  "domain": "data-structures",
+  "concept": "Binary Tree",
+  "skill_id": "data-structures.tree.binary_tree",
+  "tags": [
+    "data-structures",
+    "service-companies",
+    "tcs",
+    "infosys",
+    "wipro"
+  ],
+  "difficulty": "medium",
+  "estimated_minutes": 20,
+  "mastery_threshold": 75,
+  "why_it_matters": "Each node has at most two children.",
+  "prerequisites": [],
+  "misconceptions": [
+    {
+      "code": "coding_array_index_error",
+      "signature": "Student mishandles pointers/indices in data structure operations.",
+      "reteach_route": "bug_surgery",
+      "reteach_action": "show_array_index_visual"
+    }
+  ],
+  "captain_byte": {
+    "intro": "Welcome to Binary Tree. This is a core data-structures concept for placement prep. Follow the steps carefully.",
+    "correct": [
+      "Exactly right!",
+      "Perfect!",
+      "You have got it!"
+    ],
+    "wrong": [
+      "Not quite. Review the step and try again.",
+      "Close! Think about what the concept really means."
+    ],
+    "after_break": "Now you see the broken assumption. Repair it and move on.",
+    "after_mastery": "You have mastered Binary Tree. This will appear in your next test.",
+    "retry_prompt": "Give it another shot. You are close."
+  },
+  "discover": {
+    "prompt": "Read this Binary Tree problem carefully. Identify what is being asked.",
+    "interaction_kind": "mcq_read"
+  },
+  "understand": {
+    "prompt": "The key idea for Binary Tree: understand the core mechanism before applying it.",
+    "interaction_kind": "read_explanation",
+    "explanation": "Binary Tree requires understanding the core principle before applying it."
+  },
+  "manipulate": {
+    "prompt": "Practice: apply Binary Tree to a simple example.",
+    "interaction_kind": "numeric_input",
+    "answer": "See explanation"
+  },
+  "predict": {
+    "prompt": "Predict the outcome for this Binary Tree scenario.",
+    "interaction_kind": "numeric_input",
+    "answer": "See explanation"
+  },
+  "build": {
+    "prompt": "Write or construct a solution for this Binary Tree problem.",
+    "interaction_kind": "word_problem",
+    "answer": "Solution for Binary Tree"
+  },
+  "break_step": {
+    "prompt": "What is wrong with this Binary Tree approach?",
+    "interaction_kind": "mcq_diagnose",
+    "broken_code": "# broken Binary Tree approach",
+    "expected_failure": "Does not handle edge cases"
+  },
+  "debug": {
+    "prompt": "Fix the Binary Tree error.",
+    "interaction_kind": "formula_fix",
+    "correct_code": "# fixed Binary Tree approach"
+  },
+  "retrieval": {
+    "prompt": "Recall the key formula or rule for Binary Tree.",
+    "interaction_kind": "recall_formula",
+    "answer": "Key insight for Binary Tree"
+  },
+  "transfer": {
+    "prompt": "Apply Binary Tree to a new context.",
+    "interaction_kind": "word_problem",
+    "answer": "See explanation"
+  },
+  "practice": [
+    {
+      "kind": "mcq",
+      "prompt": "Practice 1: Apply Binary Tree to solve this problem.",
+      "answer": "See explanation",
+      "explanation": "This demonstrates Binary Tree in a placement context.",
+      "difficulty": "medium",
+      "company_tags": [],
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ]
+    },
+    {
+      "kind": "numeric",
+      "prompt": "Practice 2: Apply Binary Tree to solve this problem.",
+      "answer": "See explanation",
+      "explanation": "This demonstrates Binary Tree in a placement context.",
+      "difficulty": "medium",
+      "company_tags": []
+    },
+    {
+      "kind": "word_problem",
+      "prompt": "Practice 3: Apply Binary Tree to solve this problem.",
+      "answer": "See explanation",
+      "explanation": "This demonstrates Binary Tree in a placement context.",
+      "difficulty": "medium",
+      "company_tags": []
+    }
+  ],
+  "proof": [
+    {
+      "id": "binary_tree-p1",
+      "prompt": "Prove your Binary Tree skill: explain the solution to this problem.",
+      "answer_format": "text",
+      "correct": "Correct application of Binary Tree",
+      "explanation": "This tests understanding of Binary Tree.",
+      "time_limit_seconds": 60,
+      "company_tags": []
+    },
+    {
+      "id": "binary_tree-p2",
+      "prompt": "Prove your Binary Tree skill: explain the solution to this problem.",
+      "answer_format": "text",
+      "correct": "Correct application of Binary Tree",
+      "explanation": "This tests understanding of Binary Tree.",
+      "time_limit_seconds": 60,
+      "company_tags": []
+    }
+  ],
+  "srs_key_points": [
+    "Core principle of Binary Tree",
+    "Common pitfall in Binary Tree",
+    "When to apply Binary Tree"
+  ],
+  "company_variants": [
+    {
+      "company": "data-structures",
+      "role": "sde",
+      "difficulty": "medium",
+      "extra_practice": [],
+      "proof_questions": []
+    }
+  ],
+  "srs_review_intervals": [
+    1,
+    3,
+    7,
+    14,
+    30
+  ]
+}

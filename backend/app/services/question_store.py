@@ -398,6 +398,22 @@ VERIFIED_EXTRA_BANKS = [
     "wipro_nlth_verified.json",
     "cognizant_genc_verified.json",
     "capgemini_accenture_verified.json",
+    "tcs_codevita_verified.json",
+    "tech_mahindra_verified.json",
+    "ltimindtree_verified.json",
+    "hcl_verified.json",
+    # v2 doubled banks (2026-09-26 expansion — verified content)
+    "bank_thin_v2.json",
+    "bank_debugging_v2.json",
+    "bank_interview_v2.json",
+    "bank_csfund_v2.json",
+    "bank_logical_v2.json",
+    "bank_reasoning_v2.json",
+    "bank_sql_v2.json",
+    "bank_written_v2.json",
+    "bank_verbal_v2.json",
+    "bank_aptitude_v2.json",
+    "bank_coding_v2.json",
 ]
 
 UNVERIFIED_EXTRA_BANKS = [
@@ -554,14 +570,20 @@ def load_all():
 
     _dedupe_and_filter(_questions)
     _apply_served_quarantine(_questions)
+    _apply_trust_overrides(_questions)
+    _apply_frequency_overrides(_questions)
     _apply_leetcode_meta()
     
     # Compute executable field for each question
     for q in _questions:
         q["executable"] = _is_executable(q)
-    
+
+    _build_indexes()
+
     _loaded = True
-    logger.info("QuestionStore loaded %d questions total", len(_questions))
+    logger.info("QuestionStore loaded %d questions total (indexes: %s)",
+                len(_questions), {k: sum(len(v) for v in idx.values())
+                                 for k, idx in _INDEX.items() if idx} or "none")
 
 
 def _apply_served_quarantine(target: list) -> None:
@@ -593,6 +615,63 @@ def _apply_served_quarantine(target: list) -> None:
             quarantined += 1
     if quarantined:
         logger.info("Served quarantine: %d questions marked quarantined", quarantined)
+
+
+def _apply_trust_overrides(target: list) -> None:
+    """Apply trust_status and field overrides from a JSON file (in-place, no removal).
+
+    Reads backend/app/data/trust_overrides.json, which maps question IDs to
+    desired trust_status values or field override dicts. This lets cleanup scripts
+    persist decisions across restarts without mutating the original bank files.
+    """
+    path = os.path.join(_BACKEND_ROOT, "app", "data", "trust_overrides.json")
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            overrides = json.load(f)
+    except Exception:
+        return
+    if not isinstance(overrides, dict):
+        return
+    applied = 0
+    for q in target:
+        qid = str(q.get("id") or "")
+        if qid not in overrides:
+            continue
+        override = overrides[qid]
+        if isinstance(override, dict):
+            for key, value in override.items():
+                q[key] = value
+        else:
+            q["trust_status"] = str(override)
+        applied += 1
+    if applied:
+        logger.info("Trust overrides: %d questions updated", applied)
+
+
+def _apply_frequency_overrides(target: list) -> None:
+    """Apply frequency overrides from a JSON file (in-place).
+
+    Reads backend/app/data/frequency_overrides.json, which maps question IDs
+    to numeric frequency scores (0-100). This lets frequency tagging scripts
+    persist decisions across restarts without mutating the original bank files.
+    """
+    path = os.path.join(_BACKEND_ROOT, "app", "data", "frequency_overrides.json")
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            overrides = json.load(f)
+    except Exception:
+        return
+    if not isinstance(overrides, dict):
+        return
+    applied = 0
+    for q in target:
+        qid = str(q.get("id") or "")
+        if qid not in overrides:
+            continue
+        q["frequency"] = int(overrides[qid])
+        applied += 1
+    if applied:
+        logger.info("Frequency overrides: %d questions updated", applied)
 
 
 async def apply_mongo_quarantine_overrides(target: list | None = None) -> int:
@@ -731,6 +810,23 @@ def _apply_leetcode_meta():
     logger.info("LeetCode metadata applied to %d curated questions", enriched)
 
 
+def company_specificity(q: dict) -> int:
+    """How many companies a question is tagged to. Lower = more specific.
+
+    The bank tags one shared aptitude pool to TCS/Infosys/Wipro/Accenture/
+    Cognizant at once, so a company filter that does not consider specificity
+    leads with 16k generic questions and buries the real company-specific
+    stock. Ranking ascending on this value puts the genuinely company-authored
+    items first while still returning the whole filtered set.
+    """
+    companies = q.get("companies")
+    if isinstance(companies, str):
+        companies = [companies]
+    if not isinstance(companies, (list, tuple, set)):
+        return 99
+    return len([c for c in companies if str(c).strip()])
+
+
 def _quality_score(q: dict) -> int:
     """Score a question by how complete/usable it is. Higher is better."""
     score = 0
@@ -787,6 +883,8 @@ def _is_usable(q: dict) -> bool:
     if not body or len(body) < 15:
         return False
     if q.get("options"):
+        if _is_templated_mcq(q):
+            return False
         # Pure MCQ stubs without a verifiable answer are dropped. Keep MCQs
         # that carry independent verification or a real reasoning trail.
         if q.get("reasoning_steps") or q.get("correct_index") is not None or q.get("correct_answer"):
@@ -875,6 +973,17 @@ def _match(q: dict, query: dict) -> bool:
                 q_companies = [c.lower() for c in q.get("companies", [])]
                 if value.lower() not in q_companies:
                     return False
+        elif key == "companies":
+            q_companies = [c.lower() for c in q.get("companies", [])]
+            if isinstance(value, dict) and "$in" in value:
+                if not any(v.lower() in q_companies for v in value["$in"]):
+                    return False
+            elif isinstance(value, list):
+                if not any(v.lower() in q_companies for v in value):
+                    return False
+            else:
+                if str(value).lower() not in q_companies:
+                    return False
         elif key == "$text":
             search = value.get("$search", "").lower()
             if search and search not in q.get("question", "").lower() and search not in q.get("explanation", "").lower():
@@ -922,11 +1031,17 @@ def _match(q: dict, query: dict) -> bool:
             elif value not in sources:
                 return False
         elif key == "role":
-            q_roles = [r.lower() for r in q.get("role", [])] if isinstance(q.get("role"), list) else [str(q.get("role", "")).lower()]
+            raw = q.get("role")
+            if isinstance(raw, str):
+                raw = [raw]
+            q_roles = [canonical_role(r) for r in (raw or [])]
             if isinstance(value, dict) and "$in" in value:
-                if not any(v.lower() in q_roles for v in value["$in"]):
+                if not any(canonical_role(v) in q_roles for v in value["$in"]):
                     return False
-            elif value.lower() not in q_roles:
+            elif isinstance(value, (list, tuple, set)):
+                if not any(canonical_role(v) in q_roles for v in value):
+                    return False
+            elif canonical_role(value) not in q_roles:
                 return False
         elif key == "_id" and "$nin" in value:
             val_id = q.get("id", "")
@@ -938,12 +1053,122 @@ def _match(q: dict, query: dict) -> bool:
     return True
 
 
+# ---------------------------------------------------------------------------
+# In-memory filter indexes
+#
+# The bank is a flat list of ~46k dicts. Every filter query used to walk the
+# whole list calling _match() per row, which is O(n) per request and blocks the
+# event loop from async route handlers (measured: 343 ms for a company filter,
+# 1.1 s for a topic filter). These indexes narrow the candidate set once at
+# load time so a filtered count is a set intersection instead of a full scan.
+# ---------------------------------------------------------------------------
+_INDEX: dict[str, dict[str, set[int]]] = {}
+_SERVABLE: set[int] = set()
+
+
+def _index_keys(q: dict) -> dict[str, list[str]]:
+    """Return the normalised index keys for one question."""
+    keys: dict[str, list[str]] = {}
+
+    companies = q.get("companies")
+    if isinstance(companies, str):
+        companies = [companies]
+    if isinstance(companies, (list, tuple, set)):
+        keys["company"] = sorted({str(c).strip().lower() for c in companies if str(c).strip()})
+    else:
+        keys["company"] = []
+
+    topic = _display_topic(q.get("topic", ""))
+    keys["topic"] = [str(topic).strip().lower()] if topic else []
+    keys["sub_topic"] = [str(q.get("sub_topic", "")).strip().lower()] if q.get("sub_topic") else []
+
+    diff = str(q.get("difficulty", "")).strip().lower()
+    keys["difficulty"] = [diff] if diff else []
+
+    qtype = str(q.get("type", "")).strip().lower()
+    keys["type"] = [qtype] if qtype else []
+
+    role = q.get("role")
+    if isinstance(role, str):
+        role = [role]
+    if isinstance(role, (list, tuple, set)):
+        keys["role"] = sorted({canonical_role(str(r)) for r in role if str(r).strip()})
+    else:
+        keys["role"] = []
+
+    pattern = str(q.get("pattern", "")).strip().lower()
+    keys["pattern"] = [pattern] if pattern else []
+
+    return keys
+
+
+def _build_indexes() -> None:
+    """Build the filter indexes over the loaded bank. Idempotent."""
+    global _INDEX, _SERVABLE
+    _INDEX = {
+        "company": {}, "topic": {}, "sub_topic": {}, "difficulty": {},
+        "type": {}, "role": {}, "pattern": {},
+    }
+    _SERVABLE = set()
+    for pos, q in enumerate(_questions):
+        if _is_servable(q):
+            _SERVABLE.add(pos)
+        for field, values in _index_keys(q).items():
+            bucket = _INDEX[field]
+            for v in values:
+                bucket.setdefault(v, set()).add(pos)
+
+
+def _index_candidates(query: Optional[dict]) -> Optional[list[int]]:
+    """Narrow the candidate positions for a query using the indexes.
+
+    Returns None when no selective field in the query can be indexed (the
+    caller must then fall back to a full scan). Selectivity is what matters:
+    "student"/"campus" role buckets hold most of the bank, so intersecting on
+    them would not be cheaper than scanning.
+    """
+    if not query or not _INDEX:
+        return None
+    best: Optional[set[int]] = None
+    best_size = len(_questions) + 1
+    for key, value in query.items():
+        if key not in _INDEX or isinstance(value, dict):
+            continue
+        values = value if isinstance(value, (list, tuple, set)) else [value]
+        bucket = _INDEX[key]
+        keys: list[str] = []
+        for v in values:
+            v = str(v).strip().lower()
+            if key == "role":
+                v = canonical_role(v)
+            elif key == "topic":
+                v = str(_display_topic(v)).strip().lower()
+            keys.append(v)
+        hits: set[int] = set()
+        for v in keys:
+            hits |= bucket.get(v, set())
+        if len(hits) < best_size:
+            best, best_size = hits, len(hits)
+        if not hits:
+            return []
+    if best is None or best_size >= len(_questions):
+        return None
+    return sorted(best)
+
+
 def count_documents(query: Optional[dict] = None) -> int:
     """Count servable questions matching the query (trust gate applies)."""
     load_all()
+    positions = _index_candidates(query)
+    if positions is not None:
+        # The index is a prefilter only: it narrows candidates on the most
+        # selective field, then _match re-checks the full query (including
+        # keys the index does not cover) so results stay identical to a scan.
+        return sum(1 for p in positions
+                   if p in _SERVABLE and _match(_questions[p], query))
     if not query:
-        return sum(1 for q in _questions if _is_servable(q))
-    return sum(1 for q in _questions if _match(q, query) and _is_servable(q))
+        return len(_SERVABLE)
+    return sum(1 for p in _SERVABLE if _match(_questions[p], query))
 
 
 TRUST_RANK = {"verified": 3, "reviewed": 2, "automated_checked": 1, "needs_review": 1, "unverified": 0, "quarantined": -1}
@@ -972,6 +1197,34 @@ def find_one(query: dict, allow_unverified: bool = False) -> Optional[dict]:
     return None
 
 
+_TEMPLATED_OPTION_RE = re.compile(r"^\s*Option\s*[1-4A-D]\s*$", re.IGNORECASE)
+_GENERIC_EXPLANATION_RE = re.compile(
+    r"solve using the appropriate|apply logical reasoning|choose the correct|"
+    r"this is a placeholder|as per the question",
+    re.IGNORECASE,
+)
+
+
+def _is_templated_mcq(q: dict) -> bool:
+    """True when an MCQ is a generated scaffold rather than authored content.
+
+    A templated row has every option as a literal "Option N" placeholder plus a
+    generic explanation, and its correct_answer is a constant. There is no
+    independent answer key behind it, so it cannot be graded and must not be
+    served (Content Trust Rule: quarantine when uncertain).
+    """
+    options = q.get("options") or {}
+    if isinstance(options, dict):
+        values = list(options.values())
+    elif isinstance(options, list):
+        values = options
+    else:
+        return False
+    if not values or not all(_TEMPLATED_OPTION_RE.match(str(v)) for v in values):
+        return False
+    return bool(_GENERIC_EXPLANATION_RE.search(str(q.get("explanation") or "")))
+
+
 def _is_executable(q: dict) -> bool:
     """Check if a question can actually be evaluated/graded."""
     qtype = str(q.get("type", "")).lower()
@@ -981,15 +1234,18 @@ def _is_executable(q: dict) -> bool:
         tcs = q.get("test_cases") or q.get("testcases") or []
         if not tcs:
             return False
-        # SQL additionally requires proper schema metadata for result-set comparison
-        if qtype == "sql" and not q.get("sql_schema"):
-            return False
         return True
     
-    # MCQs require a valid correct_answer
+    # MCQs require a valid, in-range correct_answer
     if qtype in ("aptitude", "logical", "verbal", "hr", "behavioral", "cs_fundamentals", "cs"):
         options = q.get("options") or {}
         correct = str(q.get("correct_answer") or q.get("correct_index") or "").strip().upper()
+        
+        # Reject generated scaffolds: every option is a literal "Option N"
+        # placeholder and the key is a constant. No independent answer key
+        # exists, so the row is ungradeable (Content Trust Rule).
+        if _is_templated_mcq(q):
+            return False
         
         # Handle list-style options (cs_fundamentals format)
         if isinstance(options, list) and len(options) >= 4:
@@ -1004,7 +1260,16 @@ def _is_executable(q: dict) -> bool:
         
         # Handle dict-style options (aptitude/logical/verbal format)
         if isinstance(options, dict) and len(options) >= 4:
-            return correct in ("A", "B", "C", "D")
+            labels = {str(k).strip().upper() for k in options}
+            if not labels.issubset({"A", "B", "C", "D", "E", "F"}):
+                return False
+            # A letter key must name a label that actually exists.
+            if correct in ("A", "B", "C", "D", "E", "F"):
+                return correct in labels
+            # An integer key must be within the option count.
+            if correct.isdigit():
+                return int(correct) < len(options)
+            return False
         
         return False
     
@@ -1203,12 +1468,11 @@ def get_filters() -> dict:
             if c:
                 companies.add(c.strip())
         r = q.get("role", "")
-        if isinstance(r, list):
-            for rr in r:
-                if rr:
-                    roles.add(rr.strip())
-        elif r:
-            roles.add(r.strip())
+        raw_roles = r if isinstance(r, (list, tuple, set)) else ([r] if r else [])
+        for rr in raw_roles:
+            canon = canonical_role(rr)
+            if canon:
+                roles.add(canon)
         t = q.get("topic", "")
         if t:
             topics.add(t.strip())
@@ -1298,6 +1562,105 @@ _COMPANY_TAG_ALIASES: dict[str, list[str]] = {
 }
 
 
+# Canonical role slugs. The bank carried 22 distinct role values for ~10 real
+# roles (SDE was spelled sde / SDE / SDE Intern / Software Engineer /
+# Backend Developer / backend-engineer), and "student" / "campus" /
+# "Placement Candidate" / "Campus Recruit" were personas, not roles. One
+# spelling each, so a role filter stops splitting the same audience apart.
+CANONICAL_ROLES: list[str] = [
+    "sde", "backend-engineer", "frontend-engineer", "full-stack-engineer",
+    "data-analyst", "data-scientist", "ml-engineer", "ai-engineer",
+    "devops-engineer", "qa-engineer", "product-analyst", "java-engineer",
+    "technical-assistant", "data-engineer", "campus",
+]
+
+_ROLE_ALIAS_MAP: dict[str, str] = {
+    "sde": "sde",
+    "sde intern": "sde",
+    "sde-1": "sde",
+    "software engineer": "sde",
+    "software development engineer": "sde",
+    "software-engineer": "sde",
+    "backend developer": "backend-engineer",
+    "backend engineer": "backend-engineer",
+    "backend-engineer": "backend-engineer",
+    "be": "backend-engineer",
+    "frontend developer": "frontend-engineer",
+    "frontend engineer": "frontend-engineer",
+    "frontend-engineer": "frontend-engineer",
+    "fe": "frontend-engineer",
+    "full stack developer": "full-stack-engineer",
+    "fullstack developer": "full-stack-engineer",
+    "full-stack-engineer": "full-stack-engineer",
+    "fullstack-engineer": "full-stack-engineer",
+    "full stack": "full-stack-engineer",
+    "data analyst": "data-analyst",
+    "data-analyst": "data-analyst",
+    "business analyst": "data-analyst",
+    "data scientist": "data-scientist",
+    "data-scientist": "data-scientist",
+    "ml engineer": "ml-engineer",
+    "ml-engineer": "ml-engineer",
+    "machine learning engineer": "ml-engineer",
+    "ai engineer": "ai-engineer",
+    "ai-engineer": "ai-engineer",
+    "artificial intelligence engineer": "ai-engineer",
+    "devops engineer": "devops-engineer",
+    "devops-engineer": "devops-engineer",
+    "sre": "devops-engineer",
+    "cloud engineer": "devops-engineer",
+    "qa engineer": "qa-engineer",
+    "qa-engineer": "qa-engineer",
+    "quality assurance": "qa-engineer",
+    "sdet": "qa-engineer",
+    "test engineer": "qa-engineer",
+    "product analyst": "product-analyst",
+    "product-analyst": "product-analyst",
+    "product manager": "product-analyst",
+    "student": "campus",
+    "campus": "campus",
+    "placement candidate": "campus",
+    "campus recruit": "campus",
+    "campus recruitment": "campus",
+    "fresher": "campus",
+    "graduate engineer trainee": "campus",
+    "get": "campus",
+    "sde placement candidate": "campus",
+    "associate engineer": "campus",
+    "data science intern": "data-scientist",
+    "java developer": "java-engineer",
+    "java backend developer": "java-engineer",
+    "devops": "devops-engineer",
+    "product manager": "product-analyst",
+    "senior sde": "sde",
+    "tech lead": "sde",
+    "data engineer": "data-engineer",
+    "cloud engineer": "devops-engineer",
+    "scrum master": "product-analyst",
+    "system design": "sde",
+}
+
+
+def canonical_role(name: str) -> str:
+    """Map any historical role spelling onto one canonical slug."""
+    key = str(name or "").strip().lower().replace("_", " ")
+    if not key:
+        return ""
+    if key in CANONICAL_ROLES:
+        return key
+    if key in _ROLE_ALIAS_MAP:
+        return _ROLE_ALIAS_MAP[key]
+    squashed = re.sub(r"\s+", "-", key)
+    if squashed in CANONICAL_ROLES:
+        return squashed
+    if squashed in _ROLE_ALIAS_MAP:
+        return _ROLE_ALIAS_MAP[squashed]
+    spaced = squashed.replace("-", " ")
+    if spaced in _ROLE_ALIAS_MAP:
+        return _ROLE_ALIAS_MAP[spaced]
+    return key
+
+
 def canonical_company_key(name: str) -> str:
     key = (name or "").lower().strip()
     for canon, variants in _COMPANY_TAG_ALIASES.items():
@@ -1345,7 +1708,20 @@ def insert_question(doc: dict) -> str:
     qid = doc.get("id") or str(uuid.uuid4())
     doc["id"] = qid
     _questions.append(dict(doc))
+    if _loaded:
+        _index_question_at(len(_questions) - 1)
     return qid
+
+
+def _index_question_at(pos: int) -> None:
+    """Add a single newly-appended question to the filter indexes."""
+    if not _INDEX:
+        return
+    q = _questions[pos]
+    for field, values in _index_keys(q).items():
+        bucket = _INDEX[field]
+        for v in values:
+            bucket.setdefault(v, set()).add(pos)
 
 
 def vote_question(question_id: str, vote: int) -> Optional[dict]:

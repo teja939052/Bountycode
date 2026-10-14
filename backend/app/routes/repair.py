@@ -194,12 +194,22 @@ async def diagnose_failure(req: RetestSubmitRequest, user=Depends(get_current_us
     # Map codes to human-readable recommendations
     recommendations = _code_recommendations(all_codes, req.skill)
 
+    from app.services.mentor_service import resolve_captain_byte
+
     return {
         "skill": req.skill,
         "skill_id": skill_id,
         "diagnosis_codes": all_codes,
         "recommendations": recommendations,
         "repair_mission_available": True,
+        # Captain Byte names the diagnosis out loud; the repair itself stays
+        # deterministic engine work.
+        "mentor": resolve_captain_byte(
+            canonical_skill=skill_id or req.skill,
+            lesson_slug=req.skill,
+            moment="after_break",
+            learner_state={"stage": "diagnosis"},
+        ),
     }
 
 
@@ -232,6 +242,14 @@ async def complete_mission(req: CompleteMissionRequest, user=Depends(get_current
     except Exception as exc:
         logger.warning("repair complete event emission failed: %s", exc)
 
+    from app.services.mentor_service import resolve_captain_byte
+
+    outcome["mentor"] = resolve_captain_byte(
+        canonical_skill=outcome.get("skill") or "",
+        lesson_slug=str(req.mission_id),
+        moment="after_mastery",
+        learner_state={"stage": "repair"},
+    )
     return outcome
 
 
@@ -246,11 +264,21 @@ async def get_retest(skill: str, count: int = 3, user=Depends(get_current_user))
         raise HTTPException(status_code=422, detail="'skill' query parameter is required")
     questions = _verified_questions_for_skill(skill, count)
     payload = [_to_retest_item(q, i) for i, q in enumerate(questions)]
+
+    from app.services.mentor_service import resolve_captain_byte
+
     return {
         "skill": skill,
         "count": len(payload),
         "retest_condition": ">=80% across retest questions on this weakness",
         "questions": payload,
+        # Opening a repair: one line, never decoration on the question rows.
+        "mentor": resolve_captain_byte(
+            canonical_skill=skill,
+            lesson_slug=skill,
+            moment="retry_prompt",
+            learner_state={"retest": True, "stage": "repair"},
+        ),
     }
 
 
@@ -351,6 +379,99 @@ async def submit_retest(req: RetestSubmitRequest, user=Depends(get_current_user)
         "verdict": "advance" if passed else "repair_more",
         "results": results,
     }
+
+
+class MissionRetestRequest(BaseModel):
+    skill: str
+    answers: List[RetestSubmitItem] = Field(default_factory=list)
+
+
+@router.post("/missions/{mission_id}/retest")
+async def submit_mission_retest(mission_id: str, req: MissionRetestRequest, user=Depends(get_current_user)):
+    """Submit a retest for a repair mission with mastery gate.
+    
+    Mastery gate: mission only closes when score >= 80.
+    Tracks attempt_count, best_score, and retest_history.
+    """
+    if not req.answers:
+        raise HTTPException(status_code=422, detail="No retest answers supplied")
+
+    # Grade retest
+    results = []
+    correct = 0
+    for item in req.answers:
+        q = _verified_question_by_id(item.question_id)
+        if not q:
+            results.append({"question_id": item.question_id, "correct": False, "reason": "question_not_found"})
+            continue
+        kind = "code" if q.get("type") == "coding" else "mcq"
+        try:
+            if kind == "mcq":
+                is_correct = _grade_mcq(q, item.answer)
+            else:
+                is_correct = await _grade_code(q, item.code, item.language)
+        except Exception:
+            is_correct = False
+        if is_correct:
+            correct += 1
+        results.append({
+            "question_id": item.question_id,
+            "topic": q.get("topic", ""),
+            "kind": kind,
+            "correct": is_correct,
+        })
+
+    total = len(results)
+    pct = round(correct / total * 100) if total else 0
+    passed = pct >= 80
+
+    # Record retest in mission
+    from app.services.repair_service import record_retest_attempt
+    outcome = await record_retest_attempt(
+        user_id=user["id"],
+        mission_id=mission_id,
+        skill=req.skill,
+        score=float(pct),
+        passed=passed,
+        source="repair_retest",
+    )
+
+    return {
+        "mission_id": mission_id,
+        "skill": req.skill,
+        "correct": correct,
+        "total": total,
+        "pct": pct,
+        "passed": passed,
+        "verdict": "advance" if passed else "repair_more",
+        "attempt_count": outcome.get("attempt_count", 1),
+        "best_score": outcome.get("best_score", float(pct)),
+        "status": outcome.get("status", "in_progress"),
+        "results": results,
+    }
+
+
+@router.get("/missions/{mission_id}/status")
+async def get_mission_retest_status(mission_id: str, user=Depends(get_current_user)):
+    """Get retest status and history for a repair mission."""
+    try:
+        from app.database import repair_missions_collection
+        col = repair_missions_collection()
+        mission = await col.find_one({"user_id": user["id"], "id": mission_id})
+        if not mission:
+            raise HTTPException(status_code=404, detail="Repair mission not found")
+        return {
+            "mission_id": mission_id,
+            "status": mission.get("status", "pending"),
+            "attempt_count": mission.get("attempt_count", 0),
+            "best_score": mission.get("best_score", 0.0),
+            "retest_history": mission.get("retest_history", []),
+            "weaknesses": mission.get("weaknesses", []),
+        }
+    except HTTPException:
+        raise
+    except Exception:
+        raise HTTPException(status_code=500, detail="Failed to fetch mission status")
 
 
 # ---------------------------------------------------------------------------

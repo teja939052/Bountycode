@@ -18,8 +18,11 @@ Flow:
 """
 from __future__ import annotations
 
+import logging
 from typing import Any, Dict, List, Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
+
+logger = logging.getLogger(__name__)
 
 
 class RepairMission(BaseModel):
@@ -31,12 +34,40 @@ class RepairMission(BaseModel):
     recommended_lessons: List[str] = Field(default_factory=list)
     recommended_exercises: List[str] = Field(default_factory=list)
     recommended_quizzes: List[str] = Field(default_factory=list)
-    status: str = "pending"  # pending, in_progress, completed
+    status: str = "pending"  # pending, in_progress, completed, verified_complete
     created_at: str = ""
     completed_at: str = ""
     misconception_tag: Optional[str] = None
     remediation_steps: List[str] = Field(default_factory=list)
     interactive_drill: Dict[str, Any] = Field(default_factory=dict)
+
+    @model_validator(mode="before")
+    @classmethod
+    def _coerce_interactive_drill(cls, data: Any) -> Any:
+        if isinstance(data, dict):
+            drill = data.get("interactive_drill")
+            if isinstance(drill, list):
+                data = dict(data)
+                data["interactive_drill"] = {}
+        return data
+    attempt_count: int = 0
+    best_score: float = 0.0
+    retest_history: List[dict] = Field(default_factory=list)
+
+
+class RepairEvent(BaseModel):
+    """Immutable evidence record for a repair action."""
+    id: str
+    user_id: str
+    mission_id: Optional[str] = None
+    event_type: str = ""  # mission_created, mission_completed, retest_passed, retest_failed
+    skill: str = ""
+    source: str = ""  # world, scrimba, mock_oa, interview, aptitude, repair_retest
+    recommended_lessons: List[str] = Field(default_factory=list)
+    recommended_exercises: List[str] = Field(default_factory=list)
+    recommended_quizzes: List[str] = Field(default_factory=list)
+    metadata: Dict[str, Any] = Field(default_factory=dict)
+    created_at: str = ""
 
 
 async def create_repair_mission(
@@ -55,6 +86,22 @@ async def create_repair_mission(
         A RepairMission with recommended activities
     """
     from datetime import datetime, timezone
+
+    weaknesses = [w for w in weaknesses if w]
+    if not weaknesses:
+        raise ValueError("weaknesses must not be empty")
+
+    # Dedup: if an active mission already covers the primary weakness, reuse it.
+    primary = weaknesses[0]
+    try:
+        from app.database import repair_missions_collection
+        existing = await repair_missions_collection().find_one(
+            {"user_id": user_id, "weaknesses": {"$in": [primary]}, "status": {"$ne": "completed"}}
+        )
+        if existing:
+            return RepairMission(**existing)
+    except Exception:
+        pass
 
     # Find lessons that teach these weaknesses
     recommended_lessons = _find_lessons_for_skills(weaknesses)
@@ -80,8 +127,25 @@ async def create_repair_mission(
     try:
         from app.database import repair_missions_collection
         await repair_missions_collection().insert_one(mission.model_dump())
+        logger.info("repair mission inserted for %s id=%s", user_id, mission.id)
+    except Exception as exc:
+        logger.warning("repair mission insert failed for %s: %s", user_id, exc)
+
+    # Emit immutable repair event evidence
+    try:
+        await write_repair_event(
+            user_id=user_id,
+            mission_id=mission.id,
+            event_type="mission_created",
+            skill=primary,
+            source=source,
+            recommended_lessons=recommended_lessons,
+            recommended_exercises=recommended_exercises,
+            recommended_quizzes=recommended_quizzes,
+            metadata={"weakness_count": len(weaknesses), "title": mission.title},
+        )
     except Exception:
-        pass  # best-effort storage
+        pass
 
     return mission
 
@@ -128,7 +192,8 @@ async def get_active_repair_missions(user_id: str) -> List[RepairMission]:
         async for doc in col.find({"user_id": user_id, "status": {"$ne": "completed"}}).limit(5):
             missions.append(RepairMission(**doc))
         return missions
-    except Exception:
+    except Exception as exc:
+        logger.warning("get_active_repair_missions failed for %s: %s", user_id, exc)
         return []
 
 
@@ -142,9 +207,109 @@ async def complete_repair_mission(user_id: str, mission_id: str) -> Dict[str, An
             {"user_id": user_id, "id": mission_id},
             {"$set": {"status": "completed", "completed_at": datetime.now(timezone.utc).isoformat()}},
         )
+
+        # Emit completion event
+        try:
+            mission = await col.find_one({"id": mission_id})
+            if mission:
+                await write_repair_event(
+                    user_id=user_id,
+                    mission_id=mission_id,
+                    event_type="mission_completed",
+                    skill=(mission.get("weaknesses") or [""])[0],
+                    source="repair",
+                    metadata={"title": mission.get("title", "")},
+                )
+        except Exception:
+            pass
+
         return {"completed": True, "mission_id": mission_id}
     except Exception:
         return {"completed": False}
+
+
+async def record_retest_attempt(
+    user_id: str,
+    mission_id: str,
+    skill: str,
+    score: float,
+    passed: bool,
+    source: str = "repair_retest",
+) -> Dict[str, Any]:
+    """Record a retest attempt for a repair mission.
+    
+    Mastery gate: mission only closes when retest passes (score >= 80).
+    Tracks attempt_count, best_score, and retest_history.
+    """
+    from datetime import datetime, timezone
+    try:
+        from app.database import repair_missions_collection
+        col = repair_missions_collection()
+        mission = await col.find_one({"user_id": user_id, "id": mission_id})
+        if not mission:
+            return {"recorded": False, "reason": "mission_not_found"}
+
+        attempt_count = int(mission.get("attempt_count", 0)) + 1
+        best_score = max(float(mission.get("best_score", 0)), float(score))
+        retest_history = list(mission.get("retest_history", []) or [])
+        retest_history.append({
+            "attempt": attempt_count,
+            "score": float(score),
+            "passed": bool(passed),
+            "skill": skill,
+            "source": source,
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+        })
+
+        # Mastery gate: only advance if passed
+        if passed:
+            await col.update_one(
+                {"user_id": user_id, "id": mission_id},
+                {"$set": {
+                    "status": "verified_complete",
+                    "completed_at": datetime.now(timezone.utc).isoformat(),
+                    "attempt_count": attempt_count,
+                    "best_score": best_score,
+                    "retest_history": retest_history,
+                }},
+            )
+        else:
+            await col.update_one(
+                {"user_id": user_id, "id": mission_id},
+                {"$set": {
+                    "status": "in_progress",
+                    "attempt_count": attempt_count,
+                    "best_score": best_score,
+                    "retest_history": retest_history,
+                }},
+            )
+
+        # Emit retest event
+        try:
+            await write_repair_event(
+                user_id=user_id,
+                mission_id=mission_id,
+                event_type="retest_passed" if passed else "retest_failed",
+                skill=skill,
+                source=source,
+                metadata={
+                    "attempt": attempt_count,
+                    "score": float(score),
+                    "passed": passed,
+                },
+            )
+        except Exception:
+            pass
+
+        return {
+            "recorded": True,
+            "passed": passed,
+            "attempt_count": attempt_count,
+            "best_score": best_score,
+            "status": "verified_complete" if passed else "in_progress",
+        }
+    except Exception:
+        return {"recorded": False}
 
 
 async def get_repair_recommendations(user_id: str) -> Dict[str, Any]:
@@ -159,6 +324,41 @@ async def get_repair_recommendations(user_id: str) -> Dict[str, Any]:
         "total_weaknesses": len(set(w for m in missions for w in m.weaknesses)),
         "next_recommended": missions[0].model_dump() if missions else None,
     }
+
+
+async def write_repair_event(
+    user_id: str,
+    event_type: str,
+    skill: str = "",
+    source: str = "",
+    mission_id: Optional[str] = None,
+    recommended_lessons: Optional[List[str]] = None,
+    recommended_exercises: Optional[List[str]] = None,
+    recommended_quizzes: Optional[List[str]] = None,
+    metadata: Optional[Dict[str, Any]] = None,
+) -> Optional[RepairEvent]:
+    """Write an immutable repair evidence event."""
+    from datetime import datetime, timezone
+
+    try:
+        from app.database import repair_events_collection
+        event = RepairEvent(
+            id=f"revent:{user_id}:{int(datetime.now(timezone.utc).timestamp())}",
+            user_id=user_id,
+            mission_id=mission_id,
+            event_type=event_type,
+            skill=skill,
+            source=source,
+            recommended_lessons=recommended_lessons or [],
+            recommended_exercises=recommended_exercises or [],
+            recommended_quizzes=recommended_quizzes or [],
+            metadata=metadata or {},
+            created_at=datetime.now(timezone.utc).isoformat(),
+        )
+        await repair_events_collection().insert_one(event.model_dump())
+        return event
+    except Exception:
+        return None
 
 
 async def create_repair_mission_from_misconception(
@@ -216,7 +416,20 @@ async def create_repair_mission_from_misconception(
             created_at=datetime.now(timezone.utc).isoformat(),
         )
 
-        await repair_missions_collection.insert_one(mission.model_dump())
+        await repair_missions_collection().insert_one(mission.model_dump())
+
+        try:
+            await write_repair_event(
+                user_id=user_id,
+                mission_id=mission.id,
+                event_type="mission_created",
+                skill=misconception_tag,
+                source="misconception",
+                metadata={"repair_title": repair_title, "source_question_id": source_question_id},
+            )
+        except Exception:
+            pass
+
         return mission
     except Exception:
         return None

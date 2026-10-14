@@ -3,8 +3,25 @@ Analytics service — page views, sessions, feature usage tracking.
 Also supports geo-IP tracking and visitor retention.
 """
 from datetime import datetime, timezone, timedelta
+import hashlib
 from app.database import analytics_events_collection, users_collection
 from app.database import analytics_rollups_collection
+from app.config import get_settings
+
+settings = get_settings()
+
+_ANALYTICS_IP_HASH_SALT = settings.JWT_SECRET.encode() if settings.JWT_SECRET else b"BountyCode-analytics-salt"
+
+
+def _hash_ip(ip_address: str) -> str:
+    """Hash an IP address for privacy-preserving analytics.
+
+    Uses HMAC-SHA256 with the JWT secret as salt so the hash is stable
+    across restarts but cannot be reversed without the secret.
+    """
+    if not ip_address:
+        return ""
+    return hashlib.sha256(_ANALYTICS_IP_HASH_SALT + ip_address.encode()).hexdigest()[:32]
 
 
 async def track_event(
@@ -21,7 +38,7 @@ async def track_event(
     now = datetime.now(timezone.utc)
     meta = meta or {}
     if ip_address:
-        meta["ip_address"] = ip_address
+        meta["ip_hash"] = _hash_ip(ip_address)
 
     doc = {
         "event": event,
@@ -112,12 +129,12 @@ async def _get_new_returning_stats(days: int = 30):
 
 
 async def get_geo_breakdown(days: int = 30):
-    """Get visitor breakdown by IP address (for geo tracking)."""
+    """Get visitor breakdown by IP address hash (for geo tracking)."""
     since = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%Y-%m-%d")
     pipeline = [
-        {"$match": {"event": "page_view", "date": {"$gte": since}, "meta.ip_address": {"$exists": True}}},
+        {"$match": {"event": "page_view", "date": {"$gte": since}, "meta.ip_hash": {"$exists": True}}},
         {"$group": {
-            "_id": "$meta.ip_address",
+            "_id": "$meta.ip_hash",
             "visits": {"$sum": 1},
         }},
         {"$sort": {"visits": -1}},
@@ -126,7 +143,7 @@ async def get_geo_breakdown(days: int = 30):
     cursor = analytics_events_collection.aggregate(pipeline)
     results = []
     async for doc in cursor:
-        results.append({"ip": doc["_id"], "visits": doc["visits"]})
+        results.append({"ip_hash": doc["_id"], "visits": doc["visits"]})
     return results
 
 

@@ -11,6 +11,7 @@ import asyncio
 import uuid
 from contextlib import asynccontextmanager
 from pathlib import Path
+from typing import Callable
 
 try:
     import resource
@@ -76,7 +77,7 @@ def _register_routers(app: FastAPI) -> None:
     for module_info in pkgutil.iter_modules([str(routes_dir)]):
         module_name = module_info.name
 
-        if module_name.startswith("_") or module_name == "__init__":
+        if module_name.startswith("_") or module_name == "__init" or module_name == "archive":
             continue
 
         try:
@@ -521,11 +522,60 @@ class RequestIdMiddleware(BaseHTTPMiddleware):
 
 
 class ApiVersionMiddleware(BaseHTTPMiddleware):
-    """Add API version header to all API responses."""
+    """Enforce the current API version prefix and expose it in response headers.
+
+    All BountyCode API routes live under ``/api/<API_VERSION>/``. Requests that
+    hit ``/api`` with a different version (or no version) receive a 404 so
+    clients cannot silently drift onto an unsupported contract.
+    """
+
+    def __init__(self, app: Callable) -> None:
+        super().__init__(app)
+        self.allowed_api_prefix = f"/api/{settings.API_VERSION}"
+        self._exempt_paths = {
+            "/",
+            "/docs",
+            "/redoc",
+            "/openapi.json",
+        }
 
     async def dispatch(self, request: Request, call_next):
+        path = request.url.path
+
+        # Allow FastAPI docs and root through without version checks.
+        if path in self._exempt_paths or path.startswith(("/docs", "/redoc", "/openapi.json")):
+            response = await call_next(request)
+            response.headers["X-API-Version"] = settings.API_VERSION
+            response.headers["X-API-Latest-Version"] = settings.API_VERSION
+            return response
+
+        # Enforce versioning for anything under /api.
+        if path == "/api" or path.startswith("/api/"):
+            if not path.startswith(self.allowed_api_prefix):
+                logger.debug(
+                    "Rejected mismatched API version: %s (allowed: %s)",
+                    path,
+                    self.allowed_api_prefix,
+                )
+                return JSONResponse(
+                    status_code=status.HTTP_404_NOT_FOUND,
+                    content={
+                        "success": False,
+                        "error": {
+                            "code": 404,
+                            "message": "API version not found",
+                            "path": path,
+                            "allowed_prefix": self.allowed_api_prefix,
+                            "hint": (
+                                "Use the current API version "
+                                f"'{settings.API_VERSION}' or upgrade your client."
+                            ),
+                        },
+                    },
+                )
+
         response = await call_next(request)
-        if request.url.path.startswith("/api/"):
+        if path.startswith("/api/"):
             response.headers["X-API-Version"] = settings.API_VERSION
             response.headers["X-API-Latest-Version"] = settings.API_VERSION
         return response

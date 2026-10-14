@@ -1,7 +1,11 @@
 """
 Code Trace Instrumentation — AST-level code instrumentation for real-time step capture.
-Parses user code, injects tracing hooks, executes, and returns step-by-step variable snapshots.
-Supports Python natively (AST). Other languages fall back to AI-generated traces.
+Parses user code, injects tracing hooks, executes in an isolated subprocess, and returns
+step-by-step variable snapshots. Supports Python natively (AST). Other languages fall back
+to AI-generated traces.
+
+SECURITY: Student code is never executed in the FastAPI server process. Execution
+is delegated to an isolated subprocess via local_sandbox.execute_local().
 """
 import ast
 import json
@@ -9,6 +13,8 @@ import sys
 import io
 import textwrap
 from typing import Dict, List, Any, Optional
+
+from app.services.local_sandbox import execute_local_sync
 
 
 class CodeTracer(ast.NodeTransformer):
@@ -186,9 +192,8 @@ def instrument_python_code(code: str) -> str:
     new_tree = tracer.visit(tree)
     ast.fix_missing_locations(new_tree)
 
-    # Prepend __trace__ = [] and append return __trace__
-    pre = "__trace__ = []\n"
-    post = "\n__trace__"
+    pre = "import json\n__trace__ = []\n"
+    post = "\nprint(json.dumps({'__trace__': __trace__}))"
 
     instrumented = ast.unparse(new_tree)
     return pre + instrumented + post
@@ -196,16 +201,10 @@ def instrument_python_code(code: str) -> str:
 
 def execute_with_trace(code: str, stdin: str = "", timeout: int = 5) -> Dict[str, Any]:
     """
-    Execute instrumented Python code and return trace data.
+    Execute instrumented Python code in an isolated subprocess and return trace data.
     Returns: { steps: [...], output: str, error: str|None }
     """
     instrumented = instrument_python_code(code)
-
-    # Capture stdout
-    old_stdout = sys.stdout
-    old_stderr = sys.stderr
-    stdout_capture = io.StringIO()
-    stderr_capture = io.StringIO()
 
     result = {
         "steps": [],
@@ -215,32 +214,46 @@ def execute_with_trace(code: str, stdin: str = "", timeout: int = 5) -> Dict[str
     }
 
     try:
-        sys.stdout = stdout_capture
-        sys.stderr = stderr_capture
-
-        # Provide stdin if needed
-        if stdin:
-            import builtins
-            original_input = builtins.input
-            stdin_lines = stdin.strip().split('\n')
-            stdin_iter = iter(stdin_lines)
-            builtins.input = lambda *a: next(stdin_iter)
-
-        namespace = {"__builtins__": __builtins__, "__name__": "__main__"}
-        exec(compile(instrumented, "<trace>", "exec"), namespace)
-
-        trace_result = namespace.get("__trace__", [])
-        result["steps"] = trace_result
-        result["output"] = stdout_capture.getvalue()
-
+        run_result = execute_local_sync(instrumented, "python", stdin=stdin or "", timeout=timeout)
     except Exception as e:
         result["error"] = f"{type(e).__name__}: {str(e)}"
-        result["output"] = stdout_capture.getvalue()
-    finally:
-        sys.stdout = old_stdout
-        sys.stderr = old_stderr
-        if stdin:
-            builtins.input = original_input
+        return result
+
+    if not run_result.get("success"):
+        result["error"] = run_result.get("error") or run_result.get("stderr") or "Execution failed"
+        result["output"] = run_result.get("stdout", "")
+        return result
+
+    stdout = run_result.get("stdout", "")
+    stderr = run_result.get("stderr", "")
+
+    # Parse the JSON trace payload appended by the instrumented epilogue.
+    # It must be stripped from `output` so the student only ever sees their
+    # own program's stdout.
+    trace_marker = "{\"__trace__\":"
+    marker_idx = stdout.rfind(trace_marker)
+    if marker_idx >= 0:
+        student_out = stdout[:marker_idx]
+        try:
+            trace_json = json.loads(stdout[marker_idx:])
+            result["steps"] = trace_json.get("__trace__", [])
+        except Exception:
+            result["steps"] = []
+    else:
+        # Fallback: whole stdout is the trace payload (program printed nothing).
+        student_out = ""
+        try:
+            trace_json = json.loads(stdout.strip())
+            if isinstance(trace_json, dict):
+                result["steps"] = trace_json.get("__trace__", [])
+        except Exception:
+            result["steps"] = []
+            student_out = stdout
+
+    result["output"] = student_out
+
+    if stderr:
+        result["error"] = stderr
 
     return result
 

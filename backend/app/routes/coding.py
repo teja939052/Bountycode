@@ -6,7 +6,7 @@ from app.database import users_collection, coding_challenges_collection
 from app.middleware.auth import get_current_user
 from app.services.ai_coding import generate_coding_challenge
 from app.services.coding_engine import CodingEngine
-from app.services.usage import check_and_reset_monthly_usage, can_use_feature
+from app.services.usage import check_and_reset_monthly_usage, can_use_feature, require_pro_for_ai, plan_required
 from app.services.code_executor import CodeExecutionEngine
 from app.services.gamification import record_practice
 from app.config import get_settings
@@ -70,8 +70,11 @@ async def get_topics():
 
 
 @router.post("/start")
-async def start_coding_challenge(req: StartCodingChallenge, user=Depends(get_current_user)):
+async def start_coding_challenge(req: StartCodingChallenge, user=Depends(require_pro_for_ai)):
     user = await check_and_reset_monthly_usage(user)
+
+    if not can_use_feature(user, "coding_challenge"):
+        raise plan_required(user, "coding")
 
     challenge_doc = {
         "user_id": user["id"],
@@ -164,6 +167,36 @@ async def submit_coding_answer(req: SubmitCodingAnswer, user=Depends(get_current
 
     gamification_result = await record_practice(user["id"], "coding", score, role=user.get("role") or user.get("target_role") or "sde")
 
+    try:
+        from app.services.study_engine import record_activity as record_study_activity
+        from app.services.skill_taxonomy import canonical_skill_id
+        skill = challenge.get("topic") or challenge.get("difficulty") or "coding"
+        skill_id = canonical_skill_id(f"coding.{skill}") or f"coding.{skill}"
+        await record_study_activity(
+            user_id=user["id"],
+            activity={
+                "type": "practice",
+                "skill_id": skill_id,
+                "passed": score >= 80,
+                "score": score,
+                "time_spent": req.time_taken or 0,
+                "idempotency_key": f"coding:{req.challenge_id}:{user['id']}",
+            },
+            role=user.get("role") or user.get("target_role") or "sde",
+        )
+    except Exception:
+        pass
+
+    # Universal repair trigger: low coding score opens a deterministic repair
+    # mission keyed to the challenge topic/skill.
+    if score < 80:
+        try:
+            from app.services.repair_service import create_repair_mission
+            skill = challenge.get("topic") or challenge.get("difficulty") or "coding"
+            await create_repair_mission(user["id"], [f"coding:{skill}"], source="coding")
+        except Exception:
+            pass
+
     return {
         "status": status,
         "challenge_id": req.challenge_id,
@@ -216,7 +249,7 @@ async def get_hint(req: GetHintRequest, user=Depends(get_current_user)):
 
 
 @router.post("/interviewer-review")
-async def interviewer_review(req: InterviewerReviewRequest, user=Depends(get_current_user)):
+async def interviewer_review(req: InterviewerReviewRequest, user=Depends(require_pro_for_ai)):
     try:
         challenge = await coding_challenges_collection.find_one({"_id": ObjectId(req.challenge_id)})
     except Exception:

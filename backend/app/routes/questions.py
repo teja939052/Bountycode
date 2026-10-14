@@ -13,7 +13,7 @@ from app.database import (
 from app.models.question import SubmitAnswer, QuestionSubmission, QuestionVote
 from app.services.ai_core import chat_completion, parse_json, assign_companies
 from app.services.gamification import record_practice
-from app.services.usage import check_and_reset_monthly_usage
+from app.services.usage import check_and_reset_monthly_usage, plan_required
 from app.services.code_executor import CodeExecutionEngine
 from app.services.response_cache import cached, invalidate_questions_cache
 from app.services import question_store
@@ -46,15 +46,7 @@ def _check_question_quota(user: dict):
     if _is_paid(user):
         return
     if _daily_question_count(user) >= FREE_DAILY_PROBLEM_LIMIT:
-        raise HTTPException(
-            status_code=402,
-            detail=(
-                "⚠️ Your daily training stamina is depleted! "
-                "You've used your 3 free problems today. "
-                "Upgrade to the Pro Pass for unlimited practice, "
-                "company-specific questions, and instant AI feedback."
-            ),
-        )
+        raise plan_required(user, "question_answer", remaining=FREE_DAILY_PROBLEM_LIMIT - _daily_question_count(user))
 
 
 def _filter_curated(questions: list, company: str, pattern: str, role: str) -> list:
@@ -171,14 +163,7 @@ async def browse_questions(
 ):
     # Paywall: company-specific filters require Pro
     if company and not _is_paid(user):
-        raise HTTPException(
-            status_code=402,
-            detail=(
-                f"🔒 Company-specific question filters are locked. "
-                f"Targeted {company} preparation requires a Pro Pass. "
-                f"Upgrade for access to 53 company blueprints."
-            ),
-        )
+        raise plan_required(user, "question_solution")
 
     # Free-access verification: backend independently identifies whether the
     # requested content is legitimately onboarding/tutorial/first-problem.
@@ -211,13 +196,29 @@ async def browse_questions(
         search_lower = search.lower()
         filtered = [q for q in filtered if search_lower in (q.get("question", "") or "").lower()]
 
+    # Company-specificity gate: when a company filter is active, rank the
+    # genuinely company-specific stock ahead of the shared aptitude pool that
+    # is tagged to many companies at once. Without this, a TCS filter leads
+    # with ~16k generic questions and buries the ~560 real TCS ones, so the
+    # paid "company-specific prep" promise is not met by the first screen.
+    specificity = bool(company) and len(filtered) > 1
+
     # Sort
     if sort == "difficulty":
-        filtered.sort(key=lambda q: (q.get("difficulty", "medium"),))
+        filtered.sort(key=lambda q: (
+            (question_store.company_specificity(q) if specificity else 0),
+            q.get("difficulty", "medium"),
+        ))
     elif sort == "alphabetical":
-        filtered.sort(key=lambda q: q.get("question", ""))[:100]
+        filtered.sort(key=lambda q: (
+            (question_store.company_specificity(q) if specificity else 0),
+            q.get("question", ""),
+        ))
     else:
-        filtered.sort(key=lambda q: q.get("frequency", 0), reverse=True)
+        filtered.sort(key=lambda q: (
+            (question_store.company_specificity(q) if specificity else 0),
+            -q.get("frequency", 0),
+        ))
 
     total = len(filtered)
     skip = (page - 1) * limit
@@ -421,6 +422,86 @@ async def get_patterns():
     """List all Striver-pattern categories with problem counts (sheet order)."""
     patterns = question_store.get_pattern_stats()
     return {"patterns": patterns, "total": sum(p["total"] for p in patterns)}
+
+
+@router.get("/patterns/progress")
+async def get_patterns_progress(user=Depends(get_current_user)):
+    """Sheets index: per-pattern solved/total/mastery for the authed user.
+
+    Single read aggregate over existing student state
+    (solved_problems + question_answers) — no new collections.
+    Must stay registered before /patterns/{pattern} so "progress"
+    is not captured as a pattern slug.
+    """
+    uid = user["id"]
+    stats = question_store.get_pattern_stats()
+
+    pattern_qids: Dict[str, List[str]] = {}
+    pattern_diff: Dict[str, Dict[str, int]] = {}
+    wanted: set = set()
+    for s in stats:
+        name = s["pattern"]
+        qs = question_store.find(
+            {"type": "coding", "pattern": {"$in": pattern_variants(name)}}
+        ).only_verified().to_list()
+        qids = [q["id"] for q in qs]
+        pattern_qids[name] = qids
+        wanted.update(qids)
+        diff = {"easy": 0, "medium": 0, "hard": 0}
+        for q in qs:
+            d = (q.get("difficulty") or "medium").lower()
+            diff[d if d in diff else "medium"] += 1
+        pattern_diff[name] = diff
+
+    solved_ids: set = set()
+    if wanted:
+        docs = await solved_problems_collection.find(
+            {"user_id": uid, "question_id": {"$in": list(wanted)}}, {"question_id": 1}
+        ).to_list(10000)
+        solved_ids = {d.get("question_id") for d in docs}
+
+    best: Dict[str, float] = {}
+    if wanted:
+        cursor = question_answers_collection.find(
+            {"user_id": uid, "question_id": {"$in": list(wanted)}},
+            {"question_id": 1, "score": 1},
+        )
+        async for a in cursor:
+            qid = a.get("question_id")
+            sc = a.get("score") or 0
+            if qid not in best or sc > best[qid]:
+                best[qid] = sc
+
+    sheets = []
+    for s in stats:
+        name = s["pattern"]
+        qids = pattern_qids.get(name, [])
+        solved = len([q for q in qids if q in solved_ids])
+        mastered = len([q for q in qids if q in solved_ids and best.get(q, 0) >= 8.0])
+        attempted = len([q for q in qids if q not in solved_ids and q in best])
+        total = len(qids)
+        sheets.append({
+            "pattern": name,
+            "slug": name.lower().replace(" ", "-").replace("&", "").replace("--", "-").strip("-"),
+            "total": total,
+            "solved": solved,
+            "mastered": mastered,
+            "attempted": attempted,
+            "remaining": total - solved - attempted,
+            "mastery_percent": round((solved / total) * 100, 1) if total else 0,
+            "easy": pattern_diff.get(name, {}).get("easy", 0),
+            "medium": pattern_diff.get(name, {}).get("medium", 0),
+            "hard": pattern_diff.get(name, {}).get("hard", 0),
+        })
+
+    done = len([sh for sh in sheets if sh["total"] and sh["solved"] >= sh["total"]])
+    return {
+        "sheets": sheets,
+        "total_patterns": len(sheets),
+        "completed_patterns": done,
+        "total_problems": sum(sh["total"] for sh in sheets),
+        "total_solved": sum(sh["solved"] for sh in sheets),
+    }
 
 
 def _canonical_pattern(name: str) -> Optional[str]:
@@ -858,6 +939,6 @@ async def save_pattern_checklist(req: PatternChecklistState, user=Depends(get_cu
     return {"success": True, "pattern_id": req.pattern_id}
 
 
-from app.routes.questions_solve import router as solve_router
+from app.routes.questions_solve import solve_router
 
 router.include_router(solve_router)

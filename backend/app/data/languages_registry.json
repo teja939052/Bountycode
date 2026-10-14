@@ -1,0 +1,254 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "description": "Language registry for the Concept Clarity Curriculum. Each language defines how concepts are expressed in syntax, not different concepts.",
+    "pedagogy": "concept_first_language_second"
+  },
+  "languages": {
+    "python": {
+      "id": "python",
+      "name": "Python",
+      "icon": "🐍",
+      "extensions": [".py"],
+      "piston_language": "python",
+      "concept_skins": {
+        "variables": {
+          "declare": "apples = 5",
+          "print": "print(apples)",
+          "update": "score = score + 5",
+          "multiple": "apples = 5\nbread = 3",
+          "type_check": "type(apples)"
+        },
+        "conditionals": {
+          "if": "if score >= 50:\n    print('Pass')",
+          "else": "if score >= 50:\n    print('Pass')\nelse:\n    print('Fail')",
+          "elif": "if score >= 90:\n    grade = 'A'\nelif score >= 75:\n    grade = 'B'\nelse:\n    grade = 'C'"
+        },
+        "loops": {
+          "for": "for i in range(5):\n    print(i)",
+          "while": "while count < 5:\n    print(count)\n    count += 1",
+          "break": "for i in range(10):\n    if i == 5:\n        break"
+        },
+        "functions": {
+          "define": "def add(a, b):\n    return a + b",
+          "call": "result = add(3, 5)",
+          "no_return": "def greet(name):\n    print('Hello', name)"
+        },
+        "lists": {
+          "create": "fruits = ['apple', 'banana', 'orange']",
+          "index": "first = fruits[0]",
+          "append": "fruits.append('grape')",
+          "iterate": "for fruit in fruits:\n    print(fruit)"
+        },
+        "strings": {
+          "create": "name = 'Alice'",
+          "concat": "greeting = 'Hello ' + name",
+          "format": "message = f'Hello {name}'",
+          "slice": "first_char = name[0]"
+        },
+        "dictionaries": {
+          "create": "student = {'name': 'Alice', 'age': 25}",
+          "access": "name = student['name']",
+          "update": "student['age'] = 26",
+          "keys": "for key in student:\n    print(key)"
+        }
+      }
+    },
+    "java": {
+      "id": "java",
+      "name": "Java",
+      "icon": "☕",
+      "extensions": [".java"],
+      "piston_language": "java",
+      "concept_skins": {
+        "variables": {
+          "declare": "int apples = 5;",
+          "print": "System.out.println(apples);",
+          "update": "score = score + 5;",
+          "multiple": "int apples = 5;\nint bread = 3;",
+          "type_check": "apples instanceof Integer"
+        },
+        "conditionals": {
+          "if": "if (score >= 50) {\n    System.out.println(\"Pass\");\n}",
+          "else": "if (score >= 50) {\n    System.out.println(\"Pass\");\n} else {\n    System.out.println(\"Fail\");\n}",
+          "elif": "if (score >= 90) {\n    grade = 'A';\n} else if (score >= 75) {\n    grade = 'B';\n} else {\n    grade = 'C';\n}"
+        },
+        "loops": {
+          "for": "for (int i = 0; i < 5; i++) {\n    System.out.println(i);\n}",
+          "while": "while (count < 5) {\n    System.out.println(count);\n    count++;\n}",
+          "break": "for (int i = 0; i < 10; i++) {\n    if (i == 5) break;\n}"
+        },
+        "functions": {
+          "define": "public static int add(int a, int b) {\n    return a + b;\n}",
+          "call": "int result = add(3, 5);",
+          "no_return": "public static void greet(String name) {\n    System.out.println(\"Hello \" + name);\n}"
+        },
+        "lists": {
+          "create": "String[] fruits = {\"apple\", \"banana\", \"orange\"};",
+          "index": "String first = fruits[0];",
+          "append": "// Arrays are fixed size; use ArrayList\nArrayList<String> fruits = new ArrayList<>();\nfruits.add(\"grape\");",
+          "iterate": "for (String fruit : fruits) {\n    System.out.println(fruit);\n}"
+        },
+        "strings": {
+          "create": "String name = \"Alice\";",
+          "concat": "String greeting = \"Hello \" + name;",
+          "format": "String message = String.format(\"Hello %s\", name);",
+          "slice": "char firstChar = name.charAt(0);"
+        },
+        "dictionaries": {
+          "create": "Map<String, Object> student = new HashMap<>();\nstudent.put(\"name\", \"Alice\");",
+          "access": "String name = student.get(\"name\");",
+          "update": "student.put(\"age\", 26);",
+          "keys": "for (String key : student.keySet()) {\n    System.out.println(key);\n}"
+        }
+      }
+    },
+    "cpp": {
+      "id": "cpp",
+      "name": "C++",
+      "icon": "⚙️",
+      "extensions": [".cpp", ".cc"],
+      "piston_language": "cpp",
+      "concept_skins": {
+        "variables": {
+          "declare": "int apples = 5;",
+          "print": "std::cout << apples << std::endl;",
+          "update": "score = score + 5;",
+          "multiple": "int apples = 5;\nint bread = 3;",
+          "type_check": "typeid(apples).name()"
+        },
+        "conditionals": {
+          "if": "if (score >= 50) {\n    std::cout << \"Pass\" << std::endl;\n}",
+          "else": "if (score >= 50) {\n    std::cout << \"Pass\" << std::endl;\n} else {\n    std::cout << \"Fail\" << std::endl;\n}",
+          "elif": "if (score >= 90) {\n    grade = 'A';\n} else if (score >= 75) {\n    grade = 'B';\n} else {\n    grade = 'C';\n}"
+        },
+        "loops": {
+          "for": "for (int i = 0; i < 5; i++) {\n    std::cout << i << std::endl;\n}",
+          "while": "while (count < 5) {\n    std::cout << count << std::endl;\n    count++;\n}",
+          "break": "for (int i = 0; i < 10; i++) {\n    if (i == 5) break;\n}"
+        },
+        "functions": {
+          "define": "int add(int a, int b) {\n    return a + b;\n}",
+          "call": "int result = add(3, 5);",
+          "no_return": "void greet(std::string name) {\n    std::cout << \"Hello \" << name << std::endl;\n}"
+        },
+        "lists": {
+          "create": "std::vector<std::string> fruits = {\"apple\", \"banana\", \"orange\"};",
+          "index": "std::string first = fruits[0];",
+          "append": "fruits.push_back(\"grape\");",
+          "iterate": "for (const auto& fruit : fruits) {\n    std::cout << fruit << std::endl;\n}"
+        },
+        "strings": {
+          "create": "std::string name = \"Alice\";",
+          "concat": "std::string greeting = \"Hello \" + name;",
+          "format": "std::string message = \"Hello \" + name;",
+          "slice": "char firstChar = name[0];"
+        },
+        "dictionaries": {
+          "create": "std::map<std::string, int> student;\nstudent[\"age\"] = 25;",
+          "access": "int age = student[\"age\"];",
+          "update": "student[\"age\"] = 26;",
+          "keys": "for (const auto& pair : student) {\n    std::cout << pair.first << std::endl;\n}"
+        }
+      }
+    },
+    "javascript": {
+      "id": "javascript",
+      "name": "JavaScript",
+      "icon": "🟨",
+      "extensions": [".js", ".ts"],
+      "piston_language": "javascript",
+      "concept_skins": {
+        "variables": {
+          "declare": "let apples = 5;",
+          "print": "console.log(apples);",
+          "update": "score = score + 5;",
+          "multiple": "let apples = 5;\nlet bread = 3;",
+          "type_check": "typeof apples"
+        },
+        "conditionals": {
+          "if": "if (score >= 50) {\n    console.log('Pass');\n}",
+          "else": "if (score >= 50) {\n    console.log('Pass');\n} else {\n    console.log('Fail');\n}",
+          "elif": "if (score >= 90) {\n    grade = 'A';\n} else if (score >= 75) {\n    grade = 'B';\n} else {\n    grade = 'C';\n}"
+        },
+        "loops": {
+          "for": "for (let i = 0; i < 5; i++) {\n    console.log(i);\n}",
+          "while": "while (count < 5) {\n    console.log(count);\n    count++;\n}",
+          "break": "for (let i = 0; i < 10; i++) {\n    if (i === 5) break;\n}"
+        },
+        "functions": {
+          "define": "function add(a, b) {\n    return a + b;\n}",
+          "call": "const result = add(3, 5);",
+          "no_return": "function greet(name) {\n    console.log('Hello', name);\n}"
+        },
+        "lists": {
+          "create": "const fruits = ['apple', 'banana', 'orange'];",
+          "index": "const first = fruits[0];",
+          "append": "fruits.push('grape');",
+          "iterate": "for (const fruit of fruits) {\n    console.log(fruit);\n}"
+        },
+        "strings": {
+          "create": "const name = 'Alice';",
+          "concat": "const greeting = 'Hello ' + name;",
+          "format": "const message = `Hello ${name}`;",
+          "slice": "const firstChar = name[0];"
+        },
+        "dictionaries": {
+          "create": "const student = {name: 'Alice', age: 25};",
+          "access": "const name = student.name;",
+          "update": "student.age = 26;",
+          "keys": "for (const key in student) {\n    console.log(key);\n}"
+        }
+      }
+    },
+    "sql": {
+      "id": "sql",
+      "name": "SQL",
+      "icon": "🗄️",
+      "extensions": [".sql"],
+      "piston_language": "sql",
+      "concept_skins": {
+        "variables": {
+          "declare": "DECLARE @apples INT = 5;",
+          "print": "SELECT @apples AS apples;",
+          "update": "SET @score = @score + 5;",
+          "multiple": "DECLARE @apples INT = 5;\nDECLARE @bread INT = 3;",
+          "type_check": "SQL_VARIANT_PROPERTY(@apples, 'BaseType')"
+        },
+        "conditionals": {
+          "if": "IF @score >= 50 BEGIN\n    PRINT 'Pass'\nEND",
+          "else": "IF @score >= 50 BEGIN\n    PRINT 'Pass'\nEND ELSE BEGIN\n    PRINT 'Fail'\nEND",
+          "elif": "IF @score >= 90 BEGIN\n    SET @grade = 'A'\nEND ELSE IF @score >= 75 BEGIN\n    SET @grade = 'B'\nEND ELSE BEGIN\n    SET @grade = 'C'\nEND"
+        },
+        "loops": {
+          "for": "WHILE @i < 5 BEGIN\n    PRINT @i\n    SET @i = @i + 1\nEND",
+          "while": "WHILE @count < 5 BEGIN\n    PRINT @count\n    SET @count = @count + 1\nEND",
+          "break": "WHILE @i < 10 BEGIN\n    IF @i = 5 BREAK\n    SET @i = @i + 1\nEND"
+        },
+        "functions": {
+          "define": "CREATE FUNCTION add(@a INT, @b INT)\nRETURNS INT\nBEGIN\n    RETURN @a + @b;\nEND",
+          "call": "SELECT dbo.add(3, 5) AS result;",
+          "no_return": "CREATE PROCEDURE greet(@name VARCHAR(50))\nAS\nBEGIN\n    PRINT 'Hello ' + @name\nEND"
+        },
+        "lists": {
+          "create": "SELECT 'apple' AS fruit UNION ALL\nSELECT 'banana' UNION ALL\nSELECT 'orange';",
+          "index": "SELECT fruit FROM fruits WHERE id = 1;",
+          "append": "INSERT INTO fruits (name) VALUES ('grape');",
+          "iterate": "DECLARE @fruit VARCHAR(50)\nDECLARE fruit_cursor CURSOR FOR\n    SELECT name FROM fruits\nOPEN fruit_cursor\nFETCH NEXT FROM fruit_cursor INTO @fruit\nWHILE @@FETCH_STATUS = 0\nBEGIN\n    PRINT @fruit\n    FETCH NEXT FROM fruit_cursor INTO @fruit\nEND"
+        },
+        "strings": {
+          "create": "DECLARE @name VARCHAR(50) = 'Alice';",
+          "concat": "SET @greeting = 'Hello ' + @name;",
+          "format": "SET @message = FORMATMESSAGE('Hello %s', @name);",
+          "slice": "SET @firstChar = SUBSTRING(@name, 1, 1);"
+        },
+        "dictionaries": {
+          "create": "CREATE TABLE student (\n    name VARCHAR(50),\n    age INT\n);\nINSERT INTO student VALUES ('Alice', 25);",
+          "access": "SELECT name FROM student WHERE age = 25;",
+          "update": "UPDATE student SET age = 26 WHERE name = 'Alice';",
+          "keys": "SELECT COLUMN_NAME\nFROM INFORMATION_SCHEMA.COLUMNS\nWHERE TABLE_NAME = 'student';"
+        }
+      }
+    }
+  }
+}

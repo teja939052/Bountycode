@@ -1,7 +1,7 @@
 """Role-based learning packages.
 
 Each role (SDE, Data Scientist, ML Engineer, DevOps, etc.) gets a curated
-path through the 12 worlds. Not every role needs every world — but all of
+path through the 6 worlds. Not every role needs every world — but all of
 them need Foundations (World 1).
 
 This is a *configuration* layer, not a content layer. The worlds and lessons

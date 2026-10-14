@@ -1,0 +1,191 @@
+"""Lesson module — Arrays — Ordered Collections"""
+from typing import Dict, Any
+
+LESSON: Dict[str, Any] = {
+            'lesson_id': 'coding.arrays',
+            'module_id': 'coding.arrays',
+            'title': 'Arrays — Ordered Collections',
+            'description': 'Arrays are the most common data structure in coding interviews. Master indexing, slicing, and iteration.',
+            'difficulty': 'easy',
+            'est_minutes': 20,
+            'xp_reward': 100,
+            'skills_taught': ['Arrays'],
+            'srs_concept_tag': 'coding.arrays',
+            'domain': 'coding',
+            'captain_byte': {
+            'intro': 'Arrays store ordered data. Index starts at 0. Slicing is exclusive at the end.',
+            'correct': ['Right index.', 'Correct slice.', 'Right access.'],
+            'wrong': ['Remember: index starts at 0.', 'Slicing arr[a:b] includes a, excludes b.', 'Check bounds before accessing.'],
+            'after_break': 'You found the indexing error. Now fix the index or slice.',
+            'after_mastery': "You can now work with arrays. That's coding interview basics.",
+            'retry_prompt': 'Try again. Remember: index 0 is the first element.'
+        },
+            'story_context': {
+            'title': 'Arrays — Ordered Collections',
+            'narration': 'Arrays are the most common data structure in coding interviews. Master indexing, slicing, and iteration.',
+            'setting': 'arrays',
+            'character': 'Captain Byte',
+            'intro_text': 'Arrays are the most common data structure in coding interviews. Master indexing, slicing, and iteration.'
+        },
+            'steps': {
+            'discover': {
+            'visual_primitives': ['highlight', 'compare', 'transform'],
+            'steps': [{
+            'action': 'see_index',
+            'narration': 'An array [10, 20, 30] has index 0 → 10, 1 → 20, 2 → 30.',
+            'interaction': {
+            'type': 'choose_outcome',
+            'prompt': 'What is arr[1] for [10, 20, 30]?',
+            'options': [{
+            'id': 'a',
+            'text': '10',
+            'correct': False
+        }, {
+            'id': 'b',
+            'text': '20',
+            'correct': True
+        }, {
+            'id': 'c',
+            'text': '30',
+            'correct': False
+        }, {
+            'id': 'd',
+            'text': 'Error',
+            'correct': False
+        }],
+            'explanation': 'Index 1 gives the second element: 20.'
+        }
+        }, {
+            'action': 'see_slice',
+            'narration': 'arr[0:2] gives elements at index 0 and 1. Index 2 is excluded.',
+            'interaction': {
+            'type': 'choose_outcome',
+            'prompt': 'What is arr[0:2] for [10, 20, 30]?',
+            'options': [{
+            'id': 'a',
+            'text': '[10, 20]',
+            'correct': True
+        }, {
+            'id': 'b',
+            'text': '[10, 20, 30]',
+            'correct': False
+        }, {
+            'id': 'c',
+            'text': '[20, 30]',
+            'correct': False
+        }, {
+            'id': 'd',
+            'text': '[10]',
+            'correct': False
+        }],
+            'explanation': 'Slice 0:2 includes index 0 and 1, excludes 2.'
+        }
+        }],
+            'conclusion': 'Arrays are 0-indexed. Slicing arr[a:b] includes a, excludes b. Length = len(arr). Last index = len(arr) - 1.'
+        },
+            'understand': 'Arrays store elements in contiguous memory. Indexing starts at 0. Slicing arr[start:end] includes start, excludes end. Iteration uses for loops. Common operations: access, update, append, slice.',
+            'manipulate': {
+            'prompt': 'Create an array [1, 2, 3] and access the last element.',
+            'answer': 'arr[2]',
+            'hint': 'Last index = len(arr) - 1 = 2.',
+            'interaction_kind': 'code_build'
+        },
+            'predict': {
+            'prompt': 'What does this print?\narr = [1, 2, 3]\nprint(arr[1:3])',
+            'answer': '[2, 3]',
+            'options': ['[1, 2]', '[2, 3]', '[1, 2, 3]', '[3]'],
+            'interaction_kind': 'trace_challenge'
+        },
+            'build': {
+            'prompt': 'Write code that sums all elements in an array.',
+            'answer': 'total = 0\nfor x in arr:\n    total += x',
+            'explanation': 'Iterate and accumulate.',
+            'interaction_kind': 'code_build'
+        },
+            'break_step': {
+            'prompt': 'A student accesses arr[3] for [10, 20, 30] and gets an error. What is wrong?',
+            'common_mistake': 'Using index 3 when the last valid index is 2.',
+            'correct_reasoning': 'IndexError: valid indices are 0, 1, 2.',
+            'interaction_kind': 'mcq_diagnose'
+        },
+            'debug': {
+            'prompt': 'Fix: arr[3] for [10, 20, 30].',
+            'correct_reasoning': 'Use arr[2] for the last element.',
+            'interaction_kind': 'code_fix'
+        },
+            'retrieval': {
+            'prompt': 'What is the last index of an array with 5 elements?',
+            'answer': '4',
+            'alternative': ['len(arr) - 1'],
+            'interaction_kind': 'recall_formula'
+        },
+            'transfer': {
+            'prompt': 'Write code that finds the maximum element in an array.',
+            'answer': 'max_val = arr[0]\nfor x in arr:\n    if x > max_val:\n        max_val = x',
+            'explanation': 'Initialize with first element, compare each subsequent element.',
+            'interaction_kind': 'code_build'
+        }
+        },
+            'practice': [{
+            'kind': 'mcq',
+            'prompt': 'What is arr[-1] for [10, 20, 30]?',
+            'answer': '30',
+            'options': ['10', '20', '30', 'Error'],
+            'explanation': 'Negative index -1 gives the last element.',
+            'difficulty': 'easy',
+            'company_tags': ['tcs', 'infosys', 'wipro']
+        }, {
+            'kind': 'mcq',
+            'prompt': 'What is len([1, 2, 3, 4])?',
+            'answer': '4',
+            'options': ['3', '4', '5', 'Error'],
+            'explanation': 'Length is the number of elements.',
+            'difficulty': 'easy',
+            'company_tags': ['tcs', 'infosys']
+        }],
+            'proof': [{
+            'id': 'p1',
+            'prompt': 'Write code that reverses an array in place.',
+            'answer_format': 'code',
+            'correct': 'arr.reverse()',
+            'explanation': 'Python lists have a reverse() method.',
+            'time_limit_seconds': 90,
+            'company_tags': ['tcs', 'infosys', 'wipro']
+        }],
+            'company_variants': [{
+            'company': 'tcs',
+            'role': 'sde',
+            'difficulty': 'medium',
+            'extra_practice': ['tcs_array_operations', 'tcs_array_questions'],
+            'proof_questions': [{
+            'id': 'tcs-p1',
+            'prompt': 'TCS: Find the second largest element in an array.',
+            'answer_format': 'text',
+            'correct': 'approach',
+            'explanation': 'Track max and second_max in one pass.',
+            'time_limit_seconds': 90,
+            'company_tags': ['tcs']
+        }]
+        }],
+            'misconceptions': [{
+            'code': 'coding_array_index_error',
+            'signature': 'Student thinks arrays are 1-indexed.',
+            'reteach_route': 'bug_surgery',
+            'reteach_action': 'show_zero_index_access'
+        }, {
+            'code': 'coding_array_index_error',
+            'signature': 'Student thinks slicing includes the end index.',
+            'reteach_route': 'compare_worlds',
+            'reteach_action': 'show_slice_exclusive_end'
+        }],
+            'srs_key_points': ['Arrays are 0-indexed.', 'arr[a:b] includes a, excludes b.', 'Negative indices count from the end.', 'len(arr) gives the number of elements.', 'Common operations: access, update, append, slice.'],
+            'srs_review_intervals': [1, 3, 7, 14, 30],
+            'world_progression': {
+            'world_id': 'coding',
+            'competency_id': 'arrays',
+            'unlocks_next': [],
+            'tower_badge': 'coding_arrays'
+        }
+        }
+
+SLUG = 'coding.arrays'

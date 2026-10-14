@@ -1,221 +1,412 @@
-"""Lesson Depth Audit — scores lessons on teaching-loop completeness.
-
-The full teaching loop is:
-    discover -> manipulate -> predict -> build -> break -> debug -> retrieve -> transfer -> mastery
-
-Each step has quality criteria. This service audits all lessons and reports
-which steps are missing or shallow, enabling targeted content improvement.
 """
+Lesson Depth Auditor - real content quality gate, not just field existence.
+
+Validates:
+  - Level model from worlds_data.py
+  - MissionPack JSON from backend/app/content/mission_packs/
+
+Quality rules:
+  - 9-step loop must be filled with meaningful content
+  - Misconceptions must have reteach_route + reteach_action
+  - Captain Byte moments must exist
+  - Visual interactions must exist in discover
+  - Practice items must exist
+  - Proof questions must exist
+  - SRS key points must exist
+  - Company variants should exist for service-placement packs
+  - why_it_matters must be filled
+  - Prerequisites must be defined
+"""
+
 from __future__ import annotations
 
-import logging
-from typing import Any, Dict, List, Optional
+import importlib.util
+import json
+import os
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple
 
-from app.data.worlds_data import WORLD_REGISTRY
+from app.models.world import (
+    Boss, BreakStep, Build, Debug, Discover, Level, Manipulate, Predict,
+    Retrieval, Story, Success, Town, Transfer, Tutor, World, Code, Checks,
+    Reward,
+)
+from app.models.mission_pack import MissionPack
 
-logger = logging.getLogger(__name__)
 
-# The canonical teaching loop order
-FULL_LOOP = [
+REQUIRED_STEPS = [
     "discover",
+    "understand",
     "manipulate",
     "predict",
     "build",
-    "break",
+    "break_step",
     "debug",
-    "retrieve",
+    "retrieval",
     "transfer",
-    "mastery",
 ]
 
-# Steps that require code execution capability
-CODE_STEPS = {"build", "debug", "transfer"}
+MISSION_PACKS_DIR = Path(__file__).resolve().parent.parent / "content" / "mission_packs"
 
 
-class LessonDepthAuditor:
-    """Audit lessons for teaching-loop depth."""
+def _load_worlds_data() -> Dict[str, Any]:
+    """Load worlds_data module and return the WORLD_* constants."""
+    worlds_data_path = Path(__file__).resolve().parent.parent / "data" / "worlds_data.py"
+    spec = importlib.util.spec_from_file_location("worlds_data", str(worlds_data_path))
+    if spec is None or spec.loader is None:
+        return {}
+    module = importlib.util.module_from_spec(spec)
+    try:
+        spec.loader.exec_module(module)
+    except Exception:
+        return {}
+    worlds = {}
+    for name in dir(module):
+        if name.startswith("WORLD_"):
+            worlds[name] = getattr(module, name)
+    return worlds
 
-    def audit_lesson(self, lesson: Dict[str, Any]) -> Dict[str, Any]:
-        """Audit a single lesson and return a depth report."""
-        steps = lesson.get("steps", [])
-        step_types = [s.get("step_type") for s in steps]
-        present_steps = set(step_types)
 
-        # Check each step's quality
-        step_quality: Dict[str, Any] = {}
-        for step in steps:
-            stype = step.get("step_type")
-            step_quality[stype] = self._assess_step_quality(step)
+def _is_meaningful(value: Any) -> bool:
+    """Check if a value contains meaningful content, not just empty/default."""
+    if value is None:
+        return False
+    if isinstance(value, str):
+        return bool(value.strip())
+    if isinstance(value, dict):
+        return any(_is_meaningful(v) for v in value.values())
+    if isinstance(value, list):
+        return any(_is_meaningful(v) for v in value)
+    if hasattr(value, "model_dump"):
+        return _is_meaningful(value.model_dump())
+    return True
 
-        # Missing steps
-        missing = [s for s in FULL_LOOP if s not in present_steps]
 
-        # Depth score (0-100)
-        score = self._compute_depth_score(steps, present_steps, step_quality)
+def _level_step_filled(level: Level, step_name: str) -> bool:
+    """Check if a specific teaching step has meaningful content."""
+    if not isinstance(level, Level):
+        return False
+    val = getattr(level, step_name, None)
+    return _is_meaningful(val)
 
-        return {
-            "lesson_id": lesson.get("id", "unknown"),
-            "title": lesson.get("title", ""),
-            "world": lesson.get("_world_id", ""),
-            "present_steps": list(present_steps),
-            "missing_steps": missing,
-            "step_quality": step_quality,
-            "depth_score": score,
-            "grade": self._grade(score),
+
+def audit_level(level: Level) -> Dict[str, Any]:
+    """Audit a single Level and return a quality report."""
+    if not isinstance(level, Level):
+        return {"error": "Not a Level instance", "is_complete": False, "quality": "fail"}
+
+    steps = {}
+    for step in REQUIRED_STEPS:
+        steps[step] = _level_step_filled(level, step)
+
+    unfinished = [s for s, filled in steps.items() if not filled]
+    
+    # Quality checks beyond field existence
+    quality_issues = []
+    
+    # Check story/tutor presence
+    if not _is_meaningful(getattr(level, "story", None)):
+        quality_issues.append("missing_story")
+    if not _is_meaningful(getattr(level, "tutor", None)):
+        quality_issues.append("missing_tutor")
+    
+    # Check code/test infrastructure
+    if not _is_meaningful(getattr(level, "code", None)) and not _is_meaningful(getattr(level, "test_cases", None)):
+        quality_issues.append("missing_code_or_tests")
+    
+    # Check mastery threshold
+    if not getattr(level, "mastery_threshold", None):
+        quality_issues.append("missing_mastery_threshold")
+    
+    is_complete = len(unfinished) == 0 and len(quality_issues) == 0
+    quality = "pass" if is_complete else ("partial" if len(unfinished) == 0 else "fail")
+    
+    return {
+        "id": getattr(level, "id", None),
+        "title": getattr(level, "title", ""),
+        "is_complete": is_complete,
+        "unfinished_steps": unfinished,
+        "quality_issues": quality_issues,
+        "quality": quality,
+        "steps": steps,
+    }
+
+
+def audit_world(world: World) -> Dict[str, Any]:
+    """Audit all levels in a World and return a quality report."""
+    report = {
+        "id": world.id,
+        "name": world.name,
+        "towns": [],
+        "total_levels": 0,
+        "complete_levels": 0,
+        "incomplete_levels": 0,
+        "quality_issues_by_level": {},
+    }
+    for town in getattr(world, "towns", []):
+        town_report = {
+            "id": town.id,
+            "name": town.name,
+            "levels": [],
         }
+        for level in getattr(town, "levels", []):
+            if not isinstance(level, Level):
+                continue
+            level_report = audit_level(level)
+            town_report["levels"].append(level_report)
+            report["total_levels"] += 1
+            if level_report["is_complete"]:
+                report["complete_levels"] += 1
+            else:
+                report["incomplete_levels"] += 1
+            if level_report["quality_issues"]:
+                report["quality_issues_by_level"][level_report["id"]] = level_report["quality_issues"]
+        report["towns"].append(town_report)
+    return report
 
-    def audit_all(self) -> Dict[str, Any]:
-        """Audit all lessons across all worlds."""
-        lessons = [
-            lvl
-            for world in WORLD_REGISTRY.values()
-            for town in world.towns
-            for lvl in town.levels
-        ]
-        reports: List[Dict[str, Any]] = []
-        for lesson in lessons:
-            try:
-                lesson_dict = lesson.model_dump() if hasattr(lesson, "model_dump") else dict(lesson)
-                lesson_dict["_world_id"] = self._find_world_for_lesson(lesson)
-                reports.append(self.audit_lesson(lesson_dict))
-            except Exception as exc:
-                logger.warning("Audit failed for lesson %s: %s", getattr(lesson, "id", "?"), exc)
 
-        # Summary
-        if not reports:
-            return {"total": 0, "reports": [], "summary": {}}
+def audit_all_worlds() -> Dict[str, Any]:
+    """Audit all worlds loaded from worlds_data."""
+    worlds = _load_worlds_data()
+    report = {
+        "total_worlds": len(worlds),
+        "worlds": {},
+        "global": {
+            "total_levels": 0,
+            "complete_levels": 0,
+            "incomplete_levels": 0,
+            "quality_fails": 0,
+        },
+    }
+    for world_name, world in worlds.items():
+        world_report = audit_world(world)
+        report["worlds"][world_name] = world_report
+        report["global"]["total_levels"] += world_report["total_levels"]
+        report["global"]["complete_levels"] += world_report["complete_levels"]
+        report["global"]["incomplete_levels"] += world_report["incomplete_levels"]
+        report["global"]["quality_fails"] += sum(
+            1 for l in world_report.get("quality_issues_by_level", {}).values()
+            if l
+        )
+    return report
 
-        scores = [r["depth_score"] for r in reports]
-        avg_score = sum(scores) / len(scores)
-        full_loop_count = sum(1 for r in reports if len(r["missing_steps"]) == 0)
 
-        return {
-            "total": len(reports),
-            "average_depth_score": round(avg_score, 1),
-            "lessons_with_full_loop": full_loop_count,
-            "lessons_needing_work": sum(1 for s in scores if s < 60),
-            "reports": sorted(reports, key=lambda r: r["depth_score"]),
-        }
+def get_level_by_id(level_id: str) -> Optional[Level]:
+    """Find a Level by its ID across all worlds."""
+    worlds = _load_worlds_data()
+    for world in worlds.values():
+        for town in getattr(world, "towns", []):
+            for level in getattr(town, "levels", []):
+                if isinstance(level, Level) and getattr(level, "id", None) == level_id:
+                    return level
+    return None
 
-    def _assess_step_quality(self, step: Dict[str, Any]) -> Dict[str, Any]:
-        """Assess the quality of a single step."""
-        stype = step.get("step_type", "")
-        issues: List[str] = []
-        score = 100
 
-        # Common: every step should have content
-        if not step.get("content") and not step.get("title"):
-            issues.append("Missing content/title")
-            score -= 30
+def diagnose_level(level_id: str) -> Dict[str, Any]:
+    """Return a detailed diagnosis for a specific level."""
+    level = get_level_by_id(level_id)
+    if level is None:
+        return {"error": f"Level '{level_id}' not found"}
+    return audit_level(level)
 
-        if stype == "discover":
-            if not step.get("visual"):
-                issues.append("No visual element")
-                score -= 10
-            if not step.get("interaction"):
-                issues.append("No interaction specified")
-                score -= 10
 
-        elif stype == "manipulate":
-            if not step.get("template"):
-                issues.append("No template for manipulation")
-                score -= 20
+def first_incomplete_levels(world_name: str = "WORLD_FOUNDATIONS", limit: int = 10) -> List[Dict[str, Any]]:
+    """Return the first N incomplete levels from a specific world."""
+    worlds = _load_worlds_data()
+    world = worlds.get(world_name)
+    if not isinstance(world, World):
+        return []
+    incomplete = []
+    for town in getattr(world, "towns", []):
+        for level in getattr(town, "levels", []):
+            if not isinstance(level, Level):
+                continue
+            report = audit_level(level)
+            if not report["is_complete"]:
+                incomplete.append(report)
+                if len(incomplete) >= limit:
+                    return incomplete
+    return incomplete
 
-        elif stype == "predict":
-            if not step.get("options") or len(step.get("options", [])) < 2:
-                issues.append("Predict step needs >= 2 options")
-                score -= 20
-            if not step.get("explanation"):
-                issues.append("No explanation for prediction")
-                score -= 10
 
-        elif stype == "build":
-            if not step.get("test_cases") or len(step.get("test_cases", [])) < 1:
-                issues.append("Build step needs test_cases")
-                score -= 30
-            if not step.get("function_name") and not step.get("signature"):
-                issues.append("No function_name or signature")
-                score -= 10
+def _has_meaningful_text(value: Any) -> bool:
+    """Check if a value has meaningful text content."""
+    if isinstance(value, str):
+        return bool(value.strip())
+    if isinstance(value, dict):
+        return any(_has_meaningful_text(v) for v in value.values())
+    if isinstance(value, list):
+        return any(_has_meaningful_text(v) for v in value)
+    return False
 
-        elif stype == "break":
-            if not step.get("question"):
-                issues.append("Break step needs a question")
-                score -= 20
 
-        elif stype == "debug":
-            if not step.get("buggy_code"):
-                issues.append("Debug step needs buggy_code")
-                score -= 30
-            if not step.get("fix_steps"):
-                issues.append("No fix_steps provided")
-                score -= 10
+def audit_mission_pack(pack: MissionPack) -> Dict[str, Any]:
+    """Audit a MissionPack for content quality.
+    
+    Returns a report with:
+      - is_complete: all required fields are filled with meaningful content
+      - unfinished_steps: list of missing/incomplete steps
+      - quality_issues: list of specific quality problems
+      - quality: "pass", "partial", or "fail"
+    """
+    issues = []
+    unfinished = []
+    
+    # Check 9-step loop
+    for step in REQUIRED_STEPS:
+        step_data = getattr(pack, step, None)
+        if not _is_meaningful(step_data):
+            unfinished.append(step)
+    
+    # Check misconceptions for non-company packs
+    if pack.domain != "company" and not pack.misconceptions:
+        issues.append("missing_misconceptions")
+    elif pack.misconceptions:
+        for i, mc in enumerate(pack.misconceptions):
+            if not mc.reteach_route or not mc.reteach_action:
+                issues.append(f"misconception_{i}_missing_reteach")
+    
+    # Check Captain Byte moments
+    if not _has_meaningful_text(pack.captain_byte.intro):
+        issues.append("missing_captain_byte_intro")
+    if not pack.captain_byte.correct:
+        issues.append("missing_captain_byte_correct")
+    if not pack.captain_byte.wrong:
+        issues.append("missing_captain_byte_wrong")
+    
+    # Check why_it_matters
+    if not _has_meaningful_text(pack.why_it_matters):
+        issues.append("missing_why_it_matters")
+    
+    # Check prerequisites - allow empty list, require defined field
+    if pack.prerequisites is None:
+        issues.append("missing_prerequisites")
+    
+    # Check discover step has visual interactions or meaningful interaction content
+    discover = pack.discover or {}
+    discover_ok = False
+    if _has_meaningful_text(discover.get("visual_primitives", [])) and _has_meaningful_text(discover.get("steps", [])):
+        discover_ok = True
+    elif _has_meaningful_text(discover.get("prompt")) or _has_meaningful_text(discover.get("question")):
+        discover_ok = True
+    if not discover_ok:
+        issues.append("missing_discover_content")
+    
+    # Check practice items
+    if not pack.practice:
+        issues.append("missing_practice")
+    
+    # Check proof questions
+    if not pack.proof:
+        issues.append("missing_proof")
+    
+    # Check SRS
+    if not pack.srs_key_points:
+        issues.append("missing_srs_key_points")
+    
+    # Check company variants for service-placement packs
+    if pack.domain in ("aptitude", "reasoning", "verbal", "coding", "cs_core"):
+        if not pack.company_variants:
+            issues.append("missing_company_variants")
+    
+    is_complete = len(unfinished) == 0 and len(issues) == 0
+    quality = "pass" if is_complete else ("partial" if len(unfinished) == 0 else "fail")
+    
+    return {
+        "id": pack.id,
+        "title": pack.title,
+        "domain": pack.domain,
+        "is_complete": is_complete,
+        "unfinished_steps": unfinished,
+        "quality_issues": issues,
+        "quality": quality,
+        "steps_complete": len(REQUIRED_STEPS) - len(unfinished),
+        "steps_total": len(REQUIRED_STEPS),
+    }
 
-        elif stype == "retrieve":
-            if not step.get("prompt"):
-                issues.append("Retrieve step needs a prompt")
-                score -= 20
 
-        elif stype == "transfer":
-            if not step.get("test_cases") or len(step.get("test_cases", [])) < 1:
-                issues.append("Transfer step needs test_cases")
-                score -= 20
-            if not step.get("context"):
-                issues.append("No transfer context provided")
-                score -= 10
+def load_mission_pack(pack_id: str) -> Optional[MissionPack]:
+    """Load a MissionPack JSON file by id."""
+    path = MISSION_PACKS_DIR / f"{pack_id}.json"
+    if not path.exists():
+        return None
+    try:
+        raw = json.loads(path.read_text(encoding="utf-8"))
+        return MissionPack(**raw)
+    except Exception:
+        return None
 
-        elif stype == "mastery":
-            if not step.get("test_cases") or len(step.get("test_cases", [])) < 1:
-                issues.append("Mastery step needs test_cases")
-                score -= 20
 
-        return {
-            "score": max(0, score),
-            "issues": issues,
-            "pass": score >= 60,
-        }
-
-    def _compute_depth_score(
-        self,
-        steps: List[Dict[str, Any]],
-        present_steps: set,
-        quality: Dict[str, Any],
-    ) -> int:
-        """Compute overall depth score (0-100)."""
-        if not steps:
-            return 0
-
-        # Coverage: what fraction of the full loop is present
-        coverage = len(present_steps) / len(FULL_LOOP)
-
-        # Quality: average step quality
-        if quality:
-            avg_quality = sum(q["score"] for q in quality.values()) / len(quality)
+def audit_all_mission_packs() -> Dict[str, Any]:
+    """Audit all MissionPack JSON files."""
+    if not MISSION_PACKS_DIR.exists():
+        return {"error": f"Mission packs directory not found: {MISSION_PACKS_DIR}", "packs": {}}
+    
+    report = {
+        "packs_dir": str(MISSION_PACKS_DIR),
+        "total_packs": 0,
+        "complete_packs": 0,
+        "incomplete_packs": 0,
+        "quality_fails": 0,
+        "packs": {},
+    }
+    
+    for path in MISSION_PACKS_DIR.glob("*.json"):
+        pack_id = path.stem
+        pack = load_mission_pack(pack_id)
+        if pack is None:
+            continue
+        
+        pack_report = audit_mission_pack(pack)
+        report["packs"][pack_id] = pack_report
+        report["total_packs"] += 1
+        
+        if pack_report["is_complete"]:
+            report["complete_packs"] += 1
         else:
-            avg_quality = 0
+            report["incomplete_packs"] += 1
+            if pack_report["quality"] == "fail":
+                report["quality_fails"] += 1
+    
+    return report
 
-        # Weighted: 60% coverage, 40% quality
-        score = int((coverage * 60) + (avg_quality * 0.4))
-        return min(100, max(0, score))
 
-    def _grade(self, score: int) -> str:
-        if score >= 85:
-            return "A"
-        if score >= 70:
-            return "B"
-        if score >= 55:
-            return "C"
-        if score >= 40:
-            return "D"
-        return "F"
+def diagnose_mission_pack(pack_id: str) -> Dict[str, Any]:
+    """Return a detailed diagnosis for a specific MissionPack."""
+    pack = load_mission_pack(pack_id)
+    if pack is None:
+        return {"error": f"MissionPack '{pack_id}' not found"}
+    return audit_mission_pack(pack)
 
-    def _find_world_for_lesson(self, lesson: Any) -> str:
-        """Find which world a lesson belongs to."""
-        lesson_id = getattr(lesson, "id", None)
-        if not lesson_id:
-            return "unknown"
-        for world in WORLD_REGISTRY.values():
-            for town in world.towns:
-                for l in town.levels:
-                    if l.id == lesson_id:
-                        return world.id
-        return "unknown"
+
+if __name__ == "__main__":
+    import sys
+    
+    if len(sys.argv) > 1 and sys.argv[1] == "mission-packs":
+        report = audit_all_mission_packs()
+        print(f"Mission Packs Directory: {report.get('packs_dir', 'N/A')}")
+        print(f"Total packs: {report['total_packs']}")
+        print(f"Complete: {report['complete_packs']}")
+        print(f"Incomplete: {report['incomplete_packs']}")
+        print(f"Quality fails: {report['quality_fails']}")
+        for pack_id, pack_report in report["packs"].items():
+            status = "✅" if pack_report["is_complete"] else "❌"
+            print(f"  {status} {pack_id}: {pack_report['quality']} - {pack_report['title']}")
+            if pack_report["unfinished_steps"]:
+                print(f"      Missing steps: {', '.join(pack_report['unfinished_steps'])}")
+            if pack_report["quality_issues"]:
+                print(f"      Issues: {', '.join(pack_report['quality_issues'])}")
+    else:
+        report = audit_all_worlds()
+        global_stats = report["global"]
+        print(f"Total levels: {global_stats['total_levels']}")
+        print(f"Complete: {global_stats['complete_levels']}")
+        print(f"Incomplete: {global_stats['incomplete_levels']}")
+        print(f"Quality fails: {global_stats['quality_fails']}")
+        for world_name, world_report in report["worlds"].items():
+            print(f"\n{world_name}: {world_report['complete_levels']}/{world_report['total_levels']} complete")
+            for town in world_report.get("towns", []):
+                incomplete_in_town = [l for l in town["levels"] if not l["is_complete"]]
+                if incomplete_in_town:
+                    print(f"  {town['name']}: {len(incomplete_in_town)} incomplete")

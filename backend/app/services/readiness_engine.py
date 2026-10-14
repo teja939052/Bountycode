@@ -51,8 +51,14 @@ CATEGORY_WEIGHTS = {
 }
 
 # ── Company requirements (problem counts & skill thresholds) ──────────
+# Versioned opportunity profiles. Each profile carries an effective date and
+# assessment variant so BountyCode can adapt as company patterns change.
 COMPANY_PROFILES: Dict[str, Dict[str, Any]] = {
     "google": {
+        "company": "google",
+        "assessment_variant": "standard",
+        "version": "2025-02",
+        "effective_date": "2025-02-01",
         "min_solved": 300, "min_medium": 150, "min_hard": 50,
         "min_skills": {"dsa": 80, "system_design": 70, "problem_solving": 85},
         "focus_topics": ["Arrays", "Dynamic Programming", "Graphs", "Trees", "System Design"],
@@ -61,6 +67,10 @@ COMPANY_PROFILES: Dict[str, Dict[str, Any]] = {
         "match_weights": {"dsa": 0.40, "coding": 0.25, "interview": 0.15, "aptitude": 0.10, "cs_fundamentals": 0.05, "resume": 0.03, "projects": 0.02},
     },
     "amazon": {
+        "company": "amazon",
+        "assessment_variant": "standard",
+        "version": "2025-02",
+        "effective_date": "2025-02-01",
         "min_solved": 250, "min_medium": 120, "min_hard": 40,
         "min_skills": {"dsa": 75, "leadership": 80, "system_design": 65},
         "focus_topics": ["Arrays", "Linked Lists", "Trees", "Dynamic Programming", "Leadership Principles"],
@@ -69,6 +79,10 @@ COMPANY_PROFILES: Dict[str, Dict[str, Any]] = {
         "match_weights": {"dsa": 0.30, "interview": 0.25, "coding": 0.20, "aptitude": 0.10, "cs_fundamentals": 0.05, "resume": 0.05, "projects": 0.05},
     },
     "microsoft": {
+        "company": "microsoft",
+        "assessment_variant": "standard",
+        "version": "2025-02",
+        "effective_date": "2025-02-01",
         "min_solved": 200, "min_medium": 100, "min_hard": 30,
         "min_skills": {"dsa": 70, "system_design": 60, "problem_solving": 75},
         "focus_topics": ["Arrays", "Strings", "Trees", "Graphs", "System Design"],
@@ -77,6 +91,10 @@ COMPANY_PROFILES: Dict[str, Dict[str, Any]] = {
         "match_weights": {"dsa": 0.35, "coding": 0.25, "interview": 0.20, "aptitude": 0.05, "cs_fundamentals": 0.05, "resume": 0.05, "projects": 0.05},
     },
     "meta": {
+        "company": "meta",
+        "assessment_variant": "standard",
+        "version": "2025-02",
+        "effective_date": "2025-02-01",
         "min_solved": 280, "min_medium": 140, "min_hard": 45,
         "min_skills": {"dsa": 80, "system_design": 75, "coding": 85},
         "focus_topics": ["Arrays", "Dynamic Programming", "Graphs", "System Design", "Behavioral"],
@@ -85,6 +103,10 @@ COMPANY_PROFILES: Dict[str, Dict[str, Any]] = {
         "match_weights": {"dsa": 0.35, "coding": 0.30, "interview": 0.15, "cs_fundamentals": 0.05, "aptitude": 0.05, "resume": 0.05, "projects": 0.05},
     },
     "tcs": {
+        "company": "tcs",
+        "assessment_variant": "nqt_digital",
+        "version": "2025-01",
+        "effective_date": "2025-01-15",
         "min_solved": 50, "min_medium": 20, "min_hard": 5,
         "min_skills": {"dsa": 50, "aptitude": 60, "verbal": 50},
         "focus_topics": ["Arrays", "Strings", "Basic Algorithms", "Aptitude"],
@@ -93,6 +115,10 @@ COMPANY_PROFILES: Dict[str, Dict[str, Any]] = {
         "match_weights": {"aptitude": 0.30, "dsa": 0.25, "cs_fundamentals": 0.15, "coding": 0.15, "interview": 0.10, "resume": 0.03, "projects": 0.02},
     },
     "infosys": {
+        "company": "infosys",
+        "assessment_variant": "standard",
+        "version": "2025-01",
+        "effective_date": "2025-01-15",
         "min_solved": 60, "min_medium": 25, "min_hard": 5,
         "min_skills": {"dsa": 45, "aptitude": 55, "verbal": 45},
         "focus_topics": ["Arrays", "Strings", "Basic Data Structures", "Aptitude"],
@@ -101,6 +127,10 @@ COMPANY_PROFILES: Dict[str, Dict[str, Any]] = {
         "match_weights": {"aptitude": 0.32, "dsa": 0.23, "cs_fundamentals": 0.13, "coding": 0.15, "interview": 0.12, "resume": 0.03, "projects": 0.02},
     },
     "wipro": {
+        "company": "wipro",
+        "assessment_variant": "standard",
+        "version": "2025-01",
+        "effective_date": "2025-01-15",
         "min_solved": 40, "min_medium": 15, "min_hard": 3,
         "min_skills": {"dsa": 40, "aptitude": 50, "verbal": 40},
         "focus_topics": ["Arrays", "Strings", "Basic Algorithms", "Aptitude"],
@@ -113,6 +143,10 @@ COMPANY_PROFILES: Dict[str, Dict[str, Any]] = {
     # each target, never "probability of passing X". Pseudo-code emphasis
     # is measured through the coding category; verbal through aptitude.)
     "accenture": {
+        "company": "accenture",
+        "assessment_variant": "standard",
+        "version": "2025-01",
+        "effective_date": "2025-01-15",
         "min_solved": 80, "min_medium": 30, "min_hard": 8,
         "min_skills": {"dsa": 55, "aptitude": 55, "verbal": 60},
         "focus_topics": ["Arrays", "Strings", "Pseudo-code Tracing", "Aptitude", "Communication"],
@@ -121,6 +155,10 @@ COMPANY_PROFILES: Dict[str, Dict[str, Any]] = {
         "match_weights": {"aptitude": 0.25, "dsa": 0.20, "cs_fundamentals": 0.10, "coding": 0.15, "interview": 0.20, "resume": 0.05, "projects": 0.05},
     },
     "cognizant": {
+        "company": "cognizant",
+        "assessment_variant": "standard",
+        "version": "2025-01",
+        "effective_date": "2025-01-15",
         "min_solved": 60, "min_medium": 25, "min_hard": 5,
         "min_skills": {"dsa": 50, "aptitude": 60, "verbal": 55},
         "focus_topics": ["Arrays", "Strings", "Basic Algorithms", "Aptitude"],
@@ -129,6 +167,10 @@ COMPANY_PROFILES: Dict[str, Dict[str, Any]] = {
         "match_weights": {"aptitude": 0.30, "dsa": 0.25, "cs_fundamentals": 0.10, "coding": 0.15, "interview": 0.15, "resume": 0.03, "projects": 0.02},
     },
     "capgemini": {
+        "company": "capgemini",
+        "assessment_variant": "standard",
+        "version": "2025-01",
+        "effective_date": "2025-01-15",
         "min_solved": 60, "min_medium": 25, "min_hard": 6,
         "min_skills": {"dsa": 50, "aptitude": 55, "verbal": 50, "coding": 55},
         "focus_topics": ["Arrays", "Pseudo-code Tracing", "Basic Algorithms", "Aptitude"],
@@ -199,6 +241,21 @@ class CategoryScore:
     score: float  # 0-100
     weight: float
     details: Dict[str, Any] = field(default_factory=dict)
+    evidence: Dict[str, Any] = field(default_factory=dict)
+
+
+EVIDENCE_DIMENSIONS = [
+    "conceptual_understanding",
+    "independent_solve",
+    "transfer",
+    "timed_performance",
+    "consistency",
+    "recall_stability",
+    "error_recovery",
+    "code_quality",
+    "interview_performance",
+    "recent_performance",
+]
 
 
 @dataclass
@@ -211,6 +268,7 @@ class ReadinessScore:
     company_match: Optional[Dict[str, Any]] = None
     recommendations: List[Dict[str, Any]] = field(default_factory=list)
     stats: Dict[str, Any] = field(default_factory=dict)
+    evidence: Dict[str, Dict[str, Any]] = field(default_factory=dict)
 
 
 def score_dsa(data: Dict[str, Any]) -> CategoryScore:
@@ -612,10 +670,26 @@ def calculate_readiness(
         "projects": score_projects(project_data),
     }
 
+    # Attach evidence dimensions from input data
+    evidence_inputs = {
+        "dsa": dsa_data,
+        "aptitude": aptitude_data,
+        "cs_fundamentals": cs_data,
+        "coding": coding_data,
+        "interview": interview_data,
+        "resume": resume_data,
+        "projects": project_data,
+    }
+    for name, category in categories.items():
+        category.evidence = _build_evidence_dimensions(evidence_inputs.get(name, {}))
+
     # Overall = weighted average
     total_weight = sum(c.weight for c in categories.values())
     overall = sum(c.score * c.weight for c in categories.values()) / total_weight if total_weight > 0 else 0
     overall = round(min(100, max(0, overall)), 1)
+
+    # Evidence summary across categories
+    evidence_summary = _summarize_evidence(categories)
 
     # Company-specific readiness
     company_score = None
@@ -639,6 +713,7 @@ def calculate_readiness(
         company=company,
         company_score=company_score,
         company_match=company_match,
+        evidence=evidence_summary,
     )
 
     # Generate recommendations
@@ -654,6 +729,57 @@ def calculate_readiness(
     }
 
     return result
+
+
+def _build_evidence_dimensions(data: Dict[str, Any]) -> Dict[str, Any]:
+    """Build evidence dimensions from category data.
+
+    This does not invent evidence. When a source is absent, it is omitted
+    rather than invented.
+    """
+    evidence: Dict[str, Any] = {}
+
+    if "accuracy_rate" in data:
+        evidence["conceptual_understanding"] = {
+            "accuracy_rate": data.get("accuracy_rate"),
+            "source": "accuracy_rate",
+        }
+    if "recent_success_rate" in data:
+        evidence["timed_performance"] = {
+            "recent_success_rate": data.get("recent_success_rate"),
+            "source": "recent_success_rate",
+        }
+    if "recent_percentages" in data and data.get("recent_percentages"):
+        evidence["recent_performance"] = {
+            "recent_percentages": data.get("recent_percentages", []),
+            "source": "recent_percentages",
+        }
+    if "avg_score" in data:
+        evidence["interview_performance"] = {
+            "avg_score": data.get("avg_score"),
+            "source": "avg_score",
+        }
+    if "success_rate" in data:
+        evidence["independent_solve"] = {
+            "success_rate": data.get("success_rate"),
+            "source": "success_rate",
+        }
+    if "topic_scores" in data:
+        evidence["transfer"] = {
+            "topic_scores": data.get("topic_scores", {}),
+            "source": "topic_scores",
+        }
+
+    return evidence
+
+
+def _summarize_evidence(categories: Dict[str, CategoryScore]) -> Dict[str, Dict[str, Any]]:
+    """Summarize evidence dimensions across all categories."""
+    summary: Dict[str, Dict[str, Any]] = {}
+    for name, category in categories.items():
+        if category.evidence:
+            summary[name] = category.evidence
+    return summary
 
 
 def _compute_company_match(
@@ -1873,7 +1999,7 @@ async def compute_readiness(
         "readiness_level": _readiness_level(result.overall),
         "base_score": result.overall,
         "category_scores": {k: v.score for k, v in cats.items()},
-        "categories": {k: {"score": v.score, "weight": v.weight, "details": v.details} for k, v in cats.items()},
+        "categories": {k: {"score": v.score, "weight": v.weight, "details": v.details, "evidence": v.evidence} for k, v in cats.items()},
         "weak_areas_count": len(weak_areas),
         "strong_domains_count": len(strong_domains),
         "company_specific": {
@@ -1890,6 +2016,7 @@ async def compute_readiness(
         "consistency_bonus": 0,
         "trust_policy": {k: v for k, v in TRUST_WEIGHT.items()},
         "evidence": {
+            "dimensions": result.evidence,
             "dsa_trust_tiers": dsa_data.get("trust_tiers", {}),
             "dsa_evidence_confidence": dsa_data.get("evidence_confidence", 0.0),
             "dsa_raw_solved": dsa_data.get("raw_total_solved", 0),
@@ -2036,6 +2163,21 @@ async def calculate_target_readiness_score(
         target_block.get("skills", []), target_profile
     ))
     return target_block
+
+
+def _clamp(v: float, lo: float = 0.0, hi: float = 100.0) -> float:
+    return max(lo, min(hi, float(v)))
+
+
+def _domain_score(domain: str, skill_graph: Dict[str, Any]) -> float:
+    if not skill_graph:
+        return 0.0
+    cat = skill_graph.get("categories", {}).get(domain, {})
+    if isinstance(cat, dict):
+        return float(cat.get("score", 0.0) or 0.0)
+    if isinstance(cat, (int, float)):
+        return float(cat)
+    return 0.0
 
 
 async def calculate_company_readiness_breakdown(

@@ -1,0 +1,191 @@
+"""Lesson module — Functions — Reusable Blocks"""
+from typing import Dict, Any
+
+LESSON: Dict[str, Any] = {
+            'lesson_id': 'coding.functions',
+            'module_id': 'coding.functions',
+            'title': 'Functions — Reusable Blocks',
+            'description': 'Functions are the building blocks of modular code. Every coding interview tests function design, parameters, and return values.',
+            'difficulty': 'easy',
+            'est_minutes': 20,
+            'xp_reward': 100,
+            'skills_taught': ['Functions'],
+            'srs_concept_tag': 'coding.functions',
+            'domain': 'coding',
+            'captain_byte': {
+            'intro': 'Functions take input, process it, and return output. print shows output. return gives it back to the caller.',
+            'correct': ['Right return.', 'Correct parameters.', 'Right call.'],
+            'wrong': ['Use return, not print, to pass values back.', 'Parameters are local to the function.', 'Call the function with the right number of arguments.'],
+            'after_break': 'You found the function error. Now fix the return or parameters.',
+            'after_mastery': "You can now write and call functions. That's coding interview basics.",
+            'retry_prompt': 'Try again. Check whether you need return or print.'
+        },
+            'story_context': {
+            'title': 'Functions — Reusable Blocks',
+            'narration': 'Functions are the building blocks of modular code. Every coding interview tests function design, parameters, and return values.',
+            'setting': 'functions',
+            'character': 'Captain Byte',
+            'intro_text': 'Functions are the building blocks of modular code. Every coding interview tests function design, parameters, and return values.'
+        },
+            'steps': {
+            'discover': {
+            'visual_primitives': ['highlight', 'compare', 'transform'],
+            'steps': [{
+            'action': 'see_call',
+            'narration': "def greet(name): return 'Hi ' + name. Calling greet('Ada') returns 'Hi Ada'.",
+            'interaction': {
+            'type': 'choose_outcome',
+            'prompt': "What does greet('Ada') return?",
+            'options': [{
+            'id': 'a',
+            'text': "'Hi Ada'",
+            'correct': True
+        }, {
+            'id': 'b',
+            'text': 'Ada',
+            'correct': False
+        }, {
+            'id': 'c',
+            'text': 'None',
+            'correct': False
+        }, {
+            'id': 'd',
+            'text': 'Error',
+            'correct': False
+        }],
+            'explanation': "return 'Hi ' + name gives the string back to the caller."
+        }
+        }, {
+            'action': 'see_print_vs_return',
+            'narration': 'print() shows text. return gives a value back.',
+            'interaction': {
+            'type': 'choose_outcome',
+            'prompt': 'Which function returns 5?',
+            'options': [{
+            'id': 'a',
+            'text': 'def f(): print(5)',
+            'correct': False
+        }, {
+            'id': 'b',
+            'text': 'def f(): return 5',
+            'correct': True
+        }, {
+            'id': 'c',
+            'text': 'def f(): 5',
+            'correct': False
+        }, {
+            'id': 'd',
+            'text': 'def f(): x=5',
+            'correct': False
+        }],
+            'explanation': 'Only return gives the value back to the caller.'
+        }
+        }],
+            'conclusion': 'Functions take inputs as parameters. return sends a value back. print only displays text. Parameters are local to the function.'
+        },
+            'understand': 'A function is defined with def. Parameters are local variables. return exits the function and sends a value back. print displays text but does not return a value to the caller.',
+            'manipulate': {
+            'prompt': 'Write a function add(a, b) that returns a + b.',
+            'answer': 'def add(a, b):\n    return a + b',
+            'hint': 'Use return a + b, not print.',
+            'interaction_kind': 'code_build'
+        },
+            'predict': {
+            'prompt': 'What does this return?\ndef f(x):\n    return x * 2\nprint(f(3))',
+            'answer': '6',
+            'options': ['3', '6', 'None', 'Error'],
+            'interaction_kind': 'trace_challenge'
+        },
+            'build': {
+            'prompt': 'Write a function is_even(n) that returns True if n is even, else False.',
+            'answer': 'def is_even(n):\n    return n % 2 == 0',
+            'explanation': 'Modulo 2 == 0 means even.',
+            'interaction_kind': 'code_build'
+        },
+            'break_step': {
+            'prompt': 'A student writes def double(x): print(x * 2) and expects the caller to get 10 when called as result = double(5). What is wrong?',
+            'common_mistake': 'Using print instead of return.',
+            'correct_reasoning': 'print shows text but returns None. Use return.',
+            'interaction_kind': 'mcq_diagnose'
+        },
+            'debug': {
+            'prompt': 'Fix: def double(x): print(x * 2) should return the doubled value.',
+            'correct_reasoning': 'Use return x * 2.',
+            'interaction_kind': 'code_fix'
+        },
+            'retrieval': {
+            'prompt': 'What keyword returns a value from a function?',
+            'answer': 'return',
+            'alternative': ['return statement'],
+            'interaction_kind': 'recall_formula'
+        },
+            'transfer': {
+            'prompt': 'Write a function factorial(n) that returns n! using recursion.',
+            'answer': 'def factorial(n):\n    return 1 if n == 0 else n * factorial(n-1)',
+            'explanation': 'Base case n=0 returns 1. Recursive case multiplies n by factorial(n-1).',
+            'interaction_kind': 'code_build'
+        }
+        },
+            'practice': [{
+            'kind': 'mcq',
+            'prompt': "What does this return?\ndef f():\n    return 3\n    print('done')\nprint(f())",
+            'answer': '3',
+            'options': ['3', 'done', 'None', 'Error'],
+            'explanation': 'return exits immediately. print after return never runs.',
+            'difficulty': 'easy',
+            'company_tags': ['tcs', 'infosys', 'wipro']
+        }, {
+            'kind': 'mcq',
+            'prompt': 'What is the default return value of a function with no return statement?',
+            'answer': 'None',
+            'options': ['0', 'None', 'False', 'Error'],
+            'explanation': 'Functions without return implicitly return None.',
+            'difficulty': 'easy',
+            'company_tags': ['tcs', 'infosys']
+        }],
+            'proof': [{
+            'id': 'p1',
+            'prompt': 'Write a function max_of_three(a, b, c) that returns the largest value.',
+            'answer_format': 'text',
+            'correct': 'def max_of_three(a, b, c):\n    return max(a, b, c)',
+            'explanation': 'Use built-in max or compare manually.',
+            'time_limit_seconds': 90,
+            'company_tags': ['tcs', 'infosys', 'wipro']
+        }],
+            'company_variants': [{
+            'company': 'tcs',
+            'role': 'sde',
+            'difficulty': 'medium',
+            'extra_practice': ['tcs_function_design', 'tcs_recursion_basics'],
+            'proof_questions': [{
+            'id': 'tcs-p1',
+            'prompt': 'TCS: Write a function that checks if a number is prime.',
+            'answer_format': 'text',
+            'correct': 'def is_prime(n):\n    if n < 2: return False\n    for i in range(2, int(n**0.5)+1):\n        if n % i == 0: return False\n    return True',
+            'explanation': 'Check divisibility up to sqrt(n).',
+            'time_limit_seconds': 90,
+            'company_tags': ['tcs']
+        }]
+        }],
+            'misconceptions': [{
+            'code': 'coding_state_trace_error',
+            'signature': 'Student uses print() instead of return inside a function.',
+            'reteach_route': 'bug_surgery',
+            'reteach_action': 'show_return_versus_print'
+        }, {
+            'code': 'coding_state_trace_error',
+            'signature': "Student thinks changing a parameter inside the function changes the caller's variable.",
+            'reteach_route': 'compare_worlds',
+            'reteach_action': 'show_local_scope_of_parameters'
+        }],
+            'srs_key_points': ['def defines a function.', 'Parameters are local variables.', 'return sends a value back.', 'print only displays text.', 'Functions without return give None.'],
+            'srs_review_intervals': [1, 3, 7, 14, 30],
+            'world_progression': {
+            'world_id': 'coding',
+            'competency_id': 'functions',
+            'unlocks_next': [],
+            'tower_badge': 'coding_functions'
+        }
+        }
+
+SLUG = 'coding.functions'

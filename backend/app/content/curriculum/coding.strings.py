@@ -1,0 +1,191 @@
+"""Lesson module — Strings — Text as Sequence"""
+from typing import Dict, Any
+
+LESSON: Dict[str, Any] = {
+            'lesson_id': 'coding.strings',
+            'module_id': 'coding.strings',
+            'title': 'Strings — Text as Sequence',
+            'description': 'String manipulation is tested in every coding interview. Know indexing, slicing, and common methods.',
+            'difficulty': 'easy',
+            'est_minutes': 20,
+            'xp_reward': 100,
+            'skills_taught': ['Strings'],
+            'srs_concept_tag': 'coding.strings',
+            'domain': 'coding',
+            'captain_byte': {
+            'intro': 'Strings are text sequences. They are immutable. Slice them with care.',
+            'correct': ['Right slice.', 'Correct method.', 'Right index.'],
+            'wrong': ['Strings are immutable.', 's[a:b] includes a, excludes b.', 'Use string methods instead of manual loops.'],
+            'after_break': 'You found the string error. Now fix the slice or method.',
+            'after_mastery': "You can now manipulate strings. That's coding interview basics.",
+            'retry_prompt': 'Try again. Remember: strings are immutable.'
+        },
+            'story_context': {
+            'title': 'Strings — Text as Sequence',
+            'narration': 'String manipulation is tested in every coding interview. Know indexing, slicing, and common methods.',
+            'setting': 'strings',
+            'character': 'Captain Byte',
+            'intro_text': 'String manipulation is tested in every coding interview. Know indexing, slicing, and common methods.'
+        },
+            'steps': {
+            'discover': {
+            'visual_primitives': ['highlight', 'compare', 'transform'],
+            'steps': [{
+            'action': 'see_index',
+            'narration': "The string 'ABC' has index 0='A', 1='B', 2='C'.",
+            'interaction': {
+            'type': 'choose_outcome',
+            'prompt': "What is s[1] for 'ABC'?",
+            'options': [{
+            'id': 'a',
+            'text': 'A',
+            'correct': False
+        }, {
+            'id': 'b',
+            'text': 'B',
+            'correct': True
+        }, {
+            'id': 'c',
+            'text': 'C',
+            'correct': False
+        }, {
+            'id': 'd',
+            'text': 'Error',
+            'correct': False
+        }],
+            'explanation': 'Index 1 gives the second character: B.'
+        }
+        }, {
+            'action': 'see_slice',
+            'narration': "s[0:2] gives 'AB'. Index 2 is excluded.",
+            'interaction': {
+            'type': 'choose_outcome',
+            'prompt': "What is s[0:2] for 'ABC'?",
+            'options': [{
+            'id': 'a',
+            'text': 'AB',
+            'correct': True
+        }, {
+            'id': 'b',
+            'text': 'ABC',
+            'correct': False
+        }, {
+            'id': 'c',
+            'text': 'BC',
+            'correct': False
+        }, {
+            'id': 'd',
+            'text': 'A',
+            'correct': False
+        }],
+            'explanation': 'Slice 0:2 includes index 0 and 1.'
+        }
+        }],
+            'conclusion': 'Strings are immutable sequences. Indexing starts at 0. Slicing is exclusive at the end. Common methods: upper, lower, split, join, replace, strip.'
+        },
+            'understand': 'Strings are sequences of characters. They are immutable: methods return new strings. Common operations: indexing, slicing, concatenation, length, and methods like upper, lower, split, join.',
+            'manipulate': {
+            'prompt': "Convert 'hello world' to uppercase.",
+            'answer': 'HELLO WORLD',
+            'hint': 'Use the upper() method.',
+            'interaction_kind': 'code_build'
+        },
+            'predict': {
+            'prompt': "What does 'abc'.upper() return?",
+            'answer': 'ABC',
+            'options': ['abc', 'ABC', 'Abc', 'Error'],
+            'interaction_kind': 'mcq_classify'
+        },
+            'build': {
+            'prompt': 'Write code that reverses a string.',
+            'answer': 's[::-1]',
+            'explanation': 'Slice with step -1 reverses the string.',
+            'interaction_kind': 'code_build'
+        },
+            'break_step': {
+            'prompt': "A student tries s[0] = 'X' and gets an error. What is wrong?",
+            'common_mistake': 'Trying to mutate an immutable string.',
+            'correct_reasoning': 'Strings are immutable. Create a new string instead.',
+            'interaction_kind': 'mcq_diagnose'
+        },
+            'debug': {
+            'prompt': "Fix: s[0] = 'X' for string s = 'ABC'.",
+            'correct_reasoning': "Use s = 'X' + s[1:] to create a new string.",
+            'interaction_kind': 'code_fix'
+        },
+            'retrieval': {
+            'prompt': "What does 'ABC'[1:3] return?",
+            'answer': 'BC',
+            'alternative': ['s[1:3] excludes index 3'],
+            'interaction_kind': 'recall_formula'
+        },
+            'transfer': {
+            'prompt': 'Write code that counts vowels in a string.',
+            'answer': "sum(1 for c in s if c.lower() in 'aeiou')",
+            'explanation': 'Iterate and count vowels case-insensitively.',
+            'interaction_kind': 'code_build'
+        }
+        },
+            'practice': [{
+            'kind': 'mcq',
+            'prompt': "What is len('ABC')?",
+            'answer': '3',
+            'options': ['2', '3', '4', 'Error'],
+            'explanation': 'Length is the number of characters.',
+            'difficulty': 'easy',
+            'company_tags': ['tcs', 'infosys', 'wipro']
+        }, {
+            'kind': 'mcq',
+            'prompt': "What is 'a'.upper()?",
+            'answer': 'A',
+            'options': ['a', 'A', 'aA', 'Error'],
+            'explanation': 'upper() returns an uppercase copy.',
+            'difficulty': 'easy',
+            'company_tags': ['tcs', 'infosys']
+        }],
+            'proof': [{
+            'id': 'p1',
+            'prompt': 'Write code that checks if a string is a palindrome.',
+            'answer_format': 'text',
+            'correct': 's == s[::-1]',
+            'explanation': 'Compare the string to its reverse.',
+            'time_limit_seconds': 90,
+            'company_tags': ['tcs', 'infosys', 'wipro']
+        }],
+            'company_variants': [{
+            'company': 'tcs',
+            'role': 'sde',
+            'difficulty': 'medium',
+            'extra_practice': ['tcs_string_methods', 'tcs_string_questions'],
+            'proof_questions': [{
+            'id': 'tcs-p1',
+            'prompt': "TCS: Reverse words in a sentence: 'Hello World' → 'World Hello'",
+            'answer_format': 'text',
+            'correct': "' '.join(s.split()[::-1])",
+            'explanation': 'Split into words, reverse, join with spaces.',
+            'time_limit_seconds': 90,
+            'company_tags': ['tcs']
+        }]
+        }],
+            'misconceptions': [{
+            'code': 'coding_state_trace_error',
+            'signature': 'Student thinks strings are mutable like lists.',
+            'reteach_route': 'compare_worlds',
+            'reteach_action': 'show_immutability_error'
+        }, {
+            'code': 'coding_array_index_error',
+            'signature': 'Student includes or excludes boundary characters incorrectly.',
+            'reteach_route': 'bug_surgery',
+            'reteach_action': 'show_slice_boundaries'
+        }],
+            'srs_key_points': ['Strings are immutable.', 'Indexing starts at 0.', 's[a:b] includes a, excludes b.', 'Common methods: upper, lower, split, join, replace, strip.', 's[::-1] reverses a string.'],
+            'srs_review_intervals': [1, 3, 7, 14, 30],
+            'world_progression': {
+            'world_id': 'coding',
+            'competency_id': 'strings',
+            'unlocks_next': [],
+            'tower_badge': 'coding_strings'
+        }
+        }
+
+SLUG = 'coding.strings'

@@ -1,0 +1,191 @@
+"""Lesson module — Number & Letter Series"""
+from typing import Dict, Any
+
+LESSON: Dict[str, Any] = {
+            'lesson_id': 'reasoning.series',
+            'module_id': 'reasoning.series',
+            'title': 'Number & Letter Series',
+            'description': 'Series problems test pattern recognition, a core reasoning skill tested heavily in TCS NQT and Infosys.',
+            'difficulty': 'medium',
+            'est_minutes': 20,
+            'xp_reward': 100,
+            'skills_taught': ['Series'],
+            'srs_concept_tag': 'reasoning.series',
+            'domain': 'reasoning',
+            'captain_byte': {
+            'intro': 'Series are hidden patterns. Look at differences, squares, cubes, and alternating operations.',
+            'correct': ['Pattern found.', 'You saw the hidden operation.', 'Right next term.'],
+            'wrong': ['Check differences between terms.', 'Try squares or cubes.', 'Look at odd and even positions separately.'],
+            'after_break': 'You found the broken pattern assumption. Now test the next rule.',
+            'after_mastery': "You can now decode number and letter series fast. That's placement-ready pattern skill.",
+            'retry_prompt': 'Try again. Check differences, then squares, then alternating patterns.'
+        },
+            'story_context': {
+            'title': 'Number & Letter Series',
+            'narration': 'Series problems test pattern recognition, a core reasoning skill tested heavily in TCS NQT and Infosys.',
+            'setting': 'series',
+            'character': 'Captain Byte',
+            'intro_text': 'Series problems test pattern recognition, a core reasoning skill tested heavily in TCS NQT and Infosys.'
+        },
+            'steps': {
+            'discover': {
+            'visual_primitives': ['highlight', 'compare', 'reveal'],
+            'steps': [{
+            'action': 'see_difference',
+            'narration': '2, 5, 10, 17, ?. Look at the differences.',
+            'interaction': {
+            'type': 'choose_outcome',
+            'prompt': 'What is the next term in 2, 5, 10, 17, ?',
+            'options': [{
+            'id': 'a',
+            'text': '24',
+            'correct': False
+        }, {
+            'id': 'b',
+            'text': '26',
+            'correct': True
+        }, {
+            'id': 'c',
+            'text': '28',
+            'correct': False
+        }, {
+            'id': 'd',
+            'text': '30',
+            'correct': False
+        }],
+            'explanation': 'Differences: 3, 5, 7. Next difference = 9. 17 + 9 = 26.'
+        }
+        }, {
+            'action': 'see_square_pattern',
+            'narration': '1, 4, 9, 16, ?. These are squares.',
+            'interaction': {
+            'type': 'choose_outcome',
+            'prompt': 'Next in 1, 4, 9, 16, ?',
+            'options': [{
+            'id': 'a',
+            'text': '20',
+            'correct': False
+        }, {
+            'id': 'b',
+            'text': '25',
+            'correct': True
+        }, {
+            'id': 'c',
+            'text': '30',
+            'correct': False
+        }, {
+            'id': 'd',
+            'text': '36',
+            'correct': False
+        }],
+            'explanation': '1², 2², 3², 4², 5² = 25.'
+        }
+        }],
+            'conclusion': 'Check differences first. If that fails, check squares, cubes, or alternating operations. Letter series often use positions in the alphabet.'
+        },
+            'understand': 'Common series patterns: arithmetic progression, geometric progression, squares/cubes, alternating operations, and letter-position mappings. Always test the simplest pattern first, then move to composite rules.',
+            'manipulate': {
+            'prompt': 'Find the next term: 3, 6, 12, 24, ?',
+            'answer': '48',
+            'hint': 'Each term doubles.',
+            'interaction_kind': 'numeric_input'
+        },
+            'predict': {
+            'prompt': 'What comes next in A, C, F, J, O, ?',
+            'answer': 'U',
+            'options': ['S', 'T', 'U', 'V'],
+            'interaction_kind': 'mcq_classify'
+        },
+            'build': {
+            'prompt': 'Create a series where each term adds increasing odd numbers: 1, 2, 4, 7, 11, ?',
+            'answer': '16',
+            'explanation': 'Differences: 1, 2, 3, 4. Next difference = 5. 11 + 5 = 16.',
+            'interaction_kind': 'word_problem'
+        },
+            'break_step': {
+            'prompt': 'A student says 2, 5, 10, 17, 24 because differences are 3, 5, 7, 9. What is wrong?',
+            'common_mistake': 'Assuming differences continue as odd numbers when the pattern is n²+1.',
+            'correct_reasoning': 'Terms are n²+1: 1²+1=2, 2²+1=5, 3²+1=10, 4²+1=17, 5²+1=26.',
+            'interaction_kind': 'mcq_diagnose'
+        },
+            'debug': {
+            'prompt': 'Fix the pattern assumption: 2, 5, 10, 17, 24.',
+            'correct_reasoning': 'Use n²+1, not odd differences. Next term = 5²+1 = 26.',
+            'interaction_kind': 'mcq_diagnose'
+        },
+            'retrieval': {
+            'prompt': 'Name three common series patterns.',
+            'answer': 'Arithmetic progression, geometric progression, squares/cubes',
+            'alternative': ['AP', 'GP', 'squares', 'cubes', 'alternating operations'],
+            'interaction_kind': 'recall_formula'
+        },
+            'transfer': {
+            'prompt': 'Find the next letter: B, E, I, N, ?',
+            'answer': 'T',
+            'explanation': 'Positions: 2, 5, 9, 14. Differences: 3, 4, 5. Next difference = 6. 14+6=20 → T.',
+            'interaction_kind': 'mcq_classify'
+        }
+        },
+            'practice': [{
+            'kind': 'mcq',
+            'prompt': 'Next in 1, 8, 27, 64, ?',
+            'answer': '125',
+            'options': ['81', '100', '125', '216'],
+            'explanation': 'Cubes: 1³, 2³, 3³, 4³, 5³ = 125.',
+            'difficulty': 'easy',
+            'company_tags': ['tcs', 'infosys']
+        }, {
+            'kind': 'mcq',
+            'prompt': 'Next in A, D, G, J, ?',
+            'answer': 'M',
+            'options': ['K', 'L', 'M', 'N'],
+            'explanation': 'Alphabet positions: 1, 4, 7, 10. Next = 13 → M.',
+            'difficulty': 'easy',
+            'company_tags': ['tcs', 'wipro']
+        }],
+            'proof': [{
+            'id': 'p1',
+            'prompt': 'Find the next term: 4, 9, 16, 25, ?',
+            'answer_format': 'numeric',
+            'correct': '36',
+            'explanation': 'Squares starting from 2: 2², 3², 4², 5², 6² = 36.',
+            'time_limit_seconds': 60,
+            'company_tags': ['tcs', 'infosys', 'wipro']
+        }],
+            'company_variants': [{
+            'company': 'tcs',
+            'role': 'sde',
+            'difficulty': 'medium',
+            'extra_practice': ['tcs_alpha_series', 'tcs_number_series_hard'],
+            'proof_questions': [{
+            'id': 'tcs-p1',
+            'prompt': 'TCS: Find the wrong term in the series: 2, 5, 10, 17, 26, 37, 51',
+            'answer_format': 'text',
+            'correct': '51',
+            'explanation': 'Pattern is n²+1: 2,5,10,17,26,37,50. 51 is wrong; should be 50.',
+            'time_limit_seconds': 90,
+            'company_tags': ['tcs']
+        }]
+        }],
+            'misconceptions': [{
+            'code': 'reasoning_assumption_error',
+            'signature': 'Student assumes a single arithmetic progression when the pattern changes.',
+            'reteach_route': 'bug_surgery',
+            'reteach_action': 'show_two_phase_pattern'
+        }, {
+            'code': 'reasoning_sequence_inference',
+            'signature': 'Student misses square/cube or alternating operations.',
+            'reteach_route': 'visual_state',
+            'reteach_action': 'highlight_term_by_term_changes'
+        }],
+            'srs_key_points': ['Check differences first.', 'Then check squares, cubes, and mixed operations.', 'Letter series use alphabet positions.', 'Alternating patterns apply different rules to odd/even positions.', 'If a term breaks the pattern, identify it by testing the rule on every term.'],
+            'srs_review_intervals': [1, 3, 7, 14, 30],
+            'world_progression': {
+            'world_id': 'reasoning',
+            'competency_id': 'series',
+            'unlocks_next': [],
+            'tower_badge': 'reasoning_series'
+        }
+        }
+
+SLUG = 'reasoning.series'

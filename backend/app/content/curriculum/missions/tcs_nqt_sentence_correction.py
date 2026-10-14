@@ -1,0 +1,62 @@
+"""Mission: sentence correction (TCS NQT verbal). UNVERIFIED structure."""
+from __future__ import annotations
+
+from app.content.mission_definitions import (
+    MissionBrief, MissionConsequence, MissionDefinition, MissionReward, MissionStage,
+)
+
+MISSION = MissionDefinition(
+    id="tcs_nqt.sentence_correction",
+    track_id="tcs_nqt",
+    domain="verbal",
+    canonical_skill="verbal.grammar",
+    brief=MissionBrief(
+        mission_title="Clean Sentences: Correction",
+        round_name="TCS NQT Round 1 — verbal",
+        threat="What sounds right is wrong a third of the time.",
+        goal="Subject-verb-object agreement, every time.",
+        reward_diamonds=40,
+    ),
+    stages=[
+        MissionStage(stage="discover", title="See the error",
+                     interaction="tap_to_reveal", check="read", mentor_moment="intro"),
+        MissionStage(stage="manipulate", title="Rewrite it",
+                     interaction="fill_in_blank", moments=["change_one_thing"],
+                     check="interaction_event", mentor_moment="intro"),
+        MissionStage(stage="predict", title="Commit",
+                     interaction="multiple_choice_reasoning", check="mcq:predict",
+                     bank_refs=["ind-verb-sc-2"], mentor_moment="correct_1"),
+        MissionStage(stage="build", title="Fix the sentence",
+                     interaction="fill_in_blank", check="correct_choice_with_reason",
+                     mentor_moment="correct_1"),
+        MissionStage(stage="break", title="The ear trap",
+                     interaction="error_hunt", check="names_misconception",
+                     mentor_moment="wrong_1"),
+        MissionStage(stage="debug", title="Fix with rules",
+                     interaction="explain_the_bug", check="fix_verified",
+                     mentor_moment="wrong_2"),
+        MissionStage(stage="retrieve", title="Rules cold",
+                     interaction="recall_check", check="correct_no_notes",
+                     bank_refs=["ind-verb-fill-1"], mentor_moment="retry_prompt"),
+        MissionStage(stage="transfer", title="New error skin",
+                     interaction="transfer_problem", check="correct_out_of_domain",
+                     bank_refs=["ind-verb-fill-2"], mentor_moment="retry_prompt"),
+        MissionStage(stage="mastery", title="90-second proof",
+                     interaction="timed_prove", check="score>=threshold_under_time",
+                     bank_refs=["ind-verb-prep-1"],
+                     mentor_moment="after_mastery", time_limit_seconds=90),
+    ],
+    mentor_skill="verbal.grammar",
+    company_overlay_id="tcs",
+    provenance="pattern-relevant",
+    reward=MissionReward(diamonds=40, unlocks="tcs_nqt.reading_comprehension"),
+    consequence=MissionConsequence(
+        on_mastery="harder transfer in 2 days",
+        on_developing="retrieval drill tomorrow",
+        on_repair="repair mission before advancing",
+    ),
+    frontend_slug="grammar",
+    lesson_slug="",
+    trust_floor="reviewed",
+    status="unverified",
+)

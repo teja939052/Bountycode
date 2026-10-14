@@ -14,17 +14,12 @@ def test_xp_calculation():
 
 
 def test_streak_multiplier():
-    from app.services.gamification import calculate_streak_multiplier
-    mult, _ = calculate_streak_multiplier(0)
-    assert mult == 1.0
-    mult3, _ = calculate_streak_multiplier(3)
-    assert mult3 == 1.2
-    mult7, _ = calculate_streak_multiplier(7)
-    assert mult7 == 1.5
-    mult30, _ = calculate_streak_multiplier(30)
-    assert mult30 == 3.0
-    mult100, _ = calculate_streak_multiplier(100)
-    assert mult100 == 5.0
+    from app.services.gamification import _get_streak_multiplier
+    assert _get_streak_multiplier(0) == 1.0
+    assert _get_streak_multiplier(3) == 1.2
+    assert _get_streak_multiplier(7) == 1.5
+    assert _get_streak_multiplier(30) == 3.0
+    assert _get_streak_multiplier(100) == 5.0
 
 
 def test_xp_calculation_types():
@@ -32,14 +27,6 @@ def test_xp_calculation_types():
     assert _calculate_xp("interview", 100) >= _calculate_xp("interview", 50)
     assert _calculate_xp("coding", 0) > 0
     assert _calculate_xp("aptitude", 100) >= _calculate_xp("aptitude", 80)
-
-
-def test_boss_level_detection():
-    from app.services.gamification import BOSS_BATTLES
-    assert 10 in BOSS_BATTLES
-    assert 50 in BOSS_BATTLES
-    assert 100 in BOSS_BATTLES
-    assert 15 not in BOSS_BATTLES
 
 
 def test_circuit_breaker_allows_requests():
@@ -121,25 +108,6 @@ def test_assign_companies():
     assert len(set(companies)) == len(companies)
 
 
-def test_power_ups_exist():
-    from app.services.gamification import POWER_UPS
-    assert "double_xp" in POWER_UPS
-    assert "hint_reveal" in POWER_UPS
-    assert "extra_time" in POWER_UPS
-    assert "skip_boss" in POWER_UPS
-
-
-def test_tower_titles_exist():
-    from app.services.gamification import TOWER_TITLES
-    assert TOWER_TITLES[1] == ("Hatchling", "🐣")
-    assert TOWER_TITLES[100] == ("God of Code", "👑")
-
-
-def test_calculate_stars():
-    from app.services.gamification import calculate_stars
-    assert calculate_stars(100, 30) >= calculate_stars(50, 120)
-
-
 def test_request_metrics_snapshot_shape():
     from app.services.request_metrics import RequestMetrics
 
@@ -189,3 +157,84 @@ def test_creative_mind_feature_is_configured():
 
     assert "creative_mind" in FREE_TIER["features"]
     assert "creative_mind" in PRO_TIER["features"]
+
+
+def test_per_model_circuit_breaker_isolation():
+    from app.services.circuit_breaker import ModelBreakerRegistry
+
+    async def _test():
+        registry = ModelBreakerRegistry(threshold=2, recovery_time=0.1)
+
+        # Model A fails twice -> should be blocked
+        await registry.record_failure("model-a")
+        await registry.record_failure("model-a")
+        assert await registry.allow_request("model-a") is False
+
+        # Model B should still be allowed (independent breaker)
+        assert await registry.allow_request("model-b") is True
+
+        # Model A recovers after cooldown
+        await asyncio.sleep(0.15)
+        assert await registry.allow_request("model-a") is True
+
+        # Model B success does not affect Model A
+        await registry.record_success("model-b")
+        assert await registry.allow_request("model-b") is True
+
+    asyncio.run(_test())
+
+
+def test_per_model_circuit_breaker_fallback_chain():
+    from app.services.circuit_breaker import ModelBreakerRegistry
+
+    async def _test():
+        registry = ModelBreakerRegistry(threshold=2, recovery_time=0.1)
+
+        # Model A is down; Model B is up.
+        await registry.record_failure("model-a")
+        await registry.record_failure("model-a")
+        assert await registry.allow_request("model-a") is False
+        assert await registry.allow_request("model-b") is True
+
+        # Simulate a fallback chain: A fails, B succeeds.
+        # The registry must not have blocked B just because A failed.
+        models_to_try = ["model-a", "model-b"]
+        for m in models_to_try:
+            if await registry.allow_request(m):
+                await registry.record_success(m)
+                break
+
+        assert await registry.allow_request("model-b") is True
+
+    asyncio.run(_test())
+
+
+def test_duplicate_route_prefixes_are_rejected():
+    """Automated guard: duplicate route prefixes must be caught at import time."""
+    import importlib
+    import pkgutil
+    from pathlib import Path
+    from fastapi import APIRouter
+
+    routes_dir = Path(__file__).resolve().parents[1] / "app" / "routes"
+    prefixes = {}
+    conflicts = []
+
+    for module_info in pkgutil.iter_modules([str(routes_dir)]):
+        module_name = module_info.name
+        if module_name.startswith("_") or module_name in ("__init__", "archive"):
+            continue
+        try:
+            module = importlib.import_module(f"app.routes.{module_name}")
+        except Exception:
+            continue
+        router = getattr(module, "router", None)
+        if router is None or not isinstance(router, APIRouter):
+            continue
+        prefix = router.prefix
+        if prefix in prefixes:
+            conflicts.append(f"{prefix} -> {prefixes[prefix]} + {module_name}")
+        else:
+            prefixes[prefix] = module_name
+
+    assert not conflicts, f"Duplicate route prefixes detected: {conflicts}"

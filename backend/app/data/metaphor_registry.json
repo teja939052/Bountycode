@@ -1,0 +1,288 @@
+{
+  "variable": {
+    "id": "variable",
+    "physical_metaphor": "A name tag stuck on a value",
+    "primitive": "VariableBox",
+    "first_contact": "Touch",
+    "jargon_allowed_after": "touch",
+    "why": "Beginners think variables are boxes that hold types. Labels are closer to how Python actually works.",
+    "companies": {
+      "tcs_nqt": {"weight": 10, "intuition_hint": "Variable output questions"},
+      "infosys_infytq": {"weight": 9, "intuition_hint": "Reference vs value"},
+      "wipro_nlth": {"weight": 8, "intuition_hint": "Basic variable concepts"}
+    }
+  },
+  "variables": {
+    "id": "variables",
+    "physical_metaphor": "Multiple name tags stuck on different values",
+    "primitive": "VariableBox",
+    "first_contact": "Touch",
+    "jargon_allowed_after": "touch",
+    "why": "Each variable is its own label. Changing one doesn't change others.",
+    "companies": {
+      "tcs_nqt": {"weight": 9, "intuition_hint": "Multiple variables"},
+      "infosys_infytq": {"weight": 9, "intuition_hint": "Variable assignment"},
+      "wipro_nlth": {"weight": 8, "intuition_hint": "Variable basics"}
+    }
+  },
+  "multiple_variables": {
+    "id": "multiple_variables",
+    "physical_metaphor": "Multiple name tags stuck on different values",
+    "primitive": "VariableBox",
+    "first_contact": "Touch",
+    "jargon_allowed_after": "touch",
+    "why": "Each variable is independent. Assigning one doesn't affect others.",
+    "companies": {
+      "tcs_nqt": {"weight": 9, "intuition_hint": "Multiple variables"},
+      "infosys_infytq": {"weight": 9, "intuition_hint": "Variable assignment"},
+      "wipro_nlth": {"weight": 8, "intuition_hint": "Variable basics"}
+    }
+  },
+  "reassignment": {
+    "id": "reassignment",
+    "physical_metaphor": "Peeling a name tag off one value and sticking it on another",
+    "primitive": "VariableBox",
+    "first_contact": "Touch",
+    "jargon_allowed_after": "touch",
+    "why": "Variables are labels. You can move a label to a new value.",
+    "companies": {
+      "tcs_nqt": {"weight": 9, "intuition_hint": "Variable reassignment"},
+      "infosys_infytq": {"weight": 9, "intuition_hint": "Reference vs value"},
+      "wipro_nlth": {"weight": 8, "intuition_hint": "Variable concepts"}
+    }
+  },
+  "print_statement": {
+    "id": "print_statement",
+    "physical_metaphor": "A speaker that announces the current value",
+    "primitive": "Speaker",
+    "first_contact": "Touch",
+    "jargon_allowed_after": "touch",
+    "why": "print() shows the current value of a variable or expression.",
+    "companies": {
+      "tcs_nqt": {"weight": 8, "intuition_hint": "Output prediction"},
+      "infosys_infytq": {"weight": 8, "intuition_hint": "Code output"},
+      "wipro_nlth": {"weight": 7, "intuition_hint": "Basic output"}
+    }
+  },
+  "programs_are_instructions": {
+    "id": "programs_are_instructions",
+    "physical_metaphor": "A recipe card with ordered steps",
+    "primitive": "RecipeCard",
+    "first_contact": "Touch",
+    "jargon_allowed_after": "touch",
+    "why": "A program is a precise list of instructions executed in order.",
+    "companies": {
+      "tcs_nqt": {"weight": 10, "intuition_hint": "Flowchart questions"},
+      "infosys_infytq": {"weight": 9, "intuition_hint": "Logical sequencing"},
+      "wipro_nlth": {"weight": 9, "intuition_hint": "Algorithm tracing"}
+    }
+  },
+  "instructions_vs_output": {
+    "id": "instructions_vs_output",
+    "physical_metaphor": "Recipe vs dish — the code is the recipe, the output is the dish",
+    "primitive": "RecipeCard",
+    "first_contact": "Touch",
+    "jargon_allowed_after": "touch",
+    "why": "Same ingredients, different recipes = different dishes.",
+    "companies": {
+      "tcs_nqt": {"weight": 8, "intuition_hint": "Output prediction"},
+      "infosys_infytq": {"weight": 8, "intuition_hint": "Code snippet output"},
+      "wipro_nlth": {"weight": 8, "intuition_hint": "Basic programming logic"}
+    }
+  },
+  "ipo_model": {
+    "id": "ipo_model",
+    "physical_metaphor": "A funnel: input goes in, processing happens, output comes out",
+    "primitive": "Funnel",
+    "first_contact": "Touch",
+    "jargon_allowed_after": "touch",
+    "why": "Every program takes input, processes it, and produces output.",
+    "companies": {
+      "tcs_nqt": {"weight": 9, "intuition_hint": "IPO questions"},
+      "infosys_infytq": {"weight": 9, "intuition_hint": "Program structure"},
+      "wipro_nlth": {"weight": 8, "intuition_hint": "Basic programming"}
+    }
+  },
+  "execution_order": {
+    "id": "execution_order",
+    "physical_metaphor": "A conveyor belt that moves step by step",
+    "primitive": "ConveyorBelt",
+    "first_contact": "Touch",
+    "jargon_allowed_after": "touch",
+    "why": "Code runs top to bottom, one line at a time.",
+    "companies": {
+      "tcs_nqt": {"weight": 9, "intuition_hint": "Execution trace"},
+      "infosys_infytq": {"weight": 9, "intuition_hint": "Code flow"},
+      "wipro_nlth": {"weight": 8, "intuition_hint": "Program execution"}
+    }
+  },
+  "update_expression": {
+    "id": "update_expression",
+    "physical_metaphor": "A box that adds chips to itself",
+    "primitive": "VariableBox",
+    "first_contact": "Touch",
+    "jargon_allowed_after": "touch",
+    "why": "score = score + 5 means read old score, add 5, write back.",
+    "companies": {
+      "tcs_nqt": {"weight": 9, "intuition_hint": "Update expressions"},
+      "infosys_infytq": {"weight": 9, "intuition_hint": "Assignment logic"},
+      "wipro_nlth": {"weight": 8, "intuition_hint": "Variable updates"}
+    }
+  },
+  "state_tracing": {
+    "id": "state_tracing",
+    "physical_metaphor": "A camera that takes snapshots of the box after each step",
+    "primitive": "Camera",
+    "first_contact": "Touch",
+    "jargon_allowed_after": "touch",
+    "why": "Tracing means watching the variable change after each line.",
+    "companies": {
+      "tcs_nqt": {"weight": 9, "intuition_hint": "State tracing"},
+      "infosys_infytq": {"weight": 9, "intuition_hint": "Variable state"},
+      "wipro_nlth": {"weight": 8, "intuition_hint": "Program state"}
+    }
+  },
+  "function": {
+    "id": "function",
+    "physical_metaphor": "A machine with an input slot and output tray",
+    "primitive": "FunctionMachine",
+    "first_contact": "Touch",
+    "jargon_allowed_after": "touch",
+    "why": "Functions are the bridge between scripts and systems.",
+    "companies": {
+      "tcs_nqt": {"weight": 9, "intuition_hint": "Function output questions"},
+      "infosys_infytq": {"weight": 9, "intuition_hint": "Code modularity"},
+      "wipro_nlth": {"weight": 8, "intuition_hint": "Functions basics"}
+    }
+  },
+  "list": {
+    "id": "list",
+    "physical_metaphor": "A row of numbered lockers",
+    "primitive": "LockerRow",
+    "first_contact": "Touch",
+    "jargon_allowed_after": "touch",
+    "why": "Lists are ordered slots. Index 0 is the first locker.",
+    "companies": {
+      "tcs_nqt": {"weight": 9, "intuition_hint": "Array index questions"},
+      "infosys_infytq": {"weight": 9, "intuition_hint": "List operations"},
+      "wipro_nlth": {"weight": 8, "intuition_hint": "Basic data structures"}
+    }
+  },
+  "loop": {
+    "id": "loop",
+    "physical_metaphor": "A conveyor belt that repeats until a sensor trips",
+    "primitive": "LoopCounter",
+    "first_contact": "Touch",
+    "jargon_allowed_after": "touch",
+    "why": "Loops eliminate repetition. The belt stops when the condition is false.",
+    "companies": {
+      "tcs_nqt": {"weight": 9, "intuition_hint": "Loop output questions"},
+      "infosys_infytq": {"weight": 9, "intuition_hint": "Iteration logic"},
+      "wipro_nlth": {"weight": 8, "intuition_hint": "Loop basics"}
+    }
+  },
+  "condition": {
+    "id": "condition",
+    "physical_metaphor": "A crossroads with two signs",
+    "primitive": "Crossroads",
+    "first_contact": "Touch",
+    "jargon_allowed_after": "touch",
+    "why": "Conditionals give programs decision-making. Only one path executes.",
+    "companies": {
+      "tcs_nqt": {"weight": 9, "intuition_hint": "If-else output"},
+      "infosys_infytq": {"weight": 9, "intuition_hint": "Conditional logic"},
+      "wipro_nlth": {"weight": 8, "intuition_hint": "Decision making"}
+    }
+  },
+  "dictionary": {
+    "id": "dictionary",
+    "physical_metaphor": "A phone book with name→number mappings",
+    "primitive": "PhoneBook",
+    "first_contact": "Touch",
+    "jargon_allowed_after": "touch",
+    "why": "Dicts are O(1) lookups. Keys are unique names.",
+    "companies": {
+      "google": {"weight": 10, "intuition_hint": "HashMap usage"},
+      "microsoft": {"weight": 9, "intuition_hint": "Dictionary operations"},
+      "amazon": {"weight": 9, "intuition_hint": "Key-value stores"}
+    }
+  },
+  "stack": {
+    "id": "stack",
+    "physical_metaphor": "A stack of plates — last on, first off",
+    "primitive": "StackPlates",
+    "first_contact": "Touch",
+    "jargon_allowed_after": "touch",
+    "why": "Stack is LIFO. Queue is FIFO.",
+    "companies": {
+      "google": {"weight": 9, "intuition_hint": "Data structure selection"},
+      "microsoft": {"weight": 9, "intuition_hint": "Queue implementation"},
+      "amazon": {"weight": 8, "intuition_hint": "Message queues"}
+    }
+  },
+  "queue": {
+    "id": "queue",
+    "physical_metaphor": "A line of people — first in, first out",
+    "primitive": "QueueLine",
+    "first_contact": "Touch",
+    "jargon_allowed_after": "touch",
+    "why": "Queue is FIFO. Ticket lines, message queues.",
+    "companies": {
+      "google": {"weight": 9, "intuition_hint": "Data structure selection"},
+      "microsoft": {"weight": 9, "intuition_hint": "Queue implementation"},
+      "amazon": {"weight": 8, "intuition_hint": "Message queues"}
+    }
+  },
+  "pointer": {
+    "id": "pointer",
+    "physical_metaphor": "A finger pointing at a value",
+    "primitive": "PointerHand",
+    "first_contact": "Touch",
+    "jargon_allowed_after": "touch",
+    "why": "A pointer is a reference to a value, not the value itself.",
+    "companies": {
+      "google": {"weight": 9, "intuition_hint": "Memory management"},
+      "microsoft": {"weight": 8, "intuition_hint": "Reference semantics"},
+      "amazon": {"weight": 8, "intuition_hint": "Object references"}
+    }
+  },
+  "class": {
+    "id": "class",
+    "physical_metaphor": "A blueprint for building houses",
+    "primitive": "Blueprint",
+    "first_contact": "Touch",
+    "jargon_allowed_after": "touch",
+    "why": "Class is blueprint, object is house.",
+    "companies": {
+      "google": {"weight": 9, "intuition_hint": "OOP design"},
+      "microsoft": {"weight": 9, "intuition_hint": "Class design"},
+      "amazon": {"weight": 8, "intuition_hint": "Object modeling"}
+    }
+  },
+  "scope": {
+    "id": "scope",
+    "physical_metaphor": "A locked box — only the keyholder can read the note inside",
+    "primitive": "LockedBox",
+    "first_contact": "Touch",
+    "jargon_allowed_after": "touch",
+    "why": "Scope is where a name is visible. Local names are private.",
+    "companies": {
+      "tcs_nqt": {"weight": 8, "intuition_hint": "Variable scope"},
+      "infosys_infytq": {"weight": 8, "intuition_hint": "Function scope"},
+      "wipro_nlth": {"weight": 7, "intuition_hint": "Local vs global"}
+    }
+  },
+  "recursion": {
+    "id": "recursion",
+    "physical_metaphor": "A Russian doll — open until you find the smallest one",
+    "primitive": "RussianDoll",
+    "first_contact": "Touch",
+    "jargon_allowed_after": "touch",
+    "why": "Recursion is a function that calls itself with a simpler input until base case.",
+    "companies": {
+      "google": {"weight": 10, "intuition_hint": "Recursive algorithms"},
+      "microsoft": {"weight": 9, "intuition_hint": "Tree/graph problems"},
+      "amazon": {"weight": 9, "intuition_hint": "Recursive thinking"}
+    }
+  }
+}

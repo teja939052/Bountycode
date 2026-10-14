@@ -5,6 +5,7 @@ from typing import Optional
 from app.database import resumes_collection
 from app.middleware.auth import get_current_user
 from app.services.ai_cover_letter import generate_linkedin_about
+from app.services.usage import require_pro_for_ai
 from app.config import get_settings
 from bson import ObjectId
 
@@ -18,7 +19,7 @@ class LinkedInRequest(BaseModel):
 
 
 @router.post("/linkedin-about")
-async def create_linkedin_about(req: LinkedInRequest, user=Depends(get_current_user)):
+async def create_linkedin_about(req: LinkedInRequest, user=Depends(require_pro_for_ai)):
     try:
         resume = await resumes_collection.find_one({"_id": ObjectId(req.resume_id)})
     except Exception:

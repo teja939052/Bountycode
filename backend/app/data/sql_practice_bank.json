@@ -3333,5 +3333,353 @@
       "3. Apply filters and aggregations.",
       "4. Order results if needed."
     ]
+  },
+  {
+    "id": "sql-055",
+    "type": "sql",
+    "title": "Find the second highest salary from the Employees table.",
+    "question": "Find the second highest salary from the Employees table.",
+    "difficulty": "medium",
+    "topic": "sql",
+    "sub_topic": "subquery",
+    "pattern": "sql",
+    "skill": "sql",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture",
+      "cognizant",
+      "amazon"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.940291+00:00",
+    "updated_at": "2026-09-25T06:04:30.940291+00:00",
+    "correct_answer": "SELECT name, salary FROM Employees WHERE salary = (SELECT DISTINCT salary FROM Employees ORDER BY salary DESC LIMIT 1 OFFSET 1);",
+    "options": [
+      "SELECT MAX(salary) FROM Employees;",
+      "SELECT name FROM Employees ORDER BY salary DESC LIMIT 1 OFFSET 1;",
+      "SELECT name, salary FROM Employees WHERE salary = (SELECT DISTINCT salary FROM Employees ORDER BY salary DESC LIMIT 1 OFFSET 1);",
+      "SELECT * FROM Employees WHERE salary = (SELECT MAX(salary) FROM Employees);"
+    ],
+    "correct_index": 2,
+    "solution": {
+      "code": "SELECT name, salary FROM Employees WHERE salary = (SELECT DISTINCT salary FROM Employees ORDER BY salary DESC LIMIT 1 OFFSET 1);",
+      "explanation": "Use a subquery with ORDER BY DESC and OFFSET 1 to skip the top salary."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'A',80000),(2,'B',90000),(3,'C',90000),(4,'D',70000)]",
+        "expected": "A(80000) or D(70000) depending on distinct handling"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Employees: [(1,'A',100000)]",
+        "expected": "No second highest"
+      }
+    ],
+    "hints": [
+      "Use DISTINCT in subquery",
+      "OFFSET 1 skips the first row"
+    ],
+    "common_trap": "",
+    "reasoning_steps": []
+  },
+  {
+    "id": "sql-056",
+    "type": "sql",
+    "title": "Find duplicate records in a table Orders(order_id, customer_id, product_id, order_date).",
+    "question": "Find duplicate records in a table Orders(order_id, customer_id, product_id, order_date).",
+    "difficulty": "medium",
+    "topic": "sql",
+    "sub_topic": "group_by_having",
+    "pattern": "sql",
+    "skill": "sql",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.940291+00:00",
+    "updated_at": "2026-09-25T06:04:30.940291+00:00",
+    "correct_answer": "SELECT customer_id, product_id, COUNT(*) FROM Orders GROUP BY customer_id, product_id HAVING COUNT(*) > 1;",
+    "options": [
+      "SELECT * FROM Orders WHERE COUNT(*) > 1;",
+      "SELECT customer_id, product_id FROM Orders GROUP BY customer_id, product_id HAVING COUNT(*) > 1;",
+      "SELECT customer_id, COUNT(*) FROM Orders;",
+      "SELECT * FROM Orders GROUP BY customer_id;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT customer_id, product_id, COUNT(*) FROM Orders GROUP BY customer_id, product_id HAVING COUNT(*) > 1;",
+      "explanation": "GROUP BY customer_id and product_id, then HAVING COUNT(*) > 1 filters duplicates."
+    },
+    "testcases": [
+      {
+        "input": "Orders: [(1,101,201),(2,101,201),(3,102,301)]",
+        "expected": "(101, 201) appears twice"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Orders: [(1,101,201),(2,101,202),(3,101,201)]",
+        "expected": "(101, 201) appears twice"
+      }
+    ],
+    "hints": [
+      "GROUP BY requires HAVING for aggregate filter",
+      "COUNT(*) counts rows per group"
+    ],
+    "common_trap": "",
+    "reasoning_steps": []
+  },
+  {
+    "id": "sql-057",
+    "type": "sql",
+    "title": "Delete all customers who have never placed an order using a LEFT JOIN.",
+    "question": "Delete all customers who have never placed an order using a LEFT JOIN.",
+    "difficulty": "medium",
+    "topic": "sql",
+    "sub_topic": "delete_join",
+    "pattern": "sql",
+    "skill": "sql",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.940291+00:00",
+    "updated_at": "2026-09-25T06:04:30.940291+00:00",
+    "correct_answer": "DELETE Customers FROM Customers LEFT JOIN Orders ON Customers.customer_id = Orders.customer_id WHERE Orders.order_id IS NULL;",
+    "options": [
+      "DELETE FROM Customers WHERE customer_id NOT IN (SELECT customer_id FROM Orders);",
+      "DELETE Customers FROM Customers LEFT JOIN Orders ON Customers.customer_id = Orders.customer_id WHERE Orders.order_id IS NULL;",
+      "DELETE * FROM Customers WHERE Orders.order_id IS NULL;",
+      "DROP TABLE Customers WHERE customer_id NOT IN Orders;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "DELETE Customers FROM Customers LEFT JOIN Orders ON Customers.customer_id = Orders.customer_id WHERE Orders.order_id IS NULL;",
+      "explanation": "LEFT JOIN keeps all customers; IS NULL identifies those with no orders."
+    },
+    "testcases": [
+      {
+        "input": "Customers: [1,2,3], Orders: [(101,1)]",
+        "expected": "Delete customers 2 and 3"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Customers: [1], Orders: [(101,1),(102,1)]",
+        "expected": "Delete none"
+      }
+    ],
+    "hints": [
+      "LEFT JOIN preserves left rows",
+      "IS NULL catches unmatched rows"
+    ],
+    "common_trap": "",
+    "reasoning_steps": []
+  },
+  {
+    "id": "sql-058",
+    "type": "sql",
+    "title": "Find the Nth highest salary using a correlated subquery.",
+    "question": "Find the Nth highest salary using a correlated subquery.",
+    "difficulty": "hard",
+    "topic": "sql",
+    "sub_topic": "correlated_subquery",
+    "pattern": "sql",
+    "skill": "sql",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant",
+      "accenture"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.940291+00:00",
+    "updated_at": "2026-09-25T06:04:30.941574+00:00",
+    "correct_answer": "SELECT DISTINCT salary FROM Employees e1 WHERE N-1 = (SELECT COUNT(DISTINCT salary) FROM Employees e2 WHERE e2.salary > e1.salary);",
+    "options": [
+      "SELECT salary FROM Employees ORDER BY salary DESC LIMIT N-1,1;",
+      "SELECT DISTINCT salary FROM Employees e1 WHERE N-1 = (SELECT COUNT(DISTINCT salary) FROM Employees e2 WHERE e2.salary > e1.salary);",
+      "SELECT MAX(salary) FROM Employees WHERE salary < (SELECT MAX(salary) FROM Employees);",
+      "SELECT salary FROM Employees GROUP BY salary HAVING COUNT(*) >= N;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT DISTINCT salary FROM Employees e1 WHERE N-1 = (SELECT COUNT(DISTINCT salary) FROM Employees e2 WHERE e2.salary > e1.salary);",
+      "explanation": "Correlated subquery counts how many distinct salaries are higher than each row."
+    },
+    "testcases": [
+      {
+        "input": "Employees: [(1,'A',90000),(2,'B',80000),(3,'C',70000),(4,'D',80000)], N=2",
+        "expected": "80000"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Employees: [(1,'A',50000)], N=1",
+        "expected": "50000"
+      },
+      {
+        "input": "Employees: [(1,'A',60000),(2,'B',60000)], N=2",
+        "expected": "60000"
+      }
+    ],
+    "hints": [
+      "DISTINCT removes duplicate salaries",
+      "N-1 must match exactly higher salaries"
+    ],
+    "common_trap": "",
+    "reasoning_steps": []
+  },
+  {
+    "id": "sql-059",
+    "type": "sql",
+    "title": "Pivot monthly sales totals from a Sales table with columns (sale_id, amount, sale_date).",
+    "question": "Pivot monthly sales totals from a Sales table with columns (sale_id, amount, sale_date).",
+    "difficulty": "medium",
+    "topic": "sql",
+    "sub_topic": "date_filtering",
+    "pattern": "sql",
+    "skill": "sql",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.941574+00:00",
+    "updated_at": "2026-09-25T06:04:30.941574+00:00",
+    "correct_answer": "SELECT MONTH(sale_date) AS month, SUM(amount) AS total_sales FROM Sales GROUP BY MONTH(sale_date) ORDER BY month;",
+    "options": [
+      "SELECT SUM(amount) FROM Sales;",
+      "SELECT MONTH(sale_date), SUM(amount) FROM Sales GROUP BY MONTH(sale_date);",
+      "SELECT sale_date, amount FROM Sales PIVOT SUM(amount);",
+      "SELECT * FROM Sales WHERE MONTH(sale_date) = SUM(amount);"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT MONTH(sale_date) AS month, SUM(amount) AS total_sales FROM Sales GROUP BY MONTH(sale_date) ORDER BY month;",
+      "explanation": "GROUP BY extracted month and SUM amounts."
+    },
+    "testcases": [
+      {
+        "input": "Sales: [(1,100,'2024-01-05'),(2,200,'2024-01-20'),(3,150,'2024-02-10')]",
+        "expected": "Jan=300, Feb=150"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Sales: [(1,50,'2024-03-01')]",
+        "expected": "Mar=50"
+      }
+    ],
+    "hints": [
+      "MONTH() extracts month number",
+      "GROUP BY on expression works in most SQL dialects"
+    ],
+    "common_trap": "",
+    "reasoning_steps": []
+  },
+  {
+    "id": "sql-060",
+    "type": "sql",
+    "title": "Find customers who have placed more than 3 orders in the last 30 days.",
+    "question": "Find customers who have placed more than 3 orders in the last 30 days.",
+    "difficulty": "medium",
+    "topic": "sql",
+    "sub_topic": "group_by_having",
+    "pattern": "sql",
+    "skill": "sql",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant"
+    ],
+    "role": [
+      "student",
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "sql_practice_bank",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.941574+00:00",
+    "updated_at": "2026-09-25T06:04:30.941574+00:00",
+    "correct_answer": "SELECT customer_id, COUNT(*) AS order_count FROM Orders WHERE order_date >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY customer_id HAVING COUNT(*) > 3;",
+    "options": [
+      "SELECT customer_id FROM Orders WHERE order_date >= NOW() - 30;",
+      "SELECT customer_id, COUNT(*) FROM Orders WHERE order_date >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY customer_id HAVING COUNT(*) > 3;",
+      "SELECT * FROM Orders HAVING COUNT(*) > 3;",
+      "SELECT customer_id FROM Orders GROUP BY customer_id WHERE COUNT(*) > 3;"
+    ],
+    "correct_index": 1,
+    "solution": {
+      "code": "SELECT customer_id, COUNT(*) AS order_count FROM Orders WHERE order_date >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY customer_id HAVING COUNT(*) > 3;",
+      "explanation": "Filter recent orders with WHERE date >= today - 30, then GROUP BY + HAVING."
+    },
+    "testcases": [
+      {
+        "input": "Orders with 4 orders for customer 1 in last 30 days, 1 order for customer 2",
+        "expected": "customer 1 only"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Orders: 3 orders for customer 1, 4 orders for customer 2",
+        "expected": "customer 2 only"
+      }
+    ],
+    "hints": [
+      "Date math depends on SQL dialect",
+      "HAVING filters after aggregation"
+    ],
+    "common_trap": "",
+    "reasoning_steps": []
   }
 ]

@@ -1,0 +1,154 @@
+"""Lesson module — Percentages"""
+from typing import Dict, Any
+
+LESSON: Dict[str, Any] = {
+            'lesson_id': 'aptitude.percentages',
+            'module_id': 'aptitude.percentages',
+            'title': 'Percentages',
+            'description': 'Percentages are the most frequently tested topic in service-company quantitative sections. Mastery here directly improves your speed and accuracy in TCS NQT, Infosys InfyTQ, and Wipro NLTH.',
+            'difficulty': 'easy',
+            'est_minutes': 20,
+            'xp_reward': 100,
+            'skills_taught': ['Percentages'],
+            'srs_concept_tag': 'aptitude.percentages',
+            'domain': 'aptitude',
+            'captain_byte': {
+            'intro': "Welcome to Percentages. This is the most important quant topic for service companies. Let's master it together.",
+            'correct': ['Exactly right!', 'Perfect!', "You've got it!"],
+            'wrong': ['Not quite. Remember: percentage means per 100.', "Close! Think about what 'of' means."],
+            'after_break': "Now you see the trap. Let's fix it.",
+            'after_mastery': "You've mastered percentages. This will save you minutes in every placement test.",
+            'retry_prompt': "Give it another shot. You're close."
+        },
+            'story_context': {
+            'title': 'Percentages',
+            'narration': 'Percentages are the most frequently tested topic in service-company quantitative sections. Mastery here directly improves your speed and accuracy in TCS NQT, Infosys InfyTQ, and Wipro NLTH.',
+            'setting': 'percentages',
+            'character': 'Captain Byte',
+            'intro_text': 'Percentages are the most frequently tested topic in service-company quantitative sections. Mastery here directly improves your speed and accuracy in TCS NQT, Infosys InfyTQ, and Wipro NLTH.'
+        },
+            'steps': {
+            'discover': {
+            'prompt': 'A shirt costs 100. After a 20% discount and then a 10% tax on the discounted price, what is the final price?',
+            'question': 'Is the final price 100 + (-20% + 10%) = 90?',
+            'options': ['No, it is 88', 'Yes, 90', 'No, it is 92', 'Cannot say'],
+            'interaction_kind': 'mcq_read'
+        },
+            'understand': {
+            'prompt': "The key formula for percentages: 'percent' means 'per 100'. To find x% of y, multiply y × (x/100).",
+            'explanation': "20% of 250 = 250 × (20/100) = 250 × 0.20 = 50. The word 'of' always means multiplication in percentage problems.",
+            'interaction_kind': 'read_explanation'
+        },
+            'manipulate': {
+            'prompt': 'If the original price is P, write the discounted price and then the taxed price in terms of P.',
+            'answer': '0.80P then 0.88P',
+            'hint': 'Multiply by (1 - 0.20), then multiply that result by (1 + 0.10).',
+            'interaction_kind': 'numeric_input'
+        },
+            'predict': {
+            'prompt': 'A number increases by 20% and then decreases by 20%. Is the final number equal to the original?',
+            'answer': 'No',
+            'options': ['Yes', 'No', 'Only if original is 100', 'Only if original is 0'],
+            'interaction_kind': 'mcq_bottleneck'
+        },
+            'build': {
+            'prompt': 'Write a function final_price(price, discount_pct, tax_pct) returning the final amount.',
+            'answer': 'def final_price(price, discount_pct, tax_pct):\n    discounted = price * (1 - discount_pct/100)\n    return discounted * (1 + tax_pct/100)',
+            'explanation': 'Apply discount first, then tax on the discounted price.',
+            'interaction_kind': 'code_build'
+        },
+            'break_step': {
+            'prompt': 'Why is `price + discount_pct + tax_pct` wrong?',
+            'broken_code': 'price + discount_pct + tax_pct',
+            'expected_failure': 'It adds percentage points instead of applying them to a changing base.',
+            'interaction_kind': 'mcq_diagnose'
+        },
+            'debug': {
+            'prompt': 'Fix the percentage calculation.',
+            'correct_code': 'discounted = price * (1 - discount_pct/100)\nfinal = discounted * (1 + tax_pct/100)',
+            'interaction_kind': 'code_fix'
+        },
+            'retrieval': {
+            'prompt': 'When can you add/subtract percentage points directly?',
+            'answer': 'Only when they share the same base.',
+            'alternative': ['Same base means same denominator.'],
+            'interaction_kind': 'recall_formula'
+        },
+            'transfer': {
+            'prompt': 'A population grows 15% in year 1 and 10% in year 2. What is the total growth factor?',
+            'answer': '1.15 * 1.10 = 1.265',
+            'explanation': 'Multiply growth factors because the base changes each year.',
+            'interaction_kind': 'numeric_input'
+        }
+        },
+            'practice': [{
+            'kind': 'mcq',
+            'prompt': 'After a 25% discount, what percent of the original remains?',
+            'answer': '75%',
+            'options': ['25%', '75%', '125%', '50%'],
+            'explanation': '100% - 25% = 75%.',
+            'difficulty': 'medium',
+            'company_tags': ['tcs', 'infosys']
+        }, {
+            'kind': 'numeric',
+            'prompt': 'Price 200, discount 30%, tax 12% on discounted price. Final price?',
+            'answer': '168.8',
+            'explanation': '200*0.7=140, 140*1.12=156.8.',
+            'difficulty': 'medium',
+            'company_tags': ['tcs']
+        }],
+            'proof': [{
+            'id': 'p1-explain_why_successive_percentage_change',
+            'prompt': 'Explain why successive percentage changes do not add.',
+            'answer_format': 'text',
+            'correct': 'Each change applies to a new base, so they compound.',
+            'explanation': 'Use the discount-then-tax example.',
+            'time_limit_seconds': 60,
+            'company_tags': ['tcs']
+        }],
+            'company_variants': [{
+            'company': 'tcs',
+            'role': 'sde',
+            'difficulty': 'medium',
+            'extra_practice': ['percentage_profit', 'percentage_discount'],
+            'proof_questions': [{
+            'id': 'tcs-p1',
+            'prompt': 'TCS pattern: If 40% of a number is 160, what is the number?',
+            'answer_format': 'numeric',
+            'correct': '400',
+            'explanation': '0.4 × x = 160 → x = 160/0.4 = 400.',
+            'time_limit_seconds': 45,
+            'company_tags': ['tcs']
+        }]
+        }, {
+            'company': 'infosys',
+            'role': 'sde',
+            'difficulty': 'medium',
+            'extra_practice': ['percentage_inflection'],
+            'proof_questions': [{
+            'id': 'infy-p1',
+            'prompt': 'Infosys pattern: A student scored 75% marks. If he had got 20 more marks, he would have scored 85%. What are the maximum marks?',
+            'answer_format': 'numeric',
+            'correct': '200',
+            'explanation': '20 marks = 10%. So 100% = 200 marks.',
+            'time_limit_seconds': 90,
+            'company_tags': ['infosys']
+        }]
+        }],
+            'misconceptions': [{
+            'code': 'apt_percent_base_confusion',
+            'signature': 'Student treats percentages as additive over changing bases.',
+            'reteach_route': 'worked_example',
+            'reteach_action': 'show_base_vs_change'
+        }],
+            'srs_key_points': ['Percentage change is relative to the current base.', 'Successive percentage changes multiply, not add.', 'Always identify the base before applying a percent.'],
+            'srs_review_intervals': [1, 3, 7, 14, 30],
+            'world_progression': {
+            'world_id': 'aptitude',
+            'competency_id': 'percentages',
+            'unlocks_next': [],
+            'tower_badge': 'aptitude_percentages'
+        }
+        }
+
+SLUG = 'aptitude.percentages'

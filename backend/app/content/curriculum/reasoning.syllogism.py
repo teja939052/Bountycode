@@ -1,0 +1,191 @@
+"""Lesson module — Syllogism"""
+from typing import Dict, Any
+
+LESSON: Dict[str, Any] = {
+            'lesson_id': 'reasoning.syllogism',
+            'module_id': 'reasoning.syllogism',
+            'title': 'Syllogism',
+            'description': 'Syllogism tests logical deduction from given statements. It appears in TCS NQT and Infosys reasoning sections.',
+            'difficulty': 'medium',
+            'est_minutes': 20,
+            'xp_reward': 100,
+            'skills_taught': ['Syllogism'],
+            'srs_concept_tag': 'reasoning.syllogism',
+            'domain': 'reasoning',
+            'captain_byte': {
+            'intro': 'Syllogism is logical deduction. Draw the sets. Only draw conclusions that must be true.',
+            'correct': ['Valid conclusion.', 'You followed the set relation.', 'Right deduction.'],
+            'wrong': ['Draw the Venn diagram.', 'Only accept conclusions that must be true.', "'All A are B' does not imply 'All B are A'."],
+            'after_break': 'You found the invalid assumption. Now rebuild the deduction from the statements.',
+            'after_mastery': "You can now reason with syllogisms. That's placement-ready reasoning skill.",
+            'retry_prompt': 'Try again. Draw the sets before concluding.'
+        },
+            'story_context': {
+            'title': 'Syllogism',
+            'narration': 'Syllogism tests logical deduction from given statements. It appears in TCS NQT and Infosys reasoning sections.',
+            'setting': 'syllogism',
+            'character': 'Captain Byte',
+            'intro_text': 'Syllogism tests logical deduction from given statements. It appears in TCS NQT and Infosys reasoning sections.'
+        },
+            'steps': {
+            'discover': {
+            'visual_primitives': ['highlight', 'compare', 'reveal'],
+            'steps': [{
+            'action': 'see_all_are',
+            'narration': "Statement: 'All A are B.' Conclusion: 'Some B are A.'",
+            'interaction': {
+            'type': 'choose_outcome',
+            'prompt': 'Does the conclusion follow?',
+            'options': [{
+            'id': 'a',
+            'text': 'Yes',
+            'correct': True
+        }, {
+            'id': 'b',
+            'text': 'No',
+            'correct': False
+        }, {
+            'id': 'c',
+            'text': 'Only if A=B',
+            'correct': False
+        }, {
+            'id': 'd',
+            'text': 'Cannot say',
+            'correct': False
+        }],
+            'explanation': 'If all A are inside B, some B are A is valid.'
+        }
+        }, {
+            'action': 'see_no_are',
+            'narration': "Statement: 'No A are B.' Conclusion: 'Some A are B.'",
+            'interaction': {
+            'type': 'choose_outcome',
+            'prompt': 'Does the conclusion follow?',
+            'options': [{
+            'id': 'a',
+            'text': 'Yes',
+            'correct': False
+        }, {
+            'id': 'b',
+            'text': 'No',
+            'correct': True
+        }, {
+            'id': 'c',
+            'text': 'Only if A=B',
+            'correct': False
+        }, {
+            'id': 'd',
+            'text': 'Cannot say',
+            'correct': False
+        }],
+            'explanation': "'No A are B' means zero overlap. 'Some A are B' contradicts it."
+        }
+        }],
+            'conclusion': "Draw Venn diagrams. 'All A are B' means A inside B. 'No A are B' means separate circles. Only accept conclusions that must be true."
+        },
+            'understand': "Syllogism uses set relations: 'All A are B', 'No A are B', 'Some A are B', 'Some A are not B'. Draw Venn diagrams. Valid conclusions follow necessarily; invalid conclusions may be possible but not certain.",
+            'manipulate': {
+            'prompt': 'Statements: All cats are animals. All animals are living. Conclusion: All cats are living.',
+            'answer': 'Valid',
+            'hint': 'Chain the inclusions: cats → animals → living.',
+            'interaction_kind': 'mcq_classify'
+        },
+            'predict': {
+            'prompt': 'Statements: Some A are B. Some B are C. Conclusion: Some A are C.',
+            'answer': 'Invalid',
+            'options': ['Valid', 'Invalid', 'Only if A=C', 'Cannot say'],
+            'interaction_kind': 'mcq_classify'
+        },
+            'build': {
+            'prompt': 'Statements: All M are N. No N are O. Conclusion: No M are O.',
+            'answer': 'Valid',
+            'explanation': 'M inside N. N and O are separate. So M and O are separate.',
+            'interaction_kind': 'mcq_classify'
+        },
+            'break_step': {
+            'prompt': "A student concludes 'All B are A' from 'All A are B'. What is wrong?",
+            'common_mistake': 'Reversing the set inclusion.',
+            'correct_reasoning': "'All A are B' means A is inside B. B may contain non-A elements.",
+            'interaction_kind': 'mcq_diagnose'
+        },
+            'debug': {
+            'prompt': "Fix: conclude 'All B are A' from 'All A are B'.",
+            'correct_reasoning': "The valid conclusion is 'Some B are A', not 'All B are A'.",
+            'interaction_kind': 'mcq_diagnose'
+        },
+            'retrieval': {
+            'prompt': "What does 'All A are B' mean in Venn diagrams?",
+            'answer': 'A is inside B',
+            'alternative': ['A subset of B'],
+            'interaction_kind': 'recall_formula'
+        },
+            'transfer': {
+            'prompt': 'Statements: All P are Q. Some Q are R. Conclusion: Some P are R.',
+            'answer': 'Invalid',
+            'explanation': 'P is inside Q. Some Q are R does not force P into R.',
+            'interaction_kind': 'mcq_classify'
+        }
+        },
+            'practice': [{
+            'kind': 'mcq',
+            'prompt': 'Statements: All dogs are animals. All animals are living. Conclusion: All dogs are living.',
+            'answer': 'Valid',
+            'options': ['Valid', 'Invalid', 'Only if dogs=living', 'Cannot say'],
+            'explanation': 'Chain: dogs → animals → living.',
+            'difficulty': 'easy',
+            'company_tags': ['tcs', 'infosys', 'wipro']
+        }, {
+            'kind': 'mcq',
+            'prompt': 'Statements: Some A are B. No B are C. Conclusion: Some A are not C.',
+            'answer': 'Valid',
+            'options': ['Valid', 'Invalid', 'Only if A=C', 'Cannot say'],
+            'explanation': 'Some A are inside B. B and C are separate. So those A are not C.',
+            'difficulty': 'medium',
+            'company_tags': ['tcs', 'infosys']
+        }],
+            'proof': [{
+            'id': 'p1',
+            'prompt': 'Statements: All X are Y. Some Y are Z. Some Z are W. Conclusion: Some X are W.',
+            'answer_format': 'text',
+            'correct': 'Invalid',
+            'explanation': 'The chain does not force X into W.',
+            'time_limit_seconds': 90,
+            'company_tags': ['tcs', 'infosys', 'wipro']
+        }],
+            'company_variants': [{
+            'company': 'tcs',
+            'role': 'sde',
+            'difficulty': 'medium',
+            'extra_practice': ['tcs_syllogism_basic', 'tcs_syllogism_advanced'],
+            'proof_questions': [{
+            'id': 'tcs-p1',
+            'prompt': 'TCS: Statements: All A are B. Some B are C. Conclusion: Some A are C.',
+            'answer_format': 'text',
+            'correct': 'Invalid',
+            'explanation': 'A is inside B. Some B are C does not force A into C.',
+            'time_limit_seconds': 90,
+            'company_tags': ['tcs']
+        }]
+        }],
+            'misconceptions': [{
+            'code': 'reasoning_assumption_error',
+            'signature': 'Student assumes a conclusion not directly supported by the statements.',
+            'reteach_route': 'worked_example',
+            'reteach_action': 'show_only_direct_conclusions'
+        }, {
+            'code': 'reasoning_ordering_error',
+            'signature': "Student reverses 'All A are B' to 'All B are A'.",
+            'reteach_route': 'compare_worlds',
+            'reteach_action': 'show_venn_direction'
+        }],
+            'srs_key_points': ["'All A are B' means A inside B.", "'No A are B' means separate circles.", "'Some A are B' means partial overlap.", 'Only accept conclusions that must be true.', 'Draw Venn diagrams before concluding.'],
+            'srs_review_intervals': [1, 3, 7, 14, 30],
+            'world_progression': {
+            'world_id': 'reasoning',
+            'competency_id': 'syllogism',
+            'unlocks_next': [],
+            'tower_badge': 'reasoning_syllogism'
+        }
+        }
+
+SLUG = 'reasoning.syllogism'

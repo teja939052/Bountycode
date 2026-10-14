@@ -1,9 +1,9 @@
-"""World governance: enforce the canonical 12-world structure and dependent surfaces.
+"""World governance: enforce the canonical 6-world structure and dependent surfaces.
 
 This module is the single source of truth for:
-- Total world count (12)
-- Total level count (50)
-- Prerequisite chain integrity (11 edges)
+- Total world count (6)
+- Total level count (32)
+- Prerequisite chain integrity (5 edges)
 - Landing page copy consistency
 - In-code documentation requirements
 
@@ -21,7 +21,7 @@ import sys
 from pathlib import Path
 
 # ═══════════════════════════════════════════════════════════════════
-# CANONICAL 12-WORLD MANIFEST
+# CANONICAL 6-WORLD MANIFEST (Vision Lock: 6 worlds for launch, not 12)
 # ═══════════════════════════════════════════════════════════════════
 # Order matters: this is the expected progression path.
 # Each world's prerequisite must be the previous world, except foundations which has none.
@@ -31,20 +31,14 @@ CANONICAL_WORLDS = [
     ("searchlands", "Searchlands", 2, ["foundations"]),
     ("sorting", "Sorting Forge", 3, ["searchlands"]),
     ("recursion", "Recursive Mountains", 4, ["sorting"]),
-    ("linked", "Linked List Caves", 5, ["recursion"]),
-    ("stack", "Stack Peaks", 6, ["linked"]),
-    ("queue", "Queue Plains", 7, ["stack"]),
-    ("hashing", "Hashing Marshes", 8, ["queue"]),
-    ("trees", "Binary Tree Forest", 9, ["hashing"]),
-    ("graphs", "Graph Canyons", 10, ["trees"]),
-    ("dynamic", "DP Dungeon", 11, ["graphs"]),
-    ("alpine", "Alpine Summit", 12, ["dynamic"]),
+    ("linked", "Linked Pathways", 5, ["recursion"]),
+    ("stack", "Stack Tower", 6, ["linked"]),
 ]
 
-EXPECTED_TOTAL_WORLDS = 12
-EXPECTED_TOTAL_LEVELS = 50
-EXPECTED_LANDING_COPY = "12 worlds. 50 levels. One voyage."
-EXPECTED_PREREQ_EDGES = 11
+EXPECTED_TOTAL_WORLDS = 6
+EXPECTED_TOTAL_LEVELS = 32
+EXPECTED_LANDING_COPY = "6 worlds. 32 levels. One voyage."
+EXPECTED_PREREQ_EDGES = 5
 
 
 def _check_world_registry() -> list[str]:
@@ -83,7 +77,7 @@ def _check_world_registry() -> list[str]:
 
 
 def _check_level_count() -> list[str]:
-    """Verify total level count matches expected 72."""
+    """Verify total level count matches expected 32."""
     errors: list[str] = []
     try:
         from app.data.worlds_data import WORLD_REGISTRY
@@ -131,7 +125,7 @@ def _check_prereq_chain() -> list[str]:
 
 
 def _check_landing_copy() -> list[str]:
-    """Verify landing page copy matches expected 12-world identity."""
+    """Verify landing page copy matches expected 6-world identity."""
     errors: list[str] = []
     landing_path = Path(__file__).resolve().parents[2] / "frontend" / "src" / "pages" / "Landing.tsx"
     if not landing_path.exists():
@@ -146,7 +140,7 @@ def _check_landing_copy() -> list[str]:
 
 
 def _check_world_documentation() -> list[str]:
-    """Verify each world file documents the canonical 12-world constraint."""
+    """Verify each world file documents the canonical 6-world constraint."""
     errors: list[str] = []
     worlds_dir = Path(__file__).resolve().parents[2] / "backend" / "app" / "content"
     expected_marker = "CANONICAL_WORLDS in backend/scripts/verify_world_governance.py"
@@ -154,7 +148,7 @@ def _check_world_documentation() -> list[str]:
         text = py_file.read_text(encoding="utf-8")
         if expected_marker not in text:
             errors.append(
-                f"{py_file.name} does not document the 12-world constraint"
+                f"{py_file.name} does not document the 6-world constraint"
             )
     return errors
 

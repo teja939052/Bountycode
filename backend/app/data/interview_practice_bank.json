@@ -5194,5 +5194,276 @@
     "explanation": "Consider your experience with: How do you ensure reliability in a distributed system? What patterns and practices would you use?",
     "common_trap": "",
     "reasoning_steps": []
+  },
+  {
+    "id": "int-101",
+    "type": "interview",
+    "title": "Explain the difference between a process and a thread.",
+    "question": "Explain the difference between a process and a thread.",
+    "difficulty": "easy",
+    "topic": "technical",
+    "sub_topic": "os",
+    "pattern": "technical",
+    "skill": "technical",
+    "companies": [
+      "amazon",
+      "google",
+      "microsoft",
+      "meta",
+      "tcs",
+      "infosys"
+    ],
+    "role": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "interview_practice_bank",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.955666+00:00",
+    "updated_at": "2026-09-25T06:04:30.955666+00:00",
+    "correct_answer": "A process is an independent execution environment with its own memory space. A thread is the smallest unit of execution within a process; threads share the same memory but have separate stacks. Context switching between threads is faster than between processes.",
+    "options": [],
+    "solution": {
+      "code": "",
+      "explanation": "Process: isolated memory, heavier. Thread: shared memory, lighter. Use threads for concurrent tasks within same app; use processes for isolation."
+    },
+    "testcases": [
+      {
+        "input": "Candidate says thread has separate memory space",
+        "expected": "Incorrect - threads share memory"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Candidate mentions context-switch cost difference",
+        "expected": "Stronger answer"
+      }
+    ],
+    "hints": [
+      "Memory isolation is the key distinction",
+      "Threads share heap, processes do not"
+    ],
+    "common_trap": "",
+    "reasoning_steps": [],
+    "rubric": "Candidate should explain process vs thread clearly, covering memory space, context switching cost, and use cases.",
+    "expected_answer": "Process: independent memory space, heavier context switch. Thread: shared memory, lighter context switch. Use threads for concurrent tasks within same process; use processes for isolation."
+  },
+  {
+    "id": "int-102",
+    "type": "interview",
+    "title": "What is normalization in databases? Explain 1NF, 2NF, and 3NF.",
+    "question": "What is normalization in databases? Explain 1NF, 2NF, and 3NF.",
+    "difficulty": "medium",
+    "topic": "technical",
+    "sub_topic": "dbms",
+    "pattern": "technical",
+    "skill": "technical",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture",
+      "cognizant",
+      "amazon"
+    ],
+    "role": [
+      "sde",
+      "data-analyst"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "interview_practice_bank",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.955666+00:00",
+    "updated_at": "2026-09-25T06:04:30.955666+00:00",
+    "correct_answer": "Normalization removes redundancy. 1NF: atomic values, no repeating groups. 2NF: 1NF plus no partial dependencies on composite keys. 3NF: 2NF plus no transitive dependencies; non-key columns depend only on the primary key.",
+    "options": [],
+    "solution": {
+      "code": "",
+      "explanation": "Normal forms reduce redundancy and update anomalies. Most OLTP systems use 3NF. Denormalization is used for read-heavy reporting."
+    },
+    "testcases": [
+      {
+        "input": "Candidate confuses 2NF and 3NF",
+        "expected": "Needs clarity on partial vs transitive dependency"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Candidate gives example table with partial dependency",
+        "expected": "Shows concrete understanding"
+      }
+    ],
+    "hints": [
+      "1NF = atomic columns",
+      "2NF = no partial dependency",
+      "3NF = no transitive dependency"
+    ],
+    "common_trap": "",
+    "reasoning_steps": [],
+    "rubric": "Candidate should explain normalization forms clearly: 1NF atomic values, 2NF no partial dependencies, 3NF no transitive dependencies.",
+    "expected_answer": "Normalization removes redundancy. 1NF: atomic values. 2NF: no partial dependencies on composite keys. 3NF: no transitive dependencies."
+  },
+  {
+    "id": "int-103",
+    "type": "interview",
+    "title": "Explain TCP vs UDP.",
+    "question": "Explain TCP vs UDP.",
+    "difficulty": "easy",
+    "topic": "technical",
+    "sub_topic": "networking",
+    "pattern": "technical",
+    "skill": "technical",
+    "companies": [
+      "amazon",
+      "google",
+      "microsoft",
+      "meta",
+      "tcs",
+      "infosys"
+    ],
+    "role": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "interview_practice_bank",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.955666+00:00",
+    "updated_at": "2026-09-25T06:04:30.955666+00:00",
+    "correct_answer": "TCP is connection-oriented, reliable, ordered, congestion-controlled, and slower. UDP is connectionless, unreliable, unordered, faster, and used for streaming/DNS. TCP uses handshakes; UDP does not.",
+    "options": [],
+    "solution": {
+      "code": "",
+      "explanation": "Choose TCP when correctness matters; choose UDP when latency matters and some loss is acceptable."
+    },
+    "testcases": [
+      {
+        "input": "Candidate says UDP is always faster",
+        "expected": "Context-dependent; TCP can be faster on lossy networks due to retries"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Candidate mentions QUIC/HTTP3",
+        "expected": "Shows updated knowledge"
+      }
+    ],
+    "hints": [
+      "TCP guarantees delivery",
+      "UDP is fire-and-forget"
+    ],
+    "common_trap": "",
+    "reasoning_steps": [],
+    "rubric": "Candidate should compare TCP and UDP accurately, covering reliability, ordering, connection orientation, and use cases.",
+    "expected_answer": "TCP: connection-oriented, reliable, ordered, slower. UDP: connectionless, unreliable, unordered, faster. Use TCP for correctness, UDP for latency-sensitive streaming."
+  },
+  {
+    "id": "int-104",
+    "type": "interview",
+    "title": "Describe the CAP theorem.",
+    "question": "Describe the CAP theorem.",
+    "difficulty": "medium",
+    "topic": "technical",
+    "sub_topic": "system-design",
+    "pattern": "technical",
+    "skill": "technical",
+    "companies": [
+      "amazon",
+      "google",
+      "microsoft",
+      "meta"
+    ],
+    "role": [
+      "sde",
+      "backend-engineer",
+      "system-design"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "interview_practice_bank",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.955666+00:00",
+    "updated_at": "2026-09-25T06:04:30.955666+00:00",
+    "correct_answer": "In distributed systems, you can only have 2 of 3: Consistency (all nodes see same data), Availability (every request gets a response), Partition tolerance (system works despite network partitions). Since partitions are inevitable, real systems choose CP or AP.",
+    "options": [],
+    "solution": {
+      "code": "",
+      "explanation": "CAP is about trade-offs during partitions. Without partitions, all three are possible. Most systems choose CP or AP based on requirements."
+    },
+    "testcases": [
+      {
+        "input": "Candidate says you can have all three always",
+        "expected": "Incorrect - partitions make it impossible"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Candidate mentions PACELC",
+        "expected": "Shows deeper distributed systems knowledge"
+      }
+    ],
+    "hints": [
+      "P is non-negotiable in distributed systems",
+      "Examples: CP = banking, AP = social media feeds"
+    ],
+    "common_trap": "",
+    "reasoning_steps": [],
+    "rubric": "Candidate should explain CAP theorem accurately, noting that P is non-negotiable in distributed systems, and real systems choose CP or AP.",
+    "expected_answer": "CAP: Consistency, Availability, Partition tolerance. During partitions, only 2 of 3 are possible. P is inevitable, so real systems choose CP or AP."
+  },
+  {
+    "id": "int-105",
+    "type": "interview",
+    "title": "Tell me about a time you handled a production outage.",
+    "question": "Tell me about a time you handled a production outage.",
+    "difficulty": "medium",
+    "topic": "behavioral",
+    "sub_topic": "incident-response",
+    "pattern": "behavioral",
+    "skill": "behavioral",
+    "companies": [
+      "amazon",
+      "google",
+      "microsoft",
+      "meta",
+      "tcs",
+      "infosys"
+    ],
+    "role": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "interview_practice_bank",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.955666+00:00",
+    "updated_at": "2026-09-25T06:04:30.955666+00:00",
+    "correct_answer": "STAR method: Situation - production outage affecting users. Task - I was on-call/leading response. Action - identified root cause, implemented fix, communicated status. Result - resolved in X minutes, implemented preventive measures, postmortem documented.",
+    "options": [],
+    "solution": {
+      "code": "",
+      "explanation": "Show ownership, calm under pressure, technical debugging, communication, and learning/improvement."
+    },
+    "testcases": [
+      {
+        "input": "Candidate blames others",
+        "expected": "Red flag - take ownership"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "Candidate mentions blameless postmortem",
+        "expected": "Shows maturity"
+      }
+    ],
+    "hints": [
+      "Use STAR structure",
+      "Quantify impact and resolution time",
+      "Show what you changed to prevent recurrence"
+    ],
+    "common_trap": "",
+    "reasoning_steps": [],
+    "rubric": "Candidate should use STAR method with specific example of production outage, showing ownership, technical debugging, communication, and learning.",
+    "expected_answer": "STAR structure with concrete outage example: identified root cause, implemented fix, communicated status, documented postmortem, implemented preventive measures."
   }
 ]

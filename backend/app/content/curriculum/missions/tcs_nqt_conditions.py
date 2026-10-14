@@ -1,0 +1,62 @@
+"""Mission: conditions (TCS NQT coding). UNVERIFIED structure."""
+from __future__ import annotations
+
+from app.content.mission_definitions import (
+    MissionBrief, MissionConsequence, MissionDefinition, MissionReward, MissionStage,
+)
+
+MISSION = MissionDefinition(
+    id="tcs_nqt.conditions",
+    track_id="tcs_nqt",
+    domain="coding",
+    canonical_skill="code.conditions",
+    brief=MissionBrief(
+        mission_title="Branch Right: Conditions",
+        round_name="TCS NQT coding — every branch traced",
+        threat="= vs == and fall-through switch cases.",
+        goal="Know which branch runs before running.",
+        reward_diamonds=60,
+    ),
+    stages=[
+        MissionStage(stage="discover", title="Watch the branch",
+                     interaction="state_trace", check="read", mentor_moment="intro"),
+        MissionStage(stage="manipulate", title="Flip the condition",
+                     interaction="drag_or_manipulate", moments=["change_one_thing"],
+                     check="interaction_event", mentor_moment="intro"),
+        MissionStage(stage="predict", title="Predict the branch",
+                     interaction="predict_output", check="mcq:predict",
+                     bank_refs=["programming_logic_2052"], mentor_moment="correct_1"),
+        MissionStage(stage="build", title="Write FizzBuzz",
+                     interaction="tiny_build", check="tests_pass",
+                     bank_refs=["verify-030"], mentor_moment="correct_1"),
+        MissionStage(stage="break", title="Assignment-in-if hunt",
+                     interaction="break_and_debug", check="names_misconception",
+                     mentor_moment="wrong_1"),
+        MissionStage(stage="debug", title="Compare, don't assign",
+                     interaction="error_hunt", check="fix_verified",
+                     mentor_moment="wrong_2"),
+        MissionStage(stage="retrieve", title="Branch cold",
+                     interaction="recall_check", check="correct_no_notes",
+                     bank_refs=["programming_logic_2070"], mentor_moment="retry_prompt"),
+        MissionStage(stage="transfer", title="Nested skin",
+                     interaction="transfer_problem", check="tests_pass_out_of_domain",
+                     bank_refs=["programming_logic_2031"], mentor_moment="retry_prompt"),
+        MissionStage(stage="mastery", title="5-minute proof",
+                     interaction="timed_prove", check="tests_pass_under_time",
+                     bank_refs=["programming_logic_2035"],
+                     mentor_moment="after_mastery", time_limit_seconds=300),
+    ],
+    mentor_skill="code.conditions",
+    company_overlay_id="tcs",
+    provenance="pattern-relevant",
+    reward=MissionReward(diamonds=60, unlocks="tcs_nqt.loops_basics"),
+    consequence=MissionConsequence(
+        on_mastery="harder transfer in 2 days",
+        on_developing="retrieval drill tomorrow",
+        on_repair="repair mission before advancing",
+    ),
+    frontend_slug="conditions",
+    lesson_slug="",
+    trust_floor="reviewed",
+    status="unverified",
+)
