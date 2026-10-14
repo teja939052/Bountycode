@@ -11,6 +11,7 @@ on:
 jobs:
   backend:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     defaults:
       run:
         working-directory: backend
@@ -36,10 +37,33 @@ jobs:
           pip install -r requirements-dev.txt
 
       - name: Compile check
-        run: python -m compileall app/ -q
+        run: python -m compileall app/ scripts/ -q
+
+      - name: Lint hardened surface (ruff)
+        # Full-repo lint is grandfathered (1488 pre-existing violations tracked
+        # separately). New/changed payment + economy code must stay clean.
+        run: ruff check app/routes/billing.py app/routes/trial.py app/routes/student_discount.py app/routes/auth.py app/services/gamification.py app/services/auto_verify.py app/services/email.py app/config.py app/services/invoice.py app/services/feature_flags.py app/models/user.py tests/test_gamification_law.py
+
+      - name: Validate question-bank JSON
+        run: python -c "import json,glob,sys; files=glob.glob('app/data/bank_*_v2.json'); assert len(files)==11, files; [json.load(open(f,encoding='utf-8')) for f in files]; print('v2 banks OK:', len(files))"
+
+      - name: Validate tutor trees
+        run: python scripts/validate_tutor_trees.py
+
+      - name: Validate backend missions
+        run: python scripts/validate_missions.py
+
+      - name: Mission contract gate (ADR BOUNTYCODE_CURRICULUM_STRUCTURE)
+        run: python ../frontend/src/data/missions/validate.py --strict
+
+      - name: Run question-bank tests
+        run: python -m pytest tests/test_bank_v2_counts.py tests/test_bank_v2_schema.py tests/test_bank_v2_uniqueness.py tests/test_bank_v2_generators.py -q --tb=short
 
       - name: Run tests
-        run: python -m pytest tests/ -v --tb=short
+        run: python -m pytest tests/ --tb=short -q --deselect tests/test_bank_v2_correctness.py --deselect tests/test_bank_v2_store.py
+
+      - name: Run execution-heavy bank tests
+        run: python -m pytest tests/test_bank_v2_correctness.py tests/test_bank_v2_store.py -q --tb=short
 
       - name: Check alembic migrations
         run: |
@@ -48,6 +72,7 @@ jobs:
 
   frontend:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     defaults:
       run:
         working-directory: frontend
@@ -64,6 +89,12 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Verify Tailwind tokens resolve
+        run: npm run check:tokens
 
       - name: Build
         run: npm run build
