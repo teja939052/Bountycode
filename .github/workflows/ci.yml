@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, architecture-cleanup]
   pull_request:
-    branches: [main]
+    branches: [main, architecture-cleanup]
   schedule:
     - cron: "0 3 * * 1"  # Weekly re-curate question bank every Monday 3AM UTC
 
@@ -102,6 +102,9 @@ jobs:
   curate-questions:
     runs-on: ubuntu-latest
     if: github.event_name == 'schedule'
+    permissions:
+      contents: write
+      pull-requests: write
     defaults:
       run:
         working-directory: backend
@@ -120,10 +123,14 @@ jobs:
           python app/scripts/generate_all_role_curricula.py
           echo "Curated bank refreshed:"
           wc -c app/content/questions/curated/curated.json app/content/questions/rejected/rejected.json app/content/questions/curated/learning_objects.json app/content/questions/review_duplicates/review_duplicates.json app/content/curriculum/learning_paths.json app/content/curriculum/final_curriculum.json app/content/curriculum/mock_tests.json app/content/curriculum/all_role_curricula.json
-      - name: Commit curated output
+      - name: Commit curated output as PR (never direct-push to protected branches)
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "github-actions"
           git add app/content/questions/curated/curated.json app/content/questions/rejected/rejected.json app/content/questions/curated/learning_objects.json app/content/questions/review_duplicates/review_duplicates.json app/content/curriculum/learning_paths.json app/content/curriculum/final_curriculum.json app/content/curriculum/mock_tests.json app/content/curriculum/all_role_curricula.json
-          git diff --staged --quiet || git commit -m "chore: weekly re-curate question bank"
-          git push
+          git diff --staged --quiet && echo "No curated changes" && exit 0
+          BRANCH="curate/question-bank-$(date +%F)"
+          git checkout -b "$BRANCH"
+          git commit -m "chore: weekly re-curate question bank"
+          git push origin "$BRANCH" || echo "Direct push blocked by branch protection; open a PR manually from $BRANCH"
+          gh pr create --title "chore: weekly re-curate question bank" --body "Automated curation output. Requires human review before merge (trust pipeline)." --head "$BRANCH" --base main || echo "PR creation skipped (no gh auth or no changes)"
