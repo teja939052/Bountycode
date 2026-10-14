@@ -143,6 +143,56 @@ def judge_level(lvl: LevelBase, code: str) -> tuple[bool, str, Optional[int]]:
     return True, lvl.success.world_reaction, None
 
 
+def _nonempty_answer(value) -> bool:
+    """True when a step defines gradable content (not an empty placeholder)."""
+    if value is None:
+        return False
+    if isinstance(value, list):
+        return any(str(v or "").strip() for v in value)
+    return bool(str(value or "").strip())
+
+
+def _has_step_content(lvl: LevelBase, step_type: str) -> bool:
+    """Whether this level actually authors gradable content for a step.
+
+    Discover/understand are read-only presentation and are never required.
+    Only gradable steps with real content can gate completion — never
+    enforce a stage the content never defined.
+    """
+    if step_type == "predict":
+        return lvl.predict is not None and _nonempty_answer(getattr(lvl.predict, "answer", ""))
+    if step_type == "manipulate":
+        return _nonempty_answer(getattr(lvl.manipulate, "answer", ""))
+    if step_type == "retrieval":
+        return lvl.retrieval is not None and _nonempty_answer(getattr(lvl.retrieval, "answer", ""))
+    if step_type == "transfer":
+        return lvl.transfer is not None and _nonempty_answer(getattr(lvl.transfer, "answer", ""))
+    if step_type == "break_step":
+        return lvl.break_step is not None and bool(
+            str(getattr(lvl.break_step, "broken_code", "") or "").strip()
+            and str(getattr(lvl.break_step, "expected_failure", "") or "").strip()
+        )
+    if step_type == "debug":
+        return lvl.debug is not None and _nonempty_answer(getattr(lvl.debug, "answer", ""))
+    if step_type in ("build", "code"):
+        return True  # final code pass is always the mastery trial
+    return False
+
+
+def _required_steps(lvl: LevelBase) -> list[str]:
+    """Gradable stages with real content for this level, excluding the final trial.
+
+    The final build/code pass is validated separately at /complete as the
+    mastery trial. Everything else listed here must have server-verified
+    passing evidence in steps_passed before completion is granted.
+    """
+    steps: list[str] = []
+    for candidate in ("manipulate", "predict", "retrieval", "transfer", "break_step", "debug"):
+        if _has_step_content(lvl, candidate):
+            steps.append(candidate)
+    return steps
+
+
 # ─────────────────────────────────────────────
 # Real judge — grade journeys by execution, not just regex
 # ─────────────────────────────────────────────
@@ -422,7 +472,9 @@ async def _award_xp(user_id: str, world_id: str, diamonds: int, meta: dict | Non
     (entry saved, Diamonds missing but flagged, never silently short). Raises.
     Skill-graph mastery is NOT affected (fixed 85/True via
     ``_record_skill_touch``); map stars are NOT affected (entry best_score).
-    Returns the ``record_practice`` result (with ``xp_gained``).
+    Returns the ``record_practice`` result (canonical key ``diamonds`` —
+    the exact $inc applied to the profile, hence the honesty invariant
+    response.xp_awarded == profile delta).
     """
     import logging as _logging
 
@@ -431,7 +483,7 @@ async def _award_xp(user_id: str, world_id: str, diamonds: int, meta: dict | Non
     meta = dict(meta or {})
     meta.setdefault("world_id", world_id)
     result = await record_practice(user_id, "lesson", 10.0, meta, role=role)
-    stored = (result or {}).get("xp_gained")
+    stored = (result or {}).get("diamonds")
     # Evidence trail: nominal request vs canonical award. Stored is
     # routinely larger by design (streak / first-of-day / combo / crit).
     _log.debug(
@@ -744,6 +796,25 @@ async def attempt_level(world_id: str, level_id: str, req: AttemptRequest, user=
         entry["mastery_before"] = mastery_before
     entry["last_attempt_code"] = req.code[:2000]
     entry["last_attempt_passed"] = passed
+    # Stage evidence: only a pass against real step content counts.
+    # Fallback judge passes (missing content) are never evidence.
+    gradable = step_type in ("manipulate", "predict", "retrieval", "transfer", "break_step", "debug", "build", "code")
+    content_present = _has_step_content(lvl, step_type) if gradable else False
+    evidence_recorded = False
+    if passed and gradable and content_present and not entry.get("completed"):
+        steps_passed = entry.get("steps_passed", {})
+        if step_type not in steps_passed:
+            steps_passed[step_type] = {
+                "passed_at": datetime.now(timezone.utc).isoformat(),
+                "attempts": entry.get("attempts", 1),
+            }
+            evidence_recorded = True
+        entry["steps_passed"] = steps_passed
+    entry["last_evidence_recorded"] = evidence_recorded
+    entry["last_evidence_status"] = (
+        "recorded" if evidence_recorded
+        else ("fallback_no_content" if passed and gradable and not content_present else ("failed" if not passed else "not_required"))
+    )
     comp[key] = entry
     await gamification_collection.update_one(
         {"user_id": user["id"]}, {"$set": {"completed_competencies": comp}}, upsert=True
@@ -765,7 +836,7 @@ async def attempt_level(world_id: str, level_id: str, req: AttemptRequest, user=
     xp_preview = lvl.success.diamonds if isinstance(lvl, LevelBase) else 0
     run_output = evidence or None
     if passed:
-        return {"passed": True, "message": message, "hint_index": None, "xp_preview": xp_preview, "mastery_before": mastery_before, "mastery_after": mastery_after, "run_output": run_output}
+        return {"passed": True, "message": message, "hint_index": None, "xp_preview": xp_preview, "mastery_before": mastery_before, "mastery_after": mastery_after, "run_output": run_output, "evidence_recorded": evidence_recorded, "evidence_status": entry.get("last_evidence_status"), "required_steps": _required_steps(lvl), "steps_passed": sorted((entry.get("steps_passed", {}) or {}).keys())}
     else:
         return {
             "passed": False,
@@ -792,6 +863,27 @@ async def complete_level(world_id: str, level_id: str, req: AttemptRequest, user
     if not _is_unlocked(level_id, all_ids, completed, world_id):
         raise HTTPException(status_code=403, detail="Level locked.")
 
+    # Completion evidence gate: required gradable stages with real content
+    # must have server-verified passes before any reward or unlock.
+    # Legacy completions (already completed=True) are grandfathered below
+    # via the deduplicated path and never lose progress.
+    key = f"{world_id}:{level_id}"
+    existing_entry = (completed or {}).get(key, {})
+    if not existing_entry.get("completed"):
+        required = _required_steps(lvl)
+        passed_steps = set((existing_entry.get("steps_passed", {}) or {}).keys())
+        missing = [s for s in required if s not in passed_steps]
+        if missing:
+            raise HTTPException(
+                status_code=400,
+                detail={
+                    "message": "Complete the required learning stages before claiming completion.",
+                    "missing_steps": missing,
+                    "required_steps": required,
+                    "steps_passed": sorted(passed_steps),
+                },
+            )
+
     mastery_before = await _get_skill_score(user["id"])
     passed, _, _ = judge_level(lvl, req.code)
     if not passed:
@@ -799,7 +891,6 @@ async def complete_level(world_id: str, level_id: str, req: AttemptRequest, user
 
     uid = user["id"]
     now = datetime.now(timezone.utc)
-    key = f"{world_id}:{level_id}"
     # Idempotency, including CONCURRENT double-tap: the claim below is a
     # single atomic op. Of two requests landing at the same instant, exactly
     # one matches the "not completed" filter and proceeds to award Diamonds; the
@@ -832,8 +923,11 @@ async def complete_level(world_id: str, level_id: str, req: AttemptRequest, user
     comp = doc.get("completed_competencies", {})
     entry = comp.get(key, {"completed": False, "score": 0, "best_score": 0, "attempts": 0, "failed_attempts": 0, "hints_used": [], "total_time_seconds": 0})
     entry["completed"] = True
-    entry["score"] = 100
-    entry["best_score"] = max(entry.get("best_score", 0), 100)
+    hints_count = len(entry.get("hints_used", []) or [])
+    failed_count = entry.get("failed_attempts", 0) or 0
+    evidence_score = max(60, 100 - (hints_count * 10) - (failed_count * 5))
+    entry["score"] = evidence_score
+    entry["best_score"] = max(entry.get("best_score", 0), evidence_score)
     entry["completed_at"] = now.isoformat()
     if entry.get("mastery_before") is None:
         entry["mastery_before"] = mastery_before
@@ -858,7 +952,9 @@ async def complete_level(world_id: str, level_id: str, req: AttemptRequest, user
     reward_breakdown: dict = {}
     try:
         xp_result = await _award_xp(uid, world_id, xp_gain, {"level_id": level_id, "world": world_id}, role=user.get("role") or user.get("target_role") or "sde")
-        xp_awarded = (xp_result or {}).get("xp_gained", xp_gain)
+        # Honesty invariant: report the ACTUAL canonical award (the $inc
+        # record_practice applied), never the nominal level reward.
+        xp_awarded = (xp_result or {}).get("diamonds", xp_gain)
         # Forward the engine's own breakdown so the result banner renders
         # real numbers (no second fetch, no client math).
         reward_breakdown = {
