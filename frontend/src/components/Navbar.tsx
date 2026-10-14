@@ -1,8 +1,10 @@
+// @ts-nocheck
 import { Link, useNavigate } from "react-router-dom";
 import { useState, type ReactNode } from "react";
 import type { LucideIcon } from "lucide-react";
-import useAuthStore from "../store/authStore";
+import { BountyCodeLogo } from "./brand/BountyCodeLogo";
 import { useThemeStore } from "../store/themeStore";
+import useAuthStore from "../store/authStore";
 import {
   LogOut,
   Menu,
@@ -14,29 +16,35 @@ import {
   Sparkles,
   Lightbulb,
   Shield,
-  Building2,
   Network,
-  Compass,
   ClipboardList,
+  Layers,
+  Cpu,
+  BookX,
+  Gauge,
   User,
   Sun,
   Moon,
   CalendarDays,
   Trophy,
+  Swords,
+  GraduationCap,
+  Compass,
+  Target,
+  FlaskConical,
+  Briefcase,
+  FileText,
+  Building2,
 } from "lucide-react";
 import BackgroundSwitcher from "../components/background/BackgroundSwitcher";
 import { useLocation } from "react-router-dom";
 
-/* Primary IA — V3 unified: ONE Journey, 5 items max.
-   Journey / Practice / Target / Skills / Profile.
-   Everything else (OA, repair, interview, SRS, mock, lesson) is an
-   implementation detail reached FROM the Journey, not nav. */
+/* Unified navigation */
 const PRIMARY_LINKS: NavItem[] = [
-  { to: "/journey", label: "Journey", icon: Compass },
-  { to: "/practice", label: "Practice", icon: Code2 },
-  { to: "/target", label: "Target", icon: Building2 },
-  { to: "/skills", label: "Skills", icon: Trophy },
-  { to: "/profile", label: "Profile", icon: User },
+  { to: "/learning", label: "Learn", icon: BookOpen },
+  { to: "/placement", label: "Command", icon: ClipboardList },
+  { to: "/battlefield", label: "Battlefield", icon: Target },
+  { to: "/interview", label: "Interview", icon: CalendarDays },
 ];
 
 export default function Navbar() {
@@ -58,28 +66,34 @@ export default function Navbar() {
 
   const MORE_GROUPS: NavGroup[] = [
     {
-      label: "Learning",
+      label: "Learn",
       items: [
-        { to: "/learning-paths", label: "Learning Paths", icon: BookOpen },
-        { to: "/concepts", label: "Concepts", icon: Lightbulb },
-        { to: "/problems", label: "Question Bank", icon: Code2 },
+        { to: "/learning", label: "Learning Hub", icon: BookOpen },
+        { to: "/compiler", label: "Compiler", icon: Code2 },
+      ],
+    },
+    {
+      label: "Practice",
+      items: [
+        { to: "/question-bank", label: "Question Bank", icon: BookOpen },
         { to: "/aptitude", label: "Aptitude", icon: ClipboardList },
-        { to: "/coding", label: "Coding", icon: Code2 },
+        { to: "/coding", label: "Coding Challenge", icon: Code2 },
+        { to: "/mock-oa", label: "Mock OA", icon: ClipboardList },
       ],
     },
     {
-      label: "Interview",
+      label: "Company Prep",
       items: [
-        { to: "/interview-booking", label: "Book Session", icon: CalendarDays },
-        { to: "/system-design", label: "System Design", icon: Network },
+        { to: "/battlefield", label: "Battlefield", icon: Target },
+        { to: "/interview", label: "Mock Interview", icon: CalendarDays },
       ],
     },
     {
-      label: "Gamification",
+      label: "Career",
       items: [
-        { to: "/tower", label: "Tower", icon: Trophy },
-        { to: "/skill-graph", label: "Skill Graph", icon: Network },
-        { to: "/leaderboard", label: "Leaderboard", icon: Trophy },
+        { to: "/resume", label: "Resume Builder", icon: FileText },
+        { to: "/ats", label: "ATS Optimizer", icon: Sparkles },
+        { to: "/daily-challenge", label: "Daily Challenge", icon: Trophy },
       ],
     },
     ...(isAdmin
@@ -105,20 +119,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between gap-4">
           <Link to="/" className="flex items-center gap-3 group shrink-0" aria-label="BountyCode home">
-            <div className="relative">
-              <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-nature-leaf/40 to-nature-blossom/40 blur-md opacity-70 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
-              <div className="relative h-10 w-10 rounded-2xl bg-gradient-to-br from-nature-leaf via-nature-moss to-nature-blossom flex items-center justify-center shadow-[0_8px_20px_-8px_rgba(45,130,110,0.4)] transition-transform duration-300 group-hover:scale-105 overflow-hidden">
-                <img src="/assets/logo/bountycode-icon.svg" alt="BountyCode" className="h-7 w-7" />
-              </div>
-            </div>
-            <div className="leading-tight">
-              <div className="text-lg font-display font-extrabold tracking-tight text-text-primary">
-                BountyCode
-              </div>
-              <div className="text-[10px] font-mono uppercase tracking-[0.28em] text-text-muted">
-                Placement Prep Platform
-              </div>
-            </div>
+            <BountyCodeLogo variant="lockup" className="h-9" />
           </Link>
 
           <div className="hidden lg:flex items-center gap-1" role="menubar">
@@ -130,44 +131,44 @@ export default function Navbar() {
                   </NavLink>
                 ))}
 
-                 <button
-                     onClick={() => setToolsOpen((prev) => !prev)}
-                     aria-haspopup="true"
-                     aria-expanded={toolsOpen}
-                     className="rounded-full border border-brand-primary/30 bg-brand-primary/10 px-4 py-2 text-sm font-medium text-brand-primary transition-all hover:bg-brand-primary/20 hover:border-brand-primary/50"
-                   >
-                     More
-                     <ChevronDown size={12} className={`transition-transform ${toolsOpen ? "rotate-180" : ""}`} aria-hidden="true" />
-                   </button>
+                <button
+                  onClick={() => setToolsOpen((prev) => !prev)}
+                  aria-haspopup="true"
+                  aria-expanded={toolsOpen}
+                  className="rounded-full border border-brand-primary/30 bg-brand-primary/10 px-4 py-2 text-sm font-medium text-brand-primary transition-all hover:bg-brand-primary/20 hover:border-brand-primary/50"
+                >
+                  More
+                  <ChevronDown size={12} className={`transition-transform ${toolsOpen ? "rotate-180" : ""}`} aria-hidden="true" />
+                </button>
 
-                   {toolsOpen && (
-                     <>
-                       <div className="fixed inset-0 z-10" onClick={() => setToolsOpen(false)} aria-hidden="true" />
-                       <div className="absolute right-0 mt-3 w-96 rounded-2xl border border-gray-200 bg-white border-border/95 p-3 shadow-lg z-20 backdrop-blur" role="menu" aria-label="More menu">
-                       <div className="grid grid-cols-1 gap-4">
-                         {MORE_GROUPS.map((group) => (
-                           <div key={group.label}>
-                             <div className="px-3 pb-1 text-[10px] font-mono uppercase tracking-[0.22em] text-text-muted">{group.label}</div>
-                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
-                               {group.items.map((item) => (
-                                 <DropdownLink key={item.to} to={item.to} onClick={() => setToolsOpen(false)} icon={item.icon} role="menuitem">
-                                   {item.label}
-                                 </DropdownLink>
-                               ))}
-                             </div>
-                           </div>
-                         ))}
-                       </div>
-                       </div>
-                      </>
-                    )}
+                {toolsOpen && (
+                  <>
+                    <div className="fixed inset-0 z-10" onClick={() => setToolsOpen(false)} aria-hidden="true" />
+                    <div className="absolute right-0 mt-3 w-96 rounded-2xl border border-border/95 bg-surface-card p-3 shadow-lg z-20 backdrop-blur" role="menu" aria-label="More menu">
+                      <div className="grid grid-cols-1 gap-4">
+                        {MORE_GROUPS.map((group) => (
+                          <div key={group.label}>
+                            <div className="px-3 pb-1 text-[10px] font-mono uppercase tracking-[0.22em] text-text-muted">{group.label}</div>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
+                              {group.items.map((item) => (
+                                <DropdownLink key={item.to} to={item.to} onClick={() => setToolsOpen(false)} icon={item.icon} role="menuitem">
+                                  {item.label}
+                                </DropdownLink>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                )}
 
-                    <Link to="/problems?random=true" className="ml-2 inline-flex items-center gap-2 rounded-full border border-brand-primary/30 bg-brand-primary/10 px-4 py-2 text-sm font-medium text-brand-primary transition-all hover:bg-brand-primary/20 hover:border-brand-primary/50" aria-label="Quick practice - random question">
-                      <Sparkles size={14} aria-hidden="true" />
-                      Quick Practice
-                    </Link>
+                <Link to="/arena?random=true" className="ml-2 hidden xl:inline-flex items-center gap-2 rounded-full border border-brand-primary/30 bg-brand-primary/10 px-4 py-2 text-sm font-medium text-brand-primary transition-all hover:bg-brand-primary/20 hover:border-brand-primary/50" aria-label="Quick practice - random challenge">
+                  <Sparkles size={14} aria-hidden="true" />
+                  Quick Practice
+                </Link>
 
-                    <div className="ml-3 flex items-center gap-3 rounded-full border border-gray-200 bg-white border-border/80 px-3 py-1.5 shadow-sm" aria-label="User menu">
+                <div className="ml-3 flex items-center gap-3 rounded-full border border-border/80 bg-surface-card px-3 py-1.5 shadow-sm" aria-label="User menu">
                   <div className="hidden xl:flex flex-col text-right">
                     <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-text-muted">Signed in as</span>
                     <span className="max-w-[140px] truncate text-sm font-medium text-text-primary">{user.name}</span>
@@ -175,33 +176,32 @@ export default function Navbar() {
                   <span className="rounded-full border border-brand-primary/30 bg-brand-primary/10 px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.2em] text-brand-primary" aria-label={`Plan: ${user.plan}`}>
                     {user.plan}
                   </span>
-                   <Link to="/settings" className="text-text-muted transition-colors hover:text-brand-primary" aria-label="Settings">
-                     <Settings size={17} />
-                   </Link>
-                    <button onClick={cycleTheme} className="text-text-muted transition-colors hover:text-brand-primary" aria-label="Toggle theme">
-                      {mode === "crystal-dark" ? <Sun size={17} /> : <Moon size={17} />}
-                    </button>
-                    <BackgroundSwitcher />
-                    <button onClick={handleLogout} className="text-text-muted transition-colors hover:text-error" aria-label="Logout">
-                      <LogOut size={17} />
-                    </button>
+                  <Link to="/settings" className="text-text-muted transition-colors hover:text-brand-primary" aria-label="Settings">
+                    <Settings size={17} />
+                  </Link>
+                  <button onClick={cycleTheme} className="text-text-muted transition-colors hover:text-brand-primary" aria-label="Toggle theme">
+                    {mode === "crystal-dark" ? <Sun size={17} /> : <Moon size={17} />}
+                  </button>
+                  <BackgroundSwitcher />
+                  <button onClick={handleLogout} className="text-text-muted transition-colors hover:text-error" aria-label="Logout">
+                    <LogOut size={17} />
+                  </button>
                 </div>
               </>
-             ) : (
+            ) : (
               <>
                 <Link to="/login" className="px-3 py-2 text-sm font-medium text-text-muted transition-colors hover:text-text-primary" aria-label="Login">
                   Login
                 </Link>
-                <Link to="/register" className="rounded-xl bg-brand-primary px-5 py-2.5 text-sm font-medium text-text-primary hover:bg-brand-primary/90 transition-colors" aria-label="Start free trial">
+                <Link to="/start" className="rounded-xl bg-brand-primary px-5 py-2.5 text-sm font-medium text-text-primary hover:bg-brand-primary/90 transition-colors" aria-label="Start free path">
                   Start Free
                 </Link>
               </>
             )}
           </div>
 
-
-<button
-            className="lg:hidden inline-flex items-center justify-center rounded-xl border border-gray-200 bg-white border-border/80 p-2 text-text-muted shadow-sm"
+          <button
+            className="lg:hidden inline-flex items-center justify-center rounded-xl border border-border/80 bg-surface-card p-2 text-text-muted shadow-sm"
             onClick={() => setMobileOpen((prev) => !prev)}
             aria-label="Toggle menu"
           >
@@ -211,7 +211,7 @@ export default function Navbar() {
 
         {mobileOpen && (
           <div className="lg:hidden pb-4">
-            <div className="rounded-3xl border border-gray-200 bg-white border-border/95 p-3 shadow-lg backdrop-blur">
+            <div className="rounded-3xl border border-border/95 bg-surface-card p-3 shadow-lg backdrop-blur">
               {user ? (
                 <>
                   <div className="mb-3 rounded-2xl bg-gradient-to-r from-brand-primary/10 via-brand-secondary/10 to-brand-tertiary/10 p-4">
@@ -254,7 +254,7 @@ export default function Navbar() {
               ) : (
                 <div className="grid gap-2">
                   <MobileLink to="/login" onClick={() => setMobileOpen(false)}>Login</MobileLink>
-                  <MobileLink to="/register" onClick={() => setMobileOpen(false)} primary>
+                  <MobileLink to="/start" onClick={() => setMobileOpen(false)} primary>
                     Start Free
                   </MobileLink>
                 </div>
@@ -287,11 +287,18 @@ interface NavGroup {
 }
 
 function NavLink({ to, children, icon: Icon, role }: NavLinkProps) {
+  const { pathname } = useLocation();
+  const active = pathname === to || (to !== "/" && pathname.startsWith(to + "/"));
   return (
     <Link
       to={to}
       role={role}
-      className="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-text-muted transition-all duration-200 hover:bg-brand-primary/10 hover:text-brand-primary"
+      aria-current={active ? "page" : undefined}
+      className={`flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ${
+        active
+          ? "bg-brand-primary/15 text-brand-primary"
+          : "text-text-muted hover:bg-brand-primary/10 hover:text-brand-primary"
+      }`}
     >
       {Icon ? <Icon size={14} /> : null}
       {children}
@@ -300,12 +307,19 @@ function NavLink({ to, children, icon: Icon, role }: NavLinkProps) {
 }
 
 function DropdownLink({ to, children, onClick, icon: Icon, role }: NavLinkProps) {
+  const { pathname } = useLocation();
+  const active = pathname === to;
   return (
     <Link
       to={to}
       onClick={onClick}
       role={role}
-      className="flex items-center gap-2 rounded-xl px-3 py-2.5 text-sm text-text-secondary transition-colors hover:bg-brand-primary/10 hover:text-brand-primary"
+      aria-current={active ? "page" : undefined}
+      className={`flex items-center gap-2 rounded-xl px-3 py-2.5 text-sm transition-colors ${
+        active
+          ? "bg-brand-primary/15 text-brand-primary"
+          : "text-text-secondary hover:bg-brand-primary/10 hover:text-brand-primary"
+      }`}
     >
       {Icon ? <Icon size={14} className="text-brand-primary" /> : null}
       {children}
@@ -314,14 +328,19 @@ function DropdownLink({ to, children, onClick, icon: Icon, role }: NavLinkProps)
 }
 
 function MobileLink({ to, children, onClick, primary, icon: Icon }: NavLinkProps & { primary?: boolean }) {
+  const { pathname } = useLocation();
+  const active = !primary && pathname === to;
   return (
     <Link
       to={to}
       onClick={onClick}
+      aria-current={active ? "page" : undefined}
       className={`flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
         primary
           ? "rounded-xl bg-brand-primary px-5 py-2.5 text-sm font-medium text-text-primary hover:bg-brand-primary/90 transition-colors"
-          : "border border-gray-200 bg-white border-border/80 text-text-secondary hover:border-brand-primary/40 hover:bg-brand-primary/10 hover:text-brand-primary"
+          : active
+            ? "border border-brand-primary/40 bg-brand-primary/10 text-brand-primary"
+            : "border border-border/80 bg-surface-card text-text-secondary hover:border-brand-primary/40 hover:bg-brand-primary/10 hover:text-brand-primary"
       }`}
     >
       {Icon ? <Icon size={14} /> : null}

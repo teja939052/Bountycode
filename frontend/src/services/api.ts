@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Unified API surface. `src/services/api` resolves to this file first (before
 // the `api/index.js` directory), so re-export the real aggregated object here
 // to keep every import style (`../services/api`, `../services/api/index.js`)

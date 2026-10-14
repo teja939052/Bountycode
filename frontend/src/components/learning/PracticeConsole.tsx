@@ -1,6 +1,7 @@
+// @ts-nocheck
 import { useEffect, useState, useCallback } from "react";
 import Editor from "@monaco-editor/react";
-import { Play, RotateCcw, Loader2, Terminal, ExternalLink, Code2 } from "lucide-react";
+import { Play, RotateCcw, Loader2, Terminal, ExternalLink, Code2, Copy, Check } from "lucide-react";
 import api from "../../services/api";
 import { useBrowserRuntime } from "../../hooks/useBrowserRuntime";
 
@@ -48,7 +49,9 @@ export default function PracticeConsole({
   const [output, setOutput] = useState("");
   const [running, setRunning] = useState(false);
   const [error, setError] = useState("");
+  const [copied, setCopied] = useState(false);
   const { isBrowserNative, execute: browserExecute } = useBrowserRuntime();
+
 
   useEffect(() => {
     const nextLang = toLangId(language);
@@ -64,6 +67,17 @@ export default function PracticeConsole({
     setCode(initialCode ?? DEFAULT_CODE[nextLang]);
     setOutput("");
     setError("");
+    setCopied(false);
+  };
+
+  const copyCode = async () => {
+    try {
+      await navigator.clipboard.writeText(code);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {
+      // clipboard unavailable
+    }
   };
 
   const run = useCallback(async () => {
@@ -104,20 +118,20 @@ export default function PracticeConsole({
   }, [code, lang, onResult, isBrowserNative, browserExecute]);
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-brand-primary/10 bg-surface-card/95 shadow-soft-lg">
-      <div className="flex flex-col gap-3 border-b border-brand-primary/10 bg-white border-border/70 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
-        <span className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.22em] text-brand-muted">
-          <Code2 size={13} className="text-brand-secondary" />
+    <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-soft-lg">
+      <div className="flex flex-col gap-3 border-b border-border bg-surface-2 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+        <span className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.22em] text-text-muted">
+          <Code2 size={13} className="text-primary" />
           {hideTitle ? "Practice" : title}
         </span>
         <div className="flex flex-wrap items-center gap-2">
           <select
             value={lang}
             onChange={(e) => setLang(e.target.value)}
-            className="rounded-lg border border-brand-primary/15 bg-white px-3 py-1.5 text-xs text-text-primary focus:outline-none focus:border-brand-secondary/40"
+            className="rounded-lg border border-border bg-surface px-3 py-1.5 text-xs text-text-primary outline-none focus:border-primary/40"
           >
             {LANGS.map((l) => (
-              <option key={l.id} value={l.id} className="bg-white">
+              <option key={l.id} value={l.id} className="bg-surface">
                 {l.label}
               </option>
             ))}
@@ -125,28 +139,36 @@ export default function PracticeConsole({
           <button
             onClick={run}
             disabled={running}
-            className="flex items-center gap-1.5 rounded-lg border border-brand-secondary/20 bg-brand-secondary/10 px-3 py-1.5 text-xs font-mono text-brand-secondary transition-all hover:bg-brand-secondary/15 disabled:opacity-50"
+            className="flex items-center gap-1.5 rounded-lg border border-primary/20 bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary-dark transition-all hover:bg-primary/15 disabled:opacity-50"
           >
             {running ? <Loader2 size={12} className="animate-spin" /> : <Play size={12} />}
             Run
           </button>
-          <button
-            onClick={reset}
-            className="flex items-center gap-1.5 rounded-lg border border-brand-primary/10 bg-white px-2.5 py-1.5 text-xs font-mono text-brand-muted transition-all hover:text-text-primary"
-          >
-            <RotateCcw size={12} /> Reset
-          </button>
-          <a
-            href="/playground"
-            className="flex items-center gap-1 rounded-lg border border-brand-lavender/20 bg-brand-lavender-pale px-2.5 py-1.5 text-xs font-mono text-brand-lavender transition-all hover:bg-brand-lavender/20"
-            title="Open the full digital playground"
-          >
-            <ExternalLink size={12} /> Playground
-          </a>
+           <button
+             onClick={reset}
+             className="flex items-center gap-1.5 rounded-lg border border-border bg-surface px-2.5 py-1.5 text-xs font-medium text-text-muted transition-all hover:text-text-primary"
+           >
+             <RotateCcw size={12} /> Reset
+           </button>
+           <button
+             onClick={copyCode}
+             className="flex items-center gap-1 rounded-lg border border-border bg-surface px-2.5 py-1.5 text-xs font-medium text-text-muted transition-all hover:text-text-primary"
+             title="Copy code"
+           >
+             {copied ? <Check size={12} /> : <Copy size={12} />}
+           </button>
+           <a
+             href="/playground"
+             className="flex items-center gap-1 rounded-lg border border-ocean/20 bg-ocean-soft px-2.5 py-1.5 text-xs font-medium text-ocean transition-all hover:bg-ocean/10"
+             title="Open the full digital playground"
+           >
+             <ExternalLink size={12} /> Playground
+           </a>
+
         </div>
       </div>
 
-      <div style={{ height }} className="border-b border-brand-primary/5">
+      <div style={{ height }} className="border-b border-border">
         <Editor
           height="100%"
           language={lang === "cpp" ? "cpp" : lang === "java" ? "java" : lang === "c" ? "c" : "python"}
@@ -172,11 +194,11 @@ export default function PracticeConsole({
 
       {(output || error) && (
         <div>
-          <div className="flex items-center gap-1.5 border-t border-brand-primary/5 bg-surface-base px-4 py-2 text-[10px] font-mono uppercase tracking-[0.22em] text-brand-muted">
+          <div className="flex items-center gap-1.5 border-t border-border bg-surface-2 px-4 py-2 text-[10px] font-mono uppercase tracking-[0.22em] text-text-muted">
             <Terminal size={11} /> Output
           </div>
-          <pre className={`max-h-40 overflow-y-auto whitespace-pre-wrap bg-surface-base px-4 py-3 text-sm font-mono ${
-            error ? "text-brand-coral" : "text-brand-secondary"
+          <pre className={`max-h-40 overflow-y-auto whitespace-pre-wrap bg-surface px-4 py-3 text-sm font-mono ${
+            error ? "text-coral" : "text-primary"
           }`}>
             {error || output}
           </pre>

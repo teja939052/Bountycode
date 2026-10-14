@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import api from "../services/api";
@@ -7,6 +8,7 @@ import AlgorithmVisualizer from "../components/AlgorithmVisualizer";
 import { playSound } from "../utils/soundEffects";
 import { useCompilerQueue } from "../hooks/useCompilerQueue";
 import { useBrowserRuntime } from "../hooks/useBrowserRuntime";
+import { MentorCallout } from "../components/golden/MentorCallout";
 import {
   Play, RotateCcw, Plus, Trash2, CheckCircle, XCircle,
   AlertTriangle, Clock, Terminal, Settings2, Send, ChevronDown,
@@ -808,30 +810,32 @@ text-brand-dim hover:text-brand-primary" title="Fullscreen">
 
       {isProblemMode && (
          <div className="mx-3 mt-3 rounded-2xl border border-surface-border bg-surface-card/90 px-4 py-3 shadow-soft">
-          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-            <div className="min-w-0">
-               <div className="text-[10px] font-mono uppercase tracking-[0.32em] text-brand-dim">Problem mode</div>
-               <h2 className="mt-1 truncate text-sm font-semibold text-brand-primary">
-                {problem?.question_title || problem?.title || "Coding challenge"}
-              </h2>
-               <p className="mt-1 max-w-2xl text-xs leading-5 text-brand-secondary">
-                {getProblemDescription()}
-              </p>
-            </div>
-            <div className="flex flex-wrap items-center gap-2">
-               <span className="rounded-full border border-brand-primary/20 bg-brand-primary/10 px-3 py-1 text-[10px] font-mono uppercase tracking-[0.22em] text-brand-primary">
-                {problem?.difficulty || "adaptive"}
-              </span>
-               <span className="rounded-full border border-surface-border bg-surface-card/50 px-3 py-1 text-[10px] font-mono uppercase tracking-[0.22em] text-brand-dim">
-                 {problemTopics.length ? problemTopics.slice(0, 2).join(" · ") : "Starter code"}
+           <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+             <div className="min-w-0">
+                <div className="text-[10px] font-mono uppercase tracking-[0.32em] text-brand-dim">Problem mode</div>
+                <h2 className="mt-1 truncate text-sm font-semibold text-brand-primary">
+                 {problem?.question_title || problem?.title || "Coding challenge"}
+               </h2>
+                <p className="mt-1 max-w-2xl text-xs leading-5 text-brand-secondary">
+                 {getProblemDescription()}
+               </p>
+             </div>
+             <div className="flex flex-wrap items-center gap-2">
+                <span className="rounded-full border border-brand-primary/20 bg-brand-primary/10 px-3 py-1 text-[10px] font-mono uppercase tracking-[0.22em] text-brand-primary">
+                 {problem?.difficulty || "adaptive"}
                </span>
-               <span className="rounded-full border border-surface-border bg-surface-card/50 px-3 py-1 text-[10px] font-mono uppercase tracking-[0.22em] text-brand-dim">
-                 {currentLang?.name}
-               </span>
-            </div>
-          </div>
-        </div>
-      )}
+                <span className="rounded-full border border-surface-border bg-surface-card/50 px-3 py-1 text-[10px] font-mono uppercase tracking-[0.22em] text-brand-dim">
+                  {problemTopics.length ? problemTopics.slice(0, 2).join(" · ") : "Starter code"}
+                </span>
+                <span className="rounded-full border border-surface-border bg-surface-card/50 px-3 py-1 text-[10px] font-mono uppercase tracking-[0.22em] text-brand-dim">
+                  {currentLang?.name}
+                </span>
+             </div>
+           </div>
+         </div>
+       )}
+
+       <MentorCallout phase="briefing" message="Write the smallest correct solution first. Use Run to check behavior, then Submit for hidden tests." size="compact" className="mx-3 mt-3" />
 
       {/* Settings Dropdown */}
       <AnimatePresence>

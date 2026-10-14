@@ -3,192 +3,179 @@ import { interviewApi, bookingApi } from "./interview.ts";
 import { resumeApi } from "./resume.ts";
 import { billingApi } from "./billing.ts";
 import { aptitudeApi } from "./aptitude.ts";
-import { behavioralApi } from "./behavioral.ts";
-import { hrApi } from "./hr.ts";
+import { codingApi, compilerApi } from "./coding.ts";
+import { questionsApi } from "./questions.ts";
+import { toolsApi } from "./tools.ts";
+import { companyMocksApi } from "./companyPrep.ts";
+import { gamificationApi } from "./gamification.ts";
+import { oaApi } from "./oa.ts";
+import { systemDesignApi } from "./systemDesign.ts";
+import { learningEventsApi } from "./learningEvents.ts";
+import { analyticsApi } from "./analytics.ts";
+import { adminContentApi, assignmentsApi } from "./adminContent.ts";
+import { onboardingApi } from "./onboarding.ts";
+import { lessonApi, unifiedLearningApi } from "./lesson.ts";
+import { learningModulesApi } from "./learningModules.ts";
+import { studyApi } from "./study.ts";
+import { tcsNqtApi } from "./tcsNqt.ts";
+import { indianPlacementApi } from "./placement.ts";
+import { metricsApi } from "./metrics.ts";
+import { missionApi } from "./missions.ts";
+import { csFundamentalsApi } from "./csFundamentals.ts";
+import { learnerApi } from "./learner.ts";
+import { opportunityApi } from "./opportunity.ts";
+import { searchApi } from "./search.ts";
+import campaignApi from "./campaign.ts";
+import { trialApi } from "./trial.ts";
+import { aiDebuggerApi } from "./aiDebugger.ts";
+import { accountApi } from "./account.ts";
+import { requestWithRetry } from "./request.ts";
+import type { ApiRequestOptions } from "./request.ts";
 
 export {
   cloudinaryImage,
   cloudinaryVideo,
   optimizeImage,
 } from "../cloudinary.ts";
-import { codingApi, compilerApi } from "./coding.ts";
-import { questionsApi } from "./questions.ts";
-import { toolsApi } from "./tools.ts";
-import { companyMocksApi } from "./companyPrep.ts";
-import { gamificationApi } from "./gamification.ts";
-import { rolesApi } from "./roles.ts";
-import { oaApi } from "./oa.ts";
-import { enhancedApi, freePracticeApi } from "./enhanced.ts";
-import { studentApi } from "./student.ts";
-import { placementApi, indianPlacementApi } from "./placement.ts";
-import { systemDesignApi, systemDesignTestsApi } from "./systemDesign.ts";
-import { dailyApi, learningApi, communityApi } from "./community.ts";
-import { studyTimerApi } from "./studyTimer.ts";
-import { companyDirectoryApi } from "./companyDirectory.ts";
-import { adaptiveApi, predictorApi, readinessApi } from "./adaptive.ts";
-import {
-  personalDashboardApi,
-  dsaFingerprintApi,
-  playlistsApi,
-  submissionsApi,
-  featuresApi,
-  visualizationsApi,
-  distributionsApi,
-  analyticsApi,
-  aiDebuggerApi,
-  conceptsApi,
-  evidenceApi,
-  progressApi,
-} from "./misc.ts";
-import { learningModulesApi } from "./learningModules.ts";
-import { studyApi } from "./study.ts";
-import { learningPathsApi, companyTracksApi } from "./learningPaths.ts";
-import { freeTrialApi } from "./freeTrial.ts";
-import { onboardingApi } from "./onboarding.ts";
-import { lessonApi } from "./lesson.ts";
-import { journeyApi } from "./journey.ts";
-import { missionApi } from "./missions.ts";
-import { mapApi } from "./map.ts";
-import { adminContentApi, assignmentsApi } from "./adminContent.ts";
-import { metricsApi } from "./metrics.ts";
-import { tracksApi } from "./tracks.ts";
-import { tcsNqtApi } from "./tcsNqt.ts";
-import { companyLessonsApi } from "./companyLessons.ts";
-import { flatApi } from "./flat.ts";
-import { flatOverrides } from "./flatOverrides.ts";
-import { examMemoriesApi } from "./examMemories.ts";
+
+export { missionApi, csFundamentalsApi, learnerApi, opportunityApi };
+export * from "./types.ts";
+export * from "./curriculum.ts";
 
 const api = {
+  // Flat compatibility surface: pages historically call api.<method>() directly
+  // (e.g. api.startAptitudeTest). Every sub-API is spread here so those calls
+  // resolve; namespaced access (api.billing.*) keeps working alongside.
+  // Four names collide across modules (submitAnswer, getState, getToday,
+  // recordActivity) — no page calls them via the flat surface, and the
+  // namespaced objects remain the source of truth for those.
+  ...authApi,
+  ...interviewApi,
+  ...bookingApi,
+  ...resumeApi,
+  ...billingApi,
+  ...aptitudeApi,
+  ...codingApi,
+  ...compilerApi,
+  ...questionsApi,
+  ...toolsApi,
+  ...companyMocksApi,
+  ...gamificationApi,
+  ...oaApi,
+  ...systemDesignApi,
+  ...learningEventsApi,
+  ...analyticsApi,
+  ...adminContentApi,
+  ...assignmentsApi,
+  ...onboardingApi,
+  ...lessonApi,
+  ...unifiedLearningApi,
+  ...learningModulesApi,
+  ...studyApi,
+  ...tcsNqtApi,
+  ...indianPlacementApi,
+  ...metricsApi,
+  ...missionApi,
+  ...csFundamentalsApi,
+  ...learnerApi,
+  ...opportunityApi,
+  ...searchApi,
+  ...(campaignApi as Record<string, unknown>),
+  ...trialApi,
+  ...aiDebuggerApi,
+  ...accountApi,
+
+  // Legacy long-name aliases: pages call these names, modules define the
+  // short names. Signatures match positionally — keep both in sync.
+  startAptitudeTest: aptitudeApi.startTest,
+  submitAptitudeAnswer: aptitudeApi.submitAnswer,
+  completeAptitudeTest: aptitudeApi.completeTest,
+  getCodingTopics: codingApi.getTopics,
+  startCodingChallengeV2: codingApi.startChallengeV2,
+  submitCodingAnswer: codingApi.submitAnswer,
+  getCodingSolution: codingApi.getSolution,
+  getCodingHint: codingApi.getHint,
+  executeCompilerCode: compilerApi.executeCode,
+  executeCompilerTestCases: compilerApi.executeTestCases,
+  getCompilerBoilerplate: compilerApi.getBoilerplate,
+  traceCompilerCode: compilerApi.traceCode,
+  getQuestionFull: questionsApi.getFull,
+  submitQuestionAnswer: questionsApi.submitAnswer,
+  submitQuestionCode: questionsApi.submitCode,
+  submitNewQuestion: questionsApi.submitQuestion,
+  upvoteQuestion: questionsApi.upvote,
+  getSemanticATS: resumeApi.semanticScore,
+  getSemanticAtsScore: resumeApi.semanticScore,
+  improveBullets: resumeApi.improveBullets,
+  getRepairRetest: missionApi.getRetest,
+  submitRepairRetest: missionApi.submitRetest,
+  getHealthStatus: () => requestWithRetry("/api/v1/health/status"),
+
+  // Raw HTTP verbs for hooks/pages that call endpoints directly
+  // (api.get("/api/v1/...")). Declared last so they win over the three
+  // domain-specific `get`s (adminContent/learningModules) for flat callers;
+  // those remain reachable via their namespaces.
+  get: (endpoint: string, options?: ApiRequestOptions) =>
+    requestWithRetry(endpoint, { ...options, method: "GET" }),
+  post: (endpoint: string, body?: unknown, options?: ApiRequestOptions) =>
+    requestWithRetry(endpoint, {
+      ...options,
+      method: "POST",
+      body: body === undefined ? undefined : JSON.stringify(body),
+      headers: { "Content-Type": "application/json", ...(options?.headers || {}) },
+    }),
+  put: (endpoint: string, body?: unknown, options?: ApiRequestOptions) =>
+    requestWithRetry(endpoint, {
+      ...options,
+      method: "PUT",
+      body: body === undefined ? undefined : JSON.stringify(body),
+      headers: { "Content-Type": "application/json", ...(options?.headers || {}) },
+    }),
+  patch: (endpoint: string, body?: unknown, options?: ApiRequestOptions) =>
+    requestWithRetry(endpoint, {
+      ...options,
+      method: "PATCH",
+      body: body === undefined ? undefined : JSON.stringify(body),
+      headers: { "Content-Type": "application/json", ...(options?.headers || {}) },
+    }),
+  delete: (endpoint: string, options?: ApiRequestOptions) =>
+    requestWithRetry(endpoint, { ...options, method: "DELETE" }),
+
   auth: authApi,
   interview: interviewApi,
   booking: bookingApi,
   resume: resumeApi,
   billing: billingApi,
   aptitude: aptitudeApi,
-  behavioral: behavioralApi,
-  hr: hrApi,
   coding: codingApi,
   compiler: compilerApi,
   questions: questionsApi,
   tools: toolsApi,
   companyMocks: companyMocksApi,
-  companyLessons: companyLessonsApi,
   gamification: gamificationApi,
   oa: oaApi,
-  enhanced: enhancedApi,
-  freePractice: freePracticeApi,
-  student: studentApi,
-  placement: placementApi,
-  indianPlacement: indianPlacementApi,
   systemDesign: systemDesignApi,
-  systemDesignTests: systemDesignTestsApi,
-  daily: dailyApi,
-  learning: learningApi,
-  community: communityApi,
-  studyTimer: studyTimerApi,
-  companyDirectory: companyDirectoryApi,
-  adaptive: adaptiveApi,
-  predictor: predictorApi,
-  readiness: readinessApi,
-  personalDashboard: personalDashboardApi,
-  dsaFingerprint: dsaFingerprintApi,
-  playlists: playlistsApi,
-  submissions: submissionsApi,
-  features: featuresApi,
-  visualizations: visualizationsApi,
-  distributions: distributionsApi,
+  learningEvents: learningEventsApi,
   analytics: analyticsApi,
-  aiDebugger: aiDebuggerApi,
-  concepts: conceptsApi,
-  evidence: evidenceApi,
-  progress: progressApi,
-  learningModules: learningModulesApi,
-  study: studyApi,
-  learningPaths: learningPathsApi,
-  companyTracks: companyTracksApi,
-  freeTrial: freeTrialApi,
-  lesson: lessonApi,
-  journey: journeyApi,
-  mission: missionApi,
-  map: mapApi,
-  onboarding: onboardingApi,
   adminContent: adminContentApi,
   assignments: assignmentsApi,
-  metrics: metricsApi,
-  tracks: tracksApi,
+  onboarding: onboardingApi,
+  lesson: lessonApi,
+  unifiedLearning: unifiedLearningApi,
+  learningModules: learningModulesApi,
+  study: studyApi,
   tcsNqt: tcsNqtApi,
-  examMemories: examMemoriesApi,
-  getMe: () => authApi.getMe(),
-  register: (...args: Parameters<typeof authApi.register>) =>
-    authApi.register.apply(authApi, args),
-  login: (...args: Parameters<typeof authApi.login>) =>
-    authApi.login.apply(authApi, args),
-  logout: (...args: Parameters<typeof authApi.logout>) =>
-    authApi.logout.apply(authApi, args),
-  updateProfile: (...args: Parameters<typeof authApi.updateProfile>) =>
-    authApi.updateProfile.apply(authApi, args),
-  changePassword: (...args: Parameters<typeof authApi.changePassword>) =>
-    authApi.changePassword.apply(authApi, args),
-  forgotPassword: (...args: Parameters<typeof authApi.forgotPassword>) =>
-    authApi.forgotPassword.apply(authApi, args),
-  resetPassword: (...args: Parameters<typeof authApi.resetPassword>) =>
-    authApi.resetPassword.apply(authApi, args),
-  onboardingStatus: (...args: Parameters<typeof authApi.onboardingStatus>) =>
-    authApi.onboardingStatus.apply(authApi, args),
-  onboardingComplete: (
-    ...args: Parameters<typeof authApi.onboardingComplete>
-  ) => authApi.onboardingComplete.apply(authApi, args),
-  ...flatApi,
-  ...flatOverrides,
-  roles: rolesApi,
+  indianPlacement: indianPlacementApi,
+  metrics: metricsApi,
+  missions: missionApi,
+  csFundamentals: csFundamentalsApi,
+  learner: learnerApi,
+  opportunity: opportunityApi,
+  search: searchApi,
+  campaign: campaignApi,
+  trial: trialApi,
+  aiDebugger: aiDebuggerApi,
+  account: accountApi,
 };
 
 export default api;
-
-export {
-  authApi,
-  interviewApi,
-  bookingApi,
-  resumeApi,
-  billingApi,
-  aptitudeApi,
-  behavioralApi,
-  hrApi,
-  codingApi,
-  compilerApi,
-  questionsApi,
-  toolsApi,
-  companyMocksApi,
-  gamificationApi,
-  oaApi,
-  enhancedApi,
-  freePracticeApi,
-  studentApi,
-  placementApi,
-  indianPlacementApi,
-  systemDesignApi,
-  systemDesignTestsApi,
-  adaptiveApi,
-  predictorApi,
-  readinessApi,
-  personalDashboardApi,
-  dsaFingerprintApi,
-  playlistsApi,
-  submissionsApi,
-  featuresApi,
-  visualizationsApi,
-  distributionsApi,
-  analyticsApi,
-  aiDebuggerApi,
-  conceptsApi,
-  learningModulesApi,
-  studyApi,
-  tracksApi,
-  freeTrialApi,
-  lessonApi,
-  journeyApi,
-  missionApi,
-  mapApi,
-  onboardingApi,
-  examMemoriesApi,
-};

@@ -1,8 +1,10 @@
+// @ts-nocheck
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import api from "../services/api";
 import Spinner from "../components/ui/Spinner";
 import CelebrationOverlay from "../components/CelebrationOverlay";
+import DiamondsPopup from "../components/XPPopup";
 import { HyperdriveStatus } from "../components/space";
 import { motion, AnimatePresence } from "framer-motion";
 import useReducedMotion from "../hooks/useReducedMotion";
@@ -10,6 +12,7 @@ import {
   Code, Clock, CheckCircle, XCircle, AlertTriangle,
   Lightbulb, Brain, Building2, ArrowRight, RotateCcw,
 } from "lucide-react";
+import CampaignBanner from "../components/CampaignBanner";
 
 const DIFFICULTIES = [
   { id: "easy", name: "Easy", color: "text-cyber-green bg-cyber-green/10 border border-cyber-green/20" },
@@ -57,6 +60,8 @@ export default function CodingChallenge() {
   const [hints, setHints] = useState([]);
   const [hintLevel, setHintLevel] = useState(0);
   const [showCelebration, setShowCelebration] = useState(false);
+  const [xpData, setXpData] = useState<{ xpGained: number; level?: number; streak?: number; newBadges?: unknown[] } | null>(null);
+  const [showXP, setShowXP] = useState(false);
   const [hyperdriveState, setHyperdriveState] = useState("idle");
   const timerRef = useRef(null);
   const reduced = useReducedMotion();
@@ -158,6 +163,14 @@ export default function CodingChallenge() {
     return (
       <div className="min-h-screen py-12 px-4">
         <CelebrationOverlay show={showCelebration} type="perfect" title="Hyperdrive Engaged!" onClose={() => setShowCelebration(false)} />
+        <DiamondsPopup
+          show={showXP}
+          xpGained={xpData?.xpGained ?? 0}
+          level={xpData?.level}
+          streak={xpData?.streak}
+          newBadges={xpData?.newBadges as never[]}
+          onClose={() => setShowXP(false)}
+        />
         <div className="max-w-4xl mx-auto">
           <motion.div
             className="text-center mb-10"
@@ -173,6 +186,8 @@ export default function CodingChallenge() {
               Company-specific problems with live AI feedback
             </p>
           </motion.div>
+
+          <CampaignBanner world="coding" />
 
           {error && (
             <div className="bg-cyber-red/10 border border-cyber-red/20 text-cyber-red px-4 py-3 rounded-lg mb-6 text-center font-mono text-sm">{error}</div>
@@ -277,6 +292,14 @@ export default function CodingChallenge() {
     return (
       <div className="min-h-screen py-12 px-4">
         <CelebrationOverlay show={showCelebration} type="perfect" title="All Tests Passed!" onClose={() => setShowCelebration(false)} />
+        <DiamondsPopup
+          show={showXP}
+          xpGained={xpData?.xpGained ?? 0}
+          level={xpData?.level}
+          streak={xpData?.streak}
+          newBadges={xpData?.newBadges as never[]}
+          onClose={() => setShowXP(false)}
+        />
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">

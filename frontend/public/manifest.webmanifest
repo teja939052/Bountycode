@@ -1,15 +1,20 @@
 {
-  "name": "BountyCode",
+  "name": "BountyCode — Placement Preparation",
   "short_name": "BountyCode",
-  "description": "AI-powered placement preparation platform — level up your career",
+  "description": "AI-powered placement preparation. Practice coding, take mock interviews, and optimize your resume for ATS.",
+  "id": "/",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#020617",
-  "theme_color": "#10b981",
+  "background_color": "#F7FAF7",
+  "theme_color": "#17263B",
   "orientation": "portrait-primary",
   "icons": [
-    { "src": "/icon.svg", "sizes": "512x512", "type": "image/svg+xml", "purpose": "any" }
+    { "src": "/assets/logo/mark.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-192-maskable.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ],
   "categories": ["education", "productivity"],
   "lang": "en-US"

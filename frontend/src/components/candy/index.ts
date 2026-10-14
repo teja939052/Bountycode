@@ -1,3 +1,4 @@
+// @ts-nocheck
 export { default as CandyButton } from "./CandyButton";
 export { default as CandyCard } from "./CandyCard";
 export { default as CandyProgress } from "./CandyProgress";

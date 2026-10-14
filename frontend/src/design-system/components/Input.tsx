@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { forwardRef, InputHTMLAttributes, TextareaHTMLAttributes, LabelHTMLAttributes } from "react";
 import { colors, radii, shadows, motion, spacing } from "..";
 

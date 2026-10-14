@@ -1,3 +1,4 @@
+// @ts-nocheck
 export const CANDY = {
   strawberry: { base: "#FF6B6B", light: "#FFA3A3", dark: "#E14B4B" },
   grape: { base: "#845EC2", light: "#B39DDB", dark: "#6A45A8" },

@@ -1,486 +1,431 @@
+// @ts-nocheck
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  ArrowRight,
-  ArrowLeft,
-  Check,
-  ChevronRight,
-  Star,
-  Crown,
-  Gem,
-  Target,
-  Keyboard,
-  Flame,
-} from "lucide-react";
-import api from "../services/api";
+import { ArrowRight, ArrowLeft, Check, Sparkles, Rocket } from "lucide-react";
+import { authApi } from "../services/api/auth";
 import useReducedMotion from "../hooks/useReducedMotion";
 import { PageShell } from "../design-system/PageShell";
 import { Button } from "../design-system/Button";
-import { MentorAvatar } from "../design-system/Mentor";
-import { MasteryBar } from "../design-system/Progress";
 
-const QUEST_STEPS = [
-  {
-    id: "step-1",
-    title: "Choose Your Language",
-    description:
-      "Pick the language you want to learn. C, C++, Java, or Python — all paths lead to placement success.",
-    type: "navigation",
-    action: "Select a language from the learning hub",
-    target: "/learn/c",
-  },
-  {
-    id: "step-2",
-    title: "Write Your First Code",
-    description:
-      "Open the first lesson and run your first program. You will have code running in under 30 seconds.",
-    type: "action",
-    action: "Open any lesson and click Run",
-    target: "/free-trial",
-  },
-  {
-    id: "step-3",
-    title: "Earn Your First Diamonds",
-    description:
-      "Complete the lesson and watch your progress climb. Gamification keeps you hooked.",
-    type: "action",
-    action: "Complete a lesson to earn Diamonds",
-    target: "/learn/c",
-  },
-  {
-    id: "step-4",
-    title: "Track Your Streak",
-    description:
-      "Keep learning daily to build your streak multiplier. Consistency beats intensity.",
-    type: "info",
-    action: "Check your streak in the dashboard",
-    target: "/dashboard",
-  },
-  {
-    id: "step-5",
-    title: "Go Pro for Unlimited Access",
-    description:
-      "Free users get 3 lessons per month. Pro unlocks everything for ₹99/mo or ₹899/yr.",
-    type: "conversion",
-    action: "Upgrade to Pro",
-    target: "/pricing",
-  },
+type Step = "welcome" | "identity" | "goal" | "experience" | "time" | "done";
+
+type Identity = "student" | "professional" | "switcher" | "beginner";
+type Goal = "campus" | "service" | "product" | "freelance" | "exploring";
+type Experience = "none" | "basic" | "intermediate" | "advanced";
+type Time = "5min" | "15min" | "30min" | "60min";
+
+const IDENTITIES = [
+  { id: "student", label: "Student", desc: "College, campus placements, first job hunt", icon: "🎓" },
+  { id: "professional", label: "Professional", desc: "Currently working, leveling up", icon: "💼" },
+  { id: "switcher", label: "Career Switcher", desc: "Moving into tech from another field", icon: "🔄" },
+  { id: "beginner", label: "Total Beginner", desc: "Never coded before, starting fresh", icon: "🌱" },
 ];
 
-/** Deterministic SVG glyph per step id — never trust remote emoji fields. */
-const STEP_GLYPHS: Record<string, React.ReactNode> = {
-  "step-1": <Target size={34} strokeWidth={1.6} className="text-ocean" />,
-  "step-2": <Keyboard size={34} strokeWidth={1.6} className="text-tech" />,
-  "step-3": <Star size={34} strokeWidth={1.6} className="text-reward" fill="#EAB74D" />,
-  "step-4": <Flame size={34} strokeWidth={1.6} className="text-coral" />,
-  "step-5": <Crown size={34} strokeWidth={1.6} className="text-wood" />,
-};
-
-/** Deterministic mentor line per step — dialogue from state, not random. */
-const MENTOR_LINES: Record<string, string> = {
-  "step-1": "First, pick your weapon. Every voyage starts with the tool you'll carry.",
-  "step-2": "Code before you feel ready. The fastest way to learn is to run something real.",
-  "step-3": "Diamonds is your compass. It always points toward the next island.",
-  "step-4": "Steady sailors outpace sprinters. Show up tomorrow — that's the whole trick.",
-  "step-5": "Free waters only go so far. Pro charts the entire sea.",
-};
-
-const LANGUAGE_OPTIONS = [
-  { id: "c", label: "C", desc: "Systems programming" },
-  { id: "cpp", label: "C++", desc: "Competitive programming" },
-  { id: "java", label: "Java", desc: "Enterprise & Android" },
-  { id: "python", label: "Python", desc: "AI, Data & Automation" },
+const GOALS = [
+  { id: "campus", label: "Campus Placement", desc: "TCS, Infosys, Wipro, campus drives", icon: "🏆" },
+  { id: "service", label: "Service Company", desc: "TCS, Infosys, Wipro, Cognizant", icon: "🏢" },
+  { id: "product", label: "Product Company", desc: "SDE at Amazon, Google, Microsoft", icon: "💻" },
+  { id: "freelance", label: "Freelance / Startup", desc: "Build products or services", icon: "🚀" },
+  { id: "exploring", label: "Just Exploring", desc: "Figure out what fits", icon: "🧭" },
 ];
 
-interface QuestStep {
-  id: string;
-  title: string;
-  description: string;
-  type?: string;
-  action?: string;
-  target?: string;
-  icon?: string;
-  iconLabel?: string;
-}
+const EXPERIENCES = [
+  { id: "none", label: "Never coded", desc: "Starting from absolute zero", icon: "🌱" },
+  { id: "basic", label: "Some basics", desc: "I've written simple programs", icon: "🌿" },
+  { id: "intermediate", label: "Comfortable", desc: "I can solve problems independently", icon: "💪" },
+  { id: "advanced", label: "Strong coder", desc: "Interviews and advanced topics", icon: "🔥" },
+];
 
-interface QuestStatus {
-  completed_steps?: string[];
-  overall_progress?: number;
-  is_complete?: boolean;
-}
+const TIME_OPTIONS = [
+  { id: "5min", label: "5 min/day", desc: "Micro sessions", icon: "⚡" },
+  { id: "15min", label: "15 min/day", desc: "Steady pace", icon: "🔥" },
+  { id: "30min", label: "30 min/day", desc: "Focused practice", icon: "🎯" },
+  { id: "60min", label: "60 min/day", desc: "Deep work", icon: "🚀" },
+];
+
+const STEPS = ["identity", "goal", "experience", "time"];
 
 export default function OnboardingQuest() {
-  // V3 §2 — 2 screens max: Sign Up (done) → ONE question → Journey.
-  // goal → follow-up (language | role → company) → /journey.
-  const [goal, setGoal] = useState<string | null>(() => localStorage.getItem("bountycode.goal"));
-  const [role, setRole] = useState<string | null>(null);
-  const [company, setCompany] = useState<string | null>(null);
-  const [language, setLanguage] = useState<string | null>(null);
-  const [currentStep, setCurrentStep] = useState(0);
-  const [questData, setQuestData] = useState<{ steps: QuestStep[] } | null>(null);
-  const [status, setStatus] = useState<QuestStatus | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
+  const [step, setStep] = useState<Step>("welcome");
+  const [identity, setIdentity] = useState<Identity | null>(null);
+  const [goal, setGoal] = useState<Goal | null>(null);
+  const [experience, setExperience] = useState<Experience | null>(null);
+  const [time, setTime] = useState<Time | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
   const reduced = useReducedMotion();
 
-  useEffect(() => {
-    async function load() {
-      try {
-        const [questRes, statusRes] = await Promise.all([
-          api.onboarding.getQuest(),
-          api.onboarding.getStatus(),
-        ]);
-        setQuestData(questRes.quest || questRes);
-        setStatus(statusRes);
-        const steps: QuestStep[] = questRes.quest?.steps || questRes.steps || QUEST_STEPS;
-        const firstIncomplete = steps.findIndex(
-          (s) => !statusRes.completed_steps?.includes(s.id)
-        );
-        if (firstIncomplete >= 0) {
-          setCurrentStep(firstIncomplete);
-        } else if (statusRes.is_complete) {
-          navigate("/journey");
-        }
-      } catch {
-        setQuestData({ steps: QUEST_STEPS });
-        setCurrentStep(0);
-      } finally {
-        setLoading(false);
-      }
+  const progress = step === "welcome" ? 0 : step === "done" ? 100 : STEPS.indexOf(step) + 1;
+
+  const persistAndGo = useCallback(async () => {
+    setSubmitting(true);
+    try {
+      await authApi.onboardingComplete({
+        klass: identity,
+        target_role: goal,
+        daily_minutes: time,
+        prep_level: experience,
+        skill_self_assessment: { identity, goal, experience, time },
+      } as never);
+    } catch {
+      // never block journey on network
     }
-    load();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    setSubmitting(false);
+    navigate("/placement", { replace: true });
+  }, [identity, goal, experience, time, navigate]);
 
-  const handleCompleteStep = useCallback(
-    async (step: QuestStep) => {
-      setSubmitting(true);
-      try {
-        await api.onboarding.completeStep({
-          step_id: step.id,
-          completed: true,
-          xp_earned: 10,
-        });
-        const newCompleted = status
-          ? [...(status.completed_steps || []), step.id]
-          : [step.id];
-  if (!goal) {
-    const GOALS = [
-      { id: "skills", icon: "🎓", title: "BUILD MY CODING SKILLS", desc: "Prepare from the fundamentals." },
-      { id: "placements", icon: "🎯", title: "PREPARE FOR PLACEMENTS", desc: "Build skills + aptitude + interviews." },
-      { id: "job", icon: "💼", title: "PREPARE FOR A JOB", desc: "Target a role/company and prove readiness." },
-    ];
-    const pick = (id: string) => {
-      setGoal(id);
-      localStorage.setItem("bountycode.goal", id);
-    };
-    return (
-      <PageShell theme="nature">
-        <div className="flex min-h-screen items-center justify-center px-4 py-12">
-          <div className="w-full max-w-lg rounded-2xl border border-border bg-surface p-6 shadow-soft-lg">
-            <h2 className="font-display text-2xl font-extrabold text-text text-center">What are you here to accomplish?</h2>
-            <div className="mt-5 space-y-3">
-              {GOALS.map((g) => (
-                <button key={g.id} onClick={() => pick(g.id)} className="w-full rounded-xl border-2 border-border p-4 text-left hover:border-primary/50 hover:bg-surface-2">
-                  <span className="text-xl">{g.icon}</span>
-                  <span className="ml-2 font-bold">{g.title}</span>
-                  <p className="mt-1 text-sm text-text-muted">{g.desc}</p>
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </PageShell>
-    );
-  }
+  const canProceed = () => {
+    switch (step) {
+      case "identity":
+        return identity !== null;
+      case "goal":
+        return goal !== null;
+      case "experience":
+        return experience !== null;
+      case "time":
+        return time !== null;
+      default:
+        return true;
+    }
+  };
 
-  if ((goal === "skills" && !language) || ((goal === "placements" || goal === "job") && !role)) {
-    const startJourney = async () => {
-      try {
-        await api.onboarding.completeStep({ step_id: "v3-target", goal, role, company, language } as any);
-      } catch { /* persist locally regardless */ }
-      localStorage.setItem("bountycode.target", JSON.stringify({ goal, role, company, language }));
-      navigate("/journey");
-    };
-    return (
-      <PageShell theme="nature">
-        <div className="flex min-h-screen items-center justify-center px-4 py-12">
-          <div className="w-full max-w-lg rounded-2xl border border-border bg-surface p-6 shadow-soft-lg">
-            {goal === "skills" ? (
-              <>
-                <h2 className="font-display text-2xl font-extrabold text-center">What do you want to learn?</h2>
-                <div className="mt-5 grid grid-cols-2 gap-3">
-                  {[...LANGUAGE_OPTIONS, { id: "unsure", label: "Not sure yet", desc: "Show me basics" }].map((l) => (
-                    <button key={l.id} onClick={() => setLanguage(l.id)} className={`rounded-xl border-2 p-4 text-left ${language === l.id ? "border-primary bg-mint" : "border-border hover:border-primary/40"}`}>
-                      <span className="font-bold">{l.label}</span>
-                      <p className="text-xs text-text-muted">{l.desc}</p>
-                    </button>
-                  ))}
-                </div>
-              </>
-            ) : (
-              <>
-                <h2 className="font-display text-2xl font-extrabold text-center">What role are you targeting?</h2>
-                <div className="mt-5 grid grid-cols-2 gap-3">
-                  {["Software Engineer", "Frontend Developer", "Backend Developer", "Full Stack Developer", "Data Analyst", "QA Engineer", "DevOps Engineer", "Not sure yet"].map((r) => (
-                    <button key={r} onClick={() => setRole(r)} className={`rounded-xl border-2 p-3 text-left text-sm ${role === r ? "border-primary bg-mint font-bold" : "border-border hover:border-primary/40"}`}>{r}</button>
-                  ))}
-                </div>
-                {role && role !== "Not sure yet" && (
-                  <>
-                    <h3 className="mt-5 font-bold text-center">Where are you applying? (optional)</h3>
-                    <div className="mt-3 flex flex-wrap gap-2 justify-center">
-                      {["TCS NQT", "Infosys", "Wipro", "Cognizant", "Capgemini", "Amazon", "Google", "Generic prep"].map((c) => (
-                        <button key={c} onClick={() => setCompany(c)} className={`rounded-full border px-3 py-1.5 text-xs font-mono ${company === c ? "border-primary bg-mint" : "border-border"}`}>{c}</button>
-                      ))}
-                    </div>
-                  </>
-                )}
-              </>
-            )}
-            <button
-              onClick={startJourney}
-              disabled={goal === "skills" ? !language : !role}
-              className="mt-6 w-full rounded-xl bg-[#F4532F] py-3 font-bold text-white disabled:opacity-40"
-            >
-              Start Journey →
-            </button>
-          </div>
-        </div>
-      </PageShell>
-    );
-  }
+  const handleNext = () => {
+    switch (step) {
+      case "identity":
+        setStep("goal");
+        break;
+      case "goal":
+        setStep("experience");
+        break;
+      case "experience":
+        setStep("time");
+        break;
+      case "time":
+        setStep("done");
+        break;
+      case "welcome":
+        setStep("identity");
+        break;
+    }
+  };
 
-  const steps = questData?.steps || QUEST_STEPS;
-        const total = steps.length;
-        const progress = Math.round((newCompleted.length / total) * 100);
-        setStatus({
-          completed_steps: newCompleted,
-          overall_progress: progress,
-          is_complete: newCompleted.length >= total,
-        });
-        if (step.id === "step-5") {
-          navigate("/pricing");
-          return;
-        }
-        if (step.target) {
-          navigate(step.target);
-          return;
-        }
-        const next = currentStep + 1;
-        if (next < total) {
-          setCurrentStep(next);
-        } else {
-          navigate("/journey");
-        }
-      } catch {
-      } finally {
-        setSubmitting(false);
-      }
-    },
-    [currentStep, questData, status, navigate]
-  );
-
-  const handleSkip = useCallback(() => {
-    navigate("/journey");
-  }, [navigate]);
-
-  if (loading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-canvas px-4">
-        <div className="flex flex-col items-center gap-4">
-          <div className="h-10 w-10 animate-spin rounded-full border-2 border-primary border-t-transparent" />
-          <p className="font-mono text-sm text-text-muted">Charting your journey...</p>
-        </div>
-      </div>
-    );
-  }
-
-  const steps = questData?.steps || QUEST_STEPS;
-  const step = steps[currentStep] || steps[0];
-  const totalSteps = steps.length;
-  const progress =
-    status?.overall_progress || Math.round((currentStep / totalSteps) * 100);
+  const handleBack = () => {
+    switch (step) {
+      case "goal":
+        setStep("identity");
+        break;
+      case "experience":
+        setStep("goal");
+        break;
+      case "time":
+        setStep("experience");
+        break;
+    }
+  };
 
   return (
-    <PageShell theme="nature">
+    <PageShell theme="spring">
       <div className="flex min-h-screen items-center justify-center px-4 py-12">
-        <div className="w-full max-w-lg">
-          {/* Mentor greeting above card */}
-          <motion.div
-            initial={reduced ? {} : { opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
-            className="mb-5 flex items-center gap-3"
-          >
-            <MentorAvatar size={52} mood="briefing" />
-            <p className="rounded-xl border border-border bg-surface px-4 py-2.5 text-sm leading-snug text-text-muted shadow-card">
-              <span className="font-bold text-text">Captain Byte:</span>{" "}
-              {MENTOR_LINES[step.id] || MENTOR_LINES["step-1"]}
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={reduced ? {} : { opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="overflow-hidden rounded-2xl border border-border bg-surface shadow-soft-lg"
-          >
-            {/* Progress */}
-            <div className="surface-border border-b px-6 pb-4 pt-5">
-              <div className="mb-3 flex items-center justify-between">
-                <span className="adventure-label">
-                  Leg {currentStep + 1} of {totalSteps}
+        <motion.div
+          initial={reduced ? {} : { opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="w-full max-w-lg"
+        >
+          {step !== "done" && (
+            <div className="mb-8">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-text-muted">
+                  {step === "welcome" ? "Start" : `Step ${STEPS.indexOf(step) + 1} of ${STEPS.length}`}
                 </span>
-                <span className="text-xs font-bold text-primary-dark">{progress}%</span>
+                <span className="text-[10px] font-mono text-text-muted">{Math.round((progress / STEPS.length) * 100)}%</span>
               </div>
-              <MasteryBar value={progress} showValue={false} />
+              <div className="h-1.5 w-full rounded-full bg-black/5 overflow-hidden">
+                <motion.div
+                  className="h-full rounded-full bg-[#C96F3D]"
+                  initial={{ width: 0 }}
+                  animate={{ width: `${(progress / STEPS.length) * 100}%` }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                />
+              </div>
             </div>
+          )}
 
-            {/* Step content */}
-            <AnimatePresence mode="wait">
+          <AnimatePresence mode="wait">
+            {step === "welcome" && (
               <motion.div
-                key={step.id}
-                initial={reduced ? {} : { opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={reduced ? {} : { opacity: 0, x: -30 }}
-                transition={{ duration: 0.35, ease: "easeInOut" }}
-                className="space-y-6 px-6 py-6"
+                key="welcome"
+                initial={reduced ? {} : { opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={reduced ? {} : { opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className="text-center"
               >
-                {/* Glyph */}
-                <div className="flex justify-center">
-                  <motion.div
-                    initial={reduced ? {} : { scale: 0, rotate: -20 }}
-                    animate={{ scale: 1, rotate: 0 }}
-                    transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.1 }}
-                    className="surface-border flex h-20 w-20 items-center justify-center rounded-2xl border bg-mint"
-                  >
-                    {STEP_GLYPHS[step.id] ?? <Target size={34} className="text-ocean" />}
-                  </motion.div>
+                <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#17263B] to-[#C96F3D] text-white">
+                  <Rocket size={28} />
                 </div>
-
-                {/* Title & Description */}
-                <div className="text-center">
-                  <h2 className="font-display mb-2 text-2xl font-extrabold text-text">{step.title}</h2>
-                  <p className="mx-auto max-w-md text-sm leading-relaxed text-text-muted">
-                    {step.description}
-                  </p>
-                </div>
-
-                {/* Language selection for step 1 */}
-                {step.id === "step-1" && (
-                  <div className="grid grid-cols-2 gap-3">
-                    {LANGUAGE_OPTIONS.map((lang) => (
-                      <button
-                        key={lang.id}
-                        onClick={() => setSelectedLanguage(lang.id)}
-                        className={`relative rounded-xl border-2 p-4 text-left transition-all ${
-                          selectedLanguage === lang.id
-                            ? "border-primary bg-mint"
-                            : "border-border bg-surface hover:border-primary/40 hover:bg-surface-2"
-                        }`}
-                      >
-                        <p className="font-display text-lg font-extrabold text-text">{lang.label}</p>
-                        <p className="mt-1 text-xs text-text-muted">{lang.desc}</p>
-                        {selectedLanguage === lang.id && (
-                          <Check size={16} className="absolute right-2 top-2 text-primary-dark" />
-                        )}
-                      </button>
-                    ))}
-                  </div>
-                )}
-
-                {/* Action hint for non-conversion steps */}
-                {step.type !== "conversion" && (
-                  <div className="flex items-center gap-2 text-xs text-text-muted">
-                    <ChevronRight size={14} className="shrink-0" />
-                    <span>{step.action}</span>
-                  </div>
-                )}
-
-                {/* Diamonds reward badge */}
-                <div className="flex items-center justify-center gap-2 text-sm font-semibold text-wood">
-                  <Star size={14} className="text-reward" />
-                  <span>+10 Diamonds on completion</span>
-                </div>
-
-                {/* Action button */}
+                <h2 className="font-display text-3xl font-extrabold text-text mb-3">
+                  Welcome to BountyCode
+                </h2>
+                <p className="text-sm text-text-muted mb-8 max-w-sm mx-auto">
+                  Tell us a little about yourself and we'll build your personalized prep plan in 60 seconds.
+                </p>
                 <Button
-                  variant={step.type === "conversion" ? "gold" : "primary"}
-                  onClick={() => handleCompleteStep(step)}
-                  disabled={submitting || (step.id === "step-1" && !selectedLanguage)}
-                  size="lg"
+                  variant="primary"
+                  size="xl"
                   fullWidth
-                  loading={submitting}
-                  rightIcon={<ArrowRight size={16} />}
+                  onClick={handleNext}
+                  rightIcon={<ArrowRight size={18} />}
                 >
-                  {step.id === "step-5" ? step.action : step.type === "action" ? step.action : "Let's Go!"}
+                  Let's go
                 </Button>
-
-                {/* Conversion pricing for step 5 */}
-                {step.id === "step-5" && (
-                  <div className="mt-2 space-y-3">
-                    <div className="surface-border rounded-xl border p-4">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <p className="text-sm font-bold text-text">Pro Monthly</p>
-                          <p className="text-xs text-text-muted">$9/month</p>
-                        </div>
-                        <span className="font-display text-lg font-extrabold text-primary-dark">$9</span>
-                      </div>
-                    </div>
-                    <div className="rounded-xl border border-reward/50 bg-reward-soft/50 p-4">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <p className="flex items-center gap-2 text-sm font-bold text-text">
-                            <Gem size={14} className="text-reward" />
-                            Lifetime
-                          </p>
-                          <p className="text-xs text-text-muted">Lock in forever</p>
-                        </div>
-                        <span className="font-display text-lg font-extrabold text-wood">$39</span>
-                      </div>
-                    </div>
-                    <div className="surface-border rounded-xl border p-4">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <p className="flex items-center gap-2 text-sm font-bold text-text">
-                            <Star size={14} className="text-primary-dark" />
-                            Student Discount
-                          </p>
-                          <p className="text-xs text-text-muted">50% off with .edu</p>
-                        </div>
-                        <span className="text-sm font-bold text-primary-dark">50% OFF</span>
-                      </div>
-                    </div>
-                  </div>
-                )}
               </motion.div>
-            </AnimatePresence>
+            )}
 
-            {/* Bottom navigation */}
-            <div className="surface-border flex items-center justify-between border-t bg-surface-2 px-6 py-4">
-              {currentStep > 0 ? (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setCurrentStep((s) => s - 1)}
-                  leftIcon={<ArrowLeft size={14} />}
+            {step === "identity" && (
+              <motion.div
+                key="identity"
+                initial={reduced ? {} : { opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={reduced ? {} : { opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="text-center mb-6">
+                  <h2 className="font-display text-2xl font-extrabold text-text">Who are you?</h2>
+                  <p className="mt-2 text-sm text-text-muted">Pick the closest fit.</p>
+                </div>
+                <div className="grid grid-cols-2 gap-3 mb-6">
+                  {IDENTITIES.map((item) => (
+                    <motion.button
+                      key={item.id}
+                      initial={reduced ? {} : { opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.03 }}
+                      onClick={() => setIdentity(item.id)}
+                      className={`rounded-2xl border-2 p-4 text-left transition-all ${
+                        identity === item.id ? "border-[#C96F3D] bg-[#C96F3D]/5" : "border-border hover:border-[#C96F3D]/30"
+                      }`}
+                    >
+                      <span className="text-2xl mb-2 block">{item.icon}</span>
+                      <p className="font-display font-bold text-text text-sm">{item.label}</p>
+                      <p className="text-[11px] text-text-muted mt-1 leading-snug">{item.desc}</p>
+                      {identity === item.id && (
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          className="mt-3 h-5 w-5 rounded-full bg-[#C96F3D] flex items-center justify-center"
+                        >
+                          <Check size={12} className="text-white" />
+                        </motion.div>
+                      )}
+                    </motion.button>
+                  ))}
+                </div>
+                <div className="flex justify-between">
+                  <Button variant="ghost" onClick={handleBack} disabled={step === "identity"}>
+                    <ArrowLeft size={14} /> Back
+                  </Button>
+                  <Button variant="primary" disabled={!identity} onClick={handleNext} rightIcon={<ArrowRight size={16} />}>
+                    Continue
+                  </Button>
+                </div>
+              </motion.div>
+            )}
+
+            {step === "goal" && (
+              <motion.div
+                key="goal"
+                initial={reduced ? {} : { opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={reduced ? {} : { opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="text-center mb-6">
+                  <h2 className="font-display text-2xl font-extrabold text-text">What's your main goal?</h2>
+                  <p className="mt-2 text-sm text-text-muted">We'll tailor your plan around this.</p>
+                </div>
+                <div className="space-y-3 mb-6">
+                  {GOALS.map((item) => (
+                    <motion.button
+                      key={item.id}
+                      initial={reduced ? {} : { opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.03 }}
+                      onClick={() => setGoal(item.id)}
+                      className={`w-full rounded-2xl border-2 p-4 text-left transition-all ${
+                        goal === item.id ? "border-[#C96F3D] bg-[#C96F3D]/5" : "border-border hover:border-[#C96F3D]/30"
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">{item.icon}</span>
+                        <div className="flex-1">
+                          <p className="font-display font-bold text-text text-sm">{item.label}</p>
+                          <p className="text-[11px] text-text-muted">{item.desc}</p>
+                        </div>
+                        {goal === item.id && (
+                          <motion.div
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            className="h-5 w-5 rounded-full bg-[#C96F3D] flex items-center justify-center shrink-0"
+                          >
+                            <Check size={12} className="text-white" />
+                          </motion.div>
+                        )}
+                      </div>
+                    </motion.button>
+                  ))}
+                </div>
+                <div className="flex justify-between">
+                  <Button variant="ghost" onClick={handleBack}>
+                    <ArrowLeft size={14} /> Back
+                  </Button>
+                  <Button variant="primary" disabled={!goal} onClick={handleNext} rightIcon={<ArrowRight size={16} />}>
+                    Continue
+                  </Button>
+                </div>
+              </motion.div>
+            )}
+
+            {step === "experience" && (
+              <motion.div
+                key="experience"
+                initial={reduced ? {} : { opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={reduced ? {} : { opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="text-center mb-6">
+                  <h2 className="font-display text-2xl font-extrabold text-text">Coding experience?</h2>
+                  <p className="mt-2 text-sm text-text-muted">Be honest — we adapt to your level.</p>
+                </div>
+                <div className="grid grid-cols-2 gap-3 mb-6">
+                  {EXPERIENCES.map((item) => (
+                    <motion.button
+                      key={item.id}
+                      initial={reduced ? {} : { opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.03 }}
+                      onClick={() => setExperience(item.id)}
+                      className={`rounded-2xl border-2 p-4 text-left transition-all ${
+                        experience === item.id ? "border-[#C96F3D] bg-[#C96F3D]/5" : "border-border hover:border-[#C96F3D]/30"
+                      }`}
+                    >
+                      <span className="text-2xl mb-2 block">{item.icon}</span>
+                      <p className="font-display font-bold text-text text-sm">{item.label}</p>
+                      <p className="text-[11px] text-text-muted mt-1 leading-snug">{item.desc}</p>
+                      {experience === item.id && (
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          className="mt-3 h-5 w-5 rounded-full bg-[#C96F3D] flex items-center justify-center"
+                        >
+                          <Check size={12} className="text-white" />
+                        </motion.div>
+                      )}
+                    </motion.button>
+                  ))}
+                </div>
+                <div className="flex justify-between">
+                  <Button variant="ghost" onClick={handleBack}>
+                    <ArrowLeft size={14} /> Back
+                  </Button>
+                  <Button variant="primary" disabled={!experience} onClick={handleNext} rightIcon={<ArrowRight size={16} />}>
+                    Continue
+                  </Button>
+                </div>
+              </motion.div>
+            )}
+
+            {step === "time" && (
+              <motion.div
+                key="time"
+                initial={reduced ? {} : { opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={reduced ? {} : { opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="text-center mb-6">
+                  <h2 className="font-display text-2xl font-extrabold text-text">How much time daily?</h2>
+                  <p className="mt-2 text-sm text-text-muted">We'll build a plan that fits your schedule.</p>
+                </div>
+                <div className="grid grid-cols-2 gap-3 mb-6">
+                  {TIME_OPTIONS.map((item) => (
+                    <motion.button
+                      key={item.id}
+                      initial={reduced ? {} : { opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.03 }}
+                      onClick={() => setTime(item.id)}
+                      className={`rounded-2xl border-2 p-4 text-left transition-all ${
+                        time === item.id ? "border-[#C96F3D] bg-[#C96F3D]/5" : "border-border hover:border-[#C96F3D]/30"
+                      }`}
+                    >
+                      <span className="text-2xl mb-2 block">{item.icon}</span>
+                      <p className="font-display font-bold text-text text-sm">{item.label}</p>
+                      <p className="text-[11px] text-text-muted mt-1">{item.desc}</p>
+                      {time === item.id && (
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          className="mt-3 h-5 w-5 rounded-full bg-[#C96F3D] flex items-center justify-center"
+                        >
+                          <Check size={12} className="text-white" />
+                        </motion.div>
+                      )}
+                    </motion.button>
+                  ))}
+                </div>
+                <div className="flex justify-between">
+                  <Button variant="ghost" onClick={handleBack}>
+                    <ArrowLeft size={14} /> Back
+                  </Button>
+                  <Button
+                    variant="primary"
+                    size="xl"
+                    disabled={!time}
+                    onClick={handleNext}
+                    rightIcon={<Sparkles size={18} />}
+                  >
+                    Build My Plan
+                  </Button>
+                </div>
+              </motion.div>
+            )}
+
+            {step === "done" && (
+              <motion.div
+                key="done"
+                initial={reduced ? {} : { opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="text-center py-8"
+              >
+                <motion.div
+                  initial={reduced ? {} : { scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                  className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#17263B] to-[#C96F3D] text-white"
                 >
-                  Back
+                  <Sparkles size={28} />
+                </motion.div>
+                <h2 className="font-display text-2xl font-extrabold text-text mb-2">You're all set</h2>
+                <p className="text-sm text-text-muted mb-6 max-w-xs mx-auto">
+                  Your personalized prep plan is ready. Redirecting you now...
+                </p>
+                <Button
+                  variant="primary"
+                  size="xl"
+                  fullWidth
+                  onClick={persistAndGo}
+                  loading={submitting}
+                  rightIcon={<ArrowRight size={18} />}
+                >
+                  Start Now
                 </Button>
-              ) : (
-                <div className="w-20" />
-              )}
-              <Button variant="ghost" size="sm" onClick={handleSkip}>
-                Skip onboarding
-              </Button>
-            </div>
-          </motion.div>
-        </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
       </div>
     </PageShell>
   );

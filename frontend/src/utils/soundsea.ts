@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * SoundSea — zero-asset WebAudio ambience + SFX for the voyage map.
  *

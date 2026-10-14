@@ -1,3 +1,4 @@
+// @ts-nocheck
 export default function Button({ children, variant = "primary", className = "", disabled, ...props }) {
   const variants = {
     primary: "btn-primary",

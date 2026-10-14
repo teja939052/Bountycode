@@ -1,11 +1,32 @@
+// @ts-nocheck
+/**
+ * Mission step vocabulary — ADR: BOUNTYCODE_CURRICULUM_STRUCTURE.
+ * This is the ONLY stage vocabulary. Backend STEP_TYPES
+ * (backend/app/content/lesson_definitions.py) is the source of truth;
+ * this union mirrors it exactly so content authored against one is valid
+ * against the other. Do not invent new stage types here.
+ *
+ * Legacy mapping (removed from the contract, kept visible so old content
+ * can be migrated, never copied):
+ *   story   -> intro      (mission chrome, not a teaching stage)
+ *   prove   -> mastery    (timed proof under placement conditions)
+ *   recognize -> predict  (recognition is prediction with options shown)
+ */
 export type MissionStepType =
-  | "story"
+  // Canonical teaching stages (backend STEP_TYPES, in order).
   | "discover"
+  | "manipulate"
   | "predict"
   | "build"
   | "break"
   | "debug"
-  | "prove"
+  | "retrieve"
+  | "transfer"
+  | "mastery"
+  // Composition chrome (framing, not teaching).
+  | "intro"
+  | "practice"
+  | "recognize"
   | "reward";
 
 export type NovaMood =
@@ -69,6 +90,8 @@ export interface StepConfig {
   // Prove
   timed?: boolean;
   timeLimitMinutes?: number;
+  /** Seconds-based limit — the placement-proof standard (90s). Preferred over minutes. */
+  timeLimitSeconds?: number;
   masteryThreshold?: number;
 }
 

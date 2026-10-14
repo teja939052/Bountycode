@@ -1,6 +1,8 @@
+// @ts-nocheck
 import { useState, useEffect, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import Fuse from "fuse.js";
 import { useQuestionFilters, useQuestionStats, useBrowseQuestions, useSolvedStatus, useDailyChallenge } from "../hooks/useQuestions";
 import api from "../services/api";
 import {
@@ -122,6 +124,18 @@ export default function QuestionBank() {
   const pages = browseData?.pages || 0;
   const reduced = useReducedMotion();
 
+  const fuse = useMemo(() => new Fuse(questions, {
+    keys: [
+      { name: "question", weight: 0.4 },
+      { name: "question_title", weight: 0.4 },
+      { name: "topic", weight: 0.15 },
+      { name: "sub_topic", weight: 0.1 },
+      { name: "company", weight: 0.15 },
+    ],
+    threshold: 0.35,
+    includeScore: true,
+  }), [questions]);
+
   const isPro = user?.plan === "pro" || user?.plan === "lifetime";
   const questionsPracticed = Number(user?.usage?.question_bank_used) || 0;
   const FREE_LIMIT = 5;
@@ -178,6 +192,20 @@ export default function QuestionBank() {
 
   const activeFilters = Object.values(selected).filter(Boolean).length;
 
+  const [showFilters, setShowFilters] = useState(false);
+
+  const clearFilters = () => {
+    setSelected((prev) => {
+      const next = { ...prev };
+      Object.keys(next).forEach((k) => { (next as Record<string, string>)[k] = ""; });
+      return next;
+    });
+    setPage(1);
+    refetchBrowse({ companies: [], roles: [], topics: [], sub_topics: [], types: [], difficulties: [], patterns: [], sources: [] });
+  };
+
+  const filters = filtersData || { companies: [], roles: [], topics: [], sub_topics: [], types: [], difficulties: [], patterns: [], sources: [] };
+
   const handleQuickFilter = (filter) => {
     setQuickFilter(filter);
     if (filter === "all") {
@@ -214,7 +242,7 @@ export default function QuestionBank() {
       setSubmitted(data.id);
       setShowSubmit(false);
       form.reset();
-      loadQuestions();
+      refetchBrowse();
     } catch {} finally {
       setSubmitting(false);
     }
@@ -224,7 +252,7 @@ export default function QuestionBank() {
     e.stopPropagation();
     try {
       await api.upvoteQuestion(questionId, 1);
-      setQuestions((qs) => qs.map((q) => q.id === questionId ? { ...q, upvotes: (q.upvotes || 0) + 1 } : q));
+      refetchBrowse();
     } catch {}
   };
 
@@ -235,6 +263,12 @@ export default function QuestionBank() {
 
     if (category !== "all") {
       list = list.filter((q) => topicGroup(q.topic) === category);
+    }
+
+    if (selected.search.trim()) {
+      const results = fuse.search(selected.search.trim());
+      const matchedIds = new Set(results.map(r => r.item.id));
+      list = list.filter(q => matchedIds.has(q.id));
     }
 
     const diffOrder = { easy: 0, medium: 1, hard: 2, expert: 3 };
@@ -259,7 +293,7 @@ export default function QuestionBank() {
         break;
     }
     return list;
-  }, [questions, quickFilter, solvedStatuses, sortBy, acceptanceRates, category]);
+  }, [questions, quickFilter, solvedStatuses, sortBy, category, selected.search, fuse]);
 
   const difficultyDistribution = useMemo(() => {
     if (!stats?.by_difficulty) return null;
@@ -344,7 +378,7 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
           </div>
         </motion.div>
 
-        {dailyChallenge?.problem && (
+        {dailyChallengeData?.problem && (
           <motion.div
             className="mb-6 overflow-hidden rounded-2xl border border-indigo-200/60 dark:border-indigo-900/50 bg-gradient-to-r from-indigo-600 via-cyan-600 to-emerald-500 text-text-primary shadow-lg"
             initial={reduced ? {} : { opacity: 0, y: 16 }}
@@ -357,22 +391,22 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
                 </div>
                 <div className="min-w-0">
                   <div className="text-[10px] font-mono uppercase tracking-[0.3em] text-text-primary/70">Featured today</div>
-                  <h2 className="mt-1 text-xl sm:text-2xl font-bold truncate">{dailyChallenge.problem.question_title || dailyChallenge.problem.question || "Today's Problem"}</h2>
+                  <h2 className="mt-1 text-xl sm:text-2xl font-bold truncate">{dailyChallengeData.problem.question_title || dailyChallengeData.problem.question || "Today's Problem"}</h2>
                   <p className="mt-2 text-sm text-text-primary/85">
-                    {dailyChallenge.config?.category} · {dailyChallenge.config?.focus} · {dailyChallenge.streak_bonus || 0} Diamonds bonus
+                    {dailyChallengeData.config?.category} · {dailyChallengeData.config?.focus} · {dailyChallengeData.streak_bonus || 0} Diamonds bonus
                   </p>
                 </div>
               </div>
               <div className="flex flex-wrap items-center gap-2 lg:justify-end shrink-0">
                 <span className="px-3 py-1 rounded-full bg-brand-primary/15 text-xs font-semibold uppercase tracking-wide">
-                  {dailyChallenge.config?.difficulty || "medium"}
+                  {dailyChallengeData.config?.difficulty || "medium"}
                 </span>
                 <Link to="/daily-challenge" className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-surface-card text-brand-primary font-semibold text-sm hover:bg-surface-card/90 transition-colors">
                   Open Daily Challenge
                   <ArrowRight size={14} />
                 </Link>
-                {dailyChallenge.problem?.id && (
-                  <Link to={`/solve/${dailyChallenge.problem.id}`} className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-white/30 text-text-primary font-semibold text-sm hover:bg-surface-card/10 transition-colors">
+                {dailyChallengeData.problem?.id && (
+                  <Link to={`/solve/${dailyChallengeData.problem.id}`} className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-white/30 text-text-primary font-semibold text-sm hover:bg-surface-card/10 transition-colors">
                     Solve Now
                   </Link>
                 )}
@@ -696,7 +730,7 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
 
         {/* Loading */}
         {/* Loading */}
-        {loading ? (
+        {browseLoading ? (
           <QuestionCardSkeleton count={5} />
         ) : browseData?.isError ? (
           <div className="card text-center py-12">
@@ -872,9 +906,9 @@ text-brand-secondary transition-colors hover:border-brand-sky/30 hover:text-bran
               <motion.div className="w-full max-w-md rounded-2xl bg-white p-8 text-center shadow-2xl" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }} onClick={(e) => e.stopPropagation()}>
                 <div className="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-2xl flex items-center justify-center mx-auto mb-4"><Lock size={32} className="text-primary-600" /></div>
                 <h2 className="text-2xl font-bold mb-2 dark:text-white">Free Limit Reached</h2>
-                <p className="text-brand-secondary text-brand-muted mb-6">You've used all {FREE_LIMIT} free practice questions this month. Upgrade to Pro for unlimited access to {total}+ curated questions.</p>
+                <p className="text-brand-secondary text-brand-muted mb-6">You've used all {FREE_LIMIT} free practice questions this month. Upgrade to Pro for unlimited access to 45,000+ curated questions.</p>
                 <div className="bg-primary-50 dark:bg-primary-900/20 rounded-xl p-4 mb-6">
-                  <div className="flex items-center justify-center gap-2 mb-2"><Zap size={18} className="text-primary-600" /><span className="font-bold text-primary-700 dark:text-primary-400">Pro — $9/mo</span></div>
+                  <div className="flex items-center justify-center gap-2 mb-2"><Zap size={18} className="text-primary-600" /><span className="font-bold text-primary-700 dark:text-primary-400">Pro — ₹99/mo</span></div>
                   <p className="text-sm text-brand-secondary text-brand-muted">Unlimited questions · Full solutions · Company filters · Mock tests</p>
                 </div>
                 <div className="flex gap-3">

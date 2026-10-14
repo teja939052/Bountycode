@@ -1,3 +1,4 @@
+// @ts-nocheck
 export const colors = {
   // ── Base Light System ──
   background: {

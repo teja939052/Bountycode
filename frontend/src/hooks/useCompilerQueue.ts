@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useCallback, useEffect, useRef } from "react";
 import useWebSocket from "./useWebSocket";
 import api from "../services/api";

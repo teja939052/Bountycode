@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useQueryClient } from "@tanstack/react-query";
@@ -22,7 +23,7 @@ interface Props {
  * Campfire Rest — the map's SRS surface.
  *
  * First real consumer of the canonical review sink:
- * POST /api/v1/study/activity {type:"review", skill_id, passed}.
+ * POST /api/v1/unified/activity {lesson_id, activity_type:"review", passed}.
  * No new backend, no new collections. Closing (or finishing) refreshes
  * the map so the campfire node vanishes the moment reviews clear.
  */

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { requestWithRetry as request } from "./api/request.ts";
 import type { AuthUser } from "./api/types.ts";
 

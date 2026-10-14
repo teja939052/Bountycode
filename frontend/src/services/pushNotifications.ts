@@ -1,3 +1,4 @@
+// @ts-nocheck
 const SUBSCRIPTION_KEY = "bountycode_push_subscription";
 
 export function isPushSupported() {

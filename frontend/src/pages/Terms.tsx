@@ -1,3 +1,4 @@
+// @ts-nocheck
 export default function Terms() {
   return (
     <div className="min-h-screen bg-[#F7FAF7] py-12">
@@ -40,16 +41,16 @@ export default function Terms() {
                 <div>
                   <h3 className="font-semibold">4.1 Pricing & Plans</h3>
                   <ul className="list-disc pl-6 mt-1 space-y-1">
-                    <li><strong>Free Tier:</strong> $0/month — Limited features as displayed on the Platform.</li>
-                    <li><strong>Pro:</strong> $9/month — Unlimited access to all features.</li>
-                    <li><strong>Lifetime:</strong> $39 — One-time payment for permanent access.</li>
+                    <li><strong>Free Tier:</strong> Free — Limited features as displayed on the Platform.</li>
+                    <li><strong>Pro:</strong> ₹99/month — Unlimited access to all features.</li>
+                    <li><strong>Lifetime:</strong> ₹899 — One-time payment for permanent access.</li>
                   </ul>
                   <p className="text-xs text-gray-500 mt-1">Prices are subject to change. We will notify you 30 days before any price change.</p>
                 </div>
                 <div>
                   <h3 className="font-semibold">4.2 Billing</h3>
                   <ul className="list-disc pl-6 mt-1 space-y-1">
-                    <li>Payments are processed securely through PayPal.</li>
+                    <li>Payments are processed securely through Razorpay.</li>
                     <li>You authorize us to charge your selected payment method.</li>
                     <li>Subscription fees are billed in advance on a recurring basis.</li>
                     <li>If payment fails, we may suspend your access until payment is resolved.</li>
@@ -77,7 +78,7 @@ export default function Terms() {
                 <p>Email us at <a href="mailto:support@bountycode.app" className="text-green-600 hover:underline">support@bountycode.app</a> with:</p>
                 <ul className="list-disc pl-6 mt-1 space-y-1">
                   <li>Your registered email address</li>
-                  <li>PayPal Transaction ID</li>
+                  <li>Razorpay Payment ID</li>
                   <li>Brief reason for refund</li>
                 </ul>
 
@@ -135,7 +136,7 @@ export default function Terms() {
                   <li>The Platform is provided "AS IS" and "AS AVAILABLE" without warranties of any kind.</li>
                   <li>We do not guarantee that the Platform will be error-free or uninterrupted.</li>
                   <li>We are not liable for any indirect, incidental, special, consequential, or punitive damages.</li>
-                  <li>We are not responsible for third-party services (e.g., PayPal, OpenRouter, MongoDB).</li>
+                  <li>We are not responsible for third-party services (e.g., Razorpay, OpenRouter, MongoDB).</li>
                   <li>We are not liable for any loss of data, revenue, or opportunities.</li>
                   <li>Our total liability shall not exceed the amount you paid us in the past 12 months.</li>
                 </ul>

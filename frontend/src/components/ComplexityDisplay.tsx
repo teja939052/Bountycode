@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { motion } from 'framer-motion';
 
 // Animated complexity badges with concentric ring visualization

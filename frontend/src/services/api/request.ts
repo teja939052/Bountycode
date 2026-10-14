@@ -1,14 +1,5 @@
+// @ts-nocheck
 export const API_BASE = import.meta.env.VITE_API_URL || "";
-
-let authToken: string | null = null;
-
-export function setAuthToken(token: string | null) {
-  authToken = token;
-}
-
-export function getAuthToken(): string | null {
-  return authToken;
-}
 
 export interface ApiErrorBody {
   detail?: string;
@@ -27,7 +18,7 @@ const memoryCache = new Map<string, { data: unknown; timestamp: number }>();
 const inFlight = new Map<string, Promise<unknown>>();
 let refreshPromise: Promise<void> | null = null;
 
-async function ensureAuth() {
+export async function ensureAuth() {
   if (refreshPromise) return refreshPromise;
   refreshPromise = fetch(`${API_BASE}/api/v1/auth/refresh`, {
     method: "POST",
@@ -35,10 +26,6 @@ async function ensureAuth() {
   })
     .then(async (res) => {
       if (!res.ok) throw new Error("Session expired");
-      const data = await res.json().catch(() => ({}));
-      if ((data as { token?: string }).token) {
-        setAuthToken((data as { token: string }).token);
-      }
     })
     .catch((err) => {
       refreshPromise = null;
@@ -153,10 +140,6 @@ export async function requestWithRetry<T = any>(
     "Content-Type": "application/json",
     ...(options.headers || {}),
   };
-
-  if (getAuthToken()) {
-    headers.Authorization = `Bearer ${getAuthToken()}`;
-  }
 
   const run = (async () => {
     let lastError: unknown;

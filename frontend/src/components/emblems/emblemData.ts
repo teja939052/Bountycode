@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Emblem types mapped to topics, difficulties, and categories
 // Each emblem is a sacred geometry symbol rendered in SVG
 

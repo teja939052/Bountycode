@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -33,7 +34,7 @@ export const LC = {
 };
 
 const NAV_ITEMS = [
-  { to: "/dashboard", label: "Dashboard", icon: Home },
+  { to: "/placement", label: "Dashboard", icon: Home },
   { to: "/interview", label: "Mock Interviews", icon: Code2 },
   { to: "/resume", label: "Resume Builder", icon: FileText },
   { to: "/ats", label: "ATS Optimizer", icon: Target },

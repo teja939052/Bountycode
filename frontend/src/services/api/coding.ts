@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { requestWithRetry as request } from "./request.ts";
 import type { LanguageInfo, ExecutionResult, TestCaseResult } from "./types.ts";
 

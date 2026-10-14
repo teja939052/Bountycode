@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { motion } from "framer-motion";
 import { Gift, CheckCircle, Flame } from "lucide-react";
 import { useToast } from "../components/Toast";

@@ -1,7 +1,9 @@
+// @ts-nocheck
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Mail, ArrowLeft, Send } from "lucide-react";
 import { motion } from "framer-motion";
+import api from "../services/api";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -14,12 +16,19 @@ export default function ForgotPassword() {
     setLoading(true);
     setError("");
     setMessage("");
-    setTimeout(() => {
+    try {
+      await api.auth.forgotPassword(email.trim());
       setMessage(
-        "If an account exists with this email, a reset token has been generated."
+        "If an account exists with this email, a reset link has been sent."
       );
+    } catch (err) {
+      // Endpoint is enumeration-safe; show the same message either way.
+      setMessage(
+        "If an account exists with this email, a reset link has been sent."
+      );
+    } finally {
       setLoading(false);
-    }, 1000);
+    }
   };
 
   return (

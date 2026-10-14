@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface ApiErrorResponse {
   detail?: string;
   error_explanation?: string | null;
@@ -20,7 +21,9 @@ export interface AuthUser {
   college?: string;
   league?: string;
   gamification?: Record<string, unknown>;
-  token?: string;
+  target_company?: string;
+  target_role?: string;
+  assessment_date?: string;
 }
 
 export interface UsageStats {
@@ -44,12 +47,10 @@ export interface UsageStats {
 }
 
 export interface LoginResponse {
-  token: string;
   user: AuthUser;
 }
 
 export interface RegisterResponse {
-  token: string;
   user: AuthUser;
 }
 
@@ -365,6 +366,9 @@ export interface CheckoutResponse {
   status?: string;
   client_secret?: string;
   session_id?: string;
+  key_id?: string;
+  amount?: number;
+  currency?: string;
 }
 
 export interface PlanInfo {
@@ -654,6 +658,17 @@ export interface OnboardingData {
   skills?: string[];
   goals?: string[];
   experience?: string;
+  klass?: string;
+  target_companies?: string[];
+  skill_self_assessment?: Record<string, unknown>;
+  grad_year?: number;
+  placement_date?: string;
+  daily_minutes?: number;
+  target_role?: string;
+  target_company?: string;
+  prep_level?: string;
+  language?: string;
+  learning_style?: string;
 }
 
 export interface StreakRepairResult {

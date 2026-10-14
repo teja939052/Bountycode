@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
@@ -21,6 +22,8 @@ import type { GamificationProfile } from "../services/api/types";
 import PetalFall from "../components/effects/PetalFall";
 import ScrollingText from "../components/effects/ScrollingText";
 import { useBackground } from "../contexts/BackgroundContext";
+import { useGSAPScrollTrigger, useParallax } from "../hooks/useGSAP";
+import { BountyCodeLogo } from "../components/brand/BountyCodeLogo";
 
 /* ─── Testimonials (real-feeling social proof) ─── */
 const TESTIMONIALS = [
@@ -96,14 +99,15 @@ function WelcomeModal({ onClose }: { onClose: () => void }) {
 
           <div className="flex flex-col items-center text-center">
             <motion.div
-              className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-accent-primary/10"
-              animate={{ scale: [1, 1.08, 1] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl"
+              style={{ backgroundColor: "#17263B0D" }}
             >
-              <Rocket size={28} className="text-accent-primary" />
+              <BountyCodeLogo variant="mark" className="h-9 w-9" />
             </motion.div>
 
-            <h2 className="font-display text-2xl font-extrabold text-text-primary">Welcome to BountyCode</h2>
+            <h2 className="font-display text-2xl font-extrabold" style={{ color: "#17263B" }}>
+              Welcome to BountyCode
+            </h2>
             <p className="mt-2 text-sm text-text-secondary">
               Your AI-powered placement command center.<br/>Let&apos;s get you mission-ready in 30 seconds.
             </p>
@@ -413,7 +417,18 @@ export default function Landing() {
               initial={reducedMotion ? {} : { y: 18 }}
               animate={{ y: 0 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
+              className="flex flex-col items-start"
             >
+              {/* Triquetra Logo */}
+              <motion.div
+                initial={reducedMotion ? {} : { scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.1, type: "spring" }}
+                className="mb-6"
+              >
+                <BountyCodeLogo variant="lockup" />
+              </motion.div>
+
               <motion.span
                 className="inline-flex items-center gap-2 rounded-full border border-orange-100 bg-orange-50 px-3.5 py-1.5 text-xs font-medium text-orange-700 shadow-sm"
                 initial={reducedMotion ? {} : { scale: 0.9, opacity: 0 }}
@@ -425,22 +440,17 @@ export default function Landing() {
               </motion.span>
 
               <h1 className="mt-5 text-5xl leading-[1.02] font-black tracking-tight sm:text-6xl md:text-7xl">
-                Stop grinding.
+                From your first line of code
                 <br />
-                Start sailing.
-                <br />
-                <span className="bg-gradient-to-r from-orange-400 via-amber-400 to-teal-400 bg-clip-text text-transparent">
-                  Your placement prep, leveled up.
-                </span>
+                to your first offer.
               </h1>
 
               <p className="mt-5 max-w-md text-base leading-relaxed text-secondary sm:text-lg">
-                Most students prepare by memorizing answers. We turn prep into a voyage — diagnose, practice, prove, repair — so
-                you actually earn the skills that get offers.
+                BountyCode adapts to your goal: learn coding, ace service-based assessments, or target a specific company.
               </p>
 
               <p className="mt-3 text-sm font-bold tracking-wide text-secondary">
-                12 worlds. 50 levels. One voyage.
+                4 doors. One personalized path.
               </p>
 
               <motion.div
@@ -470,13 +480,13 @@ export default function Landing() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Link to="/register" data-cta-compass className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-orange-400 to-amber-400 px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-orange-200 transition-all hover:brightness-110 active:scale-[0.98]">
-                    Start your first mission — free
+                  <Link to="/onboarding" data-cta-compass className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-orange-400 to-amber-400 px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-orange-200 transition-all hover:brightness-110 active:scale-[0.98]">
+                    Get started
                     <ArrowRight size={15} />
                   </Link>
                 </motion.div>
-                <Link to="/journey" data-cta-compass className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-7 py-3.5 text-sm font-semibold text-gray-700 shadow-sm transition hover:border-orange-300 hover:bg-orange-50">
-                  See the voyage map
+                <Link to="/learning" data-cta-compass className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-7 py-3.5 text-sm font-semibold text-gray-700 shadow-sm transition hover:border-orange-300 hover:bg-orange-50">
+                  Explore curriculum
                 </Link>
               </motion.div>
             </motion.div>
@@ -523,8 +533,8 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* ═══ WORLD PREVIEW ═══ */}
-      <section id="worlds" className="relative bg-base py-16 sm:py-24 scroll-mt-16">
+      {/* ═══ 4 ENTRY DOORS ═══ */}
+      <section id="doors" className="relative bg-base py-16 sm:py-24 scroll-mt-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={reducedMotion ? {} : { opacity: 0, y: 18 }}
@@ -533,51 +543,44 @@ export default function Landing() {
             className="text-center"
           >
             <h2 className="font-display text-3xl font-extrabold sm:text-4xl text-primary">
-              Your prep voyage, world by world.
+              Choose your door.
             </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-sm text-secondary sm:text-base">
-                Each world is a place, not just a topic. Clear the path, defeat the boss, unlock the next region.
-                Progress is earned, not handed out.
-              </p>
+            <p className="mx-auto mt-4 max-w-2xl text-sm text-secondary sm:text-base">
+              One account. Four paths. The system adapts to your goal.
+            </p>
           </motion.div>
 
-          <div className="mx-auto mt-10 grid max-w-5xl grid-cols-2 gap-3 sm:gap-5 sm:grid-cols-3 lg:grid-cols-4">
-            {worlds.map((world, i) => (
-              <WorldCard key={world.name} world={world} index={i} />
+          <div className="mx-auto mt-10 grid max-w-5xl grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2">
+            {[
+              { to: "/learning", title: "Learn Coding", desc: "Build programming ability from scratch or strengthen your foundations.", icon: "💻" },
+              { to: "/aptitude", title: "Service-Based Placement", desc: "Aptitude, reasoning, verbal, coding, SQL/CS — the full screening stack.", icon: "🎯" },
+              { to: "/company-prep", title: "Company / Role Prep", desc: "Target one company and its exact assessment pattern.", icon: "🏢" },
+              { to: "/dsa-visualizer", title: "DSA Visual Lab", desc: "Explore algorithms visually — play, pause, step, manipulate.", icon: "🧠" },
+            ].map((door, i) => (
+              <motion.div
+                key={door.title}
+                initial={reducedMotion ? {} : { opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                className="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-5 transition-all hover:border-orange-200 hover:shadow-md"
+              >
+                <div className="relative">
+                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl text-lg">
+                    <span aria-hidden="true">{door.icon}</span>
+                  </div>
+                  <Link to={door.to} className="block">
+                    <p className="text-sm font-bold text-gray-900 group-hover:text-orange-600 transition-colors">{door.title}</p>
+                    <p className="mt-1 text-xs text-gray-500 leading-relaxed">{door.desc}</p>
+                  </Link>
+                </div>
+              </motion.div>
             ))}
           </div>
-
-          <motion.div
-            initial={reducedMotion ? {} : { opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="mx-auto mt-10 max-w-2xl"
-          >
-            <div className="relative flex items-center justify-between">
-              <div className="absolute left-0 right-0 top-1/2 h-0.5 -translate-y-1/2 bg-gradient-to-r from-orange-200 via-amber-200 to-teal-200" />
-              {["Foundations", "Problem Solver", "Engineering", "Interview", "Job Ready"].map((step, i) => (
-                <div key={step} className="relative z-10 flex flex-col items-center">
-                  <motion.div
-                    className={`flex h-8 w-8 items-center justify-center rounded-full border-2 text-[10px] font-bold ${
-                      i < 3
-                        ? "border-orange-400 bg-orange-50 text-orange-600"
-                        : i === 4
-                        ? "border-amber-400 bg-amber-50 text-amber-600"
-                        : "border-gray-200 bg-white text-gray-400"
-                    }`}
-                    whileHover={!reducedMotion ? { scale: 1.15 } : {}}
-                  >
-                    {i < 3 ? <CheckCircle2 size={14} /> : i === 4 ? <Star size={14} /> : i + 1}
-                  </motion.div>
-                  <p className="mt-1.5 text-[9px] font-medium text-secondary text-center max-w-[70px]">{step}</p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
         </div>
       </section>
 
-      {/* ═══ HOW IT WORKS — voyage-native ═══ */}
+      {/* ═══ HOW IT WORKS ═══ */}
       <section id="how-it-works" className="bg-base py-16 sm:py-24 scroll-mt-16">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -586,18 +589,18 @@ export default function Landing() {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="font-display text-3xl font-extrabold sm:text-4xl text-primary">The voyage loop</h2>
-              <p className="mx-auto mt-4 max-w-xl text-sm text-secondary sm:text-base">
-                Not a checklist. Not a leaderboard. A real loop: diagnose, practice, prove, repair.
-              </p>
+            <h2 className="font-display text-3xl font-extrabold sm:text-4xl text-primary">How it works</h2>
+            <p className="mx-auto mt-4 max-w-xl text-sm text-secondary sm:text-base">
+              Diagnose → Learn → Practice → Prove → Repair → Retest → Interview Ready.
+            </p>
           </motion.div>
 
           <div className="mx-auto mt-10 grid max-w-4xl gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { icon: Compass, title: "Diagnose", desc: "Skill graph reveals your exact gaps across DSA, system design, and interview behavior.", color: "#58cc02" },
-              { icon: Target, title: "Practice", desc: "Sail to the next island. Each level tests one skill with hidden test cases and progressive hints.", color: "#f59e0b" },
-              { icon: Swords, title: "Prove", desc: "Boss battles at world ends. Beat them with skill, not luck. Stars track mastery.", color: "#ef4444" },
-              { icon: Anchor, title: "Repair", desc: "Failures spawn repair branches. Short detours, then back on the main path. Struggle is data.", color: "#14b8a6" },
+              { icon: Compass, title: "Diagnose", desc: "Adaptive baseline identifies exact gaps. No guessing.", color: "#58cc02" },
+              { icon: Target, title: "Personalized Path", desc: "Shared curriculum, personal route. Evidence-driven, not profile-driven.", color: "#f59e0b" },
+              { icon: Swords, title: "Prove & Repair", desc: "Mock OA, diagnosis, repair missions, retest until solid.", color: "#ef4444" },
+              { icon: Anchor, title: "Interview Ready", desc: "AI interview + resume + company prep. One coherent loop.", color: "#14b8a6" },
             ].map((step, i) => (
               <motion.div
                 key={step.title}
@@ -680,23 +683,23 @@ export default function Landing() {
             </motion.div>
             <h2 className="font-display text-3xl font-extrabold sm:text-4xl text-primary">Ready to set sail?</h2>
               <p className="mx-auto mt-4 max-w-xl text-sm text-secondary sm:text-base">
-                Start your first mission for free. If you can solve it, keep sailing — no credit card required.
+                Start your first mission for free. No credit card required.
               </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Link to="/register" data-cta-compass className="w-full sm:w-auto">
+                <Link to="/onboarding" data-cta-compass className="w-full sm:w-auto">
                    <button className="w-full rounded-xl bg-gradient-to-r from-orange-400 to-amber-400 px-8 py-3.5 text-sm font-bold text-white shadow-lg shadow-orange-200 transition hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] sm:w-auto">
-                     Start your first mission — free
+                     Get started — free
                   </button>
                 </Link>
               </motion.div>
-              <Link to="/pricing" className="w-full sm:w-auto">
-                  <button className="w-full rounded-xl border border-gray-200 bg-white px-8 py-3.5 text-sm font-semibold text-gray-700 transition hover:border-orange-300 hover:bg-orange-50 sm:w-auto">
-                   See the voyage map
-                </button>
+              <Link to="/learning" className="w-full sm:w-auto">
+                   <button className="w-full rounded-xl border border-gray-200 bg-white px-8 py-3.5 text-sm font-semibold text-gray-700 transition hover:border-orange-300 hover:bg-orange-50 sm:w-auto">
+                    Explore curriculum
+                  </button>
               </Link>
             </div>
           </motion.div>

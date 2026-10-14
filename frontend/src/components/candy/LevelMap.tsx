@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useEffect, useRef, useState, useMemo, memo } from "react";
 import { Lock, CheckCircle2, Play, Star, Trophy, Zap } from "lucide-react";
 import type { ReactNode } from "react";

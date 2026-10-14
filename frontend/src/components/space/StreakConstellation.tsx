@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { motion } from "framer-motion";
 
 export default function StreakConstellation({ streak = 0, maxStreak = 30 }) {

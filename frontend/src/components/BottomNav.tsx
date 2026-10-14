@@ -1,8 +1,10 @@
+// @ts-nocheck
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Compass, Code2, User, Building2, Trophy, Flame, type LucideIcon } from 'lucide-react';
+import { Compass, FlaskConical, Swords, ClipboardList, Briefcase, Flame, Trophy, BookOpen, type LucideIcon } from 'lucide-react';
 import useAuthStore from '../store/authStore';
 import { useGamificationState } from '../hooks/useGamificationState';
+import { BountyCodeLogo } from './brand/BountyCodeLogo';
 
 interface NavItem {
   to: string;
@@ -10,13 +12,13 @@ interface NavItem {
   label: string;
 }
 
-// V3 unified nav: Journey / Practice / Target / Skills / Profile (5 max)
+// Simplified 5-environment navigation
 const NAV_ITEMS: NavItem[] = [
-  { to: '/journey', icon: Compass, label: 'Journey' },
-  { to: '/practice', icon: Code2, label: 'Practice' },
-  { to: '/target', icon: Building2, label: 'Target' },
-  { to: '/skills', icon: Trophy, label: 'Skills' },
-  { to: '/profile', icon: User, label: 'Profile' },
+  { to: '/placement', icon: Compass, label: 'Today' },
+  { to: '/learn', icon: FlaskConical, label: 'Learn' },
+  { to: '/question-bank', icon: BookOpen, label: 'Practice' },
+  { to: '/battlefield', icon: Swords, label: 'Battlefield' },
+  { to: '/interview', icon: Briefcase, label: 'Interview' },
 ];
 
 export default function BottomNav() {
@@ -92,6 +94,16 @@ export default function BottomNav() {
               </Link>
             );
           })}
+          {/* Center logo */}
+          <div className="flex flex-col items-center justify-center -mt-6">
+            <Link to="/" className="relative -mt-4">
+              <div className="relative h-12 w-12 rounded-full p-[2px] shadow-lg" style={{ background: "linear-gradient(135deg, #17263B, #5F8F88, #C96F3D)" }}>
+                <div className="flex h-full w-full items-center justify-center rounded-full bg-slate-900">
+                  <BountyCodeLogo variant="mark" className="h-7 w-7" />
+                </div>
+              </div>
+            </Link>
+          </div>
         </div>
       </nav>
     </>

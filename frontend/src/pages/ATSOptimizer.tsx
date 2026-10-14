@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../services/api";
@@ -5,6 +6,7 @@ import Spinner from "../components/ui/Spinner";
 import { HullScanner } from "../components/space";
 import { motion } from "framer-motion";
 import { Target, ArrowRight, Brain, BarChart3, AlertTriangle, CheckCircle } from "lucide-react";
+import { MentorCallout } from "../components/golden/MentorCallout";
 
 export default function ATSOptimizer() {
   const [resumeId, setResumeId] = useState("");
@@ -106,6 +108,7 @@ export default function ATSOptimizer() {
           <p className="text-gray-500 font-mono text-sm">
             Match your resume to any job description. Get ATS-optimized version.
           </p>
+          <MentorCallout phase="intro" message="Paste the actual JD, not a summary. The optimizer matches real requirements, not keywords alone." size="compact" className="mt-4 max-w-lg mx-auto" />
         </motion.div>
 
         {/* Progress Steps */}

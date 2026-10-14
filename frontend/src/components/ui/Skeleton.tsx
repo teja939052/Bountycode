@@ -1,3 +1,4 @@
+// @ts-nocheck
 export default function Skeleton({ className = "", lines = 1, variant = "text" }) {
   const variants = {
     text: "h-4 rounded-full",

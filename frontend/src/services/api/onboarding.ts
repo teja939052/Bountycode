@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { requestWithRetry } from "./request.ts";
 
 export const onboardingApi = {

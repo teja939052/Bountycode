@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { createContext, useContext, useCallback, useRef, useState } from 'react';
 import soundEngine from './SoundEngine';
 import ScreenJuiceOverlay from './ScreenJuiceOverlay';

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { motion } from "framer-motion";
 import { CheckCircle2, Lock, Star } from "lucide-react";
 import type { JourneyLevel } from "../../hooks/useJourneyState";

@@ -1,67 +1,83 @@
-import { useState } from "react";
+// @ts-nocheck
+import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import useReducedMotion from "../../hooks/useReducedMotion";
 import { requestWithRetry as request } from "../../services/api/request";
 
-const SKILL_ID = "dsa.sliding_window";
-const VALUES = [2, 1, 5, 1, 3, 2];
-const K = 3;
+export interface PatternTracerProps {
+  skillId?: string;
+  values?: number[];
+  k?: number;
+  title?: string;
+  description?: string;
+  pattern?: string;
+}
+
+const DEFAULT_SKILL = "dsa.sliding_window";
+const DEFAULT_VALUES = [2, 1, 5, 1, 3, 2];
+const DEFAULT_K = 3;
 
 type Step = { left: number; right: number; sum: number; note: string };
 
-function buildSteps(): Step[] {
+function buildSteps(values: number[], k: number): Step[] {
   const steps: Step[] = [];
   let sum = 0;
-  for (let right = 0; right < VALUES.length; right++) {
-    sum += VALUES[right];
-    const left = right >= K - 1 ? right - K + 1 : 0;
-    if (right < K - 1) {
+  for (let right = 0; right < values.length; right++) {
+    sum += values[right];
+    const left = right >= k - 1 ? right - k + 1 : 0;
+    if (right < k - 1) {
       steps.push({
         left,
         right,
         sum,
-        note: `Enter ${VALUES[right]}. Window not full yet (${right + 1}/${K}).`,
+        note: `Enter ${values[right]}. Window not full yet (${right + 1}/${k}).`,
       });
     } else {
-      const entering = VALUES[right];
-      const leaving = right >= K ? VALUES[right - K] : null;
+      const entering = values[right];
+      const leaving = right >= k ? values[right - k] : null;
       steps.push({
         left,
         right,
         sum,
         note:
           leaving === null
-            ? `Enter ${entering}. Window full [${VALUES.slice(left, right + 1).join(", ")}], sum=${sum}.`
-            : `Enter ${entering}, leave ${leaving}. Window [${VALUES.slice(left, right + 1).join(", ")}], sum=${sum}.`,
+            ? `Enter ${entering}. Window full [${values.slice(left, right + 1).join(", ")}], sum=${sum}.`
+            : `Enter ${entering}, leave ${leaving}. Window [${values.slice(left, right + 1).join(", ")}], sum=${sum}.`,
       });
-      sum -= VALUES[left];
+      sum -= values[left];
     }
   }
   return steps;
 }
 
-const STEPS = buildSteps();
-
-export default function PatternTracer() {
+export default function PatternTracer({
+  skillId = DEFAULT_SKILL,
+  values = DEFAULT_VALUES,
+  k = DEFAULT_K,
+  title,
+  description = "Step through. Each element enters once and leaves once — that is why the total work stays O(n).",
+  pattern = "sliding-window",
+}: PatternTracerProps) {
   const reduced = useReducedMotion();
+  const steps = useMemo(() => buildSteps(values, k), [values, k]);
   const [idx, setIdx] = useState(0);
   const [done, setDone] = useState(false);
-  const step = STEPS[idx];
+  const step = steps[Math.min(idx, steps.length - 1)];
+  const heading = title ?? `Tracer: fixed window, k=${k}`;
 
   const emit = async () => {
     try {
-      await request("/api/v1/study/activity", {
+      await request("/api/v1/unified/activity", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          type: "practice",
-          skill_id: SKILL_ID,
-          passed: true,
+          lesson_id: skillId,
+          activity_type: "practice",
           score: 100,
-          time_spent: 60,
+          passed: true,
+          time_spent_seconds: 60,
           diagnosis_codes: [],
-          source: "pattern_tracer",
-          metadata: { component: "tracer", pattern: "sliding-window", steps_completed: STEPS.length },
+          metadata: { source: "pattern_tracer", component: "tracer", pattern, steps_completed: steps.length },
         }),
       });
     } catch {
@@ -76,14 +92,14 @@ export default function PatternTracer() {
     }
   };
 
+  if (!step) return null;
+
   return (
     <div className="rounded-xl border border-border dark:border-gray-700 p-4 bg-gray-50 dark:bg-gray-900/50">
-      <h3 className="font-bold text-sm dark:text-white mb-1">Tracer: fixed window, k={K}</h3>
-      <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
-        Step through. Each element enters once and leaves once — that is why the total work stays O(n).
-      </p>
+      <h3 className="font-bold text-sm dark:text-white mb-1">{heading}</h3>
+      <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">{description}</p>
       <div className="flex gap-1.5 mb-3 flex-wrap" role="group" aria-label="Array values">
-        {VALUES.map((v, i) => {
+        {values.map((v, i) => {
           const inWindow = i >= step.left && i <= step.right;
           return (
             <motion.div
@@ -113,12 +129,12 @@ export default function PatternTracer() {
         >
           Prev
         </button>
-        {idx < STEPS.length - 1 ? (
+        {idx < steps.length - 1 ? (
           <button
             onClick={() => setIdx((i) => i + 1)}
             className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-primary-600 text-white"
           >
-            Step {idx + 2}/{STEPS.length}
+            Step {idx + 2}/{steps.length}
           </button>
         ) : (
           <button

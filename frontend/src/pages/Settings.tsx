@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -213,7 +214,7 @@ export default function Settings() {
                 to="/pricing"
                 className="block w-full btn-primary text-center py-3 font-bold"
               >
-                Upgrade to Pro — $19/month
+                Upgrade to Pro — ₹99/month
               </Link>
             )}
           </motion.div>

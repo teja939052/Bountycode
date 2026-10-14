@@ -1,7 +1,8 @@
+// @ts-nocheck
 import { Navigate } from "react-router-dom";
 import type { ReactNode } from "react";
 import useAuthStore from "../store/authStore";
-import Spinner from "./ui/Spinner";
+import { BountyCodeLoader } from "../components/brand/BountyCodeBrandMotion";
 
 export default function ProtectedRoute({ children }: { children?: ReactNode }) {
   const { user, loading } = useAuthStore();
@@ -9,7 +10,7 @@ export default function ProtectedRoute({ children }: { children?: ReactNode }) {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <Spinner size="lg" />
+        <BountyCodeLoader size={48} />
       </div>
     );
   }

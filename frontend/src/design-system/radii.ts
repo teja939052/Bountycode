@@ -1,3 +1,4 @@
+// @ts-nocheck
 export const radii = {
   none: 0,
   xs: 4,

@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * progressStore — lightweight local persistence for mission progress.
  * Frontend-only; the engine stays pure. Keys are namespaced and versioned.

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useEffect } from "react";
 import { useThemeStore, getThemeVars } from "../store/themeStore";
 

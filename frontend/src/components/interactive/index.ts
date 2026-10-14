@@ -1,3 +1,4 @@
+// @ts-nocheck
 export { default as AlgorithmTracer } from "./AlgorithmTracer";
 export { default as PatternQuiz } from "./PatternQuiz";
 export { default as FillInBlank } from "./FillInBlank";

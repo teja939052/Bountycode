@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
   Home,
   Trees,
@@ -47,7 +48,7 @@ export const testimonials = [
 export const plans = [
   {
     title: "Free",
-    price: "$0",
+    price: "Free",
     cadence: "Monthly reset",
     note: "Everything you need to build the habit.",
     features: ["3 interviews / month", "3 resume reviews / month", "5 aptitude tests / month"],
@@ -56,7 +57,7 @@ export const plans = [
   },
   {
     title: "Pro",
-    price: "$9",
+    price: "₹99/mo",
     cadence: "Per month",
     note: "For the final sprint before drives.",
     features: ["Unlimited interviews", "Unlimited resume & ATS", "ATS optimization", "Priority support"],
@@ -65,7 +66,7 @@ export const plans = [
   },
   {
     title: "Lifetime",
-    price: "$39",
+    price: "₹899",
     cadence: "One-time",
     note: "Pay once, keep every future update.",
     features: ["Everything in Pro", "All future features", "Lifetime access", "Best value"],

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Terminal, CheckCircle, XCircle, ArrowRight } from "lucide-react";

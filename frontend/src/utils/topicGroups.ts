@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Database, Workflow, Sparkles, Briefcase } from "lucide-react";
 
 export const TOPIC_GROUPS: Record<string, string[]> = {

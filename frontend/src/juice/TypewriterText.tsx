@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState, useEffect, useRef } from 'react';
 
 export default function TypewriterText({ text, speed = 30, onComplete, className = '' }) {

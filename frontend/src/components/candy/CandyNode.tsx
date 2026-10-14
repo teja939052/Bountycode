@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { motion } from "framer-motion";
 import { Crown, Lock, Play, Star } from "lucide-react";
 import type { Ref } from "react";

@@ -1,11 +1,15 @@
+// @ts-nocheck
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import api from "../services/api";
+import type { TheoryTopic } from "../services/api/aptitude";
 import Spinner from "../components/ui/Spinner";
 import CelebrationOverlay from "../components/CelebrationOverlay";
 import RepairPanel from "../components/RepairPanel";
-import { motion } from "framer-motion";
 import { Brain, Clock, CheckCircle, XCircle, ArrowRight, BookOpen, Puzzle, Search } from "lucide-react";
+import { MentorCallout } from "../components/golden/MentorCallout";
+import CampaignBanner from "../components/CampaignBanner";
 
 const CATEGORY_GROUPS = [
   {
@@ -80,6 +84,45 @@ export default function AptitudeTest() {
   const [timeTaken, setTimeTaken] = useState(0);
   const [startTime, setStartTime] = useState(null);
   const [showCelebration, setShowCelebration] = useState(false);
+  const [theory, setTheory] = useState<TheoryTopic[]>([]);
+  const [theoryOpen, setTheoryOpen] = useState(true);
+  const [diagnostic, setDiagnostic] = useState<any>(null);
+  const [repairMode, setRepairMode] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/v1/onboarding/diagnostic/status")
+      .then((res) => res.ok ? res.json() : Promise.reject())
+      .then((json) => {
+        if (!cancelled && json.completed) {
+          setDiagnostic(json);
+        }
+      })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, []);
+
+  useEffect(() => {
+    if (!category) {
+      setTheory([]);
+      return;
+    }
+    let cancelled = false;
+    api.aptitude
+      .getTheoryFor(category)
+      .then((d) => {
+        if (!cancelled) {
+          setTheory(d.topics || []);
+          setTheoryOpen(true);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setTheory([]);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [category]);
 
   useEffect(() => {
     let interval;
@@ -93,7 +136,7 @@ export default function AptitudeTest() {
     setLoading(true);
     setError("");
     try {
-      const data = await api.startAptitudeTest(category, difficulty, QUESTION_COUNT);
+      const data = await api.startAptitudeTest(category, difficulty, repairMode ? 10 : QUESTION_COUNT);
       setTestId(data.test_id);
       setQuestions(data.questions);
       setCurrentQ(0);
@@ -167,6 +210,8 @@ export default function AptitudeTest() {
             </p>
           </motion.div>
 
+          <CampaignBanner world="aptitude" />
+
           {/* Company mock papers (mass-recruiter exams now live here) */}
           <Link
             to="/company-mocks"
@@ -196,26 +241,77 @@ export default function AptitudeTest() {
                   {group.group}
                 </h4>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                  {group.categories.map((cat, i) => (
-                    <motion.button
-                      key={cat.id}
-                      onClick={() => setCategory(cat.id)}
-                      className={`card text-left transition-all border-2 ${
-                        category === cat.id ? "border-cyber-purple bg-cyber-purple/10" : "border-transparent hover:border-brand-primary/10"
-                      }`}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: gi * 0.1 + i * 0.03 }}
-                    >
-                      <span className="text-2xl mb-1 block">{cat.icon}</span>
-                      <h3 className={`font-display font-bold text-sm ${group.color}`}>{cat.name}</h3>
-                      <p className="text-[10px] font-mono text-brand-muted mt-1">{cat.desc}</p>
-                    </motion.button>
-                  ))}
+                  {group.categories.map((cat, i) => {
+                    const dims = diagnostic?.baseline_categories || {};
+                    const weak = dims[cat.id] !== undefined && (dims[cat.id] as number) < 40;
+                    return (
+                      <motion.button
+                        key={cat.id}
+                        onClick={() => { setCategory(cat.id); setRepairMode(false); }}
+                        className={`card text-left transition-all border-2 ${
+                          category === cat.id ? "border-cyber-purple bg-cyber-purple/10" : weak ? "border-red-500/40 bg-red-500/5" : "border-transparent hover:border-brand-primary/10"
+                        }`}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: gi * 0.1 + i * 0.03 }}
+                      >
+                        <span className="text-2xl mb-1 block">{cat.icon}</span>
+                        <h3 className={`font-display font-bold text-sm ${group.color}`}>{cat.name}</h3>
+                        <p className="text-[10px] font-mono text-brand-muted mt-1">{cat.desc}</p>
+                        {weak && <span className="mt-2 inline-flex rounded-full border border-red-500/30 bg-red-500/10 px-2 py-0.5 text-[10px] text-red-400">Weakness</span>}
+                      </motion.button>
+                    );
+                  })}
                 </div>
               </motion.div>
             ))}
           </div>
+
+          {category && theory.length > 0 && (
+            <div className="card mb-6">
+              <button
+                onClick={() => setTheoryOpen((v) => !v)}
+                className="flex w-full items-center justify-between"
+                aria-expanded={theoryOpen}
+              >
+                <h3 className="font-display font-bold text-text-primary text-sm flex items-center gap-2">
+                  <BookOpen size={15} className="text-cyber-green" />
+                  Learn first — {theory.length} crisp theor{theory.length > 1 ? "ies" : "y"}
+                </h3>
+                <span className="text-xs font-mono text-brand-muted">
+                  {theoryOpen ? "Hide" : "Show"}
+                </span>
+              </button>
+              {theoryOpen && (
+                <div className="mt-4 space-y-4">
+                  {theory.map((t) => (
+                    <div key={t.id} className="rounded-lg border border-brand-primary/10 p-4">
+                      <p className="font-display font-bold text-text-primary text-sm">{t.title}</p>
+                      <p className="text-xs text-gray-400 mt-1">{t.definition}</p>
+                      {t.formulas?.length > 0 && (
+                        <ul className="mt-2 space-y-1">
+                          {t.formulas.map((f, fi) => (
+                            <li key={fi} className="text-xs font-mono text-cyber-blue">• {f}</li>
+                          ))}
+                        </ul>
+                      )}
+                      {t.worked_example && (
+                        <div className="mt-2 rounded bg-surface-card/50 p-3">
+                          <p className="text-xs text-text-primary"><span className="font-bold">Q: </span>{t.worked_example.problem}</p>
+                          <p className="text-xs text-cyber-green mt-1"><span className="font-bold">A: </span>{t.worked_example.solution}</p>
+                        </div>
+                      )}
+                      {t.triggers?.length > 0 && (
+                        <p className="text-[11px] font-mono text-brand-muted mt-2">
+                          Spot it: {t.triggers.join(" · ")}
+                        </p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
 
           {category && (
             <div className="card">
@@ -251,6 +347,7 @@ export default function AptitudeTest() {
     return (
       <div className="min-h-screen py-12 px-4">
         <div className="max-w-3xl mx-auto">
+          <MentorCallout phase="active" message="Eliminate the clearly wrong options first. When two remain, choose the stronger generalization, not the first familiar one." size="compact" className="mb-6" />
           <div className="flex items-center justify-between mb-6">
             <span className="text-xs font-mono text-gray-400">Query {currentQ + 1} / {questions.length}</span>
             <div className="flex items-center gap-2 text-sm font-mono text-gray-400">

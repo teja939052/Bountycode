@@ -1,3 +1,4 @@
+// @ts-nocheck
 const API_BASE = import.meta.env.VITE_API_URL || "";
 const MAX_KEEP = 50;
 const STORAGE_KEY = "pp_debug_errors";

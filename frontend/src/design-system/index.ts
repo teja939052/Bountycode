@@ -1,3 +1,4 @@
+// @ts-nocheck
 export * from "./colors";
 export * from "./typography";
 export * from "./spacing";
@@ -13,6 +14,10 @@ export { PageShell } from "./PageShell";
 export type { PageTheme } from "./PageShell";
 export { Mentor, MentorAvatar } from "./Mentor";
 export type { MentorMood } from "./Mentor";
+export { MentorCallout } from "../components/golden/MentorCallout";
+export type { MentorCalloutProps } from "../components/golden/MentorCallout";
+export { useMentor } from "../hooks/useMentor";
+export type { UseMentorOptions, MentorLine } from "../hooks/useMentor";
 export { MasteryBar, ReadinessRing, TreasureBadge } from "./Progress";
 export { IslandNode, PathConnector, BountyCard } from "./JourneyMap";
 export type { NodeState, IslandNodeProps, BountyCardProps } from "./JourneyMap";

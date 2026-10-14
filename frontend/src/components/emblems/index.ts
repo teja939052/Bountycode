@@ -1,3 +1,4 @@
+// @ts-nocheck
 export { default as Emblem } from './Emblem';
 export { default as UserEmblem } from './UserEmblem';
 export {

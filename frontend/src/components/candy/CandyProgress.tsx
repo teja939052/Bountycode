@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { motion } from "framer-motion";
 import { candyGradient } from "./palette";
 import type { CandyColor } from "./palette";

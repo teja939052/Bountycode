@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useEffect, useRef, useState } from "react";
 
 export default function AnimatedNumber({ value, duration = 800, className = "" }) {

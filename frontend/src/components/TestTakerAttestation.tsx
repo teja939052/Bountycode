@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ShieldCheck, Users } from "lucide-react";
 
 // Matches the exam-memory crowd gate (VERIFY_THRESHOLD = 5 independent

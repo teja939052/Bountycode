@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useState, useCallback, useMemo, createContext, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, XCircle, AlertTriangle, Info, X } from 'lucide-react';

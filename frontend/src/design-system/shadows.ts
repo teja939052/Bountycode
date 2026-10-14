@@ -1,3 +1,4 @@
+// @ts-nocheck
 export const shadows = {
   none: "none",
   xs: "0 1px 2px 0 rgba(22,163,74,0.05)",

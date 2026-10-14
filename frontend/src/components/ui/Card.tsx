@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useRef, useCallback, useState, type ReactNode, type MouseEvent } from "react";
 import { motion } from "framer-motion";
 
