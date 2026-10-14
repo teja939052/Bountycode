@@ -1,0 +1,193 @@
+{
+  "id": "company.amazon",
+  "title": "Amazon — Leadership Principles + Technical",
+  "domain": "company",
+  "concept": "Amazon Interview",
+  "skill_id": "company.amazon",
+  "tags": [
+    "company",
+    "amazon",
+    "behavioral",
+    "technical",
+    "faang"
+  ],
+  "difficulty": "hard",
+  "estimated_minutes": 60,
+  "mastery_threshold": 75,
+  "why_it_matters": "Amazon interviews are famous for Leadership Principles (LP) questions and bar-raiser technical rounds. Mastery of LP stories and system design is essential.",
+  "prerequisites": [],
+  "misconceptions": [
+    {
+      "code": "company_amazon_interview_common_mistake",
+      "signature": "Student confuses key terminology or steps in Amazon Interview.",
+      "reteach_route": "worked_example",
+      "reteach_action": "show_correct_process"
+    }
+  ],
+  "captain_byte": {
+    "intro": "Amazon interviews test Leadership Principles with real stories, plus deep technical. Let's build both.",
+    "correct": [
+      "LP story!",
+      "Bar raiser ready!",
+      "Customer obsession!"
+    ],
+    "wrong": [
+      "Use STAR method for every LP question.",
+      "Quantify results with metrics."
+    ],
+    "after_break": "Amazon expects specific LP examples. Let's build yours.",
+    "after_mastery": "You have LP stories ready. Now prove technical depth.",
+    "retry_prompt": "Refine your story with more metrics."
+  },
+  "discover": {
+    "prompt": "Amazon's 16 Leadership Principles include: Customer Obsession, Ownership, Bias for Action, Dive Deep, etc.",
+    "question": "Which LP is about 'insisting on the highest standards'?",
+    "options": [
+      "Customer Obsession",
+      "Ownership",
+      "Highest Standards",
+      "Dive Deep"
+    ],
+    "interaction_kind": "mcq_read"
+  },
+  "understand": {
+    "prompt": "Amazon interviews ask for STAR stories for each LP. You need 2-3 detailed stories per principle.",
+    "explanation": "STAR = Situation, Task, Action, Result. Amazon cares most about Action (what YOU did) and Result (quantified).",
+    "interaction_kind": "read_explanation"
+  },
+  "manipulate": {
+    "prompt": "Map each LP to a story type: Customer Obsession → ? Ownership → ? Bias for Action → ?",
+    "matches": {
+      "Customer Obsession": "Story about solving a user pain point",
+      "Ownership": "Story about taking responsibility beyond your role",
+      "Bias for Action": "Story about making a fast decision with incomplete data"
+    },
+    "interaction_kind": "match_relationships"
+  },
+  "predict": {
+    "prompt": "Amazon asks 'Tell me about a time you failed'. Which LP does this test?",
+    "answer": "Ownership + Learn and Be Curious",
+    "options": [
+      "Customer Obsession",
+      "Ownership",
+      "Bias for Action",
+      "Frugality"
+    ],
+    "interaction_kind": "mcq_classify"
+  },
+  "build": {
+    "prompt": "Write a STAR story for Customer Obsession: a time you went above and beyond for a user.",
+    "answer": "S: User reported a critical bug. T: I was the on-call engineer. A: I identified root cause and implemented a fix with monitoring. R: Zero downtime for 6 months, 99.99% uptime.",
+    "explanation": "Good STAR story has specific actions and quantified results.",
+    "interaction_kind": "text_input"
+  },
+  "break_step": {
+    "prompt": "What is wrong with this answer? 'We built a feature that users liked.'",
+    "common_mistake": "Vague, no specific actions, no metrics, uses 'we' not 'I'.",
+    "correct_reasoning": "Amazon wants: specific situation, YOUR actions, quantified results.",
+    "interaction_kind": "mcq_diagnose"
+  },
+  "debug": {
+    "prompt": "Improve this answer: 'I helped improve the system performance.'",
+    "improved_answer": "I identified the N+1 query pattern and added caching, reducing p99 latency from 2s to 200ms (90% improvement).",
+    "interaction_kind": "text_input"
+  },
+  "retrieval": {
+    "prompt": "What are the 4 STAR components?",
+    "answer": "Situation, Task, Action, Result",
+    "alternative": [
+      "S-T-A-R"
+    ],
+    "interaction_kind": "recall_formula"
+  },
+  "transfer": {
+    "prompt": "Write a STAR story for Dive Deep: a time you debugged a complex production issue.",
+    "answer": "S: Production outage at 2 AM. T: I was on-call. A: I traced the issue to a memory leak using profiling, fixed the allocation pattern. R: Restored service in 15 min, added alerts to prevent recurrence.",
+    "explanation": "Deep technical story with specific debugging actions.",
+    "interaction_kind": "text_input"
+  },
+  "practice": [
+    {
+      "kind": "mcq",
+      "prompt": "Amazon LP: 'Insist on the highest standards' is which principle?",
+      "answer": "Highest Standards",
+      "options": [
+        "Customer Obsession",
+        "Ownership",
+        "Highest Standards",
+        "Dive Deep"
+      ],
+      "explanation": "Amazon has 16 LPs. 'Highest Standards' is one of them.",
+      "difficulty": "easy",
+      "company_tags": [
+        "amazon"
+      ]
+    },
+    {
+      "kind": "mcq",
+      "prompt": "Practice 1: Apply Amazon Interview to solve this problem.",
+      "answer": "See explanation",
+      "explanation": "This demonstrates Amazon Interview in a placement context.",
+      "difficulty": "medium",
+      "company_tags": [],
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ]
+    },
+    {
+      "kind": "numeric",
+      "prompt": "Practice 2: Apply Amazon Interview to solve this problem.",
+      "answer": "See explanation",
+      "explanation": "This demonstrates Amazon Interview in a placement context.",
+      "difficulty": "medium",
+      "company_tags": []
+    }
+  ],
+  "proof": [
+    {
+      "id": "amazon-p1",
+      "prompt": "Timed LP simulation: Write a STAR story for 'Ownership' in 5 minutes. Must include quantified result.",
+      "answer_format": "text",
+      "correct": "any quantified STAR story",
+      "explanation": "Amazon expects specific actions and metrics. Practice until you have 3 stories per LP.",
+      "time_limit_seconds": 300,
+      "company_tags": [
+        "amazon"
+      ]
+    },
+    {
+      "id": "amazon_interview-p2",
+      "prompt": "Prove your Amazon Interview skill: explain the solution to this problem.",
+      "answer_format": "text",
+      "correct": "Correct application of Amazon Interview",
+      "explanation": "This tests understanding of Amazon Interview.",
+      "time_limit_seconds": 60,
+      "company_tags": []
+    }
+  ],
+  "company_variants": [
+    {
+      "company": "amazon",
+      "role": "sde",
+      "difficulty": "medium",
+      "proof_questions": []
+    }
+  ],
+  "srs_key_points": [
+    "Amazon has 16 Leadership Principles.",
+    "STAR = Situation, Task, Action, Result.",
+    "Action is most important: what did YOU specifically do?",
+    "Result must be quantified: numbers, percentages, time saved.",
+    "Have 2-3 stories per LP, ready to tell in 2 minutes."
+  ],
+  "srs_review_intervals": [
+    1,
+    3,
+    7,
+    14,
+    30
+  ]
+}

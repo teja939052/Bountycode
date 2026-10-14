@@ -1,0 +1,225 @@
+[
+  {
+    "slug": "tcs-nqt-prep-guide",
+    "title": "TCS NQT Prep Guide: What to Study and In What Order",
+    "company": "tcs",
+    "excerpt": "A practical study order for TCS NQT-style screening: quant foundations first, reasoning patterns next, then communication and easy coding.",
+    "tags": ["tcs", "nqt", "study-plan", "service-based"],
+    "reading_minutes": 6,
+    "updated_at": "2026-09-23",
+    "provenance": "BountyCode prep strategy. Exam formats change yearly — treat section splits as pattern guidance, not official TCS communication.",
+    "sections": [
+      {
+        "heading": "How NQT-style screening is built",
+        "body": "Service-company screening tests check speed and accuracy on school-level quant, logical patterns, verbal communication, and basic coding. Nobody expects hard DSA here. Your edge is finishing easy questions fast without silly mistakes."
+      },
+      {
+        "heading": "Weeks 1–2: Quant foundations",
+        "body": "Master percentages, ratios, profit/loss, averages, time & work, and time-speed-distance. These six patterns decide most of your quant score. Open each topic's theory card, memorize the 3–4 formulas, then drill 20 timed questions."
+      },
+      {
+        "heading": "Weeks 3–4: Reasoning patterns",
+        "body": "Blood relations, syllogisms, coding-decoding, directions, seating, and series. Draw every problem — family trees, Venn overlaps, compass grids. Never solve arrangement puzzles in your head."
+      },
+      {
+        "heading": "Week 5: Communication + easy coding",
+        "body": "Practice the email format until its structure is automatic: subject, greeting, purpose, all prompt keywords, closing. For coding, arrays, strings, and basic loops are enough — solve easy pattern-sheet problems daily."
+      },
+      {
+        "heading": "Final week: Full mocks",
+        "body": "Take two full timed mocks in the Mock OA section. After each mock, open your weakness diagnosis, complete the repair set, and retest before the next mock. A mock without repair is just a score."
+      }
+    ],
+    "next_actions": [
+      {"label": "Open Pattern Sheets", "to": "/sheets"},
+      {"label": "Drill aptitude", "to": "/aptitude"},
+      {"label": "Take a mock", "to": "/mock-oa"}
+    ]
+  },
+  {
+    "slug": "infosys-prep-guide",
+    "title": "Infosys Prep Guide: Pseudo-Code and Puzzles First",
+    "company": "infosys",
+    "excerpt": "Infosys-style screening weights logical reasoning and pseudo-code tracing heavily. Study order for maximum score per hour.",
+    "tags": ["infosys", "study-plan", "service-based"],
+    "reading_minutes": 5,
+    "updated_at": "2026-09-23",
+    "provenance": "BountyCode prep strategy. Exam formats change yearly — treat section splits as pattern guidance, not official Infosys communication.",
+    "sections": [
+      {
+        "heading": "What decides your score",
+        "body": "Infosys-style papers reward careful reading: puzzles, series, syllogisms, and pseudo-code tracing where one missed line costs the question. Accuracy beats attempts here."
+      },
+      {
+        "heading": "First: pseudo-code tracing",
+        "body": "Practice predicting program output line by line: loops, nested loops, arrays, conditions, functions. Trace with a variable table on paper exactly like the exam demands."
+      },
+      {
+        "heading": "Second: reasoning puzzles",
+        "body": "Seating arrangements, series completion, coding-decoding, and syllogisms. Learn the seating-arrangement theory card, then drill the Logical Puzzles category until diagrams feel automatic."
+      },
+      {
+        "heading": "Then: quant + technical MCQs",
+        "body": "Percentages, ratios, averages, and time-work for quant; OOP basics, DBMS, and C fundamentals for technical MCQs. Keep notes on every formula you look up twice."
+      }
+    ],
+    "next_actions": [
+      {"label": "Learn seating theory", "to": "/aptitude"},
+      {"label": "Drill logical puzzles", "to": "/aptitude"},
+      {"label": "Take a mock", "to": "/mock-oa"}
+    ]
+  },
+  {
+    "slug": "wipro-prep-guide",
+    "title": "Wipro Prep Guide: Balanced Speed Across Four Sections",
+    "company": "wipro",
+    "excerpt": "Wipro-style screening spreads marks across quant, reasoning, verbal, and coding. A balanced 4-week plan with no section left behind.",
+    "tags": ["wipro", "study-plan", "service-based"],
+    "reading_minutes": 5,
+    "updated_at": "2026-09-23",
+    "provenance": "BountyCode prep strategy. Exam formats change yearly — treat section splits as pattern guidance, not official Wipro communication.",
+    "sections": [
+      {
+        "heading": "The balanced-paper problem",
+        "body": "When every section carries weight, your weakest section caps your score. Diagnose first: take one timed drill in each category and let the weakness report rank them."
+      },
+      {
+        "heading": "Daily rotation",
+        "body": "Alternate days: quant + verbal one day, reasoning + easy coding the next. Thirty focused minutes per section beats three hours on your favourite topic."
+      },
+      {
+        "heading": "Verbal is free marks",
+        "body": "Reading comprehension, para jumbles, and sentence correction follow fixed rules. Read each theory card once, then drill — most students gain 15–20% in a week here."
+      },
+      {
+        "heading": "Coding: basics done well",
+        "body": "Arrays, strings, loops, and functions. Write clean code that compiles first time — Wipro-style coding rounds reward working solutions over clever ones."
+      }
+    ],
+    "next_actions": [
+      {"label": "Check weakest areas", "to": "/skills"},
+      {"label": "Drill aptitude", "to": "/aptitude"},
+      {"label": "Practice coding", "to": "/practice"}
+    ]
+  },
+  {
+    "slug": "accenture-prep-guide",
+    "title": "Accenture Prep Guide: Verbal and Pseudo-Code Decide It",
+    "company": "accenture",
+    "excerpt": "Accenture-style screening leans on cognitive ability, verbal fluency, and technical pseudo-code. Where to put your hours.",
+    "tags": ["accenture", "study-plan", "service-based"],
+    "reading_minutes": 5,
+    "updated_at": "2026-09-23",
+    "provenance": "BountyCode prep strategy. Exam formats change yearly — treat section splits as pattern guidance, not official Accenture communication.",
+    "sections": [
+      {
+        "heading": "Verbal first",
+        "body": "Reading comprehension, sentence correction, and vocabulary carry unusual weight here. The verbal theory cards plus daily timed drills close this gap fastest."
+      },
+      {
+        "heading": "Pseudo-code like Infosys",
+        "body": "Trace variables, predict output, nested loops, arrays. The same tracing discipline applies — variable table on paper, no mental execution."
+      },
+      {
+        "heading": "Cognitive speed",
+        "body": "Abstract reasoning and attention-to-detail questions punish hesitation. Drill short timed sets (10 questions, 10 minutes) until your pace stabilises."
+      },
+      {
+        "heading": "Coding round",
+        "body": "One or two easy-medium problems. Arrays, strings, hashing basics from the pattern sheets are sufficient — finish one clean solution rather than starting two."
+      }
+    ],
+    "next_actions": [
+      {"label": "Verbal theory + drills", "to": "/aptitude"},
+      {"label": "Open Pattern Sheets", "to": "/sheets"},
+      {"label": "Take a mock", "to": "/mock-oa"}
+    ]
+  },
+  {
+    "slug": "cognizant-prep-guide",
+    "title": "Cognizant Prep Guide: Accuracy Under Time Pressure",
+    "company": "cognizant",
+    "excerpt": "Cognizant-style screening is a speed game on familiar patterns. Build a personal formula sheet and automate the easy marks.",
+    "tags": ["cognizant", "study-plan", "service-based"],
+    "reading_minutes": 4,
+    "updated_at": "2026-09-23",
+    "provenance": "BountyCode prep strategy. Exam formats change yearly — treat section splits as pattern guidance, not official Cognizant communication.",
+    "sections": [
+      {
+        "heading": "Automate the easy marks",
+        "body": "Percentages, averages, ratios, and series questions should take under 60 seconds each. If any take longer, that pattern goes on your repair list the same day."
+      },
+      {
+        "heading": "Reasoning without re-reads",
+        "body": "Coding-decoding, blood relations, and analogies are won by method: positions table for letters, trees for families. One method per pattern, practised until boring."
+      },
+      {
+        "heading": "Mock with a stopwatch mindset",
+        "body": "In mocks, skip any question that survives 90 seconds and return later. Unattempted beats wrong when negative marking looms — check the mock's rules first."
+      }
+    ],
+    "next_actions": [
+      {"label": "Drill aptitude", "to": "/aptitude"},
+      {"label": "Take a mock", "to": "/mock-oa"},
+      {"label": "Repair weakest area", "to": "/practice"}
+    ]
+  },
+  {
+    "slug": "capgemini-prep-guide",
+    "title": "Capgemini Prep Guide: Games, Logic, and Spoken English",
+    "company": "capgemini",
+    "excerpt": "Capgemini-style screening mixes game-based aptitude with logic and English. How to prepare for each format.",
+    "tags": ["capgemini", "study-plan", "service-based"],
+    "reading_minutes": 4,
+    "updated_at": "2026-09-23",
+    "provenance": "BountyCode prep strategy. Exam formats change yearly — treat section splits as pattern guidance, not official Capgemini communication.",
+    "sections": [
+      {
+        "heading": "Game-based rounds",
+        "body": "Some Capgemini-style rounds use game-like tasks measuring attention, memory, and reactions. You cannot study the games — but daily timed drills train the same calm-under-clock muscle."
+      },
+      {
+        "heading": "Logic core",
+        "body": "Puzzles, coding-decoding, critical reasoning. Same pattern discipline as everywhere else: diagrams for arrangements, position tables for codes."
+      },
+      {
+        "heading": "Spoken and written English",
+        "body": "If your round includes spoken English, narrate your mock solutions aloud while practising. For written rounds, the sentence-correction and email theory cards cover the graded parts."
+      }
+    ],
+    "next_actions": [
+      {"label": "Timed aptitude drills", "to": "/aptitude"},
+      {"label": "Sentence correction theory", "to": "/aptitude"},
+      {"label": "Take a mock", "to": "/mock-oa"}
+    ]
+  },
+  {
+    "slug": "hcl-prep-guide",
+    "title": "HCL Prep Guide: Technical Depth on a Screening Budget",
+    "company": "hcl",
+    "excerpt": "HCL-style screening adds technical MCQs to the standard quant-logical-verbal mix. Split your time with intent.",
+    "tags": ["hcl", "study-plan", "service-based"],
+    "reading_minutes": 4,
+    "updated_at": "2026-09-23",
+    "provenance": "BountyCode prep strategy. Exam formats change yearly — treat section splits as pattern guidance, not official HCL communication.",
+    "sections": [
+      {
+        "heading": "The 60-40 split",
+        "body": "Spend roughly 60% of prep time on quant, reasoning, and verbal (common to every mass recruiter) and 40% on technical MCQs: C output questions, OOP concepts, DBMS basics, networking fundamentals."
+      },
+      {
+        "heading": "C output questions",
+        "body": "The highest-yield technical topic. Practice predicting output for loops, pointers basics, arrays, and operator precedence — the same tracing skill as pseudo-code rounds."
+      },
+      {
+        "heading": "CS fundamentals as MCQs",
+        "body": "OS definitions, DBMS keys and normal forms, CN layers. One-line facts, best learned as daily 10-question drills with the explanations read carefully."
+      }
+    ],
+    "next_actions": [
+      {"label": "Technical MCQs", "to": "/aptitude"},
+      {"label": "Drill aptitude", "to": "/aptitude"},
+      {"label": "Take a mock", "to": "/mock-oa"}
+    ]
+  }
+]

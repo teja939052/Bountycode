@@ -7,11 +7,10 @@ are always returned in a deterministic shape.
 Rubric definitions are versioned JSON to support auditability.
 Every criterion score is grounded in a quoted transcript segment (quote-or-zero).
 
-KNOWN ISSUE: Some LLM backends emit inline thinking/reasoning tokens instead
-of producing final JSON. When this happens, JSON extraction fails. The current
-behavior is to raise an explicit error rather than silently returning zero
-scores. Do NOT ship this feature to students until a reliable model or
-structured-output backend is configured.
+The JSON extraction pipeline strips common LLM thinking/reasoning prefixes
+before parsing, and falls back to returning an explicit error state when
+no valid JSON is found. This addresses the prior issue where inline
+reasoning tokens could break parsing.
 """
 
 from __future__ import annotations
@@ -121,7 +120,13 @@ class InterviewEvaluator:
         )
 
         system_instruction = f"""
-You are an evaluation engine. Output ONLY JSON. No thinking, no reasoning, no explanation.
+You are an evaluation engine. Output ONLY valid JSON. Nothing else.
+
+STRICT RULES:
+- No thinking, no reasoning, no explanation, no markdown, no code fences.
+- No preamble, no postamble, no "<thinking>" blocks, no chain-of-thought.
+- The first character of your output must be "{" and the last must be "}".
+- If you cannot comply, return an empty JSON object: {{}}.
 
 Evaluate the interview transcript against these criteria. For EACH criterion:
 1. Assign a score within the specified range.

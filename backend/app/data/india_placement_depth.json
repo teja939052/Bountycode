@@ -155,12 +155,12 @@
     "pattern": "aptitude",
     "skill": "profit-loss",
     "section": null,
-    "options": [
-      19.0,
-      28.5,
-      23.75,
-      14.25
-    ],
+    "options": {
+      "A": "20%",
+      "B": "16.67%",
+      "C": "25%",
+      "D": "10%"
+    },
     "correct_index": 0,
     "solution": {
       "code": null,
@@ -181,8 +181,8 @@
         "expected": 19.0
       }
     ],
-    "correct_answer": 19.0,
-    "trust_status": "needs_review",
+    "correct_answer": "A",
+    "trust_status": "unverified",
     "trust_report": {
       "verified_by": "computation",
       "independent_expected_outputs": true,
@@ -522,13 +522,13 @@
     "pattern": "aptitude",
     "skill": "ratio-proportion",
     "section": null,
-    "options": [
-      225.0,
-      337.5,
-      281.25,
-      168.75
-    ],
-    "correct_index": 0,
+    "options": {
+      "A": "18",
+      "B": "20",
+      "C": "15",
+      "D": "25"
+    },
+    "correct_index": 1,
     "solution": {
       "code": null,
       "language": null,
@@ -548,8 +548,8 @@
         "expected": 225
       }
     ],
-    "correct_answer": 225.0,
-    "trust_status": "needs_review",
+    "correct_answer": "B",
+    "trust_status": "unverified",
     "trust_report": {
       "verified_by": "computation",
       "independent_expected_outputs": true,
@@ -1348,14 +1348,13 @@
     "pattern": "logical",
     "skill": "odd-one-out",
     "section": null,
-    "options": [
-      "27",
-      "8",
-      "81",
-      "64",
-      "125"
-    ],
-    "correct_index": 2,
+    "options": {
+      "A": "9",
+      "B": "3",
+      "C": "5",
+      "D": "7"
+    },
+    "correct_index": 0,
     "solution": {
       "code": null,
       "language": null,
@@ -1375,8 +1374,8 @@
         "expected": "81"
       }
     ],
-    "correct_answer": "81",
-    "trust_status": "needs_review",
+    "correct_answer": "A",
+    "trust_status": "unverified",
     "trust_report": {
       "verified_by": "computation",
       "independent_expected_outputs": true,
@@ -1390,7 +1389,7 @@
     "source_bank": "india_placement_depth",
     "verification_version": 1,
     "provenance": "pattern_relevant: TCS NQT",
-    "explanation": "8=2^3, 27=3^3, 64=4^3, 125=5^3 are perfect cubes; 81=9^2 is not a cube.",
+    "explanation": "9 = 3*3 is the only composite number.",
     "dsa_guide": {
       "approach": "Check which does not fit the cube pattern.",
       "data_structures": [],
@@ -1403,7 +1402,9 @@
     },
     "hints": "Gr",
     "common_trap": "",
-    "reasoning_steps": []
+    "reasoning_steps": [],
+    "worked_solution": "9 is composite (3*3); others are prime.",
+    "trick": "Check primality of each option."
   },
   {
     "id": "ind-log-code-2",
@@ -2440,13 +2441,13 @@
     "pattern": "verbal",
     "skill": "synonym",
     "section": null,
-    "options": [
-      "Keep",
-      "Desert",
-      "Adopt",
-      "Retain"
-    ],
-    "correct_index": 1,
+    "options": {
+      "A": "Transient",
+      "B": "Permanent",
+      "C": "Heavy",
+      "D": "Rigid"
+    },
+    "correct_index": 0,
     "solution": {
       "code": null,
       "language": null,
@@ -2466,8 +2467,8 @@
         "expected": "Desert"
       }
     ],
-    "correct_answer": "Desert",
-    "trust_status": "needs_review",
+    "correct_answer": "A",
+    "trust_status": "unverified",
     "trust_report": {
       "verified_by": "computation",
       "independent_expected_outputs": true,
@@ -2483,7 +2484,7 @@
     "source_bank": "india_placement_depth",
     "verification_version": 1,
     "provenance": "pattern_relevant: Infosys",
-    "explanation": "Both abandon and desert mean to leave behind.",
+    "explanation": "Transient is the closest synonym.",
     "dsa_guide": {
       "approach": "Pick the word with matching meaning.",
       "data_structures": [],
@@ -2496,7 +2497,9 @@
     },
     "hints": "Sy",
     "common_trap": "",
-    "reasoning_steps": []
+    "reasoning_steps": [],
+    "worked_solution": "Ephemeral means lasting for a very short time. Synonym: transient.",
+    "trick": "Prefix 'epi-' often means upon/brief"
   },
   {
     "id": "ind-verb-fill-2",
@@ -9570,5 +9573,123 @@
       "6. Optimize: Check time/space complexity."
     ],
     "constraints": "0 <= n <= 10^4, node values are integers"
+  },
+  {
+    "id": "ind-log-series-1",
+    "type": "aptitude",
+    "title": "Find the next number in the series: 2, 5, 10, 17, 26, ?",
+    "question": "Find the next number in the series: 2, 5, 10, 17, 26, ?",
+    "difficulty": "easy",
+    "topic": "logical",
+    "sub_topic": "series",
+    "pattern": "aptitude",
+    "skill": "logical",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "cognizant"
+    ],
+    "role": [
+      "student",
+      "sde"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "india_placement_depth",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.983335+00:00",
+    "updated_at": "2026-09-25T06:04:30.983335+00:00",
+    "options": {
+      "A": "37",
+      "B": "35",
+      "C": "39",
+      "D": "36"
+    },
+    "correct_index": 0,
+    "correct_answer": "A",
+    "solution": {
+      "code": "",
+      "explanation": "Differences: 3, 5, 7, 9... Next difference = 11. 26 + 11 = 37. Pattern: n^2 + 1."
+    },
+    "testcases": [
+      {
+        "input": "2,5,10,17,26",
+        "expected": 37
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "1,4,9,16,25",
+        "expected": 36
+      }
+    ],
+    "hints": [
+      "Look at differences between consecutive terms",
+      "Differences form odd numbers: 3,5,7,9..."
+    ],
+    "common_trap": "",
+    "reasoning_steps": [],
+    "worked_solution": "Differences: 3,5,7,9... Next difference = 11. 26+11=37.",
+    "trick": "Look at second differences or differences pattern.",
+    "explanation": "Differences increase by 2 each time. Next difference is 11."
+  },
+  {
+    "id": "ind-verb-ant-1",
+    "type": "aptitude",
+    "title": "Choose the antonym of 'BENEVOLENT'.",
+    "question": "Choose the antonym of 'BENEVOLENT'.",
+    "difficulty": "medium",
+    "topic": "verbal",
+    "sub_topic": "antonym",
+    "pattern": "aptitude",
+    "skill": "verbal",
+    "companies": [
+      "tcs",
+      "infosys",
+      "wipro",
+      "accenture"
+    ],
+    "role": [
+      "student",
+      "sde"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "india_placement_depth",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.983335+00:00",
+    "updated_at": "2026-09-25T06:04:30.983335+00:00",
+    "options": {
+      "A": "Malevolent",
+      "B": "Kind",
+      "C": "Generous",
+      "D": "Helpful"
+    },
+    "correct_index": 0,
+    "correct_answer": "A",
+    "solution": {
+      "code": "",
+      "explanation": "Benevolent means well-meaning. Antonym: malevolent."
+    },
+    "testcases": [
+      {
+        "input": "BENEVOLENT",
+        "expected": "Malevolent"
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": "BENIGN",
+        "expected": "Malignant/Hostile"
+      }
+    ],
+    "hints": [
+      "Prefix 'bene-' means good",
+      "Prefix 'male-' means bad/ill"
+    ],
+    "common_trap": "",
+    "reasoning_steps": [],
+    "worked_solution": "Benevolent = well-meaning; malevolent = ill-meaning.",
+    "trick": "Prefix 'bene-' means good, 'male-' means bad.",
+    "explanation": "Malevolent is the direct antonym."
   }
 ]

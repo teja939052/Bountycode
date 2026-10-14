@@ -1,0 +1,62 @@
+"""Mission: strings basics (TCS NQT coding). UNVERIFIED structure."""
+from __future__ import annotations
+
+from app.content.mission_definitions import (
+    MissionBrief, MissionConsequence, MissionDefinition, MissionReward, MissionStage,
+)
+
+MISSION = MissionDefinition(
+    id="tcs_nqt.strings_basics",
+    track_id="tcs_nqt",
+    domain="coding",
+    canonical_skill="code.strings",
+    brief=MissionBrief(
+        mission_title="Character by Character: Strings",
+        round_name="TCS NQT coding — the most-asked easy topic",
+        threat="Index errors and immutable-string surprises.",
+        goal="Two pointers and counts solve most string tasks.",
+        reward_diamonds=60,
+    ),
+    stages=[
+        MissionStage(stage="discover", title="See the indexes",
+                     interaction="state_trace", check="read", mentor_moment="intro"),
+        MissionStage(stage="manipulate", title="Move the pointers",
+                     interaction="drag_or_manipulate", moments=["change_one_thing"],
+                     check="interaction_event", mentor_moment="intro"),
+        MissionStage(stage="predict", title="Predict the result",
+                     interaction="predict_output", check="mcq:predict",
+                     mentor_moment="correct_1"),
+        MissionStage(stage="build", title="Reverse the words",
+                     interaction="tiny_build", check="tests_pass",
+                     bank_refs=["infy_coding_011"], mentor_moment="correct_1"),
+        MissionStage(stage="break", title="Index hunt",
+                     interaction="break_and_debug", check="names_misconception",
+                     mentor_moment="wrong_1"),
+        MissionStage(stage="debug", title="Bound the index",
+                     interaction="error_hunt", check="fix_verified",
+                     mentor_moment="wrong_2"),
+        MissionStage(stage="retrieve", title="Palindrome cold",
+                     interaction="recall_check", check="tests_pass_no_notes",
+                     bank_refs=["verify-006"], mentor_moment="retry_prompt"),
+        MissionStage(stage="transfer", title="Anagram skin",
+                     interaction="transfer_problem", check="tests_pass_out_of_domain",
+                     bank_refs=["verify-011"], mentor_moment="retry_prompt"),
+        MissionStage(stage="mastery", title="5-minute proof",
+                     interaction="timed_prove", check="tests_pass_under_time",
+                     bank_refs=["verify-015"],
+                     mentor_moment="after_mastery", time_limit_seconds=300),
+    ],
+    mentor_skill="code.strings",
+    company_overlay_id="tcs",
+    provenance="pattern-relevant",
+    reward=MissionReward(diamonds=60, unlocks="tcs_nqt.arrays_basics"),
+    consequence=MissionConsequence(
+        on_mastery="harder transfer in 2 days",
+        on_developing="retrieval drill tomorrow",
+        on_repair="repair mission before advancing",
+    ),
+    frontend_slug="",
+    lesson_slug="",
+    trust_floor="reviewed",
+    status="unverified",
+)

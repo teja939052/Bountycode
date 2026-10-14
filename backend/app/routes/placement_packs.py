@@ -14,6 +14,7 @@ from app.content.curriculum.role_curriculum import (
 import os
 import json
 from app.database import interview_bookings_collection
+from app.services.usage import plan_required
 from pathlib import Path
 
 BACKEND_ROOT = Path(__file__).resolve().parents[2]
@@ -84,11 +85,7 @@ async def get_company_blueprint(
             "focus_areas": blueprint.get("focus_areas", [])[:2],
             "process": blueprint.get("process", [])[:1],
             "source_type": blueprint.get("source_type", {}),
-            "upgrade_message": (
-                f"Unlock the full {blueprint['display_name']} placement pack "
-                "with a Pro Pass for company-specific OAs, mock interviews, "
-                "and readiness tracking."
-            ),
+            "upgrade_message": plan_required_message(user, "placement_pack"),
         }
 
     return blueprint
@@ -154,10 +151,7 @@ async def get_learning_object(
     plan = user.get("plan", "free")
     is_pro = plan in ("pro", "lifetime")
     if not is_pro and lo.get("review_status") != "placement_grade":
-        raise HTTPException(
-            status_code=402,
-            detail="This learning object requires a Pro Pass.",
-        )
+        raise plan_required(user, "learning_path")
 
     return lo
 
@@ -266,7 +260,7 @@ async def get_learning_path(
                 "guided_practice_count": len(skill_info["learning_path"]["guided_practice"]),
                 "placement_practice_count": len(skill_info["learning_path"]["placement_practice"]),
             },
-            "upgrade_message": "Pro Pass required to see specific questions, patterns, and hints.",
+            "upgrade_message": plan_required_message(user, "skill_path"),
         }
         return skill_info_return
 
@@ -309,7 +303,7 @@ async def get_mock_tests(
             "avg_quality": mock["avg_quality"],
             "can_access": can_access,
             "booking_slots": mock["booking_slots"],
-            "upgrade_message": None if can_access else "Pro Pass required for mock tests from this company.",
+            "upgrade_message": None if can_access else plan_required_message(user, "company_mock"),
         })
 
     return {"mock_tests": result}
@@ -336,13 +330,7 @@ async def get_mock_test(
     free_companies = {"tcs", "infosys", "wipro"}
 
     if not is_pro and company_id.lower() not in free_companies:
-        raise HTTPException(
-            status_code=402,
-            detail=(
-                f"Mock tests for {company_id} require a Pro Pass. "
-                "Free users can only take TCS/Infosys/Wipro mocks."
-            ),
-        )
+        raise plan_required(user, "company_mock")
 
     return mock
 
@@ -516,10 +504,7 @@ async def get_role_curriculum(
         result["mock_test_full"] = role["mock_test"]
         result["difficulty_distribution"] = role_data.get("difficulty_distribution", {}) if role_data else {}
     elif not is_pro:
-        result["upgrade_message"] = (
-            "Pro Pass required to view full learning paths, question details, "
-            "and company-specific mock tests for this role."
-        )
+        result["upgrade_message"] = plan_required_message(user, "learning_path")
 
     return result
 
@@ -561,7 +546,7 @@ async def get_role_mock_test(
             }
 
     if not is_pro:
-        result["upgrade_message"] = "Pro Pass required to access full mock test details and question sets."
+        result["upgrade_message"] = plan_required_message(user, "company_mock")
 
     return result
 
@@ -617,6 +602,6 @@ async def get_role_skill_path(
             "guided_practice_count": sum(1 for item in all_los if item["stage"] == "guided_practice"),
             "interview_count": sum(1 for item in all_los if item["stage"] == "interview"),
         }
-        result["upgrade_message"] = "Pro Pass required to see specific questions and hints for this skill path."
+        result["upgrade_message"] = plan_required_message(user, "skill_path")
 
     return result

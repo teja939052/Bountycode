@@ -1,0 +1,61 @@
+"""Mission: number and letter series (TCS NQT reasoning). UNVERIFIED structure."""
+from __future__ import annotations
+
+from app.content.mission_definitions import (
+    MissionBrief, MissionConsequence, MissionDefinition, MissionReward, MissionStage,
+)
+
+MISSION = MissionDefinition(
+    id="tcs_nqt.number_series",
+    track_id="tcs_nqt",
+    domain="reasoning",
+    canonical_skill="reason.puzzles",
+    brief=MissionBrief(
+        mission_title="Next Term: Series",
+        round_name="TCS NQT Round 1 — reasoning",
+        threat="Guessing the pattern from two terms fails.",
+        goal="Differences first, then differences of differences.",
+        reward_diamonds=40,
+    ),
+    stages=[
+        MissionStage(stage="discover", title="See the gaps",
+                     interaction="interactive_diagram", check="read", mentor_moment="intro"),
+        MissionStage(stage="manipulate", title="Extend it",
+                     interaction="drag_or_manipulate", moments=["change_one_thing"],
+                     check="interaction_event", mentor_moment="intro"),
+        MissionStage(stage="predict", title="Commit",
+                     interaction="multiple_choice_reasoning", check="mcq:predict",
+                     bank_refs=["tcs_reasoning_000"], mentor_moment="correct_1"),
+        MissionStage(stage="build", title="Write the rule",
+                     interaction="sort_steps", check="correct_order", mentor_moment="correct_1"),
+        MissionStage(stage="break", title="The coincidence trap",
+                     interaction="error_hunt", check="names_misconception",
+                     mentor_moment="wrong_1"),
+        MissionStage(stage="debug", title="Fix with gaps",
+                     interaction="explain_the_bug", check="fix_verified",
+                     mentor_moment="wrong_2"),
+        MissionStage(stage="retrieve", title="Series cold",
+                     interaction="recall_check", check="correct_no_notes",
+                     bank_refs=["ind-log-series-1"], mentor_moment="retry_prompt"),
+        MissionStage(stage="transfer", title="Letter skin",
+                     interaction="match_relationships", check="correct_out_of_domain",
+                     bank_refs=["tcs_reasoning_001"], mentor_moment="retry_prompt"),
+        MissionStage(stage="mastery", title="90-second proof",
+                     interaction="timed_prove", check="score>=threshold_under_time",
+                     bank_refs=["logical_reasoning_0716"],
+                     mentor_moment="after_mastery", time_limit_seconds=90),
+    ],
+    mentor_skill="reason.puzzles",
+    company_overlay_id="tcs",
+    provenance="pattern-relevant",
+    reward=MissionReward(diamonds=40, unlocks="tcs_nqt.sentence_correction"),
+    consequence=MissionConsequence(
+        on_mastery="harder transfer in 2 days",
+        on_developing="retrieval drill tomorrow",
+        on_repair="repair mission before advancing",
+    ),
+    frontend_slug="series",
+    lesson_slug="",
+    trust_floor="reviewed",
+    status="unverified",
+)

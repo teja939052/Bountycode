@@ -27,6 +27,7 @@ than duplicating their logic.  The existing
 from __future__ import annotations
 
 import logging
+import random
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 from dataclasses import asdict
@@ -67,6 +68,14 @@ def _now() -> datetime:
 
 def _today_key() -> str:
     return _now().strftime("%Y-%m-%d")
+
+
+def _slugify_topic(topic: str) -> str:
+    if not topic:
+        return ""
+    slug = topic.lower().strip()
+    slug = slug.replace("_", "-").replace(" ", "-")
+    return slug
 
 
 # â”€â”€â”€ 1. NEXT â€” the next curriculum mission (world/level) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -459,7 +468,13 @@ async def _get_company_mission(user_id: str) -> Optional[Dict[str, Any]]:
 
 # â”€â”€â”€ Orchestrator â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-async def get_today(user_id: str, force_refresh: bool = False) -> Dict[str, Any]:
+async def get_today(
+    user_id: str,
+    force_refresh: bool = False,
+    company: Optional[str] = None,
+    role: Optional[str] = None,
+    assessment_date: Optional[str] = None,
+) -> Dict[str, Any]:
     """Return the canonical daily learning plan for *user_id*.
 
     Shape::
@@ -475,16 +490,24 @@ async def get_today(user_id: str, force_refresh: bool = False) -> Dict[str, Any]
           "reviews": [...srs cards...],
           "practice": [...weak-skill tasks...],
           "challenge": {...optional...},
-          "totals": {"estimated_minutes": 37, "task_count": 5}
+          "totals": {"estimated_minutes": 37, "task_count": 5},
+          "target_company": "...",
+          "target_role": "...",
+          "assessment_date": "...",
+          "days_remaining": 14,
+          "daily_battle": [...],
+          "weakness_report": [...]
         }
     """
     today = _today_key()
 
     # Light cache: one canonical plan per user per UTC day.
+    # Include target params in cache key so different targets don't collide.
+    cache_key = f"today:{user_id}:{today}:{company or ''}:{role or ''}:{assessment_date or ''}"
     try:
         from app.services.cache import cache
         if not force_refresh:
-            cached = await cache.get("study", f"today:{user_id}:{today}")
+            cached = await cache.get("study", cache_key)
             if cached:
                 import json as _json
                 return _json.loads(cached)
@@ -499,6 +522,115 @@ async def get_today(user_id: str, force_refresh: bool = False) -> Dict[str, Any]
     reviews = await _get_due_reviews(user_id)
     practice = await _get_practice_tasks(user_id, assessment, weak_areas)
     challenge = await _get_optional_challenge(user_id, assessment, weak_areas)
+
+    # â”€â”€ Diagnostic-aware placement override â”€â”€
+    try:
+        from app.database import gamification_collection
+        progress = await gamification_collection.find_one({"user_id": user_id}) or {}
+        completed = progress.get("completed_competencies", {})
+        try:
+            from app.data.worlds_data import WORLD_REGISTRY
+            has_world_progress = any(
+                k.split(":")[0] in {w.id for w in WORLD_REGISTRY.values()}
+                for k in completed
+                if completed[k].get("completed")
+            )
+        except Exception:
+            has_world_progress = False
+    except Exception:
+        has_world_progress = False
+
+    if not has_world_progress:
+        try:
+            from app.database import users_collection
+            user_doc = await users_collection().find_one({"user_id": user_id}) or {}
+            diagnostic = (((user_doc.get("career_goal") or {}).get("diagnostic") or {}))
+            if diagnostic.get("completed") and not next_mission:
+                missions = diagnostic.get("first_missions") or []
+                if missions:
+                    first = missions[0]
+                    topic = first.get("topic", "")
+                    next_mission = {
+                        "type": "next_mission",
+                        "world": {"id": "placement_readiness", "title": "Placement Readiness", "icon": "🎯"},
+                        "town": {"id": "diagnostic", "title": "From Your Diagnostic", "icon": "🧭"},
+                        "level": {
+                            "id": first.get("mission_id", "dgn_first"),
+                            "title": first.get("title", "Start Here"),
+                            "kind": "diagnostic_mission",
+                            "icon": "🚀",
+                            "order": 0,
+                            "concept": first.get("description", ""),
+                            "canonical_skill": topic,
+                            "maps_to_competency": topic,
+                        },
+                        "attempt": {
+                            "completed": bool(first.get("is_complete")),
+                            "score": 0,
+                            "attempts": int(first.get("current_count") or 0),
+                            "best_score": 0,
+                        },
+                        "estimated_minutes": first.get("estimated_minutes") or 15,
+                        "xp_reward": first.get("xp_reward") or 150,
+                        "lesson_content": None,
+                        "diagnostic_meta": {
+                            "topic": topic,
+                            "difficulty": first.get("difficulty"),
+                            "quest_type": first.get("quest_type"),
+                            "target_count": first.get("target_count"),
+                            "mission_slug": _slugify_topic(topic),
+                        },
+                    }
+                if not practice:
+                    baseline = diagnostic.get("baseline_categories") or {}
+                    practice = [
+                        {
+                            "type": "practice",
+                            "kind": "diagnostic_weakness",
+                            "domain_id": key,
+                            "title": key.replace("_", " ").title(),
+                            "emoji": "🔢",
+                            "skill": key,
+                            "reason": "From your diagnostic baseline",
+                            "estimated_minutes": 10,
+                            "xp_reward": 20,
+                        }
+                        for key, value in baseline.items()
+                        if float(value) < 70
+                    ][:3]
+                if not daily_battle:
+                    baseline = diagnostic.get("baseline_categories") or {}
+                    daily_battle = [
+                        {
+                            "id": f"db_{key}",
+                            "title": f"{key.replace('_', ' ').title()} repair",
+                            "topic": key,
+                            "skill": key,
+                            "difficulty": "easy",
+                            "estimated_minutes": 5,
+                            "reason": "Weakness-backed daily battle",
+                        }
+                        for key, value in baseline.items()
+                        if float(value) < 70
+                    ][:20]
+                if not weakness_report:
+                    weakness_report = [
+                        {
+                            "domain_id": key,
+                            "name": key.replace("_", " ").title(),
+                            "emoji": "📌",
+                            "score": float(value),
+                            "mastery": "beginner" if float(value) < 40 else "developing",
+                            "mastery_label": "Weakness" if float(value) < 40 else "Developing",
+                            "accuracy": float(value),
+                            "total_attempts": 1,
+                            "reason": "From diagnostic baseline",
+                            "priority": 1 if float(value) < 40 else 2,
+                        }
+                        for key, value in (diagnostic.get("baseline_categories") or {}).items()
+                    ]
+        except Exception:
+            pass
 
     # â”€â”€ Role-specific activities (if role selected) â”€â”€
     role_activity = await _get_role_activity(user_id)
@@ -515,6 +647,89 @@ async def get_today(user_id: str, force_refresh: bool = False) -> Dict[str, Any]
         streak = 0
         level = 1
 
+    # â”€â”€ Target context from user profile or caller-supplied overrides â”€â”€
+    target_company = company or ""
+    target_role = role or ""
+    target_assessment_date = assessment_date or ""
+    if not target_company or not target_role or not target_assessment_date:
+        try:
+            from app.database import users_collection
+            user_doc = await users_collection().find_one({"user_id": user_id}) or {}
+            if not target_company:
+                target_company = user_doc.get("target_company", "")
+            if not target_role:
+                target_role = user_doc.get("target_role", "")
+            if not target_assessment_date:
+                target_assessment_date = user_doc.get("assessment_date", "")
+        except Exception:
+            pass
+
+    # â”€â”€ weakness_report â”€â”€
+    weakness_report = [
+        {
+            "domain_id": area.get("domain_id"),
+            "name": area.get("name"),
+            "emoji": area.get("emoji", "📌"),
+            "score": area.get("score", 0),
+            "mastery": area.get("mastery"),
+            "mastery_label": area.get("mastery_label"),
+            "accuracy": area.get("accuracy"),
+            "total_attempts": area.get("total_attempts", 0),
+            "reason": area.get("reason"),
+            "priority": area.get("priority", 0),
+        }
+        for area in weak_areas
+    ]
+
+    # â”€â”€ daily_battle: up to 20 weakness-backed questions from canonical store â”€â”€
+    daily_battle: List[Dict[str, Any]] = []
+    seen_ids = set()
+    topics = []
+    for area in weak_areas:
+        domain_id = area.get("domain_id", "")
+        skill = area.get("skill", "")
+        if domain_id:
+            topics.append(domain_id)
+        if skill and skill != domain_id:
+            topics.append(skill)
+
+    topics = list(dict.fromkeys(topics))
+
+    pool: List[Dict[str, Any]] = []
+    if topics:
+        try:
+            query = {"topic": {"$in": topics}} if topics else {}
+            pool = question_store.find(query).prefer_verified().to_list(200)
+        except Exception:
+            pool = []
+
+    random.shuffle(pool)
+    for q in pool:
+        qid = q.get("id") or q.get("_id")
+        if not qid or qid in seen_ids:
+            continue
+        seen_ids.add(qid)
+        daily_battle.append({
+            "id": qid,
+            "title": q.get("title") or q.get("question", ""),
+            "topic": q.get("topic"),
+            "skill": q.get("topic"),
+            "difficulty": q.get("difficulty", "medium"),
+            "estimated_minutes": q.get("estimated_minutes", 5),
+            "reason": "Weakness-backed daily battle",
+        })
+        if len(daily_battle) >= 20:
+            break
+
+    # â”€â”€ Back-calculate days remaining â”€â”€
+    days_remaining = None
+    if target_assessment_date:
+        try:
+            target = datetime.strptime(target_assessment_date, "%Y-%m-%d").replace(tzinfo=timezone.utc)
+            days_remaining = max(0, (target - datetime.now(timezone.utc)).days)
+        except Exception:
+            days_remaining = None
+
     plan: Dict[str, Any] = {
         "date": today,
         "user_id": user_id,
@@ -529,18 +744,25 @@ async def get_today(user_id: str, force_refresh: bool = False) -> Dict[str, Any]
         "challenge": challenge,
         "role_activity": role_activity,
         "company_mission": company_mission,
+        "totals": {"estimated_minutes": 0, "task_count": 0},
+        "target_company": target_company,
+        "target_role": target_role,
+        "assessment_date": target_assessment_date,
+        "days_remaining": days_remaining,
+        "daily_battle": daily_battle,
+        "weakness_report": weakness_report,
     }
 
     est = 0
     task_count = 0
     if next_mission:
-        est += next_mission.get("estimated_minutes", 12); task_count += 1
-    est += sum(r.get("estimated_minutes", 5) for r in reviews); task_count += len(reviews)
-    est += sum(t.get("estimated_minutes", 10) for t in practice); task_count += len(practice)
+        est += next_mission.get("estimated_minutes") or 12; task_count += 1
+    est += sum((r.get("estimated_minutes") or 5) for r in reviews); task_count += len(reviews)
+    est += sum((t.get("estimated_minutes") or 10) for t in practice); task_count += len(practice)
     if challenge:
-        est += challenge.get("estimated_minutes", 12); task_count += 1
+        est += challenge.get("estimated_minutes") or 12; task_count += 1
     if company_mission:
-        est += company_mission.get("estimated_minutes", 30); task_count += 1
+        est += company_mission.get("estimated_minutes") or 30; task_count += 1
 
     plan["totals"] = {"estimated_minutes": est, "task_count": task_count}
 
@@ -548,7 +770,7 @@ async def get_today(user_id: str, force_refresh: bool = False) -> Dict[str, Any]
     try:
         from app.services.cache import cache
         import json as _json
-        await cache.set("study", f"today:{user_id}:{today}", _json.dumps(plan), ttl=3600)
+        await cache.set("study", cache_key, _json.dumps(plan), ttl=3600)
     except Exception:
         pass
 

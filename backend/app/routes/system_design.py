@@ -5,9 +5,8 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from typing import Optional, List
 from app.database import users_collection, system_design_collection
-from app.middleware.auth import get_current_user
 from app.services.ai_system_design import generate_system_design_question, evaluate_system_design_answer
-from app.services.usage import check_and_reset_monthly_usage, can_use_feature
+from app.services.usage import require_pro_for_ai, plan_required
 from app.config import get_settings
 from bson import ObjectId
 
@@ -109,14 +108,11 @@ class SubmitSystemDesignAnswer(BaseModel):
 
 
 @router.post("/start")
-async def start_system_design(req: StartSystemDesign, user=Depends(get_current_user)):
+async def start_system_design(req: StartSystemDesign, user=Depends(require_pro_for_ai)):
     user = await check_and_reset_monthly_usage(user)
 
     if not can_use_feature(user, "interview"):
-        raise HTTPException(
-            status_code=403,
-            detail=f"Free tier limit reached ({settings.FREE_TIER_INTERVIEW_LIMIT} interviews/month). Upgrade to Pro for unlimited.",
-        )
+        raise plan_required(user, "system_design")
 
     # Bank-first: serve canonical human-reviewed content when a topic matches.
     question_data = _pick_bank_question(req.difficulty, req.topic)
@@ -158,7 +154,7 @@ async def start_system_design(req: StartSystemDesign, user=Depends(get_current_u
 
 
 @router.post("/answer")
-async def submit_system_design_answer(req: SubmitSystemDesignAnswer, user=Depends(get_current_user)):
+async def submit_system_design_answer(req: SubmitSystemDesignAnswer, user=Depends(require_pro_for_ai)):
     try:
         session = await system_design_collection.find_one({"_id": ObjectId(req.session_id)})
     except Exception:
@@ -194,7 +190,7 @@ async def submit_system_design_answer(req: SubmitSystemDesignAnswer, user=Depend
 
 
 @router.get("/{session_id}/result")
-async def get_system_design_result(session_id: str, user=Depends(get_current_user)):
+async def get_system_design_result(session_id: str, user=Depends(require_pro_for_ai)):
     try:
         session = await system_design_collection.find_one({"_id": ObjectId(session_id)})
     except Exception:
@@ -221,7 +217,7 @@ async def get_system_design_result(session_id: str, user=Depends(get_current_use
 
 
 @router.get("/history")
-async def get_system_design_history(user=Depends(get_current_user)):
+async def get_system_design_history(user=Depends(require_pro_for_ai)):
     cursor = system_design_collection.find(
         {"user_id": user["id"]}
     ).sort("created_at", -1).limit(20)

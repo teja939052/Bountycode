@@ -1,10 +1,16 @@
 """Tests for authentication routes."""
 
 import pytest
+import jwt
+from datetime import datetime, timezone, timedelta
+from bson import ObjectId
 from httpx import AsyncClient, ASGITransport
 from app.main import app
 from app.database import users_collection
 from app.middleware.rate_limiter import clear_login_attempts
+from app.config import get_settings
+
+settings = get_settings()
 
 
 @pytest.fixture
@@ -28,6 +34,39 @@ async def clean_db():
         await users_collection().delete_many({"email": "test@example.com"})
     except Exception:
         pass
+
+
+def _make_refresh_token(user_id: str, jti: str) -> str:
+    expire = datetime.now(timezone.utc) + timedelta(days=settings.JWT_REFRESH_EXPIRY_DAYS)
+    payload = {
+        "user_id": user_id,
+        "exp": expire,
+        "iat": datetime.now(timezone.utc),
+        "type": "refresh",
+        "jti": jti,
+    }
+    return jwt.encode(payload, settings.JWT_SECRET, algorithm=settings.JWT_ALGORITHM)
+
+
+def _db_available() -> bool:
+    try:
+        from app.database import get_client
+        import asyncio
+
+        async def _ping():
+            await get_client().admin.command("ping")
+
+        loop = asyncio.new_event_loop()
+        try:
+            loop.run_until_complete(_ping())
+        finally:
+            loop.close()
+        return True
+    except Exception:
+        return False
+
+
+needs_db = pytest.mark.skipif(not _db_available(), reason="MongoDB unreachable")
 
 
 @pytest.mark.asyncio
@@ -262,5 +301,79 @@ async def test_protected_route_with_token(client, clean_db):
     
     # Cleanup
     await users_collection().delete_many({"email": "route_test@example.com"})
+
+
+@needs_db
+@pytest.mark.asyncio
+async def test_refresh_token_revocation_survives_restart(client, clean_db):
+    """Refresh token revocation must survive server restart.
+    
+    Flow:
+    1. Register + login
+    2. Extract refresh token
+    3. Revoke by setting refresh_revoked_at (simulating logout)
+    4. Attempt refresh with old token
+    5. Must be rejected with 401
+    """
+    email = "revoke_test@example.com"
+    await users_collection().delete_many({"email": email})
+    clear_login_attempts(email)
+
+    # Register + login
+    reg = await client.post(
+        "/api/v1/auth/register",
+        json={"email": email, "name": "Revoke Test", "password": "SecurePass123!"},
+    )
+    assert reg.status_code == 200
+    user_id = reg.json()["user"]["id"]
+
+    # Extract refresh token from cookies
+    refresh_cookie = reg.cookies.get("pp_refresh_token")
+    assert refresh_cookie, "Refresh token cookie missing after registration"
+
+    # Simulate logout/revocation by setting refresh_revoked_at in DB
+    revoked_at = datetime.now(timezone.utc) - timedelta(seconds=1)
+    await users_collection().update_one(
+        {"_id": ObjectId(user_id)},
+        {"$set": {"refresh_revoked_at": revoked_at}},
+    )
+
+    # Attempt refresh with the old cookie
+    resp = await client.post("/api/v1/auth/refresh", cookies={"pp_refresh_token": refresh_cookie})
+    assert resp.status_code == 401, f"Expected 401 after revocation, got {resp.status_code}"
+
+    await users_collection().delete_many({"email": email})
+
+
+@needs_db
+@pytest.mark.asyncio
+async def test_refresh_token_rotation_invalidates_old_token(client, clean_db):
+    """After refresh, old refresh token must be invalid."""
+    email = "rotate_test@example.com"
+    await users_collection().delete_many({"email": email})
+    clear_login_attempts(email)
+
+    reg = await client.post(
+        "/api/v1/auth/register",
+        json={"email": email, "name": "Rotate Test", "password": "SecurePass123!"},
+    )
+    assert reg.status_code == 200
+    user_id = reg.json()["user"]["id"]
+
+    old_refresh = reg.cookies.get("pp_refresh_token")
+    assert old_refresh
+
+    # First refresh
+    r1 = await client.post("/api/v1/auth/refresh", cookies={"pp_refresh_token": old_refresh})
+    assert r1.status_code == 200
+    new_refresh = r1.cookies.get("pp_refresh_token")
+    assert new_refresh
+    assert new_refresh != old_refresh
+
+    # Old refresh token must now be invalid
+    r2 = await client.post("/api/v1/auth/refresh", cookies={"pp_refresh_token": old_refresh})
+    assert r2.status_code == 401
+
+    await users_collection().delete_many({"email": email})
 
 

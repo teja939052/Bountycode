@@ -10,12 +10,14 @@ import asyncio
 import logging
 import random
 from typing import List, Dict, Any, Optional
+from fastapi import HTTPException, status
 import httpx
 from app.config import get_settings
 from app.services.cache import cache
 from app.services.request_metrics import metrics as request_metrics
 from app.services.resilience import call_with_resilience
-from app.services.circuit_breaker import ai_breaker
+from app.services.circuit_breaker import ai_model_registry
+from app.services.sanitizer import sanitize_prompt_input
 
 logger = logging.getLogger(__name__)
 settings = get_settings()
@@ -111,37 +113,71 @@ async def close_http_client():
         logger.info("HTTP client closed")
 
 
-async def _check_circuit_breaker() -> bool:
-    """Check if the AI circuit breaker allows a new request.
+async def _check_circuit_breaker(model: str = "") -> bool:
+    """Check if the specific model's circuit breaker allows a new request.
+
+    Args:
+        model: Model identifier. Defaults to primary model if empty.
 
     Returns:
-        bool: True if requests are allowed (closed or recovered half-open).
+        bool: True if requests are allowed for this model.
     """
-    return await ai_breaker.allow_request()
+    target_model = model or settings.OPENROUTER_MODEL
+    return await ai_model_registry.allow_request(target_model)
 
 
-async def _record_failure():
-    """Record an AI service failure on the circuit breaker."""
-    await ai_breaker.record_failure()
+async def _record_failure(model: str = ""):
+    """Record an AI service failure on the specific model's circuit breaker."""
+    target_model = model or settings.OPENROUTER_MODEL
+    await ai_model_registry.record_failure(target_model)
 
 
-async def _record_success():
-    """Record an AI service success and reset the circuit breaker."""
-    await ai_breaker.record_success()
+async def _record_success(model: str = ""):
+    """Record an AI service success and reset the specific model's circuit breaker."""
+    target_model = model or settings.OPENROUTER_MODEL
+    await ai_model_registry.record_success(target_model)
 
 
 def _make_cache_key(messages: List[Dict], model: str) -> str:
-    """Generate a short SHA-256 cache key from messages and model name.
+    """Generate a SHA-256 cache key from messages and model name.
+
+    Uses the full 32-character hex digest (128 bits) to minimize collision
+    probability in long-running or multi-worker deployments.
 
     Args:
         messages: List of chat message dicts.
         model: Model identifier string.
 
     Returns:
-        str: 16-character hex cache key.
+        str: 32-character hex cache key.
     """
     content = json.dumps(messages, sort_keys=True) + model
-    return hashlib.sha256(content.encode()).hexdigest()[:16]
+    return hashlib.sha256(content.encode()).hexdigest()
+
+
+def sanitize_messages(messages: List[Dict]) -> List[Dict]:
+    """Sanitize user content in chat messages before sending to the model.
+
+    Applies length capping, HTML/script stripping, and blocks known prompt
+    injection phrases in user-controlled message content. System messages are
+    left intact because they are authored by the backend, not the user.
+
+    Args:
+        messages: List of chat message dicts with 'role' and 'content'.
+
+    Returns:
+        List[Dict]: Sanitized message list.
+    """
+    sanitized = []
+    for msg in messages:
+        if not isinstance(msg, dict):
+            continue
+        role = msg.get("role", "")
+        content = msg.get("content", "")
+        if role == "user" and content:
+            content = sanitize_prompt_input(content, max_length=4000)
+        sanitized.append({"role": role, "content": content})
+    return [m for m in sanitized if m["content"]]
 
 
 async def _call_openrouter(
@@ -253,40 +289,24 @@ async def chat_completion(
             await request_metrics.record("ai", "cache_hit")
             return cached
 
-    if not await _check_circuit_breaker():
-        for fallback in FALLBACK_MODELS:
-            if fallback != primary_model:
-                try:
-                    result = await call_with_resilience(
-                        _call_openrouter,
-                        ai_breaker,
-                        "ai",
-                        1,
-                        0.5,
-                        request_metrics,
-                        messages,
-                        fallback,
-                        temperature,
-                        max_tokens,
-                    )
-                    await _record_success()
-                    if use_cache:
-                        cache_key = _make_cache_key(messages, primary_model)
-                        await cache.set("ai", cache_key, result, ttl=3600)
-                    return result
-                except Exception as e:
-                    logger.warning(f"Fallback model {fallback} failed: {e}")
-                    continue
-        raise Exception("AI service temporarily unavailable (circuit breaker open)")
+    # Sanitize user inputs in messages before sending to the model.
+    messages = sanitize_messages(messages)
 
+    # Try primary model first, then fallbacks. Each model uses its own circuit
+    # breaker, so one flaky provider does not block the entire fallback chain.
     models_to_try = [primary_model] + [m for m in FALLBACK_MODELS if m != primary_model]
 
+    last_error = None
     for model_to_use in models_to_try:
+        if not await ai_model_registry.allow_request(model_to_use):
+            logger.warning(f"Circuit breaker open for model {model_to_use}, skipping")
+            continue
+
         try:
             result = await call_with_resilience(
                 _call_openrouter,
-                ai_breaker,
-                "ai",
+                ai_model_registry._get(model_to_use),
+                f"ai:{model_to_use}",
                 MAX_RETRIES,
                 RETRY_DELAY,
                 request_metrics,
@@ -295,16 +315,58 @@ async def chat_completion(
                 temperature,
                 max_tokens,
             )
-            await _record_success()
+            await _record_success(model_to_use)
             if use_cache:
                 cache_key = _make_cache_key(messages, primary_model)
                 await cache.set("ai", cache_key, result, ttl=3600)
             return result
         except Exception as e:
             logger.error(f"AI call failed for {model_to_use}: {e}")
+            await _record_failure(model_to_use)
+            last_error = e
             continue
 
-    raise Exception("AI service temporarily unavailable")
+    raise last_error or Exception("AI service temporarily unavailable")
+
+
+async def chat_completion_with_quota(
+    messages: List[Dict],
+    user: dict,
+    model: Optional[str] = None,
+    use_cache: bool = True,
+    temperature: float = 0.7,
+    max_tokens: int = 2000,
+) -> str:
+    """Chat completion with daily AI quota enforcement.
+
+    Wraps chat_completion() with a free-tier daily quota check. Pro/Lifetime
+    users are unlimited. Free users get settings.FREE_TIER_DAILY_AI_QUESTIONS
+    calls per day.
+    """
+    from app.services.usage import can_use_daily_ai, mark_ai_used, _ensure_daily_ai_reset
+
+    user = await _ensure_daily_ai_reset(user)
+    allowed, msg = can_use_daily_ai(user)
+    if not allowed:
+        raise HTTPException(
+            status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+            detail=msg,
+        )
+
+    try:
+        result = await chat_completion(
+            messages=messages,
+            model=model,
+            use_cache=use_cache,
+            temperature=temperature,
+            max_tokens=max_tokens,
+        )
+        await mark_ai_used(user["id"])
+        return result
+    except HTTPException:
+        raise
+    except Exception:
+        raise
 
 
 def parse_json(text: str) -> Dict[str, Any]:

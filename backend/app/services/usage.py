@@ -55,6 +55,56 @@ async def check_and_reset_monthly_usage(user: dict) -> dict:
     return user
 
 
+from fastapi import Depends, HTTPException, status
+from app.middleware.auth import get_current_user
+
+async def _ensure_daily_ai_reset(user: dict) -> dict:
+    """Ensure daily AI counter is reset if it's a new day."""
+    now = datetime.now(timezone.utc)
+    today = now.strftime("%Y-%m-%d")
+    daily = user.get("daily_usage") or {}
+    last_reset = daily.get("ai_reset_date")
+    if last_reset != today:
+        await users_collection.update_one(
+            {"_id": ObjectId(user["id"])},
+            {"$set": {"daily_usage.ai_reset_date": today, "daily_usage.ai_questions": 0}},
+        )
+        user["daily_usage"] = {"ai_reset_date": today, "ai_questions": 0}
+    return user
+
+
+def can_use_daily_ai(user: dict) -> tuple[bool, str]:
+    """Check if free-tier user has remaining daily AI quota."""
+    if user.get("plan") in ("pro", "lifetime"):
+        return True, ""
+    daily = user.get("daily_usage") or {}
+    used = daily.get("ai_questions", 0)
+    limit = getattr(settings, "FREE_TIER_DAILY_AI_QUESTIONS", 5)
+    if used >= limit:
+        return False, f"Daily AI limit reached ({limit}/day). Upgrade to Pro for unlimited AI."
+    return True, ""
+
+
+async def mark_ai_used(user_id: str) -> None:
+    """Increment the user's daily AI counter."""
+    now = datetime.now(timezone.utc)
+    today = now.strftime("%Y-%m-%d")
+    await users_collection.update_one(
+        {"_id": ObjectId(user_id)},
+        {"$inc": {"daily_usage.ai_questions": 1}, "$setOnInsert": {"daily_usage.ai_reset_date": today}},
+        upsert=True,
+    )
+
+
+async def require_daily_ai_quota(user=Depends(get_current_user)) -> dict:
+    """FastAPI dependency: enforce daily AI quota before allowing AI calls."""
+    user = await _ensure_daily_ai_reset(user)
+    allowed, msg = can_use_daily_ai(user)
+    if not allowed:
+        raise HTTPException(status_code=status.HTTP_429_TOO_MANY_REQUESTS, detail=msg)
+    return user
+
+
 def can_use_feature(user: dict, feature: str) -> tuple[bool, str]:
     """Check if user can use a feature based on their plan and usage."""
     if user.get("plan") in ("pro", "lifetime"):
@@ -147,6 +197,87 @@ async def mark_feature_used(user_id: str, feature: str) -> None:
                 )
             except Exception:
                 pass
+
+
+async def require_pro_for_ai(user=Depends(get_current_user)) -> dict:
+    """FastAPI dependency: AI features require Pro or Lifetime plan."""
+    if user.get("plan") not in ("pro", "lifetime"):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Upgrade to Pro to unlock AI-powered feedback, generation, and coaching — plus unlimited company-specific prep.",
+        )
+    return user
+
+
+def plan_required_message(user: dict, feature: str, *, remaining: int = 0) -> str:
+    """Return a consistent upgrade/paywall message for inclusion in response bodies."""
+    if user.get("plan") in ("pro", "lifetime", "trial"):
+        return ""
+    benefits = {
+        "interview": "unlimited mock interviews with AI feedback",
+        "resume": "unlimited resume uploads, generation and ATS optimization",
+        "aptitude": "unlimited aptitude tests with detailed solutions",
+        "coding": "unlimited coding challenges with hints and solutions",
+        "system_design": "unlimited system design practice with evaluation",
+        "ai_debugger": "AI debugging, coaching and step-by-step traces",
+        "cover_letter": "AI cover letters and LinkedIn summaries",
+        "visualization": "AI-generated code traces and algorithm walkthroughs",
+        "question_answer": "AI-powered answer feedback and explanations",
+        "question_solution": "full solutions and company-specific prep",
+        "hint": "all hint levels, including Level 3 solutions",
+        "learning_path": "full learning paths, question details, and company-specific mocks",
+        "company_mock": "unlimited company-specific mock tests",
+        "skill_path": "specific questions, patterns, and hints for every skill path",
+        "placement_pack": "full placement packs with company-specific OAs, mock interviews, and readiness tracking",
+    }
+    benefit = benefits.get(feature, "Pro")
+    if remaining and remaining > 0:
+        return (
+            f"Free limit reached. Upgrade to Pro to unlock {benefit}, "
+            f"company-specific prep, and unlimited practice."
+        )
+    return (
+        f"Free tier limit reached. Upgrade to Pro for {benefit}, "
+        f"company-specific prep, and unlimited practice."
+    )
+
+
+def plan_required(user: dict, feature: str, *, remaining: int = 0) -> HTTPException:
+    """Centralized paywall/upgrade message for consistent conversion copy."""
+    if user.get("plan") in ("pro", "lifetime", "trial"):
+        return HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Unexpected paid user in free-tier gate.")
+
+    benefits = {
+        "interview": "unlimited mock interviews with AI feedback",
+        "resume": "unlimited resume uploads, generation and ATS optimization",
+        "aptitude": "unlimited aptitude tests with detailed solutions",
+        "coding": "unlimited coding challenges with hints and solutions",
+        "system_design": "unlimited system design practice with evaluation",
+        "ai_debugger": "AI debugging, coaching and step-by-step traces",
+        "cover_letter": "AI cover letters and LinkedIn summaries",
+        "visualization": "AI-generated code traces and algorithm walkthroughs",
+        "question_answer": "AI-powered answer feedback and explanations",
+        "question_solution": "full solutions and company-specific prep",
+        "hint": "all hint levels, including Level 3 solutions",
+        "learning_path": "full learning paths, question details, and company-specific mocks",
+        "company_mock": "unlimited company-specific mock tests",
+        "skill_path": "specific questions, patterns, and hints for every skill path",
+        "placement_pack": "full placement packs with company-specific OAs, mock interviews, and readiness tracking",
+    }
+    benefit = benefits.get(feature, "Pro")
+
+    if remaining and remaining > 0:
+        detail = (
+            f"Free limit reached. Upgrade to Pro to unlock {benefit}, "
+            f"company-specific prep, and unlimited practice."
+        )
+    else:
+        detail = (
+            f"Free tier limit reached. Upgrade to Pro for {benefit}, "
+            f"company-specific prep, and unlimited practice."
+        )
+
+    return HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=detail)
 
 
 def get_usage_stats(user: dict) -> dict:

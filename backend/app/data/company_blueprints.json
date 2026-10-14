@@ -19,12 +19,12 @@
         "negative_marking": false,
         "section_switching": false,
         "back_navigation": false,
-        "note": "Once a section's time expires it locks permanently. Within a section, clicking Next locks the question \u00e2\u20ac\u201d no review or change. Attempt every question: blank and wrong both score zero."
+        "note": "Once a section's time expires it locks permanently. Within a section, clicking Next locks the question â€” no review or change. Attempt every question: blank and wrong both score zero."
       },
       "band_logic": [
         "All candidates attempt all 5 sections in one sitting (integrated model since 2023).",
-        "Foundation percentile is evaluated first \u00e2\u20ac\u201d below-threshold candidates are Ninja-ineligible.",
-        "Foundation-eligible candidates are evaluated on Advanced Aptitude \u00e2\u20ac\u201d clearing it means Digital-eligible.",
+        "Foundation percentile is evaluated first â€” below-threshold candidates are Ninja-ineligible.",
+        "Foundation-eligible candidates are evaluated on Advanced Aptitude â€” clearing it means Digital-eligible.",
         "Advanced Coding (partial marks on test-case pass rate) determines Prime eligibility at 80th+ percentile overall."
       ],
       "structure": {
@@ -814,6 +814,504 @@
       "verification_todo": "Pattern-relevant: reported IBM entry-level cognitive assessment blueprint. Confirm against official 2026 IBM communication before serving as verified.",
       "description": "IBM entry-level Cognitive Ability + coding assessment: aptitude/logical/verbal (~50q/30m) followed by Coding (2 problems) for software roles. No negative marking.",
       "last_verified_at": "2026-09-16T00:00:00+00:00"
+    },
+    "tcs_codevita": {
+      "name": "TCS Codevita",
+      "full_name": "TCS Codevita",
+      "role": "SDE undergrad / Experienced",
+      "hiring_tracks": [
+        "codevita",
+        "digital"
+      ],
+      "ctc_range": {
+        "codevita": "3.5-7 LPA",
+        "digital": "7-11 LPA"
+      },
+      "duration_minutes": 90,
+      "exam_rules": {
+        "negative_marking": false,
+        "section_switching": true,
+        "back_navigation": true,
+        "note": "Coding contest format. Multiple problems with varying difficulty. Partial scoring based on test cases."
+      },
+      "band_logic": [
+        "Codevita is a coding contest with 6-8 problems.",
+        "Problems range from easy to hard difficulty.",
+        "Scoring based on number of test cases passed.",
+        "Top performers get direct interview calls."
+      ],
+      "structure": {
+        "coding": {
+          "duration": 90,
+          "problems": 6,
+          "negative_marking": false,
+          "languages": [
+            "C",
+            "C++",
+            "Java",
+            "Python"
+          ],
+          "topics": [
+            "arrays",
+            "strings",
+            "dp",
+            "graphs",
+            "trees",
+            "math"
+          ]
+        }
+      },
+      "competencies": [
+        "quantitative_aptitude",
+        "logical_reasoning",
+        "verbal_ability",
+        "coding"
+      ],
+      "readiness_weights": {
+        "foundation": 0.6,
+        "coding": 0.4
+      },
+      "companies": [
+        "TCS"
+      ],
+      "provenance_status": "pattern_relevant",
+      "sources": [
+        "https://prepinsta.com/"
+      ],
+      "last_verified": "2026-09-23T12:39:46.665194+00:00",
+      "verification_todo": "Pattern-relevant: reported company blueprint. Confirm against official communication before serving as verified.",
+      "description": "TCS Codevita entry-level assessment pattern.",
+      "last_verified_at": "2026-09-23T12:39:46.665863+00:00"
+    },
+    "tech_mahindra": {
+      "name": "Tech Mahindra",
+      "full_name": "Tech Mahindra India",
+      "role": "Associate / Software Engineer",
+      "hiring_tracks": [
+        "associate",
+        "software_engineer"
+      ],
+      "ctc_range": {
+        "associate": "3.5-5 LPA",
+        "software_engineer": "5-8 LPA"
+      },
+      "duration_minutes": 90,
+      "exam_rules": {
+        "negative_marking": true,
+        "section_switching": false,
+        "back_navigation": false,
+        "note": "Aptitude test with negative marking. English and technical sections."
+      },
+      "band_logic": [
+        "Aptitude (quant + logical + verbal) is primary filter.",
+        "Technical assessment for engineering roles.",
+        "Negative marking: -0.25 for wrong answers."
+      ],
+      "structure": {
+        "foundation": {
+          "duration": 60,
+          "sections": [
+            "quantitative_aptitude",
+            "logical_reasoning",
+            "verbal_ability"
+          ],
+          "questions": 100,
+          "negative_marking": true,
+          "topics": {
+            "quantitative_aptitude": {
+              "questions": 40,
+              "duration_minutes": 20
+            },
+            "logical_reasoning": {
+              "questions": 30,
+              "duration_minutes": 20
+            },
+            "verbal_ability": {
+              "questions": 30,
+              "duration_minutes": 20
+            }
+          }
+        },
+        "advanced": {
+          "duration": 30,
+          "sections": [
+            "technical"
+          ],
+          "questions": 50,
+          "negative_marking": true,
+          "topics": {
+            "technical": {
+              "questions": 50,
+              "duration_minutes": 30
+            }
+          }
+        }
+      },
+      "competencies": [
+        "quantitative_aptitude",
+        "logical_reasoning",
+        "verbal_ability",
+        "coding"
+      ],
+      "readiness_weights": {
+        "foundation": 0.6,
+        "coding": 0.4
+      },
+      "companies": [
+        "Tech Mahindra"
+      ],
+      "provenance_status": "pattern_relevant",
+      "sources": [
+        "https://prepinsta.com/"
+      ],
+      "last_verified": "2026-09-23T12:39:46.665863+00:00",
+      "verification_todo": "Pattern-relevant: reported company blueprint. Confirm against official communication before serving as verified.",
+      "description": "Tech Mahindra entry-level assessment pattern.",
+      "last_verified_at": "2026-09-23T12:39:46.665863+00:00"
+    },
+    "ltimindtree": {
+      "name": "LTI Mindtree",
+      "full_name": "LTI Mindtree",
+      "role": "Associate / Software Engineer",
+      "hiring_tracks": [
+        "associate",
+        "system_engineer"
+      ],
+      "ctc_range": {
+        "associate": "3.5-5 LPA",
+        "system_engineer": "5-8 LPA"
+      },
+      "duration_minutes": 90,
+      "exam_rules": {
+        "negative_marking": true,
+        "section_switching": false,
+        "back_navigation": false,
+        "note": "Aptitude test with negative marking. English and technical sections."
+      },
+      "band_logic": [
+        "Aptitude (quant + logical + verbal) is primary filter.",
+        "Technical assessment for engineering roles.",
+        "Negative marking: -0.25 for wrong answers."
+      ],
+      "structure": {
+        "foundation": {
+          "duration": 60,
+          "sections": [
+            "quantitative_aptitude",
+            "logical_reasoning",
+            "verbal_ability"
+          ],
+          "questions": 90,
+          "negative_marking": true,
+          "topics": {
+            "quantitative_aptitude": {
+              "questions": 30,
+              "duration_minutes": 20
+            },
+            "logical_reasoning": {
+              "questions": 30,
+              "duration_minutes": 20
+            },
+            "verbal_ability": {
+              "questions": 30,
+              "duration_minutes": 20
+            }
+          }
+        },
+        "advanced": {
+          "duration": 30,
+          "sections": [
+            "technical"
+          ],
+          "questions": 40,
+          "negative_marking": true,
+          "topics": {
+            "technical": {
+              "questions": 40,
+              "duration_minutes": 30
+            }
+          }
+        }
+      },
+      "competencies": [
+        "quantitative_aptitude",
+        "logical_reasoning",
+        "verbal_ability",
+        "coding"
+      ],
+      "readiness_weights": {
+        "foundation": 0.6,
+        "coding": 0.4
+      },
+      "companies": [
+        "LTI Mindtree"
+      ],
+      "provenance_status": "pattern_relevant",
+      "sources": [
+        "https://prepinsta.com/"
+      ],
+      "last_verified": "2026-09-23T12:39:46.665863+00:00",
+      "verification_todo": "Pattern-relevant: reported company blueprint. Confirm against official communication before serving as verified.",
+      "description": "LTI Mindtree entry-level assessment pattern.",
+      "last_verified_at": "2026-09-23T12:39:46.665863+00:00"
+    },
+    "hcl": {
+      "name": "HCL",
+      "full_name": "HCL Technologies",
+      "role": "Associate / Software Engineer",
+      "hiring_tracks": [
+        "associate",
+        "software_engineer"
+      ],
+      "ctc_range": {
+        "associate": "3.5-5 LPA",
+        "software_engineer": "5-8 LPA"
+      },
+      "duration_minutes": 90,
+      "exam_rules": {
+        "negative_marking": true,
+        "section_switching": false,
+        "back_navigation": false,
+        "note": "Aptitude test with negative marking. English and technical sections."
+      },
+      "band_logic": [
+        "Aptitude (quant + logical + verbal) is primary filter.",
+        "Technical assessment for engineering roles.",
+        "Negative marking: -0.25 for wrong answers."
+      ],
+      "structure": {
+        "foundation": {
+          "duration": 60,
+          "sections": [
+            "quantitative_aptitude",
+            "logical_reasoning",
+            "verbal_ability"
+          ],
+          "questions": 90,
+          "negative_marking": true,
+          "topics": {
+            "quantitative_aptitude": {
+              "questions": 30,
+              "duration_minutes": 20
+            },
+            "logical_reasoning": {
+              "questions": 30,
+              "duration_minutes": 20
+            },
+            "verbal_ability": {
+              "questions": 30,
+              "duration_minutes": 20
+            }
+          }
+        },
+        "advanced": {
+          "duration": 30,
+          "sections": [
+            "technical"
+          ],
+          "questions": 40,
+          "negative_marking": true,
+          "topics": {
+            "technical": {
+              "questions": 40,
+              "duration_minutes": 30
+            }
+          }
+        }
+      },
+      "competencies": [
+        "quantitative_aptitude",
+        "logical_reasoning",
+        "verbal_ability",
+        "coding"
+      ],
+      "readiness_weights": {
+        "foundation": 0.6,
+        "coding": 0.4
+      },
+      "companies": [
+        "HCL"
+      ],
+      "provenance_status": "pattern_relevant",
+      "sources": [
+        "https://prepinsta.com/"
+      ],
+      "last_verified": "2026-09-23T12:39:46.665863+00:00",
+      "verification_todo": "Pattern-relevant: reported company blueprint. Confirm against official communication before serving as verified.",
+      "description": "HCL entry-level assessment pattern.",
+      "last_verified_at": "2026-09-23T12:39:46.665863+00:00"
+    },
+    "cognizant_genc": {
+      "name": "Cognizant GenC",
+      "full_name": "Cognizant GenC",
+      "role": "Associate / Software Engineer",
+      "hiring_tracks": [
+        "genc",
+        "genc_next"
+      ],
+      "ctc_range": {
+        "genc": "3.5-5 LPA",
+        "genc_next": "5-8 LPA"
+      },
+      "duration_minutes": 90,
+      "exam_rules": {
+        "negative_marking": false,
+        "section_switching": false,
+        "back_navigation": false,
+        "note": "Aptitude test without negative marking. English and technical sections."
+      },
+      "band_logic": [
+        "Aptitude (quant + logical + verbal) is primary filter.",
+        "Technical assessment for engineering roles.",
+        "No negative marking."
+      ],
+      "structure": {
+        "foundation": {
+          "duration": 60,
+          "sections": [
+            "quantitative_aptitude",
+            "logical_reasoning",
+            "verbal_ability"
+          ],
+          "questions": 90,
+          "negative_marking": false,
+          "topics": {
+            "quantitative_aptitude": {
+              "questions": 30,
+              "duration_minutes": 20
+            },
+            "logical_reasoning": {
+              "questions": 30,
+              "duration_minutes": 20
+            },
+            "verbal_ability": {
+              "questions": 30,
+              "duration_minutes": 20
+            }
+          }
+        },
+        "advanced": {
+          "duration": 30,
+          "sections": [
+            "coding"
+          ],
+          "questions": 2,
+          "negative_marking": false,
+          "topics": {
+            "coding": {
+              "problems": 2,
+              "duration_minutes": 30
+            }
+          }
+        }
+      },
+      "competencies": [
+        "quantitative_aptitude",
+        "logical_reasoning",
+        "verbal_ability",
+        "coding"
+      ],
+      "readiness_weights": {
+        "foundation": 0.6,
+        "coding": 0.4
+      },
+      "companies": [
+        "Cognizant"
+      ],
+      "provenance_status": "pattern_relevant",
+      "sources": [
+        "https://prepinsta.com/"
+      ],
+      "last_verified": "2026-09-23T12:39:46.665863+00:00",
+      "verification_todo": "Pattern-relevant: reported company blueprint. Confirm against official communication before serving as verified.",
+      "description": "Cognizant GenC entry-level assessment pattern.",
+      "last_verified_at": "2026-09-23T12:39:46.665863+00:00"
+    },
+    "infosys_infytq": {
+      "name": "Infosys InfyTQ",
+      "full_name": "Infosys InfyTQ",
+      "role": "SDE undergrad / Specialist",
+      "hiring_tracks": [
+        "infytq",
+        "specialist_program"
+      ],
+      "ctc_range": {
+        "infytq": "3.5-5 LPA",
+        "specialist_program": "5-8 LPA"
+      },
+      "duration_minutes": 90,
+      "exam_rules": {
+        "negative_marking": false,
+        "section_switching": false,
+        "back_navigation": false,
+        "note": "Aptitude test without negative marking. English and technical sections."
+      },
+      "band_logic": [
+        "Aptitude (quant + logical + verbal) is primary filter.",
+        "Technical assessment for engineering roles.",
+        "No negative marking."
+      ],
+      "structure": {
+        "foundation": {
+          "duration": 60,
+          "sections": [
+            "quantitative_aptitude",
+            "logical_reasoning",
+            "verbal_ability"
+          ],
+          "questions": 90,
+          "negative_marking": false,
+          "topics": {
+            "quantitative_aptitude": {
+              "questions": 30,
+              "duration_minutes": 20
+            },
+            "logical_reasoning": {
+              "questions": 30,
+              "duration_minutes": 20
+            },
+            "verbal_ability": {
+              "questions": 30,
+              "duration_minutes": 20
+            }
+          }
+        },
+        "advanced": {
+          "duration": 30,
+          "sections": [
+            "coding"
+          ],
+          "questions": 2,
+          "negative_marking": false,
+          "topics": {
+            "coding": {
+              "problems": 2,
+              "duration_minutes": 30
+            }
+          }
+        }
+      },
+      "competencies": [
+        "quantitative_aptitude",
+        "logical_reasoning",
+        "verbal_ability",
+        "coding"
+      ],
+      "readiness_weights": {
+        "foundation": 0.6,
+        "coding": 0.4
+      },
+      "companies": [
+        "Infosys"
+      ],
+      "provenance_status": "pattern_relevant",
+      "sources": [
+        "https://prepinsta.com/"
+      ],
+      "last_verified": "2026-09-23T12:39:46.665863+00:00",
+      "verification_todo": "Pattern-relevant: reported company blueprint. Confirm against official communication before serving as verified.",
+      "description": "Infosys InfyTQ entry-level assessment pattern.",
+      "last_verified_at": "2026-09-23T12:39:46.665863+00:00"
     }
   }
 }

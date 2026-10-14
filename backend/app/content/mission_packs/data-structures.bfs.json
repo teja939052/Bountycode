@@ -1,0 +1,160 @@
+{
+  "id": "data-structures.bfs",
+  "title": "BFS",
+  "domain": "data-structures",
+  "concept": "BFS",
+  "skill_id": "data-structures.graph.bfs",
+  "tags": [
+    "data-structures",
+    "service-companies",
+    "tcs",
+    "infosys",
+    "wipro"
+  ],
+  "difficulty": "medium",
+  "estimated_minutes": 20,
+  "mastery_threshold": 75,
+  "why_it_matters": "Breadth-first search explores level by level.",
+  "prerequisites": [],
+  "misconceptions": [
+    {
+      "code": "coding_array_index_error",
+      "signature": "Student mishandles pointers/indices in data structure operations.",
+      "reteach_route": "bug_surgery",
+      "reteach_action": "show_array_index_visual"
+    }
+  ],
+  "captain_byte": {
+    "intro": "Welcome to BFS. This is a core data-structures concept for placement prep. Follow the steps carefully.",
+    "correct": [
+      "Exactly right!",
+      "Perfect!",
+      "You have got it!"
+    ],
+    "wrong": [
+      "Not quite. Review the step and try again.",
+      "Close! Think about what the concept really means."
+    ],
+    "after_break": "Now you see the broken assumption. Repair it and move on.",
+    "after_mastery": "You have mastered BFS. This will appear in your next test.",
+    "retry_prompt": "Give it another shot. You are close."
+  },
+  "discover": {
+    "prompt": "Read this BFS problem carefully. Identify what is being asked.",
+    "interaction_kind": "mcq_read"
+  },
+  "understand": {
+    "prompt": "The key idea for BFS: understand the core mechanism before applying it.",
+    "interaction_kind": "read_explanation",
+    "explanation": "BFS requires understanding the core principle before applying it."
+  },
+  "manipulate": {
+    "prompt": "Practice: apply BFS to a simple example.",
+    "interaction_kind": "numeric_input",
+    "answer": "See explanation"
+  },
+  "predict": {
+    "prompt": "Predict the outcome for this BFS scenario.",
+    "interaction_kind": "numeric_input",
+    "answer": "See explanation"
+  },
+  "build": {
+    "prompt": "Write or construct a solution for this BFS problem.",
+    "interaction_kind": "word_problem",
+    "answer": "Solution for BFS"
+  },
+  "break_step": {
+    "prompt": "What is wrong with this BFS approach?",
+    "interaction_kind": "mcq_diagnose",
+    "broken_code": "# broken BFS approach",
+    "expected_failure": "Does not handle edge cases"
+  },
+  "debug": {
+    "prompt": "Fix the BFS error.",
+    "interaction_kind": "formula_fix",
+    "correct_code": "# fixed BFS approach"
+  },
+  "retrieval": {
+    "prompt": "Recall the key formula or rule for BFS.",
+    "interaction_kind": "recall_formula",
+    "answer": "Key insight for BFS"
+  },
+  "transfer": {
+    "prompt": "Apply BFS to a new context.",
+    "interaction_kind": "word_problem",
+    "answer": "See explanation"
+  },
+  "practice": [
+    {
+      "kind": "mcq",
+      "prompt": "Practice 1: Apply BFS to solve this problem.",
+      "answer": "See explanation",
+      "explanation": "This demonstrates BFS in a placement context.",
+      "difficulty": "medium",
+      "company_tags": [],
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ]
+    },
+    {
+      "kind": "numeric",
+      "prompt": "Practice 2: Apply BFS to solve this problem.",
+      "answer": "See explanation",
+      "explanation": "This demonstrates BFS in a placement context.",
+      "difficulty": "medium",
+      "company_tags": []
+    },
+    {
+      "kind": "word_problem",
+      "prompt": "Practice 3: Apply BFS to solve this problem.",
+      "answer": "See explanation",
+      "explanation": "This demonstrates BFS in a placement context.",
+      "difficulty": "medium",
+      "company_tags": []
+    }
+  ],
+  "proof": [
+    {
+      "id": "bfs-p1",
+      "prompt": "Prove your BFS skill: explain the solution to this problem.",
+      "answer_format": "text",
+      "correct": "Correct application of BFS",
+      "explanation": "This tests understanding of BFS.",
+      "time_limit_seconds": 60,
+      "company_tags": []
+    },
+    {
+      "id": "bfs-p2",
+      "prompt": "Prove your BFS skill: explain the solution to this problem.",
+      "answer_format": "text",
+      "correct": "Correct application of BFS",
+      "explanation": "This tests understanding of BFS.",
+      "time_limit_seconds": 60,
+      "company_tags": []
+    }
+  ],
+  "srs_key_points": [
+    "Core principle of BFS",
+    "Common pitfall in BFS",
+    "When to apply BFS"
+  ],
+  "company_variants": [
+    {
+      "company": "data-structures",
+      "role": "sde",
+      "difficulty": "medium",
+      "extra_practice": [],
+      "proof_questions": []
+    }
+  ],
+  "srs_review_intervals": [
+    1,
+    3,
+    7,
+    14,
+    30
+  ]
+}

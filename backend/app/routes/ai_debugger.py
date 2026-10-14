@@ -3,11 +3,12 @@ AI Mock Debugger — Step-by-step code execution trace and feedback.
 When a submission fails, AI walks through the code and identifies the error.
 """
 from datetime import datetime, timezone
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 from typing import Optional
 from app.middleware.auth import get_current_user
 from app.services.ai_core import chat_completion, parse_json
 from app.services.code_executor import CodeExecutionEngine
+from app.services.usage import require_pro_for_ai, plan_required
 
 router = APIRouter(prefix="/api/v1/ai-debugger", tags=["ai-debugger"])
 engine = CodeExecutionEngine()
@@ -19,7 +20,7 @@ async def analyze_failed_submission(
     code: str,
     language: str,
     failed_test_case: Optional[dict] = None,
-    user=Depends(get_current_user),
+    user=Depends(require_pro_for_ai),
 ):
     """Analyze a failed code submission and provide step-by-step debugging help."""
     # Question content comes from the in-memory canonical store only
@@ -112,12 +113,88 @@ Be specific about line numbers and variable values. Think step by step through t
     }
 
 
+@router.post("/creative-coach")
+async def creative_coach(
+    request: Request,
+    user=Depends(require_pro_for_ai),
+):
+    """Creative coach for free-form compiler work (no bank question needed).
+
+    Modes: mentor (direct coaching), story (analogy-driven), boss (adversarial
+    edge-case pressure). Returns the {title, mission, analogy, first_move,
+    pitfalls, next_steps} shape the Compiler creative tab renders.
+    """
+    body = await request.json() if request.headers.get("content-type", "").startswith("application/json") else {}
+    problem_description = str(body.get("problemDescription") or body.get("problem_description") or "")[:4000]
+    code = str(body.get("code") or "")[:12000]
+    language = str(body.get("language") or "python")[:32]
+    topic = str(body.get("topic") or "")[:200]
+    mode = str(body.get("mode") or "mentor").lower()
+    if mode not in ("mentor", "story", "boss"):
+        mode = "mentor"
+
+    mode_brief = {
+        "mentor": "Coach directly: name the single most important insight, then the concrete first code move.",
+        "story": "Teach through one vivid real-world analogy that maps 1:1 onto the algorithm's moving parts.",
+        "boss": "Act as an adversarial examiner: lead with the nastiest edge cases and where this code would break.",
+    }[mode]
+
+    prompt = f"""You are a creative coding coach. {mode_brief}
+
+Problem: {problem_description or 'Free-form practice (no statement provided).'}
+Topic: {topic or 'general problem solving'}
+Language: {language}
+Student's current code:
+```
+{code or '(no code yet)'}
+```
+
+Reply in this EXACT JSON format, no other text:
+{{
+  "title": "Short punchy session title (<= 6 words)",
+  "mission": "One sentence: what to achieve in this session",
+  "analogy": "A vivid analogy for the core idea (2-3 sentences)",
+  "first_move": "The single concrete next code change to make",
+  "micro_challenge": "One tiny exercise that proves the core idea (one sentence)",
+  "edge_case_watch": "The single nastiest input to test against (one sentence)",
+  "pep_talk": "One encouraging sentence, specific to this problem",
+  "pitfalls": ["2-3 traps to avoid"],
+  "next_steps": ["2-3 ordered follow-up moves"]
+}}"""
+
+    try:
+        result = await chat_completion(
+            messages=[{"role": "user", "content": prompt}],
+            use_cache=True,
+            max_tokens=800,
+        )
+        coaching = parse_json(result)
+        if not isinstance(coaching, dict) or not coaching.get("mission"):
+            raise ValueError("unparseable coach response")
+    except Exception:
+        coaching = {
+            "title": "Creative Mind",
+            "mission": "Break the problem into one tiny verifiable step, then build from there.",
+            "analogy": "Think of the algorithm as an assembly line: each station does one simple job on every item that passes through.",
+            "first_move": "Write a brute-force version that passes the smallest sample input, then optimize.",
+            "micro_challenge": "Solve it by hand for 3 elements before writing any code.",
+            "edge_case_watch": "Empty input and a single element — handle those first.",
+            "pep_talk": "Every expert was once stuck on exactly this step. One small passing test changes everything.",
+            "pitfalls": ["Optimizing before anything runs", "Ignoring empty/single-element inputs"],
+            "next_steps": ["Get one sample passing", "Add one edge case", "Estimate time complexity"],
+        }
+
+    coaching["mode"] = mode
+    coaching["generated_at"] = datetime.now(timezone.utc).isoformat()
+    return coaching
+
+
 @router.post("/hint")
 async def get_progressive_hint(
     question_id: str,
     hint_level: int = 1,
     code: Optional[str] = None,
-    user=Depends(get_current_user),
+    user=Depends(require_pro_for_ai),
 ):
     """Get a progressive hint for a problem (3 levels: nudge → approach → solution)."""
     # Question content comes from the in-memory canonical store only
@@ -195,7 +272,7 @@ async def explain_error(
     error_message: str,
     code: str,
     language: str,
-    user=Depends(get_current_user),
+    user=Depends(require_pro_for_ai),
 ):
     """Explain a specific error message in student-friendly language."""
     prompt = f"""A student encountered this error while coding:
@@ -247,7 +324,7 @@ async def step_by_step_trace(
     code: str,
     language: str,
     test_case_input: str,
-    user=Depends(get_current_user),
+    user=Depends(require_pro_for_ai),
 ):
     """Generate a step-by-step execution trace for a failed submission."""
     # Question content comes from the in-memory canonical store only
@@ -321,7 +398,7 @@ async def suggest_fix(
     code: str,
     language: str,
     error_description: str,
-    user=Depends(get_current_user),
+    user=Depends(require_pro_for_ai),
 ):
     """AI suggests specific fixes for the code."""
     # Question content comes from the in-memory canonical store only
@@ -392,7 +469,7 @@ async def rubber_duck_debug(
     code: str,
     language: str,
     user_thoughts: str,
-    user=Depends(get_current_user),
+    user=Depends(require_pro_for_ai),
 ):
     """Rubber duck debugging — AI helps you think through your approach."""
     # Question content comes from the in-memory canonical store only

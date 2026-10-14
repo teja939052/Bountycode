@@ -64,6 +64,7 @@ from app.services.ai_project import (
     improve_code,
     generate_setup_instructions,
 )
+from app.services.ai_tutor import tutor_act
 
 __all__ = [
     "chat_completion",
@@ -95,4 +96,5 @@ __all__ = [
     "review_project",
     "improve_code",
     "generate_setup_instructions",
+    "tutor_act",
 ]

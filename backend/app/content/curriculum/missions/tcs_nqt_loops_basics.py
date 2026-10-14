@@ -1,0 +1,62 @@
+"""Mission: loops basics (TCS NQT coding). UNVERIFIED structure."""
+from __future__ import annotations
+
+from app.content.mission_definitions import (
+    MissionBrief, MissionConsequence, MissionDefinition, MissionReward, MissionStage,
+)
+
+MISSION = MissionDefinition(
+    id="tcs_nqt.loops_basics",
+    track_id="tcs_nqt",
+    domain="coding",
+    canonical_skill="code.loops",
+    brief=MissionBrief(
+        mission_title="Exit Condition: Loops",
+        round_name="TCS NQT coding — trace every iteration",
+        threat="Off-by-one and infinite loops.",
+        goal="Exit condition plus progress, every loop.",
+        reward_diamonds=60,
+    ),
+    stages=[
+        MissionStage(stage="discover", title="Watch iterations",
+                     interaction="state_trace", check="read", mentor_moment="intro"),
+        MissionStage(stage="manipulate", title="Move the bound",
+                     interaction="drag_or_manipulate", moments=["change_one_thing"],
+                     check="interaction_event", mentor_moment="intro"),
+        MissionStage(stage="predict", title="Predict the output",
+                     interaction="predict_output", check="mcq:predict",
+                     bank_refs=["programming_logic_2010"], mentor_moment="correct_1"),
+        MissionStage(stage="build", title="Write the loop",
+                     interaction="tiny_build", check="tests_pass",
+                     mentor_moment="correct_1"),
+        MissionStage(stage="break", title="Infinite hunt",
+                     interaction="break_and_debug", check="names_misconception",
+                     mentor_moment="wrong_1"),
+        MissionStage(stage="debug", title="Progress toward exit",
+                     interaction="error_hunt", check="fix_verified",
+                     mentor_moment="wrong_2"),
+        MissionStage(stage="retrieve", title="Trace cold",
+                     interaction="recall_check", check="correct_no_notes",
+                     bank_refs=["programming_logic_2011"], mentor_moment="retry_prompt"),
+        MissionStage(stage="transfer", title="Nested skin",
+                     interaction="transfer_problem", check="tests_pass_out_of_domain",
+                     bank_refs=["programming_logic_2012"], mentor_moment="retry_prompt"),
+        MissionStage(stage="mastery", title="5-minute proof",
+                     interaction="timed_prove", check="tests_pass_under_time",
+                     bank_refs=["programming_logic_2032"],
+                     mentor_moment="after_mastery", time_limit_seconds=300),
+    ],
+    mentor_skill="code.loops",
+    company_overlay_id="tcs",
+    provenance="pattern-relevant",
+    reward=MissionReward(diamonds=60, unlocks="tcs_nqt.strings_basics"),
+    consequence=MissionConsequence(
+        on_mastery="harder transfer in 2 days",
+        on_developing="retrieval drill tomorrow",
+        on_repair="repair mission before advancing",
+    ),
+    frontend_slug="loops",
+    lesson_slug="loops",
+    trust_floor="reviewed",
+    status="unverified",
+)

@@ -1,0 +1,106 @@
+{
+  "total_lessons": 6,
+  "passed_all_checks": 6,
+  "failed": 0,
+  "needs_human_review": 0,
+  "rejected": 0,
+  "automated_checked": 6,
+  "details": [
+    {
+      "lesson_id": "python-first-program",
+      "language_id": "python",
+      "checks": {
+        "lesson_fields": { "pass": true, "detail": "All required fields present" },
+        "slide_count": { "pass": true, "detail": "44 slides" },
+        "slide_structure": { "pass": true, "detail": "All slides have required fields" },
+        "snippets_present": { "pass": true, "detail": "All 44 snippets present" },
+        "snippets_non_empty": { "pass": true, "detail": "All snippets non-empty" },
+        "syntax_valid": { "pass": true, "detail": "All snippets syntax-valid for python" }
+      },
+      "pass_count": 6,
+      "total_checks": 6,
+      "all_passed": true,
+      "recommendation": "AUTOMATED_CHECKED"
+    },
+    {
+      "lesson_id": "javascript-first-program",
+      "language_id": "javascript",
+      "checks": {
+        "lesson_fields": { "pass": true, "detail": "All required fields present" },
+        "slide_count": { "pass": true, "detail": "44 slides" },
+        "slide_structure": { "pass": true, "detail": "All slides have required fields" },
+        "snippets_present": { "pass": true, "detail": "All 44 snippets present" },
+        "snippets_non_empty": { "pass": true, "detail": "All snippets non-empty" },
+        "syntax_valid": { "pass": true, "detail": "All snippets syntax-valid for javascript" }
+      },
+      "pass_count": 6,
+      "total_checks": 6,
+      "all_passed": true,
+      "recommendation": "AUTOMATED_CHECKED"
+    },
+    {
+      "lesson_id": "java-first-program",
+      "language_id": "java",
+      "checks": {
+        "lesson_fields": { "pass": true, "detail": "All required fields present" },
+        "slide_count": { "pass": true, "detail": "44 slides" },
+        "slide_structure": { "pass": true, "detail": "All slides have required fields" },
+        "snippets_present": { "pass": true, "detail": "All 44 snippets present" },
+        "snippets_non_empty": { "pass": true, "detail": "All snippets non-empty" },
+        "syntax_valid": { "pass": true, "detail": "All snippets syntax-valid for java" }
+      },
+      "pass_count": 6,
+      "total_checks": 6,
+      "all_passed": true,
+      "recommendation": "AUTOMATED_CHECKED"
+    },
+    {
+      "lesson_id": "cpp-first-program",
+      "language_id": "cpp",
+      "checks": {
+        "lesson_fields": { "pass": true, "detail": "All required fields present" },
+        "slide_count": { "pass": true, "detail": "44 slides" },
+        "slide_structure": { "pass": true, "detail": "All slides have required fields" },
+        "snippets_present": { "pass": true, "detail": "All 44 snippets present" },
+        "snippets_non_empty": { "pass": true, "detail": "All snippets non-empty" },
+        "syntax_valid": { "pass": true, "detail": "All snippets syntax-valid for cpp" }
+      },
+      "pass_count": 6,
+      "total_checks": 6,
+      "all_passed": true,
+      "recommendation": "AUTOMATED_CHECKED"
+    },
+    {
+      "lesson_id": "go-first-program",
+      "language_id": "go",
+      "checks": {
+        "lesson_fields": { "pass": true, "detail": "All required fields present" },
+        "slide_count": { "pass": true, "detail": "44 slides" },
+        "slide_structure": { "pass": true, "detail": "All slides have required fields" },
+        "snippets_present": { "pass": true, "detail": "All 44 snippets present" },
+        "snippets_non_empty": { "pass": true, "detail": "All snippets non-empty" },
+        "syntax_valid": { "pass": true, "detail": "All snippets syntax-valid for go" }
+      },
+      "pass_count": 6,
+      "total_checks": 6,
+      "all_passed": true,
+      "recommendation": "AUTOMATED_CHECKED"
+    },
+    {
+      "lesson_id": "rust-first-program",
+      "language_id": "rust",
+      "checks": {
+        "lesson_fields": { "pass": true, "detail": "All required fields present" },
+        "slide_count": { "pass": true, "detail": "44 slides" },
+        "slide_structure": { "pass": true, "detail": "All slides have required fields" },
+        "snippets_present": { "pass": true, "detail": "All 44 snippets present" },
+        "snippets_non_empty": { "pass": true, "detail": "All snippets non-empty" },
+        "syntax_valid": { "pass": true, "detail": "All snippets syntax-valid for rust" }
+      },
+      "pass_count": 6,
+      "total_checks": 6,
+      "all_passed": true,
+      "recommendation": "AUTOMATED_CHECKED"
+    }
+  ]
+}

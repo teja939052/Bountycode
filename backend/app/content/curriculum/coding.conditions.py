@@ -1,0 +1,140 @@
+"""Lesson module — Conditions — If/Else Logic"""
+from typing import Dict, Any
+
+LESSON: Dict[str, Any] = {
+            'lesson_id': 'coding.conditions',
+            'module_id': 'coding.conditions',
+            'title': 'Conditions — If/Else Logic',
+            'description': 'Conditions are the branching logic behind every program. Mastery of if/elif/else is tested directly in coding interviews and indirectly in all placement assessments.',
+            'difficulty': 'easy',
+            'est_minutes': 22,
+            'xp_reward': 100,
+            'skills_taught': ['Conditions'],
+            'srs_concept_tag': 'coding.conditions',
+            'domain': 'coding',
+            'captain_byte': {
+            'intro': 'Conditions let your program make decisions. Order matters — the first true branch wins.',
+            'correct': ['Branching logic!', 'Correct path!', 'You see the flow!'],
+            'wrong': ['Remember: order matters in if/elif/else.', 'The first true condition wins.'],
+            'after_break': 'Order matters because Python stops at the first match.',
+            'after_mastery': 'You now think in branches. Every if/elif/else is a decision tree.',
+            'retry_prompt': 'Trace the branches again.'
+        },
+            'story_context': {
+            'title': 'Conditions — If/Else Logic',
+            'narration': 'Conditions are the branching logic behind every program. Mastery of if/elif/else is tested directly in coding interviews and indirectly in all placement assessments.',
+            'setting': 'conditions',
+            'character': 'Captain Byte',
+            'intro_text': 'Conditions are the branching logic behind every program. Mastery of if/elif/else is tested directly in coding interviews and indirectly in all placement assessments.'
+        },
+            'steps': {
+            'discover': {
+            'prompt': 'A student passes if score >= 40. Which condition captures this?',
+            'question': 'Which branch runs when score is exactly 40?',
+            'options': ['if score >= 40', 'if score > 40', 'if score == 40', 'if score <= 40'],
+            'interaction_kind': 'mcq_read'
+        },
+            'understand': {
+            'prompt': 'if checks a condition. If true, the indented block runs. elif checks another condition. else runs if nothing matched.',
+            'explanation': "Python evaluates conditions top-to-bottom. The first true condition's block executes, then the whole if-statement ends.",
+            'interaction_kind': 'read_explanation'
+        },
+            'manipulate': {
+            'prompt': 'Write conditions for grades: A for >= 90, B for >= 75, C for >= 40, else F.',
+            'answer': "if score >= 90: grade = 'A'\nelif score >= 75: grade = 'B'\nelif score >= 40: grade = 'C'\nelse: grade = 'F'",
+            'hint': 'Order matters: check highest threshold first.',
+            'interaction_kind': 'code_build'
+        },
+            'predict': {
+            'prompt': "What is the output of:\n x = 5\n if x > 5:\n     print('A')\n elif x == 5:\n     print('B')\n else:\n     print('C')",
+            'answer': 'B',
+            'options': ['A', 'B', 'C', 'Nothing'],
+            'interaction_kind': 'mcq_bottleneck'
+        },
+            'build': {
+            'prompt': 'Return the largest of three numbers using nested conditions.',
+            'answer': 'def max3(a, b, c):\n    if a >= b and a >= c:\n        return a\n    elif b >= a and b >= c:\n        return b\n    else:\n        return c',
+            'explanation': 'Compare sequentially and return the first maximum.',
+            'interaction_kind': 'code_build'
+        },
+            'break_step': {
+            'prompt': 'Why does `if x > 5` miss the case x == 5?',
+            'broken_code': "if x > 5:\n    print('big')\nelif x < 5:\n    print('small')\n# missing x == 5",
+            'expected_failure': 'Exact boundary case is not handled.',
+            'interaction_kind': 'mcq_diagnose'
+        },
+            'debug': {
+            'prompt': 'Fix the boundary by handling x == 5.',
+            'correct_code': "if x > 5:\n    print('big')\nelif x == 5:\n    print('equal')\nelif x < 5:\n    print('small')",
+            'interaction_kind': 'code_fix'
+        },
+            'retrieval': {
+            'prompt': 'What is the difference between if, elif, and else?',
+            'answer': 'if starts, elif adds alternatives, else is final fallback.',
+            'alternative': ['elif is checked only if earlier conditions failed.'],
+            'interaction_kind': 'recall_formula'
+        },
+            'transfer': {
+            'prompt': 'Classify temperature: hot >= 30, warm 20-29, cool 10-19, cold < 10.',
+            'answer': "if temp >= 30: label='hot'\nelif temp >= 20: label='warm'\nelif temp >= 10: label='cool'\nelse: label='cold'",
+            'explanation': 'Order thresholds high to low.',
+            'interaction_kind': 'code_build'
+        }
+        },
+            'practice': [{
+            'kind': 'mcq',
+            'prompt': 'Which operator includes the boundary?',
+            'answer': '>=',
+            'options': ['>', '>=', '<', '=='],
+            'explanation': 'Use >= to include equality.',
+            'difficulty': 'medium',
+            'company_tags': ['tcs', 'infosys']
+        }, {
+            'kind': 'code',
+            'prompt': 'Return pass/fail for score >= 40.',
+            'starter': 'score = 55',
+            'answer': "if score >= 40:\n    print('pass')\nelse:\n    print('fail')",
+            'language': ['wipro'],
+            'difficulty': 'medium',
+            'company_tags': ['tcs', 'infosys', 'wipro']
+        }],
+            'proof': [{
+            'id': 'p1-explain_why_boundary_conditions_must_be_',
+            'prompt': 'Explain why boundary conditions must be tested separately.',
+            'answer_format': 'text',
+            'correct': 'Boundary values often hit different branches or edge handling.',
+            'explanation': 'Test min, max, and just-inside/outside values.',
+            'time_limit_seconds': 60,
+            'company_tags': ['tcs']
+        }],
+            'company_variants': [{
+            'company': 'tcs',
+            'role': 'sde',
+            'difficulty': 'easy',
+            'proof_questions': [{
+            'id': 'tcs-p1',
+            'prompt': 'TCS: Leap year check — divisible by 4, not by 100 unless also by 400.',
+            'answer_format': 'code',
+            'correct': "if year % 400 == 0 or (year % 4 == 0 and year % 100 != 0):\n    print('leap')\nelse:\n    print('not leap')",
+            'explanation': 'Compound condition: divisible by 400 OR (divisible by 4 AND not by 100).',
+            'time_limit_seconds': 120,
+            'company_tags': ['tcs']
+        }]
+        }],
+            'misconceptions': [{
+            'code': 'coding_condition_boundary_error',
+            'signature': 'Student excludes boundary or misorders overlapping conditions.',
+            'reteach_route': 'compare_worlds',
+            'reteach_action': 'show_condition_boundary'
+        }],
+            'srs_key_points': ['Conditions select branches based on boolean expressions.', 'Order of if/elif matters.', 'Always test exact boundary values.'],
+            'srs_review_intervals': [1, 3, 7, 14, 30],
+            'world_progression': {
+            'world_id': 'coding',
+            'competency_id': 'conditions',
+            'unlocks_next': [],
+            'tower_badge': 'coding_conditions'
+        }
+        }
+
+SLUG = 'coding.conditions'

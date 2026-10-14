@@ -363,3 +363,131 @@ async def _exec_js(code: str, stdin: str, timeout: int) -> Dict[str, Any]:
         "memory_usage": 0,
         "source": "local_sandbox",
     }
+
+
+def execute_local_sync(code: str, language: str = "python", stdin: str = "", timeout: int = 5) -> Dict[str, Any]:
+    """Synchronous wrapper for local sandbox execution.
+
+    Used by synchronous code paths that cannot await async functions.
+    Runs the same restricted subprocess as execute_local(), just without async.
+    """
+    import subprocess
+
+    settings = get_settings()
+    timeout = max(1, min(int(timeout or 5), settings.SANDBOX_TIMEOUT or 5))
+
+    if language == "python":
+        runner = (
+            "import sys, io, contextlib\n"
+            "safe_builtins = {\n"
+            "  k: (__builtins__ if isinstance(__builtins__, dict) else __builtins__.__dict__)[k] for k in (\n"
+            "    'abs','all','any','bin','bool','bytes','chr','dict','divmod',\n"
+            "    'enumerate','filter','float','format','frozenset','hash','hex',\n"
+            "    'int','len','list','map','max','min','oct','ord','pow','print',\n"
+            "    'range','repr','reversed','round','set','slice','sorted','str',\n"
+            "    'sum','tuple','type','zip','True','False','None','Exception',\n"
+            "    'ValueError','TypeError','IndexError','KeyError','ZeroDivisionError',\n"
+            "    'StopIteration','RuntimeError','ArithmeticError','NameError',\n"
+            "    '__import__','input',\n"
+            "  )\n"
+            "}\n"
+            "safe_builtins.pop('open', None)\n"
+            "SAFE_MODULES = {'sys','math','collections','itertools','functools','re',\n"
+            "               'json','bisect','heapq','random','string','statistics',\n"
+            "               'typing','dataclasses','copy','decimal','fractions','queue',\n"
+            "               'array','struct','calendar','datetime','time','operator','pprint'}\n"
+            "def _safe_import(name, globals=None, locals=None, fromlist=(), level=0):\n"
+            "    top = name.split('.')[0]\n"
+            "    if top not in SAFE_MODULES:\n"
+            "        raise ImportError('module ' + name + ' is blocked by sandbox')\n"
+            "    return __orig_import__(name, globals, locals, fromlist, level)\n"
+            "__orig_import__ = safe_builtins['__import__']\n"
+            "safe_builtins['__import__'] = _safe_import\n"
+            "import json\n"
+            "sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')\n"
+            "sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')\n"
+            "sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')\n"
+            "code = " + repr(code) + "\n"
+            "exec_globals = {'__name__':'__main__','__builtins__':safe_builtins}\n"
+            "try:\n"
+            "    exec(compile(code, '<sandbox>', 'exec'), exec_globals)\n"
+            "except SystemExit as e:\n"
+            "    sys.exit(e.code if isinstance(e.code, int) else 1)\n"
+        )
+
+        try:
+            env = {
+                "PYTHONDONTWRITEBYTECODE": "1",
+                "PYTHONNOUSERSITE": "1",
+                "PATH": os.environ.get("PATH", ""),
+            }
+            proc = subprocess.run(
+                [sys.executable, "-c", runner],
+                input=stdin.encode(),
+                capture_output=True,
+                timeout=timeout,
+                env=env,
+            )
+        except subprocess.TimeoutExpired:
+            return {
+                "success": False,
+                "error": "Execution timed out (possible infinite loop)",
+                "hint": "Check for infinite loops or very long-running operations",
+            }
+        except Exception as e:
+            return {"success": False, "error": f"Local sandbox unavailable: {e}"}
+
+        stdout = proc.stdout.decode("utf-8", errors="replace")
+        stderr = proc.stderr.decode("utf-8", errors="replace")
+        exit_code = proc.returncode
+
+        return {
+            "success": exit_code == 0,
+            "exit_code": exit_code,
+            "stdout": stdout.strip(),
+            "stderr": stderr.strip(),
+            "compile_error": None,
+            "language": "python",
+            "execution_time": 0,
+            "memory_usage": 0,
+            "source": "local_sandbox",
+        }
+
+    if language == "javascript":
+        node = shutil.which("node")
+        if not node:
+            return {"success": False, "error": "node interpreter not available for local sandbox"}
+
+        try:
+            proc = subprocess.run(
+                [node, "--input-type=module", "--no-warnings"],
+                input=code.encode(),
+                capture_output=True,
+                timeout=timeout,
+                env={"NODE_NO_WARNINGS": "1", "PATH": os.environ.get("PATH", "")},
+            )
+        except subprocess.TimeoutExpired:
+            return {"success": False, "error": "Execution timed out", "source": "local_sandbox"}
+        except Exception as e:
+            return {"success": False, "error": f"Local sandbox unavailable: {e}"}
+
+        stdout = proc.stdout.decode("utf-8", errors="replace")
+        stderr = proc.stderr.decode("utf-8", errors="replace")
+        exit_code = proc.returncode
+
+        return {
+            "success": exit_code == 0,
+            "exit_code": exit_code,
+            "stdout": stdout.strip(),
+            "stderr": stderr.strip(),
+            "compile_error": None,
+            "language": "javascript",
+            "execution_time": 0,
+            "memory_usage": 0,
+            "source": "local_sandbox",
+        }
+
+    return {
+        "success": False,
+        "error": f"Local sandbox does not support '{language}'. Falling back to Piston.",
+    }

@@ -1,0 +1,338 @@
+[
+ {
+  "id": "gen_pct_0000",
+  "type": "aptitude",
+  "topic": "Quantitative Aptitude",
+  "sub_topic": "Successive Percentage Change",
+  "question": "A shopkeeper raises the price of an article (Rs. 1000) by 20%, then offers a 10% discount on the raised price. What is the net change?",
+  "options": [
+   "8% increase",
+   "No net change",
+   "10% increase",
+   "30% increase"
+  ],
+  "correct_answer": "8% increase",
+  "explanation": "Method 1 (sequential): 1000 x 120/100 = Rs. 1200; x 90/100 = Rs. 1080. Method 2 (fractions): 1000 x 120/100 x 90/100 = Rs. 1080. Both agree: 8% increase.",
+  "worked_solution": "Method 1 (sequential): 1000 x 120/100 = Rs. 1200; x 90/100 = Rs. 1080. Method 2 (fractions): 1000 x 120/100 x 90/100 = Rs. 1080. Both agree: 8% increase.",
+  "difficulty": "easy",
+  "trust_status": "unverified",
+  "provenance": "deterministic_generator:percentage_change v1",
+  "companies": [],
+  "source_bank": "mission_candidates",
+  "verification": {
+   "method_agreement": true,
+   "exact_arithmetic": true,
+   "distinct_options": true
+  },
+  "lint_verdict": "pass",
+  "lint_flags": []
+ },
+ {
+  "id": "gen_pct_0001",
+  "type": "aptitude",
+  "topic": "Quantitative Aptitude",
+  "sub_topic": "Successive Percentage Change",
+  "question": "A shopkeeper raises the price of an article (Rs. 800) by 25%, then offers a 20% discount on the raised price. What is the net change?",
+  "options": [
+   "No net change",
+   "5% increase",
+   "45% increase",
+   "Rs. 800"
+  ],
+  "correct_answer": "No net change",
+  "explanation": "Method 1 (sequential): 800 x 125/100 = Rs. 1000; x 80/100 = Rs. 800. Method 2 (fractions): 800 x 125/100 x 80/100 = Rs. 800. Both agree: No net change.",
+  "worked_solution": "Method 1 (sequential): 800 x 125/100 = Rs. 1000; x 80/100 = Rs. 800. Method 2 (fractions): 800 x 125/100 x 80/100 = Rs. 800. Both agree: No net change.",
+  "difficulty": "easy",
+  "trust_status": "unverified",
+  "provenance": "deterministic_generator:percentage_change v1",
+  "companies": [],
+  "source_bank": "mission_candidates",
+  "verification": {
+   "method_agreement": true,
+   "exact_arithmetic": true,
+   "distinct_options": true
+  },
+  "lint_verdict": "pass",
+  "lint_flags": []
+ },
+ {
+  "id": "gen_pct_0002",
+  "type": "aptitude",
+  "topic": "Quantitative Aptitude",
+  "sub_topic": "Successive Percentage Change",
+  "question": "A shopkeeper raises the price of an article (Rs. 1500) by 10%, then offers a 10% discount on the raised price. What is the net change?",
+  "options": [
+   "1% decrease",
+   "No net change",
+   "0% increase",
+   "20% increase"
+  ],
+  "correct_answer": "1% decrease",
+  "explanation": "Method 1 (sequential): 1500 x 110/100 = Rs. 1650; x 90/100 = Rs. 1485. Method 2 (fractions): 1500 x 110/100 x 90/100 = Rs. 1485. Both agree: 1% decrease.",
+  "worked_solution": "Method 1 (sequential): 1500 x 110/100 = Rs. 1650; x 90/100 = Rs. 1485. Method 2 (fractions): 1500 x 110/100 x 90/100 = Rs. 1485. Both agree: 1% decrease.",
+  "difficulty": "easy",
+  "trust_status": "unverified",
+  "provenance": "deterministic_generator:percentage_change v1",
+  "companies": [],
+  "source_bank": "mission_candidates",
+  "verification": {
+   "method_agreement": true,
+   "exact_arithmetic": true,
+   "distinct_options": true
+  },
+  "lint_verdict": "pass",
+  "lint_flags": []
+ },
+ {
+  "id": "gen_pct_0003",
+  "type": "aptitude",
+  "topic": "Quantitative Aptitude",
+  "sub_topic": "Successive Percentage Change",
+  "question": "A shopkeeper raises the price of an article (Rs. 2000) by 30%, then offers a 15% discount on the raised price. What is the net change?",
+  "options": [
+   "10.50% increase",
+   "No net change",
+   "15% increase",
+   "45% increase"
+  ],
+  "correct_answer": "10.50% increase",
+  "explanation": "Method 1 (sequential): 2000 x 130/100 = Rs. 2600; x 85/100 = Rs. 2210. Method 2 (fractions): 2000 x 130/100 x 85/100 = Rs. 2210. Both agree: 10.50% increase.",
+  "worked_solution": "Method 1 (sequential): 2000 x 130/100 = Rs. 2600; x 85/100 = Rs. 2210. Method 2 (fractions): 2000 x 130/100 x 85/100 = Rs. 2210. Both agree: 10.50% increase.",
+  "difficulty": "easy",
+  "trust_status": "unverified",
+  "provenance": "deterministic_generator:percentage_change v1",
+  "companies": [],
+  "source_bank": "mission_candidates",
+  "verification": {
+   "method_agreement": true,
+   "exact_arithmetic": true,
+   "distinct_options": true
+  },
+  "lint_verdict": "pass",
+  "lint_flags": []
+ },
+ {
+  "id": "gen_pct_0004",
+  "type": "aptitude",
+  "topic": "Quantitative Aptitude",
+  "sub_topic": "Successive Percentage Change",
+  "question": "A shopkeeper raises the price of an article (Rs. 500) by 40%, then offers a 25% discount on the raised price. What is the net change?",
+  "options": [
+   "5% increase",
+   "No net change",
+   "15% increase",
+   "65% increase"
+  ],
+  "correct_answer": "5% increase",
+  "explanation": "Method 1 (sequential): 500 x 140/100 = Rs. 700; x 75/100 = Rs. 525. Method 2 (fractions): 500 x 140/100 x 75/100 = Rs. 525. Both agree: 5% increase.",
+  "worked_solution": "Method 1 (sequential): 500 x 140/100 = Rs. 700; x 75/100 = Rs. 525. Method 2 (fractions): 500 x 140/100 x 75/100 = Rs. 525. Both agree: 5% increase.",
+  "difficulty": "easy",
+  "trust_status": "unverified",
+  "provenance": "deterministic_generator:percentage_change v1",
+  "companies": [],
+  "source_bank": "mission_candidates",
+  "verification": {
+   "method_agreement": true,
+   "exact_arithmetic": true,
+   "distinct_options": true
+  },
+  "lint_verdict": "pass",
+  "lint_flags": []
+ },
+ {
+  "id": "gen_pct_0005",
+  "type": "aptitude",
+  "topic": "Quantitative Aptitude",
+  "sub_topic": "Successive Percentage Change",
+  "question": "A shopkeeper raises the price of an article (Rs. 1200) by 15%, then offers a 5% discount on the raised price. What is the net change?",
+  "options": [
+   "9.25% increase",
+   "No net change",
+   "10% increase",
+   "20% increase"
+  ],
+  "correct_answer": "9.25% increase",
+  "explanation": "Method 1 (sequential): 1200 x 115/100 = Rs. 1380; x 95/100 = Rs. 1311. Method 2 (fractions): 1200 x 115/100 x 95/100 = Rs. 1311. Both agree: 9.25% increase.",
+  "worked_solution": "Method 1 (sequential): 1200 x 115/100 = Rs. 1380; x 95/100 = Rs. 1311. Method 2 (fractions): 1200 x 115/100 x 95/100 = Rs. 1311. Both agree: 9.25% increase.",
+  "difficulty": "easy",
+  "trust_status": "unverified",
+  "provenance": "deterministic_generator:percentage_change v1",
+  "companies": [],
+  "source_bank": "mission_candidates",
+  "verification": {
+   "method_agreement": true,
+   "exact_arithmetic": true,
+   "distinct_options": true
+  },
+  "lint_verdict": "pass",
+  "lint_flags": []
+ },
+ {
+  "id": "gen_pct_0006",
+  "type": "aptitude",
+  "topic": "Quantitative Aptitude",
+  "sub_topic": "Successive Percentage Change",
+  "question": "A shopkeeper raises the price of an article (Rs. 2500) by 20%, then offers a 20% discount on the raised price. What is the net change?",
+  "options": [
+   "4% decrease",
+   "No net change",
+   "0% increase",
+   "40% increase"
+  ],
+  "correct_answer": "4% decrease",
+  "explanation": "Method 1 (sequential): 2500 x 120/100 = Rs. 3000; x 80/100 = Rs. 2400. Method 2 (fractions): 2500 x 120/100 x 80/100 = Rs. 2400. Both agree: 4% decrease.",
+  "worked_solution": "Method 1 (sequential): 2500 x 120/100 = Rs. 3000; x 80/100 = Rs. 2400. Method 2 (fractions): 2500 x 120/100 x 80/100 = Rs. 2400. Both agree: 4% decrease.",
+  "difficulty": "easy",
+  "trust_status": "unverified",
+  "provenance": "deterministic_generator:percentage_change v1",
+  "companies": [],
+  "source_bank": "mission_candidates",
+  "verification": {
+   "method_agreement": true,
+   "exact_arithmetic": true,
+   "distinct_options": true
+  },
+  "lint_verdict": "pass",
+  "lint_flags": []
+ },
+ {
+  "id": "gen_pct_0007",
+  "type": "aptitude",
+  "topic": "Quantitative Aptitude",
+  "sub_topic": "Successive Percentage Change",
+  "question": "A shopkeeper raises the price of an article (Rs. 900) by 50%, then offers a 30% discount on the raised price. What is the net change?",
+  "options": [
+   "5% increase",
+   "No net change",
+   "20% increase",
+   "80% increase"
+  ],
+  "correct_answer": "5% increase",
+  "explanation": "Method 1 (sequential): 900 x 150/100 = Rs. 1350; x 70/100 = Rs. 945. Method 2 (fractions): 900 x 150/100 x 70/100 = Rs. 945. Both agree: 5% increase.",
+  "worked_solution": "Method 1 (sequential): 900 x 150/100 = Rs. 1350; x 70/100 = Rs. 945. Method 2 (fractions): 900 x 150/100 x 70/100 = Rs. 945. Both agree: 5% increase.",
+  "difficulty": "easy",
+  "trust_status": "unverified",
+  "provenance": "deterministic_generator:percentage_change v1",
+  "companies": [],
+  "source_bank": "mission_candidates",
+  "verification": {
+   "method_agreement": true,
+   "exact_arithmetic": true,
+   "distinct_options": true
+  },
+  "lint_verdict": "pass",
+  "lint_flags": []
+ },
+ {
+  "id": "gen_pct_0008",
+  "type": "aptitude",
+  "topic": "Quantitative Aptitude",
+  "sub_topic": "Successive Percentage Change",
+  "question": "A shopkeeper raises the price of an article (Rs. 1600) by 12%, then offers a 8% discount on the raised price. What is the net change?",
+  "options": [
+   "3.04% increase",
+   "No net change",
+   "4% increase",
+   "20% increase"
+  ],
+  "correct_answer": "3.04% increase",
+  "explanation": "Method 1 (sequential): 1600 x 112/100 = Rs. 1792; x 92/100 = Rs. 1648.64. Method 2 (fractions): 1600 x 112/100 x 92/100 = Rs. 1648.64. Both agree: 3.04% increase.",
+  "worked_solution": "Method 1 (sequential): 1600 x 112/100 = Rs. 1792; x 92/100 = Rs. 1648.64. Method 2 (fractions): 1600 x 112/100 x 92/100 = Rs. 1648.64. Both agree: 3.04% increase.",
+  "difficulty": "easy",
+  "trust_status": "unverified",
+  "provenance": "deterministic_generator:percentage_change v1",
+  "companies": [],
+  "source_bank": "mission_candidates",
+  "verification": {
+   "method_agreement": true,
+   "exact_arithmetic": true,
+   "distinct_options": true
+  },
+  "lint_verdict": "pass",
+  "lint_flags": []
+ },
+ {
+  "id": "gen_pct_0009",
+  "type": "aptitude",
+  "topic": "Quantitative Aptitude",
+  "sub_topic": "Successive Percentage Change",
+  "question": "A shopkeeper raises the price of an article (Rs. 700) by 35%, then offers a 10% discount on the raised price. What is the net change?",
+  "options": [
+   "21.50% increase",
+   "No net change",
+   "25% increase",
+   "45% increase"
+  ],
+  "correct_answer": "21.50% increase",
+  "explanation": "Method 1 (sequential): 700 x 135/100 = Rs. 945; x 90/100 = Rs. 850.5. Method 2 (fractions): 700 x 135/100 x 90/100 = Rs. 850.5. Both agree: 21.50% increase.",
+  "worked_solution": "Method 1 (sequential): 700 x 135/100 = Rs. 945; x 90/100 = Rs. 850.5. Method 2 (fractions): 700 x 135/100 x 90/100 = Rs. 850.5. Both agree: 21.50% increase.",
+  "difficulty": "easy",
+  "trust_status": "unverified",
+  "provenance": "deterministic_generator:percentage_change v1",
+  "companies": [],
+  "source_bank": "mission_candidates",
+  "verification": {
+   "method_agreement": true,
+   "exact_arithmetic": true,
+   "distinct_options": true
+  },
+  "lint_verdict": "pass",
+  "lint_flags": []
+ },
+ {
+  "id": "gen_pct_0010",
+  "type": "aptitude",
+  "topic": "Quantitative Aptitude",
+  "sub_topic": "Successive Percentage Change",
+  "question": "A shopkeeper raises the price of an article (Rs. 1100) by 25%, then offers a 25% discount on the raised price. What is the net change?",
+  "options": [
+   "6.25% decrease",
+   "No net change",
+   "0% increase",
+   "50% increase"
+  ],
+  "correct_answer": "6.25% decrease",
+  "explanation": "Method 1 (sequential): 1100 x 125/100 = Rs. 1375; x 75/100 = Rs. 1031.25. Method 2 (fractions): 1100 x 125/100 x 75/100 = Rs. 1031.25. Both agree: 6.25% decrease.",
+  "worked_solution": "Method 1 (sequential): 1100 x 125/100 = Rs. 1375; x 75/100 = Rs. 1031.25. Method 2 (fractions): 1100 x 125/100 x 75/100 = Rs. 1031.25. Both agree: 6.25% decrease.",
+  "difficulty": "easy",
+  "trust_status": "unverified",
+  "provenance": "deterministic_generator:percentage_change v1",
+  "companies": [],
+  "source_bank": "mission_candidates",
+  "verification": {
+   "method_agreement": true,
+   "exact_arithmetic": true,
+   "distinct_options": true
+  },
+  "lint_verdict": "pass",
+  "lint_flags": []
+ },
+ {
+  "id": "gen_pct_0011",
+  "type": "aptitude",
+  "topic": "Quantitative Aptitude",
+  "sub_topic": "Successive Percentage Change",
+  "question": "A shopkeeper raises the price of an article (Rs. 3000) by 18%, then offers a 12% discount on the raised price. What is the net change?",
+  "options": [
+   "3.84% increase",
+   "No net change",
+   "6% increase",
+   "30% increase"
+  ],
+  "correct_answer": "3.84% increase",
+  "explanation": "Method 1 (sequential): 3000 x 118/100 = Rs. 3540; x 88/100 = Rs. 3115.2. Method 2 (fractions): 3000 x 118/100 x 88/100 = Rs. 3115.2. Both agree: 3.84% increase.",
+  "worked_solution": "Method 1 (sequential): 3000 x 118/100 = Rs. 3540; x 88/100 = Rs. 3115.2. Method 2 (fractions): 3000 x 118/100 x 88/100 = Rs. 3115.2. Both agree: 3.84% increase.",
+  "difficulty": "easy",
+  "trust_status": "unverified",
+  "provenance": "deterministic_generator:percentage_change v1",
+  "companies": [],
+  "source_bank": "mission_candidates",
+  "verification": {
+   "method_agreement": true,
+   "exact_arithmetic": true,
+   "distinct_options": true
+  },
+  "lint_verdict": "pass",
+  "lint_flags": []
+ }
+]

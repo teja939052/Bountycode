@@ -1,0 +1,191 @@
+"""Lesson module — Networking Basics — OSI, TCP/IP, and Protocols"""
+from typing import Dict, Any
+
+LESSON: Dict[str, Any] = {
+            'lesson_id': 'cs_core.networking_basics',
+            'module_id': 'cs_core.networking_basics',
+            'title': 'Networking Basics — OSI, TCP/IP, and Protocols',
+            'description': 'Networking basics are asked in almost every technical interview. Know OSI layers, TCP/IP, and common protocols.',
+            'difficulty': 'medium',
+            'est_minutes': 20,
+            'xp_reward': 100,
+            'skills_taught': ['Networking Basics'],
+            'srs_concept_tag': 'cs_core.networking_basics',
+            'domain': 'cs_core',
+            'captain_byte': {
+            'intro': 'Networking is layered. OSI has 7 layers. TCP/IP has 4. Each layer has a purpose.',
+            'correct': ['Right layer.', 'Correct protocol.', 'Right mapping.'],
+            'wrong': ['OSI = 7 layers, TCP/IP = 4 layers.', 'TCP is reliable; UDP is fast but unreliable.', 'HTTP is application layer, IP is network layer.'],
+            'after_break': 'You found the networking error. Now fix the layer or protocol.',
+            'after_mastery': "You can now reason about networks. That's interview-ready CS skill.",
+            'retry_prompt': 'Try again. Check the layer before naming the protocol.'
+        },
+            'story_context': {
+            'title': 'Networking Basics — OSI, TCP/IP, and Protocols',
+            'narration': 'Networking basics are asked in almost every technical interview. Know OSI layers, TCP/IP, and common protocols.',
+            'setting': 'networking_basics',
+            'character': 'Captain Byte',
+            'intro_text': 'Networking basics are asked in almost every technical interview. Know OSI layers, TCP/IP, and common protocols.'
+        },
+            'steps': {
+            'discover': {
+            'visual_primitives': ['highlight', 'compare', 'reveal'],
+            'steps': [{
+            'action': 'see_layers',
+            'narration': 'OSI layers: Physical, Data Link, Network, Transport, Session, Presentation, Application.',
+            'interaction': {
+            'type': 'choose_outcome',
+            'prompt': 'Which layer routes packets?',
+            'options': [{
+            'id': 'a',
+            'text': 'Physical',
+            'correct': False
+        }, {
+            'id': 'b',
+            'text': 'Network',
+            'correct': True
+        }, {
+            'id': 'c',
+            'text': 'Transport',
+            'correct': False
+        }, {
+            'id': 'd',
+            'text': 'Application',
+            'correct': False
+        }],
+            'explanation': 'Network layer routes packets using IP.'
+        }
+        }, {
+            'action': 'see_protocol',
+            'narration': 'HTTP is application layer. IP is network layer. TCP is transport layer.',
+            'interaction': {
+            'type': 'choose_outcome',
+            'prompt': 'Which layer is TCP?',
+            'options': [{
+            'id': 'a',
+            'text': 'Application',
+            'correct': False
+        }, {
+            'id': 'b',
+            'text': 'Transport',
+            'correct': True
+        }, {
+            'id': 'c',
+            'text': 'Network',
+            'correct': False
+        }, {
+            'id': 'd',
+            'text': 'Data Link',
+            'correct': False
+        }],
+            'explanation': 'TCP operates at the transport layer.'
+        }
+        }],
+            'conclusion': 'OSI has 7 layers. TCP/IP has 4. HTTP = application. TCP = transport. IP = network. Ethernet = data link.'
+        },
+            'understand': 'OSI layers: Physical, Data Link, Network, Transport, Session, Presentation, Application. TCP/IP layers: Link, Internet, Transport, Application. TCP is reliable; UDP is fast. HTTP is application layer.',
+            'manipulate': {
+            'prompt': 'Which layer is responsible for routing?',
+            'answer': 'Network',
+            'hint': 'IP operates at this layer.',
+            'interaction_kind': 'mcq_classify'
+        },
+            'predict': {
+            'prompt': 'Which protocol is connectionless?',
+            'answer': 'UDP',
+            'options': ['TCP', 'UDP', 'HTTP', 'HTTPS'],
+            'interaction_kind': 'mcq_classify'
+        },
+            'build': {
+            'prompt': 'Map HTTP, TCP, IP, Ethernet to OSI layers.',
+            'answer': 'HTTP=Application, TCP=Transport, IP=Network, Ethernet=Data Link',
+            'explanation': 'Each protocol belongs to one OSI layer.',
+            'interaction_kind': 'matching'
+        },
+            'break_step': {
+            'prompt': 'A student says UDP is reliable because it is used for video streaming. What is wrong?',
+            'common_mistake': 'Confusing speed with reliability.',
+            'correct_reasoning': 'UDP is fast but unreliable. TCP is reliable but slower.',
+            'interaction_kind': 'mcq_diagnose'
+        },
+            'debug': {
+            'prompt': "Fix: 'UDP is reliable.'",
+            'correct_reasoning': 'UDP is unreliable. TCP provides reliability.',
+            'interaction_kind': 'mcq_diagnose'
+        },
+            'retrieval': {
+            'prompt': 'How many layers are in the OSI model?',
+            'answer': '7',
+            'alternative': ['seven'],
+            'interaction_kind': 'recall_formula'
+        },
+            'transfer': {
+            'prompt': 'A video app needs low latency and can tolerate some packet loss. Which transport protocol?',
+            'answer': 'UDP',
+            'explanation': 'UDP is faster and suitable for real-time media where loss is acceptable.',
+            'interaction_kind': 'mcq_classify'
+        }
+        },
+            'practice': [{
+            'kind': 'mcq',
+            'prompt': 'Which layer is HTTP?',
+            'answer': 'Application',
+            'options': ['Physical', 'Data Link', 'Network', 'Application'],
+            'explanation': 'HTTP is an application-layer protocol.',
+            'difficulty': 'easy',
+            'company_tags': ['tcs', 'infosys', 'wipro']
+        }, {
+            'kind': 'mcq',
+            'prompt': 'TCP is?',
+            'answer': 'Reliable and connection-oriented',
+            'options': ['Unreliable', 'Reliable and connection-oriented', 'Connectionless', 'Fast but unreliable'],
+            'explanation': 'TCP guarantees delivery and order.',
+            'difficulty': 'easy',
+            'company_tags': ['tcs', 'infosys']
+        }],
+            'proof': [{
+            'id': 'p1',
+            'prompt': 'List the 7 OSI layers in order.',
+            'answer_format': 'text',
+            'correct': 'Physical, Data Link, Network, Transport, Session, Presentation, Application',
+            'explanation': 'Bottom to top: Physical → Application.',
+            'time_limit_seconds': 90,
+            'company_tags': ['tcs', 'infosys', 'wipro']
+        }],
+            'company_variants': [{
+            'company': 'tcs',
+            'role': 'sde',
+            'difficulty': 'medium',
+            'extra_practice': ['tcs_networking_basics', 'tcs_tcp_ip'],
+            'proof_questions': [{
+            'id': 'tcs-p1',
+            'prompt': 'TCS: What is the difference between TCP and UDP?',
+            'answer_format': 'text',
+            'correct': 'TCP is reliable and connection-oriented; UDP is fast and connectionless.',
+            'explanation': 'TCP guarantees delivery; UDP does not.',
+            'time_limit_seconds': 90,
+            'company_tags': ['tcs']
+        }]
+        }],
+            'misconceptions': [{
+            'code': 'cs_core_network_layer_confusion',
+            'signature': 'Student confuses OSI layers with TCP/IP layers.',
+            'reteach_route': 'compare_worlds',
+            'reteach_action': 'show_osi_versus_tcp_ip_mapping'
+        }, {
+            'code': 'cs_core_network_layer_confusion',
+            'signature': 'Student thinks UDP is reliable because it is used for video.',
+            'reteach_route': 'worked_example',
+            'reteach_action': 'show_reliable_versus_fast_tradeoff'
+        }],
+            'srs_key_points': ['OSI has 7 layers.', 'TCP/IP has 4 layers.', 'TCP is reliable; UDP is fast.', 'HTTP is application layer.', 'IP is network layer.'],
+            'srs_review_intervals': [1, 3, 7, 14, 30],
+            'world_progression': {
+            'world_id': 'cs_core',
+            'competency_id': 'networking_basics',
+            'unlocks_next': [],
+            'tower_badge': 'cs_core_networking_basics'
+        }
+        }
+
+SLUG = 'cs_core.networking_basics'

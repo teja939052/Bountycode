@@ -1,0 +1,62 @@
+"""Mission: variables basics (TCS NQT coding). UNVERIFIED structure."""
+from __future__ import annotations
+
+from app.content.mission_definitions import (
+    MissionBrief, MissionConsequence, MissionDefinition, MissionReward, MissionStage,
+)
+
+MISSION = MissionDefinition(
+    id="tcs_nqt.variables_basics",
+    track_id="tcs_nqt",
+    domain="coding",
+    canonical_skill="code.variables",
+    brief=MissionBrief(
+        mission_title="Labeled Boxes: Variables",
+        round_name="TCS NQT coding — trace before you write",
+        threat="Using a variable before it holds what you think.",
+        goal="Assignment overwrites; trace every write.",
+        reward_diamonds=60,
+    ),
+    stages=[
+        MissionStage(stage="discover", title="Watch the boxes",
+                     interaction="state_trace", check="read", mentor_moment="intro"),
+        MissionStage(stage="manipulate", title="Swap values",
+                     interaction="drag_or_manipulate", moments=["change_one_thing"],
+                     check="interaction_event", mentor_moment="intro"),
+        MissionStage(stage="predict", title="Predict the print",
+                     interaction="predict_output", check="mcq:predict",
+                     bank_refs=["tcs26-pseudo-008"], mentor_moment="correct_1"),
+        MissionStage(stage="build", title="Write the swap",
+                     interaction="tiny_build", check="tests_pass",
+                     mentor_moment="correct_1"),
+        MissionStage(stage="break", title="Uninitialized hunt",
+                     interaction="break_and_debug", check="names_misconception",
+                     mentor_moment="wrong_1"),
+        MissionStage(stage="debug", title="Init first",
+                     interaction="error_hunt", check="fix_verified",
+                     mentor_moment="wrong_2"),
+        MissionStage(stage="retrieve", title="Trace cold",
+                     interaction="recall_check", check="correct_no_notes",
+                     bank_refs=["parametric-006201"], mentor_moment="retry_prompt"),
+        MissionStage(stage="transfer", title="New expression skin",
+                     interaction="transfer_problem", check="tests_pass_out_of_domain",
+                     bank_refs=["parametric-006202"], mentor_moment="retry_prompt"),
+        MissionStage(stage="mastery", title="5-minute proof",
+                     interaction="timed_prove", check="tests_pass_under_time",
+                     bank_refs=["tcs_coding_072"],
+                     mentor_moment="after_mastery", time_limit_seconds=300),
+    ],
+    mentor_skill="code.variables",
+    company_overlay_id="tcs",
+    provenance="pattern-relevant",
+    reward=MissionReward(diamonds=60, unlocks="tcs_nqt.conditions"),
+    consequence=MissionConsequence(
+        on_mastery="harder transfer in 2 days",
+        on_developing="retrieval drill tomorrow",
+        on_repair="repair mission before advancing",
+    ),
+    frontend_slug="variables",
+    lesson_slug="",
+    trust_floor="reviewed",
+    status="unverified",
+)

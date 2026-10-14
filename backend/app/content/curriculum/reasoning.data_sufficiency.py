@@ -1,0 +1,191 @@
+"""Lesson module — Data Sufficiency"""
+from typing import Dict, Any
+
+LESSON: Dict[str, Any] = {
+            'lesson_id': 'reasoning.data_sufficiency',
+            'module_id': 'reasoning.data_sufficiency',
+            'title': 'Data Sufficiency',
+            'description': 'Data sufficiency tests whether given statements are enough to answer a question. It appears in TCS NQT and Infosys reasoning sections.',
+            'difficulty': 'medium',
+            'est_minutes': 20,
+            'xp_reward': 100,
+            'skills_taught': ['Data Sufficiency'],
+            'srs_concept_tag': 'reasoning.data_sufficiency',
+            'domain': 'reasoning',
+            'captain_byte': {
+            'intro': 'Data sufficiency asks: is the given information enough? Do not solve. Check.',
+            'correct': ['Sufficient.', 'You checked both statements.', 'Correct classification.'],
+            'wrong': ['Do not solve. Check if the data is enough.', 'Statement 1 alone may be insufficient; statement 2 may help.', 'Combined may be sufficient even if each alone is not.'],
+            'after_break': 'You found the sufficiency error. Now re-check each statement.',
+            'after_mastery': "You can now judge data sufficiency fast. That's placement-ready reasoning skill.",
+            'retry_prompt': 'Try again. Ask: is this statement alone enough?'
+        },
+            'story_context': {
+            'title': 'Data Sufficiency',
+            'narration': 'Data sufficiency tests whether given statements are enough to answer a question. It appears in TCS NQT and Infosys reasoning sections.',
+            'setting': 'data_sufficiency',
+            'character': 'Captain Byte',
+            'intro_text': 'Data sufficiency tests whether given statements are enough to answer a question. It appears in TCS NQT and Infosys reasoning sections.'
+        },
+            'steps': {
+            'discover': {
+            'visual_primitives': ['highlight', 'compare', 'reveal'],
+            'steps': [{
+            'action': 'see_question',
+            'narration': 'Question: What is x? Statement 1: x + y = 10. Statement 2: x - y = 2.',
+            'interaction': {
+            'type': 'choose_outcome',
+            'prompt': 'Are the statements sufficient?',
+            'options': [{
+            'id': 'a',
+            'text': 'Statement 1 alone is sufficient',
+            'correct': False
+        }, {
+            'id': 'b',
+            'text': 'Statement 2 alone is sufficient',
+            'correct': False
+        }, {
+            'id': 'c',
+            'text': 'Both together are sufficient',
+            'correct': True
+        }, {
+            'id': 'd',
+            'text': 'Each alone is sufficient',
+            'correct': False
+        }],
+            'explanation': 'Each alone gives one equation with two unknowns. Together they solve x and y.'
+        }
+        }, {
+            'action': 'see_redundant',
+            'narration': 'Statement 1: x = 5. Statement 2: x + 3 = 8. Statement 2 is redundant.',
+            'interaction': {
+            'type': 'choose_outcome',
+            'prompt': 'Which statement is redundant?',
+            'options': [{
+            'id': 'a',
+            'text': 'Statement 1',
+            'correct': False
+        }, {
+            'id': 'b',
+            'text': 'Statement 2',
+            'correct': True
+        }, {
+            'id': 'c',
+            'text': 'Both are needed',
+            'correct': False
+        }, {
+            'id': 'd',
+            'text': 'Neither',
+            'correct': False
+        }],
+            'explanation': 'Statement 1 alone is sufficient. Statement 2 adds no new info.'
+        }
+        }],
+            'conclusion': 'Check each statement alone first. Then check combined. Do not solve fully unless needed. Redundant statements do not help.'
+        },
+            'understand': 'Data sufficiency has five answer types: (A) statement 1 alone sufficient, (B) statement 2 alone sufficient, (C) both together sufficient, (D) each alone sufficient, (E) insufficient. Check sufficiency, not solution.',
+            'manipulate': {
+            'prompt': 'Question: Is x > 5? Statement 1: x = 10. Statement 2: x > 0.',
+            'answer': 'A',
+            'hint': 'Statement 1 alone answers yes. Statement 2 alone does not.',
+            'interaction_kind': 'mcq_classify'
+        },
+            'predict': {
+            'prompt': 'Question: What is x? Statement 1: x² = 25. Statement 2: x > 0.',
+            'answer': 'C',
+            'options': ['A', 'B', 'C', 'D', 'E'],
+            'interaction_kind': 'mcq_classify'
+        },
+            'build': {
+            'prompt': 'Question: Is x even? Statement 1: x is divisible by 4. Statement 2: x is divisible by 2.',
+            'answer': 'D',
+            'explanation': 'Each alone is sufficient.',
+            'interaction_kind': 'mcq_classify'
+        },
+            'break_step': {
+            'prompt': 'A student solves x + y = 10 and x - y = 2 to get x = 6. They say statement 1 alone is sufficient. What is wrong?',
+            'common_mistake': 'Solving instead of checking sufficiency of each statement alone.',
+            'correct_reasoning': 'Statement 1 alone has two unknowns; not sufficient.',
+            'interaction_kind': 'mcq_diagnose'
+        },
+            'debug': {
+            'prompt': "Fix: 'Statement 1 alone is sufficient' for x + y = 10.",
+            'correct_reasoning': 'Statement 1 alone is insufficient because y is unknown.',
+            'interaction_kind': 'mcq_diagnose'
+        },
+            'retrieval': {
+            'prompt': 'What are the five data sufficiency answer types?',
+            'answer': 'A, B, C, D, E',
+            'alternative': ['statement 1 alone', 'statement 2 alone', 'both together', 'each alone', 'insufficient'],
+            'interaction_kind': 'recall_formula'
+        },
+            'transfer': {
+            'prompt': 'Question: Is x positive? Statement 1: x² = 16. Statement 2: x > -10.',
+            'answer': 'E',
+            'explanation': 'Statement 1 gives ±4. Statement 2 does not restrict to positive. Together still insufficient.',
+            'interaction_kind': 'mcq_classify'
+        }
+        },
+            'practice': [{
+            'kind': 'mcq',
+            'prompt': 'Question: What is x? Statement 1: x = 5. Statement 2: x + 2 = 7.',
+            'answer': 'D',
+            'options': ['A', 'B', 'C', 'D', 'E'],
+            'explanation': 'Each alone is sufficient.',
+            'difficulty': 'easy',
+            'company_tags': ['tcs', 'infosys', 'wipro']
+        }, {
+            'kind': 'mcq',
+            'prompt': 'Question: Is x even? Statement 1: x is odd. Statement 2: x is prime.',
+            'answer': 'A',
+            'options': ['A', 'B', 'C', 'D', 'E'],
+            'explanation': 'Statement 1 alone answers no. Statement 2 alone is insufficient.',
+            'difficulty': 'medium',
+            'company_tags': ['tcs', 'infosys']
+        }],
+            'proof': [{
+            'id': 'p1',
+            'prompt': 'Question: What is the value of x? Statement 1: 2x + 3 = 11. Statement 2: x - 1 = 4.',
+            'answer_format': 'text',
+            'correct': 'D',
+            'explanation': 'Each alone gives x = 4.',
+            'time_limit_seconds': 90,
+            'company_tags': ['tcs', 'infosys', 'wipro']
+        }],
+            'company_variants': [{
+            'company': 'infosys',
+            'role': 'sde',
+            'difficulty': 'medium',
+            'extra_practice': ['infosys_data_sufficiency', 'infosys_ds_questions'],
+            'proof_questions': [{
+            'id': 'infy-p1',
+            'prompt': 'Infosys: Question: Is x > y? Statement 1: x + y = 10. Statement 2: x - y = 2.',
+            'answer_format': 'text',
+            'correct': 'C',
+            'explanation': 'Each alone is insufficient. Together: x = 6, y = 4, so x > y.',
+            'time_limit_seconds': 90,
+            'company_tags': ['infosys']
+        }]
+        }],
+            'misconceptions': [{
+            'code': 'reasoning_sequence_inference',
+            'signature': 'Student solves the problem instead of checking sufficiency.',
+            'reteach_route': 'worked_example',
+            'reteach_action': 'show_sufficiency_question_type'
+        }, {
+            'code': 'reasoning_constraint_omission',
+            'signature': 'Student ignores redundant statements.',
+            'reteach_route': 'compare_worlds',
+            'reteach_action': 'show_redundant_does_not_help'
+        }],
+            'srs_key_points': ['Check each statement alone first.', 'Then check combined.', 'Do not solve; check sufficiency.', 'Redundant statements do not help.', 'Five answer types: A, B, C, D, E.'],
+            'srs_review_intervals': [1, 3, 7, 14, 30],
+            'world_progression': {
+            'world_id': 'reasoning',
+            'competency_id': 'data_sufficiency',
+            'unlocks_next': [],
+            'tower_badge': 'reasoning_data_sufficiency'
+        }
+        }
+
+SLUG = 'reasoning.data_sufficiency'

@@ -121,7 +121,7 @@ async def test_badge_svg_no_auth(client, seeded_user):
     body = r.text
     assert body.lstrip().startswith("<svg")
     assert "Lookout" in body
-    assert "1/12 worlds cleared" in body
+    assert "1/6 worlds cleared" in body
     assert "7-day streak" in body
     assert EMAIL not in body and uid not in body  # no PII in the image
 

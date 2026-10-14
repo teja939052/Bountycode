@@ -83,6 +83,7 @@ QUALITY_DIMENSIONS = [
     "interview_value",   # Would a real interviewer ask this? Does it test a real signal?
     "transfer_potential", # Can a student apply this technique to a new story (boss battle)?
     "pedagogical_clarity", # Is the problem statement itself unambiguous and well-framed?
+    "intuition",         # Is there a touchable metaphor + misconception cards before symbols?
 ]
 
 
@@ -281,6 +282,21 @@ def evaluate_quality(lo: dict) -> dict:
         + (10 if has_constraints else 0)
     )
 
+    # 8. intuition: requires a touchable metaphor + misconception cards
+    lo_meta = lo.get("meta", {}) or {}
+    intuition_ok = lo_meta.get("intuition_ok", False)
+    misconception_cards = lo.get("misconception_cards", []) or []
+    metaphor = lo_meta.get("metaphor", "") or ""
+    has_metaphor = len(metaphor) >= 3
+    has_misconceptions = len(misconception_cards) >= 2
+    scores["intuition"] = min(
+        100,
+        30
+        + (40 if intuition_ok else 0)
+        + (30 if has_metaphor else 0)
+        + (30 if has_misconceptions else 0)
+    )
+
     overall = round(sum(scores.values()) / len(scores))
     publishable = all(v >= PUBLISH_THRESHOLD for v in scores.values())
 
@@ -329,6 +345,9 @@ def new_learning_object(
     unlock_condition: str = "",
     xp_reward: int = 0,
     tags: list = None,
+    intuition_ok: bool = False,
+    misconception_cards: list = None,
+    metaphor: str = "",
 ) -> dict:
     """Construct a learning object with the canonical schema."""
     now = datetime.now(timezone.utc).isoformat()
@@ -383,6 +402,7 @@ def new_learning_object(
         },
         "problem": problem,
         "solution": solution or {},
+        "misconception_cards": misconception_cards or [],
 
         "meta": {
             "created_at": now,
@@ -394,6 +414,8 @@ def new_learning_object(
             "overall_quality": 0,
             "publishable": False,
             "tags": tags or [],
+            "metaphor": metaphor or "",
+            "intuition_ok": bool(intuition_ok),
         },
     }
     # Run the quality gate

@@ -12,7 +12,7 @@ from datetime import datetime, timezone, timedelta
 from typing import Any, Dict, List, Optional, Tuple
 from bson import ObjectId
 
-from app.config import get_settings
+from app.services.usage import plan_required_message
 from app.database import (
     company_mock_tests_collection,
     question_answers_collection,
@@ -25,7 +25,13 @@ from app.database import (
     coding_challenges_collection,
 )
 from app.services.placement_engine import PlacementEngine
+from app.config import get_settings
 
+# NOTE: `settings` is read via getattr() at lines 179 and 375
+# (FREE_TIER_COMPANIES, FREE_TIER_COMPANY_MOCK_LIMIT). An uncommitted edit had
+# replaced this import with `from app.services.usage import plan_required_message`
+# while leaving the get_settings() call behind, which broke module import and
+# therefore hard-failed app startup via _register_routers.
 settings = get_settings()
 engine = PlacementEngine()
 
@@ -262,7 +268,12 @@ async def list_mock_companies(user: dict) -> List[Dict[str, Any]]:
     free = set(free_companies())
     result = []
     for company_id, bp in MOCK_BLUEPRINTS.items():
-        locked = (not premium) and (company_id not in free or bp.get("pro_only"))
+        # Must be a real bool: for a free-tier user on a free company whose
+        # blueprint has no "pro_only" key, `True and (False or None)` evaluated
+        # to None, and the sort below then raised
+        # "'<' not supported between instances of 'bool' and 'NoneType'",
+        # 500-ing the whole company list.
+        locked = bool((not premium) and (company_id not in free or bp.get("pro_only")))
         # Verified bank size (in-memory, Residency Rule): explicit company tags
         # over TRUSTED stock.
         from app.services import question_store
@@ -361,15 +372,11 @@ async def start_company_mock(user: dict, company: str) -> Dict[str, Any]:
 
     if not premium:
         if company not in free or bp.get("pro_only"):
-            raise PermissionError(
-                f"Company mock for {company.title()} is Pro-only. Free tier: {', '.join(c.title() for c in free)}."
-            )
+            raise PermissionError(plan_required_message(user, "company_mock"))
         used = user.get("company_mocks_used", 0)
         limit = getattr(settings, "FREE_TIER_COMPANY_MOCK_LIMIT", 1)
         if used >= limit:
-            raise PermissionError(
-                f"Free tier allows {limit} company mock test(s) per month. Upgrade to Pro for unlimited mocks."
-            )
+            raise PermissionError(plan_required_message(user, "company_mock"))
 
     # Assemble questions
     selected: List[dict] = []

@@ -51,6 +51,19 @@ class SRSState:
         if self.updated_at is None:
             self.updated_at = utcnow()
 
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "SRSState":
+        """Build SRSState from a database document."""
+        data = dict(data)
+        for field in ("next_review", "last_reviewed", "created_at", "updated_at"):
+            value = data.get(field)
+            if isinstance(value, str):
+                try:
+                    data[field] = datetime.fromisoformat(value)
+                except ValueError:
+                    data[field] = utcnow()
+        return cls(**data)
+
 
 class SpacedRepetitionEngine:
     """
@@ -341,6 +354,19 @@ def serialize_state(state: SRSState) -> Dict[str, Any]:
         "is_due": bool(state.next_review and state.next_review <= now),
         "overdue_days": overdue_days,
     }
+
+
+async def load_due_cards(user_id: str, limit: int = 20) -> List[SRSState]:
+    """Load SRS states from the database and return cards due for review."""
+    try:
+        from app.database import srs_collection
+        docs = await srs_collection().find({"user_id": user_id}).to_list(500)
+        states = [SRSState.from_dict(doc) for doc in docs]
+        return get_due_cards(states, limit)
+    except Exception as exc:
+        logger = __import__("logging").getLogger(__name__)
+        logger.warning("load_due_cards failed for %s: %s", user_id, exc)
+        return []
 
 
 # Compatibility aliases for study_engine.py

@@ -259,6 +259,46 @@ VERTICAL_SLICE = {
         "mastery_threshold": 70,
         "diamonds": 150,
     },
+    "explain": {
+        "title": "Explain the Copy",
+        "prompt": "Why does b = a; b = b + 1 change b but leave a untouched?",
+        "answer_format": "short_answer",
+        "keywords": ["copy", "value", "independent", "separate", "new value", "rebind", "not reference"],
+        "min_words": 8,
+        "model_answer": (
+            "For simple values, assignment COPIES the value into a fresh slot. So a and b "
+            "start holding the same number but are independent. Rebinding b to a new value "
+            "does not touch a's slot."
+        ),
+        "intention": "The answer must say assignment copies the value, making a and b independent.",
+    },
+    "break": {
+        "title": "The Poisoned Swap",
+        "story": (
+            "Two vaults are meant to trade contents: [a: 5, b: 2] should become [a: 2, b: 5]. "
+            "The keeper writes a swap, but both vaults end up holding 5. The first value "
+            "was destroyed before it could be moved."
+        ),
+        "buggy_code": "a = 5\nb = 2\na = b\nb = a\nprint(a, b)",
+        "expected_output": "2 5",
+        "actual_output": "2 2 (the original a = 5 is overwritten before b can receive it)",
+        "diagnosis": {
+            "question": "Which of these is the true cause?",
+            "options": [
+                {"id": "a", "text": "a = b overwrites a first, so the old 5 is gone before b = a runs", "correct": True, "why": "The lines run in order; the first assignment destroys the value b still needs."},
+                {"id": "b", "text": "print cannot show two variables", "correct": False, "why": "print(a, b) is valid and would show the values — they are simply wrong."},
+                {"id": "c", "text": "The numbers 5 and 2 are constants and cannot trade places", "correct": False, "why": "Variables are slots, not constants — they can be reassigned freely."},
+                {"id": "d", "text": "b must be declared before a", "correct": False, "why": "Order of declarations is unrelated to the swap logic."},
+            ],
+        },
+        "fix": "a, b = b, a",
+        "fixed_code": "a = 5\nb = 2\na, b = b, a\nprint(a, b)",
+        "explanation": (
+            "Python reads both values on the right BEFORE assigning, so nothing is "
+            "destroyed. (A temp variable works the same way: it holds one value while "
+            "the other slot is emptied.)"
+        ),
+    },
     "srs_enrollment": {
         "concept_id": "programming_fundamentals:variables",
         "concept_name": "Variables and State",

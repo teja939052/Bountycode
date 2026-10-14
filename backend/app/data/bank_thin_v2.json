@@ -1,0 +1,4893 @@
+[
+ {
+  "id": "sd-v2-001",
+  "type": "system_design",
+  "topic": "system_design",
+  "sub_topic": "web search at scale",
+  "difficulty": "hard",
+  "question": "Design a global search engine like Google Search",
+  "solution": {},
+  "testcases": [],
+  "hidden_testcases": [],
+  "hints": [
+   "Clarify functional and non-functional requirements first",
+   "Estimate QPS, storage, and latency budgets",
+   "Identify the core data flow and state management",
+   "Discuss failure modes and trade-offs"
+  ],
+  "explanation": "Design a global search engine like Google Search requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups.",
+  "reasoning_steps": [
+   "Clarify: web scale vs site search? Latency budget? Freshness SLA?",
+   "Estimate: 10B pages, 100K QPS queries, index updates daily",
+   "Components: crawler, indexer (inverted index), ranking service, query parser, spell correction, ad server",
+   "Storage: shard inverted index by term hash; serve from SSD with Bloom filters",
+   "Ranking: BM25 first stage, then learning-to-rank neural re-ranker on top 1000",
+   "Hard part: freshness vs crawl budget; personalized results without violating privacy"
+  ],
+  "companies": [
+   "google",
+   "amazon",
+   "microsoft",
+   "meta"
+  ],
+  "role": [
+   "sde",
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "title": "global search engine — Google Search",
+  "requirements": {
+   "functional": [
+    "Crawl and index web pages",
+    "Parse and rank query results",
+    "Spell correction and autocomplete",
+    "Serve results under 200ms p99"
+   ],
+   "non_functional": [
+    "99.99% availability",
+    "Crawl 10B pages",
+    "Index freshness within 24h"
+   ]
+  },
+  "scale_estimation": "10B pages indexed, 100K QPS query load, index rebuild < 6h",
+  "follow_up": "How would you handle trending news that must appear within minutes? How do you rank fresh content vs authoritative content?",
+  "key_components": [
+   "Components: crawler",
+   "indexer (inverted index)",
+   "ranking service",
+   "query parser",
+   "spell correction",
+   "ad server"
+  ],
+  "mental_model": "Hard part: freshness vs crawl budget; personalized results without violating privacy",
+  "estimated_users": "10B pages indexed, 100K QPS query load, index rebuild < 6h",
+  "category": "hld",
+  "subcategory": "Infrastructure",
+  "review_status": "reviewed",
+  "common_trap": "Jumping to a solution before clarifying requirements and estimating scale.",
+  "rubric": {
+   "requirements_gathering": {
+    "weight": 15,
+    "excellent": "Asks clarifying questions about scale, latency, consistency before designing",
+    "weak": "Jumps to solution"
+   },
+   "capacity_estimation": {
+    "weight": 15,
+    "excellent": "Computes QPS, storage, bandwidth with stated assumptions",
+    "weak": "No numbers"
+   },
+   "component_design": {
+    "weight": 30,
+    "excellent": "Identifies core services, data flow, storage choices with reasons",
+    "weak": "Vague boxes"
+   },
+   "scalability": {
+    "weight": 20,
+    "excellent": "Addresses sharding, caching, replication, failure modes",
+    "weak": "Single-box design"
+   },
+   "tradeoffs": {
+    "weight": 20,
+    "excellent": "Discusses consistency/availability/cost trade-offs explicitly",
+    "weak": "No trade-offs mentioned"
+   }
+  },
+  "worked_solution": "Design a global search engine like Google Search requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups."
+ },
+ {
+  "id": "sd-v2-002",
+  "type": "system_design",
+  "topic": "system_design",
+  "sub_topic": "video streaming at scale",
+  "difficulty": "hard",
+  "question": "Design a video streaming platform like YouTube",
+  "solution": {},
+  "testcases": [],
+  "hidden_testcases": [],
+  "hints": [
+   "Clarify functional and non-functional requirements first",
+   "Estimate QPS, storage, and latency budgets",
+   "Identify the core data flow and state management",
+   "Discuss failure modes and trade-offs"
+  ],
+  "explanation": "Design a video streaming platform like YouTube requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups.",
+  "reasoning_steps": [
+   "Clarify: upload format? Playback quality? Recommendation? Live streaming?",
+   "Estimate: 500M hours video, 2B views/day, 10M uploads/day",
+   "Upload: transcode pipeline (source → multiple renditions via FFmpeg cluster), thumbnail generation, virus scan",
+   "Storage: object store (S3) for originals + renditions; CDN for edge delivery",
+   "Playback: adaptive bitrate (HLS/DASH), segment 2-10s, CDN edge cache",
+   "Recommendations: watch history + collaborative filtering + freshness boost"
+  ],
+  "companies": [
+   "google",
+   "amazon",
+   "microsoft",
+   "meta"
+  ],
+  "role": [
+   "sde",
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "title": "video streaming platform — YouTube",
+  "requirements": {
+   "functional": [
+    "Upload and transcode video",
+    "Adaptive bitrate playback",
+    "Recommendation feed",
+    "Comments and likes"
+   ],
+   "non_functional": [
+    "Start playback < 2s",
+    "99.9% availability",
+    "Support 4K at 60fps"
+   ]
+  },
+  "scale_estimation": "500M hours stored, 2B views/day, 10M uploads/day, p99 start < 2s",
+  "follow_up": "How do you handle a video going viral (100x traffic spike)? How would you implement live streaming with < 5s latency?",
+  "key_components": [
+   "Upload: transcode pipeline (source → multiple renditions via FFmpeg cluster)",
+   "thumbnail generation",
+   "virus scan"
+  ],
+  "mental_model": "Recommendations: watch history + collaborative filtering + freshness boost",
+  "estimated_users": "500M hours stored, 2B views/day, 10M uploads/day, p99 start < 2s",
+  "category": "hld",
+  "subcategory": "Infrastructure",
+  "review_status": "reviewed",
+  "common_trap": "Jumping to a solution before clarifying requirements and estimating scale.",
+  "rubric": {
+   "requirements_gathering": {
+    "weight": 15,
+    "excellent": "Asks clarifying questions about scale, latency, consistency before designing",
+    "weak": "Jumps to solution"
+   },
+   "capacity_estimation": {
+    "weight": 15,
+    "excellent": "Computes QPS, storage, bandwidth with stated assumptions",
+    "weak": "No numbers"
+   },
+   "component_design": {
+    "weight": 30,
+    "excellent": "Identifies core services, data flow, storage choices with reasons",
+    "weak": "Vague boxes"
+   },
+   "scalability": {
+    "weight": 20,
+    "excellent": "Addresses sharding, caching, replication, failure modes",
+    "weak": "Single-box design"
+   },
+   "tradeoffs": {
+    "weight": 20,
+    "excellent": "Discusses consistency/availability/cost trade-offs explicitly",
+    "weak": "No trade-offs mentioned"
+   }
+  },
+  "worked_solution": "Design a video streaming platform like YouTube requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups."
+ },
+ {
+  "id": "sd-v2-003",
+  "type": "system_design",
+  "topic": "system_design",
+  "sub_topic": "geo matching at scale",
+  "difficulty": "hard",
+  "question": "Design a ride-sharing service like Uber",
+  "solution": {},
+  "testcases": [],
+  "hidden_testcases": [],
+  "hints": [
+   "Clarify functional and non-functional requirements first",
+   "Estimate QPS, storage, and latency budgets",
+   "Identify the core data flow and state management",
+   "Discuss failure modes and trade-offs"
+  ],
+  "explanation": "Design a ride-sharing service like Uber requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups.",
+  "reasoning_steps": [
+   "Clarify: real-time matching? Pricing? Driver location updates?",
+   "Estimate: 10M drivers, 100K match requests/sec peak, location updates every 3s",
+   "Location service: drivers push GPS → geospatial index (geohash/S2 cells) → query nearby",
+   "Matching: two-phase — candidate drivers in geohash cell + ETA/rating/cancellation-score ranking",
+   "Pricing: surge multiplier from supply/demand per cell, capped at 2x",
+   "Trip lifecycle: request → match → accept → pickup → trip → payment → rating"
+  ],
+  "companies": [
+   "google",
+   "amazon",
+   "microsoft",
+   "meta"
+  ],
+  "role": [
+   "sde",
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "title": "ride-sharing service — Uber",
+  "requirements": {
+   "functional": [
+    "Rider requests a ride",
+    "Match nearest available driver",
+    "Live tracking and ETA",
+    "Fare calculation and payment"
+   ],
+   "non_functional": [
+    "Match within 15s",
+    "Location accuracy < 10m",
+    "Support 10M concurrent trips"
+   ]
+  },
+  "scale_estimation": "10M drivers, 100K match QPS, location updates every 3s",
+  "follow_up": "How do you handle drivers going offline mid-match? How would you implement carpooling with route optimization?",
+  "key_components": [
+   "Location service: drivers push GPS → geospatial index (geohash/S2 cells) → query nearby"
+  ],
+  "mental_model": "Trip lifecycle: request → match → accept → pickup → trip → payment → rating",
+  "estimated_users": "10M drivers, 100K match QPS, location updates every 3s",
+  "category": "hld",
+  "subcategory": "Infrastructure",
+  "review_status": "reviewed",
+  "common_trap": "Jumping to a solution before clarifying requirements and estimating scale.",
+  "rubric": {
+   "requirements_gathering": {
+    "weight": 15,
+    "excellent": "Asks clarifying questions about scale, latency, consistency before designing",
+    "weak": "Jumps to solution"
+   },
+   "capacity_estimation": {
+    "weight": 15,
+    "excellent": "Computes QPS, storage, bandwidth with stated assumptions",
+    "weak": "No numbers"
+   },
+   "component_design": {
+    "weight": 30,
+    "excellent": "Identifies core services, data flow, storage choices with reasons",
+    "weak": "Vague boxes"
+   },
+   "scalability": {
+    "weight": 20,
+    "excellent": "Addresses sharding, caching, replication, failure modes",
+    "weak": "Single-box design"
+   },
+   "tradeoffs": {
+    "weight": 20,
+    "excellent": "Discusses consistency/availability/cost trade-offs explicitly",
+    "weak": "No trade-offs mentioned"
+   }
+  },
+  "worked_solution": "Design a ride-sharing service like Uber requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups."
+ },
+ {
+  "id": "sd-v2-004",
+  "type": "system_design",
+  "topic": "system_design",
+  "sub_topic": "logistics at scale",
+  "difficulty": "hard",
+  "question": "Design a food delivery platform like Swiggy",
+  "solution": {},
+  "testcases": [],
+  "hidden_testcases": [],
+  "hints": [
+   "Clarify functional and non-functional requirements first",
+   "Estimate QPS, storage, and latency budgets",
+   "Identify the core data flow and state management",
+   "Discuss failure modes and trade-offs"
+  ],
+  "explanation": "Design a food delivery platform like Swiggy requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups.",
+  "reasoning_steps": [
+   "Clarify: restaurant discovery? Order tracking? Delivery partner assignment?",
+   "Estimate: 1M restaurants, 5M orders/day, 500K delivery partners",
+   "Discovery: geo-index restaurants by area; search by cuisine + rating + delivery time",
+   "Ordering: cart service → payment service → kitchen display → status webhook pipeline",
+   "Assignment: nearest available delivery partner with route overlap score (batching orders)",
+   "Tracking: WebSocket push of partner GPS → map tile rendering on client"
+  ],
+  "companies": [
+   "google",
+   "amazon",
+   "microsoft",
+   "meta"
+  ],
+  "role": [
+   "sde",
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "title": "food delivery platform — Swiggy",
+  "requirements": {
+   "functional": [
+    "Browse restaurants",
+    "Place and pay for order",
+    "Track delivery live",
+    "Rate restaurant and delivery"
+   ],
+   "non_functional": [
+    "Order-to-door < 45min avg",
+    "Payment failure < 0.1%",
+    "Real-time tracking with < 3s delay"
+   ]
+  },
+  "scale_estimation": "1M restaurants, 5M orders/day, 500K delivery partners",
+  "follow_up": "How do you handle kitchen overload (restaurant marks closed mid-order)? How would you batch multiple orders for one delivery partner?",
+  "key_components": [
+   "Discovery: geo-index restaurants by area"
+  ],
+  "mental_model": "Tracking: WebSocket push of partner GPS → map tile rendering on client",
+  "estimated_users": "1M restaurants, 5M orders/day, 500K delivery partners",
+  "category": "hld",
+  "subcategory": "Infrastructure",
+  "review_status": "reviewed",
+  "common_trap": "Jumping to a solution before clarifying requirements and estimating scale.",
+  "rubric": {
+   "requirements_gathering": {
+    "weight": 15,
+    "excellent": "Asks clarifying questions about scale, latency, consistency before designing",
+    "weak": "Jumps to solution"
+   },
+   "capacity_estimation": {
+    "weight": 15,
+    "excellent": "Computes QPS, storage, bandwidth with stated assumptions",
+    "weak": "No numbers"
+   },
+   "component_design": {
+    "weight": 30,
+    "excellent": "Identifies core services, data flow, storage choices with reasons",
+    "weak": "Vague boxes"
+   },
+   "scalability": {
+    "weight": 20,
+    "excellent": "Addresses sharding, caching, replication, failure modes",
+    "weak": "Single-box design"
+   },
+   "tradeoffs": {
+    "weight": 20,
+    "excellent": "Discusses consistency/availability/cost trade-offs explicitly",
+    "weak": "No trade-offs mentioned"
+   }
+  },
+  "worked_solution": "Design a food delivery platform like Swiggy requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups."
+ },
+ {
+  "id": "sd-v2-005",
+  "type": "system_design",
+  "topic": "system_design",
+  "sub_topic": "commerce at scale",
+  "difficulty": "hard",
+  "question": "Design an e-commerce platform like Amazon",
+  "solution": {},
+  "testcases": [],
+  "hidden_testcases": [],
+  "hints": [
+   "Clarify functional and non-functional requirements first",
+   "Estimate QPS, storage, and latency budgets",
+   "Identify the core data flow and state management",
+   "Discuss failure modes and trade-offs"
+  ],
+  "explanation": "Design an e-commerce platform like Amazon requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups.",
+  "reasoning_steps": [
+   "Clarify: catalog scale? Search? Inventory consistency? Flash sales?",
+   "Estimate: 100M SKUs, 50K orders/min peak, 10M concurrent users",
+   "Catalog: denormalized product service + search index (Elasticsearch); write via CQRS",
+   "Inventory: reservation pattern — reserve on add-to-cart (TTL 15min), confirm on payment",
+   "Ordering: saga pattern across payment, inventory, shipping services; idempotent payment",
+   "Flash sale: queue with token bucket, pre-warm cache, static product pages with CDN"
+  ],
+  "companies": [
+   "google",
+   "amazon",
+   "microsoft",
+   "meta"
+  ],
+  "role": [
+   "sde",
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "title": "Design an e-commerce platform — Amazon",
+  "requirements": {
+   "functional": [
+    "Browse and search products",
+    "Add to cart and checkout",
+    "Track order status",
+    "Return and refund"
+   ],
+   "non_functional": [
+    "Checkout p99 < 3s",
+    "No overselling inventory",
+    "Handle 100x flash sale traffic"
+   ]
+  },
+  "scale_estimation": "100M SKUs, 50K orders/min peak, 10M concurrent users",
+  "follow_up": "How do you prevent overselling during a flash sale? How would you implement a recommendation engine for 'frequently bought together'?",
+  "key_components": [
+   "Catalog: denormalized product service + search index (Elasticsearch)"
+  ],
+  "mental_model": "Flash sale: queue with token bucket, pre-warm cache, static product pages with CDN",
+  "estimated_users": "100M SKUs, 50K orders/min peak, 10M concurrent users",
+  "category": "hld",
+  "subcategory": "Infrastructure",
+  "review_status": "reviewed",
+  "common_trap": "Jumping to a solution before clarifying requirements and estimating scale.",
+  "rubric": {
+   "requirements_gathering": {
+    "weight": 15,
+    "excellent": "Asks clarifying questions about scale, latency, consistency before designing",
+    "weak": "Jumps to solution"
+   },
+   "capacity_estimation": {
+    "weight": 15,
+    "excellent": "Computes QPS, storage, bandwidth with stated assumptions",
+    "weak": "No numbers"
+   },
+   "component_design": {
+    "weight": 30,
+    "excellent": "Identifies core services, data flow, storage choices with reasons",
+    "weak": "Vague boxes"
+   },
+   "scalability": {
+    "weight": 20,
+    "excellent": "Addresses sharding, caching, replication, failure modes",
+    "weak": "Single-box design"
+   },
+   "tradeoffs": {
+    "weight": 20,
+    "excellent": "Discusses consistency/availability/cost trade-offs explicitly",
+    "weak": "No trade-offs mentioned"
+   }
+  },
+  "worked_solution": "Design an e-commerce platform like Amazon requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups."
+ },
+ {
+  "id": "sd-v2-006",
+  "type": "system_design",
+  "topic": "system_design",
+  "sub_topic": "messaging at scale",
+  "difficulty": "medium",
+  "question": "Design a push notification service",
+  "solution": {},
+  "testcases": [],
+  "hidden_testcases": [],
+  "hints": [
+   "Clarify functional and non-functional requirements first",
+   "Estimate QPS, storage, and latency budgets",
+   "Identify the core data flow and state management",
+   "Discuss failure modes and trade-offs"
+  ],
+  "explanation": "Design a push notification service requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups.",
+  "reasoning_steps": [
+   "Clarify: mobile push only? SMS/email too? Delivery guarantees?",
+   "Estimate: 1B devices, 50M notifications/sec peak, fan-out to 100M recipients",
+   "Ingest: API gateway → notification queue (Kafka) → per-platform delivery workers",
+   "Fan-out: pre-computed subscriber lists (topic → device tokens), store in Redis sorted sets",
+   "Delivery: FCM (Android) / APNs (iOS) adapters with retry + exponential backoff",
+   "Preference: user notification settings checked at send time; quiet hours respected"
+  ],
+  "companies": [
+   "google",
+   "amazon",
+   "microsoft",
+   "meta"
+  ],
+  "role": [
+   "sde",
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "title": "push notification service",
+  "requirements": {
+   "functional": [
+    "Send targeted notification",
+    "Handle device token registration",
+    "Respect user preferences",
+    "Track delivery status"
+   ],
+   "non_functional": [
+    "Fan-out 100M in < 30s",
+    "At-least-once delivery",
+    "Rate-limit per app to avoid spam"
+   ]
+  },
+  "scale_estimation": "1B devices, 50M notif/sec peak, 100M fan-out",
+  "follow_up": "How do you handle a device token becoming invalid? How would you deduplicate identical notifications?",
+  "key_components": [
+   "Ingest: API gateway → notification queue (Kafka) → per-platform delivery workers"
+  ],
+  "mental_model": "Preference: user notification settings checked at send time; quiet hours respected",
+  "estimated_users": "1B devices, 50M notif/sec peak, 100M fan-out",
+  "category": "hld",
+  "subcategory": "Infrastructure",
+  "review_status": "reviewed",
+  "common_trap": "Jumping to a solution before clarifying requirements and estimating scale.",
+  "rubric": {
+   "requirements_gathering": {
+    "weight": 15,
+    "excellent": "Asks clarifying questions about scale, latency, consistency before designing",
+    "weak": "Jumps to solution"
+   },
+   "capacity_estimation": {
+    "weight": 15,
+    "excellent": "Computes QPS, storage, bandwidth with stated assumptions",
+    "weak": "No numbers"
+   },
+   "component_design": {
+    "weight": 30,
+    "excellent": "Identifies core services, data flow, storage choices with reasons",
+    "weak": "Vague boxes"
+   },
+   "scalability": {
+    "weight": 20,
+    "excellent": "Addresses sharding, caching, replication, failure modes",
+    "weak": "Single-box design"
+   },
+   "tradeoffs": {
+    "weight": 20,
+    "excellent": "Discusses consistency/availability/cost trade-offs explicitly",
+    "weak": "No trade-offs mentioned"
+   }
+  },
+  "worked_solution": "Design a push notification service requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups."
+ },
+ {
+  "id": "sd-v2-007",
+  "type": "system_design",
+  "topic": "system_design",
+  "sub_topic": "caching at scale",
+  "difficulty": "hard",
+  "question": "Design a distributed cache like Redis Cluster",
+  "solution": {},
+  "testcases": [],
+  "hidden_testcases": [],
+  "hints": [
+   "Clarify functional and non-functional requirements first",
+   "Estimate QPS, storage, and latency budgets",
+   "Identify the core data flow and state management",
+   "Discuss failure modes and trade-offs"
+  ],
+  "explanation": "Design a distributed cache like Redis Cluster requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups.",
+  "reasoning_steps": [
+   "Clarify: consistency model? Eviction policy? Persistence needed?",
+   "Estimate: 100TB cached data, 10M ops/sec, p99 < 1ms",
+   "Sharding: hash slot (16384 slots) → node; client-side routing with MOVED redirection",
+   "Replication: primary-replica per shard; async replication with ack from N replicas",
+   "Eviction: LRU/LFU per key with TTL; memory pressure triggers active defrag",
+   "Failure: gossip protocol for cluster state; failover via sentinel quorum"
+  ],
+  "companies": [
+   "google",
+   "amazon",
+   "microsoft",
+   "meta"
+  ],
+  "role": [
+   "sde",
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "title": "distributed cache — Redis Cluster",
+  "requirements": {
+   "functional": [
+    "GET/SET/DELETE key-value",
+    "Atomic increment and compare-and-set",
+    "Pub/sub channels",
+    "TTL expiration"
+   ],
+   "non_functional": [
+    "p99 < 1ms",
+    "10M ops/sec sustained",
+    "No data loss on single node failure"
+   ]
+  },
+  "scale_estimation": "100TB data, 10M ops/sec, p99 < 1ms",
+  "follow_up": "How do you handle resharding while serving traffic? How would you implement consistent hashing for minimal key movement?",
+  "key_components": [
+   "Sharding: hash slot (16384 slots) → node"
+  ],
+  "mental_model": "Failure: gossip protocol for cluster state; failover via sentinel quorum",
+  "estimated_users": "100TB data, 10M ops/sec, p99 < 1ms",
+  "category": "hld",
+  "subcategory": "Infrastructure",
+  "review_status": "reviewed",
+  "common_trap": "Jumping to a solution before clarifying requirements and estimating scale.",
+  "rubric": {
+   "requirements_gathering": {
+    "weight": 15,
+    "excellent": "Asks clarifying questions about scale, latency, consistency before designing",
+    "weak": "Jumps to solution"
+   },
+   "capacity_estimation": {
+    "weight": 15,
+    "excellent": "Computes QPS, storage, bandwidth with stated assumptions",
+    "weak": "No numbers"
+   },
+   "component_design": {
+    "weight": 30,
+    "excellent": "Identifies core services, data flow, storage choices with reasons",
+    "weak": "Vague boxes"
+   },
+   "scalability": {
+    "weight": 20,
+    "excellent": "Addresses sharding, caching, replication, failure modes",
+    "weak": "Single-box design"
+   },
+   "tradeoffs": {
+    "weight": 20,
+    "excellent": "Discusses consistency/availability/cost trade-offs explicitly",
+    "weak": "No trade-offs mentioned"
+   }
+  },
+  "worked_solution": "Design a distributed cache like Redis Cluster requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups."
+ },
+ {
+  "id": "sd-v2-008",
+  "type": "system_design",
+  "topic": "system_design",
+  "sub_topic": "content delivery",
+  "difficulty": "hard",
+  "question": "Design a CDN (Content Delivery Network)",
+  "solution": {},
+  "testcases": [],
+  "hidden_testcases": [],
+  "hints": [
+   "Clarify functional and non-functional requirements first",
+   "Estimate QPS, storage, and latency budgets",
+   "Identify the core data flow and state management",
+   "Discuss failure modes and trade-offs"
+  ],
+  "explanation": "Design a CDN (Content Delivery Network) requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups.",
+  "reasoning_steps": [
+   "Clarify: static only? Dynamic content? Origin shield?",
+   "Estimate: 10PB cached, 1M edge servers' worth of requests, 90% cache hit rate target",
+   "Architecture: origin → shield cache → regional cache → edge PoP → client",
+   "Cache key: URL + query params + Accept-Encoding + auth cookie hash",
+   "Invalidation: purge API (by tag/URL), versioned URLs for immutable assets",
+   "Routing: DNS geo-steering + anycast BGP for shortest-path PoP selection"
+  ],
+  "companies": [
+   "google",
+   "amazon",
+   "microsoft",
+   "meta"
+  ],
+  "role": [
+   "sde",
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "title": "CDN (Content Delivery Network)",
+  "requirements": {
+   "functional": [
+    "Cache and serve static assets",
+    "Support cache invalidation",
+    "Origin shield to reduce load",
+    "SSL termination at edge"
+   ],
+   "non_functional": [
+    "95% cache hit rate",
+    "Edge latency < 50ms",
+    "Origin load reduced 100x"
+   ]
+  },
+  "scale_estimation": "10PB cached, 90% hit rate target, global PoPs",
+  "follow_up": "How do you handle cache stampede on popular content? How would you serve personalized dynamic content through a CDN?",
+  "key_components": [
+   "Architecture: origin → shield cache → regional cache → edge PoP → client"
+  ],
+  "mental_model": "Routing: DNS geo-steering + anycast BGP for shortest-path PoP selection",
+  "estimated_users": "10PB cached, 90% hit rate target, global PoPs",
+  "category": "hld",
+  "subcategory": "Infrastructure",
+  "review_status": "reviewed",
+  "common_trap": "Jumping to a solution before clarifying requirements and estimating scale.",
+  "rubric": {
+   "requirements_gathering": {
+    "weight": 15,
+    "excellent": "Asks clarifying questions about scale, latency, consistency before designing",
+    "weak": "Jumps to solution"
+   },
+   "capacity_estimation": {
+    "weight": 15,
+    "excellent": "Computes QPS, storage, bandwidth with stated assumptions",
+    "weak": "No numbers"
+   },
+   "component_design": {
+    "weight": 30,
+    "excellent": "Identifies core services, data flow, storage choices with reasons",
+    "weak": "Vague boxes"
+   },
+   "scalability": {
+    "weight": 20,
+    "excellent": "Addresses sharding, caching, replication, failure modes",
+    "weak": "Single-box design"
+   },
+   "tradeoffs": {
+    "weight": 20,
+    "excellent": "Discusses consistency/availability/cost trade-offs explicitly",
+    "weak": "No trade-offs mentioned"
+   }
+  },
+  "worked_solution": "Design a CDN (Content Delivery Network) requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups."
+ },
+ {
+  "id": "sd-v2-009",
+  "type": "system_design",
+  "topic": "system_design",
+  "sub_topic": "observability",
+  "difficulty": "hard",
+  "question": "Design a logging and monitoring system like Datadog",
+  "solution": {},
+  "testcases": [],
+  "hidden_testcases": [],
+  "hints": [
+   "Clarify functional and non-functional requirements first",
+   "Estimate QPS, storage, and latency budgets",
+   "Identify the core data flow and state management",
+   "Discuss failure modes and trade-offs"
+  ],
+  "explanation": "Design a logging and monitoring system like Datadog requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups.",
+  "reasoning_steps": [
+   "Clarify: log types? Retention? Alerting? Cardinality of metrics?",
+   "Estimate: 1TB logs/day, 10M metric points/sec, 30-day hot retention",
+   "Ingest: agent (filebeat-like) → Kafka buffer → indexers → columnar store (ClickHouse)",
+   "Metrics: time-series DB with downsampling (1s → 1m → 1h rollups)",
+   "Query: PromQL-style query engine over pre-aggregated rollups; alert rules evaluated continuously",
+   "Cardinality: metric label limits (1000 series/label combo), aggregation at agent level"
+  ],
+  "companies": [
+   "google",
+   "amazon",
+   "microsoft",
+   "meta"
+  ],
+  "role": [
+   "sde",
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "title": "logging and monitoring system — Datadog",
+  "requirements": {
+   "functional": [
+    "Ingest logs and metrics",
+    "Query with time ranges",
+    "Set alert rules",
+    "Dashboard visualization"
+   ],
+   "non_functional": [
+    "Ingest 1TB/day",
+    "Query p99 < 2s over 30 days",
+    "Alert latency < 10s"
+   ]
+  },
+  "scale_estimation": "1TB logs/day, 10M metrics/sec, 30-day hot retention",
+  "follow_up": "How do you handle high-cardinality metrics explosion? How would you implement anomaly detection without false positives?",
+  "key_components": [
+   "Ingest: agent (filebeat-like) → Kafka buffer → indexers → columnar store (ClickHouse)"
+  ],
+  "mental_model": "Cardinality: metric label limits (1000 series/label combo), aggregation at agent level",
+  "estimated_users": "1TB logs/day, 10M metrics/sec, 30-day hot retention",
+  "category": "hld",
+  "subcategory": "Infrastructure",
+  "review_status": "reviewed",
+  "common_trap": "Jumping to a solution before clarifying requirements and estimating scale.",
+  "rubric": {
+   "requirements_gathering": {
+    "weight": 15,
+    "excellent": "Asks clarifying questions about scale, latency, consistency before designing",
+    "weak": "Jumps to solution"
+   },
+   "capacity_estimation": {
+    "weight": 15,
+    "excellent": "Computes QPS, storage, bandwidth with stated assumptions",
+    "weak": "No numbers"
+   },
+   "component_design": {
+    "weight": 30,
+    "excellent": "Identifies core services, data flow, storage choices with reasons",
+    "weak": "Vague boxes"
+   },
+   "scalability": {
+    "weight": 20,
+    "excellent": "Addresses sharding, caching, replication, failure modes",
+    "weak": "Single-box design"
+   },
+   "tradeoffs": {
+    "weight": 20,
+    "excellent": "Discusses consistency/availability/cost trade-offs explicitly",
+    "weak": "No trade-offs mentioned"
+   }
+  },
+  "worked_solution": "Design a logging and monitoring system like Datadog requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups."
+ },
+ {
+  "id": "sd-v2-010",
+  "type": "system_design",
+  "topic": "system_design",
+  "sub_topic": "config at scale",
+  "difficulty": "medium",
+  "question": "Design a feature flag system like LaunchDarkly",
+  "solution": {},
+  "testcases": [],
+  "hidden_testcases": [],
+  "hints": [
+   "Clarify functional and non-functional requirements first",
+   "Estimate QPS, storage, and latency budgets",
+   "Identify the core data flow and state management",
+   "Discuss failure modes and trade-offs"
+  ],
+  "explanation": "Design a feature flag system like LaunchDarkly requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups.",
+  "reasoning_steps": [
+   "Clarify: percentage rollouts? Per-user targeting? Real-time propagation?",
+   "Estimate: 10M flags, 100M users, evaluation p99 < 1ms",
+   "Evaluation: SDK evaluates locally against bundled rules snapshot; no network call per eval",
+   "Propagation: flag change → Kafka → SDK streaming update (< 5s propagation)",
+   "Targeting: rule engine with segment (cohort) + attribute matching (semver, regex, numeric)",
+   "Safety: kill switch flag with emergency override; audit log of every flag change"
+  ],
+  "companies": [
+   "google",
+   "amazon",
+   "microsoft",
+   "meta"
+  ],
+  "role": [
+   "sde",
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "title": "feature flag system — LaunchDarkly",
+  "requirements": {
+   "functional": [
+    "Create and toggle flags",
+    "Percentage rollouts",
+    "Target by user attributes",
+    "Audit trail"
+   ],
+   "non_functional": [
+    "Eval p99 < 1ms",
+    "Propagation < 5s",
+    "100M user evaluations/sec"
+   ]
+  },
+  "scale_estimation": "10M flags, 100M users, < 5s propagation",
+  "follow_up": "How do you handle stale SDK snapshots? How would you implement multivariate flags with mutually exclusive variations?",
+  "key_components": [
+   "Evaluation: SDK evaluates locally against bundled rules snapshot"
+  ],
+  "mental_model": "Safety: kill switch flag with emergency override; audit log of every flag change",
+  "estimated_users": "10M flags, 100M users, < 5s propagation",
+  "category": "hld",
+  "subcategory": "Infrastructure",
+  "review_status": "reviewed",
+  "common_trap": "Jumping to a solution before clarifying requirements and estimating scale.",
+  "rubric": {
+   "requirements_gathering": {
+    "weight": 15,
+    "excellent": "Asks clarifying questions about scale, latency, consistency before designing",
+    "weak": "Jumps to solution"
+   },
+   "capacity_estimation": {
+    "weight": 15,
+    "excellent": "Computes QPS, storage, bandwidth with stated assumptions",
+    "weak": "No numbers"
+   },
+   "component_design": {
+    "weight": 30,
+    "excellent": "Identifies core services, data flow, storage choices with reasons",
+    "weak": "Vague boxes"
+   },
+   "scalability": {
+    "weight": 20,
+    "excellent": "Addresses sharding, caching, replication, failure modes",
+    "weak": "Single-box design"
+   },
+   "tradeoffs": {
+    "weight": 20,
+    "excellent": "Discusses consistency/availability/cost trade-offs explicitly",
+    "weak": "No trade-offs mentioned"
+   }
+  },
+  "worked_solution": "Design a feature flag system like LaunchDarkly requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups."
+ },
+ {
+  "id": "sd-v2-011",
+  "type": "system_design",
+  "topic": "system_design",
+  "sub_topic": "real-time sync",
+  "difficulty": "hard",
+  "question": "Design a real-time collaborative editor like Google Docs",
+  "solution": {},
+  "testcases": [],
+  "hidden_testcases": [],
+  "hints": [
+   "Clarify functional and non-functional requirements first",
+   "Estimate QPS, storage, and latency budgets",
+   "Identify the core data flow and state management",
+   "Discuss failure modes and trade-offs"
+  ],
+  "explanation": "Design a real-time collaborative editor like Google Docs requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups.",
+  "reasoning_steps": [
+   "Clarify: text only? Rich text? Offline support? Conflict resolution?",
+   "Estimate: 100M documents, 50M concurrent editors, operation latency < 100ms",
+   "Model: CRDT (Yjs-style) or OT — CRDT chosen for offline-first without central transform server",
+   "Sync: WebSocket per document; operations broadcast to all peers; server relays + persists log",
+   "Persistence: append-only op log → periodic snapshot compaction; document tree in object store",
+   "Presence: cursor positions via ephemeral channel; see who's editing what in real time"
+  ],
+  "companies": [
+   "google",
+   "amazon",
+   "microsoft",
+   "meta"
+  ],
+  "role": [
+   "sde",
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "title": "real-time collaborative editor — Google Docs",
+  "requirements": {
+   "functional": [
+    "Real-time text editing",
+    "Cursor presence",
+    "Offline edits merge on reconnect",
+    "Version history"
+   ],
+   "non_functional": [
+    "Op propagation < 100ms",
+    "No lost edits",
+    "Support 50 concurrent editors/doc"
+   ]
+  },
+  "scale_estimation": "100M docs, 50M concurrent editors, < 100ms propagation",
+  "follow_up": "How do you handle a user pasting a 10MB document? How would you implement comments that survive text deletion?",
+  "key_components": [
+   "Model: CRDT (Yjs-style) or OT — CRDT chosen for offline-first without central transform server"
+  ],
+  "mental_model": "Presence: cursor positions via ephemeral channel; see who's editing what in real time",
+  "estimated_users": "100M docs, 50M concurrent editors, < 100ms propagation",
+  "category": "hld",
+  "subcategory": "Infrastructure",
+  "review_status": "reviewed",
+  "common_trap": "Jumping to a solution before clarifying requirements and estimating scale.",
+  "rubric": {
+   "requirements_gathering": {
+    "weight": 15,
+    "excellent": "Asks clarifying questions about scale, latency, consistency before designing",
+    "weak": "Jumps to solution"
+   },
+   "capacity_estimation": {
+    "weight": 15,
+    "excellent": "Computes QPS, storage, bandwidth with stated assumptions",
+    "weak": "No numbers"
+   },
+   "component_design": {
+    "weight": 30,
+    "excellent": "Identifies core services, data flow, storage choices with reasons",
+    "weak": "Vague boxes"
+   },
+   "scalability": {
+    "weight": 20,
+    "excellent": "Addresses sharding, caching, replication, failure modes",
+    "weak": "Single-box design"
+   },
+   "tradeoffs": {
+    "weight": 20,
+    "excellent": "Discusses consistency/availability/cost trade-offs explicitly",
+    "weak": "No trade-offs mentioned"
+   }
+  },
+  "worked_solution": "Design a real-time collaborative editor like Google Docs requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups."
+ },
+ {
+  "id": "sd-v2-012",
+  "type": "system_design",
+  "topic": "system_design",
+  "sub_topic": "real-time media",
+  "difficulty": "hard",
+  "question": "Design a video conferencing system like Zoom",
+  "solution": {},
+  "testcases": [],
+  "hidden_testcases": [],
+  "hints": [
+   "Clarify functional and non-functional requirements first",
+   "Estimate QPS, storage, and latency budgets",
+   "Identify the core data flow and state management",
+   "Discuss failure modes and trade-offs"
+  ],
+  "explanation": "Design a video conferencing system like Zoom requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups.",
+  "reasoning_steps": [
+   "Clarify: group size? Recording? Screen share? Mobile?",
+   "Estimate: 10M concurrent calls, 500K rooms, 1Mbps video per participant",
+   "Media: SFU (Selective Forwarding Unit) — server routes streams, doesn't decode all",
+   "Topology: participants → regional SFU → cross-region SFU mesh for global calls",
+   "Adaptive bitrate: receiver-driven; bandwidth estimation via feedback loop (REMB/TWCC)",
+   "Features: simulcast (3 quality layers), screen share as separate track, virtual background (client-side ML)"
+  ],
+  "companies": [
+   "google",
+   "amazon",
+   "microsoft",
+   "meta"
+  ],
+  "role": [
+   "sde",
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "title": "video conferencing system — Zoom",
+  "requirements": {
+   "functional": [
+    "Join/leave meeting",
+    "Multi-party video and audio",
+    "Screen sharing",
+    "In-meeting chat and recording"
+   ],
+   "non_functional": [
+    "End-to-end latency < 300ms",
+    "Support 100 participants/room",
+    "Audio survives 30% packet loss"
+   ]
+  },
+  "scale_estimation": "10M concurrent calls, 500K rooms, 1Mbps/participant",
+  "follow_up": "How do you handle cross-region calls with 200ms+ RTT? How would you implement end-to-end encryption for meeting media?",
+  "key_components": [
+   "Media: SFU (Selective Forwarding Unit) — server routes streams",
+   "doesn't decode all"
+  ],
+  "mental_model": "Features: simulcast (3 quality layers), screen share as separate track, virtual background (client-side ML)",
+  "estimated_users": "10M concurrent calls, 500K rooms, 1Mbps/participant",
+  "category": "hld",
+  "subcategory": "Infrastructure",
+  "review_status": "reviewed",
+  "common_trap": "Jumping to a solution before clarifying requirements and estimating scale.",
+  "rubric": {
+   "requirements_gathering": {
+    "weight": 15,
+    "excellent": "Asks clarifying questions about scale, latency, consistency before designing",
+    "weak": "Jumps to solution"
+   },
+   "capacity_estimation": {
+    "weight": 15,
+    "excellent": "Computes QPS, storage, bandwidth with stated assumptions",
+    "weak": "No numbers"
+   },
+   "component_design": {
+    "weight": 30,
+    "excellent": "Identifies core services, data flow, storage choices with reasons",
+    "weak": "Vague boxes"
+   },
+   "scalability": {
+    "weight": 20,
+    "excellent": "Addresses sharding, caching, replication, failure modes",
+    "weak": "Single-box design"
+   },
+   "tradeoffs": {
+    "weight": 20,
+    "excellent": "Discusses consistency/availability/cost trade-offs explicitly",
+    "weak": "No trade-offs mentioned"
+   }
+  },
+  "worked_solution": "Design a video conferencing system like Zoom requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups."
+ },
+ {
+  "id": "sd-v2-013",
+  "type": "system_design",
+  "topic": "system_design",
+  "sub_topic": "storage at scale",
+  "difficulty": "medium",
+  "question": "Design a file storage service like Google Drive",
+  "solution": {},
+  "testcases": [],
+  "hidden_testcases": [],
+  "hints": [
+   "Clarify functional and non-functional requirements first",
+   "Estimate QPS, storage, and latency budgets",
+   "Identify the core data flow and state management",
+   "Discuss failure modes and trade-offs"
+  ],
+  "explanation": "Design a file storage service like Google Drive requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups.",
+  "reasoning_steps": [
+   "Clarify: file size limits? Real-time collaboration? Versioning?",
+   "Estimate: 1EB total, 10PB added/day, 1B files",
+   "Chunking: files split into 64MB chunks → content-addressed (SHA-256) → dedup across users",
+   "Storage: chunk store on object storage (erasure-coded); metadata in sharded relational DB",
+   "Sharing: ACL service with user/group permissions; capability tokens for public links",
+   "Sync: delta sync (block-level hash comparison) → upload only changed chunks"
+  ],
+  "companies": [
+   "google",
+   "amazon",
+   "microsoft",
+   "meta"
+  ],
+  "role": [
+   "sde",
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "title": "file storage service — Google Drive",
+  "requirements": {
+   "functional": [
+    "Upload and download files",
+    "Share with permissions",
+    "Version history",
+    "Real-time folder sync"
+   ],
+   "non_functional": [
+    "Dedup ratio > 30%",
+    "Upload p99 < 5s for 1GB",
+    "11 nines durability"
+   ]
+  },
+  "scale_estimation": "1EB stored, 1PB/day growth, 1B files",
+  "follow_up": "How do you handle a file being edited by 100 users simultaneously? How would you implement ransomware detection in uploaded files?",
+  "key_components": [
+   "Chunking: files split into 64MB chunks → content-addressed (SHA-256) → dedup across users"
+  ],
+  "mental_model": "Sync: delta sync (block-level hash comparison) → upload only changed chunks",
+  "estimated_users": "1EB stored, 1PB/day growth, 1B files",
+  "category": "hld",
+  "subcategory": "Infrastructure",
+  "review_status": "reviewed",
+  "common_trap": "Jumping to a solution before clarifying requirements and estimating scale.",
+  "rubric": {
+   "requirements_gathering": {
+    "weight": 15,
+    "excellent": "Asks clarifying questions about scale, latency, consistency before designing",
+    "weak": "Jumps to solution"
+   },
+   "capacity_estimation": {
+    "weight": 15,
+    "excellent": "Computes QPS, storage, bandwidth with stated assumptions",
+    "weak": "No numbers"
+   },
+   "component_design": {
+    "weight": 30,
+    "excellent": "Identifies core services, data flow, storage choices with reasons",
+    "weak": "Vague boxes"
+   },
+   "scalability": {
+    "weight": 20,
+    "excellent": "Addresses sharding, caching, replication, failure modes",
+    "weak": "Single-box design"
+   },
+   "tradeoffs": {
+    "weight": 20,
+    "excellent": "Discusses consistency/availability/cost trade-offs explicitly",
+    "weak": "No trade-offs mentioned"
+   }
+  },
+  "worked_solution": "Design a file storage service like Google Drive requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups."
+ },
+ {
+  "id": "sd-v2-014",
+  "type": "system_design",
+  "topic": "system_design",
+  "sub_topic": "network infrastructure",
+  "difficulty": "hard",
+  "question": "Design a DNS resolution system",
+  "solution": {},
+  "testcases": [],
+  "hidden_testcases": [],
+  "hints": [
+   "Clarify functional and non-functional requirements first",
+   "Estimate QPS, storage, and latency budgets",
+   "Identify the core data flow and state management",
+   "Discuss failure modes and trade-offs"
+  ],
+  "explanation": "Design a DNS resolution system requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups.",
+  "reasoning_steps": [
+   "Clarify: authoritative only? Recursive resolver? Root servers?",
+   "Estimate: 1T queries/day globally, 100K QPS per anycast instance, p99 < 10ms",
+   "Hierarchy: root → TLD → authoritative; recursive resolver caches at each level",
+   "Caching: TTL-based with negative caching (NXDOMAIN); prefetched on low-TTL expiry",
+   "Load: anycast BGP → nearest instance; consistent sharding of zone data",
+   "Security: DNSSEC signing, DNS-over-HTTPS/TLS, rate-limiting against amplification attacks"
+  ],
+  "companies": [
+   "google",
+   "amazon",
+   "microsoft",
+   "meta"
+  ],
+  "role": [
+   "sde",
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "title": "DNS resolution system",
+  "requirements": {
+   "functional": [
+    "Resolve domain to IP",
+    "Authoritative zone management",
+    "CNAME and MX records",
+    "DNSSEC validation"
+   ],
+   "non_functional": [
+    "p99 < 10ms",
+    "Survive DDoS at 10Tbps",
+    "1T queries/day"
+   ]
+  },
+  "scale_estimation": "1T queries/day, 100K QPS/instance, p99 < 10ms",
+  "follow_up": "How do you handle a zone file update propagating to all instances? How would you implement DNS load balancing with health checks?",
+  "key_components": [
+   "Hierarchy: root → TLD → authoritative"
+  ],
+  "mental_model": "Security: DNSSEC signing, DNS-over-HTTPS/TLS, rate-limiting against amplification attacks",
+  "estimated_users": "1T queries/day, 100K QPS/instance, p99 < 10ms",
+  "category": "hld",
+  "subcategory": "Infrastructure",
+  "review_status": "reviewed",
+  "common_trap": "Jumping to a solution before clarifying requirements and estimating scale.",
+  "rubric": {
+   "requirements_gathering": {
+    "weight": 15,
+    "excellent": "Asks clarifying questions about scale, latency, consistency before designing",
+    "weak": "Jumps to solution"
+   },
+   "capacity_estimation": {
+    "weight": 15,
+    "excellent": "Computes QPS, storage, bandwidth with stated assumptions",
+    "weak": "No numbers"
+   },
+   "component_design": {
+    "weight": 30,
+    "excellent": "Identifies core services, data flow, storage choices with reasons",
+    "weak": "Vague boxes"
+   },
+   "scalability": {
+    "weight": 20,
+    "excellent": "Addresses sharding, caching, replication, failure modes",
+    "weak": "Single-box design"
+   },
+   "tradeoffs": {
+    "weight": 20,
+    "excellent": "Discusses consistency/availability/cost trade-offs explicitly",
+    "weak": "No trade-offs mentioned"
+   }
+  },
+  "worked_solution": "Design a DNS resolution system requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups."
+ },
+ {
+  "id": "sd-v2-015",
+  "type": "system_design",
+  "topic": "system_design",
+  "sub_topic": "streaming at scale",
+  "difficulty": "hard",
+  "question": "Design a message queue system like Kafka",
+  "solution": {},
+  "testcases": [],
+  "hidden_testcases": [],
+  "hints": [
+   "Clarify functional and non-functional requirements first",
+   "Estimate QPS, storage, and latency budgets",
+   "Identify the core data flow and state management",
+   "Discuss failure modes and trade-offs"
+  ],
+  "explanation": "Design a message queue system like Kafka requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups.",
+  "reasoning_steps": [
+   "Clarify: ordering guarantees? At-least-once vs exactly-once? Retention?",
+   "Estimate: 1PB/day throughput, 10M msgs/sec, 100K topics",
+   "Storage: append-only segmented logs on disk; offset-based consumption, no per-message index",
+   "Partitioning: topic → partitions; key-hash partitioning preserves per-key ordering",
+   "Replication: leader-follower per partition; ISR (in-sync replicas) for commit acks",
+   "Consumer: consumer group with offset commit; rebalance protocol on join/leave"
+  ],
+  "companies": [
+   "google",
+   "amazon",
+   "microsoft",
+   "meta"
+  ],
+  "role": [
+   "sde",
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "title": "message queue system — Kafka",
+  "requirements": {
+   "functional": [
+    "Publish and subscribe messages",
+    "Per-partition ordering",
+    "Consumer groups with rebalance",
+    "Configurable retention"
+   ],
+   "non_functional": [
+    "10M msgs/sec",
+    "Durability before ack",
+    "Consumer lag monitoring"
+   ]
+  },
+  "scale_estimation": "1PB/day, 10M msgs/sec, 100K topics",
+  "follow_up": "How do you handle a slow consumer without blocking others? How would you implement exactly-once delivery semantics?",
+  "key_components": [
+   "Storage: append-only segmented logs on disk"
+  ],
+  "mental_model": "Consumer: consumer group with offset commit; rebalance protocol on join/leave",
+  "estimated_users": "1PB/day, 10M msgs/sec, 100K topics",
+  "category": "hld",
+  "subcategory": "Infrastructure",
+  "review_status": "reviewed",
+  "common_trap": "Jumping to a solution before clarifying requirements and estimating scale.",
+  "rubric": {
+   "requirements_gathering": {
+    "weight": 15,
+    "excellent": "Asks clarifying questions about scale, latency, consistency before designing",
+    "weak": "Jumps to solution"
+   },
+   "capacity_estimation": {
+    "weight": 15,
+    "excellent": "Computes QPS, storage, bandwidth with stated assumptions",
+    "weak": "No numbers"
+   },
+   "component_design": {
+    "weight": 30,
+    "excellent": "Identifies core services, data flow, storage choices with reasons",
+    "weak": "Vague boxes"
+   },
+   "scalability": {
+    "weight": 20,
+    "excellent": "Addresses sharding, caching, replication, failure modes",
+    "weak": "Single-box design"
+   },
+   "tradeoffs": {
+    "weight": 20,
+    "excellent": "Discusses consistency/availability/cost trade-offs explicitly",
+    "weak": "No trade-offs mentioned"
+   }
+  },
+  "worked_solution": "Design a message queue system like Kafka requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups."
+ },
+ {
+  "id": "sd-v2-016",
+  "type": "system_design",
+  "topic": "system_design",
+  "sub_topic": "nosql at scale",
+  "difficulty": "hard",
+  "question": "Design a key-value store like DynamoDB",
+  "solution": {},
+  "testcases": [],
+  "hidden_testcases": [],
+  "hints": [
+   "Clarify functional and non-functional requirements first",
+   "Estimate QPS, storage, and latency budgets",
+   "Identify the core data flow and state management",
+   "Discuss failure modes and trade-offs"
+  ],
+  "explanation": "Design a key-value store like DynamoDB requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups.",
+  "reasoning_steps": [
+   "Clarify: consistency model? Latency targets? Data size per item?",
+   "Estimate: 10PB data, 10M ops/sec, p99 < 10ms read",
+   "Partitioning: consistent hashing with virtual nodes; partition key range splits on size/QPS",
+   "Replication: N replicas across AZs; tunable consistency (R+W > N for strong)",
+   "Membership: gossip protocol (SWIM-style) for failure detection; hinted handoff for down nodes",
+   "Conflict: vector clocks or last-writer-wins with client context resolution"
+  ],
+  "companies": [
+   "google",
+   "amazon",
+   "microsoft",
+   "meta"
+  ],
+  "role": [
+   "sde",
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "title": "key-value store — DynamoDB",
+  "requirements": {
+   "functional": [
+    "Put and get key-value",
+    "Range scan by sort key",
+    "Conditional writes",
+    "TTL per item"
+   ],
+   "non_functional": [
+    "p99 < 10ms read",
+    "10M ops/sec",
+    "Multi-region replication < 1s"
+   ]
+  },
+  "scale_estimation": "10PB, 10M ops/sec, p99 < 10ms",
+  "follow_up": "How do you handle split-brain during network partition? How would you implement a global secondary index with eventual consistency?",
+  "key_components": [
+   "Partitioning: consistent hashing with virtual nodes"
+  ],
+  "mental_model": "Conflict: vector clocks or last-writer-wins with client context resolution",
+  "estimated_users": "10PB, 10M ops/sec, p99 < 10ms",
+  "category": "hld",
+  "subcategory": "Infrastructure",
+  "review_status": "reviewed",
+  "common_trap": "Jumping to a solution before clarifying requirements and estimating scale.",
+  "rubric": {
+   "requirements_gathering": {
+    "weight": 15,
+    "excellent": "Asks clarifying questions about scale, latency, consistency before designing",
+    "weak": "Jumps to solution"
+   },
+   "capacity_estimation": {
+    "weight": 15,
+    "excellent": "Computes QPS, storage, bandwidth with stated assumptions",
+    "weak": "No numbers"
+   },
+   "component_design": {
+    "weight": 30,
+    "excellent": "Identifies core services, data flow, storage choices with reasons",
+    "weak": "Vague boxes"
+   },
+   "scalability": {
+    "weight": 20,
+    "excellent": "Addresses sharding, caching, replication, failure modes",
+    "weak": "Single-box design"
+   },
+   "tradeoffs": {
+    "weight": 20,
+    "excellent": "Discusses consistency/availability/cost trade-offs explicitly",
+    "weak": "No trade-offs mentioned"
+   }
+  },
+  "worked_solution": "Design a key-value store like DynamoDB requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups."
+ },
+ {
+  "id": "sd-v2-017",
+  "type": "system_design",
+  "topic": "system_design",
+  "sub_topic": "traffic management",
+  "difficulty": "medium",
+  "question": "Design a load balancer like Nginx/HAProxy",
+  "solution": {},
+  "testcases": [],
+  "hidden_testcases": [],
+  "hints": [
+   "Clarify functional and non-functional requirements first",
+   "Estimate QPS, storage, and latency budgets",
+   "Identify the core data flow and state management",
+   "Discuss failure modes and trade-offs"
+  ],
+  "explanation": "Design a load balancer like Nginx/HAProxy requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups.",
+  "reasoning_steps": [
+   "Clarify: layer 4 or layer 7? SSL termination? Health checks?",
+   "Estimate: 10M concurrent connections, 1M requests/sec, p99 overhead < 1ms",
+   "Algorithm: weighted round-robin + least-connections hybrid; consistent hashing for sticky sessions",
+   "Health: active HTTP probe (3s interval, 3 fails = out) + passive circuit breaker on errors",
+   "TLS: termination at LB with session resumption (0-RTT for repeat visitors)",
+   "Scaling: LB itself is HA pair with VRRP failover; backend autoscale on queue depth"
+  ],
+  "companies": [
+   "google",
+   "amazon",
+   "microsoft",
+   "meta"
+  ],
+  "role": [
+   "sde",
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "title": "load balancer — Nginx/HAProxy",
+  "requirements": {
+   "functional": [
+    "Round-robin traffic distribution",
+    "Health check integration",
+    "SSL termination",
+    "Sticky sessions"
+   ],
+   "non_functional": [
+    "1M req/sec",
+    "Failover < 3s",
+    "Zero dropped connections on backend failure"
+   ]
+  },
+  "scale_estimation": "10M connections, 1M req/sec, < 1ms overhead",
+  "follow_up": "How do you handle the load balancer itself becoming a bottleneck? How would you implement canary deployments at the LB?",
+  "key_components": [
+   "Algorithm: weighted round-robin + least-connections hybrid"
+  ],
+  "mental_model": "Scaling: LB itself is HA pair with VRRP failover; backend autoscale on queue depth",
+  "estimated_users": "10M connections, 1M req/sec, < 1ms overhead",
+  "category": "hld",
+  "subcategory": "Infrastructure",
+  "review_status": "reviewed",
+  "common_trap": "Jumping to a solution before clarifying requirements and estimating scale.",
+  "rubric": {
+   "requirements_gathering": {
+    "weight": 15,
+    "excellent": "Asks clarifying questions about scale, latency, consistency before designing",
+    "weak": "Jumps to solution"
+   },
+   "capacity_estimation": {
+    "weight": 15,
+    "excellent": "Computes QPS, storage, bandwidth with stated assumptions",
+    "weak": "No numbers"
+   },
+   "component_design": {
+    "weight": 30,
+    "excellent": "Identifies core services, data flow, storage choices with reasons",
+    "weak": "Vague boxes"
+   },
+   "scalability": {
+    "weight": 20,
+    "excellent": "Addresses sharding, caching, replication, failure modes",
+    "weak": "Single-box design"
+   },
+   "tradeoffs": {
+    "weight": 20,
+    "excellent": "Discusses consistency/availability/cost trade-offs explicitly",
+    "weak": "No trade-offs mentioned"
+   }
+  },
+  "worked_solution": "Design a load balancer like Nginx/HAProxy requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups."
+ },
+ {
+  "id": "sd-v2-018",
+  "type": "system_design",
+  "topic": "system_design",
+  "sub_topic": "api management",
+  "difficulty": "medium",
+  "question": "Design an API gateway",
+  "solution": {},
+  "testcases": [],
+  "hidden_testcases": [],
+  "hints": [
+   "Clarify functional and non-functional requirements first",
+   "Estimate QPS, storage, and latency budgets",
+   "Identify the core data flow and state management",
+   "Discuss failure modes and trade-offs"
+  ],
+  "explanation": "Design an API gateway requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups.",
+  "reasoning_steps": [
+   "Clarify: rate limiting? Authentication? Request transformation?",
+   "Estimate: 500K req/sec, 10K APIs behind gateway, p99 < 5ms overhead",
+   "Routing: path/host-based routing to microservices; versioned routes (/v1/, /v2/)",
+   "Cross-cutting: auth (JWT validation), rate limiting (token bucket per API key), request/response transformation",
+   "Resilience: circuit breaker per downstream, request timeout, retry with jitter",
+   "Observability: per-API metrics, distributed tracing header injection, structured access logs"
+  ],
+  "companies": [
+   "google",
+   "amazon",
+   "microsoft",
+   "meta"
+  ],
+  "role": [
+   "sde",
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "title": "Design an API gateway",
+  "requirements": {
+   "functional": [
+    "Route requests to services",
+    "Authenticate API keys",
+    "Rate limit per client",
+    "Request/response transformation"
+   ],
+   "non_functional": [
+    "500K req/sec",
+    "< 5ms gateway overhead",
+    "Zero trust for internal services"
+   ]
+  },
+  "scale_estimation": "500K req/sec, 10K APIs, < 5ms overhead",
+  "follow_up": "How do you handle a downstream service being slow without cascading to other APIs? How would you implement request/response caching at the gateway?",
+  "key_components": [
+   "Routing: path/host-based routing to microservices"
+  ],
+  "mental_model": "Observability: per-API metrics, distributed tracing header injection, structured access logs",
+  "estimated_users": "500K req/sec, 10K APIs, < 5ms overhead",
+  "category": "hld",
+  "subcategory": "Infrastructure",
+  "review_status": "reviewed",
+  "common_trap": "Jumping to a solution before clarifying requirements and estimating scale.",
+  "rubric": {
+   "requirements_gathering": {
+    "weight": 15,
+    "excellent": "Asks clarifying questions about scale, latency, consistency before designing",
+    "weak": "Jumps to solution"
+   },
+   "capacity_estimation": {
+    "weight": 15,
+    "excellent": "Computes QPS, storage, bandwidth with stated assumptions",
+    "weak": "No numbers"
+   },
+   "component_design": {
+    "weight": 30,
+    "excellent": "Identifies core services, data flow, storage choices with reasons",
+    "weak": "Vague boxes"
+   },
+   "scalability": {
+    "weight": 20,
+    "excellent": "Addresses sharding, caching, replication, failure modes",
+    "weak": "Single-box design"
+   },
+   "tradeoffs": {
+    "weight": 20,
+    "excellent": "Discusses consistency/availability/cost trade-offs explicitly",
+    "weak": "No trade-offs mentioned"
+   }
+  },
+  "worked_solution": "Design an API gateway requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups."
+ },
+ {
+  "id": "sd-v2-019",
+  "type": "system_design",
+  "topic": "system_design",
+  "sub_topic": "experimentation",
+  "difficulty": "medium",
+  "question": "Design an A/B testing and experimentation platform",
+  "solution": {},
+  "testcases": [],
+  "hidden_testcases": [],
+  "hints": [
+   "Clarify functional and non-functional requirements first",
+   "Estimate QPS, storage, and latency budgets",
+   "Identify the core data flow and state management",
+   "Discuss failure modes and trade-offs"
+  ],
+  "explanation": "Design an A/B testing and experimentation platform requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups.",
+  "reasoning_steps": [
+   "Clarify: statistical rigor? Real-time results? Interaction effects?",
+   "Estimate: 10K concurrent experiments, 1B assignment requests/day, results within 1h",
+   "Assignment: deterministic hash (user_id + experiment_key) → variant; consistent across sessions",
+   "Storage: event stream (Kafka) → metrics aggregation → experiment results warehouse",
+   "Statistics: sequential testing (mSPRT) for early stopping; CUPED variance reduction",
+   "Guardrail: automatic stop on metric regression beyond significance threshold"
+  ],
+  "companies": [
+   "google",
+   "amazon",
+   "microsoft",
+   "meta"
+  ],
+  "role": [
+   "sde",
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "title": "Design an A/B testing and experimentation platform",
+  "requirements": {
+   "functional": [
+    "Create experiment with variants",
+    "Assign users to variants",
+    "Compute metric lift",
+    "Statistical significance testing"
+   ],
+   "non_functional": [
+    "Assignment p99 < 1ms",
+    "Results within 1h of event",
+    "Handle 10K concurrent experiments"
+   ]
+  },
+  "scale_estimation": "10K experiments, 1B assignments/day, results in 1h",
+  "follow_up": "How do you handle overlapping experiments without interaction bias? How would you detect and auto-stop a harmful experiment?",
+  "key_components": [
+   "Assignment: deterministic hash (user_id + experiment_key) → variant"
+  ],
+  "mental_model": "Guardrail: automatic stop on metric regression beyond significance threshold",
+  "estimated_users": "10K experiments, 1B assignments/day, results in 1h",
+  "category": "hld",
+  "subcategory": "Infrastructure",
+  "review_status": "reviewed",
+  "common_trap": "Jumping to a solution before clarifying requirements and estimating scale.",
+  "rubric": {
+   "requirements_gathering": {
+    "weight": 15,
+    "excellent": "Asks clarifying questions about scale, latency, consistency before designing",
+    "weak": "Jumps to solution"
+   },
+   "capacity_estimation": {
+    "weight": 15,
+    "excellent": "Computes QPS, storage, bandwidth with stated assumptions",
+    "weak": "No numbers"
+   },
+   "component_design": {
+    "weight": 30,
+    "excellent": "Identifies core services, data flow, storage choices with reasons",
+    "weak": "Vague boxes"
+   },
+   "scalability": {
+    "weight": 20,
+    "excellent": "Addresses sharding, caching, replication, failure modes",
+    "weak": "Single-box design"
+   },
+   "tradeoffs": {
+    "weight": 20,
+    "excellent": "Discusses consistency/availability/cost trade-offs explicitly",
+    "weak": "No trade-offs mentioned"
+   }
+  },
+  "worked_solution": "Design an A/B testing and experimentation platform requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups."
+ },
+ {
+  "id": "sd-v2-020",
+  "type": "system_design",
+  "topic": "system_design",
+  "sub_topic": "event delivery",
+  "difficulty": "medium",
+  "question": "Design a webhook delivery system",
+  "solution": {},
+  "testcases": [],
+  "hidden_testcases": [],
+  "hints": [
+   "Clarify functional and non-functional requirements first",
+   "Estimate QPS, storage, and latency budgets",
+   "Identify the core data flow and state management",
+   "Discuss failure modes and trade-offs"
+  ],
+  "explanation": "Design a webhook delivery system requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups.",
+  "reasoning_steps": [
+   "Clarify: delivery guarantees? Ordering? Retry policy?",
+   "Estimate: 10M webhooks/sec, 100K subscriber endpoints, 99.9% delivery within 30s",
+   "Ingest: event source → Kafka → delivery scheduler with per-endpoint token bucket",
+   "Delivery: HTTP POST with exponential backoff (1s, 4s, 16s, 64s, 256s), max 5 retries",
+   "Signing: HMAC-SHA256 signature header for subscriber verification; timestamp to prevent replay",
+   "Degraded: endpoint marked unhealthy after 10 consecutive failures → paused queue with admin alert"
+  ],
+  "companies": [
+   "google",
+   "amazon",
+   "microsoft",
+   "meta"
+  ],
+  "role": [
+   "sde",
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "title": "webhook delivery system",
+  "requirements": {
+   "functional": [
+    "Register webhook endpoints",
+    "Deliver events with retry",
+    "Signature verification",
+    "Delivery status dashboard"
+   ],
+   "non_functional": [
+    "99.9% delivered in 30s",
+    "Ordering per endpoint",
+    "Backpressure on slow endpoints"
+   ]
+  },
+  "scale_estimation": "10M webhooks/sec, 100K endpoints, 99.9% in 30s",
+  "follow_up": "How do you handle an endpoint that accepts but never processes webhooks? How would you implement webhook replay for missed events?",
+  "key_components": [
+   "Ingest: event source → Kafka → delivery scheduler with per-endpoint token bucket"
+  ],
+  "mental_model": "Degraded: endpoint marked unhealthy after 10 consecutive failures → paused queue with admin alert",
+  "estimated_users": "10M webhooks/sec, 100K endpoints, 99.9% in 30s",
+  "category": "hld",
+  "subcategory": "Infrastructure",
+  "review_status": "reviewed",
+  "common_trap": "Jumping to a solution before clarifying requirements and estimating scale.",
+  "rubric": {
+   "requirements_gathering": {
+    "weight": 15,
+    "excellent": "Asks clarifying questions about scale, latency, consistency before designing",
+    "weak": "Jumps to solution"
+   },
+   "capacity_estimation": {
+    "weight": 15,
+    "excellent": "Computes QPS, storage, bandwidth with stated assumptions",
+    "weak": "No numbers"
+   },
+   "component_design": {
+    "weight": 30,
+    "excellent": "Identifies core services, data flow, storage choices with reasons",
+    "weak": "Vague boxes"
+   },
+   "scalability": {
+    "weight": 20,
+    "excellent": "Addresses sharding, caching, replication, failure modes",
+    "weak": "Single-box design"
+   },
+   "tradeoffs": {
+    "weight": 20,
+    "excellent": "Discusses consistency/availability/cost trade-offs explicitly",
+    "weak": "No trade-offs mentioned"
+   }
+  },
+  "worked_solution": "Design a webhook delivery system requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups."
+ },
+ {
+  "id": "sd-v2-021",
+  "type": "system_design",
+  "topic": "system_design",
+  "sub_topic": "time-series storage",
+  "difficulty": "hard",
+  "question": "Design a metrics time-series database like InfluxDB",
+  "solution": {},
+  "testcases": [],
+  "hidden_testcases": [],
+  "hints": [
+   "Clarify functional and non-functional requirements first",
+   "Estimate QPS, storage, and latency budgets",
+   "Identify the core data flow and state management",
+   "Discuss failure modes and trade-offs"
+  ],
+  "explanation": "Design a metrics time-series database like InfluxDB requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups.",
+  "reasoning_steps": [
+   "Clarify: retention policies? Downsampling? Query patterns?",
+   "Estimate: 1B points/sec ingest, 10PB over 5 years, query over 1-year range in < 5s",
+   "Write path: points → WAL → memtable → immutable SSTable-like segments sorted by time",
+   "Compaction: background merge of small segments into large ones; time-based partitioning",
+   "Retention: tiered — hot (7d, SSD) → warm (90d, HDD) → cold (5y, object storage)",
+   "Query: downsampling pre-aggregates (1s→1m→1h→1d) selected by query time range automatically"
+  ],
+  "companies": [
+   "google",
+   "amazon",
+   "microsoft",
+   "meta"
+  ],
+  "role": [
+   "sde",
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "title": "metrics time-series database — InfluxDB",
+  "requirements": {
+   "functional": [
+    "Write metric points",
+    "Range query with aggregation",
+    "Retention policies",
+    "Continuous queries (downsampling)"
+   ],
+   "non_functional": [
+    "1B points/sec ingest",
+    "Query p99 < 5s over 1 year",
+    "30-day retention on SSD"
+   ]
+  },
+  "scale_estimation": "1B points/sec, 10PB/5yr, query < 5s over 1yr",
+  "follow_up": "How do you handle out-of-order writes? How would you implement cardinality-limited label sets to prevent series explosion?",
+  "key_components": [
+   "Write path: points → WAL → memtable → immutable SSTable-like segments sorted by time"
+  ],
+  "mental_model": "Query: downsampling pre-aggregates (1s→1m→1h→1d) selected by query time range automatically",
+  "estimated_users": "1B points/sec, 10PB/5yr, query < 5s over 1yr",
+  "category": "hld",
+  "subcategory": "Infrastructure",
+  "review_status": "reviewed",
+  "common_trap": "Jumping to a solution before clarifying requirements and estimating scale.",
+  "rubric": {
+   "requirements_gathering": {
+    "weight": 15,
+    "excellent": "Asks clarifying questions about scale, latency, consistency before designing",
+    "weak": "Jumps to solution"
+   },
+   "capacity_estimation": {
+    "weight": 15,
+    "excellent": "Computes QPS, storage, bandwidth with stated assumptions",
+    "weak": "No numbers"
+   },
+   "component_design": {
+    "weight": 30,
+    "excellent": "Identifies core services, data flow, storage choices with reasons",
+    "weak": "Vague boxes"
+   },
+   "scalability": {
+    "weight": 20,
+    "excellent": "Addresses sharding, caching, replication, failure modes",
+    "weak": "Single-box design"
+   },
+   "tradeoffs": {
+    "weight": 20,
+    "excellent": "Discusses consistency/availability/cost trade-offs explicitly",
+    "weak": "No trade-offs mentioned"
+   }
+  },
+  "worked_solution": "Design a metrics time-series database like InfluxDB requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups."
+ },
+ {
+  "id": "sd-v2-022",
+  "type": "system_design",
+  "topic": "system_design",
+  "sub_topic": "service discovery",
+  "difficulty": "medium",
+  "question": "Design a DNS-based service discovery system",
+  "solution": {},
+  "testcases": [],
+  "hidden_testcases": [],
+  "hints": [
+   "Clarify functional and non-functional requirements first",
+   "Estimate QPS, storage, and latency budgets",
+   "Identify the core data flow and state management",
+   "Discuss failure modes and trade-offs"
+  ],
+  "explanation": "Design a DNS-based service discovery system requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups.",
+  "reasoning_steps": [
+   "Clarify: dynamic registration? Health-aware routing? Cross-datacenter?",
+   "Estimate: 1M services, 100K registrations/sec churn, resolution p99 < 5ms",
+   "Registry: service instances register with health TTL (30s); expired → deregistered",
+   "Resolution: SRV records → instance list with weights; client-side round-robin",
+   "Health: instances heartbeat; unhealthy instances removed from SRV within 10s",
+   "Fallback: static config file loaded on startup if registry unavailable"
+  ],
+  "companies": [
+   "google",
+   "amazon",
+   "microsoft",
+   "meta"
+  ],
+  "role": [
+   "sde",
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "title": "DNS-based service discovery system",
+  "requirements": {
+   "functional": [
+    "Register and deregister services",
+    "Resolve service to instances",
+    "Health-aware filtering",
+    "Multiple datacenter awareness"
+   ],
+   "non_functional": [
+    "Resolution p99 < 5ms",
+    "Failure detection < 10s",
+    "Handle 1M services"
+   ]
+  },
+  "scale_estimation": "1M services, 100K churn/sec, p99 < 5ms",
+  "follow_up": "How do you prevent thundering herd on registry restart? How would you implement blue-green service discovery updates?",
+  "key_components": [
+   "Registry: service instances register with health TTL (30s)"
+  ],
+  "mental_model": "Fallback: static config file loaded on startup if registry unavailable",
+  "estimated_users": "1M services, 100K churn/sec, p99 < 5ms",
+  "category": "hld",
+  "subcategory": "Infrastructure",
+  "review_status": "reviewed",
+  "common_trap": "Jumping to a solution before clarifying requirements and estimating scale.",
+  "rubric": {
+   "requirements_gathering": {
+    "weight": 15,
+    "excellent": "Asks clarifying questions about scale, latency, consistency before designing",
+    "weak": "Jumps to solution"
+   },
+   "capacity_estimation": {
+    "weight": 15,
+    "excellent": "Computes QPS, storage, bandwidth with stated assumptions",
+    "weak": "No numbers"
+   },
+   "component_design": {
+    "weight": 30,
+    "excellent": "Identifies core services, data flow, storage choices with reasons",
+    "weak": "Vague boxes"
+   },
+   "scalability": {
+    "weight": 20,
+    "excellent": "Addresses sharding, caching, replication, failure modes",
+    "weak": "Single-box design"
+   },
+   "tradeoffs": {
+    "weight": 20,
+    "excellent": "Discusses consistency/availability/cost trade-offs explicitly",
+    "weak": "No trade-offs mentioned"
+   }
+  },
+  "worked_solution": "Design a DNS-based service discovery system requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups."
+ },
+ {
+  "id": "sd-v2-023",
+  "type": "system_design",
+  "topic": "system_design",
+  "sub_topic": "traffic control",
+  "difficulty": "medium",
+  "question": "Design a distributed rate limiter",
+  "solution": {},
+  "testcases": [],
+  "hidden_testcases": [],
+  "hints": [
+   "Clarify functional and non-functional requirements first",
+   "Estimate QPS, storage, and latency budgets",
+   "Identify the core data flow and state management",
+   "Discuss failure modes and trade-offs"
+  ],
+  "explanation": "Design a distributed rate limiter requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups.",
+  "reasoning_steps": [
+   "Clarify: per-user? Per-API? Global? Burst vs sustained?",
+   "Estimate: 10M limits/sec checked, 100K distinct limit keys, p99 < 1ms",
+   "Algorithm: sliding window counter in Redis (ZSET of timestamps per key) for accuracy",
+   "Distribution: local token bucket + global sync every 100ms to reduce Redis load",
+   "Consistency: eventual limit accuracy (±5%) accepted for 100x Redis load reduction",
+   "Granularity: hierarchical limits (org → project → endpoint → user) checked in order"
+  ],
+  "companies": [
+   "google",
+   "amazon",
+   "microsoft",
+   "meta"
+  ],
+  "role": [
+   "sde",
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "title": "distributed rate limiter",
+  "requirements": {
+   "functional": [
+    "Configure rate limits per key",
+    "Reject over-limit requests",
+    "Return retry-after header",
+    "Limit usage dashboard"
+   ],
+   "non_functional": [
+    "p99 < 1ms",
+    "10M checks/sec",
+    "±5% accuracy under distributed load"
+   ]
+  },
+  "scale_estimation": "10M limit checks/sec, 100K keys, p99 < 1ms",
+  "follow_up": "How do you handle clock skew between rate limiter nodes? How would you implement rate limiting for expensive operations (e.g., ML inference)?",
+  "key_components": [
+   "Algorithm: sliding window counter in Redis (ZSET of timestamps per key) for accuracy"
+  ],
+  "mental_model": "Granularity: hierarchical limits (org → project → endpoint → user) checked in order",
+  "estimated_users": "10M limit checks/sec, 100K keys, p99 < 1ms",
+  "category": "hld",
+  "subcategory": "Infrastructure",
+  "review_status": "reviewed",
+  "common_trap": "Jumping to a solution before clarifying requirements and estimating scale.",
+  "rubric": {
+   "requirements_gathering": {
+    "weight": 15,
+    "excellent": "Asks clarifying questions about scale, latency, consistency before designing",
+    "weak": "Jumps to solution"
+   },
+   "capacity_estimation": {
+    "weight": 15,
+    "excellent": "Computes QPS, storage, bandwidth with stated assumptions",
+    "weak": "No numbers"
+   },
+   "component_design": {
+    "weight": 30,
+    "excellent": "Identifies core services, data flow, storage choices with reasons",
+    "weak": "Vague boxes"
+   },
+   "scalability": {
+    "weight": 20,
+    "excellent": "Addresses sharding, caching, replication, failure modes",
+    "weak": "Single-box design"
+   },
+   "tradeoffs": {
+    "weight": 20,
+    "excellent": "Discusses consistency/availability/cost trade-offs explicitly",
+    "weak": "No trade-offs mentioned"
+   }
+  },
+  "worked_solution": "Design a distributed rate limiter requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups."
+ },
+ {
+  "id": "sd-v2-024",
+  "type": "system_design",
+  "topic": "system_design",
+  "sub_topic": "alerting",
+  "difficulty": "medium",
+  "question": "Design a metrics-based alerting system",
+  "solution": {},
+  "testcases": [],
+  "hidden_testcases": [],
+  "hints": [
+   "Clarify functional and non-functional requirements first",
+   "Estimate QPS, storage, and latency budgets",
+   "Identify the core data flow and state management",
+   "Discuss failure modes and trade-offs"
+  ],
+  "explanation": "Design a metrics-based alerting system requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups.",
+  "reasoning_steps": [
+   "Clarify: threshold alerts? Anomaly detection? Alert fatigue management?",
+   "Estimate: 100K alert rules, evaluation every 10s, notification p99 < 30s",
+   "Evaluation: rules compiled to query plans; evaluated against pre-aggregated rollups",
+   "State: per-rule state machine (OK → PENDING → FIRING → RESOLVED) with debounce windows",
+   "Grouping: alerts deduplicated by fingerprint (metric + labels); grouped by service for notification batching",
+   "Escalation: on-call rotation with escalation policy (5min unacked → next tier)"
+  ],
+  "companies": [
+   "google",
+   "amazon",
+   "microsoft",
+   "meta"
+  ],
+  "role": [
+   "sde",
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "title": "metrics-based alerting system",
+  "requirements": {
+   "functional": [
+    "Define alert rules",
+    "Evaluate continuously",
+    "Send notifications",
+    "Acknowledge and resolve"
+   ],
+   "non_functional": [
+    "100K rules evaluated every 10s",
+    "Notification p99 < 30s",
+    "Zero duplicate notifications within 5min"
+   ]
+  },
+  "scale_estimation": "100K rules, 10s evaluation, notification < 30s",
+  "follow_up": "How do you prevent alert storms during a cascading failure? How would you implement alert correlation across related services?",
+  "key_components": [
+   "Evaluation: rules compiled to query plans"
+  ],
+  "mental_model": "Escalation: on-call rotation with escalation policy (5min unacked → next tier)",
+  "estimated_users": "100K rules, 10s evaluation, notification < 30s",
+  "category": "hld",
+  "subcategory": "Infrastructure",
+  "review_status": "reviewed",
+  "common_trap": "Jumping to a solution before clarifying requirements and estimating scale.",
+  "rubric": {
+   "requirements_gathering": {
+    "weight": 15,
+    "excellent": "Asks clarifying questions about scale, latency, consistency before designing",
+    "weak": "Jumps to solution"
+   },
+   "capacity_estimation": {
+    "weight": 15,
+    "excellent": "Computes QPS, storage, bandwidth with stated assumptions",
+    "weak": "No numbers"
+   },
+   "component_design": {
+    "weight": 30,
+    "excellent": "Identifies core services, data flow, storage choices with reasons",
+    "weak": "Vague boxes"
+   },
+   "scalability": {
+    "weight": 20,
+    "excellent": "Addresses sharding, caching, replication, failure modes",
+    "weak": "Single-box design"
+   },
+   "tradeoffs": {
+    "weight": 20,
+    "excellent": "Discusses consistency/availability/cost trade-offs explicitly",
+    "weak": "No trade-offs mentioned"
+   }
+  },
+  "worked_solution": "Design a metrics-based alerting system requires clarifying requirements, estimating scale, selecting core components, addressing consistency/failure, and discussing follow-ups."
+ },
+ {
+  "id": "pz-v2-001",
+  "type": "puzzle",
+  "topic": "Puzzles",
+  "sub_topic": "river crossing",
+  "difficulty": "medium",
+  "question": "A man has to get a wolf, a goat, and a cabbage across a river. His boat holds only one item besides himself. If left alone, the wolf eats the goat, and the goat eats the cabbage. How does he do it?",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "C",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Think about which pairing is safe to leave unattended.",
+   "Work through the constraints step by step"
+  ],
+  "explanation": "The key insight is the goat is the constraint — it must never be alone with either the wolf or the cabbage.",
+  "reasoning_steps": [
+   "Take the goat across first (wolf and cabbage are safe together).",
+   "Return alone.",
+   "Take the wolf across; bring the goat back.",
+   "Take the cabbage across (wolf and cabbage are safe together).",
+   "Return alone.",
+   "Take the goat across. All three are now across."
+  ],
+  "companies": [
+   "infosys",
+   "tcs",
+   "wipro"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "A. Goat first, then wolf, then cabbage",
+   "B. Cabbage first, then goat, then wolf",
+   "C. Goat first, wolf second (return with goat), cabbage third, goat fourth",
+   "D. Wolf first, then goat, then cabbage"
+  ],
+  "correct_answer": "C",
+  "correct_index": "C",
+  "worked_solution": "The answer is C: The key insight is the goat is the constraint — it must never be alone with either the wolf or the cabbage.",
+  "shortcut": "Think about which pairing is safe to leave unattended.",
+  "common_trap": "Missing the key constraint that makes the puzzle solvable.",
+  "skill": "logical_puzzles",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "C",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "pz-v2-002",
+  "type": "puzzle",
+  "topic": "Puzzles",
+  "sub_topic": "game theory",
+  "difficulty": "hard",
+  "question": "Five pirates find 100 gold coins. The most senior pirate proposes a distribution. All pirates vote; if the proposal gets at least half the votes it passes. The senior pirate casts the deciding vote if there is a tie. Pirates are perfectly rational and prioritize survival first, then gold, then throwing others overboard. What does the most senior pirate propose?",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Work backwards from 2 pirates. Each pirate votes yes if offered at least what they'd get if the proposal fails.",
+   "Work through the constraints step by step"
+  ],
+  "explanation": "A: 97, B: 0, C: 1, D: 0, E: 1",
+  "reasoning_steps": [
+   "2 pirates (A, B): A proposes 100/0, votes for himself, 50% = passes. B gets 0.",
+   "3 pirates (A, B, C): A must get C's vote. C gets nothing if A dies (B takes all in 2-pirate case), so A offers C 1 coin. A: 99, B: 0, C: 1.",
+   "4 pirates: A needs 2 votes (half of 4 = 2). A votes for self, needs 1 more. B gets 0 in 3-pirate case, so offer B 1 coin. A: 99, B: 1, C: 0, D: 0.",
+   "5 pirates: A needs 3 votes. A votes for self, needs 2 more. C and D get 0 in 4-pirate case, offer them 1 each. A: 97, B: 0, C: 1, D: 0, E: 1."
+  ],
+  "companies": [
+   "infosys",
+   "tcs",
+   "wipro"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "A. 97, 0, 1, 0, 1",
+   "B. 98, 0, 1, 0, 1",
+   "C. 96, 1, 1, 1, 1",
+   "D. 97, 1, 0, 1, 1"
+  ],
+  "correct_answer": "A",
+  "correct_index": "A",
+  "worked_solution": "The answer is A: A: 97, B: 0, C: 1, D: 0, E: 1",
+  "shortcut": "Work backwards from 2 pirates. Each pirate votes yes if offered at least what they'd get if the proposal fails.",
+  "common_trap": "Missing the key constraint that makes the puzzle solvable.",
+  "skill": "logical_puzzles",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "pz-v2-003",
+  "type": "puzzle",
+  "topic": "Puzzles",
+  "sub_topic": "weighing puzzle",
+  "difficulty": "hard",
+  "question": "You have 12 identical-looking balls. Exactly one is a different weight (heavier or lighter). Using a balance scale exactly 3 times, how do you find the odd ball AND determine if it's heavier or lighter?",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "The first weighing must partition the information space so each outcome eliminates 2/3 of possibilities.",
+   "Work through the constraints step by step"
+  ],
+  "explanation": "Divide into 3 groups of 4; first weighing narrows to one group AND gives direction information.",
+  "reasoning_steps": [
+   "Weigh 1-4 vs 5-8.",
+   "If balanced: odd ball is 9-12. Weigh 9-11 vs 1-3 (known good). If balanced → ball 12, weigh vs good ball to determine heavy/light. If not balanced → identify which of 9-11 is odd and direction from tilt.",
+   "If unbalanced: say 1-4 is heavy. Weigh 1 vs 2. If balanced → 3 or 4; weigh 3 vs good ball. If not balanced → heavier one is the odd ball.",
+   "Direction from tilt: if 1-4 was heavy side and ball 1 > ball 2, ball 1 is heavy. If balanced, test 3 vs 4."
+  ],
+  "companies": [
+   "infosys",
+   "tcs",
+   "wipro"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "A. 3 weighings sufficient",
+   "B. 4 weighings needed",
+   "C. 2 weighings sufficient",
+   "D. Impossible with balance scale"
+  ],
+  "correct_answer": "A",
+  "correct_index": "A",
+  "worked_solution": "The answer is A: Divide into 3 groups of 4; first weighing narrows to one group AND gives direction information.",
+  "shortcut": "The first weighing must partition the information space so each outcome eliminates 2/3 of possibilities.",
+  "common_trap": "Missing the key constraint that makes the puzzle solvable.",
+  "skill": "logical_puzzles",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "pz-v2-004",
+  "type": "puzzle",
+  "topic": "Puzzles",
+  "sub_topic": "hat puzzle",
+  "difficulty": "hard",
+  "question": "100 prisoners are told they will stand in a line, each given a red or blue hat. Starting from the back, each prisoner must guess their own hat color. They can hear all previous guesses. They can agree on a strategy beforehand. What strategy maximizes the guaranteed number of correct guesses?",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "B",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "The back prisoner encodes global information (parity) in their guess; everyone else decodes their own hat from it.",
+   "Work through the constraints step by step"
+  ],
+  "explanation": "99 guaranteed correct (the first guesser sacrifices themselves for parity)",
+  "reasoning_steps": [
+   "The last person (who sees 99 hats) announces a parity — e.g., 'red' if they see an even number of red hats.",
+   "That person has 50% chance of being correct themselves.",
+   "Each subsequent person computes their own hat color from: parity announcement + all hats they see + all guesses heard so far.",
+   "All 99 other prisoners are GUARANTEED correct. Expected total: 99.5 correct."
+  ],
+  "companies": [
+   "infosys",
+   "tcs",
+   "wipro"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "A. 50 correct guaranteed",
+   "B. 99 correct guaranteed",
+   "C. 100 correct guaranteed",
+   "D. 1 correct guaranteed"
+  ],
+  "correct_answer": "B",
+  "correct_index": "B",
+  "worked_solution": "The answer is B: 99 guaranteed correct (the first guesser sacrifices themselves for parity)",
+  "shortcut": "The back prisoner encodes global information (parity) in their guess; everyone else decodes their own hat from it.",
+  "common_trap": "Missing the key constraint that makes the puzzle solvable.",
+  "skill": "logical_puzzles",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "B",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "pz-v2-005",
+  "type": "puzzle",
+  "topic": "Puzzles",
+  "sub_topic": "binary encoding",
+  "difficulty": "medium",
+  "question": "You have 1000 bottles of wine. One is poisoned. The poison kills within exactly 24 hours. You have 10 testers and 24 hours. How do you find the poisoned bottle?",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "B",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Each tester is one bit of a 10-bit binary number. 2^10 = 1024 ≥ 1000.",
+   "Work through the constraints step by step"
+  ],
+  "explanation": "Bottle number in binary, each tester tests one bit",
+  "reasoning_steps": [
+   "Label bottles 0-999 in binary (10 bits each).",
+   "Tester i drinks from every bottle where bit i is 1.",
+   "After 24 hours, the pattern of dead testers gives the binary number of the poisoned bottle.",
+   "Example: if testers 0, 3, 7 die → binary 10001001 = 137. Bottle 137 is poisoned."
+  ],
+  "companies": [
+   "infosys",
+   "tcs",
+   "wipro"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "A. Test sequentially",
+   "B. Binary encoding with each tester as a bit",
+   "C. Divide into groups of 10",
+   "D. Impossible with 10 testers"
+  ],
+  "correct_answer": "B",
+  "correct_index": "B",
+  "worked_solution": "The answer is B: Bottle number in binary, each tester tests one bit",
+  "shortcut": "Each tester is one bit of a 10-bit binary number. 2^10 = 1024 ≥ 1000.",
+  "common_trap": "Missing the key constraint that makes the puzzle solvable.",
+  "skill": "logical_puzzles",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "B",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "pz-v2-006",
+  "type": "puzzle",
+  "topic": "Puzzles",
+  "sub_topic": "lateral thinking",
+  "difficulty": "easy",
+  "question": "You are in a room with 3 light switches. One controls a bulb in a locked room you can't see into. You can enter the room only ONCE. How do you determine which switch controls the bulb?",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "B",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "You have two signals (light and heat) from one observation.",
+   "Work through the constraints step by step"
+  ],
+  "explanation": "Heat is the hidden signal — incandescent bulbs get hot even when off",
+  "reasoning_steps": [
+   "Turn switch 1 on for 10 minutes, then turn it off.",
+   "Turn switch 2 on and enter the room.",
+   "Bulb on → switch 2. Bulb off but warm → switch 1. Bulb off and cold → switch 3."
+  ],
+  "companies": [
+   "infosys",
+   "tcs",
+   "wipro"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "A. Turn on all switches",
+   "B. Use heat + light: switch 1 on 10min then off, switch 2 on, enter",
+   "C. Impossible with one entry",
+   "D. Use a mirror"
+  ],
+  "correct_answer": "B",
+  "correct_index": "B",
+  "worked_solution": "The answer is B: Heat is the hidden signal — incandescent bulbs get hot even when off",
+  "shortcut": "You have two signals (light and heat) from one observation.",
+  "common_trap": "Missing the key constraint that makes the puzzle solvable.",
+  "skill": "logical_puzzles",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "B",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "pz-v2-007",
+  "type": "puzzle",
+  "topic": "Puzzles",
+  "sub_topic": "relative motion",
+  "difficulty": "medium",
+  "question": "Two trains are 100km apart, each moving toward the other at 50km/h. A fly on the first train flies to the second at 100km/h, bounces back to the first, and continues until the trains collide. What total distance does the fly fly?",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "C",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Don't sum infinite bounce trips — compute the time until collision and multiply by fly speed.",
+   "Work through the constraints step by step"
+  ],
+  "explanation": "100 km",
+  "reasoning_steps": [
+   "Trains close the 100km gap at combined speed 100km/h → collide in 1 hour.",
+   "Fly flies at 100km/h for exactly 1 hour.",
+   "Total distance = 100km/h × 1h = 100km."
+  ],
+  "companies": [
+   "infosys",
+   "tcs",
+   "wipro"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "A. 200 km",
+   "B. 150 km",
+   "C. 100 km",
+   "D. 50 km"
+  ],
+  "correct_answer": "C",
+  "correct_index": "C",
+  "worked_solution": "The answer is C: 100 km",
+  "shortcut": "Don't sum infinite bounce trips — compute the time until collision and multiply by fly speed.",
+  "common_trap": "Missing the key constraint that makes the puzzle solvable.",
+  "skill": "logical_puzzles",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "C",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "pz-v2-008",
+  "type": "puzzle",
+  "topic": "Puzzles",
+  "sub_topic": "paradox",
+  "difficulty": "medium",
+  "question": "A prisoner is told: 'You may make one statement. If it is true, you will be hanged. If it is false, you will be shot.' What should he say to save himself?",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "B",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "A self-referential statement that flips the outcome whichever way it's evaluated.",
+   "Work through the constraints step by step"
+  ],
+  "explanation": "'I will be shot' creates a liar-paradox the executioner cannot resolve",
+  "reasoning_steps": [
+   "He says: 'I will be shot.'",
+   "If true → he should be hanged (but statement says shot) → contradiction → must be false.",
+   "If false → he should be shot (but statement says he will be) → contradiction → must be true.",
+   "The guard cannot act consistently, so the prisoner's statement creates an undecidable paradox and he is released."
+  ],
+  "companies": [
+   "infosys",
+   "tcs",
+   "wipro"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "A. 'I will be hanged'",
+   "B. 'I will be shot'",
+   "C. 'The sky is blue'",
+   "D. Silence"
+  ],
+  "correct_answer": "B",
+  "correct_index": "B",
+  "worked_solution": "The answer is B: 'I will be shot' creates a liar-paradox the executioner cannot resolve",
+  "shortcut": "A self-referential statement that flips the outcome whichever way it's evaluated.",
+  "common_trap": "Missing the key constraint that makes the puzzle solvable.",
+  "skill": "logical_puzzles",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "B",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "pz-v2-009",
+  "type": "puzzle",
+  "topic": "Puzzles",
+  "sub_topic": "logic deduction",
+  "difficulty": "medium",
+  "question": "Three boxes are labeled 'Apples', 'Oranges', and 'Mixed' — but ALL labels are wrong. You may draw one fruit from one box. How do you determine the correct labels for all three boxes?",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "B",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "The all-wrong-labels constraint means identifying ONE box collapses the rest.",
+   "Work through the constraints step by step"
+  ],
+  "explanation": "Draw from 'Mixed' — one fruit fully determines all three boxes",
+  "reasoning_steps": [
+   "Draw from the box labeled 'Mixed'. Since its label is wrong, it contains ONLY apples or ONLY oranges.",
+   "Suppose you draw an apple → the 'Mixed' box is actually Apples.",
+   "The box labeled 'Oranges' cannot be Oranges (wrong label) and cannot be Apples (taken) → it must be Mixed.",
+   "The box labeled 'Apples' must be Oranges."
+  ],
+  "companies": [
+   "infosys",
+   "tcs",
+   "wipro"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "A. Draw from 'Apples' box",
+   "B. Draw from 'Mixed' box",
+   "C. Draw from all three",
+   "D. Impossible"
+  ],
+  "correct_answer": "B",
+  "correct_index": "B",
+  "worked_solution": "The answer is B: Draw from 'Mixed' — one fruit fully determines all three boxes",
+  "shortcut": "The all-wrong-labels constraint means identifying ONE box collapses the rest.",
+  "common_trap": "Missing the key constraint that makes the puzzle solvable.",
+  "skill": "logical_puzzles",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "B",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "pz-v2-010",
+  "type": "puzzle",
+  "topic": "Puzzles",
+  "sub_topic": "water jug",
+  "difficulty": "medium",
+  "question": "You have a 3-liter jug and a 5-liter jug and an unlimited water supply. How do you measure exactly 4 liters?",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "B",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Use the 3-liter jug to subtract known quantities from the 5-liter jug.",
+   "Work through the constraints step by step"
+  ],
+  "explanation": "4 liters in the 5-liter jug",
+  "reasoning_steps": [
+   "Fill the 5-liter jug.",
+   "Pour from 5 into 3 until 3 is full (now 2 liters remain in 5).",
+   "Empty the 3-liter jug.",
+   "Pour the 2 liters from 5 into 3 (3 has 2 liters, 5 is empty).",
+   "Fill the 5-liter jug again (5 liters).",
+   "Pour from 5 into 3 until 3 is full — 3 needs 1 more liter (has 2, capacity 3) → 4 liters remain in 5."
+  ],
+  "companies": [
+   "infosys",
+   "tcs",
+   "wipro"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "A. Fill 3, pour to 5, fill 3, pour to 5 → 1 left in 3",
+   "B. Fill 5, pour to 3, empty 3, pour 2 to 3, fill 5, pour 1 to 3 → 4 in 5",
+   "C. Fill 3 twice → 6 liters",
+   "D. Impossible with these jugs"
+  ],
+  "correct_answer": "B",
+  "correct_index": "B",
+  "worked_solution": "The answer is B: 4 liters in the 5-liter jug",
+  "shortcut": "Use the 3-liter jug to subtract known quantities from the 5-liter jug.",
+  "common_trap": "Missing the key constraint that makes the puzzle solvable.",
+  "skill": "logical_puzzles",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "B",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "pc-v2-001",
+  "type": "pseudocode",
+  "topic": "Pseudocode",
+  "sub_topic": "loop with condition",
+  "difficulty": "easy",
+  "question": "What is the output of:\ns = 0\nfor i in range(1, 101):\n    if i % 3 == 0 or i % 5 == 0:\n        s += i\nprint(s)",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Sum multiples of 3 or 5, subtract multiples of 15 (counted twice)",
+   "Trace the code line by line with a table of variable values"
+  ],
+  "explanation": "Sum multiples of 3 or 5, subtract multiples of 15 (counted twice)",
+  "reasoning_steps": [
+   "Sum multiples of 3 or 5 below 100: 3+5+6+9+...+99",
+   "Multiples of 3: 3+6+...+99 = 3(1+2+...+33) = 3×561 = 1683",
+   "Multiples of 5: 5+10+...+95 = 5(1+2+...+19) = 5×190 = 950",
+   "Multiples of 15 (double counted): 15+30+...+90 = 15(1+2+...+6) = 15×21 = 315",
+   "Total = 1683 + 950 - 315 = 2318"
+  ],
+  "companies": [
+   "infosys",
+   "tcs"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "A. 2318",
+   "B. 2418",
+   "C. 2218",
+   "D. 2518"
+  ],
+  "correct_answer": "A",
+  "correct_index": "A",
+  "worked_solution": "The output is A. Sum multiples of 3 or 5, subtract multiples of 15 (counted twice)",
+  "common_trap": "Losing track of variable state during iteration.",
+  "skill": "code_tracing",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "pc-v2-002",
+  "type": "pseudocode",
+  "topic": "Pseudocode",
+  "sub_topic": "recursion",
+  "difficulty": "easy",
+  "question": "What is the output of:\ndef f(n):\n    if n <= 1:\n        return 1\n    return n * f(n-1)\nprint(f(6))",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "This is factorial: 6! = 720",
+   "Trace the code line by line with a table of variable values"
+  ],
+  "explanation": "This is factorial: 6! = 720",
+  "reasoning_steps": [
+   "f(6) = 6 × f(5)",
+   "f(5) = 5 × f(4)",
+   "f(4) = 4 × f(3)",
+   "f(3) = 3 × f(2)",
+   "f(2) = 2 × f(1)",
+   "f(1) = 1",
+   "6×5×4×3×2×1 = 720"
+  ],
+  "companies": [
+   "infosys",
+   "tcs"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "A. 720",
+   "B. 120",
+   "C. 6",
+   "D. 5040"
+  ],
+  "correct_answer": "A",
+  "correct_index": "A",
+  "worked_solution": "The output is A. This is factorial: 6! = 720",
+  "common_trap": "Losing track of variable state during iteration.",
+  "skill": "code_tracing",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "pc-v2-003",
+  "type": "pseudocode",
+  "topic": "Pseudocode",
+  "sub_topic": "while loop",
+  "difficulty": "easy",
+  "question": "What is the output of:\ni = 1\nwhile i < 100:\n    i = i * 2\nprint(i)",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Doubling sequence: 1→2→4→8→16→32→64→128",
+   "Trace the code line by line with a table of variable values"
+  ],
+  "explanation": "Doubling sequence: 1→2→4→8→16→32→64→128",
+  "reasoning_steps": [
+   "i starts at 1, doubles each iteration: 1, 2, 4, 8, 16, 32, 64, 128",
+   "128 >= 100, loop ends",
+   "Print 128"
+  ],
+  "companies": [
+   "infosys",
+   "tcs"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "A. 128",
+   "B. 100",
+   "C. 64",
+   "D. 99"
+  ],
+  "correct_answer": "A",
+  "correct_index": "A",
+  "worked_solution": "The output is A. Doubling sequence: 1→2→4→8→16→32→64→128",
+  "common_trap": "Losing track of variable state during iteration.",
+  "skill": "code_tracing",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "pc-v2-004",
+  "type": "pseudocode",
+  "topic": "Pseudocode",
+  "sub_topic": "finding maximum",
+  "difficulty": "easy",
+  "question": "What is the output of:\narr = [3, 1, 4, 1, 5]\nm = 0\nfor x in arr:\n    if x > m:\n        m = x\nprint(m)",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Track running maximum across all elements",
+   "Trace the code line by line with a table of variable values"
+  ],
+  "explanation": "Track running maximum across all elements",
+  "reasoning_steps": [
+   "m starts at 0",
+   "3 > 0 → m = 3",
+   "1 > 3? no",
+   "4 > 3 → m = 4",
+   "1 > 4? no",
+   "5 > 4 → m = 5",
+   "Print 5"
+  ],
+  "companies": [
+   "infosys",
+   "tcs"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "A. 5",
+   "B. 4",
+   "C. 3",
+   "D. 1"
+  ],
+  "correct_answer": "A",
+  "correct_index": "A",
+  "worked_solution": "The output is A. Track running maximum across all elements",
+  "common_trap": "Losing track of variable state during iteration.",
+  "skill": "code_tracing",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "pc-v2-005",
+  "type": "pseudocode",
+  "topic": "Pseudocode",
+  "sub_topic": "string manipulation",
+  "difficulty": "easy",
+  "question": "What is the output of:\ndef f(s):\n    r = ''\n    for c in s:\n        r = c + r\n    return r\nprint(f('abc'))",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Each character is prepended, reversing the string",
+   "Trace the code line by line with a table of variable values"
+  ],
+  "explanation": "Each character is prepended, reversing the string",
+  "reasoning_steps": [
+   "Start: r = ''",
+   "c='a': r = 'a' + '' = 'a'",
+   "c='b': r = 'b' + 'a' = 'ba'",
+   "c='c': r = 'c' + 'ba' = 'cba'",
+   "Print 'cba'"
+  ],
+  "companies": [
+   "infosys",
+   "tcs"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "A. cba",
+   "B. abc",
+   "C. bac",
+   "D. acb"
+  ],
+  "correct_answer": "A",
+  "correct_index": "A",
+  "worked_solution": "The output is A. Each character is prepended, reversing the string",
+  "common_trap": "Losing track of variable state during iteration.",
+  "skill": "code_tracing",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "pc-v2-006",
+  "type": "pseudocode",
+  "topic": "Pseudocode",
+  "sub_topic": "sequence generation",
+  "difficulty": "medium",
+  "question": "What is the output of:\na, b = 0, 1\nfor _ in range(10):\n    a, b = b, a + b\nprint(a)",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "After 10 iterations, a holds the 11th Fibonacci number (0-indexed: F(10)=55)",
+   "Trace the code line by line with a table of variable values"
+  ],
+  "explanation": "After 10 iterations, a holds the 11th Fibonacci number (0-indexed: F(10)=55)",
+  "reasoning_steps": [
+   "Fibonacci: (a,b) starts (0,1)",
+   "Iteration 1: a=1, b=1",
+   "2: a=1, b=2",
+   "3: a=2, b=3",
+   "4: a=3, b=5",
+   "5: a=5, b=8",
+   "6: a=8, b=13",
+   "7: a=13, b=21",
+   "8: a=21, b=34",
+   "9: a=34, b=55",
+   "10: a=55, b=89",
+   "Print a = 55"
+  ],
+  "companies": [
+   "infosys",
+   "tcs"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "A. 55",
+   "B. 34",
+   "C. 89",
+   "D. 34"
+  ],
+  "correct_answer": "A",
+  "correct_index": "A",
+  "worked_solution": "The output is A. After 10 iterations, a holds the 11th Fibonacci number (0-indexed: F(10)=55)",
+  "common_trap": "Losing track of variable state during iteration.",
+  "skill": "code_tracing",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "pc-v2-007",
+  "type": "pseudocode",
+  "topic": "Pseudocode",
+  "sub_topic": "dictionary iteration",
+  "difficulty": "easy",
+  "question": "What is the output of:\nd = {'a': 1, 'b': 2, 'c': 3}\ns = 0\nfor k in d:\n    s += d[k]\nprint(s)",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Sum all dictionary values",
+   "Trace the code line by line with a table of variable values"
+  ],
+  "explanation": "Sum all dictionary values",
+  "reasoning_steps": [
+   "Iterate keys: a, b, c",
+   "s = 0 + 1 = 1",
+   "s = 1 + 2 = 3",
+   "s = 3 + 3 = 6",
+   "Print 6"
+  ],
+  "companies": [
+   "infosys",
+   "tcs"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "A. 6",
+   "B. 3",
+   "C. 'abc'",
+   "D. 9"
+  ],
+  "correct_answer": "A",
+  "correct_index": "A",
+  "worked_solution": "The output is A. Sum all dictionary values",
+  "common_trap": "Losing track of variable state during iteration.",
+  "skill": "code_tracing",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "pc-v2-008",
+  "type": "pseudocode",
+  "topic": "Pseudocode",
+  "sub_topic": "collatz sequence",
+  "difficulty": "medium",
+  "question": "What is the output of:\nn = 17\ncount = 0\nwhile n > 1:\n    if n % 2 == 0:\n        n = n // 2\n    else:\n        n = 3 * n + 1\n    count += 1\nprint(count)",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Collatz (3n+1) sequence from 17 takes 12 steps to reach 1",
+   "Trace the code line by line with a table of variable values"
+  ],
+  "explanation": "Collatz (3n+1) sequence from 17 takes 12 steps to reach 1",
+  "reasoning_steps": [
+   "n=17 (odd): 3×17+1=52, count=1",
+   "52 even: 26, count=2",
+   "26 even: 13, count=3",
+   "13 odd: 40, count=4",
+   "40 even: 20, count=5",
+   "20 even: 10, count=6",
+   "10 even: 5, count=7",
+   "5 odd: 16, count=8",
+   "16→8→4→2, count=9,10,11",
+   "n=1, loop ends. count=12"
+  ],
+  "companies": [
+   "infosys",
+   "tcs"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "A. 12",
+   "B. 11",
+   "C. 13",
+   "D. 10"
+  ],
+  "correct_answer": "A",
+  "correct_index": "A",
+  "worked_solution": "The output is A. Collatz (3n+1) sequence from 17 takes 12 steps to reach 1",
+  "common_trap": "Losing track of variable state during iteration.",
+  "skill": "code_tracing",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "pc-v2-009",
+  "type": "pseudocode",
+  "topic": "Pseudocode",
+  "sub_topic": "merge sort",
+  "difficulty": "medium",
+  "question": "What is the output of:\ndef f(lst):\n    if len(lst) <= 1:\n        return lst\n    mid = len(lst) // 2\n    left = f(lst[:mid])\n    right = f(lst[mid:])\n    result = []\n    i = j = 0\n    while i < len(left) and j < len(right):\n        if left[i] <= right[j]:\n            result.append(left[i]); i += 1\n        else:\n            result.append(right[j]); j += 1\n    result.extend(left[i:])\n    result.extend(right[j:])\n    return result\nprint(f([3, 1, 2]))",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Standard merge sort — divide, recurse, merge in order",
+   "Trace the code line by line with a table of variable values"
+  ],
+  "explanation": "Standard merge sort — divide, recurse, merge in order",
+  "reasoning_steps": [
+   "f([3,1,2]): mid=1, left=f([3]), right=f([1,2])",
+   "f([1,2]): mid=1, left=f([1]), right=f([2]) → merge [1] and [2] → [1,2]",
+   "f([3]) returns [3]",
+   "Merge [3] and [1,2]: 3>1 → take 1; 3>2 → take 2; then 3 → [1,2,3]",
+   "Print [1, 2, 3]"
+  ],
+  "companies": [
+   "infosys",
+   "tcs"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "A. [1, 2, 3]",
+   "B. [3, 2, 1]",
+   "C. [3, 1, 2]",
+   "D. [2, 3, 1]"
+  ],
+  "correct_answer": "A",
+  "correct_index": "A",
+  "worked_solution": "The output is A. Standard merge sort — divide, recurse, merge in order",
+  "common_trap": "Losing track of variable state during iteration.",
+  "skill": "code_tracing",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "pc-v2-010",
+  "type": "pseudocode",
+  "topic": "Pseudocode",
+  "sub_topic": "dynamic programming",
+  "difficulty": "medium",
+  "question": "What is the output of:\ndef f(n):\n    if n == 0:\n        return 0\n    if n == 1:\n        return 1\n    dp = [0] * (n + 1)\n    dp[1] = 1\n    for i in range(2, n + 1):\n        dp[i] = dp[i-1] + dp[i-2]\n    return dp[n]\nprint(f(10))",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Bottom-up Fibonacci: dp[i] = dp[i-1] + dp[i-2]",
+   "Trace the code line by line with a table of variable values"
+  ],
+  "explanation": "Bottom-up Fibonacci: dp[i] = dp[i-1] + dp[i-2]",
+  "reasoning_steps": [
+   "dp[0]=0, dp[1]=1",
+   "dp[2]=dp[1]+dp[0]=1",
+   "dp[3]=dp[2]+dp[1]=2",
+   "dp[4]=3, dp[5]=5, dp[6]=8",
+   "dp[7]=13, dp[8]=21, dp[9]=34, dp[10]=55",
+   "Print 55"
+  ],
+  "companies": [
+   "infosys",
+   "tcs"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "A. 55",
+   "B. 34",
+   "C. 89",
+   "D. 610"
+  ],
+  "correct_answer": "A",
+  "correct_index": "A",
+  "worked_solution": "The output is A. Bottom-up Fibonacci: dp[i] = dp[i-1] + dp[i-2]",
+  "common_trap": "Losing track of variable state during iteration.",
+  "skill": "code_tracing",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "cs-v2-001",
+  "type": "cs",
+  "topic": "Computer Fundamentals",
+  "sub_topic": "computer fundamentals",
+  "difficulty": "easy",
+  "question": "Which of the following is NOT an operating system?",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "C",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Eliminate clearly wrong options first"
+  ],
+  "explanation": "Oracle is a database management system, not an operating system.",
+  "reasoning_steps": "An operating system manages hardware and provides services to applications. Oracle is a relational database.",
+  "companies": [
+   "tcs",
+   "infosys",
+   "wipro"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "Linux",
+   "Windows",
+   "Oracle",
+   "macOS"
+  ],
+  "correct_answer": "C",
+  "correct_index": 2,
+  "worked_solution": "The answer is C). Oracle is a database management system, not an operating system.",
+  "common_trap": "Confusing similar-sounding terms.",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "C",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "cs-v2-002",
+  "type": "cs",
+  "topic": "Computer Fundamentals",
+  "sub_topic": "computer fundamentals",
+  "difficulty": "easy",
+  "question": "What does RAM stand for?",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Eliminate clearly wrong options first"
+  ],
+  "explanation": "RAM = Random Access Memory — volatile memory directly accessible by the CPU.",
+  "reasoning_steps": "RAM allows any memory cell to be accessed directly in roughly the same time, regardless of position.",
+  "companies": [
+   "tcs",
+   "infosys",
+   "wipro"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "Random Access Memory",
+   "Read Access Memory",
+   "Rapid Access Module",
+   "Random Available Memory"
+  ],
+  "correct_answer": "A",
+  "correct_index": 0,
+  "worked_solution": "The answer is A). RAM = Random Access Memory — volatile memory directly accessible by the CPU.",
+  "common_trap": "Confusing similar-sounding terms.",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "cs-v2-003",
+  "type": "cs",
+  "topic": "Computer Fundamentals",
+  "sub_topic": "computer fundamentals",
+  "difficulty": "easy",
+  "question": "Which protocol is used to securely transfer web pages?",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "C",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Eliminate clearly wrong options first"
+  ],
+  "explanation": "HTTPS = HTTP over TLS/SSL, encrypting traffic between browser and server.",
+  "reasoning_steps": "HTTPS uses TLS to encrypt HTTP traffic, preventing eavesdropping and tampering.",
+  "companies": [
+   "tcs",
+   "infosys",
+   "wipro"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "HTTP",
+   "FTP",
+   "HTTPS",
+   "SMTP"
+  ],
+  "correct_answer": "C",
+  "correct_index": 2,
+  "worked_solution": "The answer is C). HTTPS = HTTP over TLS/SSL, encrypting traffic between browser and server.",
+  "common_trap": "Confusing similar-sounding terms.",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "C",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "cs-v2-004",
+  "type": "cs",
+  "topic": "Computer Fundamentals",
+  "sub_topic": "computer fundamentals",
+  "difficulty": "easy",
+  "question": "In computing, what does CPU stand for?",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Eliminate clearly wrong options first"
+  ],
+  "explanation": "CPU = Central Processing Unit — the primary processor executing instructions.",
+  "reasoning_steps": "The CPU fetches, decodes, and executes program instructions.",
+  "companies": [
+   "tcs",
+   "infosys",
+   "wipro"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "Central Processing Unit",
+   "Computer Personal Unit",
+   "Central Program Utility",
+   "Core Processing Unit"
+  ],
+  "correct_answer": "A",
+  "correct_index": 0,
+  "worked_solution": "The answer is A). CPU = Central Processing Unit — the primary processor executing instructions.",
+  "common_trap": "Confusing similar-sounding terms.",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "cs-v2-005",
+  "type": "cs",
+  "topic": "Computer Fundamentals",
+  "sub_topic": "computer fundamentals",
+  "difficulty": "easy",
+  "question": "Which data structure uses FIFO (First-In-First-Out) principle?",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "B",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Eliminate clearly wrong options first"
+  ],
+  "explanation": "A queue is FIFO: the first element enqueued is the first dequeued.",
+  "reasoning_steps": "Stack is LIFO; queue is FIFO. Trees and graphs are not linear data structures.",
+  "companies": [
+   "tcs",
+   "infosys",
+   "wipro"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "Stack",
+   "Queue",
+   "Tree",
+   "Graph"
+  ],
+  "correct_answer": "B",
+  "correct_index": 1,
+  "worked_solution": "The answer is B). A queue is FIFO: the first element enqueued is the first dequeued.",
+  "common_trap": "Confusing similar-sounding terms.",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "B",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "cs-v2-006",
+  "type": "cs",
+  "topic": "Computer Fundamentals",
+  "sub_topic": "computer fundamentals",
+  "difficulty": "easy",
+  "question": "What is the binary representation of decimal 10?",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Eliminate clearly wrong options first"
+  ],
+  "explanation": "10 = 8 + 2 = 1×8 + 0×4 + 1×2 + 0×1 = 1010",
+  "reasoning_steps": "Convert by repeated division by 2: 10/2=5 r0, 5/2=2 r1, 2/2=1 r0, 1/2=0 r1 → read remainders bottom-up: 1010.",
+  "companies": [
+   "tcs",
+   "infosys",
+   "wipro"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "1010",
+   "1100",
+   "1001",
+   "1110"
+  ],
+  "correct_answer": "A",
+  "correct_index": 0,
+  "worked_solution": "The answer is A). 10 = 8 + 2 = 1×8 + 0×4 + 1×2 + 0×1 = 1010",
+  "common_trap": "Confusing similar-sounding terms.",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "cs-v2-007",
+  "type": "cs",
+  "topic": "Computer Fundamentals",
+  "sub_topic": "computer fundamentals",
+  "difficulty": "easy",
+  "question": "Which of these is a non-volatile storage device?",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "C",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Eliminate clearly wrong options first"
+  ],
+  "explanation": "SSD retains data without power; RAM, cache, and registers are volatile.",
+  "reasoning_steps": "Non-volatile storage persists when power is removed (SSD, HDD, flash).",
+  "companies": [
+   "tcs",
+   "infosys",
+   "wipro"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "RAM",
+   "Cache",
+   "SSD",
+   "Registers"
+  ],
+  "correct_answer": "C",
+  "correct_index": 2,
+  "worked_solution": "The answer is C). SSD retains data without power; RAM, cache, and registers are volatile.",
+  "common_trap": "Confusing similar-sounding terms.",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "C",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "cs-v2-008",
+  "type": "cs",
+  "topic": "Computer Fundamentals",
+  "sub_topic": "computer fundamentals",
+  "difficulty": "easy",
+  "question": "What does URL stand for?",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Eliminate clearly wrong options first"
+  ],
+  "explanation": "URL = Uniform Resource Locator — the address of a resource on the internet.",
+  "reasoning_steps": "A URL specifies how to locate a resource: protocol + host + path (and optional query/fragment).",
+  "companies": [
+   "tcs",
+   "infosys",
+   "wipro"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "Uniform Resource Locator",
+   "Universal Reference Link",
+   "Unified Resource Language",
+   "Universal Resource Locator"
+  ],
+  "correct_answer": "A",
+  "correct_index": 0,
+  "worked_solution": "The answer is A). URL = Uniform Resource Locator — the address of a resource on the internet.",
+  "common_trap": "Confusing similar-sounding terms.",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "cs-v2-009",
+  "type": "cs",
+  "topic": "Computer Fundamentals",
+  "sub_topic": "computer fundamentals",
+  "difficulty": "easy",
+  "question": "Which sorting algorithm has the best average time complexity?",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "C",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Eliminate clearly wrong options first"
+  ],
+  "explanation": "Merge sort guarantees O(n log n) in all cases; the others are O(n²) on average.",
+  "reasoning_steps": "Merge sort divides the array in half recursively and merges sorted halves — O(n log n) worst, average, and best.",
+  "companies": [
+   "tcs",
+   "infosys",
+   "wipro"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "Bubble Sort O(n²)",
+   "Selection Sort O(n²)",
+   "Merge Sort O(n log n)",
+   "Insertion Sort O(n²)"
+  ],
+  "correct_answer": "C",
+  "correct_index": 2,
+  "worked_solution": "The answer is C). Merge sort guarantees O(n log n) in all cases; the others are O(n²) on average.",
+  "common_trap": "Confusing similar-sounding terms.",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "C",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "cs-v2-010",
+  "type": "cs",
+  "topic": "Computer Fundamentals",
+  "sub_topic": "computer fundamentals",
+  "difficulty": "easy",
+  "question": "In a relational database, what does SQL stand for?",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Eliminate clearly wrong options first"
+  ],
+  "explanation": "SQL = Structured Query Language — the standard language for relational databases.",
+  "reasoning_steps": "SQL is used to create, query, update, and manage relational databases.",
+  "companies": [
+   "tcs",
+   "infosys",
+   "wipro"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "Structured Query Language",
+   "Simple Query Language",
+   "Standard Question Language",
+   "Sequential Query Logic"
+  ],
+  "correct_answer": "A",
+  "correct_index": 0,
+  "worked_solution": "The answer is A). SQL = Structured Query Language — the standard language for relational databases.",
+  "common_trap": "Confusing similar-sounding terms.",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "A",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "mcq-v2-001",
+  "type": "mcq",
+  "topic": "quantitative",
+  "sub_topic": "number-theory",
+  "difficulty": "easy",
+  "question": "Which of these is a prime number?",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "C",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Eliminate clearly incorrect options"
+  ],
+  "explanation": "29 has no divisors other than 1 and itself. 15=3×5, 21=3×7, 33=3×11.",
+  "reasoning_steps": "Check divisibility up to √29 ≈ 5.4: 29 is not divisible by 2, 3, or 5.",
+  "companies": [
+   "tcs",
+   "infosys"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "15",
+   "21",
+   "29",
+   "33"
+  ],
+  "correct_answer": "C",
+  "correct_index": "C",
+  "worked_solution": "The answer is C. 29 has no divisors other than 1 and itself. 15=3×5, 21=3×7, 33=3×11.",
+  "common_trap": "Choosing a plausible-sounding but incorrect option.",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "C",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "mcq-v2-002",
+  "type": "mcq",
+  "topic": "coding",
+  "sub_topic": "complexity",
+  "difficulty": "easy",
+  "question": "What is the time complexity of binary search on a sorted array of n elements?",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "B",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Eliminate clearly incorrect options"
+  ],
+  "explanation": "Binary search halves the search space each step: O(log n).",
+  "reasoning_steps": "Each comparison eliminates half the remaining elements → log₂(n) steps.",
+  "companies": [
+   "tcs",
+   "infosys"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "O(n)",
+   "O(log n)",
+   "O(n log n)",
+   "O(1)"
+  ],
+  "correct_answer": "B",
+  "correct_index": "B",
+  "worked_solution": "The answer is B. Binary search halves the search space each step: O(log n).",
+  "common_trap": "Choosing a plausible-sounding but incorrect option.",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "B",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "mcq-v2-003",
+  "type": "mcq",
+  "topic": "logical",
+  "sub_topic": "syllogism",
+  "difficulty": "medium",
+  "question": "If all roses are flowers, and some flowers fade quickly, which must be true?",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "D",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Eliminate clearly incorrect options"
+  ],
+  "explanation": "The 'some flowers' that fade quickly may or may not include roses — no conclusion is forced.",
+  "reasoning_steps": "The middle term 'flowers' is not distributed in the second premise, so no valid syllogistic conclusion follows.",
+  "companies": [
+   "tcs",
+   "infosys"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "All roses fade quickly",
+   "Some roses fade quickly",
+   "No roses fade quickly",
+   "None of these must be true"
+  ],
+  "correct_answer": "D",
+  "correct_index": "D",
+  "worked_solution": "The answer is D. The 'some flowers' that fade quickly may or may not include roses — no conclusion is forced.",
+  "common_trap": "Choosing a plausible-sounding but incorrect option.",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "D",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "mcq-v2-004",
+  "type": "mcq",
+  "topic": "verbal",
+  "sub_topic": "synonym",
+  "difficulty": "easy",
+  "question": "Choose the word closest in meaning to 'PRUDENT':",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "B",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Eliminate clearly incorrect options"
+  ],
+  "explanation": "Prudent means showing care and thought for the future — cautious.",
+  "reasoning_steps": "Prudent = acting with thought and care for consequences; 'careless' is the opposite.",
+  "companies": [
+   "tcs",
+   "infosys"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "Careless",
+   "Cautious",
+   "Quick",
+   "Wealthy"
+  ],
+  "correct_answer": "B",
+  "correct_index": "B",
+  "worked_solution": "The answer is B. Prudent means showing care and thought for the future — cautious.",
+  "common_trap": "Choosing a plausible-sounding but incorrect option.",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "B",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "mcq-v2-005",
+  "type": "mcq",
+  "topic": "dsa",
+  "sub_topic": "data-structures",
+  "difficulty": "medium",
+  "question": "Which data structure is best for implementing an LRU cache?",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "B",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Eliminate clearly incorrect options"
+  ],
+  "explanation": "Hash map gives O(1) lookup; doubly linked list gives O(1) insertion/removal for recency order.",
+  "reasoning_steps": "The hash map maps keys to nodes; the linked list maintains recency order, moving accessed nodes to the head.",
+  "companies": [
+   "tcs",
+   "infosys"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "Array",
+   "Hash Map + Doubly Linked List",
+   "Stack",
+   "Single Linked List"
+  ],
+  "correct_answer": "B",
+  "correct_index": "B",
+  "worked_solution": "The answer is B. Hash map gives O(1) lookup; doubly linked list gives O(1) insertion/removal for recency order.",
+  "common_trap": "Choosing a plausible-sounding but incorrect option.",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "B",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "mcq-v2-006",
+  "type": "mcq",
+  "topic": "sql",
+  "sub_topic": "sql",
+  "difficulty": "easy",
+  "question": "Which SQL clause is used to filter groups created by GROUP BY?",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "B",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Eliminate clearly incorrect options"
+  ],
+  "explanation": "HAVING filters after aggregation; WHERE filters before grouping.",
+  "reasoning_steps": "WHERE operates on rows before GROUP BY; HAVING operates on groups after aggregation.",
+  "companies": [
+   "tcs",
+   "infosys"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "WHERE",
+   "HAVING",
+   "ORDER BY",
+   "LIMIT"
+  ],
+  "correct_answer": "B",
+  "correct_index": "B",
+  "worked_solution": "The answer is B. HAVING filters after aggregation; WHERE filters before grouping.",
+  "common_trap": "Choosing a plausible-sounding but incorrect option.",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "B",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "mcq-v2-007",
+  "type": "mcq",
+  "topic": "ai",
+  "sub_topic": "machine-learning",
+  "difficulty": "easy",
+  "question": "Which of the following is a supervised learning algorithm?",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "B",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Eliminate clearly incorrect options"
+  ],
+  "explanation": "Linear regression learns from labeled input-output pairs — supervised learning.",
+  "reasoning_steps": "K-Means and PCA are unsupervised; Apriori is for association rule mining; linear regression uses labeled data.",
+  "companies": [
+   "tcs",
+   "infosys"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "K-Means Clustering",
+   "Linear Regression",
+   "PCA",
+   "Apriori"
+  ],
+  "correct_answer": "B",
+  "correct_index": "B",
+  "worked_solution": "The answer is B. Linear regression learns from labeled input-output pairs — supervised learning.",
+  "common_trap": "Choosing a plausible-sounding but incorrect option.",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "B",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "mcq-v2-008",
+  "type": "mcq",
+  "topic": "quantitative",
+  "sub_topic": "profit-loss",
+  "difficulty": "medium",
+  "question": "A shopkeeper marks up a product by 40% and gives a 20% discount. What is the profit percentage?",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "B",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Eliminate clearly incorrect options"
+  ],
+  "explanation": "CP=100, MP=140, SP=140×0.8=112 → profit = 12%.",
+  "reasoning_steps": "Markup 40% → MP = 1.4×CP. Discount 20% → SP = 0.8×1.4×CP = 1.12×CP → 12% profit.",
+  "companies": [
+   "tcs",
+   "infosys"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "10%",
+   "12%",
+   "15%",
+   "20%"
+  ],
+  "correct_answer": "B",
+  "correct_index": "B",
+  "worked_solution": "The answer is B. CP=100, MP=140, SP=140×0.8=112 → profit = 12%.",
+  "common_trap": "Choosing a plausible-sounding but incorrect option.",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "B",
+    "hidden": false
+   }
+  ]
+ },
+ {
+  "id": "mcq-v2-009",
+  "type": "mcq",
+  "topic": "coding",
+  "sub_topic": "api-design",
+  "difficulty": "medium",
+  "question": "What does 'idempotent' mean in API design?",
+  "solution": {},
+  "testcases": [
+   {
+    "input": null,
+    "output": "B",
+    "hidden": false
+   }
+  ],
+  "hidden_testcases": [],
+  "hints": [
+   "Eliminate clearly incorrect options"
+  ],
+  "explanation": "An idempotent operation produces the same result whether called once or multiple times.",
+  "reasoning_steps": "PUT and DELETE are idempotent by HTTP spec; POST is not. Idempotency enables safe retries.",
+  "companies": [
+   "tcs",
+   "infosys"
+  ],
+  "role": [
+   "student"
+  ],
+  "provenance": "author-verified-2026",
+  "source_bank": "bank_thin_v2.json",
+  "trust_status": "verified",
+  "stage": "placement",
+  "executable": true,
+  "frequency": 0,
+  "dsa_guide": {
+   "approach": "",
+   "data_structures": [],
+   "patterns": [],
+   "tips": []
+  },
+  "options": [
+   "The API must always return 200",
+   "Repeated identical requests have the same effect as a single request",
+   "The API must be fast",
+   "The API must use GET requests"
+  ],
+  "correct_answer": "B",
+  "correct_index": "B",
+  "worked_solution": "The answer is B. An idempotent operation produces the same result whether called once or multiple times.",
+  "common_trap": "Choosing a plausible-sounding but incorrect option.",
+  "test_cases": [
+   {
+    "input": null,
+    "output": "B",
+    "hidden": false
+   }
+  ]
+ }
+]

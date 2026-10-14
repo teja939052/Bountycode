@@ -1,0 +1,85 @@
+{
+  "schema_version": "2026.1",
+  "concept_id": "string - unique slug, e.g. 'variables'",
+  "module": "number - 0-8",
+  "order": "number - sequence within module",
+  "title": "string - display title",
+  "subtitle": "string - one-line hook",
+  "unplug_activity": {
+    "type": "box-game | card-sort | role-play | paper-trace | physical",
+    "title": "string - activity name",
+    "materials": ["string"],
+    "instructions": ["string - step by step"],
+    "teacher_prompt": "string - what the guide says to prompt reflection",
+    "aha_moment": "string - the insight the student should have"
+  },
+  "unpack": {
+    "plain_language": "string - simple explanation without jargon",
+    "technical_term": "string - the actual CS term",
+    "misconceptions": [
+      {
+        "id": "string - misconception slug",
+        "description": "string - what the student wrongly believes",
+        "detection_pattern": "string - code pattern or answer that reveals this",
+        "fix_explanation": "string - how to correct it"
+      }
+    ]
+  },
+  "parsons_problems": [
+    {
+      "id": "string",
+      "title": "string",
+      "language": "python",
+      "lines": ["string - code lines in random order"],
+      "correct_order": [0, 1, 2, "..."],
+      "distractors": ["string - extra lines that don't belong"],
+      "hints": ["string"]
+    }
+  ],
+  "trace_exercises": [
+    {
+      "id": "string",
+      "title": "string",
+      "language": "python",
+      "code": "string - the code to trace",
+      "questions": [
+        {
+          "line": "number - line number to ask about",
+          "question": "string - what is the value of X here?",
+          "answer": "string - expected answer",
+          "explanation": "string"
+        }
+      ]
+    }
+  ],
+  "write_exercises": [
+    {
+      "id": "string",
+      "title": "string",
+      "starter_code": "string - partial code with blanks or TODOs",
+      "solution": "string - reference solution",
+      "hidden_tests": [
+        {"input": "any", "expected": "any"}
+      ],
+      "misconception_checks": ["string - misconception IDs to watch for"],
+      "hints": ["string"]
+    }
+  ],
+  "transfer_task": {
+    "type": "bridging | extension | explain-out-loud",
+    "title": "string",
+    "description": "string",
+    "rubric": ["string"]
+  },
+  "visual_aids": {
+    "type": "animation | diagram | interactive",
+    "description": "string"
+  },
+  "placement_link": {
+    "patterns": ["string - Striver pattern slugs this supports"],
+    "companies": ["string - company tags if specific"],
+    "difficulty": "easy | medium | hard"
+  },
+  "canonical_lesson_slug": "string - optional: reuse an existing canonical lesson instead of custom ThinkInCode phases",
+  "estimated_minutes": "number"
+}

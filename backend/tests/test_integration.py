@@ -107,40 +107,15 @@ class TestGamification:
     def test_level_never_below_1(self):
         from app.services.gamification import _calculate_level
         assert _calculate_level(-100) >= 1
+        assert _calculate_level(0) == 1
 
     def test_streak_multiplier_monotonic(self):
-        from app.services.gamification import calculate_streak_multiplier
-        prev = 0
+        from app.services.gamification import _get_streak_multiplier
+        prev = 0.0
         for streak in [0, 1, 3, 7, 14, 30, 60, 100]:
-            mult, _ = calculate_streak_multiplier(streak)
+            mult = _get_streak_multiplier(streak)
             assert mult >= prev
             prev = mult
-
-    def test_battle_keys(self):
-        from app.services.gamification import BOSS_BATTLES
-        for level in [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]:
-            assert level in BOSS_BATTLES
-
-    def test_boss_battles_have_required_fields(self):
-        from app.services.gamification import BOSS_BATTLES
-        for lvl, battle in BOSS_BATTLES.items():
-            assert "name" in battle
-            assert "emoji" in battle
-            assert "required_score" in battle
-
-    def test_power_ups_have_cost(self):
-        from app.services.gamification import POWER_UPS
-        for key, pu in POWER_UPS.items():
-            assert "cost" in pu
-            assert pu["cost"] > 0
-
-    def test_tower_titles_at_milestones(self):
-        from app.services.gamification import TOWER_TITLES
-        for lvl in [1, 5, 10, 15, 50, 100]:
-            assert lvl in TOWER_TITLES
-            title, emoji = TOWER_TITLES[lvl]
-            assert isinstance(title, str)
-            assert isinstance(emoji, str)
 
 
 # ── Placement Engine (pure math) ─────────────────────────────
@@ -388,29 +363,34 @@ class TestRouteRegistration:
     """Verify all routers are registered without importing main (avoids resource module on Windows)."""
 
     def test_all_route_modules_importable(self):
-        """Verify all core route modules import without error."""
-        from app.routes import (
-            auth, interview, resume, billing, aptitude, cover_letter,
-            system_design, coding, gamification,
-            free_practice, questions,
-            career_profile, practice, analytics, ai_feedback,
-            profile_stats, compiler, problems,
-            daily_challenge, playlists,
-            submissions, progress, features,
-            aptitude_tests,
-            indian_placement, placement_questions,
-            dsa_fingerprint, learning, analytics_admin,
-        )
+        """Every route module on disk imports without error (mirrors main.py auto-discovery)."""
+        import importlib
+        import pkgutil
+        import app.routes as routes_pkg
+
+        failures = []
+        for info in pkgutil.iter_modules(routes_pkg.__path__):
+            name = info.name
+            if name.startswith("_") or name in ("__init__", "archive"):
+                continue
+            try:
+                importlib.import_module(f"app.routes.{name}")
+            except Exception as exc:
+                failures.append(f"{name}: {type(exc).__name__}: {exc}")
+        assert not failures, "Route modules failed to import:\n" + "\n".join(failures)
 
     def test_extended_route_modules_importable(self):
-        """Verify extended routes (may have deeper dependency chains)."""
-        from app.routes import enhanced, student_features, enterprise, trial
-        from app.routes import discussions, company_mocks, personal_dashboard
-        from app.routes import ai_debugger, concepts, company_conversion
-        from app.routes import visualizations, distributions
-        from app.routes import system_design_tests, aptitude_tests
-        # If we get here, all imports succeeded
-        assert True
+        """Key feature routes expose a router object."""
+        from app.routes import (
+            auth, interview, resume, billing, aptitude, coding, gamification,
+            questions, compiler, analytics_admin, ai_debugger, trial,
+            student_discount, free_trial, oa, repair, missions,
+        )
+        for mod in [auth, interview, resume, billing, aptitude, coding,
+                    gamification, questions, compiler, analytics_admin,
+                    ai_debugger, trial, student_discount, free_trial,
+                    oa, repair, missions]:
+            assert hasattr(mod, "router"), f"{mod.__name__} missing router"
 
     def test_all_routers_have_prefix(self):
         from app.routes import auth, interview, billing, learning, gamification

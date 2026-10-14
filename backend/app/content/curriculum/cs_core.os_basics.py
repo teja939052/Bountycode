@@ -1,0 +1,136 @@
+"""Lesson module — Operating Systems Basics"""
+from typing import Dict, Any
+
+LESSON: Dict[str, Any] = {
+            'lesson_id': 'cs_core.os_basics',
+            'module_id': 'cs_core.os_basics',
+            'title': 'Operating Systems Basics',
+            'description': 'Operating systems are core to computer science fundamentals and are asked in almost every technical interview.',
+            'difficulty': 'medium',
+            'est_minutes': 20,
+            'xp_reward': 100,
+            'skills_taught': ['Operating Systems'],
+            'srs_concept_tag': 'cs_core.os_basics',
+            'domain': 'cs_core',
+            'captain_byte': {
+            'intro': 'An OS manages hardware and software. The kernel is its core. Processes and threads are execution units.',
+            'correct': ['Right concept.', 'You separated kernel from OS.', 'Correct scheduling insight.'],
+            'wrong': ['The kernel is the OS core, not the whole OS.', 'Threads share memory; processes do not.', 'Context switching has overhead.'],
+            'after_break': 'You found the OS error. Now fix the concept.',
+            'after_mastery': "You can now reason about operating systems. That's interview-ready CS skill.",
+            'retry_prompt': 'Try again. Separate the kernel from the rest of the OS.'
+        },
+            'story_context': {
+            'title': 'Operating Systems Basics',
+            'narration': 'Operating systems are core to computer science fundamentals and are asked in almost every technical interview.',
+            'setting': 'operating_systems',
+            'character': 'Captain Byte',
+            'intro_text': 'Operating systems are core to computer science fundamentals and are asked in almost every technical interview.'
+        },
+            'steps': {
+            'discover': {
+            'prompt': 'You run two programs in separate windows and they crash independently. Why?',
+            'question': 'What provides isolation between programs?',
+            'options': ['Process', 'Thread', 'CPU core', 'Cache'],
+            'interaction_kind': 'mcq_read'
+        },
+            'understand': 'OS functions: process management, memory management, file systems, I/O, scheduling. Kernel is the core. Processes have independent memory. Threads share memory. Context switching saves/restores state.',
+            'manipulate': {
+            'prompt': 'If Thread A writes x=10 and Thread B reads x, what must be true for Thread B to see 10?',
+            'answer': 'They share the same process memory and no stale cache blocks visibility.',
+            'hint': 'Threads share memory by default; processes do not.',
+            'interaction_kind': 'numeric_input'
+        },
+            'predict': {
+            'prompt': 'Which is lighter to create: a process or a thread?',
+            'answer': 'Thread',
+            'options': ['Process', 'Thread', 'Both equal', 'Depends on OS'],
+            'interaction_kind': 'mcq_bottleneck'
+        },
+            'build': {
+            'prompt': 'Create two threads that each append to a shared list 1000 times. Print final length.',
+            'answer': 'import threading\nshared = []\ndef append_n(n):\n    for _ in range(n):\n        shared.append(1)\nt1 = threading.Thread(target=append_n, args=(1000,))\nt2 = threading.Thread(target=append_n, args=(1000,))\nt1.start(); t2.start(); t1.join(); t2.join()\nprint(len(shared))',
+            'explanation': 'Threads share the same list object.',
+            'interaction_kind': 'code_build'
+        },
+            'break_step': {
+            'prompt': 'Why might the final length be less than 2000 without locks?',
+            'broken_code': 'shared = []\n# two threads append without synchronization',
+            'expected_failure': 'Race condition can corrupt list state.',
+            'interaction_kind': 'mcq_diagnose'
+        },
+            'debug': {
+            'prompt': 'Add a lock to make append thread-safe.',
+            'correct_code': 'lock = threading.Lock()\nwith lock:\n    shared.append(1)',
+            'interaction_kind': 'code_fix'
+        },
+            'retrieval': {
+            'prompt': 'State one advantage and one disadvantage of threads vs processes.',
+            'answer': 'Threads are lighter but share state; processes are isolated but heavier.',
+            'alternative': ['Lighter creation vs safer isolation.'],
+            'interaction_kind': 'recall_formula'
+        },
+            'transfer': {
+            'prompt': 'A web server handles 1000 slow clients. Would you prefer threads or processes? Why?',
+            'answer': 'Threads or async; threads share memory but many threads add overhead. Async can be lighter.',
+            'explanation': 'Choose based on isolation needs versus overhead.',
+            'interaction_kind': 'code_build'
+        }
+        },
+            'practice': [{
+            'kind': 'mcq',
+            'prompt': 'Which communication method is shared by default?',
+            'answer': 'Thread variables',
+            'options': ['Message queue', 'Thread variables', 'Socket', 'File'],
+            'explanation': 'Threads share the process address space.',
+            'difficulty': 'medium',
+            'company_tags': ['tcs', 'infosys']
+        }, {
+            'kind': 'numeric',
+            'prompt': 'If context switch costs 10us and thread switch costs 1us, how many process switches in 1ms?',
+            'answer': '100',
+            'explanation': '1ms / 10us = 100.',
+            'difficulty': 'medium',
+            'company_tags': ['tcs']
+        }],
+            'proof': [{
+            'id': 'p1-explain_when_threads_are_safer_than_proc',
+            'prompt': 'Explain when threads are safer than processes.',
+            'answer_format': 'text',
+            'correct': 'Threads are not inherently safer; processes are safer because they are isolated.',
+            'explanation': 'Isolation prevents one crash from corrupting another.',
+            'time_limit_seconds': 60,
+            'company_tags': ['tcs']
+        }],
+            'company_variants': [{
+            'company': 'tcs',
+            'role': 'sde',
+            'difficulty': 'medium',
+            'extra_practice': ['tcs_os_basics', 'tcs_process_threads'],
+            'proof_questions': [{
+            'id': 'tcs-p1',
+            'prompt': 'TCS: What is a deadlock?',
+            'answer_format': 'text',
+            'correct': 'Circular wait where processes block each other',
+            'explanation': 'Deadlock requires mutual exclusion, hold and wait, no preemption, circular wait.',
+            'time_limit_seconds': 90,
+            'company_tags': ['tcs']
+        }]
+        }],
+            'misconceptions': [{
+            'code': 'cs_core_process_thread_confusion',
+            'signature': 'Student thinks threads are always faster or that processes share memory.',
+            'reteach_route': 'visual_state',
+            'reteach_action': 'show_process_vs_thread'
+        }],
+            'srs_key_points': ['Process = isolated memory; thread = shared memory within a process.', 'Context-switch cost: threads are lighter.', 'Race conditions require synchronization.'],
+            'srs_review_intervals': [1, 3, 7, 14, 30],
+            'world_progression': {
+            'world_id': 'cs_core',
+            'competency_id': 'operating_systems',
+            'unlocks_next': [],
+            'tower_badge': 'cs_core_operating_systems'
+        }
+        }
+
+SLUG = 'cs_core.os_basics'

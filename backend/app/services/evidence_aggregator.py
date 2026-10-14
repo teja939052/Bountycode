@@ -619,6 +619,138 @@ def complexity_signal(bundle: Dict[str, Any], question_id: Optional[str] = None)
 
 # ─── P2: portable prep report ─────────────────────────────────────────────
 
+def mistake_book(bundle: Dict[str, Any], limit: int = 50) -> Dict[str, Any]:
+    """Mistake Book: every failed learning event, latest attempt per item.
+
+    Pure read over the collected bundle (learning_events + question bank
+    titles). Groups by diagnosis code and skill so revision targets the
+    reason, not just the question. Retry links reuse existing solve routes.
+    """
+    try:
+        from app.services import question_store as qs
+    except Exception:
+        qs = None
+
+    latest: Dict[str, dict] = {}
+    for ev in bundle.get("learning_events", []):
+        if ev.get("passed"):
+            continue
+        key = str(ev.get("question_id") or ev.get("skill_id") or "") or None
+        if not key:
+            continue
+        ts = str(ev.get("timestamp") or ev.get("created_at") or "")
+        prev = latest.get(key)
+        if prev is None or ts >= str(prev.get("timestamp") or ""):
+            latest[key] = ev
+
+    items = []
+    by_code: Dict[str, int] = {}
+    by_skill: Dict[str, int] = {}
+    for key, ev in sorted(latest.items(),
+                          key=lambda kv: str(kv[1].get("timestamp") or ""),
+                          reverse=True)[:limit]:
+        codes = [str(c) for c in (ev.get("diagnosis_codes") or []) if c]
+        if not codes:
+            codes = ["UNCLASSIFIED"]
+        for c in codes:
+            by_code[c] = by_code.get(c, 0) + 1
+        skill = str(ev.get("skill_id") or "unknown")
+        by_skill[skill] = by_skill.get(skill, 0) + 1
+        title = ""
+        difficulty = ""
+        qtype = ""
+        if qs is not None and ev.get("question_id"):
+            try:
+                q = qs.find_one({"id": ev["question_id"]}) or qs.find_one({"_id": ev["question_id"]})
+                if q:
+                    title = q.get("title") or q.get("question_title") or ""
+                    difficulty = q.get("difficulty") or ""
+                    qtype = q.get("type") or ""
+            except Exception:
+                pass
+        items.append({
+            "key": key,
+            "question_id": ev.get("question_id"),
+            "skill_id": skill,
+            "title": title,
+            "difficulty": difficulty,
+            "type": qtype,
+            "score": ev.get("score"),
+            "attempts": ev.get("attempt_number", 1),
+            "time_spent_seconds": ev.get("time_spent_seconds", 0),
+            "hints_used": ev.get("hints_used", 0),
+            "diagnosis_codes": codes,
+            "timestamp": str(ev.get("timestamp") or ev.get("created_at") or ""),
+        })
+
+    return {
+        "total_mistakes": len(latest),
+        "shown": len(items),
+        "by_diagnosis": dict(sorted(by_code.items(), key=lambda kv: -kv[1])),
+        "by_skill": dict(sorted(by_skill.items(), key=lambda kv: -kv[1])),
+        "top_diagnosis": max(by_code.items(), key=lambda kv: kv[1])[0] if by_code else None,
+        "items": items,
+    }
+
+
+async def recurring_mistakes(user_id: str, limit: int = 5) -> Dict[str, Any]:
+    """Recurring mistakes: top misconception tags by trigger count.
+
+    Pure read over `user_weaknesses` (written by MCQ diagnostics). Each tag
+    is mapped to an atom and/or tutor tree via misconception_codes so the
+    UI can offer a one-tap "fix this" deep-link. No new collections.
+    """
+    from app.database import user_weaknesses_collection
+
+    try:
+        docs = await user_weaknesses_collection().find(
+            {"user_id": user_id}
+        ).sort("trigger_count", -1).limit(max(1, limit)).to_list(limit)
+    except Exception:
+        docs = []
+
+    try:
+        from app.services.atom_engine import get_all_atoms
+        atoms = get_all_atoms() or {}
+    except Exception:
+        atoms = {}
+    try:
+        from app.services.tutor_engine import load_tutor_trees
+        trees = load_tutor_trees() or {}
+    except Exception:
+        trees = {}
+
+    # tag -> (atom_id, tree_id), atoms first
+    tag_index: Dict[str, Dict[str, Optional[str]]] = {}
+    for atom_id, atom in atoms.items():
+        for code in (atom.get("misconception_codes") or []):
+            tag_index.setdefault(str(code), {}).setdefault("atom_id", atom_id)
+            if atom.get("tutor_tree_id") and "tree_id" not in tag_index[str(code)]:
+                tag_index[str(code)]["tree_id"] = atom.get("tutor_tree_id")
+    for tree_id, tree in trees.items():
+        for code in (tree.get("misconception_codes") or []):
+            entry = tag_index.setdefault(str(code), {})
+            entry.setdefault("tree_id", tree.get("id", tree_id))
+            entry.setdefault("atom_id", tree.get("atom_id"))
+
+    items = []
+    for doc in docs:
+        tag = str(doc.get("misconception_tag") or "unknown")
+        link = tag_index.get(tag, {})
+        items.append({
+            "tag": tag,
+            "count": int(doc.get("trigger_count", 0) or 0),
+            "last_wrong": str(doc.get("last_triggered") or ""),
+            "status": doc.get("status", "open"),
+            "sample_question_id": doc.get("question_id"),
+            "atom_id": link.get("atom_id"),
+            "tree_id": link.get("tree_id"),
+            "fixable": bool(link.get("atom_id")),
+        })
+
+    return {"items": items, "total_tags": len(items)}
+
+
 async def prep_report(user_id: str, role: str, company: Optional[str] = None) -> Dict[str, Any]:
     """Evidence report (labeled PlacementPro data, never employer certification)."""
     bundle = await collect_student_evidence(user_id)

@@ -2,111 +2,74 @@ from datetime import datetime, timezone
 from fastapi import APIRouter, Depends, HTTPException, Query
 from typing import Optional, List, Dict, Any
 
-from app.services.assessment_engine import AssessmentEngine, AssessmentSession, AssessmentDefinition
-from app.services import question_store
-from app.config import get_settings
+from app.middleware.auth import get_current_user
+from app.services.company_prep_service import (
+    list_company_tracks,
+    get_company_track,
+    most_asked_topics,
+    get_most_asked_questions,
+    concept_deep_dive,
+    start_oa_assessment,
+    submit_oa_assessment,
+)
 
-settings = get_settings()
 router = APIRouter(prefix="/api/v1/company-prep", tags=["company-prep"])
 
-# Company blueprints loaded from data
-try:
-    from app.data.company_blueprints import company_blueprints
-    BLUEPRINTS = company_blueprints["company_blueprints"]
-except Exception:
-    BLUEPRINTS = {}
 
-# Question bank access
-def get_company_questions(company: str, difficulty: Optional[str] = None, limit: int = 50):
-    """Get company-specific questions from the question store (servable only)."""
-    questions = question_store.find({"company": {"$in": [company]}})
-    qs = question_store.find({"company": {"$in": [company]}}).only_verified().to_list()
-    # Filter by difficulty if specified
-    if difficulty:
-        qs = [q for q in qs if q.get("difficulty") == difficulty]
-    # Return up to limit
-    return qs[:limit] if limit else qs
-
-def get_company_blueprint(company_name: str) -> Optional[dict]:
-    """Get company preparation blueprint."""
-    for key, bp in BLUEPRINTS.items():
-        if bp.get("name", "").lower() == company_name.lower():
-            return bp
-    # Also try matching by key
-    if company_name.lower() in key.lower():
-        return BLUEPRINTS.get(key)
-    return None
+@router.get("/tracks")
+async def tracks(user=Depends(get_current_user)):
+    return {"tracks": list_company_tracks()}
 
 
-@router.get("/blueprints")
-async def list_blueprints():
-    """List all company preparation blueprints."""
-    return {"blueprints": list(BLUEPRINTS.values())}
+@router.get("/tracks/{track_id}")
+async def track_detail(track_id: str, user=Depends(get_current_user)):
+    track = get_company_track(track_id)
+    if not track:
+        raise HTTPException(status_code=404, detail="Track not found")
+    return track
 
 
-@router.get("/blueprints/{company_name}")
-async def get_blueprint(company_name: str):
-    """Get a specific company preparation blueprint."""
-    bp = get_company_blueprint(company_name)
-    if not bp:
-        raise HTTPException(status_code=404, detail="Company blueprint not found")
-    return bp
+@router.get("/{company}/most-asked")
+async def company_most_asked(company: str, limit: int = Query(8), user=Depends(get_current_user)):
+    return {"company": company, "topics": most_asked_topics(company, limit=limit)}
 
 
-@router.get("/{company}/questions")
-async def company_questions(
+@router.get("/{company}/most-asked-questions")
+async def company_most_asked_questions(
     company: str,
-    difficulty: Optional[str] = Query(None),
-    limit: int = Query(50),
-    engine: Any = Depends(lambda: None),  # placeholder
+    frequency: str = Query("high", description="high, medium, or low"),
+    limit: int = Query(20, ge=1, le=100),
+    user=Depends(get_current_user),
 ):
-    """Get company-specific questions."""
-    questions = get_company_questions(company, difficulty, limit)
+    questions = get_most_asked_questions(company, frequency=frequency, limit=limit)
     return {
         "company": company,
-        "questions": questions,
+        "frequency": frequency,
         "count": len(questions),
-        "difficulty": difficulty,
+        "questions": questions,
     }
 
 
-@router.get("/{company}/readiness")
-async def company_readiness(company: str):
-    """Get company readiness assessment."""
-    # This would integrate with the assessment engine
-    bp = get_company_blueprint(company)
-    if not bp:
-        raise HTTPException(status_code=404, detail="Company blueprint not found")
-    
-    # Generate a basic readiness report based on available questions
-    # In a full implementation, this would use the assessment engine
-    return {
-        "company": company,
-        "readiness": "Not yet assessed",
-        "blueprint": bp.get("name", company),
-        "competencies": bp.get("competencies", []),
-        "suggested_study_plan": "Start with Foundation assessment",
-    }
+@router.get("/{company}/concept/{topic}")
+async def company_concept(company: str, topic: str, user=Depends(get_current_user)):
+    data = concept_deep_dive(company, topic)
+    if not data:
+        raise HTTPException(status_code=404, detail="Concept not found")
+    return data
 
 
-@router.post("/{company}/start-assessment")
-async def start_company_assessment(
-    company: str,
-    ai_mode: str = Query("prohibited"),
-    engine_dep: Any = Depends(lambda: None),
-):
-    """Start a company-specific assessment."""
-    bp = get_company_blueprint(company)
-    if not bp:
-        raise HTTPException(status_code=404, detail="Company blueprint not found")
-    
-    # Create assessment session
-    # In full implementation, would use AssessmentDefinition and AssessmentSession
-    return {
-        "company": company,
-        "assessment_id": f"{company.lower()}_assessment",
-        "blueprint": bp.get("name", company),
-        "ai_mode": ai_mode,
-        "stages": bp.get("structure", {}),
-        "message": f"Assessment started for {bp.get('name', company)}",
-    }
+@router.post("/{company}/oa/start")
+async def start_oa(company: str, topic: Optional[str] = Query(None), count: int = Query(10), user=Depends(get_current_user)):
+    assessment = start_oa_assessment(company, topic=topic, count=count)
+    return assessment
+
+
+@router.post("/{company}/oa/submit")
+async def submit_oa(company: str, payload: Dict[str, Any], user=Depends(get_current_user)):
+    result = await submit_oa_assessment(
+        user_id=user["id"],
+        company=company,
+        answers=payload.get("answers", {}),
+        time_spent_seconds=int(payload.get("time_spent_seconds") or 0),
+    )
+    return result

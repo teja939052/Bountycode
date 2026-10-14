@@ -1,0 +1,288 @@
+{
+  "id": "aptitude.data_interpretation",
+  "title": "Data Interpretation",
+  "domain": "aptitude",
+  "concept": "Data Interpretation",
+  "skill_id": "aptitude.data_interpretation",
+  "tags": [
+    "aptitude",
+    "quant",
+    "tcs",
+    "infosys",
+    "wipro",
+    "service-companies"
+  ],
+  "difficulty": "medium",
+  "estimated_minutes": 20,
+  "mastery_threshold": 75,
+  "why_it_matters": "Data interpretation tests your ability to read tables, charts, and graphs quickly. It appears in every service-company quantitative section.",
+  "prerequisites": [
+    "aptitude.percentages",
+    "aptitude.ratio_proportion"
+  ],
+  "misconceptions": [
+    {
+      "code": "apt_percent_base_confusion",
+      "signature": "Student uses the wrong base when computing percentages from a table.",
+      "reteach_route": "worked_example",
+      "reteach_action": "highlight_row_and_total"
+    },
+    {
+      "code": "apt_unit_conversion_error",
+      "signature": "Student ignores units or scale in charts.",
+      "reteach_route": "compare_worlds",
+      "reteach_action": "show_axis_units_first"
+    }
+  ],
+  "captain_byte": {
+    "intro": "Data interpretation is reading numbers fast. Tables, charts, and graphs all hide answers in rows and columns.",
+    "correct": [
+      "Right read.",
+      "You found the correct row and column.",
+      "Correct calculation."
+    ],
+    "wrong": [
+      "Check the row and column labels.",
+      "Watch the units.",
+      "Compute from the exact numbers given."
+    ],
+    "after_break": "You found the reading error. Now anchor to the exact row/column before calculating.",
+    "after_mastery": "You can now read tables and charts fast under time pressure. That's placement-ready DI skill.",
+    "retry_prompt": "Try again. Identify the exact row, column, and unit before calculating."
+  },
+  "discover": {
+    "visual_primitives": [
+      "highlight",
+      "compare",
+      "transform"
+    ],
+    "steps": [
+      {
+        "action": "see_table",
+        "narration": "A table shows sales by quarter. Find Q3 total.",
+        "interaction": {
+          "type": "choose_outcome",
+          "prompt": "From the table, what is Q3 total?",
+          "options": [
+            {
+              "id": "a",
+              "text": "450",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "text": "300",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "150",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "text": "600",
+              "correct": false
+            }
+          ],
+          "explanation": "Read the Q3 row/column and sum the values."
+        }
+      },
+      {
+        "action": "see_chart",
+        "narration": "A bar chart shows production. Which month is highest?",
+        "interaction": {
+          "type": "choose_outcome",
+          "prompt": "Which month has the highest production?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Jan",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "text": "Feb",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "text": "Mar",
+              "correct": true
+            },
+            {
+              "id": "d",
+              "text": "Apr",
+              "correct": false
+            }
+          ],
+          "explanation": "The tallest bar is March."
+        }
+      }
+    ],
+    "conclusion": "DI is read, then calculate. Identify the exact row/column/bar, note the unit, then compute."
+  },
+  "understand": "Tables organize data in rows and columns. Charts visualize comparisons. Graphs show trends. Always read the axis labels and units before extracting values.",
+  "manipulate": {
+    "prompt": "A table shows: Q1=200, Q2=250, Q3=300, Q4=350. What is total annual sales?",
+    "answer": "1100",
+    "hint": "Sum all quarters.",
+    "interaction_kind": "numeric_input"
+  },
+  "predict": {
+    "prompt": "If Q1 growth is 10% over previous Q4, and Q4 was 200, what is Q1?",
+    "answer": "220",
+    "options": [
+      "200",
+      "210",
+      "220",
+      "230"
+    ],
+    "interaction_kind": "numeric_input"
+  },
+  "build": {
+    "prompt": "A pie chart shows market share: A=30%, B=25%, C=20%, D=25%. If total market is ₹10 lakh, what is C's revenue?",
+    "answer": "200000",
+    "explanation": "20% of 10,00,000 = 2,00,000.",
+    "interaction_kind": "word_problem"
+  },
+  "break_step": {
+    "prompt": "A student computes 30% of 200 as 60, but the table shows 30 out of 200. What is wrong?",
+    "common_mistake": "Confusing percentage points with raw counts.",
+    "correct_reasoning": "30 out of 200 is 15%, not 30%.",
+    "interaction_kind": "mcq_diagnose"
+  },
+  "debug": {
+    "prompt": "Fix: '30 out of 200 means 30%'.",
+    "correct_reasoning": "Percentage = part/whole × 100. Here 30/200 × 100 = 15%.",
+    "interaction_kind": "mcq_diagnose"
+  },
+  "retrieval": {
+    "prompt": "What is the first step in solving any DI problem?",
+    "answer": "Read the table/chart labels and units",
+    "alternative": [
+      "read axis labels",
+      "identify rows and columns"
+    ],
+    "interaction_kind": "recall_formula"
+  },
+  "transfer": {
+    "prompt": "A line graph shows users growing 20% month over month. If January had 1000 users, what is March?",
+    "answer": "1440",
+    "explanation": "Jan=1000, Feb=1200, Mar=1440. Compound growth: 1000 × 1.2 × 1.2 = 1440.",
+    "interaction_kind": "numeric_input"
+  },
+  "practice": [
+    {
+      "kind": "mcq",
+      "prompt": "From the table, if A=40 and B=60, what is A+B?",
+      "answer": "100",
+      "options": [
+        "40",
+        "60",
+        "100",
+        "20"
+      ],
+      "explanation": "40 + 60 = 100.",
+      "difficulty": "easy",
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ]
+    },
+    {
+      "kind": "mcq",
+      "prompt": "A chart shows values 10, 20, 30. What is the average?",
+      "answer": "20",
+      "options": [
+        "10",
+        "15",
+        "20",
+        "30"
+      ],
+      "explanation": "(10+20+30)/3 = 20.",
+      "difficulty": "easy",
+      "company_tags": [
+        "tcs",
+        "infosys"
+      ]
+    },
+    {
+      "kind": "mcq",
+      "prompt": "Practice 1: Apply Data Interpretation to solve this problem.",
+      "answer": "See explanation",
+      "explanation": "This demonstrates Data Interpretation in a placement context.",
+      "difficulty": "medium",
+      "company_tags": [],
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ]
+    }
+  ],
+  "proof": [
+    {
+      "id": "p1",
+      "prompt": "A table shows monthly revenue: Jan=50k, Feb=60k, Mar=70k, Apr=80k. What is Q2 total?",
+      "answer_format": "numeric",
+      "correct": "210000",
+      "explanation": "Q2 = Apr+May+Jun. If only Jan-Apr given, Q2 from given months = 60+70+80 = 210k.",
+      "time_limit_seconds": 90,
+      "company_tags": [
+        "tcs",
+        "infosys",
+        "wipro"
+      ]
+    },
+    {
+      "id": "data_interpretation-p2",
+      "prompt": "Prove your Data Interpretation skill: explain the solution to this problem.",
+      "answer_format": "text",
+      "correct": "Correct application of Data Interpretation",
+      "explanation": "This tests understanding of Data Interpretation.",
+      "time_limit_seconds": 60,
+      "company_tags": []
+    }
+  ],
+  "company_variants": [
+    {
+      "company": "tcs",
+      "role": "sde",
+      "difficulty": "medium",
+      "extra_practice": [
+        "tcs_di_table",
+        "tcs_di_chart"
+      ],
+      "proof_questions": [
+        {
+          "id": "tcs-p1",
+          "prompt": "TCS: A table shows production for 5 months. Find the month with maximum growth.",
+          "answer_format": "text",
+          "correct": "month_with_max_growth",
+          "explanation": "Compute month-over-month growth and pick the maximum.",
+          "time_limit_seconds": 90,
+          "company_tags": [
+            "tcs"
+          ]
+        }
+      ]
+    }
+  ],
+  "srs_key_points": [
+    "Read labels and units first.",
+    "Identify the exact row and column.",
+    "Percentage change = change/original × 100.",
+    "Average = sum / count.",
+    "Growth compounds across periods."
+  ],
+  "srs_review_intervals": [
+    1,
+    3,
+    7,
+    14,
+    30
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "id": "cs_core.os_processes",
+  "title": "Processes vs Threads",
+  "domain": "cs_core",
+  "concept": "Processes vs Threads",
+  "skill_id": "cs_core.os_basics.os_processes",
+  "tags": [
+    "cs_core",
+    "service-companies",
+    "tcs",
+    "infosys",
+    "wipro"
+  ],
+  "difficulty": "medium",
+  "estimated_minutes": 20,
+  "mastery_threshold": 75,
+  "why_it_matters": "Processes are isolated; threads share memory.",
+  "prerequisites": [],
+  "misconceptions": [
+    {
+      "code": "cs_core_process_thread_confusion",
+      "signature": "Student confuses related cs_core concepts.",
+      "reteach_route": "visual_state",
+      "reteach_action": "trace_state_step_by_step"
+    }
+  ],
+  "captain_byte": {
+    "intro": "Welcome to Processes vs Threads. This is a core cs_core concept for placement prep. Follow the steps carefully.",
+    "correct": [
+      "Exactly right!",
+      "Perfect!",
+      "You have got it!"
+    ],
+    "wrong": [
+      "Not quite. Review the step and try again.",
+      "Close! Think about what the concept really means."
+    ],
+    "after_break": "Now you see the broken assumption. Repair it and move on.",
+    "after_mastery": "You have mastered Processes vs Threads. This will appear in your next test.",
+    "retry_prompt": "Give it another shot. You are close."
+  },
+  "discover": {
+    "prompt": "Read this Processes vs Threads problem carefully. Identify what is being asked.",
+    "interaction_kind": "mcq_read"
+  },
+  "understand": {
+    "prompt": "The key idea for Processes vs Threads: understand the core mechanism before applying it.",
+    "interaction_kind": "read_explanation",
+    "explanation": "Processes vs Threads requires understanding the core principle before applying it."
+  },
+  "manipulate": {
+    "prompt": "Practice: apply Processes vs Threads to a simple example.",
+    "interaction_kind": "numeric_input",
+    "answer": "See explanation"
+  },
+  "predict": {
+    "prompt": "Predict the outcome for this Processes vs Threads scenario.",
+    "interaction_kind": "numeric_input",
+    "answer": "See explanation"
+  },
+  "build": {
+    "prompt": "Write or construct a solution for this Processes vs Threads problem.",
+    "interaction_kind": "word_problem",
+    "answer": "Solution for Processes vs Threads"
+  },
+  "break_step": {
+    "prompt": "What is wrong with this Processes vs Threads approach?",
+    "interaction_kind": "mcq_diagnose",
+    "broken_code": "# broken Processes vs Threads approach",
+    "expected_failure": "Does not handle edge cases"
+  },
+  "debug": {
+    "prompt": "Fix the Processes vs Threads error.",
+    "interaction_kind": "formula_fix",
+    "correct_code": "# fixed Processes vs Threads approach"
+  },
+  "retrieval": {
+    "prompt": "Recall the key formula or rule for Processes vs Threads.",
+    "interaction_kind": "recall_formula",
+    "answer": "Key insight for Processes vs Threads"
+  },
+  "transfer": {
+    "prompt": "Apply Processes vs Threads to a new context.",
+    "interaction_kind": "word_problem",
+    "answer": "See explanation"
+  },
+  "practice": [
+    {
+      "kind": "mcq",
+      "prompt": "Practice 1: Apply Processes vs Threads to solve this problem.",
+      "answer": "See explanation",
+      "explanation": "This demonstrates Processes vs Threads in a placement context.",
+      "difficulty": "medium",
+      "company_tags": [],
+      "options": [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ]
+    },
+    {
+      "kind": "numeric",
+      "prompt": "Practice 2: Apply Processes vs Threads to solve this problem.",
+      "answer": "See explanation",
+      "explanation": "This demonstrates Processes vs Threads in a placement context.",
+      "difficulty": "medium",
+      "company_tags": []
+    },
+    {
+      "kind": "word_problem",
+      "prompt": "Practice 3: Apply Processes vs Threads to solve this problem.",
+      "answer": "See explanation",
+      "explanation": "This demonstrates Processes vs Threads in a placement context.",
+      "difficulty": "medium",
+      "company_tags": []
+    }
+  ],
+  "proof": [
+    {
+      "id": "processes_vs_threads-p1",
+      "prompt": "Prove your Processes vs Threads skill: explain the solution to this problem.",
+      "answer_format": "text",
+      "correct": "Correct application of Processes vs Threads",
+      "explanation": "This tests understanding of Processes vs Threads.",
+      "time_limit_seconds": 60,
+      "company_tags": []
+    },
+    {
+      "id": "processes_vs_threads-p2",
+      "prompt": "Prove your Processes vs Threads skill: explain the solution to this problem.",
+      "answer_format": "text",
+      "correct": "Correct application of Processes vs Threads",
+      "explanation": "This tests understanding of Processes vs Threads.",
+      "time_limit_seconds": 60,
+      "company_tags": []
+    }
+  ],
+  "srs_key_points": [
+    "Core principle of Processes vs Threads",
+    "Common pitfall in Processes vs Threads",
+    "When to apply Processes vs Threads"
+  ],
+  "company_variants": [
+    {
+      "company": "cs_core",
+      "role": "sde",
+      "difficulty": "medium",
+      "extra_practice": [],
+      "proof_questions": []
+    }
+  ],
+  "srs_review_intervals": [
+    1,
+    3,
+    7,
+    14,
+    30
+  ]
+}

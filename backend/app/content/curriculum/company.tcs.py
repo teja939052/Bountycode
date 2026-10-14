@@ -1,0 +1,124 @@
+"""Lesson module — TCS NQT — Complete Preparation"""
+from typing import Dict, Any
+
+LESSON: Dict[str, Any] = {
+            'lesson_id': 'company.tcs',
+            'module_id': 'company.tcs',
+            'title': 'TCS NQT — Complete Preparation',
+            'description': "TCS is India's largest IT recruiter. NQT (National Qualifier Test) is the gateway. This pack covers all NQT sections with placement-specific patterns and timed proof.",
+            'difficulty': 'medium',
+            'est_minutes': 120,
+            'xp_reward': 100,
+            'skills_taught': ['TCS NQT'],
+            'srs_concept_tag': 'company.tcs',
+            'domain': 'company',
+            'captain_byte': {
+            'intro': "TCS NQT tests quant, reasoning, verbal, and coding. We'll master each pattern with placement-specific proof.",
+            'correct': ['TCS pattern locked!', 'NQT ready!', 'On track!'],
+            'wrong': ['Focus on NQT-specific patterns.', 'Speed + accuracy = NQT success.'],
+            'after_break': "TCS loves these traps. Let's fix them.",
+            'after_mastery': "You're NQT-ready. Time to prove it under timed conditions.",
+            'retry_prompt': 'Review the pattern and retry.'
+        },
+            'story_context': {
+            'title': 'TCS NQT — Complete Preparation',
+            'narration': "TCS is India's largest IT recruiter. NQT (National Qualifier Test) is the gateway. This pack covers all NQT sections with placement-specific patterns and timed proof.",
+            'setting': 'tcs_nqt',
+            'character': 'Captain Byte',
+            'intro_text': "TCS is India's largest IT recruiter. NQT (National Qualifier Test) is the gateway. This pack covers all NQT sections with placement-specific patterns and timed proof."
+        },
+            'steps': {
+            'discover': {
+            'prompt': "TCS NQT has 4 sections: Quant, Reasoning, Verbal, Coding. Each has specific patterns. Let's map them.",
+            'question': 'Which section tests percentages, averages, and profit/loss?',
+            'options': ['Quant', 'Reasoning', 'Verbal', 'Coding'],
+            'interaction_kind': 'mcq_read'
+        },
+            'understand': {
+            'prompt': 'TCS NQT structure: Quant (26 Q, 40 min), Reasoning (25 Q, 35 min), Verbal (20 Q, 30 min), Coding (1 Q, 20 min). Total = 90 min.',
+            'explanation': 'Negative marking: 1/3rd per wrong answer. No negative for unanswered. Sectional cutoffs apply.',
+            'interaction_kind': 'read_explanation'
+        },
+            'manipulate': {
+            'prompt': 'Map NQT patterns to sections: Percentages → ? Blood Relations → ? Synonyms → ?',
+            'matches': {
+            'Percentages': 'Quant',
+            'Blood Relations': 'Reasoning',
+            'Synonyms': 'Verbal',
+            'Loops': 'Coding'
+        },
+            'interaction_kind': 'match_relationships'
+        },
+            'predict': {
+            'prompt': 'TCS NQT has a strict time limit. If you spend 2 min per Quant question, can you finish?',
+            'answer': 'No',
+            'options': ['Yes', 'No', 'Maybe', 'Depends'],
+            'interaction_kind': 'mcq_bottleneck'
+        },
+            'build': {
+            'prompt': 'Build a study plan for TCS NQT: 2 weeks, 2 hours/day. Allocate time across sections.',
+            'answer': 'Quant: 40%, Reasoning: 30%, Verbal: 20%, Coding: 10%',
+            'explanation': 'Quant has highest weight and most patterns. Coding has only 1 question but high marks.',
+            'interaction_kind': 'word_problem'
+        },
+            'break_step': {
+            'prompt': "A student ignores Verbal because 'it's easy'. What is wrong?",
+            'common_mistake': 'Verbal has a sectional cutoff and is easier to score high in.',
+            'correct_reasoning': 'Verbal cutoff is often 80%+. Ignoring it risks disqualification even if Quant is perfect.',
+            'interaction_kind': 'mcq_diagnose'
+        },
+            'debug': {
+            'prompt': "Fix this plan: 'Only study Quant and Coding.'",
+            'correct_plan': 'Quant (40%) + Reasoning (30%) + Verbal (20%) + Coding (10%). All sections have cutoffs.',
+            'interaction_kind': 'word_problem'
+        },
+            'retrieval': {
+            'prompt': "What is TCS NQT's negative marking policy?",
+            'answer': '1/3rd mark deducted per wrong answer. No negative for unattempted.',
+            'alternative': ['Minus 1/3 for wrong, 0 for blank'],
+            'interaction_kind': 'recall_formula'
+        },
+            'transfer': {
+            'prompt': 'You have 40 min for 26 Quant questions. What is the max time per question? Round to nearest integer.',
+            'answer': '1',
+            'explanation': '40 min = 2400 seconds. 2400/26 ≈ 92 seconds ≈ 1.5 min. Round to 1 min per question with buffer.',
+            'interaction_kind': 'word_problem'
+        }
+        },
+            'practice': [{
+            'kind': 'mcq',
+            'prompt': 'TCS NQT: How many total questions?',
+            'answer': '72',
+            'options': ['60', '72', '80', '90'],
+            'explanation': '26 Quant + 25 Reasoning + 20 Verbal + 1 Coding = 72.',
+            'difficulty': 'easy',
+            'company_tags': ['tcs']
+        }],
+            'proof': [{
+            'id': 'tcs-p1',
+            'prompt': 'Timed NQT simulation: 10 mixed quant questions in 15 minutes. Score ≥ 7 to pass.',
+            'answer_format': 'mcq',
+            'options': ['Option A', 'Option B', 'Option C', 'Option D'],
+            'correct': '0',
+            'explanation': 'Simulated NQT pattern. Review explanations after.',
+            'time_limit_seconds': 900,
+            'company_tags': ['tcs']
+        }],
+            'company_variants': [{
+            'company': 'tcs',
+            'role': 'sde',
+            'difficulty': 'medium',
+            'proof_questions': []
+        }],
+            'misconceptions': [],
+            'srs_key_points': ['TCS NQT: 4 sections, 90 min total.', 'Negative marking: -1/3 per wrong answer.', 'Sectional cutoffs apply.', 'Time per question: Quant ~1.5 min, Reasoning ~1.4 min, Verbal ~1.5 min.', 'Coding: 1 question, 20 min, compile on 2 test cases.'],
+            'srs_review_intervals': [1, 3, 7, 14, 30],
+            'world_progression': {
+            'world_id': 'company',
+            'competency_id': 'tcs_nqt',
+            'unlocks_next': [],
+            'tower_badge': 'company_tcs_nqt'
+        }
+        }
+
+SLUG = 'company.tcs'

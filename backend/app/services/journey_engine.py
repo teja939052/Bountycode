@@ -35,6 +35,19 @@ from app.routes.map import WORLD_ADVENTURE_NAMES
 from app.database import gamification_collection, skill_graph_collection, \
     users_collection
 from app.services.spaced_repetition import get_due_cards, SRSState
+from app.services.mentor_service import resolve_captain_byte
+from app.content import service_tracks
+from app.content.curriculum.missions import MISSIONS
+
+#: Company overlay id -> mission track id (service_tracks).
+_COMPANY_TRACK = {
+    "tcs": "tcs_nqt",
+    "infosys": "infosys_sp",
+    "wipro": "wipro_nlth",
+    "cognizant": "cognizant_genc",
+    "accenture": "accenture",
+    "capgemini": "capgemini",
+}
 
 
 router = APIRouter(prefix="/api/v1/journey", tags=["journey"])
@@ -60,6 +73,33 @@ PRIORITY_WEIGHTS = {
 
 
 # â”€â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+
+def _mission_for_action(next_action: Dict[str, Any], target_company: str) -> Dict[str, Any]:
+    """Attach the authored mission targeting this action, if one exists.
+
+    Returns the (mutated) action. Matching is by skill id first, then by
+    level/lesson slug. SRS reviews never carry missions; repair actions
+    match only when a mission names the weak skill.
+    """
+    track_id = _COMPANY_TRACK.get(str(target_company or "").lower())
+    if not track_id or next_action.get("kind") in ("srs",):
+        return next_action
+    skill = next_action.get("skill_id") or next_action.get("skill") or ""
+    level = next_action.get("level") or next_action.get("target_level") or ""
+    for mid in service_tracks.track_mission_ids(track_id):
+        m = MISSIONS.get(mid)
+        if m is None:
+            continue
+        if (skill and skill in (m.mentor_skill, m.canonical_skill)) or (
+            level and level in (m.lesson_slug, m.frontend_slug)
+        ):
+            next_action["mission_id"] = mid
+            next_action["track_id"] = track_id
+            if m.frontend_slug:
+                next_action["frontend_slug"] = m.frontend_slug
+            break
+    return next_action
 
 
 def _user_target_company(user: Dict[str, Any]) -> str:
@@ -616,6 +656,10 @@ async def build_journey_state(user_id: str) -> Dict[str, Any]:
         }
 
     # â”€â”€ Build and return the canonical JourneyState â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # ── Attach the authored mission, when one targets this action ──────────
+    # The journey speaks in missions, not raw lessons (see mission_index).
+    next_action = _mission_for_action(next_action, target_company)
+
     weak_patterns = _detect_weak_patterns(skills)
     recommended_patterns = _recommend_patterns(weak_patterns, target_company)
 
@@ -690,6 +734,25 @@ async def build_journey_state(user_id: str) -> Dict[str, Any]:
             "scores": scores,
             "winner_score": ranking["winner_score"],
         },
+        # Captain Byte frames WHY this is the next action. One message, no
+        # decoration. Read-only: the mentor library never writes state.
+        "mentor": resolve_captain_byte(
+            canonical_skill=(
+                next_action.get("skill_id")
+                or next_action.get("skill")
+                # No skill on this action (continue/explore/first visit):
+                # fall through to the authored journey voice, never filler.
+                or "journey.next"
+            ),
+            lesson_slug=(
+                next_action.get("mission_id")
+                or next_action.get("target_level")
+                or ""
+            ),
+            moment="intro",
+            learner_state={"stage": next_action.get("kind", "")},
+            target_context={"target_company": target_company},
+        ),
     }
 
     if current_world:

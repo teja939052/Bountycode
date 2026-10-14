@@ -121,3 +121,62 @@ class CircuitBreaker:
 # Pre-configured breakers
 ai_breaker = CircuitBreaker("ai", threshold=5, recovery_time=60)
 compiler_breaker = CircuitBreaker("compiler", threshold=5, recovery_time=45)
+
+
+class ModelBreakerRegistry:
+    """Per-model circuit breaker registry for AI fallback chains.
+
+    Instead of one shared breaker that blocks all models when any single model
+    fails, this registry tracks each model independently. One flaky model does
+    not prevent the system from degrading to alternative providers.
+    """
+
+    def __init__(self, threshold: int = 3, recovery_time: float = 30.0):
+        self._threshold = threshold
+        self._recovery_time = recovery_time
+        self._breakers: Dict[str, CircuitBreaker] = {}
+
+    def _get(self, model: str) -> CircuitBreaker:
+        if model not in self._breakers:
+            self._breakers[model] = CircuitBreaker(
+                name=f"ai:{model}",
+                threshold=self._threshold,
+                recovery_time=self._recovery_time,
+            )
+        return self._breakers[model]
+
+    async def allow_request(self, model: str) -> bool:
+        """Check if the specific model is allowed to run."""
+        return await self._get(model).allow_request()
+
+    async def record_success(self, model: str) -> None:
+        """Record success for a specific model and reset its breaker."""
+        await self._get(model).record_success()
+
+    async def record_failure(self, model: str) -> None:
+        """Record failure for a specific model."""
+        await self._get(model).record_failure()
+
+    def state(self, model: str) -> dict:
+        """Return breaker state for a specific model."""
+        return self._get(model).state
+
+    async def reset(self, model: str) -> None:
+        """Force-reset a specific model's breaker."""
+        breaker = self._breakers.get(model)
+        if breaker:
+            await breaker.record_success()
+
+    async def reset_all(self) -> None:
+        """Force-reset all model breakers."""
+        for model in list(self._breakers.keys()):
+            await self.reset(model)
+
+    @property
+    def active_breakers(self) -> int:
+        return len(self._breakers)
+
+
+# Global per-model AI breaker registry.
+# Use this in chat_completion() instead of the single global ai_breaker.
+ai_model_registry = ModelBreakerRegistry(threshold=3, recovery_time=30)

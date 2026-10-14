@@ -20,6 +20,8 @@ from app.services.curriculum_connector import (
     resolve_role_skill,
 )
 from app.services.skill_assessment import get_skill_graph, update_skill_score
+from app.data.aptitude_question_bank import get_random_questions, get_categories
+from app.data.cs_fundamentals_theory import get_cs_topics
 
 # Door role key -> role_curriculum role id (hyphenated) used for the personalized path.
 DOOR_TO_CURRICULUM: Dict[str, str] = {
@@ -50,6 +52,38 @@ DIAGNOSTIC_COMPETENCIES: Dict[str, List[str]] = {
 }
 
 FALLBACK_DIAGNOSTIC: List[str] = ["code_foundations/validator"]
+
+DIAGNOSTIC_DIMENSIONS: Dict[str, Dict[str, str]] = {
+    "quant": {"label": "Quant", "icon": "🔢", "world": "aptitude"},
+    "reasoning": {"label": "Reasoning", "icon": "🧠", "world": "aptitude"},
+    "verbal": {"label": "Verbal", "icon": "📖", "world": "aptitude"},
+    "coding": {"label": "Coding", "icon": "💻", "world": "coding"},
+    "cs_core": {"label": "CS Core", "icon": "🗄️", "world": "cs-fundamentals"},
+}
+
+
+def _build_dimensions(assessed_baseline: Dict[str, float]) -> List[Dict[str, Any]]:
+    """Return all five placement dimensions with score, status, and label."""
+    dimensions = []
+    for dim, meta in DIAGNOSTIC_DIMENSIONS.items():
+        score = assessed_baseline.get(dim)
+        if score is None:
+            status = "unknown"
+        elif score >= 70:
+            status = "strength"
+        elif score >= 40:
+            status = "developing"
+        else:
+            status = "weakness"
+        dimensions.append({
+            "id": dim,
+            "label": meta["label"],
+            "icon": meta["icon"],
+            "world": meta["world"],
+            "score": score,
+            "status": status,
+        })
+    return dimensions
 
 # Gradable step types: predict (single-choice), break (multi-select), and explore
 # (predict-the-output, gradable when it carries an expected_output).
@@ -106,13 +140,90 @@ def get_diagnostic_questions(role: str) -> Dict[str, Any]:
                 "explanation": step.get("explanation") or step.get("hint"),
             })
 
-    # Deterministic ordering; cap to keep the diagnostic short.
-    questions = questions[:12]
+    questions = _enrich_diagnostic_with_all_dimensions(questions)
+    questions = questions[:16]
     return {
         "role": role,
         "question_count": len(questions),
         "questions": questions,
     }
+
+
+def _enrich_diagnostic_with_all_dimensions(questions: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Ensure the diagnostic covers all five placement dimensions.
+
+    Reuses existing question banks without introducing a new curriculum system:
+    - aptitude bank → quant, reasoning, verbal
+    - CS theory → cs_core
+    - curriculum steps → coding (already present)
+    """
+    seen_ids = {q["id"] for q in questions}
+    enriched = list(questions)
+
+    # Aptitude → quant / reasoning / verbal
+    aptitude_map = {
+        "quantitative": "quant",
+        "logical": "reasoning",
+        "verbal": "verbal",
+    }
+    for aptitude_cat, dimension in aptitude_map.items():
+        try:
+            aptitude_qs = get_random_questions(aptitude_cat, count=2)
+        except Exception:
+            aptitude_qs = []
+        for q in aptitude_qs:
+            qid = f"aptitude::{q.get('id')}"
+            if qid in seen_ids:
+                continue
+            seen_ids.add(qid)
+            options = [
+                {"id": f"opt_{i}", "text": opt, "correct": i == q.get("correct_index")}
+                for i, opt in enumerate(q.get("options", []))
+            ]
+            enriched.append({
+                "id": qid,
+                "type": "predict",
+                "title": q.get("topic", dimension).replace("_", " ").title(),
+                "prompt": q.get("question", ""),
+                "options": options,
+                "canonical_skills": [f"{dimension}.basic"],
+                "explanation": q.get("explanation", ""),
+            })
+
+    # CS fundamentals → cs_core
+    try:
+        cs_topics = get_cs_topics()
+    except Exception:
+        cs_topics = []
+    for topic in cs_topics[:3]:
+        qid = f"cs::{topic['id']}"
+        if qid in seen_ids:
+            continue
+        seen_ids.add(qid)
+        definition = ""
+        try:
+            from app.data.cs_fundamentals_theory import get_cs_theory
+            full = get_cs_theory(topic["id"])
+            if full:
+                definition = full.get("definition", "")
+        except Exception:
+            pass
+        enriched.append({
+            "id": qid,
+            "type": "predict",
+            "title": topic.get("title", "CS Concept"),
+            "prompt": f"What is {topic.get('title', 'this concept')}?",
+            "options": [
+                {"id": "opt_0", "text": definition or "Correct definition", "correct": True},
+                {"id": "opt_1", "text": "A related but incorrect concept", "correct": False},
+                {"id": "opt_2", "text": "An unrelated definition", "correct": False},
+                {"id": "opt_3", "text": "A common misconception", "correct": False},
+            ],
+            "canonical_skills": [f"cs_core.{topic.get('domain', 'general')}"],
+            "explanation": definition or "",
+        })
+
+    return enriched
 
 
 def _grade_answer(question: Dict[str, Any], answer: Any) -> bool:
@@ -351,6 +462,7 @@ async def run_job_diagnostic(user_id: str, role: str, answers: Dict[str, Any]) -
             "overall": overall,
             "target": path["target_readiness"],
             "categories": assessed_baseline,
+            "dimensions": _build_dimensions(assessed_baseline),
             **(_diagnostic_summary(overall)),
         },
         "graded": graded,

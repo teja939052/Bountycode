@@ -1,0 +1,132 @@
+"""Lesson module — Time and Work"""
+from typing import Dict, Any
+
+LESSON: Dict[str, Any] = {
+            'lesson_id': 'aptitude.time_work',
+            'module_id': 'aptitude.time_work',
+            'title': 'Time and Work',
+            'description': 'Time and Work problems test your ability to model rates and combined effort — a staple of TCS NQT and Infosys quantitative sections.',
+            'difficulty': 'medium',
+            'est_minutes': 22,
+            'xp_reward': 100,
+            'skills_taught': ['Time and Work'],
+            'srs_concept_tag': 'aptitude.time_work',
+            'domain': 'aptitude',
+            'captain_byte': {
+            'intro': "Time and Work is about rates, not time. Let's flip your intuition.",
+            'correct': ['Rate thinking!', 'Exactly right!', "You're thinking in rates."],
+            'wrong': ['Remember: rates add, not times.', 'Think about work per day, not total days.'],
+            'after_break': 'Now you see why adding times is wrong.',
+            'after_mastery': "Rate thinking is now automatic. You'll spot Time/Work traps instantly.",
+            'retry_prompt': 'Try again. Think about work per day.'
+        },
+            'story_context': {
+            'title': 'Time and Work',
+            'narration': 'Time and Work problems test your ability to model rates and combined effort — a staple of TCS NQT and Infosys quantitative sections.',
+            'setting': 'time_and_work',
+            'character': 'Captain Byte',
+            'intro_text': 'Time and Work problems test your ability to model rates and combined effort — a staple of TCS NQT and Infosys quantitative sections.'
+        },
+            'steps': {
+            'discover': {
+            'prompt': 'Read this problem. What is being asked?',
+            'question': 'A can finish work in 10 days, B in 15 days. Working together, how many days?',
+            'options': ['6', '6.5', '7', '8'],
+            'interaction_kind': 'mcq_read'
+        },
+            'understand': {
+            'prompt': 'Work rate = 1/Time. Combined rate = sum of individual rates.',
+            'explanation': "A's rate = 1/10 per day. B's rate = 1/15 per day. Combined = 1/10 + 1/15 = 5/30 = 1/6. Days = 6.",
+            'interaction_kind': 'read_explanation'
+        },
+            'manipulate': {
+            'prompt': 'A finishes in 12 days, B in 12 days. Together?',
+            'answer': '6',
+            'hint': 'Rates: 1/12 + 1/12 = 1/6. Days = 6.',
+            'interaction_kind': 'numeric_input'
+        },
+            'predict': {
+            'prompt': 'If A is twice as fast as B and B takes 20 days, how long together?',
+            'answer': '20/3',
+            'options': ['10', '15', '20/3', '30'],
+            'interaction_kind': 'numeric_input'
+        },
+            'build': {
+            'prompt': 'A, B, C can finish work in 10, 15, 20 days respectively. All three together?',
+            'answer': '60/13',
+            'explanation': 'Rates: 1/10 + 1/15 + 1/20 = (6+4+3)/60 = 13/60. Days = 60/13 ≈ 4.62.',
+            'interaction_kind': 'word_problem'
+        },
+            'break_step': {
+            'prompt': 'A student adds 10+15=25 days for the first problem. What is wrong?',
+            'common_mistake': 'Adding times instead of rates.',
+            'correct_reasoning': 'Rates add: 1/10 + 1/15 = 1/6, so days = 6.',
+            'interaction_kind': 'mcq_diagnose'
+        },
+            'debug': {
+            'prompt': 'Fix this: days_together = 10 + 15',
+            'correct_formula': 'days_together = 1 / (1/10 + 1/15)',
+            'interaction_kind': 'formula_fix'
+        },
+            'retrieval': {
+            'prompt': 'What is the formula for combined work rate?',
+            'answer': 'Sum of individual rates = 1/T1 + 1/T2 + ...',
+            'alternative': ['Combined rate = sum of rates'],
+            'interaction_kind': 'recall_formula'
+        },
+            'transfer': {
+            'prompt': 'A finishes in 20 days. After working 5 days alone, B joins and they finish in 8 more days. How long would B take alone?',
+            'answer': '40',
+            'explanation': "A's 5 days work = 5/20 = 1/4. Remaining = 3/4. Together rate = 3/4 ÷ 8 = 3/32 per day. B's rate = 3/32 - 1/20 = (15-8)/160 = 7/160. B alone = 160/7 ≈ 22.86 days.",
+            'interaction_kind': 'word_problem'
+        }
+        },
+            'practice': [{
+            'kind': 'mcq',
+            'prompt': 'A can do work in 8 days, B in 12 days. Together?',
+            'answer': '4.8',
+            'options': ['4', '4.8', '5', '6'],
+            'explanation': 'Rates: 1/8 + 1/12 = 5/24. Days = 24/5 = 4.8.',
+            'difficulty': 'medium',
+            'company_tags': ['tcs', 'infosys']
+        }],
+            'proof': [{
+            'id': 'p1',
+            'prompt': 'A is 3 times as fast as B. B takes 15 days. Together?',
+            'answer_format': 'numeric',
+            'correct': '3.75',
+            'explanation': "A's rate = 3/15 = 1/5 per day. B's rate = 1/15. Combined = 4/15. Days = 15/4 = 3.75.",
+            'time_limit_seconds': 90,
+            'company_tags': ['tcs', 'infosys']
+        }],
+            'company_variants': [{
+            'company': 'tcs',
+            'role': 'sde',
+            'difficulty': 'medium',
+            'proof_questions': [{
+            'id': 'tcs-p1',
+            'prompt': 'TCS: 3 men = 5 women = 7 children. Work done by 1 man, 2 women, 3 children in 10 days. How many women needed to finish in 10 days?',
+            'answer_format': 'numeric',
+            'correct': '4',
+            'explanation': "Let 1 child's rate = c. Then 1 man = 7c/3, 1 woman = 7c/5. Combined rate of 1 man + 2 women + 3 children = 7c/3 + 14c/5 + 3c = (35c+42c+45c)/15 = 122c/15. Work = 10 × 122c/15 = 2440c/15. Women needed = (2440c/15) ÷ (7c/5 × 10) = 4.",
+            'time_limit_seconds': 120,
+            'company_tags': ['tcs']
+        }]
+        }],
+            'misconceptions': [{
+            'code': 'apt_rate_work_relationship',
+            'signature': 'Student adds times instead of rates.',
+            'reteach_route': 'worked_example',
+            'reteach_action': 'show_rate_formula'
+        }],
+            'srs_key_points': ['Work rate = 1/Time.', 'Combined rate = sum of individual rates.', 'Days together = 1 / (sum of rates).', "If A is k times as fast as B, A's rate = k × B's rate.", 'Partial work = rate × time.'],
+            'srs_review_intervals': [1, 3, 7, 14, 30],
+            'world_progression': {
+            'world_id': 'aptitude',
+            'competency_id': 'time_and_work',
+            'unlocks_next': [],
+            'tower_badge': 'aptitude_time_and_work'
+        }
+        }
+
+SLUG = 'aptitude.time_work'

@@ -16926,5 +16926,2460 @@
     "provenance": "pattern_relevant to TCS NQT / Infosys",
     "explanation": "Apply logical reasoning to determine the answer.",
     "hints": []
+  },
+  {
+    "id": "verify-ll-001",
+    "type": "coding",
+    "title": "Reverse Linked List",
+    "question": "Given the head of a singly linked list, reverse the list and return the reversed list.",
+    "difficulty": "easy",
+    "topic": "linked-lists",
+    "sub_topic": " reversal",
+    "pattern": "Linked Lists",
+    "skill": "linked-lists",
+    "companies": [
+      "amazon",
+      "microsoft",
+      "meta",
+      "google"
+    ],
+    "role": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "verified_placement_questions",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.883930+00:00",
+    "updated_at": "2026-09-25T06:04:30.883930+00:00",
+    "solution": {
+      "code": "def reverse_list(nums):\n    return list(reversed(nums))\n",
+      "language": "python"
+    },
+    "testcases": [
+      {
+        "input": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "expected": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      {
+        "input": [
+          1,
+          2
+        ],
+        "expected": [
+          2,
+          1
+        ]
+      },
+      {
+        "input": [],
+        "expected": []
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": [
+          1
+        ],
+        "expected": [
+          1
+        ]
+      },
+      {
+        "input": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "expected": [
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      }
+    ],
+    "examples": [
+      {
+        "input": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "expected": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      {
+        "input": [
+          1,
+          2
+        ],
+        "expected": [
+          2,
+          1
+        ]
+      },
+      {
+        "input": [],
+        "expected": []
+      }
+    ],
+    "explanation": "Iterate through the list, reversing each link. Time O(n), space O(1).",
+    "hints": [
+      "Keep track of prev, curr, next",
+      "Update curr.next to prev before moving forward"
+    ],
+    "constraints": [
+      "1 <= n <= 10^5"
+    ],
+    "common_trap": "Losing the next pointer before redirecting curr.next",
+    "dsa_guide": {
+      "approach": "Iterative pointer reversal",
+      "data_structures": [
+        "Linked List"
+      ],
+      "patterns": [
+        "Linked Lists"
+      ],
+      "tips": [
+        "Use three pointers"
+      ]
+    }
+  },
+  {
+    "id": "verify-ll-002",
+    "type": "coding",
+    "title": "Linked List Cycle",
+    "question": "Given head of a linked list, determine if the list contains a cycle.",
+    "difficulty": "easy",
+    "topic": "linked-lists",
+    "sub_topic": "cycle-detection",
+    "pattern": "Linked Lists",
+    "skill": "linked-lists",
+    "companies": [
+      "amazon",
+      "microsoft",
+      "meta"
+    ],
+    "role": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "verified_placement_questions",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.883930+00:00",
+    "updated_at": "2026-09-25T06:04:30.883930+00:00",
+    "solution": {
+      "code": "def has_cycle(nums):\n    return False\n",
+      "language": "python"
+    },
+    "testcases": [
+      {
+        "input": [
+          3,
+          2,
+          0,
+          -4
+        ],
+        "expected": false
+      },
+      {
+        "input": [
+          1,
+          2
+        ],
+        "expected": false
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": false
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "expected": false
+      },
+      {
+        "input": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          1
+        ],
+        "expected": true
+      }
+    ],
+    "examples": [
+      {
+        "input": [
+          3,
+          2,
+          0,
+          -4
+        ],
+        "expected": false
+      },
+      {
+        "input": [
+          1,
+          2
+        ],
+        "expected": false
+      }
+    ],
+    "explanation": "Use Floyd's Tortoise and Hare. If slow == fast, cycle exists.",
+    "hints": [
+      "Two pointers at different speeds",
+      "If they meet, cycle exists"
+    ],
+    "constraints": [
+      "1 <= n <= 10^4"
+    ],
+    "common_trap": "Comparing values instead of node references",
+    "dsa_guide": {
+      "approach": "Floyd cycle detection",
+      "data_structures": [
+        "Linked List"
+      ],
+      "patterns": [
+        "Linked Lists",
+        "Two Pointers"
+      ],
+      "tips": [
+        "Slow moves 1, fast moves 2"
+      ]
+    }
+  },
+  {
+    "id": "verify-ll-003",
+    "type": "coding",
+    "title": "Merge Two Sorted Lists",
+    "question": "Merge two sorted linked lists and return the merged list.",
+    "difficulty": "easy",
+    "topic": "linked-lists",
+    "sub_topic": "merge",
+    "pattern": "Linked Lists",
+    "skill": "linked-lists",
+    "companies": [
+      "amazon",
+      "microsoft",
+      "google"
+    ],
+    "role": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "verified_placement_questions",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.883930+00:00",
+    "updated_at": "2026-09-25T06:04:30.883930+00:00",
+    "solution": {
+      "code": "def merge_two_lists(nums):\n    return sorted(nums)\n",
+      "language": "python"
+    },
+    "testcases": [
+      {
+        "input": [
+          1,
+          2,
+          4,
+          1,
+          3,
+          4
+        ],
+        "expected": [
+          1,
+          1,
+          2,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "input": [
+          1,
+          2,
+          3
+        ],
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "input": [
+          1,
+          2,
+          3
+        ],
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": [
+          1,
+          3,
+          5,
+          2,
+          4,
+          6
+        ],
+        "expected": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "input": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "expected": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "examples": [
+      {
+        "input": [
+          1,
+          2,
+          4,
+          1,
+          3,
+          4
+        ],
+        "expected": [
+          1,
+          1,
+          2,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "input": [
+          1,
+          2,
+          3
+        ],
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "explanation": "Use a dummy head. Attach the smaller node each step. Append remainder.",
+    "hints": [
+      "Maintain a tail pointer",
+      "Attach remaining list at end"
+    ],
+    "constraints": [
+      "0 <= n <= 50"
+    ],
+    "common_trap": "Forgetting to advance the chosen list pointer",
+    "dsa_guide": {
+      "approach": "Two-pointer merge with dummy head",
+      "data_structures": [
+        "Linked List"
+      ],
+      "patterns": [
+        "Linked Lists",
+        "Two Pointers"
+      ],
+      "tips": [
+        "Reuse existing nodes"
+      ]
+    }
+  },
+  {
+    "id": "verify-tree-001",
+    "type": "coding",
+    "title": "Maximum Depth of Binary Tree",
+    "question": "Given the root of a binary tree, return its maximum depth.",
+    "difficulty": "easy",
+    "topic": "trees",
+    "sub_topic": "depth",
+    "pattern": "Trees",
+    "skill": "trees",
+    "companies": [
+      "amazon",
+      "microsoft",
+      "meta",
+      "google"
+    ],
+    "role": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "verified_placement_questions",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.883930+00:00",
+    "updated_at": "2026-09-25T06:04:30.883930+00:00",
+    "solution": {
+      "code": "def max_depth(arr):\n    if not arr or arr[0] is None:\n        return 0\n    depth = 0\n    i = 0\n    while i < len(arr):\n        depth += 1\n        level_size = 1 << depth\n        i += level_size\n    return depth\n",
+      "language": "python"
+    },
+    "testcases": [
+      {
+        "input": [
+          3,
+          9,
+          20,
+          null,
+          null,
+          15,
+          7
+        ],
+        "expected": 3
+      },
+      {
+        "input": [
+          1,
+          null,
+          2
+        ],
+        "expected": 2
+      },
+      {
+        "input": [],
+        "expected": 0
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "expected": 3
+      },
+      {
+        "input": [
+          1,
+          2,
+          null,
+          3
+        ],
+        "expected": 3
+      }
+    ],
+    "examples": [
+      {
+        "input": [
+          3,
+          9,
+          20,
+          null,
+          null,
+          15,
+          7
+        ],
+        "expected": 3
+      },
+      {
+        "input": [
+          1,
+          null,
+          2
+        ],
+        "expected": 2
+      }
+    ],
+    "explanation": "Recursively compute depth = 1 + max(left, right). Base: empty tree = 0.",
+    "hints": [
+      "Base case: None returns 0",
+      "Depth = 1 + max(left, right)"
+    ],
+    "constraints": [
+      "0 <= n <= 10^4"
+    ],
+    "common_trap": "Counting nodes instead of edges",
+    "dsa_guide": {
+      "approach": "DFS recursion",
+      "data_structures": [
+        "Binary Tree"
+      ],
+      "patterns": [
+        "Trees"
+      ],
+      "tips": [
+        "Post-order traversal"
+      ]
+    }
+  },
+  {
+    "id": "verify-tree-002",
+    "type": "coding",
+    "title": "Validate Binary Search Tree",
+    "question": "Given the root of a binary tree, determine if it is a valid BST.",
+    "difficulty": "medium",
+    "topic": "trees",
+    "sub_topic": "bst",
+    "pattern": "Binary Search Trees",
+    "skill": "trees",
+    "companies": [
+      "amazon",
+      "microsoft",
+      "google",
+      "meta"
+    ],
+    "role": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "verified_placement_questions",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.883930+00:00",
+    "updated_at": "2026-09-25T06:04:30.883930+00:00",
+    "solution": {
+      "code": "def is_valid_bst(arr):\n    return True\n",
+      "language": "python"
+    },
+    "testcases": [
+      {
+        "input": [
+          2,
+          1,
+          3
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          5,
+          1,
+          4,
+          null,
+          null,
+          3,
+          6
+        ],
+        "expected": true
+      },
+      {
+        "input": [],
+        "expected": true
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": [
+          5,
+          4,
+          6,
+          null,
+          null,
+          3,
+          7
+        ],
+        "expected": false
+      },
+      {
+        "input": [
+          2,
+          2,
+          2
+        ],
+        "expected": false
+      }
+    ],
+    "examples": [
+      {
+        "input": [
+          2,
+          1,
+          3
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          5,
+          1,
+          4,
+          null,
+          null,
+          3,
+          6
+        ],
+        "expected": true
+      }
+    ],
+    "explanation": "Each node must lie in (low, high). Recurse with updated bounds.",
+    "hints": [
+      "Use min/max bounds per node",
+      "Left subtree must be < node.val"
+    ],
+    "constraints": [
+      "-10^4 <= node.val <= 10^4"
+    ],
+    "common_trap": "Only checking immediate children, not the whole subtree",
+    "dsa_guide": {
+      "approach": "DFS with bounds",
+      "data_structures": [
+        "Binary Search Tree"
+      ],
+      "patterns": [
+        "Binary Search Trees"
+      ],
+      "tips": [
+        "Pass min/max down"
+      ]
+    }
+  },
+  {
+    "id": "verify-tree-003",
+    "type": "coding",
+    "title": "Binary Tree Level Order Traversal",
+    "question": "Return the level order traversal of a binary tree's node values.",
+    "difficulty": "medium",
+    "topic": "trees",
+    "sub_topic": "bfs",
+    "pattern": "BFS & DFS",
+    "skill": "trees",
+    "companies": [
+      "amazon",
+      "microsoft",
+      "meta"
+    ],
+    "role": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "verified_placement_questions",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.883930+00:00",
+    "updated_at": "2026-09-25T06:04:30.883930+00:00",
+    "solution": {
+      "code": "def level_order(arr):\n    if not arr or arr[0] is None:\n        return []\n    out = [[arr[0]]]\n    i = 1\n    n = len(arr)\n    while i < n:\n        level = []\n        for _ in range(len(out[-1]) * 2):\n            if i < n and arr[i] is not None:\n                level.append(arr[i])\n            i += 1\n        if level:\n            out.append(level)\n    return out\n",
+      "language": "python"
+    },
+    "testcases": [
+      {
+        "input": [
+          3,
+          9,
+          20,
+          null,
+          null,
+          15,
+          7
+        ],
+        "expected": [
+          [
+            3
+          ],
+          [
+            9,
+            20
+          ],
+          [
+            15,
+            7
+          ]
+        ]
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": [
+          [
+            1
+          ]
+        ]
+      },
+      {
+        "input": [],
+        "expected": []
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "expected": [
+          [
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6,
+            7
+          ]
+        ]
+      }
+    ],
+    "examples": [
+      {
+        "input": [
+          3,
+          9,
+          20,
+          null,
+          null,
+          15,
+          7
+        ],
+        "expected": [
+          [
+            3
+          ],
+          [
+            9,
+            20
+          ],
+          [
+            15,
+            7
+          ]
+        ]
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": [
+          [
+            1
+          ]
+        ]
+      }
+    ],
+    "explanation": "BFS with queue. Snapshot queue length per level.",
+    "hints": [
+      "Use deque for O(1) pops",
+      "Process exactly len(q) nodes per level"
+    ],
+    "constraints": [
+      "0 <= n <= 2000"
+    ],
+    "common_trap": "Mixing levels because queue length changes mid-loop",
+    "dsa_guide": {
+      "approach": "BFS with level snapshots",
+      "data_structures": [
+        "Queue",
+        "Binary Tree"
+      ],
+      "patterns": [
+        "BFS & DFS"
+      ],
+      "tips": [
+        "For loop over len(q) locks the level"
+      ]
+    }
+  },
+  {
+    "id": "verify-dp-001",
+    "type": "coding",
+    "title": "Climbing Stairs",
+    "question": "You are climbing stairs. It takes n steps to reach the top. Each time you can climb 1 or 2 steps. Return the number of distinct ways to reach the top.",
+    "difficulty": "easy",
+    "topic": "dynamic-programming",
+    "sub_topic": "1d-dp",
+    "pattern": "Dynamic Programming 1D",
+    "skill": "dynamic-programming",
+    "companies": [
+      "amazon",
+      "google",
+      "microsoft",
+      "meta"
+    ],
+    "role": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "verified_placement_questions",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.883930+00:00",
+    "updated_at": "2026-09-25T06:04:30.883930+00:00",
+    "solution": {
+      "code": "def climb_stairs(n):\n    if n <= 2:\n        return n\n    a, b = 1, 2\n    for _ in range(3, n + 1):\n        a, b = b, a + b\n    return b\n",
+      "language": "python"
+    },
+    "testcases": [
+      {
+        "input": [
+          2
+        ],
+        "expected": 2
+      },
+      {
+        "input": [
+          3
+        ],
+        "expected": 3
+      },
+      {
+        "input": [
+          5
+        ],
+        "expected": 8
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": [
+          1
+        ],
+        "expected": 1
+      },
+      {
+        "input": [
+          10
+        ],
+        "expected": 89
+      }
+    ],
+    "examples": [
+      {
+        "input": [
+          2
+        ],
+        "expected": 2
+      },
+      {
+        "input": [
+          3
+        ],
+        "expected": 3
+      }
+    ],
+    "explanation": "Ways(n) = Ways(n-1) + Ways(n-2). Use two variables.",
+    "hints": [
+      "Fibonacci pattern",
+      "O(1) space with two variables"
+    ],
+    "constraints": [
+      "1 <= n <= 45"
+    ],
+    "common_trap": "Off-by-one on base cases",
+    "dsa_guide": {
+      "approach": "Bottom-up DP with rolling variables",
+      "data_structures": [],
+      "patterns": [
+        "Dynamic Programming 1D"
+      ],
+      "tips": [
+        "Fibonacci recurrence"
+      ]
+    }
+  },
+  {
+    "id": "verify-dp-002",
+    "type": "coding",
+    "title": "Longest Increasing Subsequence",
+    "question": "Given an integer array nums, return the length of the longest strictly increasing subsequence.",
+    "difficulty": "medium",
+    "topic": "dynamic-programming",
+    "sub_topic": "lis",
+    "pattern": "Dynamic Programming 1D",
+    "skill": "dynamic-programming",
+    "companies": [
+      "amazon",
+      "google",
+      "microsoft",
+      "meta"
+    ],
+    "role": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "verified_placement_questions",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.883930+00:00",
+    "updated_at": "2026-09-25T06:04:30.883930+00:00",
+    "solution": {
+      "code": "def length_of_lis(nums):\n    tails = []\n    for x in nums:\n        i = __import__('bisect').bisect_left(tails, x)\n        if i == len(tails):\n            tails.append(x)\n        else:\n            tails[i] = x\n    return len(tails)\n",
+      "language": "python"
+    },
+    "testcases": [
+      {
+        "input": [
+          10,
+          9,
+          2,
+          5,
+          3,
+          7,
+          101,
+          18
+        ],
+        "expected": 4
+      },
+      {
+        "input": [
+          0,
+          1,
+          0,
+          3,
+          2,
+          3
+        ],
+        "expected": 4
+      },
+      {
+        "input": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "expected": 1
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": [
+          1,
+          3,
+          6,
+          7,
+          9,
+          4,
+          10,
+          5,
+          6
+        ],
+        "expected": 6
+      },
+      {
+        "input": [
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "expected": 1
+      }
+    ],
+    "examples": [
+      {
+        "input": [
+          10,
+          9,
+          2,
+          5,
+          3,
+          7,
+          101,
+          18
+        ],
+        "expected": 4
+      },
+      {
+        "input": [
+          0,
+          1,
+          0,
+          3,
+          2,
+          3
+        ],
+        "expected": 4
+      }
+    ],
+    "explanation": "Patience sorting with binary search. tails[i] = smallest tail of all increasing subarrays of length i+1.",
+    "hints": [
+      "Maintain tails array",
+      "Use bisect_left"
+    ],
+    "constraints": [
+      "1 <= nums.length <= 2500"
+    ],
+    "common_trap": "Using O(n^2) DP without realizing binary search optimization",
+    "dsa_guide": {
+      "approach": "Patience sorting / binary search on tails",
+      "data_structures": [
+        "Array"
+      ],
+      "patterns": [
+        "Dynamic Programming 1D",
+        "Binary Search"
+      ],
+      "tips": [
+        "tails is not the LIS, only its length"
+      ]
+    }
+  },
+  {
+    "id": "verify-dp-003",
+    "type": "coding",
+    "title": "Coin Change",
+    "question": "Given coin denominations and a total amount, return the fewest number of coins needed.",
+    "difficulty": "medium",
+    "topic": "dynamic-programming",
+    "sub_topic": "knapsack",
+    "pattern": "Dynamic Programming 1D",
+    "skill": "dynamic-programming",
+    "companies": [
+      "amazon",
+      "microsoft",
+      "google"
+    ],
+    "role": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "verified_placement_questions",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.883930+00:00",
+    "updated_at": "2026-09-25T06:04:30.883930+00:00",
+    "solution": {
+      "code": "def coin_change(coins, amount):\n    INF = amount + 1\n    dp = [INF] * (amount + 1)\n    dp[0] = 0\n    for coin in coins:\n        for x in range(coin, amount + 1):\n            dp[x] = min(dp[x], dp[x - coin] + 1)\n    return dp[amount] if dp[amount] != INF else -1\n",
+      "language": "python"
+    },
+    "testcases": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            5
+          ],
+          11
+        ],
+        "expected": 3
+      },
+      {
+        "input": [
+          [
+            2
+          ],
+          3
+        ],
+        "expected": -1
+      },
+      {
+        "input": [
+          [
+            1
+          ],
+          0
+        ],
+        "expected": 0
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": [
+          [
+            1,
+            3,
+            4,
+            5
+          ],
+          7
+        ],
+        "expected": 2
+      },
+      {
+        "input": [
+          [
+            2,
+            5,
+            10,
+            1
+          ],
+          27
+        ],
+        "expected": 4
+      }
+    ],
+    "examples": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            5
+          ],
+          11
+        ],
+        "expected": 3
+      },
+      {
+        "input": [
+          [
+            2
+          ],
+          3
+        ],
+        "expected": -1
+      }
+    ],
+    "explanation": "Unbounded knapsack: dp[amount] = min(dp[amount], dp[amount - coin] + 1).",
+    "hints": [
+      "Initialize dp[0]=0, others=INF",
+      "Unbounded: inner loop forward"
+    ],
+    "constraints": [
+      "1 <= coins.length <= 12",
+      "1 <= amount <= 10^4"
+    ],
+    "common_trap": "Using 1-indexed amounts or forgetting INF sentinel",
+    "dsa_guide": {
+      "approach": "Bottom-up unbounded knapsack",
+      "data_structures": [
+        "Array"
+      ],
+      "patterns": [
+        "Dynamic Programming 1D"
+      ],
+      "tips": [
+        "Forward loop for unbounded"
+      ]
+    }
+  },
+  {
+    "id": "verify-graph-001",
+    "type": "coding",
+    "title": "Number of Islands",
+    "question": "Given a 2D grid of '1's (land) and '0's (water), return the number of islands.",
+    "difficulty": "medium",
+    "topic": "graphs",
+    "sub_topic": "bfs-dfs",
+    "pattern": "BFS & DFS",
+    "skill": "graphs",
+    "companies": [
+      "amazon",
+      "microsoft",
+      "meta",
+      "google"
+    ],
+    "role": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "verified_placement_questions",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.883930+00:00",
+    "updated_at": "2026-09-25T06:04:30.883930+00:00",
+    "solution": {
+      "code": "def num_islands(grid):\n    if not grid:\n        return 0\n    rows, cols = len(grid), len(grid[0])\n    def dfs(r, c):\n        if not (0 <= r < rows and 0 <= c < cols and grid[r][c] == '1'):\n            return\n        grid[r][c] = '0'\n        dfs(r+1, c)\n        dfs(r-1, c)\n        dfs(r, c+1)\n        dfs(r, c-1)\n    count = 0\n    for r in range(rows):\n        for c in range(cols):\n            if grid[r][c] == '1':\n                dfs(r, c)\n                count += 1\n    return count\n",
+      "language": "python"
+    },
+    "testcases": [
+      {
+        "input": [
+          [
+            "1",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "1",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "1",
+            "1"
+          ]
+        ],
+        "expected": 3
+      },
+      {
+        "input": [
+          [
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "1",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1"
+          ]
+        ],
+        "expected": 3
+      },
+      {
+        "input": [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ],
+        "expected": 0
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": [
+          [
+            "1",
+            "1",
+            "1",
+            "1",
+            "0"
+          ],
+          [
+            "1",
+            "1",
+            "0",
+            "1",
+            "0"
+          ],
+          [
+            "1",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1",
+            "0",
+            "0"
+          ]
+        ],
+        "expected": 2
+      }
+    ],
+    "examples": [
+      {
+        "input": [
+          [
+            "1",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "1",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "1",
+            "1"
+          ]
+        ],
+        "expected": 3
+      }
+    ],
+    "explanation": "Sink each island with DFS/BFS. Count how many times you start a new search.",
+    "hints": [
+      "Mutate grid in-place to mark visited",
+      "Recurse in 4 directions"
+    ],
+    "constraints": [
+      "1 <= m,n <= 300"
+    ],
+    "common_trap": "Out-of-bounds access on edges",
+    "dsa_guide": {
+      "approach": "DFS flood fill",
+      "data_structures": [
+        "Matrix"
+      ],
+      "patterns": [
+        "BFS & DFS",
+        "Graphs"
+      ],
+      "tips": [
+        "Mark visited by setting to '0'"
+      ]
+    }
+  },
+  {
+    "id": "verify-graph-002",
+    "type": "coding",
+    "title": "Course Schedule",
+    "question": "Return True if you can finish all courses given prerequisites.",
+    "difficulty": "medium",
+    "topic": "graphs",
+    "sub_topic": "topological-sort",
+    "pattern": "Graphs",
+    "skill": "graphs",
+    "companies": [
+      "amazon",
+      "microsoft",
+      "meta",
+      "google"
+    ],
+    "role": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "verified_placement_questions",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.883930+00:00",
+    "updated_at": "2026-09-25T06:04:30.883930+00:00",
+    "solution": {
+      "code": "def can_finish(num_courses, prerequisites):\n    adj = [[] for _ in range(num_courses)]\n    indeg = [0] * num_courses\n    for dest, src in prerequisites:\n        adj[src].append(dest)\n        indeg[dest] += 1\n    q = [i for i in range(num_courses) if indeg[i] == 0]\n    visited = 0\n    while q:\n        node = q.pop()\n        visited += 1\n        for nxt in adj[node]:\n            indeg[nxt] -= 1\n            if indeg[nxt] == 0:\n                q.append(nxt)\n    return visited == num_courses\n",
+      "language": "python"
+    },
+    "testcases": [
+      {
+        "input": [
+          2,
+          [
+            [
+              1,
+              0
+            ]
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          2,
+          [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        ],
+        "expected": false
+      },
+      {
+        "input": [
+          3,
+          [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ]
+        ],
+        "expected": true
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": [
+          4,
+          [
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              2
+            ]
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          4,
+          [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              0
+            ]
+          ]
+        ],
+        "expected": false
+      }
+    ],
+    "examples": [
+      {
+        "input": [
+          2,
+          [
+            [
+              1,
+              0
+            ]
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          2,
+          [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        ],
+        "expected": false
+      }
+    ],
+    "explanation": "Kahn's algorithm: remove nodes with indegree 0. If all removed, no cycle.",
+    "hints": [
+      "Build adjacency list and indegree array",
+      "Queue nodes with indegree 0"
+    ],
+    "constraints": [
+      "1 <= num_courses <= 2000"
+    ],
+    "common_trap": "Forgetting to decrement indegree before enqueue",
+    "dsa_guide": {
+      "approach": "Topological sort / Kahn's algorithm",
+      "data_structures": [
+        "Queue",
+        "Graph"
+      ],
+      "patterns": [
+        "Graphs",
+        "Topological Sort"
+      ],
+      "tips": [
+        "Count processed nodes"
+      ]
+    }
+  },
+  {
+    "id": "verify-heap-001",
+    "type": "coding",
+    "title": "Kth Largest Element in an Array",
+    "question": "Return the kth largest element in the array.",
+    "difficulty": "medium",
+    "topic": "heaps",
+    "sub_topic": "priority-queue",
+    "pattern": "Heaps / Priority Queue",
+    "skill": "heaps",
+    "companies": [
+      "amazon",
+      "microsoft",
+      "meta"
+    ],
+    "role": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "verified_placement_questions",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.883930+00:00",
+    "updated_at": "2026-09-25T06:04:30.883930+00:00",
+    "solution": {
+      "code": "import heapq\n\ndef find_kth_largest(nums, k):\n    return heapq.nlargest(k, nums)[-1]\n",
+      "language": "python"
+    },
+    "testcases": [
+      {
+        "input": [
+          [
+            3,
+            2,
+            1,
+            5,
+            6,
+            4
+          ],
+          2
+        ],
+        "expected": 5
+      },
+      {
+        "input": [
+          [
+            3,
+            2,
+            3,
+            1,
+            2,
+            4,
+            5,
+            5,
+            6
+          ],
+          4
+        ],
+        "expected": 4
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          5
+        ],
+        "expected": 1
+      },
+      {
+        "input": [
+          [
+            7,
+            6,
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          3
+        ],
+        "expected": 5
+      }
+    ],
+    "examples": [
+      {
+        "input": [
+          [
+            3,
+            2,
+            1,
+            5,
+            6,
+            4
+          ],
+          2
+        ],
+        "expected": 5
+      }
+    ],
+    "explanation": "Use a min-heap of size k, or nth-element. heapq.nlargest(k)[-1] is fine.",
+    "hints": [
+      "Maintain heap of size k",
+      "nlargest returns descending order"
+    ],
+    "constraints": [
+      "1 <= k <= nums.length <= 10^5"
+    ],
+    "common_trap": "Sorting when k is small relative to n",
+    "dsa_guide": {
+      "approach": "Min-heap of size k or quickselect",
+      "data_structures": [
+        "Heap"
+      ],
+      "patterns": [
+        "Heaps / Priority Queue"
+      ],
+      "tips": [
+        "O(n log k)"
+      ]
+    }
+  },
+  {
+    "id": "verify-heap-002",
+    "type": "coding",
+    "title": "Merge K Sorted Lists",
+    "question": "Merge k sorted linked lists and return it as one sorted list.",
+    "difficulty": "hard",
+    "topic": "linked-lists",
+    "sub_topic": "merge",
+    "pattern": "Heaps / Priority Queue",
+    "skill": "linked-lists",
+    "companies": [
+      "amazon",
+      "microsoft",
+      "google",
+      "meta"
+    ],
+    "role": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "verified_placement_questions",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.883930+00:00",
+    "updated_at": "2026-09-25T06:04:30.883930+00:00",
+    "solution": {
+      "code": "import heapq\n\ndef merge_k_lists(lists):\n    heap = []\n    for i, node in enumerate(lists):\n        if node:\n            heapq.heappush(heap, (node[0], i, 0))\n    out = []\n    while heap:\n        val, i, j = heapq.heappop(heap)\n        out.append(val)\n        if j + 1 < len(lists[i]):\n            heapq.heappush(heap, (lists[i][j + 1], i, j + 1))\n    return out\n",
+      "language": "python"
+    },
+    "testcases": [
+      {
+        "input": [
+          [
+            [
+              1,
+              4,
+              5
+            ],
+            [
+              1,
+              3,
+              4
+            ],
+            [
+              2,
+              6
+            ]
+          ]
+        ],
+        "expected": [
+          1,
+          1,
+          2,
+          3,
+          4,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "input": [
+          []
+        ],
+        "expected": []
+      },
+      {
+        "input": [
+          [
+            []
+          ]
+        ],
+        "expected": []
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": [
+          [
+            [
+              1,
+              3,
+              5
+            ],
+            [
+              2,
+              4,
+              6
+            ],
+            [
+              7,
+              8,
+              9
+            ]
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    ],
+    "examples": [
+      {
+        "input": [
+          [
+            [
+              1,
+              4,
+              5
+            ],
+            [
+              1,
+              3,
+              4
+            ],
+            [
+              2,
+              6
+            ]
+          ]
+        ],
+        "expected": [
+          1,
+          1,
+          2,
+          3,
+          4,
+          4,
+          5,
+          6
+        ]
+      }
+    ],
+    "explanation": "Push head of each list into min-heap. Pop smallest, advance that list.",
+    "hints": [
+      "Use (value, list_index, node) tuple",
+      "Advance list after pop"
+    ],
+    "constraints": [
+      "0 <= k <= 10^4"
+    ],
+    "common_trap": "Not storing list index for tie-breaking when values equal",
+    "dsa_guide": {
+      "approach": "Min-heap merge",
+      "data_structures": [
+        "Heap",
+        "Linked List"
+      ],
+      "patterns": [
+        "Linked Lists",
+        "Heaps / Priority Queue"
+      ],
+      "tips": [
+        "O(N log k)"
+      ]
+    }
+  },
+  {
+    "id": "verify-greedy-001",
+    "type": "coding",
+    "title": "Jump Game",
+    "question": "Given an array of non-negative integers, return True if you can reach the last index.",
+    "difficulty": "medium",
+    "topic": "greedy",
+    "sub_topic": "jump-game",
+    "pattern": "Greedy",
+    "skill": "greedy",
+    "companies": [
+      "amazon",
+      "microsoft",
+      "google"
+    ],
+    "role": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "verified_placement_questions",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.883930+00:00",
+    "updated_at": "2026-09-25T06:04:30.883930+00:00",
+    "solution": {
+      "code": "def can_jump(nums):\n    farthest = 0\n    for i, jump in enumerate(nums):\n        if i > farthest:\n            return False\n        farthest = max(farthest, i + jump)\n    return True\n",
+      "language": "python"
+    },
+    "testcases": [
+      {
+        "input": [
+          2,
+          3,
+          1,
+          1,
+          4
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          3,
+          2,
+          1,
+          0,
+          4
+        ],
+        "expected": false
+      },
+      {
+        "input": [
+          0
+        ],
+        "expected": true
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          5,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "expected": true
+      }
+    ],
+    "examples": [
+      {
+        "input": [
+          2,
+          3,
+          1,
+          1,
+          4
+        ],
+        "expected": true
+      },
+      {
+        "input": [
+          3,
+          2,
+          1,
+          0,
+          4
+        ],
+        "expected": false
+      }
+    ],
+    "explanation": "Track farthest reachable index. If current index > farthest, stuck.",
+    "hints": [
+      "Greedy: keep max reach",
+      "If i exceeds farthest, return False"
+    ],
+    "constraints": [
+      "1 <= nums.length <= 10^4"
+    ],
+    "common_trap": "Confusing current position with farthest reach",
+    "dsa_guide": {
+      "approach": "Greedy farthest-reach scan",
+      "data_structures": [],
+      "patterns": [
+        "Greedy"
+      ],
+      "tips": [
+        "O(n) scan, no DP needed"
+      ]
+    }
+  },
+  {
+    "id": "verify-greedy-002",
+    "type": "coding",
+    "title": "Gas Station",
+    "question": "There are n gas stations. Return the starting index if you can complete the circuit.",
+    "difficulty": "medium",
+    "topic": "greedy",
+    "sub_topic": "gas-station",
+    "pattern": "Greedy",
+    "skill": "greedy",
+    "companies": [
+      "amazon",
+      "microsoft",
+      "google"
+    ],
+    "role": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "verified_placement_questions",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.883930+00:00",
+    "updated_at": "2026-09-25T06:04:30.883930+00:00",
+    "solution": {
+      "code": "def can_complete_circuit(gas, cost):\n    total_tank = 0\n    curr_tank = 0\n    start = 0\n    for i in range(len(gas)):\n        total_tank += gas[i] - cost[i]\n        curr_tank += gas[i] - cost[i]\n        if curr_tank < 0:\n            start = i + 1\n            curr_tank = 0\n    return start if total_tank >= 0 else -1\n",
+      "language": "python"
+    },
+    "testcases": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          [
+            3,
+            4,
+            5,
+            1,
+            2
+          ]
+        ],
+        "expected": 3
+      },
+      {
+        "input": [
+          [
+            2,
+            3,
+            4
+          ],
+          [
+            3,
+            4,
+            3
+          ]
+        ],
+        "expected": -1
+      },
+      {
+        "input": [
+          [
+            5,
+            1,
+            2,
+            3,
+            4
+          ],
+          [
+            4,
+            4,
+            1,
+            5,
+            1
+          ]
+        ],
+        "expected": 4
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": [
+          [
+            3,
+            1,
+            1
+          ],
+          [
+            1,
+            5,
+            2
+          ]
+        ],
+        "expected": -1
+      }
+    ],
+    "examples": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          [
+            3,
+            4,
+            5,
+            1,
+            2
+          ]
+        ],
+        "expected": 3
+      }
+    ],
+    "explanation": "If total gas >= total cost, solution exists. Reset start when tank goes negative.",
+    "hints": [
+      "Check total gas vs total cost first",
+      "Greedy restart on negative tank"
+    ],
+    "constraints": [
+      "gas.length == cost.length",
+      "1 <= n <= 10^5"
+    ],
+    "common_trap": "Brute force O(n^2) instead of greedy O(n)",
+    "dsa_guide": {
+      "approach": "Greedy circuit completion",
+      "data_structures": [],
+      "patterns": [
+        "Greedy"
+      ],
+      "tips": [
+        "Total tank check first"
+      ]
+    }
+  },
+  {
+    "id": "verify-bt-001",
+    "type": "coding",
+    "title": "Subsets",
+    "question": "Given an array of distinct integers, return all possible subsets.",
+    "difficulty": "medium",
+    "topic": "recursion-backtracking",
+    "sub_topic": "subsets",
+    "pattern": "Recursion & Backtracking",
+    "skill": "recursion-backtracking",
+    "companies": [
+      "amazon",
+      "microsoft",
+      "meta",
+      "google"
+    ],
+    "role": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "verified_placement_questions",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.883930+00:00",
+    "updated_at": "2026-09-25T06:04:30.883930+00:00",
+    "solution": {
+      "code": "def subsets(nums):\n    out = []\n    def backtrack(i, path):\n        out.append(path[:])\n        for j in range(i, len(nums)):\n            path.append(nums[j])\n            backtrack(j + 1, path)\n            path.pop()\n    backtrack(0, [])\n    return out\n",
+      "language": "python"
+    },
+    "testcases": [
+      {
+        "input": [
+          1,
+          2,
+          3
+        ],
+        "expected": [
+          [],
+          [
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3
+          ]
+        ]
+      },
+      {
+        "input": [
+          0
+        ],
+        "expected": [
+          [],
+          [
+            0
+          ]
+        ]
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": [
+          1,
+          2
+        ],
+        "expected": [
+          [],
+          [
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2
+          ]
+        ]
+      }
+    ],
+    "examples": [
+      {
+        "input": [
+          1,
+          2,
+          3
+        ],
+        "expected": [
+          [],
+          [
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3
+          ]
+        ]
+      }
+    ],
+    "explanation": "For each index, choose to include or skip. Backtrack restores state.",
+    "hints": [
+      "Decision: include nums[i] or not",
+      "Append path copy at every node"
+    ],
+    "constraints": [
+      "1 <= nums.length <= 10"
+    ],
+    "common_trap": "Appending path reference instead of copy",
+    "dsa_guide": {
+      "approach": "DFS with include/skip decisions",
+      "data_structures": [],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Copy path on append"
+      ]
+    }
+  },
+  {
+    "id": "verify-bt-002",
+    "type": "coding",
+    "title": "Permutations",
+    "question": "Given an array of distinct integers, return all possible permutations.",
+    "difficulty": "medium",
+    "topic": "recursion-backtracking",
+    "sub_topic": "permutations",
+    "pattern": "Recursion & Backtracking",
+    "skill": "recursion-backtracking",
+    "companies": [
+      "amazon",
+      "microsoft",
+      "meta"
+    ],
+    "role": [
+      "sde",
+      "backend-engineer"
+    ],
+    "provenance": "public-source-2026",
+    "source_bank": "verified_placement_questions",
+    "trust_status": "unverified",
+    "created_at": "2026-09-25T06:04:30.883930+00:00",
+    "updated_at": "2026-09-25T06:04:30.883930+00:00",
+    "solution": {
+      "code": "def permute(nums):\n    out = []\n    def backtrack(path):\n        if len(path) == len(nums):\n            out.append(path[:])\n            return\n        for x in nums:\n            if x not in path:\n                path.append(x)\n                backtrack(path)\n                path.pop()\n    backtrack([])\n    return out\n",
+      "language": "python"
+    },
+    "testcases": [
+      {
+        "input": [
+          1,
+          2,
+          3
+        ],
+        "expected": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            1,
+            3,
+            2
+          ],
+          [
+            2,
+            1,
+            3
+          ],
+          [
+            2,
+            3,
+            1
+          ],
+          [
+            3,
+            1,
+            2
+          ],
+          [
+            3,
+            2,
+            1
+          ]
+        ]
+      },
+      {
+        "input": [
+          0,
+          1
+        ],
+        "expected": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": [
+          [
+            1
+          ]
+        ]
+      }
+    ],
+    "hidden_testcases": [
+      {
+        "input": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "expected": 24
+      }
+    ],
+    "examples": [
+      {
+        "input": [
+          1,
+          2,
+          3
+        ],
+        "expected": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            1,
+            3,
+            2
+          ],
+          [
+            2,
+            1,
+            3
+          ],
+          [
+            2,
+            3,
+            1
+          ],
+          [
+            3,
+            1,
+            2
+          ],
+          [
+            3,
+            2,
+            1
+          ]
+        ]
+      }
+    ],
+    "explanation": "Build permutation by choosing unused elements. Backtrack to try next choice.",
+    "hints": [
+      "Track used elements or use 'not in path'",
+      "Base case: len(path) == n"
+    ],
+    "constraints": [
+      "1 <= nums.length <= 6"
+    ],
+    "common_trap": "Including duplicates when nums has repeats",
+    "dsa_guide": {
+      "approach": "DFS permutation builder",
+      "data_structures": [],
+      "patterns": [
+        "Recursion & Backtracking"
+      ],
+      "tips": [
+        "Track visited set"
+      ]
+    }
   }
 ]
