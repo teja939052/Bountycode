@@ -107,7 +107,12 @@ function PlacementBlock() {
       <h2 className="text-xl font-bold">Placement Question</h2>
       <PlacementTimer seconds={90} onExpire={() => setLocked(true)} />
       <p className="text-sm text-[#9a9a9a]">A, B, C, D sit in a row. A is left of B. C is between A and D. Who is at the right end?</p>
-      <input type="text" placeholder="Your answer" className="w-full rounded-lg border border-[#2a2a2a] bg-[#0f0f0f] px-3 py-2 text-sm text-[#e9e9e9] placeholder:text-[#9a9a9a] focus:border-[#ffa116] focus:outline-none" />
+      <input
+        disabled={locked}
+        type="text"
+        placeholder="Your answer"
+        className="w-full rounded-lg border border-[#2a2a2a] bg-[#0f0f0f] px-3 py-2 text-sm text-[#e9e9e9] placeholder:text-[#9a9a9a] focus:border-[#ffa116] focus:outline-none"
+      />
       {locked && (
         <p className="text-xs text-red-400">Time is up - the proof counts only what you solved under time.</p>
       )}
