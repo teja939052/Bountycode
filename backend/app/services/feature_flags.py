@@ -3,10 +3,9 @@
 from __future__ import annotations
 
 from typing import Literal
+from enum import Enum
 
 Plan = Literal["free", "pro", "lifetime"]
-
-from enum import Enum
 
 
 class FeatureStatus(str, Enum):
@@ -88,7 +87,7 @@ FEATURE_FLAGS: dict[str, dict] = {
     "admin_dashboard": {"enabled": True, "description": "Admin analytics dashboard", "allowed_plans": ["pro", "lifetime"]},
     "admin_content": {"enabled": True, "description": "Admin content management", "allowed_plans": ["pro", "lifetime"]},
     "enterprise": {"enabled": True, "description": "Enterprise plan features", "allowed_plans": ["pro", "lifetime"]},
-    "billing": {"enabled": True, "description": "PayPal/Stripe billing"},
+    "billing": {"enabled": True, "description": "Razorpay billing"},
     "pwa": {"enabled": True, "description": "Progressive Web App"},
     "push_notifications": {"enabled": True, "description": "Push notifications"},
     "offline_mode": {"enabled": True, "description": "Offline mode"},

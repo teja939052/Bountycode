@@ -18,11 +18,7 @@ import inspect
 import io
 import json
 import logging
-import os
-import re
 from typing import Any, Dict, List, Optional, Tuple
-
-from app.services.question_verification import quick_structural_check
 
 logger = logging.getLogger(__name__)
 
@@ -595,9 +591,35 @@ def _structural_check_lesson(lvl: dict, world_id: str, level_id: str) -> List[st
         issues.append("missing_concept")
     if not str(lvl.get("canonical_skill") or "").strip():
         issues.append("missing_canonical_skill")
+    # Full teaching loop is REQUIRED: a stage that is absent cannot teach.
+    # (Previously only present stages were validated, so lessons missing
+    # transfer/debug/break passed silently.)
+    discover = lvl.get("discover") or {}
+    if not str(discover.get("prompt") or "").strip():
+        issues.append("missing_discover_prompt")
+    if not str(lvl.get("understand") or "").strip():
+        issues.append("missing_understand")
+    manip = lvl.get("manipulate") or {}
+    if not str(manip.get("template") or "").strip() and not str(manip.get("answer") or "").strip():
+        issues.append("missing_manipulate_content")
+    if lvl.get("predict") is None:
+        issues.append("missing_predict")
+    build = lvl.get("build") or {}
     code = lvl.get("code") or {}
-    if not str(code.get("prompt") or "").strip():
-        issues.append("missing_code_prompt")
+    if not str(build.get("prompt") or "").strip() and not str(code.get("prompt") or "").strip():
+        issues.append("missing_build_prompt")
+    if not str(build.get("starter") or "").strip() and not str(code.get("starter") or "").strip():
+        issues.append("missing_build_starter")
+    if lvl.get("break_step") is None:
+        issues.append("missing_break_step")
+    if lvl.get("debug") is None:
+        issues.append("missing_debug")
+    if lvl.get("retrieval") is None:
+        issues.append("missing_retrieval")
+    if lvl.get("transfer") is None:
+        issues.append("missing_transfer")
+    # NOTE: the legacy `code` block duplicates `build`; the build-or-code
+    # presence checks above are the requirement, not `code.prompt` itself.
     predict = lvl.get("predict")
     if predict is not None:
         if not str(predict.get("prompt") or "").strip():
@@ -652,7 +674,6 @@ async def _run_python_snippet(code: str, language: str = "python") -> dict:
 
 async def _verify_lesson_runtime(lvl: dict, world_id: str, level_id: str) -> Dict[str, Any]:
     import re
-    import traceback as tb_module
 
     def _resolve_message(run: dict) -> str:
         return (run.get("error") or run.get("stderr") or run.get("stdout") or "runtime check failed").strip()

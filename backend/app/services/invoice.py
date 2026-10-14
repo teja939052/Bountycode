@@ -1,5 +1,4 @@
 # backend/app/services/invoice.py
-import json
 import os
 import uuid
 from datetime import datetime, timezone, timedelta
@@ -84,14 +83,13 @@ class InvoiceService:
             "currency": currency,
             "transaction_id": transaction_id,
             "status": "paid",
-            "payment_method": "PayPal",
+            "payment_method": "Razorpay",
             "billing_cycle": billing_cycle,
             "created_at": now.isoformat(),
             "period_start": now.isoformat(),
             "period_end": self._period_end(now, billing_cycle),
         }
 
-        file_path = os.path.join(self.invoice_dir, f"{invoice_id}.json")
         from app.database import invoices_collection
         await invoices_collection.insert_one(dict(invoice))
 

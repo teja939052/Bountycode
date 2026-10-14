@@ -7,9 +7,9 @@ import secrets
 import logging
 import asyncio
 import httpx
-from app.services.email import send_email, welcome_email, password_reset_email
+from app.services.email import send_email, welcome_email, verification_email, password_reset_email
 from app.models.user import UserCreate, UserLogin, UpdateProfileRequest, ChangePasswordRequest
-from app.database import users_collection
+from app.database import users_collection, gamification_collection
 from bson import ObjectId
 from bson import ObjectId as _ObjectId
 from app.middleware.auth import (
@@ -85,7 +85,7 @@ async def register(req: UserCreate, response: Response, request: Request = None)
         "plan": "free",
         "country": country,
         "ip": client_ip,
-        "paypal_customer_id": None,
+            "razorpay_customer_id": None,
         "email_verified": False,
         "email_verification_token": secrets.token_urlsafe(32),
         "email_verification_expires": now + timedelta(hours=24),
@@ -95,14 +95,23 @@ async def register(req: UserCreate, response: Response, request: Request = None)
         "monthly_reset_date": now,
         "created_at": now,
         "last_active": now,
+        "refresh_jti": None,
+        "refresh_revoked_at": None,
     }
 
     result = await users_collection.insert_one(user_doc)
     user_id = str(result.inserted_id)
+    await users_collection.update_one(
+        {"_id": result.inserted_id},
+        {"$set": {"user_id": user_id}},
+    )
 
     # Fire-and-forget lifecycle email (must not block or fail the signup).
     try:
         asyncio.create_task(send_email(req.email, *welcome_email(req.name)))
+        frontend_origin = settings.CORS_ORIGINS.split(",")[0].strip().rstrip("/")
+        verify_link = f"{frontend_origin}/verify-email?token={user_doc['email_verification_token']}"
+        asyncio.create_task(send_email(req.email, *verification_email(req.name, verify_link)))
     except Exception:
         pass
 
@@ -191,7 +200,21 @@ async def refresh_token(request: Request, response: Response):
         # This makes stolen refresh tokens unusable once the user rotates them
         # (logout / password change / next refresh).
         user = await users_collection.find_one({"_id": ObjectId(user_id)})
-        if not user or not user.get("refresh_jti") or user["refresh_jti"] != jti:
+        if not user:
+            raise HTTPException(status_code=401, detail="Invalid refresh token")
+
+        # Reject tokens issued before a global revocation timestamp.
+        # This survives restarts because it lives in MongoDB.
+        revoked_at = user.get("refresh_revoked_at")
+        if revoked_at:
+            token_iat = datetime.fromtimestamp(payload.get("iat", 0), tz=timezone.utc)
+            if token_iat < revoked_at:
+                raise HTTPException(status_code=401, detail="Invalid or revoked refresh token")
+
+        # The issued jti must match the server-tracked current refresh jti.
+        # This makes stolen refresh tokens unusable once the user rotates them
+        # (logout / password change / next refresh).
+        if not user.get("refresh_jti") or user["refresh_jti"] != jti:
             raise HTTPException(status_code=401, detail="Invalid or revoked refresh token")
 
         # Rotate: mint a new jti and invalidate the old one.
@@ -213,13 +236,13 @@ async def refresh_token(request: Request, response: Response):
 
 @router.post("/logout")
 async def logout(response: Response, user=Depends(optional_get_current_user)):
-    # Revoke the server-side refresh jti so a stolen refresh token can no
-    # longer be rotated. Done best-effort: if there's no valid access token
-    # we still clear the cookies client-side.
+    # Revoke the server-side refresh state so a stolen refresh token can no
+    # longer be rotated. Setting refresh_revoked_at survives restarts because
+    # it lives in MongoDB.
     if user:
         await users_collection.update_one(
             {"_id": _ObjectId(user["id"])},
-            {"$unset": {"refresh_jti": ""}},
+            {"$set": {"refresh_revoked_at": datetime.now(timezone.utc)}},
         )
         await log_audit(user["id"], "auth.logout", "session")
 
@@ -230,7 +253,12 @@ async def logout(response: Response, user=Depends(optional_get_current_user)):
 
 @router.get("/me")
 async def get_me(user=Depends(get_current_user)):
-    user = await check_and_reset_monthly_usage(user)
+    try:
+        user = await check_and_reset_monthly_usage(user)
+    except Exception:
+        # Degraded mode: keep the caller logged in even if the usage
+        # reset fails. A 500 here is what silently logs users out.
+        pass
     usage = get_usage_stats(user)
     plan = user.get("plan", "free")
     # is_admin/role are now server-authoritative (owner emails only) via _finalize_user
@@ -245,6 +273,9 @@ async def get_me(user=Depends(get_current_user)):
         "usage": usage,
         "is_admin": user.get("is_admin", False),
         "role": user.get("role"),
+        "target_company": user.get("target_company", ""),
+        "target_role": user.get("target_role", ""),
+        "assessment_date": user.get("assessment_date", ""),
     }
 
 
@@ -362,8 +393,10 @@ async def change_password(req: ChangePasswordRequest, user=Depends(get_current_u
 
     await users_collection.update_one(
         {"_id": ObjectId(user["id"])},
-        {"$set": {"password_hash": hash_password(req.new_password)},
-         "$unset": {"refresh_jti": ""}},
+        {"$set": {
+            "password_hash": hash_password(req.new_password),
+            "refresh_revoked_at": datetime.now(timezone.utc),
+        }},
     )
     await log_audit(user["id"], "auth.change_password", "user")
     return {"message": "Password changed successfully", "relogin_required": True}
@@ -416,18 +449,57 @@ async def reset_password(req: ResetPasswordRequest):
 
     await users_collection.update_one(
         {"_id": user["_id"]},
-        {"$set": {"password_hash": hash_password(req.new_password)},
-         "$unset": {"reset_token": "", "reset_token_expires": "", "refresh_jti": ""}},
+        {"$set": {
+            "password_hash": hash_password(req.new_password),
+            "refresh_revoked_at": datetime.now(timezone.utc),
+        },
+         "$unset": {"reset_token": "", "reset_token_expires": ""}},
     )
     await log_audit(str(user["_id"]), "auth.reset_password", "user")
 
     return {"message": "Password reset successful. You can now log in."}
 
 
+def _normalize_company(raw: str) -> str:
+    """Map display names ("TCS NQT") to canonical ids ("tcs")."""
+    t = (raw or "").strip().lower()
+    aliases = {
+        "tcs nqt": "tcs",
+        "tcs": "tcs",
+        "infosys": "infosys",
+        "infytq": "infosys",
+        "wipro": "wipro",
+        "cognizant": "cognizant",
+        "genc": "cognizant",
+        "capgemini": "capgemini",
+        "accenture": "accenture",
+        "hcl": "hcl",
+        "amazon": "amazon",
+        "google": "google",
+    }
+    if t in aliases:
+        return aliases[t]
+    for key, canon in aliases.items():
+        if key in t or t in key:
+            return canon
+    return t
+
+
 class OnboardingData(BaseModel):
     klass: Optional[str] = None
     target_companies: list = []
     skill_self_assessment: dict = {}
+    # Mission-brief fields (all optional, additive — older clients unaffected)
+    college: Optional[str] = None
+    branch: Optional[str] = None
+    grad_year: Optional[int] = None
+    placement_date: Optional[str] = None  # ISO date string
+    daily_minutes: Optional[int] = None
+    target_role: Optional[str] = None
+    target_company: Optional[str] = None
+    prep_level: Optional[str] = None
+    language: Optional[str] = None
+    learning_style: Optional[str] = None
 
 
 @router.get("/onboarding-status")
@@ -449,10 +521,35 @@ async def onboarding_complete(req: OnboardingData, user=Depends(get_current_user
         "skill_self_assessment": req.skill_self_assessment,
         "completed_at": datetime.now(timezone.utc),
     }
+    # Mission-brief extras: store only provided values so partial
+    # submissions never wipe existing answers.
+    for key in (
+        "college", "branch", "grad_year", "placement_date", "daily_minutes",
+        "target_role", "target_company", "prep_level", "language", "learning_style",
+    ):
+        value = getattr(req, key, None)
+        if value is not None and value != "":
+            onboarding[key] = value
     await users_collection.update_one(
         {"_id": ObjectId(user["id"])},
         {"$set": {"onboarding": onboarding}}
     )
+
+    # Fan-out: the gamification profile is the canonical target store
+    # (readiness, worlds, journey all resolve through it).
+    _tc = (req.target_company or "")
+    if not _tc and req.target_companies:
+        _tc = str(req.target_companies[0])
+    _tc = _normalize_company(_tc)
+    if _tc:
+        try:
+            await gamification_collection.update_one(
+                {"user_id": user["id"]},
+                {"$set": {"target_company": _tc}},
+                upsert=True,
+            )
+        except Exception:
+            pass
 
     # Beta funnel: track onboarding completion
     try:
@@ -484,6 +581,32 @@ async def verify_email(req: VerifyEmailRequest):
         {"$set": {"email_verified": True, "email_verification_token": None, "email_verification_expires": None}},
     )
     return {"message": "Email verified successfully"}
+
+
+class ResendVerificationRequest(BaseModel):
+    email: EmailStr
+
+
+@router.post("/resend-verification")
+async def resend_verification(req: ResendVerificationRequest):
+    """Re-issue a verification token and email it. Always 200 to avoid email enumeration."""
+    user = await users_collection.find_one({"email": req.email})
+    if user and not user.get("email_verified"):
+        token = secrets.token_urlsafe(32)
+        await users_collection.update_one(
+            {"_id": ObjectId(user["_id"])},
+            {"$set": {
+                "email_verification_token": token,
+                "email_verification_expires": datetime.now(timezone.utc) + timedelta(hours=24),
+            }},
+        )
+        try:
+            frontend_origin = settings.CORS_ORIGINS.split(",")[0].strip().rstrip("/")
+            verify_link = f"{frontend_origin}/verify-email?token={token}"
+            asyncio.create_task(send_email(req.email, *verification_email(user.get("name", ""), verify_link)))
+        except Exception:
+            pass
+    return {"message": "If the email exists, a verification link has been sent"}
 
 
 @router.get("/google")
@@ -559,7 +682,7 @@ async def google_callback(request: Request, response: Response):
             "plan": "free",
             "country": "unknown",
             "ip": None,
-            "paypal_customer_id": None,
+            "razorpay_customer_id": None,
             "email_verified": True,
             "email_verification_token": None,
             "email_verification_expires": None,

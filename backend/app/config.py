@@ -1,7 +1,7 @@
 """Configuration management using Pydantic Settings.
 
 Loads environment variables from .env with fallback defaults for all
-BountyCode services: MongoDB, JWT, OpenRouter AI, PayPal, Stripe,
+BountyCode services: MongoDB, JWT, OpenRouter AI, Razorpay,
 Redis, RabbitMQ, Docker sandbox, WebSocket, CORS, and more.
 """
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -49,7 +49,7 @@ class Settings(BaseSettings):
     MONGODB_MAX_POOL_SIZE: int = 50
     MONGODB_MIN_POOL_SIZE: int = 10
     MONGODB_MAX_IDLE_TIME_MS: int = 10000
-    REDIS_URL: str = os.getenv("REDIS_URL", "")
+    REDIS_URL: str = os.getenv("REDIS_URL", "redis://localhost:6379/0")
 
     # JWT
     JWT_SECRET: str = os.getenv("JWT_SECRET", "")
@@ -61,15 +61,9 @@ class Settings(BaseSettings):
     OPENROUTER_API_KEY: str = os.getenv("OPENROUTER_API_KEY", "")
     OPENROUTER_MODEL: str = "google/gemma-4-31b-it:free"
     OPENROUTER_URL: str = "https://openrouter.ai/api/v1/chat/completions"
-    OPENROUTER_TIMEOUT: int = 120
+    OPENROUTER_TIMEOUT: int = 45
     OPENROUTER_MAX_RETRIES: int = 3
     
-    # PayPal
-    PAYPAL_CLIENT_ID: str = os.getenv("PAYPAL_CLIENT_ID", "")
-    PAYPAL_CLIENT_SECRET: str = os.getenv("PAYPAL_CLIENT_SECRET", "")
-    PAYPAL_MODE: str = os.getenv("PAYPAL_MODE", "sandbox")
-    PAYPAL_WEBHOOK_ID: str = os.getenv("PAYPAL_WEBHOOK_ID", "")
-
     # Razorpay (India payment gateway)
     RAZORPAY_KEY_ID: str = os.getenv("RAZORPAY_KEY_ID", "")
     RAZORPAY_KEY_SECRET: str = os.getenv("RAZORPAY_KEY_SECRET", "")
@@ -126,12 +120,6 @@ class Settings(BaseSettings):
     RATE_LIMIT_LOGIN_ATTEMPTS: int = 5
     RATE_LIMIT_LOGIN_LOCKOUT: int = 900  # 15 minutes
     
-# Stripe (secondary payment processor)
-    STRIPE_SECRET_KEY: str = os.getenv("STRIPE_SECRET_KEY", "")
-    STRIPE_PUBLISHABLE_KEY: str = os.getenv("STRIPE_PUBLISHABLE_KEY", "")
-    STRIPE_WEBHOOK_SECRET: str = os.getenv("STRIPE_WEBHOOK_SECRET", "")
-    STRIPE_MODE: str = os.getenv("STRIPE_MODE", "sandbox")
-
     # Referral program
     REFERRAL_REWARD_TYPE: str = os.getenv("REFERRAL_REWARD_TYPE", "days")  # "days" or "percent"
     REFERRAL_REWARD_VALUE: int = int(os.getenv("REFERRAL_REWARD_VALUE", "30"))  # days or percent
@@ -232,20 +220,36 @@ def get_settings() -> Settings:
     """Get cached Settings instance.
 
     Creates a singleton Settings object using lru_cache so environment variables
-    are read only once per process. If JWT_SECRET is missing, generates an
-    ephemeral secret and logs a warning (sessions are invalidated on restart).
+    are read only once per process. In production, required secrets must be set
+    or startup will fail fast.
 
     Returns:
         Settings: Cached application settings instance.
     """
     settings = Settings()
 
-    if not settings.JWT_SECRET:
+    if os.getenv("ENVIRONMENT", "development") == "production":
+        missing = []
+        if not settings.MONGODB_URL or "localhost" in settings.MONGODB_URL:
+            missing.append("MONGODB_URL")
+        if not settings.JWT_SECRET:
+            missing.append("JWT_SECRET")
+        if not settings.OPENROUTER_API_KEY:
+            missing.append("OPENROUTER_API_KEY")
+        if not settings.RAZORPAY_KEY_SECRET:
+            missing.append("RAZORPAY_KEY_SECRET")
+        if missing:
+            raise RuntimeError(
+                f"Production startup failed: missing required environment variables: {', '.join(missing)}. "
+                "Set these variables before starting the server."
+            )
+    else:
         import logging
-        logging.getLogger(__name__).warning(
-            "JWT_SECRET is not set. Generating an ephemeral secret — "
-            "sessions will be invalidated on every restart. Set JWT_SECRET in .env for production."
-        )
-        settings.JWT_SECRET = secrets.token_urlsafe(64)
+        if not settings.JWT_SECRET:
+            logging.getLogger(__name__).warning(
+                "JWT_SECRET is not set. Generating an ephemeral secret — "
+                "sessions will be invalidated on every restart. Set JWT_SECRET in .env for production."
+            )
+            settings.JWT_SECRET = secrets.token_urlsafe(64)
 
     return settings
