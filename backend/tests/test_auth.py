@@ -1,7 +1,6 @@
 """Tests for authentication routes."""
 
 import pytest
-import jwt
 from datetime import datetime, timezone, timedelta
 from bson import ObjectId
 from httpx import AsyncClient, ASGITransport
@@ -34,18 +33,6 @@ async def clean_db():
         await users_collection().delete_many({"email": "test@example.com"})
     except Exception:
         pass
-
-
-def _make_refresh_token(user_id: str, jti: str) -> str:
-    expire = datetime.now(timezone.utc) + timedelta(days=settings.JWT_REFRESH_EXPIRY_DAYS)
-    payload = {
-        "user_id": user_id,
-        "exp": expire,
-        "iat": datetime.now(timezone.utc),
-        "type": "refresh",
-        "jti": jti,
-    }
-    return jwt.encode(payload, settings.JWT_SECRET, algorithm=settings.JWT_ALGORITHM)
 
 
 def _db_available() -> bool:
