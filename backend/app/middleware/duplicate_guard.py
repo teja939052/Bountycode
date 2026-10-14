@@ -81,6 +81,11 @@ class DuplicateRequestGuard(BaseHTTPMiddleware):
         if path.startswith("/api/v1/analytics/track") or path.startswith("/api/v1/debug/log"):
             return await call_next(request)
 
+        # Webhooks are idempotent-safe by design and must not be blocked by
+        # the duplicate guard; the route itself handles event-id deduplication.
+        if path.startswith("/api/v1/billing/webhook"):
+            return await call_next(request)
+
         # Auth endpoints are idempotent-safe: repeat register/login within the
         # window is a normal retry, not a double-click, and double-submitting
         # already returns a proper 400/401 from the route itself.
@@ -89,9 +94,17 @@ class DuplicateRequestGuard(BaseHTTPMiddleware):
 
         body = await request.body()
         client_ip = request.client.host if request.client else "unknown"
-        request_id = getattr(request.state, "request_id", None) or ""
+        # Identity component: this middleware runs BEFORE RequestIdMiddleware
+        # (Starlette applies last-added outermost), so request.state.request_id
+        # is always unset here — a "request_id" in the key would be dead code.
+        # Worse, hashing only ip+path+body false-positives on shared NATs
+        # (two users, same answer text, same 2s window). Key on the caller's
+        # credential instead: same user double-click -> same key (blocked);
+        # different users -> different keys (allowed).
+        auth_token = request.cookies.get("pp_token") or request.headers.get("authorization") or ""
+        identity = hashlib.sha256(auth_token.encode()).hexdigest()[:16] if auth_token else "anon"
         key = hashlib.sha256(
-            f"{client_ip}:{path}:{request_id}:{body[:2048]}".encode()
+            f"{identity}:{client_ip}:{path}:{body[:2048]}".encode()
         ).hexdigest()
 
         now = time.time()
