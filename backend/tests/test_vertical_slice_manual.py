@@ -26,6 +26,46 @@ SEARCHLANDS_CODES = {
 }
 
 
+def _pass_required_steps(client, token: str, world_id: str, level_id: str):
+    """Drive every gradable step through /attempt so /complete's evidence gate opens."""
+    from app.data.worlds_data import WORLD_REGISTRY
+    from app.routes.worlds import _required_steps
+
+    world = WORLD_REGISTRY[world_id]
+    lvl = next(l for t in world.towns for l in t.levels if l.id == level_id)
+    headers = {"Authorization": f"Bearer {token}"}
+    for step_type in _required_steps(lvl):
+        if step_type == "predict":
+            code = lvl.predict.answer
+        elif step_type == "manipulate":
+            m = getattr(lvl.manipulate, "answer", "")
+            code = m if isinstance(m, str) else str(m)
+        elif step_type == "retrieval":
+            code = lvl.retrieval.answer
+        elif step_type == "transfer":
+            code = lvl.transfer.answer
+        elif step_type == "break_step":
+            code = str(lvl.break_step.expected_failure)
+        else:
+            code = lvl.debug.answer
+        r = client.post(
+            f"/api/v1/worlds/{world_id}/levels/{level_id}/attempt",
+            headers=headers,
+            json={"code": code, "language": "python", "time_spent_seconds": 5, "step_type": step_type},
+        )
+        assert r.status_code == 200, f"{world_id}/{level_id}/{step_type}: {r.text}"
+        assert r.json().get("passed") is True, f"{world_id}/{level_id}/{step_type}: {r.text}"
+
+
+def _complete_level(client, token: str, world_id: str, level_id: str, code: str):
+    _pass_required_steps(client, token, world_id, level_id)
+    return client.post(
+        f"/api/v1/worlds/{world_id}/levels/{level_id}/complete",
+        headers={"Authorization": f"Bearer {token}"},
+        json={"code": code, "language": "python", "time_spent_seconds": 0},
+    )
+
+
 @pytest.fixture
 async def test_user():
     email = "manual-b1@example.com"
@@ -63,20 +103,12 @@ async def test_user():
 def test_b1_code_step_submission(test_user):
     # Complete foundations first to unlock searchlands
     for lvl_id, code in FOUNDATIONS_CODES.items():
-        r = client.post(
-            f"/api/v1/worlds/foundations/levels/{lvl_id}/complete",
-            headers={"Authorization": f"Bearer {test_user['token']}"},
-            json={"code": code, "language": "python", "time_spent_seconds": 0},
-        )
+        r = _complete_level(client, test_user["token"], "foundations", lvl_id, code)
         assert r.status_code == 200, f"Complete foundations/{lvl_id} failed: {r.text}"
 
     # Complete searchlands linear town to unlock binary town
     for lvl_id, code in SEARCHLANDS_CODES.items():
-        r = client.post(
-            f"/api/v1/worlds/searchlands/levels/{lvl_id}/complete",
-            headers={"Authorization": f"Bearer {test_user['token']}"},
-            json={"code": code, "language": "python", "time_spent_seconds": 0},
-        )
+        r = _complete_level(client, test_user["token"], "searchlands", lvl_id, code)
         assert r.status_code == 200, f"Complete searchlands/{lvl_id} failed: {r.text}"
 
     code = """books = ['Ant','Bear','Cat','Dragon','Eagle','Fox','Goat','Hawk']
@@ -102,19 +134,11 @@ while lo <= hi:
 
 def test_b1_debug_step_submission(test_user):
     for lvl_id, code in FOUNDATIONS_CODES.items():
-        r = client.post(
-            f"/api/v1/worlds/foundations/levels/{lvl_id}/complete",
-            headers={"Authorization": f"Bearer {test_user['token']}"},
-            json={"code": code, "language": "python", "time_spent_seconds": 0},
-        )
+        r = _complete_level(client, test_user["token"], "foundations", lvl_id, code)
         assert r.status_code == 200, f"Complete foundations/{lvl_id} failed: {r.text}"
 
     for lvl_id, code in SEARCHLANDS_CODES.items():
-        r = client.post(
-            f"/api/v1/worlds/searchlands/levels/{lvl_id}/complete",
-            headers={"Authorization": f"Bearer {test_user['token']}"},
-            json={"code": code, "language": "python", "time_spent_seconds": 0},
-        )
+        r = _complete_level(client, test_user["token"], "searchlands", lvl_id, code)
         assert r.status_code == 200, f"Complete searchlands/{lvl_id} failed: {r.text}"
 
     answer = """lo, hi = 0, len(books)-1
