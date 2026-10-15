@@ -91,6 +91,36 @@ def _auth(token: str):
     return {"Authorization": f"Bearer {token}"}
 
 
+async def _pass_required_steps(client, token: str, world_id: str, level_id: str):
+    """Drive every gradable step through /attempt so /complete's evidence gate opens."""
+    from app.data.worlds_data import WORLD_REGISTRY
+    from app.routes.worlds import _required_steps
+
+    world = WORLD_REGISTRY[world_id]
+    lvl = next(l for t in world.towns for l in t.levels if l.id == level_id)
+    for step_type in _required_steps(lvl):
+        if step_type == "predict":
+            code = lvl.predict.answer
+        elif step_type == "manipulate":
+            m = getattr(lvl.manipulate, "answer", "")
+            code = m if isinstance(m, str) else str(m)
+        elif step_type == "retrieval":
+            code = lvl.retrieval.answer
+        elif step_type == "transfer":
+            code = lvl.transfer.answer
+        elif step_type == "break_step":
+            code = str(lvl.break_step.expected_failure)
+        else:
+            code = lvl.debug.answer
+        r = await client.post(
+            f"/api/v1/worlds/{world_id}/levels/{level_id}/attempt",
+            headers=_auth(token),
+            json={"code": code, "language": "python", "time_spent_seconds": 5, "step_type": step_type},
+        )
+        assert r.status_code == 200, f"{world_id}/{level_id}/{step_type}: {r.text}"
+        assert r.json().get("passed") is True, f"{world_id}/{level_id}/{step_type}: {r.text}"
+
+
 @needs_db
 async def test_engine_outage_loses_nothing(client, test_user, monkeypatch):
     """Forced engine failure on worlds complete: entry saved + flagged."""
@@ -99,8 +129,9 @@ async def test_engine_outage_loses_nothing(client, test_user, monkeypatch):
     async def _boom(*a, **k):
         raise RuntimeError("simulated engine outage")
 
-    monkeypatch.setattr(worlds, "_award_xp", _boom)
     token, uid = test_user["token"], test_user["user_id"]
+    await _pass_required_steps(client, token, "foundations", "level-1")
+    monkeypatch.setattr(worlds, "_award_xp", _boom)
     r = await client.post(
         "/api/v1/worlds/foundations/levels/level-1/complete",
         headers=_auth(token),
