@@ -25,6 +25,15 @@ dmypy.json
 *.seed
 *.pid.lock
 
+# Repo hygiene (root sweep 2026-10-26)
+*.zip
+Screenshot*.png
+screenshot*.png
+all_files.txt
+*_output.txt
+question_*_report.json
+question_*_report.md
+
 # Python packaging
 *.egg-info/
 dist/
