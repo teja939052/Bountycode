@@ -2,15 +2,18 @@
 
 ## Source of Truth (binding)
 
-Read `docs/BOUNTYCODE_VISION_LOCK.md` and `docs/PRD_SERVICE_BASED_V1.md` before making product or architecture decisions.
+The user's learning-system prompt is the source of truth — not the old
+strategy docs. The product is a personal programming training game
+("I don't know how to code" → "I can solve independently" → "I can
+perform in a placement assessment"), built as experiences, not pages:
 
-Do not contradict them silently.
-Do not create alternative launch dates, product names, positioning, or competing strategic priorities.
+ENTRY → DIAGNOSTIC → GOAL → PERSONAL BLUEPRINT → TODAY → MISSION →
+PRACTICE → ASSESSMENT → FEEDBACK → REPAIR → MASTERY → NEXT
 
-If implementation reality conflicts with these documents:
-1. report the conflict,
-2. show the evidence,
-3. stop before making a strategic change.
+`docs/BOUNTYCODE_VISION_LOCK.md` and `docs/PRD_SERVICE_BASED_V1.md` are
+retired (moved to `archive/superseded-2026-09-24/`, git history preserved).
+Do not follow them. Do not reintroduce their scope (6-world cuts, competing
+positioning, catalogue-style IA) unless the user explicitly asks.
 
 ## Architecture Guidelines
 
@@ -635,7 +638,7 @@ Landing hero composition rules (locked): ONE navbar only — the global `Navbar`
 ### P1 — HIGH (Remaining)
 - [ ] `ai.py` is large — violates SRP, should be split by domain (partially done with ai_*.py modules)
 - [ ] Frontend is JavaScript/TSX — no strict TypeScript typing on all components
-- [ ] Question bank trust gate: only ~173/6389 questions are independently verified; rest must be repaired or quarantined
+- [ ] Question bank trust gate: automated verification runs at startup and quarantines failures; serving only returns `verified`/`reviewed` content. The current bottleneck is human-review throughput for promotion to `verified`, not a missing verification system.
 
 ### P2 — MEDIUM (Remaining)
 - [ ] No API versioning at the app level — individual route files use `/api/v1/` prefix

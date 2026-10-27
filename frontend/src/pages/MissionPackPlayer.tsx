@@ -168,8 +168,8 @@ export default function MissionPackPlayer() {
       <div className="flex min-h-screen items-center justify-center px-4">
         <div className="text-center">
           <p className="font-bold text-text-primary">Failed to load mission pack</p>
-          <Link to="/journey" className="btn-primary mt-4 inline-block text-sm">
-            Back to Journey
+          <Link to="/curriculum" className="btn-primary mt-4 inline-block text-sm">
+            Back to Curriculum
           </Link>
         </div>
       </div>
@@ -190,8 +190,8 @@ export default function MissionPackPlayer() {
           <p className="text-2xl font-bold text-emerald-700 mt-2">💎 {diamondsEarned} Diamonds</p>
           <p className="text-sm text-text-muted mt-1">Diamonds earned</p>
           <div className="mt-4 flex justify-center gap-3">
-            <Link to="/journey" className="btn-primary text-sm">
-              Back to Journey
+            <Link to="/curriculum" className="btn-primary text-sm">
+              Back to Curriculum
             </Link>
             <Link to={`/mission/${packId}`} className="btn-secondary text-sm">
               Review Pack
@@ -206,7 +206,7 @@ export default function MissionPackPlayer() {
     <div className="min-h-screen bg-base px-4 pb-32 pt-4 md:pb-16">
       <div className="mx-auto w-full max-w-2xl space-y-4">
         <div className="flex items-center justify-between gap-2">
-          <Link to="/journey" className="inline-flex min-h-[44px] items-center gap-1 font-mono text-xs text-text-muted">
+          <Link to="/curriculum" className="inline-flex min-h-[44px] items-center gap-1 font-mono text-xs text-text-muted">
             <ArrowLeft size={14} /> Journey
           </Link>
           <div className="flex items-center gap-3">

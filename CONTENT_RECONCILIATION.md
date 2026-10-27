@@ -26,20 +26,20 @@
 ```
 question_store.load_all()
   ├── EXTRA_BANKS (verified-only)
-  │   ├── verified_placement_questions.json  254 questions
-  │   ├── sql_practice_bank.json             54 questions
-  │   ├── interview_practice_bank.json       100 questions
-  │   ├── india_placement_depth.json         85 questions
+  │   ├── verified_placement_questions.json  271 questions
+  │   ├── sql_practice_bank.json             60 questions
+  │   ├── interview_practice_bank.json       105 questions
+  │   ├── india_placement_depth.json         87 questions
   │   └── promoted_questions.json            21 questions
   ├── AUTO_CHECKED_BANKS
   │   └── llm_draft_checked.json             7,917 questions
-  ├── _dedupe_and_filter()                   → 8,431 questions (6.7% dupes collapsed)
+  ├── _dedupe_and_filter()                   → 8,461 questions (6.7% dupes collapsed)
   ├── _apply_leetcode_meta()                 → 0 additional (no LeetCode meta loaded)
-  └── _expand_questions()                    → 8,431 (QUESTION_VARIANTS = 0)
+  └── _expand_questions()                    → 8,461 (QUESTION_VARIANTS = 0)
 ```
 
-**Total raw before dedupe: 8,431**
-**Total after dedupe: 8,431**
+**Total raw before dedupe: 8,461**
+**Total after dedupe: 8,461**
 **Duplication rate: 6.7%** (566 duplicate texts collapsed)
 
 ### Admin/Candidate Pool (`load_unverified()`)
@@ -64,20 +64,20 @@ question_store.load_unverified()
 
 ### 1. Exact Number of Served Questions
 
-**8,431** (after dedupe, before expansion)
+**8,461** (after dedupe, before trust filtering)
 
 ### 2. Exact Number by Trust Status
 
 | Trust Status | Count | Percentage |
 |--------------|-------|------------|
-| `automated_checked` | 7,917 | 94% |
+| `automated_checked` | 7,917 | 93% |
 | `verified` | 493 | 6% |
 | `reviewed` | 21 | <1% |
-| **Total** | **8,431** | **100%** |
+| **Total** | **8,461** | **100%** |
 
 ### 3. Exact Number of Genuinely Unique Questions (after dedupe)
 
-**8,431 total, 7,865 unique texts**
+**8,461 total, 7,865 unique texts**
 Duplication rate: **6.7%** (566 questions are text-duplicates of others)
 
 ### 4. Exact Number of Near-Duplicate Families
@@ -94,7 +94,7 @@ Not computed in this pass. The 6.7% duplication is from `_dedupe_and_filter()` c
 
 ### 7. Exact Number of Behavioral/Interview Problems
 
-**29 behavioral + 100 interview = 129** (1.5% of serving pool)
+**29 behavioral + 105 interview = 134** (1.6% of serving pool)
 
 ### 8. Exact Number of System Design Problems
 
@@ -147,7 +147,7 @@ The actual serving pool is dominated by `llm_draft_checked.json` (7,917 question
 | Logical Reasoning | 779 | 9% | Good coverage |
 | Verbal Ability | 367 | 4% | Moderate coverage |
 | CS Fundamentals | 193 | 2% | Basic coverage |
-| Interview/Behavioral | 129 | 1.5% | ⚠️ Thin — 29 behavioral + 100 interview |
+| Interview/Behavioral | 134 | 1.6% | ⚠️ Thin — 29 behavioral + 105 interview |
 | System Design | 0 | 0% | ❌ Missing |
 | Debugging | 0 | 0% | ❌ Missing |
 
@@ -155,7 +155,7 @@ The actual serving pool is dominated by `llm_draft_checked.json` (7,917 question
 
 ## Pedagogical Depth in Served Pool
 
-### llm_draft_checked.json (7,917 questions, 94% of pool)
+### llm_draft_checked.json (7,917 questions, 94% of in-memory pool, 0% of served pool)
 
 | Feature | Coverage |
 |---------|----------|
@@ -167,7 +167,9 @@ The actual serving pool is dominated by `llm_draft_checked.json` (7,917 question
 | Common traps | Unknown |
 | Reasoning steps | Unknown |
 
-### Verified bank (493 questions, 6% of pool)
+**Note:** These questions are loaded into memory for verification and admin use, but `_is_servable()` quarantines `automated_checked` content from student-facing flows. Only verified/reviewed questions are served.
+
+### Verified bank (544 questions, 6% of pool)
 
 | Feature | Coverage |
 |---------|----------|
@@ -185,13 +187,15 @@ The actual serving pool is dominated by `llm_draft_checked.json` (7,917 question
 
 | Metric | Authoritative Number |
 |--------|---------------------|
-| **Served total** | **8,431** |
+| **In-memory pool total** | **8,461** (after dedupe, before trust filtering) |
 | **Genuinely unique** | **7,865** (6.7% duplication) |
-| **Machine-checked** | **7,917** (`automated_checked` — solutions executed against tests) |
-| **Human-reviewed** | **21** (`reviewed` — explicit human curation) |
-| **Verified (independent)** | **493** (`verified` — independent correct answers/tests) |
+| **Actually served to students** | **~544** (`verified` + `reviewed` only — `automated_checked` is quarantined by `_is_servable()`) |
+| **Machine-checked (not served)** | **7,917** (`automated_checked` — solutions executed against tests, but quarantined from student-facing flows) |
+| **Human-reviewed** | **21** (`reviewed`) |
+| **Verified (independent)** | **493** (`verified`) |
 | **SQL** | **890** |
 | **Behavioral** | **29** |
+| **Interview** | **105** |
 | **System Design** | **0** |
 | **Debugging** | **0** |
 
@@ -199,22 +203,15 @@ The actual serving pool is dominated by `llm_draft_checked.json` (7,917 question
 
 ## What This Means
 
-**The 7,783/8,431 number is correct.** The ~355 number is an artifact of auditing the wrong files.
+**The in-memory pool is 8,431, but only ~514 are actually served to students.** The `_is_servable()` gate restricts serving to `verified` and `reviewed` questions only. The 7,917 `automated_checked` questions are loaded into memory for verification and admin use, but quarantined from student-facing flows. The ~355 number audited by Agent B was indeed a subset, but the deeper issue is that the dominant `llm_draft_checked.json` bank has not passed the human-review promotion gate.
 
-**However, the depth audit's qualitative findings remain valid:**
-- System design is absent
-- Debugging is absent
-- Behavioral is thin (29 questions)
-- Explanations are sparse in verified bank (17%)
-- The llm_draft_checked bank dominates (94%) with `automated_checked` trust, not `verified`
-
-**The product is not a fraud.** It has 8,431 served questions with 7,865 unique texts. That is a real question bank.
+**The product is not a fraud.** It has a real trust-gated serving layer: automated verification runs at startup, quarantines failures, and only verified/reviewed content reaches students.
 
 **But it is not deep in the ways that matter for ₹399:**
 - No debugging layer
 - No system design
 - Thin behavioral
-- Most questions are `automated_checked`, not independently verified
-- Pedagogical scaffolding (explanations, hints, traps) is inconsistent
+- The verified/reviewed pool is small (~514 questions) — the bottleneck is human-review throughput, not missing verification infrastructure
+- Pedagogical scaffolding (explanations, hints, traps) is inconsistent in the verified pool
 
-**The correct next step is depth prioritization, not panic.**
+**The correct next step is human-review throughput and depth prioritization, not panic.**

@@ -7,7 +7,7 @@ import { useDailyChallenge } from "../hooks/useDailyChallenge";
 import {
   Flame, Trophy, Target, CheckCircle2, Circle, Star, Zap,
   ArrowRight, CalendarDays, Medal, Sparkles, BookOpen,
-  Brain, MessageSquareText, Swords, Gift, Clock,
+  Brain, MessageSquareText, Gift, Clock,
   ChevronRight, User, Gamepad2,
 } from "lucide-react";
 import StaggerContainer, { StaggerItem } from "../components/motion/StaggerContainer";
@@ -39,7 +39,7 @@ function formatCountdown(ms) {
 export default function DailyChallenge() {
   const { user } = useAuthStore();
   const reduced = useReducedMotion();
-  const { status, progress, leaderboard, today: todayData, enrollMutation, completeDayMutation, isLoading, isError, refetch } = useDailyChallenge();
+  const { status, progress, today: todayData, enrollMutation, completeDayMutation, isLoading, isError, refetch } = useDailyChallenge();
 
   const [showEnrollModal, setShowEnrollModal] = useState(false);
   const [selectedPath, setSelectedPath] = useState("general");
@@ -432,7 +432,6 @@ export default function DailyChallenge() {
           {[
             { id: "today", label: "Today's Quest", icon: Target },
             { id: "progress", label: "Progress", icon: CalendarDays },
-            { id: "leaderboard", label: "Leaderboard", icon: Swords },
           ].map((tab) => {
             const Icon = tab.icon;
             return (
@@ -474,10 +473,6 @@ export default function DailyChallenge() {
 
             {activeTab === "progress" && (
               <ProgressTab progress={progress} reduced={reduced} />
-            )}
-
-            {activeTab === "leaderboard" && (
-              <LeaderboardTab leaderboard={leaderboard} reduced={reduced} />
             )}
           </div>
 
@@ -720,60 +715,6 @@ function ProgressTab({ progress, reduced }) {
           </div>
         ))}
       </div>
-    </div>
-  );
-}
-
-function LeaderboardTab({ leaderboard, reduced }) {
-  const entries = leaderboard?.leaderboard || [];
-
-  return (
-    <div className="card p-6 border border-default">
-      <h3 className="font-display font-bold text-primary mb-4 flex items-center gap-2">
-        <Swords size={18} className="text-accent-coral" />
-        Challenge Leaderboard
-      </h3>
-      {entries.length === 0 ? (
-        <p className="text-secondary text-sm">No participants yet. Be the first!</p>
-      ) : (
-        <div className="space-y-2">
-          {entries.map((entry, i) => (
-            <div
-              key={entry._id || i}
-              className={`flex items-center gap-3 p-3 rounded-xl border ${
-                i === 0 ? "bg-accent-warm/10 border-accent-warm/20" :
-                i === 1 ? "bg-card border-default" :
-                i === 2 ? "bg-accent-warm/5 border-accent-warm/10" :
-                "border-default"
-              }`}
-            >
-              <span className={`w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold font-mono ${
-                i === 0 ? "bg-accent-warm text-white" :
-                i === 1 ? "bg-gray-400 text-white" :
-                i === 2 ? "bg-orange-400 text-white" :
-                "bg-card text-muted"
-              }`}>
-                {i + 1}
-              </span>
-              <div className="flex-1 min-w-0">
-                <p className="font-medium text-primary truncate">{entry.user_name || "Anonymous"}</p>
-                <p className="text-xs text-secondary">Day {entry.current_day || 1} · {entry.completed_days || 0}/30</p>
-              </div>
-              <div className="text-right">
-                <p className="font-mono font-bold text-accent-warm">{entry.total_xp_earned || 0}</p>
-                <p className="text-[10px] text-secondary">Diamonds</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-      {leaderboard?.user_rank && (
-        <div className="mt-4 pt-4 border-t border-default text-center">
-          <p className="text-sm text-secondary">
-            Your Rank: <span className="font-bold text-accent-primary">#{leaderboard.user_rank}</span> of {leaderboard.total_participants || 0}
-          </p>
-        </div>
-      )}
     </div>
   );
 }

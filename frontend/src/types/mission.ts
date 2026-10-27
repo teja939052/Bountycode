@@ -110,16 +110,16 @@ export function missionFromJourneyNext(next: Record<string, unknown> | null | un
   const level = str(n["level"]) || str(n["target_level"]);
   const skillId = str(n["skill_id"]) || str(n["canonical_skill"]);
 
-  let to = "/practice";
+  let to = "/question-bank";
   let toLabel = "Open practice";
   if (kind === "lesson" && level) {
-    to = `/lesson/${encodeURIComponent(level)}`;
-    toLabel = "Open lesson";
+    to = "/placement";
+    toLabel = "Start today's lesson";
   } else if (kind === "repair" && skillId) {
     to = `/mission/retest:${encodeURIComponent(skillId)}`;
     toLabel = "Start repair retest";
   } else if (kind === "review") {
-    to = "/skills";
+    to = "/placement";
     toLabel = "Review due cards";
   } else if (kind === "assessment") {
     to = "/mock-oa";
@@ -128,8 +128,8 @@ export function missionFromJourneyNext(next: Record<string, unknown> | null | un
     to = "/interview";
     toLabel = "Start interview";
   } else if (world && town && level) {
-    to = "/journey";
-    toLabel = "Open in Journey map";
+    to = "/curriculum";
+    toLabel = "Open in Curriculum";
   }
 
   return {
@@ -158,7 +158,7 @@ export function missionFromRepairMission(m: Record<string, unknown>): Mission {
     description: str(m["description"], "Targeted repair, then a verified retest to prove it."),
     skill_id: skill || undefined,
     estimated_minutes: 20,
-    to: skill ? `/mission/retest:${encodeURIComponent(skill)}` : "/skills",
+    to: skill ? `/mission/retest:${encodeURIComponent(skill)}` : "/profile",
     to_label: "Start repair retest",
     status: "available",
   };
@@ -183,14 +183,14 @@ export function stepsForMission(mission: Mission): MissionStep[] {
     case "repair":
     case "retest":
       return [
-        { type: "recognize", label: "Diagnose", detail: "See exactly which sub-skill failed.", to: "/skills", to_label: "View diagnosis" },
+        { type: "recognize", label: "Diagnose", detail: "See exactly which sub-skill failed.", to: "/profile", to_label: "View diagnosis" },
         { type: "build", label: "Repair", detail: "3 targeted exercises on the weakness.", to: mission.to, to_label: mission.to_label },
         { type: "prove", label: "Retest", detail: "Verified-only retest, ≥80% to advance.", to: mission.to, to_label: mission.to_label },
       ];
     case "assessment":
       return [
         { type: "build", label: "Attempt", detail: "Timed, server-authoritative sections.", to: mission.to, to_label: mission.to_label },
-        { type: "prove", label: "Diagnosis", detail: "Scorecard → weakness → repair path.", to: "/skills", to_label: "View results" },
+        { type: "prove", label: "Diagnosis", detail: "Scorecard → weakness → repair path.", to: "/profile", to_label: "View results" },
       ];
     case "interview":
       return [
@@ -205,7 +205,7 @@ export function stepsForMission(mission: Mission): MissionStep[] {
     default:
       return [
         { type: "practice", label: "Practice", detail: "Unordered reps on this pattern.", to: mission.to, to_label: mission.to_label },
-        { type: "prove", label: "Prove", detail: "Show mastery, move the needle.", to: "/skills", to_label: "Check mastery" },
+        { type: "prove", label: "Prove", detail: "Show mastery, move the needle.", to: "/profile", to_label: "Check mastery" },
       ];
   }
 }

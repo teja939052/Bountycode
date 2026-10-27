@@ -73,10 +73,10 @@ export default class FeatureErrorBoundary extends Component<
                 Try again
               </button>
               <Link
-                to="/dashboard"
+                to="/placement"
                 className="inline-flex items-center justify-center gap-2 rounded-xl border border-brand-primary/20 bg-brand-primary/5 px-5 py-2.5 text-sm font-bold text-brand-primary hover:bg-brand-primary/10 transition-colors"
               >
-                Go to dashboard
+                Return to Today
               </Link>
             </div>
 

@@ -426,46 +426,7 @@ async def get_today_recommendations(user_id: str, company: str) -> Dict[str, Any
         })
         total_minutes += 12
 
-    # 2. Next pattern to learn (from study engine's next mission)
-    next_mission = plan.get("next")
-    if next_mission and len(recommendations) < 3:
-        topic = (next_mission.get("topic") or next_mission.get("skill") or "").lower()
-        if topic:
-            recommendations.append({
-                "id": f"learn-{topic}",
-                "type": "learn",
-                "priority": 2,
-                "title": next_mission.get("title", "Next Mission"),
-                "subtitle": next_mission.get("reason") or "Continue your progression",
-                "emoji": "📚",
-                "estimated_minutes": next_mission.get("estimated_minutes") or 15,
-                "pattern_id": topic,
-                "round_id": _pattern_to_round(topic),
-                "reason": "Builds on what you learned yesterday",
-                "action": "learn",
-            })
-            total_minutes += next_mission.get("estimated_minutes") or 15
-
-    # 3. Daily battle or timed prove
-    daily_battle = plan.get("daily_battle", [])
-    if daily_battle and len(recommendations) < 3:
-        q = daily_battle[0]
-        recommendations.append({
-            "id": f"battle-{q.get('id', 'daily')}",
-            "type": "battle",
-            "priority": 3,
-            "title": "Daily Battle",
-            "subtitle": f"{q.get('topic', 'Mixed')} — timed questions",
-            "emoji": "⚔️",
-            "estimated_minutes": q.get("estimated_minutes") or 15,
-            "pattern_id": q.get("topic", ""),
-            "round_id": _pattern_to_round(q.get("topic", "")),
-            "reason": "Prove your skills under time pressure",
-            "action": "test",
-        })
-        total_minutes += q.get("estimated_minutes") or 15
-
-    # Fallback: if fewer than 3, add practice/review
+    # 2. Overdue SRS review (keep prior learning from fading)
     if len(recommendations) < 3:
         reviews = plan.get("reviews", [])
         if reviews:
@@ -485,6 +446,46 @@ async def get_today_recommendations(user_id: str, company: str) -> Dict[str, Any
             })
             total_minutes += r.get("estimated_minutes") or 8
 
+    # 3. Next pattern to learn (from study engine's next mission)
+    next_mission = plan.get("next")
+    if next_mission and len(recommendations) < 3:
+        topic = (next_mission.get("topic") or next_mission.get("skill") or "").lower()
+        if topic:
+            recommendations.append({
+                "id": f"learn-{topic}",
+                "type": "learn",
+                "priority": 3,
+                "title": next_mission.get("title", "Next Mission"),
+                "subtitle": next_mission.get("reason") or "Continue your progression",
+                "emoji": "📚",
+                "estimated_minutes": next_mission.get("estimated_minutes") or 15,
+                "pattern_id": topic,
+                "round_id": _pattern_to_round(topic),
+                "reason": "Builds on what you learned yesterday",
+                "action": "learn",
+            })
+            total_minutes += next_mission.get("estimated_minutes") or 15
+
+    # 4. Daily battle or timed prove
+    daily_battle = plan.get("daily_battle", [])
+    if daily_battle and len(recommendations) < 3:
+        q = daily_battle[0]
+        recommendations.append({
+            "id": f"battle-{q.get('id', 'daily')}",
+            "type": "battle",
+            "priority": 4,
+            "title": "Daily Battle",
+            "subtitle": f"{q.get('topic', 'Mixed')} — timed questions",
+            "emoji": "⚔️",
+            "estimated_minutes": q.get("estimated_minutes") or 15,
+            "pattern_id": q.get("topic", ""),
+            "round_id": _pattern_to_round(q.get("topic", "")),
+            "reason": "Prove your skills under time pressure",
+            "action": "test",
+        })
+        total_minutes += q.get("estimated_minutes") or 15
+
+    # Fallback: if fewer than 3, add weak-area practice
     if len(recommendations) < 3:
         practice = plan.get("practice", [])
         if practice:

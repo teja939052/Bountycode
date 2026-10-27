@@ -1,13 +1,13 @@
 {
   "domain": "coding",
   "level": "foundations:level-1",
-  "started_at": "2026-10-02T06:33:43.557638+00:00",
+  "started_at": "2026-10-15T04:42:34.375820+00:00",
   "steps": [
     {
       "phase": "start",
       "status": 200,
       "body": {
-        "session_id": "lesson:coding:5901d1690221",
+        "session_id": "lesson:coding:ce1e1eb45d38",
         "domain": "coding",
         "current_step": 0,
         "total_steps": 9,
@@ -70,7 +70,7 @@
       "phase": "submit_discover",
       "status": 200,
       "body": {
-        "session_id": "lesson:coding:5901d1690221",
+        "session_id": "lesson:coding:ce1e1eb45d38",
         "passed": true,
         "score": 100.0,
         "message": "The crate now glows: \ud83c\udf4e Apples: 5 \u2014 the villagers cheer!",
@@ -135,7 +135,7 @@
       "phase": "submit_understand",
       "status": 200,
       "body": {
-        "session_id": "lesson:coding:5901d1690221",
+        "session_id": "lesson:coding:ce1e1eb45d38",
         "passed": false,
         "score": 0.0,
         "message": "Write some code to try!",
@@ -200,7 +200,7 @@
       "phase": "submit_manipulate",
       "status": 200,
       "body": {
-        "session_id": "lesson:coding:5901d1690221",
+        "session_id": "lesson:coding:ce1e1eb45d38",
         "passed": true,
         "score": 100.0,
         "message": "Give the box the name apples and put 5 inside.",
@@ -264,7 +264,7 @@
       "phase": "submit_predict",
       "status": 200,
       "body": {
-        "session_id": "lesson:coding:5901d1690221",
+        "session_id": "lesson:coding:ce1e1eb45d38",
         "passed": true,
         "score": 100.0,
         "message": "print() shows what is in the box RIGHT NOW. The box changes after the second line.",
@@ -329,7 +329,7 @@
       "phase": "submit_build",
       "status": 200,
       "body": {
-        "session_id": "lesson:coding:5901d1690221",
+        "session_id": "lesson:coding:ce1e1eb45d38",
         "passed": true,
         "score": 100.0,
         "message": "The crate now glows: \ud83c\udf4e Apples: 5 \u2014 the villagers cheer!",
@@ -398,7 +398,7 @@
       "phase": "submit_break_step",
       "status": 200,
       "body": {
-        "session_id": "lesson:coding:5901d1690221",
+        "session_id": "lesson:coding:ce1e1eb45d38",
         "passed": false,
         "score": 0.0,
         "message": "Not quite. The expected failure is: the second print shows 10, not 5. the student predicted both print 5.. Try again.",
@@ -462,7 +462,7 @@
       "phase": "submit_debug",
       "status": 200,
       "body": {
-        "session_id": "lesson:coding:5901d1690221",
+        "session_id": "lesson:coding:ce1e1eb45d38",
         "passed": true,
         "score": 100.0,
         "message": "Correct! Your program runs and produces the expected output.",
@@ -526,7 +526,7 @@
       "phase": "submit_retrieval",
       "status": 200,
       "body": {
-        "session_id": "lesson:coding:5901d1690221",
+        "session_id": "lesson:coding:ce1e1eb45d38",
         "passed": false,
         "score": 0.0,
         "message": "= is a one-way arrow, not equality.",
@@ -590,7 +590,7 @@
       "phase": "submit_transfer",
       "status": 200,
       "body": {
-        "session_id": "lesson:coding:5901d1690221",
+        "session_id": "lesson:coding:ce1e1eb45d38",
         "passed": true,
         "score": 100.0,
         "message": "",
@@ -610,7 +610,7 @@
       }
     }
   ],
-  "session_id": "lesson:coding:5901d1690221",
+  "session_id": "lesson:coding:ce1e1eb45d38",
   "mastery_unlocked": true,
   "reward": {
     "diamonds": 0,
@@ -618,5 +618,5 @@
     "streak_multiplier": 1.0,
     "critical_hit": false
   },
-  "completed_at": "2026-10-02T06:34:00.252927+00:00"
+  "completed_at": "2026-10-15T04:42:48.262817+00:00"
 }

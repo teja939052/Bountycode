@@ -3,6 +3,7 @@ from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException, Query, Body
 from fastapi.responses import Response
 from app.middleware.auth import get_current_user
+from app.middleware.auth import invalidate_user_cache
 from app.config import get_settings
 from app.services.idempotency import (
     get_idempotency_manager,
@@ -74,13 +75,12 @@ async def set_target_company(
     )
     # Mirror to the users doc: journey_engine and worlds.py read the target
     # from there. Best-effort (no upsert — never mint user docs from here).
-    try:
-        await users_collection.update_one(
-            {"user_id": user["id"]},
-            {"$set": {"target_company": company.lower()}},
-        )
-    except Exception:
-        pass
+    await users_collection.update_one(
+        {"user_id": user["id"]},
+        {"$set": {"target_company": company.lower()}},
+    )
+    # Invalidate user cache so /auth/me immediately reflects the new target.
+    await invalidate_user_cache(user["id"])
     return {"success": True, "target_company": company.lower()}
 
 

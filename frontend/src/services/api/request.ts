@@ -137,7 +137,9 @@ export async function requestWithRetry<T = any>(
   pruneCache();
 
   const headers: Record<string, string> = {
-    "Content-Type": "application/json",
+    // FormData bodies must not send a manual Content-Type — the browser
+    // needs to generate its own multipart boundary.
+    ...(!(options.body instanceof FormData) ? { "Content-Type": "application/json" } : {}),
     ...(options.headers || {}),
   };
 

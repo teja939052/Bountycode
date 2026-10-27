@@ -352,7 +352,7 @@ export default function InterviewSession() {
             <Link to="/interview" className="flex-1 btn-primary text-center flex items-center justify-center gap-2">
               <RotateCcw size={16} /> Engage Again
             </Link>
-            <Link to="/dashboard" className="flex-1 btn-secondary text-center">Command Deck</Link>
+            <Link to="/placement" className="flex-1 btn-secondary text-center">Today</Link>
           </div>
         </div>
       </div>

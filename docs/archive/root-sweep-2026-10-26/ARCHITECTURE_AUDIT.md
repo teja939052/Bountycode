@@ -12,7 +12,7 @@
 | **Journey** | `routes/journey.py` + `pages/JourneyPage.tsx` | Visual world/map/progression/home. Single endpoint `GET /api/v1/journey/state`. |
 | **Study Engine** | `services/study_engine.py` | Decides "what should this student do next". Composes WORLD_REGISTRY + SRS + adaptive + gamification. |
 | **Lesson Engine** | `content/lesson_definitions.py` + `content/world1_foundations.py` + `content/world_registry.py` | Generic teaching algorithm. `LessonDefinition` with `discover → manipulate → predict → build → break → debug → retrieve → transfer → prove`. |
-| **Curriculum** | `content/world_registry.py` + `content/world*.py` | Defines what must be learned. 12 worlds, each with towns + lessons. |
+| **Curriculum** | `data/worlds_data.py` (`WORLD_REGISTRY`) | Defines what must be learned. 6 worlds, each with towns + lessons. (Extra worlds 7–12 + Registry-B merger archived under `backend/archive/extra_worlds/`.) |
 | **Mastery** | `services/mastery_engine.py` | Determines whether something was learned. `SkillMastery`, `MasteryGraph`, `find_weak_areas`. |
 | **SRS** | `services/srs_engine.py` | ONE spaced repetition implementation. `SRSCard`, `get_due_cards`, `update_card`. |
 | **Gamification** | `services/gamification.py` | XP, levels, streaks, coins, bosses, badges, power-ups, leagues, challenges, daily goals. |

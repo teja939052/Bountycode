@@ -91,8 +91,8 @@ export default function AptitudeTest() {
 
   useEffect(() => {
     let cancelled = false;
-    fetch("/api/v1/onboarding/diagnostic/status")
-      .then((res) => res.ok ? res.json() : Promise.reject())
+    api.onboarding
+      .getDiagnosticStatus()
       .then((json) => {
         if (!cancelled && json.completed) {
           setDiagnostic(json);
@@ -214,7 +214,7 @@ export default function AptitudeTest() {
 
           {/* Company mock papers (mass-recruiter exams now live here) */}
           <Link
-            to="/company-mocks"
+            to="/mock-oa"
             className="bounty-card mb-8 flex items-center gap-4 p-4 transition-transform hover:scale-[1.01]"
           >
             <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-ocean/10 text-ocean">
@@ -473,7 +473,7 @@ export default function AptitudeTest() {
             <button onClick={() => { setStep("select"); setResult(null); }} className="flex-1 btn-primary text-center">
               Run Diagnostics Again
             </button>
-            <Link to="/dashboard" className="flex-1 btn-secondary text-center">Command Deck</Link>
+            <Link to="/placement" className="flex-1 btn-secondary text-center">Today</Link>
           </div>
         </div>
       </div>

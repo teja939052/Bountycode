@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Spinner from "../components/ui/Spinner";
+import api from "../services/api";
 import { Mentor, MentorMood } from "../design-system/Mentor";
 
 type DiagnosticQuestion = {
@@ -39,9 +40,7 @@ export default function PlacementDiagnostic() {
     let cancelled = false;
     async function load() {
       try {
-        const res = await fetch("/api/v1/onboarding/diagnostic/start?role=sde");
-        if (!res.ok) throw new Error("Failed");
-        const json = await res.json();
+        const json = await api.onboarding.startDiagnostic("sde");
         if (!cancelled) {
           setState(json);
           setCaptainByte({
@@ -72,14 +71,8 @@ export default function PlacementDiagnostic() {
     if (!state) return;
     setSubmitting(true);
     try {
-      const res = await fetch("/api/v1/onboarding/diagnostic/complete", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ role: "sde", answers }),
-      });
-      if (!res.ok) throw new Error("Failed");
-      const json = await res.json();
-      setResult(json);
+      const json = await api.onboarding.completeDiagnostic({ role: "sde", answers });
+      if (!cancelled) setResult(json);
 
       const dims = json.readiness?.dimensions || [];
       const strengths = dims.filter((d: any) => d.status === "strength");

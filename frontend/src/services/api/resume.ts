@@ -2,7 +2,6 @@
 import {
   requestWithRetry as request,
   requestBlob,
-  API_BASE,
 } from "./request.ts";
 import type { ResumeData, ResumeAnalysis, ATSScoreResponse } from "./types.ts";
 
@@ -11,15 +10,11 @@ export const resumeApi = {
     const formData = new FormData();
     formData.append("file", file);
 
-    return fetch(`${API_BASE}/api/v1/resume/upload`, {
+    // POSTs are never retried inside requestWithRetry, so the upload is safe there.
+    return request("/api/v1/resume/upload", {
       method: "POST",
-      credentials: "include",
       body: formData,
-    }).then((r) => {
-      if (r.status === 401) throw new Error("Session expired");
-      if (!r.ok) throw new Error("Upload failed");
-      return r.json();
-    });
+    }) as Promise<ResumeAnalysis>;
   },
 
   generateResume(details: Record<string, unknown>): Promise<ResumeData> {

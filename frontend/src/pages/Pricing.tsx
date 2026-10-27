@@ -468,7 +468,7 @@ export default function Pricing() {
               <button
                 onClick={() => {
                   if (plan.id === "free") {
-                     navigate(user ? "/journey" : "/register");
+                     navigate(user ? "/curriculum" : "/register");
                   } else if (plan.id === "enterprise") {
                     window.location.href =
                       "mailto:support@BountyCode.com?subject=Enterprise%20plan%20inquiry";

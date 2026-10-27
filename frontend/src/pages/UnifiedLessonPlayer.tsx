@@ -397,7 +397,7 @@ export default function UnifiedLessonPlayer() {
     try {
       await lessonApi.completeLessonPlayer(session.session_id);
       // Navigate to results or next mission
-      navigate(`/missions/${domain}`);
+      navigate("/curriculum");
     } catch (e) {
       console.error("Failed to complete session:", e);
     }
@@ -793,10 +793,10 @@ export default function UnifiedLessonPlayer() {
         {/* Header */}
         <div className="flex items-center justify-between gap-2">
           <Link
-            to="/journey"
+            to="/curriculum"
             className="inline-flex min-h-[44px] items-center gap-1 font-mono text-xs text-text-muted"
           >
-            <ArrowLeft size={14} /> Journey
+            <ArrowLeft size={14} /> Curriculum
           </Link>
           <div className="flex items-center gap-3">
             <span className="font-mono text-[11px] text-text-muted">

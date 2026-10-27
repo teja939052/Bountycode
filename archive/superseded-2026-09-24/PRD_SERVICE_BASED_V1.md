@@ -211,8 +211,9 @@ Full quality bar: see `bountycode-gamification-brief.md`. Summary rules:
 - No streak-guilt, no fake scarcity, no paywall on correctness or core feedback.
 - **Do not build:** guilds, cards, seasons, new currencies, more worlds, new achievement
   systems. Explicitly out of scope until content depth (§4.1) is real.
-- 12 worlds / 50 levels is the canonical count — do not reference 16 worlds or 72 levels
-  anywhere; both were confirmed stale/incorrect and fixed.
+- 6 worlds / 32 levels is the canonical count per the Vision Lock (6 worlds for launch,
+  not 12) — do not reference 12 worlds, 16 worlds, 50 levels, or 72 levels anywhere;
+  all were confirmed stale/incorrect and fixed.
 
 ---
 

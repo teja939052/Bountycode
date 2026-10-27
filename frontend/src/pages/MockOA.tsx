@@ -1542,10 +1542,10 @@ export default function MockOA() {
               <Brain size={16} /> Aptitude Test
             </Link>
             <Link
-              to="/dashboard"
+              to="/placement"
               className="flex-1 btn-secondary text-center flex items-center justify-center gap-2"
             >
-              <Trophy size={16} /> Dashboard
+              <Trophy size={16} /> Today
             </Link>
           </motion.div>
         </div>

@@ -377,7 +377,7 @@ export default function LessonPlayer() {
         <p className="text-text-secondary mb-4">
           The lesson "{lessonSlug}" could not be loaded.
         </p>
-        <Link to="/learn" className="text-brand-sky hover:underline">
+        <Link to="/curriculum" className="text-brand-sky hover:underline">
           Back to Learn
         </Link>
       </div>
@@ -398,7 +398,7 @@ export default function LessonPlayer() {
           <p className="text-sm text-text-secondary mb-4">Review the concepts anytime.</p>
           <div className="flex justify-center gap-3">
             <Link
-              to="/learn"
+              to="/curriculum"
               className="rounded-xl border border-white/10 px-4 py-2 text-sm hover:bg-white/5"
             >
               Back to Learn
@@ -1188,7 +1188,7 @@ export default function LessonPlayer() {
 
       <div className="flex justify-center gap-3 mt-6">
         <Link
-          to="/learn"
+          to="/curriculum"
           className="rounded-xl border border-white/10 px-4 py-2 text-sm hover:bg-white/5"
         >
           Back to Learn
@@ -1262,7 +1262,7 @@ export default function LessonPlayer() {
         <div className="flex items-center justify-between mb-2">
           <div>
             <Link
-              to="/learn"
+              to="/curriculum"
               className="text-xs text-text-secondary hover:text-text-primary inline-flex items-center gap-1"
             >
               <ArrowLeft size={12} />

@@ -39,12 +39,13 @@ import {
 import BackgroundSwitcher from "../components/background/BackgroundSwitcher";
 import { useLocation } from "react-router-dom";
 
-/* Unified navigation */
+/* One student journey: Today -> Learn -> Practice -> Assess -> Profile */
 const PRIMARY_LINKS: NavItem[] = [
-  { to: "/learning", label: "Learn", icon: BookOpen },
-  { to: "/placement", label: "Command", icon: ClipboardList },
-  { to: "/battlefield", label: "Battlefield", icon: Target },
-  { to: "/interview", label: "Interview", icon: CalendarDays },
+  { to: "/placement", label: "Today", icon: Compass },
+  { to: "/curriculum", label: "Learn", icon: BookOpen },
+  { to: "/question-bank", label: "Practice", icon: Target },
+  { to: "/mock-oa", label: "Assess", icon: Gauge },
+  { to: "/profile", label: "Profile", icon: User },
 ];
 
 export default function Navbar() {
@@ -66,34 +67,31 @@ export default function Navbar() {
 
   const MORE_GROUPS: NavGroup[] = [
     {
-      label: "Learn",
+      label: "Practice tools",
       items: [
-        { to: "/learning", label: "Learning Hub", icon: BookOpen },
-        { to: "/compiler", label: "Compiler", icon: Code2 },
-      ],
-    },
-    {
-      label: "Practice",
-      items: [
-        { to: "/question-bank", label: "Question Bank", icon: BookOpen },
         { to: "/aptitude", label: "Aptitude", icon: ClipboardList },
         { to: "/coding", label: "Coding Challenge", icon: Code2 },
-        { to: "/mock-oa", label: "Mock OA", icon: ClipboardList },
+        { to: "/daily-challenge", label: "Daily Challenge", icon: Trophy },
       ],
     },
     {
-      label: "Company Prep",
+      label: "Interview & company",
       items: [
         { to: "/battlefield", label: "Battlefield", icon: Target },
         { to: "/interview", label: "Mock Interview", icon: CalendarDays },
       ],
     },
     {
-      label: "Career",
+      label: "Learning tools",
+      items: [
+        { to: "/compiler", label: "Compiler", icon: Code2 },
+      ],
+    },
+    {
+      label: "Career tools",
       items: [
         { to: "/resume", label: "Resume Builder", icon: FileText },
         { to: "/ats", label: "ATS Optimizer", icon: Sparkles },
-        { to: "/daily-challenge", label: "Daily Challenge", icon: Trophy },
       ],
     },
     ...(isAdmin
@@ -163,7 +161,7 @@ export default function Navbar() {
                   </>
                 )}
 
-                <Link to="/arena?random=true" className="ml-2 hidden xl:inline-flex items-center gap-2 rounded-full border border-brand-primary/30 bg-brand-primary/10 px-4 py-2 text-sm font-medium text-brand-primary transition-all hover:bg-brand-primary/20 hover:border-brand-primary/50" aria-label="Quick practice - random challenge">
+                <Link to="/question-bank" className="ml-2 hidden xl:inline-flex items-center gap-2 rounded-full border border-brand-primary/30 bg-brand-primary/10 px-4 py-2 text-sm font-medium text-brand-primary transition-all hover:bg-brand-primary/20 hover:border-brand-primary/50" aria-label="Quick practice">
                   <Sparkles size={14} aria-hidden="true" />
                   Quick Practice
                 </Link>
@@ -193,7 +191,7 @@ export default function Navbar() {
                 <Link to="/login" className="px-3 py-2 text-sm font-medium text-text-muted transition-colors hover:text-text-primary" aria-label="Login">
                   Login
                 </Link>
-                <Link to="/start" className="rounded-xl bg-brand-primary px-5 py-2.5 text-sm font-medium text-text-primary hover:bg-brand-primary/90 transition-colors" aria-label="Start free path">
+                <Link to="/register" className="rounded-xl bg-brand-primary px-5 py-2.5 text-sm font-medium text-text-primary hover:bg-brand-primary/90 transition-colors" aria-label="Start free path">
                   Start Free
                 </Link>
               </>
@@ -254,7 +252,7 @@ export default function Navbar() {
               ) : (
                 <div className="grid gap-2">
                   <MobileLink to="/login" onClick={() => setMobileOpen(false)}>Login</MobileLink>
-                  <MobileLink to="/start" onClick={() => setMobileOpen(false)} primary>
+                  <MobileLink to="/register" onClick={() => setMobileOpen(false)} primary>
                     Start Free
                   </MobileLink>
                 </div>

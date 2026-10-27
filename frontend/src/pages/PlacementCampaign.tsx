@@ -2,14 +2,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import {
-  PlayCircle,
-  ChevronRight,
-  Flame,
-  Target,
-  AlertTriangle,
-  TrendingUp,
-} from "lucide-react";
+import { PlayCircle, ChevronRight, Target } from "lucide-react";
 import Spinner from "../components/ui/Spinner";
 import { Mentor } from "../design-system/Mentor";
 import api from "../services/api";
@@ -51,8 +44,9 @@ type TodayPlan = {
 const ACTION_HREF: Record<string, (r: Recommendation) => string> = {
   repair: (r) => r.pattern_id ? `/pattern/${r.pattern_id}` : "/placement",
   learn: (r) => r.pattern_id ? `/mission/${r.pattern_id}` : "/placement",
+  test: (r) => r.pattern_id ? `/mock-oa?topic=${encodeURIComponent(r.pattern_id)}&mode=pattern` : "/mock-oa",
   battle: (r) => r.pattern_id ? `/mock-oa?topic=${encodeURIComponent(r.pattern_id)}&mode=pattern` : "/mock-oa",
-  review: (r) => "/placement",
+  review: (r) => r.pattern_id ? `/mission/${r.pattern_id}` : "/placement",
   practice: (r) => r.pattern_id ? `/aptitude?category=${encodeURIComponent(r.pattern_id)}` : "/aptitude",
   diagnostic: () => "/diagnostic",
 };
@@ -76,18 +70,13 @@ export default function PlacementCampaign() {
       const data = await api.campaign.getToday();
       setPlan(data);
 
-      const bw = data.biggest_weakness;
-      if (bw) {
-        setCaptain({
-          intro: `🧭 Captain Byte: ${bw.emoji} ${bw.name} at ${bw.mastery}% is your biggest weakness. Today we repair it.`,
-          mood: "encouraging",
-        });
-      } else {
-        setCaptain({
-          intro: `🧭 Captain Byte: ${data.recommendations?.length || 0} missions today. ${data.totals?.estimated_minutes || 0} minutes total. Let's go.`,
-          mood: "briefing",
-        });
-      }
+      const mission = data.recommendations?.[0];
+      setCaptain({
+        intro: mission
+          ? `🧭 Captain Byte: ${mission.reason}`
+          : "🧭 Captain Byte: Set your target and I'll pick today's mission.",
+        mood: "encouraging",
+      });
     } catch {
       setCaptain({
         intro: "Could not load campaign. Try refreshing.",
@@ -101,13 +90,6 @@ export default function PlacementCampaign() {
   const getHref = (r: Recommendation) => {
     const fn = ACTION_HREF[r.action] || ACTION_HREF.learn;
     return fn(r);
-  };
-
-  const masteryColor = (m: number) => {
-    if (m >= 80) return "text-green-400";
-    if (m >= 60) return "text-[#ffa116]";
-    if (m >= 40) return "text-yellow-400";
-    return "text-red-400";
   };
 
   if (loading) {
@@ -126,11 +108,15 @@ export default function PlacementCampaign() {
     );
   }
 
+  const mission = plan.recommendations?.[0];
+  const next = plan.recommendations?.[1];
+  const remaining = Math.max(0, (plan.recommendations?.length || 0) - 2);
+
   return (
     <div className="min-h-screen bg-[#0f0f0f] text-[#e9e9e9]">
-      <div className="mx-auto max-w-3xl px-4 py-6 sm:px-6 lg:px-8 space-y-6">
-        {/* Header */}
-        <motion.div
+      <div className="mx-auto max-w-2xl px-4 py-6 sm:px-6 lg:px-8 space-y-6">
+        {/* Target + readiness */}
+        <motion.header
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="rounded-xl border border-[#2a2a2a] bg-gradient-to-br from-[#1c1c1c] to-[#141414] p-6"
@@ -138,10 +124,10 @@ export default function PlacementCampaign() {
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <span className="text-xs font-mono uppercase tracking-wider text-[#ffa116]">
-                Your Campaign
+                Your target
               </span>
               <h1 className="text-2xl sm:text-3xl font-bold mt-1 capitalize">
-                {plan.company || "Your Campaign"}
+                {plan.company || "Not set yet"}
               </h1>
               <p className="text-sm text-[#9a9a9a] mt-1">
                 {plan.role || "Software Developer"}
@@ -150,28 +136,22 @@ export default function PlacementCampaign() {
                 )}
               </p>
             </div>
-            <div className="grid grid-cols-4 gap-2">
-              <div className="rounded-xl bg-[#1f1f1f] px-2 py-2 text-center">
-                <div className="text-lg font-bold text-[#e9e9e9]">{plan.streak || 0}</div>
-                <div className="text-[10px] uppercase tracking-wider text-[#9a9a9a]">Streak</div>
+            <div className="flex items-center gap-3">
+              <div className="rounded-xl bg-[#1f1f1f] px-4 py-3 text-center">
+                <div className="text-2xl font-bold text-[#ffa116]">
+                  {Math.round(plan.overall_score || 0)}%
+                </div>
+                <div className="text-[10px] uppercase tracking-wider text-[#9a9a9a]">Readiness</div>
               </div>
-              <div className="rounded-xl bg-[#1f1f1f] px-2 py-2 text-center">
-                <div className="text-lg font-bold text-[#e9e9e9]">{plan.level || 1}</div>
-                <div className="text-[10px] uppercase tracking-wider text-[#9a9a9a]">Level</div>
-              </div>
-              <div className="rounded-xl bg-[#1f1f1f] px-2 py-2 text-center">
-                <div className="text-lg font-bold text-[#ffa116]">{Math.round(plan.overall_score || 0)}%</div>
-                <div className="text-[10px] uppercase tracking-wider text-[#9a9a9a]">Score</div>
-              </div>
-              <div className="rounded-xl bg-[#1f1f1f] px-2 py-2 text-center">
-                <div className="text-lg font-bold text-[#e9e9e9]">{plan.totals?.estimated_minutes || 0}</div>
-                <div className="text-[10px] uppercase tracking-wider text-[#9a9a9a]">Minutes</div>
+              <div className="rounded-xl bg-[#1f1f1f] px-4 py-3 text-center">
+                <div className="text-2xl font-bold text-[#e9e9e9]">{plan.streak || 0}</div>
+                <div className="text-[10px] uppercase tracking-wider text-[#9a9a9a]">Day streak</div>
               </div>
             </div>
           </div>
-        </motion.div>
+        </motion.header>
 
-        {/* No campaign target yet */}
+        {/* No target yet */}
         {!plan.company && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -180,7 +160,7 @@ export default function PlacementCampaign() {
           >
             <h2 className="text-xl font-bold">Set your target</h2>
             <p className="mt-1 text-sm text-[#9a9a9a]">
-              Pick a company and assessment date to build your campaign.
+              Pick a company and assessment date so today's mission can point at the right skills.
             </p>
             <button
               onClick={() => navigate("/profile")}
@@ -192,114 +172,79 @@ export default function PlacementCampaign() {
           </motion.div>
         )}
 
-        {/* Today's missions */}
-        {plan.company && plan.recommendations?.length > 0 && (
-          <motion.div
+        {/* One mission */}
+        {plan.company && mission && (
+          <motion.section
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="rounded-xl border border-[#2a2a2a] bg-[#141414] p-6"
+            className="rounded-xl border border-[#ffa116]/30 bg-[#141414] p-6"
           >
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-bold">Today's Missions</h2>
-              <span className="text-xs text-[#9a9a9a]">
-                {plan.totals?.task_count || 0} tasks · ~{plan.totals?.estimated_minutes || 0} min
-              </span>
+            <div className="text-xs font-mono uppercase tracking-wider text-[#ffa116]">
+              Today's mission
             </div>
-            <div className="space-y-3">
-              {plan.recommendations.map((r, idx) => (
-                <Link
-                  key={r.id}
-                  to={getHref(r)}
-                  className={`flex items-center justify-between rounded-lg border p-4 transition-all hover:border-[#ffa116]/30 ${
-                    r.type === "repair"
-                      ? "border-red-500/30 bg-red-500/5"
-                      : r.type === "battle"
-                      ? "border-[#ffa116]/20 bg-[#1c1c1c]"
-                      : "border-[#2a2a2a] bg-[#1c1c1c]"
-                  }`}
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="text-lg">{r.emoji}</span>
-                    <div>
-                      <div className="text-sm font-semibold text-[#e9e9e9]">
-                        {idx + 1}. {r.title}
-                      </div>
-                      <div className="text-xs text-[#9a9a9a]">{r.subtitle}</div>
-                      <div className="text-xs text-[#ffa116] mt-0.5">{r.reason}</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs text-[#9a9a9a]">
-                    <span>{r.estimated_minutes}m</span>
-                    <PlayCircle size={14} />
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </motion.div>
-        )}
+            <h2 className="mt-2 text-2xl font-bold">
+              <span className="mr-2">{mission.emoji}</span>
+              {mission.title}
+            </h2>
+            {mission.subtitle && (
+              <p className="mt-1 text-sm text-[#9a9a9a]">{mission.subtitle}</p>
+            )}
 
-        {/* Why these */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="rounded-xl border border-[#2a2a2a] bg-[#141414] p-5"
-        >
-          <h3 className="text-sm font-bold text-[#ffa116] mb-2">Why these missions?</h3>
-          <div className="space-y-2 text-xs text-[#9a9a9a]">
-            {plan.biggest_weakness && (
-              <p>
-                <span className="text-[#e9e9e9]">Yesterday:</span> You struggled with{" "}
-                <span className="text-[#ffa116]">{plan.biggest_weakness.name}</span>.
-                {plan.recommendations?.[0]?.reason && (
-                  <> Today we're repairing that skill.</>
-                )}
+            <div className="mt-4 rounded-lg bg-[#1c1c1c] p-4">
+              <div className="text-[10px] font-mono uppercase tracking-wider text-[#9a9a9a]">
+                Why this next?
+              </div>
+              <p className="mt-1 text-sm text-[#e9e9e9]">{mission.reason}</p>
+            </div>
+
+            <div className="mt-4 flex items-center justify-between gap-4">
+              <span className="text-sm text-[#9a9a9a]">
+                ~{mission.estimated_minutes} minutes
+              </span>
+              <Link
+                to={getHref(mission)}
+                className="inline-flex items-center gap-2 rounded-lg bg-[#ffa116] px-5 py-2.5 text-sm font-semibold text-black transition hover:brightness-110"
+              >
+                <PlayCircle size={16} />
+                Start mission
+              </Link>
+            </div>
+
+            {next && (
+              <p className="mt-4 border-t border-[#2a2a2a] pt-3 text-xs text-[#9a9a9a]">
+                After this: <span className="text-[#e9e9e9]">{next.title}</span>
+                {remaining > 0 && <> · +{remaining} more queued</>}
               </p>
             )}
-            <p>
-              <span className="text-[#e9e9e9]">Tomorrow:</span> Your next challenge depends on
-              today's result. Master these, and the difficulty increases.
-            </p>
-          </div>
-          <div className="mt-3 flex items-center gap-2 text-xs text-[#9a9a9a]">
-            <TrendingUp size={14} />
-            Your performance today determines tomorrow's difficulty
-          </div>
-        </motion.div>
+          </motion.section>
+        )}
 
-        {/* Battlefield summary */}
-        {plan.battlefield_summary && (
+        {/* Progress */}
+        {plan.company && plan.battlefield_summary && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             className="rounded-xl border border-[#2a2a2a] bg-[#141414] p-5"
           >
-            <h3 className="text-sm font-bold text-[#e9e9e9] mb-3">Battlefield Progress</h3>
-            <div className="grid grid-cols-3 gap-3">
-              <div className="rounded-lg bg-[#1f1f1f] px-3 py-2 text-center">
-                <div className="text-lg font-bold text-[#e9e9e9]">
-                  {plan.battlefield_summary.total_patterns}
-                </div>
-                <div className="text-[10px] uppercase tracking-wider text-[#9a9a9a]">Patterns</div>
-              </div>
-              <div className="rounded-lg bg-[#1f1f1f] px-3 py-2 text-center">
-                <div className="text-lg font-bold text-green-400">
-                  {plan.battlefield_summary.mastered_patterns}
-                </div>
-                <div className="text-[10px] uppercase tracking-wider text-[#9a9a9a]">Mastered</div>
-              </div>
-              <div className="rounded-lg bg-[#1f1f1f] px-3 py-2 text-center">
-                <div className="text-lg font-bold text-red-400">
-                  {plan.battlefield_summary.weak_patterns}
-                </div>
-                <div className="text-[10px] uppercase tracking-wider text-[#9a9a9a]">Weak</div>
-              </div>
+            <div className="flex items-center justify-between">
+              <h3 className="text-sm font-bold text-[#e9e9e9]">Your progress</h3>
+              <button
+                onClick={() => navigate("/battlefield")}
+                className="inline-flex items-center gap-1 text-xs text-[#ffa116] hover:underline"
+              >
+                Details <ChevronRight size={14} />
+              </button>
             </div>
-            <button
-              onClick={() => navigate("/battlefield")}
-              className="mt-4 inline-flex items-center gap-1 text-xs text-[#ffa116] hover:underline"
-            >
-              View full battlefield <ChevronRight size={14} />
-            </button>
+            <p className="mt-2 text-sm text-[#9a9a9a]">
+              <span className="text-green-400 font-semibold">
+                {plan.battlefield_summary.mastered_patterns}
+              </span>{" "}
+              of {plan.battlefield_summary.total_patterns} patterns mastered ·{" "}
+              <span className="text-red-400 font-semibold">
+                {plan.battlefield_summary.weak_patterns}
+              </span>{" "}
+              need repair
+            </p>
           </motion.div>
         )}
 

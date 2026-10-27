@@ -1,10 +1,9 @@
 // @ts-nocheck
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Compass, FlaskConical, Swords, ClipboardList, Briefcase, Flame, Trophy, BookOpen, type LucideIcon } from 'lucide-react';
+import { Compass, Flame, Trophy, BookOpen, Target, Gauge, User, type LucideIcon } from 'lucide-react';
 import useAuthStore from '../store/authStore';
 import { useGamificationState } from '../hooks/useGamificationState';
-import { BountyCodeLogo } from './brand/BountyCodeLogo';
 
 interface NavItem {
   to: string;
@@ -12,13 +11,13 @@ interface NavItem {
   label: string;
 }
 
-// Simplified 5-environment navigation
+// One student journey: Today -> Learn -> Practice -> Assess -> Profile
 const NAV_ITEMS: NavItem[] = [
   { to: '/placement', icon: Compass, label: 'Today' },
-  { to: '/learn', icon: FlaskConical, label: 'Learn' },
-  { to: '/question-bank', icon: BookOpen, label: 'Practice' },
-  { to: '/battlefield', icon: Swords, label: 'Battlefield' },
-  { to: '/interview', icon: Briefcase, label: 'Interview' },
+  { to: '/curriculum', icon: BookOpen, label: 'Learn' },
+  { to: '/question-bank', icon: Target, label: 'Practice' },
+  { to: '/mock-oa', icon: Gauge, label: 'Assess' },
+  { to: '/profile', icon: User, label: 'Profile' },
 ];
 
 export default function BottomNav() {
@@ -33,15 +32,13 @@ export default function BottomNav() {
   const league = (startup as any)?.league;
   const tier = league?.tier;
   const showLeague = tier && league?.of;
-  const level = profile?.level ?? 1;
   const streak = profile?.streak ?? 0;
 
   return (
     <>
       <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden border-t border-white/10 bg-gray-900/90 backdrop-blur-xl safe-area-bottom">
         {showLeague && (
-          <Link
-            to="/leaderboard"
+          <div
             className="block border-b border-white/10"
             style={{ background: `${tier.color}15` }}
           >
@@ -54,7 +51,7 @@ export default function BottomNav() {
               {league.promoted_next_week && <span className="text-emerald-400">&uarr; promoting</span>}
               {league.relegated_next_week && <span className="text-red-400">&darr; relegation</span>}
             </div>
-          </Link>
+          </div>
         )}
         {streak > 0 && (
           <div className="flex items-center justify-center gap-1.5 h-6 text-[10px] font-mono text-orange-400 border-b border-white/5 bg-orange-500/5">
@@ -82,11 +79,6 @@ export default function BottomNav() {
                       transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                     />
                   )}
-                  {isActive && label === 'Levels' && (
-                    <span className="absolute -top-1.5 -right-2 text-[8px] font-black bg-indigo-500 text-white rounded-full w-4 h-4 flex items-center justify-center">
-                      {level}
-                    </span>
-                  )}
                 </div>
                 <span className={`text-[9px] tracking-wider mt-0.5 ${isActive ? 'text-indigo-400 font-bold' : 'text-gray-500'}`}>
                   {label}
@@ -94,16 +86,6 @@ export default function BottomNav() {
               </Link>
             );
           })}
-          {/* Center logo */}
-          <div className="flex flex-col items-center justify-center -mt-6">
-            <Link to="/" className="relative -mt-4">
-              <div className="relative h-12 w-12 rounded-full p-[2px] shadow-lg" style={{ background: "linear-gradient(135deg, #17263B, #5F8F88, #C96F3D)" }}>
-                <div className="flex h-full w-full items-center justify-center rounded-full bg-slate-900">
-                  <BountyCodeLogo variant="mark" className="h-7 w-7" />
-                </div>
-              </div>
-            </Link>
-          </div>
         </div>
       </nav>
     </>

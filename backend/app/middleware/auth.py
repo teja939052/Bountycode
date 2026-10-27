@@ -61,6 +61,23 @@ def _finalize_user(user: Dict[str, Any]) -> Dict[str, Any]:
     return user
 
 
+async def invalidate_user_cache(user_id: str) -> None:
+    """Drop the cached raw user document so a write is visible immediately.
+
+    get_current_user caches the user document for USER_CACHE_TTL (300s) under
+    `auth:user:<id>`. Any route that mutates the user or gamification document
+    MUST call this, otherwise /auth/me and every other authenticated read keep
+    serving the pre-write document until the TTL expires.
+    """
+    if not user_id:
+        return
+    try:
+        await cache.delete("auth", f"user:{user_id}")
+    except Exception:
+        # Cache invalidation is best-effort; never fail the caller's write.
+        pass
+
+
 class PasswordValidator:
     """Password strength validation against configured security policies."""
 

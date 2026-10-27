@@ -413,7 +413,7 @@ export default function ATSOptimizer() {
             </div>
             <div className="flex gap-4">
               <button onClick={() => { setStep(1); setOptimization(null); setJobDescription(""); }} className="btn-ghost">← New Scan</button>
-              <Link to="/dashboard" className="btn-ghost">Command Deck</Link>
+              <Link to="/placement" className="btn-ghost">Today</Link>
             </div>
           </div>
         )}

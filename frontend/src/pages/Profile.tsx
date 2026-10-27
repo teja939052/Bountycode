@@ -421,9 +421,7 @@ export default function Profile() {
 
             {/* Quick links */}
             <motion.div {...FADE_UP} className="rounded-2xl border border-border bg-white p-5 shadow-card flex flex-wrap gap-2">
-              <Link to="/history" className="btn-secondary text-xs">History</Link>
               <Link to="/settings" className="btn-secondary text-xs">Settings</Link>
-              <Link to="/leaderboard" className="btn-secondary text-xs">Leaderboard</Link>
               <Link to="/pricing" className="btn-primary text-xs inline-flex items-center gap-2">
                 {isPro ? "Manage Plan" : "Upgrade"} <ArrowRight size={12} />
               </Link>

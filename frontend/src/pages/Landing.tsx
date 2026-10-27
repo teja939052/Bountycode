@@ -485,7 +485,7 @@ export default function Landing() {
                     <ArrowRight size={15} />
                   </Link>
                 </motion.div>
-                <Link to="/learning" data-cta-compass className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-7 py-3.5 text-sm font-semibold text-gray-700 shadow-sm transition hover:border-orange-300 hover:bg-orange-50">
+                <Link to="/curriculum" data-cta-compass className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-7 py-3.5 text-sm font-semibold text-gray-700 shadow-sm transition hover:border-orange-300 hover:bg-orange-50">
                   Explore curriculum
                 </Link>
               </motion.div>
@@ -546,16 +546,15 @@ export default function Landing() {
               Choose your door.
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-sm text-secondary sm:text-base">
-              One account. Four paths. The system adapts to your goal.
+              One account. Three paths. The system adapts to your goal.
             </p>
           </motion.div>
 
           <div className="mx-auto mt-10 grid max-w-5xl grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2">
             {[
-              { to: "/learning", title: "Learn Coding", desc: "Build programming ability from scratch or strengthen your foundations.", icon: "💻" },
+              { to: "/curriculum", title: "Learn Coding", desc: "Build programming ability from scratch or strengthen your foundations.", icon: "💻" },
               { to: "/aptitude", title: "Service-Based Placement", desc: "Aptitude, reasoning, verbal, coding, SQL/CS — the full screening stack.", icon: "🎯" },
-              { to: "/company-prep", title: "Company / Role Prep", desc: "Target one company and its exact assessment pattern.", icon: "🏢" },
-              { to: "/dsa-visualizer", title: "DSA Visual Lab", desc: "Explore algorithms visually — play, pause, step, manipulate.", icon: "🧠" },
+              { to: "/battlefield", title: "Company / Role Prep", desc: "Target one company and its exact assessment pattern.", icon: "🏢" },
             ].map((door, i) => (
               <motion.div
                 key={door.title}
@@ -656,8 +655,8 @@ export default function Landing() {
           </div>
 
           <div className="mx-auto mt-8 text-center">
-            <Link to="/company-prep" className="inline-flex items-center gap-2 text-sm font-bold text-accent-primary hover:text-accent-primary/80">
-              View all 53+ guides <ArrowRight size={14} />
+            <Link to="/battlefield" className="inline-flex items-center gap-2 text-sm font-bold text-accent-primary hover:text-accent-primary/80">
+              Prep for your target company <ArrowRight size={14} />
             </Link>
           </div>
         </div>
@@ -696,7 +695,7 @@ export default function Landing() {
                   </button>
                 </Link>
               </motion.div>
-              <Link to="/learning" className="w-full sm:w-auto">
+              <Link to="/curriculum" className="w-full sm:w-auto">
                    <button className="w-full rounded-xl border border-gray-200 bg-white px-8 py-3.5 text-sm font-semibold text-gray-700 transition hover:border-orange-300 hover:bg-orange-50 sm:w-auto">
                     Explore curriculum
                   </button>

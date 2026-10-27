@@ -1,6 +1,12 @@
 # Content Trust v1 — Honest Quality Assessment
 **Date:** 2026-08-30
 
+> **Status: SUPERCEDED by current trust-gated serving system.**
+> This was a point-in-time audit. The current system runs `auto_verify.py` at startup,
+> quarantines failures, and only serves `verified`/`reviewed` content via `_is_servable()`.
+> The bottleneck is human-review throughput for promotion to `verified`, not a missing
+> verification system. See `AGENTS.md` and `CONTENT_RECONCILIATION.md` for current state.
+
 ## Executive Summary
 
 **The question bank is 2.7% trustworthy.** Metadata completeness does NOT equal content correctness.

@@ -32,7 +32,7 @@ export default class RouteErrorBoundary extends Component<RouteErrorBoundaryProp
             <p className="text-gray-500 text-sm mb-6">{this.state.error?.message || "An unexpected error occurred"}</p>
             <div className="flex gap-3 justify-center">
               <button onClick={() => this.setState({ hasError: false })} className="btn-primary">Try Again</button>
-              <Link to="/dashboard" className="btn-secondary">Go to Dashboard</Link>
+              <Link to="/placement" className="btn-secondary">Return to Today</Link>
             </div>
           </div>
         </div>

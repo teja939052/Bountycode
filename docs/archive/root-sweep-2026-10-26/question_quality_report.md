@@ -1,5 +1,11 @@
 # Question Bank Quality Report
 
+> **Status: SUPERCEDED by current trust-gated serving system.**
+> This was a point-in-time quality tier report. The current system runs `auto_verify.py`
+> at startup, quarantines failures in-memory, and only serves `verified`/`reviewed`
+> content via `_is_servable()`. See `AGENTS.md` and `CONTENT_RECONCILIATION.md`
+> for the current trust pipeline and serving gate.
+
 ## Overview
 - **Total questions**: 6389
 - **By type**: {'coding': 6279, 'aptitude': 50, 'logical': 30, 'verbal': 20, 'hr': 10}

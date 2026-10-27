@@ -125,13 +125,12 @@ export default function FreeTrial() {
     setOutput("");
     setRunError("");
     try {
-      const res = await fetch("/api/v1/compiler/execute", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code, language: LANGUAGE, stdin: "", timeout: 10 }),
-        credentials: "include",
+      const result = await api.compiler.executeCode({
+        code,
+        language: LANGUAGE,
+        stdin: "",
+        timeout: 10,
       });
-      const result = await res.json();
       if (result.success) {
         setOutput(result.stdout || "(no output)");
       } else {

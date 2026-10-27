@@ -313,7 +313,7 @@ export const MISSIONS: Record<string, MissionContent> = {
           explanation: "bonus copied score after +10 (so bonus=10). Later score+5 does not change bonus.",
           language: "python",
         },
-        judgeTo: "/lesson/things-1",
+        judgeTo: "/lab/lesson/things-1",
         judgeLabel: "Open Variables lesson",
       },
       {
@@ -324,7 +324,7 @@ export const MISSIONS: Record<string, MissionContent> = {
           {
             level: "Level 1 — copy timing",
             items: [
-              { label: "Variables lesson drills · easy", to: "/lesson/things-1" },
+              { label: "Variables lesson drills · easy", to: "/lab/lesson/things-1" },
               { label: "Swap / temp-holder reps · easy", to: "/question-bank?topic=variables" },
             ],
           },
@@ -1141,7 +1141,7 @@ export const MISSIONS: Record<string, MissionContent> = {
           successNote: "Correct — overshoot shrinks from the right, undershoot grows from the left.",
           failNote: "Not quite — sorted sum only fixes overshoot by decreasing the larger side.",
         },
-        judgeTo: "/lesson/arrays-1",
+        judgeTo: "/lab/lesson/arrays-1",
         judgeLabel: "Open Two Pointers lesson",
       },
       {
@@ -1388,7 +1388,7 @@ export const MISSIONS: Record<string, MissionContent> = {
           explanation: "Exactly one @, both sides non-empty, domain has a dot; sanitize user input before mail headers.",
           language: "python",
         },
-        judgeTo: "/lesson/things-1",
+        judgeTo: "/lab/lesson/things-1",
         judgeLabel: "Practice string checks",
       },
       {
@@ -1399,7 +1399,7 @@ export const MISSIONS: Record<string, MissionContent> = {
           {
             level: "Level 1 — shape checks",
             items: [
-              { label: "One-@ / dot drills · easy", to: "/lesson/things-1" },
+              { label: "One-@ / dot drills · easy", to: "/lab/lesson/things-1" },
               { label: "Empty-side edge cases · easy", to: "/question-bank?topic=strings" },
             ],
           },
@@ -1609,7 +1609,7 @@ export const MISSIONS: Record<string, MissionContent> = {
         subtitle: "Choose the line, then prove it on the real judge.",
         interaction: { kind: "code_fill" },
         component: "CodeFillInTheBlank",
-        judgeTo: "/problems/sliding-window",
+        judgeTo: "/question-bank",
         judgeLabel: "Browse all window problems",
       },
       {
@@ -1901,7 +1901,7 @@ export const MISSIONS: Record<string, MissionContent> = {
           explanation: "range(stop) yields 0 through stop-1.",
           language: "python",
         },
-        judgeTo: "/lesson/loops-1",
+        judgeTo: "/lab/lesson/loops-1",
         judgeLabel: "Open Loops lesson",
       },
       {
@@ -2151,7 +2151,7 @@ export const MISSIONS: Record<string, MissionContent> = {
           explanation: "INNER JOIN keeps only orders whose user_id exists in users.",
           language: "sql",
         },
-        judgeTo: "/problems?topic=sql",
+        judgeTo: "/question-bank",
         judgeLabel: "Practice SQL problems",
       },
       {

@@ -2,7 +2,6 @@
 import { useRef, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { lazy } from "react";
-import Landing from "../pages/Landing";
 import {
   Login,
   Register,
@@ -71,7 +70,7 @@ export function AnimatedRoutes() {
   return (
     <Routes>
       <Route path="/" element={<HomeRedirect />} />
-      <Route path="/landing" element={<Landing />} />
+      <Route path="/landing" element={<HomeRedirect />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
