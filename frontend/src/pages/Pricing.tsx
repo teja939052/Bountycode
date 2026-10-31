@@ -233,7 +233,7 @@ export default function Pricing() {
           name: "BountyCode",
           description: `Plan: ${planId}`,
           handler: () => {
-            window.location.href = "/dashboard?upgraded=true";
+            window.location.href = "/placement?upgraded=true";
           },
           modal: { ondismiss: () => {} },
         });
