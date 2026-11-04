@@ -73,6 +73,24 @@ export const LEVEL_LABELS = [
   { level: 30, label: "Grandmaster", color: "slate" },
 ] as const;
 
+export const LEVEL_THRESHOLDS = [
+  0, 100, 300, 600, 1000, 1600, 2400, 3400, 4600, 6000,
+  7800, 10000, 12600, 15600, 19200, 23400, 28200, 33800, 40200, 47600,
+];
+
+export function getLevelForXP(xp: number): number {
+  let level = 1;
+  for (let i = 1; i < LEVEL_THRESHOLDS.length; i++) {
+    if (xp >= LEVEL_THRESHOLDS[i]) level = i + 1;
+    else break;
+  }
+  return level;
+}
+
+export function getXPForLevel(level: number): number {
+  return LEVEL_THRESHOLDS[level - 1] ?? 0;
+}
+
 export function getLevelLabel(level: number) {
   let entry = LEVEL_LABELS[0];
   for (const e of LEVEL_LABELS) {
