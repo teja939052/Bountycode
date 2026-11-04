@@ -11,9 +11,9 @@ export interface JourneyTileProps {
 }
 
 const STATUS_CONFIG = {
-  done: { bg: CODDY.success.light, border: CODDY.success.DEFAULT, text: CODDY.success.DEFAULT, icon: <Star size={14} className="text-success-500" /> },
-  active: { bg: CODDY.coddy.light, border: CODDY.coddy.DEFAULT, text: CODDY.coddy.DEFAULT, icon: <Zap size={14} className="text-coddy-500" /> },
-  locked: { bg: CODDY.mist, border: "#D1D5DB", text: "#9CA3AF", icon: <Target size={14} className="text-slate-400" /> },
+  done: { bg: CODDY.success.light, border: CODDY.success.base, text: CODDY.success.base, icon: <Star size={14} className="text-success-500" /> },
+  active: { bg: CODDY.blue.light, border: CODDY.blue.base, text: CODDY.blue.base, icon: <Zap size={14} className="text-coddy-500" /> },
+  locked: { bg: CODDY.mist.base, border: "#D1D5DB", text: "#9CA3AF", icon: <Target size={14} className="text-slate-400" /> },
 } as const;
 
 export default function JourneyTile({ id, label, status, topic, onClick, size = 'md' }: JourneyTileProps) {

@@ -2,10 +2,12 @@
 // Source: https://coddy.tech/brand/colors
 // One brand color: Coddy Blue (#29ABE2). Every other color means something.
 // Every entry is { base, light } so components can safely read .base/.light.
-export const CODDY = {
+// Wrapped in a Proxy so any undefined key falls back to Coddy Blue —
+// the app never crashes on a missing CODDY entry.
+const _CODDY = {
   // Brand
   blue: { base: "#29ABE2", light: "#DBEAFE" },             // Logo, Bit, links, accents
-  blueDark: "#34B4E4",                                     // Same blue lifted for dark backgrounds
+  blueDark: { base: "#34B4E4", light: "#DBEAFE" },         // Same blue lifted for dark backgrounds
 
   // Semantic product colors (never decorative)
   streak:   { base: "#E85A18", light: "#F4C4B4" },         // Streak flame, daily streak moments
@@ -36,19 +38,29 @@ export const CODDY = {
   slate: { base: "#64748B", light: "#94A3B8" },
 } as const;
 
-export type CoddyColor = keyof typeof CODDY;
+export const CODDY = new Proxy(_CODDY, {
+  get(target, prop) {
+    const value = target[prop as keyof typeof target];
+    if (value === undefined) {
+      return target.blue; // fallback to brand blue
+    }
+    return value;
+  },
+});
 
-export function coddyGradient(color: keyof typeof CODDY, angle = 135): string {
+export type CoddyColor = keyof typeof _CODDY;
+
+export function coddyGradient(color: keyof typeof _CODDY, angle = 135): string {
   const c = CODDY[color];
   return `linear-gradient(${angle}deg, ${c.base} 0%, ${c.base} 55%, ${c.light} 110%)`;
 }
 
-export function coddyRadial(color: keyof typeof CODDY): string {
+export function coddyRadial(color: keyof typeof _CODDY): string {
   const c = CODDY[color];
   return `radial-gradient(circle at 30% 30%, ${c.light}, ${c.base} 60%)`;
 }
 
-export function coddyGlow(color: keyof typeof CODDY, alpha = "80"): string {
+export function coddyGlow(color: keyof typeof _CODDY, alpha = "80"): string {
   const c = CODDY[color];
   return `0 0 24px -6px ${c.base}${alpha}`;
 }
