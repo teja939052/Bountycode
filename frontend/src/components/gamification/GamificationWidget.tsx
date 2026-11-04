@@ -61,4 +61,4 @@ export default function GamificationWidget({ xp, level = 1, streak = 0, league, 
   );
 }
 
-export const GamificationWidget = GamificationWidget;
+
