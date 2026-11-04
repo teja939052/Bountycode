@@ -237,6 +237,7 @@ const CodingAcademy = lazy(() => import('./CodingAcademy'));
 const TargetPage = lazy(() => import('./TargetPage'));
 const LoopsVertical = lazy(() => import('./LoopsVertical'));
 const GamificationDashboard = lazy(() => import('./GamificationDashboard'));
+const ContentBundles = lazy(() => import('./ContentBundles'));
 export {
   CurriculumHub,
   LearnTrack,
@@ -335,4 +336,5 @@ export {
   TargetPage,
   LoopsVertical,
   GamificationDashboard,
+  ContentBundles,
 };
