@@ -45,6 +45,7 @@ export default function Navbar() {
       label: "Your Journey",
       items: [
         { to: "/tower", label: "Tower", icon: Castle },
+        { to: "/gamification", label: "Gamification", icon: Trophy },
       ],
     },
     {
@@ -52,6 +53,7 @@ export default function Navbar() {
       items: [
         { to: "/community", label: "Community", icon: MessageSquare },
         { to: "/ai-mentor", label: "AI Mentor", icon: Brain },
+        { to: "/content", label: "Content Bundles", icon: List },
         { to: "/project-generator", label: "Project Generator", icon: Sparkles },
         { to: "/concepts", label: "Concepts", icon: Lightbulb },
         { to: "/placement-calendar", label: "Placement Calendar", icon: Calendar },

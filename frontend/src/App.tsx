@@ -135,6 +135,7 @@ import {
   TargetPage,
   LoopsVertical,
   GamificationDashboard,
+  ContentBundles,
 } from "./pages/lazy";
 
 function AnimatedRoutes() {
@@ -174,6 +175,7 @@ function AnimatedRoutes() {
 <Route path="/target" element={<TargetPage />} />
 <Route path="/loops" element={<LoopsVertical />} />
 <Route path="/gamification" element={<GamificationDashboard />} />
+<Route path="/content" element={<ContentBundles />} />
       <Route
         path="/onboarding"
         element={
