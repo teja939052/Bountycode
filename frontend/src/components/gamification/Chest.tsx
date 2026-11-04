@@ -2,18 +2,18 @@
 import { CODDY, coddyGlow } from './palette';
 
 export interface ChestProps {
-  type: 'streak' | 'score' | 'energy' | 'coddy' | 'pro';
+  type: 'streak' | 'score' | 'energy' | 'blue' | 'pro';
   opened?: boolean;
   onOpen?: () => void;
   size?: 'sm' | 'md' | 'lg';
 }
 
 const CHEST_CONFIG = {
-  streak: { icon: <Gift size={24} className="text-streak-500" />, base: CODDY.streak.DEFAULT, glow: CODDY.streak.DEFAULT },
-  score: { icon: <Crown size={24} className="text-score-500" />, base: CODDY.score.DEFAULT, glow: CODDY.score.DEFAULT },
-  energy: { icon: <ShieldCheck size={24} className="text-energy-500" />, base: CODDY.energy.DEFAULT, glow: CODDY.energy.DEFAULT },
-  coddy: { icon: <Sparkles size={24} className="text-coddy-500" />, base: CODDY.coddy.DEFAULT, glow: CODDY.coddy.DEFAULT },
-  pro: { icon: <Zap size={24} className="text-pro-500" />, base: CODDY.pro.DEFAULT, glow: CODDY.pro.DEFAULT },
+  streak: { icon: <Gift size={24} className="text-streak-500" />, base: CODDY.streak.base, glow: CODDY.streak.base },
+  score:  { icon: <Crown size={24} className="text-score-500" />, base: CODDY.score.base,  glow: CODDY.score.base },
+  energy: { icon: <ShieldCheck size={24} className="text-energy-500" />, base: CODDY.energy.base, glow: CODDY.energy.base },
+  blue:   { icon: <Sparkles size={24} className="text-coddy-500" />, base: CODDY.blue.base,   glow: CODDY.blue.base },
+  pro:    { icon: <Zap size={24} className="text-pro-500" />, base: CODDY.pro.base,       glow: CODDY.pro.base },
 } as const;
 
 export default function Chest({ type = 'streak', opened = false, onOpen, size = 'md' }: ChestProps) {

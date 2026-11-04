@@ -51,7 +51,7 @@ export default function XPBar({ xp = 0, showLevel = true, compact = false, class
             <div className="flex-1 h-2 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden border border-white/30 dark:border-white/10">
               <motion.div
                 className="h-full rounded-full relative"
-                style={{ background: `linear-gradient(90deg, ${color.base}, ${CODDY.indigo.base})` }}
+                style={{ background: `linear-gradient(90deg, ${color.base}, ${CODDY.blue.base})` }}
                 initial={{ width: 0 }}
                 animate={{ width: `${progress}%` }}
                 transition={{ duration: 1, ease: 'easeOut' }}
@@ -84,7 +84,7 @@ export default function XPBar({ xp = 0, showLevel = true, compact = false, class
             <div className="h-3 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden border border-white/30 dark:border-white/10">
               <motion.div
                 className="h-full rounded-full relative"
-                style={{ background: `linear-gradient(90deg, ${color.base}, ${CODDY.indigo.base})` }}
+                style={{ background: `linear-gradient(90deg, ${color.base}, ${CODDY.blue.base})` }}
                 initial={{ width: 0 }}
                 animate={{ width: `${progress}%` }}
                 transition={{ duration: 1.2, ease: 'easeOut' }}

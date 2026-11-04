@@ -5,7 +5,7 @@ export interface BadgeProps {
   id: string;
   name: string;
   description?: string;
-  tier: 'streak' | 'score' | 'energy' | 'coddy' | 'pro' | 'success' | 'hearts';
+  tier: 'streak' | 'score' | 'energy' | 'blue' | 'pro' | 'success' | 'hearts';
   icon: React.ReactNode;
   earned?: boolean;
   earnedAt?: string;
@@ -13,23 +13,23 @@ export interface BadgeProps {
 }
 
 const TIER_CONFIG = {
-  streak: { base: CODDY.streak.DEFAULT, light: CODDY.streak.light },
-  score: { base: CODDY.score.DEFAULT, light: CODDY.score.light },
-  energy: { base: CODDY.energy.DEFAULT, light: CODDY.energy.light },
-  coddy: { base: CODDY.coddy.DEFAULT, light: CODDY.coddy.dark },
-  pro: { base: CODDY.pro.DEFAULT, light: CODDY.pro.light },
-  success: { base: CODDY.success.DEFAULT, light: CODDY.success.light },
-  hearts: { base: CODDY.hearts.DEFAULT, light: CODDY.hearts.light },
+  streak:   { base: CODDY.streak.base, light: CODDY.streak.light },
+  score:    { base: CODDY.score.base,  light: CODDY.score.light },
+  energy:   { base: CODDY.energy.base, light: CODDY.energy.light },
+  blue:     { base: CODDY.blue.base,   light: CODDY.blue.light },
+  pro:      { base: CODDY.pro.base,    light: CODDY.pro.light },
+  success:  { base: CODDY.success.base,light: CODDY.success.light },
+  hearts:   { base: CODDY.hearts.base, light: CODDY.hearts.light },
 } as const;
 
 const TIER_CLASS = {
-  streak: "text-streak-500 dark:text-streak-400 bg-streak-50 dark:bg-streak-900/30 border-streak-500/30 dark:border-streak-400/50",
-  score: "text-score-500 dark:text-score-400 bg-score-50 dark:bg-score-900/30 border-score-500/30 dark:border-score-400/50",
-  energy: "text-energy-500 dark:text-energy-400 bg-energy-50 dark:bg-energy-900/30 border-energy-500/30 dark:border-energy-400/50",
-  coddy: "text-coddy-500 dark:text-coddy-400 bg-coddy-50 dark:bg-coddy-900/30 border-coddy-500/30 dark:border-coddy-400/50",
-  pro: "text-pro-500 dark:text-pro-400 bg-pro-50 dark:bg-pro-900/30 border-pro-500/30 dark:border-pro-400/50",
-  success: "text-success-500 dark:text-success-400 bg-success-50 dark:bg-success-900/30 border-success-500/30 dark:border-success-400/50",
-  hearts: "text-hearts-500 dark:text-hearts-400 bg-hearts-50 dark:bg-hearts-900/30 border-hearts-500/30 dark:border-hearts-400/50",
+  streak:   "text-streak-500 dark:text-streak-400 bg-streak-50 dark:bg-streak-900/30 border-streak-500/30 dark:border-streak-400/50",
+  score:    "text-score-500 dark:text-score-400 bg-score-50 dark:bg-score-900/30 border-score-500/30 dark:border-score-400/50",
+  energy:   "text-energy-500 dark:text-energy-400 bg-energy-50 dark:bg-energy-900/30 border-energy-500/30 dark:border-energy-400/50",
+  blue:     "text-coddy-500 dark:text-coddy-400 bg-coddy-50 dark:bg-coddy-900/30 border-coddy-500/30 dark:border-coddy-400/50",
+  pro:      "text-pro-500 dark:text-pro-400 bg-pro-50 dark:bg-pro-900/30 border-pro-500/30 dark:border-pro-400/50",
+  success:  "text-success-500 dark:text-success-400 bg-success-50 dark:bg-success-900/30 border-success-500/30 dark:border-success-400/50",
+  hearts:   "text-hearts-500 dark:text-hearts-400 bg-hearts-50 dark:bg-hearts-900/30 border-hearts-500/30 dark:border-hearts-400/50",
 } as const;
 
 export default function Badge({ id, name, description, tier = 'streak', icon, earned = false, size = 'md' }: BadgeProps) {

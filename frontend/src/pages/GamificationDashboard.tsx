@@ -18,7 +18,7 @@ const MOCK_BADGES = [
   { id: "percentages-pro", name: "Percentages Pro", description: "Master percentages", tier: "score", icon: <ShieldCheck size={16} className="text-score-500" />, earned: false },
   { id: "array-master", name: "Array Master", description: "Master arrays", tier: "score", icon: <Star size={16} className="text-score-500" />, earned: false },
   { id: "code-tracer", name: "Code Tracer", description: "Trace 10 programs", tier: "energy", icon: <Target size={16} className="text-energy-500" />, earned: false },
-  { id: "quest-completer", name: "Quest Completer", description: "Complete 5 quests", tier: "coddy", icon: <Star size={16} className="text-coddy-500" />, earned: false },
+  { id: "quest-completer", name: "Quest Completer", description: "Complete 5 quests", tier: "blue", icon: <Star size={16} className="text-coddy-500" />, earned: false },
 ];
 
 const JOURNEY_TILES = [
@@ -177,7 +177,7 @@ export default function GamificationDashboard() {
         <div className="bg-white dark:bg-slate-900 border border-white/30 dark:border-white/10 rounded-2xl p-6 shadow-sm">
           <h3 className="font-bold text-ink dark:text-white mb-4">Reward Chests</h3>
           <div className="flex gap-4">
-            {['streak', 'score', 'energy', 'coddy'].map((type, i) => (
+            {['streak', 'score', 'energy', 'blue'].map((type, i) => (
               <Chest key={i} type={type} opened={false} onOpen={() => {}} size="lg" />
             ))}
           </div>
