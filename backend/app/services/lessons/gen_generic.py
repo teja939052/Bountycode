@@ -1,4 +1,4 @@
-"""Generic generator to triple lessons for any track."""
+"""Generic generator to add lessons to any track file."""
 import os
 import sys
 
@@ -18,14 +18,12 @@ topics = {
     "aptitude": ["percentages", "profit_loss", "ratios", "time_work", "time_speed_distance", "averages", "probability", "simple_interest", "compound_interest", "number_systems", "permutations_combinations", "data_interpretation"],
     "company_prep": ["tcs_prep", "infosys_prep", "wipro_prep", "company_coding", "common_questions", "mock_interview", "behavioral_questions", "resume_tips", "interview_etiquette", "final_checklist"],
     "cpp": ["basics", "control_flow", "functions", "arrays", "pointers", "oop", "inheritance", "polymorphism", "templates", "stl", "file_io", "memory"],
-    "dbms": ["intro", "sql_basics", "sql_joins", "normalization", "indexing", "transactions", "views", "pl_sql", "no_sql", "database_design"],
     "dsa": ["arrays", "strings", "linked_lists", "stacks", "queues", "binary_search_tree", "graphs", "hashing", "recursion", "dynamic_programming"],
     "java": ["basics", "control_flow", "oop", "inheritance", "polymorphism", "interfaces", "exception_handling", "collections", "strings", "exception_handling_advanced", "streams", "multithreading", "file_io"],
     "logical": ["series_completion", "analogy", "syllogism", "coding_decoding", "blood_relations", "direction", "seating_arrangement", "puzzle", "logical_reasoning", "critical_reasoning"],
     "networks": ["basics", "osi_model", "tcp_ip", "protocols", "ip_addressing", "routing", "security", "socket", "wireless", "cloud", "cdn"],
     "oop": ["basics", "classes_objects", "inheritance", "polymorphism", "encapsulation", "abstraction", "design_patterns", "solid_principles", "uml", "refactoring"],
     "os": ["intro", "process", "deadlock", "memory", "scheduling", "file_systems", "deadlock_prevention", "file_systems_advanced", "virtual_memory", "disk_scheduling", "file_allocation", "security"],
-    "python": ["basics", "data_types", "lists", "dictionaries", "tuples", "sets", "functions", "modules", "file_io", "exceptions", "oop", "code tracing", "output_prediction", "debugging_mcqs", "pseudocode", "company_assessments", "data_structures", "algorithms", "complexity", "output_examples", "common_errors", "best_practices", "coding_interviews", "system_design", "project_structure", "testing", "debugging", "version_control", "deployment", "optimization", "security", "concurrency", "networking", "database", "web_frameworks", "data_science", "machine_learning", "automation", "scripting", "api_development", "testing_frameworks", "code_review", "performance_tuning", "code_metrics", "code_coverage", "static_analysis", "dynamic_analysis", "fuzz_testing", "mutation_testing", "property_based_testing", "contract_testing", "consumer_driven_contracts", "security_testing", "performance_testing", "load_testing", "stress_testing", "endurance_testing", "spike_testing", "volume_testing", "scalability_testing", "reliability_testing", "maintainability_testing", "usability_testing", "accessibility_testing", "localization_testing", "internationalization_testing", "compatibility_testing", "interoperability_testing", "configuration_testing", "installation_testing", "uninstallation_testing", "upgrade_testing", "downgrade_testing", "rollback_testing", "backup_testing", "recovery_testing", "failover_testing", "disaster_recovery", "business_continuity", "incident_response", "security_incident", "performance_incident", "availability_incident", "data_loss_incident", "security_breach", "data_breach", "privacy_breach", "compliance_breach", "regulatory_breach", "legal_breach", "ethical_breach", "policy_breach", "standard_breach", "framework_breach", "guideline_breach", "best_practice_breach"],
     "verbal": ["synonyms", "antonyms", "sentence_correction", "reading_comprehension", "sentence_arrangement", "error_spotting", "fill_in_blanks", "cloze_test", "para_jumbles", "reading_passage", "inference", "assumption", "conclusion", "argument", "critical_reasoning"],
 }
 
@@ -39,7 +37,7 @@ for i in range(needed):
     topics_list_inner = topics_list
     topic = topics_list_inner[topic_idx % len(topics_list_inner)]
     lesson_id = f"{track_name}-{topic}-{i+1}"
-    
+
     if i < needed * 0.4:
         difficulty = "beginner"
         xp = 50
@@ -49,12 +47,12 @@ for i in range(needed):
     else:
         difficulty = "advanced"
         xp = 90
-    
+
     prerequisites = []
     if i > 0:
         prev_idx = max(0, i - 1)
         prerequisites = [f"{track_name}-{topic}-{prev_idx}"]
-    
+
     steps = [
         {
             "id": f"{lesson_id}-s1",
@@ -86,7 +84,7 @@ for i in range(needed):
             "explanation": f"{topic} serves multiple purposes in {track_name} programming."
         }
     ]
-    
+
     lesson = {
         "id": lesson_id,
         "title": f"{topic.title()} - Lesson {i+1}",
@@ -98,7 +96,7 @@ for i in range(needed):
         "steps": steps
     }
     new_lessons.append(lesson)
-    
+
     topic_idx += 1
     if topic_idx >= len(topics_list_inner):
         topic_idx = 0
@@ -116,7 +114,9 @@ for i, lesson in enumerate(new_lessons):
         py_code += "\n"
 py_code += f"]\n{variable_name}.extend(EXTRA_{track_name.upper()}_LESSONS)\n"
 
+print(f"Generated {len(new_lessons)} new {track_name} lessons")
+
 with open(target_file, "a") as f:
     f.write(py_code)
 
-print(f"Generated {len(new_lessons)} new {track_name} lessons")
+print(f"Appended {len(new_lessons)} lessons to {target_file}")
