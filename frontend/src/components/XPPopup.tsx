@@ -51,7 +51,7 @@ export default function XPPopup({ show, xpGained, level, streak, newBadges = [],
               transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.2 }}
             >
               <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-white shadow-lg" style={{
-                background: `linear-gradient(135deg, ${color.base}, ${CODDY.indigo.base})`,
+                background: `linear-gradient(135deg, ${color.base}, ${CODDY.blue.base})`,
                 boxShadow: `0 0 16px ${color.base}50`,
               }}>
                 <Zap size={32} className="text-white" />
