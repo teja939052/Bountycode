@@ -1,21 +1,22 @@
 ﻿import { Gift, Sparkles, Crown, Zap, ShieldCheck } from 'lucide-react';
-import { CODDY, coddyGlow, coddyRadial } from './palette';
+import { CODDY, coddyGlow } from './palette';
 
 export interface ChestProps {
-  type: 'wood' | 'silver' | 'gold' | 'diamond';
+  type: 'streak' | 'score' | 'energy' | 'coddy' | 'pro';
   opened?: boolean;
   onOpen?: () => void;
   size?: 'sm' | 'md' | 'lg';
 }
 
 const CHEST_CONFIG = {
-  wood: { icon: <Gift size={24} className="text-amber-500" />, gradient: 'linear-gradient(135deg, #8B4513, #A0522D)', glow: CODDY.warning.base },
-  silver: { icon: <ShieldCheck size={24} className="text-silver-400" />, gradient: 'linear-gradient(135deg, #B0B0B0, #E0E0E0)', glow: CODDY.silver.base },
-  gold: { icon: <Crown size={24} className="text-amber-400" />, gradient: 'linear-gradient(135deg, #F59E0B, #FCD34D)', glow: CODDY.gold.base },
-  diamond: { icon: <Sparkles size={24} className="text-cyan-400" />, gradient: 'linear-gradient(135deg, #06B6D4, #818CF8)', glow: CODDY.blue.base },
+  streak: { icon: <Gift size={24} className="text-streak-500" />, base: CODDY.streak.DEFAULT, glow: CODDY.streak.DEFAULT },
+  score: { icon: <Crown size={24} className="text-score-500" />, base: CODDY.score.DEFAULT, glow: CODDY.score.DEFAULT },
+  energy: { icon: <ShieldCheck size={24} className="text-energy-500" />, base: CODDY.energy.DEFAULT, glow: CODDY.energy.DEFAULT },
+  coddy: { icon: <Sparkles size={24} className="text-coddy-500" />, base: CODDY.coddy.DEFAULT, glow: CODDY.coddy.DEFAULT },
+  pro: { icon: <Zap size={24} className="text-pro-500" />, base: CODDY.pro.DEFAULT, glow: CODDY.pro.DEFAULT },
 } as const;
 
-export default function Chest({ type = 'wood', opened = false, onOpen, size = 'md' }: ChestProps) {
+export default function Chest({ type = 'streak', opened = false, onOpen, size = 'md' }: ChestProps) {
   const config = CHEST_CONFIG[type];
   const sizes = { sm: { w: 48, h: 48, icon: 20 }, md: { w: 64, h: 64, icon: 28 }, lg: { w: 88, h: 88, icon: 36 } };
   const s = sizes[size];
@@ -30,7 +31,7 @@ export default function Chest({ type = 'wood', opened = false, onOpen, size = 'm
         <div className={`relative z-10 ${opened ? 'animate-pulse' : ''}`}>{config.icon}</div>
         {opened && (
           <div className="absolute -top-4 left-1/2 -translate-x-1/2 flex items-center gap-1 px-2 py-1 rounded-full bg-white dark:bg-slate-800 border border-white/30 text-[10px] font-bold text-ink dark:text-white shadow-lg">
-            <Zap size={10} className="text-warning-500" /> Rewarded
+            <Zap size={10} className="text-score-500" /> Rewarded
           </div>
         )}
       </div>

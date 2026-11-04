@@ -190,6 +190,8 @@ const ResumeATS = lazy(() => import("./ResumeATS"));
 const LearningHub = lazy(() => import("./LearningHub"));
 const LanguageJourney = lazy(() => import("./LanguageJourney"));
 const LessonView = lazy(() => import("./LessonView"));
+const LessonPlayer = lazy(() => import("./LessonPlayer"));
+const Lessons = lazy(() => import("./Lessons"));
 const StudyLibrary = lazy(() => import("./StudyLibrary"));
 const AdminDashboard = lazy(() => import("./AdminDashboard"));
 const Topics = lazy(() => import("./Topics"));
@@ -294,6 +296,8 @@ export {
   LearningHub,
   LanguageJourney,
   LessonView,
+  LessonPlayer,
+  Lessons,
   StudyLibrary,
   AdminDashboard,
   Topics,

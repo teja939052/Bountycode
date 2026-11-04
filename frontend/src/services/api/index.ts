@@ -45,6 +45,7 @@ import { onboardingApi } from "./onboarding.ts";
 import { adminContentApi, assignmentsApi } from "./adminContent.ts";
 import { metricsApi } from "./metrics.ts";
 import { flatApi } from "./flat.ts";
+import { lessonsApi } from "./lessons.ts";
 import { flatOverrides } from "./flatOverrides.ts";
 import { blogApi } from "./blog.ts";
 
@@ -122,6 +123,7 @@ const api = {
   ) => authApi.onboardingComplete.apply(authApi, args),
   ...flatApi,
   ...flatOverrides,
+  lessons: lessonsApi,
 };
 
 export default api;
@@ -175,4 +177,5 @@ export {
   freeTrialApi,
   onboardingApi,
   blogApi,
+  lessonsApi,
 };

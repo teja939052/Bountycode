@@ -95,6 +95,8 @@ import {
   LearningHub,
   LanguageJourney,
   LessonView,
+  LessonPlayer,
+  Lessons,
   StudyLibrary,
   AdminDashboard,
   Topics,
@@ -205,6 +207,8 @@ function AnimatedRoutes() {
         <Route path="/practice" element={<Practice />} />
         <Route path="/compete" element={<Compete />} />
         <Route path="/career" element={<Career />} />
+        <Route path="/lessons" element={<Lessons />} />
+        <Route path="/lessons/:lessonId" element={<LessonPlayer />} />
         <Route
           path="/analytics"
           element={<Navigate to="/dashboard" replace />}

@@ -1,5 +1,5 @@
 ﻿import { ShieldCheck, Award, Zap, Star, Link } from 'lucide-react';
-import { CODDY, coddyGlow } from './palette';
+import { CODDY } from './palette';
 
 export interface CertificateProps {
   name: string;
@@ -12,14 +12,14 @@ export interface CertificateProps {
 
 export default function Certificate({ name, section, topic, id, date, issuer }: CertificateProps) {
   return (
-    <div className="relative p-8 md:p-12 bg-white dark:bg-slate-900 border-4 border-dark-blue dark:border-white rounded-2xl shadow-2xl overflow-hidden max-w-2xl mx-auto">
+    <div className="relative p-8 md:p-12 bg-white dark:bg-slate-900 border-4 border-charcoal dark:border-white rounded-2xl shadow-2xl overflow-hidden max-w-2xl mx-auto">
       {/* Seal */}
-      <div className="absolute top-6 left-6 w-16 h-16 rounded-full bg-warning-500 flex items-center justify-center text-white font-bold shadow-lg border-4 border-white dark:border-white">
+      <div className="absolute top-6 left-6 w-16 h-16 rounded-full bg-score-500 flex items-center justify-center text-white font-bold shadow-lg border-4 border-white dark:border-white">
         <ShieldCheck size={32} />
       </div>
 
       {/* Top border decoration */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-warning-500 via-dark-blue-600 to-warning-500" />
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-score-500 via-coddy-600 to-score-500" />
 
       <div className="relative z-10">
         <div className="flex justify-between items-start mb-8">
@@ -39,9 +39,9 @@ export default function Certificate({ name, section, topic, id, date, issuer }: 
           This is to certify that
         </p>
         <div className="flex items-center gap-3 mb-8">
-          <div className="flex-1 border-b border-warning-500/30 dark:border-warning-400/30" />
+          <div className="flex-1 border-b border-score-500/30 dark:border-score-400/30" />
           <span className="text-2xl font-serif font-bold text-ink dark:text-white whitespace-nowrap">{name}</span>
-          <div className="flex-1 border-b border-warning-500/30 dark:border-warning-400/30" />
+          <div className="flex-1 border-b border-score-500/30 dark:border-score-400/30" />
         </div>
 
         <p className="text-sm text-slate-500 dark:text-slate-400 mb-1">has successfully completed the section</p>
@@ -49,11 +49,11 @@ export default function Certificate({ name, section, topic, id, date, issuer }: 
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm text-slate-600 dark:text-slate-400">
           <div className="flex items-center gap-2">
-            <Star size={14} className="text-warning-500" />
+            <Star size={14} className="text-score-500" />
             <span>Topic: {topic}</span>
           </div>
           <div className="flex items-center gap-2">
-            <Zap size={14} className="text-dark-blue-500 dark:text-dark-blue-400" />
+            <Zap size={14} className="text-coddy-500 dark:text-coddy-400" />
             <span>Issued: {date}</span>
           </div>
           <div className="flex items-center gap-2">
