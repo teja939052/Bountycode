@@ -169,6 +169,14 @@ async def lifespan(app: FastAPI):
             logger.info("Question store loaded into memory")
         except Exception as e:
             logger.warning(f"Question store initialization failed: {e}")
+
+        # Load curated learning content (lessons + practice questions)
+        try:
+            from app.services.content_loader import load_all_content
+            content_result = load_all_content()
+            logger.info("Curated content loaded: %d files, %d questions", content_result["files"], sum(x["inserted"] for x in content_result["results"]))
+        except Exception as e:
+            logger.warning(f"Content initialization failed: {e}")
         
         # Get database client for remaining initialization
         db = get_client()[settings.DATABASE_NAME]

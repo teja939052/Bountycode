@@ -568,6 +568,9 @@ def _match(q: dict, query: dict) -> bool:
                     return False
             elif qv != value:
                 return False
+        elif key == "trust_status":
+            if q.get("trust_status") != value:
+                return False
         elif key == "difficulty":
             qv = q.get("difficulty", "")
             if isinstance(value, dict) and "$in" in value:
@@ -671,6 +674,11 @@ class QuestionCursor:
 
     def sort(self, sort_by):
         self._sort_spec = sort_by
+        return self
+
+    def prefer_verified(self):
+        """Return a cursor that orders verified (human-reviewed) questions first."""
+        self._all.sort(key=lambda q: 0 if q.get("trust_status") == "human_reviewed" else 1)
         return self
 
     def to_list(self, length: Optional[int] = None) -> list[dict]:

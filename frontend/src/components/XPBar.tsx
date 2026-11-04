@@ -1,109 +1,96 @@
-import { useEffect } from 'react';
+﻿import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import CountUp from 'react-countup';
+import { Zap, Flame, Trophy } from 'lucide-react';
+import { getLevelForXP, getXPForLevel, getLevelLabel, CODDY } from './gamification/palette';
 
 const LEVEL_THRESHOLDS = [
   0, 100, 300, 600, 1000, 1600, 2400, 3400, 4600, 6000,
   7800, 10000, 12600, 15600, 19200, 23400, 28200, 33800, 40200, 47600,
 ];
 
-function getLevelForXP(xp) {
-  let level = 1;
-  for (let i = 1; i < LEVEL_THRESHOLDS.length; i++) {
-    if (xp >= LEVEL_THRESHOLDS[i]) level = i + 1;
-    else break;
-  }
-  return level;
-}
+export { getLevelForXP, getXPForLevel };
 
-function getXPForLevel(level) {
-  return LEVEL_THRESHOLDS[Math.min(level - 1, LEVEL_THRESHOLDS.length - 1)];
-}
-
-function getLevelColor(level) {
-  if (level >= 20) return { from: '#EC4899', to: '#A855F7', label: 'Mythic' };
-  if (level >= 15) return { from: '#EAB308', to: '#F59E0B', label: 'Legendary' };
-  if (level >= 10) return { from: '#A855F7', to: '#6366F1', label: 'Epic' };
-  if (level >= 7) return { from: '#3B82F6', to: '#2563EB', label: 'Rare' };
-  if (level >= 4) return { from: '#22C55E', to: '#16A34A', label: 'Uncommon' };
-  return { from: '#9CA3AF', to: '#6B7280', label: 'Common' };
-}
-
-export { getLevelForXP, getXPForLevel, getLevelColor };
-
-export default function XPBar({ xp = 0, showLevel = true, compact = false, className = '' }) {
+export default function XPBar({ xp = 0, showLevel = true, compact = false, className = '', streak = 0, league }) {
   const level = getLevelForXP(xp);
   const currentLevelXP = getXPForLevel(level);
   const nextLevelXP = getXPForLevel(level + 1);
   const progress = nextLevelXP > currentLevelXP
-    ? ((xp - currentLevelXP) / (nextLevelXP - currentLevelXP)) * 100
+    ? Math.min(100, Math.max(0, ((xp - currentLevelXP) / (nextLevelXP - currentLevelXP)) * 100))
     : 100;
-  const color = getLevelColor(level);
+  const label = getLevelLabel(level);
+  const color = CODDY[label.color];
 
   return (
-    <div className={`flex items-center gap-3 ${className}`}>
+    <div className={`flex items-center gap-3 min-w-0 ${className}`}>
       {showLevel && (
-        <div className="relative shrink-0">
+        <div className="shrink-0 relative">
           <div
-            className="w-10 h-10 rounded-xl flex items-center justify-center font-display font-black text-sm"
+            className="w-10 h-10 rounded-xl flex items-center justify-center font-display font-bold text-sm shadow-lg"
             style={{
-              background: `linear-gradient(135deg, ${color.from}30, ${color.to}20)`,
-              border: `2px solid ${color.from}50`,
-              color: color.from,
-              boxShadow: `0 0 12px ${color.from}20`,
+              background: `linear-gradient(135deg, ${color.light}40, ${CODDY.blue.light}20)`,
+              border: `2px solid ${color.base}80`,
+              color: color.base,
+              boxShadow: `0 0 16px ${color.base}40`,
             }}
           >
             {level}
           </div>
           <span
-            className="absolute -bottom-1 -right-1 text-[8px] font-mono px-1 rounded"
-            style={{ backgroundColor: `${color.from}20`, color: color.from }}
+            className="absolute -bottom-[14px] -right-px text-[9px] font-mono font-bold px-2 py-[2px] rounded-md"
+            style={{ backgroundColor: `${color.base}15`, color: color.base, border: `1px solid ${color.base}40` }}
           >
-            {color.label}
+            {label.label}
           </span>
         </div>
       )}
 
       <div className="flex-1 min-w-0">
         {compact ? (
-          <div className="flex items-center gap-2">
-            <div className="flex-1 h-2 bg-gray-800 rounded-full overflow-hidden">
+          <div className="flex items-center gap-2.5">
+            <div className="flex-1 h-2 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden border border-white/30 dark:border-white/10">
               <motion.div
-                className="h-full rounded-full"
-                style={{ background: `linear-gradient(90deg, ${color.from}, ${color.to})` }}
+                className="h-full rounded-full relative"
+                style={{ background: `linear-gradient(90deg, ${color.base}, ${CODDY.indigo.base})` }}
                 initial={{ width: 0 }}
                 animate={{ width: `${progress}%` }}
                 transition={{ duration: 1, ease: 'easeOut' }}
-              />
+              >
+                <div className="absolute inset-0 overflow-hidden rounded-full">
+                  <div className="absolute inset-0 holo-shimmer opacity-50" style={{ animationDuration: '2s' }} />
+                </div>
+              </motion.div>
             </div>
-            <span className="text-[10px] font-mono text-gray-500 shrink-0">
+            <span className="text-[10px] font-mono font-bold text-ink dark:text-slate-300 shrink-0">
               <CountUp end={xp} duration={1.5} /> XP
             </span>
           </div>
         ) : (
           <>
-            <div className="flex items-center justify-between mb-1">
-              <span className="text-[10px] font-mono text-gray-500">
-                Level {level}
-              </span>
-              <span className="text-[10px] font-mono text-gray-600">
-                <CountUp end={xp - currentLevelXP} duration={1.2} /> / {nextLevelXP - currentLevelXP} XP
-              </span>
+            <div className="flex items-center justify-between mb-2 gap-2">
+              <div className="flex items-center gap-1">
+                <Zap size={13} className="text-warning-500 dark:text-warning-400" />
+                <span className="text-[11px] font-mono font-bold text-ink dark:text-slate-300">
+                  <CountUp end={xp - currentLevelXP} duration={1.2} /> <span className="text-[10px] opacity-70">/{nextLevelXP - currentLevelXP}</span> XP
+                </span>
+              </div>
+              {league && (
+                <span className="flex items-center gap-1.5 px-2.5 py-[3px] rounded-full bg-ink dark:bg-slate-800 border border-white/20 text-[10px] font-bold text-white">
+                  <Trophy size={11} className="text-warning-500" />
+                  #{league}
+                </span>
+              )}
             </div>
-            <div className="h-2.5 bg-gray-800 rounded-full overflow-hidden">
+            <div className="h-3 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden border border-white/30 dark:border-white/10">
               <motion.div
                 className="h-full rounded-full relative"
-                style={{ background: `linear-gradient(90deg, ${color.from}, ${color.to})` }}
+                style={{ background: `linear-gradient(90deg, ${color.base}, ${CODDY.indigo.base})` }}
                 initial={{ width: 0 }}
                 animate={{ width: `${progress}%` }}
                 transition={{ duration: 1.2, ease: 'easeOut' }}
               >
-                {/* Shine effect */}
                 <div className="absolute inset-0 overflow-hidden rounded-full">
-                  <div
-                    className="absolute inset-0 holo-shimmer opacity-40"
-                    style={{ animationDuration: '2s' }}
-                  />
+                  <div className="absolute inset-0 holo-shimmer opacity-50" style={{ animationDuration: '2s' }} />
                 </div>
               </motion.div>
             </div>

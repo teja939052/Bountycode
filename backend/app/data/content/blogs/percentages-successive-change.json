@@ -1,0 +1,14 @@
+﻿{
+  "slug": "percentages-successive-change",
+  "title": "Successive Percentage Change: Don't Just Add",
+  "excerpt": "A 20% increase followed by a 10% decrease is NOT a net 10% increase. Percentages compound \u2014 apply each change to the current value, not the original.",
+  "topic": "quantitative_aptitude",
+  "tags": ["aptitude", "percentages", "interview"],
+  "related_topic": "percentages",
+  "author": "BountyCode Team",
+  "updated_at": "2026-11-04",
+  "body": "## The trap\n\n\"Price increased 20%, then decreased 10%. What is the net change?\"\n\nMost students answer 10% (20 \u2212 10). That is wrong.\n\n## Why\n\nThe 10% decrease applies to the *new* (higher) price, not the original.\n\n100 \u00d7 1.20 = 120, then 120 \u00d7 0.90 = 108. Net change = +8%, not +10%.\n\n## Rule\n\nApply each change one after another:\nFinal = Original \u00d7 (1 \u00b1 x/100) \u00d7 (1 \u00b1 y/100)\n\n## Practice it\n\nTake the Percentages timed topic test \u2014 it includes successive-change questions.",
+  "code": "original = 100\nafter_increase = original * 1.20   # 120\nafter_decrease = after_increase * 0.90  # 108\nnet = (after_decrease - original) / original * 100  # 8.0%",
+  "language": "python",
+  "trust_status": "human_reviewed"
+}

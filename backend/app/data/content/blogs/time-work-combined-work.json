@@ -1,0 +1,14 @@
+﻿{
+  "slug": "time-work-combined-work",
+  "title": "Combined Work: Add Rates, Not Days",
+  "excerpt": "If A and B together finish in 15 days and B alone in 20 days, A alone takes 60 days \u2014 you add work *rates*, not days.",
+  "topic": "quantitative_aptitude",
+  "tags": ["aptitude", "time-work", "interview"],
+  "related_topic": "time_work",
+  "author": "BountyCode Team",
+  "updated_at": "2026-11-04",
+  "body": "## The rule\n\nIf A completes work in n days, A's 1 day's work = 1/n.\nCombined rate = sum of individual rates.\n\nIf A+B finish in 15 days and B alone in 20:\nA alone = (15 \u00d7 20) \u00f7 (20 \u2212 15) = 300 \u00f7 5 = 60 days.\n\n## The trap\n\nNever subtract days (20 \u2212 15 = 5). Subtract rates (1/15 \u2212 1/20).\n\n## Practice it\n\nDrill combined-work and work-wages questions in the Time & Work topic test.",
+  "code": "from fractions import Fraction\nab = Fraction(1, 15)\nb = Fraction(1, 20)\na = ab - b          # 1/60\nprint('A alone:', 1 / a)   # 60 days",
+  "language": "python",
+  "trust_status": "human_reviewed"
+}

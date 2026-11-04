@@ -287,15 +287,11 @@ assignment_submissions_collection = _LazyCollection("assignment_submissions")
 question_explanations_collection = _LazyCollection("question_explanations")
 interview_chat_sessions_collection = _LazyCollection("interview_chat_sessions")
 user_deadlines_collection = _LazyCollection("user_deadlines")
-campus_profiles_collection = _LazyCollection("campus_profiles")
-campus_leaderboard_collection = _LazyCollection("campus_leaderboard")
 payments_collection = _LazyCollection("payments")
 revenue_events_collection = _LazyCollection("revenue_events")
 billing_metrics_collection = _LazyCollection("billing_metrics")
 coupons_collection = _LazyCollection("coupons")
 referrals_collection = _LazyCollection("referrals")
-campus_events_collection = _LazyCollection("campus_events")
-campus_winners_collection = _LazyCollection("campus_winners")
 chat_messages_collection = _LazyCollection("chat_messages")
 gd_rooms_collection = _LazyCollection("gd_rooms")
 gd_ratings_collection = _LazyCollection("gd_ratings")
@@ -562,25 +558,6 @@ async def init_db():
     await _safe_create_index(db["assignment_submissions"], "status")
     await _safe_create_index(db["assignment_submissions"], [("assignment_id", 1), ("status", 1)])
 
-    # Campus Wars indexes
-    await _safe_create_index(db["campus_profiles"], "user_id", unique=True)
-    await _safe_create_index(db["campus_profiles"], "month")
-    await _safe_create_index(db["campus_profiles"], [("college", 1), ("month", 1)])
-    await _safe_create_index(db["campus_leaderboard"], [("college", 1), ("month", 1)], unique=True)
-    await _safe_create_index(db["campus_leaderboard"], [("month", 1), ("points", -1)])
-    await _safe_create_index(db["campus_leaderboard"], "points")
-    await _safe_create_index(db["campus_winners"], "month", unique=True)
-    await _safe_create_index(
-        db["campus_events"],
-        "month",
-        unique=True,
-        partialFilterExpression={"kind": "campus_event"},
-    )
-
-    # College Network indexes (reuses campus_profiles / campus_events)
-    await _safe_create_index(db["campus_profiles"], [("college", 1), ("branch", 1), ("year", 1)])
-    await _safe_create_index(db["campus_events"], [("college", 1), ("created_at", -1)])
-
     # Chat messages — TTL 7 days keeps storage bounded on the 500MB cluster
     await _safe_create_index(db["chat_messages"], "created_at", expireAfterSeconds=604800)
     await _safe_create_index(db["chat_messages"], [("room_type", 1), ("room_id", 1), ("created_at", -1)])
@@ -588,10 +565,6 @@ async def init_db():
     # Shareable achievements TTL (cards expire after 30 days)
     await _safe_create_index(db["shares"], [("user_id", 1), ("date", 1)], unique=True)
     await _safe_create_index(db["shares"], [("created_at", -1)], expireAfterSeconds=604800)
-
-    # Campus Pulse TTL (battles auto-expire after 48 hours)
-    await _safe_create_index(db["pulse_battles"], [("created_at", -1)], expireAfterSeconds=172800)
-    await _safe_create_index(db["pulse_battles"], [("campus_a", 1), ("campus_b", 1)])
 
     # Pulse daily TTL (1 doc/user/day, expires after 7 days)
     await _safe_create_index(db["pulse_daily"], [("user_id", 1), ("date", 1)], unique=True)

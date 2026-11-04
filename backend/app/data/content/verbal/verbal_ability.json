@@ -1,0 +1,107 @@
+{
+  "topic": "verbal_ability",
+  "subject": "verbal",
+  "pattern": "verbal_ability",
+  "lessons": [
+    {
+      "id": "synonym_antonym",
+      "title": "Synonym and Antonym",
+      "concept": "Synonym = same meaning; Antonym = opposite meaning. Choose the word closest in meaning (or opposite).",
+      "formula": "Match meaning precisely",
+      "worked_example": "Synonym of Abundant = Plentiful. Antonym of Permanent = Temporary.",
+      "mistakes": ["Choosing related but not same word", "Ignoring context/part of speech"]
+    },
+    {
+      "id": "reading_comprehension",
+      "title": "Reading Comprehension",
+      "concept": "Read passage and answer based ONLY on given info. True/False/Can't tell. Don't use outside knowledge.",
+      "formula": "Answer from passage only",
+      "worked_example": "Statement supported by passage = True; contradicts = False; insufficient info = Can't tell.",
+      "mistakes": ["Using outside knowledge", "Inferring beyond passage"]
+    },
+    {
+      "id": "sentence_correction",
+      "title": "Sentence Correction",
+      "concept": "Identify grammatical error / choose correct sentence. Subject-verb agreement, tense, articles, prepositions.",
+      "formula": "Check grammar rules",
+      "worked_example": "She go to school → She goes to school (3rd person singular).",
+      "mistakes": ["Ignoring subject-verb agreement", "Choosing by 'sounds right' without rule"]
+    }
+  ],
+  "practice": [
+    {
+      "id": "VB-PRACTICE-001",
+      "question": "Synonym of Abundant?",
+      "options": {"A": "Scarce", "B": "Plentiful", "C": "Rare", "D": "Empty"},
+      "correct_answer": "B",
+      "explanation": "Abundant = plentiful, existing in large quantities.",
+      "difficulty": "easy",
+      "sub_topic": "synonym_antonym",
+      "misconception_tags": ["wrong_meaning"],
+      "company_tags": ["tcs"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "VB-PRACTICE-002",
+      "question": "Antonym of Permanent?",
+      "options": {"A": "Lasting", "B": "Temporary", "C": "Fixed", "D": "Stable"},
+      "correct_answer": "B",
+      "explanation": "Permanent = lasting; opposite = temporary.",
+      "difficulty": "easy",
+      "sub_topic": "synonym_antonym",
+      "misconception_tags": ["wrong_meaning"],
+      "company_tags": ["infosys"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    }
+  ],
+  "questions": [
+    {
+      "id": "VB-001",
+      "question": "The earth is in great danger because of ______ pollution.",
+      "options": {"A": "air", "B": "water", "C": "sound", "D": "all"},
+      "correct_answer": "D",
+      "explanation": "All forms of pollution endanger the earth.",
+      "difficulty": "easy",
+      "sub_topic": "sentence_correction",
+      "misconception_tags": ["context_error"],
+      "company_tags": ["tcs"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "VB-002",
+      "question": "Choose correctly spelled word?",
+      "options": {"A": "Recieve", "B": "Receive", "C": "Reiceve", "D": "Receve"},
+      "correct_answer": "B",
+      "explanation": "Receive follows 'i before e except after c'.",
+      "difficulty": "easy",
+      "sub_topic": "sentence_correction",
+      "misconception_tags": ["spelling"],
+      "company_tags": ["wipro"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "VB-003",
+      "question": "Grammatically correct: \"She go to school\"?",
+      "options": {"A": "She go to school", "B": "She goes to school", "C": "She going to school", "D": "She went to school"},
+      "correct_answer": "B",
+      "explanation": "Third person singular present → goes.",
+      "difficulty": "easy",
+      "sub_topic": "sentence_correction",
+      "misconception_tags": ["subject_verb_agreement"],
+      "company_tags": ["tcs"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    }
+  ],
+  "trust_status": "human_reviewed",
+  "source": "bountycode_original"
+}

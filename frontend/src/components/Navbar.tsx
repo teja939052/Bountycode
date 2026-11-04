@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, type ReactNode } from "react";
 import type { LucideIcon } from "lucide-react";
 import useAuthStore from "../store/authStore";
+import { GamificationWidget } from "../components/gamification";
 import {
   LogOut,
   Menu,
@@ -140,6 +141,7 @@ export default function Navbar() {
                   <span className="rounded-full border border-brand-primary/30 bg-brand-primary/10 px-2.5 py-1 text-[10px] font-mono uppercase tracking-[0.2em] text-brand-primary" aria-label={`Plan: ${user.plan}`}>
                     {user.plan}
                   </span>
+                  <GamificationWidget xp={user.xp ?? 0} level={user.level ?? 1} streak={user.streak ?? 0} league={user.leagueRank ?? 5} badges={user.badgesCount ?? 0} />
                   <Link to="/settings" className="text-text-muted transition-colors hover:text-brand-primary" aria-label="Settings">
                     <Settings size={17} />
                   </Link>

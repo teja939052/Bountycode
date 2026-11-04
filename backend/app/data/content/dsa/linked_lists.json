@@ -1,0 +1,113 @@
+{
+  "topic": "linked_lists",
+  "subject": "dsa",
+  "pattern": "Linked Lists",
+  "lessons": [
+    {
+      "id": "linked_list_basics",
+      "title": "Linked List Basics",
+      "concept": "A linked list is nodes linked via pointers, allowing dynamic memory use. Singly linked: each node points to next. Access is O(n); insert/delete at known position O(1).",
+      "formula": "Access: O(n); Insert/Delete at known node: O(1)",
+      "worked_example": "Reverse singly linked list: use three pointers (prev, curr, next); reverse links iteratively.",
+      "mistakes": ["Forgetting to save next before reversing", "Null pointer on empty list"]
+    },
+    {
+      "id": "linked_list_vs_array",
+      "title": "Linked List vs Array",
+      "concept": "Array: O(1) access, O(n) insert/delete (shift). Linked list: O(n) access, O(1) insert/delete at known node, no random access.",
+      "formula": "Array access O(1); LL access O(n)",
+      "worked_example": "Frequent insertions/deletions → linked list better. Frequent random access → array better.",
+      "mistakes": ["Choosing array for frequent middle insertions", "Choosing LL for index-based access"]
+    }
+  ],
+  "practice": [
+    {
+      "id": "LL-PRACTICE-001",
+      "question": "Which data structure uses LIFO?",
+      "options": {"A": "Array", "B": "Linked List", "C": "Stack", "D": "Queue"},
+      "correct_answer": "C",
+      "explanation": "Stack uses Last-In-First-Out.",
+      "difficulty": "easy",
+      "sub_topic": "linked_list_basics",
+      "misconception_tags": ["wrong_structure"],
+      "company_tags": ["tcs", "infosys"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "LL-PRACTICE-002",
+      "question": "Better for frequent insertions and deletions?",
+      "options": {"A": "Array", "B": "Linked List", "C": "Stack", "D": "Queue"},
+      "correct_answer": "B",
+      "explanation": "Linked lists support O(1) insertion/deletion at known positions; arrays require shifting O(n).",
+      "difficulty": "easy",
+      "sub_topic": "linked_list_vs_array",
+      "misconception_tags": ["wrong_structure"],
+      "company_tags": ["wipro"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    }
+  ],
+  "questions": [
+    {
+      "id": "LL-001",
+      "question": "Data structure for to-do list where tasks added at end and processed in order added?",
+      "options": {"A": "Stack", "B": "Array", "C": "Linked List", "D": "Queue"},
+      "correct_answer": "D",
+      "explanation": "Processed in order added → First-In-First-Out → Queue.",
+      "difficulty": "easy",
+      "sub_topic": "linked_list_basics",
+      "misconception_tags": ["fifo_vs_lifo"],
+      "company_tags": ["tcs"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "LL-002",
+      "question": "Structure for managing function calls and local variables?",
+      "options": {"A": "Queue", "B": "Linked List", "C": "Stack", "D": "Array"},
+      "correct_answer": "C",
+      "explanation": "Function call stack uses LIFO → stack.",
+      "difficulty": "easy",
+      "sub_topic": "linked_list_basics",
+      "misconception_tags": ["wrong_structure"],
+      "company_tags": ["infosys"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "LL-003",
+      "question": "Structure for BFS in graph traversal?",
+      "options": {"A": "Stack", "B": "Array", "C": "Linked List", "D": "Queue"},
+      "correct_answer": "D",
+      "explanation": "BFS uses a queue (FIFO) to explore level by level.",
+      "difficulty": "easy",
+      "sub_topic": "linked_list_basics",
+      "misconception_tags": ["wrong_structure"],
+      "company_tags": ["tcs"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "LL-004",
+      "question": "Time to insert at end of singly linked list with tail pointer?",
+      "options": {"A": "O(1)", "B": "O(n)", "C": "O(log n)", "D": "O(n^2)"},
+      "correct_answer": "A",
+      "explanation": "With tail pointer, append directly → O(1).",
+      "difficulty": "easy",
+      "sub_topic": "linked_list_basics",
+      "misconception_tags": ["forgetting_tail_pointer"],
+      "company_tags": ["wipro"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    }
+  ],
+  "trust_status": "human_reviewed",
+  "source": "bountycode_original"
+}

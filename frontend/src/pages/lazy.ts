@@ -87,6 +87,13 @@ const routeImportFns = {
 
   Terms: () => import("./Terms"),
   Privacy: () => import("./Privacy"),
+  Blogs: () => import("./Blogs"),
+  ArticlePage: () => import("./ArticlePage"),
+  PercentagesAcademy: () => import("./PercentagesAcademy"),
+  CodingAcademy: () => import("./CodingAcademy"),
+  TargetPage: () => import("./TargetPage"),
+  LoopsVertical: () => import("./LoopsVertical"),
+  GamificationDashboard: () => import("./GamificationDashboard"),
 };
 
 const preload = {};
@@ -221,6 +228,13 @@ const Compete = lazy(() => import('./Compete'));
 const Career = lazy(() => import('./Career'));
 const Terms = lazy(() => import('./Terms'));
 const Privacy = lazy(() => import('./Privacy'));
+const Blogs = lazy(() => import('./Blogs'));
+const ArticlePage = lazy(() => import('./ArticlePage'));
+const PercentagesAcademy = lazy(() => import('./PercentagesAcademy'));
+const CodingAcademy = lazy(() => import('./CodingAcademy'));
+const TargetPage = lazy(() => import('./TargetPage'));
+const LoopsVertical = lazy(() => import('./LoopsVertical'));
+const GamificationDashboard = lazy(() => import('./GamificationDashboard'));
 export {
   CurriculumHub,
   LearnTrack,
@@ -310,4 +324,11 @@ export {
   Concepts,
   Terms,
   Privacy,
+  Blogs,
+  ArticlePage,
+  PercentagesAcademy,
+  CodingAcademy,
+  TargetPage,
+  LoopsVertical,
+  GamificationDashboard,
 };

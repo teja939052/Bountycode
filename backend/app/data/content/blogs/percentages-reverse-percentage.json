@@ -1,0 +1,14 @@
+﻿{
+  "slug": "percentages-reverse-percentage",
+  "title": "Reverse Percentage: Work Backwards from the Final Value",
+  "excerpt": "After a 20% increase the price is 120. What was the original? Don't subtract 20% from 120 \u2014 divide by 1.20.",
+  "topic": "quantitative_aptitude",
+  "tags": ["aptitude", "percentages", "interview"],
+  "related_topic": "percentages",
+  "author": "BountyCode Team",
+  "updated_at": "2026-11-04",
+  "body": "## The trap\n\n\"After a 20% increase, the price is \u20b9120. What was the original?\"\n\nWrong: 120 \u2212 20% = 96. Right: 120 \u00f7 1.20 = 100.\n\n## Why\n\nThe original is the base. A 20% increase means Final = Original \u00d7 1.20, so Original = Final \u00f7 1.20.\n\n## Same for decrease\n\nAfter a 25% decrease the price is 90. Original = 90 \u00f7 0.75 = 120.\n\n## Practice it\n\nThe Percentages topic test has reverse-percentage questions at easy and medium difficulty.",
+  "code": "final = 120\noriginal = final / 1.20   # 100.0\n\nfinal2 = 90\noriginal2 = final2 / 0.75  # 120.0",
+  "language": "python",
+  "trust_status": "human_reviewed"
+}

@@ -1,0 +1,177 @@
+{
+  "topic": "time_work",
+  "subject": "quantitative_aptitude",
+  "pattern": "time_work",
+  "lessons": [
+    {
+      "id": "time_work_basics",
+      "title": "Time and Work Basics",
+      "concept": "If A can complete work in n days, A's 1 day's work = 1/n. Work = Rate × Time. Total work often treated as 1 unit.",
+      "formula": "1 day's work = 1/n; Work done = rate × days",
+      "worked_example": "A completes work in 50 days → 1 day's work = 1/50. 70 men in 5 days: total = 20×50=1000 man-days; done = 70×5=350; % = 350/1000 = 35%.",
+      "mistakes": ["Forgetting to convert to man-days", "Comparing different workers without normalizing"]
+    },
+    {
+      "id": "combined_work",
+      "title": "Combined Work",
+      "concept": "If A and B together complete in a days and B alone in b days, A alone = ab/(b−a) days. Combined rate = sum of individual rates.",
+      "formula": "A alone = ab/(b−a); Combined rate = 1/a + 1/b",
+      "worked_example": "A+B in 15 days, B alone in 20. A alone = (15×20)/(20−15) = 300/5 = 60 days.",
+      "mistakes": ["Subtracting days instead of rates", "Using wrong formula arrangement"]
+    },
+    {
+      "id": "work_wages",
+      "title": "Work and Wages",
+      "concept": "Wages are distributed in proportion to work done (1/day rate). If A:B rates are rA:rB, wages split in same ratio.",
+      "formula": "Wage ratio = work rate ratio",
+      "worked_example": "A:1/32, B:1/20, C:1/30, D:1/24 → ratio = 15:24:16:20. Total 75 parts.",
+      "mistakes": ["Splitting equally instead of by rate", "Forgetting to normalize rates"]
+    }
+  ],
+  "practice": [
+    {
+      "id": "TW-PRACTICE-001",
+      "question": "20 men can do work in 50 days. Work done by 70 men in 5 days?",
+      "options": {"A": "25%", "B": "35%", "C": "45%", "D": "55%"},
+      "correct_answer": "B",
+      "explanation": "Total = 20×50 = 1000 man-days. Done = 70×5 = 350. % = 350/1000 × 100 = 35%.",
+      "difficulty": "easy",
+      "sub_topic": "time_work_basics",
+      "misconception_tags": ["forgetting_man_days"],
+      "company_tags": ["tcs", "infosys"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "TW-PRACTICE-002",
+      "question": "A and B together in 15 days; B alone in 20. A alone?",
+      "options": {"A": "60", "B": "45", "C": "40", "D": "30"},
+      "correct_answer": "A",
+      "explanation": "A alone = (15×20)/(20−15) = 300/5 = 60 days.",
+      "difficulty": "easy",
+      "sub_topic": "combined_work",
+      "misconception_tags": ["subtracting_days_instead_of_rates"],
+      "company_tags": ["wipro"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "TW-PRACTICE-003",
+      "question": "10 men do work in 12 days. 12 men?",
+      "options": {"A": "12", "B": "10", "C": "9", "D": "8"},
+      "correct_answer": "D",
+      "explanation": "Total = 10×12 = 120 man-days. 12 men → 120/12 = 10 days.",
+      "difficulty": "easy",
+      "sub_topic": "time_work_basics",
+      "misconception_tags": ["inverse_proportion_confusion"],
+      "company_tags": ["tcs"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "TW-PRACTICE-004",
+      "question": "A takes 50% more time than B. Together 18 days. B alone?",
+      "options": {"A": "30", "B": "35", "C": "40", "D": "45"},
+      "correct_answer": "A",
+      "explanation": "Let B = x days, A = 1.5x. 1/x + 1/(1.5x) = 1/18 → (1.5+1)/(1.5x) = 1/18 → 2.5/(1.5x) = 1/18 → x = 30.",
+      "difficulty": "medium",
+      "sub_topic": "combined_work",
+      "misconception_tags": ["wrong_base"],
+      "company_tags": ["infosys"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "TW-PRACTICE-005",
+      "question": "A+B in 3 days. Work 2 days together, B leaves, completed 2 more days. B alone?",
+      "options": {"A": "5", "B": "6", "C": "9", "D": "10"},
+      "correct_answer": "B",
+      "explanation": "In 2 days A+B do 2/3. Remaining 1/3 done by A in 2 days → A alone = 6 days. A+B = 1/3 per day → B = 1/3 − 1/6 = 1/6 → B alone = 6 days.",
+      "difficulty": "medium",
+      "sub_topic": "combined_work",
+      "misconception_tags": ["wrong_base"],
+      "company_tags": ["tcs"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    }
+  ],
+  "questions": [
+    {
+      "id": "TW-001",
+      "question": "A and B together complete work in 18 days. A and C together in 12 days. B and C together in 9 days. B alone?",
+      "options": {"A": "18", "B": "24", "C": "30", "D": "40"},
+      "correct_answer": "B",
+      "explanation": "Let rates a,b,c. a+b=1/18, a+c=1/12, b+c=1/9. Adding: 2(a+b+c) = 1/18+1/12+1/9 = (2+3+4)/36 = 9/36 = 1/4 → a+b+c = 1/8. b = (a+b+c) − (a+c) = 1/8 − 1/12 = (3−2)/24 = 1/24. B alone = 24 days.",
+      "difficulty": "hard",
+      "sub_topic": "combined_work",
+      "misconception_tags": ["wrong_base"],
+      "company_tags": ["tcs", "infosys"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "TW-002",
+      "question": "A and B together complete work in 3 days. After 2 days B left. Completed 2 more days. B alone?",
+      "options": {"A": "5", "B": "6", "C": "9", "D": "10"},
+      "correct_answer": "B",
+      "explanation": "A+B do 2/3 in 2 days. Remaining 1/3 done by A in 2 days → A = 6 days. A+B = 1/3/day → B = 1/3 − 1/6 = 1/6 → B alone = 6 days.",
+      "difficulty": "medium",
+      "sub_topic": "combined_work",
+      "misconception_tags": ["wrong_base"],
+      "company_tags": ["wipro"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "TW-003",
+      "question": "A takes 50% more time than B. Together 18 days. B alone?",
+      "options": {"A": "30", "B": "35", "C": "40", "D": "45"},
+      "correct_answer": "A",
+      "explanation": "B=x, A=1.5x. 1/x + 1/(1.5x) = 1/18 → x=30.",
+      "difficulty": "medium",
+      "sub_topic": "combined_work",
+      "misconception_tags": ["wrong_base"],
+      "company_tags": ["tcs"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "TW-004",
+      "question": "Working 5 hrs/day, A completes work in 8 days. B same work 6 hrs/day in 10 days. Working 8 hrs/day together?",
+      "options": {"A": "3", "B": "4", "C": "4.5", "D": "5.4"},
+      "correct_answer": "D",
+      "explanation": "A: 5×8=40 hr-work. B: 6×10=60 hr-work. Combined rate per hour = 1/40 + 1/60 = (3+2)/120 = 5/120 = 1/24 work/hr. Together = 24 hrs work. At 8 hrs/day → 3 days.",
+      "difficulty": "hard",
+      "sub_topic": "time_work_basics",
+      "misconception_tags": ["ignoring_hours_per_day"],
+      "company_tags": ["infosys"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "TW-005",
+      "question": "10 men or 20 boys make 260 mats in 20 days. 8 men and 4 boys in 20 days?",
+      "options": {"A": "260", "B": "240", "C": "280", "D": "520"},
+      "correct_answer": "A",
+      "explanation": "10 men = 20 boys → 1 man = 2 boys. 8 men + 4 boys = 16+4 = 20 boys. 20 boys make 260 mats in 20 days → 260 mats.",
+      "difficulty": "medium",
+      "sub_topic": "time_work_basics",
+      "misconception_tags": ["wrong_base"],
+      "company_tags": ["tcs"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    }
+  ],
+  "trust_status": "human_reviewed",
+  "source": "bountycode_original"
+}

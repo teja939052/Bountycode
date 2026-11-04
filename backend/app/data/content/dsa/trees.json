@@ -1,0 +1,85 @@
+{
+  "topic": "trees",
+  "subject": "dsa",
+  "pattern": "Trees",
+  "lessons": [
+    {
+      "id": "tree_basics",
+      "title": "Tree Basics",
+      "concept": "A tree is a non-linear, hierarchical data structure with nodes connected by edges. Binary tree: each node has at most 2 children. BST: left < root < right.",
+      "formula": "BST: left subtree < node < right subtree",
+      "worked_example": "BST Inorder traversal (Left → Root → Right) visits nodes in ascending order.",
+      "mistakes": ["Confusing tree with graph", "Thinking BST inorder is unsorted"]
+    },
+    {
+      "id": "tree_traversal",
+      "title": "Tree Traversal",
+      "concept": "Preorder (Root-Left-Right), Inorder (Left-Root-Right), Postorder (Left-Right-Root), Level-order (BFS).",
+      "formula": "Inorder BST → sorted ascending",
+      "worked_example": "BST Inorder visits nodes in non-decreasing (ascending) order.",
+      "mistakes": ["Mixing up traversal orders", "Forgetting BST property in inorder"]
+    }
+  ],
+  "practice": [
+    {
+      "id": "TR-PRACTICE-001",
+      "question": "Which is not a linear data structure?",
+      "options": {"A": "Array", "B": "Linked list", "C": "Queue", "D": "Tree"},
+      "correct_answer": "D",
+      "explanation": "Tree is non-linear (hierarchical). Others are linear.",
+      "difficulty": "easy",
+      "sub_topic": "tree_basics",
+      "misconception_tags": ["linear_vs_nonlinear"],
+      "company_tags": ["tcs", "infosys"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "TR-PRACTICE-002",
+      "question": "BST Inorder traversal visits nodes in?",
+      "options": {"A": "Preorder", "B": "Inorder", "C": "Postorder", "D": "Level Order"},
+      "correct_answer": "B",
+      "explanation": "Inorder (Left → Root → Right) of a BST visits in ascending order.",
+      "difficulty": "easy",
+      "sub_topic": "tree_traversal",
+      "misconception_tags": ["wrong_traversal"],
+      "company_tags": ["wipro"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    }
+  ],
+  "questions": [
+    {
+      "id": "TR-001",
+      "question": "AVL balance factor range?",
+      "options": {"A": "{-1,0,1}", "B": "{0,1,2}", "C": "{-2,-1,0}", "D": "{-1,0}"},
+      "correct_answer": "A",
+      "explanation": "AVL balance factor = height(left) − height(right) ∈ {-1, 0, 1}.",
+      "difficulty": "medium",
+      "sub_topic": "tree_basics",
+      "misconception_tags": ["wrong_range"],
+      "company_tags": ["tcs"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "TR-002",
+      "question": "Graph BFS/DFS time complexity?",
+      "options": {"A": "O(V)", "B": "O(E)", "C": "O(V+E)", "D": "O(V×E)"},
+      "correct_answer": "C",
+      "explanation": "BFS/DFS visit each vertex once and each edge once → O(V+E).",
+      "difficulty": "medium",
+      "sub_topic": "tree_traversal",
+      "misconception_tags": ["missing_edges"],
+      "company_tags": ["infosys"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    }
+  ],
+  "trust_status": "human_reviewed",
+  "source": "bountycode_original"
+}

@@ -126,6 +126,13 @@ import {
   Concepts,
   Terms,
   Privacy,
+  Blogs,
+  ArticlePage,
+  PercentagesAcademy,
+  CodingAcademy,
+  TargetPage,
+  LoopsVertical,
+  GamificationDashboard,
 } from "./pages/lazy";
 
 function AnimatedRoutes() {
@@ -158,6 +165,13 @@ function AnimatedRoutes() {
 <Route path="/free-trial" element={<FreeTrial />} />
 <Route path="/terms" element={<Terms />} />
 <Route path="/privacy" element={<Privacy />} />
+<Route path="/blogs" element={<Blogs />} />
+<Route path="/blog/:slug" element={<ArticlePage />} />
+<Route path="/percentages-academy" element={<PercentagesAcademy />} />
+<Route path="/coding-academy" element={<CodingAcademy />} />
+<Route path="/target" element={<TargetPage />} />
+<Route path="/loops" element={<LoopsVertical />} />
+<Route path="/gamification" element={<GamificationDashboard />} />
       <Route
         path="/onboarding"
         element={

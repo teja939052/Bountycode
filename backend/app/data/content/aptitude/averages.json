@@ -1,0 +1,85 @@
+{
+  "topic": "averages",
+  "subject": "quantitative_aptitude",
+  "pattern": "averages",
+  "lessons": [
+    {
+      "id": "average_basics",
+      "title": "Average Basics",
+      "concept": "Average = Sum of values ÷ Number of values. Weighted average accounts for different group sizes.",
+      "formula": "Average = Sum / Count",
+      "worked_example": "Mean monthly salary of 75 workers = 5680. Mean of 25 = 5400, of 30 = 5700. Remaining (20) = (5680×75 − 5400×25 − 5700×30)/20 = 6000.",
+      "mistakes": ["Averaging averages without weights", "Using wrong count as denominator"]
+    },
+    {
+      "id": "weighted_average",
+      "title": "Weighted Average",
+      "concept": "Combined average = (sum of all values) / (total count), accounting for group sizes.",
+      "formula": "Combined avg = (n1×avg1 + n2×avg2)/(n1+n2)",
+      "worked_example": "Boys avg 71 (count b), girls avg 73 (count g). Combined = (71b+73g)/(b+g).",
+      "mistakes": ["Simple average of two group averages", "Ignoring group sizes"]
+    }
+  ],
+  "practice": [
+    {
+      "id": "AV-PRACTICE-001",
+      "question": "Mean of 75 workers = 5680. Mean of 25 = 5400, of 30 = 5700. Mean of remaining?",
+      "options": {"A": "5000", "B": "6000", "C": "7000", "D": "8000"},
+      "correct_answer": "B",
+      "explanation": "Remaining = (5680×75 − 5400×25 − 5700×30)/(75−25−30) = (426000 − 135000 − 171000)/20 = 120000/20 = 6000.",
+      "difficulty": "medium",
+      "sub_topic": "weighted_average",
+      "misconception_tags": ["averaging_averages"],
+      "company_tags": ["tcs"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "AV-PRACTICE-002",
+      "question": "Average of 5 numbers is 20. One number 30 removed. New average of 4?",
+      "options": {"A": "15", "B": "17.5", "C": "20", "D": "22.5"},
+      "correct_answer": "B",
+      "explanation": "Sum = 100. Remove 30 → 70. 70/4 = 17.5.",
+      "difficulty": "easy",
+      "sub_topic": "average_basics",
+      "misconception_tags": ["wrong_count"],
+      "company_tags": ["infosys"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    }
+  ],
+  "questions": [
+    {
+      "id": "AV-001",
+      "question": "Mean monthly salary of 75 workers = 5680. Mean of 25 = 5400, of 30 = 5700. Mean of remaining workers?",
+      "options": {"A": "5000", "B": "6000", "C": "7000", "D": "8000"},
+      "correct_answer": "B",
+      "explanation": "(5680×75 − 5400×25 − 5700×30)/20 = (426000 − 135000 − 171000)/20 = 6000.",
+      "difficulty": "medium",
+      "sub_topic": "weighted_average",
+      "misconception_tags": ["averaging_averages"],
+      "company_tags": ["tcs", "infosys"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "AV-002",
+      "question": "Average age of 30 boys = 14. Average of 20 girls = 13. Combined average?",
+      "options": {"A": "13.4", "B": "13.5", "C": "13.6", "D": "13.8"},
+      "correct_answer": "A",
+      "explanation": "Combined = (30×14 + 20×13)/50 = (420+260)/50 = 680/50 = 13.6.",
+      "difficulty": "easy",
+      "sub_topic": "weighted_average",
+      "misconception_tags": ["averaging_averages"],
+      "company_tags": ["wipro"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    }
+  ],
+  "trust_status": "human_reviewed",
+  "source": "bountycode_original"
+}

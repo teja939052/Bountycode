@@ -8,14 +8,14 @@ export default function CodingAcademy() {
       {step === "learn" && (
         <div className="space-y-4">
           <p>Loops repeat a block while a condition holds.</p>
-          <pre className="bg-gray-900 text-green-300 p-3 rounded">for (let i = 0; i < 3; i++) console.log(i);</pre>
+          <pre className="bg-gray-900 text-green-300 p-3 rounded">for (let i = 0; i &lt; 3; i++) console.log(i);</pre>
           <button className="btn-primary" onClick={() => setStep("trace")}>Next: Trace</button>
         </div>
       )}
       {step === "trace" && (
         <div className="space-y-4">
           <p>Predict the output:</p>
-          <pre className="bg-gray-900 text-green-300 p-3 rounded">for (let i = 1; i <= 3; i++) console.log(i);</pre>
+          <pre className="bg-gray-900 text-green-300 p-3 rounded">for (let i = 1; i &lt;= 3; i++) console.log(i);</pre>
           <button className="btn-primary" onClick={() => setStep("predict")}>Next: Predict</button>
         </div>
       )}

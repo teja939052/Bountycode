@@ -1,0 +1,185 @@
+{
+  "topic": "profit_loss",
+  "subject": "quantitative_aptitude",
+  "pattern": "profit_loss",
+  "lessons": [
+    {
+      "id": "profit_loss_basics",
+      "title": "Profit and Loss Basics",
+      "concept": "Profit = Selling Price − Cost Price. Loss = Cost Price − Selling Price. Profit% = (Profit ÷ Cost Price) × 100. Loss% = (Loss ÷ Cost Price) × 100.",
+      "formula": "Profit% = (Profit / CP) × 100; Loss% = (Loss / CP) × 100",
+      "worked_example": "Bought for ₹500, sold for ₹600. Profit = ₹100. Profit% = (100/500) × 100 = 20%.",
+      "mistakes": ["Computing profit% on SP instead of CP", "Forgetting CP is the base"]
+    },
+    {
+      "id": "selling_price_cost_price",
+      "title": "SP and CP Formulas",
+      "concept": "SP = CP × (1 + Profit%/100) when profit; SP = CP × (1 − Loss%/100) when loss. CP = SP × 100/(100+Profit%) or SP × 100/(100−Loss%).",
+      "formula": "SP = CP(1 ± p/100); CP = SP × 100/(100 ± p)",
+      "worked_example": "Sold for ₹840 at 20% profit. CP = 840/1.20 = ₹700.",
+      "mistakes": ["Using wrong sign in denominator", "Confusing profit and loss formulas"]
+    },
+    {
+      "id": "discount",
+      "title": "Discount",
+      "concept": "Discount = Marked Price − Selling Price. Discount% = (Discount ÷ Marked Price) × 100. SP = MP × (1 − Discount%/100).",
+      "formula": "SP = MP × (1 − d/100); Discount% = (Discount/MP) × 100",
+      "worked_example": "MP=1000, 20% discount → SP = 1000 × 0.8 = 800.",
+      "mistakes": ["Applying discount to CP instead of MP", "Adding discount instead of subtracting"]
+    },
+    {
+      "id": "successive_discount",
+      "title": "Successive Discount",
+      "concept": "Successive discounts compound: SP = MP × (1 − d1/100) × (1 − d2/100). They do not simply add.",
+      "formula": "SP = MP(1−d1/100)(1−d2/100)",
+      "worked_example": "MP=1000, discounts 10%+10% → SP = 1000×0.9×0.9 = 810. Equivalent single discount = 19%, not 20%.",
+      "mistakes": ["Adding successive discounts", "Applying both to MP"]
+    }
+  ],
+  "practice": [
+    {
+      "id": "PL-PRACTICE-001",
+      "question": "A product is bought for ₹500 and sold for ₹600. Profit percentage?",
+      "options": {"A": "15%", "B": "20%", "C": "25%", "D": "30%"},
+      "correct_answer": "B",
+      "explanation": "Profit = 600−500 = 100. Profit% = (100/500)×100 = 20%.",
+      "difficulty": "easy",
+      "sub_topic": "profit_loss_basics",
+      "misconception_tags": ["wrong_base"],
+      "company_tags": ["tcs", "infosys"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "PL-PRACTICE-002",
+      "question": "A shirt sold for ₹840 at 20% profit. Cost price?",
+      "options": {"A": "₹600", "B": "₹700", "C": "₹750", "D": "₹800"},
+      "correct_answer": "B",
+      "explanation": "CP = 840/1.20 = ₹700.",
+      "difficulty": "easy",
+      "sub_topic": "selling_price_cost_price",
+      "misconception_tags": ["wrong_base"],
+      "company_tags": ["wipro"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "PL-PRACTICE-003",
+      "question": "Item bought for ₹200 sold at 15% loss. Selling price?",
+      "options": {"A": "₹150", "B": "₹170", "C": "₹180", "D": "₹190"},
+      "correct_answer": "B",
+      "explanation": "SP = 200 × (1 − 0.15) = 200 × 0.85 = ₹170.",
+      "difficulty": "easy",
+      "sub_topic": "profit_loss_basics",
+      "misconception_tags": ["wrong_base"],
+      "company_tags": ["tcs"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "PL-PRACTICE-004",
+      "question": "MP ₹1000, 20% discount. SP?",
+      "options": {"A": "₹800", "B": "₹820", "C": "₹850", "D": "₹900"},
+      "correct_answer": "A",
+      "explanation": "SP = 1000 × 0.8 = ₹800.",
+      "difficulty": "easy",
+      "sub_topic": "discount",
+      "misconception_tags": ["wrong_base"],
+      "company_tags": ["infosys"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "PL-PRACTICE-005",
+      "question": "MP ₹1000, successive discounts 10%+10%. SP?",
+      "options": {"A": "₹800", "B": "₹810", "C": "₹820", "D": "₹900"},
+      "correct_answer": "B",
+      "explanation": "SP = 1000 × 0.9 × 0.9 = 810. Equivalent discount 19%, not 20%.",
+      "difficulty": "medium",
+      "sub_topic": "successive_discount",
+      "misconception_tags": ["adding_percentages_instead_of_compounding"],
+      "company_tags": ["tcs"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    }
+  ],
+  "questions": [
+    {
+      "id": "PL-001",
+      "question": "A sells an article to B at 10% profit. B sells back to A at 10% loss. In this transaction:",
+      "options": {"A": "A neither loses nor gains", "B": "A makes a profit of 11%", "C": "A makes a profit of 20%", "D": "B loses 20%"},
+      "correct_answer": "B",
+      "explanation": "Let CP=100. A sells to B at 110. B sells back at 10% loss on 110 = 99. A buys back at 99 after selling at 110 → profit 11 on original 100 = 11%.",
+      "difficulty": "medium",
+      "sub_topic": "profit_loss_basics",
+      "misconception_tags": ["wrong_base"],
+      "company_tags": ["tcs", "infosys"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "PL-002",
+      "question": "A shopkeeper marks goods 30% above CP but allows 10% discount. Gain %?",
+      "options": {"A": "17%", "B": "18%", "C": "20%", "D": "21%"},
+      "correct_answer": "A",
+      "explanation": "CP=100, MP=130. SP=130×0.9=117. Gain = (117-100)/100 = 17%.",
+      "difficulty": "medium",
+      "sub_topic": "discount",
+      "misconception_tags": ["wrong_base"],
+      "company_tags": ["wipro"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "PL-003",
+      "question": "Marks goods 50% above CP, offers successive discounts 10%+10%. Profit %?",
+      "options": {"A": "20%", "B": "21.5%", "C": "25%", "D": "30%"},
+      "correct_answer": "B",
+      "explanation": "CP=100, MP=150. SP=150×0.9×0.9=121.5. Profit = 21.5%.",
+      "difficulty": "medium",
+      "sub_topic": "successive_discount",
+      "misconception_tags": ["adding_percentages_instead_of_compounding"],
+      "company_tags": ["tcs"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "PL-004",
+      "question": "Sold two chairs at ₹1200 each. Gained 20% on one, lost 20% on other. Overall?",
+      "options": {"A": "1% loss", "B": "2% loss", "C": "4% loss", "D": "15 gain"},
+      "correct_answer": "C",
+      "explanation": "When SP same and profit% = loss%, overall loss = (x/10)^2 = (20/10)^2 = 4% loss.",
+      "difficulty": "medium",
+      "sub_topic": "profit_loss_basics",
+      "misconception_tags": ["wrong_base"],
+      "company_tags": ["infosys"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "PL-005",
+      "question": "Profit % equals CP in rupees; SP = ₹39. CP?",
+      "options": {"A": "20", "B": "22", "C": "28", "D": "30"},
+      "correct_answer": "D",
+      "explanation": "Let CP=x. Profit%=x. SP = x(1+x/100) = 39 → x²+100x−3900=0 → x=30.",
+      "difficulty": "hard",
+      "sub_topic": "selling_price_cost_price",
+      "misconception_tags": ["wrong_base"],
+      "company_tags": ["tcs"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    }
+  ],
+  "trust_status": "human_reviewed",
+  "source": "bountycode_original"
+}
