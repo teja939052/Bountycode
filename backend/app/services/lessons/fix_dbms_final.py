@@ -1,0 +1,6 @@
+content = open("D:/Project-Fremen/backend/app/services/lessons/dbms.py", "r").read()
+before = content.count('.",')
+content = content.replace('.",', '",')
+after = content.count('.",')
+open("D:/Project-Fremen/backend/app/services/lessons/dbms.py", "w").write(content)
+print(f"dbms.py: {before} -> {after}")
