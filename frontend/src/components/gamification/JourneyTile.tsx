@@ -11,9 +11,9 @@ export interface JourneyTileProps {
 }
 
 const STATUS_CONFIG = {
-  done: { bg: CODDY.success.light, border: CODDY.success.base, text: CODDY.success.dark, icon: <Star size={14} className="text-success-500" />, fill: 'fill-success-500' },
-  active: { bg: CODDY.blue.light, border: CODDY.blue.base, text: CODDY.blue.dark, icon: <Zap size={14} className="text-blue-500" />, fill: 'fill-blue-500' },
-  locked: { bg: CODDY.slate.light, border: CODDY.slate.base, text: CODDY.slate.dark, icon: <Target size={14} className="text-slate-400" />, fill: 'fill-slate-400' },
+  done: { bg: CODDY.success.light, border: CODDY.success.DEFAULT, text: CODDY.success.DEFAULT, icon: <Star size={14} className="text-success-500" /> },
+  active: { bg: CODDY.coddy.light, border: CODDY.coddy.DEFAULT, text: CODDY.coddy.DEFAULT, icon: <Zap size={14} className="text-coddy-500" /> },
+  locked: { bg: CODDY.mist, border: "#D1D5DB", text: "#9CA3AF", icon: <Target size={14} className="text-slate-400" /> },
 } as const;
 
 export default function JourneyTile({ id, label, status, topic, onClick, size = 'md' }: JourneyTileProps) {
@@ -32,7 +32,7 @@ export default function JourneyTile({ id, label, status, topic, onClick, size = 
       }}
     >
       <div className="relative z-10 mb-1">{cfg.icon}</div>
-      <span className={`${s.text} font-mono font-bold text-ink dark:text-slate-200 ${status === 'done' ? 'text-success-500' : status === 'active' ? 'text-blue-500' : 'text-slate-500'}`}>
+      <span className={`${s.text} font-mono font-bold text-ink dark:text-slate-200 ${status === 'done' ? 'text-success-500' : status === 'active' ? 'text-coddy-500' : 'text-slate-500'}`}>
         {label}
       </span>
       {status === 'done' && (

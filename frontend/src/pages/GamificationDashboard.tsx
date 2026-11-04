@@ -13,12 +13,12 @@ import { getXPForLevel, getLevelLabel } from "./components/gamification/palette"
 import { CODDY } from "./components/gamification/palette";
 
 const MOCK_BADGES = [
-  { id: "first-steps", name: "First Steps", description: "Complete your first lesson", tier: "bronze", icon: <Zap size={16} className="text-amber-500" />, earned: true },
-  { id: "streak-starter", name: "Streak Starter", description: "3-day streak", tier: "bronze", icon: <Flame size={16} className="text-orange-500" />, earned: true },
-  { id: "percentages-pro", name: "Percentages Pro", description: "Master percentages", tier: "silver", icon: <ShieldCheck size={16} className="text-slate-400" />, earned: false },
-  { id: "array-master", name: "Array Master", description: "Master arrays", tier: "gold", icon: <Star size={16} className="text-amber-400" />, earned: false },
-  { id: "code-tracer", name: "Code Tracer", description: "Trace 10 programs", tier: "silver", icon: <Target size={16} className="text-indigo-500" />, earned: false },
-  { id: "quest-completer", name: "Quest Completer", description: "Complete 5 quests", tier: "gold", icon: <Star size={16} className="text-amber-400" />, earned: false },
+  { id: "first-steps", name: "First Steps", description: "Complete your first lesson", tier: "streak", icon: <Zap size={16} className="text-streak-500" />, earned: true },
+  { id: "streak-starter", name: "Streak Starter", description: "3-day streak", tier: "streak", icon: <Flame size={16} className="text-streak-500" />, earned: true },
+  { id: "percentages-pro", name: "Percentages Pro", description: "Master percentages", tier: "score", icon: <ShieldCheck size={16} className="text-score-500" />, earned: false },
+  { id: "array-master", name: "Array Master", description: "Master arrays", tier: "score", icon: <Star size={16} className="text-score-500" />, earned: false },
+  { id: "code-tracer", name: "Code Tracer", description: "Trace 10 programs", tier: "energy", icon: <Target size={16} className="text-energy-500" />, earned: false },
+  { id: "quest-completer", name: "Quest Completer", description: "Complete 5 quests", tier: "coddy", icon: <Star size={16} className="text-coddy-500" />, earned: false },
 ];
 
 const JOURNEY_TILES = [
@@ -99,7 +99,7 @@ export default function GamificationDashboard() {
               </div>
             </div>
             <div className="h-3 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden border border-white/20 dark:border-white/10 mb-4">
-              <div className="h-full rounded-full" style={{ background: `linear-gradient(90deg, ${levelColor.base}, ${CODDY.indigo.base})`, width: `${Math.min(100, progress)}%`, transition: 'width 1s ease' }} />
+              <div className="h-full rounded-full" style={{ background: `linear-gradient(90deg, ${levelColor.base}, ${CODDY.blue.base})`, width: `${Math.min(100, progress)}%`, transition: 'width 1s ease' }} />
             </div>
             <div className="flex justify-between text-[10px] font-mono text-slate-500 dark:text-slate-400">
               <span>{currentLevelXP} XP</span>
@@ -138,14 +138,14 @@ export default function GamificationDashboard() {
                     <p className="text-sm font-medium text-ink dark:text-white">Completed Percentages lesson</p>
                     <p className="text-[10px] text-slate-500 dark:text-slate-400">2 minutes ago · +50 XP</p>
                   </div>
-                  <span className="text-[10px] font-mono text-warning-500">+50 XP</span>
+                  <span className="text-[10px] font-mono text-score-500">+50 XP</span>
                 </div>
               ))}
             </div>
           </div>
           <div className="bg-white dark:bg-slate-900 border border-white/30 dark:border-white/10 rounded-2xl p-6 shadow-sm">
             <h3 className="font-bold text-ink dark:text-white mb-4 flex items-center gap-2">
-              <List size={16} className="text-indigo-500" /> Weekly Progress
+              <List size={16} className="text-coddy-500" /> Weekly Progress
             </h3>
             <div className="flex items-end gap-1 h-32">
               {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day, i) => (
@@ -177,7 +177,7 @@ export default function GamificationDashboard() {
         <div className="bg-white dark:bg-slate-900 border border-white/30 dark:border-white/10 rounded-2xl p-6 shadow-sm">
           <h3 className="font-bold text-ink dark:text-white mb-4">Reward Chests</h3>
           <div className="flex gap-4">
-            {['wood', 'silver', 'gold', 'diamond'].map((type, i) => (
+            {['streak', 'score', 'energy', 'coddy'].map((type, i) => (
               <Chest key={i} type={type} opened={false} onOpen={() => {}} size="lg" />
             ))}
           </div>

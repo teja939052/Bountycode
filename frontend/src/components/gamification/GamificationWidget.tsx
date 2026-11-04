@@ -1,4 +1,4 @@
-﻿import { Zap, Flame, Trophy, ShieldCheck, ArrowRight, Activity } from 'lucide-react';
+﻿import { Zap, Flame, Trophy, ShieldCheck, ArrowRight } from 'lucide-react';
 import { CODDY, getLevelLabel, coddyGlow } from './palette';
 
 export interface GamificationWidgetProps {
@@ -17,7 +17,7 @@ export default function GamificationWidget({ xp, level = 1, streak = 0, league, 
   return (
     <div
       onClick={onOpenJourney}
-      className="relative bg-white dark:bg-slate-900 border border-white/30 dark:border-white/10 rounded-2xl p-4 shadow-sm backdrop-blur-md cursor-pointer hover:shadow-md transition-shadow cursor-default group"
+      className="relative bg-white dark:bg-slate-900 border border-white/30 dark:border-white/10 rounded-2xl p-4 shadow-sm backdrop-blur-md cursor-pointer group"
       style={{ boxShadow: `0 0 20px ${color.base}15` }}
     >
       <div className="flex items-center justify-between mb-3">
@@ -32,24 +32,24 @@ export default function GamificationWidget({ xp, level = 1, streak = 0, league, 
           <span className="text-[10px] font-bold text-ink dark:text-slate-200 uppercase tracking-tighter">{label.label}</span>
         </div>
         <div className="flex items-center gap-1.5 text-[10px] font-mono font-bold">
-          <Trophy size={11} className="text-warning-500" />
-          <span className="text-warning-600 dark:text-warning-400">#{league ?? '—'}</span>
+          <Trophy size={11} className="text-score-500" />
+          <span className="text-score-600 dark:text-score-400">#{league ?? '—'}</span>
         </div>
       </div>
 
       <div className="h-2 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden border border-white/20 dark:border-white/10 mb-2">
-        <div className="h-full rounded-full" style={{ background: `linear-gradient(90deg, ${color.base}, ${CODDY.indigo.base})`, width: '60%', transition: 'width 0.8s ease' }} />
+        <div className="h-full rounded-full" style={{ background: `linear-gradient(90deg, ${color.base}, ${CODDY.blue.base})`, width: '60%', transition: 'width 0.8s ease' }} />
       </div>
 
       <div className="flex items-center justify-between text-[10px] font-mono">
         <div className="flex items-center gap-1">
-          <Flame size={11} className="text-danger-500" />
-          <span className="text-danger-500 dark:text-danger-400">{streak}</span>
+          <Flame size={11} className="text-streak-500" />
+          <span className="text-streak-600 dark:text-streak-400">{streak}</span>
           <span className="text-slate-500 dark:text-slate-500">day streak</span>
         </div>
         <div className="flex items-center gap-1">
-          <Zap size={11} className="text-warning-500" />
-          <span className="text-warning-600 dark:text-warning-400">{xp} XP</span>
+          <Zap size={11} className="text-score-500" />
+          <span className="text-score-600 dark:text-score-400">{xp} XP</span>
         </div>
         <div className="flex items-center gap-1">
           <ShieldCheck size={11} className="text-success-500" />

@@ -93,47 +93,76 @@ export default {
         error: "#EF4444",
         info: "#3B82F6",
 
-        // ============ BOUNTY PALETTE (legacy, kept for compat) ============
-        navy: {
-          DEFAULT: "#0A0E17",
-          50: "#E8EDF5",
-          100: "#D1DBEB",
-          200: "#A3B7D7",
-          300: "#7593C3",
-          400: "#476FAF",
-          500: "#1A4B9B",
-          600: "#153C7C",
-          700: "#102D5D",
-          800: "#0A1E3E",
-          900: "#050F1F",
+        // ============ CODDY TECH SEMANTIC PALETTE (reverse-engineered from coddy.tech/brand/colors) ============
+        // One brand color: Coddy Blue. Every other color means something.
+        coddy: {
+          DEFAULT: "#29ABE2",
+          dark: "#34B4E4",
+          button: "#0077FF",
+          buttonShadow: "#005DC8",
+          deep: "#007ACCC",
+          darkTheme: "#1B78A0",
         },
-        amber: {
-          DEFAULT: "#FFD700",
-          50: "#FFF8E6",
-          100: "#FFF1CC",
-          200: "#FFE399",
-          300: "#FFD566",
-          400: "#FFC733",
-          500: "#FFB900",
-          600: "#E6A700",
-          700: "#CC9500",
-          800: "#B38300",
-          900: "#997100",
+        streak: {
+          DEFAULT: "#E85A18",
+          light: "#F4C4B4",
+          50: "#FDF1EB",
+          100: "#FBE2D4",
+          400: "#F07B4A",
+          500: "#E85A18",
+          600: "#C94E15",
+          900: "#7B2E0C",
         },
-        cream: {
-          DEFAULT: "#F5E6D3",
-          50: "#FDF8F3",
-          100: "#FBF1E8",
+        score: {
+          DEFAULT: "#FCAD00",
+          light: "#FDE6A5",
+          50: "#FEFBF0",
+          100: "#FEF3C7",
+          500: "#FCAD00",
+          600: "#E69A00",
+          900: "#8B6A00",
         },
-        rust: {
-          DEFAULT: "#B45309",
+        energy: {
+          DEFAULT: "#3E39B8",
+          light: "#D6D4EC",
+          500: "#3E39B8",
+          600: "#332FA8",
+          900: "#23217A",
         },
-        smoke: {
-          DEFAULT: "#6B7280",
+        bugsy: {
+          DEFAULT: "#D31D65",
+          light: "#F4A9C4",
+          500: "#D31D65",
         },
-        pearl: {
-          DEFAULT: "#F8FAFC",
+        pro: {
+          DEFAULT: "#CF7F26",
+          light: "#EAC89C",
+          500: "#CF7F26",
         },
+        hearts: {
+          DEFAULT: "#FF4B4B",
+          light: "#FFCCCC",
+          500: "#FF4B4B",
+          600: "#E63A3A",
+          900: "#992727",
+        },
+        streakFreeze: {
+          DEFAULT: "#69AEFF",
+          light: "#D3E3FF",
+          500: "#69AEFF",
+        },
+        success: {
+          DEFAULT: "#05B20C",
+          light: "#DFF8DB",
+          500: "#05B20C",
+        },
+
+        // Backgrounds (coddy)
+        mist: "#F1F5F9",
+        skyWash: "#DDF4FF",
+        charcoal: "#252627",
+        graphite: "#2D2E2F",
+        editor: "#1E1E1E",
       },
       boxShadow: {
         "soft": "0 1px 3px rgba(17, 33, 27, 0.04), 0 4px 12px rgba(17, 33, 27, 0.03)",
@@ -213,9 +242,11 @@ export default {
     { pattern: /border-(primary|ocean|sky|sand|wood|reward|tech|coral|rare|blue|gold|purple|red|success|warning|error|info)(-(DEFAULT|dark|soft|hover|muted))?(\/\d+)?/ },
     { pattern: /from-(primary|ocean|sky|sand|wood|reward|tech|coral|rare|blue|gold|purple|red|amber)(-(DEFAULT|dark|soft))?/ },
     { pattern: /to-(primary|ocean|sky|sand|wood|reward|tech|coral|rare|blue|gold|purple|amber)(-(DEFAULT|dark|soft))?/ },
-    { pattern: /bg-(canvas|surface|border|text|navy|smoke|pearl)(-(DEFAULT|2|muted|light|inverse|900|800))?(\/\d+)?/ },
-    { pattern: /text-(canvas|surface|border|text|navy|smoke|pearl|cream)(-(DEFAULT|2|primary|muted|light|inverse|900|100))?/ },
-    { pattern: /border-(canvas|surface|border|text|navy|smoke|pearl)(-(DEFAULT|2|muted|light|inverse))?(\/\d+)?/ },
+    { pattern: /bg-(coddy|streak|score|energy|bugsy|pro|hearts|streakFreeze|success|mist|skyWash|charcoal|graphite|editor)(-(DEFAULT|dark|button|buttonShadow|deep|darkTheme|light|50|100|400|500|600|900))?(\/\d+)?/ },
+    { pattern: /text-(coddy|streak|score|energy|bugsy|pro|hearts|streakFreeze|success|mist|skyWash|charcoal|graphite|editor)(-(DEFAULT|dark|button|buttonShadow|deep|darkTheme|light|50|100|400|500|600|900))?/ },
+    { pattern: /border-(coddy|streak|score|energy|bugsy|pro|hearts|streakFreeze|success|mist|skyWash|charcoal|graphite|editor)(-(DEFAULT|dark|button|buttonShadow|deep|darkTheme|light|50|100|400|500|600|900))?(\/\d+)?/ },
+    { pattern: /from-(coddy|streak|score|energy|bugsy|pro|hearts|streakFreeze|success)(-(DEFAULT|dark|light|500|600))?/ },
+    { pattern: /to-(coddy|streak|score|energy|bugsy|pro|hearts|streakFreeze|success)(-(DEFAULT|dark|light|500|600))?/ },
   ],
   plugins: [],
 };
