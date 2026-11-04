@@ -1,0 +1,85 @@
+{
+  "topic": "time_speed_distance",
+  "subject": "quantitative_aptitude",
+  "pattern": "time_speed_distance",
+  "lessons": [
+    {
+      "id": "tsd_basics",
+      "title": "Time Speed Distance Basics",
+      "concept": "Distance = Speed × Time. Speed = Distance/Time. Time = Distance/Speed. km/h to m/s: multiply by 5/18.",
+      "formula": "Distance = Speed × Time; km/h → m/s: × 5/18",
+      "worked_example": "90 km/h = 90 × 5/18 = 25 m/s. Train crosses bridge in 36 s → length+speed = 25×36 = 900 m.",
+      "mistakes": ["Forgetting unit conversion km/h ↔ m/s", "Using wrong quantity as distance"]
+    },
+    {
+      "id": "relative_speed",
+      "title": "Relative Speed",
+      "concept": "Same direction: relative speed = difference. Opposite direction: relative speed = sum. Trains crossing: distance = sum of lengths.",
+      "formula": "Same dir: |v1−v2|; Opposite dir: v1+v2; Train+bridge: L_train + L_bridge",
+      "worked_example": "Train A 90 km/h (25 m/s) crosses bridge in 36 s → L+bridge = 900 m. Train B 100 m shorter, 45 km/h (12.5 m/s) → t = 800/12.5 = 64 s.",
+      "mistakes": ["Adding instead of subtracting for same direction", "Forgetting train length in crossing problems"]
+    }
+  ],
+  "practice": [
+    {
+      "id": "TSD-PRACTICE-001",
+      "question": "90 km/h in m/s?",
+      "options": {"A": "20", "B": "25", "C": "30", "D": "35"},
+      "correct_answer": "B",
+      "explanation": "90 × 5/18 = 25 m/s.",
+      "difficulty": "easy",
+      "sub_topic": "tsd_basics",
+      "misconception_tags": ["unit_conversion_error"],
+      "company_tags": ["tcs"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "TSD-PRACTICE-002",
+      "question": "Train 90 km/h crosses bridge in 36 s. Train 100 m shorter at 45 km/h time?",
+      "options": {"A": "61", "B": "63", "C": "62", "D": "64"},
+      "correct_answer": "D",
+      "explanation": "A: 25 m/s × 36 = 900 m (L+bridge). B: L+bridge−100 = 800 m. 45 km/h = 12.5 m/s. t = 800/12.5 = 64 s.",
+      "difficulty": "medium",
+      "sub_topic": "relative_speed",
+      "misconception_tags": ["unit_conversion_error"],
+      "company_tags": ["infosys"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    }
+  ],
+  "questions": [
+    {
+      "id": "TSD-001",
+      "question": "Train with 90 km/h crosses bridge in 36 seconds. Another train 100 m shorter crosses same bridge at 45 km/h. Time?",
+      "options": {"A": "61", "B": "63", "C": "62", "D": "64"},
+      "correct_answer": "D",
+      "explanation": "A: 25 m/s × 36 = 900 m (L+bridge). B: 800 m at 12.5 m/s → 64 s.",
+      "difficulty": "medium",
+      "sub_topic": "relative_speed",
+      "misconception_tags": ["unit_conversion_error"],
+      "company_tags": ["infosys"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "TSD-002",
+      "question": "A car travels 60 km at 40 km/h and 60 km at 60 km/h. Average speed?",
+      "options": {"A": "48", "B": "50", "C": "52", "D": "55"},
+      "correct_answer": "A",
+      "explanation": "Total distance = 120. Total time = 60/40 + 60/60 = 1.5 + 1 = 2.5 h. Avg = 120/2.5 = 48 km/h.",
+      "difficulty": "medium",
+      "sub_topic": "tsd_basics",
+      "misconception_tags": ["averaging_speeds_incorrectly"],
+      "company_tags": ["wipro"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    }
+  ],
+  "trust_status": "human_reviewed",
+  "source": "bountycode_original"
+}

@@ -46,6 +46,7 @@ import { adminContentApi, assignmentsApi } from "./adminContent.ts";
 import { metricsApi } from "./metrics.ts";
 import { flatApi } from "./flat.ts";
 import { flatOverrides } from "./flatOverrides.ts";
+import { blogApi } from "./blog.ts";
 
 const api = {
   auth: authApi,
@@ -97,6 +98,7 @@ const api = {
   onboarding: onboardingApi,
   adminContent: adminContentApi,
   assignments: assignmentsApi,
+  blog: blogApi,
   metrics: metricsApi,
   getMe: () => authApi.getMe(),
   register: (...args: Parameters<typeof authApi.register>) =>
@@ -172,4 +174,5 @@ export {
   languagePathsApi,
   freeTrialApi,
   onboardingApi,
+  blogApi,
 };

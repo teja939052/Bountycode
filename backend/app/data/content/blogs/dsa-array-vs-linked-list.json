@@ -1,0 +1,14 @@
+﻿{
+  "slug": "dsa-array-vs-linked-list",
+  "title": "Array vs Linked List: When to Use Which?",
+  "excerpt": "An array reads by index in O(1) but inserting in the middle is O(n). A linked list reaches the i-th element in O(n) but inserts after a known node in O(1).",
+  "topic": "dsa",
+  "tags": ["dsa", "arrays", "linked-list", "interview"],
+  "related_topic": "arrays",
+  "author": "BountyCode Team",
+  "updated_at": "2026-11-04",
+  "body": "## Array\n\nElements live in one contiguous block. `arr[i]` is O(1) because the computer computes the address directly. Inserting in the middle requires shifting everything after it \u2014 O(n).\n\n## Linked List\n\nEach node points to the next. Reaching index i means walking from the head \u2014 O(n). But once you hold a node, inserting after it is just re-wiring two pointers \u2014 O(1).\n\n## Arrays win most benchmarks\n\nBecause of CPU caching, contiguous memory is faster in practice even when the big-O looks similar.\n\n## Practice it\n\nReverse a linked list and find the middle node using fast/slow pointers in the Linked Lists practice set.",
+  "code": "# Array: O(1) read, O(n) middle insert\narr = [10, 20, 30]\nprint(arr[1])            # 20, O(1)\narr.insert(1, 15)        # O(n) \u2014 shifts 20, 30 right\n\n# Linked list (conceptual): O(n) read, O(1) insert after known node\n# node.next = new_node\n# new_node.next = old_next",
+  "language": "python",
+  "trust_status": "human_reviewed"
+}

@@ -1,0 +1,99 @@
+{
+  "topic": "complexity",
+  "subject": "dsa",
+  "pattern": "Complexity Analysis",
+  "lessons": [
+    {
+      "id": "big_o_basics",
+      "title": "Big O Notation",
+      "concept": "Big O describes the upper bound of running time (worst case) as input size grows. Common: O(1), O(log n), O(n), O(n log n), O(n²).",
+      "formula": "O(f(n)) = upper bound",
+      "worked_example": "Single loop over n → O(n). Nested loop → O(n²). Binary search → O(log n).",
+      "mistakes": ["Confusing Big O with exact time", "Ignoring that constants are dropped"]
+    },
+    {
+      "id": "complexity_reference",
+      "title": "Complexity Reference",
+      "concept": "Array: access O(1), search O(n). BST: search O(log n) avg. Hash: O(1) avg. Merge sort O(n log n). Quick sort worst O(n²).",
+      "formula": "See table",
+      "worked_example": "Hash table avg O(1), worst O(n). Binary search requires sorted array.",
+      "mistakes": ["Assuming BST always O(log n) (degenerate → O(n))", "Assuming quick sort always O(n log n)"]
+    }
+  ],
+  "practice": [
+    {
+      "id": "CX-PRACTICE-001",
+      "question": "What does Big O describe?",
+      "options": {"A": "Max space", "B": "Min time", "C": "Upper bound of running time", "D": "Bugs"},
+      "correct_answer": "C",
+      "explanation": "Big O = upper bound of running time (worst case).",
+      "difficulty": "easy",
+      "sub_topic": "big_o_basics",
+      "misconception_tags": ["wrong_definition"],
+      "company_tags": ["tcs", "infosys"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "CX-PRACTICE-002",
+      "question": "Hash table average time complexity?",
+      "options": {"A": "O(1)", "B": "O(n)", "C": "O(log n)", "D": "O(n^2)"},
+      "correct_answer": "A",
+      "explanation": "Hash table average O(1); worst O(n) with collisions.",
+      "difficulty": "easy",
+      "sub_topic": "complexity_reference",
+      "misconception_tags": ["avg_vs_worst"],
+      "company_tags": ["wipro"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    }
+  ],
+  "questions": [
+    {
+      "id": "CX-001",
+      "question": "Merge sort worst-case?",
+      "options": {"A": "O(n)", "B": "O(n log n)", "C": "O(n^2)", "D": "O(log n)"},
+      "correct_answer": "B",
+      "explanation": "Merge sort always O(n log n), stable, needs extra space.",
+      "difficulty": "easy",
+      "sub_topic": "complexity_reference",
+      "misconception_tags": ["wrong_algorithm"],
+      "company_tags": ["tcs"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "CX-002",
+      "question": "Quick sort worst case?",
+      "options": {"A": "O(n log n)", "B": "O(n)", "C": "O(n^2)", "D": "O(log n)"},
+      "correct_answer": "C",
+      "explanation": "Quick sort worst O(n²) (e.g., sorted input with bad pivot).",
+      "difficulty": "medium",
+      "sub_topic": "complexity_reference",
+      "misconception_tags": ["avg_vs_worst"],
+      "company_tags": ["infosys"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "CX-003",
+      "question": "Binary search requirement?",
+      "options": {"A": "Sorted array", "B": "Linked list", "C": "Unsorted array", "D": "Tree"},
+      "correct_answer": "A",
+      "explanation": "Binary search requires a sorted array.",
+      "difficulty": "easy",
+      "sub_topic": "big_o_basics",
+      "misconception_tags": ["wrong_structure"],
+      "company_tags": ["tcs"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    }
+  ],
+  "trust_status": "human_reviewed",
+  "source": "bountycode_original"
+}

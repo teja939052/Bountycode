@@ -1,0 +1,99 @@
+{
+  "topic": "arrays",
+  "subject": "dsa",
+  "pattern": "Arrays",
+  "lessons": [
+    {
+      "id": "array_basics",
+      "title": "Array Basics",
+      "concept": "An array stores values in contiguous memory locations for fast direct index access. Access is O(1); search/insert/delete are O(n) unless at the end.",
+      "formula": "Access: O(1); Search/Insert/Delete: O(n)",
+      "worked_example": "arr = [10, 20, 30]. arr[1] = 20 in O(1). Insert at index 0 requires shifting all elements → O(n).",
+      "mistakes": ["Confusing array access O(1) with search O(n)", "Forgetting arrays are fixed-size in many languages"]
+    },
+    {
+      "id": "array_traversal",
+      "title": "Array Traversal",
+      "concept": "Visit each element once using a loop. Time O(n), space O(1). Use for finding max, sum, search.",
+      "formula": "for i in 0..n-1: process arr[i]",
+      "worked_example": "Find max: initialize max = arr[0]; loop i=1..n-1; if arr[i] > max, max = arr[i].",
+      "mistakes": ["Off-by-one in loop bounds", "Accessing arr[n] instead of arr[n-1]"]
+    }
+  ],
+  "practice": [
+    {
+      "id": "ARR-PRACTICE-001",
+      "question": "Time complexity of accessing an element in an array?",
+      "options": {"A": "O(1)", "B": "O(n)", "C": "O(log n)", "D": "O(n^2)"},
+      "correct_answer": "A",
+      "explanation": "Arrays support direct index access → O(1).",
+      "difficulty": "easy",
+      "sub_topic": "array_basics",
+      "misconception_tags": ["confusing_access_with_search"],
+      "company_tags": ["tcs", "infosys"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "ARR-PRACTICE-002",
+      "question": "Which is NOT a linear data structure?",
+      "options": {"A": "Array", "B": "Linked list", "C": "Queue", "D": "Tree"},
+      "correct_answer": "D",
+      "explanation": "Tree is non-linear (hierarchical). Array, linked list, queue are linear.",
+      "difficulty": "easy",
+      "sub_topic": "array_basics",
+      "misconception_tags": ["linear_vs_nonlinear"],
+      "company_tags": ["wipro"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    }
+  ],
+  "questions": [
+    {
+      "id": "ARR-001",
+      "question": "What does this do for array arr of size n? for(i=0;i<n;i++) arr[i]=i;",
+      "options": {"A": "Initializes with zeros", "B": "Initializes with indices", "C": "Checks all zero", "D": "Prints each"},
+      "correct_answer": "B",
+      "explanation": "Each element arr[i] is set to its own index i.",
+      "difficulty": "easy",
+      "sub_topic": "array_traversal",
+      "misconception_tags": ["off_by_one"],
+      "company_tags": ["tcs"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "ARR-002",
+      "question": "Best for implementing back functionality in a web browser?",
+      "options": {"A": "Queue", "B": "Stack", "C": "Array", "D": "Linked List"},
+      "correct_answer": "B",
+      "explanation": "Back uses LIFO (last visited page first) → stack.",
+      "difficulty": "easy",
+      "sub_topic": "array_traversal",
+      "misconception_tags": ["wrong_structure"],
+      "company_tags": ["infosys"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "ARR-003",
+      "question": "Stable sorting algorithm?",
+      "options": {"A": "Quick sort", "B": "Heap sort", "C": "Merge sort", "D": "Selection sort"},
+      "correct_answer": "C",
+      "explanation": "Merge sort is stable (preserves relative order of equal elements).",
+      "difficulty": "easy",
+      "sub_topic": "array_traversal",
+      "misconception_tags": ["wrong_algorithm"],
+      "company_tags": ["tcs"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    }
+  ],
+  "trust_status": "human_reviewed",
+  "source": "bountycode_original"
+}

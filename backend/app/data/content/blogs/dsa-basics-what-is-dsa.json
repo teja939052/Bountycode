@@ -1,0 +1,14 @@
+﻿{
+  "slug": "dsa-basics-what-is-dsa",
+  "title": "What is a Data Structure, and What is an Algorithm?",
+  "excerpt": "A data structure organizes data so the operations you need are cheap. An algorithm is a finite sequence of steps. Together they determine whether your solution runs in milliseconds or minutes.",
+  "topic": "dsa",
+  "tags": ["dsa", "basics", "interview"],
+  "related_topic": "arrays",
+  "author": "BountyCode Team",
+  "updated_at": "2026-11-04",
+  "body": "## The short answer\n\nA **data structure** organizes data so the operations you need are cheap: an array reads by index in O(1), a hash table finds a key in O(1) on average. An **algorithm** is a finite sequence of steps from input to output, such as binary search.\n\nYou choose them together: finding duplicates pair by pair is O(n\u00b2); with a hash set it is O(n).\n\n## Why it matters in interviews\n\nInterviewers don't care that you memorized a definition. They care that you can say, out loud, \"we mostly look up by key, so a hash map\" before writing code.\n\n## Practice it\n\nAfter reading, drill the concept with the Arrays practice set and the timed topic test.",
+  "code": "# Find duplicates pair-by-pair: O(n^2)\ndef has_dup_slow(nums):\n    for i in range(len(nums)):\n        for j in range(i + 1, len(nums)):\n            if nums[i] == nums[j]:\n                return True\n    return False\n\n# With a hash set: O(n)\ndef has_dup_fast(nums):\n    seen = set()\n    for x in nums:\n        if x in seen:\n            return True\n        seen.add(x)\n    return False",
+  "language": "python",
+  "trust_status": "human_reviewed"
+}

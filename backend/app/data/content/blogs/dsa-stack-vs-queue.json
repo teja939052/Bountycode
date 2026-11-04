@@ -1,0 +1,14 @@
+﻿{
+  "slug": "dsa-stack-vs-queue",
+  "title": "Stack vs Queue: LIFO vs FIFO",
+  "excerpt": "A stack is LIFO (last in, first out): push and pop at the same end. A queue is FIFO (first in, first out): add at the back, remove from the front.",
+  "topic": "dsa",
+  "tags": ["dsa", "stack", "queue", "interview"],
+  "related_topic": "stacks_queues",
+  "author": "BountyCode Team",
+  "updated_at": "2026-11-04",
+  "body": "## Stack \u2014 LIFO\n\nPush and pop at the same end (the top). Used for undo, browser back, function-call stack, expression evaluation.\n\n## Queue \u2014 FIFO\n\nAdd at the back (enqueue), remove from the front (dequeue). Used for BFS, printer queues, task scheduling.\n\n## In Python\n\nUse a `list` as a stack (`append`/`pop`). Use `collections.deque` as a queue \u2014 `list.pop(0)` is O(n).\n\n## Practice it\n\nBuild a stack and a queue, then solve the Stacks & Queues practice challenges.",
+  "code": "# Stack: LIFO\nstack = []\nstack.append(1); stack.append(2)\nprint(stack.pop())   # 2\n\n# Queue: FIFO (use deque)\nfrom collections import deque\nq = deque()\nq.append(1); q.append(2)\nprint(q.popleft())   # 1",
+  "language": "python",
+  "trust_status": "human_reviewed"
+}

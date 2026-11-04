@@ -1,0 +1,99 @@
+{
+  "topic": "stacks_queues",
+  "subject": "dsa",
+  "pattern": "Stacks & Queues",
+  "lessons": [
+    {
+      "id": "stack_basics",
+      "title": "Stack Basics",
+      "concept": "Stack is LIFO (Last In, First Out). Operations: push (add), pop (remove top), peek (view top). All O(1). Used for undo, back, function calls, expression evaluation.",
+      "formula": "push/pop/peek: O(1)",
+      "worked_example": "Push 1,2,3 → top=3. Pop → 3, top=2. Peek → 2.",
+      "mistakes": ["Popping empty stack → underflow", "Confusing stack with queue (FIFO)"]
+    },
+    {
+      "id": "queue_basics",
+      "title": "Queue Basics",
+      "concept": "Queue is FIFO (First In, First Out). Operations: enqueue (rear), dequeue (front), peek. All O(1) with proper impl. Used for BFS, task scheduling.",
+      "formula": "enqueue/dequeue/peek: O(1)",
+      "worked_example": "Enqueue 1,2,3 → front=1. Dequeue → 1, front=2. Peek → 2.",
+      "mistakes": ["Confusing queue with stack (LIFO)", "Using wrong end for enqueue/dequeue"]
+    }
+  ],
+  "practice": [
+    {
+      "id": "SQ-PRACTICE-001",
+      "question": "Which allows enqueue and dequeue both O(1)?",
+      "options": {"A": "Array", "B": "Linked List", "C": "Circular Buffer", "D": "Stack"},
+      "correct_answer": "C",
+      "explanation": "Circular buffer supports O(1) enqueue/dequeue with fixed capacity.",
+      "difficulty": "easy",
+      "sub_topic": "queue_basics",
+      "misconception_tags": ["wrong_structure"],
+      "company_tags": ["tcs"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "SQ-PRACTICE-002",
+      "question": "Stack vs Queue difference?",
+      "options": {"A": "Stack LIFO, Queue FIFO", "B": "Stack FIFO, Queue LIFO", "C": "Both FIFO", "D": "Both LIFO"},
+      "correct_answer": "A",
+      "explanation": "Stack = Last-In-First-Out. Queue = First-In-First-Out.",
+      "difficulty": "easy",
+      "sub_topic": "stack_basics",
+      "misconception_tags": ["fifo_vs_lifo"],
+      "company_tags": ["infosys"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    }
+  ],
+  "questions": [
+    {
+      "id": "SQ-001",
+      "question": "Structure commonly used for managing function calls and local variables?",
+      "options": {"A": "Queue", "B": "Linked List", "C": "Stack", "D": "Array"},
+      "correct_answer": "C",
+      "explanation": "Function call stack uses LIFO → stack.",
+      "difficulty": "easy",
+      "sub_topic": "stack_basics",
+      "misconception_tags": ["wrong_structure"],
+      "company_tags": ["tcs"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "SQ-002",
+      "question": "Structure for BFS graph traversal?",
+      "options": {"A": "Stack", "B": "Array", "C": "Linked List", "D": "Queue"},
+      "correct_answer": "D",
+      "explanation": "BFS uses queue (FIFO) to explore level by level.",
+      "difficulty": "easy",
+      "sub_topic": "queue_basics",
+      "misconception_tags": ["wrong_structure"],
+      "company_tags": ["infosys"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "SQ-003",
+      "question": "Which sorting algorithm has best worst-case for large list?",
+      "options": {"A": "Bubble Sort", "B": "Merge Sort", "C": "Quick Sort", "D": "Selection Sort"},
+      "correct_answer": "B",
+      "explanation": "Merge sort worst-case O(n log n); quick sort worst O(n²).",
+      "difficulty": "easy",
+      "sub_topic": "stack_basics",
+      "misconception_tags": ["wrong_algorithm"],
+      "company_tags": ["tcs"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    }
+  ],
+  "trust_status": "human_reviewed",
+  "source": "bountycode_original"
+}

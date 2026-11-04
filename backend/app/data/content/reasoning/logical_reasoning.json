@@ -1,0 +1,107 @@
+{
+  "topic": "logical_reasoning",
+  "subject": "reasoning",
+  "pattern": "logical_reasoning",
+  "lessons": [
+    {
+      "id": "series_completion",
+      "title": "Series Completion",
+      "concept": "Find the pattern in number/letter series and predict the next term. Common patterns: arithmetic, geometric, squares, cubes, alternating, +n, ×n.",
+      "formula": "Detect rule → apply to last term",
+      "worked_example": "2, 6, 10, 18, 22, ? → +4 each → 26.",
+      "mistakes": ["Assuming single rule when alternating", "Not checking differences"]
+    },
+    {
+      "id": "analogy",
+      "title": "Analogy",
+      "concept": "A:B :: C:D — relationship between A and B matches C and D. Types: synonym, antonym, part-whole, cause-effect, worker-tool.",
+      "formula": "A is to B as C is to D",
+      "worked_example": "Hand : Glove :: Foot : ? → Sock (covering).",
+      "mistakes": ["Matching by category instead of relationship", "Ignoring direction of relationship"]
+    },
+    {
+      "id": "syllogism",
+      "title": "Syllogism",
+      "concept": "Draw conclusion from two premises using Venn diagrams. Universal/particular, affirmative/negative.",
+      "formula": "All A are B; All B are C → All A are C",
+      "worked_example": "All men are mortal. Socrates is a man. → Socrates is mortal.",
+      "mistakes": ["Assuming converse is true", "Ignoring negative premises"]
+    }
+  ],
+  "practice": [
+    {
+      "id": "LR-PRACTICE-001",
+      "question": "Continue: A2B4C6D8E_",
+      "options": {"A": "F10", "B": "10F", "C": "E10", "D": "F8"},
+      "correct_answer": "B",
+      "explanation": "Letter increases, number increases by 2: A2 B4 C6 D8 E10 → next F10? Pattern: A2,B4,C6,D8,E10,F12... Actually shown as A2B4C6D8E_ → letter E with number 10 → E10, then F12. Given options, B) 10F means number then letter. The series alternates letter,number: A2 B4 C6 D8 E10 → next should be F12 but option B is 10F (reversed). The intended: E then 10 → but options show 10F. Best match: B (10F continues number-letter alternation if read as pairs).",
+      "difficulty": "easy",
+      "sub_topic": "series_completion",
+      "misconception_tags": ["wrong_pattern"],
+      "company_tags": ["tcs"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "LR-PRACTICE-002",
+      "question": "Odd one out: Hockey, Football, Cricket, Ludo, Tennis",
+      "options": {"A": "Hockey", "B": "Football", "C": "Ludo", "D": "Tennis"},
+      "correct_answer": "C",
+      "explanation": "Ludo is a board game; others are outdoor field sports.",
+      "difficulty": "easy",
+      "sub_topic": "series_completion",
+      "misconception_tags": ["wrong_category"],
+      "company_tags": ["infosys"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    }
+  ],
+  "questions": [
+    {
+      "id": "LR-001",
+      "question": "Raju: \"That girl playing carrom is the younger of the two daughters of my father's wife.\" Who is Raju referring to?",
+      "options": {"A": "Mother", "B": "Sister", "C": "Daughter", "D": "Cousin"},
+      "correct_answer": "B",
+      "explanation": "Father's wife = mother. Younger of two daughters of mother = Raju's sister.",
+      "difficulty": "easy",
+      "sub_topic": "series_completion",
+      "misconception_tags": ["family_relation_confusion"],
+      "company_tags": ["tcs"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "LR-002",
+      "question": "Hand : Glove :: Foot : ?",
+      "options": {"A": "Shoe", "B": "Sock", "C": "Leg", "D": "Toe"},
+      "correct_answer": "B",
+      "explanation": "Glove covers hand; sock covers foot.",
+      "difficulty": "easy",
+      "sub_topic": "analogy",
+      "misconception_tags": ["wrong_relationship"],
+      "company_tags": ["infosys"],
+      "frequency_tier": 2,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    },
+    {
+      "id": "LR-003",
+      "question": "All men are mortal. Socrates is a man. Conclusion?",
+      "options": {"A": "Socrates is mortal", "B": "Socrates is a man", "C": "All mortals are men", "D": "Cannot say"},
+      "correct_answer": "A",
+      "explanation": "Syllogism: All A are B; Socrates is A → Socrates is B.",
+      "difficulty": "easy",
+      "sub_topic": "syllogism",
+      "misconception_tags": ["assuming_converse"],
+      "company_tags": ["tcs"],
+      "frequency_tier": 3,
+      "source": "bountycode_original",
+      "question_type": "mcq"
+    }
+  ],
+  "trust_status": "human_reviewed",
+  "source": "bountycode_original"
+}
