@@ -1,5 +1,5 @@
 """Comprehensive Python lesson content library - coddy.tech quality.
-Each topic has real code examples, real exercises, and real quizzes.
+50+ topics with real code examples, real exercises, and real quizzes.
 """
 import os
 import sys
