@@ -11,7 +11,6 @@ import ComboCounter from "../components/ComboCounter";
 import ComboWarningOverlay from "../juice/ComboWarningOverlay";
 import RouteErrorBoundary from "../components/RouteErrorBoundary";
 
-const Onboarding = lazy(() => import("../components/Onboarding"));
 const RewardShowcase = lazy(() => import("../components/RewardShowcase"));
 const BottomNav = lazy(() => import("../components/BottomNav"));
 
@@ -169,8 +168,6 @@ export default function AppContent() {
           </main>
           <Footer />
           <CookieBanner />
-          <Suspense fallback={null}>
-            <Onboarding />
             <Suspense fallback={null}>
               <RewardShowcase
                 visible={rewardShowcase.visible}
@@ -187,7 +184,6 @@ export default function AppContent() {
               seconds={(combo?.combo_decay_seconds as number | undefined) ?? 0}
               visible={currentCombo >= 3}
             />
-          </Suspense>
           <Suspense fallback={null}>
             <BottomNav />
           </Suspense>

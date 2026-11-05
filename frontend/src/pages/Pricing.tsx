@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../store/authStore";
 import api from "../services/api";
-import { Zap, Shield, Check, CreditCard, Smartphone, Rocket, GraduationCap, Users, Building2, Crown } from "lucide-react";
+import { Zap, Shield, Check, CreditCard, Smartphone, Rocket, GraduationCap } from "lucide-react";
 import { motion } from "framer-motion";
 
 function detectCountry() {
@@ -106,56 +106,6 @@ function getPlans(isIndia, prices) {
         className: "card-pro",
         badge: "Forever",
       },
-      {
-        id: "team",
-        name: "Command Squad",
-        price: isIndia ? inr("team", 12250) : usd("team", 145),
-        priceINR: isIndia ? `${inr("team", 12250)}/mo` : `${usd("team", 145)}/mo`,
-        priceUsd: `${usd("team", 145)}/mo`,
-        priceInr: `${inr("team", 12250)}/mo`,
-        period: "/month per seat",
-        desc: "5–50 seats. Perfect for teams.",
-        icon: Users,
-        features: [
-          "Everything in Pro",
-          "5–50 team members",
-          "Team dashboard & analytics",
-          "Bulk invitations",
-          "Custom roles & permissions",
-          "Usage analytics per member",
-          "All future updates included",
-          "Priority support",
-        ],
-        cta: "Get Team Plan",
-        className: "card-pro relative",
-        badge: "Teams",
-      },
-      {
-        id: "enterprise",
-        name: "Executive Suite",
-        price: isIndia ? inr("enterprise", 66392) : usd("enterprise", 99),
-        priceINR: isIndia ? `${inr("enterprise", 66392)}/mo` : `${usd("enterprise", 99)}/mo`,
-        priceUsd: `${usd("enterprise", 99)}/mo`,
-        priceInr: `${inr("enterprise", 66392)}/mo`,
-        period: "/month per seat",
-        desc: "Unlimited seats. White-label. API access.",
-        icon: Building2,
-        features: [
-          "Everything in Team",
-          "Unlimited seats (10+)",
-          "White-label platform",
-          "API access for integrations",
-          "Custom branding & SSO",
-          "Dedicated account manager",
-          "24/7 priority support",
-          "SLA guarantee",
-          "Custom training for team",
-        ],
-        cta: "Contact Sales",
-        className: "card-pro relative",
-        badge: "Enterprise",
-        isEnterprise: true,
-      },
     ];
   }
 
@@ -207,10 +157,6 @@ export default function Pricing() {
         data = await api.createLifetimeCheckout(country, couponCode);
       } else if (planId === "yearly") {
         data = await api.createYearlyCheckout(country, couponCode);
-      } else if (planId === "team") {
-        data = await api.createTeamCheckout(country, seats, couponCode);
-      } else if (planId === "enterprise") {
-        data = await api.createEnterpriseCheckout(country, seats, couponCode);
       } else {
         data = await api.createCheckout(country, couponCode, seats);
       }
@@ -398,7 +344,7 @@ export default function Pricing() {
           <div className="text-center mb-4 text-green-400 text-xs font-mono">✓ Coupon applied — discount active</div>
         )}
 
-        <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
           {plans.map((plan, i) => (
             <motion.div
               key={plan.id}
@@ -449,17 +395,13 @@ export default function Pricing() {
                 onClick={() => {
                   if (plan.id === "free") {
                      navigate(user ? "/journey" : "/register");
-                  } else if (plan.id === "enterprise") {
-                    window.location.href =
-                      "mailto:support@BountyCode.com?subject=Enterprise%20plan%20inquiry";
                   } else {
-                    const seats = plan.id === "team" ? 5 : 1;
-                    handleCheckout(plan.id, seats);
+                    handleCheckout(plan.id, 1);
                   }
                 }}
                 disabled={loading}
                 className={`w-full ${
-                  plan.id === "pro" ? "btn-primary" : plan.id === "lifetime" ? "btn-pro" : plan.id === "yearly" ? "btn-pro" : plan.isEnterprise ? "btn-enterprise" : plan.id === "team" ? "btn-team" : "btn-secondary"
+                  plan.id === "pro" ? "btn-primary" : plan.id === "lifetime" ? "btn-pro" : plan.id === "yearly" ? "btn-pro" : "btn-secondary"
                 }`}
               >
                 {loading ? "Processing..." : user?.plan === plan.id ? "Current Tier" : plan.cta}
@@ -491,7 +433,6 @@ export default function Pricing() {
               { q: isIndia ? "Do you accept UPI?" : "What payment methods are accepted?", a: isIndia ? "Yes! UPI, credit/debit cards, and net banking via PayPal." : "Credit/debit cards via PayPal & Stripe. Secure and encrypted." },
               { q: "What happens if I downgrade?", a: "Your data is always safe. You keep past interviews, resumes, and test results." },
               { q: isIndia ? "Is ₹99/mo really worth it?" : "Is $19/mo worth it?", a: isIndia ? "For ₹99/mo you get unlimited access to 53 companies' placement patterns, mock tests, resume optimization, and AI interviews. That's less than a movie ticket!" : "You get unlimited AI interviews, resume optimization, 53 company-specific prep guides, and more." },
-              { q: "Do you have team and enterprise plans?", a: "Yes — Team plans start at $29/seat/month (min 5 seats). Enterprise plans start at $99/seat/month with white-label, API access, and dedicated support." },
               { q: "Do you offer promo codes?", a: "Yes — enter a promo code on the pricing page to apply discounts to your next purchase." },
               { q: "How many companies are covered?", a: "53 companies including TCS, Infosys, Wipro, Google, Amazon, Microsoft, Flipkart, Zomato, and more — all with real exam patterns." },
             ].map((faq) => (
