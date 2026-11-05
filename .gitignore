@@ -104,6 +104,9 @@ sandbox-opencode.bat
 d[0-9]*.py
 test_bank.py
 
+# Nested duplicate checkout (own .git repo, 341 MB) — never commit
+/Bountycode/
+
 # Package lock files (if not committed)
 # package-lock.json
 # yarn.lock

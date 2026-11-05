@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   ArrowRight,
   CheckCircle2,
@@ -9,10 +9,8 @@ import {
   Target,
   Compass,
   Anchor,
-  Rocket,
   Swords,
   Quote,
-  X,
 } from "lucide-react";
 import useAuthStore from "../store/authStore";
 import { gamificationKeys } from "../hooks/useGamificationProfile";
@@ -64,78 +62,6 @@ const WORLD_HOOKS = [
   { name: "Monsoon Delta", hook: "Optimize against time. DP, memoization, and turning exponential pain into polynomial gain.", icon: "🌊", color: "#EC4899" },
   { name: "Kraken Summit", hook: "Face the boss. Graphs, tries, and hard problems that separate juniors from seniors.", icon: "🐙", color: "#EF4444" },
 ];
-
-/* ─── Welcome modal (hybrid onboarding) ─── */
-function WelcomeModal({ onClose }: { onClose: () => void }) {
-  const [step, setStep] = useState(0);
-  const totalSteps = 4;
-  const pct = ((step + 1) / totalSteps) * 100;
-
-  return (
-    <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4"
-        onClick={onClose}
-      >
-        <motion.div
-          initial={{ scale: 0.92, opacity: 0, y: 20 }}
-          animate={{ scale: 1, opacity: 1, y: 0 }}
-          exit={{ scale: 0.92, opacity: 0, y: 20 }}
-          transition={{ type: "spring", stiffness: 260, damping: 20 }}
-          className="w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl ring-1 ring-black/5"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <div className="flex justify-end">
-            <button onClick={onClose} className="rounded-full p-1 text-text-muted hover:text-text-primary transition-colors">
-              <X size={20} />
-            </button>
-          </div>
-
-          <div className="flex flex-col items-center text-center">
-            <motion.div
-              className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-accent-primary/10"
-              animate={{ scale: [1, 1.08, 1] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <Rocket size={28} className="text-accent-primary" />
-            </motion.div>
-
-            <h2 className="font-display text-2xl font-extrabold text-text-primary">Welcome to BountyCode</h2>
-            <p className="mt-2 text-sm text-text-secondary">
-              Your AI-powered placement command center.<br/>Let&apos;s get you mission-ready in 30 seconds.
-            </p>
-
-            <div className="mt-5 w-full">
-              <div className="h-1.5 w-full overflow-hidden rounded-full bg-black/5">
-                <motion.div
-                  className="h-full rounded-full bg-accent-primary"
-                  animate={{ width: `${pct}%` }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                />
-              </div>
-              <div className="mt-2 flex justify-between text-[10px] font-mono uppercase tracking-widest text-text-muted">
-                <span>Step {step + 1} of {totalSteps}</span>
-                <span>{Math.round(pct)}%</span>
-              </div>
-            </div>
-
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => step < totalSteps - 1 ? setStep((s) => s + 1) : onClose()}
-              className="mt-6 w-full rounded-xl bg-accent-primary px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-accent-primary/20 transition hover:shadow-xl"
-            >
-              {step < totalSteps - 1 ? "Next" : "Launch →"}
-            </motion.button>
-          </div>
-        </motion.div>
-      </motion.div>
-    </AnimatePresence>
-  );
-}
 
 /* ─── Voyage Preview ─── */
 function VoyagePreview() {
@@ -384,13 +310,7 @@ export default function Landing() {
     () => typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches,
     []
   );
-  const [showWelcome, setShowWelcome] = useState(false);
   const { resolved } = useBackground();
-
-  useEffect(() => {
-    const timer = setTimeout(() => setShowWelcome(true), 800);
-    return () => clearTimeout(timer);
-  }, []);
 
   const worlds = useMemo(() => WORLD_HOOKS, []);
 
@@ -711,13 +631,6 @@ export default function Landing() {
           </p>
         </div>
       </footer>
-
-      {/* ═══ WELCOME MODAL ═══ */}
-      <AnimatePresence>
-        {showWelcome && (
-          <WelcomeModal onClose={() => setShowWelcome(false)} />
-        )}
-      </AnimatePresence>
     </div>
   );
 }
