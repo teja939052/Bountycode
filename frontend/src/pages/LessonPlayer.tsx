@@ -221,20 +221,22 @@ export default function LessonPlayer() {
           <p className="text-text-secondary mb-1">{lesson.title}</p>
           <p className="text-sm text-text-secondary mb-4">
             {completionData?.passed
-              ? "You passed! Keep practicing to master this pattern."
+              ? trackId && completionData?.module_completed
+                ? "Mastery verified. Your company-track progress has been updated."
+                : "You passed the final assessment. Keep the skill fresh with spaced practice."
               : "Keep practicing. Review the explanation and try again."}
           </p>
           {completionData && (
             <p className="text-sm text-brand-sky mb-4">
-              XP earned: {completionData.xp_earned || lesson.xp_reward}
+              XP earned: {completionData.xp_earned ?? 0}
             </p>
           )}
           <div className="flex justify-center gap-3">
             <Link
-              to="/learn"
+              to={trackId ? `/company-tracks?track=${encodeURIComponent(trackId)}` : "/learn"}
               className="rounded-xl border border-white/10 px-4 py-2 text-sm hover:bg-white/5"
             >
-              Back to Learn
+              {trackId ? "Back to company track" : "Back to Learn"}
             </Link>
             <button
               onClick={() => {
