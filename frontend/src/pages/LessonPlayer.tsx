@@ -213,6 +213,12 @@ export default function LessonPlayer() {
 
   const goNext = useCallback(() => {
     if (!lesson) return;
+    const step = lesson.steps[currentStep];
+    const mustAttempt = ["interactive", "practice", "predict_output", "fill_blank"].includes(step.step_type);
+    if (mustAttempt && !answerResult) {
+      setStepError("Try this practice step before continuing. You will see feedback after your answer.");
+      return;
+    }
     if (currentStep < lesson.steps.length - 1) {
       setCurrentStep((s) => s + 1);
       setSelectedAnswer(null);
@@ -222,7 +228,7 @@ export default function LessonPlayer() {
       setPhase("assessment");
       setAssessmentError("");
     }
-  }, [lesson, currentStep]);
+  }, [lesson, currentStep, answerResult]);
 
   const goBack = useCallback(() => {
     if (phase === "assessment") {
@@ -670,7 +676,10 @@ export default function LessonPlayer() {
 
             <button
               onClick={goNext}
-              disabled={saving}
+              disabled={saving || (
+                ["interactive", "practice", "predict_output", "fill_blank"].includes(step.step_type)
+                && !answerResult
+              )}
               className="rounded-xl bg-brand-sky px-4 py-2 text-sm text-white hover:bg-brand-sky/90 disabled:opacity-50"
             >
               {saving ? (
