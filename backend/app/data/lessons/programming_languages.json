@@ -212,6 +212,11 @@
       "type": "misconception",
       "question": "Name a common mistake in Programming Fundamentals Across Languages.",
       "answer": "A variable is a named reference or storage location associated with a value."
+    },
+    {
+      "type": "application",
+      "question": "What is the difference between printing and returning a value?",
+      "answer": "Printing displays information to the user or console. Returning sends a value back to the caller so the program can store it, combine it, or use it in another expression."
     }
   ]
 }
