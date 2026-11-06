@@ -6,6 +6,7 @@ Routes (all under /api/v1/company-lessons, auth required):
   GET  /api/v1/company-lessons/{slug}        → full lesson content
   POST /api/v1/company-lessons/{slug}/complete → record completion + rewards
 """
+import hashlib
 from datetime import datetime, timezone
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -30,6 +31,32 @@ _LESSONS_DIR = os.path.join(_APP_DIR, "data", "lessons")
 
 # In-memory cache so we don't hit disk on every request.
 _LESSON_CACHE: Dict[str, Dict[str, Any]] = {}
+
+# Only server-graded step types can satisfy the lesson evidence gate.
+# code_lab is intentionally excluded: its current browser worker submits
+# output text to this API, so the server cannot prove which code produced it.
+ANSWERABLE_STEP_TYPES = frozenset({
+    "interactive", "practice", "quiz", "predict_output", "fill_blank",
+    "order_steps", "code_lab", "sql_lab", "debug_choice", "api_scenario",
+})
+STEP_EVIDENCE_TYPES = ANSWERABLE_STEP_TYPES - {"code_lab"}
+
+
+def _step_fingerprint(step: Dict[str, Any]) -> str:
+    """Bind a passed step to the exact authored content that was graded."""
+    canonical = json.dumps(
+        step, sort_keys=True, separators=(",", ":"), ensure_ascii=False
+    )
+    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+
+
+def _required_step_indices(data: Dict[str, Any]) -> List[int]:
+    """Return authored, answerable steps that require persisted server evidence."""
+    return [
+        index
+        for index, step in enumerate(data.get("steps") or [])
+        if str(step.get("step_type") or "").strip().lower() in STEP_EVIDENCE_TYPES
+    ]
 
 # A guided lesson can only certify a module whose authored topic overlaps the
 # skill it teaches. Query-string IDs from the browser are not proof of coverage.
@@ -265,10 +292,6 @@ async def get_lesson(slug: str, user=Depends(get_current_user)):
     # them in /complete and only returns explanations after submission.
     public_data = {**data}
     # Never ship answer keys to the learner before they submit an attempt.
-    answerable_step_types = {
-        "interactive", "practice", "quiz", "predict_output", "fill_blank",
-        "order_steps", "code_lab", "sql_lab", "debug_choice", "api_scenario"
-    }
     answer_key_fields = {
         "correct_index", "correct_answer", "answer", "correct_order",
         "expected_answer", "accepted_answers", "expected_output",
@@ -279,7 +302,7 @@ async def get_lesson(slug: str, user=Depends(get_current_user)):
             key: value for key, value in step.items()
             if key not in (
                 answer_key_fields | {"explanation"}
-                if step.get("step_type") in answerable_step_types
+                if str(step.get("step_type") or "").strip().lower() in ANSWERABLE_STEP_TYPES
                 else answer_key_fields
             )
         }
@@ -374,7 +397,7 @@ async def answer_lesson_step(
         raise HTTPException(status_code=404, detail="Lesson step not found")
 
     step = steps[step_index]
-    step_type = step.get("step_type")
+    step_type = str(step.get("step_type") or "").strip().lower()
     selected_index = None
     correct_index = None
     correct_answer = None
@@ -472,21 +495,51 @@ async def answer_lesson_step(
         }.get(domain, domain.replace(" ", "_")),
     )
 
-    # Record evidence, but do not mint XP for every retryable in-lesson choice.
-    try:
-        await record_learning_activity(
-            user["id"],
-            {
-                "domain_id": domain_id,
-                "type": "lesson_step",
-                "success": correct,
-                "score_impact": 1,
-                "lesson_slug": slug,
-                "step_index": step_index,
-            },
-        )
-    except Exception as exc:
-        logger.warning("Could not update adaptive evidence for %s step %s: %s", slug, step_index, exc)
+    # Persist server-graded evidence before reporting a step as completed.
+    # Attempts are counted, but a prior pass is never erased by a later retry.
+    evidence_recorded = step_type in STEP_EVIDENCE_TYPES
+    if evidence_recorded:
+        evidence_path = f"lesson_progress.{slug}.step_evidence.{step_index}"
+        evidence_update: Dict[str, Any] = {
+            "$inc": {f"{evidence_path}.attempts": 1},
+        }
+        if correct:
+            evidence_update["$set"] = {
+                f"{evidence_path}.passed": True,
+                f"{evidence_path}.passed_at": datetime.now(timezone.utc).isoformat(),
+                f"{evidence_path}.fingerprint": _step_fingerprint(step),
+            }
+        try:
+            await learning_progress_collection.update_one(
+                {"user_id": user["id"]},
+                evidence_update,
+                upsert=True,
+            )
+        except Exception as exc:
+            logger.exception(
+                "Could not persist lesson evidence for %s step %s: %s",
+                slug, step_index, exc,
+            )
+            raise HTTPException(
+                status_code=503,
+                detail="Your answer was checked, but its learning evidence could not be saved. Please retry.",
+            )
+
+        # Adaptive telemetry is secondary to the persisted evidence record.
+        try:
+            await record_learning_activity(
+                user["id"],
+                {
+                    "domain_id": domain_id,
+                    "type": "lesson_step",
+                    "success": correct,
+                    "score_impact": 1,
+                    "lesson_slug": slug,
+                    "step_index": step_index,
+                },
+            )
+        except Exception as exc:
+            logger.warning("Could not update adaptive evidence for %s step %s: %s", slug, step_index, exc)
 
     return {
         "success": True,
@@ -500,6 +553,8 @@ async def answer_lesson_step(
             "student_results": student_results,
             "explanation": step.get("explanation", ""),
             "attempt_recorded": True,
+            "evidence_recorded": evidence_recorded,
+            "formative_only": step_type == "code_lab",
         },
     }
 
@@ -518,6 +573,35 @@ async def complete_lesson(slug: str, req: CompleteRequest, user=Depends(get_curr
         raise HTTPException(status_code=422, detail="Answer every final-assessment question before submitting.")
     if bool(req.track_id) != bool(req.module_id):
         raise HTTPException(status_code=400, detail="track_id and module_id must be supplied together.")
+
+    required_indices = _required_step_indices(data)
+    if required_indices:
+        progress_doc = await learning_progress_collection.find_one(
+            {"user_id": user["id"]}
+        ) or {}
+        saved_lesson = (progress_doc.get("lesson_progress") or {}).get(slug) or {}
+        step_evidence = saved_lesson.get("step_evidence") or {}
+        missing_steps = []
+        for index in required_indices:
+            step = data["steps"][index]
+            evidence = step_evidence.get(str(index)) or step_evidence.get(index) or {}
+            if (
+                evidence.get("passed") is not True
+                or evidence.get("fingerprint") != _step_fingerprint(step)
+            ):
+                missing_steps.append({
+                    "step_index": index,
+                    "step_number": step.get("step_number", index + 1),
+                    "title": step.get("title") or f"Step {index + 1}",
+                })
+        if missing_steps:
+            raise HTTPException(
+                status_code=409,
+                detail={
+                    "message": "Complete the required interactive steps before submitting the final assessment.",
+                    "missing_steps": missing_steps,
+                },
+            )
 
     # Validate the company mapping before recording any result. This prevents
     # a malformed target/module pair from creating misleading learner evidence.
