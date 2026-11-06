@@ -302,5 +302,17 @@
     }
   ],
   "next_lesson_slug": "conditions_basics",
-  "next_lesson_title": "Conditions, Decisions and Boolean Logic"
+  "next_lesson_title": "Conditions, Decisions and Boolean Logic",
+  "quest": {
+    "chapter": "The Memory Vault",
+    "rank": "Novice Builder",
+    "story": "Bountycode's placement dashboard has no useful state yet. Your first task is to give the academy a way to remember a learner's name, progress, score and eligibility.",
+    "mission": "Model a small learner profile using meaningful names, correct data types and safe input conversion.",
+    "success_criteria": [
+      "Choose clear names for values.",
+      "Trace a variable update correctly.",
+      "Convert numeric text before arithmetic.",
+      "Diagnose a string-versus-number bug."
+    ]
+  }
 }
