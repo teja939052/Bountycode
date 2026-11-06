@@ -22,7 +22,12 @@
       "step_type": "interactive",
       "title": "Access Elements",
       "prompt": "Given arr = [5, 10, 15, 20, 25], what is arr[3]?",
-      "options": ["15", "20", "10", "25"],
+      "options": [
+        "15",
+        "20",
+        "10",
+        "25"
+      ],
       "correct_index": 1,
       "explanation": "arr[3] accesses the element at index 3, which is the 4th element: 20. Remember: indexing starts at 0."
     },
@@ -31,7 +36,12 @@
       "step_type": "practice",
       "title": "Array Traversal",
       "prompt": "What is the time complexity of traversing all elements of an array of size n?",
-      "options": ["O(1)", "O(log n)", "O(n)", "O(n²)"],
+      "options": [
+        "O(1)",
+        "O(log n)",
+        "O(n)",
+        "O(n²)"
+      ],
       "correct_index": 2,
       "explanation": "We must visit each element exactly once, so the time complexity is O(n)."
     },
@@ -47,17 +57,42 @@
       "step_type": "interactive",
       "title": "Two-Pointer Preview",
       "prompt": "To find if a pair of numbers in a sorted array sums to a target, which technique is most efficient?",
-      "options": ["Brute force O(n²)", "Two pointers O(n)", "Binary search O(n log n)", "Hash set O(n)"],
+      "options": [
+        "Brute force O(n²)",
+        "Two pointers O(n)",
+        "Binary search O(n log n)",
+        "Hash set O(n)"
+      ],
       "correct_index": 1,
       "explanation": "Two pointers (left at start, right at end) can find a pair in O(n) for sorted arrays. Move left pointer forward if sum < target, right pointer backward if sum > target."
+    },
+    {
+      "step_number": 6,
+      "step_type": "predict_output",
+      "title": "Predict an array update",
+      "content": "Trace the values after the assignment before calculating the final expression.",
+      "code": "numbers = [4, 7, 2]\nnumbers[1] = 5\nprint(numbers[0] + numbers[1] + numbers[2])",
+      "language": "python",
+      "prompt": "What value is printed?",
+      "answer_placeholder": "Type the numeric output",
+      "expected_answer": "11",
+      "explanation": "The middle element changes from 7 to 5. The sum is 4 + 5 + 2 = 11."
     }
   ],
-  "practice_questions": ["tcs_nqt_dsa_0001", "tcs_nqt_dsa_0002"],
+  "practice_questions": [
+    "tcs_nqt_dsa_0001",
+    "tcs_nqt_dsa_0002"
+  ],
   "assessment": {
     "questions": [
       {
         "prompt": "What is the time complexity of accessing an element by index in an array?",
-        "options": ["O(1)", "O(n)", "O(log n)", "O(n²)"],
+        "options": [
+          "O(1)",
+          "O(n)",
+          "O(log n)",
+          "O(n²)"
+        ],
         "correct_index": 0,
         "explanation": "Array access by index is O(1) because the memory address is calculated directly: base_address + index × element_size."
       },
