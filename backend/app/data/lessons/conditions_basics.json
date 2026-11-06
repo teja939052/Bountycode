@@ -219,7 +219,8 @@
     "Translate real eligibility rules into correct conditional logic."
   ],
   "prerequisites": [
-    "variables_basics"
+    "variables_basics",
+    "operators_basics"
   ],
   "concepts": [
     "Boolean expression",
