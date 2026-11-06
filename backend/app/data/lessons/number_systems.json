@@ -1,0 +1,123 @@
+{
+  "slug": "number_systems",
+  "id": "lesson_number_systems_001",
+  "title": "Number Systems",
+  "domain": "Quantitative Aptitude",
+  "pattern": "Number Systems",
+  "difficulty": "easy",
+  "duration_min": 20,
+  "xp_reward": 95,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Understand place value",
+      "content": "A number is built from digits and place values. In 4,582, the 4 represents four thousands, the 5 five hundreds, the 8 eight tens and the 2 two ones.",
+      "example": "4,582 = 4×1000 + 5×100 + 8×10 + 2."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Classify a number",
+      "prompt": "Which of these is a prime number?",
+      "options": [
+        "21",
+        "27",
+        "29",
+        "33"
+      ],
+      "correct_index": 2,
+      "explanation": "29 has exactly two positive factors: 1 and 29. The other numbers have additional factors."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Use divisibility rules",
+      "content": "A number is divisible by 2 if its last digit is even; by 3 if its digit sum is divisible by 3; by 5 if it ends in 0 or 5; and by 9 if its digit sum is divisible by 9.",
+      "example": "729 has digit sum 18, so it is divisible by 9 and by 3.",
+      "tip": "For large numbers, use divisibility rules before attempting long division."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Find the remainder",
+      "prompt": "What is the remainder when 47 is divided by 5?",
+      "options": [
+        "0",
+        "2",
+        "3",
+        "4"
+      ],
+      "correct_index": 1,
+      "explanation": "5×9 = 45. The remainder is 47−45 = 2."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Estimate multiples",
+      "content": "For the smallest multiple of k greater than or equal to n, find the first integer m with k×m ≥ n. This is useful in remainder, scheduling and divisibility questions.",
+      "example": "The smallest three-digit multiple of 7 is 7×15 = 105."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "Which number is divisible by 9?",
+        "options": [
+          "724",
+          "729",
+          "731",
+          "742"
+        ],
+        "correct_index": 1,
+        "explanation": "7+2+9 = 18, which is divisible by 9."
+      },
+      {
+        "prompt": "How many positive factors does 12 have?",
+        "options": [
+          "4",
+          "5",
+          "6",
+          "8"
+        ],
+        "correct_index": 2,
+        "explanation": "The factors are 1, 2, 3, 4, 6 and 12: six factors."
+      },
+      {
+        "prompt": "What is the smallest three-digit multiple of 7?",
+        "options": [
+          "98",
+          "105",
+          "112",
+          "119"
+        ],
+        "correct_index": 1,
+        "explanation": "7×14 = 98 is two-digit; 7×15 = 105 is the first three-digit multiple."
+      },
+      {
+        "prompt": "Which of these is an even prime number?",
+        "options": [
+          "1",
+          "2",
+          "4",
+          "6"
+        ],
+        "correct_index": 1,
+        "explanation": "2 is the only even prime; every other even integer has factor 2 and itself."
+      },
+      {
+        "prompt": "What is the remainder when 83 is divided by 10?",
+        "options": [
+          "3",
+          "8",
+          "10",
+          "0"
+        ],
+        "correct_index": 0,
+        "explanation": "83 = 8×10 + 3, so the remainder is 3."
+      }
+    ]
+  }
+}
