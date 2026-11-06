@@ -14,7 +14,7 @@ from app.database import (
     users_collection, progress_collection, submissions_collection,
     solved_problems_collection, question_answers_collection,
     learning_progress_collection, skill_graph_collection,
-    gamification_collection
+    gamification_collection, user_company_tracks_collection,
 )
 from app.services.ai_core import chat_completion, parse_json
 from app.services.cache import cache
@@ -90,73 +90,81 @@ async def assess_user_skills(user_id: str) -> Dict[str, Any]:
     learning = await learning_progress_collection.find({"user_id": user_id}).to_list(100)
     skill_graph = await skill_graph_collection.find_one({"user_id": user_id})
 
-    # Build skill scores
+    # Build skill scores from all evidence sources. Lesson interactions are
+    # stored as events in learning_progress.activities; they count as evidence
+    # alongside coding submissions and aptitude answers.
     skills = {}
     for domain_id, domain_info in SKILL_DOMAINS.items():
-        domain_solved = [s for s in solved if s.get("topic", "").lower().replace(" ", "_") == domain_id or s.get("domain", "") == domain_id]
-        domain_submissions = [s for s in submissions if s.get("topic", "").lower().replace(" ", "_") == domain_id or s.get("domain", "") == domain_id]
-        domain_answers = [a for a in answers if a.get("topic", "").lower().replace(" ", "_") == domain_id or a.get("domain", "") == domain_id]
+        domain_solved = [
+            item for item in solved
+            if item.get("topic", "").lower().replace(" ", "_") == domain_id
+            or item.get("domain", "") == domain_id
+        ]
+        domain_submissions = [
+            item for item in submissions
+            if item.get("topic", "").lower().replace(" ", "_") == domain_id
+            or item.get("domain", "") == domain_id
+        ]
+        domain_answers = [
+            item for item in answers
+            if item.get("topic", "").lower().replace(" ", "_") == domain_id
+            or item.get("domain", "") == domain_id
+        ]
+        domain_activities = [
+            activity
+            for document in learning
+            for activity in (document.get("activities") or [])
+            if activity.get("domain_id") == domain_id
+        ]
 
-        total_attempts = len(domain_solved) + len(domain_submissions) + len(domain_answers)
-        correct_count = 0
-        weighted_score = 0
+        total_attempts = (
+            len(domain_solved)
+            + len(domain_submissions)
+            + len(domain_answers)
+            + len(domain_activities)
+        )
+        correct_count = sum(
+            1 for item in domain_solved
+            if item.get("status") == "accepted" or item.get("passed", False)
+        )
+        correct_count += sum(1 for item in domain_submissions if item.get("passed", False))
+        correct_count += sum(1 for item in domain_answers if item.get("is_correct", False))
+        correct_count += sum(1 for item in domain_activities if item.get("success", False))
 
-        for s in domain_solved:
-            if s.get("status") == "accepted" or s.get("passed", False):
-                correct_count += 1
-                diff = s.get("difficulty", "easy")
-                weighted_score += DIFFICULTY_SCORE.get(diff, 1) * 20
+        graph_skill = (skill_graph or {}).get("skills", {}).get(domain_id, {})
+        existing_score = float(graph_skill.get("score", 0) or 0)
 
-        for s in domain_submissions:
-            if s.get("passed", False):
-                correct_count += 1
-                diff = s.get("difficulty", "easy")
-                weighted_score += DIFFICULTY_SCORE.get(diff, 1) * 15
-
-        for a in domain_answers:
-            if a.get("is_correct", False):
-                correct_count += 1
-                weighted_score += 10
-
-        # Add learning progress
-        domain_learning = [l for l in learning if l.get("language", "") == domain_id or l.get("domain", "") == domain_id]
-        for l in domain_learning:
-            completed = len(l.get("completed_lessons", []))
-            weighted_score += completed * 5
-
-        # Merge existing skill graph data
-        existing_score = 0
-        if skill_graph and domain_id in skill_graph.get("skills", {}):
-            existing_score = skill_graph["skills"][domain_id].get("score", 0)
-
-        # Combine scores (existing graph data + new evidence)
         if total_attempts > 0:
             accuracy = correct_count / total_attempts * 100
-            new_score = min(100, weighted_score / max(1, total_attempts))
-            combined = max(existing_score, new_score)
+            coverage = min(100.0, total_attempts * 8.0)
+            evidence_score = (accuracy * 0.8) + (coverage * 0.2)
+            # Let recent evidence move mastery both up and down. Do not preserve
+            # a stale high score forever with max(existing_score, new_score).
+            combined = (evidence_score * 0.75) + (existing_score * 0.25)
         else:
-            combined = existing_score if existing_score > 0 else 0
+            accuracy = 0.0
+            combined = existing_score
 
+        combined = round(max(0.0, min(100.0, combined)), 1)
         mastery = _get_mastery_label(combined)
-        next_milestone = None
-        for ml in MASTERY_LEVELS:
-            if ml["min_score"] > combined:
-                next_milestone = ml
-                break
+        next_milestone = next(
+            (level for level in MASTERY_LEVELS if level["min_score"] > combined),
+            None,
+        )
 
         skills[domain_id] = {
-            "score": round(combined, 1),
+            "score": combined,
             "mastery": mastery["id"],
             "mastery_label": mastery["label"],
             "mastery_color": mastery["color"],
             "total_attempts": total_attempts,
             "correct_count": correct_count,
-            "accuracy": _score_to_percent(correct_count, max(1, total_attempts)),
+            "accuracy": round(accuracy, 1),
             "next_milestone": {
                 "label": next_milestone["label"] if next_milestone else "Max",
-                "needed": next_milestone["min_score"] - combined if next_milestone else 0,
+                "needed": round(next_milestone["min_score"] - combined, 1) if next_milestone else 0,
                 "color": next_milestone["color"] if next_milestone else mastery["color"],
-            } if next_milestone and next_milestone["min_score"] > combined else None,
+            } if next_milestone else None,
         }
 
     # Overall stats
@@ -220,7 +228,7 @@ async def detect_weak_areas(user_id: str, min_attempts: int = 2) -> List[Dict[st
                 "priority": _calculate_priority(domain_id, skill),
             })
 
-    weak.sort(key=lambda x: (x["priority"], x["score"]))
+    weak.sort(key=lambda item: (-item["priority"], item["score"], item["domain_id"]))
     return weak
 
 
@@ -260,6 +268,7 @@ async def generate_daily_plan(user_id: str, force_refresh: bool = False) -> Dict
 
     weak_areas = await detect_weak_areas(user_id)
     assessment = await assess_user_skills(user_id)
+    company_focus = await _get_company_focus_task(user_id)
     gamification = await gamification_collection.find_one({"user_id": user_id})
     streak = gamification.get("streak", 0) if gamification else 0
     level = gamification.get("level", 1) if gamification else 1
@@ -332,7 +341,17 @@ async def generate_daily_plan(user_id: str, force_refresh: bool = False) -> Dict
         plan["tasks"].insert(0, warm_up)
         total_estimated_minutes += warm_up.get("estimated_minutes", 5)
 
-    plan["total_estimated_minutes"] = total_estimated_minutes
+    if company_focus:
+        # The target-company syllabus is the learner's primary daily mission.
+        plan["tasks"] = [company_focus] + plan["tasks"][:2]
+        plan["company_focus"] = company_focus
+        plan["target_company"] = company_focus.get("company")
+        plan["total_estimated_minutes"] = company_focus["estimated_minutes"] + sum(
+            task.get("estimated_minutes", 15) for task in plan["tasks"][1:]
+        )
+        plan["message"] = f"Your next mission is aligned to {company_focus.get('company', 'your target company')}."
+    else:
+        plan["total_estimated_minutes"] = total_estimated_minutes
     plan["task_count"] = len(plan["tasks"])
 
     await cache.set("adaptive", cache_key, json.dumps(plan), ttl=3600)
@@ -361,12 +380,12 @@ def _create_learning_task(area: dict, domain_info: dict, user_id: str) -> Option
     }
 
     tasks = tasks_by_mastery.get(area["mastery"], tasks_by_mastery["learning"])
-    chosen = random.choice(tasks) if tasks else None
+    chosen = tasks[0] if tasks else None
     if not chosen:
         return None
 
     return {
-        "id": f"{area['domain_id']}_{area['mastery']}_{random.randint(1000, 9999)}",
+        "id": f"{area['domain_id']}_{area['mastery']}",
         "domain_id": area["domain_id"],
         "emoji": domain_info.get("emoji", "📌"),
         "color": domain_info.get("color", "#6B7280"),
@@ -383,10 +402,10 @@ def _create_warmup(user_id: str, assessment: dict) -> Optional[Dict]:
     if not practiced_skills:
         return None
 
-    domain_id, skill = random.choice(practiced_skills)
+    domain_id, skill = sorted(practiced_skills, key=lambda item: (item[1]["score"], item[0]))[0]
     domain_info = SKILL_DOMAINS.get(domain_id, {})
     return {
-        "id": f"warmup_{domain_id}_{random.randint(1000, 9999)}",
+        "id": f"warmup_{domain_id}",
         "type": "warmup",
         "domain_id": domain_id,
         "title": f"Warm-up: Quick {domain_info.get('name', domain_id)} Review",
@@ -448,6 +467,114 @@ async def record_learning_activity(user_id: str, activity: Dict[str, Any]) -> Di
         },
         upsert=True
     )
+
+async def _get_user_profile(user_id: str) -> Dict[str, Any]:
+    """Read the authenticated profile by Mongo _id, with legacy fallback."""
+    user = None
+    try:
+        if ObjectId.is_valid(user_id):
+            user = await users_collection.find_one({"_id": ObjectId(user_id)})
+    except Exception:
+        user = None
+    if user is None:
+        user = await users_collection.find_one({"user_id": user_id})
+    return user or {}
+
+
+COMPANY_TOPIC_LESSONS = {
+    "percentages": "successive_percentage_change",
+    "profit_loss": "profit_loss",
+    "ratio_proportion": "ratio_proportion",
+    "ratio": "ratio_proportion",
+    "averages": "averages",
+    "time_work": "time_work",
+    "time_distance": "time_distance",
+    "speed_time_distance": "time_distance",
+    "probability": "probability_basics",
+    "permutations": "permutations_combinations",
+    "permutation": "permutations_combinations",
+    "series": "number_series",
+    "number_series": "number_series",
+    "coding_decoding": "coding_decoding",
+    "blood_relation": "blood_relations",
+    "blood_relations": "blood_relations",
+    "reading_comprehension": "reading_comprehension",
+    "sentence_correction": "sentence_correction",
+    "grammar": "sentence_correction",
+    "para_jumbles": "para_jumbles",
+    "arrays": "arrays_basics",
+    "strings": "strings_basics",
+    "loops": "loops_basics",
+    "recursion": "recursion_basics",
+    "sorting": "sorting_basics",
+    "searching": "searching_basics",
+    "hashing": "hashing_basics",
+    "hashmaps": "hashing_basics",
+    "joins": "sql_joins",
+    "oop": "oops_basics",
+    "normalization": "dbms_basics",
+    "os": "os_basics",
+    "computer_networks": "computer_networks_basics",
+}
+
+
+async def _get_company_focus_task(user_id: str) -> Optional[Dict[str, Any]]:
+    """Return the next unfinished, topic-aware company mission."""
+    user = await _get_user_profile(user_id)
+    track_id = user.get("company_track") or user.get("target_pack")
+    if not track_id:
+        return None
+
+    from app.data.learning_paths import COMPANY_TRACKS
+    track = COMPANY_TRACKS.get(track_id)
+    if not track:
+        return None
+
+    progress = await user_company_tracks_collection.find_one(
+        {"user_id": user_id, "track_id": track_id}
+    )
+    if not progress:
+        return None
+
+    progress_sections = progress.get("sections") or {}
+    for section in track.get("sections", []):
+        section_state = progress_sections.get(section.get("id"), {})
+        modules_state = section_state.get("modules") or {}
+        for module in section.get("modules", []):
+            module_id = module.get("id")
+            module_state = modules_state.get(module_id, {})
+            if module_state.get("completed"):
+                continue
+            required_topics = [
+                str(topic).strip().lower().replace("-", "_").replace(" ", "_")
+                for topic in (module.get("topics") or [])
+            ]
+            topic_mastery = module_state.get("topic_mastery") or {}
+            for topic in required_topics:
+                if (topic_mastery.get(topic) or {}).get("mastered"):
+                    continue
+                lesson_slug = COMPANY_TOPIC_LESSONS.get(topic)
+                return {
+                    "id": f"company:{track_id}:{module_id}:{topic}",
+                    "type": "company_module",
+                    "title": f"{track.get('name', track_id)} · {module.get('title', module_id)}",
+                    "description": f"Next skill: {topic.replace('_', ' ')}. Learn the concept, practise it, then pass the mastery quiz.",
+                    "domain_id": topic,
+                    "difficulty": "medium",
+                    "estimated_minutes": 20,
+                    "xp_reward": module.get("diamonds", 50),
+                    "company": track.get("company_id", track_id),
+                    "track_id": track_id,
+                    "module_id": module_id,
+                    "topic_id": topic,
+                    "lesson_slug": lesson_slug,
+                    "action_url": (
+                        f"/learn/lesson/{lesson_slug}?track_id={track_id}&module_id={module_id}&topic_id={topic}"
+                        if lesson_slug else f"/company-tracks?track={track_id}"
+                    ),
+                }
+    return None
+
 
     # Invalidate cache
     await cache.delete("adaptive", f"skills:{user_id}")
