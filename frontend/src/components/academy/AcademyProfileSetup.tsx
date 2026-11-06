@@ -24,10 +24,11 @@ export default function AcademyProfileSetup() {
   const queryClient = useQueryClient();
   const [profile, setProfile] = useState(initialProfile);
   const [saved, setSaved] = useState(false);
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError, refetch, isFetching } = useQuery({
     queryKey: ["academy", "learner-profile"],
     queryFn: () => api.academy.getProfile(),
     staleTime: 60_000,
+    retry: 1,
   });
 
   useEffect(() => {
@@ -63,6 +64,20 @@ export default function AcademyProfileSetup() {
   };
 
   if (isLoading) return null;
+  if (isError) return (
+    <section className="rounded-3xl border border-amber-200 bg-white p-5 shadow-sm sm:p-6" aria-live="polite">
+      <p className="font-bold text-slate-900">Your learning profile could not load</p>
+      <p className="mt-1 text-sm text-slate-600">Your saved preferences have not been changed. Retry before editing so an existing profile is not accidentally replaced with defaults.</p>
+      <button
+        type="button"
+        onClick={() => void refetch()}
+        disabled={isFetching}
+        className="mt-3 inline-flex min-h-10 items-center rounded-xl bg-emerald-700 px-4 py-2 text-sm font-semibold text-white disabled:opacity-60"
+      >
+        {isFetching ? "Retrying…" : "Retry profile load"}
+      </button>
+    </section>
+  );
 
   return (
     <section className="rounded-3xl border border-emerald-200 bg-white p-5 shadow-sm sm:p-6">
