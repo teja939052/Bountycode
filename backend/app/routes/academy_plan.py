@@ -64,6 +64,32 @@ def build_plan(profile: Dict[str, Any], diagnostic: Dict[str, Any] | None, compa
         desired,
         key=lambda domain: (scores.get(domain, -1), desired.index(domain)),
     )
+
+    # Weak prerequisites must be learned before dependent topics. Keep the
+    # score-based order whenever a prerequisite is already developing (60+).
+    # This is a stable topological pass: unrelated skills retain their ranking.
+    ordered: List[str] = []
+    remaining = list(prioritized)
+    while remaining:
+        progressed = False
+        for domain in list(remaining):
+            prerequisites = [
+                prerequisite
+                for prerequisite in DOMAIN_PREREQUISITES.get(domain, [])
+                if prerequisite in remaining
+                and scores.get(prerequisite, -1) < 60
+            ]
+            if prerequisites and not all(item in ordered for item in prerequisites):
+                continue
+            ordered.append(domain)
+            remaining.remove(domain)
+            progressed = True
+            break
+        if not progressed:
+            # Defensive fallback for an accidental cycle in prerequisite data.
+            ordered.extend(remaining)
+            break
+    prioritized = ordered
     tasks: List[dict] = []
     for domain in prioritized:
         score = scores.get(domain)
@@ -89,11 +115,18 @@ def build_plan(profile: Dict[str, Any], diagnostic: Dict[str, Any] | None, compa
             "effective_score": None if scores.get(domain, -1) < 0 else scores[domain],
             "prerequisites": DOMAIN_PREREQUISITES.get(domain, []),
             "reason": (
-                "Start with this foundation before advanced topics."
+                "Build this foundation before moving to dependent topics."
                 if state in {"foundation_needed", "not_assessed"}
                 else "Build consistency and improve problem-solving accuracy."
                 if state in {"beginner", "developing"}
                 else "Maintain this skill with mixed company-style practice."
+            ),
+            "prerequisite_status": (
+                "complete"
+                if all(scores.get(item, -1) >= 60 for item in DOMAIN_PREREQUISITES.get(domain, []))
+                else "needs_foundation"
+                if DOMAIN_PREREQUISITES.get(domain)
+                else "none"
             ),
         })
 
