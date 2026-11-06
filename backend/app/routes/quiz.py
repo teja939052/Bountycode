@@ -134,6 +134,20 @@ def _quiz_skill_domain(question: Dict[str, Any]) -> str:
     return "programming_fundamentals"
 
 
+def _quiz_time_expired(session: Dict[str, Any], now: Optional[datetime] = None) -> bool:
+    """Return whether a server-timed quiz has passed its deadline."""
+    limit = int(session.get("time_limit_seconds", 0) or 0)
+    created_at = session.get("created_at")
+    if limit <= 0 or not isinstance(created_at, datetime):
+        return False
+    if created_at.tzinfo is None:
+        created_at = created_at.replace(tzinfo=timezone.utc)
+    current = now or datetime.now(timezone.utc)
+    if current.tzinfo is None:
+        current = current.replace(tzinfo=timezone.utc)
+    return (current - created_at).total_seconds() > limit
+
+
 async def _get_owned_quiz_session(user_id: str, quiz_id: str) -> Dict[str, Any]:
     session = await practice_sessions_collection.find_one({
         "user_id": user_id,
@@ -215,14 +229,8 @@ async def submit_answer(submission: AnswerSubmission, user=Depends(get_current_u
     session = await _get_owned_quiz_session(user["id"], submission.quiz_id)
     if session.get("status") != "in_progress":
         raise HTTPException(status_code=409, detail="This quiz has already been submitted.")
-    time_limit = int(session.get("time_limit_seconds", 0) or 0)
-    created_at = session.get("created_at")
-    if time_limit > 0 and isinstance(created_at, datetime):
-        if created_at.tzinfo is None:
-            created_at = created_at.replace(tzinfo=timezone.utc)
-        elapsed = (datetime.now(timezone.utc) - created_at).total_seconds()
-        if elapsed > time_limit:
-            raise HTTPException(status_code=409, detail="The assessment time limit has expired. Submit the quiz to view your results.")
+    if _quiz_time_expired(session):
+        raise HTTPException(status_code=409, detail="The assessment time limit has expired. Submit the quiz to view your results.")
     if submission.question_id not in (session.get("question_ids") or []):
         raise HTTPException(status_code=403, detail="This question was not served in your quiz.")
 
