@@ -158,3 +158,32 @@ def test_debug_and_api_scenarios_have_context_and_misconception_feedback():
                     f"{path.name} API scenario {index + 1} needs a request/response context"
                 )
     assert scenario_count >= 2, "Expected at least one debugging and one API scenario"
+
+
+def test_rich_lesson_authoring_standard_has_depth_and_company_transfer():
+    lesson_path = LESSONS_DIR / "arrays_basics.json"
+    lesson = json.loads(lesson_path.read_text(encoding="utf-8"))
+
+    assert len(lesson.get("learning_objectives", [])) >= 4
+    assert len(lesson.get("prerequisites", [])) >= 1
+    assert len(lesson.get("concepts", [])) >= 5
+    assert len(lesson.get("common_misconceptions", [])) >= 3
+    assert len(lesson.get("worked_examples", [])) >= 3
+    assert len(lesson.get("company_applications", [])) >= 3
+    assert len(lesson.get("assessment", {}).get("questions", [])) >= 5
+    assert len(lesson.get("srs_cards", [])) >= 3
+
+    for example in lesson["worked_examples"]:
+        assert example.get("input")
+        assert len(example.get("trace", [])) >= 2
+        assert example.get("output")
+        assert example.get("explanation")
+
+    for misconception in lesson["common_misconceptions"]:
+        assert misconception.get("misconception")
+        assert misconception.get("correction")
+
+    for question in lesson["assessment"]["questions"]:
+        assert question.get("explanation")
+        assert len(question.get("options", [])) >= 4
+        assert 0 <= question.get("correct_index", -1) < len(question["options"])
