@@ -31,7 +31,7 @@ export default function AcademyProfileSetup() {
   });
 
   useEffect(() => {
-    const existing = (data as any)?.data?.profile;
+    const existing = (data as any)?.profile;
     if (existing) {
       setProfile({ ...initialProfile, ...existing, placement_date: existing.placement_date || "" });
     }
