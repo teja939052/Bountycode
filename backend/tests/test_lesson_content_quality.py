@@ -234,6 +234,9 @@ def test_programming_foundations_form_a_complete_prerequisite_chain():
         assert len(lesson["assessment"]["questions"]) >= 5
         assert len(lesson["worked_examples"]) >= 3
         assert len(lesson["company_applications"]) >= 3
+        for step in lesson["steps"]:
+            if step["step_type"] in {"interactive", "practice", "predict_output", "fill_blank", "order_steps", "code_lab", "debug_choice"}:
+                assert len(step.get("hints") or []) >= 2, (lesson["slug"], step["title"])
 
 
 
