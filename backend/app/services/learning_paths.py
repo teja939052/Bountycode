@@ -158,18 +158,18 @@ async def enroll_in_path(user_id: str, path_id: str) -> Dict[str, Any]:
         upsert=True,
     )
 
-    # ── Set user goal so Journey/Study engines pick it up ──
-    try:
-        await users_collection().update_one(
-            {"user_id": user_id},
-            {"$set": {
-                "role_path": path_id,
-                "target_role": role.get("short_name", path_id),
-                "role_path_enrolled_at": now,
-            }},
-        )
-    except Exception:
-        pass
+    # Persist against the authenticated Mongo user (_id), not a user_id
+    # field that is not present on the user document.
+    result = await users_collection().update_one(
+        {"_id": ObjectId(user_id)},
+        {"$set": {
+            "role_path": path_id,
+            "target_role": role.get("short_name", path_id),
+            "role_path_enrolled_at": now,
+        }},
+    )
+    if result.matched_count == 0:
+        raise ValueError("Authenticated user was not found while saving the role target.")
 
     try:
         await record_practice(user_id, "learning_path", 10, {"path_id": path_id, "action": "enroll"}, role=role.get("short_name", path_id))
@@ -230,18 +230,20 @@ async def enroll_in_track(user_id: str, track_id: str, role: str = "sde") -> Dic
         upsert=True,
     )
 
-    # ── Set user company goal so Journey/Study engines pick it up ──
-    try:
-        await users_collection().update_one(
-            {"user_id": user_id},
-            {"$set": {
-                "company_track": track_id,
-                "target_company": track.get("company_id", track_id),
-                "company_track_enrolled_at": now,
-            }},
-        )
-    except Exception:
-        pass
+    # Persist against the authenticated Mongo user (_id). The Journey and
+    # Study engines read this profile to prioritize the selected company.
+    result = await users_collection().update_one(
+        {"_id": ObjectId(user_id)},
+        {"$set": {
+            "company_track": track_id,
+            "target_company": track.get("company_id", track_id),
+            "target_pack": track_id,
+            "target_role": track.get("role", role or "sde"),
+            "company_track_enrolled_at": now,
+        }},
+    )
+    if result.matched_count == 0:
+        raise ValueError("Authenticated user was not found while saving the company target.")
 
     try:
         await record_practice(user_id, "company_track", 10, {"track_id": track_id, "action": "enroll"}, role=role or "sde")
@@ -365,48 +367,93 @@ async def complete_track_module(
         raise ValueError(f"Unknown company track: {track_id}")
 
     module_def = None
+    module_section_id = None
     for section in track.get("sections", []):
-        for m in section.get("modules", []):
-            if m["id"] == module_id:
-                module_def = m
+        for module in section.get("modules", []):
+            if module["id"] == module_id:
+                module_def = module
+                module_section_id = section["id"]
                 break
         if module_def:
             break
 
-    if not module_def:
+    if not module_def or not module_section_id:
         raise ValueError(f"Unknown module: {module_id}")
 
+    # A module is evidence of mastery, not a checkbox. Never award progress
+    # from a missing score or a below-threshold attempt.
+    mastery_threshold = 70.0
+    if score is None or score < mastery_threshold:
+        return {
+            "success": False,
+            "passed": False,
+            "module_id": module_id,
+            "score": score,
+            "mastery_threshold": mastery_threshold,
+            "reason": "assessment_required" if score is None else "mastery_threshold_not_met",
+            "xp_earned": 0,
+        }
+
+    progress = await user_company_tracks_collection.find_one(
+        {"user_id": user_id, "track_id": track_id}
+    )
+    if not progress:
+        raise ValueError("Enroll in this company track before completing a module.")
+
+    module_progress = (
+        (progress.get("sections") or {})
+        .get(module_section_id, {})
+        .get("modules", {})
+        .get(module_id, {})
+    )
+    if module_progress.get("completed"):
+        return {
+            "success": True,
+            "already_completed": True,
+            "module_id": module_id,
+            "xp_earned": 0,
+            "base_xp": module_def.get("diamonds", 0),
+            "bonus_xp": 0,
+        }
+
     now = datetime.now(timezone.utc).isoformat()
-
-    base_xp = module_def.get("diamonds", 0)
-    bonus_xp = 0
-    if score is not None and score >= 80:
-        bonus_xp = int(base_xp * 0.25)
+    base_xp = int(module_def.get("diamonds", 0))
+    bonus_xp = int(base_xp * 0.25) if score >= 80 else 0
     total_xp = base_xp + bonus_xp
+    module_prefix = f"sections.{module_section_id}.modules.{module_id}"
 
-    await user_company_tracks_collection.update_one(
-        {"user_id": user_id, "track_id": track_id},
+    # sections is a dictionary, not an array: use its concrete section key.
+    # The conditional predicate also makes repeated completion requests
+    # idempotent so they cannot mint XP twice.
+    updated = await user_company_tracks_collection.update_one(
+        {
+            "user_id": user_id,
+            "track_id": track_id,
+            f"{module_prefix}.completed": {"$ne": True},
+        },
         {
             "$set": {
-                f"sections.$[].modules.{module_id}.completed": True,
-                f"sections.$[].modules.{module_id}.completed_at": now,
-                f"sections.$[].modules.{module_id}.xp_earned": total_xp,
-                f"sections.$[].modules.{module_id}.score": score,
+                f"{module_prefix}.completed": True,
+                f"{module_prefix}.completed_at": now,
+                f"{module_prefix}.xp_earned": total_xp,
+                f"{module_prefix}.score": score,
                 "last_activity_at": now,
-            }
-        },
-    )
-
-    await user_company_tracks_collection.update_one(
-        {"user_id": user_id, "track_id": track_id},
-        {
+            },
             "$inc": {"total_xp_earned": total_xp},
-            "$set": {"last_activity_at": now},
         },
     )
+    if updated.modified_count == 0:
+        return {
+            "success": True,
+            "already_completed": True,
+            "module_id": module_id,
+            "xp_earned": 0,
+            "base_xp": base_xp,
+            "bonus_xp": 0,
+        }
 
     try:
-        await record_practice(user_id, "company_track", score or 50, {
+        await record_practice(user_id, "company_track", score, {
             "track_id": track_id,
             "module_id": module_id,
             "action": "complete_module",
@@ -417,7 +464,10 @@ async def complete_track_module(
 
     return {
         "success": True,
+        "passed": True,
         "module_id": module_id,
+        "score": score,
+        "mastery_threshold": mastery_threshold,
         "xp_earned": total_xp,
         "base_xp": base_xp,
         "bonus_xp": bonus_xp,
