@@ -191,6 +191,9 @@ def test_rich_lesson_authoring_standard_has_depth_and_company_transfer():
 
 def test_core_foundation_lessons_follow_the_rich_authoring_contract():
     core_lessons = [
+        "variables_basics",
+        "conditions_basics",
+        "functions_basics",
         "programming_languages",
         "loops_basics",
         "arrays_basics",
@@ -211,3 +214,22 @@ def test_core_foundation_lessons_follow_the_rich_authoring_contract():
             assert len(example.get("trace", [])) >= 2, slug
             assert example.get("output"), slug
             assert example.get("explanation"), slug
+
+
+
+def test_programming_foundations_form_a_complete_prerequisite_chain():
+    variables = json.loads((LESSONS_DIR / "variables_basics.json").read_text(encoding="utf-8"))
+    conditions = json.loads((LESSONS_DIR / "conditions_basics.json").read_text(encoding="utf-8"))
+    functions = json.loads((LESSONS_DIR / "functions_basics.json").read_text(encoding="utf-8"))
+
+    assert variables["prerequisites"] == []
+    assert "variables_basics" in conditions["prerequisites"]
+    assert {"variables_basics", "conditions_basics"}.issubset(set(functions["prerequisites"]))
+
+    for lesson in (variables, conditions, functions):
+        assert len(lesson["steps"]) >= 8
+        types = {step["step_type"] for step in lesson["steps"]}
+        assert {"explain", "interactive", "practice", "predict_output", "order_steps", "code_lab", "debug_choice"}.issubset(types)
+        assert len(lesson["assessment"]["questions"]) >= 5
+        assert len(lesson["worked_examples"]) >= 3
+        assert len(lesson["company_applications"]) >= 3
