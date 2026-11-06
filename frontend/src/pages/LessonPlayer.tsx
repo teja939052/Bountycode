@@ -61,6 +61,12 @@ type LessonContent = {
     duration_sec: number;
   };
   srs_cards: Array<{ type: string; question: string; answer: string }>;
+  learning_objectives?: string[];
+  prerequisites?: string[];
+  concepts?: string[];
+  worked_examples?: Array<{ title: string; input: string; trace: string[]; output: string; explanation: string }>;
+  common_misconceptions?: Array<{ misconception: string; correction: string }>;
+  company_applications?: Array<{ company: string; skill: string; practice: string }>;
 };
 
 type AnswerResult = {
@@ -637,6 +643,55 @@ export default function LessonPlayer() {
           />
         </div>
       </div>
+
+      {lesson.learning_objectives?.length ? (
+        <section className="mb-4 rounded-2xl border border-brand-sky/20 bg-brand-sky/5 p-4">
+          <p className="text-[10px] font-mono uppercase tracking-wider text-brand-sky">By the end of this lesson</p>
+          <ul className="mt-2 space-y-1.5">
+            {lesson.learning_objectives.map((objective, index) => (
+              <li key={index} className="flex gap-2 text-sm text-text-primary"><CheckCircle2 size={15} className="mt-0.5 shrink-0 text-brand-sky"/>{objective}</li>
+            ))}
+          </ul>
+          {lesson.prerequisites?.length ? <p className="mt-3 text-xs text-text-secondary">Recommended first: {lesson.prerequisites.join(", ").replaceAll("_", " ")}</p> : null}
+        </section>
+      ) : null}
+
+      {(lesson.worked_examples?.length || lesson.common_misconceptions?.length || lesson.company_applications?.length || lesson.srs_cards?.length) ? (
+        <details className="mb-4 rounded-2xl border border-white/10 bg-surface-base/70 p-4">
+          <summary className="cursor-pointer text-sm font-semibold text-text-primary">Deep dive: worked examples, common mistakes and placement practice</summary>
+          <div className="mt-4 space-y-5">
+            {lesson.concepts?.length ? (
+              <div><h3 className="text-xs font-bold uppercase tracking-wider text-brand-sky">Key concepts</h3><div className="mt-2 flex flex-wrap gap-2">{lesson.concepts.map((concept) => <span key={concept} className="rounded-full bg-white/5 px-2.5 py-1 text-xs text-text-secondary">{concept}</span>)}</div></div>
+            ) : null}
+            {lesson.worked_examples?.length ? (
+              <div><h3 className="text-xs font-bold uppercase tracking-wider text-brand-sky">Worked examples</h3><div className="mt-2 space-y-3">{lesson.worked_examples.map((example, index) => (
+                <article key={index} className="rounded-xl border border-white/10 p-3">
+                  <h4 className="text-sm font-semibold text-text-primary">{example.title}</h4>
+                  <pre className="mt-2 overflow-x-auto rounded-lg bg-black/20 p-2 text-xs text-text-secondary">{example.input}</pre>
+                  <ol className="mt-2 list-decimal space-y-1 pl-5 text-xs text-text-secondary">{example.trace.map((line, lineIndex) => <li key={lineIndex}>{line}</li>)}</ol>
+                  <p className="mt-2 text-sm font-semibold text-text-primary">Result: {example.output}</p>
+                  <p className="mt-1 text-xs leading-5 text-text-secondary">{example.explanation}</p>
+                </article>
+              ))}</div></div>
+            ) : null}
+            {lesson.common_misconceptions?.length ? (
+              <div><h3 className="text-xs font-bold uppercase tracking-wider text-brand-sky">Common mistakes to avoid</h3><div className="mt-2 space-y-2">{lesson.common_misconceptions.map((item, index) => (
+                <div key={index} className="rounded-xl bg-amber-500/5 p-3"><p className="text-xs font-semibold text-amber-200">Misconception: {item.misconception}</p><p className="mt-1 text-xs leading-5 text-text-secondary">Correct idea: {item.correction}</p></div>
+              ))}</div></div>
+            ) : null}
+            {lesson.company_applications?.length ? (
+              <div><h3 className="text-xs font-bold uppercase tracking-wider text-brand-sky">How this appears in placement preparation</h3><div className="mt-2 grid gap-2 sm:grid-cols-2">{lesson.company_applications.map((item, index) => (
+                <div key={index} className="rounded-xl border border-white/10 p-3"><p className="text-sm font-semibold text-text-primary">{item.company}</p><p className="mt-1 text-xs text-text-secondary">{item.skill}</p><p className="mt-1 text-xs text-text-secondary">Practice: {item.practice}</p></div>
+              ))}</div></div>
+            ) : null}
+            {lesson.srs_cards?.length ? (
+              <div><h3 className="text-xs font-bold uppercase tracking-wider text-brand-sky">Quick revision cards</h3><div className="mt-2 space-y-2">{lesson.srs_cards.map((card, index) => (
+                <details key={index} className="rounded-xl border border-white/10 p-3"><summary className="cursor-pointer text-xs font-semibold text-text-primary">{card.question}</summary><p className="mt-2 text-xs leading-5 text-text-secondary">{card.answer}</p></details>
+              ))}</div></div>
+            ) : null}
+          </div>
+        </details>
+      ) : null}
 
       <AnimatePresence mode="wait">
         <motion.div
