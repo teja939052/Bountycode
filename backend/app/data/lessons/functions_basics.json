@@ -309,5 +309,7 @@
       "question": "Why is return different from print?",
       "answer": "return supplies a value to the caller; print displays information."
     }
-  ]
+  ],
+  "next_lesson_slug": "programming_languages",
+  "next_lesson_title": "Programming Fundamentals Across Languages"
 }
