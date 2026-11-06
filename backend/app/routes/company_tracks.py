@@ -7,7 +7,6 @@ from app.services.learning_paths import (
     get_all_company_tracks,
     get_company_track,
     enroll_in_track,
-    complete_track_module,
     get_user_track_progress,
     get_all_user_tracks,
 )
