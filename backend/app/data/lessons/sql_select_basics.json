@@ -119,5 +119,103 @@
         "explanation": "HAVING filters grouped results; WHERE filters rows before grouping."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Select specific columns from a table.",
+    "Filter rows with WHERE.",
+    "Sort rows with ORDER BY.",
+    "Combine conditions using AND and OR.",
+    "Use aggregate functions for summaries."
+  ],
+  "prerequisites": [
+    "dbms_basics"
+  ],
+  "concepts": [
+    "SELECT",
+    "FROM",
+    "WHERE",
+    "ORDER BY",
+    "DISTINCT",
+    "COUNT",
+    "SUM",
+    "AVG"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "WHERE filters groups after aggregation.",
+      "correction": "WHERE filters rows before grouping; HAVING filters groups after aggregation."
+    },
+    {
+      "misconception": "ORDER BY changes stored table order.",
+      "correction": "ORDER BY changes only the order of the query result."
+    },
+    {
+      "misconception": "SELECT * is always best.",
+      "correction": "Selecting only required columns is clearer and often reduces unnecessary data transfer."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Select columns",
+      "input": "SELECT name, marks FROM Student;",
+      "trace": [
+        "Read rows from Student.",
+        "Return only name and marks.",
+        "Do not return other columns."
+      ],
+      "output": "A two-column result",
+      "explanation": "SELECT names the columns to include; FROM names the source table."
+    },
+    {
+      "title": "Filter rows",
+      "input": "SELECT name FROM Student WHERE marks >= 60;",
+      "trace": [
+        "Examine each row.",
+        "Keep rows whose marks are at least 60.",
+        "Return the name for each kept row."
+      ],
+      "output": "Names of students scoring 60 or more",
+      "explanation": "WHERE keeps rows that satisfy its Boolean condition."
+    },
+    {
+      "title": "Sort the result",
+      "input": "SELECT name, marks FROM Student ORDER BY marks DESC;",
+      "trace": [
+        "Select name and marks.",
+        "Sort by marks.",
+        "DESC places larger marks first."
+      ],
+      "output": "Highest marks appear first",
+      "explanation": "ORDER BY sorts the returned rows; it does not update the table."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "Infosys",
+      "skill": "SQL and database fundamentals",
+      "practice": "Write SELECT, WHERE, ORDER BY and aggregate queries."
+    },
+    {
+      "company": "TCS",
+      "skill": "SQL query assessment",
+      "practice": "Explain filtering and sorting in plain language."
+    },
+    {
+      "company": "Cognizant",
+      "skill": "database and analytical queries",
+      "practice": "Practice boundary conditions and NULL-aware filtering."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What are the key ideas in SQL SELECT Fundamentals?",
+      "answer": "Select specific columns from a table. Filter rows with WHERE. Sort rows with ORDER BY. Combine conditions using AND and OR. Use aggregate functions for summaries."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in SQL SELECT Fundamentals.",
+      "answer": "WHERE filters rows before grouping; HAVING filters groups after aggregation."
+    }
+  ]
 }
