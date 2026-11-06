@@ -1,0 +1,122 @@
+{
+  "slug": "dbms_basics",
+  "id": "lesson_dbms_basics_001",
+  "title": "DBMS Fundamentals",
+  "domain": "Computer Science Fundamentals",
+  "pattern": "DBMS",
+  "difficulty": "easy",
+  "duration_min": 24,
+  "xp_reward": 105,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "What a DBMS provides",
+      "content": "A database management system stores, retrieves and manages structured data. It supports controlled access, consistency, concurrent transactions, backups and recovery.",
+      "example": "A college database stores students, courses, enrolments and marks with relationships between them."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Understand primary keys",
+      "prompt": "What is the main purpose of a primary key?",
+      "options": [
+        "Allow duplicate rows",
+        "Uniquely identify each row",
+        "Sort every column",
+        "Encrypt the table"
+      ],
+      "correct_index": 1,
+      "explanation": "A primary key uniquely identifies a row and cannot be NULL."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Understand normalization",
+      "content": "Normalization organizes tables to reduce duplicated data and update anomalies. First Normal Form (1NF) requires atomic values and no repeating groups. Higher forms address dependencies and redundancy.",
+      "tip": "Normalization is about sound data structure, not simply making more tables."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Identify a foreign key",
+      "prompt": "In Enrolment(student_id, course_id), student_id refers to Student(id). What is student_id in Enrolment?",
+      "options": [
+        "Primary key of Enrolment only",
+        "Foreign key referencing Student",
+        "A database view",
+        "An aggregate function"
+      ],
+      "correct_index": 1,
+      "explanation": "It references the primary key of the Student table, so it is a foreign key."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Transactions and ACID",
+      "content": "A transaction is a logical unit of work. ACID means Atomicity, Consistency, Isolation and Durability. It protects data when multiple operations succeed or fail together.",
+      "example": "A bank transfer must debit one account and credit another as one atomic transaction."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "Which key uniquely identifies each row?",
+        "options": [
+          "Foreign key",
+          "Primary key",
+          "Composite index only",
+          "Duplicate key"
+        ],
+        "correct_index": 1,
+        "explanation": "A primary key uniquely identifies a record."
+      },
+      {
+        "prompt": "What does a foreign key do?",
+        "options": [
+          "Encrypts data",
+          "References a key in another or the same table",
+          "Sorts rows",
+          "Removes NULL values"
+        ],
+        "correct_index": 1,
+        "explanation": "A foreign key enforces a relationship to a referenced key."
+      },
+      {
+        "prompt": "Which ACID property means all-or-nothing execution?",
+        "options": [
+          "Consistency",
+          "Isolation",
+          "Atomicity",
+          "Durability"
+        ],
+        "correct_index": 2,
+        "explanation": "Atomicity ensures all operations in a transaction happen or none do."
+      },
+      {
+        "prompt": "What is a goal of normalization?",
+        "options": [
+          "Increase data duplication",
+          "Reduce redundancy and anomalies",
+          "Remove all relationships",
+          "Make every table identical"
+        ],
+        "correct_index": 1,
+        "explanation": "Normalization reduces redundant storage and update anomalies."
+      },
+      {
+        "prompt": "What does the D in ACID stand for?",
+        "options": [
+          "Dependency",
+          "Durability",
+          "Database",
+          "Distribution"
+        ],
+        "correct_index": 1,
+        "explanation": "Durability means committed changes persist even after failure."
+      }
+    ]
+  }
+}
