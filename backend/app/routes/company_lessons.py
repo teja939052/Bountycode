@@ -267,12 +267,12 @@ async def get_lesson(slug: str, user=Depends(get_current_user)):
     # Never ship answer keys to the learner before they submit an attempt.
     answerable_step_types = {
         "interactive", "practice", "quiz", "predict_output", "fill_blank",
-        "order_steps", "code_lab", "sql_lab"
+        "order_steps", "code_lab", "sql_lab", "debug_choice", "api_scenario"
     }
     answer_key_fields = {
         "correct_index", "correct_answer", "answer", "correct_order",
         "expected_answer", "accepted_answers", "expected_output",
-        "schema_ddl", "seed_inserts", "expected_query",
+        "schema_ddl", "seed_inserts", "expected_query", "feedback_by_option",
     }
     public_data["steps"] = [
         {
@@ -425,7 +425,7 @@ async def answer_lesson_step(
         correct_order = list(expected)
         correct = req.answer_order == expected
         correct_answer = " → ".join(str(options[index]) for index in expected)
-    elif step_type in {"interactive", "practice", "quiz"}:
+    elif step_type in {"interactive", "practice", "quiz", "debug_choice", "api_scenario"}:
         options = step.get("options") or []
         expected = step.get("correct_index")
         if expected is None or req.answer_index is None or req.answer_text is not None:
@@ -436,6 +436,8 @@ async def answer_lesson_step(
         correct_index = int(expected)
         correct_answer = str(options[correct_index])
         correct = selected_index == correct_index
+        feedback_by_option = step.get("feedback_by_option") or {}
+        feedback = feedback_by_option.get(str(selected_index))
     elif step_type in {"predict_output", "fill_blank"}:
         expected = step.get("expected_answer")
         if expected is None or req.answer_text is None or req.answer_index is not None:
