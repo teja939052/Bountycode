@@ -30,7 +30,11 @@
         "17"
       ],
       "correct_index": 1,
-      "explanation": "17 is less than 18, so the comparison age >= 18 evaluates to false."
+      "explanation": "17 is less than 18, so the comparison age >= 18 evaluates to false.",
+      "hints": [
+        "Read the operator carefully: it includes equality as well as greater-than.",
+        "Compare the supplied value to the boundary without changing either value."
+      ]
     },
     {
       "step_number": 3,
@@ -50,7 +54,11 @@
       "language": "python",
       "answer_placeholder": "Enter the output",
       "expected_answer": "B",
-      "explanation": "82 >= 90 is false. The next test, 82 >= 75, is true, so B prints and the chain ends."
+      "explanation": "82 >= 90 is false. The next test, 82 >= 75, is true, so B prints and the chain ends.",
+      "hints": [
+        "Evaluate the first condition before reading the second.",
+        "The first true branch is selected; later branches in that chain are skipped."
+      ]
     },
     {
       "step_number": 5,
@@ -72,7 +80,11 @@
         "A syntax error"
       ],
       "correct_index": 1,
-      "explanation": "and requires both operands to be true. Since verified is false, the complete expression is false."
+      "explanation": "and requires both operands to be true. Since verified is false, the complete expression is false.",
+      "hints": [
+        "Evaluate each side independently as true or false.",
+        "Only after that, apply the logical operator joining the two results."
+      ]
     },
     {
       "step_number": 7,
@@ -90,7 +102,11 @@
         2,
         0
       ],
-      "explanation": "The condition is evaluated first. If it is false, that branch is skipped; if true, its body executes. The else branch is considered only when no earlier branch matches."
+      "explanation": "The condition is evaluated first. If it is false, that branch is skipped; if true, its body executes. The else branch is considered only when no earlier branch matches.",
+      "hints": [
+        "A decision begins by evaluating its condition.",
+        "A false condition skips that branch body; a true condition enters it."
+      ]
     },
     {
       "step_number": 8,
@@ -127,7 +143,11 @@
         "3": "The program needs conditional branching to choose a grade.",
         "4": "The issue is branch order, not the data type of score."
       },
-      "explanation": "The first true branch wins. Test the >= 90 case first, then the >= 75 fallback."
+      "explanation": "The first true branch wins. Test the >= 90 case first, then the >= 75 fallback.",
+      "hints": [
+        "Check whether the earlier, broader range can capture a value intended for the later, narrower range.",
+        "The most specific threshold should be tested before the fallback threshold."
+      ]
     }
   ],
   "assessment": {
