@@ -41,6 +41,11 @@ SKILL_DOMAINS = {
     "system_design": {"name": "System Design", "emoji": "🏗️", "color": "#0EA5E9"},
     "behavioral": {"name": "Behavioral", "emoji": "💬", "color": "#84CC16"},
     "aptitude": {"name": "Aptitude", "emoji": "🧮", "color": "#D946EF"},
+    "quantitative_aptitude": {"name": "Quantitative Aptitude", "emoji": "📐", "color": "#D946EF"},
+    "logical_reasoning": {"name": "Logical Reasoning", "emoji": "🧩", "color": "#8B5CF6"},
+    "verbal_ability": {"name": "Verbal Ability", "emoji": "📚", "color": "#0D9488"},
+    "programming_fundamentals": {"name": "Programming Fundamentals", "emoji": "💻", "color": "#2563EB"},
+    "computer_science": {"name": "Computer Science Fundamentals", "emoji": "🖥️", "color": "#0284C7"},
     "sql": {"name": "SQL & Databases", "emoji": "🗄️", "color": "#0284C7"},
     "language_c": {"name": "C Programming", "emoji": "⚙️", "color": "#64748B"},
     "language_cpp": {"name": "C++", "emoji": "🔷", "color": "#2563EB"},
@@ -243,7 +248,7 @@ def _calculate_priority(domain_id: str, skill: dict) -> int:
         priority = 3
 
     # Bonus priority for foundational domains
-    foundational = ["arrays_hashing", "language_python", "language_java"]
+    foundational = ["arrays_hashing", "language_python", "language_java", "quantitative_aptitude", "logical_reasoning", "programming_fundamentals"]
     if domain_id in foundational:
         priority += 2
 
@@ -455,9 +460,9 @@ async def record_learning_activity(user_id: str, activity: Dict[str, Any]) -> Di
     )
 
     # Update skill_graph
-    delta = 5 if success else 1
+    delta = 5 if success else 0
     if activity_type == "challenge" or activity_type == "project":
-        delta = 8 if success else 2
+        delta = 8 if success else 0
 
     await skill_graph_collection.update_one(
         {"user_id": user_id},
