@@ -78,6 +78,7 @@ export default function QuizPractice() {
   const [topic, setTopic] = useState("");
   const [trackId, setTrackId] = useState("");
   const [difficulty, setDifficulty] = useState("all");
+  const [mode, setMode] = useState("practice");
   const [questionCount, setQuestionCount] = useState(10);
   const [session, setSession] = useState<QuizSession | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -107,11 +108,12 @@ export default function QuizPractice() {
     setWeakTopics([]);
     try {
       const response: any = await api.quiz.buildQuiz({
-        mode: "practice",
+        mode,
         ...(topic ? { topics: [topic] } : {}),
         ...(difficulty !== "all" ? { difficulty } : {}),
         ...(selectedTrack?.company_id ? { company: selectedTrack.company_id } : {}),
         num_questions: questionCount,
+        time_limit_seconds: mode === "quiz" ? questionCount * 60 : 0,
       });
       const built = response?.quiz;
       if (!built?.questions?.length) throw new Error("No questions match these filters. Try a broader topic or company selection.");
@@ -394,6 +396,15 @@ export default function QuizPractice() {
               {topicNames.map(name => <option key={name} value={name}>{name} ({stats.by_topic[name]})</option>)}
             </select>
           </label>
+          <label className="block"><span className="mb-2 block text-xs font-bold text-slate-700">Assessment mode</span>
+            <select value={mode} onChange={(event) => setMode(event.target.value)} disabled={loading} className="min-h-11 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm">
+              <option value="practice">Guided practice · hints and explanations</option>
+              <option value="quiz">Timed assessment · 60 seconds per question</option>
+              <option value="mock_interview">Company mock · no hints</option>
+              <option value="speed_run">Speed run · bonus XP</option>
+              <option value="boss_battle">Boss battle · challenge mode</option>
+            </select>
+          </label>
           <label className="block"><span className="mb-2 block text-xs font-bold text-slate-700">Difficulty</span>
             <select value={difficulty} onChange={(event) => setDifficulty(event.target.value)} disabled={loading} className="min-h-11 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm">
               <option value="all">Mixed</option><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option>
@@ -406,7 +417,7 @@ export default function QuizPractice() {
           </label>
         </div>
         {error && <p role="alert" className="mt-4 rounded-xl border border-rose-200 bg-rose-50 p-3 text-sm text-rose-800">{error}</p>}
-        <button type="button" onClick={startQuiz} disabled={loading || statsLoading} className="mt-5 inline-flex min-h-12 items-center gap-2 rounded-xl bg-emerald-700 px-5 text-sm font-bold text-white disabled:opacity-50">{loading ? <Spinner size={15} /> : <Play size={15} />} Start practice</button>
+        <button type="button" onClick={startQuiz} disabled={loading || statsLoading} className="mt-5 inline-flex min-h-12 items-center gap-2 rounded-xl bg-emerald-700 px-5 text-sm font-bold text-white disabled:opacity-50">{loading ? <Spinner size={15} /> : <Play size={15} />} {mode === "quiz" ? "Start timed assessment" : mode === "mock_interview" ? "Start mock interview" : mode === "speed_run" ? "Start speed run" : mode === "boss_battle" ? "Start boss battle" : "Start practice"}</button>
       </section>
       <section className="grid gap-3 sm:grid-cols-3">
         <div className="rounded-2xl border border-slate-200 bg-white p-4"><Lightbulb className="text-amber-600" size={18} /><h3 className="mt-2 font-bold text-slate-900">Progressive hints</h3><p className="mt-1 text-xs leading-5 text-slate-500">Use a small nudge before revealing more. Hint usage is recorded with your attempt.</p></div>
