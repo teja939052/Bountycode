@@ -137,16 +137,17 @@ async def test_passed_assessment_records_company_module_mastery(monkeypatch):
 
     async def fake_complete_track_module(**kwargs):
         calls.append(kwargs)
-        return {"success": True, "passed": True, "xp_earned": 50}
+        return {"success": True, "module_completed": False, "topic_mastered": True, "topic_id": "percentages", "xp_earned": 0}
 
     monkeypatch.setattr(
-        company_lessons, "complete_track_module", fake_complete_track_module
+        company_lessons, "record_track_topic_mastery", fake_complete_track_module
     )
 
     request = company_lessons.CompleteRequest(
         answers={"0": 1, "1": 2},
         track_id="tcs_nqt",
         module_id="tcs_f1",
+        topic_id="percentages",
         time_spent_seconds=90,
     )
     result = await company_lessons.complete_lesson(
