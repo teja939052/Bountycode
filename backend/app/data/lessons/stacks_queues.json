@@ -217,5 +217,7 @@
       "question": "Name a common mistake in Stacks and Queues.",
       "answer": "A stack is last-in, first-out; the most recently pushed item leaves first."
     }
-  ]
+  ],
+  "next_lesson_slug": "trees_basics",
+  "next_lesson_title": "Trees and Binary Search Trees"
 }
