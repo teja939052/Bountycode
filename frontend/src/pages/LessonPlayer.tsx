@@ -60,6 +60,7 @@ export default function LessonPlayer() {
   const lessonSlug = slug || "successive_percentage_change";
   const trackId = searchParams.get("track_id") || undefined;
   const moduleId = searchParams.get("module_id") || undefined;
+  const topicId = searchParams.get("topic_id") || undefined;
 
   const [lesson, setLesson] = useState<LessonContent | null>(null);
   const [loading, setLoading] = useState(true);
@@ -178,7 +179,7 @@ export default function LessonPlayer() {
       const res: any = await api.companyLessons.complete(lessonSlug, {
         answers: assessmentAnswers,
         time_spent_seconds: 0,
-        ...(trackId && moduleId ? { track_id: trackId, module_id: moduleId } : {}),
+        ...(trackId && moduleId ? { track_id: trackId, module_id: moduleId, topic_id: topicId } : {}),
       });
       const result = res?.data || null;
       setAssessmentResult(result);
@@ -200,7 +201,7 @@ export default function LessonPlayer() {
     } finally {
       setSaving(false);
     }
-  }, [lesson, lessonSlug, assessmentAnswers, trackId, moduleId, saving, queryClient]);
+  }, [lesson, lessonSlug, assessmentAnswers, trackId, moduleId, topicId, saving, queryClient]);
 
   if (loading) {
     return (
