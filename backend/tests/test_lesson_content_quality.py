@@ -125,3 +125,36 @@ def test_sql_labs_keep_grading_keys_server_side_and_ship_a_schema_preview():
                 assert step.get("expected_query"), f"{path.name} SQL lab {index + 1} has no expected query"
                 assert step.get("explanation") and step.get("hints"), f"{path.name} SQL lab {index + 1} needs feedback"
     assert sql_labs, "Expected at least one query-writing SQL lab"
+
+
+
+def test_debug_and_api_scenarios_have_context_and_misconception_feedback():
+    scenario_count = 0
+    for path in sorted(LESSONS_DIR.glob("*.json")):
+        data = json.loads(path.read_text(encoding="utf-8"))
+        for index, step in enumerate(data.get("steps") or []):
+            kind = step.get("step_type")
+            if kind not in {"debug_choice", "api_scenario"}:
+                continue
+            scenario_count += 1
+            options = step.get("options") or []
+            answer = step.get("correct_index")
+            assert step.get("prompt"), f"{path.name} scenario {index + 1} has no prompt"
+            assert len(options) >= 3, f"{path.name} scenario {index + 1} needs at least three options"
+            assert isinstance(answer, int) and 0 <= answer < len(options), (
+                f"{path.name} scenario {index + 1} has an invalid answer key"
+            )
+            assert step.get("explanation"), f"{path.name} scenario {index + 1} needs a teaching explanation"
+            feedback = step.get("feedback_by_option") or {}
+            for option_index in range(len(options)):
+                if option_index != answer:
+                    assert str(option_index) in feedback, (
+                        f"{path.name} scenario {index + 1} needs feedback for wrong option {option_index}"
+                    )
+            if kind == "debug_choice":
+                assert step.get("code"), f"{path.name} debugging scenario {index + 1} needs a code sample"
+            if kind == "api_scenario":
+                assert step.get("request_preview"), (
+                    f"{path.name} API scenario {index + 1} needs a request/response context"
+                )
+    assert scenario_count >= 2, "Expected at least one debugging and one API scenario"
