@@ -296,5 +296,7 @@
       "skill": "array and string implementation",
       "practice": "Write a complete solution and test duplicates, negatives and small inputs."
     }
-  ]
+  ],
+  "next_lesson_slug": "strings_basics",
+  "next_lesson_title": "Strings Fundamentals"
 }
