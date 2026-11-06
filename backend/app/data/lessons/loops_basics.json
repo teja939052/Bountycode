@@ -311,5 +311,7 @@
       "question": "What mistake should you avoid in Loops and Iteration?",
       "answer": "A while/for condition is checked before each iteration; do-while checks after the body."
     }
-  ]
+  ],
+  "next_lesson_slug": "pattern_printing",
+  "next_lesson_title": "Pattern Printing with Loops"
 }
