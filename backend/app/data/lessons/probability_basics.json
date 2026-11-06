@@ -1,0 +1,124 @@
+{
+  "slug": "probability_basics",
+  "id": "lesson_probability_001",
+  "title": "Probability Basics",
+  "domain": "Quantitative Aptitude",
+  "pattern": "Probability",
+  "difficulty": "medium",
+  "duration_min": 20,
+  "xp_reward": 95,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Probability is a fraction of outcomes",
+      "content": "When outcomes are equally likely, probability of an event = favourable outcomes ÷ total possible outcomes. It ranges from 0 (impossible) to 1 (certain).",
+      "formula": "P(E) = favourable outcomes / total outcomes",
+      "example": "A fair die has 6 outcomes. P(rolling an even number) = 3/6 = 1/2."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "A coin toss",
+      "prompt": "A fair coin is tossed once. What is the probability of getting heads?",
+      "options": [
+        "0",
+        "1/4",
+        "1/2",
+        "1"
+      ],
+      "correct_index": 2,
+      "explanation": "There are two equally likely outcomes, and one is heads. Probability = 1/2."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Use the complement",
+      "content": "The probability that an event does not happen is 1 − P(event). This is useful when counting the opposite event is easier.",
+      "example": "Probability of at least one head in two tosses = 1 − P(no heads) = 1 − 1/4 = 3/4.",
+      "tip": "'At least one' often becomes 1 − 'none'."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Pick a card",
+      "prompt": "One card is drawn from a standard 52-card deck. What is the probability of drawing an ace?",
+      "options": [
+        "1/52",
+        "1/26",
+        "1/13",
+        "4/13"
+      ],
+      "correct_index": 2,
+      "explanation": "There are 4 aces among 52 cards. 4/52 = 1/13."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Independent events",
+      "content": "For independent events, multiply probabilities to get the probability that both happen. For mutually exclusive alternatives, add probabilities.",
+      "example": "Two fair coin tosses: P(two heads) = 1/2×1/2 = 1/4."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "A fair die is rolled. Probability of getting 5 is:",
+        "options": [
+          "1/2",
+          "1/3",
+          "1/6",
+          "5/6"
+        ],
+        "correct_index": 2,
+        "explanation": "One favourable result out of six equally likely results."
+      },
+      {
+        "prompt": "A fair die is rolled. Probability of getting an odd number is:",
+        "options": [
+          "1/6",
+          "1/3",
+          "1/2",
+          "2/3"
+        ],
+        "correct_index": 2,
+        "explanation": "Odd outcomes are 1,3,5: 3/6 = 1/2."
+      },
+      {
+        "prompt": "Two fair coins are tossed. Probability of getting two tails is:",
+        "options": [
+          "1/2",
+          "1/3",
+          "1/4",
+          "3/4"
+        ],
+        "correct_index": 2,
+        "explanation": "P(TT) = 1/2×1/2 = 1/4."
+      },
+      {
+        "prompt": "A bag contains 3 red and 2 blue balls. Probability of picking a blue ball is:",
+        "options": [
+          "2/3",
+          "2/5",
+          "3/5",
+          "1/5"
+        ],
+        "correct_index": 1,
+        "explanation": "2 blue balls out of 5 total = 2/5."
+      },
+      {
+        "prompt": "Probability of not rolling a 6 on a fair die is:",
+        "options": [
+          "1/6",
+          "1/3",
+          "1/2",
+          "5/6"
+        ],
+        "correct_index": 3,
+        "explanation": "Complement = 1 − 1/6 = 5/6."
+      }
+    ]
+  }
+}
