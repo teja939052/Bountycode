@@ -27,7 +27,11 @@
         "No cats are animals"
       ],
       "correct_index": 1,
-      "explanation": "Every cat belongs to the mammal set, and every mammal belongs to the animal set. So every cat is an animal."
+      "explanation": "Every cat belongs to the mammal set, and every mammal belongs to the animal set. So every cat is an animal.",
+      "hints": [
+        "Represent each category as a set.",
+        "If every A belongs to B and every B belongs to C, follow the containment from A to C."
+      ]
     },
     {
       "step_number": 3,
@@ -48,7 +52,11 @@
         "No A are B"
       ],
       "correct_index": 1,
-      "explanation": "The B items that are C may be outside the A subset. The overlap between A and C is not guaranteed."
+      "explanation": "The B items that are C may be outside the A subset. The overlap between A and C is not guaranteed.",
+      "hints": [
+        "The 'some' elements of B may lie outside A.",
+        "Try to draw one valid arrangement where the proposed conclusion is false."
+      ]
     },
     {
       "step_number": 5,
@@ -117,5 +125,82 @@
         "explanation": "The C items that are A cannot be B, so at least some C are not B."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Translate universal and existential statements into set relationships.",
+    "Use subset chains to derive necessary conclusions.",
+    "Distinguish 'all', 'some' and 'no' statements.",
+    "Reject conclusions that are not guaranteed by the premises."
+  ],
+  "concepts": [
+    "all",
+    "some",
+    "no",
+    "subset",
+    "overlap",
+    "disjoint sets",
+    "necessary conclusion",
+    "Venn diagram"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Some B are C means some A are C when all A are B.",
+      "correction": "The B elements that overlap C may be outside the A subset."
+    },
+    {
+      "misconception": "All A are B means all B are A.",
+      "correction": "Set inclusion works in one direction unless the reverse is also stated."
+    },
+    {
+      "misconception": "A conclusion that is true in real life must follow from the premises.",
+      "correction": "Use only the supplied statements; outside knowledge is not part of a syllogism."
+    }
+  ],
+  "worked_examples": [],
+  "company_applications": [
+    {
+      "company": "TCS NQT",
+      "skill": "syllogism and Venn-diagram reasoning",
+      "practice": "Draw the sets and test whether the conclusion is forced."
+    },
+    {
+      "company": "Infosys",
+      "skill": "logical deduction",
+      "practice": "Reject conclusions that require an unstated overlap."
+    },
+    {
+      "company": "Accenture",
+      "skill": "critical reasoning",
+      "practice": "Use a counterexample arrangement to test uncertain conclusions."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "definition",
+      "question": "What does 'All A are B' mean?",
+      "answer": "Every member of A belongs to B; it does not imply every B is A."
+    },
+    {
+      "type": "method",
+      "question": "How can you disprove a syllogism conclusion?",
+      "answer": "Give one valid arrangement of the premises in which the conclusion is false."
+    }
+  ],
+  "prerequisites": [
+    "coding_decoding"
+  ],
+  "quest": {
+    "chapter": "The Logic Court",
+    "rank": "Inference Judge",
+    "story": "The academy gives you statements that must be treated as facts. Your task is to decide which conclusions are forced by the statements and reject conclusions that merely seem plausible.",
+    "mission": "Use set relationships and Venn diagrams to test necessary conclusions.",
+    "success_criteria": [
+      "Translate all, some and no statements into sets.",
+      "Follow subset chains.",
+      "Reject unsupported overlap assumptions.",
+      "Test conclusions in every valid arrangement."
+    ]
+  },
+  "next_lesson_slug": "logical_puzzles",
+  "next_lesson_title": "Logical Puzzles and Arrangements"
 }
