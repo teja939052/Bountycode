@@ -577,7 +577,12 @@ async def get_user_goal(user_id: str) -> Dict[str, Any]:
       - target_role: the resolved role name (e.g. "SDE")
     """
     try:
-        user_doc = await users_collection().find_one({"user_id": user_id}) or {}
+        user_doc = None
+        if ObjectId.is_valid(user_id):
+            user_doc = await users_collection().find_one({"_id": ObjectId(user_id)})
+        if user_doc is None:
+            user_doc = await users_collection().find_one({"user_id": user_id})
+        user_doc = user_doc or {}
     except Exception:
         return {}
 
