@@ -12,20 +12,58 @@ import {
 const LESSON_BY_TOPIC: Record<string, string> = {
   percentages: "successive_percentage_change",
   successive_percentage_change: "successive_percentage_change",
+  profit_loss: "profit_loss",
+  ratio_proportion: "ratio_proportion",
+  ratio: "ratio_proportion",
+  averages: "averages",
+  average: "averages",
+  time_work: "time_work",
+  time_distance: "time_distance",
+  speed_time_distance: "time_distance",
+  probability: "probability_basics",
+  permutations: "permutations_combinations",
+  permutation: "permutations_combinations",
+  series: "number_series",
+  number_series: "number_series",
+  coding_decoding: "coding_decoding",
   blood_relations: "blood_relations",
   blood_relation: "blood_relations",
   reading_comprehension: "reading_comprehension",
+  reading: "reading_comprehension",
+  sentence_correction: "sentence_correction",
+  grammar: "sentence_correction",
+  error_spotting: "sentence_correction",
+  para_jumbles: "para_jumbles",
+  sentence_rearrangement: "para_jumbles",
   arrays: "arrays_basics",
   array: "arrays_basics",
-  flowchart: "flowchart_basics",
-  flowcharts: "flowchart_basics",
-  flowchart_basics: "flowchart_basics",
+  strings: "strings_basics",
+  loops: "loops_basics",
+  conditions: "loops_basics",
+  recursion: "recursion_basics",
+  sorting: "sorting_basics",
+  searching: "searching_basics",
+  hashing: "hashing_basics",
+  hashmaps: "hashing_basics",
+  joins: "sql_joins",
+  sql: "sql_select_basics",
+  basic_sql: "sql_select_basics",
+  oop: "oops_basics",
+  normalization: "dbms_basics",
+  os: "os_basics",
+  operating_systems: "os_basics",
+  networking: "computer_networks_basics",
+  computer_networks: "computer_networks_basics",
 };
 
-function lessonForModule(topics: string[] = []): string | null {
+function lessonForModule(
+  topics: string[] = [],
+  topicMastery: Record<string, { mastered?: boolean }> = {},
+): { slug: string; topicId: string } | null {
   for (const topic of topics) {
     const key = topic.toLowerCase().trim().replace(/[\s-]+/g, "_");
-    if (LESSON_BY_TOPIC[key]) return LESSON_BY_TOPIC[key];
+    if (topicMastery[key]?.mastered) continue;
+    if (LESSON_BY_TOPIC[key]) return { slug: LESSON_BY_TOPIC[key], topicId: key };
   }
   return null;
 }
@@ -304,10 +342,17 @@ function TrackDetail({ trackId, onBack }: { trackId: string; onBack: () => void 
                     </div>
                     <p className="text-xs text-gray-500 mb-2">{mod.description}</p>
                     <div className="flex flex-wrap gap-1 mb-2">
-                      {(mod.topics || []).slice(0, 5).map((t: string) => (
-                        <span key={t} className="text-[10px] px-1.5 py-0.5 rounded bg-gray-500/10 text-gray-400">{t}</span>
+                      {(mod.topics || []).slice(0, 7).map((t: string) => (
+                        <span key={t} className={`text-[10px] px-1.5 py-0.5 rounded ${mod.topic_mastery?.[t]?.mastered ? "bg-green-500/10 text-green-700" : "bg-gray-500/10 text-gray-400"}`}>
+                          {mod.topic_mastery?.[t]?.mastered ? "✓ " : ""}{t}
+                        </span>
                       ))}
                     </div>
+                    {mod.required_topic_count > 0 && (
+                      <p className="mb-2 text-[10px] font-mono text-gray-500">
+                        {mod.mastered_topic_count || 0}/{mod.required_topic_count} topic skills mastered
+                      </p>
+                    )}
                     <div className="flex items-center gap-3 text-xs text-gray-500">
                       <span className="flex items-center gap-1">
                         <Clock className="w-3 h-3" />
@@ -331,14 +376,17 @@ function TrackDetail({ trackId, onBack }: { trackId: string; onBack: () => void 
                   </div>
                   {trackData.enrolled && !mod.completed && (
                     <div className="ml-3 flex shrink-0 flex-col gap-2">
-                      {lessonForModule(mod.topics) && (
-                        <Link
-                          to={`/learn/lesson/${lessonForModule(mod.topics)}?track_id=${encodeURIComponent(trackData.id)}&module_id=${encodeURIComponent(mod.id)}`}
-                          className="rounded-lg bg-primary-600 px-3 py-1.5 text-center text-xs font-semibold text-white hover:bg-primary-700"
-                        >
-                          Learn + assess
-                        </Link>
-                      )}
+                      {(() => {
+                        const nextLesson = lessonForModule(mod.topics, mod.topic_mastery);
+                        return nextLesson ? (
+                          <Link
+                            to={`/learn/lesson/${nextLesson.slug}?track_id=${encodeURIComponent(trackData.id)}&module_id=${encodeURIComponent(mod.id)}&topic_id=${encodeURIComponent(nextLesson.topicId)}`}
+                            className="rounded-lg bg-primary-600 px-3 py-1.5 text-center text-xs font-semibold text-white hover:bg-primary-700"
+                          >
+                            Learn {nextLesson.topicId.replace(/_/g, " ")}
+                          </Link>
+                        ) : null;
+                      })()}
                       <Link
                         to={`/tracks/${trackData.company_id}`}
                         className="rounded-lg border border-primary-500/30 bg-primary-500/10 px-3 py-1.5 text-center text-xs font-medium text-primary-700 hover:bg-primary-500/15"
