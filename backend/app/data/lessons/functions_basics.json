@@ -311,5 +311,17 @@
     }
   ],
   "next_lesson_slug": "programming_languages",
-  "next_lesson_title": "Programming Fundamentals Across Languages"
+  "next_lesson_title": "Programming Fundamentals Across Languages",
+  "quest": {
+    "chapter": "The Function Workshop",
+    "rank": "Junior Systems Builder",
+    "story": "The academy keeps repeating the same calculations in different places. Your job is to turn those repeated operations into reusable tools that return reliable results.",
+    "mission": "Design small functions with clear parameters, return values and responsibilities.",
+    "success_criteria": [
+      "Distinguish parameters from arguments.",
+      "Trace a function call.",
+      "Return values to the caller.",
+      "Repair a function that only prints."
+    ]
+  }
 }
