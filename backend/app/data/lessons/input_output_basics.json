@@ -1,0 +1,343 @@
+{
+  "id": "lesson_input_output_basics_001",
+  "slug": "input_output_basics",
+  "title": "Input, Output and Type Conversion",
+  "domain": "Programming Fundamentals",
+  "pattern": "Input and Output",
+  "difficulty": "easy",
+  "duration_min": 30,
+  "xp_reward": 110,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Programs communicate with the outside world",
+      "content": "A program receives input, processes it and produces output. Input can come from a keyboard, a form, a file or another service. Output can be printed to a terminal, shown in a user interface or written to a file. Separating these stages makes a program easier to understand and test.",
+      "example": "name = input('Your name: ')\nprint('Welcome', name)",
+      "tip": "When debugging, identify whether the problem is in the input, the calculation or the output formatting."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Identify the output operation",
+      "content": "Output statements display information so a learner or another system can see the result.",
+      "prompt": "In Python, which statement displays the value stored in result?",
+      "options": [
+        "print(result)",
+        "input(result)",
+        "int(result)",
+        "return result"
+      ],
+      "correct_index": 0,
+      "explanation": "print(result) sends the value to standard output. input reads text, int converts suitable text, and return sends a value from a function to its caller.",
+      "hints": [
+        "Look for the operation that displays data rather than collecting or converting it.",
+        "The output function is commonly used at the end of a small tracing program."
+      ]
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Read input carefully",
+      "content": "In Python, input() reads a line of text and returns a string—even when the learner types digits. That means the characters '2' and '4' are not automatically the integer 24. A program must convert the text when it intends to perform arithmetic.",
+      "example": "raw = input('Enter marks: ')\nmarks = int(raw)\nprint(marks + 5)",
+      "tip": "Never assume a value's type from how it looks on the screen. Inspect or convert the value deliberately."
+    },
+    {
+      "step_number": 4,
+      "step_type": "predict_output",
+      "title": "Predict text input behavior",
+      "content": "The plus operator can join strings. Trace the type of the value returned by input() before predicting the output.",
+      "prompt": "If the user types 7, what does this Python program print?",
+      "code": "value = input()\nprint(value + '2')",
+      "language": "python",
+      "answer_placeholder": "Enter the exact output",
+      "expected_answer": "72",
+      "explanation": "input() returns the string '7'. Adding another string '2' concatenates them, producing '72'.",
+      "hints": [
+        "Remember the data type returned by Python input().",
+        "Determine whether the plus operator joins text or adds numeric values in this expression."
+      ]
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Convert input before arithmetic",
+      "content": "Use int() for suitable whole-number text and float() for decimal text. Conversion can fail when the input does not match the target type, so real applications should validate input and handle errors. After conversion, arithmetic behaves as expected.",
+      "example": "raw = '7'\ncount = int(raw)\nnext_count = count + 1\n\nprice_text = '12.50'\nprice = float(price_text)",
+      "tip": "A safe input pipeline is: read → validate → convert → calculate → display."
+    },
+    {
+      "step_number": 6,
+      "step_type": "fill_blank",
+      "title": "Complete a numeric input pipeline",
+      "content": "Convert the text before adding a number. The expected result is a numeric value, not joined text.",
+      "prompt": "Which Python conversion function belongs in the blank?",
+      "code": "raw = '8'\ncount = ____ (raw)\nprint(count + 2)",
+      "answer_placeholder": "Function name",
+      "expected_answer": "int",
+      "explanation": "int('8') creates the integer 8, so adding 2 prints 10. Without conversion, text and an integer cannot be added in Python.",
+      "hints": [
+        "The input contains a whole number rather than a decimal.",
+        "Choose the conversion function for an integer value."
+      ]
+    },
+    {
+      "step_number": 7,
+      "step_type": "order_steps",
+      "title": "Build a safe input pipeline",
+      "content": "When a program calculates from user-provided numeric text, the data must be converted before the calculation.",
+      "prompt": "Arrange the steps for reading a whole-number quantity and displaying twice its value.",
+      "options": [
+        "Display the calculated result",
+        "Read the text input",
+        "Convert the text to an integer",
+        "Multiply the integer by two"
+      ],
+      "correct_order": [
+        1,
+        2,
+        3,
+        0
+      ],
+      "explanation": "Read the text first, convert it, perform the calculation, then display the result.",
+      "hints": [
+        "The program cannot convert a value before it has read it.",
+        "Display happens after the calculation has produced its result."
+      ]
+    },
+    {
+      "step_number": 8,
+      "step_type": "code_lab",
+      "title": "Create a welcome message",
+      "content": "Use a small input/output pattern to create a personalized greeting. The browser lab simulates an input with a fixed example value.",
+      "prompt": "Complete the JavaScript output so the program prints Welcome, Asha!",
+      "language": "javascript",
+      "starter_code": "const name = 'Asha';\n\n// TODO: display the welcome message\n",
+      "expected_output": "Welcome, Asha!",
+      "hints": [
+        "Use console.log() to display the message.",
+        "Join the word Welcome, a comma and the name.",
+        "Print `Welcome, ${name}!`."
+      ]
+    },
+    {
+      "step_number": 9,
+      "step_type": "debug_choice",
+      "title": "Find why the total is wrong",
+      "content": "The developer expects a numeric total of 15 but receives the text 105.",
+      "prompt": "What is the most direct fix?",
+      "code": "const quantity = '10';\nconst bonus = 5;\nconsole.log(quantity + bonus);",
+      "options": [
+        "Convert quantity to a number before adding",
+        "Convert bonus to a string",
+        "Remove console.log",
+        "Rename quantity to total"
+      ],
+      "correct_index": 0,
+      "feedback_by_option": {
+        "1": "The quantity is text. Convert it with Number(quantity) so + performs numeric addition and produces 15.",
+        "2": "Converting bonus to text would make concatenation more likely, not fix the numeric calculation.",
+        "3": "Removing output does not fix the calculation; it only hides the result.",
+        "4": "Renaming a variable does not change the type or the behavior of the plus operator."
+      },
+      "explanation": "The string '10' combined with number 5 is concatenated in JavaScript to '105'. Use Number(quantity) + bonus.",
+      "hints": [
+        "Check the type of quantity before the plus operation runs.",
+        "The fix must make both operands numeric."
+      ]
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 420,
+    "questions": [
+      {
+        "prompt": "What type does Python's input() return before any conversion?",
+        "options": [
+          "String",
+          "Integer",
+          "Boolean",
+          "Floating-point number"
+        ],
+        "correct_index": 0,
+        "explanation": "Python input() reads a line and returns it as a string, even if the user types digits."
+      },
+      {
+        "prompt": "Which Python expression converts the text '3.5' into a floating-point number?",
+        "options": [
+          "float('3.5')",
+          "int('3.5')",
+          "str(3.5)",
+          "bool('3.5')"
+        ],
+        "correct_index": 0,
+        "explanation": "float() parses decimal text into a floating-point value. int('3.5') is not a valid integer conversion."
+      },
+      {
+        "prompt": "What does print() do in Python?",
+        "options": [
+          "Displays a value as output",
+          "Reads a line from the keyboard",
+          "Converts text to an integer",
+          "Returns a value from a function"
+        ],
+        "correct_index": 0,
+        "explanation": "print() writes the supplied values to standard output."
+      },
+      {
+        "prompt": "If name = 'Ria', what does print('Hi ' + name) display?",
+        "options": [
+          "Hi Ria",
+          "Ria Hi",
+          "Hi + name",
+          "A numeric value"
+        ],
+        "correct_index": 0,
+        "explanation": "Both operands are strings, so + joins them into the text 'Hi Ria'."
+      },
+      {
+        "prompt": "Which sequence is appropriate before calculating a total from a whole-number text input?",
+        "options": [
+          "Read, validate, convert, calculate, display",
+          "Calculate, read, display, convert, validate",
+          "Display, convert, read, calculate, validate",
+          "Convert, display, read, validate, calculate"
+        ],
+        "correct_index": 0,
+        "explanation": "The program must collect the input before validating and converting it; only then should it calculate and display the result."
+      }
+    ]
+  },
+  "learning_objectives": [
+    "Distinguish input, processing and output in a program.",
+    "Explain why Python input() returns text.",
+    "Choose int() or float() for suitable numeric input.",
+    "Build a safe read, validate, convert, calculate and display sequence.",
+    "Diagnose text concatenation when numeric addition was intended."
+  ],
+  "prerequisites": [
+    "variables_basics"
+  ],
+  "concepts": [
+    "input",
+    "output",
+    "print",
+    "input()",
+    "string input",
+    "type conversion",
+    "int()",
+    "float()",
+    "validation",
+    "formatting"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Typing digits into input() automatically creates a number.",
+      "correction": "Python input() returns a string; convert it before arithmetic."
+    },
+    {
+      "misconception": "print() and return do the same thing.",
+      "correction": "print displays output; return provides a value to the caller of a function."
+    },
+    {
+      "misconception": "A string that looks numeric is safe for arithmetic.",
+      "correction": "The program must parse or convert it and handle invalid input."
+    },
+    {
+      "misconception": "If the output looks wrong, only the print statement can be responsible.",
+      "correction": "The issue may originate from input type, conversion or the calculation before the value is displayed."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Read and convert a quantity",
+      "input": "raw = '12'\nquantity = int(raw)\nprint(quantity + 3)",
+      "trace": [
+        "raw stores the string '12'.",
+        "int(raw) converts it to the integer 12.",
+        "The program calculates 12 + 3.",
+        "print displays the numeric result."
+      ],
+      "output": "15",
+      "explanation": "Conversion changes the type so the plus operator performs arithmetic."
+    },
+    {
+      "title": "Format a greeting",
+      "input": "name = 'Asha'\nmessage = 'Welcome, ' + name + '!'",
+      "trace": [
+        "The first string contains the greeting prefix.",
+        "The name variable contributes the text Asha.",
+        "The final exclamation mark is joined to the message."
+      ],
+      "output": "Welcome, Asha!",
+      "explanation": "String concatenation combines text values into one message."
+    },
+    {
+      "title": "Separate reading from calculation",
+      "input": "raw_price = '19.50'\nprice = float(raw_price)\ntax = price * 0.05\ntotal = price + tax",
+      "trace": [
+        "Read the decimal text '19.50'.",
+        "Convert it to a floating-point value.",
+        "Calculate five percent tax.",
+        "Add the tax to the price."
+      ],
+      "output": "total = 20.475",
+      "explanation": "A clear pipeline keeps input conversion separate from the business calculation."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS NQT",
+      "skill": "input/output tracing",
+      "practice": "Predict output when input values are strings and trace explicit conversion."
+    },
+    {
+      "company": "Infosys",
+      "skill": "programming fundamentals",
+      "practice": "Explain how a program reads values, validates them and displays a computed result."
+    },
+    {
+      "company": "Accenture",
+      "skill": "data handling and logic",
+      "practice": "Identify why concatenation occurs instead of numeric addition."
+    },
+    {
+      "company": "Wipro",
+      "skill": "basic program design",
+      "practice": "Build a small input-process-output flow for a marks or billing example."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "definition",
+      "question": "What does Python input() return?",
+      "answer": "A string containing the line entered by the user."
+    },
+    {
+      "type": "distinction",
+      "question": "When should int() or float() be used on input?",
+      "answer": "Use int() for suitable whole-number text and float() for suitable decimal text before arithmetic."
+    },
+    {
+      "type": "workflow",
+      "question": "What is a safe input-processing pipeline?",
+      "answer": "Read, validate, convert, calculate and display."
+    }
+  ],
+  "quest": {
+    "chapter": "The Console Gate",
+    "rank": "Input Handler",
+    "story": "The academy can now store learner details, but it still cannot ask a learner for information or show a useful result. The console gate is your first communication channel.",
+    "mission": "Read values, convert them safely, calculate a result and display a helpful message.",
+    "success_criteria": [
+      "Distinguish text input from numeric data.",
+      "Convert a whole-number input before arithmetic.",
+      "Trace what a program displays.",
+      "Repair a type mismatch in an input calculation."
+    ]
+  },
+  "next_lesson_slug": "operators_basics",
+  "next_lesson_title": "Operators and Expressions"
+}
