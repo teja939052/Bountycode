@@ -1,0 +1,123 @@
+{
+  "slug": "hcf_lcm",
+  "id": "lesson_hcf_lcm_001",
+  "title": "HCF and LCM",
+  "domain": "Quantitative Aptitude",
+  "pattern": "HCF and LCM",
+  "difficulty": "easy",
+  "duration_min": 20,
+  "xp_reward": 95,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "HCF means the greatest common divisor",
+      "content": "The HCF (or GCD) is the largest positive integer that divides every given number without a remainder. List common factors or use prime factorization.",
+      "example": "Factors of 18 include 1,2,3,6,9,18. Factors of 24 include 1,2,3,4,6,8,12,24. HCF = 6."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Find the HCF",
+      "prompt": "What is the HCF of 18 and 24?",
+      "options": [
+        "3",
+        "6",
+        "9",
+        "12"
+      ],
+      "correct_index": 1,
+      "explanation": "6 is the greatest number that divides both 18 and 24."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "LCM means the smallest common multiple",
+      "content": "The LCM is the smallest positive number that is a multiple of every given number. For two positive integers a and b, a×b = HCF(a,b)×LCM(a,b).",
+      "formula": "LCM(a,b) = (a×b) ÷ HCF(a,b)",
+      "example": "For 6 and 8, HCF=2, so LCM = 6×8/2 = 24."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Use the product formula",
+      "prompt": "The HCF of 12 and 18 is 6. What is their LCM?",
+      "options": [
+        "24",
+        "30",
+        "36",
+        "72"
+      ],
+      "correct_index": 2,
+      "explanation": "LCM = 12×18/6 = 36."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Recognize repeated events",
+      "content": "When events repeat at fixed intervals and happen together now, they meet again after the LCM of their intervals.",
+      "example": "Bells ringing every 12 and 18 minutes ring together again after LCM(12,18) = 36 minutes."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "Find the HCF of 30 and 45.",
+        "options": [
+          "5",
+          "10",
+          "15",
+          "30"
+        ],
+        "correct_index": 2,
+        "explanation": "The greatest common divisor of 30 and 45 is 15."
+      },
+      {
+        "prompt": "Find the LCM of 6 and 8.",
+        "options": [
+          "12",
+          "18",
+          "24",
+          "48"
+        ],
+        "correct_index": 2,
+        "explanation": "Multiples meet first at 24."
+      },
+      {
+        "prompt": "If HCF=4 and LCM=60 for two numbers, what is their product?",
+        "options": [
+          "15",
+          "64",
+          "120",
+          "240"
+        ],
+        "correct_index": 3,
+        "explanation": "Product = HCF×LCM = 4×60 = 240."
+      },
+      {
+        "prompt": "Two bells ring every 10 and 15 minutes. They ring together now. When will they next ring together?",
+        "options": [
+          "20 minutes",
+          "25 minutes",
+          "30 minutes",
+          "60 minutes"
+        ],
+        "correct_index": 2,
+        "explanation": "LCM(10,15) = 30 minutes."
+      },
+      {
+        "prompt": "Which number is a common multiple of 4 and 6?",
+        "options": [
+          "8",
+          "10",
+          "12",
+          "18"
+        ],
+        "correct_index": 2,
+        "explanation": "12 is divisible by both 4 and 6."
+      }
+    ]
+  }
+}
