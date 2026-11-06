@@ -122,3 +122,18 @@ def test_reading_preference_creates_a_reading_first_routine():
     assert plan["study_routine"][1]["label"] == "Read the concept explanation"
     assert "common misconceptions" in plan["learning_strategy"]
     assert sum(step["minutes"] for step in plan["study_routine"]) <= 45
+
+
+
+def test_new_programming_plan_starts_with_variables_foundation():
+    plan = build_plan({
+        "target_role": "software_engineer",
+        "daily_minutes": 60,
+        "learning_preference": "mixed",
+    }, None)
+
+    first_programming_skill = next(
+        item for item in plan["curriculum"]
+        if item["domain"] == "programming_fundamentals"
+    )
+    assert first_programming_skill["lesson_slug"] == "variables_basics"
