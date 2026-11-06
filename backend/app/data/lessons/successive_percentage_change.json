@@ -23,7 +23,12 @@
       "step_type": "interactive",
       "title": "Apply the Formula",
       "prompt": "A shirt's price is increased by 30% and then decreased by 20%. What is the net percentage change?",
-      "options": ["+10%", "+4%", "+6%", "-6%"],
+      "options": [
+        "+10%",
+        "+4%",
+        "+6%",
+        "-6%"
+      ],
       "correct_index": 1,
       "explanation": "Net change = 30 + (-20) + (30 × -20)/100 = 10 - 6 = +4%. The final price is 104% of the original."
     },
@@ -32,7 +37,12 @@
       "step_type": "practice",
       "title": "Quick Practice",
       "prompt": "If a number is increased by 10% and then decreased by 10%, the net change is:",
-      "options": ["0%", "-1%", "+1%", "-2%"],
+      "options": [
+        "0%",
+        "-1%",
+        "+1%",
+        "-2%"
+      ],
       "correct_index": 1,
       "explanation": "Net change = 10 + (-10) + (10 × -10)/100 = 0 - 1 = -1%. The value decreases by 1%."
     },
@@ -49,23 +59,42 @@
       "step_type": "interactive",
       "title": "Test Your Understanding",
       "prompt": "A student scored 60% marks. After a 20% increase in score, what is the new percentage?",
-      "options": ["72%", "80%", "76%", "75%"],
-      "correct_index": 1,
-      "explanation": "New score = 60 + 20% of 60 = 60 + 12 = 72%. Wait, this is NOT successive percentage change. This is a simple 20% increase on the score value. The answer is 72%."
+      "options": [
+        "72%",
+        "80%",
+        "76%",
+        "75%"
+      ],
+      "correct_index": 0,
+      "explanation": "A 20% increase on 60 is 12. New score = 60+12 = 72%. This is a single percentage increase, not a successive change."
     }
   ],
-  "practice_questions": ["tcs_nqt_quant_0001", "tcs_nqt_quant_0002", "tcs_nqt_quant_0003"],
+  "practice_questions": [
+    "tcs_nqt_quant_0001",
+    "tcs_nqt_quant_0002",
+    "tcs_nqt_quant_0003"
+  ],
   "assessment": {
     "questions": [
       {
         "prompt": "A number is first increased by 10% and then decreased by 20%. The net change is:",
-        "options": ["-10%", "-12%", "-8%", "+10%"],
+        "options": [
+          "-10%",
+          "-12%",
+          "-8%",
+          "+10%"
+        ],
         "correct_index": 1,
         "explanation": "Net change = 10 + (-20) + (10 × -20)/100 = -10 - 2 = -12%."
       },
       {
         "prompt": "If price of an article is decreased by 25%, by what percent must it be increased to restore the original price?",
-        "options": ["25%", "30%", "33.33%", "20%"],
+        "options": [
+          "25%",
+          "30%",
+          "33.33%",
+          "20%"
+        ],
         "correct_index": 2,
         "explanation": "Required increase = (25 × 100) / (100 - 25) = 2500/75 = 33.33%."
       }
