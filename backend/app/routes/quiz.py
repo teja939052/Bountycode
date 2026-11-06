@@ -9,11 +9,15 @@ Provides endpoints for:
   - Weak topic recommendations
   - Question statistics
 """
-from typing import Optional, List
+from typing import Optional, List, Dict, Any
+from datetime import datetime, timezone
 from fastapi import APIRouter, Depends, HTTPException, Query, Body
 from pydantic import BaseModel, Field
 
 from app.middleware.auth import get_current_user
+from app.database import practice_sessions_collection
+from app.services.adaptive_learning import record_learning_activity
+from app.services.gamification import record_practice
 from app.services.quiz_service import (
     build_quiz,
     submit_quiz_answer,
@@ -57,15 +61,18 @@ class AnswerSubmission(BaseModel):
 
 class HintRequest(BaseModel):
     question_id: str
-    hint_level: int = 1
-    hints_already_used: int = 0
+    hint_level: int = Field(default=1, ge=1, le=10)
+    hints_already_used: int = Field(default=0, ge=0)
+    quiz_id: Optional[str] = None
 
 
 class QuizResultsRequest(BaseModel):
     quiz_id: str
-    questions: List[dict]
-    answers: List[dict]
-    total_time_seconds: float
+    # Retained as optional compatibility fields. The server deliberately
+    # ignores them and calculates results from the persisted quiz session.
+    questions: Optional[List[dict]] = None
+    answers: Optional[List[dict]] = None
+    total_time_seconds: float = Field(default=0, ge=0)
 
 
 class LearningPathRequest(BaseModel):
@@ -84,6 +91,81 @@ class BossBattleRequest(BaseModel):
 # Quiz Endpoints
 # =============================================================
 
+def _quiz_skill_domain(question: Dict[str, Any]) -> str:
+    """Map a bank question to the adaptive engine's canonical skill domain."""
+    from app.services.adaptive_learning import SKILL_DOMAINS, COMPANY_TOPIC_DOMAINS
+
+    raw_values = [
+        question.get("sub_topic"),
+        question.get("topic"),
+        question.get("pattern"),
+        question.get("domain"),
+    ]
+    aliases = {
+        "arrays & hashing": "arrays_hashing",
+        "arrays": "arrays_hashing",
+        "two pointers": "two_pointers",
+        "sliding window": "sliding_window",
+        "quantitative aptitude": "quantitative_aptitude",
+        "aptitude": "quantitative_aptitude",
+        "logical reasoning": "logical_reasoning",
+        "reasoning": "logical_reasoning",
+        "verbal ability": "verbal_ability",
+        "programming fundamentals": "programming_fundamentals",
+        "programming logic": "programming_fundamentals",
+        "computer science fundamentals": "computer_science",
+        "sql": "sql",
+        "dsa": "arrays_hashing",
+    }
+    for raw in raw_values:
+        if not raw:
+            continue
+        normalized = str(raw).strip().lower().replace("-", "_").replace(" ", "_")
+        candidate = aliases.get(str(raw).strip().lower(), normalized)
+        if candidate in SKILL_DOMAINS:
+            return candidate
+        mapped = COMPANY_TOPIC_DOMAINS.get(normalized)
+        if mapped in SKILL_DOMAINS:
+            return mapped
+    return "programming_fundamentals"
+
+
+async def _get_owned_quiz_session(user_id: str, quiz_id: str) -> Dict[str, Any]:
+    session = await practice_sessions_collection.find_one({
+        "user_id": user_id,
+        "quiz_id": quiz_id,
+        "session_type": "quiz",
+    })
+    if not session:
+        raise HTTPException(status_code=404, detail="Quiz session not found.")
+    return session
+
+
+def _ordered_quiz_attempts(session: Dict[str, Any]) -> tuple[list, list]:
+    """Return trusted question-bank docs and attempts in the original session order."""
+    stored_answers = {
+        item.get("question_id"): item
+        for item in (session.get("answers") or [])
+    }
+    questions = []
+    answers = []
+    for question_id in session.get("question_ids") or []:
+        question = get_question_by_id(question_id) or {
+            "id": question_id,
+            "topic": "Other",
+            "difficulty": "medium",
+        }
+        questions.append(question)
+        answers.append(stored_answers.get(question_id) or {
+            "question_id": question_id,
+            "is_correct": False,
+            "xp_earned": 0,
+            "hints_used": 0,
+            "unanswered": True,
+        })
+    return questions, answers
+
+
 @router.post("/build")
 async def build_quiz_session(req: QuizRequest, user=Depends(get_current_user)):
     """Build a new quiz session."""
@@ -96,12 +178,47 @@ async def build_quiz_session(req: QuizRequest, user=Depends(get_current_user)):
         time_limit_seconds=req.time_limit_seconds,
         user_level=user.get("level", 1),
     )
+    if not quiz.get("questions"):
+        raise HTTPException(
+            status_code=404,
+            detail=quiz.get("empty_reason") or "No questions match this quiz configuration.",
+        )
+
+    now = datetime.now(timezone.utc)
+    await practice_sessions_collection.insert_one({
+        "user_id": user["id"],
+        "session_type": "quiz",
+        "quiz_id": quiz["quiz_id"],
+        "mode": quiz.get("mode", req.mode),
+        "question_ids": [question["id"] for question in quiz["questions"]],
+        "answers": [],
+        "status": "in_progress",
+        "filters": quiz.get("filters", {}),
+        "time_limit_seconds": quiz.get("time_limit_seconds", 0),
+        "created_at": now,
+        "updated_at": now,
+    })
     return {"success": True, "quiz": quiz}
 
 
 @router.post("/answer")
 async def submit_answer(submission: AnswerSubmission, user=Depends(get_current_user)):
     """Submit an answer and get feedback + Diamonds."""
+    session = await _get_owned_quiz_session(user["id"], submission.quiz_id)
+    if session.get("status") != "in_progress":
+        raise HTTPException(status_code=409, detail="This quiz has already been submitted.")
+    if submission.question_id not in (session.get("question_ids") or []):
+        raise HTTPException(status_code=403, detail="This question was not served in your quiz.")
+
+    if any(
+        item.get("question_id") == submission.question_id
+        for item in (session.get("answers") or [])
+    ):
+        raise HTTPException(status_code=409, detail="This question has already been answered.")
+
+    question = get_question_by_id(submission.question_id)
+    if not question:
+        raise HTTPException(status_code=404, detail="Question not found.")
     result = submit_quiz_answer(
         quiz_id=submission.quiz_id,
         question_id=submission.question_id,
@@ -111,12 +228,94 @@ async def submit_answer(submission: AnswerSubmission, user=Depends(get_current_u
     )
     if "error" in result:
         raise HTTPException(status_code=404, detail=result["error"])
+    if result.get("requires_code_execution"):
+        raise HTTPException(status_code=422, detail=result.get("error"))
+
+    # Claim this question answer atomically before awarding or recording any
+    # evidence. A concurrent/replayed request cannot award the same attempt twice.
+    now = datetime.now(timezone.utc)
+    answer_record = {
+        "question_id": submission.question_id,
+        "is_correct": bool(result.get("is_correct")),
+        "time_taken_seconds": max(0.0, float(submission.time_taken_seconds)),
+        "hints_used": max(0, int(submission.hints_used)),
+        "xp_earned": 0,
+        "answered_at": now,
+    }
+    claimed = await practice_sessions_collection.update_one(
+        {
+            "user_id": user["id"],
+            "quiz_id": submission.quiz_id,
+            "session_type": "quiz",
+            "status": "in_progress",
+            "question_ids": submission.question_id,
+            "answers.question_id": {"$ne": submission.question_id},
+        },
+        {"$push": {"answers": answer_record}, "$set": {"updated_at": now}},
+    )
+    if claimed.modified_count == 0:
+        raise HTTPException(status_code=409, detail="This answer was already submitted or the quiz has closed.")
+
+    # Adaptive evidence is recorded for correct and incorrect answers. XP is
+    # only awarded for server-graded correct answers through the canonical
+    # gamification service, not by trusting the client.
+    try:
+        await record_learning_activity(
+            user["id"],
+            {
+                "domain_id": _quiz_skill_domain(question),
+                "type": "quiz_answer",
+                "success": bool(result.get("is_correct")),
+                "score_impact": 1,
+                "question_id": submission.question_id,
+                "assessment_id": submission.quiz_id,
+                "time_spent_seconds": answer_record["time_taken_seconds"],
+                "hints_used": answer_record["hints_used"],
+                "company": (question.get("companies") or [None])[0],
+            },
+        )
+    except Exception:
+        logger.exception("Could not record adaptive evidence for quiz %s", submission.quiz_id)
+
+    reward = None
+    if result.get("is_correct"):
+        try:
+            reward = await record_practice(
+                user_id=user["id"],
+                activity_type="quiz",
+                score=10,
+                metadata={
+                    "quiz_id": submission.quiz_id,
+                    "question_id": submission.question_id,
+                    "time_taken": answer_record["time_taken_seconds"],
+                    "hint_used": answer_record["hints_used"] > 0,
+                },
+                role=user.get("role") or user.get("target_role") or "sde",
+                activity_id=f"{submission.quiz_id}:{submission.question_id}",
+            )
+        except Exception:
+            logger.exception("Could not award quiz reward for %s", submission.question_id)
+
+    xp_earned = int((reward or {}).get("xp_gained", 0) or 0)
+    await practice_sessions_collection.update_one(
+        {"user_id": user["id"], "quiz_id": submission.quiz_id, "session_type": "quiz"},
+        {"$set": {f"answer_rewards.{submission.question_id}": xp_earned}},
+    )
+    result["xp_earned"] = xp_earned
+    result["reward"] = reward
     return {"success": True, "result": result}
 
 
 @router.post("/hint")
 async def get_hint(req: HintRequest, user=Depends(get_current_user)):
     """Get a progressive hint for a question."""
+    if req.quiz_id:
+        session = await _get_owned_quiz_session(user["id"], req.quiz_id)
+        if session.get("status") != "in_progress" or req.question_id not in (session.get("question_ids") or []):
+            raise HTTPException(status_code=403, detail="This question is not available in the active quiz.")
+        if any(item.get("question_id") == req.question_id for item in (session.get("answers") or [])):
+            raise HTTPException(status_code=409, detail="This question has already been answered.")
+
     result = get_hint_for_question(
         question_id=req.question_id,
         hint_level=req.hint_level,
@@ -130,12 +329,46 @@ async def get_hint(req: HintRequest, user=Depends(get_current_user)):
 @router.post("/results")
 async def quiz_results(req: QuizResultsRequest, user=Depends(get_current_user)):
     """Calculate comprehensive quiz results."""
+    session = await _get_owned_quiz_session(user["id"], req.quiz_id)
+    questions, answers = _ordered_quiz_attempts(session)
+    already_completed = session.get("status") == "completed"
+    if already_completed and session.get("results"):
+        return {"success": True, "results": session["results"]}
+
+    total_time = max(0.0, float(req.total_time_seconds or 0))
     results = calculate_quiz_results(
         quiz_id=req.quiz_id,
-        questions=req.questions,
-        answers=req.answers,
-        total_time_seconds=req.total_time_seconds,
+        questions=questions,
+        answers=answers,
+        total_time_seconds=total_time,
     )
+    results["answered_questions"] = len(session.get("answers") or [])
+    results["unanswered_questions"] = max(0, len(questions) - results["answered_questions"])
+    results["mode"] = session.get("mode", "practice")
+    results["filters"] = session.get("filters", {})
+    now = datetime.now(timezone.utc)
+    completed = await practice_sessions_collection.update_one(
+        {
+            "user_id": user["id"],
+            "quiz_id": req.quiz_id,
+            "session_type": "quiz",
+            "status": "in_progress",
+        },
+        {
+            "$set": {
+                "status": "completed",
+                "completed_at": now,
+                "updated_at": now,
+                "total_time_seconds": total_time,
+                "results": results,
+            },
+        },
+    )
+    if completed.modified_count == 0:
+        refreshed = await _get_owned_quiz_session(user["id"], req.quiz_id)
+        if refreshed.get("results"):
+            return {"success": True, "results": refreshed["results"]}
+        raise HTTPException(status_code=409, detail="Quiz could not be finalized.")
     return {"success": True, "results": results}
 
 
@@ -181,11 +414,22 @@ async def weak_topics(
     user=Depends(get_current_user),
 ):
     """Analyze attempts and return weak topics."""
-    import json
-    try:
-        attempts = json.loads(attempted) if attempted else []
-    except json.JSONDecodeError:
-        attempts = []
+    # Derive weak areas from server-persisted quiz attempts; never accept a
+    # client-provided history as the source of truth.
+    sessions = await practice_sessions_collection.find(
+        {"user_id": user["id"], "session_type": "quiz"}
+    ).to_list(1000)
+    attempts = []
+    for session in sessions:
+        for answer in (session.get("answers") or []):
+            question = get_question_by_id(answer.get("question_id", ""))
+            if not question:
+                continue
+            attempts.append({
+                "topic": question.get("sub_topic") or question.get("topic", ""),
+                "is_correct": bool(answer.get("is_correct")),
+                "time_taken": float(answer.get("time_taken_seconds", 0) or 0),
+            })
     weak = get_weak_topics(attempted_questions=attempts)
     return {"success": True, "weak_topics": weak}
 
