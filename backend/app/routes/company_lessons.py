@@ -345,6 +345,7 @@ async def answer_lesson_step(
 
 @router.post("/{slug}/complete", response_model=None)
 async def complete_lesson(slug: str, req: CompleteRequest, user=Depends(get_current_user)):
+    """Grade the final assessment and record evidence, including failed attempts."""
     data = _load_lesson(slug)
     if data is None or not data.get("steps") or not (data.get("assessment") or {}).get("questions"):
         raise HTTPException(status_code=404, detail=f"Step-based lesson not found: {slug}")
@@ -354,85 +355,12 @@ async def complete_lesson(slug: str, req: CompleteRequest, user=Depends(get_curr
         raise HTTPException(status_code=400, detail="This lesson has no final assessment.")
     if len(req.answers) != len(questions) or any(str(i) not in req.answers for i in range(len(questions))):
         raise HTTPException(status_code=422, detail="Answer every final-assessment question before submitting.")
-
-    results = []
-    correct = 0
-    for index, question in enumerate(questions):
-        try:
-            selected = int(req.answers[str(index)])
-        except (TypeError, ValueError):
-            selected = -1
-        expected = question.get("correct_index")
-        is_correct = selected == expected
-        correct += int(is_correct)
-        results.append({
-            "index": index,
-            "correct": is_correct,
-            "selected_index": selected,
-            "correct_index": expected,
-            "explanation": question.get("explanation", ""),
-        })
-
-    score = round((correct / len(questions)) * 100, 1)
-    mastery_threshold = float(
-        data.get("mastery_threshold")
-        or (data.get("assessment") or {}).get("mastery_threshold")
-        or 0.7
-    )
-    passed = score >= mastery_threshold * 100
     if bool(req.track_id) != bool(req.module_id):
         raise HTTPException(status_code=400, detail="track_id and module_id must be supplied together.")
 
-    # Every final assessment is adaptive evidence, whether passed or failed.
-    # Failed attempts count as attempts but do not increase mastery score.
-    domain_id = LESSON_SKILL_DOMAINS.get(
-        slug,
-        {
-            "quantitative aptitude": "quantitative_aptitude",
-            "reasoning": "logical_reasoning",
-            "programming logic": "programming_fundamentals",
-            "programming fundamentals": "programming_fundamentals",
-            "dsa": "arrays_hashing",
-            "verbal ability": "verbal_ability",
-            "sql": "sql",
-        }.get(
-            str(data.get("domain") or data.get("pattern") or "general").lower(),
-            str(data.get("domain") or data.get("pattern") or "general").lower().replace(" ", "_"),
-        ),
-    )
-    try:
-        await record_learning_activity(
-            user["id"],
-            {
-                "domain_id": domain_id,
-                "type": "lesson_assessment",
-                "success": passed,
-                "score_impact": 1,
-                "lesson_slug": slug,
-                "score_percent": score,
-                "track_id": req.track_id,
-                "module_id": req.module_id,
-                "topic_id": req.topic_id,
-            },
-        )
-    except Exception as exc:
-        logger.warning("Could not update adaptive assessment evidence for %s: %s", slug, exc)
-
-    if not passed:
-        return {
-            "success": True,
-            "data": {
-                "passed": False,
-                "score": score,
-                "correct": correct,
-                "total": len(questions),
-                "results": results,
-                "mastery_threshold": mastery_threshold * 100,
-                "xp_earned": 0,
-                "module_completed": False,
-            },
-        }
-
+    # Validate the company mapping before recording any result. This prevents
+    # a malformed target/module pair from creating misleading learner evidence.
+    topic_id = None
     if req.track_id and req.module_id:
         from app.data.learning_paths import COMPANY_TRACKS
 
@@ -462,9 +390,6 @@ async def complete_lesson(slug: str, req: CompleteRequest, user=Depends(get_curr
                 status_code=422,
                 detail="This lesson does not assess the selected company module's topics.",
             )
-
-        # One lesson demonstrates one mapped topic. A mixed module is only
-        # complete after every required topic has passed its own assessment.
         requested_topic = _normalize_topic(req.topic_id) if req.topic_id else None
         if requested_topic and requested_topic not in matching_topics:
             raise HTTPException(
@@ -472,7 +397,84 @@ async def complete_lesson(slug: str, req: CompleteRequest, user=Depends(get_curr
                 detail="The selected topic does not match this lesson and company module.",
             )
         topic_id = requested_topic or matching_topics[0]
+    elif req.topic_id:
+        raise HTTPException(status_code=400, detail="topic_id requires track_id and module_id.")
+
+    results = []
+    correct = 0
+    for index, question in enumerate(questions):
         try:
+            selected = int(req.answers[str(index)])
+        except (TypeError, ValueError):
+            selected = -1
+        options = question.get("options") or []
+        if selected < 0 or selected >= len(options):
+            selected = -1
+        expected = question.get("correct_index")
+        is_correct = selected == expected
+        correct += int(is_correct)
+        results.append({
+            "index": index,
+            "correct": is_correct,
+            "selected_index": selected,
+            "correct_index": expected,
+            "explanation": question.get("explanation", ""),
+        })
+
+    score = round((correct / len(questions)) * 100, 1)
+    mastery_threshold = float(
+        data.get("mastery_threshold")
+        or (data.get("assessment") or {}).get("mastery_threshold")
+        or 0.7
+    )
+    passed = score >= mastery_threshold * 100
+
+    domain_id = LESSON_SKILL_DOMAINS.get(
+        slug,
+        {
+            "quantitative aptitude": "quantitative_aptitude",
+            "reasoning": "logical_reasoning",
+            "programming logic": "programming_fundamentals",
+            "programming fundamentals": "programming_fundamentals",
+            "dsa": "arrays_hashing",
+            "verbal ability": "verbal_ability",
+            "sql": "sql",
+        }.get(str(data.get("domain") or data.get("pattern") or "").lower(),
+              "programming_fundamentals"),
+    )
+    # Record both passes and failures. Adaptive learning needs the denominator:
+    # a learner who struggles should receive a different next lesson, not be
+    # invisible to the recommendation engine.
+    try:
+        await record_learning_activity(
+            user["id"],
+            {
+                "domain_id": domain_id,
+                "type": "lesson_assessment",
+                "success": passed,
+                "score_impact": 1,
+                "lesson_slug": slug,
+                "score_percent": score,
+                "correct_count": correct,
+                "question_count": len(questions),
+                "time_spent_seconds": req.time_spent_seconds,
+                "topic_id": topic_id,
+                "track_id": req.track_id,
+                "module_id": req.module_id,
+            },
+        )
+    except Exception as exc:
+        logger.warning("Could not update adaptive evidence for lesson %s: %s", slug, exc)
+
+    module_result = None
+    module_completed = False
+    reward = None
+    xp_earned = 0
+
+    if req.track_id and req.module_id and topic_id:
+        try:
+            # This service stores failed attempts too, but only records mastery
+            # at >=70%; a mixed module completes only after every topic passes.
             module_result = await record_track_topic_mastery(
                 user_id=user["id"],
                 track_id=req.track_id,
@@ -483,10 +485,9 @@ async def complete_lesson(slug: str, req: CompleteRequest, user=Depends(get_curr
             )
         except ValueError as exc:
             raise HTTPException(status_code=400, detail=str(exc))
-        xp_earned = module_result.get("xp_earned", 0)
         module_completed = bool(module_result.get("module_completed"))
-        reward = None
-    else:
+        xp_earned = int(module_result.get("xp_earned", 0) or 0)
+    elif passed:
         reward = await record_practice(
             user_id=user["id"],
             activity_type="company_lesson",
@@ -501,14 +502,12 @@ async def complete_lesson(slug: str, req: CompleteRequest, user=Depends(get_curr
             },
             role=user.get("role") or user.get("target_role") or "sde",
         )
-        xp_earned = reward.get("xp_gained", 0) if isinstance(reward, dict) else 0
-        module_completed = False
-        module_result = None
+        xp_earned = int(reward.get("xp_gained", 0) or 0) if isinstance(reward, dict) else 0
 
     return {
         "success": True,
         "data": {
-            "passed": True,
+            "passed": passed,
             "score": score,
             "correct": correct,
             "total": len(questions),
@@ -516,7 +515,7 @@ async def complete_lesson(slug: str, req: CompleteRequest, user=Depends(get_curr
             "mastery_threshold": mastery_threshold * 100,
             "xp_earned": xp_earned,
             "module_completed": module_completed,
-            "module_result": module_result if req.track_id else None,
+            "module_result": module_result,
             "reward": reward,
         },
     }
