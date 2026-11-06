@@ -118,5 +118,101 @@
         "explanation": "A 2D array element is addressed by both its row and column indices."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Represent a matrix using row and column indices.",
+    "Traverse rows, columns and diagonals correctly.",
+    "Perform matrix addition and transpose.",
+    "Estimate O(rows × columns) traversal cost."
+  ],
+  "prerequisites": [
+    "arrays_basics",
+    "loops_basics"
+  ],
+  "concepts": [
+    "row",
+    "column",
+    "nested loops",
+    "transpose",
+    "diagonal",
+    "matrix dimensions"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Rows and columns are interchangeable.",
+      "correction": "A[r][c] means row r and column c; dimensions may differ."
+    },
+    {
+      "misconception": "A transpose preserves the same row and column counts.",
+      "correction": "Transpose swaps dimensions from R×C to C×R."
+    },
+    {
+      "misconception": "Every matrix has a main diagonal of length equal to rows.",
+      "correction": "The main diagonal length is min(rows, columns)."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Trace matrix indexing",
+      "input": "[[1,2,3],[4,5,6]]",
+      "trace": [
+        "There are 2 rows and 3 columns.",
+        "A[0][2] is 3.",
+        "A[1][0] is 4."
+      ],
+      "output": "2×3 matrix",
+      "explanation": "The first index selects the row; the second selects the column."
+    },
+    {
+      "title": "Transpose",
+      "input": "[[1,2,3],[4,5,6]]",
+      "trace": [
+        "Create output with 3 rows and 2 columns.",
+        "Set B[0][0]=A[0][0], B[1][0]=A[0][1].",
+        "Continue by swapping row and column indices."
+      ],
+      "output": "[[1,4],[2,5],[3,6]]",
+      "explanation": "Transpose maps A[r][c] to B[c][r]."
+    },
+    {
+      "title": "Count traversal work",
+      "input": "Matrix has 4 rows and 7 columns",
+      "trace": [
+        "Each row has 7 entries.",
+        "Visit all 4 rows.",
+        "Total visits = 4×7."
+      ],
+      "output": "28 visits; O(R×C)",
+      "explanation": "Every cell is processed once."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "matrix traversal",
+      "practice": "Trace row and column indices with non-square matrices."
+    },
+    {
+      "company": "Infosys",
+      "skill": "2D array coding",
+      "practice": "Handle boundary rows, columns and diagonals."
+    },
+    {
+      "company": "Wipro",
+      "skill": "basic programming",
+      "practice": "State dimensions before writing nested loops."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What should you remember about Matrices and 2D Arrays?",
+      "answer": "Represent a matrix using row and column indices. Traverse rows, columns and diagonals correctly. Perform matrix addition and transpose. Estimate O(rows × columns) traversal cost."
+    },
+    {
+      "type": "misconception",
+      "question": "What mistake should you avoid in Matrices and 2D Arrays?",
+      "answer": "A[r][c] means row r and column c; dimensions may differ."
+    }
+  ]
 }
