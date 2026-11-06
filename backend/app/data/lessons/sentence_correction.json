@@ -1,0 +1,123 @@
+{
+  "slug": "sentence_correction",
+  "id": "lesson_sentence_correction_001",
+  "title": "Sentence Correction",
+  "domain": "Verbal Ability",
+  "pattern": "Grammar",
+  "difficulty": "easy",
+  "duration_min": 18,
+  "xp_reward": 85,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Find the subject and verb",
+      "content": "A sentence needs a clear subject and a verb that agrees with it. Singular subjects usually take singular verbs; plural subjects take plural verbs.",
+      "example": "The student writes every day. / The students write every day.",
+      "tip": "Ignore extra phrases between the subject and verb when checking agreement."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Subject–verb agreement",
+      "prompt": "Choose the grammatically correct sentence.",
+      "options": [
+        "The list of items are on the desk.",
+        "The list of items is on the desk.",
+        "The lists of item is on the desk.",
+        "The list are on the desk."
+      ],
+      "correct_index": 1,
+      "explanation": "The subject is 'list' (singular). The phrase 'of items' does not change the subject, so use 'is'."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Keep verb tense consistent",
+      "content": "Use the tense that matches the time of the action. Avoid switching between past and present without a reason.",
+      "example": "Incorrect: She entered the room and sits down. Correct: She entered the room and sat down."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Choose the correct tense",
+      "prompt": "By the time we arrived, the meeting ___ .",
+      "options": [
+        "starts",
+        "has started",
+        "had started",
+        "starting"
+      ],
+      "correct_index": 2,
+      "explanation": "The meeting started before another past event (our arrival), so past perfect 'had started' is appropriate."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Pronouns and parallel structure",
+      "content": "A pronoun should clearly refer to a noun. Items in a list should use the same grammatical form (parallel structure).",
+      "example": "Parallel: The role requires planning, writing and presenting. Avoid mixing nouns and unrelated verb forms."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "Choose the correct sentence.",
+        "options": [
+          "Each of the players have a jersey.",
+          "Each of the players has a jersey.",
+          "Each players has a jersey.",
+          "Each of players have a jersey."
+        ],
+        "correct_index": 1,
+        "explanation": "'Each' is singular, so use 'has'."
+      },
+      {
+        "prompt": "Neither the manager nor the employees ___ available.",
+        "options": [
+          "is",
+          "was",
+          "are",
+          "be"
+        ],
+        "correct_index": 2,
+        "explanation": "With 'neither…nor', the verb commonly agrees with the nearer subject; 'employees' is plural."
+      },
+      {
+        "prompt": "Choose the sentence with consistent tense.",
+        "options": [
+          "He opened the door and walks in.",
+          "He opens the door and walked in.",
+          "He opened the door and walked in.",
+          "He opening the door and walked in."
+        ],
+        "correct_index": 2,
+        "explanation": "Both actions are completed in the past, so both verbs use past tense."
+      },
+      {
+        "prompt": "Select the parallel construction.",
+        "options": [
+          "She likes reading, writing and to swim.",
+          "She likes to read, writing and swimming.",
+          "She likes reading, writing and swimming.",
+          "She likes read, writing and swim."
+        ],
+        "correct_index": 2,
+        "explanation": "All three items are gerunds: reading, writing and swimming."
+      },
+      {
+        "prompt": "Choose the correct article: She is ___ honest engineer.",
+        "options": [
+          "a",
+          "an",
+          "the",
+          "no article"
+        ],
+        "correct_index": 1,
+        "explanation": "'Honest' begins with a vowel sound because the h is silent, so use 'an'."
+      }
+    ]
+  }
+}
