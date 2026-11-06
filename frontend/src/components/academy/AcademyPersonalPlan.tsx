@@ -30,6 +30,12 @@ export default function AcademyPersonalPlan() {
         </div>
         <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700"><Clock className="mr-1 inline" size={13}/>{plan.daily_minutes} min/day</span>
       </div>
+      {plan.overall_mastery && (
+        <div className="mt-4 flex flex-wrap gap-2">
+          <span className="rounded-full bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-800">Current mastery: {plan.overall_mastery}</span>
+          {typeof plan.overall_accuracy === "number" && <span className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700">Practice accuracy: {plan.overall_accuracy}%</span>}
+        </div>
+      )}
       {plan.daily_tasks?.length ? (
         <div className="mt-5 space-y-3">
           {plan.daily_tasks.map((task: any, index: number) => (
@@ -38,7 +44,7 @@ export default function AcademyPersonalPlan() {
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-center gap-2"><p className="font-semibold text-slate-900">{task.title}</p>{task.priority === "high" && <span className="rounded-full bg-amber-50 px-2 py-0.5 text-[10px] font-bold uppercase text-amber-800">Priority</span>}</div>
                 <p className="mt-1 text-sm text-slate-600">{task.reason}</p>
-                <p className="mt-1 text-xs text-slate-500">{task.estimated_minutes} min · {String(task.skill_level).replaceAll("_", " ")}</p>
+                <p className="mt-1 text-xs text-slate-500">{task.estimated_minutes} min · {String(task.skill_level).replaceAll("_", " ")}{task.effective_score !== null && task.effective_score !== undefined ? ` · ${task.effective_score}% evidence` : ""}</p>
               </div>
               {task.lesson_slug && <Link to={`/learn/lesson/${task.lesson_slug}`} aria-label={`Open ${task.title} lesson`} className="rounded-lg p-2 text-emerald-700 hover:bg-emerald-50"><BookOpen size={17}/></Link>}
             </div>
