@@ -22,6 +22,7 @@ import {
 } from "../components/leetcode/Kit";
 
 const QUICK_START = [
+  { to: "/academy", icon: BookOpen, title: "Placement Academy", desc: "Company-aligned learning missions, guided lessons, quizzes and mastery." },
   { to: "/curriculum", icon: BookOpen, title: "Structured Courses", desc: "7 languages, 105 hands-on lessons with live previews and quizzes." },
   { to: "/compiler", icon: Code2, title: "Full Compiler", desc: "8 languages, test cases and a step-by-step visualizer." },
   { to: "/question-bank", icon: ListChecks, title: "Question Bank", desc: "100+ curated interview problems by company, topic, difficulty." },
