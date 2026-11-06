@@ -319,7 +319,7 @@ def build_quiz(
                 # expected answers and explanations are returned only after
                 # the server has graded the submitted response.
                 "hint_count": len(q.get("hints", []) or []),
-                "test_cases": q.get("test_cases", []),
+                "test_case_count": len(q.get("test_cases", []) or []),
                 "why_this_matters": q.get("why_this_matters", "") if mode == "practice" else "",
                 "real_world_use": q.get("real_world_use", "") if mode == "practice" else "",
                 "pattern_recognition": q.get("pattern_recognition", "") if mode == "practice" else "",
