@@ -69,6 +69,13 @@ type LessonContent = {
   company_applications?: Array<{ company: string; skill: string; practice: string }>;
   next_lesson_slug?: string;
   next_lesson_title?: string;
+  quest?: {
+    chapter?: string;
+    rank?: string;
+    story?: string;
+    mission?: string;
+    success_criteria?: string[];
+  };
 };
 
 type AnswerResult = {
@@ -698,6 +705,35 @@ export default function LessonPlayer() {
         <p className="mt-1 text-sm leading-6 text-text-primary">{learningMode.description}</p>
         <p className="mt-2 text-xs leading-5 text-text-secondary">Preferred coding language: {preferredLanguageLabel}. {languageGuidance}</p>
       </section>
+
+      {lesson.quest && (
+        <section className="mb-4 overflow-hidden rounded-2xl border border-violet-400/20 bg-gradient-to-br from-violet-500/10 via-surface-base/80 to-surface-base/80 p-4">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <p className="text-[10px] font-mono font-bold uppercase tracking-wider text-violet-300">Story mission · {lesson.quest.chapter || "Academy quest"}</p>
+            {lesson.quest.rank && <span className="rounded-full border border-violet-300/20 bg-violet-300/10 px-2.5 py-1 text-[10px] font-semibold text-violet-200">{lesson.quest.rank}</span>}
+          </div>
+          {lesson.quest.story && <p className="mt-3 text-sm leading-6 text-text-primary">{lesson.quest.story}</p>}
+          {lesson.quest.mission && (
+            <div className="mt-3 rounded-xl border border-white/10 bg-black/10 p-3">
+              <p className="text-[10px] font-bold uppercase tracking-wider text-violet-200">Your mission</p>
+              <p className="mt-1 text-sm leading-6 text-text-primary">{lesson.quest.mission}</p>
+            </div>
+          )}
+          {lesson.quest.success_criteria?.length ? (
+            <div className="mt-3">
+              <p className="text-[10px] font-bold uppercase tracking-wider text-text-secondary">Quest objectives</p>
+              <ul className="mt-2 grid gap-1.5 sm:grid-cols-2">
+                {lesson.quest.success_criteria.map((criterion, index) => (
+                  <li key={index} className="flex gap-2 text-xs leading-5 text-text-secondary">
+                    <span className="font-mono text-violet-300">{String(index + 1).padStart(2, "0")}</span>
+                    {criterion}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+        </section>
+      )}
 
       {lesson.learning_objectives?.length ? (
         <section className="mb-4 rounded-2xl border border-brand-sky/20 bg-brand-sky/5 p-4">
