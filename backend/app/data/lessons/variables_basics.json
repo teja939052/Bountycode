@@ -321,8 +321,8 @@
       "answer": "The input is text. int('18') converts suitable whole-number text into the integer 18."
     }
   ],
-  "next_lesson_slug": "conditions_basics",
-  "next_lesson_title": "Conditions, Decisions and Boolean Logic",
+  "next_lesson_slug": "input_output_basics",
+  "next_lesson_title": "Input, Output and Type Conversion",
   "quest": {
     "chapter": "The Memory Vault",
     "rank": "Novice Builder",
