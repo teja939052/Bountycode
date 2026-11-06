@@ -11,6 +11,7 @@ Provides endpoints for:
 """
 from typing import Optional, List, Dict, Any
 from datetime import datetime, timezone
+import logging
 from fastapi import APIRouter, Depends, HTTPException, Query, Body
 from pydantic import BaseModel, Field
 
@@ -34,6 +35,8 @@ from app.services.quiz_service import (
     get_all_questions,
 )
 
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api/v1/quiz", tags=["Quiz & Mock Interview"])
 
