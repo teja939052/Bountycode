@@ -300,5 +300,7 @@
       "question": "Why might input '18' need int() before arithmetic?",
       "answer": "The input is text. int('18') converts suitable whole-number text into the integer 18."
     }
-  ]
+  ],
+  "next_lesson_slug": "conditions_basics",
+  "next_lesson_title": "Conditions, Decisions and Boolean Logic"
 }
