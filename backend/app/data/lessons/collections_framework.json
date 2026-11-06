@@ -118,5 +118,7 @@
         "explanation": "Sets are useful for uniqueness tests and membership checks."
       }
     ]
-  }
+  },
+  "next_lesson_slug": "exception_handling",
+  "next_lesson_title": "Exception Handling"
 }
