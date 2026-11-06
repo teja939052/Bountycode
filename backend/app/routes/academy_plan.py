@@ -104,9 +104,9 @@ def build_plan(profile: Dict[str, Any], diagnostic: Dict[str, Any] | None) -> Di
         "curriculum": tasks,
         "study_routine": [
             {"label": "Review yesterday's concepts", "minutes": min(10, max(5, budget // 6))},
-            {"label": "Learn the next concept", "minutes": max(10, budget // 3)},
+            {"label": "Learn the next concept", "minutes": max(5, budget // 3)},
             {"label": "Solve guided and independent problems", "minutes": max(10, budget // 3)},
-            {"label": "Check understanding and revise mistakes", "minutes": max(5, budget - (min(10, max(5, budget // 6)) + 2 * max(10, budget // 3)))},
+            {"label": "Check understanding and revise mistakes", "minutes": max(0, budget - (min(10, max(5, budget // 6)) + 2 * max(5, budget // 3)))},
         ],
         "personalization_note": (
             "Complete the baseline diagnostic to replace self-reported levels with skill evidence."
