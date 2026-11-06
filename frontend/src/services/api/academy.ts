@@ -13,12 +13,12 @@ export type AcademyLearnerProfile = {
 
 export const academyApi = {
   getProfile() {
-    return request<{ success: boolean; data: { profile: AcademyLearnerProfile | null; onboarding_complete: boolean } }>(
+    return request<{ profile: AcademyLearnerProfile | null; onboarding_complete: boolean }>(
       "/api/v1/academy/profile",
     );
   },
   saveProfile(profile: AcademyLearnerProfile) {
-    return request<{ success: boolean; data: { profile: AcademyLearnerProfile; onboarding_complete: boolean } }>(
+    return request<{ profile: AcademyLearnerProfile; onboarding_complete: boolean }>(
       "/api/v1/academy/profile",
       { method: "PUT", body: JSON.stringify(profile) },
     );
