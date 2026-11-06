@@ -29,7 +29,11 @@
         "Cousin"
       ],
       "correct_index": 0,
-      "explanation": "The man's father's only son is the man himself. The girl is his daughter."
+      "explanation": "The man's father's only son is the man himself. The girl is his daughter.",
+      "hints": [
+        "Start from the person named after 'my' or 'his/her' and draw one relationship at a time.",
+        "Do not jump generations: parent, sibling and child links must stay explicit."
+      ]
     },
     {
       "step_number": 3,
@@ -43,7 +47,11 @@
         "Brother"
       ],
       "correct_index": 0,
-      "explanation": "C is B's father (since A is B's brother). D is C's father, so D is B's grandfather."
+      "explanation": "C is B's father (since A is B's brother). D is C's father, so D is B's grandfather.",
+      "hints": [
+        "Draw the family tree from the speaker's point of view.",
+        "Follow the chain one link at a time, then name the final person's relation to the requested person."
+      ]
     },
     {
       "step_number": 4,
@@ -64,7 +72,11 @@
         "Cousin"
       ],
       "correct_index": 0,
-      "explanation": "B's father is also A's mother's father. That man is C's son, so C is one generation above A's maternal grandfather: A's great-grandparent."
+      "explanation": "B's father is also A's mother's father. That man is C's son, so C is one generation above A's maternal grandfather: A's great-grandparent.",
+      "hints": [
+        "Mark each person's gender only when the sentence provides it.",
+        "Trace the chain from the final named person back to the person asked about."
+      ]
     }
   ],
   "practice_questions": [
@@ -94,6 +106,39 @@
         ],
         "correct_index": 2,
         "explanation": "B, C, and D are all children of A. B is female, C is male. D's gender is not specified, so D is A's child (son or daughter)."
+      },
+      {
+        "prompt": "Anu is Bala's mother. Bala is Charan's father. How is Anu related to Charan?",
+        "options": [
+          "Mother",
+          "Paternal grandmother",
+          "Maternal aunt",
+          "Sister"
+        ],
+        "correct_index": 1,
+        "explanation": "Bala is Charan's father and Anu is Bala's mother, so Anu is Charan's paternal grandmother."
+      },
+      {
+        "prompt": "Ravi is Sita's brother. Sita is Mohan's mother. How is Ravi related to Mohan?",
+        "options": [
+          "Father",
+          "Maternal uncle",
+          "Paternal grandfather",
+          "Brother"
+        ],
+        "correct_index": 1,
+        "explanation": "Sita is Mohan's mother. Her brother Ravi is Mohan's maternal uncle."
+      },
+      {
+        "prompt": "P is Q's daughter. Q is R's son. What is P's relation to R?",
+        "options": [
+          "Granddaughter",
+          "Aunt",
+          "Sister",
+          "Mother"
+        ],
+        "correct_index": 0,
+        "explanation": "Q is R's son and P is Q's daughter, so P is R's granddaughter."
       }
     ],
     "mastery_threshold": 0.7,
@@ -114,37 +159,45 @@
       "type": "misconception",
       "question": "Name a common mistake in Blood Relations.",
       "answer": "The statement may describe an in-law; track the exact relationship given."
+    },
+    {
+      "type": "method",
+      "question": "What is the safest way to solve a long blood-relation chain?",
+      "answer": "Draw a family tree and add one relationship at a time."
     }
   ],
   "learning_objectives": [
-    "Translate family statements into relationships.",
-    "Track gender and generation separately.",
-    "Draw a family tree for multi-step questions.",
-    "Avoid assuming unstated relationships."
+    "Translate family statements into a family-tree diagram.",
+    "Track maternal and paternal relationships across generations.",
+    "Use gender information without assuming unstated facts.",
+    "Solve multi-step family relationship questions accurately."
   ],
   "prerequisites": [
-    "logical_puzzles"
+    "coding_decoding"
   ],
   "concepts": [
     "generation",
+    "parent",
+    "child",
+    "sibling",
     "maternal",
     "paternal",
-    "sibling",
-    "parent",
-    "family tree"
+    "in-law",
+    "family tree",
+    "reference person"
   ],
   "common_misconceptions": [
     {
-      "misconception": "A parent's sibling is always an uncle or aunt by blood.",
-      "correction": "The statement may describe an in-law; track the exact relationship given."
+      "misconception": "A sibling of a parent is always an uncle regardless of gender.",
+      "correction": "A parent's brother is an uncle and a parent's sister is an aunt; use the gender clue."
     },
     {
-      "misconception": "Gender can be inferred from a name.",
-      "correction": "Use only explicit gender clues in the question."
+      "misconception": "The speaker's gender can be assumed from the sentence.",
+      "correction": "Use only explicit gender information; otherwise the relationship may remain gender-neutral."
     },
     {
-      "misconception": "If A is B's sibling, B must be older.",
-      "correction": "Sibling statements do not establish age order."
+      "misconception": "A relationship chain should be read only from left to right.",
+      "correction": "Anchor the reference person first and trace each pronoun to the person it refers to."
     }
   ],
   "worked_examples": [
@@ -184,19 +237,33 @@
   ],
   "company_applications": [
     {
-      "company": "TCS",
-      "skill": "blood relations reasoning",
-      "practice": "Draw generations and label gender only when stated."
+      "company": "TCS NQT",
+      "skill": "family tree reasoning",
+      "practice": "Sketch each generation and mark genders explicitly."
     },
     {
-      "company": "Accenture",
-      "skill": "logical reasoning",
-      "practice": "Convert each sentence into a family-tree edge."
+      "company": "Infosys",
+      "skill": "multi-step logical reasoning",
+      "practice": "Translate pronouns into a diagram before selecting an option."
     },
     {
       "company": "Wipro",
-      "skill": "relationship puzzles",
-      "practice": "Avoid assumptions about age and in-law relationships."
+      "skill": "verbal reasoning",
+      "practice": "Avoid assuming relationships that are not stated."
     }
-  ]
+  ],
+  "quest": {
+    "chapter": "The Family Tree Archive",
+    "rank": "Relationship Analyst",
+    "story": "A set of family statements has arrived in the hiring arena. Your task is to turn each statement into a family tree so the relationship is proven rather than guessed.",
+    "mission": "Track generations, gender clues and family links using a small diagram.",
+    "success_criteria": [
+      "Identify the reference person in a statement.",
+      "Draw parent, child and sibling links.",
+      "Track maternal and paternal sides.",
+      "Resolve multi-step relationship chains."
+    ]
+  },
+  "next_lesson_slug": "syllogisms",
+  "next_lesson_title": "Syllogisms"
 }
