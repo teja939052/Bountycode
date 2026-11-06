@@ -119,5 +119,99 @@
         "explanation": "Function-local variables are scoped to the function unless explicitly declared otherwise."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Distinguish values, variables and data types.",
+    "Choose a suitable type for a problem.",
+    "Trace conditions and control flow.",
+    "Explain function parameters, return values and scope."
+  ],
+  "prerequisites": [],
+  "concepts": [
+    "values",
+    "variables",
+    "types",
+    "conditions",
+    "control flow",
+    "functions",
+    "scope"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "A variable is the value itself.",
+      "correction": "A variable is a named reference or storage location associated with a value."
+    },
+    {
+      "misconception": "A condition always runs its body.",
+      "correction": "A conditional body runs only when its condition evaluates to true."
+    },
+    {
+      "misconception": "Printing a value and returning a value are identical.",
+      "correction": "Printing displays output; returning sends a value back to the caller."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Choose a type",
+      "input": "age = 18\\nname = 'Teja'\\nactive = True",
+      "trace": [
+        "age stores a whole number.",
+        "name stores text.",
+        "active stores a Boolean value."
+      ],
+      "output": "integer, string, Boolean",
+      "explanation": "Types describe the kind of value and the operations that make sense for it."
+    },
+    {
+      "title": "Trace a condition",
+      "input": "marks = 72\\nif marks >= 40: print('Pass')",
+      "trace": [
+        "Read marks as 72.",
+        "Evaluate 72 >= 40 as true.",
+        "Execute the body."
+      ],
+      "output": "Pass",
+      "explanation": "Evaluate the condition before deciding which branch executes."
+    },
+    {
+      "title": "Return versus print",
+      "input": "def double(x):\\n    return x * 2\\nresult = double(4)",
+      "trace": [
+        "Call double with x = 4.",
+        "Calculate 4 * 2.",
+        "Return 8 to the caller."
+      ],
+      "output": "result is 8",
+      "explanation": "A returned value can be stored, combined or passed into another function."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "programming fundamentals and output tracing",
+      "practice": "Explain variable updates and trace branch conditions."
+    },
+    {
+      "company": "Infosys",
+      "skill": "basic programming and language concepts",
+      "practice": "Compare data types and explain function behavior."
+    },
+    {
+      "company": "Accenture",
+      "skill": "pseudocode and logical reasoning",
+      "practice": "Predict branch outcomes before writing code."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What are the key ideas in Programming Fundamentals Across Languages?",
+      "answer": "Distinguish values, variables and data types. Choose a suitable type for a problem. Trace conditions and control flow. Explain function parameters, return values and scope."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in Programming Fundamentals Across Languages.",
+      "answer": "A variable is a named reference or storage location associated with a value."
+    }
+  ]
 }
