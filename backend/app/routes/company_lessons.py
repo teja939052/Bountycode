@@ -77,6 +77,21 @@ LESSON_MODULE_TOPICS = {
     "sql_subqueries": {"subqueries", "exists", "not_exists", "in", "any_all"},
     "sql_group_by": {"group_by", "having", "aggregation"},
     "matrix_operations": {"matrices", "matrix", "matrix_operations"},
+    "pipes_cisterns": {"pipes_cisterns"},
+    "analogies_odd_one_out": {"number_analogies", "odd_one_out", "word_relationships", "word_analogy"},
+    "grammar_transformations": {"active_passive_voice", "direct_indirect_speech"},
+    "error_spotting": {"error_spotting"},
+    "vocabulary_cloze": {"cloze_test", "fill_in_blanks", "synonyms_antonyms", "vocabulary", "one_word_substitution"},
+    "programming_languages": {"java_python_basics", "c_java_python_basics"},
+    "collections_framework": {"collections"},
+    "pattern_printing": {"pattern_printing"},
+    "pattern_matching_basics": {"pattern_matching", "basic_pattern_matching", "pattern_recognition"},
+    "sql_indexes_triggers": {"indexing", "triggers"},
+    "algorithms_basics": {"basic_algorithms", "mathematical", "math"},
+    "arithmetic_algebra": {"arithmetic", "algebra", "math"},
+    "geometry_basics": {"geometry"},
+    "data_structures_intro": {"basic_ds"},
+    "essay_writing": {"technology_topics", "current_affairs", "opinion_essays", "technology", "business", "social_issues", "essay"},
 }
 
 
