@@ -6,6 +6,8 @@ Routes (all under /api/v1/company-lessons, auth required):
   GET  /api/v1/company-lessons/{slug}        → full lesson content
   POST /api/v1/company-lessons/{slug}/complete → record completion + rewards
 """
+from datetime import datetime, timezone
+
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
 from typing import Dict, Any, List, Optional
@@ -14,6 +16,7 @@ import json
 import logging
 
 from app.middleware.auth import get_current_user
+from app.database import learning_progress_collection
 from app.services.gamification import record_practice
 from app.services.learning_paths import record_track_topic_mastery
 from app.services.adaptive_learning import record_learning_activity
@@ -210,6 +213,10 @@ class StepAnswerRequest(BaseModel):
     answer_index: int = Field(..., ge=0)
 
 
+class LessonProgressRequest(BaseModel):
+    current_step: int = Field(..., ge=0, le=100)
+
+
 class CompleteRequest(BaseModel):
     # The server grades these assessment choices against the authored answer
     # key. A browser-supplied score is never trusted for completion or XP.
@@ -277,6 +284,69 @@ async def get_lesson(slug: str, user=Depends(get_current_user)):
     ]
     public_data["assessment"] = assessment
     return {"success": True, "data": public_data}
+
+
+@router.get("/{slug}/progress", response_model=None)
+async def get_lesson_progress(slug: str, user=Depends(get_current_user)):
+    """Return the learner's saved position without exposing lesson answer keys."""
+    data = _load_lesson(slug)
+    steps = (data or {}).get("steps") or []
+    if not data or not steps:
+        raise HTTPException(status_code=404, detail=f"Step-based lesson not found: {slug}")
+
+    progress_doc = await learning_progress_collection.find_one({"user_id": user["id"]}) or {}
+    saved = (progress_doc.get("lesson_progress") or {}).get(slug) or {}
+    try:
+        current_step = int(saved.get("current_step", 0))
+    except (TypeError, ValueError):
+        current_step = 0
+    current_step = max(0, min(current_step, len(steps) - 1))
+
+    return {
+        "success": True,
+        "data": {
+            "lesson_slug": slug,
+            "current_step": current_step,
+            "step_count": len(steps),
+            "updated_at": saved.get("updated_at"),
+            "has_progress": bool(saved),
+        },
+    }
+
+
+@router.put("/{slug}/progress", response_model=None)
+async def save_lesson_progress(
+    slug: str,
+    req: LessonProgressRequest,
+    user=Depends(get_current_user),
+):
+    """Persist a learner's last visited step so a lesson can be resumed."""
+    data = _load_lesson(slug)
+    steps = (data or {}).get("steps") or []
+    if not data or not steps:
+        raise HTTPException(status_code=404, detail=f"Step-based lesson not found: {slug}")
+    if req.current_step >= len(steps):
+        raise HTTPException(status_code=422, detail="The requested lesson step does not exist.")
+
+    updated_at = datetime.now(timezone.utc).isoformat()
+    await learning_progress_collection.update_one(
+        {"user_id": user["id"]},
+        {
+            "$set": {
+                f"lesson_progress.{slug}.current_step": req.current_step,
+                f"lesson_progress.{slug}.updated_at": updated_at,
+            }
+        },
+        upsert=True,
+    )
+    return {
+        "success": True,
+        "data": {
+            "lesson_slug": slug,
+            "current_step": req.current_step,
+            "updated_at": updated_at,
+        },
+    }
 
 
 @router.post("/{slug}/steps/{step_index}/answer", response_model=None)
