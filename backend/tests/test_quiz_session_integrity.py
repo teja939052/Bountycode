@@ -59,6 +59,7 @@ def test_practice_quiz_does_not_reveal_hints_or_solution_before_answer(monkeypat
     assert "solution" not in served
     assert "explanation" not in served
     assert "correct_answer" not in served
+    assert "test_cases" not in served
 
 
 def test_code_question_without_answer_key_cannot_be_self_graded(monkeypatch):
@@ -238,3 +239,27 @@ async def test_hints_are_owned_and_consumed_in_sequence(monkeypatch, quiz_collec
     with pytest.raises(HTTPException) as not_owner:
         await quiz_routes.get_hint(request, user={"id": "user-b"})
     assert not_owner.value.status_code == 404
+
+
+
+def test_company_filter_supports_legacy_singular_company_field(monkeypatch):
+    question = {
+        "id": "legacy_company_q",
+        "title": "TCS legacy item",
+        "question": "What is 2 + 2?",
+        "topic": "Quantitative Aptitude",
+        "difficulty": "easy",
+        "company": ["TCS"],
+        "correct_answer": "4",
+    }
+    monkeypatch.setattr(quiz_service, "_load_questions", lambda: [question])
+
+    result = quiz_service.build_quiz(
+        mode="practice",
+        company="tcs",
+        num_questions=1,
+    )
+
+    assert result["total_questions"] == 1
+    assert result["questions"][0]["id"] == "legacy_company_q"
+    assert result["questions"][0]["companies"] == ["TCS"]
