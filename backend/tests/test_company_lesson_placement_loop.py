@@ -107,7 +107,7 @@ async def test_client_supplied_score_cannot_complete_a_lesson(monkeypatch):
 
 
 @pytest.mark.asyncio
-async def test_failed_assessment_records_attempt_without_mastery(monkeypatch):
+async def test_failed_assessment_records_attempt_without_mastery(monkeypatch, fake_learning_progress):
     lesson = _lesson()
     monkeypatch.setattr(company_lessons, "_load_lesson", lambda _slug: lesson)
     _seed_passed_required_steps(fake_learning_progress, lesson)
@@ -141,7 +141,7 @@ async def test_failed_assessment_records_attempt_without_mastery(monkeypatch):
 
 
 @pytest.mark.asyncio
-async def test_passed_assessment_records_company_module_mastery(monkeypatch):
+async def test_passed_assessment_records_company_module_mastery(monkeypatch, fake_learning_progress):
     lesson = _lesson()
     monkeypatch.setattr(company_lessons, "_load_lesson", lambda _slug: lesson)
     _seed_passed_required_steps(fake_learning_progress, lesson)
@@ -178,7 +178,7 @@ async def test_passed_assessment_records_company_module_mastery(monkeypatch):
 
 
 @pytest.mark.asyncio
-async def test_step_answer_is_server_graded_and_records_evidence(monkeypatch):
+async def test_step_answer_is_server_graded_and_records_evidence(monkeypatch, fake_learning_progress):
     monkeypatch.setattr(company_lessons, "_load_lesson", lambda _slug: _lesson())
     recorded = []
 
@@ -285,7 +285,7 @@ async def test_final_assessment_cannot_skip_required_interactive_step(monkeypatc
 
 
 @pytest.mark.asyncio
-async def test_saved_resume_position_does_not_satisfy_lesson_evidence_gate(monkeypatch):
+async def test_saved_resume_position_does_not_satisfy_lesson_evidence_gate(monkeypatch, fake_learning_progress):
     lesson = _lesson()
     monkeypatch.setattr(company_lessons, "_load_lesson", lambda _slug: lesson)
     await company_lessons.save_lesson_progress(
@@ -305,7 +305,7 @@ async def test_saved_resume_position_does_not_satisfy_lesson_evidence_gate(monke
 
 
 @pytest.mark.asyncio
-async def test_old_step_pass_is_invalidated_when_authored_content_changes(monkeypatch):
+async def test_old_step_pass_is_invalidated_when_authored_content_changes(monkeypatch, fake_learning_progress):
     lesson = _lesson()
     _seed_passed_required_steps(fake_learning_progress, lesson)
     lesson["steps"][0]["prompt"] = "A materially revised prompt."
