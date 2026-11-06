@@ -11,7 +11,7 @@ export interface BrowserRunResult {
   source: "browser";
 }
 
-const BROWSER_LANGUAGES = new Set(["python", "javascript"]);
+const BROWSER_LANGUAGES = new Set(["javascript"]);
 const MAX_BROWSER_CODE_CHARS = 20_000;
 const MAX_OUTPUT_CHARS = 20_000;
 const PYODIDE_VERSION = "0.23.4";
@@ -181,7 +181,7 @@ function runJavaScriptInWorker(code: string, timeoutMs: number): Promise<Browser
     "  if (remaining > 0) lines.push(args.map(stringify).join(' ').slice(0, remaining));",
     "};",
     "const safeConsole = { log: write, info: write, warn: write, error: write, debug: write, clear: () => { lines.length = 0; } };",
-    "for (const key of ['fetch','XMLHttpRequest','WebSocket','EventSource','BroadcastChannel','SharedWorker','Worker','importScripts','MessageChannel']) {",
+    "for (const key of ['fetch','XMLHttpRequest','WebSocket','EventSource','BroadcastChannel','SharedWorker','Worker','importScripts','MessageChannel','indexedDB','caches','navigator','location','WebTransport','RTCPeerConnection','webkitRTCPeerConnection']) {",
     "  try { Object.defineProperty(self, key, { value: undefined, writable: false, configurable: false }); } catch (_) {}",
     "}",
     "try { Object.defineProperty(self, 'console', { value: safeConsole, writable: false, configurable: false }); } catch (_) { self.console = safeConsole; }",
