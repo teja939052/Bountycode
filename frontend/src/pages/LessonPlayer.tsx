@@ -634,7 +634,14 @@ export default function LessonPlayer() {
             <p className="text-xs text-brand-sky">+{lesson.xp_reward} XP</p>
           </div>
         </div>
-        <div className="h-2 rounded-full bg-white/5 overflow-hidden">
+        <div
+          className="h-2 rounded-full bg-white/5 overflow-hidden"
+          role="progressbar"
+          aria-label="Lesson progress"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={Math.round(progress)}
+        >
           <motion.div
             className="h-full bg-brand-sky"
             initial={{ width: 0 }}
@@ -1022,11 +1029,14 @@ export default function LessonPlayer() {
               }`}
             >
               <p
-                className={`text-sm ${
+                className={`mb-1 text-xs font-bold uppercase tracking-wide ${
                   answerResult.correct ? "text-green-300" : "text-red-300"
                 }`}
               >
-                {answerResult.explanation}
+                {answerResult.correct ? "Correct — nice work" : "Not quite — learn from the feedback"}
+              </p>
+              <p className="text-sm leading-6 text-text-primary">
+                {answerResult.explanation || "Review the worked example and try the concept again."}
               </p>
               {!answerResult.correct && step.step_type !== "code_lab" && (
                 <button
@@ -1059,7 +1069,7 @@ export default function LessonPlayer() {
             <button
               onClick={goNext}
               disabled={saving || (
-                ["interactive", "practice", "predict_output", "fill_blank", "order_steps"].includes(step.step_type)
+                ["interactive", "practice", "predict_output", "fill_blank", "order_steps", "debug_choice", "api_scenario"].includes(step.step_type)
                 && !answerResult
               ) || (step.step_type === "code_lab" && !codeLabResult?.passed) || (step.step_type === "sql_lab" && !answerResult?.correct)}
               className="rounded-xl bg-brand-sky px-4 py-2 text-sm text-white hover:bg-brand-sky/90 disabled:opacity-50"
