@@ -27,6 +27,20 @@ _LESSONS_DIR = os.path.join(_APP_DIR, "data", "lessons")
 # In-memory cache so we don't hit disk on every request.
 _LESSON_CACHE: Dict[str, Dict[str, Any]] = {}
 
+# A guided lesson can only certify a module whose authored topic overlaps the
+# skill it teaches. Query-string IDs from the browser are not proof of coverage.
+LESSON_MODULE_TOPICS = {
+    "arrays_basics": {"arrays", "array", "basic_arrays"},
+    "blood_relations": {"blood_relation", "blood_relations"},
+    "flowchart_basics": {"flowchart", "flowcharts", "flowchart_basics", "pseudocode"},
+    "reading_comprehension": {"reading_comprehension"},
+    "successive_percentage_change": {"percentages", "successive_percentage_change"},
+}
+
+
+def _normalize_topic(value: Any) -> str:
+    return str(value or "").strip().lower().replace("-", "_").replace(" ", "_")
+
 
 def _load_lesson(slug: str) -> Optional[Dict[str, Any]]:
     if slug in _LESSON_CACHE:
@@ -156,6 +170,32 @@ async def complete_lesson(slug: str, req: CompleteRequest, user=Depends(get_curr
         raise HTTPException(status_code=400, detail="track_id and module_id must be supplied together.")
 
     if req.track_id and req.module_id:
+        from app.data.learning_paths import COMPANY_TRACKS
+
+        track = COMPANY_TRACKS.get(req.track_id)
+        if not track:
+            raise HTTPException(status_code=404, detail="Company track not found.")
+        module = next(
+            (
+                module
+                for section in track.get("sections", [])
+                for module in section.get("modules", [])
+                if module.get("id") == req.module_id
+            ),
+            None,
+        )
+        if not module:
+            raise HTTPException(status_code=404, detail="Company module not found.")
+        lesson_topics = LESSON_MODULE_TOPICS.get(slug, set())
+        module_topics = {
+            _normalize_topic(topic) for topic in module.get("topics", [])
+        }
+        if not lesson_topics.intersection(module_topics):
+            raise HTTPException(
+                status_code=422,
+                detail="This lesson does not assess the selected company module's topics.",
+            )
+
         try:
             module_result = await complete_track_module(
                 user_id=user["id"],
