@@ -93,6 +93,7 @@ class CompleteRequest(BaseModel):
     time_spent_seconds: int = Field(default=0, ge=0)
     track_id: Optional[str] = None
     module_id: Optional[str] = None
+    topic_id: Optional[str] = None
 
 
 @router.get("", response_model=None)
