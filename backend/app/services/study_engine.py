@@ -404,15 +404,12 @@ async def _get_role_activity(user_id: str) -> Optional[Dict[str, Any]]:
 
 
 async def _get_user_role(user_id: str) -> Optional[str]:
-    """Get the student's selected role from their profile."""
+    """Get the student's selected role from their authenticated profile."""
     try:
-        from app.database import users_collection
-        user = await users_collection.find_one({"user_id": user_id})
-        if user:
-            return user.get("selected_role")
+        user = await _get_user_profile(user_id)
+        return user.get("selected_role") or user.get("target_role") or None
     except Exception:
-        pass
-    return None
+        return None
 
 
 # â”€â”€â”€ 6. COMPANY MISSION â€” company-aligned daily objective â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
