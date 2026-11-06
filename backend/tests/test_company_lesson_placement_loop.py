@@ -416,3 +416,76 @@ async def test_order_steps_rejects_duplicate_positions(monkeypatch):
         )
 
     assert exc.value.status_code == 422
+
+
+@pytest.mark.asyncio
+async def test_code_lab_expected_output_is_private_until_submission(monkeypatch):
+    lesson = _lesson()
+    lesson["steps"][0] = {
+        "step_number": 1, "step_type": "code_lab", "title": "Run a code exercise",
+        "prompt": "Print the required output.", "language": "javascript",
+        "starter_code": "console.log('done')", "expected_output": "done",
+        "explanation": "The output is produced by console.log.",
+    }
+    monkeypatch.setattr(company_lessons, "_load_lesson", lambda _slug: lesson)
+    public = await company_lessons.get_lesson("successive_percentage_change", user={"id": "test-user"})
+    assert "expected_output" not in public["data"]["steps"][0]
+    assert "explanation" not in public["data"]["steps"][0]
+
+
+@pytest.mark.asyncio
+async def test_code_lab_output_is_server_checked_without_revealing_expected_value(monkeypatch):
+    lesson = _lesson()
+    lesson["steps"][0] = {
+        "step_number": 1, "step_type": "code_lab", "title": "Run a code exercise",
+        "expected_output": "42", "explanation": "The sum is 42.",
+    }
+    monkeypatch.setattr(company_lessons, "_load_lesson", lambda _slug: lesson)
+    recorded = []
+    async def fake_record_learning_activity(user_id, activity):
+        recorded.append(activity)
+        return {"status": "success"}
+    monkeypatch.setattr(company_lessons, "record_learning_activity", fake_record_learning_activity)
+
+    result = await company_lessons.answer_lesson_step(
+        "successive_percentage_change", 0,
+        company_lessons.StepAnswerRequest(answer_text="42"),
+        user={"id": "test-user"},
+    )
+    assert result["data"]["correct"] is True
+    assert result["data"]["correct_answer"] is None
+    assert "42" not in str(result["data"].get("feedback"))
+    assert recorded[0]["success"] is True
+
+
+@pytest.mark.asyncio
+async def test_sql_lab_hides_grading_data_and_grades_query(monkeypatch):
+    lesson = _lesson()
+    lesson["steps"][0] = {
+        "step_number": 1, "step_type": "sql_lab", "title": "Select assigned employees",
+        "prompt": "Return names and department names.",
+        "schema_preview": "employees(id, name, department_id)", "sample_data": "1 | Asha | 10",
+        "schema_ddl": "CREATE TABLE employees(id INTEGER, name TEXT, department_id INTEGER); CREATE TABLE departments(id INTEGER, name TEXT);",
+        "seed_inserts": "INSERT INTO employees VALUES (1, 'Asha', 10); INSERT INTO departments VALUES (10, 'Sales');",
+        "expected_query": "SELECT e.name, d.name FROM employees e JOIN departments d ON e.department_id = d.id;",
+        "explanation": "Join the matching department id.",
+    }
+    monkeypatch.setattr(company_lessons, "_load_lesson", lambda _slug: lesson)
+    recorded = []
+    async def fake_record_learning_activity(user_id, activity):
+        recorded.append(activity)
+        return {"status": "success"}
+    monkeypatch.setattr(company_lessons, "record_learning_activity", fake_record_learning_activity)
+
+    public = await company_lessons.get_lesson("successive_percentage_change", user={"id": "test-user"})
+    public_step = public["data"]["steps"][0]
+    for secret in ("schema_ddl", "seed_inserts", "expected_query"):
+        assert secret not in public_step
+
+    result = await company_lessons.answer_lesson_step(
+        "successive_percentage_change", 0,
+        company_lessons.StepAnswerRequest(answer_text="SELECT e.name, d.name FROM employees e JOIN departments d ON e.department_id = d.id;"),
+        user={"id": "test-user"},
+    )
+    assert result["data"]["correct"] is True
+    assert recorded[0]["success"] is True
