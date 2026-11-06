@@ -140,6 +140,12 @@ const LESSON_BY_TOPIC: Record<string, string> = {
   business: "essay_writing",
   social_issues: "essay_writing",
   essay: "essay_writing",
+  advanced_probability: "advanced_probability",
+  advanced_time_work: "advanced_time_work",
+  simple_compound_interest: "simple_compound_interest",
+  critical_reasoning: "logical_puzzles",
+  dynamic_programming_basics: "dynamic_programming",
+
 };
 
 function lessonForModule(
