@@ -166,3 +166,75 @@ async def test_quiz_answers_and_results_are_owned_and_server_backed(monkeypatch,
     stored = await quiz_collection.find_one({"quiz_id": "quiz_session_1"})
     assert stored["status"] == "completed"
     assert stored["answers"][0]["is_correct"] is True
+
+
+
+def test_multiple_choice_answers_are_graded_by_server_answer_key(monkeypatch):
+    question = {
+        "id": "mcq_1",
+        "options": ["10", "20", "30", "40"],
+        "correct_index": 2,
+        "explanation": "The correct choice is 30.",
+        "xp_reward": 10,
+    }
+    monkeypatch.setattr(quiz_service, "get_question_by_id", lambda _qid: question)
+
+    result = quiz_service.submit_quiz_answer(
+        quiz_id="quiz_mcq",
+        question_id="mcq_1",
+        user_answer="2",
+        time_taken_seconds=5,
+    )
+
+    assert result["is_correct"] is True
+    assert result["correct_answer"] == "30"
+    assert result["explanation"] == "The correct choice is 30."
+
+
+@pytest.mark.asyncio
+async def test_hints_are_owned_and_consumed_in_sequence(monkeypatch, quiz_collection):
+    await quiz_collection.insert_one({
+        "user_id": "user-a",
+        "session_type": "quiz",
+        "quiz_id": "quiz_hint",
+        "question_ids": ["quiz_q_1"],
+        "answers": [],
+        "hint_counts": {},
+        "status": "in_progress",
+    })
+
+    def fake_hint(question_id, hint_level, hints_already_used):
+        return {
+            "hint": {"level": hint_level, "text": f"Hint {hint_level}"},
+            "hint_level": hint_level,
+            "hints_used": hints_already_used + 1,
+        }
+
+    monkeypatch.setattr(quiz_routes, "get_hint_for_question", fake_hint)
+    request = quiz_routes.HintRequest(
+        question_id="quiz_q_1",
+        quiz_id="quiz_hint",
+        hint_level=1,
+        hints_already_used=0,
+    )
+    first = await quiz_routes.get_hint(request, user={"id": "user-a"})
+    assert first["hint"]["text"] == "Hint 1"
+
+    with pytest.raises(HTTPException) as repeated:
+        await quiz_routes.get_hint(request, user={"id": "user-a"})
+    assert repeated.value.status_code == 409
+
+    second = await quiz_routes.get_hint(
+        quiz_routes.HintRequest(
+            question_id="quiz_q_1",
+            quiz_id="quiz_hint",
+            hint_level=2,
+            hints_already_used=0,  # Client value is ignored.
+        ),
+        user={"id": "user-a"},
+    )
+    assert second["hint"]["text"] == "Hint 2"
+
+    with pytest.raises(HTTPException) as not_owner:
+        await quiz_routes.get_hint(request, user={"id": "user-b"})
+    assert not_owner.value.status_code == 404
