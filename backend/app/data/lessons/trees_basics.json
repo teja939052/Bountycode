@@ -215,5 +215,7 @@
       "question": "What mistake should you avoid in Trees and Binary Search Trees?",
       "answer": "A BST additionally enforces an ordering rule on left and right subtrees."
     }
-  ]
+  ],
+  "next_lesson_slug": "dynamic_programming",
+  "next_lesson_title": "Dynamic Programming Basics"
 }
