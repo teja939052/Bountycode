@@ -307,5 +307,17 @@
     }
   ],
   "next_lesson_slug": "functions_basics",
-  "next_lesson_title": "Functions, Parameters and Return Values"
+  "next_lesson_title": "Functions, Parameters and Return Values",
+  "quest": {
+    "chapter": "The Decision Forge",
+    "rank": "Logic Apprentice",
+    "story": "The academy receives applications from learners with different scores and eligibility rules. It needs a reliable decision system that chooses exactly the correct route for each candidate.",
+    "mission": "Build and debug a set of decisions using comparisons, Boolean logic and correctly ordered branches.",
+    "success_criteria": [
+      "Evaluate comparisons as true or false.",
+      "Trace if/elif/else branch selection.",
+      "Combine multiple requirements.",
+      "Repair an unreachable branch."
+    ]
+  }
 }
