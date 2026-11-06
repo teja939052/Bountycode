@@ -100,7 +100,7 @@ function runJavaScriptInWorker(code: string, timeoutMs: number): Promise<Browser
     "    send({ type: 'result', success: false, stdout: lines.join('\\n').slice(0, 20000), stderr: String(error && error.message || error).slice(0, 5000) });",
     "  }",
     "};",
-  ].join('\n');
+  ].join("\n");
 
   let worker: Worker;
   let objectUrl = "";
