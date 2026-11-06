@@ -1,0 +1,123 @@
+{
+  "slug": "exception_handling",
+  "id": "lesson_exception_handling_001",
+  "title": "Exception Handling",
+  "domain": "Programming Fundamentals",
+  "pattern": "Exception Handling",
+  "difficulty": "easy",
+  "duration_min": 22,
+  "xp_reward": 100,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Errors during execution",
+      "content": "An exception is an event that interrupts normal program flow, such as dividing by zero, opening a missing file or converting invalid input. Handling exceptions lets a program respond safely.",
+      "example": "Converting the text 'abc' to an integer raises a ValueError in Python."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Choose a specific exception",
+      "prompt": "Which Python exception is raised by int('hello')?",
+      "options": [
+        "TypeError",
+        "ValueError",
+        "KeyError",
+        "IndexError"
+      ],
+      "correct_index": 1,
+      "explanation": "The argument is a string, but it does not contain a valid integer representation, so int() raises ValueError."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Use try and except",
+      "content": "Place risky code in try. Add an except block for the specific exception you can handle. Avoid catching every exception unless you can safely recover.",
+      "example": "try: age = int(text)\\nexcept ValueError: print('Enter a whole number')",
+      "tip": "Catch the narrowest meaningful exception so unexpected bugs are not hidden."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Understand finally",
+      "prompt": "In Python, when does a finally block run?",
+      "options": [
+        "Only when there is no exception",
+        "Only when an exception occurs",
+        "After try/except whether an exception occurs or not",
+        "Only when return is used"
+      ],
+      "correct_index": 2,
+      "explanation": "finally runs as control leaves the try statement, whether or not an exception occurred."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Raise and clean up",
+      "content": "Use raise to signal an invalid condition. Use finally or a context manager to release resources. In Python, with open(...) automatically closes a file even if an exception occurs.",
+      "example": "if quantity < 0: raise ValueError('Quantity cannot be negative')"
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "Which block contains code that may raise an exception?",
+        "options": [
+          "try",
+          "except",
+          "finally",
+          "else"
+        ],
+        "correct_index": 0,
+        "explanation": "The try block contains code that may fail."
+      },
+      {
+        "prompt": "Which exception commonly occurs when accessing a missing dictionary key with d[key]?",
+        "options": [
+          "IndexError",
+          "KeyError",
+          "ValueError",
+          "ZeroDivisionError"
+        ],
+        "correct_index": 1,
+        "explanation": "A missing dictionary key raises KeyError."
+      },
+      {
+        "prompt": "What is the purpose of except?",
+        "options": [
+          "Repeat a loop",
+          "Handle a matching exception",
+          "Declare a class",
+          "Close every program"
+        ],
+        "correct_index": 1,
+        "explanation": "except runs when an exception matching its handler is raised."
+      },
+      {
+        "prompt": "What does raise do?",
+        "options": [
+          "Silently ignore an error",
+          "Create a new list",
+          "Explicitly signal an exception",
+          "Sort data"
+        ],
+        "correct_index": 2,
+        "explanation": "raise explicitly raises an exception."
+      },
+      {
+        "prompt": "Why is catching Exception broadly risky?",
+        "options": [
+          "It makes code compile slowly",
+          "It may hide unexpected programming errors",
+          "It prevents all exceptions",
+          "It closes files automatically"
+        ],
+        "correct_index": 1,
+        "explanation": "A broad catch can mask bugs that should be fixed rather than silently handled."
+      }
+    ]
+  }
+}
