@@ -347,6 +347,7 @@ export default function JourneyPage() {
             {nextAction?.action !== "company_track" && nextAction?.action !== "learn_mission" && (
               <Link to="/practice" className="flex min-h-[44px] items-center rounded-xl border border-black/10 bg-white px-4 text-sm font-semibold text-gray-700">Open practice</Link>
             )}
+            <Link to="/academy" className="flex min-h-[44px] items-center rounded-xl border border-emerald-200 bg-emerald-50 px-4 text-sm font-semibold text-emerald-800">Open Placement Academy</Link>
             <Link to="/target" className="flex min-h-[44px] items-center rounded-xl border border-black/10 bg-white px-4 text-sm font-semibold text-gray-700">Change target</Link>
           </div>
         </section>
@@ -684,12 +685,20 @@ export default function JourneyPage() {
                 <p className="mt-1 text-xs text-muted">
                   Your next company module is selected from your unfinished track and appears in Today's Mission.
                 </p>
-                <Link
-                  to={`/company-tracks?track=${encodeURIComponent(state.company.company_track)}`}
-                  className="mt-3 inline-flex min-h-10 items-center gap-2 rounded-xl border border-accent-primary/20 bg-accent-primary/10 px-3 text-xs font-semibold text-accent-primary"
-                >
-                  Open my company track <ChevronRight className="h-3.5 w-3.5" />
-                </Link>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  <Link
+                    to="/academy"
+                    className="inline-flex min-h-10 items-center gap-2 rounded-xl bg-accent-primary px-3 text-xs font-semibold text-white"
+                  >
+                    Open Placement Academy <ChevronRight className="h-3.5 w-3.5" />
+                  </Link>
+                  <Link
+                    to={`/company-tracks?track=${encodeURIComponent(state.company.company_track)}`}
+                    className="inline-flex min-h-10 items-center gap-2 rounded-xl border border-accent-primary/20 bg-accent-primary/10 px-3 text-xs font-semibold text-accent-primary"
+                  >
+                    Open company syllabus <ChevronRight className="h-3.5 w-3.5" />
+                  </Link>
+                </div>
               </>
             ) : (
               <>
