@@ -27,7 +27,11 @@
         "C–A–B"
       ],
       "correct_index": 2,
-      "explanation": "Both constraints are satisfied only by A before B before C."
+      "explanation": "Both constraints are satisfied only by A before B before C.",
+      "hints": [
+        "Convert 'A is before B' into a position constraint.",
+        "Check each answer option against both constraints, not only one."
+      ]
     },
     {
       "step_number": 3,
@@ -48,7 +52,11 @@
         "R"
       ],
       "correct_index": 1,
-      "explanation": "The only order satisfying all clues is S–P–Q–R. P is second from the left."
+      "explanation": "The only order satisfying all clues is S–P–Q–R. P is second from the left.",
+      "hints": [
+        "Write the four people into numbered slots from left to right.",
+        "Apply the left/right constraints in sequence and see which slot remains for each person."
+      ]
     },
     {
       "step_number": 5,
@@ -119,34 +127,36 @@
     ]
   },
   "learning_objectives": [
-    "Translate clues into constraints.",
-    "Eliminate impossible arrangements systematically.",
-    "Distinguish necessary conclusions from assumptions.",
-    "Use tables or diagrams to track relationships."
+    "Translate ordering and seating clues into constraints.",
+    "Use slots and tables to track possible arrangements.",
+    "Eliminate candidates that violate any clue.",
+    "Identify conclusions that hold across all valid arrangements."
   ],
   "prerequisites": [
-    "programming_languages"
+    "syllogisms"
   ],
   "concepts": [
-    "constraints",
-    "seating arrangement",
     "ordering",
+    "adjacency",
+    "before and after",
+    "position slots",
+    "constraint",
     "elimination",
-    "syllogism",
-    "case analysis"
+    "case analysis",
+    "necessary conclusion"
   ],
   "common_misconceptions": [
     {
-      "misconception": "A likely arrangement is automatically the only valid one.",
-      "correction": "Check every clue and test whether another arrangement also satisfies them."
+      "misconception": "One arrangement that satisfies the clues is automatically unique.",
+      "correction": "Check whether another arrangement also satisfies every clue."
     },
     {
-      "misconception": "A conclusion that sounds reasonable must follow logically.",
-      "correction": "Only conclusions forced by the stated premises are valid."
+      "misconception": "Immediately left and somewhere left mean the same thing.",
+      "correction": "Immediately left means adjacent; somewhere left allows intervening positions."
     },
     {
-      "misconception": "Skipping a clue saves time.",
-      "correction": "A missed clue often creates an incorrect or incomplete solution."
+      "misconception": "A conclusion can be accepted if most clues support it.",
+      "correction": "Every clue must hold for an arrangement to be valid."
     }
   ],
   "worked_examples": [
@@ -186,19 +196,19 @@
   ],
   "company_applications": [
     {
+      "company": "TCS NQT",
+      "skill": "seating and ordering puzzles",
+      "practice": "Use slots and eliminate options that violate any clue."
+    },
+    {
+      "company": "Infosys",
+      "skill": "logical arrangements",
+      "practice": "Separate adjacency clues from general ordering clues."
+    },
+    {
       "company": "Accenture",
-      "skill": "logical reasoning and arrangements",
-      "practice": "Draw a compact table and verify every clue."
-    },
-    {
-      "company": "TCS",
-      "skill": "logical reasoning and syllogisms",
-      "practice": "Separate what is stated from what is merely possible."
-    },
-    {
-      "company": "Wipro",
-      "skill": "puzzles and direction sense",
-      "practice": "Use elimination rather than guessing."
+      "skill": "constraint-based reasoning",
+      "practice": "Check whether the proposed answer is true in every valid case."
     }
   ],
   "srs_cards": [
@@ -211,6 +221,30 @@
       "type": "misconception",
       "question": "Name a common mistake in Logical Puzzles and Arrangements.",
       "answer": "Check every clue and test whether another arrangement also satisfies them."
+    },
+    {
+      "type": "method",
+      "question": "What should you do first in an arrangement puzzle?",
+      "answer": "Translate each sentence into an explicit position or adjacency constraint."
+    },
+    {
+      "type": "distinction",
+      "question": "What does immediately left mean?",
+      "answer": "The person or item is directly adjacent on the left, with no intervening position."
     }
-  ]
+  ],
+  "quest": {
+    "chapter": "The Arrangement Arena",
+    "rank": "Constraint Solver",
+    "story": "A hiring team gives you ordering clues about people, tasks and schedules. The correct answer must satisfy every clue—not just the first one that looks useful.",
+    "mission": "Turn words into constraints, maintain possible slots and verify every candidate arrangement.",
+    "success_criteria": [
+      "Translate before/after and adjacency clues.",
+      "Use numbered slots or a table.",
+      "Eliminate impossible arrangements.",
+      "Distinguish forced facts from one possible arrangement."
+    ]
+  },
+  "next_lesson_slug": "flowchart_basics",
+  "next_lesson_title": "Flowcharts and Pseudocode"
 }
