@@ -295,7 +295,10 @@ export default function PlacementAcademy() {
   }
 
   return (
-    <div className="space-y-6 pb-12">\n      <div id="academy-profile"><AcademyProfileSetup /></div>\n      <AcademyDiagnostic />\n      <AcademyPersonalPlan />
+    <div className="space-y-6 pb-12">
+      <div id="academy-profile"><AcademyProfileSetup /></div>
+      <AcademyDiagnostic />
+      <AcademyPersonalPlan />
       <header className="rounded-3xl border border-[#e7e2d8] bg-gradient-to-br from-white via-[#fbfaf6] to-[#f0f5ed] p-5 shadow-sm sm:p-7">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
