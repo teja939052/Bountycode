@@ -132,7 +132,7 @@ export default function AcademyDiagnostic() {
         </div>
       ) : (
         <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-slate-50 p-4">
-          <div><p className="font-semibold text-slate-900">Not assessed yet</p><p className="mt-1 text-sm text-slate-600">Usually 15–25 questions, depending on the available question bank.</p></div>
+          <div><p className="font-semibold text-slate-900">Not assessed yet</p><p className="mt-1 text-sm text-slate-600">A baseline across the available placement skill areas. The question count adapts to the verified question bank.</p></div>
           <button type="button" disabled={start.isPending} onClick={() => start.mutate()} className="rounded-xl bg-indigo-700 px-5 py-3 text-sm font-bold text-white disabled:opacity-50">{start.isPending ? "Preparing..." : "Start diagnostic"}</button>
         </div>
       )}
