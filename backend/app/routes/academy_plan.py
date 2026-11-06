@@ -16,7 +16,7 @@ _diagnostics = lambda: get_collection("academy_diagnostic_sessions")
 _plans = lambda: get_collection("academy_learning_plans")
 
 LESSON_BY_DOMAIN = {
-    "programming_fundamentals": "programming_languages",
+    "programming_fundamentals": "variables_basics",
     "arrays_hashing": "arrays_basics",
     "quantitative_aptitude": "arithmetic_algebra",
     "logical_reasoning": "logical_puzzles",
