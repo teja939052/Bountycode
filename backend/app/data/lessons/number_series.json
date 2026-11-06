@@ -119,5 +119,101 @@
         "explanation": "Differences are 3,5,7,9; next difference is 11, so 27+11=38."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Detect arithmetic and geometric patterns.",
+    "Check alternating and interleaved sequences.",
+    "Use differences to test candidate rules.",
+    "Avoid choosing a pattern that fits only two terms."
+  ],
+  "prerequisites": [
+    "arithmetic_algebra"
+  ],
+  "concepts": [
+    "common difference",
+    "common ratio",
+    "second differences",
+    "alternating series",
+    "pattern validation"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Any two terms define the intended pattern.",
+      "correction": "Use several terms and prefer a simple consistent rule."
+    },
+    {
+      "misconception": "Every series is arithmetic or geometric.",
+      "correction": "Some series alternate rules or use squares, cubes or changing differences."
+    },
+    {
+      "misconception": "A guessed next term is enough.",
+      "correction": "Explain a rule that accounts for all given terms."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Arithmetic sequence",
+      "input": "4, 7, 10, 13, ?",
+      "trace": [
+        "7 - 4 = 3.",
+        "10 - 7 = 3.",
+        "13 - 10 = 3.",
+        "Add 3 to the final term."
+      ],
+      "output": "16",
+      "explanation": "A constant first difference indicates an arithmetic sequence."
+    },
+    {
+      "title": "Geometric sequence",
+      "input": "3, 6, 12, 24, ?",
+      "trace": [
+        "6 / 3 = 2.",
+        "12 / 6 = 2.",
+        "24 / 12 = 2.",
+        "Multiply by 2 again."
+      ],
+      "output": "48",
+      "explanation": "A constant ratio indicates a geometric sequence."
+    },
+    {
+      "title": "Alternating sequence",
+      "input": "2, 10, 4, 20, 6, 30, ?",
+      "trace": [
+        "Odd positions: 2, 4, 6 increase by 2.",
+        "Even positions: 10, 20, 30 increase by 10.",
+        "The next odd-position value is 8."
+      ],
+      "output": "8",
+      "explanation": "Separate alternating subsequences when one simple difference does not fit."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "number series and aptitude",
+      "practice": "Write down differences and test the rule across all terms."
+    },
+    {
+      "company": "Accenture",
+      "skill": "logical and numerical reasoning",
+      "practice": "Check alternating subsequences and common powers."
+    },
+    {
+      "company": "Wipro",
+      "skill": "pattern recognition",
+      "practice": "Explain why the pattern fits every given term."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What are the key ideas in Number Series?",
+      "answer": "Detect arithmetic and geometric patterns. Check alternating and interleaved sequences. Use differences to test candidate rules. Avoid choosing a pattern that fits only two terms."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in Number Series.",
+      "answer": "Use several terms and prefer a simple consistent rule."
+    }
+  ]
 }
