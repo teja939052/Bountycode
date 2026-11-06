@@ -67,6 +67,8 @@ type LessonContent = {
   worked_examples?: Array<{ title: string; input: string; trace: string[]; output: string; explanation: string }>;
   common_misconceptions?: Array<{ misconception: string; correction: string }>;
   company_applications?: Array<{ company: string; skill: string; practice: string }>;
+  next_lesson_slug?: string;
+  next_lesson_title?: string;
 };
 
 type AnswerResult = {
@@ -492,27 +494,36 @@ export default function LessonPlayer() {
             >
               {trackId ? "Back to company track" : "Back to Learn"}
             </Link>
-            <button
-              onClick={() => {
-                setCurrentStep(0);
-                setResumedFromStep(false);
-                setPhase("learn");
-                setAssessmentAnswers({});
-                setAssessmentResult(null);
-                setAssessmentError("");
-                setStepError("");
-                setSelectedAnswer(null);
-                setAnswerResult(null);
-                setShowExplanation(false);
-                setCompleted(false);
-                setCompletionData(null);
-                setCorrectCount(0);
-                setAttemptedCount(0);
-              }}
-              className="rounded-xl bg-brand-sky px-4 py-2 text-sm text-white hover:bg-brand-sky/90"
-            >
-              Review Again
-            </button>
+            {completionData?.passed && lesson.next_lesson_slug && !trackId ? (
+              <Link
+                to={`/learn/lesson/${lesson.next_lesson_slug}`}
+                className="inline-flex items-center gap-2 rounded-xl bg-brand-sky px-4 py-2 text-sm font-semibold text-white hover:bg-brand-sky/90"
+              >
+                {lesson.next_lesson_title || "Next lesson"} <ChevronRight size={15} />
+              </Link>
+            ) : (
+              <button
+                onClick={() => {
+                  setCurrentStep(0);
+                  setResumedFromStep(false);
+                  setPhase("learn");
+                  setAssessmentAnswers({});
+                  setAssessmentResult(null);
+                  setAssessmentError("");
+                  setStepError("");
+                  setSelectedAnswer(null);
+                  setAnswerResult(null);
+                  setShowExplanation(false);
+                  setCompleted(false);
+                  setCompletionData(null);
+                  setCorrectCount(0);
+                  setAttemptedCount(0);
+                }}
+                className="rounded-xl bg-brand-sky px-4 py-2 text-sm text-white hover:bg-brand-sky/90"
+              >
+                Review Again
+              </button>
+            )}
           </div>
         </motion.div>
       </div>
