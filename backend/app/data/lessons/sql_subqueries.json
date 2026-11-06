@@ -119,5 +119,7 @@
         "explanation": "NOT EXISTS is true when the subquery returns no rows."
       }
     ]
-  }
+  },
+  "next_lesson_slug": "sql_indexes_triggers",
+  "next_lesson_title": "SQL Indexes and Triggers"
 }
