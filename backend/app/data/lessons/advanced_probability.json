@@ -120,5 +120,7 @@
         "explanation": "Subtract the overlap once so shared outcomes are not counted twice."
       }
     ]
-  }
+  },
+  "next_lesson_slug": "geometry_basics",
+  "next_lesson_title": "Geometry Basics"
 }
