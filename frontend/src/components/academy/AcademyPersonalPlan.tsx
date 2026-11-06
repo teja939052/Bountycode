@@ -72,7 +72,7 @@ export default function AcademyPersonalPlan() {
         <div className="mt-5">
           <div className="mb-2 flex items-center justify-between gap-2">
             <p className="text-sm font-bold text-slate-800">Skill snapshot</p>
-            <span className="text-xs text-slate-500">Lowest-priority gaps first</span>
+            <span className="text-xs text-slate-500">Biggest skill gaps first · prerequisites respected</span>
           </div>
           <div className="grid gap-2 sm:grid-cols-2">
             {plan.curriculum.slice(0, 4).map((skill: any, index: number) => {
@@ -89,6 +89,9 @@ export default function AcademyPersonalPlan() {
                     <div className="h-full rounded-full bg-emerald-600" style={{ width: `${score ?? 0}%` }} />
                   </div>
                   <p className="mt-1 text-xs text-slate-500">{String(skill.skill_level || "not assessed").replaceAll("_", " ")}</p>
+                  {skill.prerequisite_status === "needs_foundation" && (
+                    <p className="mt-1 text-xs font-semibold text-amber-700">Build prerequisite foundations before this topic</p>
+                  )}
                 </>
               );
               return skill.lesson_slug ? (
