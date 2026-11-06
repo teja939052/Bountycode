@@ -69,6 +69,7 @@ export default function LessonPlayer() {
   const [assessmentAnswers, setAssessmentAnswers] = useState<Record<string, number>>({});
   const [assessmentResult, setAssessmentResult] = useState<any>(null);
   const [assessmentError, setAssessmentError] = useState("");
+  const [stepError, setStepError] = useState("");
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [answerResult, setAnswerResult] = useState<AnswerResult>(null);
   const [showExplanation, setShowExplanation] = useState(false);
@@ -86,6 +87,7 @@ export default function LessonPlayer() {
     setAssessmentAnswers({});
     setAssessmentResult(null);
     setAssessmentError("");
+    setStepError("");
     setSelectedAnswer(null);
     setAnswerResult(null);
     setShowExplanation(false);
@@ -120,6 +122,7 @@ export default function LessonPlayer() {
       if (step.step_type !== "interactive" && step.step_type !== "practice") return;
 
       setSelectedAnswer(index);
+      setStepError("");
       setSaving(true);
       try {
         const response: any = await api.companyLessons.answerStep(lessonSlug, currentStep, index);
@@ -133,9 +136,10 @@ export default function LessonPlayer() {
           explanation: result.explanation || "",
         });
         setShowExplanation(true);
+        void queryClient.invalidateQueries({ queryKey: ["adaptive"] });
       } catch (error: any) {
         setSelectedAnswer(null);
-        setAssessmentError(error?.message || "Could not check this answer. Please retry.");
+        setStepError(error?.message || "Could not check this answer. Please retry.");
       } finally {
         setSaving(false);
       }
@@ -190,6 +194,7 @@ export default function LessonPlayer() {
           queryClient.invalidateQueries({ queryKey: ["company-tracks"] }),
           queryClient.invalidateQueries({ queryKey: ["journey", "state"] }),
           queryClient.invalidateQueries({ queryKey: ["study", "today"] }),
+          queryClient.invalidateQueries({ queryKey: ["adaptive"] }),
         ]);
       } else {
         setAssessmentError(
@@ -239,8 +244,10 @@ export default function LessonPlayer() {
           <p className="text-sm text-text-secondary mb-4">
             {completionData?.passed
               ? trackId && completionData?.module_completed
-                ? "Mastery verified. Your company-track progress has been updated."
-                : "You passed the final assessment. Keep the skill fresh with spaced practice."
+                ? "All required topic skills are verified. Your company module is complete."
+                : trackId && completionData?.module_result
+                  ? `Topic mastery verified: ${completionData.module_result.mastered_topics?.length ?? 1} of ${completionData.module_result.required_topics?.length ?? "the"} required skills. Continue with the next topic to finish this module.`
+                  : "You passed the final assessment. Keep the skill fresh with spaced practice."
               : "Keep practicing. Review the explanation and try again."}
           </p>
           {completionData && (
@@ -258,6 +265,11 @@ export default function LessonPlayer() {
             <button
               onClick={() => {
                 setCurrentStep(0);
+                setPhase("learn");
+                setAssessmentAnswers({});
+                setAssessmentResult(null);
+                setAssessmentError("");
+                setStepError("");
                 setSelectedAnswer(null);
                 setAnswerResult(null);
                 setShowExplanation(false);
@@ -456,6 +468,11 @@ export default function LessonPlayer() {
             <div className="rounded-xl border border-yellow-500/30 bg-yellow-500/10 p-3 mb-4">
               <p className="text-xs text-yellow-200">💡 {step.tip}</p>
             </div>
+          )}
+          {stepError && (
+            <p role="alert" className="mb-4 rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-xs text-red-200">
+              {stepError}
+            </p>
           )}
 
           {(step.step_type === "interactive" || step.step_type === "practice") &&
