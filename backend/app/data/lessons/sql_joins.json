@@ -151,5 +151,103 @@
         "explanation": "FULL OUTER JOIN preserves matched and unmatched rows from both sides."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Explain why relational tables are joined.",
+    "Choose INNER, LEFT, RIGHT or FULL joins appropriately.",
+    "Predict row counts when keys repeat.",
+    "Use table aliases and explicit join conditions.",
+    "Recognize NULL values introduced by outer joins."
+  ],
+  "prerequisites": [
+    "dbms_basics",
+    "sql_select_basics"
+  ],
+  "concepts": [
+    "INNER JOIN",
+    "LEFT JOIN",
+    "RIGHT JOIN",
+    "FULL OUTER JOIN",
+    "join key",
+    "NULL",
+    "one-to-many"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "A join always returns one row per left-table row.",
+      "correction": "One-to-many matches can produce multiple result rows for one left row."
+    },
+    {
+      "misconception": "LEFT JOIN removes unmatched left rows.",
+      "correction": "LEFT JOIN preserves all left rows and fills right-side columns with NULL when unmatched."
+    },
+    {
+      "misconception": "NULL means zero.",
+      "correction": "NULL represents missing or unknown data, not the numeric value zero."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "INNER JOIN",
+      "input": "Student(id=1,2); Marks(student_id=1)",
+      "trace": [
+        "Match Student.id to Marks.student_id.",
+        "Student 1 has a matching marks row.",
+        "Student 2 has no match and is excluded."
+      ],
+      "output": "Only Student 1 appears",
+      "explanation": "INNER JOIN keeps rows with matching keys on both sides."
+    },
+    {
+      "title": "LEFT JOIN",
+      "input": "Student(id=1,2); Marks(student_id=1)",
+      "trace": [
+        "Keep Student 1 and attach its marks row.",
+        "Keep Student 2 even though no marks row exists.",
+        "Right-side marks columns for Student 2 become NULL."
+      ],
+      "output": "Two student rows; one has NULL marks",
+      "explanation": "LEFT JOIN preserves every row from the left table."
+    },
+    {
+      "title": "One-to-many join",
+      "input": "One customer has three orders",
+      "trace": [
+        "Match the customer to order 1.",
+        "Match the same customer to order 2.",
+        "Match the same customer to order 3."
+      ],
+      "output": "Three result rows for that customer",
+      "explanation": "A join produces one row per matching pair, so repeated keys can multiply rows."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "Infosys",
+      "skill": "SQL joins and subqueries",
+      "practice": "Predict matched and unmatched rows for each join type."
+    },
+    {
+      "company": "TCS",
+      "skill": "SQL query assessment",
+      "practice": "Explain NULLs and one-to-many join results."
+    },
+    {
+      "company": "Cognizant",
+      "skill": "database querying",
+      "practice": "Use explicit join keys and test duplicate matches."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What are the key ideas in SQL Joins?",
+      "answer": "Explain why relational tables are joined. Choose INNER, LEFT, RIGHT or FULL joins appropriately. Predict row counts when keys repeat. Use table aliases and explicit join conditions. Recognize NULL values introduced by outer joins."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in SQL Joins.",
+      "answer": "One-to-many matches can produce multiple result rows for one left row."
+    }
+  ]
 }
