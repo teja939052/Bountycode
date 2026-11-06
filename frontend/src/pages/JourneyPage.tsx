@@ -327,10 +327,10 @@ export default function JourneyPage() {
           <div className="mt-3 flex flex-wrap gap-2">
             {nextAction?.action === "company_track" && nextAction?.track_id && (
               <Link
-                to={`/company-tracks?track=${encodeURIComponent(nextAction.track_id)}`}
+                to="/academy"
                 className="flex min-h-[44px] items-center gap-2 rounded-xl bg-[#F4532F] px-5 font-bold text-white shadow-md hover:brightness-105"
               >
-                <Play size={15} /> CONTINUE COMPANY MODULE →
+                <Play size={15} /> CONTINUE PLACEMENT LESSON →
               </Link>
             )}
             {nextAction?.action === "learn_mission" && currentLevel && currentWorld && (
@@ -347,7 +347,9 @@ export default function JourneyPage() {
             {nextAction?.action !== "company_track" && nextAction?.action !== "learn_mission" && (
               <Link to="/practice" className="flex min-h-[44px] items-center rounded-xl border border-black/10 bg-white px-4 text-sm font-semibold text-gray-700">Open practice</Link>
             )}
-            <Link to="/academy" className="flex min-h-[44px] items-center rounded-xl border border-emerald-200 bg-emerald-50 px-4 text-sm font-semibold text-emerald-800">Open Placement Academy</Link>
+            {nextAction?.action !== "company_track" && (
+              <Link to="/academy" className="flex min-h-[44px] items-center rounded-xl border border-emerald-200 bg-emerald-50 px-4 text-sm font-semibold text-emerald-800">Open Placement Academy</Link>
+            )}
             <Link to="/target" className="flex min-h-[44px] items-center rounded-xl border border-black/10 bg-white px-4 text-sm font-semibold text-gray-700">Change target</Link>
           </div>
         </section>
