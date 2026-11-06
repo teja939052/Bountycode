@@ -627,5 +627,7 @@
       "skill": "problem solving",
       "practice": "Compare a nested-loop solution with the linear window."
     }
-  ]
+  ],
+  "next_lesson_slug": "algorithms_basics",
+  "next_lesson_title": "Algorithm Design Basics"
 }
