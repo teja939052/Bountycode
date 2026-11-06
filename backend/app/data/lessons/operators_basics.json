@@ -171,8 +171,8 @@
           "3.6",
           "5"
         ],
-        "correct_index": 1,
-        "explanation": "Five fits into 18 three times, using 15, and the remainder is 3. Correction: The remainder is 3, so option 3 is the correct mathematical value."
+        "correct_index": 0,
+        "explanation": "Five fits into 18 three times (15), leaving a remainder of 3. The first option is therefore the correct result."
       },
       {
         "prompt": "What is the value of 6 + 2 * 4 in Python?",
