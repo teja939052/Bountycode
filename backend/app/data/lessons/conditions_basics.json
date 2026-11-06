@@ -1,0 +1,309 @@
+{
+  "id": "lesson_conditions_basics_001",
+  "slug": "conditions_basics",
+  "title": "Conditions, Decisions and Boolean Logic",
+  "domain": "Programming Fundamentals",
+  "pattern": "Conditional Logic",
+  "difficulty": "easy",
+  "duration_min": 32,
+  "xp_reward": 115,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Programs make decisions",
+      "content": "A condition is an expression that evaluates to true or false. An if statement runs its block only when its condition is true. The computer evaluates the condition first; it does not execute both branches.",
+      "example": "marks = 72\nif marks >= 40:\n    print('Pass')\nelse:\n    print('Try again')",
+      "tip": "Before tracing an if statement, calculate the condition's Boolean result."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Read a comparison",
+      "content": "Comparison operators compare values and produce a Boolean result.",
+      "prompt": "If age is 17, what is the result of age >= 18?",
+      "options": [
+        "true",
+        "false",
+        "18",
+        "17"
+      ],
+      "correct_index": 1,
+      "explanation": "17 is less than 18, so the comparison age >= 18 evaluates to false."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Use if, elif and else",
+      "content": "Use if for the first condition, elif for another condition checked only when earlier conditions fail, and else for the remaining case. Order matters: the first true branch is the one that runs.",
+      "example": "if score >= 90:\n    grade = 'A'\nelif score >= 75:\n    grade = 'B'\nelse:\n    grade = 'C or below'",
+      "tip": "Place more specific or higher thresholds before broader fallback conditions."
+    },
+    {
+      "step_number": 4,
+      "step_type": "predict_output",
+      "title": "Trace the first matching branch",
+      "content": "Only one branch in this if/elif/else chain executes.",
+      "prompt": "What does this program print when score is 82?",
+      "code": "score = 82\nif score >= 90:\n    print('A')\nelif score >= 75:\n    print('B')\nelse:\n    print('C')",
+      "language": "python",
+      "answer_placeholder": "Enter the output",
+      "expected_answer": "B",
+      "explanation": "82 >= 90 is false. The next test, 82 >= 75, is true, so B prints and the chain ends."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Combine conditions with and, or and not",
+      "content": "and is true only when both sides are true. or is true when at least one side is true. not reverses a Boolean value. Parentheses make compound conditions easier to read and prevent ambiguity.",
+      "example": "has_id = True\nage = 20\neligible = has_id and age >= 18",
+      "tip": "Break a compound condition into smaller true/false results before combining them."
+    },
+    {
+      "step_number": 6,
+      "step_type": "practice",
+      "title": "Evaluate a compound condition",
+      "prompt": "Let has_account = True and verified = False. What is has_account and verified?",
+      "options": [
+        "true",
+        "false",
+        "None",
+        "A syntax error"
+      ],
+      "correct_index": 1,
+      "explanation": "and requires both operands to be true. Since verified is false, the complete expression is false."
+    },
+    {
+      "step_number": 7,
+      "step_type": "order_steps",
+      "title": "Trace a decision",
+      "content": "A decision is evaluated in a specific order: compute the condition, select the matching branch, and execute its body.",
+      "prompt": "Arrange the operations when an if statement is evaluated.",
+      "options": [
+        "Execute the selected branch body",
+        "Evaluate the condition",
+        "Skip the branch when the condition is false"
+      ],
+      "correct_order": [
+        1,
+        2,
+        0
+      ],
+      "explanation": "The condition is evaluated first. If it is false, that branch is skipped; if true, its body executes. The else branch is considered only when no earlier branch matches."
+    },
+    {
+      "step_number": 8,
+      "step_type": "code_lab",
+      "title": "Create an eligibility check",
+      "content": "Combine a numeric comparison with a Boolean flag. The output is a short decision message.",
+      "prompt": "Complete the condition so an account is approved only when both requirements are satisfied. Expected output: Approved.",
+      "language": "javascript",
+      "starter_code": "const age = 20;\nconst identityVerified = true;\n\nif (/* TODO: check both requirements */) {\n  console.log('Approved');\n} else {\n  console.log('Not approved');\n}",
+      "expected_output": "Approved",
+      "hints": [
+        "The age must be at least 18.",
+        "Both conditions must be true, so use the logical AND operator.",
+        "Use age >= 18 && identityVerified inside the if statement."
+      ]
+    },
+    {
+      "step_number": 9,
+      "step_type": "debug_choice",
+      "title": "Fix an incorrectly ordered grade check",
+      "content": "A student with 92 marks is receiving grade B because a broad condition runs before a more specific condition.",
+      "prompt": "Which change fixes the branch order?",
+      "code": "if score >= 75:\n    grade = 'B'\nelif score >= 90:\n    grade = 'A'",
+      "options": [
+        "Check score >= 90 before score >= 75",
+        "Replace >= with =",
+        "Remove the if statement",
+        "Change score to a string"
+      ],
+      "correct_index": 0,
+      "feedback_by_option": {
+        "1": "The first condition already matches 92, so the later A condition is never checked. Test the higher threshold first.",
+        "2": "Assignment or exact equality does not solve the ordering problem and would make the range logic incorrect.",
+        "3": "The program needs conditional branching to choose a grade.",
+        "4": "The issue is branch order, not the data type of score."
+      },
+      "explanation": "The first true branch wins. Test the >= 90 case first, then the >= 75 fallback."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 420,
+    "questions": [
+      {
+        "prompt": "What must an if condition evaluate to for its body to run?",
+        "options": [
+          "true",
+          "false",
+          "A string",
+          "A floating-point number"
+        ],
+        "correct_index": 0,
+        "explanation": "The if body runs when its condition evaluates to true."
+      },
+      {
+        "prompt": "If a = 5 and b = 8, what is the result of a < 10 and b > 6?",
+        "options": [
+          "true",
+          "false",
+          "8",
+          "A syntax error"
+        ],
+        "correct_index": 0,
+        "explanation": "5 < 10 is true and 8 > 6 is true. true and true evaluates to true."
+      },
+      {
+        "prompt": "In an if/elif/else chain, what happens after the first true branch executes?",
+        "options": [
+          "The remaining branches in that chain are skipped",
+          "Every later branch also executes",
+          "The if condition is evaluated again forever",
+          "The program always enters else"
+        ],
+        "correct_index": 0,
+        "explanation": "Only the first matching branch runs; later branches in the same chain are skipped."
+      },
+      {
+        "prompt": "Which operator reverses a Boolean value in Python?",
+        "options": [
+          "not",
+          "and",
+          "or",
+          "=="
+        ],
+        "correct_index": 0,
+        "explanation": "not returns the opposite truth value. and and or combine Boolean expressions; == compares values."
+      },
+      {
+        "prompt": "A discount is allowed only when a user is a member and the cart total is at least 1000. Which condition expresses this rule?",
+        "options": [
+          "member and total >= 1000",
+          "member or total >= 1000",
+          "not member and total < 1000",
+          "total == 1000"
+        ],
+        "correct_index": 0,
+        "explanation": "Both requirements must hold, so combine membership and the threshold with and."
+      }
+    ]
+  },
+  "learning_objectives": [
+    "Evaluate comparison expressions and identify their Boolean result.",
+    "Use if, elif and else to select one execution path.",
+    "Combine Boolean expressions using and, or and not.",
+    "Trace branch order and repair unreachable conditions.",
+    "Translate real eligibility rules into correct conditional logic."
+  ],
+  "prerequisites": [
+    "variables_basics"
+  ],
+  "concepts": [
+    "Boolean expression",
+    "comparison operators",
+    "if statement",
+    "elif branch",
+    "else branch",
+    "and",
+    "or",
+    "not",
+    "nested conditions",
+    "branch ordering"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Every branch in an if/elif/else chain is checked after one branch runs.",
+      "correction": "Once the first true branch executes, the remaining branches in that chain are skipped."
+    },
+    {
+      "misconception": "and and or mean the same thing.",
+      "correction": "and requires both sides to be true; or requires at least one side to be true."
+    },
+    {
+      "misconception": "Putting a broad threshold before a narrow threshold is harmless.",
+      "correction": "The first true condition wins, so a broad branch can make a later specific branch unreachable."
+    },
+    {
+      "misconception": "A comparison such as score >= 40 changes score.",
+      "correction": "A comparison produces a Boolean result; it does not assign a new value to score."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Choose a pass/fail branch",
+      "input": "marks = 55\nif marks >= 40:\n    result = 'Pass'\nelse:\n    result = 'Fail'",
+      "trace": [
+        "Read marks as 55.",
+        "Evaluate 55 >= 40, which is true.",
+        "Run the if body and assign Pass.",
+        "Skip the else body."
+      ],
+      "output": "result = 'Pass'",
+      "explanation": "The condition decides which single branch runs."
+    },
+    {
+      "title": "Combine two requirements",
+      "input": "age = 19\nhas_id = True\nallowed = age >= 18 and has_id",
+      "trace": [
+        "Evaluate age >= 18 as true.",
+        "Read has_id as true.",
+        "Combine true and true with and."
+      ],
+      "output": "allowed = True",
+      "explanation": "A requirement joined with and is satisfied only when every part is true."
+    },
+    {
+      "title": "Fix unreachable branch logic",
+      "input": "if marks >= 40: pass\nelif marks >= 80: pass",
+      "trace": [
+        "A mark of 90 satisfies marks >= 40.",
+        "The first branch executes immediately.",
+        "The >= 80 condition is never reached for values 80 or above."
+      ],
+      "output": "Check marks >= 80 before marks >= 40",
+      "explanation": "Specific thresholds should be tested before broader fallback conditions."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS NQT",
+      "skill": "output prediction and conditional logic",
+      "practice": "Trace nested branches and identify the exact printed output."
+    },
+    {
+      "company": "Infosys",
+      "skill": "problem solving and pseudocode",
+      "practice": "Translate multi-condition eligibility and grading rules into pseudocode."
+    },
+    {
+      "company": "Accenture",
+      "skill": "logical reasoning",
+      "practice": "Evaluate AND/OR statements and explain why a branch executes."
+    },
+    {
+      "company": "Wipro",
+      "skill": "debugging fundamentals",
+      "practice": "Find unreachable branches caused by incorrect condition order."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "When does an if block execute?",
+      "answer": "When its condition evaluates to true."
+    },
+    {
+      "type": "logic",
+      "question": "When is A and B true?",
+      "answer": "Only when both A and B are true."
+    },
+    {
+      "type": "debugging",
+      "question": "Why should high thresholds often appear before low thresholds in an if/elif grade chain?",
+      "answer": "The first matching branch runs; a broad low threshold can prevent later high-threshold branches from ever being reached."
+    }
+  ]
+}
