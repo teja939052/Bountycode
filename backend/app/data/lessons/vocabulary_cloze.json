@@ -1,0 +1,122 @@
+{
+  "slug": "vocabulary_cloze",
+  "id": "lesson_vocabulary_cloze_001",
+  "title": "Vocabulary, Fill in the Blanks and Cloze Tests",
+  "domain": "Verbal Ability",
+  "pattern": "Vocabulary",
+  "difficulty": "easy",
+  "duration_min": 22,
+  "xp_reward": 95,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Use context clues",
+      "content": "A fill-in-the-blank question tests whether a word fits the sentence's meaning and grammar. Read the entire sentence before selecting a word.",
+      "example": "The instructions were so clear that the task was easy to understand. 'Clear' matches the meaning."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Choose a synonym",
+      "prompt": "Which word is closest in meaning to 'concise'?",
+      "options": [
+        "Brief",
+        "Confusing",
+        "Lengthy",
+        "Careless"
+      ],
+      "correct_index": 0,
+      "explanation": "Concise means brief and expressed in few words."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Use collocations",
+      "content": "Some words naturally occur together, such as make a decision, take responsibility and strong evidence. Learning common collocations improves accuracy.",
+      "example": "The phrase is 'reach a conclusion', not usually 'arrive a conclusion'."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Complete a sentence",
+      "prompt": "Despite the heavy rain, the match continued ___ interruption.",
+      "options": [
+        "with",
+        "without",
+        "between",
+        "among"
+      ],
+      "correct_index": 1,
+      "explanation": "Without interruption means the match continued and was not stopped."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Solve a cloze passage",
+      "content": "In a cloze test, read the whole passage for its topic and tone. Use nearby words, grammar and logical connections to select each blank. Re-read the completed passage for flow.",
+      "tip": "Do not choose a word only because it fits one sentence; it must fit the passage as a whole."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "Choose a synonym for 'abundant'.",
+        "options": [
+          "Scarce",
+          "Plentiful",
+          "Empty",
+          "Fragile"
+        ],
+        "correct_index": 1,
+        "explanation": "Abundant means plentiful or available in large quantity."
+      },
+      {
+        "prompt": "Choose an antonym for 'reluctant'.",
+        "options": [
+          "Unwilling",
+          "Hesitant",
+          "Eager",
+          "Doubtful"
+        ],
+        "correct_index": 2,
+        "explanation": "Reluctant means unwilling; eager is a suitable opposite."
+      },
+      {
+        "prompt": "The committee reached a ___ after discussion.",
+        "options": [
+          "decision",
+          "decide",
+          "deciding",
+          "decisive"
+        ],
+        "correct_index": 0,
+        "explanation": "The noun decision fits after the article a."
+      },
+      {
+        "prompt": "The new policy had a positive ___ on attendance.",
+        "options": [
+          "affect",
+          "effect",
+          "effort",
+          "offer"
+        ],
+        "correct_index": 1,
+        "explanation": "Effect is the noun meaning result or impact."
+      },
+      {
+        "prompt": "Choose the best word: The evidence was ___, so the claim was accepted.",
+        "options": [
+          "convincing",
+          "convince",
+          "convinced",
+          "convincingly"
+        ],
+        "correct_index": 0,
+        "explanation": "Convincing is the adjective describing the evidence."
+      }
+    ]
+  }
+}
