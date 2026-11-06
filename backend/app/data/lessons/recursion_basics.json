@@ -217,5 +217,7 @@
       "question": "Name a common mistake in Recursion Fundamentals.",
       "answer": "It stops only when a base case is reached or an error/limit occurs."
     }
-  ]
+  ],
+  "next_lesson_slug": "linked_lists",
+  "next_lesson_title": "Linked Lists"
 }
