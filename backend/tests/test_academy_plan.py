@@ -91,3 +91,34 @@ def test_plan_does_not_block_on_a_reasonably_strong_prerequisite():
     assert plan["curriculum"][0]["domain"] == "arrays_hashing"
     arrays = plan["curriculum"][0]
     assert arrays["prerequisite_status"] == "complete"
+
+
+
+def test_learning_preference_shapes_the_daily_study_routine():
+    profile = {
+        "target_role": "software_engineer",
+        "experience_level": "beginner",
+        "preferred_language": "java",
+        "learning_preference": "hands_on",
+        "daily_minutes": 60,
+    }
+    plan = build_plan(profile, None)
+
+    assert plan["experience_level"] == "beginner"
+    assert plan["preferred_language"] == "java"
+    assert plan["learning_preference"] == "hands_on"
+    assert "guided tasks" in plan["learning_strategy"]
+    assert plan["study_routine"][1]["label"] == "Attempt a guided exercise"
+    assert sum(step["minutes"] for step in plan["study_routine"]) <= 60
+
+
+def test_reading_preference_creates_a_reading_first_routine():
+    plan = build_plan({
+        "target_role": "undecided",
+        "learning_preference": "reading",
+        "daily_minutes": 45,
+    }, None)
+
+    assert plan["study_routine"][1]["label"] == "Read the concept explanation"
+    assert "common misconceptions" in plan["learning_strategy"]
+    assert sum(step["minutes"] for step in plan["study_routine"]) <= 45
