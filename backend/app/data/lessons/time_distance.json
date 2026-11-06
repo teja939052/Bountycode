@@ -214,5 +214,7 @@
       "question": "Name a common mistake in Time, Speed and Distance.",
       "answer": "Average speed is total distance divided by total time."
     }
-  ]
+  ],
+  "next_lesson_slug": "advanced_time_work",
+  "next_lesson_title": "Advanced Time and Work"
 }
