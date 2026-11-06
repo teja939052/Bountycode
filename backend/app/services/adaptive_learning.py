@@ -534,6 +534,57 @@ COMPANY_TOPIC_LESSONS = {
 }
 
 
+COMPANY_TOPIC_DOMAINS = {
+    "percentages": "quantitative_aptitude",
+    "profit_loss": "quantitative_aptitude",
+    "ratio_proportion": "quantitative_aptitude",
+    "ratio": "quantitative_aptitude",
+    "averages": "quantitative_aptitude",
+    "time_work": "quantitative_aptitude",
+    "time_distance": "quantitative_aptitude",
+    "speed_time_distance": "quantitative_aptitude",
+    "probability": "quantitative_aptitude",
+    "permutations": "quantitative_aptitude",
+    "permutation": "quantitative_aptitude",
+    "series": "logical_reasoning",
+    "number_series": "logical_reasoning",
+    "coding_decoding": "logical_reasoning",
+    "blood_relation": "logical_reasoning",
+    "blood_relations": "logical_reasoning",
+    "direction_sense": "logical_reasoning",
+    "syllogisms": "logical_reasoning",
+    "puzzles": "logical_reasoning",
+    "arrangements": "logical_reasoning",
+    "reading_comprehension": "verbal_ability",
+    "sentence_correction": "verbal_ability",
+    "grammar": "verbal_ability",
+    "para_jumbles": "verbal_ability",
+    "arrays": "arrays_hashing",
+    "strings": "programming_fundamentals",
+    "loops": "programming_fundamentals",
+    "recursion": "programming_fundamentals",
+    "sorting": "programming_fundamentals",
+    "searching": "programming_fundamentals",
+    "hashing": "arrays_hashing",
+    "hashmaps": "arrays_hashing",
+    "linked_lists": "linked_list",
+    "trees": "trees",
+    "dynamic_programming": "dp",
+    "basic_dp": "dp",
+    "joins": "sql",
+    "subqueries": "sql",
+    "group_by": "sql",
+    "having": "sql",
+    "indexing": "sql",
+    "oop": "computer_science",
+    "normalization": "computer_science",
+    "os": "computer_science",
+    "operating_systems": "computer_science",
+    "computer_networks": "computer_science",
+    "networking": "computer_science",
+}
+
+
 async def _get_company_focus_task(user_id: str) -> Optional[Dict[str, Any]]:
     """Return the next unfinished, topic-aware company mission."""
     user = await _get_user_profile(user_id)
@@ -553,6 +604,8 @@ async def _get_company_focus_task(user_id: str) -> Optional[Dict[str, Any]]:
         return None
 
     progress_sections = progress.get("sections") or {}
+    skill_graph = await skill_graph_collection.find_one({"user_id": user_id}) or {}
+    skill_scores = skill_graph.get("skills") or {}
     for section in track.get("sections", []):
         section_state = progress_sections.get(section.get("id"), {})
         modules_state = section_state.get("modules") or {}
@@ -566,29 +619,47 @@ async def _get_company_focus_task(user_id: str) -> Optional[Dict[str, Any]]:
                 for topic in (module.get("topics") or [])
             ]
             topic_mastery = module_state.get("topic_mastery") or {}
-            for topic in required_topics:
-                if (topic_mastery.get(topic) or {}).get("mastered"):
-                    continue
-                lesson_slug = COMPANY_TOPIC_LESSONS.get(topic)
-                return {
-                    "id": f"company:{track_id}:{module_id}:{topic}",
-                    "type": "company_module",
-                    "title": f"{track.get('name', track_id)} · {module.get('title', module_id)}",
-                    "description": f"Next skill: {topic.replace('_', ' ')}. Learn the concept, practise it, then pass the mastery quiz.",
-                    "domain_id": topic,
-                    "difficulty": "medium",
-                    "estimated_minutes": 20,
-                    "xp_reward": module.get("diamonds", 50),
-                    "company": track.get("company_id", track_id),
-                    "track_id": track_id,
-                    "module_id": module_id,
-                    "topic_id": topic,
-                    "lesson_slug": lesson_slug,
-                    "action_url": (
-                        f"/learn/lesson/{lesson_slug}?track_id={track_id}&module_id={module_id}&topic_id={topic}"
-                        if lesson_slug else f"/company-tracks?track={track_id}"
-                    ),
-                }
+            unfinished_topics = [
+                (index, topic)
+                for index, topic in enumerate(required_topics)
+                if not (topic_mastery.get(topic) or {}).get("mastered")
+            ]
+            if not unfinished_topics:
+                continue
+
+            # Among unfinished skills in this module, work on the weakest
+            # evidenced area first. Untouched skills stay in syllabus order.
+            def topic_priority(item):
+                index, topic = item
+                domain_id = COMPANY_TOPIC_DOMAINS.get(topic, topic)
+                score = float((skill_scores.get(domain_id) or {}).get("score", 0) or 0)
+                return (score, index)
+
+            _, topic = min(unfinished_topics, key=topic_priority)
+            lesson_slug = COMPANY_TOPIC_LESSONS.get(topic)
+            domain_id = COMPANY_TOPIC_DOMAINS.get(topic, topic)
+            topic_score = float((skill_scores.get(domain_id) or {}).get("score", 0) or 0)
+            return {
+                "id": f"company:{track_id}:{module_id}:{topic}",
+                "type": "company_module",
+                "title": f"{track.get('name', track_id)} · {module.get('title', module_id)}",
+                "description": f"Next skill: {topic.replace('_', ' ')}. Learn the concept, practise it, then pass the mastery quiz.",
+                "domain_id": domain_id,
+                "topic_id": topic,
+                "skill_score": topic_score,
+                "focus_reason": "Lowest current evidence among the unfinished skills in this module.",
+                "difficulty": "medium",
+                "estimated_minutes": 20,
+                "xp_reward": module.get("diamonds", 50),
+                "company": track.get("company_id", track_id),
+                "track_id": track_id,
+                "module_id": module_id,
+                "lesson_slug": lesson_slug,
+                "action_url": (
+                    f"/learn/lesson/{lesson_slug}?track_id={track_id}&module_id={module_id}&topic_id={topic}"
+                    if lesson_slug else f"/company-tracks?track={track_id}"
+                ),
+            }
     return None
 
 
