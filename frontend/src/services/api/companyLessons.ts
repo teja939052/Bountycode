@@ -26,6 +26,7 @@ export const companyLessonsApi = {
       time_spent_seconds: number;
       track_id?: string;
       module_id?: string;
+      topic_id?: string;
     },
   ) {
     return request<{ success: boolean; data: any }>(`/api/v1/company-lessons/${encodeURIComponent(slug)}/complete`, {
