@@ -192,6 +192,8 @@ def test_rich_lesson_authoring_standard_has_depth_and_company_transfer():
 def test_core_foundation_lessons_follow_the_rich_authoring_contract():
     core_lessons = [
         "variables_basics",
+        "input_output_basics",
+        "operators_basics",
         "conditions_basics",
         "functions_basics",
         "programming_languages",
@@ -219,14 +221,18 @@ def test_core_foundation_lessons_follow_the_rich_authoring_contract():
 
 def test_programming_foundations_form_a_complete_prerequisite_chain():
     variables = json.loads((LESSONS_DIR / "variables_basics.json").read_text(encoding="utf-8"))
+    input_output = json.loads((LESSONS_DIR / "input_output_basics.json").read_text(encoding="utf-8"))
+    operators = json.loads((LESSONS_DIR / "operators_basics.json").read_text(encoding="utf-8"))
     conditions = json.loads((LESSONS_DIR / "conditions_basics.json").read_text(encoding="utf-8"))
     functions = json.loads((LESSONS_DIR / "functions_basics.json").read_text(encoding="utf-8"))
 
     assert variables["prerequisites"] == []
-    assert "variables_basics" in conditions["prerequisites"]
-    assert {"variables_basics", "conditions_basics"}.issubset(set(functions["prerequisites"]))
+    assert "variables_basics" in input_output["prerequisites"]
+    assert {"variables_basics", "input_output_basics"}.issubset(set(operators["prerequisites"]))
+    assert {"variables_basics", "operators_basics"}.issubset(set(conditions["prerequisites"]))
+    assert {"variables_basics", "conditions_basics", "operators_basics"}.issubset(set(functions["prerequisites"]))
 
-    for lesson in (variables, conditions, functions):
+    for lesson in (variables, input_output, operators, conditions, functions):
         assert len(lesson["steps"]) >= 8
         types = {step["step_type"] for step in lesson["steps"]}
         assert {"explain", "interactive", "predict_output", "order_steps", "code_lab", "debug_choice"}.issubset(types)
@@ -242,7 +248,9 @@ def test_programming_foundations_form_a_complete_prerequisite_chain():
 
 def test_programming_foundation_lessons_link_to_the_next_course_step():
     expected = {
-        "variables_basics": "conditions_basics",
+        "variables_basics": "input_output_basics",
+        "input_output_basics": "operators_basics",
+        "operators_basics": "conditions_basics",
         "conditions_basics": "functions_basics",
         "functions_basics": "programming_languages",
     }
