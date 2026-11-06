@@ -70,6 +70,16 @@ async def get_track(track_id: str, user=Depends(get_current_user)):
                 "locked": mod_progress.get("locked", False),
                 "score": mod_progress.get("score"),
                 "xp_earned": mod_progress.get("xp_earned", 0),
+                "topic_mastery": mod_progress.get("topic_mastery", {}),
+                "mastered_topics": [
+                    topic for topic in topics
+                    if (mod_progress.get("topic_mastery", {}).get(str(topic).strip().lower().replace("-", "_").replace(" ", "_"), {}) or {}).get("mastered")
+                ],
+                "mastered_topic_count": sum(
+                    1 for topic in topics
+                    if (mod_progress.get("topic_mastery", {}).get(str(topic).strip().lower().replace("-", "_").replace(" ", "_"), {}) or {}).get("mastered")
+                ),
+                "required_topic_count": len(topics),
             })
         sections_with_status.append({
             **section,
