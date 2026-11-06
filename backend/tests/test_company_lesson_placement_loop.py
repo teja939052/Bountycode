@@ -13,6 +13,10 @@ from fastapi import HTTPException
 from app.routes import company_lessons
 
 
+async def _fake_record_learning_activity(_user_id, _activity):
+    return {"status": "success"}
+
+
 def _lesson():
     return {
         "id": "lesson_test_001",
@@ -103,23 +107,24 @@ async def test_client_supplied_score_cannot_complete_a_lesson(monkeypatch):
 
 
 @pytest.mark.asyncio
-async def test_failed_assessment_does_not_complete_company_module(monkeypatch):
+async def test_failed_assessment_records_attempt_without_mastery(monkeypatch):
     monkeypatch.setattr(company_lessons, "_load_lesson", lambda _slug: _lesson())
-    called = False
+    monkeypatch.setattr(company_lessons, "record_learning_activity", _fake_record_learning_activity)
+    calls = []
 
-    async def fake_complete_track_module(**_kwargs):
-        nonlocal called
-        called = True
-        return {"passed": True, "xp_earned": 50}
+    async def fake_record_topic_mastery(**kwargs):
+        calls.append(kwargs)
+        return {"module_completed": False, "topic_mastered": False, "xp_earned": 0}
 
     monkeypatch.setattr(
-        company_lessons, "record_track_topic_mastery", fake_complete_track_module
+        company_lessons, "record_track_topic_mastery", fake_record_topic_mastery
     )
 
     request = company_lessons.CompleteRequest(
         answers={"0": 1, "1": 1},  # one of two correct: 50%
         track_id="tcs_nqt",
         module_id="tcs_f1",
+        topic_id="percentages",
     )
     result = await company_lessons.complete_lesson(
         "successive_percentage_change", request, user={"id": "test-user"}
@@ -128,12 +133,15 @@ async def test_failed_assessment_does_not_complete_company_module(monkeypatch):
     assert result["data"]["passed"] is False
     assert result["data"]["score"] == 50.0
     assert result["data"]["xp_earned"] == 0
-    assert called is False
+    assert result["data"]["module_completed"] is False
+    assert len(calls) == 1
+    assert calls[0]["score"] == 50.0
 
 
 @pytest.mark.asyncio
 async def test_passed_assessment_records_company_module_mastery(monkeypatch):
     monkeypatch.setattr(company_lessons, "_load_lesson", lambda _slug: _lesson())
+    monkeypatch.setattr(company_lessons, "record_learning_activity", _fake_record_learning_activity)
     calls = []
 
     async def fake_complete_track_module(**kwargs):
