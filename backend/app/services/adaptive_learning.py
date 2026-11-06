@@ -503,6 +503,13 @@ async def record_learning_activity(user_id: str, activity: Dict[str, Any]) -> Di
     await cache.delete("adaptive", f"skills:{user_id}")
     today_key = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     await cache.delete("adaptive", f"daily_plan:{user_id}:{today_key}")
+    # A lesson or quiz attempt also changes the canonical Study Engine's
+    # next recommendation. Invalidate it so the Journey does not repeat stale work.
+    try:
+        from app.services.study_engine import invalidate_daily_plan
+        await invalidate_daily_plan(user_id)
+    except Exception as exc:
+        logger.warning("Study plan invalidation failed after adaptive activity: %s", exc)
 
     return {
         "status": "success",
