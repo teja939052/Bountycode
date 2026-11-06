@@ -51,6 +51,7 @@ PRIORITY_WEIGHTS = {
     "failed_repair": 95,
     "prerequisite": 90,
     "company_critical": 85,
+    "company_track": 84,
     "current_lesson": 80,
     "role_practice": 70,
     "mock_prep": 60,
@@ -75,6 +76,21 @@ def _user_role_path(user: Dict[str, Any]) -> str:
 def _user_company_track(user: Dict[str, Any]) -> str:
     """Read enrolled company track from user profile, defaulting to ''."""
     return user.get("company_track", "") or ""
+
+
+async def _get_user_profile(user_id: str) -> Dict[str, Any]:
+    """Resolve profiles by the authenticated Mongo id, with a legacy fallback."""
+    from bson import ObjectId
+
+    user = None
+    try:
+        if ObjectId.is_valid(user_id):
+            user = await users_collection().find_one({"_id": ObjectId(user_id)})
+    except Exception:
+        user = None
+    if user is None:
+        user = await users_collection().find_one({"user_id": user_id})
+    return user or {}
 
 
 def _user_career_stage(user: Dict[str, Any]) -> str:
@@ -167,7 +183,7 @@ async def _rank_activities(user_id: str) -> Dict[str, Any]:
     from app.services.ai_core import close_http_client  # avoid import cycle at top
 
     # â”€â”€ Read user profile â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-    user = await users_collection().find_one({"user_id": user_id}) or {}
+    user = await _get_user_profile(user_id)
     # Also read from the in-memory get_current_user if available
     try:
         from app.middleware.auth import get_current_user as _gcu
@@ -202,6 +218,7 @@ async def _rank_activities(user_id: str) -> Dict[str, Any]:
     target_company = _user_target_company(user)
     role_path = _user_role_path(user)
     company_track = _user_company_track(user)
+    company_mission = study_plan.get("company_mission")
 
     # Read SRS due cards
     srs_due = await _get_srs_due(user_id)
@@ -296,9 +313,10 @@ async def _rank_activities(user_id: str) -> Dict[str, Any]:
         # Check if role-specific practice is available
         scores["role_practice"] = PRIORITY_WEIGHTS["role_practice"]
 
-    # 6b. Company track activity
-    if company_track:
-        scores["company_track"] = PRIORITY_WEIGHTS["role_practice"] + 10
+    # 6b. Company track activity — only rank it when an actual incomplete
+    # module exists. A profile flag alone must never create a dead-end action.
+    if company_track and company_mission:
+        scores["company_track"] = PRIORITY_WEIGHTS["company_track"]
 
     # 7. Mock preparation â€” if readiness is below threshold
     if interview_readiness < 70 or oa_readiness < 70:
@@ -326,6 +344,8 @@ async def _rank_activities(user_id: str) -> Dict[str, Any]:
         "winner_category": winner_category,
         "winner_score": winner_score,
         "target_company": target_company,
+        "company_track": company_track,
+        "company_mission": company_mission,
         "interview_readiness": interview_readiness,
         "oa_readiness": oa_readiness,
         "mastered_count": mastered_count,
@@ -391,7 +411,7 @@ async def build_journey_state(user_id: str) -> Dict[str, Any]:
     from app.middleware.auth import get_current_user as _gcu_dep
     # We can't call the dependency directly, read from DB instead
     from app.database import users_collection as _uc
-    user_doc = await _uc().find_one({"user_id": user_id}) or {}
+    user_doc = await _get_user_profile(user_id)
     target_company = _user_target_company(user_doc)
     target_role = user_doc.get("target_role", "") or user_doc.get("role", "")
     role_path = _user_role_path(user_doc)
@@ -405,6 +425,7 @@ async def build_journey_state(user_id: str) -> Dict[str, Any]:
     reviews = study_plan.get("reviews", [])
     practice = study_plan.get("practice", [])
     challenge = study_plan.get("challenge")
+    company_mission = study_plan.get("company_mission")
 
     # â”€â”€ Read gamification â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     g = await get_gamification_profile(user_id)
@@ -556,6 +577,20 @@ async def build_journey_state(user_id: str) -> Dict[str, Any]:
                     "xp_reward": 15,
                     "action": "progression",
                 }
+    elif winner == "company_track" and company_mission:
+        next_action = {
+            "type": "company_mission",
+            "title": company_mission.get("title", "Company preparation"),
+            "description": company_mission.get("description", "Continue your target-company learning path"),
+            "kind": "company_track",
+            "company": company_mission.get("company", target_company),
+            "track_id": company_mission.get("track_id", company_track),
+            "section_id": company_mission.get("section_id", ""),
+            "module_id": company_mission.get("module_id", ""),
+            "estimated_minutes": company_mission.get("estimated_minutes", 30),
+            "xp_reward": company_mission.get("xp_reward", 50),
+            "action": "company_track",
+        }
     elif winner == "current_lesson" and next_mission:
         next_action = {
             "type": "learn",
@@ -661,9 +696,11 @@ async def build_journey_state(user_id: str) -> Dict[str, Any]:
         "today": {
             "date": today,
             "next": next_action,
+            "next_action": next_action,
             "reviews": reviews,
             "practice": practice,
             "challenge": challenge,
+            "company_mission": company_mission,
         },
         "stats": {
             "diamonds": diamonds,
