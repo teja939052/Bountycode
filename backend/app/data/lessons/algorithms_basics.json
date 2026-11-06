@@ -214,5 +214,7 @@
       "question": "What mistake should you avoid in Algorithm Design Basics?",
       "answer": "Compilation checks syntax and types; logic can still be wrong."
     }
-  ]
+  ],
+  "next_lesson_slug": "collections_framework",
+  "next_lesson_title": "Collections Framework"
 }
