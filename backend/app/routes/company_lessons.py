@@ -142,6 +142,21 @@ LESSON_SKILL_DOMAINS = {
     "sql_subqueries": "sql",
     "sql_group_by": "sql",
     "matrix_operations": "programming_fundamentals",
+    "pipes_cisterns": "quantitative_aptitude",
+    "analogies_odd_one_out": "logical_reasoning",
+    "grammar_transformations": "verbal_ability",
+    "error_spotting": "verbal_ability",
+    "vocabulary_cloze": "verbal_ability",
+    "programming_languages": "programming_fundamentals",
+    "collections_framework": "programming_fundamentals",
+    "pattern_printing": "programming_fundamentals",
+    "pattern_matching_basics": "programming_fundamentals",
+    "sql_indexes_triggers": "sql",
+    "algorithms_basics": "programming_fundamentals",
+    "arithmetic_algebra": "quantitative_aptitude",
+    "geometry_basics": "quantitative_aptitude",
+    "data_structures_intro": "arrays_hashing",
+    "essay_writing": "verbal_ability",
 }
 
 
