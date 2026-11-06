@@ -89,6 +89,15 @@ def _today_key() -> str:
     return _now().strftime("%Y-%m-%d")
 
 
+async def invalidate_daily_plan(user_id: str) -> None:
+    """Invalidate the canonical Study Engine plan after new learning evidence."""
+    try:
+        from app.services.cache import cache
+        await cache.delete("study", f"today:{user_id}:{_today_key()}")
+    except Exception as exc:
+        logger.warning("Study plan cache invalidation failed for %s: %s", user_id, exc)
+
+
 # â”€â”€â”€ 1. NEXT â€” the next curriculum mission (world/level) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async def _get_next_mission(user_id: str) -> Optional[Dict[str, Any]]:
@@ -845,6 +854,7 @@ async def record_activity(
         "diagnosis_codes": diagnosis_codes,
         "repair_id": repair_id,
     })
+    await invalidate_daily_plan(user_id)
     return result
 
 
