@@ -249,13 +249,28 @@ def test_programming_foundations_form_a_complete_prerequisite_chain():
 
 
 
-def test_programming_foundation_lessons_link_to_the_next_course_step():
+def test_programming_and_dsa_lessons_link_to_the_next_course_step():
     expected = {
         "variables_basics": "input_output_basics",
         "input_output_basics": "operators_basics",
         "operators_basics": "conditions_basics",
         "conditions_basics": "functions_basics",
         "functions_basics": "programming_languages",
+        "programming_languages": "loops_basics",
+        "loops_basics": "pattern_printing",
+        "pattern_printing": "arrays_basics",
+        "arrays_basics": "strings_basics",
+        "strings_basics": "data_structures_intro",
+        "data_structures_intro": "time_complexity",
+        "time_complexity": "searching_basics",
+        "searching_basics": "sorting_basics",
+        "sorting_basics": "hashing_basics",
+        "hashing_basics": "recursion_basics",
+        "recursion_basics": "linked_lists",
+        "linked_lists": "stacks_queues",
+        "stacks_queues": "trees_basics",
+        "trees_basics": "dynamic_programming",
+        "dynamic_programming": "algorithms_basics",
     }
     for slug, next_slug in expected.items():
         lesson = json.loads((LESSONS_DIR / f"{slug}.json").read_text(encoding="utf-8"))
