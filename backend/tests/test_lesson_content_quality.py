@@ -358,3 +358,28 @@ def test_advanced_programming_path_includes_sliding_window_before_algorithms():
     for slug, next_slug in expected.items():
         lesson = json.loads((LESSONS_DIR / f"{slug}.json").read_text(encoding="utf-8"))
         assert lesson.get("next_lesson_slug") == next_slug, slug
+
+
+
+def test_expanded_quant_sql_and_verbal_lessons_meet_the_rich_quest_contract():
+    expected_types = {
+        "hcf_lcm": {"interactive", "fill_blank", "order_steps"},
+        "sql_select_basics": {"sql_lab", "order_steps", "debug_choice"},
+        "sentence_correction": {"interactive", "fill_blank", "order_steps"},
+    }
+    for slug, required_types in expected_types.items():
+        lesson = json.loads((LESSONS_DIR / f"{slug}.json").read_text(encoding="utf-8"))
+        assert len(lesson.get("steps", [])) >= 8, slug
+        assert len(lesson.get("assessment", {}).get("questions", [])) >= 5, slug
+        assert required_types.issubset({step.get("step_type") for step in lesson["steps"]}), slug
+        assert len(lesson.get("learning_objectives", [])) >= 4, slug
+        assert len(lesson.get("concepts", [])) >= 5, slug
+        assert len(lesson.get("worked_examples", [])) >= 3, slug
+        assert len(lesson.get("common_misconceptions", [])) >= 3, slug
+        assert len(lesson.get("company_applications", [])) >= 3, slug
+        assert len(lesson.get("srs_cards", [])) >= 3, slug
+        quest = lesson.get("quest") or {}
+        assert quest.get("chapter") and quest.get("story") and quest.get("mission"), slug
+        for step in lesson["steps"]:
+            if step.get("step_type") in {"interactive", "practice", "predict_output", "fill_blank", "order_steps", "code_lab", "debug_choice"}:
+                assert len(step.get("hints") or []) >= 2, (slug, step.get("title"))
