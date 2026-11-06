@@ -16,8 +16,8 @@ from app.database import (
 )
 from app.services.spaced_repetition import (
     SpacedRepetitionEngine,
-    SRSState,
     ReviewGrade,
+    deserialize_state,
     get_due_cards,
     serialize_state,
 )
@@ -32,17 +32,9 @@ class ReviewRecordRequest(BaseModel):
     is_correct: bool = Field(..., description="Whether the attempt was correct")
 
 
-def _doc_to_state(doc: dict) -> SRSState:
-    """Convert a MongoDB document to SRSState."""
-    return SRSState(
-        concept_id=doc.get("problem_id", doc.get("concept_id", "")),
-        user_id=doc.get("user_id", ""),
-        interval=doc.get("interval_days", doc.get("interval", 0)),
-        repetitions=doc.get("review_count", doc.get("repetitions", 0)),
-        ease_factor=doc.get("ease_factor", 2.5),
-        total_reviews=doc.get("total_reviews", doc.get("review_count", 0)),
-        lapses=doc.get("lapses", 0),
-    )
+def _doc_to_state(doc: dict) -> Any:
+    """Convert a persisted problem card without resetting its due date."""
+    return deserialize_state(doc)
 
 
 @router.get("/due")
@@ -107,17 +99,16 @@ async def record_review(req: ReviewRecordRequest, user=Depends(get_current_user)
 
     engine = SpacedRepetitionEngine()
 
+    grade = ReviewGrade.GOOD if req.is_correct else ReviewGrade.AGAIN
     if existing_doc:
         state = _doc_to_state(existing_doc)
         is_review = state.total_reviews > 0
-        grade = ReviewGrade.GOOD if req.is_correct else ReviewGrade.AGAIN
-        state = engine.review(state, grade)
     else:
         is_review = False
         state = engine.create_new_card(req.problem_id, uid)
-        if not req.is_correct:
-            grade = ReviewGrade.AGAIN
-            state = engine.review(state, grade)
+    # A first correct solve is still the first recall event; schedule its
+    # 10-minute learning review rather than leaving the card immediately due.
+    state = engine.review(state, grade)
 
     from dataclasses import asdict
     card_dict = asdict(state)
