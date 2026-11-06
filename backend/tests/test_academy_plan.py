@@ -61,3 +61,33 @@ def test_ongoing_practice_evidence_updates_diagnostic_priority():
     assert programming["diagnostic_score"] == 30
     assert programming["adaptive_score"] == 82
     assert programming["effective_score"] == 82
+
+
+
+def test_plan_places_unmastered_prerequisites_before_dependent_skills():
+    profile = {"target_role": "software_engineer", "daily_minutes": 90}
+    diagnostic = {"skills": [
+        {"domain": "programming_fundamentals", "score": 25},
+        {"domain": "arrays_hashing", "score": 15},
+        {"domain": "computer_science", "score": 70},
+        {"domain": "sql", "score": 75},
+    ]}
+    plan = build_plan(profile, diagnostic)
+    domains = [item["domain"] for item in plan["curriculum"]]
+    assert domains.index("programming_fundamentals") < domains.index("arrays_hashing")
+    arrays = next(item for item in plan["curriculum"] if item["domain"] == "arrays_hashing")
+    assert arrays["prerequisite_status"] == "needs_foundation"
+
+
+def test_plan_does_not_block_on_a_reasonably_strong_prerequisite():
+    profile = {"target_role": "software_engineer", "daily_minutes": 60}
+    diagnostic = {"skills": [
+        {"domain": "programming_fundamentals", "score": 75},
+        {"domain": "arrays_hashing", "score": 20},
+        {"domain": "computer_science", "score": 60},
+        {"domain": "sql", "score": 60},
+    ]}
+    plan = build_plan(profile, diagnostic)
+    assert plan["curriculum"][0]["domain"] == "arrays_hashing"
+    arrays = plan["curriculum"][0]
+    assert arrays["prerequisite_status"] == "complete"
