@@ -1,6 +1,8 @@
 """Regression tests for durable spaced-repetition scheduling."""
 from datetime import datetime, timedelta, timezone
 
+import pytest
+
 from app.services import spaced_repetition as srs
 
 
