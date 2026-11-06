@@ -1,0 +1,124 @@
+{
+  "slug": "time_distance",
+  "id": "lesson_time_distance_001",
+  "title": "Time, Speed and Distance",
+  "domain": "Quantitative Aptitude",
+  "pattern": "Time Speed Distance",
+  "difficulty": "easy",
+  "duration_min": 20,
+  "xp_reward": 95,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "The three-variable relationship",
+      "content": "Distance, speed and time are linked: distance = speed × time. Rearrange to find speed or time. Keep units consistent before calculating.",
+      "formula": "Distance = Speed × Time\nSpeed = Distance ÷ Time\nTime = Distance ÷ Speed",
+      "example": "A car travels at 60 km/h for 2.5 hours. Distance = 60×2.5 = 150 km."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Find the distance",
+      "prompt": "A bus travels at 45 km/h for 4 hours. How far does it travel?",
+      "options": [
+        "160 km",
+        "170 km",
+        "180 km",
+        "190 km"
+      ],
+      "correct_index": 2,
+      "explanation": "Distance = 45×4 = 180 km."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Convert units",
+      "content": "To convert km/h to m/s, multiply by 5/18. To convert m/s to km/h, multiply by 18/5. Convert minutes to hours when speed is in km/h.",
+      "formula": "1 km/h = 5/18 m/s\n1 m/s = 18/5 km/h",
+      "example": "72 km/h = 72×5/18 = 20 m/s."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Convert speed",
+      "prompt": "Convert 54 km/h into metres per second.",
+      "options": [
+        "12 m/s",
+        "15 m/s",
+        "18 m/s",
+        "20 m/s"
+      ],
+      "correct_index": 1,
+      "explanation": "54×5/18 = 15 m/s."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Relative speed",
+      "content": "When two objects move in opposite directions, relative speed is the sum of their speeds. When they move in the same direction, relative speed is the difference.",
+      "example": "Two trains at 50 and 40 km/h in opposite directions approach each other at 90 km/h."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "A 150 km trip takes 3 hours. Find average speed.",
+        "options": [
+          "40 km/h",
+          "45 km/h",
+          "50 km/h",
+          "60 km/h"
+        ],
+        "correct_index": 2,
+        "explanation": "Speed = 150/3 = 50 km/h."
+      },
+      {
+        "prompt": "Convert 90 km/h to m/s.",
+        "options": [
+          "20",
+          "22.5",
+          "25",
+          "27"
+        ],
+        "correct_index": 2,
+        "explanation": "90×5/18 = 25 m/s."
+      },
+      {
+        "prompt": "A train moves at 72 km/h. How far does it travel in 25 minutes?",
+        "options": [
+          "20 km",
+          "25 km",
+          "30 km",
+          "36 km"
+        ],
+        "correct_index": 2,
+        "explanation": "25 minutes = 5/12 hour. Distance = 72×5/12 = 30 km."
+      },
+      {
+        "prompt": "Two cars travel in opposite directions at 55 and 65 km/h. Relative speed is:",
+        "options": [
+          "10 km/h",
+          "55 km/h",
+          "65 km/h",
+          "120 km/h"
+        ],
+        "correct_index": 3,
+        "explanation": "Opposite directions: add speeds = 120 km/h."
+      },
+      {
+        "prompt": "A 120 m train crosses a pole in 6 seconds. Find its speed.",
+        "options": [
+          "15 m/s",
+          "18 m/s",
+          "20 m/s",
+          "24 m/s"
+        ],
+        "correct_index": 2,
+        "explanation": "Distance = train length = 120 m. Speed = 120/6 = 20 m/s."
+      }
+    ]
+  }
+}
