@@ -305,5 +305,7 @@
       "question": "Why should high thresholds often appear before low thresholds in an if/elif grade chain?",
       "answer": "The first matching branch runs; a broad low threshold can prevent later high-threshold branches from ever being reached."
     }
-  ]
+  ],
+  "next_lesson_slug": "functions_basics",
+  "next_lesson_title": "Functions, Parameters and Return Values"
 }
