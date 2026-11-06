@@ -19,6 +19,7 @@ import {
 import api from "../services/api";
 import Spinner from "../components/ui/Spinner";
 import { useJourneyState } from "../hooks/useJourneyState";
+import AcademyProfileSetup from "../components/academy/AcademyProfileSetup";
 
 type Lesson = {
   id: string;
@@ -292,7 +293,7 @@ export default function PlacementAcademy() {
   }
 
   return (
-    <div className="space-y-6 pb-12">
+    <div className="space-y-6 pb-12">\n      <AcademyProfileSetup />
       <header className="rounded-3xl border border-[#e7e2d8] bg-gradient-to-br from-white via-[#fbfaf6] to-[#f0f5ed] p-5 shadow-sm sm:p-7">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
