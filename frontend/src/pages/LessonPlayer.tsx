@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { useQueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useParams, Link, useSearchParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -82,11 +82,26 @@ type AnswerResult = {
 export default function LessonPlayer() {
   const { slug } = useParams();
   const queryClient = useQueryClient();
+  const { data: learnerProfileResult } = useQuery({
+    queryKey: ["academy", "learner-profile"],
+    queryFn: () => api.academy.getProfile(),
+    staleTime: 5 * 60_000,
+    retry: 1,
+  });
   const [searchParams] = useSearchParams();
   const lessonSlug = slug || "successive_percentage_change";
   const trackId = searchParams.get("track_id") || undefined;
   const moduleId = searchParams.get("module_id") || undefined;
   const topicId = searchParams.get("topic_id") || undefined;
+  const learnerProfile = (learnerProfileResult as any)?.profile;
+  const learningPreference = learnerProfile?.learning_preference || "mixed";
+  const learningMode = {
+    mixed: { label: "Balanced mode", description: "Read the concept, follow a worked example, then practise it." },
+    examples_first: { label: "Examples first", description: "Start by understanding a solved example, then connect it to the underlying rule." },
+    hands_on: { label: "Hands-on mode", description: "Move quickly into guided steps, code tracing and practice. The reference guide remains available below." },
+    visual: { label: "Visual mode", description: "Use the step sequence, worked traces and concrete examples to build a mental picture." },
+    reading: { label: "Reading mode", description: "Keep the full concept guide, worked examples and common mistakes open while learning." },
+  }[learningPreference] || { label: "Balanced mode", description: "Read the concept, follow a worked example, then practise it." };
 
   const [lesson, setLesson] = useState<LessonContent | null>(null);
   const [loading, setLoading] = useState(true);
@@ -651,6 +666,11 @@ export default function LessonPlayer() {
         </div>
       </div>
 
+      <section className="mb-4 rounded-2xl border border-brand-sky/20 bg-brand-sky/5 p-4">
+        <p className="text-[10px] font-mono uppercase tracking-wider text-brand-sky">Your learning mode · {learningMode.label}</p>
+        <p className="mt-1 text-sm leading-6 text-text-primary">{learningMode.description}</p>
+      </section>
+
       {lesson.learning_objectives?.length ? (
         <section className="mb-4 rounded-2xl border border-brand-sky/20 bg-brand-sky/5 p-4">
           <p className="text-[10px] font-mono uppercase tracking-wider text-brand-sky">By the end of this lesson</p>
@@ -664,7 +684,7 @@ export default function LessonPlayer() {
       ) : null}
 
       {(lesson.worked_examples?.length || lesson.common_misconceptions?.length || lesson.company_applications?.length || lesson.srs_cards?.length) ? (
-        <details className="mb-4 rounded-2xl border border-white/10 bg-surface-base/70 p-4">
+        <details open={learningPreference !== "hands_on"} className="mb-4 rounded-2xl border border-white/10 bg-surface-base/70 p-4">
           <summary className="cursor-pointer text-sm font-semibold text-text-primary">Deep dive: worked examples, common mistakes and placement practice</summary>
           <div className="mt-4 space-y-5">
             {lesson.concepts?.length ? (
