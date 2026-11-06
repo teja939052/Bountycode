@@ -21,7 +21,7 @@ import { useBrowserRuntime } from "../hooks/useBrowserRuntime";
 
 type Step = {
   step_number: number;
-  step_type: "explain" | "interactive" | "practice" | "assessment" | "predict_output" | "fill_blank" | "order_steps" | "code_lab";
+  step_type: "explain" | "interactive" | "practice" | "assessment" | "predict_output" | "fill_blank" | "order_steps" | "code_lab" | "sql_lab";
   title: string;
   content?: string;
   example?: string;
