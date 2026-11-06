@@ -39,9 +39,9 @@ LESSON_MODULE_TOPICS = {
     "profit_loss": {"profit_loss"},
     "ratio_proportion": {"ratio_proportion", "ratio"},
     "averages": {"averages", "average"},
-    "time_work": {"time_work"},
+    "time_work": {"time_work", "advanced_time_work"},
     "time_distance": {"time_distance", "speed_time_distance"},
-    "probability_basics": {"probability"},
+    "probability_basics": {"probability", "advanced_probability"},
     "permutations_combinations": {"permutations", "permutation", "permutations_combinations"},
     "number_series": {"series", "number_series"},
     "coding_decoding": {"coding_decoding"},
@@ -61,7 +61,7 @@ LESSON_MODULE_TOPICS = {
     "computer_networks_basics": {"computer_networks", "networking"},
     "number_systems": {"number_system", "number_systems", "number_theory"},
     "hcf_lcm": {"hcf_lcm", "hcf", "lcm"},
-    "simple_compound_interest": {"simple_interest", "compound_interest", "interest"},
+    "simple_compound_interest": {"simple_compound_interest", "simple_interest", "compound_interest", "interest"},
     "mixture_alligation": {"mixture_alligation", "mixtures", "alligation", "advanced_mixtures"},
     "syllogisms": {"syllogisms"},
     "direction_sense": {"direction_sense", "directions"},
@@ -70,7 +70,7 @@ LESSON_MODULE_TOPICS = {
     "linked_lists": {"linked_list", "linked_lists"},
     "trees_basics": {"trees", "binary_trees", "bst"},
     "stacks_queues": {"stack", "stacks", "queue", "queues", "stacks_queues"},
-    "dynamic_programming": {"dynamic_programming", "dp", "basic_dp"},
+    "dynamic_programming": {"dynamic_programming", "dynamic_programming_basics", "dp", "basic_dp"},
     "exception_handling": {"exception_handling", "exceptions"},
     "file_io": {"file_io", "files"},
     "time_complexity": {"time_complexity", "complexity_analysis", "big_o"},
@@ -92,6 +92,8 @@ LESSON_MODULE_TOPICS = {
     "geometry_basics": {"geometry"},
     "data_structures_intro": {"basic_ds"},
     "essay_writing": {"technology_topics", "current_affairs", "opinion_essays", "technology", "business", "social_issues", "essay"},
+    "advanced_probability": {"advanced_probability"},
+    "advanced_time_work": {"advanced_time_work"},
 }
 
 
@@ -157,6 +159,8 @@ LESSON_SKILL_DOMAINS = {
     "geometry_basics": "quantitative_aptitude",
     "data_structures_intro": "arrays_hashing",
     "essay_writing": "verbal_ability",
+    "advanced_probability": "quantitative_aptitude",
+    "advanced_time_work": "quantitative_aptitude",
 }
 
 
