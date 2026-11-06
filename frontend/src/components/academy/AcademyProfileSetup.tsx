@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { CheckCircle2, ChevronDown, GraduationCap, Save, Target } from "lucide-react";
+import { CheckCircle2, GraduationCap, Save, Target } from "lucide-react";
 import api from "../services/api";
 
 const companies = [
