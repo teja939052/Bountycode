@@ -41,3 +41,23 @@ def test_plan_only_includes_tracks_for_selected_companies():
     ]
     plan = build_plan(profile, None, catalog)
     assert [track["company_id"] for track in plan["company_preparation"]] == ["tcs"]
+
+
+def test_ongoing_practice_evidence_updates_diagnostic_priority():
+    profile = {"target_role": "software_engineer", "daily_minutes": 60}
+    diagnostic = {"skills": [
+        {"domain": "programming_fundamentals", "score": 30},
+        {"domain": "arrays_hashing", "score": 70},
+        {"domain": "sql", "score": 60},
+        {"domain": "computer_science", "score": 60},
+    ]}
+    evidence = {
+        "programming_fundamentals": {"score": 82, "total_attempts": 12},
+        "arrays_hashing": {"score": 25, "total_attempts": 8},
+    }
+    plan = build_plan(profile, diagnostic, adaptive_skills=evidence)
+    assert plan["curriculum"][0]["domain"] == "arrays_hashing"
+    programming = next(item for item in plan["curriculum"] if item["domain"] == "programming_fundamentals")
+    assert programming["diagnostic_score"] == 30
+    assert programming["adaptive_score"] == 82
+    assert programming["effective_score"] == 82
