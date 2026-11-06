@@ -31,3 +31,13 @@ def test_role_changes_recommended_curriculum():
     data = build_plan({"target_role": "data_analyst", "daily_minutes": 90}, None)
     assert "sql" in [item["domain"] for item in data["curriculum"]]
     assert "quantitative_aptitude" in [item["domain"] for item in data["curriculum"]]
+
+
+def test_plan_only_includes_tracks_for_selected_companies():
+    profile = {"target_role": "software_engineer", "target_companies": ["tcs"], "daily_minutes": 60}
+    catalog = [
+        {"id": "tcs_nqt", "company_id": "tcs", "name": "TCS NQT"},
+        {"id": "infosys_infytq", "company_id": "infosys", "name": "Infosys InfyTQ"},
+    ]
+    plan = build_plan(profile, None, catalog)
+    assert [track["company_id"] for track in plan["company_preparation"]] == ["tcs"]
