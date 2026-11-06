@@ -16,6 +16,7 @@ import logging
 from app.middleware.auth import get_current_user
 from app.services.gamification import record_practice
 from app.services.learning_paths import complete_track_module
+from app.services.adaptive_learning import record_learning_activity
 
 logger = logging.getLogger(__name__)
 
@@ -56,6 +57,10 @@ def _load_lesson(slug: str) -> Optional[Dict[str, Any]]:
     except Exception as exc:
         logger.warning("Failed to load lesson %s: %s", slug, exc)
         return None
+
+
+class StepAnswerRequest(BaseModel):
+    answer_index: int = Field(..., ge=0)
 
 
 class CompleteRequest(BaseModel):
@@ -102,16 +107,84 @@ async def get_lesson(slug: str, user=Depends(get_current_user)):
     # Do not send final-assessment answer keys to the browser. The server grades
     # them in /complete and only returns explanations after submission.
     public_data = {**data}
+    # Never ship answer keys to the learner before they submit an attempt.
+    public_data["steps"] = [
+        {
+            key: value for key, value in step.items()
+            if key not in {"correct_index", "correct_answer", "answer"}
+        }
+        for step in data.get("steps", [])
+    ]
     assessment = {**(data.get("assessment") or {})}
-    public_questions = []
-    for question in assessment.get("questions", []):
-        public_questions.append({
+    assessment["questions"] = [
+        {
             key: value for key, value in question.items()
-            if key not in {"correct_index", "correct_answer"}
-        })
-    assessment["questions"] = public_questions
+            if key not in {"correct_index", "correct_answer", "answer"}
+        }
+        for question in assessment.get("questions", [])
+    ]
     public_data["assessment"] = assessment
     return {"success": True, "data": public_data}
+
+
+@router.post("/{slug}/steps/{step_index}/answer", response_model=None)
+async def answer_lesson_step(
+    slug: str,
+    step_index: int,
+    req: StepAnswerRequest,
+    user=Depends(get_current_user),
+):
+    """Grade one interactive lesson step without exposing its answer key."""
+    data = _load_lesson(slug)
+    steps = (data or {}).get("steps") or []
+    if not data or step_index < 0 or step_index >= len(steps):
+        raise HTTPException(status_code=404, detail="Lesson step not found")
+
+    step = steps[step_index]
+    options = step.get("options") or []
+    expected = step.get("correct_index")
+    if step.get("step_type") not in {"interactive", "practice", "quiz"} or expected is None:
+        raise HTTPException(status_code=400, detail="This lesson step is not answerable.")
+    if req.answer_index >= len(options):
+        raise HTTPException(status_code=422, detail="Selected answer is outside the available options.")
+
+    correct = req.answer_index == int(expected)
+    domain = str(data.get("domain") or data.get("pattern") or "general").lower()
+    domain_id = {
+        "quantitative aptitude": "aptitude",
+        "reasoning": "aptitude",
+        "programming logic": "language_python",
+        "dsa": "arrays_hashing",
+        "verbal ability": "behavioral",
+        "sql": "sql",
+    }.get(domain, domain.replace(" ", "_"))
+
+    # Record evidence, but do not mint XP for every retryable in-lesson choice.
+    try:
+        await record_learning_activity(
+            user["id"],
+            {
+                "domain_id": domain_id,
+                "type": "lesson_step",
+                "success": correct,
+                "score_impact": 1,
+                "lesson_slug": slug,
+                "step_index": step_index,
+            },
+        )
+    except Exception as exc:
+        logger.warning("Could not update adaptive evidence for %s step %s: %s", slug, step_index, exc)
+
+    return {
+        "success": True,
+        "data": {
+            "correct": correct,
+            "selected_index": req.answer_index,
+            "correct_index": int(expected),
+            "explanation": step.get("explanation", ""),
+            "attempt_recorded": True,
+        },
+    }
 
 
 @router.post("/{slug}/complete", response_model=None)
