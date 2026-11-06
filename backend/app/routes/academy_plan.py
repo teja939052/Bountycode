@@ -4,9 +4,10 @@ from typing import Any, Dict, List
 
 from fastapi import APIRouter, Depends, HTTPException
 
-from app.database import get_collection
+from app.database import get_collection, srs_cards_collection
 from app.middleware.auth import get_current_user
 from app.services.learning_paths import get_all_company_tracks
+from app.services.spaced_repetition import deserialize_state, get_due_cards
 
 router = APIRouter(prefix="/api/v1/academy/plan", tags=["academy-plan"])
 _profiles = lambda: get_collection("academy_learner_profiles")
@@ -135,6 +136,18 @@ async def get_personalized_plan(user=Depends(get_current_user)):
     )
     diagnostic = (diagnostic_doc or {}).get("result")
     plan = build_plan(profile_doc, diagnostic, get_all_company_tracks())
+    stored_cards = await srs_cards_collection().find({"user_id": user["id"]}).to_list(500)
+    review_states = []
+    for card in stored_cards:
+        try:
+            review_states.append(deserialize_state(card))
+        except Exception:
+            continue
+    due_cards = get_due_cards(review_states, limit=5)
+    plan["revision"] = {
+        "due_count": len(get_due_cards(review_states, limit=500)),
+        "sample_problem_ids": [card.problem_id for card in due_cards],
+    }
     plan["generated_at"] = datetime.now(timezone.utc).isoformat()
     await _plans().update_one(
         {"user_id": user["id"]},
