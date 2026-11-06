@@ -250,7 +250,7 @@ export default function LessonPlayer() {
         <p className="text-text-secondary mb-4">
           The lesson "{lessonSlug}" could not be loaded.
         </p>
-        <Link to="/learn" className="text-brand-sky hover:underline">
+        <Link to="/academy" className="text-brand-sky hover:underline">
           Back to Learn
         </Link>
       </div>
@@ -322,7 +322,7 @@ export default function LessonPlayer() {
     return (
       <div className="max-w-2xl mx-auto px-4 py-8">
         <div className="mb-6">
-          <Link to="/learn" className="inline-flex items-center gap-1 text-xs text-text-secondary hover:text-text-primary">
+          <Link to="/academy" className="inline-flex items-center gap-1 text-xs text-text-secondary hover:text-text-primary">
             <ArrowLeft size={12} /> Learn
           </Link>
           <p className="mt-3 text-[10px] font-mono uppercase tracking-wider text-brand-sky">Final mastery check</p>
@@ -428,7 +428,7 @@ export default function LessonPlayer() {
         <div className="flex items-center justify-between mb-2">
           <div>
             <Link
-              to="/learn"
+              to="/academy"
               className="text-xs text-text-secondary hover:text-text-primary inline-flex items-center gap-1"
             >
               <ArrowLeft size={12} />
