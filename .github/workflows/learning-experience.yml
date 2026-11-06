@@ -50,6 +50,7 @@ jobs:
           tests/test_company_topic_progression.py
           tests/test_lesson_content_quality.py
           tests/test_sql_learning_runner.py
+          tests/test_compiler_sandbox_environment.py
           -q --tb=short
 
   frontend-learning:
