@@ -116,7 +116,7 @@ async def test_failed_assessment_does_not_complete_company_module(monkeypatch):
     )
 
     request = company_lessons.CompleteRequest(
-        answers={"0": 1, "1": 2},  # one of two correct: 50%
+        answers={"0": 1, "1": 1},  # one of two correct: 50%
         track_id="tcs_nqt",
         module_id="tcs_f1",
     )
