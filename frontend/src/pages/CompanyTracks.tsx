@@ -9,6 +9,27 @@ import {
   BookOpen, Target, Zap, Crown, CheckCircle2, Lock, Star,
 } from "lucide-react";
 
+const LESSON_BY_TOPIC: Record<string, string> = {
+  percentages: "successive_percentage_change",
+  successive_percentage_change: "successive_percentage_change",
+  blood_relations: "blood_relations",
+  blood_relation: "blood_relations",
+  reading_comprehension: "reading_comprehension",
+  arrays: "arrays_basics",
+  array: "arrays_basics",
+  flowchart: "flowchart_basics",
+  flowcharts: "flowchart_basics",
+  flowchart_basics: "flowchart_basics",
+};
+
+function lessonForModule(topics: string[] = []): string | null {
+  for (const topic of topics) {
+    const key = topic.toLowerCase().trim().replace(/[\s-]+/g, "_");
+    if (LESSON_BY_TOPIC[key]) return LESSON_BY_TOPIC[key];
+  }
+  return null;
+}
+
 const DIFFICULTY_COLORS = {
   easy: "text-green-400 bg-green-500/10 border-green-500/20",
   medium: "text-yellow-400 bg-yellow-500/10 border-yellow-500/20",
@@ -279,7 +300,7 @@ function TrackDetail({ trackId, onBack }: { trackId: string; onBack: () => void 
                     </div>
                     <p className="text-xs text-gray-500 mb-2">{mod.description}</p>
                     <div className="flex flex-wrap gap-1 mb-2">
-                      {mod.topics.slice(0, 5).map((t: string) => (
+                      {(mod.topics || []).slice(0, 5).map((t: string) => (
                         <span key={t} className="text-[10px] px-1.5 py-0.5 rounded bg-gray-500/10 text-gray-400">{t}</span>
                       ))}
                     </div>
@@ -305,12 +326,22 @@ function TrackDetail({ trackId, onBack }: { trackId: string; onBack: () => void 
                     </div>
                   </div>
                   {trackData.enrolled && !mod.completed && (
-                    <Link
-                      to={`/tracks/${trackData.company_id}`}
-                      className="ml-3 shrink-0 rounded-lg border border-primary-500/30 bg-primary-500/10 px-3 py-1.5 text-xs font-medium text-primary-700 hover:bg-primary-500/15"
-                    >
-                      Practice
-                    </Link>
+                    <div className="ml-3 flex shrink-0 flex-col gap-2">
+                      {lessonForModule(mod.topics) && (
+                        <Link
+                          to={`/learn/lesson/${lessonForModule(mod.topics)}?track_id=${encodeURIComponent(trackData.id)}&module_id=${encodeURIComponent(mod.id)}`}
+                          className="rounded-lg bg-primary-600 px-3 py-1.5 text-center text-xs font-semibold text-white hover:bg-primary-700"
+                        >
+                          Learn + assess
+                        </Link>
+                      )}
+                      <Link
+                        to={`/tracks/${trackData.company_id}`}
+                        className="rounded-lg border border-primary-500/30 bg-primary-500/10 px-3 py-1.5 text-center text-xs font-medium text-primary-700 hover:bg-primary-500/15"
+                      >
+                        Practice
+                      </Link>
+                    </div>
                   )}
                 </div>
               </div>
