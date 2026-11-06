@@ -120,5 +120,99 @@
         "explanation": "Time is inversely proportional to efficiency. A takes 18/3 = 6 days."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Translate work rates into fractions per unit time.",
+    "Combine workers' rates correctly.",
+    "Solve efficiency and alternate-day work problems.",
+    "Check whether a result is reasonable."
+  ],
+  "prerequisites": [
+    "arithmetic_algebra"
+  ],
+  "concepts": [
+    "work rate",
+    "combined rate",
+    "efficiency",
+    "person-days",
+    "fractional work"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Add the number of days to combine workers.",
+      "correction": "Add work rates (work per day), not completion times."
+    },
+    {
+      "misconception": "Twice the workers always means exactly half the time.",
+      "correction": "That assumes equal efficiency and no dependency or coordination overhead."
+    },
+    {
+      "misconception": "A person who takes more days is more efficient.",
+      "correction": "For the same work, fewer days means a higher work rate."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Combine two workers",
+      "input": "A finishes in 6 days; B finishes in 3 days",
+      "trace": [
+        "A's rate = 1/6 job per day.",
+        "B's rate = 1/3 job per day.",
+        "Combined rate = 1/6 + 1/3 = 1/2."
+      ],
+      "output": "Together they finish in 2 days",
+      "explanation": "Add rates because both contribute work at the same time."
+    },
+    {
+      "title": "Find one worker's rate",
+      "input": "A and B finish in 4 days; A alone takes 6 days",
+      "trace": [
+        "Combined rate = 1/4.",
+        "A's rate = 1/6.",
+        "B's rate = 1/4 - 1/6 = 1/12."
+      ],
+      "output": "B alone takes 12 days",
+      "explanation": "Subtract known rates to isolate the unknown worker's rate."
+    },
+    {
+      "title": "Convert efficiency ratio",
+      "input": "A:B efficiency = 2:3",
+      "trace": [
+        "For equal time, A completes 2 units.",
+        "B completes 3 units.",
+        "For equal work, time is inversely proportional to efficiency."
+      ],
+      "output": "Time ratio A:B = 3:2",
+      "explanation": "Higher efficiency means less time for the same amount of work."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "time and work aptitude",
+      "practice": "Convert each worker into a per-day rate."
+    },
+    {
+      "company": "Cognizant",
+      "skill": "quantitative reasoning",
+      "practice": "Use fractions and verify the combined rate."
+    },
+    {
+      "company": "Accenture",
+      "skill": "numerical problem solving",
+      "practice": "Separate efficiency ratios from time ratios."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What are the key ideas in Time and Work?",
+      "answer": "Translate work rates into fractions per unit time. Combine workers' rates correctly. Solve efficiency and alternate-day work problems. Check whether a result is reasonable."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in Time and Work.",
+      "answer": "Add work rates (work per day), not completion times."
+    }
+  ]
 }
