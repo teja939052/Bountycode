@@ -209,3 +209,70 @@ async def test_step_answer_rejects_out_of_range_choice(monkeypatch):
         )
 
     assert exc.value.status_code == 422
+
+
+
+class _FakeLearningProgressCollection:
+    def __init__(self):
+        self.document = {}
+
+    async def find_one(self, query):
+        if self.document.get("user_id") == query.get("user_id"):
+            return self.document
+        return None
+
+    async def update_one(self, query, update, upsert=False):
+        if not self.document:
+            self.document = {"user_id": query["user_id"], "activities": []}
+        for dotted_key, value in update.get("$set", {}).items():
+            cursor = self.document
+            parts = dotted_key.split(".")
+            for part in parts[:-1]:
+                cursor = cursor.setdefault(part, {})
+            cursor[parts[-1]] = value
+
+
+@pytest.mark.asyncio
+async def test_lesson_progress_can_be_saved_and_resumed(monkeypatch):
+    lesson = _lesson()
+    lesson["steps"].append({
+        "step_number": 2,
+        "step_type": "explain",
+        "title": "Continue learning",
+        "content": "A second step.",
+    })
+    monkeypatch.setattr(company_lessons, "_load_lesson", lambda _slug: lesson)
+    collection = _FakeLearningProgressCollection()
+    monkeypatch.setattr(company_lessons, "learning_progress_collection", collection)
+
+    saved = await company_lessons.save_lesson_progress(
+        "successive_percentage_change",
+        company_lessons.LessonProgressRequest(current_step=1),
+        user={"id": "test-user"},
+    )
+    restored = await company_lessons.get_lesson_progress(
+        "successive_percentage_change",
+        user={"id": "test-user"},
+    )
+
+    assert saved["data"]["current_step"] == 1
+    assert restored["data"]["current_step"] == 1
+    assert restored["data"]["has_progress"] is True
+    assert collection.document["lesson_progress"]["successive_percentage_change"]["current_step"] == 1
+
+
+@pytest.mark.asyncio
+async def test_lesson_progress_rejects_a_step_outside_the_lesson(monkeypatch):
+    monkeypatch.setattr(company_lessons, "_load_lesson", lambda _slug: _lesson())
+    collection = _FakeLearningProgressCollection()
+    monkeypatch.setattr(company_lessons, "learning_progress_collection", collection)
+
+    with pytest.raises(HTTPException) as exc:
+        await company_lessons.save_lesson_progress(
+            "successive_percentage_change",
+            company_lessons.LessonProgressRequest(current_step=1),
+            user={"id": "test-user"},
+        )
+
+    assert exc.value.status_code == 422
+    assert collection.document == {}
