@@ -15,7 +15,7 @@ export default function AcademyPersonalPlan() {
     <section className="rounded-3xl border border-slate-200 bg-white p-5">
       <p className="font-bold text-slate-900">Your personalized plan is waiting</p>
       <p className="mt-1 text-sm text-slate-600">Save your learning profile first. Complete the diagnostic to make the plan evidence-based.</p>
-      <Link to="#academy-profile" className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-emerald-700">Set up profile <ArrowRight size={14}/></Link>
+      <Link to="/academy#academy-profile" className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-emerald-700">Set up profile <ArrowRight size={14}/></Link>
     </section>
   );
   const plan = (data as any)?.plan;
