@@ -6,6 +6,7 @@ from fastapi import APIRouter, Depends, HTTPException
 
 from app.database import get_collection
 from app.middleware.auth import get_current_user
+from app.services.learning_paths import get_all_company_tracks
 
 router = APIRouter(prefix="/api/v1/academy/plan", tags=["academy-plan"])
 _profiles = lambda: get_collection("academy_learner_profiles")
@@ -39,7 +40,7 @@ ROLE_SKILLS = {
 }
 
 
-def build_plan(profile: Dict[str, Any], diagnostic: Dict[str, Any] | None) -> Dict[str, Any]:
+def build_plan(profile: Dict[str, Any], diagnostic: Dict[str, Any] | None, company_tracks: List[dict] | None = None) -> Dict[str, Any]:
     """Prioritize weak prerequisite skills, then role-specific skills."""
     skills = (diagnostic or {}).get("skills", [])
     scores = {item.get("domain"): int(item.get("score", 0)) for item in skills}
@@ -85,7 +86,7 @@ def build_plan(profile: Dict[str, Any], diagnostic: Dict[str, Any] | None) -> Di
             ),
         })
 
-    daily_minutes = int(profile.get("daily_minutes", 60))
+    target_companies = set(profile.get("target_companies", []))\n    matched_tracks = [\n        {"id": track["id"], "company_id": track["company_id"], "name": track["name"], "description": track.get("description", "")}\n        for track in (company_tracks or [])\n        if track.get("company_id") in target_companies\n    ]\n    daily_minutes = int(profile.get("daily_minutes", 60))
     budget = max(15, daily_minutes)
     selected = []
     used = 0
@@ -95,7 +96,7 @@ def build_plan(profile: Dict[str, Any], diagnostic: Dict[str, Any] | None) -> Di
             used += task["estimated_minutes"]
     return {
         "target_role": role,
-        "target_companies": profile.get("target_companies", []),
+        "target_companies": profile.get("target_companies", []),\n        "company_preparation": matched_tracks,
         "preferred_language": profile.get("preferred_language", "cpp"),
         "daily_minutes": daily_minutes,
         "diagnostic_completed": bool(diagnostic),
@@ -126,7 +127,7 @@ async def get_personalized_plan(user=Depends(get_current_user)):
         sort=[("completed_at", -1)],
     )
     diagnostic = (diagnostic_doc or {}).get("result")
-    plan = build_plan(profile_doc, diagnostic)
+    plan = build_plan(profile_doc, diagnostic, get_all_company_tracks())
     plan["generated_at"] = datetime.now(timezone.utc).isoformat()
     await _plans().update_one(
         {"user_id": user["id"]},
