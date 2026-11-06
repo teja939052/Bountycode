@@ -48,6 +48,42 @@ export default function AcademyPersonalPlan() {
           {typeof plan.overall_accuracy === "number" && <span className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700">Practice accuracy: {plan.overall_accuracy}%</span>}
         </div>
       )}
+      {plan.curriculum?.length > 0 && (
+        <div className="mt-5">
+          <div className="mb-2 flex items-center justify-between gap-2">
+            <p className="text-sm font-bold text-slate-800">Skill snapshot</p>
+            <span className="text-xs text-slate-500">Lowest-priority gaps first</span>
+          </div>
+          <div className="grid gap-2 sm:grid-cols-2">
+            {plan.curriculum.slice(0, 4).map((skill: any, index: number) => {
+              const score = typeof skill.effective_score === "number"
+                ? Math.max(0, Math.min(100, Math.round(skill.effective_score)))
+                : null;
+              const content = (
+                <>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-sm font-semibold text-slate-800">{skill.title}</span>
+                    <span className="shrink-0 text-xs font-bold text-slate-600">{score === null ? "Not assessed" : `${score}%`}</span>
+                  </div>
+                  <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-100">
+                    <div className="h-full rounded-full bg-emerald-600" style={{ width: `${score ?? 0}%` }} />
+                  </div>
+                  <p className="mt-1 text-xs text-slate-500">{String(skill.skill_level || "not assessed").replaceAll("_", " ")}</p>
+                </>
+              );
+              return skill.lesson_slug ? (
+                <Link key={skill.domain || index} to={`/learn/lesson/${skill.lesson_slug}`} className="rounded-xl border border-slate-200 p-3 transition hover:border-emerald-400 hover:bg-emerald-50/40">
+                  {content}
+                </Link>
+              ) : (
+                <div key={skill.domain || index} className="rounded-xl border border-slate-200 p-3">
+                  {content}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
       {plan.daily_tasks?.length ? (
         <div className="mt-5 space-y-3">
           {plan.daily_tasks.map((task: any, index: number) => (
