@@ -144,8 +144,62 @@ def build_plan(profile: Dict[str, Any], diagnostic: Dict[str, Any] | None, compa
         if used + task["estimated_minutes"] <= budget or not selected:
             selected.append(task)
             used += task["estimated_minutes"]
+    learning_preference = str(profile.get("learning_preference", "mixed") or "mixed").lower()
+    routine_labels = {
+        "mixed": [
+            "Review previous mistakes",
+            "Learn the next concept",
+            "Solve guided and independent problems",
+            "Check understanding and revise",
+        ],
+        "examples_first": [
+            "Recall one previous example",
+            "Study a worked example",
+            "Solve a similar problem independently",
+            "Compare your reasoning and revise",
+        ],
+        "hands_on": [
+            "Warm up with a recall prompt",
+            "Attempt a guided exercise",
+            "Build or debug a small solution",
+            "Review feedback and note the lesson",
+        ],
+        "visual": [
+            "Recall the last concept",
+            "Trace a diagram, state or code path",
+            "Practise with a visual trace",
+            "Summarize the pattern you observed",
+        ],
+        "reading": [
+            "Review notes and revision cards",
+            "Read the concept explanation",
+            "Work through examples and exercises",
+            "Write a short summary from memory",
+        ],
+    }
+    routine = routine_labels.get(learning_preference, routine_labels["mixed"])
+    review_minutes = min(10, max(5, budget // 6))
+    concept_minutes = max(5, budget // 3)
+    practice_minutes = max(5, budget // 3)
+    routine_minutes = [
+        review_minutes,
+        concept_minutes,
+        practice_minutes,
+        max(0, budget - review_minutes - concept_minutes - practice_minutes),
+    ]
+    learning_strategy = {
+        "mixed": "Combine clear explanations, worked examples and independent practice.",
+        "examples_first": "Start with a solved example, understand each decision, then solve a similar problem yourself.",
+        "hands_on": "Attempt guided tasks early, use hints progressively and read the explanation after each attempt.",
+        "visual": "Follow concrete traces, state changes and step-by-step examples before generalizing the rule.",
+        "reading": "Read the concept guide, key terms and common misconceptions, then recall and apply the idea.",
+    }.get(learning_preference, "Combine clear explanations, worked examples and independent practice.")
+
     return {
         "target_role": role,
+        "experience_level": profile.get("experience_level", "absolute_beginner"),
+        "learning_preference": learning_preference,
+        "learning_strategy": learning_strategy,
         "target_companies": profile.get("target_companies", []),
         "company_preparation": matched_tracks,
         "preferred_language": profile.get("preferred_language", "cpp"),
@@ -155,15 +209,14 @@ def build_plan(profile: Dict[str, Any], diagnostic: Dict[str, Any] | None, compa
         "daily_tasks": selected,
         "curriculum": tasks,
         "study_routine": [
-            {"label": "Review yesterday's concepts", "minutes": min(10, max(5, budget // 6))},
-            {"label": "Learn the next concept", "minutes": max(5, budget // 3)},
-            {"label": "Solve guided and independent problems", "minutes": max(5, budget // 3)},
-            {"label": "Check understanding and revise mistakes", "minutes": max(0, budget - (min(10, max(5, budget // 6)) + 2 * max(5, budget // 3)))},
+            {"label": label, "minutes": minutes}
+            for label, minutes in zip(routine, routine_minutes)
         ],
         "personalization_note": (
             "Complete the baseline diagnostic to replace self-reported levels with skill evidence."
             if not diagnostic else
-            "Tasks are prioritized using your diagnostic results and selected role."
+            "Tasks are prioritized using your diagnostic results and selected role. " +
+            "Your learning preference shapes how concepts and practice are presented; skill order follows assessed evidence."
         ),
     }
 
