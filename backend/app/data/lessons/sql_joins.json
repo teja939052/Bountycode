@@ -249,5 +249,7 @@
       "question": "Name a common mistake in SQL Joins.",
       "answer": "One-to-many matches can produce multiple result rows for one left row."
     }
-  ]
+  ],
+  "next_lesson_slug": "sql_group_by",
+  "next_lesson_title": "SQL GROUP BY and Aggregation"
 }
