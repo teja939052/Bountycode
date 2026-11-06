@@ -62,6 +62,38 @@ LESSON_MODULE_TOPICS = {
 }
 
 
+LESSON_SKILL_DOMAINS = {
+    "successive_percentage_change": "quantitative_aptitude",
+    "profit_loss": "quantitative_aptitude",
+    "ratio_proportion": "quantitative_aptitude",
+    "averages": "quantitative_aptitude",
+    "time_work": "quantitative_aptitude",
+    "time_distance": "quantitative_aptitude",
+    "probability_basics": "quantitative_aptitude",
+    "permutations_combinations": "quantitative_aptitude",
+    "number_series": "logical_reasoning",
+    "coding_decoding": "logical_reasoning",
+    "blood_relations": "logical_reasoning",
+    "flowchart_basics": "logical_reasoning",
+    "reading_comprehension": "verbal_ability",
+    "sentence_correction": "verbal_ability",
+    "para_jumbles": "verbal_ability",
+    "arrays_basics": "arrays_hashing",
+    "loops_basics": "programming_fundamentals",
+    "strings_basics": "programming_fundamentals",
+    "recursion_basics": "programming_fundamentals",
+    "sorting_basics": "programming_fundamentals",
+    "searching_basics": "programming_fundamentals",
+    "hashing_basics": "arrays_hashing",
+    "sql_select_basics": "sql",
+    "sql_joins": "sql",
+    "oops_basics": "computer_science",
+    "dbms_basics": "computer_science",
+    "os_basics": "computer_science",
+    "computer_networks_basics": "computer_science",
+}
+
+
 def _normalize_topic(value: Any) -> str:
     return str(value or "").strip().lower().replace("-", "_").replace(" ", "_")
 
@@ -178,14 +210,18 @@ async def answer_lesson_step(
 
     correct = req.answer_index == int(expected)
     domain = str(data.get("domain") or data.get("pattern") or "general").lower()
-    domain_id = {
-        "quantitative aptitude": "aptitude",
-        "reasoning": "aptitude",
-        "programming logic": "language_python",
-        "dsa": "arrays_hashing",
-        "verbal ability": "behavioral",
-        "sql": "sql",
-    }.get(domain, domain.replace(" ", "_"))
+    domain_id = LESSON_SKILL_DOMAINS.get(
+        slug,
+        {
+            "quantitative aptitude": "quantitative_aptitude",
+            "reasoning": "logical_reasoning",
+            "programming logic": "programming_fundamentals",
+            "programming fundamentals": "programming_fundamentals",
+            "dsa": "arrays_hashing",
+            "verbal ability": "verbal_ability",
+            "sql": "sql",
+        }.get(domain, domain.replace(" ", "_")),
+    )
 
     # Record evidence, but do not mint XP for every retryable in-lesson choice.
     try:
