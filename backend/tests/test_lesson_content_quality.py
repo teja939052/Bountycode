@@ -246,3 +246,8 @@ def test_programming_foundation_lessons_link_to_the_next_course_step():
         lesson = json.loads((LESSONS_DIR / f"{slug}.json").read_text(encoding="utf-8"))
         assert lesson.get("next_lesson_slug") == next_slug
         assert lesson.get("next_lesson_title")
+        quest = lesson.get("quest") or {}
+        assert quest.get("chapter")
+        assert quest.get("story")
+        assert quest.get("mission")
+        assert len(quest.get("success_criteria") or []) >= 3
