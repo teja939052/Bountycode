@@ -37,7 +37,6 @@ type Step = {
   explanation?: string;
   starter_code?: string;
   expected_output?: string;
-  language?: string;
   hints?: string[];
 };
 
