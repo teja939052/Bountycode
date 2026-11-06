@@ -222,7 +222,7 @@ export default function PlacementAcademy() {
 
   const { data: dailyResult, isLoading: dailyLoading } = useQuery({
     queryKey: ["adaptive", "daily-plan"],
-    queryFn: () => api.get("/api/v1/adaptive/daily-plan?force=true"),
+    queryFn: () => api.adaptive.getDailyPlan(true),
     staleTime: 60_000,
     retry: 1,
   });
