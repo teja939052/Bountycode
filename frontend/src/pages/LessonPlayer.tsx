@@ -37,6 +37,8 @@ type Step = {
   explanation?: string;
   starter_code?: string;
   expected_output?: string;
+  schema_preview?: string;
+  sample_data?: string;
   hints?: string[];
 };
 
@@ -65,6 +67,8 @@ type AnswerResult = {
   correctAnswer?: string;
   explanation: string;
   correctOrder?: number[];
+  feedback?: string;
+  sqlResults?: Array<Record<string, unknown>>;
 } | null;
 
 export default function LessonPlayer() {
@@ -96,7 +100,7 @@ export default function LessonPlayer() {
   const [sequenceOrder, setSequenceOrder] = useState<number[]>([]);
   const [codeDraft, setCodeDraft] = useState("");
   const [codeLabResult, setCodeLabResult] = useState<{
-    success: boolean; passed: boolean; stdout: string; stderr: string; expected: string;
+    success: boolean; passed: boolean; stdout: string; stderr: string;
   } | null>(null);
   const [hintsRevealed, setHintsRevealed] = useState(0);
   const { execute: runBrowserCode } = useBrowserRuntime();
@@ -216,7 +220,7 @@ export default function LessonPlayer() {
   const handleTextAnswer = useCallback(async () => {
     if (!lesson || !textAnswer.trim() || answerResult !== null || saving) return;
     const step = lesson.steps[currentStep];
-    if (step.step_type !== "predict_output" && step.step_type !== "fill_blank") return;
+    if (!["predict_output", "fill_blank", "sql_lab"].includes(step.step_type)) return;
 
     setStepError("");
     setSaving(true);
@@ -226,11 +230,14 @@ export default function LessonPlayer() {
       if (!result) throw new Error("The answer could not be graded.");
       setAttemptedCount((count) => count + 1);
       if (result.correct) setCorrectCount((count) => count + 1);
+      const explanation = [result.feedback, result.explanation].filter(Boolean).join("\n\n");
       setAnswerResult({
         correct: Boolean(result.correct),
         correctIndex: null,
         correctAnswer: result.correct_answer || "",
-        explanation: result.explanation || "",
+        explanation,
+        feedback: result.feedback || "",
+        sqlResults: Array.isArray(result.student_results) ? result.student_results : undefined,
       });
       setShowExplanation(true);
       void queryClient.invalidateQueries({ queryKey: ["adaptive"] });
@@ -281,40 +288,71 @@ export default function LessonPlayer() {
     setStepError("");
     setSaving(true);
     setCodeLabResult(null);
+    setAnswerResult(null);
+    setShowExplanation(false);
     try {
-      const result = await runBrowserCode("javascript", codeDraft, "", 3000);
-      const normalize = (value: string) => value.replace(/\r\n/g, "\n").trim();
-      const expected = String(step.expected_output ?? "");
-      const passed = Boolean(result.success) && normalize(result.stdout) === normalize(expected);
-      setCodeLabResult({
-        success: Boolean(result.success),
-        passed,
-        stdout: result.stdout || "",
-        stderr: result.stderr || "",
-        expected,
-      });
-      if (!result.success) {
-        setStepError(result.stderr || "The code could not be run. Check the error and try again.");
-      } else if (!passed) {
-        setStepError("Your program ran, but its output does not match the exercise check yet.");
+      const run = await runBrowserCode("javascript", codeDraft, "", 3000);
+      if (!run.success) {
+        setCodeLabResult({ success: false, passed: false, stdout: run.stdout || "", stderr: run.stderr || "" });
+        setStepError(run.stderr || "The code could not be run. Check the error and try again.");
+        return;
       }
+
+      // The expected output stays on the server. This check is formative only;
+      // it does not award XP or certify placement mastery.
+      const response: any = await api.companyLessons.answerStep(lessonSlug, currentStep, run.stdout || "");
+      const grade = response?.data;
+      if (!grade) throw new Error("The output could not be checked.");
+      const passed = Boolean(grade.correct);
+      setAttemptedCount((count) => count + 1);
+      if (passed) setCorrectCount((count) => count + 1);
+      setCodeLabResult({ success: true, passed, stdout: run.stdout || "", stderr: "" });
+      setAnswerResult({
+        correct: passed,
+        correctIndex: null,
+        explanation: [grade.feedback, grade.explanation].filter(Boolean).join("\n\n"),
+        feedback: grade.feedback || "",
+      });
+      setShowExplanation(true);
+      void queryClient.invalidateQueries({ queryKey: ["adaptive"] });
     } catch (error: any) {
+      setCodeLabResult({ success: false, passed: false, stdout: "", stderr: error?.message || "The browser runner could not start." });
       setStepError(error?.message || "The browser runner could not start. Please retry.");
     } finally {
       setSaving(false);
     }
-  }, [lesson, currentStep, saving, runBrowserCode, codeDraft]);
+  }, [lesson, lessonSlug, currentStep, saving, runBrowserCode, codeDraft, queryClient]);
+
+  const retryCurrentStep = useCallback(() => {
+    if (!lesson) return;
+    setAnswerResult(null);
+    setShowExplanation(false);
+    setSelectedAnswer(null);
+    setTextAnswer("");
+    setCodeLabResult(null);
+    setStepError("");
+    const step = lesson.steps[currentStep];
+    if (step.step_type === "order_steps") {
+      setSequenceOrder((step.options || []).map((_, index) => index));
+    }
+  }, [lesson, currentStep]);
 
   const goNext = useCallback(() => {
     if (!lesson) return;
     const step = lesson.steps[currentStep];
-    const mustAttempt = ["interactive", "practice", "predict_output", "fill_blank", "order_steps", "code_lab"].includes(step.step_type);
-    const stepCompleted = step.step_type === "code_lab" ? Boolean(codeLabResult?.passed) : Boolean(answerResult);
+    const mustAttempt = ["interactive", "practice", "predict_output", "fill_blank", "order_steps", "code_lab", "sql_lab"].includes(step.step_type);
+    const stepCompleted = step.step_type === "code_lab"
+      ? Boolean(codeLabResult?.passed)
+      : step.step_type === "sql_lab"
+        ? Boolean(answerResult?.correct)
+        : Boolean(answerResult);
     if (mustAttempt && !stepCompleted) {
       setStepError(
         step.step_type === "code_lab"
           ? "Run the code and pass the output check before continuing."
-          : "Try this practice step before continuing. You will see feedback after your answer.",
+          : step.step_type === "sql_lab"
+            ? "Revise your query until it returns the required result before continuing."
+            : "Try this practice step before continuing. You will see feedback after your answer.",
       );
       return;
     }
@@ -732,7 +770,7 @@ export default function LessonPlayer() {
                 <span>JavaScript · runs in a disposable browser worker</span>
                 <button
                   type="button"
-                  onClick={() => { setCodeDraft(step.starter_code || ""); setCodeLabResult(null); setStepError(""); }}
+                  onClick={() => { setCodeDraft(step.starter_code || ""); setCodeLabResult(null); setAnswerResult(null); setShowExplanation(false); setStepError(""); }}
                   className="inline-flex items-center gap-1 rounded-md px-2 py-1 hover:bg-white/10"
                 >
                   <RotateCcw size={12} /> Reset starter
@@ -744,7 +782,7 @@ export default function LessonPlayer() {
                 autoCapitalize="off"
                 autoCorrect="off"
                 value={codeDraft}
-                onChange={(event) => { setCodeDraft(event.target.value); setCodeLabResult(null); setStepError(""); }}
+                onChange={(event) => { setCodeDraft(event.target.value); setCodeLabResult(null); setAnswerResult(null); setShowExplanation(false); setStepError(""); }}
                 disabled={saving}
                 rows={9}
                 className="w-full resize-y rounded-lg border border-white/10 bg-[#101820] p-3 font-mono text-xs leading-6 text-slate-100 outline-none focus:border-brand-sky"
