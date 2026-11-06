@@ -119,5 +119,7 @@
         "explanation": "Net rate = 1/12−1/18 = 1/36, so 36 hours."
       }
     ]
-  }
+  },
+  "next_lesson_slug": "permutations_combinations",
+  "next_lesson_title": "Permutations and Combinations"
 }
