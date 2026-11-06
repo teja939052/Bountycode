@@ -9,6 +9,10 @@ on:
       - "backend/app/routes/academy_diagnostic.py"
       - "backend/app/routes/academy_plan.py"
       - "backend/app/routes/quiz.py"
+      - "backend/app/services/adaptive_learning.py"
+      - "backend/app/services/journey_engine.py"
+      - "backend/app/services/spaced_repetition.py"
+      - "backend/app/services/study_engine.py"
       - "backend/tests/test_academy_profile.py"
       - "backend/tests/test_academy_diagnostic.py"
       - "backend/tests/test_academy_plan.py"
@@ -18,6 +22,8 @@ on:
       - "backend/tests/test_company_topic_progression.py"
       - "backend/tests/test_lesson_content_quality.py"
       - "backend/tests/test_sql_learning_runner.py"
+      - "backend/tests/test_srs_schedule_integrity.py"
+      - "backend/tests/test_adaptive_learning_score_impact.py"
       - "backend/app/services/sql_engine.py"
       - "backend/compiler-service/main.py"
       - "backend/app/config.py"
@@ -66,6 +72,8 @@ jobs:
           tests/test_lesson_content_quality.py
           tests/test_sql_learning_runner.py
           tests/test_compiler_sandbox_environment.py
+          tests/test_srs_schedule_integrity.py
+          tests/test_adaptive_learning_score_impact.py
           -q --tb=short
 
   frontend-learning:
