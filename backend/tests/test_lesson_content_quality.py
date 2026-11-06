@@ -187,3 +187,27 @@ def test_rich_lesson_authoring_standard_has_depth_and_company_transfer():
         assert question.get("explanation")
         assert len(question.get("options", [])) >= 4
         assert 0 <= question.get("correct_index", -1) < len(question["options"])
+
+
+def test_core_foundation_lessons_follow_the_rich_authoring_contract():
+    core_lessons = [
+        "programming_languages",
+        "loops_basics",
+        "arrays_basics",
+        "strings_basics",
+        "dbms_basics",
+        "sql_select_basics",
+    ]
+    for slug in core_lessons:
+        lesson = json.loads((LESSONS_DIR / f"{slug}.json").read_text(encoding="utf-8"))
+        assert len(lesson.get("learning_objectives", [])) >= 4, slug
+        assert len(lesson.get("concepts", [])) >= 5, slug
+        assert len(lesson.get("common_misconceptions", [])) >= 3, slug
+        assert len(lesson.get("worked_examples", [])) >= 3, slug
+        assert len(lesson.get("company_applications", [])) >= 3, slug
+        assert len(lesson.get("srs_cards", [])) >= 3, slug
+        for example in lesson["worked_examples"]:
+            assert example.get("input"), slug
+            assert len(example.get("trace", [])) >= 2, slug
+            assert example.get("output"), slug
+            assert example.get("explanation"), slug
