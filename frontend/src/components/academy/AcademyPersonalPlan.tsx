@@ -45,6 +45,19 @@ export default function AcademyPersonalPlan() {
           ))}
         </div>
       ) : <p className="mt-4 text-sm text-slate-600">Complete your diagnostic to generate your first set of tasks.</p>}
+      {plan.company_preparation?.length > 0 && (
+        <div className="mt-5">
+          <p className="mb-2 text-sm font-bold text-slate-800">Your selected company tracks</p>
+          <div className="grid gap-2 sm:grid-cols-2">
+            {plan.company_preparation.map((track: any) => (
+              <Link key={track.id} to={`/tracks/${track.company_id}`} className="rounded-xl border border-slate-200 p-3 transition hover:border-emerald-400 hover:bg-emerald-50/40">
+                <p className="font-semibold text-slate-900">{track.name}</p>
+                <p className="mt-1 line-clamp-2 text-xs text-slate-500">{track.description}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
       <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-slate-100 pt-4">
         <p className="text-xs text-slate-500">Companies: {(plan.target_companies || []).join(", ") || "Choose your target companies in your profile"}</p>
         <span className="inline-flex items-center gap-1 text-xs font-semibold text-slate-500"><Target size={13}/> Skill evidence, not guesswork</span>
