@@ -28,7 +28,11 @@
         "EOG"
       ],
       "correct_index": 0,
-      "explanation": "D→E, O→P, G→H. Therefore DOG becomes EPH."
+      "explanation": "D→E, O→P, G→H. Therefore DOG becomes EPH.",
+      "hints": [
+        "Compare the first original letter with the first coded letter.",
+        "Apply the same shift separately to every letter; do not shift the whole word as one unit."
+      ]
     },
     {
       "step_number": 3,
@@ -50,7 +54,11 @@
         "CAR"
       ],
       "correct_index": 0,
-      "explanation": "D→C, B→A, U→T. The original word is CAT."
+      "explanation": "D→C, B→A, U→T. The original word is CAT.",
+      "hints": [
+        "Undo the encoding by moving in the opposite direction.",
+        "Check each letter position independently before combining the decoded word."
+      ]
     },
     {
       "step_number": 5,
@@ -120,5 +128,80 @@
         "explanation": "Reading TRAIN backward gives NIART."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Represent letters using alphabet positions.",
+    "Apply fixed forward and backward shifts.",
+    "Detect reversal and position-based coding rules.",
+    "Verify a proposed code by applying the rule to every character."
+  ],
+  "concepts": [
+    "alphabet position",
+    "forward shift",
+    "backward shift",
+    "letter analogy",
+    "reversal",
+    "alternating shift"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "A one-letter shift applies only to the first character.",
+      "correction": "Apply the same stated rule to every character unless the question specifies otherwise."
+    },
+    {
+      "misconception": "The encoded word must be another meaningful word.",
+      "correction": "A code is a transformation; its output may be arbitrary letters or numbers."
+    },
+    {
+      "misconception": "A shift never wraps around the alphabet.",
+      "correction": "Some coding rules wrap Z to A or A to Z; check the stated convention."
+    }
+  ],
+  "worked_examples": [],
+  "company_applications": [
+    {
+      "company": "TCS NQT",
+      "skill": "coding-decoding and letter patterns",
+      "practice": "Write the alphabet shift beside each letter to avoid mental slips."
+    },
+    {
+      "company": "Infosys",
+      "skill": "logical pattern recognition",
+      "practice": "Test a proposed rule against every letter, not just the first."
+    },
+    {
+      "company": "Accenture",
+      "skill": "reasoning under time pressure",
+      "practice": "Eliminate options by checking one or two decisive positions."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "method",
+      "question": "How do you identify a uniform letter shift?",
+      "answer": "Compare corresponding letters and calculate the change in alphabet position."
+    },
+    {
+      "type": "method",
+      "question": "How do you decode a fixed shift?",
+      "answer": "Apply the inverse shift to each encoded character."
+    }
+  ],
+  "prerequisites": [
+    "number_series"
+  ],
+  "quest": {
+    "chapter": "The Cipher Bureau",
+    "rank": "Code Breaker",
+    "story": "The hiring arena sends coded instructions. You must infer the transformation rule from examples and reverse it without guessing.",
+    "mission": "Decode letter shifts, position patterns and word transformations systematically.",
+    "success_criteria": [
+      "Map letters to alphabet positions.",
+      "Apply forward and backward shifts.",
+      "Compare letter-by-letter transformations.",
+      "Reverse a word using a clear rule."
+    ]
+  },
+  "next_lesson_slug": "blood_relations",
+  "next_lesson_title": "Blood Relations"
 }
