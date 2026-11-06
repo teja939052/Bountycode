@@ -66,6 +66,9 @@ async def test_company_lesson_catalog_points_at_authored_lesson_files():
     slugs = {item["slug"] for item in result["data"]}
 
     assert {
+        "variables_basics",
+        "conditions_basics",
+        "functions_basics",
         "arrays_basics",
         "blood_relations",
         "flowchart_basics",
@@ -693,3 +696,14 @@ async def test_catalog_exposes_curriculum_depth_without_answer_keys(monkeypatch)
     assert item["exercise_types"] == ["interactive"]
     assert "correct_index" not in item
     assert "expected_answer" not in item
+
+
+
+def test_programming_foundation_lessons_map_to_company_topics_and_skill_evidence():
+    assert company_lessons.LESSON_SKILL_DOMAINS["variables_basics"] == "programming_fundamentals"
+    assert company_lessons.LESSON_SKILL_DOMAINS["conditions_basics"] == "programming_fundamentals"
+    assert company_lessons.LESSON_SKILL_DOMAINS["functions_basics"] == "programming_fundamentals"
+
+    assert "variables" in company_lessons.LESSON_MODULE_TOPICS["variables_basics"]
+    assert "conditional_logic" in company_lessons.LESSON_MODULE_TOPICS["conditions_basics"]
+    assert "functions" in company_lessons.LESSON_MODULE_TOPICS["functions_basics"]
