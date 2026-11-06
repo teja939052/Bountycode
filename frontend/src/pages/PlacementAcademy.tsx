@@ -221,9 +221,10 @@ export default function PlacementAcademy() {
   });
 
   const { data: dailyResult, isLoading: dailyLoading } = useQuery({
-    queryKey: ["adaptive", "daily-plan"],
-    queryFn: () => api.adaptive.getDailyPlan(true),
-    staleTime: 60_000,
+    // Journey and Academy now consume the same authoritative Study Engine plan.
+    queryKey: ["study", "today"],
+    queryFn: () => api.journey.getToday(),
+    staleTime: 30_000,
     retry: 1,
   });
 
