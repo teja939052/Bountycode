@@ -215,5 +215,7 @@
       "question": "What mistake should you avoid in Choosing the Right Data Structure?",
       "answer": "A data structure organizes data; an algorithm operates on it."
     }
-  ]
+  ],
+  "next_lesson_slug": "time_complexity",
+  "next_lesson_title": "Time Complexity and Big O"
 }
