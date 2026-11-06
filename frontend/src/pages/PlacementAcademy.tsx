@@ -296,9 +296,6 @@ export default function PlacementAcademy() {
 
   return (
     <div className="space-y-6 pb-12">
-      <div id="academy-profile"><AcademyProfileSetup /></div>
-      <AcademyDiagnostic />
-      <AcademyPersonalPlan />
       <header className="rounded-3xl border border-[#e7e2d8] bg-gradient-to-br from-white via-[#fbfaf6] to-[#f0f5ed] p-5 shadow-sm sm:p-7">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
@@ -326,6 +323,32 @@ export default function PlacementAcademy() {
           </div>
         </div>
       </header>
+
+      <section aria-label="Your personalized learning setup" className="space-y-4">
+        <div className="flex items-end justify-between gap-3">
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-700">Your learning system</p>
+            <h2 className="mt-1 text-xl font-black text-slate-900">Start with your goal. Then follow your plan.</h2>
+            <p className="mt-1 text-sm text-slate-600">Three connected steps turn your placement goal into a practical daily routine.</p>
+          </div>
+        </div>
+        <div className="grid gap-2 sm:grid-cols-3">
+          {[
+            { number: "01", title: "Set your direction", detail: "Role, companies and available time" },
+            { number: "02", title: "Find your starting point", detail: "A server-graded skill diagnostic" },
+            { number: "03", title: "Follow your next action", detail: "A plan based on your evidence" },
+          ].map((step) => (
+            <div key={step.number} className="rounded-xl border border-slate-200 bg-white p-3">
+              <p className="text-[10px] font-black tracking-widest text-emerald-700">STEP {step.number}</p>
+              <p className="mt-1 text-sm font-bold text-slate-900">{step.title}</p>
+              <p className="mt-1 text-xs text-slate-500">{step.detail}</p>
+            </div>
+          ))}
+        </div>
+        <div id="academy-profile"><AcademyProfileSetup /></div>
+        <AcademyDiagnostic />
+        <AcademyPersonalPlan />
+      </section>
 
       {!activeTrackId ? (
         <section className="rounded-2xl border border-dashed border-emerald-300 bg-emerald-50/60 p-6">
