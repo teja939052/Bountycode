@@ -680,6 +680,10 @@ async def test_catalog_exposes_curriculum_depth_without_answer_keys(monkeypatch)
             {"company": "TCS"},
             {"company": "Infosys"},
         ],
+        "quest": {
+            "chapter": "The Memory Vault",
+            "mission": "Model a learner profile using clear variables.",
+        },
     })
 
     monkeypatch.setattr(company_lessons.os.path, "isdir", lambda _path: True)
@@ -696,6 +700,8 @@ async def test_catalog_exposes_curriculum_depth_without_answer_keys(monkeypatch)
     assert item["assessment_count"] == 2
     assert item["company_count"] == 2
     assert item["exercise_types"] == ["interactive"]
+    assert item["quest_chapter"] == "The Memory Vault"
+    assert item["mission_preview"] == "Model a learner profile using clear variables."
     assert "correct_index" not in item
     assert "expected_answer" not in item
 
