@@ -190,8 +190,25 @@ def build_quiz(
     if company:
         filtered = [q for q in filtered if company.lower() in [c.lower() for c in (q.get("companies") or [])]]
 
+    # A constrained company/topic assessment must never silently turn into
+    # an unrelated global quiz. Empty matches are explicit so the UI can offer
+    # a safer alternative instead of teaching the wrong syllabus.
     if not filtered:
-        filtered = questions
+        return {
+            "quiz_id": f"quiz_{int(time.time())}_{random.randint(1000, 9999)}",
+            "mode": mode,
+            "total_questions": 0,
+            "time_limit_seconds": time_limit_seconds,
+            "questions": [],
+            "filters": {
+                "topics": topics,
+                "difficulty": difficulty,
+                "company": company,
+            },
+            "created_at": datetime.now(timezone.utc).isoformat(),
+            "user_level": user_level,
+            "empty_reason": "No questions match the selected filters.",
+        }
 
     # Mode-specific selection
     if mode == "mock_interview":
@@ -258,7 +275,10 @@ def build_quiz(
                 "difficulty": q.get("difficulty", "medium"),
                 "pattern": q.get("pattern", ""),
                 "companies": q.get("companies", []),
-                "hints": q.get("hints", []) if mode == "practice" else [],
+                # Hints are delivered one at a time through /hint. Solutions,
+                # expected answers and explanations are returned only after
+                # the server has graded the submitted response.
+                "hint_count": len(q.get("hints", []) or []),
                 "test_cases": q.get("test_cases", []),
                 "why_this_matters": q.get("why_this_matters", "") if mode == "practice" else "",
                 "real_world_use": q.get("real_world_use", "") if mode == "practice" else "",
@@ -266,8 +286,6 @@ def build_quiz(
                 "anti_patterns": q.get("anti_patterns", "") if mode == "practice" else "",
                 "common_mistakes": q.get("common_mistakes", "") if mode == "practice" else "",
                 "prerequisite_concepts": q.get("prerequisite_concepts", []),
-                "solution": q.get("solution", {}) if mode == "practice" else {},
-                "explanation": q.get("explanation", "") if mode == "practice" else "",
                 "estimated_time": q.get("estimated_time", "15-25 minutes"),
                 "xp_reward": q.get("xp_reward", 10),
             }
@@ -302,15 +320,23 @@ def submit_quiz_answer(
     if not question:
         return {"error": "Question not found"}
 
-    # Determine if answer is correct (for coding, this is more about test cases)
-    # In this system, we use a self-evaluation approach
-    correct_answer = (question.get("correct_answer") or "").strip()
-    is_correct = False
-    if correct_answer:
-        is_correct = user_answer.strip() == correct_answer
-    else:
-        # For coding problems, we trust the user's self-evaluation
-        is_correct = user_answer.strip().lower() in ["true", "1", "yes", "solved"]
+    # Only grade answers for which the content bank contains a deterministic
+    # answer key. Code submissions without a test-runner must not be passed by
+    # typing "solved"/"yes" or by self-attestation.
+    correct_answer = str(question.get("correct_answer") or "").strip()
+    if not correct_answer:
+        return {
+            "question_id": question_id,
+            "is_correct": False,
+            "requires_code_execution": True,
+            "xp_earned": 0,
+            "time_taken_seconds": time_taken_seconds,
+            "hints_used": hints_used,
+            "solution": {},
+            "explanation": "",
+            "error": "This question requires code execution and test-case grading; self-reported completion is disabled.",
+        }
+    is_correct = user_answer.strip() == correct_answer
 
     # Calculate Diamonds
     base_xp = question.get("xp_reward", 10)
