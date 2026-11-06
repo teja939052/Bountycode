@@ -221,7 +221,8 @@
   ],
   "prerequisites": [
     "variables_basics",
-    "conditions_basics"
+    "conditions_basics",
+    "operators_basics"
   ],
   "concepts": [
     "function definition",
