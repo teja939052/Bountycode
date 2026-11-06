@@ -45,6 +45,14 @@ _questions_by_difficulty = None
 _questions_by_company = None
 
 
+def _question_companies(question: Dict[str, Any]) -> List[str]:
+    """Normalize company tags from both current and legacy question schemas."""
+    raw = question.get("companies") or question.get("company") or []
+    if isinstance(raw, str):
+        raw = [raw]
+    return [str(item).strip() for item in raw if str(item).strip()]
+
+
 def _load_questions() -> List[Dict[str, Any]]:
     """Load all questions from JSON files into memory."""
     global _questions_cache, _questions_by_id, _questions_by_topic, _questions_by_difficulty, _questions_by_company
@@ -86,12 +94,8 @@ def _load_questions() -> List[Dict[str, Any]]:
         diff = q.get("difficulty", "medium")
         if diff:
             _questions_by_difficulty[diff].append(q)
-        companies = q.get("companies") or q.get("company") or []
-        if isinstance(companies, str):
-            companies = [companies]
-        for company in companies:
-            if company:
-                _questions_by_company[str(company).strip().lower()].append(q)
+        for company in _question_companies(q):
+            _questions_by_company[company.lower()].append(q)
 
     return unique
 
@@ -206,9 +210,7 @@ def build_quiz(
         filtered = [
             q for q in filtered
             if company.strip().lower() in {
-                str(item).strip().lower()
-                for item in (q.get("companies") or q.get("company") or [])
-                if item
+                item.lower() for item in _question_companies(q)
             }
         ]
 
@@ -284,7 +286,7 @@ def build_quiz(
                 "question": q.get("question", ""),
                 "topic": q.get("topic", ""),
                 "difficulty": q.get("difficulty", "medium"),
-                "companies": q.get("companies") or q.get("company") or [],
+                "companies": _question_companies(q),
                 "type": q.get("type", "mcq" if q.get("options") else "short_answer"),
                 "options": q.get("options", []) or [],
                 "xp_reward": q.get("xp_reward", 10),
