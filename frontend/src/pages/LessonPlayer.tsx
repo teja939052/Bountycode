@@ -284,7 +284,7 @@ export default function LessonPlayer() {
           )}
           <div className="flex justify-center gap-3">
             <Link
-              to={trackId ? `/company-tracks?track=${encodeURIComponent(trackId)}` : "/learn"}
+              to="/academy"
               className="rounded-xl border border-white/10 px-4 py-2 text-sm hover:bg-white/5"
             >
               {trackId ? "Back to company track" : "Back to Learn"}
