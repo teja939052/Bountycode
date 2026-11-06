@@ -288,7 +288,7 @@ async def generate_daily_plan(user_id: str, force_refresh: bool = False) -> Dict
 
     weak_areas = await detect_weak_areas(user_id)
     assessment = await assess_user_skills(user_id)
-    company_focus = await _get_company_focus_task(user_id)
+    company_focus = await _get_company_focus_task(user_id, assessment=assessment)
     gamification = await gamification_collection.find_one({"user_id": user_id})
     streak = gamification.get("streak", 0) if gamification else 0
     level = gamification.get("level", 1) if gamification else 1
@@ -807,7 +807,10 @@ COMPANY_TOPIC_DOMAINS = {
 }
 
 
-async def _get_company_focus_task(user_id: str) -> Optional[Dict[str, Any]]:
+async def _get_company_focus_task(
+    user_id: str,
+    assessment: Optional[Dict[str, Any]] = None,
+) -> Optional[Dict[str, Any]]:
     """Return the next unfinished, topic-aware company mission."""
     user = await _get_user_profile(user_id)
     track_id = user.get("company_track") or user.get("target_pack")
@@ -826,8 +829,17 @@ async def _get_company_focus_task(user_id: str) -> Optional[Dict[str, Any]]:
         return None
 
     progress_sections = progress.get("sections") or {}
-    skill_graph = await skill_graph_collection.find_one({"user_id": user_id}) or {}
-    skill_scores = skill_graph.get("skills") or {}
+
+    # Prefer the evidence-derived assessment already computed by the daily
+    # plan. The legacy skill_graph is an increment-only cache and can be
+    # positively biased by retries; use it only as a migration fallback.
+    skill_scores = {}
+    assessed_skills = (assessment or {}).get("skills") or {}
+    if assessed_skills:
+        skill_scores = assessed_skills
+    else:
+        skill_graph = await skill_graph_collection.find_one({"user_id": user_id}) or {}
+        skill_scores = skill_graph.get("skills") or {}
     for section in track.get("sections", []):
         section_state = progress_sections.get(section.get("id"), {})
         modules_state = section_state.get("modules") or {}
