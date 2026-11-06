@@ -70,6 +70,18 @@
       "answer_placeholder": "Type the output",
       "expected_answer": "6",
       "explanation": "The loop visits 1, 2 and 3. The running total becomes 1, then 3, then 6. The print statement outputs 6."
+    },
+    {
+      "step_number": 7,
+      "step_type": "fill_blank",
+      "title": "Repair an off-by-one loop bound",
+      "content": "A loop over an array must visit each valid index once. The final valid index is length minus one, but range stops before its upper bound.",
+      "code": "scores = [72, 81, 90]\nfor index in range(____):\n    print(scores[index])",
+      "language": "python",
+      "prompt": "What number should replace ____ so every item is visited exactly once?",
+      "answer_placeholder": "Enter the loop bound",
+      "expected_answer": "3",
+      "explanation": "The list has three items at indices 0, 1 and 2. range(3) produces exactly those indices."
     }
   ],
   "assessment": {
