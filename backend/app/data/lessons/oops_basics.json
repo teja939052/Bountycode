@@ -1,0 +1,122 @@
+{
+  "slug": "oops_basics",
+  "id": "lesson_oops_basics_001",
+  "title": "Object-Oriented Programming",
+  "domain": "Computer Science Fundamentals",
+  "pattern": "OOP",
+  "difficulty": "easy",
+  "duration_min": 24,
+  "xp_reward": 105,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Classes and objects",
+      "content": "A class defines the structure and behaviour of a type. An object is a particular instance of that class with its own state.",
+      "example": "Car is a class; a red car with registration ABC123 is an object."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Identify encapsulation",
+      "prompt": "Which OOP principle bundles data with methods and controls access to internal state?",
+      "options": [
+        "Inheritance",
+        "Encapsulation",
+        "Polymorphism",
+        "Compilation"
+      ],
+      "correct_index": 1,
+      "explanation": "Encapsulation groups state and behaviour and exposes a controlled interface."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "The four common pillars",
+      "content": "Encapsulation protects state. Abstraction exposes essential operations while hiding details. Inheritance reuses or extends behaviour. Polymorphism lets the same interface behave differently for different types.",
+      "tip": "Do not confuse abstraction (hide implementation details) with encapsulation (bundle and control access)."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Understand polymorphism",
+      "prompt": "A method call draw() behaves differently for Circle and Rectangle objects. Which concept is demonstrated?",
+      "options": [
+        "Encapsulation",
+        "Polymorphism",
+        "Inheritance only",
+        "Normalization"
+      ],
+      "correct_index": 1,
+      "explanation": "The same interface, draw(), has type-specific behaviour: polymorphism."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Prefer clear composition",
+      "content": "Inheritance models an 'is-a' relationship. Composition models a 'has-a' relationship. Use inheritance for genuine specialisation; use composition when one object uses another as a component.",
+      "example": "A Car has an Engine (composition). A SavingsAccount is a kind of BankAccount (inheritance)."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "What is an object?",
+        "options": [
+          "A blueprint",
+          "An instance of a class",
+          "A database table",
+          "A compiler"
+        ],
+        "correct_index": 1,
+        "explanation": "An object is a concrete instance created from a class."
+      },
+      {
+        "prompt": "Which OOP idea hides implementation details behind a simple interface?",
+        "options": [
+          "Abstraction",
+          "Sorting",
+          "Recursion",
+          "Normalization"
+        ],
+        "correct_index": 0,
+        "explanation": "Abstraction exposes what an object does while hiding how it does it."
+      },
+      {
+        "prompt": "Which concept enables a subclass to reuse a base class's behaviour?",
+        "options": [
+          "Polymorphism",
+          "Inheritance",
+          "Encapsulation",
+          "Indexing"
+        ],
+        "correct_index": 1,
+        "explanation": "Inheritance allows a derived class to reuse or extend a parent class."
+      },
+      {
+        "prompt": "The same method name produces different results for different object types. This is:",
+        "options": [
+          "Encapsulation",
+          "Inheritance",
+          "Polymorphism",
+          "Abstraction"
+        ],
+        "correct_index": 2,
+        "explanation": "Polymorphism supports different implementations behind a shared interface."
+      },
+      {
+        "prompt": "A Laptop has a Battery. This relationship is best modelled as:",
+        "options": [
+          "Composition",
+          "Inheritance",
+          "Overloading",
+          "Recursion"
+        ],
+        "correct_index": 0,
+        "explanation": "A battery is a component of a laptop, a has-a relationship."
+      }
+    ]
+  }
+}
