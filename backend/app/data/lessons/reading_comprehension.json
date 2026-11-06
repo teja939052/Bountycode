@@ -29,7 +29,11 @@
         "Co-working spaces are better"
       ],
       "correct_index": 1,
-      "explanation": "The passage discusses how remote work is transforming urban economics — cafe struggles and co-working growth are supporting details, not the main idea."
+      "explanation": "The passage discusses how remote work is transforming urban economics — cafe struggles and co-working growth are supporting details, not the main idea.",
+      "hints": [
+        "Ask what the passage is mostly about, not which detail appears most often.",
+        "The best answer should cover the whole passage without being too broad."
+      ]
     },
     {
       "step_number": 3,
@@ -43,7 +47,11 @@
         "Employees were excited"
       ],
       "correct_index": 1,
-      "explanation": "Silence and leaving without reaction suggests negative sentiment. The absence of applause or boos indicates indifference or dissatisfaction."
+      "explanation": "Silence and leaving without reaction suggests negative sentiment. The absence of applause or boos indicates indifference or dissatisfaction.",
+      "hints": [
+        "An inference must be supported by details in the passage even if it is not stated word for word.",
+        "Eliminate options that introduce a new fact or claim stronger than the evidence."
+      ]
     },
     {
       "step_number": 4,
@@ -64,7 +72,11 @@
         "Confusing"
       ],
       "correct_index": 1,
-      "explanation": "Context: the speech silenced critics, implying it was persuasive and well-delivered. 'Eloquent' means fluent and persuasive."
+      "explanation": "Context: the speech silenced critics, implying it was persuasive and well-delivered. 'Eloquent' means fluent and persuasive.",
+      "hints": [
+        "Read the sentence before and after the target word.",
+        "Replace the word with each option and see which preserves the author's meaning."
+      ]
     }
   ],
   "practice_questions": [
@@ -147,35 +159,43 @@
       "type": "misconception",
       "question": "Name a common mistake in Reading Comprehension.",
       "answer": "A valid inference must be supported by details in the passage."
+    },
+    {
+      "type": "method",
+      "question": "What makes a good inference?",
+      "answer": "It is not necessarily stated directly, but it must be supported by evidence in the passage."
     }
   ],
   "learning_objectives": [
-    "Identify a passage's central claim.",
-    "Distinguish evidence from examples and opinion.",
-    "Infer meaning using only passage context.",
-    "Recognize tone, purpose and supported conclusions."
+    "Identify the main idea and purpose of a passage.",
+    "Locate direct evidence for factual questions.",
+    "Make reasonable inferences without adding outside assumptions.",
+    "Interpret vocabulary using the surrounding context."
   ],
-  "prerequisites": [],
+  "prerequisites": [
+    "para_jumbles"
+  ],
   "concepts": [
     "main idea",
     "supporting detail",
+    "author's purpose",
     "inference",
     "tone",
-    "author purpose",
-    "context clues"
+    "context clue",
+    "fact versus opinion"
   ],
   "common_misconceptions": [
     {
-      "misconception": "An inference can use outside knowledge freely.",
-      "correction": "A valid inference must be supported by details in the passage."
+      "misconception": "The main idea is always the first sentence.",
+      "correction": "The main point may be stated later or developed across the passage."
     },
     {
-      "misconception": "The longest answer is usually correct.",
-      "correction": "Choose the option that most precisely matches the evidence."
+      "misconception": "An inference can use outside knowledge even when the passage says nothing about it.",
+      "correction": "Inference should be grounded in textual evidence."
     },
     {
-      "misconception": "A title always states the author's conclusion.",
-      "correction": "A title may introduce a topic without expressing the full argument."
+      "misconception": "A vocabulary option is correct because it is a dictionary synonym.",
+      "correction": "The word must fit the specific context and preserve the sentence's meaning."
     }
   ],
   "worked_examples": [
@@ -215,19 +235,33 @@
   ],
   "company_applications": [
     {
-      "company": "TCS",
-      "skill": "verbal ability and comprehension",
-      "practice": "Answer from the passage and avoid unsupported assumptions."
+      "company": "TCS NQT",
+      "skill": "reading comprehension",
+      "practice": "Locate the exact evidence supporting a factual answer."
     },
     {
       "company": "Infosys",
-      "skill": "reading comprehension",
-      "practice": "Identify the main idea before reading the options."
+      "skill": "verbal communication",
+      "practice": "Summarize the main idea without exaggerating the passage."
     },
     {
-      "company": "Wipro",
-      "skill": "English comprehension",
-      "practice": "Use context clues for vocabulary and tone questions."
+      "company": "Accenture",
+      "skill": "critical reading",
+      "practice": "Choose inferences that are supported but not overstated."
     }
-  ]
+  ],
+  "quest": {
+    "chapter": "The Reading Observatory",
+    "rank": "Evidence Reader",
+    "story": "A company brief contains facts, opinions and implied conclusions. You must answer from the passage rather than from what you already believe.",
+    "mission": "Identify the main idea, locate evidence and make cautious inferences.",
+    "success_criteria": [
+      "Find the author's main point.",
+      "Separate a stated fact from an inference.",
+      "Use nearby words to infer meaning.",
+      "Reject options that go beyond the passage."
+    ]
+  },
+  "next_lesson_slug": "essay_writing",
+  "next_lesson_title": "Essay Writing"
 }
