@@ -343,9 +343,7 @@ export default function PlacementAcademy() {
               <h2 className="mt-1 text-xl font-bold text-slate-900">{(trackDetail as any)?.name || activeTrackId}</h2>
               <p className="mt-1 text-xs text-slate-500">{(trackDetail as any)?.description || "Your company-specific preparation track."}</p>
             </div>
-            <Link to={`/company-tracks?track=${encodeURIComponent(activeTrackId)}`} className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl border border-slate-200 px-4 text-sm font-semibold text-slate-700">
-              Open full track <ArrowRight size={14} />
-            </Link>
+
           </div>
           <div className="mt-5 grid gap-3 sm:grid-cols-3">
             <div className="rounded-xl bg-slate-50 p-3">
@@ -432,10 +430,10 @@ export default function PlacementAcademy() {
               <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Your employer syllabus</p>
               <h2 className="mt-1 text-xl font-bold text-slate-900">Continue by topic</h2>
             </div>
-            <Link to={`/company-tracks?track=${encodeURIComponent(activeTrackId)}`} className="text-xs font-semibold text-emerald-700">View all modules</Link>
+            <span className="text-xs text-slate-500">Full syllabus</span>
           </div>
           <div className="grid gap-3 md:grid-cols-2">
-            {prioritizedModules.slice(0, 6).map((module: any) => {
+            {prioritizedModules.map((module: any) => {
               const nextUrl = nextTopicLesson(module, activeTrackId);
               const done = Boolean(module.completed);
               const mastered = module.mastered_topic_count || 0;
