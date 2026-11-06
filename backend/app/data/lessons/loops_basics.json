@@ -206,5 +206,105 @@
         "explanation": "If the condition remains true forever, the loop never exits."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Choose for and while loops appropriately.",
+    "Trace initialization, condition, body and update.",
+    "Avoid off-by-one errors.",
+    "Use break and continue deliberately.",
+    "Estimate the number of loop iterations."
+  ],
+  "prerequisites": [
+    "programming_languages"
+  ],
+  "concepts": [
+    "iteration",
+    "for loop",
+    "while loop",
+    "loop invariant",
+    "off-by-one error",
+    "break",
+    "continue",
+    "nested loops"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "A loop condition is checked after every body execution.",
+      "correction": "For while and for loops, the condition is checked before each iteration."
+    },
+    {
+      "misconception": "range(1, 5) includes 5.",
+      "correction": "The upper bound is excluded, so it produces 1, 2, 3, 4."
+    },
+    {
+      "misconception": "A nested loop always means O(n²).",
+      "correction": "The cost depends on both loop bounds and whether they depend on each other."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Count a for loop",
+      "input": "for i in range(1, 4):\\n    print(i)",
+      "trace": [
+        "Start with i = 1; print 1.",
+        "Next i = 2; print 2.",
+        "Next i = 3; print 3.",
+        "Next i = 4; condition fails."
+      ],
+      "output": "1 2 3",
+      "explanation": "The stop value 4 is excluded; the loop body executes three times."
+    },
+    {
+      "title": "Trace a while loop",
+      "input": "count = 3\\nwhile count > 0:\\n    count -= 1",
+      "trace": [
+        "Check 3 > 0; true, update to 2.",
+        "Check 2 > 0; true, update to 1.",
+        "Check 1 > 0; true, update to 0.",
+        "Check 0 > 0; false, stop."
+      ],
+      "output": "3 iterations",
+      "explanation": "A while loop needs progress toward a condition that eventually becomes false."
+    },
+    {
+      "title": "Avoid an off-by-one error",
+      "input": "values = [4, 8, 12]\\nfor i in range(len(values)):\\n    print(values[i])",
+      "trace": [
+        "Valid indices are 0, 1 and 2.",
+        "range(3) generates 0, 1 and 2.",
+        "The loop never reads index 3."
+      ],
+      "output": "4 8 12",
+      "explanation": "Use i < length, not i <= length, when indexing an array."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "pseudocode and output prediction",
+      "practice": "Trace loop counters and boundary conditions."
+    },
+    {
+      "company": "Wipro",
+      "skill": "basic coding and pattern printing",
+      "practice": "Explain nested loop counts and dry-run small inputs."
+    },
+    {
+      "company": "Cognizant",
+      "skill": "arrays, strings and implementation",
+      "practice": "Handle empty inputs and prevent infinite loops."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What are the key ideas in Loops and Iteration?",
+      "answer": "Choose for and while loops appropriately. Trace initialization, condition, body and update. Avoid off-by-one errors. Use break and continue deliberately. Estimate the number of loop iterations."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in Loops and Iteration.",
+      "answer": "For while and for loops, the condition is checked before each iteration."
+    }
+  ]
 }
