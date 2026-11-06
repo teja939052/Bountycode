@@ -1,0 +1,121 @@
+{
+  "slug": "syllogisms",
+  "id": "lesson_syllogisms_001",
+  "title": "Syllogisms",
+  "domain": "Logical Reasoning",
+  "pattern": "Syllogisms",
+  "difficulty": "medium",
+  "duration_min": 20,
+  "xp_reward": 95,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Treat statements as facts",
+      "content": "A syllogism asks what must be true if the given statements are true. Do not use real-world knowledge that is not stated.",
+      "example": "All roses are flowers. All flowers are plants. Therefore, all roses are plants."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Follow a chain",
+      "prompt": "Statements: All cats are mammals. All mammals are animals. Which conclusion follows?",
+      "options": [
+        "All animals are cats",
+        "All cats are animals",
+        "Some animals are not mammals",
+        "No cats are animals"
+      ],
+      "correct_index": 1,
+      "explanation": "Every cat belongs to the mammal set, and every mammal belongs to the animal set. So every cat is an animal."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Understand some and no",
+      "content": "'Some A are B' means at least one item belongs to both sets. 'No A are B' means the sets do not overlap. 'Some A are not B' means at least one A lies outside B.",
+      "tip": "A statement about 'some' does not mean 'all'."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Avoid an invalid inference",
+      "prompt": "Statements: All A are B. Some B are C. Does it necessarily follow that some A are C?",
+      "options": [
+        "Yes, always",
+        "No, not necessarily",
+        "All A are C",
+        "No A are B"
+      ],
+      "correct_index": 1,
+      "explanation": "The B items that are C may be outside the A subset. The overlap between A and C is not guaranteed."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Use a quick Venn diagram",
+      "content": "Draw one circle inside another for 'all'. Separate circles for 'no'. For 'some', show a clear overlap or a marker in the relevant region. Test whether the conclusion is true in every arrangement allowed by the statements."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "Statements: All A are B. All B are C. Which conclusion follows?",
+        "options": [
+          "All C are A",
+          "All A are C",
+          "No A are C",
+          "Some C are not B"
+        ],
+        "correct_index": 1,
+        "explanation": "A is contained in B, and B is contained in C; therefore A is contained in C."
+      },
+      {
+        "prompt": "Statements: No pens are pencils. Which conclusion follows?",
+        "options": [
+          "All pencils are pens",
+          "Some pens are pencils",
+          "No pencils are pens",
+          "All pens are pencils"
+        ],
+        "correct_index": 2,
+        "explanation": "If the sets do not overlap, no pencil is a pen."
+      },
+      {
+        "prompt": "Statements: Some students are athletes. Which conclusion is certain?",
+        "options": [
+          "All students are athletes",
+          "Some athletes are students",
+          "No students are athletes",
+          "All athletes are students"
+        ],
+        "correct_index": 1,
+        "explanation": "The same shared individuals are both athletes and students."
+      },
+      {
+        "prompt": "Statements: All doctors are graduates. Some graduates are artists. Does some doctor is an artist follow?",
+        "options": [
+          "Yes",
+          "No, not necessarily",
+          "All artists are doctors",
+          "No doctors are graduates"
+        ],
+        "correct_index": 1,
+        "explanation": "The graduates who are artists may be people outside the doctor group."
+      },
+      {
+        "prompt": "Statements: No A are B. Some C are A. Which conclusion follows?",
+        "options": [
+          "Some C are not B",
+          "All C are B",
+          "Some B are A",
+          "No C are A"
+        ],
+        "correct_index": 0,
+        "explanation": "The C items that are A cannot be B, so at least some C are not B."
+      }
+    ]
+  }
+}
