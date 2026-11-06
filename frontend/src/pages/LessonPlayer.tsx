@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useSearchParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowLeft,
@@ -53,11 +53,18 @@ type AnswerResult = {
 
 export default function LessonPlayer() {
   const { slug } = useParams();
+  const [searchParams] = useSearchParams();
   const lessonSlug = slug || "successive_percentage_change";
+  const trackId = searchParams.get("track_id") || undefined;
+  const moduleId = searchParams.get("module_id") || undefined;
 
   const [lesson, setLesson] = useState<LessonContent | null>(null);
   const [loading, setLoading] = useState(true);
   const [currentStep, setCurrentStep] = useState(0);
+  const [phase, setPhase] = useState<"learn" | "assessment">("learn");
+  const [assessmentAnswers, setAssessmentAnswers] = useState<Record<string, number>>({});
+  const [assessmentResult, setAssessmentResult] = useState<any>(null);
+  const [assessmentError, setAssessmentError] = useState("");
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [answerResult, setAnswerResult] = useState<AnswerResult>(null);
   const [showExplanation, setShowExplanation] = useState(false);
@@ -71,6 +78,10 @@ export default function LessonPlayer() {
     let cancelled = false;
     setLoading(true);
     setCurrentStep(0);
+    setPhase("learn");
+    setAssessmentAnswers({});
+    setAssessmentResult(null);
+    setAssessmentError("");
     setSelectedAnswer(null);
     setAnswerResult(null);
     setShowExplanation(false);
@@ -128,37 +139,52 @@ export default function LessonPlayer() {
       setAnswerResult(null);
       setShowExplanation(false);
     } else {
-      handleComplete();
+      setPhase("assessment");
+      setAssessmentError("");
     }
   }, [lesson, currentStep]);
 
   const goBack = useCallback(() => {
+    if (phase === "assessment") {
+      setPhase("learn");
+      setAssessmentResult(null);
+      setAssessmentError("");
+      return;
+    }
     if (currentStep > 0) {
       setCurrentStep((s) => s - 1);
       setSelectedAnswer(null);
       setAnswerResult(null);
       setShowExplanation(false);
     }
-  }, [currentStep]);
+  }, [currentStep, phase]);
 
   const handleComplete = useCallback(async () => {
     if (!lesson || saving) return;
     setSaving(true);
+    setAssessmentError("");
     try {
-      const score = lesson.steps.length > 0 ? (correctCount / Math.max(attemptedCount, 1)) * 100 : 100;
       const res: any = await api.companyLessons.complete(lessonSlug, {
-        score,
+        answers: assessmentAnswers,
         time_spent_seconds: 0,
+        ...(trackId && moduleId ? { track_id: trackId, module_id: moduleId } : {}),
       });
-      setCompletionData(res?.data || null);
-      setCompleted(true);
-    } catch {
-      // best-effort reward recording
-      setCompleted(true);
+      const result = res?.data || null;
+      setAssessmentResult(result);
+      if (result?.passed) {
+        setCompletionData(result);
+        setCompleted(true);
+      } else {
+        setAssessmentError(
+          `You scored ${result?.score ?? 0}%. You need ${result?.mastery_threshold ?? 70}% to pass. Review the explanations and retry.`
+        );
+      }
+    } catch (error: any) {
+      setAssessmentError(error?.message || "Assessment submission failed. Please try again.");
     } finally {
       setSaving(false);
     }
-  }, [lesson, lessonSlug, correctCount, attemptedCount, saving]);
+  }, [lesson, lessonSlug, assessmentAnswers, trackId, moduleId, saving]);
 
   if (loading) {
     return (
@@ -231,8 +257,106 @@ export default function LessonPlayer() {
     );
   }
 
+  if (phase === "assessment") {
+    const questions = lesson.assessment?.questions || [];
+    const allAnswered = questions.length > 0 && questions.every((_, index) => assessmentAnswers[String(index)] !== undefined);
+    return (
+      <div className="max-w-2xl mx-auto px-4 py-8">
+        <div className="mb-6">
+          <Link to="/learn" className="inline-flex items-center gap-1 text-xs text-text-secondary hover:text-text-primary">
+            <ArrowLeft size={12} /> Learn
+          </Link>
+          <p className="mt-3 text-[10px] font-mono uppercase tracking-wider text-brand-sky">Final mastery check</p>
+          <h1 className="mt-1 text-2xl font-bold">{lesson.title}</h1>
+          <p className="mt-1 text-sm text-text-secondary">
+            Answer all {questions.length} questions. Pass mark: {Math.round(lesson.assessment.mastery_threshold * 100)}%.
+          </p>
+        </div>
+
+        {assessmentError && (
+          <div role="alert" className="mb-4 rounded-xl border border-amber-500/30 bg-amber-500/10 p-3 text-sm text-amber-200">
+            {assessmentError}
+          </div>
+        )}
+
+        <div className="space-y-4">
+          {questions.map((question, index) => {
+            const result = assessmentResult?.results?.find((item: any) => item.index === index);
+            const chosen = assessmentAnswers[String(index)];
+            return (
+              <section key={index} className="rounded-2xl border border-white/10 bg-surface-base/80 p-5">
+                <p className="mb-3 text-[10px] font-mono uppercase tracking-wider text-brand-sky">Question {index + 1}</p>
+                <h2 className="mb-4 text-base font-semibold text-text-primary">{question.prompt || question.title}</h2>
+                <div className="space-y-2">
+                  {(question.options || []).map((option, optionIndex) => {
+                    const isCorrect = result && result.correct_index === optionIndex;
+                    const isChosen = chosen === optionIndex;
+                    const style = result
+                      ? isCorrect
+                        ? "border-green-500/50 bg-green-500/10 text-green-200"
+                        : isChosen
+                          ? "border-red-500/50 bg-red-500/10 text-red-200"
+                          : "border-white/5 bg-white/5 text-text-secondary"
+                      : isChosen
+                        ? "border-brand-sky/50 bg-brand-sky/10 text-brand-sky"
+                        : "border-white/10 hover:border-white/20 hover:bg-white/5";
+                    return (
+                      <button
+                        key={optionIndex}
+                        type="button"
+                        disabled={!!assessmentResult}
+                        onClick={() => setAssessmentAnswers((previous) => ({ ...previous, [String(index)]: optionIndex }))}
+                        className={`w-full rounded-xl border px-4 py-3 text-left text-sm transition-all ${style}`}
+                      >
+                        <span className="mr-2 font-mono text-xs">{String.fromCharCode(65 + optionIndex)}.</span>
+                        {option}
+                        {result && isCorrect && <CheckCircle2 className="ml-2 inline h-4 w-4 text-green-400" />}
+                        {result && isChosen && !result.correct && <XCircle className="ml-2 inline h-4 w-4 text-red-400" />}
+                      </button>
+                    );
+                  })}
+                </div>
+                {result?.explanation && (
+                  <p className="mt-3 rounded-lg bg-white/5 p-3 text-xs leading-relaxed text-text-secondary">{result.explanation}</p>
+                )}
+              </section>
+            );
+          })}
+        </div>
+
+        {assessmentResult && !assessmentResult.passed && (
+          <button
+            type="button"
+            onClick={() => {
+              setAssessmentAnswers({});
+              setAssessmentResult(null);
+              setAssessmentError("");
+            }}
+            className="mt-5 rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm font-semibold text-amber-200"
+          >
+            Retry assessment
+          </button>
+        )}
+
+        <div className="mt-6 flex items-center justify-between gap-3">
+          <button type="button" onClick={goBack} className="rounded-xl border border-white/10 px-4 py-3 text-sm hover:bg-white/5">
+            <ArrowLeft size={14} className="mr-1 inline" /> Back to lesson
+          </button>
+          <button
+            type="button"
+            onClick={handleComplete}
+            disabled={!allAnswered || saving || !!assessmentResult}
+            className="rounded-xl bg-brand-sky px-5 py-3 text-sm font-bold text-white disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            {saving ? <Loader2 className="inline h-4 w-4 animate-spin" /> : "Submit assessment"}
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   const step = lesson.steps[currentStep];
-  const progress = ((currentStep + 1) / lesson.steps.length) * 100;
+  const progress = ((currentStep + 1) / (lesson.steps.length + 1)) * 100;
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-8">
@@ -253,7 +377,7 @@ export default function LessonPlayer() {
           </div>
           <div className="text-right">
             <p className="text-xs text-text-secondary">
-              Step {currentStep + 1}/{lesson.steps.length}
+              Step {currentStep + 1}/{lesson.steps.length + 1}
             </p>
             <p className="text-xs text-brand-sky">+{lesson.xp_reward} XP</p>
           </div>
@@ -392,7 +516,7 @@ export default function LessonPlayer() {
 
             <div className="flex items-center gap-2 text-xs text-text-secondary">
               <span>
-                {correctCount}/{attemptedCount || lesson.steps.length} correct
+                {correctCount}/{attemptedCount} practice checks correct
               </span>
             </div>
 
