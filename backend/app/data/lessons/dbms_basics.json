@@ -213,6 +213,11 @@
       "type": "misconception",
       "question": "Name a common mistake in DBMS Fundamentals.",
       "answer": "A primary key uniquely identifies each row and cannot be NULL."
+    },
+    {
+      "type": "application",
+      "question": "Why should an application use a foreign key?",
+      "answer": "A foreign key links a row to a related row in another table. It helps preserve referential integrity so a relationship cannot point to a missing parent record."
     }
   ]
 }
