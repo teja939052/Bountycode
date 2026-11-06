@@ -485,10 +485,16 @@ async def record_learning_activity(user_id: str, activity: Dict[str, Any]) -> Di
         {"$push": {"activities": activity_entry}}
     )
 
-    # Update skill_graph
-    delta = 5 if success else 0
-    if activity_type == "challenge" or activity_type == "project":
-        delta = 8 if success else 0
+    # Update skill_graph. A zero score_impact is used by baseline
+    # diagnostics: record the observation, but do not change demonstrated skill.
+    try:
+        impact_enabled = math.isfinite(float(score_impact)) and float(score_impact) > 0
+    except (TypeError, ValueError):
+        impact_enabled = False
+
+    delta = 0
+    if success and impact_enabled:
+        delta = 8 if activity_type in ("challenge", "project") else 5
 
     await skill_graph_collection.update_one(
         {"user_id": user_id},
