@@ -214,5 +214,7 @@
       "question": "What mistake should you avoid in Dynamic Programming Basics?",
       "answer": "DP stores results of overlapping subproblems to avoid recomputation."
     }
-  ]
+  ],
+  "next_lesson_slug": "algorithms_basics",
+  "next_lesson_title": "Algorithm Design Basics"
 }
