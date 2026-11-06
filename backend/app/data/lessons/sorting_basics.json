@@ -213,5 +213,7 @@
       "question": "Name a common mistake in Sorting Fundamentals.",
       "answer": "Simple comparison sorts such as bubble and insertion sort can take O(n²)."
     }
-  ]
+  ],
+  "next_lesson_slug": "hashing_basics",
+  "next_lesson_title": "Hashing Fundamentals"
 }
