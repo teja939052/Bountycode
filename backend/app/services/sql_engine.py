@@ -156,7 +156,7 @@ class SQLEngine:
                 error_message="Enter a SQL query of at most 8,000 characters.",
                 execution_time_ms=(time.perf_counter() - started) * 1000,
             )
-        if not re.match(r"^(SELECT|WITH)\\b", query, flags=re.IGNORECASE):
+        if not re.match(r"^(SELECT|WITH)\b", query, flags=re.IGNORECASE):
             return SQLValidationResult(
                 is_correct=False,
                 error_message="This exercise accepts read-only SELECT or WITH queries only.",
