@@ -16,12 +16,15 @@ import api from "../services/api";
 
 type Step = {
   step_number: number;
-  step_type: "explain" | "interactive" | "practice" | "assessment";
+  step_type: "explain" | "interactive" | "practice" | "assessment" | "predict_output" | "fill_blank";
   title: string;
   content?: string;
   example?: string;
   formula?: string;
   tip?: string;
+  code?: string;
+  language?: string;
+  answer_placeholder?: string;
   prompt?: string;
   options?: string[];
   correct_index?: number;
@@ -49,7 +52,8 @@ type LessonContent = {
 
 type AnswerResult = {
   correct: boolean;
-  correctIndex: number;
+  correctIndex: number | null;
+  correctAnswer?: string;
   explanation: string;
 } | null;
 
@@ -78,6 +82,7 @@ export default function LessonPlayer() {
   const [saving, setSaving] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
   const [attemptedCount, setAttemptedCount] = useState(0);
+  const [textAnswer, setTextAnswer] = useState("");
   const lessonStartedAt = useRef<number>(Date.now());
   const progressLoaded = useRef(false);
   const [resumedFromStep, setResumedFromStep] = useState(false);
@@ -142,6 +147,10 @@ export default function LessonPlayer() {
     return () => window.clearTimeout(timeoutId);
   }, [lesson, lessonSlug, currentStep]);
 
+  useEffect(() => {
+    setTextAnswer("");
+  }, [currentStep, lessonSlug]);
+
   const handleAnswer = useCallback(
     async (index: number) => {
       if (!lesson || answerResult !== null || saving) return;
@@ -173,6 +182,34 @@ export default function LessonPlayer() {
     },
     [lesson, lessonSlug, currentStep, answerResult, saving, queryClient]
   );
+
+  const handleTextAnswer = useCallback(async () => {
+    if (!lesson || !textAnswer.trim() || answerResult !== null || saving) return;
+    const step = lesson.steps[currentStep];
+    if (step.step_type !== "predict_output" && step.step_type !== "fill_blank") return;
+
+    setStepError("");
+    setSaving(true);
+    try {
+      const response: any = await api.companyLessons.answerStep(lessonSlug, currentStep, textAnswer);
+      const result = response?.data;
+      if (!result) throw new Error("The answer could not be graded.");
+      setAttemptedCount((count) => count + 1);
+      if (result.correct) setCorrectCount((count) => count + 1);
+      setAnswerResult({
+        correct: Boolean(result.correct),
+        correctIndex: null,
+        correctAnswer: result.correct_answer || "",
+        explanation: result.explanation || "",
+      });
+      setShowExplanation(true);
+      void queryClient.invalidateQueries({ queryKey: ["adaptive"] });
+    } catch (error: any) {
+      setStepError(error?.message || "Could not check this answer. Please retry.");
+    } finally {
+      setSaving(false);
+    }
+  }, [lesson, lessonSlug, currentStep, textAnswer, answerResult, saving, queryClient]);
 
   const goNext = useCallback(() => {
     if (!lesson) return;
@@ -472,7 +509,7 @@ export default function LessonPlayer() {
               </span>
               <h2 className="text-lg font-bold mt-1">{step.title}</h2>
             </div>
-            {step.step_type === "interactive" || step.step_type === "practice" ? (
+            {["interactive", "practice", "predict_output", "fill_blank"].includes(step.step_type) ? (
               <Lightbulb className="h-5 w-5 text-yellow-400 shrink-0" />
             ) : (
               <BookOpen className="h-5 w-5 text-brand-sky shrink-0" />
@@ -491,6 +528,12 @@ export default function LessonPlayer() {
             </div>
           )}
 
+          {step.code && (
+            <pre className="mb-4 overflow-x-auto rounded-xl border border-white/10 bg-[#101820] p-4 text-sm leading-6 text-slate-100">
+              <code>{step.code}</code>
+            </pre>
+          )}
+
           {step.formula && (
             <div className="rounded-xl border border-brand-sky/30 bg-brand-sky/10 p-4 mb-4">
               <p className="text-sm font-mono text-brand-sky">{step.formula}</p>
@@ -506,6 +549,42 @@ export default function LessonPlayer() {
             <p role="alert" className="mb-4 rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-xs text-red-200">
               {stepError}
             </p>
+          )}
+
+          {(step.step_type === "predict_output" || step.step_type === "fill_blank") && (
+            <div className="mb-4 rounded-xl border border-white/10 bg-white/[0.03] p-4">
+              {step.prompt && <p className="mb-3 text-sm font-semibold text-text-primary">{step.prompt}</p>}
+              <div className="flex flex-col gap-2 sm:flex-row">
+                <input
+                  type="text"
+                  aria-label="Your answer"
+                  value={textAnswer}
+                  onChange={(event) => setTextAnswer(event.target.value)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" && !saving && !showExplanation && textAnswer.trim()) {
+                      void handleTextAnswer();
+                    }
+                  }}
+                  placeholder={step.answer_placeholder || "Type your answer"}
+                  disabled={showExplanation || saving}
+                  maxLength={1000}
+                  className="min-h-11 min-w-0 flex-1 rounded-lg border border-white/10 bg-surface-base px-3 text-sm text-text-primary outline-none focus:border-brand-sky disabled:opacity-60"
+                />
+                <button
+                  type="button"
+                  onClick={() => void handleTextAnswer()}
+                  disabled={!textAnswer.trim() || saving || showExplanation}
+                  className="min-h-11 rounded-lg bg-brand-sky px-4 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  {saving ? "Checking…" : "Check answer"}
+                </button>
+              </div>
+              {showExplanation && answerResult?.correctAnswer && !answerResult.correct && (
+                <p className="mt-3 text-xs text-text-secondary">
+                  Expected answer: <code className="rounded bg-white/10 px-1.5 py-0.5 text-brand-sky">{answerResult.correctAnswer}</code>
+                </p>
+              )}
+            </div>
           )}
 
           {(step.step_type === "interactive" || step.step_type === "practice") &&
