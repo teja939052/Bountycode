@@ -210,7 +210,8 @@ def _load_lesson(slug: str) -> Optional[Dict[str, Any]]:
 
 
 class StepAnswerRequest(BaseModel):
-    answer_index: int = Field(..., ge=0)
+    answer_index: Optional[int] = Field(default=None, ge=0)
+    answer_text: Optional[str] = Field(default=None, min_length=1, max_length=1000)
 
 
 class LessonProgressRequest(BaseModel):
@@ -263,13 +264,20 @@ async def get_lesson(slug: str, user=Depends(get_current_user)):
     # them in /complete and only returns explanations after submission.
     public_data = {**data}
     # Never ship answer keys to the learner before they submit an attempt.
+    answerable_step_types = {
+        "interactive", "practice", "quiz", "predict_output", "fill_blank"
+    }
+    answer_key_fields = {
+        "correct_index", "correct_answer", "answer",
+        "expected_answer", "accepted_answers",
+    }
     public_data["steps"] = [
         {
             key: value for key, value in step.items()
             if key not in (
-                {"correct_index", "correct_answer", "answer", "explanation"}
-                if step.get("step_type") in {"interactive", "practice", "quiz"}
-                else {"correct_index", "correct_answer", "answer"}
+                answer_key_fields | {"explanation"}
+                if step.get("step_type") in answerable_step_types
+                else answer_key_fields
             )
         }
         for step in data.get("steps", [])
@@ -363,14 +371,42 @@ async def answer_lesson_step(
         raise HTTPException(status_code=404, detail="Lesson step not found")
 
     step = steps[step_index]
-    options = step.get("options") or []
-    expected = step.get("correct_index")
-    if step.get("step_type") not in {"interactive", "practice", "quiz"} or expected is None:
-        raise HTTPException(status_code=400, detail="This lesson step is not answerable.")
-    if req.answer_index >= len(options):
-        raise HTTPException(status_code=422, detail="Selected answer is outside the available options.")
+    step_type = step.get("step_type")
+    selected_index = None
+    correct_index = None
+    correct_answer = None
 
-    correct = req.answer_index == int(expected)
+    if step_type in {"interactive", "practice", "quiz"}:
+        options = step.get("options") or []
+        expected = step.get("correct_index")
+        if expected is None or req.answer_index is None or req.answer_text is not None:
+            raise HTTPException(status_code=422, detail="Choose one of the available options.")
+        if req.answer_index >= len(options):
+            raise HTTPException(status_code=422, detail="Selected answer is outside the available options.")
+        selected_index = req.answer_index
+        correct_index = int(expected)
+        correct_answer = str(options[correct_index])
+        correct = selected_index == correct_index
+    elif step_type in {"predict_output", "fill_blank"}:
+        expected = step.get("expected_answer")
+        if expected is None or req.answer_text is None or req.answer_index is not None:
+            raise HTTPException(status_code=422, detail="Enter an answer before checking it.")
+        submitted = " ".join(req.answer_text.strip().split())
+        accepted = step.get("accepted_answers") or [expected]
+        if not isinstance(accepted, list):
+            accepted = [accepted]
+        normalized_submitted = submitted if step.get("case_sensitive", True) else submitted.casefold()
+        normalized_accepted = [
+            " ".join(str(item).strip().split())
+            if step.get("case_sensitive", True)
+            else " ".join(str(item).strip().split()).casefold()
+            for item in accepted
+        ]
+        correct = normalized_submitted in normalized_accepted
+        correct_answer = str(expected)
+    else:
+        raise HTTPException(status_code=400, detail="This lesson step is not answerable.")
+
     domain = str(data.get("domain") or data.get("pattern") or "general").lower()
     domain_id = LESSON_SKILL_DOMAINS.get(
         slug,
@@ -405,8 +441,9 @@ async def answer_lesson_step(
         "success": True,
         "data": {
             "correct": correct,
-            "selected_index": req.answer_index,
-            "correct_index": int(expected),
+            "selected_index": selected_index,
+            "correct_index": correct_index,
+            "correct_answer": correct_answer,
             "explanation": step.get("explanation", ""),
             "attempt_recorded": True,
         },
