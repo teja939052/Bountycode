@@ -5,7 +5,6 @@ import {
   ArrowLeft,
   ArrowRight,
   BookOpen,
-  Building2,
   CheckCircle2,
   Clock,
   Lightbulb,
@@ -90,7 +89,6 @@ export default function QuizPractice() {
   const [error, setError] = useState("");
   const [result, setResult] = useState<any>(null);
   const [weakTopics, setWeakTopics] = useState<any[]>([]);
-  const [totalSeconds, setTotalSeconds] = useState(0);
   const startedAt = useRef<number>(0);
   const questionStartedAt = useRef<number>(0);
 
@@ -122,7 +120,6 @@ export default function QuizPractice() {
       setGraded(null);
       setHintText("");
       setHintsUsed(0);
-      setTotalSeconds(0);
       startedAt.current = Date.now();
       questionStartedAt.current = Date.now();
     } catch (err: any) {
@@ -171,7 +168,6 @@ export default function QuizPractice() {
         ...response.result,
         hints_used: Number(response.result?.hints_used ?? hintsUsed),
       });
-      setTotalSeconds(Math.max(0, Math.floor((Date.now() - startedAt.current) / 1000)));
     } catch (err: any) {
       setError(getErrorMessage(err));
     } finally {
