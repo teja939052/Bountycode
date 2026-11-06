@@ -474,6 +474,136 @@ async def complete_track_module(
     }
 
 
+async def record_track_topic_mastery(
+    user_id: str,
+    track_id: str,
+    module_id: str,
+    topic_id: str,
+    score: float,
+    role: str = "sde",
+) -> Dict[str, Any]:
+    """Record mastery for one module topic and complete only when all topics pass."""
+    track = COMPANY_TRACKS.get(track_id)
+    if not track:
+        raise ValueError(f"Unknown company track: {track_id}")
+
+    module_def = None
+    section_id = None
+    for section in track.get("sections", []):
+        for module in section.get("modules", []):
+            if module.get("id") == module_id:
+                module_def = module
+                section_id = section.get("id")
+                break
+        if module_def:
+            break
+    if not module_def or not section_id:
+        raise ValueError(f"Unknown module: {module_id}")
+
+    normalize = lambda value: str(value or "").strip().lower().replace("-", "_").replace(" ", "_")
+    required_topics = [normalize(topic) for topic in (module_def.get("topics") or [])]
+    canonical_topic = normalize(topic_id)
+    if canonical_topic not in required_topics:
+        raise ValueError(f"Topic {topic_id} is not part of module {module_id}")
+
+    progress = await user_company_tracks_collection.find_one(
+        {"user_id": user_id, "track_id": track_id}
+    )
+    if not progress:
+        raise ValueError("Enroll in this company track before recording topic mastery.")
+
+    module_progress = (
+        (progress.get("sections") or {})
+        .get(section_id, {})
+        .get("modules", {})
+        .get(module_id, {})
+    )
+    if module_progress.get("completed"):
+        return {
+            "success": True,
+            "module_completed": True,
+            "already_completed": True,
+            "topic_id": canonical_topic,
+            "mastered_topics": required_topics,
+            "required_topics": required_topics,
+            "module_result": {"xp_earned": 0, "already_completed": True},
+        }
+
+    topic_progress = module_progress.get("topic_mastery") or {}
+    previous = topic_progress.get(canonical_topic) or {}
+    if score >= 70:
+        # Keep the best verified score. A later failed retry cannot erase mastery.
+        best_score = max(float(previous.get("score", 0) or 0), float(score))
+        now = datetime.now(timezone.utc).isoformat()
+        topic_path = f"sections.{section_id}.modules.{module_id}.topic_mastery.{canonical_topic}"
+        await user_company_tracks_collection.update_one(
+            {"user_id": user_id, "track_id": track_id},
+            {"$set": {
+                f"{topic_path}.score": best_score,
+                f"{topic_path}.mastered": True,
+                f"{topic_path}.mastered_at": previous.get("mastered_at") or now,
+                f"{topic_path}.last_assessed_at": now,
+                "last_activity_at": now,
+            }},
+        )
+    else:
+        now = datetime.now(timezone.utc).isoformat()
+        topic_path = f"sections.{section_id}.modules.{module_id}.topic_mastery.{canonical_topic}"
+        await user_company_tracks_collection.update_one(
+            {"user_id": user_id, "track_id": track_id},
+            {"$set": {
+                f"{topic_path}.last_score": float(score),
+                f"{topic_path}.last_assessed_at": now,
+                "last_activity_at": now,
+            }, "$inc": {f"{topic_path}.attempts": 1}},
+        )
+
+    refreshed = await user_company_tracks_collection.find_one(
+        {"user_id": user_id, "track_id": track_id}
+    ) or {}
+    refreshed_module = (
+        (refreshed.get("sections") or {})
+        .get(section_id, {})
+        .get("modules", {})
+        .get(module_id, {})
+    )
+    mastered_map = refreshed_module.get("topic_mastery") or {}
+    mastered_topics = [
+        topic for topic in required_topics
+        if (mastered_map.get(topic) or {}).get("mastered") is True
+        and float((mastered_map.get(topic) or {}).get("score", 0) or 0) >= 70
+    ]
+    missing_topics = [topic for topic in required_topics if topic not in mastered_topics]
+    module_completed = bool(required_topics) and not missing_topics
+    module_result = None
+
+    if module_completed:
+        average_score = sum(
+            float((mastered_map.get(topic) or {}).get("score", 0) or 0)
+            for topic in required_topics
+        ) / len(required_topics)
+        module_result = await complete_track_module(
+            user_id=user_id,
+            track_id=track_id,
+            module_id=module_id,
+            score=average_score,
+            role=role,
+        )
+
+    return {
+        "success": True,
+        "module_completed": module_completed,
+        "topic_mastered": canonical_topic in mastered_topics,
+        "topic_id": canonical_topic,
+        "score": float(score),
+        "mastered_topics": mastered_topics,
+        "required_topics": required_topics,
+        "missing_topics": missing_topics,
+        "module_result": module_result,
+        "xp_earned": (module_result or {}).get("xp_earned", 0),
+    }
+
+
 # ---------------------------------------------------------------------------
 # User progress retrieval
 # ---------------------------------------------------------------------------
