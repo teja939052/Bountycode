@@ -215,6 +215,14 @@ async def submit_answer(submission: AnswerSubmission, user=Depends(get_current_u
     session = await _get_owned_quiz_session(user["id"], submission.quiz_id)
     if session.get("status") != "in_progress":
         raise HTTPException(status_code=409, detail="This quiz has already been submitted.")
+    time_limit = int(session.get("time_limit_seconds", 0) or 0)
+    created_at = session.get("created_at")
+    if time_limit > 0 and isinstance(created_at, datetime):
+        if created_at.tzinfo is None:
+            created_at = created_at.replace(tzinfo=timezone.utc)
+        elapsed = (datetime.now(timezone.utc) - created_at).total_seconds()
+        if elapsed > time_limit:
+            raise HTTPException(status_code=409, detail="The assessment time limit has expired. Submit the quiz to view your results.")
     if submission.question_id not in (session.get("question_ids") or []):
         raise HTTPException(status_code=403, detail="This question was not served in your quiz.")
 
