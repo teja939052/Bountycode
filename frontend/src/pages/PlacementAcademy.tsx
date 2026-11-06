@@ -198,6 +198,27 @@ function percent(value: unknown) {
   return Number.isFinite(n) ? Math.max(0, Math.min(100, Math.round(n))) : 0;
 }
 
+function learningTrackForDomain(domain: string): string {
+  const value = String(domain || "").toLowerCase();
+  if (value.includes("sql") || value.includes("database")) return "SQL & Databases";
+  if (value.includes("aptitude") || value.includes("quantitative") || value.includes("arithmetic") || value.includes("math")) return "Quantitative Aptitude";
+  if (value.includes("reason") || value.includes("logical") || value.includes("puzzle")) return "Logical Reasoning";
+  if (value.includes("verbal") || value.includes("grammar") || value.includes("vocabulary") || value.includes("english")) return "Verbal & Communication";
+  if (value.includes("computer science") || value.includes("operating system") || value === "os" || value.includes("network") || value.includes("dbms") || value.includes("oop")) return "Core Computer Science";
+  if (value.includes("dsa") || value.includes("data structure") || value.includes("algorithm") || value.includes("programming") || value.includes("coding") || value.includes("code")) return "Programming & DSA";
+  return "General Foundations";
+}
+
+const LEARNING_TRACK_ORDER = [
+  "Programming & DSA",
+  "Quantitative Aptitude",
+  "Logical Reasoning",
+  "Verbal & Communication",
+  "SQL & Databases",
+  "Core Computer Science",
+  "General Foundations",
+];
+
 export default function PlacementAcademy() {
   const navigate = useNavigate();
   const { data: journey, isLoading: journeyLoading } = useJourneyState();
@@ -261,7 +282,11 @@ export default function PlacementAcademy() {
 
   const allLessons = ((lessonResult as any)?.data ?? []) as Lesson[];
   const domains = useMemo(
-    () => ["all", ...Array.from(new Set(allLessons.map((lesson) => lesson.domain))).sort()],
+    () => [
+      "all",
+      ...Array.from(new Set(allLessons.map((lesson) => learningTrackForDomain(lesson.domain))))
+        .sort((a, b) => LEARNING_TRACK_ORDER.indexOf(a) - LEARNING_TRACK_ORDER.indexOf(b)),
+    ],
     [allLessons],
   );
   const lessons = useMemo(() => {
@@ -272,7 +297,7 @@ export default function PlacementAcademy() {
         lesson.title.toLowerCase().includes(q) ||
         lesson.domain.toLowerCase().includes(q) ||
         lesson.slug.toLowerCase().includes(q);
-      const matchesDomain = domainFilter === "all" || lesson.domain === domainFilter;
+      const matchesDomain = domainFilter === "all" || learningTrackForDomain(lesson.domain) === domainFilter;
       return matchesQuery && matchesDomain;
     });
   }, [allLessons, lessonQuery, domainFilter]);
@@ -520,18 +545,34 @@ export default function PlacementAcademy() {
           </div>
         </div>
         {lessonsLoading ? <div className="py-8"><Spinner /></div> : lessons.length ? (
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {lessons.map((lesson) => (
-              <Link key={lesson.slug} to={`/learn/lesson/${lesson.slug}`} className="group rounded-2xl border border-slate-200 bg-white p-4 transition hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-sm">
-                <div className="flex items-start justify-between gap-2">
-                  <span className="rounded-full bg-slate-100 px-2 py-1 text-[10px] font-semibold text-slate-600">{lesson.domain}</span>
-                  <BookOpen size={16} className="text-emerald-700" />
-                </div>
-                <h3 className="mt-3 font-semibold text-slate-900 group-hover:text-emerald-700">{lesson.title}</h3>
-                <p className="mt-1 text-xs text-slate-500">{lesson.step_count} guided steps · {lesson.duration_min} min · {lesson.difficulty}</p>
-                <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-emerald-700">Start lesson <ArrowRight size={13} /></span>
-              </Link>
-            ))}
+          <div className="space-y-7">
+            {LEARNING_TRACK_ORDER
+              .map((track) => ({ track, items: lessons.filter((lesson) => learningTrackForDomain(lesson.domain) === track) }))
+              .filter((group) => group.items.length > 0)
+              .map((group) => (
+                <section key={group.track} aria-label={group.track} className="space-y-3">
+                  <div className="flex flex-wrap items-end justify-between gap-2 border-b border-slate-200 pb-2">
+                    <div>
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-emerald-700">Learning pathway</p>
+                      <h3 className="mt-1 text-lg font-bold text-slate-900">{group.track}</h3>
+                    </div>
+                    <span className="text-xs text-slate-500">{group.items.length} lessons · learn in sequence</span>
+                  </div>
+                  <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    {group.items.map((lesson, index) => (
+                      <Link key={lesson.slug} to={`/learn/lesson/${lesson.slug}`} className="group rounded-2xl border border-slate-200 bg-white p-4 transition hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-sm">
+                        <div className="flex items-start justify-between gap-2">
+                          <span className="rounded-full bg-slate-100 px-2 py-1 text-[10px] font-semibold text-slate-600">{lesson.domain}</span>
+                          <BookOpen size={16} className="text-emerald-700" />
+                        </div>
+                        <h4 className="mt-3 font-semibold text-slate-900 group-hover:text-emerald-700">{lesson.title}</h4>
+                        <p className="mt-1 text-xs text-slate-500">{lesson.step_count} guided steps · {lesson.duration_min} min · {lesson.difficulty}</p>
+                        <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-emerald-700">Start lesson <ArrowRight size={13} /></span>
+                      </Link>
+                    ))}
+                  </div>
+                </section>
+              ))}
           </div>
         ) : (
           <div className="rounded-2xl border border-dashed border-slate-300 p-6 text-center text-sm text-slate-500">No lessons match this filter.</div>
