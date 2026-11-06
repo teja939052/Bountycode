@@ -61,6 +61,8 @@ def _required_step_indices(data: Dict[str, Any]) -> List[int]:
 # A guided lesson can only certify a module whose authored topic overlaps the
 # skill it teaches. Query-string IDs from the browser are not proof of coverage.
 LESSON_MODULE_TOPICS = {
+    "input_output_basics": {"input_output", "input", "output", "input_output_basics", "type_conversion"},
+    "operators_basics": {"operators", "operator", "expressions", "operator_precedence", "arithmetic_operators", "logical_operators"},
     "variables_basics": {"variables", "variables_basics", "data_types", "types", "assignment"},
     "conditions_basics": {"conditions", "conditional_logic", "boolean_logic", "branching"},
     "functions_basics": {"functions", "functions_basics", "parameters", "return_values"},
@@ -131,6 +133,8 @@ LESSON_MODULE_TOPICS = {
 
 
 LESSON_SKILL_DOMAINS = {
+    "input_output_basics": "programming_fundamentals",
+    "operators_basics": "programming_fundamentals",
     "variables_basics": "programming_fundamentals",
     "conditions_basics": "programming_fundamentals",
     "functions_basics": "programming_fundamentals",
