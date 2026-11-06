@@ -229,7 +229,7 @@ export default function PlacementAcademy() {
 
   const { data: skillResult, isLoading: skillsLoading } = useQuery({
     queryKey: ["adaptive", "skills"],
-    queryFn: () => api.get("/api/v1/adaptive/skills"),
+    queryFn: () => api.adaptive.getSkillAssessment(),
     staleTime: 60_000,
     retry: 1,
   });
@@ -242,7 +242,8 @@ export default function PlacementAcademy() {
 
   const daily = (dailyResult as any)?.data ?? dailyResult ?? {};
   const mission = daily?.company_focus || daily?.tasks?.[0] || null;
-  const skills = ((skillResult as any)?.data?.skills ?? {}) as Record<string, SkillEvidence>;
+  const skillData = (skillResult as any)?.data ?? skillResult ?? {};
+  const skills = (skillData.skills ?? skillData.assessment?.skills ?? {}) as Record<string, SkillEvidence>;
   const skillRows = useMemo(
     () => Object.entries(skills)
       .map(([id, value]) => ({ id, ...value }))
