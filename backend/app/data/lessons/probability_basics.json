@@ -28,7 +28,11 @@
         "1"
       ],
       "correct_index": 2,
-      "explanation": "There are two equally likely outcomes, and one is heads. Probability = 1/2."
+      "explanation": "There are two equally likely outcomes, and one is heads. Probability = 1/2.",
+      "hints": [
+        "A fair coin has two equally likely outcomes.",
+        "Only one of those outcomes is heads."
+      ]
     },
     {
       "step_number": 3,
@@ -50,7 +54,11 @@
         "4/13"
       ],
       "correct_index": 2,
-      "explanation": "There are 4 aces among 52 cards. 4/52 = 1/13."
+      "explanation": "There are 4 aces among 52 cards. 4/52 = 1/13.",
+      "hints": [
+        "A standard deck has 52 cards in total.",
+        "There are four aces; simplify favourable outcomes divided by total outcomes."
+      ]
     },
     {
       "step_number": 5,
@@ -120,5 +128,81 @@
         "explanation": "Complement = 1 − 1/6 = 5/6."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Define a sample space and favourable event.",
+    "Calculate probability for equally likely outcomes.",
+    "Use complements to simplify 'at least one' questions.",
+    "Distinguish independent and mutually exclusive events."
+  ],
+  "concepts": [
+    "sample space",
+    "event",
+    "favourable outcome",
+    "equally likely",
+    "complement",
+    "independent events",
+    "mutually exclusive events"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "A probability can be greater than 1.",
+      "correction": "Probability lies between 0 and 1 inclusive."
+    },
+    {
+      "misconception": "Independent events cannot happen together.",
+      "correction": "Independent events can occur together; independence means one event does not change the probability of the other."
+    },
+    {
+      "misconception": "Mutually exclusive and independent mean the same thing.",
+      "correction": "Mutually exclusive events cannot occur together; non-zero independent events can occur together."
+    }
+  ],
+  "worked_examples": [],
+  "company_applications": [
+    {
+      "company": "TCS NQT",
+      "skill": "basic probability",
+      "practice": "Count the sample space before selecting favourable outcomes."
+    },
+    {
+      "company": "Infosys",
+      "skill": "probability and counting",
+      "practice": "Use a complement for 'at least one' problems."
+    },
+    {
+      "company": "Accenture",
+      "skill": "quantitative reasoning",
+      "practice": "Recognize when event probabilities should be multiplied."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "formula",
+      "question": "What is the complement rule?",
+      "answer": "P(not A) = 1 − P(A)."
+    },
+    {
+      "type": "distinction",
+      "question": "How do independent events differ from mutually exclusive events?",
+      "answer": "Independent events do not affect each other's probabilities; mutually exclusive events cannot happen at the same time."
+    }
+  ],
+  "prerequisites": [
+    "permutations_combinations"
+  ],
+  "quest": {
+    "chapter": "The Chance Chamber",
+    "rank": "Probability Apprentice",
+    "story": "The academy wants to model uncertain events such as selecting a question or rolling a die. You must count outcomes carefully instead of guessing from intuition.",
+    "mission": "Build sample spaces, count favourable outcomes and use complements and independence.",
+    "success_criteria": [
+      "Identify equally likely outcomes.",
+      "Calculate a basic event probability.",
+      "Use the complement rule.",
+      "Multiply probabilities for independent events."
+    ]
+  },
+  "next_lesson_slug": "advanced_probability",
+  "next_lesson_title": "Advanced Probability"
 }
