@@ -211,7 +211,7 @@ def _load_lesson(slug: str) -> Optional[Dict[str, Any]]:
 
 class StepAnswerRequest(BaseModel):
     answer_index: Optional[int] = Field(default=None, ge=0)
-    answer_text: Optional[str] = Field(default=None, min_length=1, max_length=1000)
+    answer_text: Optional[str] = Field(default=None, min_length=1, max_length=8000)
     answer_order: Optional[List[int]] = Field(default=None, min_length=1, max_length=20)
 
 
@@ -266,11 +266,13 @@ async def get_lesson(slug: str, user=Depends(get_current_user)):
     public_data = {**data}
     # Never ship answer keys to the learner before they submit an attempt.
     answerable_step_types = {
-        "interactive", "practice", "quiz", "predict_output", "fill_blank", "order_steps"
+        "interactive", "practice", "quiz", "predict_output", "fill_blank",
+        "order_steps", "code_lab", "sql_lab"
     }
     answer_key_fields = {
-        "correct_index", "correct_answer", "answer",
-        "expected_answer", "accepted_answers", "correct_order",
+        "correct_index", "correct_answer", "answer", "correct_order",
+        "expected_answer", "accepted_answers", "expected_output",
+        "schema_ddl", "seed_inserts", "expected_query",
     }
     public_data["steps"] = [
         {
@@ -377,8 +379,41 @@ async def answer_lesson_step(
     correct_index = None
     correct_answer = None
     correct_order = None
+    feedback = None
+    student_results = None
 
-    if step_type == "order_steps":
+    if step_type == "code_lab":
+        if req.answer_text is None or req.answer_index is not None or req.answer_order is not None:
+            raise HTTPException(status_code=422, detail="Run the code before checking its output.")
+        expected_output = step.get("expected_output")
+        if expected_output is None:
+            raise HTTPException(status_code=500, detail="This code lab has no expected output.")
+        normalize = lambda value: "\\n".join(line.rstrip() for line in str(value).replace("\\r\\n", "\\n").strip().splitlines())
+        accepted_outputs = step.get("accepted_outputs") or [expected_output]
+        if not isinstance(accepted_outputs, list):
+            accepted_outputs = [accepted_outputs]
+        correct = normalize(req.answer_text) in {normalize(value) for value in accepted_outputs}
+        feedback = "Your program produced the expected output." if correct else "Your program ran, but the output does not match yet. Compare the loop condition, update and printed value."
+    elif step_type == "sql_lab":
+        if req.answer_text is None or req.answer_index is not None or req.answer_order is not None:
+            raise HTTPException(status_code=422, detail="Write a SQL query before checking it.")
+        schema_ddl = step.get("schema_ddl")
+        seed_inserts = step.get("seed_inserts")
+        expected_query = step.get("expected_query")
+        if not all(isinstance(value, str) and value.strip() for value in (schema_ddl, seed_inserts, expected_query)):
+            raise HTTPException(status_code=500, detail="This SQL lab is missing its grading data.")
+        from app.services.sql_engine import SQLEngine
+        validation = SQLEngine.verify_read_only_query(
+            schema_ddl=schema_ddl,
+            seed_inserts=seed_inserts,
+            expected_query=expected_query,
+            student_query=req.answer_text,
+            enforce_order=bool(step.get("enforce_order", False)),
+        )
+        correct = validation.is_correct
+        feedback = "Your query returned the required result." if correct else validation.error_message or "Your query needs another revision."
+        student_results = validation.student_results
+    elif step_type == "order_steps":
         options = step.get("options") or []
         expected = step.get("correct_order")
         if not isinstance(expected, list) or len(expected) != len(options) or sorted(expected) != list(range(len(options))):
@@ -459,6 +494,8 @@ async def answer_lesson_step(
             "correct_index": correct_index,
             "correct_answer": correct_answer,
             "correct_order": correct_order,
+            "feedback": feedback,
+            "student_results": student_results,
             "explanation": step.get("explanation", ""),
             "attempt_recorded": True,
         },

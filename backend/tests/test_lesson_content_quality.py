@@ -109,3 +109,19 @@ def test_sequence_and_browser_code_labs_have_valid_instructions_and_checks():
 
     assert sequence_count >= 2, "Expected at least two sequence-building exercises"
     assert code_lab_count >= 2, "Expected at least two runnable browser code labs"
+
+
+def test_sql_labs_keep_grading_keys_server_side_and_ship_a_schema_preview():
+    sql_labs = []
+    for path in sorted(LESSONS_DIR.glob("*.json")):
+        data = json.loads(path.read_text(encoding="utf-8"))
+        for index, step in enumerate(data.get("steps") or []):
+            if step.get("step_type") == "sql_lab":
+                sql_labs.append((path, index, step))
+                assert step.get("prompt"), f"{path.name} SQL lab {index + 1} has no prompt"
+                assert step.get("schema_preview"), f"{path.name} SQL lab {index + 1} has no schema preview"
+                assert step.get("sample_data"), f"{path.name} SQL lab {index + 1} has no sample data"
+                assert step.get("schema_ddl") and step.get("seed_inserts"), f"{path.name} SQL lab {index + 1} needs a dataset"
+                assert step.get("expected_query"), f"{path.name} SQL lab {index + 1} has no expected query"
+                assert step.get("explanation") and step.get("hints"), f"{path.name} SQL lab {index + 1} needs feedback"
+    assert sql_labs, "Expected at least one query-writing SQL lab"

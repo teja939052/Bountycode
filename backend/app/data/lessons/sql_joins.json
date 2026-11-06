@@ -69,6 +69,26 @@
       "answer_placeholder": "Enter the count",
       "expected_answer": "2",
       "explanation": "Two employee rows have department_id 10, so COUNT(*) returns 2."
+    },
+    {
+      "step_number": 7,
+      "step_type": "sql_lab",
+      "title": "Write an INNER JOIN query",
+      "content": "Use the employee department_id to match the departments id. Return only employees who have a matching department.",
+      "prompt": "Write a query that returns each assigned employee's name and department name, ordered by employee id.",
+      "schema_preview": "employees(id, name, department_id, salary)\\ndepartments(id, department_name)",
+      "sample_data": "employees\\n1 | Asha | 10 | 60000\\n2 | Ravi | 20 | 55000\\n3 | Mei | 10 | 65000\\n4 | Noor | NULL | 48000\\n\\ndepartments\\n10 | Sales\\n20 | Engineering",
+      "answer_placeholder": "SELECT ... FROM employees ...",
+      "schema_ddl": "CREATE TABLE employees (id INTEGER PRIMARY KEY, name TEXT NOT NULL, department_id INTEGER, salary INTEGER); CREATE TABLE departments (id INTEGER PRIMARY KEY, department_name TEXT NOT NULL);",
+      "seed_inserts": "INSERT INTO employees VALUES (1, 'Asha', 10, 60000); INSERT INTO employees VALUES (2, 'Ravi', 20, 55000); INSERT INTO employees VALUES (3, 'Mei', 10, 65000); INSERT INTO employees VALUES (4, 'Noor', NULL, 48000); INSERT INTO departments VALUES (10, 'Sales'); INSERT INTO departments VALUES (20, 'Engineering');",
+      "expected_query": "SELECT e.name, d.department_name FROM employees AS e INNER JOIN departments AS d ON e.department_id = d.id ORDER BY e.id;",
+      "enforce_order": true,
+      "hints": [
+        "Start with SELECT e.name, d.department_name.",
+        "Join employees to departments using employees.department_id = departments.id.",
+        "Use INNER JOIN so Noor is not included because her department_id is NULL. Finish with ORDER BY e.id."
+      ],
+      "explanation": "INNER JOIN keeps only employees with a matching department. Noor is excluded because NULL does not match a department id. ORDER BY e.id makes the output deterministic."
     }
   ],
   "assessment": {
