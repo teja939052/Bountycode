@@ -76,6 +76,18 @@ const LESSON_BY_TOPIC: Record<string, string> = {
   data_types: "variables_basics",
   assignment: "variables_basics",
   assignments: "variables_basics",
+  input: "input_output_basics",
+  inputs: "input_output_basics",
+  output: "input_output_basics",
+  outputs: "input_output_basics",
+  input_output: "input_output_basics",
+  type_conversion: "input_output_basics",
+  operators: "operators_basics",
+  operator: "operators_basics",
+  expressions: "operators_basics",
+  operator_precedence: "operators_basics",
+  arithmetic_operators: "operators_basics",
+  logical_operators: "operators_basics",
   conditions: "conditions_basics",
   conditionals: "conditions_basics",
   if_else: "conditions_basics",
@@ -244,7 +256,8 @@ const LEARNING_TRACK_ORDER = [
 
 const LESSON_SEQUENCE_BY_TRACK: Record<string, string[]> = {
   "Programming & DSA": [
-    "variables_basics", "conditions_basics", "functions_basics",
+    "variables_basics", "input_output_basics", "operators_basics",
+    "conditions_basics", "functions_basics",
     "programming_languages", "loops_basics", "pattern_printing", "arrays_basics",
     "strings_basics", "data_structures_intro", "time_complexity", "searching_basics",
     "sorting_basics", "hashing_basics", "recursion_basics", "linked_lists",
