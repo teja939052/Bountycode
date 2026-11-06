@@ -79,12 +79,17 @@ export default function LessonPlayer() {
   const [correctCount, setCorrectCount] = useState(0);
   const [attemptedCount, setAttemptedCount] = useState(0);
   const lessonStartedAt = useRef<number>(Date.now());
+  const progressLoaded = useRef(false);
+  const [resumedFromStep, setResumedFromStep] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
+    progressLoaded.current = false;
     setLoading(true);
+    setLesson(null);
     lessonStartedAt.current = Date.now();
     setCurrentStep(0);
+    setResumedFromStep(false);
     setPhase("learn");
     setAssessmentAnswers({});
     setAssessmentResult(null);
@@ -98,12 +103,21 @@ export default function LessonPlayer() {
     setCorrectCount(0);
     setAttemptedCount(0);
 
-    api.companyLessons
-      .getLesson(lessonSlug)
-      .then((res: any) => {
-        if (!cancelled && res?.data) {
-          setLesson(res.data);
-        }
+    Promise.all([
+      api.companyLessons.getLesson(lessonSlug),
+      api.companyLessons.getProgress(lessonSlug).catch(() => null),
+    ])
+      .then(([lessonResponse, progressResponse]: [any, any]) => {
+        if (cancelled || !lessonResponse?.data) return;
+        const steps = lessonResponse.data.steps || [];
+        const savedStep = Number(progressResponse?.data?.current_step ?? 0);
+        const restoredStep = Number.isInteger(savedStep)
+          ? Math.max(0, Math.min(savedStep, Math.max(steps.length - 1, 0)))
+          : 0;
+        setLesson(lessonResponse.data);
+        setCurrentStep(restoredStep);
+        setResumedFromStep(Boolean(progressResponse?.data?.has_progress && restoredStep > 0));
+        progressLoaded.current = true;
       })
       .catch(() => {
         if (!cancelled) setLesson(null);
@@ -114,8 +128,19 @@ export default function LessonPlayer() {
 
     return () => {
       cancelled = true;
+      progressLoaded.current = false;
     };
   }, [lessonSlug, trackId, moduleId, topicId]);
+
+  useEffect(() => {
+    if (!lesson || !progressLoaded.current) return;
+    const timeoutId = window.setTimeout(() => {
+      api.companyLessons.saveProgress(lessonSlug, currentStep).catch(() => {
+        // Resume data is a convenience. A temporary save failure must not block learning.
+      });
+    }, 250);
+    return () => window.clearTimeout(timeoutId);
+  }, [lesson, lessonSlug, currentStep]);
 
   const handleAnswer = useCallback(
     async (index: number) => {
@@ -267,6 +292,7 @@ export default function LessonPlayer() {
             <button
               onClick={() => {
                 setCurrentStep(0);
+                setResumedFromStep(false);
                 setPhase("learn");
                 setAssessmentAnswers({});
                 setAssessmentResult(null);
@@ -394,6 +420,11 @@ export default function LessonPlayer() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-8">
       <div className="mb-6">
+        {resumedFromStep && (
+          <p className="mb-3 rounded-lg border border-brand-sky/20 bg-brand-sky/5 px-3 py-2 text-xs text-brand-sky">
+            Welcome back — your last position has been restored.
+          </p>
+        )}
         <div className="flex items-center justify-between mb-2">
           <div>
             <Link
