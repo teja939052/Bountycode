@@ -58,6 +58,18 @@
       "title": "Break, continue and nested loops",
       "content": "break exits the nearest loop. continue skips the rest of the current iteration. A nested loop runs the inner loop for each outer iteration; n×m iterations when the bounds are fixed.",
       "example": "Two loops each running 3 times produce 3×3 = 9 inner executions."
+    },
+    {
+      "step_number": 6,
+      "step_type": "predict_output",
+      "title": "Trace code and predict the output",
+      "content": "Do not guess from the final line. Trace the variable after each iteration, then predict exactly what the program prints.",
+      "code": "total = 0\nfor number in range(1, 4):\n    total += number\nprint(total)",
+      "language": "python",
+      "prompt": "What does this program print?",
+      "answer_placeholder": "Type the output",
+      "expected_answer": "6",
+      "explanation": "The loop visits 1, 2 and 3. The running total becomes 1, then 3, then 6. The print statement outputs 6."
     }
   ],
   "assessment": {
