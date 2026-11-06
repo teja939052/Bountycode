@@ -108,7 +108,9 @@ async def test_client_supplied_score_cannot_complete_a_lesson(monkeypatch):
 
 @pytest.mark.asyncio
 async def test_failed_assessment_records_attempt_without_mastery(monkeypatch):
-    monkeypatch.setattr(company_lessons, "_load_lesson", lambda _slug: _lesson())
+    lesson = _lesson()
+    monkeypatch.setattr(company_lessons, "_load_lesson", lambda _slug: lesson)
+    _seed_passed_required_steps(fake_learning_progress, lesson)
     monkeypatch.setattr(company_lessons, "record_learning_activity", _fake_record_learning_activity)
     calls = []
 
@@ -140,7 +142,9 @@ async def test_failed_assessment_records_attempt_without_mastery(monkeypatch):
 
 @pytest.mark.asyncio
 async def test_passed_assessment_records_company_module_mastery(monkeypatch):
-    monkeypatch.setattr(company_lessons, "_load_lesson", lambda _slug: _lesson())
+    lesson = _lesson()
+    monkeypatch.setattr(company_lessons, "_load_lesson", lambda _slug: lesson)
+    _seed_passed_required_steps(fake_learning_progress, lesson)
     monkeypatch.setattr(company_lessons, "record_learning_activity", _fake_record_learning_activity)
     calls = []
 
@@ -196,6 +200,10 @@ async def test_step_answer_is_server_graded_and_records_evidence(monkeypatch):
     assert len(recorded) == 1
     assert recorded[0][0] == "test-user"
     assert recorded[0][1]["success"] is True
+    stored = fake_learning_progress.document["lesson_progress"]["successive_percentage_change"]["step_evidence"]["0"]
+    assert stored["passed"] is True
+    assert stored["attempts"] == 1
+    assert stored["fingerprint"] == company_lessons._step_fingerprint(_lesson()["steps"][0])
 
 
 @pytest.mark.asyncio
@@ -224,12 +232,120 @@ class _FakeLearningProgressCollection:
     async def update_one(self, query, update, upsert=False):
         if not self.document:
             self.document = {"user_id": query["user_id"], "activities": []}
-        for dotted_key, value in update.get("$set", {}).items():
-            cursor = self.document
-            parts = dotted_key.split(".")
-            for part in parts[:-1]:
-                cursor = cursor.setdefault(part, {})
-            cursor[parts[-1]] = value
+        for operator in ("$set", "$inc"):
+            for dotted_key, value in update.get(operator, {}).items():
+                cursor = self.document
+                parts = dotted_key.split(".")
+                for part in parts[:-1]:
+                    cursor = cursor.setdefault(part, {})
+                if operator == "$inc":
+                    cursor[parts[-1]] = cursor.get(parts[-1], 0) + value
+                else:
+                    cursor[parts[-1]] = value
+
+
+@pytest.fixture(autouse=True)
+def fake_learning_progress(monkeypatch):
+    collection = _FakeLearningProgressCollection()
+    monkeypatch.setattr(company_lessons, "learning_progress_collection", collection)
+    return collection
+
+
+def _seed_passed_required_steps(collection, lesson, user_id="test-user"):
+    evidence = {}
+    for index in company_lessons._required_step_indices(lesson):
+        step = lesson["steps"][index]
+        evidence[str(index)] = {
+            "attempts": 1,
+            "passed": True,
+            "passed_at": "2026-11-06T00:00:00+00:00",
+            "fingerprint": company_lessons._step_fingerprint(step),
+        }
+    collection.document = {
+        "user_id": user_id,
+        "lesson_progress": {lesson["slug"]: {"step_evidence": evidence}},
+    }
+
+
+@pytest.mark.asyncio
+async def test_final_assessment_cannot_skip_required_interactive_step(monkeypatch):
+    lesson = _lesson()
+    monkeypatch.setattr(company_lessons, "_load_lesson", lambda _slug: lesson)
+    request = company_lessons.CompleteRequest(answers={"0": 1, "1": 2})
+
+    with pytest.raises(HTTPException) as exc:
+        await company_lessons.complete_lesson(
+            lesson["slug"], request, user={"id": "test-user"}
+        )
+
+    assert exc.value.status_code == 409
+    assert exc.value.detail["missing_steps"] == [
+        {"step_index": 0, "step_number": 1, "title": "Warm-up"}
+    ]
+
+
+@pytest.mark.asyncio
+async def test_saved_resume_position_does_not_satisfy_lesson_evidence_gate(monkeypatch):
+    lesson = _lesson()
+    monkeypatch.setattr(company_lessons, "_load_lesson", lambda _slug: lesson)
+    await company_lessons.save_lesson_progress(
+        lesson["slug"],
+        company_lessons.LessonProgressRequest(current_step=0),
+        user={"id": "test-user"},
+    )
+
+    request = company_lessons.CompleteRequest(answers={"0": 1, "1": 2})
+    with pytest.raises(HTTPException) as exc:
+        await company_lessons.complete_lesson(
+            lesson["slug"], request, user={"id": "test-user"}
+        )
+
+    assert exc.value.status_code == 409
+    assert "step_evidence" not in fake_learning_progress.document["lesson_progress"][lesson["slug"]]
+
+
+@pytest.mark.asyncio
+async def test_old_step_pass_is_invalidated_when_authored_content_changes(monkeypatch):
+    lesson = _lesson()
+    _seed_passed_required_steps(fake_learning_progress, lesson)
+    lesson["steps"][0]["prompt"] = "A materially revised prompt."
+    monkeypatch.setattr(company_lessons, "_load_lesson", lambda _slug: lesson)
+
+    request = company_lessons.CompleteRequest(answers={"0": 1, "1": 2})
+    with pytest.raises(HTTPException) as exc:
+        await company_lessons.complete_lesson(
+            lesson["slug"], request, user={"id": "test-user"}
+        )
+
+    assert exc.value.status_code == 409
+    assert exc.value.detail["missing_steps"][0]["step_index"] == 0
+
+
+@pytest.mark.asyncio
+async def test_evidence_store_failure_blocks_step_success_response(monkeypatch):
+    lesson = _lesson()
+    monkeypatch.setattr(company_lessons, "_load_lesson", lambda _slug: lesson)
+
+    class FailingCollection:
+        async def update_one(self, *_args, **_kwargs):
+            raise RuntimeError("database unavailable")
+
+    monkeypatch.setattr(company_lessons, "learning_progress_collection", FailingCollection())
+    recorded = []
+
+    async def fake_record_learning_activity(user_id, activity):
+        recorded.append(activity)
+
+    monkeypatch.setattr(company_lessons, "record_learning_activity", fake_record_learning_activity)
+
+    with pytest.raises(HTTPException) as exc:
+        await company_lessons.answer_lesson_step(
+            lesson["slug"], 0, company_lessons.StepAnswerRequest(answer_index=0),
+            user={"id": "test-user"},
+        )
+
+    assert exc.value.status_code == 503
+    assert recorded == []
 
 
 @pytest.mark.asyncio
@@ -434,7 +550,7 @@ async def test_code_lab_expected_output_is_private_until_submission(monkeypatch)
 
 
 @pytest.mark.asyncio
-async def test_code_lab_output_is_server_checked_without_revealing_expected_value(monkeypatch):
+async def test_code_lab_output_is_formative_only_without_mastery_evidence(monkeypatch):
     lesson = _lesson()
     lesson["steps"][0] = {
         "step_number": 1, "step_type": "code_lab", "title": "Run a code exercise",
@@ -455,7 +571,9 @@ async def test_code_lab_output_is_server_checked_without_revealing_expected_valu
     assert result["data"]["correct"] is True
     assert result["data"]["correct_answer"] is None
     assert "42" not in str(result["data"].get("feedback"))
-    assert recorded[0]["success"] is True
+    assert result["data"]["evidence_recorded"] is False
+    assert result["data"]["formative_only"] is True
+    assert recorded == []
 
 
 @pytest.mark.asyncio
@@ -488,6 +606,7 @@ async def test_sql_lab_hides_grading_data_and_grades_query(monkeypatch):
         user={"id": "test-user"},
     )
     assert result["data"]["correct"] is True
+    assert result["data"]["evidence_recorded"] is True
     assert recorded[0]["success"] is True
 
 
