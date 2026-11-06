@@ -121,5 +121,97 @@
         "explanation": "Profit percentage is profit divided by cost price, multiplied by 100."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Calculate profit, loss and selling price.",
+    "Convert profit and loss into percentages.",
+    "Distinguish cost price, marked price and selling price.",
+    "Solve discount and successive discount problems."
+  ],
+  "prerequisites": [
+    "arithmetic_algebra"
+  ],
+  "concepts": [
+    "cost price",
+    "selling price",
+    "profit",
+    "loss",
+    "discount",
+    "marked price"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Profit percent is calculated on selling price.",
+      "correction": "Standard profit percent is calculated on cost price."
+    },
+    {
+      "misconception": "A 10% discount and then another 10% discount equals 20%.",
+      "correction": "Successive discounts multiply: 0.9 × 0.9 = 0.81, giving 19% total discount."
+    },
+    {
+      "misconception": "Marked price and cost price are always equal.",
+      "correction": "Marked price is the listed price; cost price is what the seller paid."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Calculate profit percent",
+      "input": "CP = 500, SP = 600",
+      "trace": [
+        "Profit = SP - CP = 100.",
+        "Profit percent = 100 / 500 × 100."
+      ],
+      "output": "20% profit",
+      "explanation": "Use cost price as the base for profit percentage."
+    },
+    {
+      "title": "Find selling price after discount",
+      "input": "Marked price = 1000; discount = 15%",
+      "trace": [
+        "Discount = 15% of 1000 = 150.",
+        "Selling price = 1000 - 150."
+      ],
+      "output": "850",
+      "explanation": "Subtract the discount amount from the marked price."
+    },
+    {
+      "title": "Successive discounts",
+      "input": "20% off, then 10% off on 1000",
+      "trace": [
+        "After first discount: 1000 × 0.8 = 800.",
+        "After second discount: 800 × 0.9 = 720."
+      ],
+      "output": "Final price 720; total discount 28%",
+      "explanation": "The second discount is applied to the already reduced price."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "quantitative aptitude",
+      "practice": "Use the correct percentage base and show the formula."
+    },
+    {
+      "company": "Infosys",
+      "skill": "arithmetic problem solving",
+      "practice": "Handle successive percentage changes carefully."
+    },
+    {
+      "company": "Accenture",
+      "skill": "numerical reasoning",
+      "practice": "Translate discount wording into multiplication."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What are the key ideas in Profit and Loss?",
+      "answer": "Calculate profit, loss and selling price. Convert profit and loss into percentages. Distinguish cost price, marked price and selling price. Solve discount and successive discount problems."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in Profit and Loss.",
+      "answer": "Standard profit percent is calculated on cost price."
+    }
+  ]
 }
