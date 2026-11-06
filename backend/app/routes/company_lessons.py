@@ -293,9 +293,10 @@ async def list_lessons(user=Depends(get_current_user)):
                 "learning_objectives": (data.get("learning_objectives") or [])[:3],
                 "prerequisites": data.get("prerequisites") or [],
                 "concept_count": len(data.get("concepts") or []),
-                "worked_example_count": len(data.get("worked_examples") or []),
+                "worked_example_count": len(data.get("worked_examples") or data.get("examples") or []),
                 "assessment_count": len((data.get("assessment") or {}).get("questions") or []),
-                "company_count": len(data.get("company_applications") or []),
+                "company_count": len(data.get("company_applications") or data.get("company") or []),
+                "revision_card_count": len(data.get("srs_cards") or data.get("srs") or []),
                 "exercise_types": sorted({
                     str(step.get("step_type") or "").strip().lower()
                     for step in (data.get("steps") or [])
@@ -316,6 +317,11 @@ async def get_lesson(slug: str, user=Depends(get_current_user)):
     # Do not send final-assessment answer keys to the browser. The server grades
     # them in /complete and only returns explanations after submission.
     public_data = {**data}
+    # Normalize legacy lesson authoring keys into the canonical player schema.
+    # Existing lesson files use both old and new names for the same deep-dive data.
+    public_data["worked_examples"] = data.get("worked_examples") or data.get("examples") or []
+    public_data["company_applications"] = data.get("company_applications") or data.get("company") or []
+    public_data["srs_cards"] = data.get("srs_cards") or data.get("srs") or []
     # Never ship answer keys to the learner before they submit an attempt.
     answer_key_fields = {
         "correct_index", "correct_answer", "answer", "correct_order",
