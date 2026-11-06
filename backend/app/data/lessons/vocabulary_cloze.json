@@ -27,7 +27,11 @@
         "Careless"
       ],
       "correct_index": 0,
-      "explanation": "Concise means brief and expressed in few words."
+      "explanation": "Concise means brief and expressed in few words.",
+      "hints": [
+        "Replace the target word with each option and compare the meaning.",
+        "Choose the closest meaning in this sentence, not a word that is merely related."
+      ]
     },
     {
       "step_number": 3,
@@ -48,7 +52,11 @@
         "among"
       ],
       "correct_index": 1,
-      "explanation": "Without interruption means the match continued and was not stopped."
+      "explanation": "Without interruption means the match continued and was not stopped.",
+      "hints": [
+        "Read the whole sentence before looking at the options.",
+        "Check meaning and grammar together; the word must fit both."
+      ]
     },
     {
       "step_number": 5,
@@ -118,5 +126,79 @@
         "explanation": "Convincing is the adjective describing the evidence."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Use context clues to infer an unfamiliar word.",
+    "Distinguish synonyms and antonyms in context.",
+    "Recognize common collocations and word forms.",
+    "Complete cloze sentences while preserving meaning and grammar."
+  ],
+  "concepts": [
+    "context clue",
+    "synonym",
+    "antonym",
+    "collocation",
+    "word form",
+    "cloze passage",
+    "connotation"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "A synonym can replace a word in every sentence.",
+      "correction": "Near-synonyms can differ in tone, strength or grammatical use; context decides."
+    },
+    {
+      "misconception": "The longest or most advanced option is usually correct.",
+      "correction": "Choose the option that best fits the sentence meaning and grammar."
+    },
+    {
+      "misconception": "A cloze blank should be solved without reading the surrounding sentence.",
+      "correction": "Read the whole passage because nearby sentences often provide essential clues."
+    }
+  ],
+  "worked_examples": [],
+  "company_applications": [
+    {
+      "company": "TCS NQT",
+      "skill": "vocabulary and contextual meaning",
+      "practice": "Use sentence context to eliminate unrelated synonyms."
+    },
+    {
+      "company": "Infosys",
+      "skill": "verbal ability",
+      "practice": "Check collocations and grammatical fit before selecting a word."
+    },
+    {
+      "company": "Accenture",
+      "skill": "communication and comprehension",
+      "practice": "Use contrast and cause-effect connectors to infer missing words."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "method",
+      "question": "How should you solve a cloze blank?",
+      "answer": "Read the whole sentence or passage, infer the required meaning, then check grammar and collocation."
+    },
+    {
+      "type": "definition",
+      "question": "What is a collocation?",
+      "answer": "A pair or group of words that are conventionally used together, such as make a decision."
+    }
+  ],
+  "prerequisites": [],
+  "quest": {
+    "chapter": "The Word Library",
+    "rank": "Context Detective",
+    "story": "The academy has received incomplete messages. The right word must fit the meaning, grammar and natural word pairing—not merely look familiar.",
+    "mission": "Use context, synonyms, collocations and sentence meaning to complete short passages.",
+    "success_criteria": [
+      "Use surrounding words as context clues.",
+      "Distinguish close synonyms.",
+      "Recognize natural collocations.",
+      "Check the full sentence after filling a blank."
+    ]
+  },
+  "next_lesson_slug": "sentence_correction",
+  "next_lesson_title": "Sentence Correction"
 }
