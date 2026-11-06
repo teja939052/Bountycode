@@ -233,3 +233,16 @@ def test_programming_foundations_form_a_complete_prerequisite_chain():
         assert len(lesson["assessment"]["questions"]) >= 5
         assert len(lesson["worked_examples"]) >= 3
         assert len(lesson["company_applications"]) >= 3
+
+
+
+def test_programming_foundation_lessons_link_to_the_next_course_step():
+    expected = {
+        "variables_basics": "conditions_basics",
+        "conditions_basics": "functions_basics",
+        "functions_basics": "programming_languages",
+    }
+    for slug, next_slug in expected.items():
+        lesson = json.loads((LESSONS_DIR / f"{slug}.json").read_text(encoding="utf-8"))
+        assert lesson.get("next_lesson_slug") == next_slug
+        assert lesson.get("next_lesson_title")
