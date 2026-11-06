@@ -380,6 +380,44 @@ async def complete_lesson(slug: str, req: CompleteRequest, user=Depends(get_curr
         or 0.7
     )
     passed = score >= mastery_threshold * 100
+    if bool(req.track_id) != bool(req.module_id):
+        raise HTTPException(status_code=400, detail="track_id and module_id must be supplied together.")
+
+    # Every final assessment is adaptive evidence, whether passed or failed.
+    # Failed attempts count as attempts but do not increase mastery score.
+    domain_id = LESSON_SKILL_DOMAINS.get(
+        slug,
+        {
+            "quantitative aptitude": "quantitative_aptitude",
+            "reasoning": "logical_reasoning",
+            "programming logic": "programming_fundamentals",
+            "programming fundamentals": "programming_fundamentals",
+            "dsa": "arrays_hashing",
+            "verbal ability": "verbal_ability",
+            "sql": "sql",
+        }.get(
+            str(data.get("domain") or data.get("pattern") or "general").lower(),
+            str(data.get("domain") or data.get("pattern") or "general").lower().replace(" ", "_"),
+        ),
+    )
+    try:
+        await record_learning_activity(
+            user["id"],
+            {
+                "domain_id": domain_id,
+                "type": "lesson_assessment",
+                "success": passed,
+                "score_impact": 1,
+                "lesson_slug": slug,
+                "score_percent": score,
+                "track_id": req.track_id,
+                "module_id": req.module_id,
+                "topic_id": req.topic_id,
+            },
+        )
+    except Exception as exc:
+        logger.warning("Could not update adaptive assessment evidence for %s: %s", slug, exc)
+
     if not passed:
         return {
             "success": True,
@@ -394,9 +432,6 @@ async def complete_lesson(slug: str, req: CompleteRequest, user=Depends(get_curr
                 "module_completed": False,
             },
         }
-
-    if bool(req.track_id) != bool(req.module_id):
-        raise HTTPException(status_code=400, detail="track_id and module_id must be supplied together.")
 
     if req.track_id and req.module_id:
         from app.data.learning_paths import COMPANY_TRACKS
