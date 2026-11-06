@@ -134,89 +134,87 @@
     ]
   },
   "learning_objectives": [
-    "Explain strings as sequences of characters.",
-    "Access characters safely using indices.",
-    "Trace slices and substring boundaries.",
-    "Use common string operations.",
-    "Recognize immutability differences across languages."
+    "Treat a string as an ordered sequence of characters.",
+    "Use indexing, traversal and slicing safely.",
+    "Build frequency maps and test palindromes.",
+    "Choose immutable-string operations carefully."
   ],
   "prerequisites": [
-    "programming_languages",
+    "arrays_basics",
     "loops_basics"
   ],
   "concepts": [
-    "character sequence",
-    "indexing",
-    "slicing",
+    "index",
+    "length",
     "substring",
-    "immutability",
-    "search",
-    "concatenation"
+    "character frequency",
+    "palindrome",
+    "immutability"
   ],
   "common_misconceptions": [
     {
-      "misconception": "The last character is at index length.",
-      "correction": "The last valid index is length - 1."
+      "misconception": "The last valid index equals the string length.",
+      "correction": "For zero-based indexing, the last valid index is length-1."
     },
     {
-      "misconception": "A slice always includes its end index.",
-      "correction": "In Python-style slicing, the end index is excluded."
+      "misconception": "A string can always be modified in place.",
+      "correction": "Many languages use immutable strings; operations create new strings."
     },
     {
-      "misconception": "Changing one character always mutates the original string.",
-      "correction": "Many languages use immutable strings; create a new string for changes."
+      "misconception": "A palindrome check must compare every pair twice.",
+      "correction": "Compare mirrored positions only until the middle."
     }
   ],
   "worked_examples": [
     {
-      "title": "Access a character",
-      "input": "word = 'Bounty'\\nword[1]",
+      "title": "Trace indexing",
+      "input": "s = 'Bounty'; s[0], s[5]",
       "trace": [
-        "B is at index 0.",
-        "o is at index 1."
+        "Indexing starts at zero.",
+        "s[0] is B.",
+        "s[5] is y; length is 6."
       ],
-      "output": "o",
-      "explanation": "A string can be treated as an indexed sequence of characters."
+      "output": "B and y",
+      "explanation": "Valid indices range from 0 through length-1."
     },
     {
-      "title": "Trace a slice",
-      "input": "word = 'Bountycode'\\nword[0:6]",
+      "title": "Check a palindrome",
+      "input": "'level'",
       "trace": [
-        "Start at index 0.",
-        "Stop before index 6.",
-        "Collect indices 0 through 5."
+        "Compare index 0 and 4: l equals l.",
+        "Compare index 1 and 3: e equals e.",
+        "Middle character needs no pair."
       ],
-      "output": "Bounty",
-      "explanation": "The end boundary is exclusive in Python slicing."
+      "output": "Palindrome",
+      "explanation": "Mirrored comparisons need at most floor(n/2) checks."
     },
     {
-      "title": "Count a traversal",
-      "input": "for ch in 'code':\\n    process(ch)",
+      "title": "Count characters",
+      "input": "'banana'",
       "trace": [
-        "Process c.",
-        "Process o.",
-        "Process d.",
-        "Process e."
+        "Read b: count b=1.",
+        "Read a: count a=1; repeat updates a.",
+        "Finish with a=3, n=2, b=1."
       ],
-      "output": "4 character visits",
-      "explanation": "A single pass over a string of length n takes O(n) time."
+      "output": "a:3, n:2, b:1",
+      "explanation": "A frequency map supports linear-time counting."
     }
   ],
   "company_applications": [
     {
+      "company": "TCS",
+      "skill": "string coding and output tracing",
+      "practice": "Test empty, one-character and repeated-character inputs."
+    },
+    {
       "company": "Infosys",
-      "skill": "string manipulation and coding",
-      "practice": "Trace indices and handle empty or one-character strings."
+      "skill": "string manipulation",
+      "practice": "Explain O(n) traversal and avoid repeated concatenation where costly."
     },
     {
       "company": "Accenture",
-      "skill": "output prediction and basic coding",
-      "practice": "Practice substring boundaries and character counting."
-    },
-    {
-      "company": "TCS",
-      "skill": "arrays and strings coding",
-      "practice": "Explain time complexity and test repeated characters."
+      "skill": "pattern and text processing",
+      "practice": "Use frequency maps and two-pointer palindrome checks."
     }
   ],
   "srs_cards": [
@@ -229,6 +227,16 @@
       "type": "misconception",
       "question": "Name a common mistake in Strings Fundamentals.",
       "answer": "The last valid index is length - 1."
+    },
+    {
+      "type": "concept",
+      "question": "What should you remember about Strings Fundamentals?",
+      "answer": "Treat a string as an ordered sequence of characters. Use indexing, traversal and slicing safely. Build frequency maps and test palindromes. Choose immutable-string operations carefully."
+    },
+    {
+      "type": "misconception",
+      "question": "What mistake should you avoid in Strings Fundamentals?",
+      "answer": "For zero-based indexing, the last valid index is length-1."
     }
   ]
 }
