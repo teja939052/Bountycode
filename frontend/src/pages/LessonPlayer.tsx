@@ -652,7 +652,7 @@ export default function LessonPlayer() {
               </span>
               <h2 className="text-lg font-bold mt-1">{step.title}</h2>
             </div>
-            {["interactive", "practice", "predict_output", "fill_blank", "order_steps", "code_lab"].includes(step.step_type) ? (
+            {["interactive", "practice", "predict_output", "fill_blank", "order_steps", "code_lab", "sql_lab"].includes(step.step_type) ? (
               <Lightbulb className="h-5 w-5 text-yellow-400 shrink-0" />
             ) : (
               <BookOpen className="h-5 w-5 text-brand-sky shrink-0" />
@@ -806,8 +806,55 @@ export default function LessonPlayer() {
                   <p className="text-[11px] text-text-secondary">Your output</p>
                   <pre className="mt-1 overflow-x-auto whitespace-pre-wrap font-mono text-xs text-text-primary">{codeLabResult.stdout || (codeLabResult.stderr ? "" : "(no output)")}</pre>
                   {codeLabResult.stderr && <pre className="mt-2 overflow-x-auto whitespace-pre-wrap text-xs text-red-300">{codeLabResult.stderr}</pre>}
-                  <p className="mt-2 text-[11px] text-text-secondary">Expected visible check: <code className="text-brand-sky">{codeLabResult.expected || "(empty)"}</code></p>
+                  <p className="mt-2 text-[11px] text-text-secondary">The expected output stays hidden; use the feedback and hints to revise your code.</p>
                 </div>
+              )}
+            </div>
+          )}
+
+          {step.step_type === "sql_lab" && (
+            <div className="mb-4 rounded-xl border border-white/10 bg-white/[0.03] p-4">
+              {step.prompt && <p className="mb-3 text-sm font-semibold text-text-primary">{step.prompt}</p>}
+              {step.schema_preview && (
+                <div className="mb-3">
+                  <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-text-secondary">Schema</p>
+                  <pre className="overflow-x-auto rounded-lg bg-[#101820] p-3 font-mono text-xs leading-5 text-slate-100">{step.schema_preview}</pre>
+                </div>
+              )}
+              {step.sample_data && (
+                <div className="mb-3">
+                  <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-text-secondary">Sample rows</p>
+                  <pre className="overflow-x-auto rounded-lg bg-[#101820] p-3 font-mono text-xs leading-5 text-slate-100">{step.sample_data}</pre>
+                </div>
+              )}
+              <label className="mb-1 block text-[11px] font-semibold uppercase tracking-wide text-text-secondary" htmlFor="lesson-sql-query">Your SQL query</label>
+              <textarea
+                id="lesson-sql-query"
+                aria-label="Write your SQL query"
+                spellCheck={false}
+                autoCapitalize="off"
+                autoCorrect="off"
+                value={textAnswer}
+                onChange={(event) => setTextAnswer(event.target.value)}
+                disabled={showExplanation || saving}
+                rows={7}
+                maxLength={8000}
+                placeholder={step.answer_placeholder || "SELECT ..."}
+                className="w-full resize-y rounded-lg border border-white/10 bg-[#101820] p-3 font-mono text-xs leading-6 text-slate-100 outline-none focus:border-brand-sky disabled:opacity-60"
+              />
+              <div className="mt-3 flex items-center justify-between gap-2">
+                <span className="text-[11px] text-text-secondary">Fresh in-memory SQLite dataset · no paid compiler call</span>
+                <button
+                  type="button"
+                  onClick={() => void handleTextAnswer()}
+                  disabled={!textAnswer.trim() || saving || showExplanation}
+                  className="min-h-10 rounded-lg bg-brand-sky px-4 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  {saving ? "Checking…" : "Check query"}
+                </button>
+              </div>
+              {answerResult?.sqlResults && answerResult.sqlResults.length > 0 && (
+                <pre className="mt-3 overflow-x-auto rounded-lg bg-[#101820] p-3 font-mono text-xs leading-5 text-slate-100">{JSON.stringify(answerResult.sqlResults, null, 2)}</pre>
               )}
             </div>
           )}
@@ -910,6 +957,15 @@ export default function LessonPlayer() {
               >
                 {answerResult.explanation}
               </p>
+              {!answerResult.correct && step.step_type !== "code_lab" && (
+                <button
+                  type="button"
+                  onClick={retryCurrentStep}
+                  className="mt-3 rounded-lg border border-white/15 px-3 py-2 text-xs font-semibold text-text-primary hover:bg-white/5"
+                >
+                  Try again
+                </button>
+              )}
             </motion.div>
           )}
 
@@ -934,7 +990,7 @@ export default function LessonPlayer() {
               disabled={saving || (
                 ["interactive", "practice", "predict_output", "fill_blank", "order_steps"].includes(step.step_type)
                 && !answerResult
-              ) || (step.step_type === "code_lab" && !codeLabResult?.passed)}
+              ) || (step.step_type === "code_lab" && !codeLabResult?.passed) || (step.step_type === "sql_lab" && !answerResult?.correct)}
               className="rounded-xl bg-brand-sky px-4 py-2 text-sm text-white hover:bg-brand-sky/90 disabled:opacity-50"
             >
               {saving ? (
