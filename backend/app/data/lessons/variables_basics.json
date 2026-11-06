@@ -30,7 +30,11 @@
         "is_correct"
       ],
       "correct_index": 1,
-      "explanation": "solved_questions describes a count. A clear name communicates meaning; x is vague, question_text suggests text, and is_correct suggests a Boolean."
+      "explanation": "solved_questions describes a count. A clear name communicates meaning; x is vague, question_text suggests text, and is_correct suggests a Boolean.",
+      "hints": [
+        "Look for a descriptive name rather than a one-letter placeholder.",
+        "The value represents a count, not text or a true/false state."
+      ]
     },
     {
       "step_number": 3,
@@ -50,7 +54,11 @@
       "language": "python",
       "answer_placeholder": "Enter the printed value",
       "expected_answer": "15",
-      "explanation": "First score refers to 10. The second assignment evaluates score + 5 as 10 + 5, then stores 15. print reads the updated value."
+      "explanation": "First score refers to 10. The second assignment evaluates score + 5 as 10 + 5, then stores 15. print reads the updated value.",
+      "hints": [
+        "Read the first assignment to establish the starting value.",
+        "Evaluate the right-hand expression using the current value before storing the result."
+      ]
     },
     {
       "step_number": 5,
@@ -69,7 +77,11 @@
       "code": "raw = '12'\ntotal = ____ (raw)",
       "answer_placeholder": "Function name",
       "expected_answer": "int",
-      "explanation": "int('12') returns the integer 12. Without conversion, adding text and a number may fail or behave differently from numeric addition."
+      "explanation": "int('12') returns the integer 12. Without conversion, adding text and a number may fail or behave differently from numeric addition.",
+      "hints": [
+        "Input from a text field is usually a string.",
+        "Use the conversion function whose name matches the whole-number type."
+      ]
     },
     {
       "step_number": 7,
@@ -87,7 +99,11 @@
         2,
         0
       ],
-      "explanation": "The program reads price and quantity, multiplies them, and stores the result in total. Assignment does not store a half-finished expression."
+      "explanation": "The program reads price and quantity, multiplies them, and stores the result in total. Assignment does not store a half-finished expression.",
+      "hints": [
+        "The expression must be evaluated before its result can be stored.",
+        "Read both variable values, perform the multiplication, then update the target variable."
+      ]
     },
     {
       "step_number": 8,
@@ -124,7 +140,11 @@
         "3": "The size of 1 is irrelevant. The issue is that age is text, so + performs concatenation.",
         "4": "Strings can be printed. The problem is arithmetic with a string, not output."
       },
-      "explanation": "age contains the string '10'. JavaScript evaluates '10' + 1 as '101'. Use Number(age) + 1 when numeric addition is intended."
+      "explanation": "age contains the string '10'. JavaScript evaluates '10' + 1 as '101'. Use Number(age) + 1 when numeric addition is intended.",
+      "hints": [
+        "Read the type of each operand before evaluating the plus operator.",
+        "In JavaScript, plus can concatenate when a string participates in the expression."
+      ]
     }
   ],
   "assessment": {
