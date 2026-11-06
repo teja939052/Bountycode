@@ -56,6 +56,32 @@
       "title": "What HTTPS adds",
       "content": "HTTPS is HTTP protected by TLS. TLS helps provide encryption, integrity and server authentication for the connection.",
       "example": "The browser validates a certificate before trusting the server identity for a secure HTTPS connection."
+    },
+    {
+      "step_number": 6,
+      "step_type": "api_scenario",
+      "title": "Choose the correct API response",
+      "content": "A request can be authenticated and still fail because the requested resource does not exist. Separate authentication failures from resource lookup failures.",
+      "request_preview": "GET /api/v1/orders/42\nAuthorization: Bearer valid-token\n\nDatabase lookup: no order exists with id 42",
+      "prompt": "Which HTTP status should the API return for this authenticated request?",
+      "options": [
+        "200 OK with an empty list",
+        "201 Created",
+        "401 Unauthorized",
+        "404 Not Found"
+      ],
+      "correct_index": 3,
+      "feedback_by_option": {
+        "0": "An empty list is usually used for a collection query that found no matching items. This request asks for one specific order.",
+        "1": "201 Created is for a successful resource creation. The client sent a GET request.",
+        "2": "401 Unauthorized is for missing or invalid authentication. The request has a valid token; the resource lookup failed."
+      },
+      "hints": [
+        "First decide whether the request is authenticated. The prompt says the token is valid.",
+        "Next ask whether order 42 exists. It does not.",
+        "Choose the status for a missing specific resource, not a login failure."
+      ],
+      "explanation": "404 Not Found is appropriate because authentication succeeded but the requested order does not exist. A 401 would incorrectly blame the credentials."
     }
   ],
   "assessment": {
