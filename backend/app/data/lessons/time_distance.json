@@ -120,5 +120,99 @@
         "explanation": "Distance = train length = 120 m. Speed = 120/6 = 20 m/s."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Use speed, distance and time relationships.",
+    "Convert units consistently.",
+    "Solve relative-speed problems.",
+    "Interpret average speed over multiple legs."
+  ],
+  "prerequisites": [
+    "arithmetic_algebra"
+  ],
+  "concepts": [
+    "speed",
+    "distance",
+    "time",
+    "relative speed",
+    "unit conversion",
+    "average speed"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Average speed is always the average of two speeds.",
+      "correction": "Average speed is total distance divided by total time."
+    },
+    {
+      "misconception": "Opposite-direction relative speed is the difference.",
+      "correction": "For opposite directions, add speeds; for same direction, subtract."
+    },
+    {
+      "misconception": "Minutes and hours can be mixed without conversion.",
+      "correction": "Convert units before substituting into formulas."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Find distance",
+      "input": "Speed = 60 km/h; time = 2.5 h",
+      "trace": [
+        "Distance = speed × time.",
+        "60 × 2.5 = 150."
+      ],
+      "output": "150 km",
+      "explanation": "Use consistent units for speed and time."
+    },
+    {
+      "title": "Relative speed",
+      "input": "Two cars move toward each other at 40 and 50 km/h",
+      "trace": [
+        "They move in opposite directions.",
+        "Relative speed = 40 + 50.",
+        "The gap closes at 90 km/h."
+      ],
+      "output": "90 km/h",
+      "explanation": "Add speeds when objects move toward each other."
+    },
+    {
+      "title": "Average speed",
+      "input": "Travel 60 km at 30 km/h and 60 km at 60 km/h",
+      "trace": [
+        "First leg takes 2 hours.",
+        "Second leg takes 1 hour.",
+        "Total distance 120 km; total time 3 hours."
+      ],
+      "output": "40 km/h",
+      "explanation": "Average speed is total distance divided by total time, not the simple mean of speeds."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "Wipro",
+      "skill": "time-distance aptitude",
+      "practice": "Convert units and calculate relative speed."
+    },
+    {
+      "company": "TCS",
+      "skill": "quantitative aptitude",
+      "practice": "Use total distance over total time for averages."
+    },
+    {
+      "company": "Infosys",
+      "skill": "numerical reasoning",
+      "practice": "Draw a timeline for trains and meeting problems."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What are the key ideas in Time, Speed and Distance?",
+      "answer": "Use speed, distance and time relationships. Convert units consistently. Solve relative-speed problems. Interpret average speed over multiple legs."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in Time, Speed and Distance.",
+      "answer": "Average speed is total distance divided by total time."
+    }
+  ]
 }
