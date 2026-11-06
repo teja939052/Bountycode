@@ -75,6 +75,17 @@ export default function AcademyPersonalPlan() {
           <p className="mt-1 max-w-2xl text-sm leading-6 text-slate-600">
             {plan.personalization_note || "Your longer-term priorities are based on your profile and available assessment signals."}
           </p>
+          {plan.learning_strategy && (
+            <div className="mt-3 max-w-2xl rounded-xl border border-slate-200 bg-slate-50 p-3">
+              <p className="text-[10px] font-bold uppercase tracking-wider text-emerald-700">Your study approach</p>
+              <p className="mt-1 text-sm leading-5 text-slate-700">{plan.learning_strategy}</p>
+              <p className="mt-2 text-xs text-slate-500">
+                Level: {String(plan.experience_level || "absolute_beginner").replaceAll("_", " ")}
+                {" · "}Language: {String(plan.preferred_language || "cpp").toUpperCase()}
+                {" · "}Style: {String(plan.learning_preference || "mixed").replaceAll("_", " ")}
+              </p>
+            </div>
+          )}
         </div>
         <Link
           to="/academy#academy-profile"
