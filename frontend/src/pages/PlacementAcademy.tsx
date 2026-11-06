@@ -272,6 +272,13 @@ export default function PlacementAcademy() {
   }, [allLessons, lessonQuery, domainFilter]);
 
   const modules = (trackDetail as any)?.sections?.flatMap((section: any) => section.modules || []) || [];
+  const missionModule = modules.find((module: any) => module.id === mission?.module_id);
+  const missionLessonUrl = missionModule && activeTrackId
+    ? nextTopicLesson(missionModule, activeTrackId)
+    : null;
+  const prioritizedModules = missionModule
+    ? [missionModule, ...modules.filter((module: any) => module.id !== missionModule.id)]
+    : modules;
   const completedModules = modules.filter((module: any) => module.completed).length;
   const topicTotal = modules.reduce((sum: number, module: any) => sum + (module.topics?.length || 0), 0);
   const masteredTopicTotal = modules.reduce((sum: number, module: any) => sum + (module.mastered_topic_count || 0), 0);
@@ -376,10 +383,10 @@ export default function PlacementAcademy() {
               </div>
               <button
                 type="button"
-                onClick={() => navigate(mission.action_url || (mission.track_id ? `/company-tracks?track=${encodeURIComponent(mission.track_id)}` : "/learn"))}
+                onClick={() => navigate(missionLessonUrl || mission.action_url || (mission.track_id ? `/company-tracks?track=${encodeURIComponent(mission.track_id)}` : "/learn"))}
                 className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-xl bg-emerald-800 px-4 text-sm font-bold text-white"
               >
-                Start next lesson <ArrowRight size={15} />
+                {missionLessonUrl ? "Start next lesson" : "Open company module"} <ArrowRight size={15} />
               </button>
             </>
           ) : (
@@ -425,7 +432,7 @@ export default function PlacementAcademy() {
             <Link to={`/company-tracks?track=${encodeURIComponent(activeTrackId)}`} className="text-xs font-semibold text-emerald-700">View all modules</Link>
           </div>
           <div className="grid gap-3 md:grid-cols-2">
-            {modules.slice(0, 6).map((module: any) => {
+            {prioritizedModules.slice(0, 6).map((module: any) => {
               const nextUrl = nextTopicLesson(module, activeTrackId);
               const done = Boolean(module.completed);
               const mastered = module.mastered_topic_count || 0;
