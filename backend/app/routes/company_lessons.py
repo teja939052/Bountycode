@@ -15,7 +15,7 @@ import logging
 
 from app.middleware.auth import get_current_user
 from app.services.gamification import record_practice
-from app.services.learning_paths import complete_track_module
+from app.services.learning_paths import record_track_topic_mastery
 from app.services.adaptive_learning import record_learning_activity
 
 logger = logging.getLogger(__name__)
@@ -34,8 +34,31 @@ LESSON_MODULE_TOPICS = {
     "arrays_basics": {"arrays", "array", "basic_arrays"},
     "blood_relations": {"blood_relation", "blood_relations"},
     "flowchart_basics": {"flowchart", "flowcharts", "flowchart_basics", "pseudocode"},
-    "reading_comprehension": {"reading_comprehension"},
+    "reading_comprehension": {"reading_comprehension", "reading"},
     "successive_percentage_change": {"percentages", "successive_percentage_change"},
+    "profit_loss": {"profit_loss"},
+    "ratio_proportion": {"ratio_proportion", "ratio"},
+    "averages": {"averages", "average"},
+    "time_work": {"time_work"},
+    "time_distance": {"time_distance", "speed_time_distance"},
+    "probability_basics": {"probability"},
+    "permutations_combinations": {"permutations", "permutation", "permutations_combinations"},
+    "number_series": {"series", "number_series"},
+    "coding_decoding": {"coding_decoding"},
+    "sentence_correction": {"sentence_correction", "grammar", "error_spotting"},
+    "para_jumbles": {"para_jumbles", "sentence_rearrangement"},
+    "loops_basics": {"loops", "conditions"},
+    "strings_basics": {"strings"},
+    "recursion_basics": {"recursion"},
+    "sorting_basics": {"sorting"},
+    "searching_basics": {"searching"},
+    "hashing_basics": {"hashing", "hashmaps"},
+    "sql_select_basics": {"sql", "basic_sql", "select"},
+    "sql_joins": {"joins"},
+    "oops_basics": {"oop"},
+    "dbms_basics": {"normalization"},
+    "os_basics": {"operating_systems", "os"},
+    "computer_networks_basics": {"computer_networks", "networking"},
 }
 
 
@@ -259,28 +282,35 @@ async def complete_lesson(slug: str, req: CompleteRequest, user=Depends(get_curr
         )
         if not module:
             raise HTTPException(status_code=404, detail="Company module not found.")
-        lesson_topics = LESSON_MODULE_TOPICS.get(slug, set())
+        lesson_topics = {
+            _normalize_topic(topic) for topic in LESSON_MODULE_TOPICS.get(slug, set())
+        }
         module_topics = {
             _normalize_topic(topic) for topic in module.get("topics", [])
         }
-        if not lesson_topics.intersection(module_topics):
+        matching_topics = sorted(lesson_topics.intersection(module_topics))
+        if not matching_topics:
             raise HTTPException(
                 status_code=422,
                 detail="This lesson does not assess the selected company module's topics.",
             )
 
+        # One lesson demonstrates one mapped topic. A mixed module is only
+        # complete after every required topic has passed its own assessment.
+        topic_id = matching_topics[0]
         try:
-            module_result = await complete_track_module(
+            module_result = await record_track_topic_mastery(
                 user_id=user["id"],
                 track_id=req.track_id,
                 module_id=req.module_id,
+                topic_id=topic_id,
                 score=score,
                 role=user.get("role") or user.get("target_role") or "sde",
             )
         except ValueError as exc:
             raise HTTPException(status_code=400, detail=str(exc))
         xp_earned = module_result.get("xp_earned", 0)
-        module_completed = bool(module_result.get("passed") or module_result.get("already_completed"))
+        module_completed = bool(module_result.get("module_completed"))
         reward = None
     else:
         reward = await record_practice(
