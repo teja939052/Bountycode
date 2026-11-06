@@ -213,5 +213,7 @@
       "question": "Name a common mistake in Arithmetic and Algebra Foundations.",
       "answer": "Percentage changes use different bases; the final value is 96% of the starting value."
     }
-  ]
+  ],
+  "next_lesson_slug": "successive_percentage_change",
+  "next_lesson_title": "Successive Percentage Change"
 }
