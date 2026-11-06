@@ -32,7 +32,6 @@ const LESSON_BY_TOPIC: Record<string, string> = {
   reading: "reading_comprehension",
   sentence_correction: "sentence_correction",
   grammar: "sentence_correction",
-  error_spotting: "sentence_correction",
   para_jumbles: "para_jumbles",
   sentence_rearrangement: "para_jumbles",
   arrays: "arrays_basics",
