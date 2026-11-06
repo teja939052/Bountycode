@@ -1,0 +1,122 @@
+{
+  "slug": "collections_framework",
+  "id": "lesson_collections_framework_001",
+  "title": "Collections: Lists, Sets and Maps",
+  "domain": "Programming Fundamentals",
+  "pattern": "Collections",
+  "difficulty": "easy",
+  "duration_min": 24,
+  "xp_reward": 105,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Choose a collection by behaviour",
+      "content": "A list or array keeps an ordered sequence and often allows duplicates. A set stores unique values. A map or dictionary stores key-value pairs for lookup by key.",
+      "example": "Use a list for ordered marks, a set for unique roll numbers, and a map from roll number to student record."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Remove duplicates",
+      "prompt": "Which collection is most directly suited to keeping only unique values?",
+      "options": [
+        "List",
+        "Set",
+        "Queue",
+        "Stack"
+      ],
+      "correct_index": 1,
+      "explanation": "A set enforces uniqueness, so duplicate values are represented only once."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Understand map lookup",
+      "content": "A map associates each key with a value. A hash map typically provides average O(1) lookup, insertion and deletion when keys are distributed well.",
+      "example": "student_by_id[1042] returns the record stored for ID 1042."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Pick the right structure",
+      "prompt": "You need to count how many times each word appears. Which structure is a natural choice?",
+      "options": [
+        "Stack",
+        "Queue",
+        "Map from word to count",
+        "Sorted linked list only"
+      ],
+      "correct_index": 2,
+      "explanation": "A map can store each word as a key and its frequency as the value."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Mutability and iteration",
+      "content": "Some collections are mutable, so their contents can change after creation. Iteration visits their elements. Avoid modifying a collection during iteration unless the language and algorithm explicitly support it.",
+      "tip": "Choose a collection based on ordering, uniqueness, lookup and update requirements."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "Which collection naturally removes duplicate values?",
+        "options": [
+          "List",
+          "Set",
+          "Array",
+          "Queue"
+        ],
+        "correct_index": 1,
+        "explanation": "A set stores unique elements."
+      },
+      {
+        "prompt": "Which structure stores key-value pairs?",
+        "options": [
+          "Stack",
+          "Queue",
+          "Map",
+          "Linked list only"
+        ],
+        "correct_index": 2,
+        "explanation": "A map or dictionary associates keys with values."
+      },
+      {
+        "prompt": "Which structure preserves insertion order and allows duplicate entries in common languages?",
+        "options": [
+          "List",
+          "Set",
+          "Hash key only",
+          "Tree root"
+        ],
+        "correct_index": 0,
+        "explanation": "Lists represent ordered sequences and allow duplicates."
+      },
+      {
+        "prompt": "What is average lookup time in a well-sized hash map?",
+        "options": [
+          "O(1)",
+          "O(log n)",
+          "O(n²)",
+          "O(2^n)"
+        ],
+        "correct_index": 0,
+        "explanation": "Expected hash-map lookup is O(1) with a good hash distribution."
+      },
+      {
+        "prompt": "What is a common reason to use a set?",
+        "options": [
+          "Keep only unique values",
+          "Store a call stack",
+          "Preserve repeated key-value pairs",
+          "Represent a matrix"
+        ],
+        "correct_index": 0,
+        "explanation": "Sets are useful for uniqueness tests and membership checks."
+      }
+    ]
+  }
+}
