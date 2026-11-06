@@ -28,7 +28,11 @@
         "21"
       ],
       "correct_index": 2,
-      "explanation": "Sum = 80. There are 4 values, so average = 80/4 = 20."
+      "explanation": "Sum = 80. There are 4 values, so average = 80/4 = 20.",
+      "hints": [
+        "Add all observations before dividing.",
+        "Count every value once; the number of values is the divisor."
+      ]
     },
     {
       "step_number": 3,
@@ -50,7 +54,11 @@
         "19"
       ],
       "correct_index": 1,
-      "explanation": "Old total = 6×15 = 90. New total = 90−10+22 = 102. New average = 102/6 = 17."
+      "explanation": "Old total = 6×15 = 90. New total = 90−10+22 = 102. New average = 102/6 = 17.",
+      "hints": [
+        "Convert the old average into the old total using total = average × count.",
+        "Subtract the removed value, add the replacement and divide by the unchanged count."
+      ]
     },
     {
       "step_number": 5,
@@ -122,34 +130,35 @@
     ]
   },
   "learning_objectives": [
-    "Calculate arithmetic mean from a data set.",
-    "Find a missing value from a known average.",
-    "Update an average when an item is added or removed.",
-    "Solve weighted-average situations."
+    "Calculate a simple arithmetic mean.",
+    "Recover a total using average multiplied by count.",
+    "Update an average after adding or replacing a value.",
+    "Use weighted averages when groups have different sizes."
   ],
   "prerequisites": [
     "arithmetic_algebra"
   ],
   "concepts": [
-    "mean",
-    "total",
+    "arithmetic mean",
+    "sum",
     "count",
     "weighted average",
     "replacement",
-    "combined average"
+    "combined average",
+    "total from mean"
   ],
   "common_misconceptions": [
     {
-      "misconception": "Adding a large value always increases an average by that value.",
-      "correction": "The new average depends on both the old total and the new count."
+      "misconception": "The average is always one of the observed values.",
+      "correction": "An average can be a value not present in the original data."
     },
     {
-      "misconception": "The average of two groups is always the mean of their averages.",
-      "correction": "Weight each group's average by its number of observations."
+      "misconception": "When one value changes, the average changes by the full difference.",
+      "correction": "The new average changes by the value difference divided by the number of observations."
     },
     {
-      "misconception": "Removing an item leaves the average unchanged.",
-      "correction": "Recalculate the total and count after removal."
+      "misconception": "A combined average is the average of group averages in every case.",
+      "correction": "Group averages must be weighted by their group sizes unless the groups have equal counts."
     }
   ],
   "worked_examples": [
@@ -189,19 +198,19 @@
   ],
   "company_applications": [
     {
-      "company": "TCS",
-      "skill": "quantitative aptitude",
-      "practice": "Use total-and-count reasoning for missing values."
-    },
-    {
-      "company": "Wipro",
-      "skill": "arithmetic and data interpretation",
-      "practice": "Calculate combined averages with group sizes."
+      "company": "TCS NQT",
+      "skill": "average and replacement problems",
+      "practice": "Track total and count separately before updating an average."
     },
     {
       "company": "Infosys",
-      "skill": "numerical reasoning",
-      "practice": "Avoid averaging group averages without weights."
+      "skill": "quantitative aptitude",
+      "practice": "Calculate combined averages for groups of unequal sizes."
+    },
+    {
+      "company": "Wipro",
+      "skill": "data interpretation",
+      "practice": "Explain how one new observation changes the group mean."
     }
   ],
   "srs_cards": [
@@ -214,6 +223,30 @@
       "type": "misconception",
       "question": "Name a common mistake in Averages.",
       "answer": "The new average depends on both the old total and the new count."
+    },
+    {
+      "type": "formula",
+      "question": "How do you recover total from average?",
+      "answer": "Total = average × number of observations."
+    },
+    {
+      "type": "misconception",
+      "question": "When can you average two group averages directly?",
+      "answer": "Only when the groups have equal sizes; otherwise use a weighted average."
     }
-  ]
+  ],
+  "quest": {
+    "chapter": "The Balance Lab",
+    "rank": "Data Balancer",
+    "story": "A learning dashboard combines scores from different quizzes. A simple average can hide how many attempts contributed to a total, so you must recover the total before changing the data.",
+    "mission": "Calculate means, recover totals, update averages after replacement and compare weighted groups.",
+    "success_criteria": [
+      "Calculate sum divided by count.",
+      "Recover total from average and count.",
+      "Update an average after replacing one value.",
+      "Use weighted averages for unequal groups."
+    ]
+  },
+  "next_lesson_slug": "time_work",
+  "next_lesson_title": "Time and Work"
 }
