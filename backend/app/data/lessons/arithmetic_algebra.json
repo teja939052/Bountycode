@@ -1,0 +1,123 @@
+{
+  "slug": "arithmetic_algebra",
+  "id": "lesson_arithmetic_algebra_001",
+  "title": "Arithmetic and Algebra Foundations",
+  "domain": "Quantitative Aptitude",
+  "pattern": "Arithmetic and Algebra",
+  "difficulty": "easy",
+  "duration_min": 22,
+  "xp_reward": 95,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Order of operations",
+      "content": "Use parentheses first, then exponents, then multiplication and division, then addition and subtraction. Operations of equal precedence are evaluated from left to right.",
+      "example": "18 ÷ 3 × 2 = 6 × 2 = 12."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Evaluate an expression",
+      "prompt": "What is 12 + 6 ÷ 3 × 2?",
+      "options": [
+        "12",
+        "14",
+        "16",
+        "18"
+      ],
+      "correct_index": 2,
+      "explanation": "Division and multiplication go left to right: 6÷3=2, 2×2=4, then 12+4=16."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Solve a linear equation",
+      "content": "Keep equations balanced by applying the same operation to both sides. Collect variable terms on one side and constants on the other.",
+      "example": "3x + 5 = 20 → 3x = 15 → x = 5.",
+      "formula": "ax + b = c  ⇒  x = (c−b)/a, when a ≠ 0"
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Find the unknown",
+      "prompt": "Solve 4x − 7 = 13.",
+      "options": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "correct_index": 2,
+      "explanation": "Add 7 to both sides: 4x=20. Divide by 4: x=5."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Translate words into equations",
+      "content": "Convert phrases carefully: 'twice a number' is 2x; 'five more than a number' is x+5; 'the difference between a number and 4' depends on the stated order.",
+      "tip": "Define the unknown before writing the equation."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "Evaluate 20 − 4 × 3.",
+        "options": [
+          "8",
+          "12",
+          "48",
+          "16"
+        ],
+        "correct_index": 0,
+        "explanation": "Multiplication first: 20−12=8."
+      },
+      {
+        "prompt": "Solve 2x + 6 = 18.",
+        "options": [
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "correct_index": 2,
+        "explanation": "2x=12, so x=6."
+      },
+      {
+        "prompt": "Twice a number is 26. What is the number?",
+        "options": [
+          "11",
+          "12",
+          "13",
+          "14"
+        ],
+        "correct_index": 2,
+        "explanation": "2x=26 gives x=13."
+      },
+      {
+        "prompt": "Evaluate 3² + 4.",
+        "options": [
+          "10",
+          "12",
+          "13",
+          "16"
+        ],
+        "correct_index": 2,
+        "explanation": "3²=9, then 9+4=13."
+      },
+      {
+        "prompt": "If x=3, what is the value of 2x²?",
+        "options": [
+          "12",
+          "18",
+          "24",
+          "36"
+        ],
+        "correct_index": 1,
+        "explanation": "2×3² = 2×9 = 18."
+      }
+    ]
+  }
+}
