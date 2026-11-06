@@ -449,24 +449,43 @@ async def _get_company_mission(user_id: str) -> Optional[Dict[str, Any]]:
             return None
 
         sections = progress.get("sections", {})
+        section_definitions = {
+            section.get("id"): section for section in track.get("sections", [])
+        }
         for sec_id, sec_data in sections.items():
             if sec_data.get("completed"):
                 continue
+            section_definition = section_definitions.get(sec_id, {})
+            module_definitions = {
+                module.get("id"): module
+                for module in section_definition.get("modules", [])
+            }
             modules = sec_data.get("modules", {})
             for mod_id, mod_data in modules.items():
                 if mod_data.get("completed"):
                     continue
+                module_definition = module_definitions.get(mod_id, {})
+                module_title = module_definition.get("title") or mod_id
+                topics = module_definition.get("topics") or []
                 return {
                     "type": "company_mission",
-                    "title": f"{track['name']}: {sec_data.get('title', 'Practice')}",
-                    "description": mod_data.get("module_id", ""),
+                    "title": module_title,
+                    "description": (
+                        module_definition.get("description")
+                        or f"Learn and practice {', '.join(topics[:4])}"
+                        if topics else
+                        module_definition.get("description") or f"Continue {sec_data.get('title', 'company preparation')}"
+                    ),
+                    "section_title": sec_data.get("title", "Practice"),
+                    "topics": topics,
+                    "question_count": module_definition.get("questions", 0),
                     "kind": "company_track",
                     "company": track.get("company_id", ""),
                     "track_id": company_track,
                     "section_id": sec_id,
                     "module_id": mod_id,
-                    "estimated_minutes": 30,
-                    "xp_reward": 50,
+                    "estimated_minutes": module_definition.get("duration_minutes", 30),
+                    "xp_reward": module_definition.get("diamonds", 50),
                     "action": "company_track",
                 }
 
