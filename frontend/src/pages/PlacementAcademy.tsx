@@ -226,6 +226,52 @@ const LEARNING_TRACK_ORDER = [
   "General Foundations",
 ];
 
+const LESSON_SEQUENCE_BY_TRACK: Record<string, string[]> = {
+  "Programming & DSA": [
+    "programming_languages", "loops_basics", "pattern_printing", "arrays_basics",
+    "strings_basics", "data_structures_intro", "time_complexity", "searching_basics",
+    "sorting_basics", "hashing_basics", "recursion_basics", "linked_lists",
+    "stacks_queues", "trees_basics", "dynamic_programming", "sliding_window",
+    "algorithms_basics", "collections_framework", "exception_handling", "file_io",
+    "matrix_operations",
+  ],
+  "Quantitative Aptitude": [
+    "number_systems", "hcf_lcm", "arithmetic_algebra", "successive_percentage_change",
+    "profit_loss", "ratio_proportion", "averages", "time_work", "time_distance",
+    "advanced_time_work", "simple_compound_interest", "mixture_alligation",
+    "pipes_cisterns", "permutations_combinations", "probability_basics",
+    "advanced_probability", "geometry_basics", "clocks_calendars",
+  ],
+  "Logical Reasoning": [
+    "number_series", "coding_decoding", "blood_relations", "direction_sense",
+    "syllogisms", "analogies_odd_one_out", "logical_puzzles", "flowchart_basics",
+    "pattern_matching_basics",
+  ],
+  "Verbal & Communication": [
+    "vocabulary_cloze", "sentence_correction", "grammar_transformations",
+    "error_spotting", "para_jumbles", "reading_comprehension", "essay_writing",
+  ],
+  "SQL & Databases": [
+    "dbms_basics", "sql_select_basics", "sql_joins", "sql_group_by",
+    "sql_subqueries", "sql_indexes_triggers",
+  ],
+  "Core Computer Science": [
+    "oops_basics", "os_basics", "computer_networks_basics",
+  ],
+};
+
+function orderTrackLessons(track: string, lessons: Lesson[]): Lesson[] {
+  const sequence = LESSON_SEQUENCE_BY_TRACK[track] || [];
+  return [...lessons].sort((left, right) => {
+    const leftIndex = sequence.indexOf(left.slug);
+    const rightIndex = sequence.indexOf(right.slug);
+    if (leftIndex < 0 && rightIndex < 0) return left.title.localeCompare(right.title);
+    if (leftIndex < 0) return 1;
+    if (rightIndex < 0) return -1;
+    return leftIndex - rightIndex;
+  });
+}
+
 export default function PlacementAcademy() {
   const navigate = useNavigate();
   const { data: journey, isLoading: journeyLoading } = useJourneyState();
@@ -554,7 +600,10 @@ export default function PlacementAcademy() {
         {lessonsLoading ? <div className="py-8"><Spinner /></div> : lessons.length ? (
           <div className="space-y-7">
             {LEARNING_TRACK_ORDER
-              .map((track) => ({ track, items: lessons.filter((lesson) => learningTrackForDomain(lesson.domain) === track) }))
+              .map((track) => ({
+                track,
+                items: orderTrackLessons(track, lessons.filter((lesson) => learningTrackForDomain(lesson.domain) === track)),
+              }))
               .filter((group) => group.items.length > 0)
               .map((group) => (
                 <section key={group.track} aria-label={group.track} className="space-y-3">
@@ -563,7 +612,7 @@ export default function PlacementAcademy() {
                       <p className="text-[10px] font-bold uppercase tracking-widest text-emerald-700">Learning pathway</p>
                       <h3 className="mt-1 text-lg font-bold text-slate-900">{group.track}</h3>
                     </div>
-                    <span className="text-xs text-slate-500">{group.items.length} lessons · learn in sequence</span>
+                    <span className="text-xs text-slate-500">{group.items.length} lessons · suggested progression</span>
                   </div>
                   <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                     {group.items.map((lesson, index) => (
