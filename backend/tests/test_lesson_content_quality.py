@@ -1,0 +1,54 @@
+"""Structural checks for authored step-based placement lessons."""
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+LESSONS_DIR = Path(__file__).resolve().parents[1] / "app" / "data" / "lessons"
+
+
+def test_all_step_based_lessons_have_valid_assessment_keys():
+    seen_ids = set()
+    lesson_count = 0
+
+    for path in sorted(LESSONS_DIR.glob("*.json")):
+        data = json.loads(path.read_text(encoding="utf-8"))
+        steps = data.get("steps") or []
+        assessment = data.get("assessment") or {}
+        questions = assessment.get("questions") or []
+
+        # Legacy pattern packs are not served by the step-based lesson player.
+        if not steps or not questions:
+            continue
+
+        lesson_count += 1
+        lesson_id = data.get("id") or path.stem
+        assert lesson_id not in seen_ids, f"Duplicate lesson id: {lesson_id}"
+        seen_ids.add(lesson_id)
+        assert 0 < float(assessment.get("mastery_threshold", data.get("mastery_threshold", 0.7))) <= 1
+
+        for index, step in enumerate(steps):
+            if step.get("step_type") not in {"interactive", "practice", "quiz"}:
+                continue
+            options = step.get("options") or []
+            assert step.get("prompt"), f"{path.name} step {index + 1} has no prompt"
+            assert len(options) >= 2, f"{path.name} step {index + 1} has fewer than two options"
+            correct_index = step.get("correct_index")
+            assert isinstance(correct_index, int) and 0 <= correct_index < len(options), (
+                f"{path.name} step {index + 1} has an invalid answer key"
+            )
+            assert step.get("explanation"), f"{path.name} step {index + 1} has no explanation"
+
+        for index, question in enumerate(questions):
+            options = question.get("options") or []
+            correct_index = question.get("correct_index")
+            assert question.get("prompt"), f"{path.name} assessment question {index + 1} has no prompt"
+            assert len(options) >= 2, f"{path.name} assessment question {index + 1} has fewer than two options"
+            assert isinstance(correct_index, int) and 0 <= correct_index < len(options), (
+                f"{path.name} assessment question {index + 1} has an invalid answer key"
+            )
+            assert question.get("explanation"), (
+                f"{path.name} assessment question {index + 1} has no explanation"
+            )
+
+    assert lesson_count >= 25, f"Expected a substantial step-based lesson library, found {lesson_count}"
