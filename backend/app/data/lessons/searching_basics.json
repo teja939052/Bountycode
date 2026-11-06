@@ -215,5 +215,7 @@
       "question": "Name a common mistake in Searching Fundamentals.",
       "answer": "The standard binary search algorithm requires sorted data or another monotonic search space."
     }
-  ]
+  ],
+  "next_lesson_slug": "sorting_basics",
+  "next_lesson_title": "Sorting Fundamentals"
 }
