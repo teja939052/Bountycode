@@ -7,6 +7,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from app.database import get_collection, srs_cards_collection
 from app.middleware.auth import get_current_user
 from app.services.learning_paths import get_all_company_tracks
+from app.services.adaptive_learning import assess_user_skills
 from app.services.spaced_repetition import deserialize_state, get_due_cards
 
 router = APIRouter(prefix="/api/v1/academy/plan", tags=["academy-plan"])
@@ -41,10 +42,10 @@ ROLE_SKILLS = {
 }
 
 
-def build_plan(profile: Dict[str, Any], diagnostic: Dict[str, Any] | None, company_tracks: List[dict] | None = None) -> Dict[str, Any]:
+def build_plan(profile: Dict[str, Any], diagnostic: Dict[str, Any] | None, company_tracks: List[dict] | None = None, adaptive_skills: Dict[str, Any] | None = None) -> Dict[str, Any]:
     """Prioritize weak prerequisite skills, then role-specific skills."""
     skills = (diagnostic or {}).get("skills", [])
-    scores = {item.get("domain"): int(item.get("score", 0)) for item in skills}
+    diagnostic_scores = {item.get("domain"): int(item.get("score", 0)) for item in skills}\n    adaptive_skills = adaptive_skills or {}\n    scores = {\n        domain: int(evidence.get("score", 0)) if int(evidence.get("total_attempts", 0) or 0) > 0 else diagnostic_scores.get(domain, -1)\n        for domain, evidence in adaptive_skills.items()\n    }\n    for domain, score in diagnostic_scores.items():\n        scores.setdefault(domain, score)
     role = profile.get("target_role", "undecided")
     desired = list(dict.fromkeys(ROLE_SKILLS.get(role, ROLE_SKILLS["undecided"])))
     for item in skills:
@@ -76,7 +77,7 @@ def build_plan(profile: Dict[str, Any], diagnostic: Dict[str, Any] | None, compa
             "estimated_minutes": 20 if state in {"foundation_needed", "not_assessed"} else 15,
             "priority": "high" if state in {"foundation_needed", "not_assessed"} else "normal",
             "skill_level": state,
-            "diagnostic_score": score,
+            "diagnostic_score": diagnostic_scores.get(domain),\n            "adaptive_score": scores.get(domain) if domain in adaptive_skills and int(adaptive_skills[domain].get("total_attempts", 0) or 0) > 0 else None,\n            "effective_score": None if scores.get(domain, -1) < 0 else scores[domain],
             "prerequisites": DOMAIN_PREREQUISITES.get(domain, []),
             "reason": (
                 "Start with this foundation before advanced topics."
@@ -135,7 +136,7 @@ async def get_personalized_plan(user=Depends(get_current_user)):
         sort=[("completed_at", -1)],
     )
     diagnostic = (diagnostic_doc or {}).get("result")
-    plan = build_plan(profile_doc, diagnostic, get_all_company_tracks())
+    skill_assessment = await assess_user_skills(user["id"])\n    plan = build_plan(profile_doc, diagnostic, get_all_company_tracks(), skill_assessment.get("skills", {}))\n    plan["overall_mastery"] = skill_assessment.get("overall_mastery_label")\n    plan["overall_accuracy"] = skill_assessment.get("overall_accuracy")
     stored_cards = await srs_cards_collection().find({"user_id": user["id"]}).to_list(500)
     review_states = []
     for card in stored_cards:
