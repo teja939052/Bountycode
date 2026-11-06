@@ -216,5 +216,7 @@
       "question": "Name a common mistake in Linked Lists.",
       "answer": "Finding the kth node requires traversal and takes O(n)."
     }
-  ]
+  ],
+  "next_lesson_slug": "stacks_queues",
+  "next_lesson_title": "Stacks and Queues"
 }
