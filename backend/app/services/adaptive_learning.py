@@ -122,11 +122,26 @@ async def assess_user_skills(user_id: str) -> Dict[str, Any]:
             if activity.get("domain_id") == domain_id
         ]
 
+        # A final quiz carries its question-level score, so count each
+        # question rather than treating a five-question quiz as one attempt.
+        activity_attempts = sum(
+            max(1, int(activity.get("question_count") or 1))
+            for activity in domain_activities
+        )
+        activity_correct = sum(
+            min(
+                max(0, int(activity.get("correct_count") or 0)),
+                max(1, int(activity.get("question_count") or 1)),
+            )
+            if activity.get("correct_count") is not None
+            else int(bool(activity.get("success")))
+            for activity in domain_activities
+        )
         total_attempts = (
             len(domain_solved)
             + len(domain_submissions)
             + len(domain_answers)
-            + len(domain_activities)
+            + activity_attempts
         )
         correct_count = sum(
             1 for item in domain_solved
@@ -134,7 +149,7 @@ async def assess_user_skills(user_id: str) -> Dict[str, Any]:
         )
         correct_count += sum(1 for item in domain_submissions if item.get("passed", False))
         correct_count += sum(1 for item in domain_answers if item.get("is_correct", False))
-        correct_count += sum(1 for item in domain_activities if item.get("success", False))
+        correct_count += activity_correct
 
         graph_skill = (skill_graph or {}).get("skills", {}).get(domain_id, {})
         existing_score = float(graph_skill.get("score", 0) or 0)
