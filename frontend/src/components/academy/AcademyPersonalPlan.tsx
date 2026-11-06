@@ -99,6 +99,20 @@ export default function AcademyPersonalPlan() {
           ))}
         </div>
       ) : <p className="mt-4 text-sm text-slate-600">Complete your diagnostic to generate your first set of tasks.</p>}
+      {plan.study_routine?.length > 0 && (
+        <div className="mt-5 rounded-2xl bg-slate-50 p-4">
+          <p className="text-sm font-bold text-slate-800">A simple study rhythm</p>
+          <p className="mt-1 text-xs text-slate-500">A repeatable structure for your available study time.</p>
+          <div className="mt-3 grid gap-2 sm:grid-cols-2">
+            {plan.study_routine.map((step: any, index: number) => (
+              <div key={step.label || index} className="flex items-center justify-between gap-3 rounded-xl bg-white px-3 py-2.5">
+                <span className="text-sm text-slate-700">{step.label}</span>
+                <span className="shrink-0 text-xs font-bold text-slate-500">{Number(step.minutes) || 0} min</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
       {Number(plan.revision?.due_count || 0) > 0 && (
         <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-amber-200 bg-amber-50 p-4">
           <div>
