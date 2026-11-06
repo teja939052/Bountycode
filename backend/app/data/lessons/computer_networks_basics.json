@@ -1,0 +1,122 @@
+{
+  "slug": "computer_networks_basics",
+  "id": "lesson_computer_networks_001",
+  "title": "Computer Networks Fundamentals",
+  "domain": "Computer Science Fundamentals",
+  "pattern": "Computer Networks",
+  "difficulty": "easy",
+  "duration_min": 24,
+  "xp_reward": 105,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "How devices communicate",
+      "content": "A computer network connects devices so they can exchange data. Protocols define how data is formatted, addressed, transmitted and received.",
+      "example": "A browser uses application protocols such as HTTP or HTTPS to request a web page."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Identify DNS",
+      "prompt": "What does DNS primarily do?",
+      "options": [
+        "Encrypts hard drives",
+        "Maps domain names to IP addresses",
+        "Compresses images",
+        "Assigns CPU time"
+      ],
+      "correct_index": 1,
+      "explanation": "DNS resolves human-readable names such as example.com to IP addresses."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Understand TCP and UDP",
+      "content": "TCP provides a reliable, ordered byte stream with connection setup and retransmission. UDP sends datagrams without guaranteeing delivery or order; applications choose based on their needs.",
+      "tip": "TCP is not automatically faster or better; low-latency applications may prefer UDP."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Choose a transport protocol",
+      "prompt": "Which transport protocol is commonly used when an application needs reliable, ordered delivery?",
+      "options": [
+        "UDP",
+        "TCP",
+        "DNS",
+        "ARP"
+      ],
+      "correct_index": 1,
+      "explanation": "TCP provides reliable, ordered delivery using acknowledgements and retransmissions."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "What HTTPS adds",
+      "content": "HTTPS is HTTP protected by TLS. TLS helps provide encryption, integrity and server authentication for the connection.",
+      "example": "The browser validates a certificate before trusting the server identity for a secure HTTPS connection."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "What does an IP address identify?",
+        "options": [
+          "A network interface or host address",
+          "A user's password",
+          "A file format",
+          "A CPU process"
+        ],
+        "correct_index": 0,
+        "explanation": "IP addresses identify network interfaces for routing packets."
+      },
+      {
+        "prompt": "Which protocol resolves domain names?",
+        "options": [
+          "FTP",
+          "DNS",
+          "TCP",
+          "SMTP"
+        ],
+        "correct_index": 1,
+        "explanation": "DNS maps domain names to IP addresses."
+      },
+      {
+        "prompt": "Which protocol provides reliable ordered delivery?",
+        "options": [
+          "UDP",
+          "TCP",
+          "IP alone",
+          "ARP"
+        ],
+        "correct_index": 1,
+        "explanation": "TCP handles sequencing, acknowledgements and retransmission."
+      },
+      {
+        "prompt": "HTTPS protects HTTP using:",
+        "options": [
+          "TLS",
+          "SQL",
+          "DHCP",
+          "Bluetooth"
+        ],
+        "correct_index": 0,
+        "explanation": "HTTPS uses TLS to secure HTTP communication."
+      },
+      {
+        "prompt": "Which device forwards packets between networks?",
+        "options": [
+          "Switch only",
+          "Router",
+          "Keyboard",
+          "Monitor"
+        ],
+        "correct_index": 1,
+        "explanation": "Routers forward IP packets between networks."
+      }
+    ]
+  }
+}
