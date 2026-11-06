@@ -218,5 +218,7 @@
       "question": "What is the difference between printing and returning a value?",
       "answer": "Printing displays information to the user or console. Returning sends a value back to the caller so the program can store it, combine it, or use it in another expression."
     }
-  ]
+  ],
+  "next_lesson_slug": "loops_basics",
+  "next_lesson_title": "Loops and Iteration"
 }
