@@ -1,0 +1,122 @@
+{
+  "slug": "sql_group_by",
+  "id": "lesson_sql_group_by_001",
+  "title": "SQL GROUP BY and HAVING",
+  "domain": "SQL",
+  "pattern": "SQL Aggregation",
+  "difficulty": "medium",
+  "duration_min": 24,
+  "xp_reward": 110,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Aggregate a set of rows",
+      "content": "Aggregate functions summarize many rows: COUNT, SUM, AVG, MIN and MAX. GROUP BY creates a separate group for each distinct grouping key.",
+      "example": "SELECT department_id, AVG(salary) FROM Employee GROUP BY department_id;"
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Filter rows before grouping",
+      "prompt": "Which clause filters individual rows before groups are formed?",
+      "options": [
+        "HAVING",
+        "WHERE",
+        "ORDER BY",
+        "SELECT"
+      ],
+      "correct_index": 1,
+      "explanation": "WHERE filters rows before the grouping and aggregate calculation."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Filter groups with HAVING",
+      "content": "HAVING filters groups after GROUP BY and can use aggregate conditions. For example, HAVING COUNT(*) > 5 keeps departments with more than five employees.",
+      "example": "SELECT department_id, COUNT(*) FROM Employee GROUP BY department_id HAVING COUNT(*) > 5;"
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Choose the aggregate filter",
+      "prompt": "You need departments whose average salary is above 50,000. Which clause should contain AVG(salary) > 50000?",
+      "options": [
+        "WHERE",
+        "HAVING",
+        "FROM",
+        "JOIN"
+      ],
+      "correct_index": 1,
+      "explanation": "The condition is on a grouped aggregate, so it belongs in HAVING."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Order of operations",
+      "content": "Conceptually, FROM and JOIN build rows, WHERE filters rows, GROUP BY forms groups, HAVING filters groups, SELECT projects results, and ORDER BY sorts the output.",
+      "tip": "A column in SELECT normally needs to be grouped or aggregated when GROUP BY is used."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "Which function counts all result rows?",
+        "options": [
+          "SUM(*)",
+          "COUNT(*)",
+          "AVG(*)",
+          "MAX(*)"
+        ],
+        "correct_index": 1,
+        "explanation": "COUNT(*) counts rows, including rows with NULL values in some columns."
+      },
+      {
+        "prompt": "Which clause forms groups by department?",
+        "options": [
+          "GROUP BY department_id",
+          "ORDER BY department_id",
+          "WHERE department_id",
+          "HAVING department_id"
+        ],
+        "correct_index": 0,
+        "explanation": "GROUP BY creates a group for each distinct department_id."
+      },
+      {
+        "prompt": "Which clause filters groups with COUNT(*) > 3?",
+        "options": [
+          "WHERE",
+          "HAVING",
+          "FROM",
+          "ON"
+        ],
+        "correct_index": 1,
+        "explanation": "HAVING filters groups after aggregation."
+      },
+      {
+        "prompt": "What is the main difference between WHERE and HAVING?",
+        "options": [
+          "No difference",
+          "WHERE filters rows; HAVING filters groups",
+          "WHERE sorts rows; HAVING joins tables",
+          "HAVING runs before FROM"
+        ],
+        "correct_index": 1,
+        "explanation": "WHERE is applied to rows before grouping; HAVING applies to grouped results."
+      },
+      {
+        "prompt": "Which query gets total sales per customer?",
+        "options": [
+          "SELECT customer_id, SUM(amount) FROM Sales GROUP BY customer_id",
+          "SELECT SUM(amount) FROM Sales WHERE customer_id",
+          "SELECT customer_id FROM Sales HAVING amount",
+          "SELECT customer_id, amount FROM Sales ORDER BY SUM"
+        ],
+        "correct_index": 0,
+        "explanation": "Group by customer_id and sum amount for each group."
+      }
+    ]
+  }
+}
