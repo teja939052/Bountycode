@@ -272,7 +272,8 @@ def test_programming_and_dsa_lessons_link_to_the_next_course_step():
         "linked_lists": "stacks_queues",
         "stacks_queues": "trees_basics",
         "trees_basics": "dynamic_programming",
-        "dynamic_programming": "algorithms_basics",
+        "dynamic_programming": "sliding_window",
+        "sliding_window": "algorithms_basics",
     }
     for slug, next_slug in expected.items():
         lesson = json.loads((LESSONS_DIR / f"{slug}.json").read_text(encoding="utf-8"))
