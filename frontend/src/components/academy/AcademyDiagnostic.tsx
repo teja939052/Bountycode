@@ -23,6 +23,7 @@ export default function AcademyDiagnostic() {
   const [answered, setAnswered] = useState<string[]>([]);
   const [result, setResult] = useState<any>(null);
   const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
   const { data: latestData, isLoading } = useQuery({
     queryKey: ["academy", "diagnostic", "latest"],
     queryFn: () => api.academy.getLatestDiagnostic(),
@@ -48,6 +49,7 @@ export default function AcademyDiagnostic() {
   const submit = async () => {
     if (!session || !question || !answer || answered.includes(question.id)) return;
     setError("");
+    setSubmitting(true);
     try {
       await api.academy.answerDiagnostic(session.diagnostic_id, question.id, answer);
       const next = [...answered, question.id];
@@ -66,6 +68,8 @@ export default function AcademyDiagnostic() {
       }
     } catch (err: any) {
       setError(err?.message || "Your answer could not be saved. Please retry.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -105,8 +109,8 @@ export default function AcademyDiagnostic() {
             )}
           </div>
           {error && <p role="alert" className="mt-3 text-sm text-red-600">{error}</p>}
-          <button type="button" disabled={!answer || start.isPending} onClick={submit} className="mt-4 inline-flex items-center gap-2 rounded-xl bg-indigo-700 px-5 py-3 text-sm font-bold text-white disabled:opacity-50">
-            {index === questions.length - 1 ? "Finish diagnostic" : "Submit and continue"} <ArrowRight size={15}/>
+          <button type="button" disabled={!answer || start.isPending || submitting} onClick={submit} className="mt-4 inline-flex items-center gap-2 rounded-xl bg-indigo-700 px-5 py-3 text-sm font-bold text-white disabled:opacity-50">
+            {submitting ? "Saving answer…" : index === questions.length - 1 ? "Finish diagnostic" : "Submit and continue"} <ArrowRight size={15}/>
           </button>
         </div>
       ) : displayResult ? (
