@@ -117,6 +117,33 @@
         "An even number has a remainder of 0 when divided by 2.",
         "Add value to total only inside the even-number condition."
       ]
+    },
+    {
+      "step_number": 10,
+      "step_type": "debug_choice",
+      "title": "Diagnose a loop that skips the first item",
+      "content": "A developer writes this loop to calculate the sum of every score. The expected total is 20, but the program prints 16.",
+      "code": "scores = [4, 7, 9]\ntotal = 0\nfor index in range(1, len(scores)):\n    total += scores[index]\nprint(total)",
+      "log_output": "Observed output: 16\nExpected output: 20",
+      "prompt": "What is the most direct cause of the bug?",
+      "options": [
+        "The loop starts at index 1, so it skips scores[0].",
+        "range() always includes its final value.",
+        "total must start at 1 instead of 0.",
+        "print() must be placed inside the loop."
+      ],
+      "correct_index": 0,
+      "feedback_by_option": {
+        "1": "range() stops before its upper bound. That is not the issue here: the loop starts at 1, so it never visits index 0.",
+        "2": "The accumulator should start at 0 for a sum. Changing it to 1 would add an unrelated error.",
+        "3": "Printing once after the loop is correct when you want the final total. The missing value is caused by the starting index."
+      },
+      "hints": [
+        "Write down the first index produced by range(1, len(scores)).",
+        "Check whether index 0 is included.",
+        "Start the loop at 0 when every list item must be summed."
+      ],
+      "explanation": "The first list element is skipped because the loop starts at index 1. Use range(0, len(scores)) or simply range(len(scores))."
     }
   ],
   "assessment": {
