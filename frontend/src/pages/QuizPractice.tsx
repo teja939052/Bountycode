@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import {
@@ -80,6 +80,7 @@ export default function QuizPractice() {
   const [difficulty, setDifficulty] = useState("all");
   const [mode, setMode] = useState("practice");
   const [questionCount, setQuestionCount] = useState(10);
+  const [timeRemaining, setTimeRemaining] = useState(0);
   const [session, setSession] = useState<QuizSession | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answerValue, setAnswerValue] = useState("");
@@ -93,6 +94,7 @@ export default function QuizPractice() {
   const [weakTopics, setWeakTopics] = useState<any[]>([]);
   const startedAt = useRef<number>(0);
   const questionStartedAt = useRef<number>(0);
+  const timerExpired = useRef(false);
 
   const selectedTrack = tracks.find((item: any) => item.id === trackId);
   const questions = session?.questions || [];
@@ -113,7 +115,7 @@ export default function QuizPractice() {
         ...(difficulty !== "all" ? { difficulty } : {}),
         ...(selectedTrack?.company_id ? { company: selectedTrack.company_id } : {}),
         num_questions: questionCount,
-        time_limit_seconds: 0,
+        time_limit_seconds: mode === "quiz" ? questionCount * 60 : 0,
       });
       const built = response?.quiz;
       if (!built?.questions?.length) throw new Error("No questions match these filters. Try a broader topic or company selection.");
@@ -123,6 +125,8 @@ export default function QuizPractice() {
       setGraded(null);
       setHintText("");
       setHintsUsed(0);
+      timerExpired.current = false;
+      setTimeRemaining(Number(built.time_limit_seconds || 0));
       startedAt.current = Date.now();
       questionStartedAt.current = Date.now();
     } catch (err: any) {
@@ -207,6 +211,24 @@ export default function QuizPractice() {
       setFinishing(false);
     }
   };
+
+  useEffect(() => {
+    if (!session?.time_limit_seconds) return;
+    const deadline = startedAt.current + session.time_limit_seconds * 1000;
+    const tick = () => {
+      const remaining = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
+      setTimeRemaining(remaining);
+      if (remaining === 0 && !timerExpired.current) {
+        timerExpired.current = true;
+        void finishQuiz();
+      }
+    };
+    tick();
+    const timer = window.setInterval(tick, 1000);
+    return () => window.clearInterval(timer);
+    // The timer belongs to one immutable quiz session; finishQuiz reads that session.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [session?.quiz_id]);
 
   const goNext = async () => {
     if (!session || !graded) return;
