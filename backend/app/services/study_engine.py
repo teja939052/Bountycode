@@ -227,7 +227,7 @@ async def _get_due_reviews(user_id: str, limit: int = 5) -> List[Dict[str, Any]]
     Tolerates the SRS collection being empty/absent (returns ``[]``).
     """
     from app.database import srs_cards_collection
-    from app.services.spaced_repetition import serialize_state
+    from app.services.spaced_repetition import deserialize_state, serialize_state
 
     col = srs_cards_collection()
     cursor = col.find({"user_id": user_id})
@@ -235,7 +235,7 @@ async def _get_due_reviews(user_id: str, limit: int = 5) -> List[Dict[str, Any]]
     try:
         async for doc in cursor:
             try:
-                raw_cards.append(SRSState(**doc))
+                raw_cards.append(deserialize_state(doc, user_id=user_id))
             except Exception:
                 continue
     except Exception as exc:
@@ -749,7 +749,11 @@ async def record_activity(
 
     # â”€â”€ SRS card update â”€â”€
     try:
-        from app.services.spaced_repetition import SpacedRepetitionEngine, SRSState
+        from app.services.spaced_repetition import (
+            SpacedRepetitionEngine,
+            ReviewGrade,
+            deserialize_state,
+        )
         from app.database import srs_cards_collection
 
         if skill_id or activity.get("competency_id"):
@@ -759,15 +763,15 @@ async def record_activity(
             engine = SpacedRepetitionEngine()
             grade = ReviewGrade.GOOD if passed else ReviewGrade.AGAIN
             if existing:
-                existing.pop("_id", None)
-                state = SRSState(**existing)
-                state = engine.review(state, grade)
+                state = deserialize_state(existing, user_id=user_id)
             else:
                 state = engine.create_new_card(concept_id=prob_id, user_id=user_id)
-                state = engine.review(state, grade)
+            state = engine.review(state, grade)
+            state_doc = asdict(state)
+            state_doc["problem_id"] = prob_id
             await col.update_one(
                 {"user_id": user_id, "problem_id": prob_id},
-                {"$set": asdict(state)},
+                {"$set": state_doc},
                 upsert=True,
             )
     except Exception as exc:
