@@ -28,7 +28,11 @@
         "The list are on the desk."
       ],
       "correct_index": 1,
-      "explanation": "The subject is 'list' (singular). The phrase 'of items' does not change the subject, so use 'is'."
+      "explanation": "The subject is 'list' (singular). The phrase 'of items' does not change the subject, so use 'is'.",
+      "hints": [
+        "Find the true subject, not the noun closest to the verb.",
+        "A singular subject generally takes a singular verb in the present simple; a plural subject takes a plural verb."
+      ]
     },
     {
       "step_number": 3,
@@ -49,7 +53,11 @@
         "starting"
       ],
       "correct_index": 2,
-      "explanation": "The meeting started before another past event (our arrival), so past perfect 'had started' is appropriate."
+      "explanation": "The meeting started before another past event (our arrival), so past perfect 'had started' is appropriate.",
+      "hints": [
+        "Look for time markers such as yesterday, since, already or every day.",
+        "Make the verb tense match when the action happens and whether it continues."
+      ]
     },
     {
       "step_number": 5,
@@ -119,5 +127,82 @@
         "explanation": "'Honest' begins with a vowel sound because the h is silent, so use 'an'."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Identify the subject and main verb in a sentence.",
+    "Apply subject–verb agreement in simple and complex subjects.",
+    "Choose consistent verb tenses from time context.",
+    "Correct pronoun reference and parallel sentence structure."
+  ],
+  "concepts": [
+    "subject",
+    "main verb",
+    "singular",
+    "plural",
+    "subject–verb agreement",
+    "tense",
+    "pronoun reference",
+    "parallelism"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "The noun nearest the verb always controls agreement.",
+      "correction": "Find the grammatical subject; intervening phrases do not change its number."
+    },
+    {
+      "misconception": "A sentence should keep one tense regardless of meaning.",
+      "correction": "Tense should match the time and sequence of events; different clauses can legitimately use different tenses."
+    },
+    {
+      "misconception": "Parallel structure is only about punctuation.",
+      "correction": "Items in a list or comparison should use matching grammatical forms."
+    }
+  ],
+  "worked_examples": [],
+  "company_applications": [
+    {
+      "company": "TCS NQT",
+      "skill": "grammar and sentence correction",
+      "practice": "Identify the true subject before selecting the verb."
+    },
+    {
+      "company": "Infosys",
+      "skill": "written communication",
+      "practice": "Use time markers to choose the right tense."
+    },
+    {
+      "company": "Wipro",
+      "skill": "verbal ability",
+      "practice": "Repair parallel lists while preserving the original meaning."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "method",
+      "question": "How do you solve subject–verb agreement questions?",
+      "answer": "Find the head subject first, ignore intervening phrases, then match the verb to its number."
+    },
+    {
+      "type": "method",
+      "question": "What is parallel structure?",
+      "answer": "Use matching grammatical forms for items that play the same role in a list or comparison."
+    }
+  ],
+  "prerequisites": [
+    "vocabulary_cloze"
+  ],
+  "quest": {
+    "chapter": "The Grammar Workshop",
+    "rank": "Sentence Mechanic",
+    "story": "A placement communication test contains sentences with agreement, tense and structure errors. Your task is to repair the sentence without changing its intended meaning.",
+    "mission": "Check subject–verb agreement, tense consistency, pronouns and parallel structure.",
+    "success_criteria": [
+      "Identify the subject and main verb.",
+      "Match verb form to subject number and person.",
+      "Keep tense consistent with time clues.",
+      "Repair pronoun reference and parallel lists."
+    ]
+  },
+  "next_lesson_slug": "grammar_transformations",
+  "next_lesson_title": "Active and Passive Voice"
 }
