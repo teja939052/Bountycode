@@ -60,10 +60,10 @@ export default function Target() {
             <Building2 size={13} /> Placement target
           </p>
           <h1 className="font-display text-2xl font-black text-text-primary">
-            Choose the role you are preparing for
+            Choose your target company assessment
           </h1>
           <p className="mt-2 max-w-2xl text-sm text-text-muted">
-            Pick one company assessment track. Bountycode will use it to prioritize your daily learning,
+            Pick one company and assessment track. Bountycode will use it to prioritize your daily learning,
             verified practice, mock assessments, and readiness evidence in one Journey.
           </p>
         </header>
