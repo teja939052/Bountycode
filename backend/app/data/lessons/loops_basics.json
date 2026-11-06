@@ -208,91 +208,86 @@
     ]
   },
   "learning_objectives": [
-    "Choose for and while loops appropriately.",
-    "Trace initialization, condition, body and update.",
-    "Avoid off-by-one errors.",
-    "Use break and continue deliberately.",
-    "Estimate the number of loop iterations."
+    "Choose for, while and do-while loops based on the problem.",
+    "Trace initialization, condition, body and update in order.",
+    "Prevent infinite loops by ensuring progress toward termination.",
+    "Use nested loops and estimate their iteration counts."
   ],
   "prerequisites": [
     "programming_languages"
   ],
   "concepts": [
+    "initialization",
+    "condition",
     "iteration",
-    "for loop",
-    "while loop",
-    "loop invariant",
-    "off-by-one error",
-    "break",
-    "continue",
-    "nested loops"
+    "update",
+    "nested loop",
+    "off-by-one"
   ],
   "common_misconceptions": [
     {
-      "misconception": "A loop condition is checked after every body execution.",
-      "correction": "For while and for loops, the condition is checked before each iteration."
+      "misconception": "The loop condition is checked after every body execution in all loops.",
+      "correction": "A while/for condition is checked before each iteration; do-while checks after the body."
     },
     {
-      "misconception": "range(1, 5) includes 5.",
-      "correction": "The upper bound is excluded, so it produces 1, 2, 3, 4."
+      "misconception": "A loop runs exactly n times because its counter starts at 1.",
+      "correction": "The condition and update determine the count; trace the first and last values."
     },
     {
-      "misconception": "A nested loop always means O(n²).",
-      "correction": "The cost depends on both loop bounds and whether they depend on each other."
+      "misconception": "Changing a counter inside the body is harmless.",
+      "correction": "Multiple updates can skip values or create an infinite loop."
     }
   ],
   "worked_examples": [
     {
-      "title": "Count a for loop",
-      "input": "for i in range(1, 4):\\n    print(i)",
+      "title": "Trace a for loop",
+      "input": "for i = 1 to 4: print(i)",
       "trace": [
-        "Start with i = 1; print 1.",
-        "Next i = 2; print 2.",
-        "Next i = 3; print 3.",
-        "Next i = 4; condition fails."
+        "Initialize i=1; condition true; print 1; increment.",
+        "Repeat for i=2, then 3, then 4.",
+        "Increment to 5; condition false; stop."
       ],
-      "output": "1 2 3",
-      "explanation": "The stop value 4 is excluded; the loop body executes three times."
+      "output": "1 2 3 4",
+      "explanation": "The condition is checked before each iteration."
     },
     {
-      "title": "Trace a while loop",
-      "input": "count = 3\\nwhile count > 0:\\n    count -= 1",
+      "title": "Count iterations",
+      "input": "i=0; while i<10: i=i+2",
       "trace": [
-        "Check 3 > 0; true, update to 2.",
-        "Check 2 > 0; true, update to 1.",
-        "Check 1 > 0; true, update to 0.",
-        "Check 0 > 0; false, stop."
+        "Values at body entry: 0, 2, 4, 6, 8.",
+        "After the fifth update i becomes 10.",
+        "10<10 is false, so stop."
       ],
-      "output": "3 iterations",
-      "explanation": "A while loop needs progress toward a condition that eventually becomes false."
+      "output": "5 iterations",
+      "explanation": "Count body executions, not condition checks."
     },
     {
-      "title": "Avoid an off-by-one error",
-      "input": "values = [4, 8, 12]\\nfor i in range(len(values)):\\n    print(values[i])",
+      "title": "Nested loops",
+      "input": "for i=1..3, for j=1..2: print(i,j)",
       "trace": [
-        "Valid indices are 0, 1 and 2.",
-        "range(3) generates 0, 1 and 2.",
-        "The loop never reads index 3."
+        "Each of 3 outer iterations runs the inner loop twice.",
+        "Total pairs = 3 × 2.",
+        "The inner counter restarts for each outer iteration."
       ],
-      "output": "4 8 12",
-      "explanation": "Use i < length, not i <= length, when indexing an array."
+      "output": "6 prints",
+      "explanation": "For independent nested loops, multiply iteration counts."
     }
   ],
   "company_applications": [
     {
       "company": "TCS",
-      "skill": "pseudocode and output prediction",
-      "practice": "Trace loop counters and boundary conditions."
+      "skill": "output prediction and loops",
+      "practice": "Trace initialization, condition and update without skipping the final check."
+    },
+    {
+      "company": "Infosys",
+      "skill": "coding fundamentals",
+      "practice": "Calculate nested-loop counts and identify O(n²)."
     },
     {
       "company": "Wipro",
-      "skill": "basic coding and pattern printing",
-      "practice": "Explain nested loop counts and dry-run small inputs."
-    },
-    {
-      "company": "Cognizant",
-      "skill": "arrays, strings and implementation",
-      "practice": "Handle empty inputs and prevent infinite loops."
+      "skill": "debugging",
+      "practice": "Find off-by-one and non-terminating loop conditions."
     }
   ],
   "srs_cards": [
@@ -305,6 +300,16 @@
       "type": "misconception",
       "question": "Name a common mistake in Loops and Iteration.",
       "answer": "For while and for loops, the condition is checked before each iteration."
+    },
+    {
+      "type": "concept",
+      "question": "What should you remember about Loops and Iteration?",
+      "answer": "Choose for, while and do-while loops based on the problem. Trace initialization, condition, body and update in order. Prevent infinite loops by ensuring progress toward termination. Use nested loops and estimate their iteration counts."
+    },
+    {
+      "type": "misconception",
+      "question": "What mistake should you avoid in Loops and Iteration?",
+      "answer": "A while/for condition is checked before each iteration; do-while checks after the body."
     }
   ]
 }
