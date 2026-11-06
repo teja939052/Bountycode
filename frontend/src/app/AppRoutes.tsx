@@ -197,7 +197,7 @@ export function AnimatedRoutes() {
         <Route path="/hub" element={<Navigate to="/journey" replace />} />
         <Route path="/compete" element={<Navigate to="/mock-oa" replace />} />
         <Route path="/career" element={<Navigate to="/career-profile" replace />} />
-        <Route path="/prepare" element={<Navigate to="/journey" replace />} />
+        <Route path="/prepare" element={<Navigate to="/academy" replace />} />
         <Route path="/company-mocks" element={<Navigate to="/mock-oa" replace />} />
         <Route path="/company-mocks/:testId" element={<Navigate to="/mock-oa" replace />} />
         <Route path="/practice" element={<Practice />} />
