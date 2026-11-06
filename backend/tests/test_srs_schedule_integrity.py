@@ -59,8 +59,9 @@ def test_deserialize_preserves_legacy_problem_card_due_date():
     assert state.last_reviewed == datetime(2026, 11, 1, 2, 30, tzinfo=timezone.utc)
 
 
-def test_due_card_selection_does_not_reset_future_dates():
+def test_due_card_selection_does_not_reset_future_dates(monkeypatch):
     now = datetime(2026, 11, 6, 9, 0, tzinfo=timezone.utc)
+    monkeypatch.setattr(srs, "utcnow", lambda: now)
     due = srs.deserialize_state({
         "concept_id": "verbal.reading",
         "user_id": "user-3",
