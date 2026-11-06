@@ -25,11 +25,13 @@ export const companyLessonsApi = {
     );
   },
 
-  answerStep(slug: string, stepIndex: number, answer: number | string) {
-    const payload = typeof answer === "number"
-      ? { answer_index: answer }
-      : { answer_text: answer };
-    return request<{ success: boolean; data: { correct: boolean; selected_index: number | null; correct_index: number | null; correct_answer: string; explanation: string } }>(
+  answerStep(slug: string, stepIndex: number, answer: number | string | number[]) {
+    const payload = Array.isArray(answer)
+      ? { answer_order: answer }
+      : typeof answer === "number"
+        ? { answer_index: answer }
+        : { answer_text: answer };
+    return request<{ success: boolean; data: { correct: boolean; selected_index: number | null; correct_index: number | null; correct_answer: string; correct_order?: number[]; explanation: string } }>(
       `/api/v1/company-lessons/${encodeURIComponent(slug)}/steps/${stepIndex}/answer`,
       {
         method: "POST",

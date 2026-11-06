@@ -82,6 +82,41 @@
       "answer_placeholder": "Enter the loop bound",
       "expected_answer": "3",
       "explanation": "The list has three items at indices 0, 1 and 2. range(3) produces exactly those indices."
+    },
+    {
+      "step_number": 8,
+      "step_type": "order_steps",
+      "title": "Put a counted loop in execution order",
+      "content": "A counted loop follows a predictable cycle. Put these operations in the order the computer performs them for one successful iteration.",
+      "prompt": "Arrange the loop operations from initialization through the end of one iteration.",
+      "options": [
+        "Run the loop body",
+        "Initialize the loop variable",
+        "Update the loop variable",
+        "Check the loop condition"
+      ],
+      "correct_order": [
+        1,
+        3,
+        0,
+        2
+      ],
+      "explanation": "The loop initializes its counter, checks the condition, runs the body, and updates the counter. It then checks the condition again before the next iteration."
+    },
+    {
+      "step_number": 9,
+      "step_type": "code_lab",
+      "title": "Build a running total with a condition",
+      "content": "Combine iteration and a condition to add only values that meet a rule. Keep the loop; complete the condition so only even values are added.",
+      "prompt": "Finish the loop so the program prints the sum of the even values: 12.",
+      "language": "javascript",
+      "starter_code": "const values = [1, 2, 3, 4, 5, 6];\nlet total = 0;\n\nfor (const value of values) {\n  // TODO: add even values only\n}\n\nconsole.log(total);",
+      "expected_output": "12",
+      "hints": [
+        "Use the remainder operator (%) to test divisibility by 2.",
+        "An even number has a remainder of 0 when divided by 2.",
+        "Add value to total only inside the even-number condition."
+      ]
     }
   ],
   "assessment": {

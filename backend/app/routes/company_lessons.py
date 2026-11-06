@@ -212,6 +212,7 @@ def _load_lesson(slug: str) -> Optional[Dict[str, Any]]:
 class StepAnswerRequest(BaseModel):
     answer_index: Optional[int] = Field(default=None, ge=0)
     answer_text: Optional[str] = Field(default=None, min_length=1, max_length=1000)
+    answer_order: Optional[List[int]] = Field(default=None, min_length=1, max_length=20)
 
 
 class LessonProgressRequest(BaseModel):
@@ -265,11 +266,11 @@ async def get_lesson(slug: str, user=Depends(get_current_user)):
     public_data = {**data}
     # Never ship answer keys to the learner before they submit an attempt.
     answerable_step_types = {
-        "interactive", "practice", "quiz", "predict_output", "fill_blank"
+        "interactive", "practice", "quiz", "predict_output", "fill_blank", "order_steps"
     }
     answer_key_fields = {
         "correct_index", "correct_answer", "answer",
-        "expected_answer", "accepted_answers",
+        "expected_answer", "accepted_answers", "correct_order",
     }
     public_data["steps"] = [
         {
@@ -375,8 +376,21 @@ async def answer_lesson_step(
     selected_index = None
     correct_index = None
     correct_answer = None
+    correct_order = None
 
-    if step_type in {"interactive", "practice", "quiz"}:
+    if step_type == "order_steps":
+        options = step.get("options") or []
+        expected = step.get("correct_order")
+        if not isinstance(expected, list) or len(expected) != len(options) or sorted(expected) != list(range(len(options))):
+            raise HTTPException(status_code=500, detail="This lesson has an invalid ordering key.")
+        if req.answer_order is None or req.answer_index is not None or req.answer_text is not None:
+            raise HTTPException(status_code=422, detail="Reorder every step before checking.")
+        if len(req.answer_order) != len(options) or sorted(req.answer_order) != list(range(len(options))):
+            raise HTTPException(status_code=422, detail="The submitted sequence must include every step exactly once.")
+        correct_order = list(expected)
+        correct = req.answer_order == expected
+        correct_answer = " → ".join(str(options[index]) for index in expected)
+    elif step_type in {"interactive", "practice", "quiz"}:
         options = step.get("options") or []
         expected = step.get("correct_index")
         if expected is None or req.answer_index is None or req.answer_text is not None:
@@ -444,6 +458,7 @@ async def answer_lesson_step(
             "selected_index": selected_index,
             "correct_index": correct_index,
             "correct_answer": correct_answer,
+            "correct_order": correct_order,
             "explanation": step.get("explanation", ""),
             "attempt_recorded": True,
         },

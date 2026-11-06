@@ -353,3 +353,66 @@ async def test_typed_code_trace_wrong_answer_records_learning_evidence(monkeypat
     assert result["data"]["correct"] is False
     assert result["data"]["correct_answer"] == "Hello"
     assert recorded[0]["success"] is False
+
+
+
+@pytest.mark.asyncio
+async def test_order_steps_are_graded_server_side_and_answer_key_is_private(monkeypatch):
+    lesson = _lesson()
+    lesson["steps"][0] = {
+        "step_number": 1,
+        "step_type": "order_steps",
+        "title": "Order the process",
+        "prompt": "Arrange the operations.",
+        "options": ["Run body", "Initialize", "Check condition"],
+        "correct_order": [1, 2, 0],
+        "explanation": "Initialize, check, then run the body.",
+    }
+    monkeypatch.setattr(company_lessons, "_load_lesson", lambda _slug: lesson)
+    recorded = []
+
+    async def fake_record_learning_activity(user_id, activity):
+        recorded.append((user_id, activity))
+        return {"status": "success"}
+
+    monkeypatch.setattr(company_lessons, "record_learning_activity", fake_record_learning_activity)
+
+    public = await company_lessons.get_lesson(
+        "successive_percentage_change", user={"id": "test-user"}
+    )
+    assert "correct_order" not in public["data"]["steps"][0]
+
+    result = await company_lessons.answer_lesson_step(
+        "successive_percentage_change",
+        0,
+        company_lessons.StepAnswerRequest(answer_order=[1, 2, 0]),
+        user={"id": "test-user"},
+    )
+    assert result["data"]["correct"] is True
+    assert result["data"]["correct_order"] == [1, 2, 0]
+    assert recorded[0][1]["success"] is True
+
+
+@pytest.mark.asyncio
+async def test_order_steps_rejects_duplicate_positions(monkeypatch):
+    lesson = _lesson()
+    lesson["steps"][0] = {
+        "step_number": 1,
+        "step_type": "order_steps",
+        "title": "Order the process",
+        "prompt": "Arrange the operations.",
+        "options": ["Run body", "Initialize", "Check condition"],
+        "correct_order": [1, 2, 0],
+        "explanation": "Initialize, check, then run the body.",
+    }
+    monkeypatch.setattr(company_lessons, "_load_lesson", lambda _slug: lesson)
+
+    with pytest.raises(HTTPException) as exc:
+        await company_lessons.answer_lesson_step(
+            "successive_percentage_change",
+            0,
+            company_lessons.StepAnswerRequest(answer_order=[1, 1, 0]),
+            user={"id": "test-user"},
+        )
+
+    assert exc.value.status_code == 422
