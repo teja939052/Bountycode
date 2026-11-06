@@ -132,5 +132,103 @@
         "explanation": "split(',') divides the string into a list using comma as the separator."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Explain strings as sequences of characters.",
+    "Access characters safely using indices.",
+    "Trace slices and substring boundaries.",
+    "Use common string operations.",
+    "Recognize immutability differences across languages."
+  ],
+  "prerequisites": [
+    "programming_languages",
+    "loops_basics"
+  ],
+  "concepts": [
+    "character sequence",
+    "indexing",
+    "slicing",
+    "substring",
+    "immutability",
+    "search",
+    "concatenation"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "The last character is at index length.",
+      "correction": "The last valid index is length - 1."
+    },
+    {
+      "misconception": "A slice always includes its end index.",
+      "correction": "In Python-style slicing, the end index is excluded."
+    },
+    {
+      "misconception": "Changing one character always mutates the original string.",
+      "correction": "Many languages use immutable strings; create a new string for changes."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Access a character",
+      "input": "word = 'Bounty'\\nword[1]",
+      "trace": [
+        "B is at index 0.",
+        "o is at index 1."
+      ],
+      "output": "o",
+      "explanation": "A string can be treated as an indexed sequence of characters."
+    },
+    {
+      "title": "Trace a slice",
+      "input": "word = 'Bountycode'\\nword[0:6]",
+      "trace": [
+        "Start at index 0.",
+        "Stop before index 6.",
+        "Collect indices 0 through 5."
+      ],
+      "output": "Bounty",
+      "explanation": "The end boundary is exclusive in Python slicing."
+    },
+    {
+      "title": "Count a traversal",
+      "input": "for ch in 'code':\\n    process(ch)",
+      "trace": [
+        "Process c.",
+        "Process o.",
+        "Process d.",
+        "Process e."
+      ],
+      "output": "4 character visits",
+      "explanation": "A single pass over a string of length n takes O(n) time."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "Infosys",
+      "skill": "string manipulation and coding",
+      "practice": "Trace indices and handle empty or one-character strings."
+    },
+    {
+      "company": "Accenture",
+      "skill": "output prediction and basic coding",
+      "practice": "Practice substring boundaries and character counting."
+    },
+    {
+      "company": "TCS",
+      "skill": "arrays and strings coding",
+      "practice": "Explain time complexity and test repeated characters."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What are the key ideas in Strings Fundamentals?",
+      "answer": "Explain strings as sequences of characters. Access characters safely using indices. Trace slices and substring boundaries. Use common string operations. Recognize immutability differences across languages."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in Strings Fundamentals.",
+      "answer": "The last valid index is length - 1."
+    }
+  ]
 }
