@@ -544,7 +544,7 @@ async def record_track_topic_mastery(
                 f"{topic_path}.mastered_at": previous.get("mastered_at") or now,
                 f"{topic_path}.last_assessed_at": now,
                 "last_activity_at": now,
-            }},
+            }, "$inc": {f"{topic_path}.attempts": 1}},
         )
     else:
         now = datetime.now(timezone.utc).isoformat()
