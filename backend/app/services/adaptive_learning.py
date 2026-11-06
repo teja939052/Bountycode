@@ -451,9 +451,20 @@ async def record_learning_activity(user_id: str, activity: Dict[str, Any]) -> Di
     activity_entry = {
         "domain_id": domain_id,
         "type": activity_type,
-        "success": success,
+        "success": bool(success),
         "timestamp": datetime.now(timezone.utc).isoformat(),
     }
+    # Keep enough context to explain an adaptive recommendation later. Only
+    # copy a small, explicit allowlist of scalar/JSON fields into the evidence.
+    for key in (
+        "lesson_slug", "step_index", "question_index", "question_id",
+        "score_percent", "correct_count", "question_count",
+        "time_spent_seconds", "hints_used", "topic_id", "track_id", "module_id",
+        "company", "assessment_id",
+    ):
+        value = activity.get(key)
+        if value is not None:
+            activity_entry[key] = value
     await learning_progress_collection.update_one(
         {"user_id": user_id},
         {"$push": {"activities": activity_entry}}
