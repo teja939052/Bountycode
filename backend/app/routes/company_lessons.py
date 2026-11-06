@@ -135,7 +135,11 @@ async def get_lesson(slug: str, user=Depends(get_current_user)):
     public_data["steps"] = [
         {
             key: value for key, value in step.items()
-            if key not in {"correct_index", "correct_answer", "answer"}
+            if key not in (
+                {"correct_index", "correct_answer", "answer", "explanation"}
+                if step.get("step_type") in {"interactive", "practice", "quiz"}
+                else {"correct_index", "correct_answer", "answer"}
+            )
         }
         for step in data.get("steps", [])
     ]
@@ -143,7 +147,7 @@ async def get_lesson(slug: str, user=Depends(get_current_user)):
     assessment["questions"] = [
         {
             key: value for key, value in question.items()
-            if key not in {"correct_index", "correct_answer", "answer"}
+            if key not in {"correct_index", "correct_answer", "answer", "explanation"}
         }
         for question in assessment.get("questions", [])
     ]
