@@ -86,7 +86,13 @@ def build_plan(profile: Dict[str, Any], diagnostic: Dict[str, Any] | None, compa
             ),
         })
 
-    target_companies = set(profile.get("target_companies", []))\n    matched_tracks = [\n        {"id": track["id"], "company_id": track["company_id"], "name": track["name"], "description": track.get("description", "")}\n        for track in (company_tracks or [])\n        if track.get("company_id") in target_companies\n    ]\n    daily_minutes = int(profile.get("daily_minutes", 60))
+    target_companies = set(profile.get("target_companies", []))
+    matched_tracks = [
+        {"id": track["id"], "company_id": track["company_id"], "name": track["name"], "description": track.get("description", "")}
+        for track in (company_tracks or [])
+        if track.get("company_id") in target_companies
+    ]
+    daily_minutes = int(profile.get("daily_minutes", 60))
     budget = max(15, daily_minutes)
     selected = []
     used = 0
@@ -96,7 +102,8 @@ def build_plan(profile: Dict[str, Any], diagnostic: Dict[str, Any] | None, compa
             used += task["estimated_minutes"]
     return {
         "target_role": role,
-        "target_companies": profile.get("target_companies", []),\n        "company_preparation": matched_tracks,
+        "target_companies": profile.get("target_companies", []),
+        "company_preparation": matched_tracks,
         "preferred_language": profile.get("preferred_language", "cpp"),
         "daily_minutes": daily_minutes,
         "diagnostic_completed": bool(diagnostic),
@@ -106,7 +113,7 @@ def build_plan(profile: Dict[str, Any], diagnostic: Dict[str, Any] | None, compa
         "study_routine": [
             {"label": "Review yesterday's concepts", "minutes": min(10, max(5, budget // 6))},
             {"label": "Learn the next concept", "minutes": max(5, budget // 3)},
-            {"label": "Solve guided and independent problems", "minutes": max(10, budget // 3)},
+            {"label": "Solve guided and independent problems", "minutes": max(5, budget // 3)},
             {"label": "Check understanding and revise mistakes", "minutes": max(0, budget - (min(10, max(5, budget // 6)) + 2 * max(5, budget // 3)))},
         ],
         "personalization_note": (
