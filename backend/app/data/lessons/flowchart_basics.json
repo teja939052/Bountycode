@@ -22,7 +22,12 @@
       "step_type": "interactive",
       "title": "Identify the Symbol",
       "prompt": "In a flowchart, which shape represents a decision/condition?",
-      "options": ["Rectangle", "Oval", "Diamond", "Parallelogram"],
+      "options": [
+        "Rectangle",
+        "Oval",
+        "Diamond",
+        "Parallelogram"
+      ],
       "correct_index": 2,
       "explanation": "A diamond shape is used for decision points where the flow can branch based on a condition (Yes/No)."
     },
@@ -30,10 +35,15 @@
       "step_number": 3,
       "step_type": "practice",
       "title": "Trace the Flow",
-      "prompt": "Consider this flowchart: Start → Input x → Is x > 0? → Yes: Print 'Positive' → End. What is the output if x = -5?",
-      "options": ["Positive", "Negative", "Zero", "Error"],
+      "prompt": "A flowchart checks x > 0. If Yes, it prints “Positive”; if No, it prints “Not positive”. What is printed when x = −5?",
+      "options": [
+        "Positive",
+        "Not positive",
+        "Zero",
+        "Error"
+      ],
       "correct_index": 1,
-      "explanation": "Since x = -5 is NOT > 0, the 'No' branch would be taken (not shown but implied). The flowchart only shows what happens when x > 0. For x = -5, nothing is printed, or there's an implicit 'No' branch."
+      "explanation": "Since −5 is not greater than 0, the No branch runs and prints “Not positive”."
     },
     {
       "step_number": 4,
@@ -47,17 +57,30 @@
       "step_type": "interactive",
       "title": "Count the Iterations",
       "prompt": "In a flowchart: i = 1 → Print i → i = i + 1 → Is i <= 3? → Yes: go back to Print. How many times is 'Print i' executed?",
-      "options": ["2 times", "3 times", "4 times", "Infinite times"],
+      "options": [
+        "2 times",
+        "3 times",
+        "4 times",
+        "Infinite times"
+      ],
       "correct_index": 1,
       "explanation": "The loop prints i=1, then checks i<=3 (1<=3 is true), loops back, prints i=2, checks, loops back, prints i=3, checks (3<=3 is true), loops back, prints i=4, checks (4<=3 is false), exits. Wait - let me re-read: i starts at 1, prints 1, increments to 2, checks 2<=3 (yes), prints 2, increments to 3, checks 3<=3 (yes), prints 3, increments to 4, checks 4<=3 (no), exits. So 'Print i' executes 3 times."
     }
   ],
-  "practice_questions": ["tcs_nqt_programming_0001", "tcs_nqt_programming_0002"],
+  "practice_questions": [
+    "tcs_nqt_programming_0001",
+    "tcs_nqt_programming_0002"
+  ],
   "assessment": {
     "questions": [
       {
         "prompt": "Which symbol is used for Input/Output in a flowchart?",
-        "options": ["Rectangle", "Diamond", "Parallelogram", "Oval"],
+        "options": [
+          "Rectangle",
+          "Diamond",
+          "Parallelogram",
+          "Oval"
+        ],
         "correct_index": 2,
         "explanation": "Parallelogram is used for input/output operations like reading data or displaying results."
       },
