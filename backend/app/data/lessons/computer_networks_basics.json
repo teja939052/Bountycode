@@ -144,5 +144,104 @@
         "explanation": "Routers forward IP packets between networks."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Explain the purpose of layered network models.",
+    "Distinguish TCP and UDP.",
+    "Describe IP addresses, ports and DNS.",
+    "Trace a basic HTTP request.",
+    "Understand latency, bandwidth and packet delivery."
+  ],
+  "prerequisites": [
+    "programming_languages"
+  ],
+  "concepts": [
+    "TCP",
+    "UDP",
+    "IP address",
+    "port",
+    "DNS",
+    "HTTP",
+    "client-server",
+    "latency"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "DNS is the same as HTTP.",
+      "correction": "DNS resolves names to records such as IP addresses; HTTP carries application requests and responses."
+    },
+    {
+      "misconception": "TCP and IP are interchangeable.",
+      "correction": "IP routes packets between hosts; TCP provides a reliable ordered byte stream over IP."
+    },
+    {
+      "misconception": "A port identifies a computer on the internet.",
+      "correction": "An IP address identifies a host/interface; a port identifies a service endpoint on that host."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Trace a web request",
+      "input": "Browser opens https://example.com",
+      "trace": [
+        "DNS resolves example.com to an IP address.",
+        "The browser establishes a transport connection.",
+        "It sends an HTTP request to the server.",
+        "The server returns an HTTP response."
+      ],
+      "output": "DNS → connection → HTTP request → response",
+      "explanation": "Separating the steps makes network debugging easier."
+    },
+    {
+      "title": "Choose TCP or UDP",
+      "input": "Reliable file transfer versus live voice",
+      "trace": [
+        "File transfer needs ordered, reliable delivery.",
+        "Live voice often values low latency and can tolerate some packet loss.",
+        "TCP and UDP make different delivery trade-offs."
+      ],
+      "output": "TCP for reliable transfer; UDP is common for real-time media",
+      "explanation": "Choose based on the application's requirements, not on one protocol being universally better."
+    },
+    {
+      "title": "Understand a port",
+      "input": "A server IP hosts HTTPS and SSH",
+      "trace": [
+        "The IP identifies the destination host.",
+        "Port 443 commonly serves HTTPS.",
+        "Port 22 commonly serves SSH."
+      ],
+      "output": "IP address + port identifies the service endpoint",
+      "explanation": "Ports allow multiple services to share a host address."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "computer networks and web basics",
+      "practice": "Explain DNS, TCP, HTTP and port numbers."
+    },
+    {
+      "company": "Infosys",
+      "skill": "networking fundamentals",
+      "practice": "Trace a request from browser to server."
+    },
+    {
+      "company": "Accenture",
+      "skill": "technical support and networking",
+      "practice": "Differentiate connectivity, name-resolution and application errors."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What are the key ideas in Computer Networks Fundamentals?",
+      "answer": "Explain the purpose of layered network models. Distinguish TCP and UDP. Describe IP addresses, ports and DNS. Trace a basic HTTP request. Understand latency, bandwidth and packet delivery."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in Computer Networks Fundamentals.",
+      "answer": "DNS resolves names to records such as IP addresses; HTTP carries application requests and responses."
+    }
+  ]
 }
