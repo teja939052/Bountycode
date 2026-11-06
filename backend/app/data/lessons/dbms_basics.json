@@ -118,5 +118,101 @@
         "explanation": "Durability means committed changes persist even after failure."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Explain the purpose of a DBMS.",
+    "Identify primary and foreign keys.",
+    "Understand functional dependency and normalization.",
+    "Explain ACID transaction properties.",
+    "Distinguish tables, rows, columns and constraints."
+  ],
+  "prerequisites": [],
+  "concepts": [
+    "DBMS",
+    "relational table",
+    "primary key",
+    "foreign key",
+    "normalization",
+    "transaction",
+    "ACID"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "A primary key can contain duplicates.",
+      "correction": "A primary key uniquely identifies each row and cannot be NULL."
+    },
+    {
+      "misconception": "A foreign key must always be unique.",
+      "correction": "A foreign key can repeat; it references a key in another table."
+    },
+    {
+      "misconception": "Normalization means splitting every table into tiny tables.",
+      "correction": "Normalization reduces avoidable redundancy while preserving meaningful relationships."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Choose a primary key",
+      "input": "Student(roll_no, name, email)",
+      "trace": [
+        "Each student needs a stable identifier.",
+        "Names may repeat.",
+        "roll_no is selected as the primary key."
+      ],
+      "output": "PRIMARY KEY (roll_no)",
+      "explanation": "A primary key uniquely identifies a row."
+    },
+    {
+      "title": "Understand a foreign key",
+      "input": "Enrollment(student_id, course_id)",
+      "trace": [
+        "Student has primary key student_id.",
+        "Enrollment stores student_id for each registration.",
+        "The reference links enrollment to a valid student."
+      ],
+      "output": "FOREIGN KEY (student_id) REFERENCES Student(student_id)",
+      "explanation": "A foreign key enforces referential integrity between related tables."
+    },
+    {
+      "title": "Apply ACID",
+      "input": "Transfer ₹500 from A to B",
+      "trace": [
+        "Begin a transaction.",
+        "Subtract 500 from A.",
+        "Add 500 to B.",
+        "Commit both changes together."
+      ],
+      "output": "Both updates succeed or neither is committed",
+      "explanation": "Atomicity prevents a partial transfer; consistency, isolation and durability provide the other ACID guarantees."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "DBMS fundamentals and keys",
+      "practice": "Explain primary keys, foreign keys and normalization."
+    },
+    {
+      "company": "Infosys",
+      "skill": "SQL and database concepts",
+      "practice": "Describe ACID using a practical transaction."
+    },
+    {
+      "company": "Accenture",
+      "skill": "database fundamentals",
+      "practice": "Identify redundancy and choose appropriate relationships."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What are the key ideas in DBMS Fundamentals?",
+      "answer": "Explain the purpose of a DBMS. Identify primary and foreign keys. Understand functional dependency and normalization. Explain ACID transaction properties. Distinguish tables, rows, columns and constraints."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in DBMS Fundamentals.",
+      "answer": "A primary key uniquely identifies each row and cannot be NULL."
+    }
+  ]
 }
