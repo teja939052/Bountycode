@@ -194,20 +194,12 @@ export default function JourneyPage() {
     totalQuestions: number;
     solvedCount: number;
     nextPattern: string | null;
-    companyReadiness: {
-      overallPercent: number;
-      sections: string[];
-      nextUpId: string | null;
-      weakestSection: string | null;
-      weakestTitle: string | null;
-    } | null;
   }>({
     patternId: "sliding-window",
     masteryPercent: 0,
     totalQuestions: 0,
     solvedCount: 0,
     nextPattern: null,
-    companyReadiness: null,
   });
 
   const [mockInfluence, setMockInfluence] = useState<{
