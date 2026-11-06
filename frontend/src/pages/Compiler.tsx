@@ -674,7 +674,7 @@ export default function Compiler({ problemId, problem }: { problemId?: string; p
   const currentLang = LANGUAGES.find((l) => l.id === language) || langs[0];
   const showBrowserNativeBadge = isBrowserNative(language);
   const browserNativeLabel = language === "python"
-    ? (pyodideReady ? "Pyodide ready" : pyodideError || "Loading Pyodide...")
+    ? (pyodideReady ? "Pyodide ready" : pyodideError || "Loads on first Python run")
     : "Browser-native";
 
   const passedCount = results?.results?.filter(r => r.passed).length || 0;

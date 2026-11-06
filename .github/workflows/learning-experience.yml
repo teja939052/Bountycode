@@ -12,6 +12,8 @@ on:
       - "frontend/src/app/AppRoutes.tsx"
       - "frontend/src/pages/LessonPlayer.tsx"
       - "frontend/src/pages/PlacementAcademy.tsx"
+      - "frontend/src/hooks/useBrowserRuntime.ts"
+      - "frontend/src/pages/Compiler.tsx"
       - "frontend/src/services/api/companyLessons.ts"
       - ".github/workflows/learning-experience.yml"
 

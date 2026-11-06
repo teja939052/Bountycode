@@ -72,11 +72,12 @@ Use a varied exercise mix:
 - debugging and error identification;
 - step ordering and algorithm sequencing;
 - variable tables and dry-run traces;
-- runnable code with hidden test cases;
+- runnable browser code labs for small JavaScript exercises;
+- compiler-backed coding tasks with server-side hidden tests when language/runtime support is required;
 - short projects that combine several skills;
 - timed company-format quizzes and mocks.
 
-A lesson with code should progress from reading code, to tracing it, to completing it, to writing and testing code independently. Code-tracing exercises are not a substitute for a real compiler-backed coding task.
+A lesson with code should progress from reading code, to tracing it, to completing it, to writing and testing code independently. Small JavaScript code labs may run in a disposable browser Worker with a hard timeout and capped output. Browser checks are formative feedback only: never trust them as proof of mastery or as a source of XP. Keep final mastery and hidden-test grading on the existing server-graded assessment and compiler submission paths. Code-tracing and browser labs are not substitutes for compiler-backed placement submissions.
 
 ## 5. Feedback rules
 
