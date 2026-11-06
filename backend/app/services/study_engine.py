@@ -423,7 +423,10 @@ async def _get_user_role(user_id: str) -> Optional[str]:
 
 # â”€â”€â”€ 6. COMPANY MISSION â€” company-aligned daily objective â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-async def _get_company_mission(user_id: str) -> Optional[Dict[str, Any]]:
+async def _get_company_mission(
+    user_id: str,
+    assessment: Optional[Dict[str, Any]] = None,
+) -> Optional[Dict[str, Any]]:
     """Get the next company-aligned mission for the student.
 
     When a company track is enrolled, surfaces:
@@ -509,22 +512,49 @@ async def _get_company_mission(user_id: str) -> Optional[Dict[str, Any]]:
                         logger.exception("Could not reconcile company module %s mastery", mod_id)
                     continue
 
-                next_topic = remaining_topics[0] if remaining_topics else None
-                topic_id = normalize_topic(next_topic) if next_topic is not None else ""
-                topic_label = str(next_topic).replace("_", " ") if next_topic is not None else ""
+                # Use the learner's evidence to select the weakest unfinished
+                # topic. Untouched topics remain in syllabus order because their
+                # evidence scores tie at zero.
+                from app.services.adaptive_learning import (
+                    COMPANY_TOPIC_DOMAINS,
+                    COMPANY_TOPIC_LESSONS,
+                )
+                skill_scores = (assessment or {}).get("skills") or {}
+
+                def topic_priority(item):
+                    index, topic = item
+                    domain_id = COMPANY_TOPIC_DOMAINS.get(normalize_topic(topic), normalize_topic(topic))
+                    score = float((skill_scores.get(domain_id) or {}).get("score", 0) or 0)
+                    return (score, index)
+
+                _, next_topic = min(
+                    enumerate(remaining_topics),
+                    key=topic_priority,
+                )
+                topic_id = normalize_topic(next_topic)
+                topic_label = str(next_topic).replace("_", " ")
+                domain_id = COMPANY_TOPIC_DOMAINS.get(topic_id, topic_id)
+                lesson_slug = COMPANY_TOPIC_LESSONS.get(topic_id)
                 module_description = module_definition.get("description") or (
                     f"Learn and practise {topic_label} inside {module_title}."
-                    if topic_label else
-                    f"Continue {sec_data.get('title', 'company preparation')}."
+                )
+                action_url = (
+                    f"/learn/lesson/{lesson_slug}?track_id={company_track}&module_id={mod_id}&topic_id={topic_id}"
+                    if lesson_slug else f"/company-tracks?track={company_track}"
                 )
                 return {
                     "type": "company_mission",
-                    "title": f"{module_title}: {topic_label}" if topic_label else module_title,
+                    "title": f"{module_title}: {topic_label}",
                     "description": module_description,
                     "section_title": sec_data.get("title", "Practice"),
                     "topics": topics,
                     "topic_id": topic_id,
                     "topic_name": topic_label,
+                    "domain_id": domain_id,
+                    "lesson_slug": lesson_slug,
+                    "action_url": action_url,
+                    "skill_score": float((skill_scores.get(domain_id) or {}).get("score", 0) or 0),
+                    "focus_reason": "Prioritized using your lowest evidenced company-relevant skill.",
                     "mastered_topic_count": len(topics) - len(remaining_topics),
                     "required_topic_count": len(topics),
                     "question_count": module_definition.get("questions", 0),
@@ -590,7 +620,7 @@ async def get_today(user_id: str, force_refresh: bool = False) -> Dict[str, Any]
     role_activity = await _get_role_activity(user_id)
 
     # Company-aligned mission (if company track enrolled)
-    company_mission = await _get_company_mission(user_id)
+    company_mission = await _get_company_mission(user_id, assessment)
 
     # Gamification context for the header tile.
     try:
