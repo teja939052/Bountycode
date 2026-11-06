@@ -67,6 +67,8 @@ async def test_company_lesson_catalog_points_at_authored_lesson_files():
 
     assert {
         "variables_basics",
+        "input_output_basics",
+        "operators_basics",
         "conditions_basics",
         "functions_basics",
         "arrays_basics",
@@ -701,9 +703,13 @@ async def test_catalog_exposes_curriculum_depth_without_answer_keys(monkeypatch)
 
 def test_programming_foundation_lessons_map_to_company_topics_and_skill_evidence():
     assert company_lessons.LESSON_SKILL_DOMAINS["variables_basics"] == "programming_fundamentals"
+    assert company_lessons.LESSON_SKILL_DOMAINS["input_output_basics"] == "programming_fundamentals"
+    assert company_lessons.LESSON_SKILL_DOMAINS["operators_basics"] == "programming_fundamentals"
     assert company_lessons.LESSON_SKILL_DOMAINS["conditions_basics"] == "programming_fundamentals"
     assert company_lessons.LESSON_SKILL_DOMAINS["functions_basics"] == "programming_fundamentals"
 
     assert "variables" in company_lessons.LESSON_MODULE_TOPICS["variables_basics"]
+    assert "input_output" in company_lessons.LESSON_MODULE_TOPICS["input_output_basics"]
+    assert "operators" in company_lessons.LESSON_MODULE_TOPICS["operators_basics"]
     assert "conditional_logic" in company_lessons.LESSON_MODULE_TOPICS["conditions_basics"]
     assert "functions" in company_lessons.LESSON_MODULE_TOPICS["functions_basics"]
