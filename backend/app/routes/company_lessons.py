@@ -61,6 +61,9 @@ def _required_step_indices(data: Dict[str, Any]) -> List[int]:
 # A guided lesson can only certify a module whose authored topic overlaps the
 # skill it teaches. Query-string IDs from the browser are not proof of coverage.
 LESSON_MODULE_TOPICS = {
+    "variables_basics": {"variables", "variables_basics", "data_types", "types", "assignment"},
+    "conditions_basics": {"conditions", "conditional_logic", "boolean_logic", "branching"},
+    "functions_basics": {"functions", "functions_basics", "parameters", "return_values"},
     "arrays_basics": {"arrays", "array", "basic_arrays"},
     "blood_relations": {"blood_relation", "blood_relations"},
     "flowchart_basics": {"flowchart", "flowcharts", "flowchart_basics", "pseudocode"},
@@ -128,6 +131,9 @@ LESSON_MODULE_TOPICS = {
 
 
 LESSON_SKILL_DOMAINS = {
+    "variables_basics": "programming_fundamentals",
+    "conditions_basics": "programming_fundamentals",
+    "functions_basics": "programming_fundamentals",
     "successive_percentage_change": "quantitative_aptitude",
     "profit_loss": "quantitative_aptitude",
     "ratio_proportion": "quantitative_aptitude",
