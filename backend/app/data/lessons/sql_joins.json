@@ -56,6 +56,19 @@
       "title": "Join conditions matter",
       "content": "Use ON to state how tables relate. A missing or incorrect join condition can create a Cartesian product or duplicate rows. FULL OUTER JOIN preserves unmatched rows from both sides when supported.",
       "tip": "Before trusting a join, check whether the key is unique and whether one-to-many relationships are expected."
+    },
+    {
+      "step_number": 6,
+      "step_type": "predict_output",
+      "title": "Predict a SQL aggregate result",
+      "content": "A WHERE filter is applied before COUNT counts the remaining rows.",
+      "example": "employees: (id=1, department_id=10), (id=2, department_id=20), (id=3, department_id=10)",
+      "code": "SELECT COUNT(*)\nFROM employees\nWHERE department_id = 10;",
+      "language": "sql",
+      "prompt": "What number does this query return?",
+      "answer_placeholder": "Enter the count",
+      "expected_answer": "2",
+      "explanation": "Two employee rows have department_id 10, so COUNT(*) returns 2."
     }
   ],
   "assessment": {
