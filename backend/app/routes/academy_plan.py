@@ -67,7 +67,7 @@ def build_plan(profile: Dict[str, Any], diagnostic: Dict[str, Any] | None, compa
     tasks: List[dict] = []
     for domain in prioritized:
         score = scores.get(domain)
-        if score is None:
+        if score is None or score < 0:
             state = "not_assessed"
         elif score < 35:
             state = "foundation_needed"
