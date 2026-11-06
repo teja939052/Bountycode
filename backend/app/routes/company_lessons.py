@@ -297,7 +297,13 @@ async def complete_lesson(slug: str, req: CompleteRequest, user=Depends(get_curr
 
         # One lesson demonstrates one mapped topic. A mixed module is only
         # complete after every required topic has passed its own assessment.
-        topic_id = matching_topics[0]
+        requested_topic = _normalize_topic(req.topic_id) if req.topic_id else None
+        if requested_topic and requested_topic not in matching_topics:
+            raise HTTPException(
+                status_code=422,
+                detail="The selected topic does not match this lesson and company module.",
+            )
+        topic_id = requested_topic or matching_topics[0]
         try:
             module_result = await record_track_topic_mastery(
                 user_id=user["id"],
