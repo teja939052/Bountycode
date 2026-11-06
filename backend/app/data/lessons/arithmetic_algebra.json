@@ -127,7 +127,7 @@
     "Estimate answers and check units."
   ],
   "prerequisites": [
-    "programming_languages"
+    "hcf_lcm"
   ],
   "concepts": [
     "ratio",
