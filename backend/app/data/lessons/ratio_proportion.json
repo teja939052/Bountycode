@@ -120,5 +120,7 @@
         "explanation": "Make B equal: 3:2 becomes 6:4, and 4:5 stays 4:5. Thus A:B:C = 6:4:5."
       }
     ]
-  }
+  },
+  "next_lesson_slug": "averages",
+  "next_lesson_title": "Averages"
 }
