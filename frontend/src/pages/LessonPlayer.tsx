@@ -619,6 +619,22 @@ export default function LessonPlayer() {
 
   const step = lesson.steps[currentStep];
   const progress = ((currentStep + 1) / (lesson.steps.length + 1)) * 100;
+  const preferredLanguage = String(learnerProfile?.preferred_language || "cpp").toLowerCase();
+  const preferredLanguageLabel = ({
+    c: "C",
+    cpp: "C++",
+    java: "Java",
+    python: "Python",
+    javascript: "JavaScript",
+  } as Record<string, string>)[preferredLanguage] || preferredLanguage.toUpperCase();
+  const authoredLanguages = Array.from(new Set(
+    (lesson.steps || [])
+      .map((item) => String(item.language || "").trim())
+      .filter(Boolean),
+  ));
+  const languageGuidance = authoredLanguages.length
+    ? `This lesson's runnable examples use ${authoredLanguages.join(", ")}. Use the compiler for independent practice in ${preferredLanguageLabel}.`
+    : `Use the compiler for independent solutions in ${preferredLanguageLabel}.`;
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-8">
@@ -669,6 +685,7 @@ export default function LessonPlayer() {
       <section className="mb-4 rounded-2xl border border-brand-sky/20 bg-brand-sky/5 p-4">
         <p className="text-[10px] font-mono uppercase tracking-wider text-brand-sky">Your learning mode · {learningMode.label}</p>
         <p className="mt-1 text-sm leading-6 text-text-primary">{learningMode.description}</p>
+        <p className="mt-2 text-xs leading-5 text-text-secondary">Preferred coding language: {preferredLanguageLabel}. {languageGuidance}</p>
       </section>
 
       {lesson.learning_objectives?.length ? (
