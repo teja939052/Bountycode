@@ -58,8 +58,9 @@ class AnswerSubmission(BaseModel):
     quiz_id: str
     question_id: str
     user_answer: str
-    time_taken_seconds: float
-    hints_used: int = 0
+    time_taken_seconds: float = Field(ge=0, le=86400)
+    # Kept for backwards compatibility. The route uses server-recorded hints.
+    hints_used: int = Field(default=0, ge=0, le=10)
 
 
 class HintRequest(BaseModel):
@@ -150,6 +151,7 @@ def _ordered_quiz_attempts(session: Dict[str, Any]) -> tuple[list, list]:
         item.get("question_id"): item
         for item in (session.get("answers") or [])
     }
+    reward_map = session.get("answer_rewards") or {}
     questions = []
     answers = []
     for question_id in session.get("question_ids") or []:
@@ -159,13 +161,15 @@ def _ordered_quiz_attempts(session: Dict[str, Any]) -> tuple[list, list]:
             "difficulty": "medium",
         }
         questions.append(question)
-        answers.append(stored_answers.get(question_id) or {
+        answer = dict(stored_answers.get(question_id) or {
             "question_id": question_id,
             "is_correct": False,
             "xp_earned": 0,
             "hints_used": 0,
             "unanswered": True,
         })
+        answer["xp_earned"] = int(reward_map.get(question_id, answer.get("xp_earned", 0)) or 0)
+        answers.append(answer)
     return questions, answers
 
 
@@ -195,6 +199,7 @@ async def build_quiz_session(req: QuizRequest, user=Depends(get_current_user)):
         "mode": quiz.get("mode", req.mode),
         "question_ids": [question["id"] for question in quiz["questions"]],
         "answers": [],
+        "hint_counts": {},
         "status": "in_progress",
         "filters": quiz.get("filters", {}),
         "time_limit_seconds": quiz.get("time_limit_seconds", 0),
@@ -237,11 +242,14 @@ async def submit_answer(submission: AnswerSubmission, user=Depends(get_current_u
     # Claim this question answer atomically before awarding or recording any
     # evidence. A concurrent/replayed request cannot award the same attempt twice.
     now = datetime.now(timezone.utc)
+    server_hints_used = max(
+        0, int((session.get("hint_counts") or {}).get(submission.question_id, 0) or 0)
+    )
     answer_record = {
         "question_id": submission.question_id,
         "is_correct": bool(result.get("is_correct")),
         "time_taken_seconds": max(0.0, float(submission.time_taken_seconds)),
-        "hints_used": max(0, int(submission.hints_used)),
+        "hints_used": server_hints_used,
         "xp_earned": 0,
         "answered_at": now,
     }
@@ -290,7 +298,7 @@ async def submit_answer(submission: AnswerSubmission, user=Depends(get_current_u
                 metadata={
                     "quiz_id": submission.quiz_id,
                     "question_id": submission.question_id,
-                    "time_taken": answer_record["time_taken_seconds"],
+                    # Do not use a client-supplied timer to mint speed bonuses.
                     "hint_used": answer_record["hints_used"] > 0,
                 },
                 role=user.get("role") or user.get("target_role") or "sde",
@@ -304,6 +312,7 @@ async def submit_answer(submission: AnswerSubmission, user=Depends(get_current_u
         {"user_id": user["id"], "quiz_id": submission.quiz_id, "session_type": "quiz"},
         {"$set": {f"answer_rewards.{submission.question_id}": xp_earned}},
     )
+    result["hints_used"] = server_hints_used
     result["xp_earned"] = xp_earned
     result["reward"] = reward
     return {"success": True, "result": result}
@@ -312,20 +321,37 @@ async def submit_answer(submission: AnswerSubmission, user=Depends(get_current_u
 @router.post("/hint")
 async def get_hint(req: HintRequest, user=Depends(get_current_user)):
     """Get a progressive hint for a question."""
+    session = None
+    actual_hints_used = max(0, int(req.hints_already_used))
     if req.quiz_id:
         session = await _get_owned_quiz_session(user["id"], req.quiz_id)
         if session.get("status") != "in_progress" or req.question_id not in (session.get("question_ids") or []):
             raise HTTPException(status_code=403, detail="This question is not available in the active quiz.")
         if any(item.get("question_id") == req.question_id for item in (session.get("answers") or [])):
             raise HTTPException(status_code=409, detail="This question has already been answered.")
+        actual_hints_used = max(
+            0, int((session.get("hint_counts") or {}).get(req.question_id, 0) or 0)
+        )
+        if req.hint_level != actual_hints_used + 1:
+            raise HTTPException(status_code=409, detail="Request the next hint in sequence.")
 
     result = get_hint_for_question(
         question_id=req.question_id,
         hint_level=req.hint_level,
-        hints_already_used=req.hints_already_used,
+        hints_already_used=actual_hints_used,
     )
     if "error" in result and "No more" not in result.get("error", ""):
         raise HTTPException(status_code=404, detail=result.get("error"))
+    if session and result.get("hint"):
+        await practice_sessions_collection.update_one(
+            {
+                "user_id": user["id"],
+                "quiz_id": req.quiz_id,
+                "session_type": "quiz",
+                "status": "in_progress",
+            },
+            {"$set": {f"hint_counts.{req.question_id}": int(result.get("hints_used", actual_hints_used))}},
+        )
     return {"success": True, **result}
 
 
