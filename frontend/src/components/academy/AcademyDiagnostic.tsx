@@ -1,6 +1,6 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { ArrowRight, Brain, CheckCircle2, Clock3, RefreshCw, Target } from "lucide-react";
+import { ArrowRight, Brain, Clock3, RefreshCw, Target } from "lucide-react";
 import api from "../../services/api";
 
 type DiagnosticQuestion = {
