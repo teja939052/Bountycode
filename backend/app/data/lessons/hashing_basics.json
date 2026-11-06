@@ -118,5 +118,103 @@
         "explanation": "If entries accumulate in one bucket or probe sequence, lookup can degrade to linear time."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Explain key-value lookup using a hash table.",
+    "Use a frequency map to count values.",
+    "Understand collisions and collision handling.",
+    "State average and worst-case lookup complexity."
+  ],
+  "prerequisites": [
+    "arrays_basics"
+  ],
+  "concepts": [
+    "hash function",
+    "hash table",
+    "key-value pair",
+    "collision",
+    "frequency map",
+    "set",
+    "average O(1)"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Hash maps guarantee O(1) in every case.",
+      "correction": "Average operations are often O(1); pathological collisions can degrade performance."
+    },
+    {
+      "misconception": "A hash map stores values in sorted order.",
+      "correction": "A typical hash map does not guarantee sorted iteration order."
+    },
+    {
+      "misconception": "A set stores duplicate values.",
+      "correction": "A set keeps unique elements; adding an existing value does not create a duplicate."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Count frequencies",
+      "input": "[2, 1, 2, 3, 1, 2]",
+      "trace": [
+        "Read 2; count[2] becomes 1.",
+        "Read 1; count[1] becomes 1.",
+        "Read 2; count[2] becomes 2.",
+        "Continue until all six values are processed."
+      ],
+      "output": "2 → 3, 1 → 2, 3 → 1",
+      "explanation": "A frequency map stores one counter per distinct key."
+    },
+    {
+      "title": "Detect a duplicate",
+      "input": "[4, 7, 2, 7]",
+      "trace": [
+        "Insert 4 into seen.",
+        "Insert 7 into seen.",
+        "Insert 2 into seen.",
+        "Read 7; it is already in seen."
+      ],
+      "output": "Duplicate found: 7",
+      "explanation": "A set provides a concise way to remember values already encountered."
+    },
+    {
+      "title": "Reason about complexity",
+      "input": "Process n values with a hash set",
+      "trace": [
+        "Each value is hashed to a bucket.",
+        "Average insertion or lookup is expected O(1).",
+        "Across n values, expected total work is O(n)."
+      ],
+      "output": "Expected O(n) total time",
+      "explanation": "State the average-case assumption and mention collision worst cases."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "arrays, hashing and duplicate detection",
+      "practice": "Use maps for counts and sets for membership."
+    },
+    {
+      "company": "Infosys",
+      "skill": "problem-solving optimization",
+      "practice": "Compare nested-loop O(n²) with expected O(n) hashing."
+    },
+    {
+      "company": "Accenture",
+      "skill": "coding logic and edge cases",
+      "practice": "Test empty arrays, repeated values and negative numbers."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What are the key ideas in Hashing Fundamentals?",
+      "answer": "Explain key-value lookup using a hash table. Use a frequency map to count values. Understand collisions and collision handling. State average and worst-case lookup complexity."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in Hashing Fundamentals.",
+      "answer": "Average operations are often O(1); pathological collisions can degrade performance."
+    }
+  ]
 }
