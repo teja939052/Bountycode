@@ -464,17 +464,60 @@ async def _get_company_mission(user_id: str) -> Optional[Dict[str, Any]]:
                 module_definition = module_definitions.get(mod_id, {})
                 module_title = module_definition.get("title") or mod_id
                 topics = module_definition.get("topics") or []
+                topic_mastery = mod_data.get("topic_mastery") or {}
+
+                def normalize_topic(value: Any) -> str:
+                    return str(value or "").strip().lower().replace("-", "_").replace(" ", "_")
+
+                # Topic-level progress is the adaptive unit. Recommending the
+                # same module title after a learner has mastered its first
+                # topic creates a loop; select the earliest required topic
+                # without a verified >=70% assessment instead.
+                remaining_topics = [
+                    topic for topic in topics
+                    if not (
+                        (topic_mastery.get(normalize_topic(topic)) or {}).get("mastered") is True
+                        and float((topic_mastery.get(normalize_topic(topic)) or {}).get("score", 0) or 0) >= 70
+                    )
+                ]
+                if topics and not remaining_topics:
+                    # Repair older documents that contain topic mastery but
+                    # missed the aggregate module-completion flag.
+                    average_score = sum(
+                        float((topic_mastery.get(normalize_topic(topic)) or {}).get("score", 0) or 0)
+                        for topic in topics
+                    ) / len(topics)
+                    try:
+                        from app.services.learning_paths import complete_track_module
+                        await complete_track_module(
+                            user_id=user_id,
+                            track_id=company_track,
+                            module_id=mod_id,
+                            score=average_score,
+                            role=user.get("role") or user.get("target_role") or "sde",
+                        )
+                    except Exception:
+                        logger.exception("Could not reconcile company module %s mastery", mod_id)
+                    continue
+
+                next_topic = remaining_topics[0] if remaining_topics else None
+                topic_id = normalize_topic(next_topic) if next_topic is not None else ""
+                topic_label = str(next_topic).replace("_", " ") if next_topic is not None else ""
+                module_description = module_definition.get("description") or (
+                    f"Learn and practise {topic_label} inside {module_title}."
+                    if topic_label else
+                    f"Continue {sec_data.get('title', 'company preparation')}."
+                )
                 return {
                     "type": "company_mission",
-                    "title": module_title,
-                    "description": (
-                        module_definition.get("description")
-                        or f"Learn and practice {', '.join(topics[:4])}"
-                        if topics else
-                        module_definition.get("description") or f"Continue {sec_data.get('title', 'company preparation')}"
-                    ),
+                    "title": f"{module_title}: {topic_label}" if topic_label else module_title,
+                    "description": module_description,
                     "section_title": sec_data.get("title", "Practice"),
                     "topics": topics,
+                    "topic_id": topic_id,
+                    "topic_name": topic_label,
+                    "mastered_topic_count": len(topics) - len(remaining_topics),
+                    "required_topic_count": len(topics),
                     "question_count": module_definition.get("questions", 0),
                     "kind": "company_track",
                     "company": track.get("company_id", ""),
