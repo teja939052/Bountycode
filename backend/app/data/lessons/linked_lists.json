@@ -118,5 +118,103 @@
         "explanation": "A linked list does not provide direct index-based memory access."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Explain nodes and next references.",
+    "Trace traversal from the head pointer.",
+    "Compare linked-list access with array access.",
+    "Understand insertion and deletion pointer changes."
+  ],
+  "prerequisites": [
+    "data_structures_intro",
+    "programming_languages"
+  ],
+  "concepts": [
+    "node",
+    "head",
+    "next pointer",
+    "traversal",
+    "singly linked list",
+    "insertion",
+    "deletion"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "A linked list supports O(1) indexing.",
+      "correction": "Finding the kth node requires traversal and takes O(n)."
+    },
+    {
+      "misconception": "Deleting a node always needs shifting.",
+      "correction": "A singly linked list can unlink a node by changing a previous node's next pointer."
+    },
+    {
+      "misconception": "The head pointer is the entire list.",
+      "correction": "The head points to the first node; each node links to the next node."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Traverse a linked list",
+      "input": "head → 10 → 20 → 30 → null",
+      "trace": [
+        "Start current at head (10).",
+        "Visit 10; move to next (20).",
+        "Visit 20; move to next (30).",
+        "Visit 30; next is null, stop."
+      ],
+      "output": "10, 20, 30",
+      "explanation": "Traversal follows links until the next pointer is null."
+    },
+    {
+      "title": "Insert after the head",
+      "input": "10 → 30; insert 20 after 10",
+      "trace": [
+        "Create a node containing 20.",
+        "Set new_node.next to the old next node (30).",
+        "Set head.next to new_node."
+      ],
+      "output": "10 → 20 → 30",
+      "explanation": "Set the new node's next pointer before overwriting the previous link."
+    },
+    {
+      "title": "Compare access costs",
+      "input": "Find the 100th item",
+      "trace": [
+        "Array: calculate its address from the index.",
+        "Linked list: follow next pointers one node at a time.",
+        "The linked list may need about 100 visits."
+      ],
+      "output": "Array O(1), linked-list traversal O(n)",
+      "explanation": "Data structure choice depends on the operations the application needs."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "Infosys",
+      "skill": "linked-list fundamentals",
+      "practice": "Trace pointer changes for insertion and deletion."
+    },
+    {
+      "company": "TCS",
+      "skill": "data structures and complexity",
+      "practice": "Compare array and linked-list operation costs."
+    },
+    {
+      "company": "Cognizant",
+      "skill": "coding implementation",
+      "practice": "Handle empty list, one node and deleting the head."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What are the key ideas in Linked Lists?",
+      "answer": "Explain nodes and next references. Trace traversal from the head pointer. Compare linked-list access with array access. Understand insertion and deletion pointer changes."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in Linked Lists.",
+      "answer": "Finding the kth node requires traversal and takes O(n)."
+    }
+  ]
 }
