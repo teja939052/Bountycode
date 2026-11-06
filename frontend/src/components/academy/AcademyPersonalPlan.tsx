@@ -32,8 +32,28 @@ export default function AcademyPersonalPlan() {
   );
   const plan = (data as any)?.plan;
   if (!plan) return null;
+  const nextTask = (plan.daily_tasks || []).find((task: any) => task.lesson_slug);
+  const nextSkill = (plan.curriculum || []).find((skill: any) => skill.lesson_slug);
+  const continueHref = nextTask?.lesson_slug
+    ? `/learn/lesson/${nextTask.lesson_slug}`
+    : nextSkill?.lesson_slug
+      ? `/learn/lesson/${nextSkill.lesson_slug}`
+      : "/academy#academy-profile";
+  const continueTitle = nextTask?.title || nextSkill?.title || "Set up your learning profile";
+  const continueReason = nextTask?.reason || nextSkill?.reason || "Choose your target role and companies, then complete your diagnostic to build a plan.";
   return (
     <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+      <div className="mb-5 flex flex-col gap-3 rounded-2xl border border-emerald-200 bg-emerald-50/70 p-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="min-w-0">
+          <p className="text-xs font-bold uppercase tracking-[0.14em] text-emerald-800">Your next best action</p>
+          <p className="mt-1 text-lg font-black text-slate-900">{continueTitle}</p>
+          <p className="mt-1 text-sm leading-5 text-slate-600">{continueReason}</p>
+          {nextTask?.estimated_minutes && <p className="mt-2 text-xs font-semibold text-slate-500">{nextTask.estimated_minutes} minutes · Based on your learning evidence</p>}
+        </div>
+        <Link to={continueHref} className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-xl bg-emerald-700 px-5 py-3 text-sm font-bold text-white transition hover:bg-emerald-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700">
+          {nextTask || nextSkill ? "Continue learning" : "Build my learning plan"} <ArrowRight size={16}/>
+        </Link>
+      </div>
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-emerald-700"><CalendarDays size={14}/> Your personalized plan</p>
