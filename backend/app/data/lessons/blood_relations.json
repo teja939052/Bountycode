@@ -104,6 +104,99 @@
       "type": "concept",
       "question": "How do you solve blood relation problems systematically?",
       "answer": "Draw a family tree. Start from the youngest generation and work upward. Break complex chains into smaller steps."
+    },
+    {
+      "type": "concept",
+      "question": "What are the key ideas in Blood Relations?",
+      "answer": "Translate family statements into relationships. Track gender and generation separately. Draw a family tree for multi-step questions. Avoid assuming unstated relationships."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in Blood Relations.",
+      "answer": "The statement may describe an in-law; track the exact relationship given."
+    }
+  ],
+  "learning_objectives": [
+    "Translate family statements into relationships.",
+    "Track gender and generation separately.",
+    "Draw a family tree for multi-step questions.",
+    "Avoid assuming unstated relationships."
+  ],
+  "prerequisites": [
+    "logical_puzzles"
+  ],
+  "concepts": [
+    "generation",
+    "maternal",
+    "paternal",
+    "sibling",
+    "parent",
+    "family tree"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "A parent's sibling is always an uncle or aunt by blood.",
+      "correction": "The statement may describe an in-law; track the exact relationship given."
+    },
+    {
+      "misconception": "Gender can be inferred from a name.",
+      "correction": "Use only explicit gender clues in the question."
+    },
+    {
+      "misconception": "If A is B's sibling, B must be older.",
+      "correction": "Sibling statements do not establish age order."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Follow two relationships",
+      "input": "A is B's mother. B is C's brother.",
+      "trace": [
+        "A is one generation above B.",
+        "B and C are siblings.",
+        "A is also C's mother."
+      ],
+      "output": "A is C's mother",
+      "explanation": "Represent each relation as an edge in a small family tree."
+    },
+    {
+      "title": "Track paternal relation",
+      "input": "P is the father of Q. Q is the sister of R.",
+      "trace": [
+        "P is parent of Q.",
+        "Q and R share sibling relation.",
+        "P is also the father of R."
+      ],
+      "output": "P is R's father",
+      "explanation": "Sibling relationships connect the same parent group when the question establishes it."
+    },
+    {
+      "title": "Avoid unsupported assumptions",
+      "input": "M is N's cousin.",
+      "trace": [
+        "Cousin establishes a family relationship.",
+        "It does not specify which parent is related.",
+        "It does not specify gender or age."
+      ],
+      "output": "Do not infer more than 'cousin'",
+      "explanation": "A correct answer uses only the facts provided."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "blood relations reasoning",
+      "practice": "Draw generations and label gender only when stated."
+    },
+    {
+      "company": "Accenture",
+      "skill": "logical reasoning",
+      "practice": "Convert each sentence into a family-tree edge."
+    },
+    {
+      "company": "Wipro",
+      "skill": "relationship puzzles",
+      "practice": "Avoid assumptions about age and in-law relationships."
     }
   ]
 }
