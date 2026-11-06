@@ -86,9 +86,12 @@ def _load_questions() -> List[Dict[str, Any]]:
         diff = q.get("difficulty", "medium")
         if diff:
             _questions_by_difficulty[diff].append(q)
-        for company in (q.get("companies") or []):
+        companies = q.get("companies") or q.get("company") or []
+        if isinstance(companies, str):
+            companies = [companies]
+        for company in companies:
             if company:
-                _questions_by_company[company.lower()].append(q)
+                _questions_by_company[str(company).strip().lower()].append(q)
 
     return unique
 
@@ -203,7 +206,9 @@ def build_quiz(
         filtered = [
             q for q in filtered
             if company.strip().lower() in {
-                str(item).strip().lower() for item in (q.get("companies") or [])
+                str(item).strip().lower()
+                for item in (q.get("companies") or q.get("company") or [])
+                if item
             }
         ]
 
@@ -279,7 +284,7 @@ def build_quiz(
                 "question": q.get("question", ""),
                 "topic": q.get("topic", ""),
                 "difficulty": q.get("difficulty", "medium"),
-                "companies": q.get("companies", []),
+                "companies": q.get("companies") or q.get("company") or [],
                 "type": q.get("type", "mcq" if q.get("options") else "short_answer"),
                 "options": q.get("options", []) or [],
                 "xp_reward": q.get("xp_reward", 10),
