@@ -251,6 +251,7 @@ async def enroll_in_track(user_id: str, track_id: str, role: str = "sde") -> Dic
     today_key = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     await cache.delete("adaptive", f"daily_plan:{user_id}:{today_key}")
     await cache.delete("adaptive", f"skills:{user_id}")
+    await cache.delete("study", f"today:{user_id}:{today_key}")
 
     try:
         await record_practice(user_id, "company_track", 10, {"track_id": track_id, "action": "enroll"}, role=role or "sde")
