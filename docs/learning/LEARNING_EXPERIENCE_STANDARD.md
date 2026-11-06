@@ -72,12 +72,13 @@ Use a varied exercise mix:
 - debugging and error identification;
 - step ordering and algorithm sequencing;
 - variable tables and dry-run traces;
-- runnable browser code labs for small JavaScript exercises;
-- compiler-backed coding tasks with server-side hidden tests when language/runtime support is required;
+- runnable browser JavaScript labs with server-held output checks;
+- read-only SQL query labs against fixed in-memory datasets;
+- compiler-backed coding tasks with server-side hidden tests when a full language runtime is required;
 - short projects that combine several skills;
 - timed company-format quizzes and mocks.
 
-A lesson with code should progress from reading code, to tracing it, to completing it, to writing and testing code independently. Small JavaScript code labs may run in a disposable browser Worker with a hard timeout and capped output. Browser checks are formative feedback only: never trust them as proof of mastery or as a source of XP. Keep final mastery and hidden-test grading on the existing server-graded assessment and compiler submission paths. Code-tracing and browser labs are not substitutes for compiler-backed placement submissions.
+A lesson with code should progress from reading code, to tracing it, to completing it, to writing and testing code independently. Small JavaScript labs run in disposable browser Workers with a hard timeout and capped output. Treat the worker as a responsiveness aid, not a security boundary. The server keeps expected outputs private and grades the submitted output; these checks are formative only and never grant XP or certify mastery. SQL labs run against fresh, read-only, in-memory SQLite datasets with a query-size limit, short execution budget and result-row cap. Keep final mastery and hidden-test grading on the existing server-graded assessment and compiler submission paths. Browser and SQL labs do not replace compiler-backed placement submissions.
 
 ## 5. Feedback rules
 
@@ -163,6 +164,13 @@ Every learning flow should support:
 - optional language support without changing the meaning of technical terms.
 
 Keep lesson checkpoints lightweight. A temporary save failure should not block a learner from continuing.
+
+### Safe execution policy
+
+- Keep browser exercises small and treat their output as formative practice, not trusted proof of mastery.
+- Do not enable the backend's local subprocess fallback for public arbitrary-code submissions. It is a trusted-development convenience, not a security boundary.
+- The optional Cloud Run compiler microservice must not execute student code until outbound network access, metadata access, process limits and secret exposure have been independently verified. Its environment opt-in is a deployment guard, not a replacement for network isolation.
+- Prefer external isolated execution or the existing Docker sandbox for authoritative public code execution. When no safe runner is available, return a clear unavailable state and preserve non-compiler learning tasks.
 
 ## 10. Content quality gate
 
