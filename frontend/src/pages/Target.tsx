@@ -39,6 +39,7 @@ export default function Target() {
         queryClient.invalidateQueries({ queryKey: ["company-tracks"] }),
         queryClient.invalidateQueries({ queryKey: ["journey", "state"] }),
         queryClient.invalidateQueries({ queryKey: ["study", "today"] }),
+        queryClient.invalidateQueries({ queryKey: ["adaptive"] }),
       ]);
       navigate("/journey");
     },
