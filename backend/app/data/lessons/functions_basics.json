@@ -30,7 +30,11 @@
         "A data type"
       ],
       "correct_index": 0,
-      "explanation": "The parentheses with arguments invoke the function named add and pass it the values 3 and 4."
+      "explanation": "The parentheses with arguments invoke the function named add and pass it the values 3 and 4.",
+      "hints": [
+        "Look for a function name followed by parentheses.",
+        "The values inside the parentheses are supplied when the operation is invoked."
+      ]
     },
     {
       "step_number": 3,
@@ -49,7 +53,11 @@
       "language": "python",
       "answer_placeholder": "Enter the output",
       "expected_answer": "13",
-      "explanation": "double(6) returns 12. The caller stores 12 in result, then prints 12 + 1, which is 13."
+      "explanation": "double(6) returns 12. The caller stores 12 in result, then prints 12 + 1, which is 13.",
+      "hints": [
+        "Substitute the supplied argument into the function's parameter.",
+        "Complete the function's calculation before evaluating the caller's print expression."
+      ]
     },
     {
       "step_number": 5,
@@ -71,7 +79,11 @@
         "Store width and height in unrelated global variables"
       ],
       "correct_index": 0,
-      "explanation": "A function with parameters accepts different dimensions and returns the computed area, so callers can reuse it with different inputs."
+      "explanation": "A function with parameters accepts different dimensions and returns the computed area, so callers can reuse it with different inputs.",
+      "hints": [
+        "A reusable function should work for more than one set of dimensions.",
+        "Consider which design accepts inputs and makes the computed result available to its caller."
+      ]
     },
     {
       "step_number": 7,
@@ -91,7 +103,11 @@
         2,
         3
       ],
-      "explanation": "Arguments are associated with parameters before the body runs. The function returns a value, then the caller resumes."
+      "explanation": "Arguments are associated with parameters before the body runs. The function returns a value, then the caller resumes.",
+      "hints": [
+        "Arguments are associated with parameters before the function body runs.",
+        "The caller continues only after the function returns."
+      ]
     },
     {
       "step_number": 8,
@@ -128,7 +144,11 @@
         "3": "Printing total only displays the missing value; it does not change what the function returns.",
         "4": "String inputs do not solve the missing return and would change the operation."
       },
-      "explanation": "A Python function that reaches the end without returning a value returns None. Use return a + b so the caller receives the sum."
+      "explanation": "A Python function that reaches the end without returning a value returns None. Use return a + b so the caller receives the sum.",
+      "hints": [
+        "Printing and returning have different effects.",
+        "Look for the statement that sends the computed value back to the calling code."
+      ]
     }
   ],
   "assessment": {
