@@ -76,6 +76,7 @@ const routeImportFns = {
   EvidenceDashboard: () => import("./EvidenceDashboard"),
   Target: () => import("./Target"),
   PlacementAcademy: () => import("./PlacementAcademy"),
+  QuizPractice: () => import("./QuizPractice"),
   Skills: () => import("./Skills"),
   Profile: () => import("./Profile"),
   Mission: () => import("./Mission"),
@@ -201,6 +202,7 @@ const ReadinessHeatmap = lazy(() => import('./ReadinessHeatmap'));
 const EvidenceDashboard = lazy(() => import('./EvidenceDashboard'));
 const Target = lazy(() => import('./Target'));
 const PlacementAcademy = lazy(() => import('./PlacementAcademy'));
+const QuizPractice = lazy(() => import('./QuizPractice'));
 const Skills = lazy(() => import('./Skills'));
 const Profile = lazy(() => import('./Profile'));
 const Mission = lazy(() => import('./Mission'));
@@ -287,4 +289,5 @@ export {
   Mission,
   MissionResult,
   SlidingWindowMission,
+  QuizPractice,
 };
