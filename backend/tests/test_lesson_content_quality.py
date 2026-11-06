@@ -231,6 +231,9 @@ def test_programming_foundations_form_a_complete_prerequisite_chain():
     assert {"variables_basics", "input_output_basics"}.issubset(set(operators["prerequisites"]))
     assert {"variables_basics", "operators_basics"}.issubset(set(conditions["prerequisites"]))
     assert {"variables_basics", "conditions_basics", "operators_basics"}.issubset(set(functions["prerequisites"]))
+    remainder_question = operators["assessment"]["questions"][0]
+    remainder_answer = remainder_question["options"][remainder_question["correct_index"]]
+    assert int(remainder_answer) == 18 % 5
 
     for lesson in (variables, input_output, operators, conditions, functions):
         assert len(lesson["steps"]) >= 8
