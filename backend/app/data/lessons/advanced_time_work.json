@@ -47,8 +47,8 @@
         "6 days",
         "8 days"
       ],
-      "correct_index": 1,
-      "explanation": "Work = 8×6×5 = 240 worker-hours. New daily capacity = 10×4 = 40 worker-hours. Days = 240/40 = 6. Correction: option C is correct."
+      "correct_index": 2,
+      "explanation": "Total work = 8×6×5 = 240 worker-hours. New daily capacity = 10×4 = 40 worker-hours. Days = 240/40 = 6."
     },
     {
       "step_number": 5,
