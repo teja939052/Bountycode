@@ -9,6 +9,16 @@ export const companyLessonsApi = {
     return request<{ success: boolean; data: any }>(`/api/v1/company-lessons/${encodeURIComponent(slug)}`);
   },
 
+  answerStep(slug: string, stepIndex: number, answerIndex: number) {
+    return request<{ success: boolean; data: { correct: boolean; selected_index: number; correct_index: number; explanation: string } }>(
+      `/api/v1/company-lessons/${encodeURIComponent(slug)}/steps/${stepIndex}/answer`,
+      {
+        method: "POST",
+        body: JSON.stringify({ answer_index: answerIndex }),
+      },
+    );
+  },
+
   complete(
     slug: string,
     payload: {
