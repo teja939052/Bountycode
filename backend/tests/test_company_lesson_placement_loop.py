@@ -489,3 +489,47 @@ async def test_sql_lab_hides_grading_data_and_grades_query(monkeypatch):
     )
     assert result["data"]["correct"] is True
     assert recorded[0]["success"] is True
+
+
+
+@pytest.mark.asyncio
+async def test_debug_choice_hides_diagnostic_key_and_returns_selected_misconception_feedback(monkeypatch):
+    lesson = _lesson()
+    lesson["steps"][0] = {
+        "step_number": 1,
+        "step_type": "debug_choice",
+        "title": "Find the loop bug",
+        "prompt": "Why does this loop skip the first number?",
+        "code": "for i in range(1, len(values)): print(values[i])",
+        "options": ["It starts at index 1", "print is inside the loop", "range includes the stop value"],
+        "correct_index": 0,
+        "feedback_by_option": {
+            "1": "Printing inside the loop is expected here; the starting index is the actual issue.",
+            "2": "range stops before its upper bound. The first value is skipped because the start is 1.",
+        },
+        "explanation": "Start at index zero to visit every element.",
+    }
+    monkeypatch.setattr(company_lessons, "_load_lesson", lambda _slug: lesson)
+    recorded = []
+
+    async def fake_record_learning_activity(user_id, activity):
+        recorded.append(activity)
+        return {"status": "success"}
+
+    monkeypatch.setattr(company_lessons, "record_learning_activity", fake_record_learning_activity)
+
+    public = await company_lessons.get_lesson("successive_percentage_change", user={"id": "test-user"})
+    public_step = public["data"]["steps"][0]
+    assert "correct_index" not in public_step
+    assert "feedback_by_option" not in public_step
+    assert "explanation" not in public_step
+
+    result = await company_lessons.answer_lesson_step(
+        "successive_percentage_change",
+        0,
+        company_lessons.StepAnswerRequest(answer_index=1),
+        user={"id": "test-user"},
+    )
+    assert result["data"]["correct"] is False
+    assert "starting index" in result["data"]["feedback"]
+    assert recorded[0]["success"] is False
