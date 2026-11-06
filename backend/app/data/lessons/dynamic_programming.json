@@ -215,6 +215,6 @@
       "answer": "DP stores results of overlapping subproblems to avoid recomputation."
     }
   ],
-  "next_lesson_slug": "algorithms_basics",
-  "next_lesson_title": "Algorithm Design Basics"
+  "next_lesson_slug": "sliding_window",
+  "next_lesson_title": "Sliding Window Technique"
 }
