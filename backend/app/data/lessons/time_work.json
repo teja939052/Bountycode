@@ -28,7 +28,11 @@
         "12 days"
       ],
       "correct_index": 1,
-      "explanation": "Combined rate = 1/10+1/15 = 3/30+2/30 = 1/6 job/day. Time = 6 days."
+      "explanation": "Combined rate = 1/10+1/15 = 3/30+2/30 = 1/6 job/day. Time = 6 days.",
+      "hints": [
+        "Convert each worker's completion time into work completed in one day.",
+        "Add the rates, not the number of days."
+      ]
     },
     {
       "step_number": 3,
@@ -50,7 +54,11 @@
         "18 days"
       ],
       "correct_index": 2,
-      "explanation": "B's rate = 1/6−1/10 = (5−3)/30 = 1/15. B takes 15 days."
+      "explanation": "B's rate = 1/6−1/10 = (5−3)/30 = 1/15. B takes 15 days.",
+      "hints": [
+        "Calculate how much work is completed while both workers are present.",
+        "Subtract completed work from 1 whole job, then divide by the remaining worker's rate."
+      ]
     },
     {
       "step_number": 5,
@@ -122,33 +130,34 @@
     ]
   },
   "learning_objectives": [
-    "Translate work rates into fractions per unit time.",
-    "Combine workers' rates correctly.",
-    "Solve efficiency and alternate-day work problems.",
-    "Check whether a result is reasonable."
+    "Represent a worker's speed as a fraction of work per unit time.",
+    "Combine independent work rates.",
+    "Solve changing-team and partial-work questions.",
+    "Relate efficiency ratios to completion times."
   ],
   "prerequisites": [
     "arithmetic_algebra"
   ],
   "concepts": [
     "work rate",
+    "one-day work",
     "combined rate",
     "efficiency",
-    "person-days",
-    "fractional work"
+    "remaining work",
+    "time to complete"
   ],
   "common_misconceptions": [
     {
       "misconception": "Add the number of days to combine workers.",
-      "correction": "Add work rates (work per day), not completion times."
+      "correction": "Add work rates; completion times are reciprocals of rates."
     },
     {
-      "misconception": "Twice the workers always means exactly half the time.",
-      "correction": "That assumes equal efficiency and no dependency or coordination overhead."
+      "misconception": "A faster worker has a larger time per job.",
+      "correction": "A faster worker completes a larger fraction of the job per unit time."
     },
     {
-      "misconception": "A person who takes more days is more efficient.",
-      "correction": "For the same work, fewer days means a higher work rate."
+      "misconception": "If half the work is complete, half the time always remains.",
+      "correction": "Remaining time depends on the rate of the workers still doing the job."
     }
   ],
   "worked_examples": [
@@ -188,19 +197,19 @@
   ],
   "company_applications": [
     {
-      "company": "TCS",
-      "skill": "time and work aptitude",
-      "practice": "Convert each worker into a per-day rate."
+      "company": "TCS NQT",
+      "skill": "time-and-work aptitude",
+      "practice": "Convert each completion time to a rate before combining."
     },
     {
-      "company": "Cognizant",
-      "skill": "quantitative reasoning",
-      "practice": "Use fractions and verify the combined rate."
+      "company": "Infosys",
+      "skill": "work-rate reasoning",
+      "practice": "Handle a worker leaving by calculating remaining work."
     },
     {
-      "company": "Accenture",
-      "skill": "numerical problem solving",
-      "practice": "Separate efficiency ratios from time ratios."
+      "company": "Wipro",
+      "skill": "quantitative problem solving",
+      "practice": "Use a common total-work unit to avoid fraction mistakes."
     }
   ],
   "srs_cards": [
@@ -213,6 +222,30 @@
       "type": "misconception",
       "question": "Name a common mistake in Time and Work.",
       "answer": "Add work rates (work per day), not completion times."
+    },
+    {
+      "type": "formula",
+      "question": "How do you find a one-day work rate?",
+      "answer": "If a worker completes a job in n days, the one-day rate is 1/n of the job."
+    },
+    {
+      "type": "application",
+      "question": "How do two workers' rates combine?",
+      "answer": "Add their work completed per unit time, then take the reciprocal to find the time for one whole job."
     }
-  ]
+  ],
+  "quest": {
+    "chapter": "The Workbench",
+    "rank": "Rate Engineer",
+    "story": "A project has multiple workers with different speeds. The academy needs you to calculate how their rates combine and what happens when one worker leaves.",
+    "mission": "Represent work as rates, combine workers and calculate completion time.",
+    "success_criteria": [
+      "Convert completion time into a one-day work rate.",
+      "Add rates for workers working together.",
+      "Calculate remaining work after a worker leaves.",
+      "Compare efficiency using work rates."
+    ]
+  },
+  "next_lesson_slug": "time_distance",
+  "next_lesson_title": "Time, Speed and Distance"
 }
