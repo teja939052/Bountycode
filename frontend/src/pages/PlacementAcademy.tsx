@@ -38,6 +38,8 @@ type Lesson = {
   assessment_count?: number;
   company_count?: number;
   exercise_types?: string[];
+  quest_chapter?: string;
+  mission_preview?: string;
 };
 
 type SkillEvidence = {
@@ -660,6 +662,12 @@ export default function PlacementAcademy() {
                             ))}
                           </ul>
                         ) : null}
+                        {lesson.quest_chapter && (
+                          <div className="mt-3 rounded-lg border border-violet-200 bg-violet-50/70 p-2">
+                            <p className="text-[10px] font-bold uppercase tracking-wider text-violet-700">Quest · {lesson.quest_chapter}</p>
+                            {lesson.mission_preview && <p className="mt-1 line-clamp-2 text-xs leading-5 text-slate-700">{lesson.mission_preview}</p>}
+                          </div>
+                        )}
                         {lesson.prerequisites?.length ? (
                           <p className="mt-2 text-[11px] leading-5 text-slate-500">
                             Recommended first: {lesson.prerequisites.slice(0, 2).map((item) => item.replaceAll("_", " ")).join(", ")}
