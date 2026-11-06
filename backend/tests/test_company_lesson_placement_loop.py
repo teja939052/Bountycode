@@ -112,7 +112,7 @@ async def test_failed_assessment_does_not_complete_company_module(monkeypatch):
         return {"passed": True, "xp_earned": 50}
 
     monkeypatch.setattr(
-        company_lessons, "complete_track_module", fake_complete_track_module
+        company_lessons, "record_track_topic_mastery", fake_complete_track_module
     )
 
     request = company_lessons.CompleteRequest(
@@ -154,9 +154,10 @@ async def test_passed_assessment_records_company_module_mastery(monkeypatch):
     )
 
     assert result["data"]["passed"] is True
-    assert result["data"]["module_completed"] is True
-    assert result["data"]["xp_earned"] == 50
+    assert result["data"]["module_completed"] is False
+    assert result["data"]["xp_earned"] == 0
     assert len(calls) == 1
     assert calls[0]["track_id"] == "tcs_nqt"
     assert calls[0]["module_id"] == "tcs_f1"
     assert calls[0]["score"] == 100.0
+    assert calls[0]["topic_id"] == "percentages"
