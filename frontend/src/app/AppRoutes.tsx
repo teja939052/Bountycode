@@ -76,6 +76,7 @@ import {
   EvidenceDashboard,
   Target,
   PlacementAcademy,
+  QuizPractice,
   Skills,
   Profile,
   Mission,
@@ -142,6 +143,14 @@ export function AnimatedRoutes() {
         {/* V3 unified: Journey / Practice / Target / Skills / Profile */}
         <Route path="/target" element={<Target />} />
         <Route path="/academy" element={<PlacementAcademy />} />
+        <Route
+          path="/quiz"
+          element={
+            <FeatureErrorBoundary featureName="Adaptive Practice">
+              <QuizPractice />
+            </FeatureErrorBoundary>
+          }
+        />
         <Route path="/skills" element={<Skills />} />
         <Route path="/profile" element={<Profile />} />
         {/* V4 internal wiring: universal Mission Shell (roads, not nav) */}
