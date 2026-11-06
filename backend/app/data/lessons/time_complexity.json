@@ -214,5 +214,7 @@
       "question": "What mistake should you avoid in Time Complexity and Big O?",
       "answer": "Big-O describes an asymptotic growth bound, ignoring constants and lower-order terms."
     }
-  ]
+  ],
+  "next_lesson_slug": "searching_basics",
+  "next_lesson_title": "Searching Fundamentals"
 }
