@@ -31,6 +31,13 @@ type Lesson = {
   difficulty: string;
   duration_min: number;
   step_count: number;
+  learning_objectives?: string[];
+  prerequisites?: string[];
+  concept_count?: number;
+  worked_example_count?: number;
+  assessment_count?: number;
+  company_count?: number;
+  exercise_types?: string[];
 };
 
 type SkillEvidence = {
@@ -567,6 +574,18 @@ export default function PlacementAcademy() {
                         </div>
                         <h4 className="mt-3 font-semibold text-slate-900 group-hover:text-emerald-700">{lesson.title}</h4>
                         <p className="mt-1 text-xs text-slate-500">{lesson.step_count} guided steps · {lesson.duration_min} min · {lesson.difficulty}</p>
+                        {lesson.learning_objectives?.length ? (
+                          <ul className="mt-3 space-y-1">
+                            {lesson.learning_objectives.slice(0, 2).map((objective) => (
+                              <li key={objective} className="line-clamp-1 text-xs text-slate-600">• {objective}</li>
+                            ))}
+                          </ul>
+                        ) : null}
+                        <div className="mt-3 flex flex-wrap gap-1.5">
+                          {typeof lesson.concept_count === "number" && <span className="rounded-full bg-slate-100 px-2 py-1 text-[10px] text-slate-600">{lesson.concept_count} concepts</span>}
+                          {typeof lesson.worked_example_count === "number" && <span className="rounded-full bg-slate-100 px-2 py-1 text-[10px] text-slate-600">{lesson.worked_example_count} examples</span>}
+                          {typeof lesson.assessment_count === "number" && <span className="rounded-full bg-slate-100 px-2 py-1 text-[10px] text-slate-600">{lesson.assessment_count} assessment questions</span>}
+                        </div>
                         <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-emerald-700">Start lesson <ArrowRight size={13} /></span>
                       </Link>
                     ))}
