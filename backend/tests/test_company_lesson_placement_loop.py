@@ -652,3 +652,44 @@ async def test_debug_choice_hides_diagnostic_key_and_returns_selected_misconcept
     assert result["data"]["correct"] is False
     assert "starting index" in result["data"]["feedback"]
     assert recorded[0]["success"] is False
+
+
+
+@pytest.mark.asyncio
+async def test_catalog_exposes_curriculum_depth_without_answer_keys(monkeypatch):
+    lesson = _lesson()
+    lesson.update({
+        "learning_objectives": [
+            "Explain the concept clearly.",
+            "Trace a worked example.",
+            "Apply it to a placement problem.",
+            "This fourth objective is not needed in the compact catalog.",
+        ],
+        "prerequisites": ["programming_languages"],
+        "concepts": ["concept A", "concept B", "concept C"],
+        "worked_examples": [
+            {"title": "Example one"},
+            {"title": "Example two"},
+        ],
+        "company_applications": [
+            {"company": "TCS"},
+            {"company": "Infosys"},
+        ],
+    })
+
+    monkeypatch.setattr(company_lessons.os.path, "isdir", lambda _path: True)
+    monkeypatch.setattr(company_lessons.os, "listdir", lambda _path: ["sample.json"])
+    monkeypatch.setattr(company_lessons, "_load_lesson", lambda _slug: lesson)
+
+    result = await company_lessons.list_lessons(user={"id": "test-user"})
+    item = result["data"][0]
+
+    assert item["learning_objectives"] == lesson["learning_objectives"][:3]
+    assert item["prerequisites"] == ["programming_languages"]
+    assert item["concept_count"] == 3
+    assert item["worked_example_count"] == 2
+    assert item["assessment_count"] == 2
+    assert item["company_count"] == 2
+    assert item["exercise_types"] == ["interactive"]
+    assert "correct_index" not in item
+    assert "expected_answer" not in item
