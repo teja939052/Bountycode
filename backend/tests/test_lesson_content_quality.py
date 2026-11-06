@@ -39,6 +39,20 @@ def test_all_step_based_lessons_have_valid_assessment_keys():
             )
             assert step.get("explanation"), f"{path.name} step {index + 1} has no explanation"
 
+        for index, step in enumerate(steps):
+            if step.get("step_type") in {"predict_output", "fill_blank"}:
+                assert step.get("prompt"), f"{path.name} typed exercise {index + 1} has no prompt"
+                assert step.get("expected_answer") is not None, (
+                    f"{path.name} typed exercise {index + 1} has no expected answer"
+                )
+                assert step.get("explanation"), (
+                    f"{path.name} typed exercise {index + 1} has no teaching explanation"
+                )
+                if step.get("step_type") == "predict_output":
+                    assert step.get("code"), (
+                        f"{path.name} output-prediction exercise {index + 1} has no code"
+                    )
+
         for index, question in enumerate(questions):
             options = question.get("options") or []
             correct_index = question.get("correct_index")
@@ -52,3 +66,11 @@ def test_all_step_based_lessons_have_valid_assessment_keys():
             )
 
     assert lesson_count >= 25, f"Expected a substantial step-based lesson library, found {lesson_count}"
+
+    # Typed exercises make code reading and repair part of the learning loop,
+    # rather than limiting every interaction to multiple choice.
+    assert any(
+        step.get("step_type") in {"predict_output", "fill_blank"}
+        for path in sorted(LESSONS_DIR.glob("*.json"))
+        for step in (json.loads(path.read_text(encoding="utf-8")).get("steps") or [])
+    ), "Expected at least one typed code-tracing or fill-in exercise"
