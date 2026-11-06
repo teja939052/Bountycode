@@ -475,6 +475,8 @@ async def record_learning_activity(user_id: str, activity: Dict[str, Any]) -> Di
 
     # Invalidate cache
     await cache.delete("adaptive", f"skills:{user_id}")
+    today_key = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    await cache.delete("adaptive", f"daily_plan:{user_id}:{today_key}")
 
     return {
         "status": "success",
