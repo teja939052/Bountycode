@@ -83,7 +83,8 @@ async def test_final_assessment_answer_key_is_not_sent_to_client(monkeypatch):
     question = result["data"]["assessment"]["questions"][0]
     assert "correct_index" not in question
     assert "correct_answer" not in question
-    assert result["data"]["steps"][0]["correct_index"] == 0
+    assert "correct_index" not in result["data"]["steps"][0]
+    assert "explanation" not in result["data"]["steps"][0]
 
 
 @pytest.mark.asyncio
@@ -162,3 +163,41 @@ async def test_passed_assessment_records_company_module_mastery(monkeypatch):
     assert calls[0]["module_id"] == "tcs_f1"
     assert calls[0]["score"] == 100.0
     assert calls[0]["topic_id"] == "percentages"
+
+
+@pytest.mark.asyncio
+async def test_step_answer_is_server_graded_and_records_evidence(monkeypatch):
+    monkeypatch.setattr(company_lessons, "_load_lesson", lambda _slug: _lesson())
+    recorded = []
+
+    async def fake_record_learning_activity(user_id, activity):
+        recorded.append((user_id, activity))
+        return {"status": "success"}
+
+    monkeypatch.setattr(company_lessons, "record_learning_activity", fake_record_learning_activity)
+
+    result = await company_lessons.answer_lesson_step(
+        "successive_percentage_change",
+        0,
+        company_lessons.StepAnswerRequest(answer_index=0),
+        user={"id": "test-user"},
+    )
+
+    assert result["data"]["correct"] is True
+    assert result["data"]["correct_index"] == 0
+    assert len(recorded) == 1
+    assert recorded[0][0] == "test-user"
+    assert recorded[0][1]["success"] is True
+
+
+@pytest.mark.asyncio
+async def test_step_answer_rejects_out_of_range_choice(monkeypatch):
+    monkeypatch.setattr(company_lessons, "_load_lesson", lambda _slug: _lesson())
+    request = company_lessons.StepAnswerRequest(answer_index=4)
+
+    with pytest.raises(HTTPException) as exc:
+        await company_lessons.answer_lesson_step(
+            "successive_percentage_change", 0, request, user={"id": "test-user"}
+        )
+
+    assert exc.value.status_code == 422
