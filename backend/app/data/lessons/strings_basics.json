@@ -58,6 +58,18 @@
       "title": "Common string operations",
       "content": "Useful operations include lower(), upper(), strip(), split(), join(), replace() and membership with 'in'. Be careful: split() returns a list, not a string.",
       "example": "'a,b,c'.split(',') gives ['a','b','c']."
+    },
+    {
+      "step_number": 6,
+      "step_type": "predict_output",
+      "title": "Trace a string slice",
+      "content": "A slice includes its start index and stops before its end index.",
+      "code": "word = \"code\"\nprint(word[1:3])",
+      "language": "python",
+      "prompt": "What exact text is printed?",
+      "answer_placeholder": "Type the output",
+      "expected_answer": "od",
+      "explanation": "Index 1 is 'o' and index 2 is 'd'. Index 3 is excluded, so the output is od."
     }
   ],
   "assessment": {
