@@ -74,3 +74,38 @@ def test_all_step_based_lessons_have_valid_assessment_keys():
         for path in sorted(LESSONS_DIR.glob("*.json"))
         for step in (json.loads(path.read_text(encoding="utf-8")).get("steps") or [])
     ), "Expected at least one typed code-tracing or fill-in exercise"
+
+
+
+def test_sequence_and_browser_code_labs_have_valid_instructions_and_checks():
+    sequence_count = 0
+    code_lab_count = 0
+
+    for path in sorted(LESSONS_DIR.glob("*.json")):
+        data = json.loads(path.read_text(encoding="utf-8"))
+        for index, step in enumerate(data.get("steps") or []):
+            kind = step.get("step_type")
+            if kind == "order_steps":
+                sequence_count += 1
+                options = step.get("options") or []
+                order = step.get("correct_order")
+                assert step.get("prompt"), f"{path.name} sequence {index + 1} has no prompt"
+                assert len(options) >= 3, f"{path.name} sequence {index + 1} needs at least three items"
+                assert isinstance(order, list) and sorted(order) == list(range(len(options))), (
+                    f"{path.name} sequence {index + 1} must order every item exactly once"
+                )
+                assert step.get("explanation"), f"{path.name} sequence {index + 1} has no explanation"
+            elif kind == "code_lab":
+                code_lab_count += 1
+                assert step.get("language") == "javascript", (
+                    f"{path.name} code lab {index + 1} must use the supported browser language"
+                )
+                assert step.get("prompt"), f"{path.name} code lab {index + 1} has no task prompt"
+                assert step.get("starter_code"), f"{path.name} code lab {index + 1} has no starter code"
+                assert isinstance(step.get("expected_output"), str), (
+                    f"{path.name} code lab {index + 1} needs a visible deterministic output check"
+                )
+                assert step.get("hints"), f"{path.name} code lab {index + 1} needs progressive hints"
+
+    assert sequence_count >= 2, "Expected at least two sequence-building exercises"
+    assert code_lab_count >= 2, "Expected at least two runnable browser code labs"

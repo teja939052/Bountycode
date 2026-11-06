@@ -77,6 +77,41 @@
       "answer_placeholder": "Type the numeric output",
       "expected_answer": "11",
       "explanation": "The middle element changes from 7 to 5. The sum is 4 + 5 + 2 = 11."
+    },
+    {
+      "step_number": 7,
+      "step_type": "order_steps",
+      "title": "Trace a safe array traversal",
+      "content": "A loop that visits every array element must check its index before reading the element and increment after processing.",
+      "prompt": "Put these operations in the correct order for a forward traversal.",
+      "options": [
+        "Process the element at the current index",
+        "Set the index to 0",
+        "Increase the index by 1",
+        "Check that the index is less than the array length"
+      ],
+      "correct_order": [
+        1,
+        3,
+        0,
+        2
+      ],
+      "explanation": "Start at index 0, check that it is within the array, process that element, then increment. The next iteration checks the new index before accessing it."
+    },
+    {
+      "step_number": 8,
+      "step_type": "code_lab",
+      "title": "Find the largest value",
+      "content": "The first value is a useful starting candidate. Scan the remaining values and replace the candidate whenever you find a larger value.",
+      "prompt": "Complete the comparison so the program prints the largest value: 19.",
+      "language": "javascript",
+      "starter_code": "const scores = [12, 5, 19, 8];\nlet largest = scores[0];\n\nfor (let index = 1; index < scores.length; index += 1) {\n  // TODO: update largest when this value is greater\n}\n\nconsole.log(largest);",
+      "expected_output": "19",
+      "hints": [
+        "Compare scores[index] with the current largest value.",
+        "Only replace largest when the current array value is greater.",
+        "Assign scores[index] to largest inside that condition."
+      ]
     }
   ],
   "practice_questions": [

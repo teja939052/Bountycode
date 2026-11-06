@@ -11,12 +11,17 @@ import {
   Trophy,
   Loader2,
   ChevronRight,
+  ChevronUp,
+  ChevronDown,
+  Play,
+  RotateCcw,
 } from "lucide-react";
 import api from "../services/api";
+import { useBrowserRuntime } from "../hooks/useBrowserRuntime";
 
 type Step = {
   step_number: number;
-  step_type: "explain" | "interactive" | "practice" | "assessment" | "predict_output" | "fill_blank";
+  step_type: "explain" | "interactive" | "practice" | "assessment" | "predict_output" | "fill_blank" | "order_steps" | "code_lab";
   title: string;
   content?: string;
   example?: string;
@@ -28,7 +33,12 @@ type Step = {
   prompt?: string;
   options?: string[];
   correct_index?: number;
+  correct_order?: number[];
   explanation?: string;
+  starter_code?: string;
+  expected_output?: string;
+  language?: string;
+  hints?: string[];
 };
 
 type LessonContent = {
@@ -55,6 +65,7 @@ type AnswerResult = {
   correctIndex: number | null;
   correctAnswer?: string;
   explanation: string;
+  correctOrder?: number[];
 } | null;
 
 export default function LessonPlayer() {
@@ -83,6 +94,13 @@ export default function LessonPlayer() {
   const [correctCount, setCorrectCount] = useState(0);
   const [attemptedCount, setAttemptedCount] = useState(0);
   const [textAnswer, setTextAnswer] = useState("");
+  const [sequenceOrder, setSequenceOrder] = useState<number[]>([]);
+  const [codeDraft, setCodeDraft] = useState("");
+  const [codeLabResult, setCodeLabResult] = useState<{
+    success: boolean; passed: boolean; stdout: string; stderr: string; expected: string;
+  } | null>(null);
+  const [hintsRevealed, setHintsRevealed] = useState(0);
+  const { execute: runBrowserCode } = useBrowserRuntime();
   const lessonStartedAt = useRef<number>(Date.now());
   const progressLoaded = useRef(false);
   const [resumedFromStep, setResumedFromStep] = useState(false);
@@ -107,6 +125,10 @@ export default function LessonPlayer() {
     setCompletionData(null);
     setCorrectCount(0);
     setAttemptedCount(0);
+    setSequenceOrder([]);
+    setCodeDraft("");
+    setCodeLabResult(null);
+    setHintsRevealed(0);
 
     Promise.all([
       api.companyLessons.getLesson(lessonSlug),
@@ -149,7 +171,16 @@ export default function LessonPlayer() {
 
   useEffect(() => {
     setTextAnswer("");
-  }, [currentStep, lessonSlug]);
+    setCodeLabResult(null);
+    setHintsRevealed(0);
+    const activeStep = lesson?.steps?.[currentStep];
+    setSequenceOrder(
+      activeStep?.step_type === "order_steps"
+        ? (activeStep.options || []).map((_, index) => index)
+        : [],
+    );
+    setCodeDraft(activeStep?.step_type === "code_lab" ? activeStep.starter_code || "" : "");
+  }, [currentStep, lessonSlug, lesson]);
 
   const handleAnswer = useCallback(
     async (index: number) => {
@@ -211,12 +242,81 @@ export default function LessonPlayer() {
     }
   }, [lesson, lessonSlug, currentStep, textAnswer, answerResult, saving, queryClient]);
 
+  const handleSequenceAnswer = useCallback(async () => {
+    if (!lesson || answerResult !== null || saving) return;
+    const step = lesson.steps[currentStep];
+    if (step.step_type !== "order_steps") return;
+
+    setStepError("");
+    setSaving(true);
+    try {
+      const response: any = await api.companyLessons.answerStep(lessonSlug, currentStep, sequenceOrder);
+      const result = response?.data;
+      if (!result) throw new Error("The sequence could not be graded.");
+      setAttemptedCount((count) => count + 1);
+      if (result.correct) setCorrectCount((count) => count + 1);
+      setAnswerResult({
+        correct: Boolean(result.correct),
+        correctIndex: null,
+        correctOrder: Array.isArray(result.correct_order) ? result.correct_order : undefined,
+        explanation: result.explanation || "",
+      });
+      setShowExplanation(true);
+      void queryClient.invalidateQueries({ queryKey: ["adaptive"] });
+    } catch (error: any) {
+      setStepError(error?.message || "Could not check this sequence. Please retry.");
+    } finally {
+      setSaving(false);
+    }
+  }, [lesson, lessonSlug, currentStep, sequenceOrder, answerResult, saving, queryClient]);
+
+  const handleRunCodeLab = useCallback(async () => {
+    if (!lesson || saving) return;
+    const step = lesson.steps[currentStep];
+    if (step.step_type !== "code_lab") return;
+    if ((step.language || "javascript").toLowerCase() !== "javascript") {
+      setStepError("This browser lab currently supports JavaScript. Use the full compiler for other languages.");
+      return;
+    }
+
+    setStepError("");
+    setSaving(true);
+    setCodeLabResult(null);
+    try {
+      const result = await runBrowserCode("javascript", codeDraft, "", 3000);
+      const normalize = (value: string) => value.replace(/\r\n/g, "\n").trim();
+      const expected = String(step.expected_output ?? "");
+      const passed = Boolean(result.success) && normalize(result.stdout) === normalize(expected);
+      setCodeLabResult({
+        success: Boolean(result.success),
+        passed,
+        stdout: result.stdout || "",
+        stderr: result.stderr || "",
+        expected,
+      });
+      if (!result.success) {
+        setStepError(result.stderr || "The code could not be run. Check the error and try again.");
+      } else if (!passed) {
+        setStepError("Your program ran, but its output does not match the exercise check yet.");
+      }
+    } catch (error: any) {
+      setStepError(error?.message || "The browser runner could not start. Please retry.");
+    } finally {
+      setSaving(false);
+    }
+  }, [lesson, currentStep, saving, runBrowserCode, codeDraft]);
+
   const goNext = useCallback(() => {
     if (!lesson) return;
     const step = lesson.steps[currentStep];
-    const mustAttempt = ["interactive", "practice", "predict_output", "fill_blank"].includes(step.step_type);
-    if (mustAttempt && !answerResult) {
-      setStepError("Try this practice step before continuing. You will see feedback after your answer.");
+    const mustAttempt = ["interactive", "practice", "predict_output", "fill_blank", "order_steps", "code_lab"].includes(step.step_type);
+    const stepCompleted = step.step_type === "code_lab" ? Boolean(codeLabResult?.passed) : Boolean(answerResult);
+    if (mustAttempt && !stepCompleted) {
+      setStepError(
+        step.step_type === "code_lab"
+          ? "Run the code and pass the output check before continuing."
+          : "Try this practice step before continuing. You will see feedback after your answer.",
+      );
       return;
     }
     if (currentStep < lesson.steps.length - 1) {
@@ -228,7 +328,7 @@ export default function LessonPlayer() {
       setPhase("assessment");
       setAssessmentError("");
     }
-  }, [lesson, currentStep, answerResult]);
+  }, [lesson, currentStep, answerResult, codeLabResult]);
 
   const goBack = useCallback(() => {
     if (phase === "assessment") {
@@ -515,7 +615,7 @@ export default function LessonPlayer() {
               </span>
               <h2 className="text-lg font-bold mt-1">{step.title}</h2>
             </div>
-            {["interactive", "practice", "predict_output", "fill_blank"].includes(step.step_type) ? (
+            {["interactive", "practice", "predict_output", "fill_blank", "order_steps", "code_lab"].includes(step.step_type) ? (
               <Lightbulb className="h-5 w-5 text-yellow-400 shrink-0" />
             ) : (
               <BookOpen className="h-5 w-5 text-brand-sky shrink-0" />
@@ -551,10 +651,128 @@ export default function LessonPlayer() {
               <p className="text-xs text-yellow-200">💡 {step.tip}</p>
             </div>
           )}
+
+          {step.hints && step.hints.length > 0 && (
+            <div className="mb-4 rounded-xl border border-yellow-500/20 bg-yellow-500/5 p-3">
+              <button
+                type="button"
+                onClick={() => setHintsRevealed((count) => Math.min(count + 1, step.hints!.length))}
+                disabled={hintsRevealed >= step.hints.length}
+                className="text-xs font-semibold text-yellow-200 disabled:opacity-50"
+              >
+                {hintsRevealed >= step.hints.length ? "All hints revealed" : `Reveal hint ${hintsRevealed + 1} of ${step.hints.length}`}
+              </button>
+              {hintsRevealed > 0 && (
+                <p className="mt-2 text-xs leading-relaxed text-text-secondary">{step.hints[hintsRevealed - 1]}</p>
+              )}
+            </div>
+          )}
           {stepError && (
             <p role="alert" className="mb-4 rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-xs text-red-200">
               {stepError}
             </p>
+          )}
+
+          {step.step_type === "order_steps" && (
+            <div className="mb-4 rounded-xl border border-white/10 bg-white/[0.03] p-4">
+              {step.prompt && <p className="mb-3 text-sm font-semibold text-text-primary">{step.prompt}</p>}
+              <ol className="space-y-2" aria-label="Reorder the steps">
+                {sequenceOrder.map((optionIndex, position) => (
+                  <li key={optionIndex} className="flex items-center gap-2 rounded-lg border border-white/10 bg-surface-base px-3 py-2">
+                    <span className="w-6 shrink-0 text-center font-mono text-xs text-brand-sky">{position + 1}</span>
+                    <span className="min-w-0 flex-1 text-sm text-text-primary">{step.options?.[optionIndex]}</span>
+                    <button
+                      type="button"
+                      aria-label={`Move ${step.options?.[optionIndex]} up`}
+                      disabled={position === 0 || showExplanation || saving}
+                      onClick={() => setSequenceOrder((order) => {
+                        const next = [...order];
+                        [next[position - 1], next[position]] = [next[position], next[position - 1]];
+                        return next;
+                      })}
+                      className="rounded-md p-1 hover:bg-white/10 disabled:opacity-30"
+                    >
+                      <ChevronUp size={16} />
+                    </button>
+                    <button
+                      type="button"
+                      aria-label={`Move ${step.options?.[optionIndex]} down`}
+                      disabled={position === sequenceOrder.length - 1 || showExplanation || saving}
+                      onClick={() => setSequenceOrder((order) => {
+                        const next = [...order];
+                        [next[position], next[position + 1]] = [next[position + 1], next[position]];
+                        return next;
+                      })}
+                      className="rounded-md p-1 hover:bg-white/10 disabled:opacity-30"
+                    >
+                      <ChevronDown size={16} />
+                    </button>
+                  </li>
+                ))}
+              </ol>
+              <button
+                type="button"
+                onClick={() => void handleSequenceAnswer()}
+                disabled={saving || showExplanation || sequenceOrder.length < 2}
+                className="mt-3 min-h-10 rounded-lg bg-brand-sky px-4 text-sm font-semibold text-white disabled:opacity-40"
+              >
+                {saving ? "Checking…" : "Check sequence"}
+              </button>
+              {showExplanation && answerResult?.correctOrder && (
+                <p className="mt-3 text-xs leading-relaxed text-text-secondary">
+                  Correct sequence: {answerResult.correctOrder.map((index) => step.options?.[index]).join(" → ")}
+                </p>
+              )}
+            </div>
+          )}
+
+          {step.step_type === "code_lab" && (
+            <div className="mb-4 rounded-xl border border-white/10 bg-white/[0.03] p-4">
+              {step.prompt && <p className="mb-3 text-sm font-semibold text-text-primary">{step.prompt}</p>}
+              <div className="mb-2 flex items-center justify-between text-[11px] text-text-secondary">
+                <span>JavaScript · runs in a disposable browser worker</span>
+                <button
+                  type="button"
+                  onClick={() => { setCodeDraft(step.starter_code || ""); setCodeLabResult(null); setStepError(""); }}
+                  className="inline-flex items-center gap-1 rounded-md px-2 py-1 hover:bg-white/10"
+                >
+                  <RotateCcw size={12} /> Reset starter
+                </button>
+              </div>
+              <textarea
+                aria-label="Edit the exercise code"
+                spellCheck={false}
+                autoCapitalize="off"
+                autoCorrect="off"
+                value={codeDraft}
+                onChange={(event) => { setCodeDraft(event.target.value); setCodeLabResult(null); setStepError(""); }}
+                disabled={saving}
+                rows={9}
+                className="w-full resize-y rounded-lg border border-white/10 bg-[#101820] p-3 font-mono text-xs leading-6 text-slate-100 outline-none focus:border-brand-sky"
+              />
+              <div className="mt-3 flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => void handleRunCodeLab()}
+                  disabled={saving || !codeDraft.trim()}
+                  className="inline-flex min-h-10 items-center gap-2 rounded-lg bg-brand-sky px-4 text-sm font-semibold text-white disabled:opacity-40"
+                >
+                  <Play size={14} /> {saving ? "Running…" : "Run code"}
+                </button>
+                <span className="text-[11px] text-text-secondary">No server compiler call for this exercise.</span>
+              </div>
+              {codeLabResult && (
+                <div className={`mt-3 rounded-lg border p-3 ${codeLabResult.passed ? "border-green-500/30 bg-green-500/10" : "border-amber-500/30 bg-amber-500/10"}`}>
+                  <p className="mb-2 text-xs font-semibold">
+                    {codeLabResult.passed ? "Output check passed" : "Output check not passed"}
+                  </p>
+                  <p className="text-[11px] text-text-secondary">Your output</p>
+                  <pre className="mt-1 overflow-x-auto whitespace-pre-wrap font-mono text-xs text-text-primary">{codeLabResult.stdout || (codeLabResult.stderr ? "" : "(no output)")}</pre>
+                  {codeLabResult.stderr && <pre className="mt-2 overflow-x-auto whitespace-pre-wrap text-xs text-red-300">{codeLabResult.stderr}</pre>}
+                  <p className="mt-2 text-[11px] text-text-secondary">Expected visible check: <code className="text-brand-sky">{codeLabResult.expected || "(empty)"}</code></p>
+                </div>
+              )}
+            </div>
           )}
 
           {(step.step_type === "predict_output" || step.step_type === "fill_blank") && (
@@ -677,9 +895,9 @@ export default function LessonPlayer() {
             <button
               onClick={goNext}
               disabled={saving || (
-                ["interactive", "practice", "predict_output", "fill_blank"].includes(step.step_type)
+                ["interactive", "practice", "predict_output", "fill_blank", "order_steps"].includes(step.step_type)
                 && !answerResult
-              )}
+              ) || (step.step_type === "code_lab" && !codeLabResult?.passed)}
               className="rounded-xl bg-brand-sky px-4 py-2 text-sm text-white hover:bg-brand-sky/90 disabled:opacity-50"
             >
               {saving ? (

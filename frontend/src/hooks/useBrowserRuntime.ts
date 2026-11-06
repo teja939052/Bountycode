@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useCallback, useRef } from "react";
 
 export interface BrowserRunResult {
   success: boolean;
@@ -11,7 +11,7 @@ export interface BrowserRunResult {
   source: "browser";
 }
 
-const BROWSER_LANGUAGES = new Set(["python", "javascript", "typescript"]);
+const BROWSER_LANGUAGES = new Set(["python", "javascript"]);
 
 let pyodideInstance: any = null;
 let pyodideLoading: Promise<any> | null = null;
@@ -47,6 +47,123 @@ async function getPyodide() {
   return pyodideLoading;
 }
 
+const MAX_BROWSER_CODE_CHARS = 20_000;
+
+function runJavaScriptInWorker(code: string, timeoutMs: number): Promise<BrowserRunResult> {
+  if (typeof Worker === "undefined" || typeof window === "undefined") {
+    return Promise.resolve({
+      success: false,
+      stdout: "",
+      stderr: "This browser does not support the isolated code runner.",
+      exit_code: 1,
+      source: "browser",
+    });
+  }
+  if (code.length > MAX_BROWSER_CODE_CHARS) {
+    return Promise.resolve({
+      success: false,
+      stdout: "",
+      stderr: "This exercise is too large to run in the browser.",
+      exit_code: 1,
+      source: "browser",
+    });
+  }
+
+  // Worker code has no DOM, cookies or localStorage. Network-facing APIs are
+  // disabled for this educational runner; server submissions remain separate.
+  const workerSource = [
+    "const send = self.postMessage.bind(self);",
+    "const lines = [];",
+    "const stringify = (value) => {",
+    "  if (typeof value === 'string') return value;",
+    "  try { const json = JSON.stringify(value); return json === undefined ? String(value) : json; }",
+    "  catch (_) { return String(value); }",
+    "};",
+    "const write = (...args) => {",
+    "  const current = lines.join('\\n').length;",
+    "  const remaining = 20000 - current;",
+    "  if (remaining > 0) lines.push(args.map(stringify).join(' ').slice(0, remaining));",
+    "};",
+    "const safeConsole = { log: write, info: write, warn: write, error: write, debug: write, clear: () => { lines.length = 0; } };",
+    "for (const key of ['fetch','XMLHttpRequest','WebSocket','EventSource','BroadcastChannel','SharedWorker','Worker','importScripts','MessageChannel']) {",
+    "  try { Object.defineProperty(self, key, { value: undefined, writable: false, configurable: false }); } catch (_) {}",
+    "}",
+    "try { Object.defineProperty(self, 'console', { value: safeConsole, writable: false, configurable: false }); } catch (_) { self.console = safeConsole; }",
+    "self.onmessage = async ({ data }) => {",
+    "  try {",
+    "    const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor;",
+    "    const run = new AsyncFunction('console', data.code);",
+    "    const returned = await run(safeConsole);",
+    "    if (returned !== undefined) write(returned);",
+    "    send({ type: 'result', success: true, stdout: lines.join('\\n').slice(0, 20000), stderr: '' });",
+    "  } catch (error) {",
+    "    send({ type: 'result', success: false, stdout: lines.join('\\n').slice(0, 20000), stderr: String(error && error.message || error).slice(0, 5000) });",
+    "  }",
+    "};",
+  ].join('\n');
+
+  let worker: Worker;
+  let objectUrl = "";
+  try {
+    objectUrl = URL.createObjectURL(new Blob([workerSource], { type: "text/javascript" }));
+    worker = new Worker(objectUrl, { name: "bountycode-learning-runner" });
+  } catch (error: any) {
+    if (objectUrl) URL.revokeObjectURL(objectUrl);
+    return Promise.resolve({
+      success: false,
+      stdout: "",
+      stderr: error?.message || "Could not start the browser runner.",
+      exit_code: 1,
+      source: "browser",
+    });
+  }
+
+  return new Promise((resolve) => {
+    let settled = false;
+    const startedAt = performance.now();
+    const finish = (result: Omit<BrowserRunResult, "source">) => {
+      if (settled) return;
+      settled = true;
+      window.clearTimeout(timer);
+      worker.terminate();
+      URL.revokeObjectURL(objectUrl);
+      resolve({
+        ...result,
+        execution_time: Number(((performance.now() - startedAt) / 1000).toFixed(3)),
+        memory_usage: 0,
+        source: "browser",
+      });
+    };
+    const timer = window.setTimeout(() => {
+      finish({
+        success: false,
+        stdout: "",
+        stderr: "Execution timed out. Check for an infinite loop and try again.",
+        exit_code: -1,
+      });
+    }, Math.max(250, Math.min(timeoutMs, 5000)));
+
+    worker.onmessage = (event: MessageEvent) => {
+      const message = event.data || {};
+      finish({
+        success: Boolean(message.success),
+        stdout: String(message.stdout || ""),
+        stderr: String(message.stderr || ""),
+        exit_code: message.success ? 0 : 1,
+      });
+    };
+    worker.onerror = (event) => {
+      finish({
+        success: false,
+        stdout: "",
+        stderr: event.message || "The browser runner stopped unexpectedly.",
+        exit_code: 1,
+      });
+    };
+    worker.postMessage({ code });
+  });
+}
+
 export function isBrowserNativeLanguage(language: string): boolean {
   return BROWSER_LANGUAGES.has(language.toLowerCase());
 }
@@ -56,25 +173,8 @@ export function useBrowserRuntime() {
   const [pyodideError, setPyodideError] = useState<string | null>(null);
   const abortRef = useRef<AbortController | null>(null);
 
-  useEffect(() => {
-    let cancelled = false;
-    getPyodide()
-      .then(() => {
-        if (!cancelled) {
-          setPyodideReady(true);
-          setPyodideError(null);
-        }
-      })
-      .catch((err) => {
-        if (!cancelled) {
-          setPyodideReady(false);
-          setPyodideError(err?.message || "Failed to load browser runtime");
-        }
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+  // Pyodide is loaded only after a learner chooses to run Python. Opening
+  // a JavaScript or reading lesson should not download the Python runtime.
 
   const executePython = useCallback(
     async (code: string, stdin = "", timeoutMs = 5000): Promise<BrowserRunResult> => {
@@ -86,6 +186,8 @@ export function useBrowserRuntime() {
 
       try {
         const pyodide = await getPyodide();
+        setPyodideReady(true);
+        setPyodideError(null);
 
         if (stdin.trim()) {
           pyodide.runPython(`
@@ -123,6 +225,8 @@ sys.stdin = StringIO("${stdin.replace(/"/g, '\\"').replace(/\n/g, "\\n")}")
       } catch (err: any) {
         clearTimeout(timeoutId);
         const message = err?.message || String(err);
+        setPyodideReady(false);
+        setPyodideError(message);
         const isAbort = err?.name === "AbortError";
 
         return {
@@ -144,82 +248,7 @@ sys.stdin = StringIO("${stdin.replace(/"/g, '\\"').replace(/\n/g, "\\n")}")
 
   const executeJavaScript = useCallback(
     async (code: string, _stdin = "", timeoutMs = 5000): Promise<BrowserRunResult> => {
-      if (abortRef.current) abortRef.current.abort();
-      const controller = new AbortController();
-      abortRef.current = controller;
-
-      const timeoutPromise = new Promise<never>((_, reject) => {
-        const id = setTimeout(() => {
-          controller.abort();
-          reject(new Error("Execution timed out"));
-        }, timeoutMs);
-        controller.signal.addEventListener("abort", () => clearTimeout(id), { once: true });
-      });
-
-      try {
-        const result = await Promise.race([
-          new Promise<BrowserRunResult>((resolve) => {
-            const originalLog = console.log;
-            const originalError = console.error;
-            const originalWarn = console.warn;
-            const logs: string[] = [];
-            console.log = (...args: any[]) => {
-              logs.push(args.map(String).join(" "));
-            };
-            console.error = (...args: any[]) => {
-              logs.push(args.map(String).join(" "));
-            };
-            console.warn = (...args: any[]) => {
-              logs.push(args.map(String).join(" "));
-            };
-
-            try {
-              const fn = new Function(code);
-              fn();
-              resolve({
-                success: true,
-                stdout: logs.join("\n").trim(),
-                stderr: "",
-                exit_code: 0,
-                execution_time: 0,
-                memory_usage: 0,
-                source: "browser",
-              });
-            } catch (err: any) {
-              resolve({
-                success: false,
-                stdout: logs.join("\n").trim(),
-                stderr: err?.message || String(err),
-                compile_error: "",
-                exit_code: 1,
-                execution_time: 0,
-                memory_usage: 0,
-                source: "browser",
-              });
-            } finally {
-              console.log = originalLog;
-              console.error = originalError;
-              console.warn = originalWarn;
-            }
-          }),
-          timeoutPromise,
-        ]);
-
-        return result as BrowserRunResult;
-      } catch (err: any) {
-        return {
-          success: false,
-          stdout: "",
-          stderr: err?.message || "Execution failed",
-          compile_error: "",
-          exit_code: -1,
-          execution_time: timeoutMs / 1000,
-          memory_usage: 0,
-          source: "browser",
-        };
-      } finally {
-        if (abortRef.current === controller) abortRef.current = null;
-      }
+      return runJavaScriptInWorker(code, timeoutMs);
     },
     []
   );
