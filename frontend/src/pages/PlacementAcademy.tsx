@@ -241,7 +241,9 @@ export default function PlacementAcademy() {
   });
 
   const daily = (dailyResult as any)?.data ?? dailyResult ?? {};
-  const mission = daily?.company_focus || daily?.tasks?.[0] || null;
+  // The Study Engine publishes company work as company_mission. Prefer that
+  // canonical target-aware mission over generic daily tasks.
+  const mission = daily?.company_mission || daily?.company_focus || daily?.tasks?.[0] || null;
   const skillData = (skillResult as any)?.data ?? skillResult ?? {};
   const skills = (skillData.skills ?? skillData.assessment?.skills ?? {}) as Record<string, SkillEvidence>;
   const skillRows = useMemo(
