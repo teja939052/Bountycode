@@ -32,7 +32,7 @@ class ReviewRecordRequest(BaseModel):
     is_correct: bool = Field(..., description="Whether the attempt was correct")
 
 
-def _doc_to_state(doc: dict) -> Any:
+def _doc_to_state(doc: dict):
     """Convert a persisted problem card without resetting its due date."""
     return deserialize_state(doc)
 
