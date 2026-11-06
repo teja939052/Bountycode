@@ -216,6 +216,11 @@
       "type": "misconception",
       "question": "Name a common mistake in SQL SELECT Fundamentals.",
       "answer": "WHERE filters rows before grouping; HAVING filters groups after aggregation."
+    },
+    {
+      "type": "application",
+      "question": "When should you use WHERE instead of HAVING?",
+      "answer": "Use WHERE to filter individual rows before grouping. Use HAVING to filter groups after GROUP BY, often using aggregate results such as COUNT or SUM."
     }
   ]
 }
