@@ -25,12 +25,15 @@ export const companyLessonsApi = {
     );
   },
 
-  answerStep(slug: string, stepIndex: number, answerIndex: number) {
-    return request<{ success: boolean; data: { correct: boolean; selected_index: number; correct_index: number; explanation: string } }>(
+  answerStep(slug: string, stepIndex: number, answer: number | string) {
+    const payload = typeof answer === "number"
+      ? { answer_index: answer }
+      : { answer_text: answer };
+    return request<{ success: boolean; data: { correct: boolean; selected_index: number | null; correct_index: number | null; correct_answer: string; explanation: string } }>(
       `/api/v1/company-lessons/${encodeURIComponent(slug)}/steps/${stepIndex}/answer`,
       {
         method: "POST",
-        body: JSON.stringify({ answer_index: answerIndex }),
+        body: JSON.stringify(payload),
       },
     );
   },
