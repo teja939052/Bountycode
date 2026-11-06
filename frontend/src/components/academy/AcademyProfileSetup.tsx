@@ -44,7 +44,10 @@ export default function AcademyProfileSetup() {
     }),
     onSuccess: async () => {
       setSaved(true);
-      await queryClient.invalidateQueries({ queryKey: ["academy", "learner-profile"] });
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: ["academy", "learner-profile"] }),
+        queryClient.invalidateQueries({ queryKey: ["academy", "plan"] }),
+      ]);
     },
   });
 
