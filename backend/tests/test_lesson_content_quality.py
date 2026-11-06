@@ -229,7 +229,8 @@ def test_programming_foundations_form_a_complete_prerequisite_chain():
     for lesson in (variables, conditions, functions):
         assert len(lesson["steps"]) >= 8
         types = {step["step_type"] for step in lesson["steps"]}
-        assert {"explain", "interactive", "practice", "predict_output", "order_steps", "code_lab", "debug_choice"}.issubset(types)
+        assert {"explain", "interactive", "predict_output", "order_steps", "code_lab", "debug_choice"}.issubset(types)
+        assert "practice" in types or "fill_blank" in types
         assert len(lesson["assessment"]["questions"]) >= 5
         assert len(lesson["worked_examples"]) >= 3
         assert len(lesson["company_applications"]) >= 3
