@@ -1,0 +1,122 @@
+{
+  "slug": "sql_indexes_triggers",
+  "id": "lesson_sql_indexes_triggers_001",
+  "title": "SQL Indexes and Triggers",
+  "domain": "SQL",
+  "pattern": "Database Indexing and Triggers",
+  "difficulty": "medium",
+  "duration_min": 24,
+  "xp_reward": 110,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Why indexes exist",
+      "content": "An index is a data structure that helps the database find rows without scanning every row in a table. It can speed up reads, but it uses storage and may slow inserts, updates and deletes because the index must also be maintained.",
+      "example": "An index on Employee(employee_id) helps look up an employee by ID."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Choose an indexing candidate",
+      "prompt": "Which query is most likely to benefit from an index on email?",
+      "options": [
+        "SELECT * FROM User WHERE email='a@example.com'",
+        "SELECT COUNT(*) FROM User",
+        "SELECT * FROM User",
+        "SELECT 1"
+      ],
+      "correct_index": 0,
+      "explanation": "The equality predicate searches for rows by email, so an index on email can help locate them."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Understand composite indexes",
+      "content": "A composite index contains more than one column. Column order matters because many database engines can use the leftmost prefix of the index efficiently.",
+      "example": "An index on (department_id, salary) can help queries filtering by department_id, and often by both department_id and salary."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Recognize a trigger",
+      "prompt": "What is a database trigger?",
+      "options": [
+        "A manually run SELECT query",
+        "Code automatically invoked by a specified database event",
+        "A table index",
+        "A user password"
+      ],
+      "correct_index": 1,
+      "explanation": "A trigger runs automatically when its configured event occurs, such as an INSERT, UPDATE or DELETE."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Before and after triggers",
+      "content": "A BEFORE trigger runs before the data change; an AFTER trigger runs after it. Triggers can enforce rules or maintain audit records, but hidden side effects make them harder to debug.",
+      "tip": "Use triggers deliberately and document their effects on related tables."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "What is a main benefit of an index?",
+        "options": [
+          "Faster lookup for suitable queries",
+          "No storage cost",
+          "Every write becomes faster",
+          "It replaces all constraints"
+        ],
+        "correct_index": 0,
+        "explanation": "Indexes can reduce the amount of data read to find matching rows."
+      },
+      {
+        "prompt": "What is a common cost of maintaining indexes?",
+        "options": [
+          "More storage and write overhead",
+          "Loss of all primary keys",
+          "No ability to query",
+          "Automatic encryption"
+        ],
+        "correct_index": 0,
+        "explanation": "Indexes occupy storage and must be updated when indexed values change."
+      },
+      {
+        "prompt": "A trigger is commonly activated by:",
+        "options": [
+          "A defined INSERT, UPDATE or DELETE event",
+          "Opening a text editor",
+          "A CSS change",
+          "A CPU interrupt only"
+        ],
+        "correct_index": 0,
+        "explanation": "Database triggers respond to specified database events."
+      },
+      {
+        "prompt": "When does an AFTER trigger run?",
+        "options": [
+          "Before the statement",
+          "After the triggering change",
+          "Only during SELECT",
+          "Before the database starts"
+        ],
+        "correct_index": 1,
+        "explanation": "An AFTER trigger executes after the triggering operation."
+      },
+      {
+        "prompt": "Why does column order matter in a composite index?",
+        "options": [
+          "Because queries may use the leftmost prefix",
+          "Because indexes have no columns",
+          "It changes the primary key automatically",
+          "It sorts every table permanently"
+        ],
+        "correct_index": 0,
+        "explanation": "Index column order influences which predicates can use the index efficiently."
+      }
+    ]
+  }
+}
