@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback } from "react";
 
 export interface BrowserRunResult {
   success: boolean;
@@ -12,65 +12,161 @@ export interface BrowserRunResult {
 }
 
 const BROWSER_LANGUAGES = new Set(["python", "javascript"]);
+const MAX_BROWSER_CODE_CHARS = 20_000;
+const MAX_OUTPUT_CHARS = 20_000;
+const PYODIDE_VERSION = "0.23.4";
+const PYODIDE_BASE_URL = `https://cdn.jsdelivr.net/pyodide/v${PYODIDE_VERSION}/full/`;
 
-let pyodideInstance: any = null;
-let pyodideLoading: Promise<any> | null = null;
-
-async function getPyodide() {
-  if (pyodideInstance) return pyodideInstance;
-  if (pyodideLoading) return pyodideLoading;
-
-  // Pyodide loads from CDN at runtime (no npm dependency on purpose: the
-  // package is ~10MB and the hook already pins a CDN indexURL). A bare
-  // "pyodide" specifier breaks the production bundle (nothing to resolve),
-  // so import the full CDN URL, which bundlers leave alone. Callers already
-  // handle load failure via pyodideReady/pyodideError and fall back to
-  // server execution.
-  // @ts-ignore - pyodide CDN module is not in node_modules
-  pyodideLoading = import("https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js")
-    .then(async (mod: unknown) => {
-      const loadPyodide =
-        (mod as { loadPyodide?: unknown }).loadPyodide ??
-        (window as unknown as { loadPyodide?: unknown }).loadPyodide;
-      if (typeof loadPyodide !== "function") throw new Error("pyodide loader unavailable");
-      const pyodide = await (loadPyodide as (opts?: { indexURL?: string }) => Promise<unknown>)({
-        indexURL: "https://cdn.jsdelivr.net/pyodide/v0.23.4/full/",
-      });
-      pyodideInstance = pyodide;
-      return pyodide;
-    })
-    .catch((err) => {
-      pyodideLoading = null;
-      throw err;
-    });
-
-  return pyodideLoading;
+function failure(stderr: string, exitCode = 1): BrowserRunResult {
+  return { success: false, stdout: "", stderr, exit_code: exitCode, source: "browser" };
 }
 
-const MAX_BROWSER_CODE_CHARS = 20_000;
+/**
+ * Python runs in a disposable Worker, not the application's window. This
+ * removes direct access to the DOM, localStorage and page authentication state.
+ * Network/worker APIs are disabled after Pyodide initializes. This is a
+ * formative low-cost runner only; server-side grading remains authoritative.
+ */
+function runPythonInWorker(
+  code: string,
+  stdin: string,
+  timeoutMs: number,
+  onReady: () => void,
+): Promise<BrowserRunResult> {
+  if (typeof Worker === "undefined" || typeof window === "undefined") {
+    return Promise.resolve(failure("This browser does not support the isolated Python runner."));
+  }
+  if (code.length > MAX_BROWSER_CODE_CHARS) {
+    return Promise.resolve(failure("This exercise is too large to run in the browser."));
+  }
+
+  const workerSource = `
+    const send = self.postMessage.bind(self);
+    const baseUrl = ${JSON.stringify(PYODIDE_BASE_URL)};
+    const maxOutput = ${MAX_OUTPUT_CHARS};
+    let pyodide;
+    const append = (current, value) => (current + String(value)).slice(0, maxOutput);
+
+    async function initialize() {
+      importScripts(baseUrl + "pyodide.js");
+      pyodide = await self.loadPyodide({ indexURL: baseUrl });
+
+      // Learner code executes only after the runtime has loaded and the
+      // network/worker APIs have been removed from its Worker global.
+      for (const key of [
+        "fetch", "XMLHttpRequest", "WebSocket", "EventSource",
+        "BroadcastChannel", "SharedWorker", "Worker", "importScripts",
+        "MessageChannel", "WebTransport", "caches", "indexedDB"
+      ]) {
+        try {
+          Object.defineProperty(self, key, {
+            value: undefined, writable: false, configurable: false
+          });
+        } catch (_) {}
+      }
+      try {
+        Object.defineProperty(self, "postMessage", {
+          value: undefined, writable: false, configurable: false
+        });
+      } catch (_) {}
+
+      self.addEventListener("message", async ({ data }) => {
+        let stdout = "";
+        let stderr = "";
+        pyodide.setStdout({ batched: (value) => { stdout = append(stdout, value + "\\n"); } });
+        pyodide.setStderr({ batched: (value) => { stderr = append(stderr, value + "\\n"); } });
+        try {
+          pyodide.globals.set("__bountycode_stdin", String(data.stdin || ""));
+          pyodide.runPython(
+            "import sys\\nfrom io import StringIO\\nsys.stdin = StringIO(__bountycode_stdin)"
+          );
+          pyodide.globals.delete("__bountycode_stdin");
+          await pyodide.runPythonAsync(String(data.code || ""));
+          send({ type: "result", success: true, stdout: stdout.trimEnd(), stderr: "" });
+        } catch (error) {
+          send({
+            type: "result",
+            success: false,
+            stdout: stdout.trimEnd(),
+            stderr: append(stderr, String(error && error.message || error)).slice(0, 5000)
+          });
+        }
+      });
+      send({ type: "ready" });
+    }
+
+    initialize().catch((error) => {
+      send({ type: "load_error", error: String(error && error.message || error).slice(0, 5000) });
+    });
+  `;
+
+  let worker: Worker;
+  let objectUrl = "";
+  try {
+    objectUrl = URL.createObjectURL(new Blob([workerSource], { type: "text/javascript" }));
+    worker = new Worker(objectUrl, { name: "bountycode-python-runner" });
+  } catch (error: any) {
+    if (objectUrl) URL.revokeObjectURL(objectUrl);
+    return Promise.resolve(failure(error?.message || "Could not start the Python runner."));
+  }
+
+  return new Promise((resolve) => {
+    let settled = false;
+    let executionTimer: number | undefined;
+    const startedAt = performance.now();
+    const loadTimer = window.setTimeout(() => {
+      finish(failure("Python runtime initialization timed out. Check your connection and retry.", -1));
+    }, 20_000);
+
+    const finish = (result: BrowserRunResult) => {
+      if (settled) return;
+      settled = true;
+      window.clearTimeout(loadTimer);
+      if (executionTimer !== undefined) window.clearTimeout(executionTimer);
+      worker.terminate();
+      URL.revokeObjectURL(objectUrl);
+      resolve({
+        ...result,
+        execution_time: Number(((performance.now() - startedAt) / 1000).toFixed(3)),
+        memory_usage: 0,
+        source: "browser",
+      });
+    };
+
+    worker.onmessage = (event: MessageEvent) => {
+      const message = event.data || {};
+      if (message.type === "ready") {
+        onReady();
+        executionTimer = window.setTimeout(() => {
+          finish(failure("Execution timed out. Check for an infinite loop and try again.", -1));
+        }, Math.max(250, Math.min(timeoutMs, 10_000)));
+        worker.postMessage({ code, stdin });
+      } else if (message.type === "load_error") {
+        finish(failure(message.error || "Failed to load the Python runtime."));
+      } else if (message.type === "result") {
+        finish({
+          success: Boolean(message.success),
+          stdout: String(message.stdout || "").slice(0, MAX_OUTPUT_CHARS),
+          stderr: String(message.stderr || "").slice(0, 5_000),
+          exit_code: message.success ? 0 : 1,
+          source: "browser",
+        });
+      }
+    };
+    worker.onerror = (event) => {
+      finish(failure(event.message || "The Python runner stopped unexpectedly."));
+    };
+  });
+}
 
 function runJavaScriptInWorker(code: string, timeoutMs: number): Promise<BrowserRunResult> {
   if (typeof Worker === "undefined" || typeof window === "undefined") {
-    return Promise.resolve({
-      success: false,
-      stdout: "",
-      stderr: "This browser does not support the isolated code runner.",
-      exit_code: 1,
-      source: "browser",
-    });
+    return Promise.resolve(failure("This browser does not support the isolated code runner."));
   }
   if (code.length > MAX_BROWSER_CODE_CHARS) {
-    return Promise.resolve({
-      success: false,
-      stdout: "",
-      stderr: "This exercise is too large to run in the browser.",
-      exit_code: 1,
-      source: "browser",
-    });
+    return Promise.resolve(failure("This exercise is too large to run in the browser."));
   }
 
-  // Worker code has no DOM, cookies or localStorage. Network-facing APIs are
-  // disabled for this educational runner; server submissions remain separate.
   const workerSource = [
     "const send = self.postMessage.bind(self);",
     "const lines = [];",
@@ -109,19 +205,17 @@ function runJavaScriptInWorker(code: string, timeoutMs: number): Promise<Browser
     worker = new Worker(objectUrl, { name: "bountycode-learning-runner" });
   } catch (error: any) {
     if (objectUrl) URL.revokeObjectURL(objectUrl);
-    return Promise.resolve({
-      success: false,
-      stdout: "",
-      stderr: error?.message || "Could not start the browser runner.",
-      exit_code: 1,
-      source: "browser",
-    });
+    return Promise.resolve(failure(error?.message || "Could not start the browser runner."));
   }
 
   return new Promise((resolve) => {
     let settled = false;
     const startedAt = performance.now();
-    const finish = (result: Omit<BrowserRunResult, "source">) => {
+    const timer = window.setTimeout(() => {
+      finish(failure("Execution timed out. Check for an infinite loop and try again.", -1));
+    }, Math.max(250, Math.min(timeoutMs, 5_000)));
+
+    const finish = (result: BrowserRunResult) => {
       if (settled) return;
       settled = true;
       window.clearTimeout(timer);
@@ -134,14 +228,6 @@ function runJavaScriptInWorker(code: string, timeoutMs: number): Promise<Browser
         source: "browser",
       });
     };
-    const timer = window.setTimeout(() => {
-      finish({
-        success: false,
-        stdout: "",
-        stderr: "Execution timed out. Check for an infinite loop and try again.",
-        exit_code: -1,
-      });
-    }, Math.max(250, Math.min(timeoutMs, 5000)));
 
     worker.onmessage = (event: MessageEvent) => {
       const message = event.data || {};
@@ -150,15 +236,11 @@ function runJavaScriptInWorker(code: string, timeoutMs: number): Promise<Browser
         stdout: String(message.stdout || ""),
         stderr: String(message.stderr || ""),
         exit_code: message.success ? 0 : 1,
+        source: "browser",
       });
     };
     worker.onerror = (event) => {
-      finish({
-        success: false,
-        stdout: "",
-        stderr: event.message || "The browser runner stopped unexpectedly.",
-        exit_code: 1,
-      });
+      finish(failure(event.message || "The browser runner stopped unexpectedly."));
     };
     worker.postMessage({ code });
   });
@@ -171,115 +253,36 @@ export function isBrowserNativeLanguage(language: string): boolean {
 export function useBrowserRuntime() {
   const [pyodideReady, setPyodideReady] = useState(false);
   const [pyodideError, setPyodideError] = useState<string | null>(null);
-  const abortRef = useRef<AbortController | null>(null);
-
-  // Pyodide is loaded only after a learner chooses to run Python. Opening
-  // a JavaScript or reading lesson should not download the Python runtime.
 
   const executePython = useCallback(
-    async (code: string, stdin = "", timeoutMs = 5000): Promise<BrowserRunResult> => {
-      if (abortRef.current) abortRef.current.abort();
-      const controller = new AbortController();
-      abortRef.current = controller;
-
-      const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
-
-      try {
-        const pyodide = await getPyodide();
+    async (code: string, stdin = "", timeoutMs = 5_000): Promise<BrowserRunResult> => {
+      const result = await runPythonInWorker(code, stdin, timeoutMs, () => {
         setPyodideReady(true);
         setPyodideError(null);
-
-        if (stdin.trim()) {
-          pyodide.runPython(`
-import sys
-from io import StringIO
-sys.stdin = StringIO("${stdin.replace(/"/g, '\\"').replace(/\n/g, "\\n")}")
-          `);
-        }
-
-        let stdoutText = "";
-        pyodide.setStdout({
-          batched: (msg: string) => {
-            stdoutText += msg + "\n";
-          },
-        });
-
-        pyodide.setStderr({
-          batched: (msg: string) => {
-            if (!stdoutText.includes(msg)) stdoutText += msg + "\n";
-          },
-        });
-
-        await pyodide.runPythonAsync(code, { signal: controller.signal });
-        clearTimeout(timeoutId);
-
-        return {
-          success: true,
-          stdout: stdoutText.trim(),
-          stderr: "",
-          exit_code: 0,
-          execution_time: 0,
-          memory_usage: 0,
-          source: "browser",
-        };
-      } catch (err: any) {
-        clearTimeout(timeoutId);
-        const message = err?.message || String(err);
-        setPyodideReady(false);
-        setPyodideError(message);
-        const isAbort = err?.name === "AbortError";
-
-        return {
-          success: false,
-          stdout: "",
-          stderr: isAbort ? "Execution timed out" : message,
-          compile_error: "",
-          exit_code: isAbort ? -1 : 1,
-          execution_time: timeoutMs / 1000,
-          memory_usage: 0,
-          source: "browser",
-        };
-      } finally {
-        if (abortRef.current === controller) abortRef.current = null;
-      }
+      });
+      if (!result.success) setPyodideError(result.stderr);
+      return result;
     },
-    []
+    [],
   );
 
   const executeJavaScript = useCallback(
-    async (code: string, _stdin = "", timeoutMs = 5000): Promise<BrowserRunResult> => {
+    async (code: string, _stdin = "", timeoutMs = 5_000): Promise<BrowserRunResult> => {
       return runJavaScriptInWorker(code, timeoutMs);
     },
-    []
+    [],
   );
 
   const execute = useCallback(
-    async (
-      language: string,
-      code: string,
-      stdin = "",
-      timeoutMs = 5000
-    ): Promise<BrowserRunResult> => {
+    async (language: string, code: string, stdin = "", timeoutMs = 5_000): Promise<BrowserRunResult> => {
       const normalized = language.toLowerCase();
-
-      if (normalized === "python") {
-        return executePython(code, stdin, timeoutMs);
-      }
-
+      if (normalized === "python") return executePython(code, stdin, timeoutMs);
       if (normalized === "javascript" || normalized === "js") {
         return executeJavaScript(code, stdin, timeoutMs);
       }
-
-      return {
-        success: false,
-        stdout: "",
-        stderr: `Browser execution is not supported for ${language}. Use the backend executor.`,
-        compile_error: "",
-        exit_code: 1,
-        source: "browser",
-      };
+      return failure(`Browser execution is not supported for ${language}. Use the backend executor.`);
     },
-    [executePython, executeJavaScript]
+    [executePython, executeJavaScript],
   );
 
   return {
