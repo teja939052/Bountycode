@@ -6,7 +6,11 @@ on:
     paths:
       - "backend/app/routes/company_lessons.py"
       - "backend/app/routes/academy_profile.py"
+      - "backend/app/routes/academy_diagnostic.py"
+      - "backend/app/routes/academy_plan.py"
       - "backend/tests/test_academy_profile.py"
+      - "backend/tests/test_academy_diagnostic.py"
+      - "backend/tests/test_academy_plan.py"
       - "backend/app/data/lessons/**"
       - "backend/tests/test_company_lesson_placement_loop.py"
       - "backend/tests/test_company_topic_progression.py"
@@ -44,11 +48,13 @@ jobs:
           pip install -r requirements.txt
           pip install -r requirements-dev.txt
       - name: Compile learning routes
-        run: python -m compileall app/routes/company_lessons.py app/routes/academy_profile.py -q
+        run: python -m compileall app/routes/company_lessons.py app/routes/academy_profile.py app/routes/academy_diagnostic.py app/routes/academy_plan.py -q
       - name: Test lesson integrity, mastery and content quality
         run: >
           python -m pytest
           tests/test_academy_profile.py
+          tests/test_academy_diagnostic.py
+          tests/test_academy_plan.py
           tests/test_company_lesson_placement_loop.py
           tests/test_company_topic_progression.py
           tests/test_lesson_content_quality.py
