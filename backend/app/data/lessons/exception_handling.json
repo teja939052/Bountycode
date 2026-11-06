@@ -119,5 +119,7 @@
         "explanation": "A broad catch can mask bugs that should be fixed rather than silently handled."
       }
     ]
-  }
+  },
+  "next_lesson_slug": "file_io",
+  "next_lesson_title": "File Input and Output"
 }
