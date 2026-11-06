@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -41,6 +41,10 @@ export default function CompanyTracks() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedTrack, setSelectedTrack] = useState<string | null>(() => searchParams.get("track"));
 
+  useEffect(() => {
+    setSelectedTrack(searchParams.get("track"));
+  }, [searchParams]);
+
   const openTrack = (trackId: string) => {
     setSelectedTrack(trackId);
     setSearchParams({ track: trackId });
@@ -67,7 +71,7 @@ export default function CompanyTracks() {
         >
           ← Back to all tracks
         </button>
-        <TrackDetail trackId={selectedTrack} onBack={() => setSelectedTrack(null)} />
+        <TrackDetail trackId={selectedTrack} onBack={closeTrack} />
       </div>
     );
   }
@@ -317,7 +321,7 @@ function TrackDetail({ trackId, onBack }: { trackId: string; onBack: () => void 
                         <Zap className="w-3 h-3 text-yellow-500" />
                         {mod.xp_reward} Diamonds
                       </span>
-                      {mod.score && (
+                      {mod.score != null && (
                         <span className="flex items-center gap-1">
                           <Target className="w-3 h-3 text-primary-500" />
                           {mod.score}%
