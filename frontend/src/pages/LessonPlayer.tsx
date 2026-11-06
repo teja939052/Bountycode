@@ -21,7 +21,7 @@ import { useBrowserRuntime } from "../hooks/useBrowserRuntime";
 
 type Step = {
   step_number: number;
-  step_type: "explain" | "interactive" | "practice" | "assessment" | "predict_output" | "fill_blank" | "order_steps" | "code_lab" | "sql_lab";
+  step_type: "explain" | "interactive" | "practice" | "assessment" | "predict_output" | "fill_blank" | "order_steps" | "code_lab" | "sql_lab" | "debug_choice" | "api_scenario";
   title: string;
   content?: string;
   example?: string;
@@ -39,6 +39,8 @@ type Step = {
   expected_output?: string;
   schema_preview?: string;
   sample_data?: string;
+  request_preview?: string;
+  log_output?: string;
   hints?: string[];
 };
 
@@ -189,7 +191,7 @@ export default function LessonPlayer() {
     async (index: number) => {
       if (!lesson || answerResult !== null || saving) return;
       const step = lesson.steps[currentStep];
-      if (step.step_type !== "interactive" && step.step_type !== "practice") return;
+      if (!["interactive", "practice", "debug_choice", "api_scenario"].includes(step.step_type)) return;
 
       setSelectedAnswer(index);
       setStepError("");
@@ -203,7 +205,7 @@ export default function LessonPlayer() {
         setAnswerResult({
           correct: Boolean(result.correct),
           correctIndex: Number(result.correct_index),
-          explanation: result.explanation || "",
+          explanation: [result.feedback, result.explanation].filter(Boolean).join("\n\n"),
         });
         setShowExplanation(true);
         void queryClient.invalidateQueries({ queryKey: ["adaptive"] });
@@ -340,7 +342,7 @@ export default function LessonPlayer() {
   const goNext = useCallback(() => {
     if (!lesson) return;
     const step = lesson.steps[currentStep];
-    const mustAttempt = ["interactive", "practice", "predict_output", "fill_blank", "order_steps", "code_lab", "sql_lab"].includes(step.step_type);
+    const mustAttempt = ["interactive", "practice", "predict_output", "fill_blank", "order_steps", "code_lab", "sql_lab", "debug_choice", "api_scenario"].includes(step.step_type);
     const stepCompleted = step.step_type === "code_lab"
       ? Boolean(codeLabResult?.passed)
       : step.step_type === "sql_lab"
@@ -652,7 +654,7 @@ export default function LessonPlayer() {
               </span>
               <h2 className="text-lg font-bold mt-1">{step.title}</h2>
             </div>
-            {["interactive", "practice", "predict_output", "fill_blank", "order_steps", "code_lab", "sql_lab"].includes(step.step_type) ? (
+            {["interactive", "practice", "predict_output", "fill_blank", "order_steps", "code_lab", "sql_lab", "debug_choice", "api_scenario"].includes(step.step_type) ? (
               <Lightbulb className="h-5 w-5 text-yellow-400 shrink-0" />
             ) : (
               <BookOpen className="h-5 w-5 text-brand-sky shrink-0" />
@@ -668,6 +670,20 @@ export default function LessonPlayer() {
           {step.example && (
             <div className="rounded-xl border border-white/5 bg-white/5 p-4 mb-4">
               <p className="text-xs font-mono text-brand-secondary">{step.example}</p>
+            </div>
+          )}
+
+          {step.request_preview && (
+            <div className="mb-4 rounded-xl border border-white/10 bg-[#101820] p-4">
+              <p className="mb-2 text-[10px] font-mono uppercase tracking-wider text-sky-300">Request / response context</p>
+              <pre className="overflow-x-auto whitespace-pre-wrap text-xs leading-5 text-slate-100">{step.request_preview}</pre>
+            </div>
+          )}
+
+          {step.log_output && (
+            <div className="mb-4 rounded-xl border border-amber-500/20 bg-amber-500/5 p-4">
+              <p className="mb-2 text-[10px] font-mono uppercase tracking-wider text-amber-200">Observed log</p>
+              <pre className="overflow-x-auto whitespace-pre-wrap text-xs leading-5 text-amber-100">{step.log_output}</pre>
             </div>
           )}
 
@@ -895,7 +911,7 @@ export default function LessonPlayer() {
             </div>
           )}
 
-          {(step.step_type === "interactive" || step.step_type === "practice") &&
+          {(["interactive", "practice", "debug_choice", "api_scenario"].includes(step.step_type)) &&
             step.options && (
               <div className="space-y-2 mb-4">
                 {step.options.map((opt, idx) => {
