@@ -179,6 +179,20 @@ class SQLEngine:
                 )
 
             cursor.execute("PRAGMA query_only = ON")
+            # SQLite engine limits are a second bound in addition to the
+            # progress-handler deadline and returned-row cap.
+            if hasattr(conn, "setlimit"):
+                for limit_name, limit_value in (
+                    ("SQLITE_LIMIT_LENGTH", 8 * 1024),
+                    ("SQLITE_LIMIT_SQL_LENGTH", 8 * 1024),
+                    ("SQLITE_LIMIT_COLUMN", 20),
+                    ("SQLITE_LIMIT_EXPR_DEPTH", 50),
+                    ("SQLITE_LIMIT_COMPOUND_SELECT", 10),
+                    ("SQLITE_LIMIT_VDBE_OP", 100_000),
+                ):
+                    limit_id = getattr(sqlite3, limit_name, None)
+                    if limit_id is not None:
+                        conn.setlimit(limit_id, limit_value)
             denied_actions = {
                 getattr(sqlite3, name)
                 for name in (
