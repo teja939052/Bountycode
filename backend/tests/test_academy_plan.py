@@ -137,3 +137,15 @@ def test_new_programming_plan_starts_with_variables_foundation():
         if item["domain"] == "programming_fundamentals"
     )
     assert first_programming_skill["lesson_slug"] == "variables_basics"
+
+
+
+def test_personalized_plan_starts_each_subject_at_a_foundation_lesson():
+    from app.routes.academy_plan import LESSON_BY_DOMAIN
+
+    assert LESSON_BY_DOMAIN["programming_fundamentals"] == "variables_basics"
+    assert LESSON_BY_DOMAIN["quantitative_aptitude"] == "number_systems"
+    assert LESSON_BY_DOMAIN["logical_reasoning"] == "number_series"
+    assert LESSON_BY_DOMAIN["verbal_ability"] == "vocabulary_cloze"
+    assert LESSON_BY_DOMAIN["computer_science"] == "oops_basics"
+    assert LESSON_BY_DOMAIN["sql"] == "dbms_basics"
