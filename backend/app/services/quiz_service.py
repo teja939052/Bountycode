@@ -184,11 +184,39 @@ def build_quiz(
     # Filter
     filtered = questions
     if topics:
-        filtered = [q for q in filtered if q.get("topic") in topics]
+        wanted_topics = {
+            str(topic).strip().lower() for topic in topics if str(topic).strip()
+        }
+        filtered = [
+            q for q in filtered
+            if wanted_topics.intersection({
+                str(q.get(field) or "").strip().lower()
+                for field in ("topic", "sub_topic", "pattern")
+            })
+        ]
     if difficulty:
-        filtered = [q for q in filtered if q.get("difficulty") == difficulty]
+        filtered = [
+            q for q in filtered
+            if str(q.get("difficulty") or "medium").lower() == difficulty.lower()
+        ]
     if company:
-        filtered = [q for q in filtered if company.lower() in [c.lower() for c in (q.get("companies") or [])]]
+        filtered = [
+            q for q in filtered
+            if company.strip().lower() in {
+                str(item).strip().lower() for item in (q.get("companies") or [])
+            }
+        ]
+
+    # Interactive quiz sessions only include items with a server-side grading
+    # key. Coding prompts without an answer key belong in compiler submissions.
+    filtered = [
+        q for q in filtered
+        if str(q.get("correct_answer") or "").strip()
+        or (
+            bool(q.get("options"))
+            and q.get("correct_index") is not None
+        )
+    ]
 
     # A constrained company/topic assessment must never silently turn into
     # an unrelated global quiz. Empty matches are explicit so the UI can offer
@@ -252,7 +280,8 @@ def build_quiz(
                 "topic": q.get("topic", ""),
                 "difficulty": q.get("difficulty", "medium"),
                 "companies": q.get("companies", []),
-                "test_cases": q.get("test_cases", []),
+                "type": q.get("type", "mcq" if q.get("options") else "short_answer"),
+                "options": q.get("options", []) or [],
                 "xp_reward": q.get("xp_reward", 10),
             }
         elif mode == "speed_run":
@@ -263,6 +292,8 @@ def build_quiz(
                 "question": q.get("question", ""),
                 "topic": q.get("topic", ""),
                 "difficulty": q.get("difficulty", "medium"),
+                "type": q.get("type", "mcq" if q.get("options") else "short_answer"),
+                "options": q.get("options", []) or [],
                 "xp_reward": q.get("xp_reward", 10) * 2,  # Bonus Diamonds
             }
         else:  # practice or quiz
@@ -275,6 +306,8 @@ def build_quiz(
                 "difficulty": q.get("difficulty", "medium"),
                 "pattern": q.get("pattern", ""),
                 "companies": q.get("companies", []),
+                "type": q.get("type", "mcq" if q.get("options") else "short_answer"),
+                "options": q.get("options", []) or [],
                 # Hints are delivered one at a time through /hint. Solutions,
                 # expected answers and explanations are returned only after
                 # the server has graded the submitted response.
@@ -323,20 +356,39 @@ def submit_quiz_answer(
     # Only grade answers for which the content bank contains a deterministic
     # answer key. Code submissions without a test-runner must not be passed by
     # typing "solved"/"yes" or by self-attestation.
-    correct_answer = str(question.get("correct_answer") or "").strip()
-    if not correct_answer:
-        return {
-            "question_id": question_id,
-            "is_correct": False,
-            "requires_code_execution": True,
-            "xp_earned": 0,
-            "time_taken_seconds": time_taken_seconds,
-            "hints_used": hints_used,
-            "solution": {},
-            "explanation": "",
-            "error": "This question requires code execution and test-case grading; self-reported completion is disabled.",
-        }
-    is_correct = user_answer.strip() == correct_answer
+    options = question.get("options") or []
+    expected_index = question.get("correct_index")
+    if options and expected_index is not None:
+        try:
+            selected_index = int(user_answer.strip())
+        except (TypeError, ValueError):
+            selected_index = next(
+                (index for index, option in enumerate(options) if str(option).strip() == user_answer.strip()),
+                -1,
+            )
+        try:
+            expected_index = int(expected_index)
+        except (TypeError, ValueError):
+            expected_index = -1
+        if expected_index < 0 or expected_index >= len(options):
+            return {"error": "The question has an invalid answer key."}
+        is_correct = selected_index == expected_index
+        correct_answer = str(options[expected_index])
+    else:
+        correct_answer = str(question.get("correct_answer") or "").strip()
+        if not correct_answer:
+            return {
+                "question_id": question_id,
+                "is_correct": False,
+                "requires_code_execution": True,
+                "xp_earned": 0,
+                "time_taken_seconds": time_taken_seconds,
+                "hints_used": hints_used,
+                "solution": {},
+                "explanation": "",
+                "error": "This question requires code execution and test-case grading; self-reported completion is disabled.",
+            }
+        is_correct = user_answer.strip() == correct_answer
 
     # Calculate Diamonds
     base_xp = question.get("xp_reward", 10)
