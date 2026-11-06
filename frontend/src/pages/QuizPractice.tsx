@@ -318,7 +318,10 @@ export default function QuizPractice() {
       <div className="mx-auto max-w-4xl space-y-5 px-4 py-6 pb-20">
         <div className="flex items-center justify-between gap-3">
           <button type="button" onClick={restart} className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600"><ArrowLeft size={15} /> Exit practice</button>
-          <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-3 py-1 text-[11px] font-semibold text-slate-600"><Clock size={12} /> Question {currentIndex + 1} of {questions.length}</span>
+          <div className="flex items-center gap-2">
+            <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-3 py-1 text-[11px] font-semibold text-slate-600"><Clock size={12} /> Question {currentIndex + 1} of {questions.length}</span>
+            {session.time_limit_seconds > 0 && <span className={`rounded-full px-3 py-1 text-[11px] font-bold tabular-nums ${timeRemaining <= 60 ? "bg-rose-100 text-rose-700" : "bg-amber-50 text-amber-800"}`}>{Math.floor(timeRemaining / 60)}:{String(timeRemaining % 60).padStart(2, "0")} left</span>}
+          </div>
         </div>
         <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7">
           <div className="mb-5 flex items-center justify-between gap-3">
