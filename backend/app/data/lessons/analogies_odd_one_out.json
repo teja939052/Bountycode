@@ -1,0 +1,122 @@
+{
+  "slug": "analogies_odd_one_out",
+  "id": "lesson_analogies_odd_one_out_001",
+  "title": "Analogies and Odd One Out",
+  "domain": "Logical Reasoning",
+  "pattern": "Analogies",
+  "difficulty": "easy",
+  "duration_min": 20,
+  "xp_reward": 90,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Find the relationship",
+      "content": "An analogy compares relationships, not just individual words. Identify the exact relationship in the first pair, then apply the same relationship to the second pair.",
+      "example": "Bird : Nest :: Bee : Hive. Both pairs are animal to home."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Complete the analogy",
+      "prompt": "Doctor : Hospital :: Teacher : ?",
+      "options": [
+        "Court",
+        "School",
+        "Farm",
+        "Airport"
+      ],
+      "correct_index": 1,
+      "explanation": "A doctor commonly works in a hospital; a teacher commonly works in a school."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Recognize number analogies",
+      "content": "Number analogies may use addition, multiplication, squares, cubes or digit operations. Test a simple consistent rule on both numbers in the first pair.",
+      "example": "3 : 9 :: 5 : 25. Each number is squared."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Find the odd one out",
+      "prompt": "Which number does not belong: 4, 9, 16, 20, 25?",
+      "options": [
+        "4",
+        "9",
+        "20",
+        "25"
+      ],
+      "correct_index": 2,
+      "explanation": "4, 9, 16 and 25 are perfect squares. 20 is not."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "State the grouping rule",
+      "content": "For odd-one-out questions, find a property shared by the majority and check that the exception truly breaks it. Avoid vague patterns that could fit several answers.",
+      "tip": "A good explanation names the rule and verifies every item."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "Hand : Glove :: Foot : ?",
+        "options": [
+          "Hat",
+          "Shoe",
+          "Ring",
+          "Sleeve"
+        ],
+        "correct_index": 1,
+        "explanation": "A glove is worn on a hand; a shoe is worn on a foot."
+      },
+      {
+        "prompt": "2 : 8 :: 3 : ?",
+        "options": [
+          "6",
+          "9",
+          "18",
+          "27"
+        ],
+        "correct_index": 3,
+        "explanation": "The first number is cubed: 2³=8 and 3³=27."
+      },
+      {
+        "prompt": "Find the odd one out: 2, 3, 5, 9, 11.",
+        "options": [
+          "2",
+          "3",
+          "9",
+          "11"
+        ],
+        "correct_index": 2,
+        "explanation": "2, 3, 5 and 11 are prime; 9 is composite."
+      },
+      {
+        "prompt": "Book : Read :: Food : ?",
+        "options": [
+          "Cook",
+          "Eat",
+          "Buy",
+          "Grow"
+        ],
+        "correct_index": 1,
+        "explanation": "A book is read; food is eaten."
+      },
+      {
+        "prompt": "Find the odd one out: 8, 27, 64, 100, 125.",
+        "options": [
+          "8",
+          "27",
+          "100",
+          "125"
+        ],
+        "correct_index": 2,
+        "explanation": "8, 27, 64 and 125 are cubes (2³, 3³, 4³, 5³). 100 is not."
+      }
+    ]
+  }
+}
