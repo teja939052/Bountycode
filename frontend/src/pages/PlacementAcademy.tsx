@@ -70,6 +70,15 @@ const LESSON_BY_TOPIC: Record<string, string> = {
   sentence_correction: "sentence_correction",
   grammar: "sentence_correction",
   para_jumbles: "para_jumbles",
+  variables: "variables_basics",
+  data_types: "variables_basics",
+  assignments: "variables_basics",
+  conditions: "conditions_basics",
+  conditional_logic: "conditions_basics",
+  boolean_logic: "conditions_basics",
+  functions: "functions_basics",
+  parameters: "functions_basics",
+  return_values: "functions_basics",
   arrays: "arrays_basics",
   strings: "strings_basics",
   loops: "loops_basics",
@@ -228,6 +237,7 @@ const LEARNING_TRACK_ORDER = [
 
 const LESSON_SEQUENCE_BY_TRACK: Record<string, string[]> = {
   "Programming & DSA": [
+    "variables_basics", "conditions_basics", "functions_basics",
     "programming_languages", "loops_basics", "pattern_printing", "arrays_basics",
     "strings_basics", "data_structures_intro", "time_complexity", "searching_basics",
     "sorting_basics", "hashing_basics", "recursion_basics", "linked_lists",
