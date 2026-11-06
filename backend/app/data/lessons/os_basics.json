@@ -215,5 +215,7 @@
       "question": "Name a common mistake in Operating Systems Fundamentals.",
       "answer": "A process has its own address space; threads within it share process resources."
     }
-  ]
+  ],
+  "next_lesson_slug": "computer_networks_basics",
+  "next_lesson_title": "Computer Networks Fundamentals"
 }
