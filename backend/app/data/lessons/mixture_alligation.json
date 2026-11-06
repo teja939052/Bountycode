@@ -1,0 +1,123 @@
+{
+  "slug": "mixture_alligation",
+  "id": "lesson_mixture_alligation_001",
+  "title": "Mixtures and Alligation",
+  "domain": "Quantitative Aptitude",
+  "pattern": "Mixtures and Alligation",
+  "difficulty": "medium",
+  "duration_min": 22,
+  "xp_reward": 100,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Calculate a mixture average",
+      "content": "When quantities with different prices or concentrations are mixed, the mean value is the weighted average: total value divided by total quantity.",
+      "example": "Mix 2 kg at ₹40/kg with 3 kg at ₹60/kg. Mean price = (80+180)/5 = ₹52/kg."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Find a weighted average",
+      "prompt": "20 kg of rice at ₹80/kg is mixed with 30 kg at ₹100/kg. Find the average price.",
+      "options": [
+        "₹88",
+        "₹90",
+        "₹92",
+        "₹96"
+      ],
+      "correct_index": 2,
+      "explanation": "Total cost = 20×80 + 30×100 = ₹4,600. Total weight = 50 kg. Mean price = ₹92/kg."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Use the alligation rule",
+      "content": "When mixing a lower value L and a higher value H to obtain mean M, the ratio of lower-value quantity to higher-value quantity is (H−M):(M−L).",
+      "formula": "Quantity at L : Quantity at H = (H−M) : (M−L)",
+      "example": "Mix 40% and 60% solutions for a 50% solution: ratio = (60−50):(50−40) = 1:1."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Apply alligation",
+      "prompt": "In what ratio should 20% and 50% solutions be mixed to obtain 30%?",
+      "options": [
+        "1:2",
+        "2:1",
+        "3:2",
+        "2:3"
+      ],
+      "correct_index": 1,
+      "explanation": "Lower:higher = (50−30):(30−20) = 20:10 = 2:1."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Replacing part of a mixture",
+      "content": "If a vessel is well mixed and a fraction is removed and replaced with water, the original ingredient is reduced by the same fraction each time. Repeat the multiplication for repeated replacements.",
+      "example": "Remove 1/4 of a 40 L mixture: 30 L of the original mixture remains before replacement."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "10 kg at ₹20/kg is mixed with 10 kg at ₹40/kg. What is the average price?",
+        "options": [
+          "₹25",
+          "₹30",
+          "₹35",
+          "₹40"
+        ],
+        "correct_index": 1,
+        "explanation": "(10×20 + 10×40)/20 = ₹30/kg."
+      },
+      {
+        "prompt": "Mix 30% and 60% solutions to obtain 50%. What is the lower:higher quantity ratio?",
+        "options": [
+          "1:2",
+          "2:1",
+          "1:1",
+          "3:2"
+        ],
+        "correct_index": 0,
+        "explanation": "(60−50):(50−30) = 10:20 = 1:2."
+      },
+      {
+        "prompt": "A 40 L mixture is 25% water. How much water does it contain?",
+        "options": [
+          "5 L",
+          "10 L",
+          "15 L",
+          "20 L"
+        ],
+        "correct_index": 1,
+        "explanation": "25% of 40 L = 10 L."
+      },
+      {
+        "prompt": "Mix 20% and 40% solutions equally. What is the resulting concentration?",
+        "options": [
+          "25%",
+          "30%",
+          "35%",
+          "40%"
+        ],
+        "correct_index": 1,
+        "explanation": "Equal quantities give the mean concentration (20+40)/2 = 30%."
+      },
+      {
+        "prompt": "Which method is best for mixing two prices to obtain a target mean price?",
+        "options": [
+          "Alligation",
+          "Binary search",
+          "Prime factorization",
+          "Permutation"
+        ],
+        "correct_index": 0,
+        "explanation": "Alligation directly gives the ratio of quantities needed for a target mean."
+      }
+    ]
+  }
+}
