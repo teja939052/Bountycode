@@ -119,5 +119,7 @@
         "explanation": "Earlier rows need more leading spaces to center the pattern."
       }
     ]
-  }
+  },
+  "next_lesson_slug": "arrays_basics",
+  "next_lesson_title": "Arrays Basics"
 }
