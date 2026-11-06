@@ -618,6 +618,14 @@ COMPANY_TOPIC_LESSONS = {
     "business": "essay_writing",
     "social_issues": "essay_writing",
     "essay": "essay_writing",
+    "advanced_probability": "advanced_probability",
+    "advanced_time_work": "advanced_time_work",
+    "simple_compound_interest": "simple_compound_interest",
+    "conditions": "loops_basics",
+    "critical_reasoning": "logical_puzzles",
+    "dynamic_programming_basics": "dynamic_programming",
+    "reading": "reading_comprehension",
+    "sentence_rearrangement": "para_jumbles",
 }
 
 
@@ -755,6 +763,14 @@ COMPANY_TOPIC_DOMAINS = {
     "business": "verbal_ability",
     "social_issues": "verbal_ability",
     "essay": "verbal_ability",
+    "advanced_probability": "quantitative_aptitude",
+    "advanced_time_work": "quantitative_aptitude",
+    "simple_compound_interest": "quantitative_aptitude",
+    "conditions": "programming_fundamentals",
+    "critical_reasoning": "logical_reasoning",
+    "dynamic_programming_basics": "dp",
+    "reading": "verbal_ability",
+    "sentence_rearrangement": "verbal_ability",
 }
 
 
