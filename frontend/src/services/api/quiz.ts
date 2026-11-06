@@ -18,13 +18,14 @@ export const quizApi = {
   },
 
   // Get a hint
-  getHint(questionId, hintLevel = 1, hintsAlreadyUsed = 0) {
+  getHint(questionId, hintLevel = 1, hintsAlreadyUsed = 0, quizId?: string) {
     return request("/api/v1/quiz/hint", {
       method: "POST",
       body: JSON.stringify({
         question_id: questionId,
         hint_level: hintLevel,
         hints_already_used: hintsAlreadyUsed,
+        ...(quizId ? { quiz_id: quizId } : {}),
       }),
     });
   },
