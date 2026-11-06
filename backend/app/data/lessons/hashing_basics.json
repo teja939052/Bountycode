@@ -216,5 +216,7 @@
       "question": "Name a common mistake in Hashing Fundamentals.",
       "answer": "Average operations are often O(1); pathological collisions can degrade performance."
     }
-  ]
+  ],
+  "next_lesson_slug": "recursion_basics",
+  "next_lesson_title": "Recursion Fundamentals"
 }
