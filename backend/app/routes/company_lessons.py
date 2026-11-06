@@ -278,6 +278,19 @@ async def list_lessons(user=Depends(get_current_user)):
                 "difficulty": data.get("difficulty") or "medium",
                 "duration_min": data.get("duration_min") or data.get("estimated_minutes") or 15,
                 "step_count": len(data.get("steps") or []),
+                # Public catalog metadata helps learners choose a path without
+                # exposing answers, SQL grading keys, or hidden assessment data.
+                "learning_objectives": (data.get("learning_objectives") or [])[:3],
+                "prerequisites": data.get("prerequisites") or [],
+                "concept_count": len(data.get("concepts") or []),
+                "worked_example_count": len(data.get("worked_examples") or []),
+                "assessment_count": len((data.get("assessment") or {}).get("questions") or []),
+                "company_count": len(data.get("company_applications") or []),
+                "exercise_types": sorted({
+                    str(step.get("step_type") or "").strip().lower()
+                    for step in (data.get("steps") or [])
+                    if str(step.get("step_type") or "").strip().lower() not in {"", "explain"}
+                }),
             })
     return {"success": True, "data": lessons}
 
