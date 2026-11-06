@@ -27,7 +27,11 @@
         "33"
       ],
       "correct_index": 2,
-      "explanation": "29 has exactly two positive factors: 1 and 29. The other numbers have additional factors."
+      "explanation": "29 has exactly two positive factors: 1 and 29. The other numbers have additional factors.",
+      "hints": [
+        "A prime number has exactly two positive factors.",
+        "Check whether the candidate can be divided evenly by any integer other than 1 and itself."
+      ]
     },
     {
       "step_number": 3,
@@ -49,7 +53,11 @@
         "4"
       ],
       "correct_index": 1,
-      "explanation": "5×9 = 45. The remainder is 47−45 = 2."
+      "explanation": "5×9 = 45. The remainder is 47−45 = 2.",
+      "hints": [
+        "Find the largest multiple of 5 that does not exceed 47.",
+        "Subtract that multiple from 47; the leftover amount is the remainder."
+      ]
     },
     {
       "step_number": 5,
@@ -119,5 +127,81 @@
         "explanation": "83 = 8×10 + 3, so the remainder is 3."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Explain place value and classify common number types.",
+    "Apply divisibility tests for 2, 3, 5 and 9.",
+    "Identify prime and composite numbers using factors.",
+    "Calculate remainders and reason about multiples."
+  ],
+  "concepts": [
+    "place value",
+    "natural number",
+    "integer",
+    "prime number",
+    "composite number",
+    "factor",
+    "multiple",
+    "divisibility",
+    "remainder"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "A prime number is any odd number.",
+      "correction": "The number 2 is prime, while many odd numbers such as 9 and 15 are composite."
+    },
+    {
+      "misconception": "A number divisible by 3 must end in 3, 6 or 9.",
+      "correction": "Divisibility by 3 depends on the sum of the digits, not only the last digit."
+    },
+    {
+      "misconception": "The remainder can be equal to the divisor.",
+      "correction": "For positive division, the remainder is always smaller than the divisor."
+    }
+  ],
+  "worked_examples": [],
+  "company_applications": [
+    {
+      "company": "TCS NQT",
+      "skill": "number properties and remainder arithmetic",
+      "practice": "Use divisibility tests to eliminate options quickly."
+    },
+    {
+      "company": "Infosys",
+      "skill": "number theory fundamentals",
+      "practice": "Explain prime factors and justify why a number is composite."
+    },
+    {
+      "company": "Accenture",
+      "skill": "quantitative reasoning",
+      "practice": "Translate remainder wording into a quotient-and-remainder equation."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "rule",
+      "question": "How do you test divisibility by 9?",
+      "answer": "Add the digits; the number is divisible by 9 when the digit sum is divisible by 9."
+    },
+    {
+      "type": "definition",
+      "question": "What is a prime number?",
+      "answer": "A whole number greater than 1 with exactly two positive factors: 1 and itself."
+    }
+  ],
+  "prerequisites": [],
+  "quest": {
+    "chapter": "The Number Foundry",
+    "rank": "Number Scout",
+    "story": "The academy's scoring engine receives raw numbers but cannot classify them or reason about remainders. You must inspect their structure before the next calculation begins.",
+    "mission": "Use place value, prime factors, divisibility and remainders to classify number properties.",
+    "success_criteria": [
+      "Read digits through place value.",
+      "Apply divisibility rules.",
+      "Identify prime numbers and factors.",
+      "Calculate a quotient and remainder."
+    ]
+  },
+  "next_lesson_slug": "hcf_lcm",
+  "next_lesson_title": "HCF, LCM and Divisibility"
 }
