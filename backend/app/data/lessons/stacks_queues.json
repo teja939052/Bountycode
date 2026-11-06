@@ -1,0 +1,122 @@
+{
+  "slug": "stacks_queues",
+  "id": "lesson_stacks_queues_001",
+  "title": "Stacks and Queues",
+  "domain": "Data Structures",
+  "pattern": "Stacks and Queues",
+  "difficulty": "easy",
+  "duration_min": 22,
+  "xp_reward": 100,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Stack: last in, first out",
+      "content": "A stack (LIFO) removes the most recently added item first. The main operations are push (add), pop (remove top) and peek (read top).",
+      "example": "Push A, then B, then C. The next pop returns C."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Trace a stack",
+      "prompt": "Push 2, then 5, then 7. What is returned by the next pop?",
+      "options": [
+        "2",
+        "5",
+        "7",
+        "The stack is empty"
+      ],
+      "correct_index": 2,
+      "explanation": "7 was pushed last, so LIFO returns 7 first."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Queue: first in, first out",
+      "content": "A queue (FIFO) removes the earliest added item first. Enqueue adds at the rear; dequeue removes from the front.",
+      "example": "Enqueue A, B, C. The next dequeue returns A."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Choose a queue use",
+      "prompt": "Which situation most naturally uses a FIFO queue?",
+      "options": [
+        "Undo operations",
+        "Function call stack",
+        "Printer jobs in arrival order",
+        "Checking nested parentheses"
+      ],
+      "correct_index": 2,
+      "explanation": "A printer queue normally handles jobs in the order they arrive."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Where they appear",
+      "content": "Stacks help with function calls, undo operations, expression evaluation and balanced brackets. Queues help with scheduling, breadth-first search and request processing.",
+      "tip": "When a problem says 'most recent first', think stack. When it says 'arrival order', think queue."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 240,
+    "questions": [
+      {
+        "prompt": "Which principle does a stack follow?",
+        "options": [
+          "FIFO",
+          "LIFO",
+          "Random access",
+          "Sorted order"
+        ],
+        "correct_index": 1,
+        "explanation": "A stack is last in, first out."
+      },
+      {
+        "prompt": "Which operation removes the top item from a stack?",
+        "options": [
+          "Push",
+          "Pop",
+          "Peek",
+          "Enqueue"
+        ],
+        "correct_index": 1,
+        "explanation": "Pop removes and returns the top item."
+      },
+      {
+        "prompt": "Which principle does a queue follow?",
+        "options": [
+          "LIFO",
+          "FIFO",
+          "Last sorted",
+          "Recursive order"
+        ],
+        "correct_index": 1,
+        "explanation": "A queue is first in, first out."
+      },
+      {
+        "prompt": "Which data structure is commonly used for breadth-first search?",
+        "options": [
+          "Stack",
+          "Queue",
+          "Hash set only",
+          "Heap only"
+        ],
+        "correct_index": 1,
+        "explanation": "BFS uses a queue to process nodes in discovery order."
+      },
+      {
+        "prompt": "A stack receives 4, 6, 8. Two pops return:",
+        "options": [
+          "4 then 6",
+          "8 then 6",
+          "6 then 8",
+          "8 then 4"
+        ],
+        "correct_index": 1,
+        "explanation": "The top is 8; after popping it, 6 becomes the top."
+      }
+    ]
+  }
+}
