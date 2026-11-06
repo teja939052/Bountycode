@@ -202,6 +202,8 @@ def test_core_foundation_lessons_follow_the_rich_authoring_contract():
         "strings_basics",
         "dbms_basics",
         "sql_select_basics",
+        "hcf_lcm",
+        "sentence_correction",
     ]
     for slug in core_lessons:
         lesson = json.loads((LESSONS_DIR / f"{slug}.json").read_text(encoding="utf-8"))
@@ -290,3 +292,69 @@ def test_programming_and_dsa_lessons_link_to_the_next_course_step():
             assert quest.get("story")
             assert quest.get("mission")
             assert len(quest.get("success_criteria") or []) >= 3
+
+
+
+def test_non_programming_pathways_have_complete_next_lesson_links():
+    expected = {
+        # Quantitative aptitude
+        "number_systems": "hcf_lcm",
+        "hcf_lcm": "arithmetic_algebra",
+        "arithmetic_algebra": "successive_percentage_change",
+        "successive_percentage_change": "profit_loss",
+        "profit_loss": "ratio_proportion",
+        "ratio_proportion": "averages",
+        "averages": "time_work",
+        "time_work": "time_distance",
+        "time_distance": "advanced_time_work",
+        "advanced_time_work": "simple_compound_interest",
+        "simple_compound_interest": "mixture_alligation",
+        "mixture_alligation": "pipes_cisterns",
+        "pipes_cisterns": "permutations_combinations",
+        "permutations_combinations": "probability_basics",
+        "probability_basics": "advanced_probability",
+        "advanced_probability": "geometry_basics",
+        "geometry_basics": "clocks_calendars",
+        # Logical reasoning
+        "number_series": "coding_decoding",
+        "coding_decoding": "blood_relations",
+        "blood_relations": "direction_sense",
+        "direction_sense": "syllogisms",
+        "syllogisms": "analogies_odd_one_out",
+        "analogies_odd_one_out": "logical_puzzles",
+        "logical_puzzles": "flowchart_basics",
+        "flowchart_basics": "pattern_matching_basics",
+        # Verbal
+        "vocabulary_cloze": "sentence_correction",
+        "sentence_correction": "grammar_transformations",
+        "grammar_transformations": "error_spotting",
+        "error_spotting": "para_jumbles",
+        "para_jumbles": "reading_comprehension",
+        "reading_comprehension": "essay_writing",
+        # SQL and core CS
+        "dbms_basics": "sql_select_basics",
+        "sql_select_basics": "sql_joins",
+        "sql_joins": "sql_group_by",
+        "sql_group_by": "sql_subqueries",
+        "sql_subqueries": "sql_indexes_triggers",
+        "oops_basics": "os_basics",
+        "os_basics": "computer_networks_basics",
+    }
+    for slug, next_slug in expected.items():
+        lesson = json.loads((LESSONS_DIR / f"{slug}.json").read_text(encoding="utf-8"))
+        assert lesson.get("next_lesson_slug") == next_slug, slug
+        assert lesson.get("next_lesson_title"), slug
+
+
+def test_advanced_programming_path_includes_sliding_window_before_algorithms():
+    expected = {
+        "dynamic_programming": "sliding_window",
+        "sliding_window": "algorithms_basics",
+        "algorithms_basics": "collections_framework",
+        "collections_framework": "exception_handling",
+        "exception_handling": "file_io",
+        "file_io": "matrix_operations",
+    }
+    for slug, next_slug in expected.items():
+        lesson = json.loads((LESSONS_DIR / f"{slug}.json").read_text(encoding="utf-8"))
+        assert lesson.get("next_lesson_slug") == next_slug, slug
