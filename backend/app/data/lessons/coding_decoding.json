@@ -94,8 +94,8 @@
           "CNG",
           "DNG"
         ],
-        "correct_index": 2,
-        "explanation": "D→C, O→N, G→F: CNF. Correction: option B is correct."
+        "correct_index": 1,
+        "explanation": "Shift each letter one step backward: D→C, O→N, G→F. The code is CNF."
       },
       {
         "prompt": "If A=1 and Z=26, what is the position value of M?",
