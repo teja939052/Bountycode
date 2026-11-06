@@ -78,7 +78,7 @@ Use a varied exercise mix:
 - short projects that combine several skills;
 - timed company-format quizzes and mocks.
 
-A lesson with code should progress from reading code, to tracing it, to completing it, to writing and testing code independently. Small JavaScript labs run in disposable browser Workers with a hard timeout and capped output. Treat the worker as a responsiveness aid, not a security boundary. The server keeps expected outputs private and grades the submitted output; these checks are formative only and never grant XP or certify mastery. SQL labs run against fresh, read-only, in-memory SQLite datasets with a query-size limit, short execution budget and result-row cap. Keep final mastery and hidden-test grading on the existing server-graded assessment and compiler submission paths. Browser and SQL labs do not replace compiler-backed placement submissions.
+A lesson with code should progress from reading code, to tracing it, to completing it, to writing and testing code independently. Small JavaScript labs run in disposable browser Workers with a hard timeout and capped output. Treat the worker as a responsiveness aid, not a security boundary. The server keeps expected outputs private and grades the submitted output; these checks are formative only and never grant XP or certify mastery. SQL labs run against fresh, read-only, in-memory SQLite datasets with a query-size limit, short execution budget and result-row cap. Python, TypeScript, Java and C++ tasks use the backend compiler only when an isolated execution provider is configured; otherwise keep the learner on simulation, tracing and explanation tasks. Do not use main-thread Pyodide or the local subprocess convenience fallback as a public arbitrary-code sandbox. Keep final mastery and hidden-test grading on server-graded assessments and verified compiler submissions. Browser and SQL labs do not replace compiler-backed placement submissions.
 
 ## 5. Feedback rules
 
@@ -167,7 +167,8 @@ Keep lesson checkpoints lightweight. A temporary save failure should not block a
 
 ### Safe execution policy
 
-- Keep browser exercises small and treat their output as formative practice, not trusted proof of mastery.
+- Run small JavaScript exercises in a disposable browser Worker, with network/storage-facing APIs disabled as defense in depth. Treat the worker as a responsiveness aid, not a security boundary; keep exercises small and output checks formative.
+- Keep Python and TypeScript on a configured server execution path, or use simulations when no isolated provider is available. Do not route public arbitrary code through the main-thread Pyodide runtime.
 - Do not enable the backend's local subprocess fallback for public arbitrary-code submissions. It is a trusted-development convenience, not a security boundary.
 - The optional Cloud Run compiler microservice must not execute student code until outbound network access, metadata access, process limits and secret exposure have been independently verified. Its environment opt-in is a deployment guard, not a replacement for network isolation.
 - Prefer external isolated execution or the existing Docker sandbox for authoritative public code execution. When no safe runner is available, return a clear unavailable state and preserve non-compiler learning tasks.
