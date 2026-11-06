@@ -113,5 +113,7 @@
       "question": "Why can't we simply add or subtract percentages directly?",
       "answer": "Because each percentage is calculated on a different base value."
     }
-  ]
+  ],
+  "next_lesson_slug": "profit_loss",
+  "next_lesson_title": "Profit and Loss"
 }
