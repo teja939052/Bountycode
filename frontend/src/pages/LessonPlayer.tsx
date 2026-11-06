@@ -113,7 +113,7 @@ export default function LessonPlayer() {
     return () => {
       cancelled = true;
     };
-  }, [lessonSlug]);
+  }, [lessonSlug, trackId, moduleId, topicId]);
 
   const handleAnswer = useCallback(
     async (index: number) => {
