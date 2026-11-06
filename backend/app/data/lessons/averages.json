@@ -120,5 +120,100 @@
         "explanation": "Old total 120; new total 150; count 6; average 25."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Calculate arithmetic mean from a data set.",
+    "Find a missing value from a known average.",
+    "Update an average when an item is added or removed.",
+    "Solve weighted-average situations."
+  ],
+  "prerequisites": [
+    "arithmetic_algebra"
+  ],
+  "concepts": [
+    "mean",
+    "total",
+    "count",
+    "weighted average",
+    "replacement",
+    "combined average"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Adding a large value always increases an average by that value.",
+      "correction": "The new average depends on both the old total and the new count."
+    },
+    {
+      "misconception": "The average of two groups is always the mean of their averages.",
+      "correction": "Weight each group's average by its number of observations."
+    },
+    {
+      "misconception": "Removing an item leaves the average unchanged.",
+      "correction": "Recalculate the total and count after removal."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Find the average",
+      "input": "12, 18, 20, 10",
+      "trace": [
+        "Total = 12 + 18 + 20 + 10 = 60.",
+        "Count = 4.",
+        "Average = 60 / 4."
+      ],
+      "output": "15",
+      "explanation": "Mean equals total divided by count."
+    },
+    {
+      "title": "Find a missing mark",
+      "input": "Average of 5 students is 70; four marks total 270",
+      "trace": [
+        "Required total = 5 × 70 = 350.",
+        "Known total = 270.",
+        "Missing mark = 350 - 270."
+      ],
+      "output": "80",
+      "explanation": "Convert the average back into a total before finding a missing value."
+    },
+    {
+      "title": "Combine two groups",
+      "input": "10 students average 60; 20 students average 75",
+      "trace": [
+        "Group one total = 10 × 60 = 600.",
+        "Group two total = 20 × 75 = 1500.",
+        "Combined total = 2100; count = 30."
+      ],
+      "output": "Combined average = 70",
+      "explanation": "A combined average must weight each group by its size."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "quantitative aptitude",
+      "practice": "Use total-and-count reasoning for missing values."
+    },
+    {
+      "company": "Wipro",
+      "skill": "arithmetic and data interpretation",
+      "practice": "Calculate combined averages with group sizes."
+    },
+    {
+      "company": "Infosys",
+      "skill": "numerical reasoning",
+      "practice": "Avoid averaging group averages without weights."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What are the key ideas in Averages?",
+      "answer": "Calculate arithmetic mean from a data set. Find a missing value from a known average. Update an average when an item is added or removed. Solve weighted-average situations."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in Averages.",
+      "answer": "The new average depends on both the old total and the new count."
+    }
+  ]
 }
