@@ -21,6 +21,7 @@ import WorldSummary from "../components/journey/WorldSummary";
 import { useMapState } from "../hooks/useMapState";
 import { api } from "../services/api";
 import { API_BASE } from "../services/api/request";
+import AcademyPersonalPlan from "../components/academy/AcademyPersonalPlan";
 
 interface MapVoyageSectionProps {
   voyageWorld: string | undefined;
@@ -353,6 +354,10 @@ export default function JourneyPage() {
             <Link to="/target" className="flex min-h-[44px] items-center rounded-xl border border-black/10 bg-white px-4 text-sm font-semibold text-gray-700">Change target</Link>
           </div>
         </section>
+
+        {/* The Academy plan brings diagnostic-driven learning tasks onto the home dashboard. */}
+        <AcademyPersonalPlan />
+
         {/* ═══ LEVEL MAP header (hybrid) ═══ */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
