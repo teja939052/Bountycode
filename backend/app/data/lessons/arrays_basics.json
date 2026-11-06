@@ -141,16 +141,160 @@
         ],
         "correct_index": 2,
         "explanation": "Inserting in the middle requires shifting all subsequent elements, making it O(n). Accessing first/last elements and updating are O(1)."
+      },
+      {
+        "prompt": "Which index refers to the last element of an array containing n elements?",
+        "options": [
+          "n",
+          "n - 1",
+          "n + 1",
+          "1"
+        ],
+        "correct_index": 1,
+        "explanation": "With zero-based indexing, valid indices run from 0 through n - 1."
+      },
+      {
+        "prompt": "You need to find the largest number in an unsorted array. What is the best general approach?",
+        "options": [
+          "Check only the first value",
+          "Scan every value while tracking the largest",
+          "Sort the array repeatedly",
+          "Use binary search"
+        ],
+        "correct_index": 1,
+        "explanation": "A single scan takes O(n) time and O(1) extra space. Binary search requires sorted data."
+      },
+      {
+        "prompt": "Why can inserting an item at the beginning of a fixed-size contiguous array take O(n) time?",
+        "options": [
+          "The array must be sorted",
+          "Existing elements may need to shift right",
+          "The first index is reserved",
+          "Every read is O(n)"
+        ],
+        "correct_index": 1,
+        "explanation": "To make room at the beginning, all existing elements may need to move one position."
       }
     ],
     "mastery_threshold": 0.7,
-    "duration_sec": 120
+    "duration_sec": 300
   },
   "srs_cards": [
     {
       "type": "complexity",
       "question": "What is the time complexity of array operations: access, insert at end, insert in middle, delete from middle?",
       "answer": "Access: O(1), insert at end: O(1) amortized, insert in middle: O(n), delete from middle: O(n)."
+    },
+    {
+      "type": "indexing",
+      "question": "For an array of length n, what are the first and last valid indices?",
+      "answer": "0 and n - 1."
+    },
+    {
+      "type": "complexity",
+      "question": "Why is a full array traversal O(n)?",
+      "answer": "The algorithm performs a constant amount of work for each of n elements."
+    },
+    {
+      "type": "selection",
+      "question": "When is the inward two-pointer pair-sum method appropriate?",
+      "answer": "When the input is sorted, or has been sorted while accounting for the sorting cost."
+    }
+  ],
+  "learning_objectives": [
+    "Explain what an array stores and how zero-based indexing works.",
+    "Trace reads and updates without confusing an index with a position.",
+    "Choose between linear search, sorting, and two pointers for a simple problem.",
+    "Explain the time cost of access, traversal, insertion, and deletion.",
+    "Implement a safe traversal and find the minimum or maximum value."
+  ],
+  "prerequisites": [
+    "variables_basics",
+    "loops_basics"
+  ],
+  "concepts": [
+    "contiguous memory",
+    "zero-based indexing",
+    "array traversal",
+    "mutation",
+    "linear search",
+    "time complexity",
+    "two pointers"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Index 3 means the third element.",
+      "correction": "Indexing starts at zero, so index 3 is the fourth element."
+    },
+    {
+      "misconception": "Reading an array element always scans the array.",
+      "correction": "An array can calculate an indexed element's address directly, so indexed access is O(1)."
+    },
+    {
+      "misconception": "Insertion in the middle is O(1).",
+      "correction": "Elements after the insertion point usually need to shift, making it O(n)."
+    },
+    {
+      "misconception": "Two pointers works on every unsorted pair-sum input.",
+      "correction": "The simple inward-moving two-pointer method relies on sorted order."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Read an index carefully",
+      "input": "scores = [8, 13, 21, 34]; scores[2]",
+      "trace": [
+        "Index 0 contains 8.",
+        "Index 1 contains 13.",
+        "Index 2 contains 21."
+      ],
+      "output": "21",
+      "explanation": "Count positions from zero, not one."
+    },
+    {
+      "title": "Update without shifting",
+      "input": "values = [4, 7, 2]; values[1] = 5",
+      "trace": [
+        "The array initially contains [4, 7, 2].",
+        "Only the value at index 1 changes.",
+        "The array becomes [4, 5, 2]."
+      ],
+      "output": "4 + 5 + 2 = 11",
+      "explanation": "Replacing an existing value does not require moving the other elements."
+    },
+    {
+      "title": "Find the largest value",
+      "input": "[12, 5, 19, 8]",
+      "trace": [
+        "Start with largest = 12.",
+        "5 is not greater than 12.",
+        "19 is greater than 12, so update largest.",
+        "8 is not greater than 19."
+      ],
+      "output": "19",
+      "explanation": "One pass visits each item once, so the algorithm is O(n)."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "array traversal, searching and basic complexity",
+      "practice": "Explain each loop iteration and handle empty or single-element arrays."
+    },
+    {
+      "company": "Infosys",
+      "skill": "arrays, strings and problem decomposition",
+      "practice": "State the brute-force idea first, then justify a more efficient approach."
+    },
+    {
+      "company": "Accenture",
+      "skill": "basic coding logic and output tracing",
+      "practice": "Predict updates carefully and test boundary indices."
+    },
+    {
+      "company": "Wipro and Cognizant",
+      "skill": "array and string implementation",
+      "practice": "Write a complete solution and test duplicates, negatives and small inputs."
     }
   ]
 }
