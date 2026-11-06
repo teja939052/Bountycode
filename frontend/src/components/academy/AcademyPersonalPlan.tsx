@@ -45,6 +45,15 @@ export default function AcademyPersonalPlan() {
           ))}
         </div>
       ) : <p className="mt-4 text-sm text-slate-600">Complete your diagnostic to generate your first set of tasks.</p>}
+      {Number(plan.revision?.due_count || 0) > 0 && (
+        <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-amber-200 bg-amber-50 p-4">
+          <div>
+            <p className="font-semibold text-amber-950">{plan.revision.due_count} spaced-repetition reviews due</p>
+            <p className="mt-1 text-sm text-amber-900/80">Revisit previously solved problems so the concepts stay fresh.</p>
+          </div>
+          <Link to="/quiz" className="rounded-xl bg-white px-4 py-2 text-sm font-bold text-amber-900">Practice now</Link>
+        </div>
+      )}
       {plan.company_preparation?.length > 0 && (
         <div className="mt-5">
           <p className="mb-2 text-sm font-bold text-slate-800">Your selected company tracks</p>
