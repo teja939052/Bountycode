@@ -146,7 +146,7 @@ async def get_personalized_plan(user=Depends(get_current_user)):
     due_cards = get_due_cards(review_states, limit=5)
     plan["revision"] = {
         "due_count": len(get_due_cards(review_states, limit=500)),
-        "sample_problem_ids": [card.problem_id for card in due_cards],
+        "sample_problem_ids": [card.concept_id for card in due_cards],
     }
     plan["generated_at"] = datetime.now(timezone.utc).isoformat()
     await _plans().update_one(
