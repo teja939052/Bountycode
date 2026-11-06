@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   ArrowLeft,
   ArrowRight,
@@ -56,6 +56,7 @@ function getErrorMessage(error: any) {
 }
 
 export default function QuizPractice() {
+  const queryClient = useQueryClient();
   const { data: statsResult, isLoading: statsLoading } = useQuery({
     queryKey: ["quiz", "stats"],
     queryFn: () => api.quiz.getStats(),
@@ -186,6 +187,11 @@ export default function QuizPractice() {
         total_time_seconds: elapsed,
       });
       setResult(response?.results || null);
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: ["study", "today"] }),
+        queryClient.invalidateQueries({ queryKey: ["journey", "state"] }),
+        queryClient.invalidateQueries({ queryKey: ["adaptive"] }),
+      ]);
       try {
         const weak: any = await api.quiz.getWeakTopics();
         setWeakTopics(weak?.weak_topics || []);
