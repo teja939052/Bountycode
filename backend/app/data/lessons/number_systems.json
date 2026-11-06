@@ -5,8 +5,8 @@
   "domain": "Quantitative Aptitude",
   "pattern": "Number Systems",
   "difficulty": "easy",
-  "duration_min": 20,
-  "xp_reward": 95,
+  "duration_min": 30,
+  "xp_reward": 120,
   "steps": [
     {
       "step_number": 1,
@@ -65,6 +65,61 @@
       "title": "Estimate multiples",
       "content": "For the smallest multiple of k greater than or equal to n, find the first integer m with k×m ≥ n. This is useful in remainder, scheduling and divisibility questions.",
       "example": "The smallest three-digit multiple of 7 is 7×15 = 105."
+    },
+    {
+      "step_type": "interactive",
+      "title": "Use a divisibility shortcut",
+      "prompt": "Which number is divisible by 9?",
+      "options": [
+        "4,721",
+        "5,238",
+        "6,345",
+        "7,124"
+      ],
+      "correct_index": 2,
+      "explanation": "For 6,345 the digit sum is 6+3+4+5=18, which is divisible by 9. Therefore 6,345 is divisible by 9.",
+      "hints": [
+        "Add the digits instead of dividing the whole number.",
+        "A number is divisible by 9 when its digit sum is divisible by 9."
+      ],
+      "step_number": 6
+    },
+    {
+      "step_type": "fill_blank",
+      "title": "Count the factors",
+      "content": "A factor divides a number exactly, leaving no remainder.",
+      "prompt": "How many positive factors does 12 have?",
+      "expected_answer": "6",
+      "answer_placeholder": "Enter a whole number",
+      "explanation": "The positive factors are 1, 2, 3, 4, 6 and 12. There are six.",
+      "hints": [
+        "List factor pairs: 1×12, 2×6 and 3×4.",
+        "Each pair contributes two different factors here."
+      ],
+      "step_number": 7
+    },
+    {
+      "step_type": "order_steps",
+      "title": "Test whether a number is prime",
+      "prompt": "Arrange a simple primality check for 29.",
+      "options": [
+        "Check divisors up to the square root of 29",
+        "Conclude that 29 is prime if none divides it",
+        "Start with the smallest prime divisor, 2",
+        "Check the next possible prime divisor, 3"
+      ],
+      "correct_order": [
+        2,
+        3,
+        0,
+        1
+      ],
+      "explanation": "A composite number has a factor no larger than its square root. Check prime divisors 2, 3 and 5 (since √29 is about 5.4); none divides 29, so it is prime.",
+      "hints": [
+        "A composite number must have a factor at or below its square root.",
+        "Check small prime divisors before concluding a number is prime."
+      ],
+      "step_number": 8
     }
   ],
   "assessment": {
@@ -130,78 +185,119 @@
   },
   "learning_objectives": [
     "Explain place value and classify common number types.",
-    "Apply divisibility tests for 2, 3, 5 and 9.",
-    "Identify prime and composite numbers using factors.",
-    "Calculate remainders and reason about multiples."
+    "Apply divisibility rules and identify factors and multiples.",
+    "Calculate quotient and remainder accurately.",
+    "Test primality using divisors up to the square root."
   ],
   "concepts": [
     "place value",
-    "natural number",
-    "integer",
-    "prime number",
-    "composite number",
-    "factor",
-    "multiple",
+    "natural numbers",
+    "integers",
+    "prime numbers",
+    "composite numbers",
+    "factors",
+    "multiples",
     "divisibility",
+    "quotient",
     "remainder"
   ],
   "common_misconceptions": [
     {
-      "misconception": "A prime number is any odd number.",
-      "correction": "The number 2 is prime, while many odd numbers such as 9 and 15 are composite."
+      "misconception": "Every odd number is prime.",
+      "correction": "An odd number can have several factors; for example, 9 is odd but composite."
     },
     {
-      "misconception": "A number divisible by 3 must end in 3, 6 or 9.",
-      "correction": "Divisibility by 3 depends on the sum of the digits, not only the last digit."
+      "misconception": "A remainder can be equal to the divisor.",
+      "correction": "For positive divisor d, the remainder r must satisfy 0 ≤ r < d."
     },
     {
-      "misconception": "The remainder can be equal to the divisor.",
-      "correction": "For positive division, the remainder is always smaller than the divisor."
+      "misconception": "To prove a number prime, every number below it must be tested.",
+      "correction": "It is enough to test possible prime divisors up to the square root."
     }
   ],
-  "worked_examples": [],
+  "worked_examples": [
+    {
+      "title": "Use divisibility by 3 and 9",
+      "input": "Is 5,832 divisible by 3 and 9?",
+      "trace": [
+        "Add the digits: 5+8+3+2 = 18.",
+        "18 is divisible by 3.",
+        "18 is also divisible by 9."
+      ],
+      "output": "5,832 is divisible by both 3 and 9",
+      "explanation": "Digit-sum tests avoid long division when checking divisibility by 3 or 9."
+    },
+    {
+      "title": "Find a quotient and remainder",
+      "input": "47 ÷ 5",
+      "trace": [
+        "The largest multiple of 5 not exceeding 47 is 45.",
+        "45 = 5×9, so the quotient is 9.",
+        "47−45 = 2, so the remainder is 2."
+      ],
+      "output": "Quotient = 9; remainder = 2",
+      "explanation": "Division with remainder expresses n = dq + r, where 0 ≤ r < d."
+    },
+    {
+      "title": "Check whether 29 is prime",
+      "input": "Test divisors of 29",
+      "trace": [
+        "The square root of 29 is about 5.4.",
+        "Test prime divisors 2, 3 and 5.",
+        "None divides 29 exactly."
+      ],
+      "output": "29 is prime",
+      "explanation": "A composite number must have at least one factor no greater than its square root."
+    }
+  ],
   "company_applications": [
     {
       "company": "TCS NQT",
-      "skill": "number properties and remainder arithmetic",
-      "practice": "Use divisibility tests to eliminate options quickly."
+      "skill": "number properties",
+      "practice": "Use divisibility shortcuts and factor reasoning before calculating."
     },
     {
       "company": "Infosys",
-      "skill": "number theory fundamentals",
-      "practice": "Explain prime factors and justify why a number is composite."
+      "skill": "quantitative reasoning",
+      "practice": "Explain prime, composite, quotient and remainder concepts."
     },
     {
       "company": "Accenture",
-      "skill": "quantitative reasoning",
-      "practice": "Translate remainder wording into a quotient-and-remainder equation."
+      "skill": "numerical reasoning",
+      "practice": "Estimate and verify number-property questions."
     }
   ],
   "srs_cards": [
     {
-      "type": "rule",
-      "question": "How do you test divisibility by 9?",
-      "answer": "Add the digits; the number is divisible by 9 when the digit sum is divisible by 9."
-    },
-    {
       "type": "definition",
       "question": "What is a prime number?",
-      "answer": "A whole number greater than 1 with exactly two positive factors: 1 and itself."
+      "answer": "A positive integer greater than 1 with exactly two positive factors: 1 and itself."
+    },
+    {
+      "type": "method",
+      "question": "How can you test whether n is prime efficiently by trial division?",
+      "answer": "Check possible prime divisors only up to √n; if none divides n, n is prime."
+    },
+    {
+      "type": "rule",
+      "question": "What is the remainder constraint in division with remainder?",
+      "answer": "For divisor d > 0, n = dq + r with 0 ≤ r < d."
     }
   ],
   "prerequisites": [],
   "quest": {
     "chapter": "The Number Foundry",
     "rank": "Number Scout",
-    "story": "The academy's scoring engine receives raw numbers but cannot classify them or reason about remainders. You must inspect their structure before the next calculation begins.",
-    "mission": "Use place value, prime factors, divisibility and remainders to classify number properties.",
+    "story": "The placement gate is locked by number properties. Prime numbers, divisibility and remainders are the keys hidden in its mechanisms.",
+    "mission": "Classify numbers, use divisibility shortcuts and reason about factors without relying on guesswork.",
     "success_criteria": [
-      "Read digits through place value.",
-      "Apply divisibility rules.",
-      "Identify prime numbers and factors.",
-      "Calculate a quotient and remainder."
+      "Explain place value and prime factors.",
+      "Apply divisibility rules for 2, 3, 5 and 9.",
+      "Calculate quotient and remainder.",
+      "Test primality using factors up to the square root."
     ]
   },
   "next_lesson_slug": "hcf_lcm",
-  "next_lesson_title": "HCF, LCM and Divisibility"
+  "next_lesson_title": "HCF and LCM",
+  "mastery_threshold": 0.7
 }
