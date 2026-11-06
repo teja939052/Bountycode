@@ -1,0 +1,123 @@
+{
+  "slug": "sql_select_basics",
+  "id": "lesson_sql_select_001",
+  "title": "SQL SELECT Fundamentals",
+  "domain": "SQL",
+  "pattern": "SQL",
+  "difficulty": "easy",
+  "duration_min": 22,
+  "xp_reward": 100,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "Read data with SELECT",
+      "content": "SELECT specifies the columns to return. FROM specifies the table. SQL reads the requested rows and columns; it does not change the stored table.",
+      "example": "SELECT name, marks FROM Student; returns only name and marks for every student.",
+      "tip": "Use explicit column names in production queries instead of SELECT * when you know the required fields."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Filter rows",
+      "prompt": "Which clause filters rows where marks are at least 70?",
+      "options": [
+        "ORDER BY marks >= 70",
+        "WHERE marks >= 70",
+        "GROUP BY marks >= 70",
+        "SELECT marks >= 70"
+      ],
+      "correct_index": 1,
+      "explanation": "WHERE filters individual rows before grouping or final ordering."
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Sort and limit results",
+      "content": "ORDER BY sorts returned rows. ASC is ascending and DESC is descending. In SQL dialects that support it, FETCH FIRST or LIMIT can restrict the number of rows.",
+      "example": "SELECT name, marks FROM Student ORDER BY marks DESC; puts the highest marks first."
+    },
+    {
+      "step_number": 4,
+      "step_type": "practice",
+      "title": "Find the top score",
+      "prompt": "Which query returns students with marks greater than 80, highest marks first?",
+      "options": [
+        "SELECT * FROM Student WHERE marks > 80 ORDER BY marks DESC;",
+        "SELECT * FROM Student ORDER BY marks > 80;",
+        "SELECT marks > 80 FROM Student DESC;",
+        "SELECT * FROM Student GROUP BY marks > 80;"
+      ],
+      "correct_index": 0,
+      "explanation": "WHERE selects rows with marks > 80. ORDER BY marks DESC sorts them from highest to lowest."
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Aggregate functions",
+      "content": "COUNT counts rows or non-NULL values; SUM adds values; AVG calculates the mean; MIN and MAX return extremes. GROUP BY creates a separate result group for each key.",
+      "example": "SELECT department, AVG(salary) FROM Employee GROUP BY department; calculates an average for each department."
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 300,
+    "questions": [
+      {
+        "prompt": "Which clause identifies the source table?",
+        "options": [
+          "WHERE",
+          "FROM",
+          "ORDER BY",
+          "GROUP BY"
+        ],
+        "correct_index": 1,
+        "explanation": "FROM names the table or tables being queried."
+      },
+      {
+        "prompt": "Which query selects only names from Student?",
+        "options": [
+          "SELECT name FROM Student;",
+          "GET name IN Student;",
+          "SELECT Student FROM name;",
+          "FROM Student SELECT name;"
+        ],
+        "correct_index": 0,
+        "explanation": "SELECT name FROM Student is the correct basic query structure."
+      },
+      {
+        "prompt": "Which clause sorts marks from highest to lowest?",
+        "options": [
+          "ORDER BY marks ASC",
+          "GROUP BY marks",
+          "ORDER BY marks DESC",
+          "WHERE marks DESC"
+        ],
+        "correct_index": 2,
+        "explanation": "DESC sorts in descending order."
+      },
+      {
+        "prompt": "Which function counts rows?",
+        "options": [
+          "SUM(*)",
+          "COUNT(*)",
+          "AVG(*)",
+          "TOTAL(*)"
+        ],
+        "correct_index": 1,
+        "explanation": "COUNT(*) counts all rows in the result set."
+      },
+      {
+        "prompt": "Which clause filters groups after aggregation?",
+        "options": [
+          "WHERE",
+          "HAVING",
+          "FROM",
+          "ORDER BY"
+        ],
+        "correct_index": 1,
+        "explanation": "HAVING filters grouped results; WHERE filters rows before grouping."
+      }
+    ]
+  }
+}
