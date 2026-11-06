@@ -117,5 +117,100 @@
         "explanation": "A conclusion must hold in every valid arrangement; one counterexample is enough to show it is not guaranteed."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Translate clues into constraints.",
+    "Eliminate impossible arrangements systematically.",
+    "Distinguish necessary conclusions from assumptions.",
+    "Use tables or diagrams to track relationships."
+  ],
+  "prerequisites": [
+    "programming_languages"
+  ],
+  "concepts": [
+    "constraints",
+    "seating arrangement",
+    "ordering",
+    "elimination",
+    "syllogism",
+    "case analysis"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "A likely arrangement is automatically the only valid one.",
+      "correction": "Check every clue and test whether another arrangement also satisfies them."
+    },
+    {
+      "misconception": "A conclusion that sounds reasonable must follow logically.",
+      "correction": "Only conclusions forced by the stated premises are valid."
+    },
+    {
+      "misconception": "Skipping a clue saves time.",
+      "correction": "A missed clue often creates an incorrect or incomplete solution."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Linear seating",
+      "input": "A, B, C sit in a row. A is left of B; C is right of B.",
+      "trace": [
+        "A must be before B.",
+        "C must be after B.",
+        "The only order is A, B, C."
+      ],
+      "output": "A – B – C",
+      "explanation": "Convert each sentence into an ordering constraint."
+    },
+    {
+      "title": "Use elimination",
+      "input": "A task is on Monday, Tuesday or Wednesday. It is not Monday and occurs before Wednesday.",
+      "trace": [
+        "Remove Monday using the first clue.",
+        "Before Wednesday leaves Monday or Tuesday.",
+        "Intersect the remaining choices."
+      ],
+      "output": "Tuesday",
+      "explanation": "Apply each clue to shrink the set of possible answers."
+    },
+    {
+      "title": "Check a syllogism",
+      "input": "All roses are flowers. Some flowers fade quickly.",
+      "trace": [
+        "Every rose belongs to the flower group.",
+        "The fading subset is only some flowers.",
+        "No premise says roses are in that subset."
+      ],
+      "output": "Cannot conclude that some roses fade quickly",
+      "explanation": "Do not assume overlap between groups unless the premises establish it."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "Accenture",
+      "skill": "logical reasoning and arrangements",
+      "practice": "Draw a compact table and verify every clue."
+    },
+    {
+      "company": "TCS",
+      "skill": "logical reasoning and syllogisms",
+      "practice": "Separate what is stated from what is merely possible."
+    },
+    {
+      "company": "Wipro",
+      "skill": "puzzles and direction sense",
+      "practice": "Use elimination rather than guessing."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What are the key ideas in Logical Puzzles and Arrangements?",
+      "answer": "Translate clues into constraints. Eliminate impossible arrangements systematically. Distinguish necessary conclusions from assumptions. Use tables or diagrams to track relationships."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in Logical Puzzles and Arrangements.",
+      "answer": "Check every clue and test whether another arrangement also satisfies them."
+    }
+  ]
 }
