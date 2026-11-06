@@ -49,3 +49,15 @@ def test_read_only_sql_lab_limits_result_rows():
         "SELECT value FROM numbers;", "SELECT value FROM numbers;", max_rows=100)
     assert result.is_correct is False
     assert "100 rows" in (result.error_message or "").lower()
+
+
+
+def test_read_only_sql_lab_limits_large_single_cell_values():
+    result = SQLEngine.verify_read_only_query(
+        SCHEMA,
+        SEED,
+        "SELECT department FROM employee;",
+        "SELECT randomblob(1000000);",
+    )
+    assert result.is_correct is False
+    assert result.error_message
