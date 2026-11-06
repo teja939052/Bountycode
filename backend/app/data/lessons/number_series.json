@@ -104,8 +104,8 @@
           "-3",
           "-4"
         ],
-        "correct_index": 2,
-        "explanation": "Subtract 3 each time. Next is -2. Correction: option B is correct."
+        "correct_index": 1,
+        "explanation": "Subtract 3 each time: 10, 7, 4, 1, −2."
       },
       {
         "prompt": "3, 6, 11, 18, 27, __",
