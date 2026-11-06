@@ -59,6 +59,26 @@ from app.models.learning_event import (
 logger = logging.getLogger(__name__)
 
 
+async def _get_user_profile(user_id: str) -> Dict[str, Any]:
+    """Resolve the authenticated user profile using the same id as auth.
+
+    Authenticated user ids are Mongo ObjectId strings. The legacy user_id
+    lookup remains as a migration fallback for older imported user documents.
+    """
+    from bson import ObjectId
+    from app.database import users_collection
+
+    user = None
+    try:
+        if ObjectId.is_valid(user_id):
+            user = await users_collection().find_one({"_id": ObjectId(user_id)})
+    except Exception:
+        user = None
+    if user is None:
+        user = await users_collection().find_one({"user_id": user_id})
+    return user or {}
+
+
 def _now() -> datetime:
     return datetime.now(timezone.utc)
 
@@ -249,8 +269,7 @@ async def _get_practice_tasks(
     # ── Read user goal for company-aware filtering ──
     company_relevant_topics: List[str] = []
     try:
-        from app.database import users_collection
-        user_doc = await users_collection().find_one({"user_id": user_id}) or {}
+        user_doc = await _get_user_profile(user_id)
         company_track = user_doc.get("company_track", "")
         if company_track:
             from app.data.learning_paths import COMPANY_TRACKS
@@ -407,8 +426,7 @@ async def _get_company_mission(user_id: str) -> Optional[Dict[str, Any]]:
     - Company HR question practice
     """
     try:
-        from app.database import users_collection
-        user = await users_collection.find_one({"user_id": user_id})
+        user = await _get_user_profile(user_id)
         if not user:
             return None
 
