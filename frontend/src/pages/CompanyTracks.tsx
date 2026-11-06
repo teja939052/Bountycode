@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import api from "../services/api";
@@ -16,7 +17,18 @@ const DIFFICULTY_COLORS = {
 
 export default function CompanyTracks() {
   const { user } = useAuthStore();
-  const [selectedTrack, setSelectedTrack] = useState<string | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [selectedTrack, setSelectedTrack] = useState<string | null>(() => searchParams.get("track"));
+
+  const openTrack = (trackId: string) => {
+    setSelectedTrack(trackId);
+    setSearchParams({ track: trackId });
+  };
+
+  const closeTrack = () => {
+    setSelectedTrack(null);
+    setSearchParams({});
+  };
 
   const { data: tracksData, isLoading } = useQuery({
     queryKey: ["company-tracks", "list"],
@@ -29,7 +41,7 @@ export default function CompanyTracks() {
     return (
       <div className="min-h-screen py-6 px-3 sm:py-8 sm:px-4 max-w-6xl mx-auto">
         <button
-          onClick={() => setSelectedTrack(null)}
+          onClick={closeTrack}
           className="mb-4 text-sm text-gray-500 hover:text-gray-700 flex items-center gap-1"
         >
           ← Back to all tracks
@@ -78,7 +90,7 @@ export default function CompanyTracks() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.05 }}
             >
-              <TrackCard track={track} onClick={() => setSelectedTrack(track.id)} />
+              <TrackCard track={track} onClick={() => openTrack(track.id)} />
             </motion.div>
           ))}
         </div>
@@ -146,24 +158,14 @@ function TrackDetail({ trackId, onBack }: { trackId: string; onBack: () => void 
 
   const enrollMutation = useMutation({
     mutationFn: () => api.companyTracks.enroll(trackId),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["company-tracks"] });
+    onSuccess: async () => {
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: ["company-tracks"] }),
+        queryClient.invalidateQueries({ queryKey: ["journey", "state"] }),
+        queryClient.invalidateQueries({ queryKey: ["study", "today"] }),
+      ]);
     },
   });
-
-  const [completing, setCompleting] = useState<string | null>(null);
-
-  const handleComplete = async (moduleId: string) => {
-    setCompleting(moduleId);
-    try {
-      await api.companyTracks.completeModule(trackId, moduleId, 85);
-      queryClient.invalidateQueries({ queryKey: ["company-tracks", "detail", trackId] });
-    } catch (e) {
-      console.error("Failed to complete module:", e);
-    } finally {
-      setCompleting(null);
-    }
-  };
 
   if (isLoading || !trackData) {
     return (
@@ -201,7 +203,7 @@ function TrackDetail({ trackId, onBack }: { trackId: string; onBack: () => void 
               </span>
             </div>
           </div>
-          {!trackData.enrolled && (
+          {!trackData.enrolled ? (
             <button
               onClick={() => enrollMutation.mutate()}
               disabled={enrollMutation.isPending}
@@ -209,9 +211,21 @@ function TrackDetail({ trackId, onBack }: { trackId: string; onBack: () => void 
             >
               {enrollMutation.isPending ? "Enrolling..." : "Enroll Now"}
             </button>
+          ) : (
+            <Link
+              to="/journey"
+              className="px-4 py-2 rounded-xl bg-primary-600 text-white text-sm font-medium hover:bg-primary-700"
+            >
+              Continue Journey
+            </Link>
           )}
         </div>
       </div>
+      {enrollMutation.isError && (
+        <p role="alert" className="rounded-xl border border-red-300 bg-red-50 p-3 text-sm text-red-700">
+          Enrollment failed. Please retry.
+        </p>
+      )}
 
       {/* Sections */}
       {trackData.sections?.map((section: any, sIdx: number) => (
@@ -291,13 +305,12 @@ function TrackDetail({ trackId, onBack }: { trackId: string; onBack: () => void 
                     </div>
                   </div>
                   {trackData.enrolled && !mod.completed && (
-                    <button
-                      onClick={() => handleComplete(mod.id)}
-                      disabled={completing === mod.id}
-                      className="ml-3 px-3 py-1.5 rounded-lg bg-primary-600 text-white text-xs font-medium hover:bg-primary-700 disabled:opacity-50"
+                    <Link
+                      to={`/tracks/${trackData.company_id}`}
+                      className="ml-3 shrink-0 rounded-lg border border-primary-500/30 bg-primary-500/10 px-3 py-1.5 text-xs font-medium text-primary-700 hover:bg-primary-500/15"
                     >
-                      {completing === mod.id ? "..." : "Complete"}
-                    </button>
+                      Practice
+                    </Link>
                   )}
                 </div>
               </div>
