@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import { useParams, Link, useSearchParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -48,11 +49,13 @@ type LessonContent = {
 
 type AnswerResult = {
   correct: boolean;
+  correctIndex: number;
   explanation: string;
 } | null;
 
 export default function LessonPlayer() {
   const { slug } = useParams();
+  const queryClient = useQueryClient();
   const [searchParams] = useSearchParams();
   const lessonSlug = slug || "successive_percentage_change";
   const trackId = searchParams.get("track_id") || undefined;
@@ -110,25 +113,33 @@ export default function LessonPlayer() {
   }, [lessonSlug]);
 
   const handleAnswer = useCallback(
-    (index: number) => {
-      if (!lesson || answerResult !== null) return;
+    async (index: number) => {
+      if (!lesson || answerResult !== null || saving) return;
       const step = lesson.steps[currentStep];
       if (step.step_type !== "interactive" && step.step_type !== "practice") return;
-      if (step.correct_index == null) return;
 
       setSelectedAnswer(index);
-      setAttemptedCount((c) => c + 1);
-      const correct = index === step.correct_index;
-      if (correct) {
-        setCorrectCount((c) => c + 1);
+      setSaving(true);
+      try {
+        const response: any = await api.companyLessons.answerStep(lessonSlug, currentStep, index);
+        const result = response?.data;
+        if (!result) throw new Error("The answer could not be graded.");
+        setAttemptedCount((count) => count + 1);
+        if (result.correct) setCorrectCount((count) => count + 1);
+        setAnswerResult({
+          correct: Boolean(result.correct),
+          correctIndex: Number(result.correct_index),
+          explanation: result.explanation || "",
+        });
+        setShowExplanation(true);
+      } catch (error: any) {
+        setSelectedAnswer(null);
+        setAssessmentError(error?.message || "Could not check this answer. Please retry.");
+      } finally {
+        setSaving(false);
       }
-      setAnswerResult({
-        correct,
-        explanation: step.explanation || "",
-      });
-      setShowExplanation(true);
     },
-    [lesson, currentStep, answerResult]
+    [lesson, lessonSlug, currentStep, answerResult, saving]
   );
 
   const goNext = useCallback(() => {
@@ -174,6 +185,11 @@ export default function LessonPlayer() {
       if (result?.passed) {
         setCompletionData(result);
         setCompleted(true);
+        await Promise.all([
+          queryClient.invalidateQueries({ queryKey: ["company-tracks"] }),
+          queryClient.invalidateQueries({ queryKey: ["journey", "state"] }),
+          queryClient.invalidateQueries({ queryKey: ["study", "today"] }),
+        ]);
       } else {
         setAssessmentError(
           `You scored ${result?.score ?? 0}%. You need ${result?.mastery_threshold ?? 70}% to pass. Review the explanations and retry.`
@@ -184,7 +200,7 @@ export default function LessonPlayer() {
     } finally {
       setSaving(false);
     }
-  }, [lesson, lessonSlug, assessmentAnswers, trackId, moduleId, saving]);
+  }, [lesson, lessonSlug, assessmentAnswers, trackId, moduleId, saving, queryClient]);
 
   if (loading) {
     return (
@@ -446,7 +462,7 @@ export default function LessonPlayer() {
               <div className="space-y-2 mb-4">
                 {step.options.map((opt, idx) => {
                   const isSelected = selectedAnswer === idx;
-                  const isCorrect = step.correct_index === idx;
+                  const isCorrect = answerResult?.correctIndex === idx;
                   let cls =
                     "w-full text-left rounded-xl border px-4 py-3 text-sm transition-all ";
                   if (showExplanation) {
