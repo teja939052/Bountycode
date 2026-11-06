@@ -17,6 +17,7 @@ from app.database import (
     user_company_tracks_collection,
 )
 from app.services.gamification import record_practice
+from app.services.cache import cache
 from app.data.learning_paths import ROLES, COMPANY_TRACKS
 from bson import ObjectId
 import logging
@@ -244,6 +245,12 @@ async def enroll_in_track(user_id: str, track_id: str, role: str = "sde") -> Dic
     )
     if result.matched_count == 0:
         raise ValueError("Authenticated user was not found while saving the company target.")
+
+    # A target switch changes the plan immediately; do not serve yesterday's
+    # no-target or previous-company plan from the adaptive cache.
+    today_key = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    await cache.delete("adaptive", f"daily_plan:{user_id}:{today_key}")
+    await cache.delete("adaptive", f"skills:{user_id}")
 
     try:
         await record_practice(user_id, "company_track", 10, {"track_id": track_id, "action": "enroll"}, role=role or "sde")
