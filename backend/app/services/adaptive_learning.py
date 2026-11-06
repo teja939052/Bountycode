@@ -468,6 +468,15 @@ async def record_learning_activity(user_id: str, activity: Dict[str, Any]) -> Di
         upsert=True
     )
 
+    # Invalidate cache
+    await cache.delete("adaptive", f"skills:{user_id}")
+
+    return {
+        "status": "success",
+        "score_delta": delta,
+        "domain_id": domain_id,
+    }
+
 async def _get_user_profile(user_id: str) -> Dict[str, Any]:
     """Read the authenticated profile by Mongo _id, with legacy fallback."""
     user = None
@@ -575,15 +584,6 @@ async def _get_company_focus_task(user_id: str) -> Optional[Dict[str, Any]]:
                 }
     return None
 
-
-    # Invalidate cache
-    await cache.delete("adaptive", f"skills:{user_id}")
-
-    return {
-        "status": "success",
-        "score_delta": delta,
-        "domain_id": domain_id,
-    }
 
 
 # ─── AI-Powered Recommendations ───
