@@ -16,13 +16,14 @@ _diagnostics = lambda: get_collection("academy_diagnostic_sessions")
 _plans = lambda: get_collection("academy_learning_plans")
 
 LESSON_BY_DOMAIN = {
+    # Each recommendation starts at the first teachable lesson in its pathway.
     "programming_fundamentals": "variables_basics",
     "arrays_hashing": "arrays_basics",
-    "quantitative_aptitude": "arithmetic_algebra",
-    "logical_reasoning": "logical_puzzles",
-    "verbal_ability": "reading_comprehension",
-    "computer_science": "dbms_basics",
-    "sql": "sql_select_basics",
+    "quantitative_aptitude": "number_systems",
+    "logical_reasoning": "number_series",
+    "verbal_ability": "vocabulary_cloze",
+    "computer_science": "oops_basics",
+    "sql": "dbms_basics",
 }
 DOMAIN_PREREQUISITES = {
     "arrays_hashing": ["programming_fundamentals"],
