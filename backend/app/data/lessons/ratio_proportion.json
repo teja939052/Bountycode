@@ -111,13 +111,13 @@
       {
         "prompt": "If A:B = 3:2 and B:C = 4:5, what is A:B:C?",
         "options": [
-          "3:4:5",
           "6:4:5",
           "6:4:10",
-          "12:8:10"
+          "12:8:5",
+          "3:4:5"
         ],
-        "correct_index": 3,
-        "explanation": "Make B equal: 3:2 becomes 6:4, and 4:5 becomes 4:5. Thus 6:4:5 — correction: option B is the correct answer."
+        "correct_index": 0,
+        "explanation": "Make B equal: 3:2 becomes 6:4, and 4:5 stays 4:5. Thus A:B:C = 6:4:5."
       }
     ]
   }
