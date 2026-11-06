@@ -301,6 +301,8 @@ async def list_lessons(user=Depends(get_current_user)):
                     for step in (data.get("steps") or [])
                     if str(step.get("step_type") or "").strip().lower() not in {"", "explain"}
                 }),
+                "quest_chapter": (data.get("quest") or {}).get("chapter"),
+                "mission_preview": (data.get("quest") or {}).get("mission"),
             })
     return {"success": True, "data": lessons}
 
