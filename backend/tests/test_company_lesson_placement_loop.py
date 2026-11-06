@@ -16,7 +16,7 @@ from app.routes import company_lessons
 def _lesson():
     return {
         "id": "lesson_test_001",
-        "slug": "test_lesson",
+        "slug": "successive_percentage_change",
         "title": "Test lesson",
         "domain": "Reasoning",
         "difficulty": "easy",
@@ -77,7 +77,7 @@ async def test_final_assessment_answer_key_is_not_sent_to_client(monkeypatch):
     monkeypatch.setattr(company_lessons, "_load_lesson", lambda _slug: _lesson())
 
     result = await company_lessons.get_lesson(
-        "test_lesson", user={"id": "test-user"}
+        "successive_percentage_change", user={"id": "test-user"}
     )
 
     question = result["data"]["assessment"]["questions"][0]
@@ -95,7 +95,7 @@ async def test_client_supplied_score_cannot_complete_a_lesson(monkeypatch):
     request = company_lessons.CompleteRequest(**{"score": 100})
     with pytest.raises(HTTPException) as exc:
         await company_lessons.complete_lesson(
-            "test_lesson", request, user={"id": "test-user"}
+            "successive_percentage_change", request, user={"id": "test-user"}
         )
 
     assert exc.value.status_code == 422
@@ -121,7 +121,7 @@ async def test_failed_assessment_does_not_complete_company_module(monkeypatch):
         module_id="tcs_f1",
     )
     result = await company_lessons.complete_lesson(
-        "test_lesson", request, user={"id": "test-user"}
+        "successive_percentage_change", request, user={"id": "test-user"}
     )
 
     assert result["data"]["passed"] is False
@@ -150,7 +150,7 @@ async def test_passed_assessment_records_company_module_mastery(monkeypatch):
         time_spent_seconds=90,
     )
     result = await company_lessons.complete_lesson(
-        "test_lesson", request, user={"id": "test-user", "target_role": "SDE"}
+        "successive_percentage_change", request, user={"id": "test-user", "target_role": "SDE"}
     )
 
     assert result["data"]["passed"] is True
