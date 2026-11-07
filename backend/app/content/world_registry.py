@@ -18,26 +18,41 @@ from app.content.worlds_7_to_9 import WORLD_7_HIRING_ARENA, WORLD_8_COMPANY_MISS
 from app.content.worlds_10_to_12 import WORLD_10_PRODUCTION, WORLD_11_PROJECTS, WORLD_12_CREATIVE
 from app.content.world_aptitude_quant import WORLD_APTITUDE_QUANT
 from app.content.world_aptitude_reasoning import WORLD_APTITUDE_REASONING
+from app.content.world_aptitude_verbal import WORLD_APTITUDE_VERBAL
 from app.content.world_aptitude_blood_relations import BLOOD_RELATIONS_TOWN
 from app.content.world_aptitude_direction_sense import DIRECTION_SENSE_TOWN
 from app.content.world_aptitude_seating import SEATING_TOWN
 from app.content.world_aptitude_syllogisms import SYLLOGISMS_TOWN
+from app.content.world_aptitude_puzzles import PUZZLES_TOWN
+from app.content.world_aptitude_data_sufficiency import DATA_SUFFICIENCY_TOWN
+from app.content.world_aptitude_clocks_calendars import CLOCKS_CALENDARS_TOWN
+from app.content.world_aptitude_si_ci import SI_CI_TOWN
+from app.content.world_aptitude_probability import PROBABILITY_TOWN
+from app.content.world_aptitude_di import DI_TOWN
 
-# Attach extra reasoning towns (keeps main reasoning module size manageable)
-_reasoning_town_ids = {t.id for t in WORLD_APTITUDE_REASONING.towns}
-for _extra_town in (
+# Attach quant depth towns
+_quant_ids = {t.id for t in WORLD_APTITUDE_QUANT.towns}
+for _t in (SI_CI_TOWN, PROBABILITY_TOWN, DI_TOWN):
+    if _t.id not in _quant_ids:
+        WORLD_APTITUDE_QUANT.towns = list(WORLD_APTITUDE_QUANT.towns) + [_t]
+        _quant_ids.add(_t.id)
+
+# Attach reasoning depth towns
+_reasoning_ids = {t.id for t in WORLD_APTITUDE_REASONING.towns}
+for _t in (
     BLOOD_RELATIONS_TOWN,
     DIRECTION_SENSE_TOWN,
     SEATING_TOWN,
     SYLLOGISMS_TOWN,
+    PUZZLES_TOWN,
+    DATA_SUFFICIENCY_TOWN,
+    CLOCKS_CALENDARS_TOWN,
 ):
-    if _extra_town.id not in _reasoning_town_ids:
-        WORLD_APTITUDE_REASONING.towns = list(WORLD_APTITUDE_REASONING.towns) + [_extra_town]
-        _reasoning_town_ids.add(_extra_town.id)
+    if _t.id not in _reasoning_ids:
+        WORLD_APTITUDE_REASONING.towns = list(WORLD_APTITUDE_REASONING.towns) + [_t]
+        _reasoning_ids.add(_t.id)
 
 # ─── World registry ─────────────────────────────────────────────────────────────
-# Order matters — worlds are presented to students in this order.
-
 ALL_WORLDS: Dict[str, WorldDefinition] = {
     WORLD_1_FOUNDATIONS.id: WORLD_1_FOUNDATIONS,
     WORLD_2_PROBLEM_SOLVER.id: WORLD_2_PROBLEM_SOLVER,
@@ -54,16 +69,15 @@ ALL_WORLDS: Dict[str, WorldDefinition] = {
     # Service-company placement tracks
     WORLD_APTITUDE_QUANT.id: WORLD_APTITUDE_QUANT,
     WORLD_APTITUDE_REASONING.id: WORLD_APTITUDE_REASONING,
+    WORLD_APTITUDE_VERBAL.id: WORLD_APTITUDE_VERBAL,
 }
 
 
 def get_world(world_id: str) -> WorldDefinition | None:
-    """Return a world by id, or None if not found."""
     return ALL_WORLDS.get(world_id)
 
 
 def all_lessons() -> list[LessonDefinition]:
-    """Flat list of every lesson across all worlds."""
     lessons: list[LessonDefinition] = []
     for world in ALL_WORLDS.values():
         for town in world.towns:
@@ -72,7 +86,6 @@ def all_lessons() -> list[LessonDefinition]:
 
 
 def get_lesson(world_id: str, lesson_id: str) -> LessonDefinition | None:
-    """Return a specific lesson by world + lesson id."""
     world = ALL_WORLDS.get(world_id)
     if not world:
         return None
@@ -84,7 +97,6 @@ def get_lesson(world_id: str, lesson_id: str) -> LessonDefinition | None:
 
 
 def get_lesson_by_id(lesson_id: str) -> LessonDefinition | None:
-    """Return a lesson by id across all worlds."""
     for world in ALL_WORLDS.values():
         for town in world.towns:
             for lesson in town.lessons:
@@ -94,12 +106,7 @@ def get_lesson_by_id(lesson_id: str) -> LessonDefinition | None:
 
 
 def total_lesson_count() -> int:
-    """Total lessons across all worlds."""
-    return sum(
-        len(town.lessons)
-        for world in ALL_WORLDS.values()
-        for town in world.towns
-    )
+    return sum(len(town.lessons) for world in ALL_WORLDS.values() for town in world.towns)
 
 
 def world_count() -> int:
