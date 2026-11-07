@@ -16,7 +16,12 @@ from fastapi import APIRouter, Depends, HTTPException, Query, Body
 from pydantic import BaseModel, Field
 
 from app.middleware.auth import get_current_user
-from app.database import practice_sessions_collection
+from app.database import (
+    practice_sessions_collection,
+    skill_graph_collection,
+    learning_events_collection,
+    srs_cards_collection,
+)
 from app.services.adaptive_learning import record_learning_activity
 from app.services.gamification import record_practice
 from app.services.quiz_service import (
@@ -52,6 +57,9 @@ class QuizRequest(BaseModel):
     company: Optional[str] = Field(default=None)
     num_questions: int = Field(default=5, ge=1, le=50)
     time_limit_seconds: int = Field(default=0)
+    adaptive: bool = Field(default=True, description="Use deterministic learner-evidence composition for practice and quiz modes")
+    seed: Optional[str] = Field(default=None, max_length=120, description="Optional seed for an equivalent assessment form")
+    target_skills: Optional[List[str]] = Field(default=None, max_length=12)
 
 
 class AnswerSubmission(BaseModel):
@@ -159,6 +167,61 @@ async def _get_owned_quiz_session(user_id: str, quiz_id: str) -> Dict[str, Any]:
     return session
 
 
+async def _load_quiz_evidence(user_id: str) -> Dict[str, Any]:
+    """Build a bounded evidence snapshot used only for item selection."""
+    evidence: Dict[str, Any] = {
+        "skill_scores": {},
+        "weak_skills": [],
+        "due_skills": [],
+        "seen_question_ids": [],
+    }
+    try:
+        graphs = await skill_graph_collection.find({"user_id": user_id}).to_list(500)
+        for doc in graphs:
+            skill = doc.get("skill_id") or doc.get("canonical_skill") or doc.get("topic") or doc.get("sub_topic")
+            if not skill:
+                continue
+            raw_score = doc.get("mastery_score", doc.get("score", doc.get("current_score", 0.5)))
+            try:
+                score = float(raw_score)
+                score = score / 100 if score > 1 else score
+                score = max(0.0, min(1.0, score))
+            except (TypeError, ValueError):
+                score = 0.5
+            evidence["skill_scores"][str(skill)] = score
+            if score < 0.6:
+                evidence["weak_skills"].append(str(skill))
+
+        events = await learning_events_collection.find({"user_id": user_id}).sort("timestamp", -1).to_list(500)
+        evidence["seen_question_ids"] = [
+            str(event["question_id"])
+            for event in events
+            if event.get("question_id")
+        ]
+
+        cards = await srs_cards_collection.find({"user_id": user_id}).to_list(500)
+        now = datetime.now(timezone.utc)
+        for card in cards:
+            due_at = card.get("next_review") or card.get("next_review_at")
+            if isinstance(due_at, str):
+                try:
+                    due_at = datetime.fromisoformat(due_at.replace("Z", "+00:00"))
+                except ValueError:
+                    due_at = None
+            if isinstance(due_at, datetime):
+                if due_at.tzinfo is None:
+                    due_at = due_at.replace(tzinfo=timezone.utc)
+                if due_at <= now and card.get("concept_id"):
+                    evidence["due_skills"].append(str(card["concept_id"]))
+    except Exception:
+        # Practice remains available if evidence storage is temporarily down.
+        logger.exception("Could not load quiz evidence for %s", user_id)
+    evidence["weak_skills"] = sorted(set(evidence["weak_skills"]))
+    evidence["due_skills"] = sorted(set(evidence["due_skills"]))
+    evidence["seen_question_ids"] = list(dict.fromkeys(evidence["seen_question_ids"]))
+    return evidence
+
+
 def _ordered_quiz_attempts(session: Dict[str, Any]) -> tuple[list, list]:
     """Return trusted question-bank docs and attempts in the original session order."""
     stored_answers = {
@@ -190,6 +253,8 @@ def _ordered_quiz_attempts(session: Dict[str, Any]) -> tuple[list, list]:
 @router.post("/build")
 async def build_quiz_session(req: QuizRequest, user=Depends(get_current_user)):
     """Build a new quiz session."""
+    evidence = await _load_quiz_evidence(user["id"]) if req.adaptive else {}
+    selection_seed = req.seed or f"{user['id']}:{req.mode}:{req.company or 'general'}:{','.join(req.target_skills or [])}:v1"
     quiz = build_quiz(
         mode=req.mode,
         topics=req.topics,
@@ -198,6 +263,10 @@ async def build_quiz_session(req: QuizRequest, user=Depends(get_current_user)):
         num_questions=req.num_questions,
         time_limit_seconds=req.time_limit_seconds,
         user_level=user.get("level", 1),
+        adaptive=req.adaptive,
+        selection_seed=selection_seed,
+        evidence=evidence,
+        target_skills=req.target_skills,
     )
     if not quiz.get("questions"):
         raise HTTPException(
@@ -216,6 +285,13 @@ async def build_quiz_session(req: QuizRequest, user=Depends(get_current_user)):
         "hint_counts": {},
         "status": "in_progress",
         "filters": quiz.get("filters", {}),
+        "selection": {
+            "strategy": quiz.get("selection_strategy"),
+            "seed": quiz.get("selection_seed"),
+            "evidence": quiz.get("selection_evidence", []),
+            "skill_distribution": quiz.get("skill_distribution", {}),
+            "evidence_summary": quiz.get("evidence_summary", {}),
+        },
         "time_limit_seconds": quiz.get("time_limit_seconds", 0),
         "created_at": now,
         "updated_at": now,

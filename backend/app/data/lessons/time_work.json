@@ -97,6 +97,7 @@
       "step_type": "debug_choice",
       "title": "Catch the add-the-days error",
       "content": "A student says A (10 days) and B (15 days) together take 25 days.",
+      "code": "a_rate = 1 / 10\nb_rate = 1 / 15\ncombined_days = 1 / (a_rate + b_rate)\nprint(combined_days)",
       "prompt": "What is wrong with that answer?",
       "options": [
         "Days must not be added; rates 1/10 and 1/15 combine to finish in 6 days",

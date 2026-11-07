@@ -184,6 +184,10 @@ def build_quiz(
     time_limit_seconds: int = 0,
     randomize: bool = True,
     user_level: int = 1,
+    adaptive: bool = False,
+    selection_seed: Optional[str] = None,
+    evidence: Optional[Dict[str, Any]] = None,
+    target_skills: Optional[List[str]] = None,
 ) -> Dict[str, Any]:
     """Build a quiz session based on mode and filters."""
     questions = _load_questions()
@@ -245,8 +249,31 @@ def build_quiz(
             "empty_reason": "No questions match the selected filters.",
         }
 
-    # Mode-specific selection
-    if mode == "mock_interview":
+    selection_metadata: Dict[str, Any] = {}
+    # Practice and quiz forms can opt into deterministic evidence-first
+    # composition. Legacy modes retain their original difficulty contracts.
+    if adaptive and mode in {"practice", "quiz"}:
+        from app.services.adaptive_quiz_composer import compose_quiz
+
+        composed = compose_quiz(
+            filtered,
+            num_questions=num_questions,
+            seed=selection_seed or "anonymous-form-v1",
+            evidence=evidence,
+            company=company,
+            difficulty=difficulty,
+            target_skills=target_skills,
+        )
+        selected = composed["questions"]
+        selection_metadata = {
+            "selection_strategy": composed["strategy"],
+            "selection_seed": composed["seed"],
+            "selection_evidence": composed["selection_evidence"],
+            "skill_distribution": composed["skill_distribution"],
+            "evidence_summary": composed["evidence_summary"],
+        }
+        time_limit = time_limit_seconds
+    elif mode == "mock_interview":
         # Mix difficulties: 1 easy, 2 medium, 2 hard
         by_diff = defaultdict(list)
         for q in filtered:
@@ -312,7 +339,7 @@ def build_quiz(
                 "sub_topic": q.get("sub_topic", ""),
                 "difficulty": q.get("difficulty", "medium"),
                 "pattern": q.get("pattern", ""),
-                "companies": q.get("companies", []),
+                "companies": _question_companies(q),
                 "type": q.get("type", "mcq" if q.get("options") else "short_answer"),
                 "options": q.get("options", []) or [],
                 # Hints are delivered one at a time through /hint. Solutions,
@@ -345,6 +372,7 @@ def build_quiz(
         },
         "created_at": datetime.now(timezone.utc).isoformat(),
         "user_level": user_level,
+        **selection_metadata,
     }
 
 

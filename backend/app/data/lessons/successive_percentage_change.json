@@ -127,6 +127,7 @@
       "step_type": "debug_choice",
       "title": "Catch the addition mistake",
       "content": "A student treats successive percentage changes like ordinary addition and subtraction.",
+      "code": "value = 100\nvalue *= 1.10\nvalue *= 0.90\nprint(value)",
       "prompt": "Price rises 20% and then falls 20%. A student says the net change is 0%. What is wrong?",
       "options": [
         "The second 20% acts on a larger intermediate price, so the net result is a 4% loss",

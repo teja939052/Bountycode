@@ -97,6 +97,7 @@
       "step_type": "debug_choice",
       "title": "Catch a turn error",
       "content": "A student says that facing South and turning right points East.",
+      "code": "facing = 'south'\nturn = 'right'\nright_turn = {'north': 'east', 'east': 'south', 'south': 'west', 'west': 'north'}\nprint(right_turn[facing])",
       "prompt": "What is the correct facing after a right turn from South?",
       "options": [
         "West",

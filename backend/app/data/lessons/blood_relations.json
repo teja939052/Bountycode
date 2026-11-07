@@ -85,6 +85,7 @@
       "step_type": "debug_choice",
       "title": "Catch an assumption error",
       "content": "A student assumes every sibling of a parent is an uncle.",
+      "code": "parent_sibling_gender = 'sister'\nlabel = 'uncle' if parent_sibling_gender == 'brother' else 'aunt'\nprint(label)",
       "prompt": "Why is that unsafe?",
       "options": [
         "A parent's sister is an aunt; gender must be used when given",
