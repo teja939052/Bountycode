@@ -10,7 +10,7 @@ def test_java_authored_core_lessons_use_specific_content():
         ("java-l06-05", "Pass by Value (Everything)", "box.value = 99"),
         ("java-l07-01", "Arrays Basics", "int[] marks"),
         ("java-l07-04", "ArrayList", "marks.add(80)"),
-        ("java-l02-03", "String & StringBuilder", "new StringBuilder()"),
+        ("java-l02-03", "String & StringBuilder", "StringBuilder sb = new StringBuilder"),
         ("java-l09-01", "Classes & Objects", "class Student"),
         ("java-l09-02", "Constructors", "Product(String name, double price)"),
         ("java-l09-04", "Inheritance", "class Dog extends Animal"),
