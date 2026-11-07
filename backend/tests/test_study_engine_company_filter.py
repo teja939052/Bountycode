@@ -1,3 +1,5 @@
+import asyncio
+
 from app.services import study_engine
 
 
@@ -41,7 +43,7 @@ def test_company_track_does_not_fall_back_to_unrelated_questions(monkeypatch):
         ]),
     )
 
-    tasks = __import__("asyncio").run(
+    tasks = asyncio.run(
         study_engine._get_practice_tasks(
             "learner-1",
             assessment={"skills": {}},
