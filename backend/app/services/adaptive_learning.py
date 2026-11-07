@@ -116,6 +116,29 @@ def _calculate_mastery_score(correct: int, total: int) -> float:
     return round(max(0.0, min(100.0, evidence_score * confidence)), 1)
 
 
+def _assessment_summary(skills: Dict[str, Dict[str, Any]]) -> Dict[str, Any]:
+    """Summarise only assessed domains; expose coverage separately."""
+    assessed = [
+        skill for skill in skills.values()
+        if int(skill.get("total_attempts", 0) or 0) > 0
+    ]
+    domain_count = len(skills)
+    overall_score = (
+        sum(float(skill.get("score", 0) or 0) for skill in assessed) / len(assessed)
+        if assessed else 0.0
+    )
+    total_attempts = sum(int(skill.get("total_attempts", 0) or 0) for skill in skills.values())
+    total_correct = sum(int(skill.get("correct_count", 0) or 0) for skill in skills.values())
+    return {
+        "overall_score": round(overall_score, 1),
+        "assessed_domains": len(assessed),
+        "domain_coverage_pct": round(len(assessed) / domain_count * 100, 1) if domain_count else 0.0,
+        "total_attempts": total_attempts,
+        "total_correct": total_correct,
+        "overall_accuracy": _score_to_percent(total_correct, max(1, total_attempts)),
+    }
+
+
 # ─── Skill Assessment ───
 
 async def assess_user_skills(user_id: str) -> Dict[str, Any]:
@@ -210,19 +233,17 @@ async def assess_user_skills(user_id: str) -> Dict[str, Any]:
             } if next_milestone else None,
         }
 
-    # Overall stats
-    overall_score = round(sum(s["score"] for s in skills.values()) / max(1, len(skills)), 1)
-    total_solved = sum(s["total_attempts"] for s in skills.values())
-    total_correct = sum(s["correct_count"] for s in skills.values())
+    # Do not dilute a learner's demonstrated score with untouched domains.
+    # Report coverage separately so a high score on a narrow sample is never
+    # mistaken for broad placement readiness.
+    summary = _assessment_summary(skills)
+    overall_score = summary["overall_score"]
 
     result = {
         "user_id": user_id,
-        "overall_score": overall_score,
+        **summary,
         "overall_mastery": _get_mastery_label(overall_score)["id"],
         "overall_mastery_label": _get_mastery_label(overall_score)["label"],
-        "total_attempts": total_solved,
-        "total_correct": total_correct,
-        "overall_accuracy": _score_to_percent(total_correct, max(1, total_solved)),
         "skills": skills,
         "last_assessed": datetime.now(timezone.utc).isoformat(),
     }
