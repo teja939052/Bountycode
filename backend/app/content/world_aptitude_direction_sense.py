@@ -1,0 +1,435 @@
+"""Direction Sense town — Logical Reasoning interactive lessons.
+
+Extracted as a separate module. Composed into WORLD_APTITUDE_REASONING via registry.
+"""
+from __future__ import annotations
+
+from app.content.lesson_definitions import LessonDefinition, LessonStep, TownDefinition
+
+
+DIRECTION_SENSE_TOWN = TownDefinition(
+    id="direction_sense",
+    name="Direction Sense",
+    icon="\u1f9ed",
+    description="Track position and facing. Every path is a sequence of moves on a plane.",
+    order=4,
+    mental_model="Face a direction. Left/right rotate you. Forward moves you. Keep a running (x, y) and facing.",
+    canonical_skills=["reasoning.direction_sense"],
+    competencies=[
+        "cardinal_directions",
+        "left_right_turns",
+        "distance_tracking",
+        "shortest_path",
+        "facing_after_turns",
+    ],
+    lessons=[
+        # ─── Lesson 1: Cardinal directions & turns ───
+        LessonDefinition(
+            id="ds-1",
+            title="Directions and Turns",
+            icon="1",
+            order=1,
+            concept="cardinal_directions",
+            mental_model="North, East, South, West in clockwise order. A right turn rotates clockwise; a left turn rotates counter-clockwise.",
+            canonical_skill="reasoning.direction_sense",
+            location="Navigation Yard",
+            npc="Captain Dev",
+            npc_line="Students mix up left and right after two turns. Draw a cross. Point your nose. Then turn.",
+            tutor_discover="Facing is separate from position. A turn changes facing only; a walk changes position.",
+            tutor_explain="Facing North, turn right \u2192 now face East. Facing East, turn right \u2192 now face South.",
+            why_this_matters="Every direction-sense question in TCS NQT and Infosys starts from correct turn handling.",
+            engineering_context="Orientation and rotation appear in robotics, game engines, and UI navigation.",
+            builds_toward="NQT Reasoning Ability — Direction Sense",
+            steps=[
+                LessonStep(
+                    step_type="discover",
+                    title="One right turn",
+                    content="You face North. You turn right. Which way do you face now?",
+                    visual="N \u2192 (right) \u2192 E",
+                    interaction="select-value",
+                    prompt="Now facing:",
+                    values=["East", "West", "South", "North"],
+                    answer="East",
+                ),
+                LessonStep(
+                    step_type="predict",
+                    title="Two left turns",
+                    content="Face East. Turn left, then left again. Now facing?",
+                    question="Final facing:",
+                    options=[
+                        {"id": "a", "text": "West", "correct": True},
+                        {"id": "b", "text": "North", "correct": False},
+                        {"id": "c", "text": "South", "correct": False},
+                        {"id": "d", "text": "East", "correct": False},
+                    ],
+                    explanation="East \u2192 left \u2192 North \u2192 left \u2192 West.",
+                ),
+                LessonStep(
+                    step_type="build",
+                    title="Facing after turns",
+                    function_name="facing_after",
+                    signature="def facing_after(start: str, turns: list) -> str:",
+                    description=(
+                        "start is one of N,E,S,W. turns is a list of 'L' or 'R'. "
+                        "Return final facing as N,E,S,W."
+                    ),
+                    test_cases=[
+                        {"input": ["N", ["R"]], "expected": "E"},
+                        {"input": ["E", ["L", "L"]], "expected": "W"},
+                        {"input": ["S", ["R", "R"]], "expected": "N"},
+                        {"input": ["W", ["L"]], "expected": "S"},
+                    ],
+                    hidden_tests=3,
+                    repair_steps=[{"trigger": "wrong_answer", "hint": "Order clockwise: N,E,S,W. Right = +1, Left = -1 in that cycle."}],
+                    passing_score=70,
+                    max_attempts=3,
+                ),
+                LessonStep(
+                    step_type="break",
+                    title="Confusing left with west",
+                    content="Student always treats 'left' as 'West' regardless of current facing.",
+                    question="Why is that wrong?",
+                    options=[
+                        {"id": "a", "text": "Left depends on which way you are currently facing", "correct": True},
+                        {"id": "b", "text": "Left is always West", "correct": False},
+                        {"id": "c", "text": "Left is always East", "correct": False},
+                    ],
+                    explanation="Left and right are relative to your nose. They are not fixed compass points.",
+                ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Turn rule",
+                    content="Facing North: right turns to ___, left turns to ___.",
+                    prompt="Right \u2192 ___   Left \u2192 ___",
+                    answer="East    West",
+                ),
+                LessonStep(
+                    step_type="transfer",
+                    title="About-turn",
+                    content="Facing South. You turn 180 degrees (about-turn). Now facing?",
+                    function_name="about_turn",
+                    signature="def about_turn(facing: str) -> str:",
+                    description="Return the opposite direction.",
+                    test_cases=[
+                        {"input": ["S"], "expected": "N"},
+                        {"input": ["E"], "expected": "W"},
+                    ],
+                    hidden_tests=2,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,
+                ),
+                LessonStep(
+                    step_type="mastery",
+                    title="Turns mastery",
+                    function_name="facing_after",
+                    signature="def facing_after(start: str, turns: list) -> str:",
+                    description="Final facing after a sequence of L/R turns.",
+                    test_cases=[
+                        {"input": ["N", ["R", "R", "R"]], "expected": "W"},
+                        {"input": ["E", ["L", "R", "L"]], "expected": "N"},
+                        {"input": ["W", ["R", "R"]], "expected": "E"},
+                    ],
+                    hidden_tests=4,
+                    repair_steps=[],
+                    passing_score=80,
+                    max_attempts=3,
+                ),
+            ],
+            mastery_evidence=[
+                "Apply left/right relative to current facing",
+                "Track facing through multiple turns",
+                "Never treat left/right as fixed compass points",
+            ],
+            unlocks="ds-2",
+        ),
+
+        # ─── Lesson 2: Walking and coordinates ───
+        LessonDefinition(
+            id="ds-2",
+            title="Walking and Distance",
+            icon="2",
+            order=2,
+            concept="distance_tracking",
+            mental_model="Put start at (0,0). North = +y, East = +x, South = -y, West = -x. Final distance = straight-line from origin (or from a given point).",
+            canonical_skill="reasoning.direction_sense",
+            location="Navigation Yard — Grid Path",
+            npc="Captain Dev",
+            npc_line="Write x and y. Every walk updates one of them. At the end, Pythagoras or just the net moves.",
+            tutor_discover="Position is a point. Facing is an arrow. Update them separately.",
+            why_this_matters="'How far is he from the starting point?' is the most common end question in this topic.",
+            engineering_context="2D path integration is the same idea used in dead reckoning and simple navigation systems.",
+            builds_toward="NQT Reasoning — distance after a path",
+            steps=[
+                LessonStep(
+                    step_type="discover",
+                    title="Net displacement",
+                    content="Walk 3 km North, then 4 km East. How far from start?",
+                    visual="Right triangle 3-4-5. Distance = 5 km.",
+                    interaction="select-value",
+                    prompt="Distance from start:",
+                    values=["5 km", "7 km", "1 km", "12 km"],
+                    answer="5 km",
+                ),
+                LessonStep(
+                    step_type="predict",
+                    title="Cancel opposite moves",
+                    content="5 km East, 3 km West, 2 km East. Net East-West?",
+                    question="Net:",
+                    options=[
+                        {"id": "a", "text": "4 km East", "correct": True},
+                        {"id": "b", "text": "10 km East", "correct": False},
+                        {"id": "c", "text": "0", "correct": False},
+                        {"id": "d", "text": "3 km West", "correct": False},
+                    ],
+                    explanation="+5 -3 +2 = +4 km East.",
+                ),
+                LessonStep(
+                    step_type="build",
+                    title="Final coordinates",
+                    function_name="final_position",
+                    signature="def final_position(moves: list) -> tuple:",
+                    description=(
+                        "moves is a list of (direction, km) where direction is N/E/S/W. "
+                        "Start at (0,0). Return final (x, y) with East=+x, North=+y."
+                    ),
+                    test_cases=[
+                        {"input": [[("N", 3), ("E", 4)]], "expected": (4, 3)},
+                        {"input": [[("E", 5), ("W", 3), ("E", 2)]], "expected": (4, 0)},
+                        {"input": [[("S", 2), ("W", 2)]], "expected": (-2, -2)},
+                    ],
+                    hidden_tests=3,
+                    repair_steps=[{"trigger": "wrong_answer", "hint": "N:+y E:+x S:-y W:-x. Sum each axis."}],
+                    passing_score=70,
+                    max_attempts=3,
+                ),
+                LessonStep(
+                    step_type="break",
+                    title="Adding all distances",
+                    content="Student adds 3+4=7 and says the person is 7 km from start.",
+                    question="What did they compute instead of displacement?",
+                    options=[
+                        {"id": "a", "text": "Total path length, not straight-line distance from start", "correct": True},
+                        {"id": "b", "text": "The correct displacement", "correct": False},
+                        {"id": "c", "text": "The facing direction", "correct": False},
+                    ],
+                    explanation="Path length is the sum of walks. Displacement is the straight-line gap from start to end.",
+                ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Displacement formula",
+                    content="After net x km East and net y km North, distance from start is?",
+                    prompt="Distance = ",
+                    answer="sqrt(x\u00b2 + y\u00b2)",
+                ),
+                LessonStep(
+                    step_type="transfer",
+                    title="Return to start?",
+                    content="Walk 2N, 3E, 2S, 3W. Back at start?",
+                    function_name="back_at_start",
+                    signature="def back_at_start(moves: list) -> bool:",
+                    description="Return True if final position is (0,0).",
+                    test_cases=[
+                        {"input": [[("N", 2), ("E", 3), ("S", 2), ("W", 3)]], "expected": True},
+                        {"input": [[("N", 1), ("E", 1)]], "expected": False},
+                    ],
+                    hidden_tests=2,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,
+                ),
+                LessonStep(
+                    step_type="mastery",
+                    title="Position mastery",
+                    function_name="final_position",
+                    signature="def final_position(moves: list) -> tuple:",
+                    description="Correct final (x, y).",
+                    test_cases=[
+                        {"input": [[("N", 10), ("E", 5), ("S", 4)]], "expected": (5, 6)},
+                        {"input": [[("W", 7), ("N", 3), ("E", 7)]], "expected": (0, 3)},
+                        {"input": [[("S", 1), ("S", 1), ("E", 2)]], "expected": (2, -2)},
+                    ],
+                    hidden_tests=4,
+                    repair_steps=[],
+                    passing_score=80,
+                    max_attempts=3,
+                ),
+            ],
+            mastery_evidence=[
+                "Track net East-West and North-South",
+                "Compute straight-line distance from start",
+                "Distinguish path length from displacement",
+            ],
+            unlocks="ds-3",
+        ),
+
+        # ─── Lesson 3: Full path stories ───
+        LessonDefinition(
+            id="ds-3",
+            title="Full Path Stories",
+            icon="3",
+            order=3,
+            concept="path_stories",
+            mental_model="Read the story step by step. Update facing and position after every action. Answer the final question from the diagram.",
+            canonical_skill="reasoning.direction_sense",
+            location="Navigation Yard — Story Route",
+            npc="Captain Dev",
+            npc_line="Never try to remember the whole paragraph. After each sentence, update your sketch.",
+            tutor_discover="One action at a time: turn or walk. Sketch after every action.",
+            why_this_matters="Exam questions are written as short stories. The sketch method is the reliable way to finish them fast and correctly.",
+            engineering_context="Event-sourced state updates: each instruction mutates orientation or position.",
+            builds_toward="NQT Reasoning — full direction-sense problems",
+            steps=[
+                LessonStep(
+                    step_type="discover",
+                    title="Story to sketch",
+                    content="A man walks 5 km toward the South, turns left, walks 3 km, turns left, walks 5 km. How far from start?",
+                    visual="S5 \u2192 left face E \u2192 E3 \u2192 left face N \u2192 N5. Net: 3 km East.",
+                    interaction="select-value",
+                    prompt="Distance from start:",
+                    values=["3 km", "5 km", "8 km", "13 km"],
+                    answer="3 km",
+                ),
+                LessonStep(
+                    step_type="predict",
+                    title="Final facing",
+                    content="Same path as above. Which direction is he facing at the end?",
+                    question="Final facing:",
+                    options=[
+                        {"id": "a", "text": "North", "correct": True},
+                        {"id": "b", "text": "South", "correct": False},
+                        {"id": "c", "text": "East", "correct": False},
+                        {"id": "d", "text": "West", "correct": False},
+                    ],
+                    explanation="Started facing South (implied by walking South). Left\u2192East. Left\u2192North.",
+                ),
+                LessonStep(
+                    step_type="build",
+                    title="Simulate a path",
+                    function_name="simulate_path",
+                    signature="def simulate_path(start_facing: str, actions: list) -> dict:",
+                    description=(
+                        "actions is a list of ('turn', 'L'|'R') or ('walk', km). "
+                        "Return dict with keys: facing (N/E/S/W), x, y."
+                    ),
+                    test_cases=[
+                        {
+                            "input": ["S", [("walk", 5), ("turn", "L"), ("walk", 3), ("turn", "L"), ("walk", 5)]],
+                            "expected": {"facing": "N", "x": 3, "y": 0},
+                        },
+                    ],
+                    hidden_tests=3,
+                    repair_steps=[{"trigger": "wrong_answer", "hint": "Update facing on turn; update x/y on walk according to current facing."}],
+                    passing_score=70,
+                    max_attempts=3,
+                ),
+                LessonStep(
+                    step_type="break",
+                    title="Ignoring initial facing",
+                    content="Story says 'walks 5 km toward the South' but student starts facing North by default and gets lost.",
+                    question="What should they do?",
+                    options=[
+                        {"id": "a", "text": "Set initial facing to the first stated direction of movement", "correct": True},
+                        {"id": "b", "text": "Always start facing North", "correct": False},
+                        {"id": "c", "text": "Facing does not matter", "correct": False},
+                    ],
+                    explanation="The first movement direction usually sets the initial facing unless stated otherwise.",
+                ),
+                LessonStep(
+                    step_type="retrieve",
+                    title="Story method",
+                    content="How do you solve a direction-sense story?",
+                    prompt="Method: ",
+                    answer="Sketch after every turn and walk; keep facing and (x,y) updated; answer from the final state",
+                ),
+                LessonStep(
+                    step_type="transfer",
+                    title="Shortest way home",
+                    content="After a path ending at (4, 3), what is the shortest distance back to start?",
+                    function_name="shortest_home",
+                    signature="def shortest_home(x: float, y: float) -> float:",
+                    description="Return straight-line distance to (0,0).",
+                    test_cases=[
+                        {"input": [4, 3], "expected": 5.0},
+                        {"input": [6, 8], "expected": 10.0},
+                    ],
+                    hidden_tests=2,
+                    repair_steps=[],
+                    passing_score=70,
+                    max_attempts=3,
+                ),
+                LessonStep(
+                    step_type="mastery",
+                    title="Path simulation mastery",
+                    function_name="simulate_path",
+                    signature="def simulate_path(start_facing: str, actions: list) -> dict:",
+                    description="Correct final facing and position.",
+                    test_cases=[
+                        {
+                            "input": ["N", [("walk", 2), ("turn", "R"), ("walk", 2)]],
+                            "expected": {"facing": "E", "x": 2, "y": 2},
+                        },
+                        {
+                            "input": ["E", [("turn", "L"), ("walk", 5), ("turn", "L"), ("walk", 5)]],
+                            "expected": {"facing": "W", "x": -5, "y": 5},
+                        },
+                    ],
+                    hidden_tests=4,
+                    repair_steps=[],
+                    passing_score=80,
+                    max_attempts=3,
+                ),
+            ],
+            mastery_evidence=[
+                "Simulate multi-step paths",
+                "Answer both distance and final facing",
+                "Compute shortest return distance",
+            ],
+            unlocks="ds-boss",
+        ),
+
+        # ─── Boss ───
+        LessonDefinition(
+            id="ds-boss",
+            title="Direction Sense Boss",
+            icon="B",
+            kind="boss",
+            order=4,
+            concept="direction_sense_mastery",
+            mental_model="Full story: turns, walks, final facing, and displacement in one problem.",
+            canonical_skill="reasoning.direction_sense",
+            diamonds=120,
+            estimated_minutes=15,
+            why_this_matters="Harder NQT questions combine all of these under time pressure.",
+            engineering_context="Complete navigation state machine.",
+            builds_toward="Full NQT Reasoning readiness",
+            steps=[
+                LessonStep(
+                    step_type="mastery",
+                    title="Full navigation challenge",
+                    function_name="navigation_result",
+                    signature="def navigation_result(start_facing: str, actions: list) -> dict:",
+                    description=(
+                        "Return dict: facing, x, y, distance_from_start (float). "
+                        "distance_from_start = sqrt(x\u00b2+y\u00b2)."
+                    ),
+                    test_cases=[
+                        {
+                            "input": ["S", [("walk", 5), ("turn", "L"), ("walk", 3), ("turn", "L"), ("walk", 5)]],
+                            "expected": {"facing": "N", "x": 3, "y": 0, "distance_from_start": 3.0},
+                        },
+                    ],
+                    hidden_tests=5,
+                    repair_steps=[],
+                    passing_score=80,
+                    max_attempts=3,
+                ),
+            ],
+            mastery_evidence=[
+                "Track facing and position together",
+                "Report displacement correctly",
+                "Combine all direction-sense skills",
+            ],
+        ),
+    ],
+)
