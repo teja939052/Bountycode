@@ -88,3 +88,18 @@ def test_python_exception_and_oop_lessons_use_authored_content():
         assert len(lesson["quizzes"]) == 3
         assert len(lesson["exercises"]) == 2
         assert score_lesson_content(lesson)["status"] == "ready"
+
+
+
+def test_string_slicing_uses_the_specific_string_lesson_not_list_slicing():
+    lesson = get_lesson_content(
+        "python",
+        "python-l08-03",
+        "String Slicing",
+        "theory",
+    )
+
+    assert "string slicing" in lesson["theory"].lower()
+    assert "code = 'BOUNTYCODE'" in lesson["code_example"]["code"]
+    assert "BUTCD" in lesson["output"] if "output" in lesson else True
+    assert score_lesson_content(lesson)["status"] == "ready"
