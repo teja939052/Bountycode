@@ -23,14 +23,25 @@ ALLOWED_ROLES = {
 ALLOWED_LEVELS = {"absolute_beginner", "beginner", "intermediate", "advanced"}
 ALLOWED_LANGUAGES = {"c", "cpp", "java", "python", "javascript"}
 ALLOWED_PREFERENCES = {"visual", "reading", "hands_on", "examples_first", "mixed"}
+ALLOWED_ASSESSMENT_TRACKS = {
+    "service_company_core", "tcs_foundation", "tcs_advanced", "infosys_infytq",
+    "hackwithinfy", "wipro", "accenture", "cognizant",
+}
+ALLOWED_DEVICES = {"laptop", "desktop", "mobile_only"}
 
 
 class LearnerProfileInput(BaseModel):
     target_role: str = "undecided"
     target_companies: List[str] = Field(default_factory=list, max_length=8)
+    assessment_track: str = "service_company_core"
+    assessment_date: Optional[date] = None
     experience_level: str = "absolute_beginner"
     preferred_language: str = "cpp"
     daily_minutes: int = Field(default=60, ge=15, le=480)
+    weekly_days: int = Field(default=5, ge=1, le=7)
+    device_type: str = "laptop"
+    local_runtime_available: bool = True
+    accessibility_needs: str = Field(default="", max_length=240)
     placement_date: Optional[date] = None
     learning_preference: str = "mixed"
     timezone: str = "Asia/Kolkata"
@@ -67,6 +78,22 @@ class LearnerProfileInput(BaseModel):
             raise ValueError("Choose a supported learning preference.")
         return value
 
+    @field_validator("assessment_track")
+    @classmethod
+    def validate_assessment_track(cls, value: str) -> str:
+        value = value.strip().lower()
+        if value not in ALLOWED_ASSESSMENT_TRACKS:
+            raise ValueError("Choose a supported assessment preparation track.")
+        return value
+
+    @field_validator("device_type")
+    @classmethod
+    def validate_device_type(cls, value: str) -> str:
+        value = value.strip().lower()
+        if value not in ALLOWED_DEVICES:
+            raise ValueError("Choose a supported study device.")
+        return value
+
     @field_validator("target_companies")
     @classmethod
     def normalize_companies(cls, values: List[str]) -> List[str]:
@@ -84,6 +111,13 @@ class LearnerProfileInput(BaseModel):
     def validate_placement_date(cls, value: Optional[date]) -> Optional[date]:
         if value and value < date.today():
             raise ValueError("Placement date must be today or in the future.")
+        return value
+
+    @field_validator("assessment_date")
+    @classmethod
+    def validate_assessment_date(cls, value: Optional[date]) -> Optional[date]:
+        if value and value < date.today():
+            raise ValueError("Assessment date must be today or in the future.")
         return value
 
 
