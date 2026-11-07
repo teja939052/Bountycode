@@ -69,3 +69,22 @@ def test_python_lists_dictionaries_and_strings_use_authored_content():
         assert len(lesson["quizzes"]) == 3
         assert len(lesson["exercises"]) == 2
         assert score_lesson_content(lesson)["status"] == "ready"
+
+
+
+def test_python_exception_and_oop_lessons_use_authored_content():
+    cases = [
+        ("python-l09-05", "try / except / finally", "except ValueError"),
+        ("python-l09-06", "Custom Exceptions", "class InsufficientFundsError"),
+        ("python-l10-01", "Classes & Objects", "class Student:"),
+        ("python-l10-02", "__init__ & self", "def __init__(self, owner"),
+        ("python-l10-05", "Inheritance", "class Dog(Animal):"),
+        ("python-l10-08", "Polymorphism", "for animal in [Dog(), Cat()]"),
+    ]
+
+    for lesson_id, title, expected_code in cases:
+        lesson = get_lesson_content("python", lesson_id, title, "theory")
+        assert expected_code in lesson["code_example"]["code"]
+        assert len(lesson["quizzes"]) == 3
+        assert len(lesson["exercises"]) == 2
+        assert score_lesson_content(lesson)["status"] == "ready"
