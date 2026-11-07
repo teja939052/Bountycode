@@ -1,25 +1,27 @@
 {
   "slug": "profit_loss",
   "id": "lesson_profit_loss_001",
-  "title": "Profit and Loss",
+  "title": "Profit, Loss and Discount",
   "domain": "Quantitative Aptitude",
   "pattern": "Profit and Loss",
   "difficulty": "easy",
-  "duration_min": 20,
-  "xp_reward": 90,
+  "duration_min": 32,
+  "xp_reward": 120,
+  "mastery_threshold": 0.7,
   "steps": [
     {
       "step_number": 1,
       "step_type": "explain",
       "title": "Cost price and selling price",
-      "content": "Cost price (CP) is what the shopkeeper pays. Selling price (SP) is what the customer pays. Profit happens when SP is greater than CP; loss happens when SP is smaller than CP.",
+      "content": "Cost price (CP) is what the seller pays to acquire the item. Selling price (SP) is what the customer pays. Profit occurs when SP > CP. Loss occurs when SP < CP. Always keep these two amounts separate before calculating any percentage.",
       "example": "CP = ₹500, SP = ₹575. Profit = 575 − 500 = ₹75.",
-      "tip": "Always calculate profit or loss from CP, not from SP."
+      "tip": "Write CP and SP first. Only then decide whether the case is profit or loss."
     },
     {
       "step_number": 2,
       "step_type": "interactive",
-      "title": "Calculate the profit",
+      "title": "Calculate the profit amount",
+      "content": "Profit is the positive difference SP − CP.",
       "prompt": "An item costs ₹800 and sells for ₹920. What is the profit?",
       "options": [
         "₹80",
@@ -28,15 +30,20 @@
         "₹150"
       ],
       "correct_index": 2,
-      "explanation": "Profit = SP − CP = 920 − 800 = ₹120."
+      "explanation": "Profit = SP − CP = 920 − 800 = ₹120.",
+      "hints": [
+        "Identify which amount the shopkeeper paid and which amount the customer paid.",
+        "Profit is selling price minus cost price when SP is larger."
+      ]
     },
     {
       "step_number": 3,
       "step_type": "explain",
-      "title": "Convert profit into a percentage",
-      "content": "Profit % = (Profit ÷ CP) × 100. Loss % = (Loss ÷ CP) × 100. The cost price is the base in both formulas.",
+      "title": "Profit and loss percentages use cost price",
+      "content": "Profit % = (Profit ÷ CP) × 100. Loss % = (Loss ÷ CP) × 100. In standard placement questions, the base for both percentages is the cost price—not the selling price.",
       "formula": "Profit % = ((SP − CP) / CP) × 100\nLoss % = ((CP − SP) / CP) × 100",
-      "example": "CP ₹400, SP ₹460. Profit ₹60, so profit % = 60/400 × 100 = 15%."
+      "example": "CP ₹400, SP ₹460. Profit ₹60 → Profit % = 60/400 × 100 = 15%.",
+      "tip": "If a question does not specify another base, treat CP as the percentage base."
     },
     {
       "step_number": 4,
@@ -50,20 +57,115 @@
         "12%"
       ],
       "correct_index": 2,
-      "explanation": "Loss = 1,200 − 1,080 = ₹120. Loss % = 120/1,200 × 100 = 10%."
+      "explanation": "Loss = 1,200 − 1,080 = ₹120. Loss % = 120/1,200 × 100 = 10%.",
+      "hints": [
+        "First find the loss amount.",
+        "Divide the loss by cost price, not by selling price."
+      ]
     },
     {
       "step_number": 5,
       "step_type": "explain",
-      "title": "Reverse the selling price",
-      "content": "If CP and profit percentage are known, SP = CP × (100 + profit%)/100. For a loss, SP = CP × (100 − loss%)/100.",
-      "example": "CP ₹750 and profit 20%: SP = 750 × 120/100 = ₹900.",
-      "tip": "For successive discounts, calculate each discount on the current price, not always on the original price."
+      "title": "Find SP from CP and percentage",
+      "content": "When CP and profit % are known: SP = CP × (100 + profit%) / 100. For a loss: SP = CP × (100 − loss%) / 100. These formulas reverse the percentage definitions cleanly.",
+      "example": "CP ₹750 with 20% profit → SP = 750 × 120/100 = ₹900.",
+      "tip": "Think of 20% profit as keeping 120% of CP. Think of 20% loss as keeping 80% of CP."
+    },
+    {
+      "step_number": 6,
+      "step_type": "predict_output",
+      "title": "Trace a reverse selling-price calculation",
+      "content": "Placement papers often give SP and a loss or profit percentage and ask for CP. Work backwards carefully.",
+      "prompt": "An item sold for ₹840 at a 16% loss. What is the cost price?",
+      "code": "# SP is 84% of CP\n# SP = 840\n# CP = 840 × 100 / 84",
+      "language": "python",
+      "answer_placeholder": "Enter CP in rupees",
+      "expected_answer": "1000",
+      "explanation": "A 16% loss means SP is 84% of CP. CP = 840 × 100/84 = ₹1,000.",
+      "hints": [
+        "If loss is 16%, the seller recovers 84% of cost.",
+        "Solve SP = 0.84 × CP for CP."
+      ]
+    },
+    {
+      "step_number": 7,
+      "step_type": "explain",
+      "title": "Marked price and discount",
+      "content": "Marked price (MP) is the listed price before discount. Discount reduces MP to determine SP. Discount does not change the seller's cost price. Discount % is usually calculated on marked price.",
+      "example": "MP = ₹1,000, discount 15% → Discount amount = 150, SP = 850.",
+      "tip": "Keep three labels separate: CP (what the seller paid), MP (listed price), SP (customer pays after discount)."
+    },
+    {
+      "step_number": 8,
+      "step_type": "order_steps",
+      "title": "Solve a successive-discount problem",
+      "content": "Successive discounts are applied one after another. The second discount acts on the already reduced price.",
+      "prompt": "Arrange the steps for a 20% then 10% discount on a ₹1,000 marked price.",
+      "options": [
+        "Apply 10% discount to the reduced price",
+        "Start with marked price 1000",
+        "Apply 20% discount to get 800",
+        "Report the final selling price 720"
+      ],
+      "correct_order": [
+        1,
+        2,
+        0,
+        3
+      ],
+      "explanation": "Begin with MP. Apply the first discount, then apply the second discount to the reduced amount. The combined effect is not a simple 30% off.",
+      "hints": [
+        "The second discount is not calculated on the original marked price.",
+        "Final SP after 20% and 10% is 1000 × 0.8 × 0.9."
+      ]
+    },
+    {
+      "step_number": 9,
+      "step_type": "practice",
+      "title": "Successive discounts are not additive",
+      "prompt": "A product marked at ₹1,000 gets successive discounts of 20% and 10%. What is the final selling price?",
+      "options": [
+        "₹700",
+        "₹720",
+        "₹730",
+        "₹750"
+      ],
+      "correct_index": 1,
+      "explanation": "After 20%: 800. After further 10% on 800: 720. The total discount is 28%, not 30%.",
+      "hints": [
+        "Apply discounts one after another.",
+        "Do not simply subtract 20 + 10 = 30 from 100."
+      ]
+    },
+    {
+      "step_number": 10,
+      "step_type": "debug_choice",
+      "title": "Find the wrong base",
+      "content": "A student calculates profit percentage using selling price as the base and gets a different answer from the official key.",
+      "prompt": "CP = ₹500, SP = ₹600. A student computes 600 − 500 = 100 and then 100/600 × 100 ≈ 16.7%. Why is this wrong for a standard profit-% question?",
+      "options": [
+        "Profit percentage should use cost price as the base: 100/500 × 100 = 20%",
+        "Profit must always equal 10%",
+        "Selling price cannot exceed cost price",
+        "Percentages are never used in profit questions"
+      ],
+      "correct_index": 0,
+      "feedback_by_option": {
+        "1": "Correct. Standard profit % = (profit ÷ CP) × 100 = 20%.",
+        "2": "There is no rule that profit is always 10%.",
+        "3": "Selling price can and often does exceed cost price when there is profit.",
+        "4": "Percentages are central to profit-and-loss questions."
+      },
+      "explanation": "Unless the question explicitly asks for profit on selling price, use cost price as the base.",
+      "hints": [
+        "Recall the standard definition of profit percentage.",
+        "Check which amount is in the denominator."
+      ]
     }
   ],
   "assessment": {
     "mastery_threshold": 0.7,
-    "duration_sec": 240,
+    "duration_sec": 360,
     "questions": [
       {
         "prompt": "CP is ₹600 and SP is ₹690. What is the profit percentage?",
@@ -99,27 +201,182 @@
         "explanation": "SP = 480 × 125/100 = ₹600."
       },
       {
-        "prompt": "A product is sold for ₹540 after a 10% loss. Find CP.",
+        "prompt": "A product marked at ₹2,000 is sold after successive discounts of 10% and 20%. Final SP is:",
         "options": [
-          "₹580",
-          "₹600",
-          "₹620",
-          "₹650"
+          "₹1,400",
+          "₹1,440",
+          "₹1,460",
+          "₹1,500"
         ],
         "correct_index": 1,
-        "explanation": "SP is 90% of CP. CP = 540/0.9 = ₹600."
+        "explanation": "2000 × 0.9 = 1800; 1800 × 0.8 = 1440."
       },
       {
-        "prompt": "Which value is the base when calculating profit percentage?",
+        "prompt": "Which value is the standard base when calculating profit percentage?",
         "options": [
           "Selling price",
           "Cost price",
-          "Profit amount",
+          "Marked price",
           "Discount amount"
         ],
         "correct_index": 1,
-        "explanation": "Profit percentage is profit divided by cost price, multiplied by 100."
+        "explanation": "Profit percentage = (profit ÷ cost price) × 100."
+      },
+      {
+        "prompt": "Two successive 10% discounts on ₹1,000 produce a final price of:",
+        "options": [
+          "₹800",
+          "₹810",
+          "₹820",
+          "₹900"
+        ],
+        "correct_index": 1,
+        "explanation": "1000 × 0.9 × 0.9 = 810. The combined discount is 19%, not 20%."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Distinguish cost price, selling price and marked price.",
+    "Calculate profit and loss amounts and percentages using cost price as the base.",
+    "Reverse a percentage to recover cost price or selling price.",
+    "Apply single and successive discounts correctly.",
+    "Avoid treating successive discounts as a simple sum."
+  ],
+  "prerequisites": [
+    "arithmetic_algebra"
+  ],
+  "concepts": [
+    "cost price",
+    "selling price",
+    "marked price",
+    "profit",
+    "loss",
+    "profit percentage",
+    "loss percentage",
+    "discount",
+    "successive discount"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Profit percent is calculated on selling price.",
+      "correction": "Standard profit percentage uses cost price as the base."
+    },
+    {
+      "misconception": "Two successive 10% discounts equal a 20% discount.",
+      "correction": "The second discount applies to the reduced price; the total reduction is 19%."
+    },
+    {
+      "misconception": "A discount changes the cost price.",
+      "correction": "A discount reduces the marked price to determine the selling price; the seller's cost price is separate."
+    },
+    {
+      "misconception": "If SP and loss % are known, multiply SP by the loss percent to get CP.",
+      "correction": "SP equals (100 − loss%) of CP. Divide SP by that fraction to recover CP."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Calculate profit percent",
+      "input": "CP = 500, SP = 600",
+      "trace": [
+        "Profit = SP − CP = 100.",
+        "Profit percent = 100 / 500 × 100."
+      ],
+      "output": "20% profit",
+      "explanation": "Use cost price as the base for profit percentage."
+    },
+    {
+      "title": "Find selling price after discount",
+      "input": "Marked price = 1000; discount = 15%",
+      "trace": [
+        "Discount amount = 15% of 1000 = 150.",
+        "Selling price = 1000 − 150."
+      ],
+      "output": "850",
+      "explanation": "Subtract the discount amount from the marked price."
+    },
+    {
+      "title": "Successive discounts",
+      "input": "20% off, then 10% off on 1000",
+      "trace": [
+        "After first discount: 1000 × 0.8 = 800.",
+        "After second discount: 800 × 0.9 = 720."
+      ],
+      "output": "Final price 720; total discount 28%",
+      "explanation": "The second discount is applied to the already reduced price."
+    },
+    {
+      "title": "Recover cost price from loss",
+      "input": "SP = 840 at 16% loss",
+      "trace": [
+        "SP is 84% of CP.",
+        "CP = 840 × 100 / 84."
+      ],
+      "output": "CP = 1000",
+      "explanation": "Reverse the percentage carefully instead of adding the loss amount to SP without scaling."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS NQT",
+      "skill": "profit, loss and percentage arithmetic",
+      "practice": "Show the percentage base before calculating. Expect reverse CP/SP questions."
+    },
+    {
+      "company": "Infosys",
+      "skill": "commercial arithmetic",
+      "practice": "Reverse a discount or loss percentage to find the original value under time pressure."
+    },
+    {
+      "company": "Accenture",
+      "skill": "numerical reasoning",
+      "practice": "Translate successive discounts into sequential multiplication, not addition."
+    },
+    {
+      "company": "Wipro",
+      "skill": "quantitative aptitude",
+      "practice": "Mix profit-loss with simple discount in multi-step word problems."
+    },
+    {
+      "company": "Cognizant",
+      "skill": "aptitude foundation",
+      "practice": "Identify CP, MP and SP labels before choosing a formula."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "formula",
+      "question": "What is the formula for profit percentage?",
+      "answer": "Profit percentage = (profit ÷ cost price) × 100."
+    },
+    {
+      "type": "formula",
+      "question": "How do you find SP after a 20% loss?",
+      "answer": "SP = CP × 80/100."
+    },
+    {
+      "type": "misconception",
+      "question": "Why are successive 10% + 10% discounts not equal to 20% off?",
+      "answer": "The second 10% applies to the already reduced price, so the combined discount is 19%."
+    },
+    {
+      "type": "application",
+      "question": "SP is known and loss % is known. How do you recover CP?",
+      "answer": "CP = SP × 100 / (100 − loss%)."
+    }
+  ],
+  "quest": {
+    "chapter": "The Trading Post",
+    "rank": "Commerce Analyst",
+    "story": "A merchant needs to price products without confusing the amount paid, the listed price and the final selling price. Your calculations must use the correct base every time—exactly what service-company aptitude rounds test.",
+    "mission": "Calculate profit, loss, discounts and reverse selling prices using cost price as the percentage base.",
+    "success_criteria": [
+      "Distinguish CP, SP and marked price.",
+      "Calculate profit and loss amounts and percentages.",
+      "Use cost price as the percentage base.",
+      "Solve reverse-price and successive-discount problems."
+    ]
+  },
+  "next_lesson_slug": "ratio_proportion",
+  "next_lesson_title": "Ratios and Proportions"
 }

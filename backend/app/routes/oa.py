@@ -13,7 +13,7 @@ Key design principles (from the research doc):
 - Time Intelligence: per-question timing produces actionable test-taking strategy advice.
 """
 from datetime import datetime, timezone, timedelta
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Body
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 from typing import Dict, List, Optional, Any
@@ -508,6 +508,7 @@ def _marking_for(company: str) -> dict:
     return scheme
 
 OA_FREE_LIMIT = 1  # mirrors FREE_TIER_COMPANY_MOCK_LIMIT
+OA_ENGINE_VERSION = "2026.11"
 
 
 # ---------------------------------------------------------------------------
@@ -515,6 +516,7 @@ OA_FREE_LIMIT = 1  # mirrors FREE_TIER_COMPANY_MOCK_LIMIT
 # ---------------------------------------------------------------------------
 class StartOARequest(BaseModel):
     company: str = Field("general", description="Company blueprint key (amazon/google/tcs/...)")
+    track: Optional[str] = Field(None, description="Optional edition track, e.g. foundation or advanced")
     role: str = Field("swe", description="Target role key (swe/...); currently drives blueprint selection")
     total_questions: int = Field(20, ge=5, le=40, description="Total number of questions")
     duration_minutes: int = Field(90, ge=10, le=200, description="Total OA duration in minutes (e.g. 190 for TCS NQT Foundation+Advanced)")
@@ -534,6 +536,12 @@ class SubmitOAItem(BaseModel):
 class SubmitOABatch(BaseModel):
     session_id: str
     items: List[SubmitOAItem] = Field(default_factory=list)
+
+
+class CompleteOABody(BaseModel):
+    flagged_question_ids: List[str] = Field(default_factory=list, max_length=100)
+    client_resume_used: bool = False
+    autosave_available: bool = False
 
 
 class IntegritySignal(BaseModel):
@@ -580,6 +588,30 @@ def _distribute(total: int, blueprint: Dict[str, float]) -> Dict[str, int]:
         i += 1
     # drop zero-count sections
     return {sec: n for sec, n in floor.items() if n > 0}
+
+
+def _scope_distribution(dist: Dict[str, int], track: Optional[str], total: int) -> Dict[str, int]:
+    """Restrict a blueprint to a named stage and deterministically rescale it."""
+    allowed = {
+        "foundation": {"aptitude", "logical", "verbal"},
+        "advanced": {"cs_fundamentals", "coding", "dsa"},
+    }.get((track or "").strip().lower())
+    if not allowed:
+        return dist
+    scoped = {section: count for section, count in dist.items() if section in allowed}
+    if not scoped:
+        return dist
+    source_total = sum(scoped.values())
+    if source_total == total:
+        return scoped
+    scaled = {section: max(1, round(count / source_total * total)) for section, count in scoped.items()}
+    while sum(scaled.values()) > total and len(scaled) > 1:
+        largest = max(scaled, key=scaled.get)
+        scaled[largest] -= 1
+    while sum(scaled.values()) < total:
+        largest = max(scoped, key=scoped.get)
+        scaled[largest] += 1
+    return scaled
 
 
 # Map OA sections to verified question-store types (Content Trust).
@@ -1202,6 +1234,8 @@ async def start_oa(company: str, req: StartOARequest, user=Depends(get_current_u
             dist = exact_dist
     else:
         dist = _distribute(req.total_questions, blueprint)
+    track_key = (req.track or "").strip().lower()
+    dist = _scope_distribution(dist, track_key, req.total_questions)
     questions = await _build_questions(dist, verified_only=req.verified_only, company=company, section_durations=section_durations)
 
     if req.verified_only and not questions:
@@ -1246,7 +1280,10 @@ async def start_oa(company: str, req: StartOARequest, user=Depends(get_current_u
     session_doc = {
         "user_id": user["id"],
         "company": company.lower(),
+        "track": track_key or None,
         "role": req.role,
+        "engine_version": OA_ENGINE_VERSION,
+        "blueprint_version": f"{company.lower()}:{OA_ENGINE_VERSION}",
         "blueprint": blueprint,
         "mode": req.mode,
         "integrity_enabled": req.integrity,
@@ -1263,6 +1300,7 @@ async def start_oa(company: str, req: StartOARequest, user=Depends(get_current_u
         "ends_at": now + timedelta(minutes=req.duration_minutes),
         "created_at": now,
         "score_breakdown": {},
+        "review_metadata": {},
     }
     res = await oa_sessions_collection.insert_one(session_doc)
     session_id = str(res.inserted_id)
@@ -1303,6 +1341,9 @@ async def start_oa(company: str, req: StartOARequest, user=Depends(get_current_u
     return {
         "session_id": session_id,
         "company": company.lower(),
+        "track": track_key or None,
+        "engine_version": OA_ENGINE_VERSION,
+        "blueprint_version": session_doc["blueprint_version"],
         "mode": req.mode,
         "blueprint": blueprint,
         "marking_scheme": scheme,
@@ -1433,7 +1474,7 @@ async def record_integrity_signal(req: IntegritySignal, user=Depends(get_current
 
 
 @router.post("/{session_id}/complete")
-async def complete_oa(session_id: str, user=Depends(get_current_user)):
+async def complete_oa(session_id: str, body: Optional[CompleteOABody] = Body(default=None), user=Depends(get_current_user)):
     """Grade the OA, produce the scorecard, update readiness, and surface next missions."""
     try:
         sess = await oa_sessions_collection.find_one({"_id": ObjectId(session_id)})
@@ -1546,9 +1587,19 @@ async def complete_oa(session_id: str, user=Depends(get_current_user)):
     for s in signals:
         integrity_summary[s.get("event", "unknown")] = integrity_summary.get(s.get("event", "unknown"), 0) + 1
 
+    body = body or CompleteOABody()
+    review_metadata = {
+        "flagged_question_count": len(body.flagged_question_ids),
+        "flagged_question_ids": body.flagged_question_ids,
+        "client_resume_used": body.client_resume_used,
+        "autosave_available": body.autosave_available,
+    }
     result = {
         "session_id": session_id,
         "company": sess.get("company"),
+        "track": sess.get("track"),
+        "engine_version": sess.get("engine_version", OA_ENGINE_VERSION),
+        "blueprint_version": sess.get("blueprint_version", f"{sess.get('company', 'general')}:{OA_ENGINE_VERSION}"),
         "mode": sess.get("mode"),
         "overall_readiness": overall,
         "verdict": verdict,
@@ -1579,11 +1630,12 @@ async def complete_oa(session_id: str, user=Depends(get_current_user)):
         "fullscreen_exits": sess.get("fullscreen_exits", 0),
         "scorecard": per_question,
         "next_missions": _next_missions(weak, topic_times),
+        "review_metadata": review_metadata,
     }
 
     await oa_sessions_collection.update_one(
         {"_id": ObjectId(session_id)},
-        {"$set": {"status": "completed", "result": result, "completed_at": datetime.now(timezone.utc)}},
+        {"$set": {"status": "completed", "result": result, "review_metadata": review_metadata, "completed_at": datetime.now(timezone.utc)}},
     )
 
     # Feed readiness (best-effort, non-blocking)

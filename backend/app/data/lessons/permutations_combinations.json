@@ -120,5 +120,7 @@
         "explanation": "A combination treats a selection as the same regardless of order."
       }
     ]
-  }
+  },
+  "next_lesson_slug": "probability_basics",
+  "next_lesson_title": "Probability Basics"
 }

@@ -153,9 +153,11 @@ async def enroll_in_path(user_id: str, path_id: str) -> Dict[str, Any]:
         "last_activity_at": now,
     }
 
+    # Enrolling is a preference change, not learning evidence. Preserve any
+    # existing module progress when a learner returns to this path.
     await user_learning_paths_collection.update_one(
         {"user_id": user_id, "path_id": path_id},
-        {"$set": doc},
+        {"$setOnInsert": doc},
         upsert=True,
     )
 
@@ -171,11 +173,6 @@ async def enroll_in_path(user_id: str, path_id: str) -> Dict[str, Any]:
     )
     if result.matched_count == 0:
         raise ValueError("Authenticated user was not found while saving the role target.")
-
-    try:
-        await record_practice(user_id, "learning_path", 10, {"path_id": path_id, "action": "enroll"}, role=role.get("short_name", path_id))
-    except Exception:
-        pass
 
     return {"success": True, "path_id": path_id, "enrolled_at": now}
 
@@ -225,9 +222,11 @@ async def enroll_in_track(user_id: str, track_id: str, role: str = "sde") -> Dic
         "last_activity_at": now,
     }
 
+    # Enrolling is a preference change, not learning evidence. Preserve any
+    # existing section/module progress when a learner returns to this track.
     await user_company_tracks_collection.update_one(
         {"user_id": user_id, "track_id": track_id},
-        {"$set": doc},
+        {"$setOnInsert": doc},
         upsert=True,
     )
 
@@ -252,11 +251,6 @@ async def enroll_in_track(user_id: str, track_id: str, role: str = "sde") -> Dic
     await cache.delete("adaptive", f"daily_plan:{user_id}:{today_key}")
     await cache.delete("adaptive", f"skills:{user_id}")
     await cache.delete("study", f"today:{user_id}:{today_key}")
-
-    try:
-        await record_practice(user_id, "company_track", 10, {"track_id": track_id, "action": "enroll"}, role=role or "sde")
-    except Exception:
-        pass
 
     return {"success": True, "track_id": track_id, "enrolled_at": now}
 

@@ -118,5 +118,104 @@
         "explanation": "The memory system must resolve a reference to a page that is not currently resident."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Explain process and thread differences.",
+    "Describe CPU scheduling and context switching.",
+    "Understand memory management and virtual memory.",
+    "Explain synchronization and deadlocks.",
+    "Connect operating-system concepts to everyday behavior."
+  ],
+  "prerequisites": [
+    "programming_languages"
+  ],
+  "concepts": [
+    "process",
+    "thread",
+    "scheduling",
+    "context switch",
+    "virtual memory",
+    "mutex",
+    "deadlock"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "A process and a thread are identical.",
+      "correction": "A process has its own address space; threads within it share process resources."
+    },
+    {
+      "misconception": "More threads always make a program faster.",
+      "correction": "Synchronization and scheduling overhead can reduce performance."
+    },
+    {
+      "misconception": "Deadlock means a process is merely slow.",
+      "correction": "Deadlock is a circular wait in which involved processes cannot make progress."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Process versus thread",
+      "input": "A browser runs tabs and background tasks.",
+      "trace": [
+        "The operating system isolates processes.",
+        "A process can contain multiple threads.",
+        "Threads in one process share its memory space."
+      ],
+      "output": "A process is a resource boundary; a thread is an execution path",
+      "explanation": "This distinction helps explain isolation, communication and concurrency."
+    },
+    {
+      "title": "Context switching",
+      "input": "CPU switches from process A to process B",
+      "trace": [
+        "Save A's execution state.",
+        "Load B's saved state.",
+        "Resume B at its saved instruction."
+      ],
+      "output": "The CPU continues with process B",
+      "explanation": "Context switching enables multitasking but has overhead."
+    },
+    {
+      "title": "Recognize deadlock",
+      "input": "P1 holds R1 and waits for R2; P2 holds R2 and waits for R1.",
+      "trace": [
+        "P1 cannot proceed without R2.",
+        "P2 cannot proceed without R1.",
+        "Each waits for a resource held by the other."
+      ],
+      "output": "Deadlock cycle: P1 → R2 → P2 → R1 → P1",
+      "explanation": "A circular wait can prevent both processes from progressing."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "operating systems fundamentals",
+      "practice": "Explain processes, threads, scheduling and deadlocks."
+    },
+    {
+      "company": "Infosys",
+      "skill": "CS fundamentals",
+      "practice": "Use small examples to explain synchronization and memory."
+    },
+    {
+      "company": "Cognizant",
+      "skill": "technical interview basics",
+      "practice": "Compare concepts clearly and identify trade-offs."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What are the key ideas in Operating Systems Fundamentals?",
+      "answer": "Explain process and thread differences. Describe CPU scheduling and context switching. Understand memory management and virtual memory. Explain synchronization and deadlocks. Connect operating-system concepts to everyday behavior."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in Operating Systems Fundamentals.",
+      "answer": "A process has its own address space; threads within it share process resources."
+    }
+  ],
+  "next_lesson_slug": "computer_networks_basics",
+  "next_lesson_title": "Computer Networks Fundamentals"
 }

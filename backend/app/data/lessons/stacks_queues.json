@@ -118,5 +118,106 @@
         "explanation": "The top is 8; after popping it, 6 becomes the top."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Explain stack LIFO and queue FIFO behavior.",
+    "Trace push, pop, enqueue and dequeue.",
+    "Choose stacks or queues for common problems.",
+    "Recognize O(1) operations with suitable implementations."
+  ],
+  "prerequisites": [
+    "data_structures_intro",
+    "arrays_basics"
+  ],
+  "concepts": [
+    "LIFO",
+    "FIFO",
+    "push",
+    "pop",
+    "peek",
+    "enqueue",
+    "dequeue",
+    "front",
+    "rear"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "A stack removes the oldest item first.",
+      "correction": "A stack is last-in, first-out; the most recently pushed item leaves first."
+    },
+    {
+      "misconception": "A queue removes the newest item first.",
+      "correction": "A queue is first-in, first-out; the earliest enqueued item leaves first."
+    },
+    {
+      "misconception": "Pop and peek do the same thing.",
+      "correction": "Pop removes and returns the top; peek reads it without removing it."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Trace a stack",
+      "input": "push(4), push(7), pop()",
+      "trace": [
+        "Push 4; stack is [4].",
+        "Push 7; stack is [4, 7].",
+        "Pop removes the top item 7."
+      ],
+      "output": "Popped 7; stack contains [4]",
+      "explanation": "A stack follows LIFO order."
+    },
+    {
+      "title": "Trace a queue",
+      "input": "enqueue(A), enqueue(B), dequeue()",
+      "trace": [
+        "Enqueue A; queue is [A].",
+        "Enqueue B; queue is [A, B].",
+        "Dequeue removes the front item A."
+      ],
+      "output": "Dequeued A; queue contains [B]",
+      "explanation": "A queue follows FIFO order."
+    },
+    {
+      "title": "Choose the structure",
+      "input": "Process tasks in arrival order",
+      "trace": [
+        "New tasks join at the rear.",
+        "The oldest waiting task is selected.",
+        "The next task waits until earlier tasks leave."
+      ],
+      "output": "Queue",
+      "explanation": "Queues are useful for scheduling, breadth-first search and buffering."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "stack and queue operations",
+      "practice": "Trace push/pop and enqueue/dequeue sequences."
+    },
+    {
+      "company": "Infosys",
+      "skill": "data structures and coding",
+      "practice": "Recognize balanced-parentheses and BFS use cases."
+    },
+    {
+      "company": "Wipro",
+      "skill": "basic data structures",
+      "practice": "Handle underflow and empty-structure conditions."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What are the key ideas in Stacks and Queues?",
+      "answer": "Explain stack LIFO and queue FIFO behavior. Trace push, pop, enqueue and dequeue. Choose stacks or queues for common problems. Recognize O(1) operations with suitable implementations."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in Stacks and Queues.",
+      "answer": "A stack is last-in, first-out; the most recently pushed item leaves first."
+    }
+  ],
+  "next_lesson_slug": "trees_basics",
+  "next_lesson_title": "Trees and Binary Search Trees"
 }

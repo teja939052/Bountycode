@@ -5,8 +5,8 @@
   "domain": "SQL",
   "pattern": "SQL",
   "difficulty": "easy",
-  "duration_min": 22,
-  "xp_reward": 100,
+  "duration_min": 32,
+  "xp_reward": 125,
   "steps": [
     {
       "step_number": 1,
@@ -28,7 +28,11 @@
         "SELECT marks >= 70"
       ],
       "correct_index": 1,
-      "explanation": "WHERE filters individual rows before grouping or final ordering."
+      "explanation": "WHERE filters individual rows before grouping or final ordering.",
+      "hints": [
+        "Identify which SQL clause performs the task in the question.",
+        "Separate selecting columns, filtering rows, grouping rows and sorting results."
+      ]
     },
     {
       "step_number": 3,
@@ -49,7 +53,11 @@
         "SELECT * FROM Student GROUP BY marks > 80;"
       ],
       "correct_index": 0,
-      "explanation": "WHERE selects rows with marks > 80. ORDER BY marks DESC sorts them from highest to lowest."
+      "explanation": "WHERE selects rows with marks > 80. ORDER BY marks DESC sorts them from highest to lowest.",
+      "hints": [
+        "Identify which SQL clause performs the task in the question.",
+        "Separate selecting columns, filtering rows, grouping rows and sorting results."
+      ]
     },
     {
       "step_number": 5,
@@ -57,6 +65,73 @@
       "title": "Aggregate functions",
       "content": "COUNT counts rows or non-NULL values; SUM adds values; AVG calculates the mean; MIN and MAX return extremes. GROUP BY creates a separate result group for each key.",
       "example": "SELECT department, AVG(salary) FROM Employee GROUP BY department; calculates an average for each department."
+    },
+    {
+      "step_number": 6,
+      "step_type": "sql_lab",
+      "title": "Write a filtered and sorted query",
+      "content": "The Student table stores one row per learner. Use SELECT to choose columns, WHERE to filter rows and ORDER BY to sort the result. The grading data stays on the server; only the schema and sample rows are shown here.",
+      "prompt": "Return each student's name and marks where marks are at least 80, sorted from highest marks to lowest.",
+      "schema_preview": "Student(id INTEGER, name TEXT, marks INTEGER, department TEXT)",
+      "sample_data": "id | name | marks | department\n1 | Asha | 92 | CSE\n2 | Ravi | 76 | ECE\n3 | Mira | 85 | CSE\n4 | Dev | 68 | MECH",
+      "schema_ddl": "CREATE TABLE Student (id INTEGER PRIMARY KEY, name TEXT NOT NULL, marks INTEGER NOT NULL, department TEXT NOT NULL);",
+      "seed_inserts": "INSERT INTO Student VALUES (1, 'Asha', 92, 'CSE'); INSERT INTO Student VALUES (2, 'Ravi', 76, 'ECE'); INSERT INTO Student VALUES (3, 'Mira', 85, 'CSE'); INSERT INTO Student VALUES (4, 'Dev', 68, 'MECH');",
+      "expected_query": "SELECT name, marks FROM Student WHERE marks >= 80 ORDER BY marks DESC;",
+      "explanation": "WHERE keeps Asha and Mira because their marks are at least 80. ORDER BY marks DESC places Asha (92) before Mira (85).",
+      "hints": [
+        "First choose only the columns requested: name and marks.",
+        "Filter the rows with WHERE marks >= 80.",
+        "Sort the remaining rows with ORDER BY marks DESC."
+      ]
+    },
+    {
+      "step_number": 7,
+      "step_type": "order_steps",
+      "title": "Understand the query pipeline",
+      "content": "A query is written in a familiar clause order. Its logical processing order starts with FROM, then WHERE, then SELECT; ORDER BY is applied to the result.",
+      "prompt": "Arrange the logical steps for a simple filtered SELECT query.",
+      "options": [
+        "Choose the output columns",
+        "Read rows from the table",
+        "Keep rows that satisfy WHERE",
+        "Sort the final result with ORDER BY"
+      ],
+      "correct_order": [
+        1,
+        2,
+        0,
+        3
+      ],
+      "explanation": "FROM provides the source rows, WHERE filters them, SELECT projects requested columns, and ORDER BY sorts the result.",
+      "hints": [
+        "The database needs a source table before it can filter rows.",
+        "Filtering happens before the final output columns are selected in the logical query-processing model."
+      ]
+    },
+    {
+      "step_number": 8,
+      "step_type": "debug_choice",
+      "title": "Repair a WHERE and ORDER BY mix-up",
+      "content": "The analyst wants students with marks above 80, highest first. The query sorts by a Boolean comparison instead of filtering rows.",
+      "prompt": "Which change fixes the query?",
+      "code": "SELECT name, marks\nFROM Student\nORDER BY marks > 80 DESC;",
+      "options": [
+        "Add WHERE marks > 80 before ORDER BY marks DESC",
+        "Replace SELECT with WHERE",
+        "Use GROUP BY marks > 80",
+        "Remove FROM Student"
+      ],
+      "correct_index": 0,
+      "feedback_by_option": {
+        "1": "The query still needs SELECT for the requested columns and FROM for the table. WHERE is a separate filtering clause.",
+        "2": "GROUP BY is used for aggregation; it does not replace a row filter.",
+        "3": "Without FROM, the query has no Student table source."
+      },
+      "explanation": "Use WHERE marks > 80 to filter rows, then ORDER BY marks DESC to sort the qualifying rows.",
+      "hints": [
+        "Filtering and sorting are different jobs.",
+        "Use WHERE for the condition and ORDER BY for the sort direction."
+      ]
     }
   ],
   "assessment": {
@@ -119,5 +194,126 @@
         "explanation": "HAVING filters grouped results; WHERE filters rows before grouping."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Select only the columns required by a question.",
+    "Filter rows using WHERE and comparison operators.",
+    "Sort rows using ORDER BY ASC and DESC.",
+    "Explain the distinction between row filtering and grouping.",
+    "Write and validate a read-only SELECT query."
+  ],
+  "prerequisites": [
+    "dbms_basics"
+  ],
+  "concepts": [
+    "SELECT",
+    "FROM",
+    "WHERE",
+    "ORDER BY",
+    "ASC",
+    "DESC",
+    "DISTINCT",
+    "NULL",
+    "COUNT",
+    "SUM",
+    "AVG",
+    "query pipeline"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "ORDER BY filters rows.",
+      "correction": "WHERE filters rows; ORDER BY sorts the rows that remain."
+    },
+    {
+      "misconception": "GROUP BY is another way to sort rows.",
+      "correction": "GROUP BY forms groups for aggregation; ORDER BY sorts the final result."
+    },
+    {
+      "misconception": "SELECT * is always the best choice.",
+      "correction": "Selecting only required columns makes queries clearer and can reduce unnecessary data transfer."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Select columns",
+      "input": "SELECT name, marks FROM Student;",
+      "trace": [
+        "Read rows from Student.",
+        "Return only name and marks.",
+        "Do not return other columns."
+      ],
+      "output": "A two-column result",
+      "explanation": "SELECT names the columns to include; FROM names the source table."
+    },
+    {
+      "title": "Filter rows",
+      "input": "SELECT name FROM Student WHERE marks >= 60;",
+      "trace": [
+        "Examine each row.",
+        "Keep rows whose marks are at least 60.",
+        "Return the name for each kept row."
+      ],
+      "output": "Names of students scoring 60 or more",
+      "explanation": "WHERE keeps rows that satisfy its Boolean condition."
+    },
+    {
+      "title": "Sort the result",
+      "input": "SELECT name, marks FROM Student ORDER BY marks DESC;",
+      "trace": [
+        "Select name and marks.",
+        "Sort by marks.",
+        "DESC places larger marks first."
+      ],
+      "output": "Highest marks appear first",
+      "explanation": "ORDER BY sorts the returned rows; it does not update the table."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS NQT",
+      "skill": "SQL query fundamentals",
+      "practice": "Write SELECT statements with correct filters and sort directions."
+    },
+    {
+      "company": "Infosys",
+      "skill": "SQL and database reasoning",
+      "practice": "Explain the difference between WHERE, GROUP BY and ORDER BY."
+    },
+    {
+      "company": "Accenture",
+      "skill": "data retrieval",
+      "practice": "Translate a business question into a safe read-only SELECT query."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "clause",
+      "question": "Which SQL clause filters individual rows?",
+      "answer": "WHERE."
+    },
+    {
+      "type": "clause",
+      "question": "Which SQL clause sorts returned rows?",
+      "answer": "ORDER BY."
+    },
+    {
+      "type": "distinction",
+      "question": "How does WHERE differ from GROUP BY?",
+      "answer": "WHERE filters rows; GROUP BY groups remaining rows for aggregation."
+    }
+  ],
+  "quest": {
+    "chapter": "The Query Terminal",
+    "rank": "Data Explorer",
+    "story": "The placement analytics console contains student records, but the recruiter needs a precise shortlist rather than a raw dump of every row.",
+    "mission": "Translate a request into a read-only SELECT query with correct columns, filters and sorting.",
+    "success_criteria": [
+      "Choose required output columns.",
+      "Filter rows with WHERE.",
+      "Sort results with ORDER BY.",
+      "Debug a query that confuses filtering and sorting."
+    ]
+  },
+  "next_lesson_slug": "sql_joins",
+  "next_lesson_title": "SQL Joins"
 }

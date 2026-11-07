@@ -1,0 +1,338 @@
+{
+  "id": "lesson_variables_basics_001",
+  "slug": "variables_basics",
+  "title": "Variables, Values and Data Types",
+  "domain": "Programming Fundamentals",
+  "pattern": "Variables and Types",
+  "difficulty": "easy",
+  "duration_min": 30,
+  "xp_reward": 110,
+  "mastery_threshold": 0.7,
+  "steps": [
+    {
+      "step_number": 1,
+      "step_type": "explain",
+      "title": "A variable is a name connected to a value",
+      "content": "A program works with values: 18, 3.5, 'Bountycode' and true. A variable gives a value a readable name so the program can use it later. Think of a variable as a labelled place in your program's state—not as a permanent box that can contain only one value.",
+      "example": "age = 18\nname = 'Mira'\nis_ready = True",
+      "tip": "Read assignments from right to left: first compute the value on the right, then associate it with the name on the left."
+    },
+    {
+      "step_number": 2,
+      "step_type": "interactive",
+      "title": "Choose a useful variable",
+      "content": "A placement practice app stores a student's number of solved questions. Choose the most suitable variable name.",
+      "prompt": "Which variable name communicates this value most clearly?",
+      "options": [
+        "x",
+        "solved_questions",
+        "question_text",
+        "is_correct"
+      ],
+      "correct_index": 1,
+      "explanation": "solved_questions describes a count. A clear name communicates meaning; x is vague, question_text suggests text, and is_correct suggests a Boolean.",
+      "hints": [
+        "Look for a descriptive name rather than a one-letter placeholder.",
+        "The value represents a count, not text or a true/false state."
+      ]
+    },
+    {
+      "step_number": 3,
+      "step_type": "explain",
+      "title": "Understand common data types",
+      "content": "An integer represents a whole number, such as 42. A floating-point value represents a number with a fractional part, such as 7.5. A string represents text, such as 'hello'. A Boolean represents one of two logical values: true or false. A character is a single text symbol in languages that have a distinct character type; Python, for example, represents a one-character string as a string.",
+      "example": "attempts = 4          # integer\naccuracy = 87.5       # floating point\nstudent = 'Asha'      # string\npassed = True         # Boolean",
+      "tip": "Choose a type based on what the value means, not on how the value looks on the screen."
+    },
+    {
+      "step_number": 4,
+      "step_type": "predict_output",
+      "title": "Trace reassignment",
+      "content": "Assignment updates the value associated with a variable. The previous value is replaced for subsequent reads; it is not added automatically.",
+      "prompt": "What exact value is printed after these statements?",
+      "code": "score = 10\nscore = score + 5\nprint(score)",
+      "language": "python",
+      "answer_placeholder": "Enter the printed value",
+      "expected_answer": "15",
+      "explanation": "First score refers to 10. The second assignment evaluates score + 5 as 10 + 5, then stores 15. print reads the updated value.",
+      "hints": [
+        "Read the first assignment to establish the starting value.",
+        "Evaluate the right-hand expression using the current value before storing the result."
+      ]
+    },
+    {
+      "step_number": 5,
+      "step_type": "explain",
+      "title": "Assignment is not the same as equality",
+      "content": "The assignment operator = stores a value in a variable in languages such as Python, Java and JavaScript. Equality operators such as == compare two values and produce a Boolean result. The symbols vary by language, so always learn the syntax of the language you are using.",
+      "example": "x = 5       # assign 5 to x\nx == 5      # compare x with 5; result is true",
+      "tip": "When tracing code, ask: is this line changing state, or checking a condition?"
+    },
+    {
+      "step_number": 6,
+      "step_type": "fill_blank",
+      "title": "Convert text into a number",
+      "content": "Input received from a text field or input() is commonly text. Convert it before doing arithmetic. In Python, int() converts suitable whole-number text to an integer.",
+      "prompt": "Complete the conversion so total is the number 12, not the text '12'.",
+      "code": "raw = '12'\ntotal = ____ (raw)",
+      "answer_placeholder": "Function name",
+      "expected_answer": "int",
+      "explanation": "int('12') returns the integer 12. Without conversion, adding text and a number may fail or behave differently from numeric addition.",
+      "hints": [
+        "Input from a text field is usually a string.",
+        "Use the conversion function whose name matches the whole-number type."
+      ]
+    },
+    {
+      "step_number": 7,
+      "step_type": "order_steps",
+      "title": "Follow an assignment",
+      "content": "A variable update has a consistent execution sequence: evaluate the expression, then store its result under the target name.",
+      "prompt": "Arrange the operations performed by total = price * quantity.",
+      "options": [
+        "Store the computed result in total",
+        "Read price and quantity",
+        "Multiply the two values"
+      ],
+      "correct_order": [
+        1,
+        2,
+        0
+      ],
+      "explanation": "The program reads price and quantity, multiplies them, and stores the result in total. Assignment does not store a half-finished expression.",
+      "hints": [
+        "The expression must be evaluated before its result can be stored.",
+        "Read both variable values, perform the multiplication, then update the target variable."
+      ]
+    },
+    {
+      "step_number": 8,
+      "step_type": "code_lab",
+      "title": "Build a small learner profile",
+      "content": "Use meaningful variable names and simple values. This browser lab checks the exact output; it is practice feedback, not a placement mastery assessment.",
+      "prompt": "Complete the JavaScript statements so the output is Asha: 3 lessons.",
+      "language": "javascript",
+      "starter_code": "const learnerName = 'Asha';\nconst completedLessons = 3;\n\n// TODO: print the learner name, a colon, and the lesson count\n",
+      "expected_output": "Asha: 3 lessons",
+      "hints": [
+        "Use console.log() to print one line.",
+        "A template string can insert variables with ${...}.",
+        "Print `${learnerName}: ${completedLessons} lessons`."
+      ]
+    },
+    {
+      "step_number": 9,
+      "step_type": "debug_choice",
+      "title": "Find the type mismatch",
+      "content": "A learner wants to add one to a number collected from a text input. The output is '101' instead of 11.",
+      "prompt": "What is the most likely issue in this code?",
+      "code": "let age = '10';\nconsole.log(age + 1);",
+      "options": [
+        "age is a string, so + joins text and the number",
+        "console.log always converts numbers to strings before addition",
+        "The number 1 is too small to add",
+        "Strings cannot be printed"
+      ],
+      "correct_index": 0,
+      "feedback_by_option": {
+        "1": "The value '10' is text. In JavaScript, + concatenates when one operand is a string, producing '101'. Convert it to a number first.",
+        "2": "console.log displays the result; the concatenation occurs earlier when JavaScript evaluates age + 1.",
+        "3": "The size of 1 is irrelevant. The issue is that age is text, so + performs concatenation.",
+        "4": "Strings can be printed. The problem is arithmetic with a string, not output."
+      },
+      "explanation": "age contains the string '10'. JavaScript evaluates '10' + 1 as '101'. Use Number(age) + 1 when numeric addition is intended.",
+      "hints": [
+        "Read the type of each operand before evaluating the plus operator.",
+        "In JavaScript, plus can concatenate when a string participates in the expression."
+      ]
+    }
+  ],
+  "assessment": {
+    "mastery_threshold": 0.7,
+    "duration_sec": 420,
+    "questions": [
+      {
+        "prompt": "Which type is the best fit for a value that records whether an assessment has been passed?",
+        "options": [
+          "Boolean",
+          "Floating-point number",
+          "String",
+          "Integer"
+        ],
+        "correct_index": 0,
+        "explanation": "A pass/fail state is logical and has two states, so a Boolean is the clearest representation."
+      },
+      {
+        "prompt": "After x = 8 followed by x = x + 2, what value does x hold?",
+        "options": [
+          "8",
+          "10",
+          "2",
+          "82"
+        ],
+        "correct_index": 1,
+        "explanation": "The second line reads the old value 8, adds 2, and stores 10 back into x."
+      },
+      {
+        "prompt": "Which statement compares two values for equality in Python?",
+        "options": [
+          "x = 5",
+          "x == 5",
+          "x += 5",
+          "x := 5"
+        ],
+        "correct_index": 1,
+        "explanation": "== compares values and returns a Boolean. = is assignment."
+      },
+      {
+        "prompt": "A text input contains '24'. Which Python expression converts it to an integer?",
+        "options": [
+          "int('24')",
+          "str(24)",
+          "float('two four')",
+          "bool('24')"
+        ],
+        "correct_index": 0,
+        "explanation": "int('24') parses valid whole-number text and returns the integer 24."
+      },
+      {
+        "prompt": "Why should a variable name such as total_marks be preferred to x when storing a student's marks total?",
+        "options": [
+          "It communicates the purpose of the value",
+          "It makes the variable immutable in every language",
+          "It automatically checks the value's type",
+          "It makes arithmetic constant time"
+        ],
+        "correct_index": 0,
+        "explanation": "Descriptive names improve readability and reduce mistakes when programs grow. Naming alone does not enforce type or immutability."
+      }
+    ]
+  },
+  "learning_objectives": [
+    "Explain the relationship between a value, a variable name and program state.",
+    "Choose suitable integer, floating-point, string and Boolean representations.",
+    "Trace reassignment and distinguish assignment from equality comparison.",
+    "Convert suitable text input before performing numeric calculations.",
+    "Use meaningful variable names and diagnose basic type mismatches."
+  ],
+  "prerequisites": [],
+  "concepts": [
+    "value",
+    "variable",
+    "assignment",
+    "integer",
+    "floating point",
+    "string",
+    "Boolean",
+    "type conversion",
+    "reassignment",
+    "naming conventions"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "A variable name and its current value are the same thing.",
+      "correction": "The name lets the program refer to the current value. Reassignment can make that name refer to a different value."
+    },
+    {
+      "misconception": "The equals sign always means mathematical equality.",
+      "correction": "In many programming languages = assigns a value, while == tests equality."
+    },
+    {
+      "misconception": "A numeric-looking input is automatically a number.",
+      "correction": "Text such as '24' is still a string until it is parsed or converted."
+    },
+    {
+      "misconception": "A variable's name determines its data type.",
+      "correction": "The value and language's type rules determine its type; a name such as age does not enforce integer values."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Update a running score",
+      "input": "score = 6\nscore = score + 4\nscore = score * 2",
+      "trace": [
+        "Start with score = 6.",
+        "Evaluate score + 4 as 6 + 4, then store 10.",
+        "Evaluate score * 2 as 10 * 2, then store 20."
+      ],
+      "output": "score is 20",
+      "explanation": "Every assignment reads the current state and then replaces the value stored under the name."
+    },
+    {
+      "title": "Separate text from numeric data",
+      "input": "raw_age = '18'\nage = int(raw_age)\nnext_year = age + 1",
+      "trace": [
+        "raw_age contains the string '18'.",
+        "int(raw_age) converts it to the integer 18.",
+        "The addition calculates 18 + 1."
+      ],
+      "output": "next_year is 19",
+      "explanation": "Conversion makes the intended arithmetic explicit and prevents accidental text concatenation."
+    },
+    {
+      "title": "Choose a type for a small app",
+      "input": "name = 'Ravi'\ncompleted = 12\naccuracy = 91.5\nis_eligible = True",
+      "trace": [
+        "name stores text.",
+        "completed stores a whole-number count.",
+        "accuracy stores a fractional percentage.",
+        "is_eligible stores a logical state."
+      ],
+      "output": "string, integer, float, Boolean",
+      "explanation": "The type should represent the meaning and allowed operations of each piece of data."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS NQT",
+      "skill": "basic programming and output tracing",
+      "practice": "Trace variable updates and predict the final value of an expression."
+    },
+    {
+      "company": "Infosys",
+      "skill": "programming fundamentals",
+      "practice": "Explain data types, conversion and why the chosen representation fits the problem."
+    },
+    {
+      "company": "Accenture",
+      "skill": "pseudocode and logic",
+      "practice": "Read short snippets and identify variable state after each statement."
+    },
+    {
+      "company": "Wipro",
+      "skill": "coding fundamentals",
+      "practice": "Use clear names and handle values collected as text."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What is a variable?",
+      "answer": "A readable name that lets a program refer to a value in its current state."
+    },
+    {
+      "type": "distinction",
+      "question": "How does assignment = differ from equality == in Python?",
+      "answer": "= stores a value; == compares two values and produces a Boolean result."
+    },
+    {
+      "type": "application",
+      "question": "Why might input '18' need int() before arithmetic?",
+      "answer": "The input is text. int('18') converts suitable whole-number text into the integer 18."
+    }
+  ],
+  "next_lesson_slug": "input_output_basics",
+  "next_lesson_title": "Input, Output and Type Conversion",
+  "quest": {
+    "chapter": "The Memory Vault",
+    "rank": "Novice Builder",
+    "story": "Bountycode's placement dashboard has no useful state yet. Your first task is to give the academy a way to remember a learner's name, progress, score and eligibility.",
+    "mission": "Model a small learner profile using meaningful names, correct data types and safe input conversion.",
+    "success_criteria": [
+      "Choose clear names for values.",
+      "Trace a variable update correctly.",
+      "Convert numeric text before arithmetic.",
+      "Diagnose a string-versus-number bug."
+    ]
+  }
+}

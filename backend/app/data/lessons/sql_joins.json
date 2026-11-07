@@ -56,6 +56,39 @@
       "title": "Join conditions matter",
       "content": "Use ON to state how tables relate. A missing or incorrect join condition can create a Cartesian product or duplicate rows. FULL OUTER JOIN preserves unmatched rows from both sides when supported.",
       "tip": "Before trusting a join, check whether the key is unique and whether one-to-many relationships are expected."
+    },
+    {
+      "step_number": 6,
+      "step_type": "predict_output",
+      "title": "Predict a SQL aggregate result",
+      "content": "A WHERE filter is applied before COUNT counts the remaining rows.",
+      "example": "employees: (id=1, department_id=10), (id=2, department_id=20), (id=3, department_id=10)",
+      "code": "SELECT COUNT(*)\nFROM employees\nWHERE department_id = 10;",
+      "language": "sql",
+      "prompt": "What number does this query return?",
+      "answer_placeholder": "Enter the count",
+      "expected_answer": "2",
+      "explanation": "Two employee rows have department_id 10, so COUNT(*) returns 2."
+    },
+    {
+      "step_number": 7,
+      "step_type": "sql_lab",
+      "title": "Write an INNER JOIN query",
+      "content": "Use the employee department_id to match the departments id. Return only employees who have a matching department.",
+      "prompt": "Write a query that returns each assigned employee's name and department name, ordered by employee id.",
+      "schema_preview": "employees(id, name, department_id, salary)\\ndepartments(id, department_name)",
+      "sample_data": "employees\\n1 | Asha | 10 | 60000\\n2 | Ravi | 20 | 55000\\n3 | Mei | 10 | 65000\\n4 | Noor | NULL | 48000\\n\\ndepartments\\n10 | Sales\\n20 | Engineering",
+      "answer_placeholder": "SELECT ... FROM employees ...",
+      "schema_ddl": "CREATE TABLE employees (id INTEGER PRIMARY KEY, name TEXT NOT NULL, department_id INTEGER, salary INTEGER); CREATE TABLE departments (id INTEGER PRIMARY KEY, department_name TEXT NOT NULL);",
+      "seed_inserts": "INSERT INTO employees VALUES (1, 'Asha', 10, 60000); INSERT INTO employees VALUES (2, 'Ravi', 20, 55000); INSERT INTO employees VALUES (3, 'Mei', 10, 65000); INSERT INTO employees VALUES (4, 'Noor', NULL, 48000); INSERT INTO departments VALUES (10, 'Sales'); INSERT INTO departments VALUES (20, 'Engineering');",
+      "expected_query": "SELECT e.name, d.department_name FROM employees AS e INNER JOIN departments AS d ON e.department_id = d.id ORDER BY e.id;",
+      "enforce_order": true,
+      "hints": [
+        "Start with SELECT e.name, d.department_name.",
+        "Join employees to departments using employees.department_id = departments.id.",
+        "Use INNER JOIN so Noor is not included because her department_id is NULL. Finish with ORDER BY e.id."
+      ],
+      "explanation": "INNER JOIN keeps only employees with a matching department. Noor is excluded because NULL does not match a department id. ORDER BY e.id makes the output deterministic."
     }
   ],
   "assessment": {
@@ -118,5 +151,105 @@
         "explanation": "FULL OUTER JOIN preserves matched and unmatched rows from both sides."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Explain why relational tables are joined.",
+    "Choose INNER, LEFT, RIGHT or FULL joins appropriately.",
+    "Predict row counts when keys repeat.",
+    "Use table aliases and explicit join conditions.",
+    "Recognize NULL values introduced by outer joins."
+  ],
+  "prerequisites": [
+    "dbms_basics",
+    "sql_select_basics"
+  ],
+  "concepts": [
+    "INNER JOIN",
+    "LEFT JOIN",
+    "RIGHT JOIN",
+    "FULL OUTER JOIN",
+    "join key",
+    "NULL",
+    "one-to-many"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "A join always returns one row per left-table row.",
+      "correction": "One-to-many matches can produce multiple result rows for one left row."
+    },
+    {
+      "misconception": "LEFT JOIN removes unmatched left rows.",
+      "correction": "LEFT JOIN preserves all left rows and fills right-side columns with NULL when unmatched."
+    },
+    {
+      "misconception": "NULL means zero.",
+      "correction": "NULL represents missing or unknown data, not the numeric value zero."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "INNER JOIN",
+      "input": "Student(id=1,2); Marks(student_id=1)",
+      "trace": [
+        "Match Student.id to Marks.student_id.",
+        "Student 1 has a matching marks row.",
+        "Student 2 has no match and is excluded."
+      ],
+      "output": "Only Student 1 appears",
+      "explanation": "INNER JOIN keeps rows with matching keys on both sides."
+    },
+    {
+      "title": "LEFT JOIN",
+      "input": "Student(id=1,2); Marks(student_id=1)",
+      "trace": [
+        "Keep Student 1 and attach its marks row.",
+        "Keep Student 2 even though no marks row exists.",
+        "Right-side marks columns for Student 2 become NULL."
+      ],
+      "output": "Two student rows; one has NULL marks",
+      "explanation": "LEFT JOIN preserves every row from the left table."
+    },
+    {
+      "title": "One-to-many join",
+      "input": "One customer has three orders",
+      "trace": [
+        "Match the customer to order 1.",
+        "Match the same customer to order 2.",
+        "Match the same customer to order 3."
+      ],
+      "output": "Three result rows for that customer",
+      "explanation": "A join produces one row per matching pair, so repeated keys can multiply rows."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "Infosys",
+      "skill": "SQL joins and subqueries",
+      "practice": "Predict matched and unmatched rows for each join type."
+    },
+    {
+      "company": "TCS",
+      "skill": "SQL query assessment",
+      "practice": "Explain NULLs and one-to-many join results."
+    },
+    {
+      "company": "Cognizant",
+      "skill": "database querying",
+      "practice": "Use explicit join keys and test duplicate matches."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What are the key ideas in SQL Joins?",
+      "answer": "Explain why relational tables are joined. Choose INNER, LEFT, RIGHT or FULL joins appropriately. Predict row counts when keys repeat. Use table aliases and explicit join conditions. Recognize NULL values introduced by outer joins."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in SQL Joins.",
+      "answer": "One-to-many matches can produce multiple result rows for one left row."
+    }
+  ],
+  "next_lesson_slug": "sql_group_by",
+  "next_lesson_title": "SQL GROUP BY and Aggregation"
 }

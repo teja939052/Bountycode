@@ -117,5 +117,103 @@
         "explanation": "Poor pivots can create highly unbalanced partitions, giving O(n²) worst-case time."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Explain why sorting is useful before searching or grouping.",
+    "Trace adjacent swaps in a simple sort.",
+    "Compare quadratic and n-log-n sorting approaches.",
+    "Choose a stable, in-place or efficient sort when required."
+  ],
+  "prerequisites": [
+    "arrays_basics"
+  ],
+  "concepts": [
+    "comparison sort",
+    "bubble sort",
+    "insertion sort",
+    "merge sort",
+    "stability",
+    "in-place",
+    "time complexity"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Sorting always takes O(n log n).",
+      "correction": "Simple comparison sorts such as bubble and insertion sort can take O(n²)."
+    },
+    {
+      "misconception": "One pass of bubble sort always sorts the array.",
+      "correction": "A pass moves one extreme value to its final end; multiple passes may be required."
+    },
+    {
+      "misconception": "Sorting changes only the display order.",
+      "correction": "In-place sorting may mutate the original array."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "One bubble-sort pass",
+      "input": "[5, 1, 4, 2]",
+      "trace": [
+        "Compare 5 and 1; swap → [1, 5, 4, 2].",
+        "Compare 5 and 4; swap → [1, 4, 5, 2].",
+        "Compare 5 and 2; swap → [1, 4, 2, 5]."
+      ],
+      "output": "[1, 4, 2, 5]",
+      "explanation": "The largest value has bubbled to the final position after one left-to-right pass."
+    },
+    {
+      "title": "Insertion sort idea",
+      "input": "[3, 1, 2]",
+      "trace": [
+        "Treat 3 as the sorted prefix.",
+        "Insert 1 before 3 → [1, 3, 2].",
+        "Insert 2 between 1 and 3 → [1, 2, 3]."
+      ],
+      "output": "[1, 2, 3]",
+      "explanation": "Insertion sort grows a sorted prefix and is useful for small or nearly sorted arrays."
+    },
+    {
+      "title": "Choose a sorting approach",
+      "input": "n = 100000 random values",
+      "trace": [
+        "A quadratic algorithm may perform roughly n² comparisons.",
+        "An n-log-n algorithm grows far more slowly.",
+        "Use a standard efficient sort unless constraints require a specialized method."
+      ],
+      "output": "Prefer O(n log n) sorting for large general inputs",
+      "explanation": "Always connect algorithm choice to input size and constraints."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "sorting and array manipulation",
+      "practice": "Trace swaps and explain best, average and worst cases."
+    },
+    {
+      "company": "Infosys",
+      "skill": "algorithm choice and complexity",
+      "practice": "Justify an efficient sort for large input sizes."
+    },
+    {
+      "company": "Wipro",
+      "skill": "basic coding and output prediction",
+      "practice": "Dry-run each pass and avoid off-by-one errors."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What are the key ideas in Sorting Fundamentals?",
+      "answer": "Explain why sorting is useful before searching or grouping. Trace adjacent swaps in a simple sort. Compare quadratic and n-log-n sorting approaches. Choose a stable, in-place or efficient sort when required."
+    },
+    {
+      "type": "misconception",
+      "question": "Name a common mistake in Sorting Fundamentals.",
+      "answer": "Simple comparison sorts such as bubble and insertion sort can take O(n²)."
+    }
+  ],
+  "next_lesson_slug": "hashing_basics",
+  "next_lesson_title": "Hashing Fundamentals"
 }

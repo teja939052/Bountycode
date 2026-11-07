@@ -118,5 +118,104 @@
         "explanation": "Choose a structure based on performance needs, operations and input constraints."
       }
     ]
-  }
+  },
+  "learning_objectives": [
+    "Choose arrays, linked lists, stacks, queues, sets and maps by operation needs.",
+    "Compare indexed access, insertion, deletion and lookup costs.",
+    "Distinguish abstract data types from their implementations.",
+    "Justify a structure using constraints and expected operations."
+  ],
+  "prerequisites": [
+    "programming_languages",
+    "arrays_basics"
+  ],
+  "concepts": [
+    "ADT",
+    "array",
+    "linked list",
+    "stack",
+    "queue",
+    "hash map",
+    "set"
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "A data structure is the same as an algorithm.",
+      "correction": "A data structure organizes data; an algorithm operates on it."
+    },
+    {
+      "misconception": "One structure is best for every task.",
+      "correction": "Trade-offs depend on access pattern, update frequency and ordering needs."
+    },
+    {
+      "misconception": "A hash map preserves sorted order.",
+      "correction": "Typical hash maps prioritize key lookup, not sorted iteration."
+    }
+  ],
+  "worked_examples": [
+    {
+      "title": "Choose fast indexed access",
+      "input": "Read item at index 5000 repeatedly",
+      "trace": [
+        "The operation needs direct indexed access.",
+        "An array computes the position directly.",
+        "A linked list must traverse nodes."
+      ],
+      "output": "Array: O(1) indexed access",
+      "explanation": "Choose arrays when random access is central."
+    },
+    {
+      "title": "Choose FIFO processing",
+      "input": "Handle support tickets in arrival order",
+      "trace": [
+        "New tickets join at the back.",
+        "Oldest ticket is handled first.",
+        "A queue models this behavior."
+      ],
+      "output": "Queue",
+      "explanation": "The required order determines the abstract data type."
+    },
+    {
+      "title": "Choose frequency counting",
+      "input": "Count occurrences of each word",
+      "trace": [
+        "Each word is a key.",
+        "Increment its stored count as it appears.",
+        "A map stores key-to-count associations."
+      ],
+      "output": "Hash map / dictionary",
+      "explanation": "A map makes frequency counting concise and usually linear on average."
+    }
+  ],
+  "company_applications": [
+    {
+      "company": "TCS",
+      "skill": "data-structure fundamentals",
+      "practice": "Name the operation that matters and its complexity."
+    },
+    {
+      "company": "Infosys",
+      "skill": "problem solving",
+      "practice": "Explain why a map or set improves a nested-loop approach."
+    },
+    {
+      "company": "Accenture",
+      "skill": "coding basics",
+      "practice": "Select a stack, queue or map from the problem's behavior."
+    }
+  ],
+  "srs_cards": [
+    {
+      "type": "concept",
+      "question": "What should you remember about Choosing the Right Data Structure?",
+      "answer": "Choose arrays, linked lists, stacks, queues, sets and maps by operation needs. Compare indexed access, insertion, deletion and lookup costs. Distinguish abstract data types from their implementations. Justify a structure using constraints and expected operations."
+    },
+    {
+      "type": "misconception",
+      "question": "What mistake should you avoid in Choosing the Right Data Structure?",
+      "answer": "A data structure organizes data; an algorithm operates on it."
+    }
+  ],
+  "next_lesson_slug": "time_complexity",
+  "next_lesson_title": "Time Complexity and Big O"
 }

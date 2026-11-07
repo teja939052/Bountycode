@@ -54,10 +54,12 @@ import { metricsApi } from "./metrics.ts";
 import { tracksApi } from "./tracks.ts";
 import { tcsNqtApi } from "./tcsNqt.ts";
 import { companyLessonsApi } from "./companyLessons.ts";
+import { academyApi } from "./academy.ts";
 import { quizApi } from "./quiz.ts";
 import { flatApi } from "./flat.ts";
 import { flatOverrides } from "./flatOverrides.ts";
 import { examMemoriesApi } from "./examMemories.ts";
+import { sprintApi } from "./sprint.ts";
 
 const api = {
   auth: authApi,
@@ -74,6 +76,7 @@ const api = {
   tools: toolsApi,
   companyMocks: companyMocksApi,
   companyLessons: companyLessonsApi,
+  academy: academyApi,
   quiz: quizApi,
   gamification: gamificationApi,
   oa: oaApi,
@@ -120,6 +123,7 @@ const api = {
   tracks: tracksApi,
   tcsNqt: tcsNqtApi,
   examMemories: examMemoriesApi,
+  sprint: sprintApi,
   getMe: () => authApi.getMe(),
   register: (...args: Parameters<typeof authApi.register>) =>
     authApi.register.apply(authApi, args),
@@ -193,4 +197,6 @@ export {
   mapApi,
   onboardingApi,
   examMemoriesApi,
+  sprintApi,
+  companyLessonsApi,
 };

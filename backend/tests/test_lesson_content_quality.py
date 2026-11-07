@@ -39,6 +39,20 @@ def test_all_step_based_lessons_have_valid_assessment_keys():
             )
             assert step.get("explanation"), f"{path.name} step {index + 1} has no explanation"
 
+        for index, step in enumerate(steps):
+            if step.get("step_type") in {"predict_output", "fill_blank"}:
+                assert step.get("prompt"), f"{path.name} typed exercise {index + 1} has no prompt"
+                assert step.get("expected_answer") is not None, (
+                    f"{path.name} typed exercise {index + 1} has no expected answer"
+                )
+                assert step.get("explanation"), (
+                    f"{path.name} typed exercise {index + 1} has no teaching explanation"
+                )
+                if step.get("step_type") == "predict_output":
+                    assert step.get("code"), (
+                        f"{path.name} output-prediction exercise {index + 1} has no code"
+                    )
+
         for index, question in enumerate(questions):
             options = question.get("options") or []
             correct_index = question.get("correct_index")
@@ -52,3 +66,321 @@ def test_all_step_based_lessons_have_valid_assessment_keys():
             )
 
     assert lesson_count >= 25, f"Expected a substantial step-based lesson library, found {lesson_count}"
+
+    # Typed exercises make code reading and repair part of the learning loop,
+    # rather than limiting every interaction to multiple choice.
+    assert any(
+        step.get("step_type") in {"predict_output", "fill_blank"}
+        for path in sorted(LESSONS_DIR.glob("*.json"))
+        for step in (json.loads(path.read_text(encoding="utf-8")).get("steps") or [])
+    ), "Expected at least one typed code-tracing or fill-in exercise"
+
+
+
+def test_sequence_and_browser_code_labs_have_valid_instructions_and_checks():
+    sequence_count = 0
+    code_lab_count = 0
+
+    for path in sorted(LESSONS_DIR.glob("*.json")):
+        data = json.loads(path.read_text(encoding="utf-8"))
+        for index, step in enumerate(data.get("steps") or []):
+            kind = step.get("step_type")
+            if kind == "order_steps":
+                sequence_count += 1
+                options = step.get("options") or []
+                order = step.get("correct_order")
+                assert step.get("prompt"), f"{path.name} sequence {index + 1} has no prompt"
+                assert len(options) >= 3, f"{path.name} sequence {index + 1} needs at least three items"
+                assert isinstance(order, list) and sorted(order) == list(range(len(options))), (
+                    f"{path.name} sequence {index + 1} must order every item exactly once"
+                )
+                assert step.get("explanation"), f"{path.name} sequence {index + 1} has no explanation"
+            elif kind == "code_lab":
+                code_lab_count += 1
+                assert step.get("language") == "javascript", (
+                    f"{path.name} code lab {index + 1} must use the supported browser language"
+                )
+                assert step.get("prompt"), f"{path.name} code lab {index + 1} has no task prompt"
+                assert step.get("starter_code"), f"{path.name} code lab {index + 1} has no starter code"
+                assert isinstance(step.get("expected_output"), str), (
+                    f"{path.name} code lab {index + 1} needs a visible deterministic output check"
+                )
+                assert step.get("hints"), f"{path.name} code lab {index + 1} needs progressive hints"
+
+    assert sequence_count >= 2, "Expected at least two sequence-building exercises"
+    assert code_lab_count >= 2, "Expected at least two runnable browser code labs"
+
+
+def test_sql_labs_keep_grading_keys_server_side_and_ship_a_schema_preview():
+    sql_labs = []
+    for path in sorted(LESSONS_DIR.glob("*.json")):
+        data = json.loads(path.read_text(encoding="utf-8"))
+        for index, step in enumerate(data.get("steps") or []):
+            if step.get("step_type") == "sql_lab":
+                sql_labs.append((path, index, step))
+                assert step.get("prompt"), f"{path.name} SQL lab {index + 1} has no prompt"
+                assert step.get("schema_preview"), f"{path.name} SQL lab {index + 1} has no schema preview"
+                assert step.get("sample_data"), f"{path.name} SQL lab {index + 1} has no sample data"
+                assert step.get("schema_ddl") and step.get("seed_inserts"), f"{path.name} SQL lab {index + 1} needs a dataset"
+                assert step.get("expected_query"), f"{path.name} SQL lab {index + 1} has no expected query"
+                assert step.get("explanation") and step.get("hints"), f"{path.name} SQL lab {index + 1} needs feedback"
+    assert sql_labs, "Expected at least one query-writing SQL lab"
+
+
+
+def test_debug_and_api_scenarios_have_context_and_misconception_feedback():
+    scenario_count = 0
+    for path in sorted(LESSONS_DIR.glob("*.json")):
+        data = json.loads(path.read_text(encoding="utf-8"))
+        for index, step in enumerate(data.get("steps") or []):
+            kind = step.get("step_type")
+            if kind not in {"debug_choice", "api_scenario"}:
+                continue
+            scenario_count += 1
+            options = step.get("options") or []
+            answer = step.get("correct_index")
+            assert step.get("prompt"), f"{path.name} scenario {index + 1} has no prompt"
+            assert len(options) >= 3, f"{path.name} scenario {index + 1} needs at least three options"
+            assert isinstance(answer, int) and 0 <= answer < len(options), (
+                f"{path.name} scenario {index + 1} has an invalid answer key"
+            )
+            assert step.get("explanation"), f"{path.name} scenario {index + 1} needs a teaching explanation"
+            feedback = step.get("feedback_by_option") or {}
+            for option_index in range(len(options)):
+                if option_index != answer:
+                    assert str(option_index) in feedback, (
+                        f"{path.name} scenario {index + 1} needs feedback for wrong option {option_index}"
+                    )
+            if kind == "debug_choice":
+                assert step.get("code"), f"{path.name} debugging scenario {index + 1} needs a code sample"
+            if kind == "api_scenario":
+                assert step.get("request_preview"), (
+                    f"{path.name} API scenario {index + 1} needs a request/response context"
+                )
+    assert scenario_count >= 2, "Expected at least one debugging and one API scenario"
+
+
+def test_rich_lesson_authoring_standard_has_depth_and_company_transfer():
+    lesson_path = LESSONS_DIR / "arrays_basics.json"
+    lesson = json.loads(lesson_path.read_text(encoding="utf-8"))
+
+    assert len(lesson.get("learning_objectives", [])) >= 4
+    assert len(lesson.get("prerequisites", [])) >= 1
+    assert len(lesson.get("concepts", [])) >= 5
+    assert len(lesson.get("common_misconceptions", [])) >= 3
+    assert len(lesson.get("worked_examples", [])) >= 3
+    assert len(lesson.get("company_applications", [])) >= 3
+    assert len(lesson.get("assessment", {}).get("questions", [])) >= 5
+    assert len(lesson.get("srs_cards", [])) >= 3
+
+    for example in lesson["worked_examples"]:
+        assert example.get("input")
+        assert len(example.get("trace", [])) >= 2
+        assert example.get("output")
+        assert example.get("explanation")
+
+    for misconception in lesson["common_misconceptions"]:
+        assert misconception.get("misconception")
+        assert misconception.get("correction")
+
+    for question in lesson["assessment"]["questions"]:
+        assert question.get("explanation")
+        assert len(question.get("options", [])) >= 4
+        assert 0 <= question.get("correct_index", -1) < len(question["options"])
+
+
+def test_core_foundation_lessons_follow_the_rich_authoring_contract():
+    core_lessons = [
+        "variables_basics",
+        "input_output_basics",
+        "operators_basics",
+        "conditions_basics",
+        "functions_basics",
+        "programming_languages",
+        "loops_basics",
+        "arrays_basics",
+        "strings_basics",
+        "dbms_basics",
+        "sql_select_basics",
+        "hcf_lcm",
+        "sentence_correction",
+    ]
+    for slug in core_lessons:
+        lesson = json.loads((LESSONS_DIR / f"{slug}.json").read_text(encoding="utf-8"))
+        assert len(lesson.get("learning_objectives", [])) >= 4, slug
+        assert len(lesson.get("concepts", [])) >= 5, slug
+        assert len(lesson.get("common_misconceptions", [])) >= 3, slug
+        assert len(lesson.get("worked_examples", [])) >= 3, slug
+        assert len(lesson.get("company_applications", [])) >= 3, slug
+        assert len(lesson.get("srs_cards", [])) >= 3, slug
+        for example in lesson["worked_examples"]:
+            assert example.get("input"), slug
+            assert len(example.get("trace", [])) >= 2, slug
+            assert example.get("output"), slug
+            assert example.get("explanation"), slug
+
+
+
+def test_programming_foundations_form_a_complete_prerequisite_chain():
+    variables = json.loads((LESSONS_DIR / "variables_basics.json").read_text(encoding="utf-8"))
+    input_output = json.loads((LESSONS_DIR / "input_output_basics.json").read_text(encoding="utf-8"))
+    operators = json.loads((LESSONS_DIR / "operators_basics.json").read_text(encoding="utf-8"))
+    conditions = json.loads((LESSONS_DIR / "conditions_basics.json").read_text(encoding="utf-8"))
+    functions = json.loads((LESSONS_DIR / "functions_basics.json").read_text(encoding="utf-8"))
+
+    assert variables["prerequisites"] == []
+    assert "variables_basics" in input_output["prerequisites"]
+    assert {"variables_basics", "input_output_basics"}.issubset(set(operators["prerequisites"]))
+    assert {"variables_basics", "operators_basics"}.issubset(set(conditions["prerequisites"]))
+    assert {"variables_basics", "conditions_basics", "operators_basics"}.issubset(set(functions["prerequisites"]))
+    remainder_question = operators["assessment"]["questions"][0]
+    remainder_answer = remainder_question["options"][remainder_question["correct_index"]]
+    assert int(remainder_answer) == 18 % 5
+
+    for lesson in (variables, input_output, operators, conditions, functions):
+        assert len(lesson["steps"]) >= 8
+        types = {step["step_type"] for step in lesson["steps"]}
+        assert {"explain", "interactive", "predict_output", "order_steps", "code_lab", "debug_choice"}.issubset(types)
+        assert "practice" in types or "fill_blank" in types
+        assert len(lesson["assessment"]["questions"]) >= 5
+        assert len(lesson["worked_examples"]) >= 3
+        assert len(lesson["company_applications"]) >= 3
+        for step in lesson["steps"]:
+            if step["step_type"] in {"interactive", "practice", "predict_output", "fill_blank", "order_steps", "code_lab", "debug_choice"}:
+                assert len(step.get("hints") or []) >= 2, (lesson["slug"], step["title"])
+
+
+
+def test_programming_and_dsa_lessons_link_to_the_next_course_step():
+    expected = {
+        "variables_basics": "input_output_basics",
+        "input_output_basics": "operators_basics",
+        "operators_basics": "conditions_basics",
+        "conditions_basics": "functions_basics",
+        "functions_basics": "programming_languages",
+        "programming_languages": "loops_basics",
+        "loops_basics": "pattern_printing",
+        "pattern_printing": "arrays_basics",
+        "arrays_basics": "strings_basics",
+        "strings_basics": "data_structures_intro",
+        "data_structures_intro": "time_complexity",
+        "time_complexity": "searching_basics",
+        "searching_basics": "sorting_basics",
+        "sorting_basics": "hashing_basics",
+        "hashing_basics": "recursion_basics",
+        "recursion_basics": "linked_lists",
+        "linked_lists": "stacks_queues",
+        "stacks_queues": "trees_basics",
+        "trees_basics": "dynamic_programming",
+        "dynamic_programming": "sliding_window",
+        "sliding_window": "algorithms_basics",
+    }
+    for slug, next_slug in expected.items():
+        lesson = json.loads((LESSONS_DIR / f"{slug}.json").read_text(encoding="utf-8"))
+        assert lesson.get("next_lesson_slug") == next_slug
+        assert lesson.get("next_lesson_title")
+        # The newly authored foundation and cross-track showcase lessons have
+        # a full quest brief; legacy lessons retain their existing content
+        # contract while next-step continuity is checked for the whole path.
+        quest_required = {
+            "variables_basics", "input_output_basics", "operators_basics",
+            "conditions_basics", "functions_basics", "number_systems",
+            "number_series", "vocabulary_cloze", "oops_basics", "dbms_basics",
+        }
+        if slug in quest_required:
+            quest = lesson.get("quest") or {}
+            assert quest.get("chapter")
+            assert quest.get("story")
+            assert quest.get("mission")
+            assert len(quest.get("success_criteria") or []) >= 3
+
+
+
+def test_non_programming_pathways_have_complete_next_lesson_links():
+    expected = {
+        # Quantitative aptitude
+        "number_systems": "hcf_lcm",
+        "hcf_lcm": "arithmetic_algebra",
+        "arithmetic_algebra": "successive_percentage_change",
+        "successive_percentage_change": "profit_loss",
+        "profit_loss": "ratio_proportion",
+        "ratio_proportion": "averages",
+        "averages": "time_work",
+        "time_work": "time_distance",
+        "time_distance": "advanced_time_work",
+        "advanced_time_work": "simple_compound_interest",
+        "simple_compound_interest": "mixture_alligation",
+        "mixture_alligation": "pipes_cisterns",
+        "pipes_cisterns": "permutations_combinations",
+        "permutations_combinations": "probability_basics",
+        "probability_basics": "advanced_probability",
+        "advanced_probability": "geometry_basics",
+        "geometry_basics": "clocks_calendars",
+        # Logical reasoning
+        "number_series": "coding_decoding",
+        "coding_decoding": "blood_relations",
+        "blood_relations": "direction_sense",
+        "direction_sense": "syllogisms",
+        "syllogisms": "analogies_odd_one_out",
+        "analogies_odd_one_out": "logical_puzzles",
+        "logical_puzzles": "flowchart_basics",
+        "flowchart_basics": "pattern_matching_basics",
+        # Verbal
+        "vocabulary_cloze": "sentence_correction",
+        "sentence_correction": "grammar_transformations",
+        "grammar_transformations": "error_spotting",
+        "error_spotting": "para_jumbles",
+        "para_jumbles": "reading_comprehension",
+        "reading_comprehension": "essay_writing",
+        # SQL and core CS
+        "dbms_basics": "sql_select_basics",
+        "sql_select_basics": "sql_joins",
+        "sql_joins": "sql_group_by",
+        "sql_group_by": "sql_subqueries",
+        "sql_subqueries": "sql_indexes_triggers",
+        "oops_basics": "os_basics",
+        "os_basics": "computer_networks_basics",
+    }
+    for slug, next_slug in expected.items():
+        lesson = json.loads((LESSONS_DIR / f"{slug}.json").read_text(encoding="utf-8"))
+        assert lesson.get("next_lesson_slug") == next_slug, slug
+        assert lesson.get("next_lesson_title"), slug
+
+
+def test_advanced_programming_path_includes_sliding_window_before_algorithms():
+    expected = {
+        "dynamic_programming": "sliding_window",
+        "sliding_window": "algorithms_basics",
+        "algorithms_basics": "collections_framework",
+        "collections_framework": "exception_handling",
+        "exception_handling": "file_io",
+        "file_io": "matrix_operations",
+    }
+    for slug, next_slug in expected.items():
+        lesson = json.loads((LESSONS_DIR / f"{slug}.json").read_text(encoding="utf-8"))
+        assert lesson.get("next_lesson_slug") == next_slug, slug
+
+
+
+def test_expanded_quant_sql_and_verbal_lessons_meet_the_rich_quest_contract():
+    expected_types = {
+        "hcf_lcm": {"interactive", "fill_blank", "order_steps"},
+        "sql_select_basics": {"sql_lab", "order_steps", "debug_choice"},
+        "sentence_correction": {"interactive", "fill_blank", "order_steps"},
+    }
+    for slug, required_types in expected_types.items():
+        lesson = json.loads((LESSONS_DIR / f"{slug}.json").read_text(encoding="utf-8"))
+        assert len(lesson.get("steps", [])) >= 8, slug
+        assert len(lesson.get("assessment", {}).get("questions", [])) >= 5, slug
+        assert required_types.issubset({step.get("step_type") for step in lesson["steps"]}), slug
+        assert len(lesson.get("learning_objectives", [])) >= 4, slug
+        assert len(lesson.get("concepts", [])) >= 5, slug
+        assert len(lesson.get("worked_examples", [])) >= 3, slug
+        assert len(lesson.get("common_misconceptions", [])) >= 3, slug
+        assert len(lesson.get("company_applications", [])) >= 3, slug
+        assert len(lesson.get("srs_cards", [])) >= 3, slug
+        quest = lesson.get("quest") or {}
+        assert quest.get("chapter") and quest.get("story") and quest.get("mission"), slug
+        for step in lesson["steps"]:
+            if step.get("step_type") in {"interactive", "practice", "predict_output", "fill_blank", "order_steps", "code_lab", "debug_choice"}:
+                assert len(step.get("hints") or []) >= 2, (slug, step.get("title"))

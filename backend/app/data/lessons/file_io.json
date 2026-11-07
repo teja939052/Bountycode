@@ -119,5 +119,7 @@
         "explanation": "Iterating through lines keeps memory use lower than reading the entire file at once."
       }
     ]
-  }
+  },
+  "next_lesson_slug": "matrix_operations",
+  "next_lesson_title": "Matrix Operations"
 }
