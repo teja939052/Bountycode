@@ -1,6 +1,7 @@
 import asyncio
 
 from app.routes import adaptive_learning as adaptive_routes
+from app.services import adaptive_learning as adaptive_service
 from app.services.adaptive_learning import (
     _assessment_summary,
     _calculate_mastery_score,
@@ -123,3 +124,82 @@ def test_assessment_summary_handles_a_new_learner_without_evidence():
     assert summary["overall_score"] == 0
     assert summary["assessed_domains"] == 0
     assert summary["domain_coverage_pct"] == 0
+
+
+
+class _Cursor:
+    def __init__(self, documents):
+        self.documents = documents
+
+    async def to_list(self, _limit):
+        return list(self.documents)
+
+
+class _Collection:
+    def __init__(self, documents=None):
+        self.documents = documents or []
+
+    def find(self, _query):
+        return _Cursor(self.documents)
+
+
+class _Cache:
+    async def get(self, *_args):
+        return None
+
+    async def set(self, *_args, **_kwargs):
+        return None
+
+
+def test_assess_user_skills_ignores_lesson_completion_and_step_engagement(monkeypatch):
+    monkeypatch.setattr(adaptive_service, "cache", _Cache())
+    monkeypatch.setattr(adaptive_service, "solved_problems_collection", _Collection())
+    monkeypatch.setattr(adaptive_service, "submissions_collection", _Collection())
+    monkeypatch.setattr(adaptive_service, "question_answers_collection", _Collection())
+    monkeypatch.setattr(adaptive_service, "learning_progress_collection", _Collection([
+        {
+            "user_id": "learner-1",
+            "activities": [
+                {"domain_id": "arrays_hashing", "type": "lesson_step", "success": True},
+                {"domain_id": "arrays_hashing", "type": "lesson_complete", "success": True},
+                {"domain_id": "arrays_hashing", "type": "self_reported", "success": True},
+            ],
+        }
+    ]))
+
+    result = asyncio.run(adaptive_service.assess_user_skills("learner-1"))
+
+    skill = result["skills"]["arrays_hashing"]
+    assert skill["total_attempts"] == 0
+    assert skill["score"] == 0
+    assert result["assessed_domains"] == 0
+    assert result["domain_coverage_pct"] == 0
+
+
+def test_assess_user_skills_counts_server_graded_assessment_questions(monkeypatch):
+    monkeypatch.setattr(adaptive_service, "cache", _Cache())
+    monkeypatch.setattr(adaptive_service, "solved_problems_collection", _Collection())
+    monkeypatch.setattr(adaptive_service, "submissions_collection", _Collection())
+    monkeypatch.setattr(adaptive_service, "question_answers_collection", _Collection())
+    monkeypatch.setattr(adaptive_service, "learning_progress_collection", _Collection([
+        {
+            "user_id": "learner-1",
+            "activities": [{
+                "domain_id": "sql",
+                "type": "lesson_assessment",
+                "source": "server",
+                "success": True,
+                "question_count": 10,
+                "correct_count": 8,
+            }],
+        }
+    ]))
+
+    result = asyncio.run(adaptive_service.assess_user_skills("learner-1"))
+
+    skill = result["skills"]["sql"]
+    assert skill["total_attempts"] == 10
+    assert skill["correct_count"] == 8
+    assert skill["accuracy"] == 80
+    assert skill["score"] == 80
+    assert result["assessed_domains"] == 1
