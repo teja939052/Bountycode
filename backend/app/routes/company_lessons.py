@@ -132,6 +132,82 @@ LESSON_MODULE_TOPICS = {
 }
 
 
+LESSON_CANONICAL_SKILLS = {
+    # Programming foundations
+    "variables_basics": "coding.variables",
+    "input_output_basics": "coding.input_output",
+    "operators_basics": "coding.variables",
+    "conditions_basics": "coding.conditions",
+    "functions_basics": "coding.functions",
+    "loops_basics": "coding.loops",
+    "strings_basics": "coding.strings",
+    "exception_handling": "coding.exceptions",
+    "file_io": "coding.files",
+    "programming_languages": "coding.variables",
+    "collections_framework": "coding.data_structures",
+    # DSA and problem-solving foundations
+    "arrays_basics": "dsa.arrays",
+    "hashing_basics": "dsa.hashing",
+    "linked_lists": "dsa.linked_list",
+    "trees_basics": "dsa.trees",
+    "stacks_queues": "dsa.stack",
+    "dynamic_programming": "dsa.dp",
+    "sorting_basics": "dsa.sorting",
+    "searching_basics": "dsa.searching",
+    "recursion_basics": "dsa.recursion",
+    "time_complexity": "cs_fundamentals.complexity",
+    # Computer science and SQL
+    "oops_basics": "cs_fundamentals.oops",
+    "dbms_basics": "cs_fundamentals.databases",
+    "os_basics": "cs_fundamentals.operating_systems",
+    "computer_networks_basics": "cs_fundamentals.networking",
+    "sql_select_basics": "cs_fundamentals.sql",
+    "sql_joins": "cs_fundamentals.sql",
+    "sql_subqueries": "cs_fundamentals.sql",
+    "sql_group_by": "cs_fundamentals.sql",
+    "sql_indexes_triggers": "cs_fundamentals.sql",
+    # Placement aptitude, reasoning and verbal skills
+    "successive_percentage_change": "aptitude.quantitative",
+    "profit_loss": "aptitude.quantitative",
+    "ratio_proportion": "aptitude.quantitative",
+    "averages": "aptitude.quantitative",
+    "time_work": "aptitude.quantitative",
+    "time_distance": "aptitude.quantitative",
+    "number_systems": "aptitude.quantitative",
+    "hcf_lcm": "aptitude.quantitative",
+    "simple_compound_interest": "aptitude.quantitative",
+    "mixture_alligation": "aptitude.quantitative",
+    "probability_basics": "aptitude.quantitative",
+    "permutations_combinations": "aptitude.quantitative",
+    "logical_reasoning": "aptitude.logical",
+    "number_series": "aptitude.logical",
+    "coding_decoding": "aptitude.logical",
+    "blood_relations": "aptitude.logical",
+    "flowchart_basics": "aptitude.logical",
+    "syllogisms": "aptitude.logical",
+    "direction_sense": "aptitude.logical",
+    "logical_puzzles": "aptitude.logical",
+    "reading_comprehension": "aptitude.verbal",
+    "sentence_correction": "aptitude.verbal",
+    "para_jumbles": "aptitude.verbal",
+    "vocabulary_cloze": "aptitude.verbal",
+    "grammar_transformations": "aptitude.verbal",
+    "error_spotting": "aptitude.verbal",
+}
+DOMAIN_CANONICAL_SKILLS = {
+    "programming_fundamentals": "coding.variables",
+    "arrays_hashing": "dsa.arrays",
+    "trees": "dsa.trees",
+    "stack": "dsa.stack",
+    "dp": "dsa.dp",
+    "quantitative_aptitude": "aptitude.quantitative",
+    "logical_reasoning": "aptitude.logical",
+    "verbal_ability": "aptitude.verbal",
+    "sql": "cs_fundamentals.sql",
+    "computer_science": "cs_fundamentals.databases",
+}
+
+
 LESSON_SKILL_DOMAINS = {
     "input_output_basics": "programming_fundamentals",
     "operators_basics": "programming_fundamentals",
@@ -741,6 +817,34 @@ async def complete_lesson(slug: str, req: CompleteRequest, user=Depends(get_curr
         )
     except Exception as exc:
         logger.warning("Could not update adaptive evidence for lesson %s: %s", slug, exc)
+
+    # Fan final-assessment evidence through the canonical Study Engine as well:
+    # skill graph mastery, SRS scheduling, repair on failure and an immutable
+    # LearningEvent. Gamification is disabled here because company-module
+    # completion and the standalone first-mastery claim own the reward boundary.
+    skill_id = LESSON_CANONICAL_SKILLS.get(slug) or DOMAIN_CANONICAL_SKILLS.get(domain_id)
+    try:
+        from app.services.study_engine import record_activity as record_study_activity
+
+        await record_study_activity(
+            user["id"],
+            {
+                "type": "learn",
+                "source": "company_lesson_assessment",
+                "skill_id": skill_id,
+                "passed": passed,
+                "score": score,
+                "time_spent": req.time_spent_seconds,
+                "attempts": 1,
+                "assessment_id": f"lesson:{slug}",
+                "company": req.track_id,
+                "question_id": None,
+            },
+            role=user.get("role") or user.get("target_role") or "sde",
+            award_reward=False,
+        )
+    except Exception as exc:
+        logger.warning("Could not update canonical study evidence for lesson %s: %s", slug, exc)
 
     module_result = None
     module_completed = False
