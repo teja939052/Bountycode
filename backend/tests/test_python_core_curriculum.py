@@ -103,3 +103,27 @@ def test_string_slicing_uses_the_specific_string_lesson_not_list_slicing():
     assert "code = 'BOUNTYCODE'" in lesson["code_example"]["code"]
     assert "code[::2]" in lesson["code_example"]["code"]
     assert score_lesson_content(lesson)["status"] == "ready"
+
+
+
+def test_python_functions_tuples_files_and_json_lessons_are_authored():
+    cases = [
+        ("python-l06-02", "Parameters & Arguments", "def calculate_total(price, quantity)"),
+        ("python-l06-03", "Default Parameters", "greeting='Hello'"),
+        ("python-l06-05", "Lambda Functions", "lambda student: student[1]"),
+        ("python-l06-06", "Recursion", "return number * factorial(number - 1)"),
+        ("python-l07-05", "Tuples", "single = (5,)"),
+        ("python-l11-06", "Sets & Frozensets", "required & known"),
+        ("python-l09-01", "Reading Files", "for line in file:"),
+        ("python-l09-02", "Writing Files", "path.open('a'"),
+        ("python-l09-03", "with Statement (Context Manager)", "with open("),
+        ("python-l09-04", "CSV Files", "csv.DictReader(file)"),
+        ("python-l08-08", "JSON Parsing", "json.loads(raw)"),
+    ]
+
+    for lesson_id, title, expected_code in cases:
+        lesson = get_lesson_content("python", lesson_id, title, "theory")
+        assert expected_code in lesson["code_example"]["code"], title
+        assert len(lesson["quizzes"]) == 3, title
+        assert len(lesson["exercises"]) == 2, title
+        assert score_lesson_content(lesson)["status"] == "ready", title
