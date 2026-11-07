@@ -25,6 +25,7 @@ import {
 import { Button } from "../design-system/Button";
 import { Card } from "../design-system/Card";
 import { ReadinessRing } from "../design-system/Progress";
+import { placementRank } from "../lib/placementRank";
 
 type PlanTask = {
   id?: string;
@@ -80,8 +81,6 @@ export default function Dashboard() {
 
   const {
     gamification,
-    questionStats,
-    recentProblems,
     readinessScore,
     streakStatus,
     isLoading: dashboardLoading,
@@ -159,12 +158,14 @@ export default function Dashboard() {
       });
     }
     const seen = new Set<string>();
-    return collected.filter((t) => {
-      const key = `${t.type || ""}:${t.title || t.label || t.question_id || ""}`;
-      if (seen.has(key)) return false;
-      seen.add(key);
-      return true;
-    }).slice(0, 8);
+    return collected
+      .filter((t) => {
+        const key = `${t.type || ""}:${t.title || t.label || t.question_id || ""}`;
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      })
+      .slice(0, 8);
   }, [plan]);
 
   const totalMinutes = useMemo(
@@ -193,7 +194,7 @@ export default function Dashboard() {
     storeUser?.streak ??
     0;
   const level = gamification?.level ?? plan.level ?? storeUser?.level ?? 1;
-  const xp = gamification?.xp ?? storeUser?.xp ?? 0;
+  const rank = placementRank(Number(level));
 
   const greeting = useMemo(() => {
     const h = new Date().getHours();
@@ -260,7 +261,7 @@ export default function Dashboard() {
                   : `You are ${Math.round(Number(readiness))}% placement-ready.`}
               </h1>
               <p className="mt-1 text-sm text-slate-600">
-                Follow today's plan. Every task is chosen from your evidence — not a random checklist.
+                Follow today's plan. Progress is measured by evidence — not coins, XP, or time spent.
               </p>
             </div>
             <div className="flex items-center gap-3 shrink-0">
@@ -271,9 +272,10 @@ export default function Dashboard() {
               )}
               <div className="hidden sm:flex flex-col gap-1 text-right text-xs text-slate-500">
                 <span className="inline-flex items-center justify-end gap-1 font-semibold text-orange-600">
-                  <Flame size={14} /> {streak} day streak
+                  <Flame size={14} /> {streak} day habit
                 </span>
-                <span className="font-semibold text-slate-800">Lv. {level} · {Number(xp).toLocaleString()} XP</span>
+                <span className="font-semibold text-slate-800">{rank.title}</span>
+                <span className="text-[11px] text-slate-500">{rank.blurb}</span>
               </div>
             </div>
           </header>
@@ -363,11 +365,6 @@ export default function Dashboard() {
                               <span className="inline-flex items-center gap-1">
                                 <Clock size={12} /> ~{minutes} min
                               </span>
-                              {(task.xp_reward || 0) > 0 && (
-                                <span className="inline-flex items-center gap-1">
-                                  <Trophy size={12} /> +{task.xp_reward} XP
-                                </span>
-                              )}
                             </div>
                           </div>
                           <ArrowRight
@@ -394,8 +391,7 @@ export default function Dashboard() {
                     Measure placement readiness under exam conditions
                   </h2>
                   <p className="mt-1 text-sm text-slate-600">
-                    Take a TCS / Infosys / Wipro style mock. Scores feed the same readiness engine as your lessons —
-                    aptitude, coding and reasoning evidence update your plan.
+                    Take a TCS / Infosys / Wipro style mock. Scores feed the same readiness engine as your lessons.
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-2 shrink-0">
@@ -461,7 +457,7 @@ export default function Dashboard() {
             <Card className="border border-slate-200 bg-white p-5 sm:p-6">
               <div className="flex items-center gap-2 mb-4">
                 <Trophy size={18} className="text-amber-500" />
-                <h3 className="font-bold text-slate-900">Overview</h3>
+                <h3 className="font-bold text-slate-900">Progress support</h3>
               </div>
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -470,23 +466,23 @@ export default function Dashboard() {
                       <Flame size={18} />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-slate-900">Streak</p>
-                      <p className="text-xs text-slate-500">{streak} day{(streak === 1) ? "" : "s"}</p>
+                      <p className="text-sm font-medium text-slate-900">Habit streak</p>
+                      <p className="text-xs text-slate-500">Consistency, not perfection</p>
                     </div>
                   </div>
                   <span className="text-lg font-black text-slate-900">{streak}</span>
                 </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-3 min-w-0">
                     <div className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
                       <Target size={18} />
                     </div>
-                    <div>
-                      <p className="text-sm font-medium text-slate-900">Level</p>
-                      <p className="text-xs text-slate-500">{Number(xp).toLocaleString()} XP</p>
+                    <div className="min-w-0">
+                      <p className="text-sm font-medium text-slate-900">Placement rank</p>
+                      <p className="text-xs text-slate-500 truncate">{rank.blurb}</p>
                     </div>
                   </div>
-                  <span className="text-lg font-black text-slate-900">{level}</span>
+                  <span className="text-sm font-black text-slate-900 text-right shrink-0">{rank.title}</span>
                 </div>
                 {readiness != null && (
                   <div className="flex items-center justify-between">
@@ -495,37 +491,4 @@ export default function Dashboard() {
                         <CheckCircle2 size={18} />
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-slate-900">Readiness</p>
-                        <p className="text-xs text-slate-500">Evidence-based</p>
-                      </div>
-                    </div>
-                    <span className="text-lg font-black text-slate-900">{Math.round(Number(readiness))}%</span>
-                  </div>
-                )}
-              </div>
-              <div className="mt-5 grid grid-cols-2 gap-2">
-                <Link to="/academy" className="rounded-xl border border-slate-200 px-3 py-2 text-center text-xs font-semibold text-slate-700 hover:border-emerald-300">
-                  Academy
-                </Link>
-                <Link to="/practice" className="rounded-xl border border-slate-200 px-3 py-2 text-center text-xs font-semibold text-slate-700 hover:border-emerald-300">
-                  Practice
-                </Link>
-                <Link to="/quiz" className="rounded-xl border border-slate-200 px-3 py-2 text-center text-xs font-semibold text-slate-700 hover:border-emerald-300">
-                  Mock quiz
-                </Link>
-                <Link to="/target" className="rounded-xl border border-slate-200 px-3 py-2 text-center text-xs font-semibold text-slate-700 hover:border-emerald-300">
-                  Targets
-                </Link>
-              </div>
-            </Card>
-          </div>
-
-          <footer className="rounded-2xl border border-slate-200 bg-white p-4 text-center text-sm text-slate-600">
-            Mastery comes from server-graded assessments, not time spent or XP alone.{" "}
-            <Link to="/academy" className="font-semibold text-emerald-700 hover:underline">Continue in Academy</Link>
-          </footer>
-        </motion.div>
-      </div>
-    </div>
-  );
-}
+                        <p className=
