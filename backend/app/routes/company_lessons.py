@@ -763,22 +763,58 @@ async def complete_lesson(slug: str, req: CompleteRequest, user=Depends(get_curr
             raise HTTPException(status_code=400, detail=str(exc))
         module_completed = bool(module_result.get("module_completed"))
         xp_earned = int(module_result.get("xp_earned", 0) or 0)
+    reward_already_claimed = False
     elif passed:
-        reward = await record_practice(
-            user_id=user["id"],
-            activity_type="company_lesson",
-            score=score / 10,
-            metadata={
-                "lesson_slug": slug,
-                "lesson_title": data.get("title") or slug,
-                "domain": data.get("domain") or data.get("pattern") or "General",
-                "score_percent": score,
-                "time_taken": req.time_spent_seconds,
-                "passed": True,
-            },
-            role=user.get("role") or user.get("target_role") or "sde",
-        )
-        xp_earned = int(reward.get("xp_gained", 0) or 0) if isinstance(reward, dict) else 0
+        # Standalone lessons do not have a company-module completion guard.
+        # Claim the first-pass reward atomically in learner progress before
+        # calling the canonical gamification writer; concurrent/replayed
+        # completion requests must not mint Diamonds more than once.
+        try:
+            await learning_progress_collection.update_one(
+                {"user_id": user["id"]},
+                {"$setOnInsert": {"user_id": user["id"]}},
+                upsert=True,
+            )
+            reward_claim_path = f"lesson_progress.{slug}.completion_reward_claimed"
+            claim = await learning_progress_collection.update_one(
+                {
+                    "user_id": user["id"],
+                    reward_claim_path: {"$ne": True},
+                },
+                {
+                    "$set": {
+                        reward_claim_path: True,
+                        f"lesson_progress.{slug}.completion_reward_claimed_at": datetime.now(timezone.utc).isoformat(),
+                        f"lesson_progress.{slug}.best_assessment_score": score,
+                    }
+                },
+            )
+        except Exception as exc:
+            logger.exception("Could not claim standalone lesson reward for %s: %s", slug, exc)
+            raise HTTPException(
+                status_code=503,
+                detail="Your assessment was graded, but its reward could not be safely claimed. Please retry.",
+            )
+
+        if getattr(claim, "modified_count", 0):
+            reward = await record_practice(
+                user_id=user["id"],
+                activity_type="company_lesson",
+                score=score / 10,
+                metadata={
+                    "lesson_slug": slug,
+                    "lesson_title": data.get("title") or slug,
+                    "domain": data.get("domain") or data.get("pattern") or "General",
+                    "score_percent": score,
+                    "time_taken": req.time_spent_seconds,
+                    "passed": True,
+                },
+                role=user.get("role") or user.get("target_role") or "sde",
+                activity_id=f"lesson:{slug}:first_mastery",
+            )
+            xp_earned = int(reward.get("xp_gained", 0) or 0) if isinstance(reward, dict) else 0
+        else:
+            reward_already_claimed = True
 
     return {
         "success": True,
@@ -793,5 +829,6 @@ async def complete_lesson(slug: str, req: CompleteRequest, user=Depends(get_curr
             "module_completed": module_completed,
             "module_result": module_result,
             "reward": reward,
+            "reward_already_claimed": reward_already_claimed,
         },
     }
