@@ -62,3 +62,62 @@ def test_quiz_evidence_reads_nested_skill_graph_records(monkeypatch):
     }
     assert evidence["weak_skills"] == ["arrays_hashing", "verbal_ability"]
     assert evidence["seen_question_ids"] == ["arrays-q1", "sql-q1"]
+
+
+
+class _SRSCollection:
+    def __init__(self, existing=None):
+        self.existing = existing
+        self.saved = None
+
+    async def find_one(self, _query):
+        return self.existing
+
+    async def update_one(self, _query, update, upsert=False):
+        self.saved = update["$set"]
+        return type("UpdateResult", (), {"modified_count": 1})()
+
+
+def test_quiz_srs_creates_a_review_card_for_a_new_question(monkeypatch):
+    from app.services import study_engine
+
+    collection = _SRSCollection()
+    monkeypatch.setattr(quiz_routes, "srs_cards_collection", collection)
+
+    async def no_op_invalidate(_user_id):
+        return None
+
+    monkeypatch.setattr(study_engine, "invalidate_daily_plan", no_op_invalidate)
+
+    updated = asyncio.run(quiz_routes._update_quiz_srs(
+        "learner-1", "question-1", True
+    ))
+
+    assert updated is True
+    assert collection.saved["user_id"] == "learner-1"
+    assert collection.saved["concept_id"] == "question-1"
+    assert collection.saved["problem_id"] == "question-1"
+    assert collection.saved["total_reviews"] == 1
+    assert collection.saved["next_review"] is not None
+
+
+def test_failed_quiz_answer_schedules_a_short_srs_retry(monkeypatch):
+    from app.services import study_engine
+
+    collection = _SRSCollection()
+    monkeypatch.setattr(quiz_routes, "srs_cards_collection", collection)
+
+    async def no_op_invalidate(_user_id):
+        return None
+
+    monkeypatch.setattr(study_engine, "invalidate_daily_plan", no_op_invalidate)
+
+    updated = asyncio.run(quiz_routes._update_quiz_srs(
+        "learner-1", "question-2", False
+    ))
+
+    assert updated is True
+    assert collection.saved["total_reviews"] == 1
+    assert collection.saved["repetitions"] == 0
+    assert collection.saved["interval"] == 0
+    assert collection.saved["next_review"] is not None
