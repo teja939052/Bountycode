@@ -52,6 +52,7 @@ _TRACK_SKILL: Dict[str, Tuple[str, str]] = {
     "python": ("programming", "python"),
     "java": ("programming", "java"),
     "cpp": ("programming", "cpp"),
+    "c": ("programming", "c"),
     "oop": ("programming", "oop"),
     "dbms": ("programming", "dbms"),
     "os": ("programming", "operating_systems"),
