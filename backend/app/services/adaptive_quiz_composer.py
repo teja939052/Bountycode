@@ -40,7 +40,21 @@ def _stable_rank(seed: str, question_id: str) -> str:
 
 
 def _normalise_company(value: str | None) -> str:
-    return _text(value).lower().replace(" ", "_")
+    import re
+
+    key = re.sub(r"[^a-z0-9]+", "_", _text(value).lower()).strip("_")
+    aliases = {
+        "tcs_nqt": "tcs",
+        "tcs_digital": "tcs",
+        "tcs_ninja": "tcs",
+        "infosys_sp": "infosys",
+        "infosys_specialist_programmer": "infosys",
+        "wipro_turbo": "wipro",
+        "wipro_elite": "wipro",
+        "techm": "tech_mahindra",
+        "ltimindtree": "lti_mindtree",
+    }
+    return aliases.get(key, key)
 
 
 def compose_quiz(
