@@ -534,6 +534,74 @@ def _load_extra_bank(target: Optional[list] = None, bank_list: Optional[list] = 
             logger.info("Loaded %d problems from %s", added, fname)
 
 
+def _apply_mcq_option_overrides(target: list) -> None:
+    """Apply source-backed option fixes without promoting question trust."""
+    path = os.path.join(_BACKEND_ROOT, "app", "data", "verified_mcq_option_overrides.json")
+    try:
+        with open(path, "r", encoding="utf-8") as handle:
+            payload = json.load(handle)
+    except FileNotFoundError:
+        return
+    except Exception as exc:
+        logger.error("Could not read verified MCQ option overrides: %s", exc)
+        return
+    if not isinstance(payload, dict) or payload.get("version") != 1:
+        logger.error("Ignoring MCQ option overrides with an unsupported schema")
+        return
+    records = payload.get("items")
+    if not isinstance(records, list):
+        logger.error("Ignoring MCQ option overrides without an items list")
+        return
+    by_id = {str(item.get("id")): item for item in records
+             if isinstance(item, dict) and item.get("id")}
+    demote_ids = {str(value) for value in payload.get("demote_ids", [])}
+    placeholder = re.compile(r"Option [A-D0-9]+", re.IGNORECASE)
+    repaired = 0
+    demoted = 0
+    for question in target:
+        qid = str(question.get("id") or "")
+        if question.get("type") not in ("aptitude", "logical", "verbal"):
+            continue
+        if question.get("trust_status") not in ("verified", "reviewed"):
+            continue
+        if qid in demote_ids:
+            question["trust_status"] = "needs_review"
+            question["trust_note"] = "placeholder options have no resolvable independent source"
+            demoted += 1
+            continue
+        current = question.get("options")
+        current_values = list(current.values()) if isinstance(current, dict) else list(current or [])
+        if not any(placeholder.fullmatch(str(value).strip()) for value in current_values):
+            continue
+        override = by_id.get(qid)
+        if not override or override.get("type") != question.get("type"):
+            question["trust_status"] = "needs_review"
+            question["trust_note"] = "placeholder options have no matching independent source"
+            demoted += 1
+            continue
+        options = override.get("options")
+        index = override.get("correct_index")
+        answer = str(override.get("correct_answer") or "").strip()
+        valid = (isinstance(options, list) and len(options) == 4
+                 and len({str(value).strip() for value in options}) == 4
+                 and type(index) is int and 0 <= index < 4
+                 and str(options[index]).strip() == answer)
+        if not valid:
+            question["trust_status"] = "needs_review"
+            question["trust_note"] = "MCQ override failed option and answer-key validation"
+            demoted += 1
+            continue
+        question["options"] = [str(value).strip() for value in options]
+        question["correct_index"] = index
+        question["correct_answer"] = answer
+        for field in ("explanation", "reasoning_steps", "shortcut", "common_trap", "hints"):
+            if override.get(field):
+                question[field] = override[field]
+        question["mcq_option_override_source"] = payload.get("source_bank", "unknown")
+        repaired += 1
+    if repaired or demoted:
+        logger.info("MCQ option override: repaired=%d demoted=%d", repaired, demoted)
+
 def load_all():
     global _questions, _loaded
     if _loaded:
@@ -552,6 +620,7 @@ def load_all():
     # out before student-facing serving.
     _load_unverified_banks_for_verification(_questions)
 
+    _apply_mcq_option_overrides(_questions)
     _dedupe_and_filter(_questions)
     _apply_served_quarantine(_questions)
     _apply_leetcode_meta()
