@@ -220,49 +220,16 @@ def build_prerequisite_plan(
     }
 
 
-async def get_user_prerequisite_learning_step(
-    user_id: str,
-    target_skill_id: str,
-) -> Dict[str, Any]:
-    """Build the next teach/diagnose/reassess step from persisted quiz evidence.
+def aggregate_prerequisite_evidence(
+    events: List[Mapping[str, Any]],
+) -> Dict[str, Dict[str, Any]]:
+    """Aggregate latest outcomes per distinct question into skill evidence.
 
-    Only distinct, persisted question-bank events count as independent
-    attempts. Client lesson completion, XP and broad subject scores are not
-    accepted as prerequisite mastery evidence.
+    Callers must provide persisted server-graded events ordered newest first.
     """
     from collections import defaultdict
 
-    from app.database import learning_events_collection
-
-    evidence_rows = await learning_events_collection().find({
-        "user_id": user_id,
-        "source": "question_bank",
-        "activity_type": "practice",
-        "question_id": {"$exists": True, "$nin": ["", None]},
-        "skill_id": {"$exists": True, "$nin": ["", None]},
-    }).sort("timestamp", -1).to_list(5000)
-
-    grouped: Dict[str, Dict[str, Any]] = defaultdict(
-        lambda: {"question_scores": {}, "attempts": 0}
-    )
-    for event in evidence_rows:
-        skill_id = str(event.get("skill_id") or "")
-        question_id = str(event.get("question_id") or "")
-        if not skill_id or not question_id:
-            continue
-        # Count one outcome per distinct question so repeated retries of one
-        # item cannot satisfy the independent-evidence requirement.
-        grouped[skill_id]["question_scores"].setdefault(
-            question_id, float(event.get("score", 0) or 0)
-        )
-
-    evidence: Dict[str, Dict[str, Any]] = {}
-    for skill_id, data in grouped.items():
-        scores = list(data["question_scores"].values())
-        evidence[skill_id] = {
-            "score": sum(scores) / len(scores) if scores else 0,
-            "total_attempts": len(scores),
-        }
+    evidence = aggregate_prerequisite_evidence(evidence_rows)
 
     plan = build_prerequisite_plan(target_skill_id, evidence)
     if plan.get("status") in {"unknown_skill", "invalid_graph"}:
