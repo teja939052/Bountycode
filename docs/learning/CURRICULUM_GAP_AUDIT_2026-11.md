@@ -55,7 +55,7 @@ Source files and imports were inspected after the changes. Automated backend tes
 
 ## Second audit pass — programming and DSA
 
-A source-level inventory of the registered lesson modules found **120 lesson objects across 17 registered tracks/modules** on this branch. This is a count of lesson objects, not proof that every planned concept is covered or that all code examples execute.
+A source-level inventory of the registered lesson modules found **124 lesson objects across 17 registered tracks/modules** on this branch. This is a count of lesson objects, not proof that every planned concept is covered or that all code examples execute.
 
 ### Concrete issues found and fixed
 
@@ -74,7 +74,7 @@ A source-level inventory of the registered lesson modules found **120 lesson obj
 | C++ | 13 |
 | C | 4 |
 | DSA | 12 |
-| DBMS | 7 |
+| DBMS | 11 |
 | Operating systems | 5 |
 | Computer networks | 5 |
 | Aptitude | 10 |
@@ -85,7 +85,7 @@ A source-level inventory of the registered lesson modules found **120 lesson obj
 | Debugging | 2 |
 | System design | 2 |
 | Behavioral | 2 |
-| **Total** | **120** |
+| **Total** | **124** |
 
 ### Important limitations
 
