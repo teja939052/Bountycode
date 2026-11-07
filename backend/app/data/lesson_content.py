@@ -3131,6 +3131,12 @@ def generate_template_content(
 
     config = lang_configs.get(language_id, lang_configs["c"])
     lang_label = language_id.upper() if language_id != "cpp" else "C++"
+    if language_id == "c":
+        from app.data.lesson_content_c_core import get_c_core_lesson
+        authored_core = get_c_core_lesson(lesson_title)
+        if authored_core:
+            return authored_core
+
     if language_id == "cpp":
         from app.data.lesson_content_cpp_core import get_cpp_core_lesson
         authored_core = get_cpp_core_lesson(lesson_title)
