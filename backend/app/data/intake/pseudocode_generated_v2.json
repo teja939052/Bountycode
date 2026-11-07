@@ -1,0 +1,1922 @@
+[
+  {
+    "id": "gen2-pseudo-conditional-sum-001",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "conditional sum",
+    "difficulty": "easy",
+    "question": "What is the output of the following code?\n\ntotal = 0\nfor i in range(1, 13 + 1):\n    if i % 4 == 0:\n        total = total + i\nprint(total)",
+    "options": [
+      "3",
+      "28",
+      "25",
+      "24"
+    ],
+    "correct_index": 3,
+    "correct_answer": "24",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 24.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-conditional-sum-002",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "conditional sum",
+    "difficulty": "easy",
+    "question": "What is the output of the following code?\n\ntotal = 0\nfor i in range(1, 28 + 1):\n    if i % 7 == 0:\n        total = total + i\nprint(total)",
+    "options": [
+      "70",
+      "42",
+      "46",
+      "4"
+    ],
+    "correct_index": 0,
+    "correct_answer": "70",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 70.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-conditional-sum-003",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "conditional sum",
+    "difficulty": "easy",
+    "question": "What is the output of the following code?\n\ntotal = 0\nfor i in range(1, 17 + 1):\n    if i % 2 == 0:\n        total = total + i\nprint(total)",
+    "options": [
+      "8",
+      "81",
+      "73",
+      "72"
+    ],
+    "correct_index": 3,
+    "correct_answer": "72",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 72.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-conditional-sum-004",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "conditional sum",
+    "difficulty": "easy",
+    "question": "What is the output of the following code?\n\ntotal = 0\nfor i in range(1, 13 + 1):\n    if i % 5 == 0:\n        total = total + i\nprint(total)",
+    "options": [
+      "16",
+      "18",
+      "2",
+      "15"
+    ],
+    "correct_index": 3,
+    "correct_answer": "15",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 15.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-conditional-sum-005",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "conditional sum",
+    "difficulty": "easy",
+    "question": "What is the output of the following code?\n\ntotal = 0\nfor i in range(1, 20 + 1):\n    if i % 3 == 0:\n        total = total + i\nprint(total)",
+    "options": [
+      "63",
+      "6",
+      "70",
+      "64"
+    ],
+    "correct_index": 0,
+    "correct_answer": "63",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 63.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-digit-sum-001",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "digit sum",
+    "difficulty": "easy",
+    "question": "What is the output of the following code?\n\nn = 47745\ns = 0\nwhile n > 0:\n    s = s + n % 10\n    n = n // 10\nprint(s)",
+    "options": [
+      "23",
+      "27",
+      "5302",
+      "28"
+    ],
+    "correct_index": 1,
+    "correct_answer": "27",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 27.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-digit-sum-002",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "digit sum",
+    "difficulty": "easy",
+    "question": "What is the output of the following code?\n\nn = 95779\ns = 0\nwhile n > 0:\n    s = s + n % 10\n    n = n // 10\nprint(s)",
+    "options": [
+      "38",
+      "28",
+      "37",
+      "10638"
+    ],
+    "correct_index": 2,
+    "correct_answer": "37",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 37.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-digit-sum-003",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "digit sum",
+    "difficulty": "easy",
+    "question": "What is the output of the following code?\n\nn = 38696\ns = 0\nwhile n > 0:\n    s = s + n % 10\n    n = n // 10\nprint(s)",
+    "options": [
+      "4296",
+      "29",
+      "32",
+      "33"
+    ],
+    "correct_index": 2,
+    "correct_answer": "32",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 32.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-digit-sum-004",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "digit sum",
+    "difficulty": "easy",
+    "question": "What is the output of the following code?\n\nn = 4242\ns = 0\nwhile n > 0:\n    s = s + n % 10\n    n = n // 10\nprint(s)",
+    "options": [
+      "12",
+      "13",
+      "8",
+      "470"
+    ],
+    "correct_index": 0,
+    "correct_answer": "12",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 12.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-digit-sum-005",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "digit sum",
+    "difficulty": "easy",
+    "question": "What is the output of the following code?\n\nn = 56340\ns = 0\nwhile n > 0:\n    s = s + n % 10\n    n = n // 10\nprint(s)",
+    "options": [
+      "19",
+      "6258",
+      "13",
+      "18"
+    ],
+    "correct_index": 3,
+    "correct_answer": "18",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 18.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-nested-loop-count-001",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "nested loop count",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\ncount = 0\nfor i in range(3):\n    for j in range(i, 9):\n        count = count + 1\nprint(count)",
+    "options": [
+      "24",
+      "30",
+      "21",
+      "48"
+    ],
+    "correct_index": 0,
+    "correct_answer": "24",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 24.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-nested-loop-count-002",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "nested loop count",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\ncount = 0\nfor i in range(6):\n    for j in range(i, 9):\n        count = count + 1\nprint(count)",
+    "options": [
+      "33",
+      "78",
+      "42",
+      "39"
+    ],
+    "correct_index": 3,
+    "correct_answer": "39",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 39.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-nested-loop-count-003",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "nested loop count",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\ncount = 0\nfor i in range(4):\n    for j in range(i, 6):\n        count = count + 1\nprint(count)",
+    "options": [
+      "36",
+      "14",
+      "20",
+      "18"
+    ],
+    "correct_index": 3,
+    "correct_answer": "18",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 18.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-nested-loop-count-004",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "nested loop count",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\ncount = 0\nfor i in range(6):\n    for j in range(i, 7):\n        count = count + 1\nprint(count)",
+    "options": [
+      "21",
+      "28",
+      "27",
+      "54"
+    ],
+    "correct_index": 2,
+    "correct_answer": "27",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 27.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-nested-loop-count-005",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "nested loop count",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\ncount = 0\nfor i in range(5):\n    for j in range(i, 9):\n        count = count + 1\nprint(count)",
+    "options": [
+      "39",
+      "35",
+      "30",
+      "70"
+    ],
+    "correct_index": 1,
+    "correct_answer": "35",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 35.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-count-vowels-001",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "count vowels",
+    "difficulty": "easy",
+    "question": "What is the output of the following code?\n\ns = \"sequence\"\nc = 0\nfor ch in s:\n    if ch in \"aeiou\":\n        c = c + 1\nprint(c)",
+    "options": [
+      "3",
+      "5",
+      "4",
+      "8"
+    ],
+    "correct_index": 2,
+    "correct_answer": "4",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 4.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-count-vowels-002",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "count vowels",
+    "difficulty": "easy",
+    "question": "What is the output of the following code?\n\ns = \"algorithm\"\nc = 0\nfor ch in s:\n    if ch in \"aeiou\":\n        c = c + 1\nprint(c)",
+    "options": [
+      "3",
+      "6",
+      "4",
+      "2"
+    ],
+    "correct_index": 0,
+    "correct_answer": "3",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 3.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-count-vowels-003",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "count vowels",
+    "difficulty": "easy",
+    "question": "What is the output of the following code?\n\ns = \"computer\"\nc = 0\nfor ch in s:\n    if ch in \"aeiou\":\n        c = c + 1\nprint(c)",
+    "options": [
+      "3",
+      "6",
+      "4",
+      "2"
+    ],
+    "correct_index": 0,
+    "correct_answer": "3",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 3.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-count-vowels-004",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "count vowels",
+    "difficulty": "easy",
+    "question": "What is the output of the following code?\n\ns = \"variable\"\nc = 0\nfor ch in s:\n    if ch in \"aeiou\":\n        c = c + 1\nprint(c)",
+    "options": [
+      "5",
+      "4",
+      "8",
+      "3"
+    ],
+    "correct_index": 1,
+    "correct_answer": "4",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 4.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-count-vowels-005",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "count vowels",
+    "difficulty": "easy",
+    "question": "What is the output of the following code?\n\ns = \"internet\"\nc = 0\nfor ch in s:\n    if ch in \"aeiou\":\n        c = c + 1\nprint(c)",
+    "options": [
+      "4",
+      "6",
+      "3",
+      "2"
+    ],
+    "correct_index": 2,
+    "correct_answer": "3",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 3.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-reverse-and-slice-001",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "reverse and slice",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\ns = \"variable\"\nr = \"\"\nfor ch in s:\n    r = ch + r\nprint(r[:3])",
+    "options": [
+      "airav",
+      "var",
+      "elba",
+      "elb"
+    ],
+    "correct_index": 3,
+    "correct_answer": "elb",
+    "explanation": "Trace the variables line by line. The answer is the printed value: elb.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-reverse-and-slice-002",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "reverse and slice",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\ns = \"algorithm\"\nr = \"\"\nfor ch in s:\n    r = ch + r\nprint(r[:3])",
+    "options": [
+      "alg",
+      "irogla",
+      "mhti",
+      "mht"
+    ],
+    "correct_index": 3,
+    "correct_answer": "mht",
+    "explanation": "Trace the variables line by line. The answer is the printed value: mht.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-reverse-and-slice-003",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "reverse and slice",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\ns = \"variable\"\nr = \"\"\nfor ch in s:\n    r = ch + r\nprint(r[:4])",
+    "options": [
+      "vari",
+      "elbai",
+      "irav",
+      "elba"
+    ],
+    "correct_index": 3,
+    "correct_answer": "elba",
+    "explanation": "Trace the variables line by line. The answer is the printed value: elba.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-reverse-and-slice-004",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "reverse and slice",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\ns = \"database\"\nr = \"\"\nfor ch in s:\n    r = ch + r\nprint(r[:2])",
+    "options": [
+      "esa",
+      "da",
+      "abatad",
+      "es"
+    ],
+    "correct_index": 3,
+    "correct_answer": "es",
+    "explanation": "Trace the variables line by line. The answer is the printed value: es.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-reverse-and-slice-005",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "reverse and slice",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\ns = \"computer\"\nr = \"\"\nfor ch in s:\n    r = ch + r\nprint(r[:2])",
+    "options": [
+      "ret",
+      "tupmoc",
+      "co",
+      "re"
+    ],
+    "correct_index": 3,
+    "correct_answer": "re",
+    "explanation": "Trace the variables line by line. The answer is the printed value: re.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-one-bubble-pass-001",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "one bubble pass",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\na = [5, 18, 8, 16, 10]\nfor i in range(len(a) - 1):\n    if a[i] > a[i + 1]:\n        t = a[i]\n        a[i] = a[i + 1]\n        a[i + 1] = t\nprint(a)",
+    "options": [
+      "[5, 8, 16, 10, 18]",
+      "[5, 8, 8, 10, 10]",
+      "[5, 8, 16, 18, 10]",
+      "[18, 8, 16, 10, 5]"
+    ],
+    "correct_index": 0,
+    "correct_answer": "[5, 8, 16, 10, 18]",
+    "explanation": "Trace the variables line by line. The answer is the printed value: [5, 8, 16, 10, 18].",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-one-bubble-pass-002",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "one bubble pass",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\na = [3, 14, 6, 5, 13]\nfor i in range(len(a) - 1):\n    if a[i] > a[i + 1]:\n        t = a[i]\n        a[i] = a[i + 1]\n        a[i + 1] = t\nprint(a)",
+    "options": [
+      "[3, 6, 5, 13, 14]",
+      "[14, 6, 5, 13, 3]",
+      "[3, 6, 5, 5, 13]",
+      "[3, 6, 5, 14, 13]"
+    ],
+    "correct_index": 0,
+    "correct_answer": "[3, 6, 5, 13, 14]",
+    "explanation": "Trace the variables line by line. The answer is the printed value: [3, 6, 5, 13, 14].",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-one-bubble-pass-003",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "one bubble pass",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\na = [13, 5, 17, 7, 16]\nfor i in range(len(a) - 1):\n    if a[i] > a[i + 1]:\n        t = a[i]\n        a[i] = a[i + 1]\n        a[i + 1] = t\nprint(a)",
+    "options": [
+      "[5, 13, 7, 17, 16]",
+      "[13, 17, 7, 16, 5]",
+      "[5, 5, 7, 7, 16]",
+      "[5, 13, 7, 16, 17]"
+    ],
+    "correct_index": 3,
+    "correct_answer": "[5, 13, 7, 16, 17]",
+    "explanation": "Trace the variables line by line. The answer is the printed value: [5, 13, 7, 16, 17].",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-one-bubble-pass-004",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "one bubble pass",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\na = [3, 2, 12, 17, 15]\nfor i in range(len(a) - 1):\n    if a[i] > a[i + 1]:\n        t = a[i]\n        a[i] = a[i + 1]\n        a[i + 1] = t\nprint(a)",
+    "options": [
+      "[2, 3, 12, 17, 15]",
+      "[3, 12, 17, 15, 2]",
+      "[2, 2, 12, 15, 15]",
+      "[2, 3, 12, 15, 17]"
+    ],
+    "correct_index": 3,
+    "correct_answer": "[2, 3, 12, 15, 17]",
+    "explanation": "Trace the variables line by line. The answer is the printed value: [2, 3, 12, 15, 17].",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-one-bubble-pass-005",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "one bubble pass",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\na = [11, 10, 15, 19, 17]\nfor i in range(len(a) - 1):\n    if a[i] > a[i + 1]:\n        t = a[i]\n        a[i] = a[i + 1]\n        a[i + 1] = t\nprint(a)",
+    "options": [
+      "[10, 10, 15, 17, 17]",
+      "[10, 11, 15, 19, 17]",
+      "[11, 15, 19, 17, 10]",
+      "[10, 11, 15, 17, 19]"
+    ],
+    "correct_index": 3,
+    "correct_answer": "[10, 11, 15, 17, 19]",
+    "explanation": "Trace the variables line by line. The answer is the printed value: [10, 11, 15, 17, 19].",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-recursion-fibonacci-001",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "recursion fibonacci",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\ndef f(n):\n    if n <= 1:\n        return n\n    return f(n - 1) + f(n - 2)\nprint(f(9))",
+    "options": [
+      "35",
+      "4",
+      "34",
+      "55"
+    ],
+    "correct_index": 2,
+    "correct_answer": "34",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 34.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-recursion-fibonacci-002",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "recursion fibonacci",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\ndef f(n):\n    if n <= 1:\n        return n\n    return f(n - 1) + f(n - 2)\nprint(f(8))",
+    "options": [
+      "22",
+      "21",
+      "34",
+      "3"
+    ],
+    "correct_index": 1,
+    "correct_answer": "21",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 21.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-recursion-fibonacci-003",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "recursion fibonacci",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\ndef f(n):\n    if n <= 1:\n        return n\n    return f(n - 1) + f(n - 2)\nprint(f(10))",
+    "options": [
+      "56",
+      "89",
+      "6",
+      "55"
+    ],
+    "correct_index": 3,
+    "correct_answer": "55",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 55.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-recursion-fibonacci-004",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "recursion fibonacci",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\ndef f(n):\n    if n <= 1:\n        return n\n    return f(n - 1) + f(n - 2)\nprint(f(5))",
+    "options": [
+      "6",
+      "5",
+      "1",
+      "8"
+    ],
+    "correct_index": 1,
+    "correct_answer": "5",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 5.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-recursion-fibonacci-005",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "recursion fibonacci",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\ndef f(n):\n    if n <= 1:\n        return n\n    return f(n - 1) + f(n - 2)\nprint(f(7))",
+    "options": [
+      "13",
+      "2",
+      "14",
+      "21"
+    ],
+    "correct_index": 0,
+    "correct_answer": "13",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 13.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-continue-and-break-001",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "continue and break",
+    "difficulty": "hard",
+    "question": "What is the output of the following code?\n\nx = 0\nfor i in range(1, 22):\n    if i % 3 == 0:\n        continue\n    if i > 10:\n        break\n    x = x + i\nprint(x)",
+    "options": [
+      "27",
+      "3",
+      "37",
+      "38"
+    ],
+    "correct_index": 2,
+    "correct_answer": "37",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 37.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-continue-and-break-002",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "continue and break",
+    "difficulty": "hard",
+    "question": "What is the output of the following code?\n\nx = 0\nfor i in range(1, 23):\n    if i % 3 == 0:\n        continue\n    if i > 11:\n        break\n    x = x + i\nprint(x)",
+    "options": [
+      "49",
+      "3",
+      "37",
+      "48"
+    ],
+    "correct_index": 3,
+    "correct_answer": "48",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 48.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-continue-and-break-003",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "continue and break",
+    "difficulty": "hard",
+    "question": "What is the output of the following code?\n\nx = 0\nfor i in range(1, 16):\n    if i % 2 == 0:\n        continue\n    if i > 9:\n        break\n    x = x + i\nprint(x)",
+    "options": [
+      "16",
+      "1",
+      "26",
+      "25"
+    ],
+    "correct_index": 3,
+    "correct_answer": "25",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 25.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-continue-and-break-004",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "continue and break",
+    "difficulty": "hard",
+    "question": "What is the output of the following code?\n\nx = 0\nfor i in range(1, 25):\n    if i % 3 == 0:\n        continue\n    if i > 11:\n        break\n    x = x + i\nprint(x)",
+    "options": [
+      "37",
+      "49",
+      "48",
+      "3"
+    ],
+    "correct_index": 2,
+    "correct_answer": "48",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 48.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-continue-and-break-005",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "continue and break",
+    "difficulty": "hard",
+    "question": "What is the output of the following code?\n\nx = 0\nfor i in range(1, 17):\n    if i % 3 == 0:\n        continue\n    if i > 12:\n        break\n    x = x + i\nprint(x)",
+    "options": [
+      "49",
+      "47",
+      "48",
+      "3"
+    ],
+    "correct_index": 2,
+    "correct_answer": "48",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 48.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-euclid-gcd-001",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "euclid gcd",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\na = 36\nb = 28\nwhile b != 0:\n    t = a % b\n    a = b\n    b = t\nprint(a)",
+    "options": [
+      "28",
+      "4",
+      "5",
+      "0"
+    ],
+    "correct_index": 1,
+    "correct_answer": "4",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 4.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-euclid-gcd-002",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "euclid gcd",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\na = 24\nb = 6\nwhile b != 0:\n    t = a % b\n    a = b\n    b = t\nprint(a)",
+    "options": [
+      "0",
+      "7",
+      "6",
+      "5"
+    ],
+    "correct_index": 2,
+    "correct_answer": "6",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 6.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-euclid-gcd-003",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "euclid gcd",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\na = 24\nb = 33\nwhile b != 0:\n    t = a % b\n    a = b\n    b = t\nprint(a)",
+    "options": [
+      "4",
+      "3",
+      "0",
+      "9"
+    ],
+    "correct_index": 1,
+    "correct_answer": "3",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 3.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-euclid-gcd-004",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "euclid gcd",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\na = 48\nb = 66\nwhile b != 0:\n    t = a % b\n    a = b\n    b = t\nprint(a)",
+    "options": [
+      "7",
+      "0",
+      "18",
+      "6"
+    ],
+    "correct_index": 3,
+    "correct_answer": "6",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 6.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-euclid-gcd-005",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "euclid gcd",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\na = 32\nb = 28\nwhile b != 0:\n    t = a % b\n    a = b\n    b = t\nprint(a)",
+    "options": [
+      "0",
+      "28",
+      "5",
+      "4"
+    ],
+    "correct_index": 3,
+    "correct_answer": "4",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 4.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-loop-with-multiplier-001",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "loop with multiplier",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\ni = 4\nc = 0\nwhile i < 64:\n    i = i * 2\n    c = c + 1\nprint(c, i)",
+    "options": [
+      "4 64",
+      "30 64",
+      "8 64",
+      "5 128"
+    ],
+    "correct_index": 0,
+    "correct_answer": "4 64",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 4 64.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-loop-with-multiplier-002",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "loop with multiplier",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\ni = 3\nc = 0\nwhile i < 96:\n    i = i * 2\n    c = c + 1\nprint(c, i)",
+    "options": [
+      "5 96",
+      "10 96",
+      "47 97",
+      "6 192"
+    ],
+    "correct_index": 0,
+    "correct_answer": "5 96",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 5 96.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-loop-with-multiplier-003",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "loop with multiplier",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\ni = 2\nc = 0\nwhile i < 64:\n    i = i * 2\n    c = c + 1\nprint(c, i)",
+    "options": [
+      "31 64",
+      "10 64",
+      "5 64",
+      "6 128"
+    ],
+    "correct_index": 2,
+    "correct_answer": "5 64",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 5 64.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-loop-with-multiplier-004",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "loop with multiplier",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\ni = 3\nc = 0\nwhile i < 81:\n    i = i * 3\n    c = c + 1\nprint(c, i)",
+    "options": [
+      "6 81",
+      "4 243",
+      "3 81",
+      "26 81"
+    ],
+    "correct_index": 2,
+    "correct_answer": "3 81",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 3 81.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-loop-with-multiplier-005",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "loop with multiplier",
+    "difficulty": "medium",
+    "question": "What is the output of the following code?\n\ni = 1\nc = 0\nwhile i < 128:\n    i = i * 2\n    c = c + 1\nprint(c, i)",
+    "options": [
+      "14 128",
+      "64 129",
+      "7 128",
+      "8 256"
+    ],
+    "correct_index": 2,
+    "correct_answer": "7 128",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 7 128.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-matrix-diagonals-001",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "matrix diagonals",
+    "difficulty": "hard",
+    "question": "What is the output of the following code?\n\nm = [[3, 9, 8], [1, 17, 5], [15, 13, 12]]\ns = 0\nfor k in range(3):\n    s = s + m[k][k] - m[k][2 - k]\nprint(s)",
+    "options": [
+      "72",
+      "0",
+      "-8",
+      "-5"
+    ],
+    "correct_index": 2,
+    "correct_answer": "-8",
+    "explanation": "Trace the variables line by line. The answer is the printed value: -8.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-matrix-diagonals-002",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "matrix diagonals",
+    "difficulty": "hard",
+    "question": "What is the output of the following code?\n\nm = [[19, 3, 1], [10, 12, 13], [15, 5, 2]]\ns = 0\nfor k in range(3):\n    s = s + m[k][k] - m[k][2 - k]\nprint(s)",
+    "options": [
+      "0",
+      "61",
+      "5",
+      "18"
+    ],
+    "correct_index": 2,
+    "correct_answer": "5",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 5.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-matrix-diagonals-003",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "matrix diagonals",
+    "difficulty": "hard",
+    "question": "What is the output of the following code?\n\nm = [[9, 2, 14], [11, 7, 4], [18, 5, 17]]\ns = 0\nfor k in range(3):\n    s = s + m[k][k] - m[k][2 - k]\nprint(s)",
+    "options": [
+      "-6",
+      "-5",
+      "0",
+      "72"
+    ],
+    "correct_index": 0,
+    "correct_answer": "-6",
+    "explanation": "Trace the variables line by line. The answer is the printed value: -6.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-matrix-diagonals-004",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "matrix diagonals",
+    "difficulty": "hard",
+    "question": "What is the output of the following code?\n\nm = [[4, 17, 2], [15, 16, 13], [6, 7, 8]]\ns = 0\nfor k in range(3):\n    s = s + m[k][k] - m[k][2 - k]\nprint(s)",
+    "options": [
+      "52",
+      "2",
+      "0",
+      "4"
+    ],
+    "correct_index": 3,
+    "correct_answer": "4",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 4.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-matrix-diagonals-005",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "matrix diagonals",
+    "difficulty": "hard",
+    "question": "What is the output of the following code?\n\nm = [[9, 13, 18], [10, 2, 3], [14, 1, 17]]\ns = 0\nfor k in range(3):\n    s = s + m[k][k] - m[k][2 - k]\nprint(s)",
+    "options": [
+      "-6",
+      "0",
+      "-9",
+      "62"
+    ],
+    "correct_index": 0,
+    "correct_answer": "-6",
+    "explanation": "Trace the variables line by line. The answer is the printed value: -6.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-operator-precedence-001",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "operator precedence",
+    "difficulty": "easy",
+    "question": "What is the output of the following code?\n\na = 14\nb = 8\nc = a + b * 2 - a // 4\nprint(c)",
+    "options": [
+      "28",
+      "41",
+      "33",
+      "27"
+    ],
+    "correct_index": 3,
+    "correct_answer": "27",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 27.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-operator-precedence-002",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "operator precedence",
+    "difficulty": "easy",
+    "question": "What is the output of the following code?\n\na = 30\nb = 6\nc = a + b * 2 - a // 5\nprint(c)",
+    "options": [
+      "66",
+      "36",
+      "42",
+      "48"
+    ],
+    "correct_index": 1,
+    "correct_answer": "36",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 36.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-operator-precedence-003",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "operator precedence",
+    "difficulty": "easy",
+    "question": "What is the output of the following code?\n\na = 25\nb = 6\nc = a + b * 2 - a // 5\nprint(c)",
+    "options": [
+      "32",
+      "57",
+      "37",
+      "42"
+    ],
+    "correct_index": 0,
+    "correct_answer": "32",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 32.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-operator-precedence-004",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "operator precedence",
+    "difficulty": "easy",
+    "question": "What is the output of the following code?\n\na = 28\nb = 7\nc = a + b * 2 - a // 5\nprint(c)",
+    "options": [
+      "65",
+      "37",
+      "39",
+      "47"
+    ],
+    "correct_index": 1,
+    "correct_answer": "37",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 37.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  },
+  {
+    "id": "gen2-pseudo-operator-precedence-005",
+    "type": "cs_fundamentals",
+    "topic": "pseudocode",
+    "sub_topic": "operator precedence",
+    "difficulty": "easy",
+    "question": "What is the output of the following code?\n\na = 25\nb = 7\nc = a + b * 2 - a // 4\nprint(c)",
+    "options": [
+      "33",
+      "45",
+      "58",
+      "38"
+    ],
+    "correct_index": 0,
+    "correct_answer": "33",
+    "explanation": "Trace the variables line by line. The answer is the printed value: 33.",
+    "common_trap": "Wrong options are what the same code prints with one common slip (off-by-one, wrong operator or bound).",
+    "companies": [
+      "infosys",
+      "capgemini",
+      "tcs",
+      "accenture"
+    ],
+    "role": [
+      "student"
+    ],
+    "stage": "placement",
+    "trust_status": "unverified",
+    "source_bank": "generated_pseudocode_v2",
+    "verification_version": 0,
+    "provenance": "generated; answer = output of executing the displayed code; distractors = outputs of the same code with one injected bug; not yet through tranche review"
+  }
+]
