@@ -715,29 +715,29 @@ def get_python_core_lesson(lesson_title: str) -> Dict[str, Any] | None:
 
     concept = profile["concept"]
     theory = (
-        f"{concept.capitalize()} is a core Python control-flow building block. "
-        f"It is used to {profile['purpose']}. {profile['how']} {profile['why']} "
-        f"Understanding the execution rule matters more than memorising a syntax shape: "
-        f"trace the values, predict the branch or iteration, then verify the result by running "
-        f"a small example. {profile['pitfall']}"
+        f"{concept.capitalize()} is a practical Python concept used to "
+        f"{profile['purpose']}. {profile['how']} {profile['why']} "
+        f"Do not stop at memorising syntax: connect the example to the underlying rule, "
+        f"predict what the program will do, and verify the result with a small test. "
+        f"{profile['pitfall']}"
     )
     sections = [
         {
             "heading": f"What {concept} does",
-            "body": f"{profile['how']} This is the execution model to keep in mind when tracing a program line by line.",
+            "body": f"{profile['how']} Connect each part of the example to this rule, then explain the result in your own words.",
             "code": profile["code"],
             "pro_tip": "Before running the code, write down the values and predict which lines execute. Then compare your prediction with the actual output.",
         },
         {
             "heading": "When and why to use it",
-            "body": f"{profile['why']} Choose the construct that best communicates the problem: conditions select a path, loops repeat work, and functions package reusable operations.",
+            "body": f"{profile['why']} Choose this approach when it makes the program easier to understand, test, and maintain.",
             "code": profile["code"],
-            "pro_tip": "Prefer the simplest control structure that expresses the requirement. Clear code is easier to debug in interviews and in production.",
+            "pro_tip": "Prefer the simplest solution that expresses the requirement clearly. Readability matters in interviews and production code.",
         },
         {
             "heading": "Common edge cases",
-            "body": f"{profile['pitfall']} Test the normal case, the boundary case, and an unexpected input. These checks expose off-by-one errors, incorrect comparisons, and missing termination conditions.",
-            "pro_tip": "Use small inputs first. A three-item example is often enough to reveal a faulty condition or loop update.",
+            "body": f"{profile['pitfall']} Test a normal case, a boundary case, and an invalid or unexpected input so you can see how the code behaves.",
+            "pro_tip": "Use small inputs first, then increase complexity. Small examples make incorrect assumptions easier to spot.",
         },
     ]
     quizzes = [
@@ -752,8 +752,8 @@ def get_python_core_lesson(lesson_title: str) -> Dict[str, Any] | None:
     return {
         "theory": theory,
         "analogy": (
-            f"Think of {concept} as a clearly labelled instruction in a recipe: it tells the "
-            "computer when to take a path, repeat a step, or perform a reusable operation."
+            f"Think of {concept} as a tool in a developer's toolkit: it helps you "
+            f"{profile['purpose']}. The example below shows the idea with concrete data."
         ),
         "sections": sections,
         "code_example": {
