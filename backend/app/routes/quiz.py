@@ -442,13 +442,16 @@ async def submit_answer(submission: AnswerSubmission, user=Depends(get_current_u
     try:
         from app.services.study_engine import emit_learning_event
 
+        raw_companies = question.get("companies") or question.get("company") or []
+        if isinstance(raw_companies, str):
+            raw_companies = [raw_companies]
         await emit_learning_event(user["id"], {
             "activity_type": "practice",
             "source": "question_bank",
             "skill_id": _quiz_skill_domain(question),
             "question_id": submission.question_id,
             "assessment_id": submission.quiz_id,
-            "company": (question.get("companies") or [None])[0],
+            "company": str(raw_companies[0]).strip() if raw_companies else None,
             "passed": bool(result.get("is_correct")),
             "score": 100 if result.get("is_correct") else 0,
             "time_spent_seconds": int(answer_record["time_taken_seconds"]),
