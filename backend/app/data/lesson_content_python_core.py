@@ -759,18 +759,18 @@ def get_python_core_lesson(lesson_title: str) -> Dict[str, Any] | None:
         "code_example": {
             "code": profile["code"],
             "annotations": [
-                {"line": index + 1, "text": "Read this line and connect it to the execution rule described above."}
+                {"line": index + 1, "text": "Explain what this line contributes to the example and how it changes or uses the current data."}
                 for index, _line in enumerate(profile["code"].splitlines())
             ],
         },
         "common_mistakes": [
             {
                 "mistake": profile["pitfall"],
-                "fix": "Trace the condition and state changes with a small input, then test the boundary case.",
+                "fix": "Reproduce the issue with the smallest useful input, compare expected and actual behaviour, then rerun normal and boundary tests after the change.",
             },
             {
-                "mistake": "Memorising syntax without checking what values are evaluated at runtime.",
-                "fix": "Dry-run the example line by line and explain why each branch or iteration executes.",
+                "mistake": "Assuming one happy-path example proves the solution handles every input.",
+                "fix": "Add a normal case, a boundary case, and an invalid or unexpected input; verify each result against an explicit expectation.",
             },
         ],
         "exercises": [
@@ -802,5 +802,5 @@ def get_python_core_lesson(lesson_title: str) -> Dict[str, Any] | None:
             profile["pitfall"],
             "Trace execution and test normal, boundary, and alternate inputs.",
         ],
-        "next_steps": "Complete both exercises, answer the quiz, and explain the execution rule without looking at the lesson.",
+        "next_steps": "Complete both exercises, answer the quiz, explain when this concept is useful, and solve one fresh variation without copying the example.",
     }
