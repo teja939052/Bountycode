@@ -151,7 +151,7 @@ export default function PowerUps() {
           animate={{ opacity: 1, x: 0 }}
           className="text-2xl font-display font-black text-text-primary flex items-center gap-2"
         >
-          <Zap size={26} className="text-yellow-400" />
+          <Zap size={26} className="text-yellow-600" />
           Power-Up Lab
         </motion.h1>
         <motion.div
@@ -159,14 +159,14 @@ export default function PowerUps() {
           animate={{ opacity: 1, x: 0 }}
           className="flex items-center gap-2 bg-yellow-500/10 px-4 py-2 rounded-xl border border-yellow-500/20"
         >
-          <Coins size={18} className="text-yellow-400" />
-          <span className="font-bold text-yellow-400 font-mono">{coins.toLocaleString()}</span>
+          <Coins size={18} className="text-yellow-600" />
+          <span className="font-bold text-yellow-600 font-mono">{coins.toLocaleString()}</span>
         </motion.div>
       </div>
 
       {error && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-          className="bg-red-500/10 border border-red-500/20 text-red-400 rounded-xl p-3 mb-4 text-sm font-mono">
+          className="bg-red-500/10 border border-red-500/20 text-red-600 rounded-xl p-3 mb-4 text-sm font-mono">
           {error}
         </motion.div>
       )}
@@ -239,10 +239,10 @@ export default function PowerUps() {
                       disabled={using === id || isActive}
                       className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all border ${
                         using === id
-                          ? "bg-gray-500/15 text-gray-400 border-gray-500/25"
+                          ? "bg-slate-50 text-gray-500 border-slate-100"
                           : isActive
-                          ? "bg-yellow-500/15 text-yellow-400 border-yellow-500/25 cursor-wait"
-                          : "text-white border-white/20 hover:border-white/40"
+                          ? "bg-yellow-500/15 text-yellow-600 border-yellow-500/25 cursor-wait"
+                          : "text-slate-900 border-slate-200 hover:border-slate-200"
                       }`}
                       style={!using && !isActive ? { background: `linear-gradient(135deg, ${colors.from}85, ${colors.to}85)` } : {}}
                     >
@@ -256,10 +256,10 @@ export default function PowerUps() {
                       disabled={purchasing === id || !canAfford}
                       className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all border ${
                         !canAfford
-                          ? "bg-gray-500/10 text-gray-500 border-gray-500/20 cursor-not-allowed"
+                          ? "bg-slate-50 text-gray-500 border-slate-100 cursor-not-allowed"
                           : purchasing === id
-                          ? "bg-gray-500/15 text-gray-400 border-gray-500/25"
-                          : "text-white border-white/20 hover:border-white/40"
+                          ? "bg-slate-50 text-gray-500 border-slate-100"
+                          : "text-slate-900 border-slate-200 hover:border-slate-200"
                       }`}
                       style={canAfford && !purchasing ? { background: 'linear-gradient(135deg, rgba(34,197,94,0.85), rgba(22,163,74,0.85))' } : {}}
                     >
@@ -278,7 +278,7 @@ export default function PowerUps() {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           className="text-center py-12 gamification-card rounded-2xl">
           <Zap size={48} className="text-gray-600 mx-auto mb-3" />
-          <p className="text-gray-400 font-mono text-sm">No power-ups owned yet. Complete lessons and challenges to earn coins!</p>
+          <p className="text-gray-500 font-mono text-sm">No power-ups owned yet. Complete lessons and challenges to earn coins!</p>
           <p className="text-xs text-gray-500 font-mono mt-2">
             Earn coins by completing daily challenges, beating boss battles, and maintaining streaks.
           </p>
@@ -287,7 +287,7 @@ export default function PowerUps() {
 
       <motion.div className="mt-6 gamification-card rounded-2xl p-5">
         <h3 className="font-bold text-text-primary mb-2 flex items-center gap-2">
-          <Sparkles size={16} className="text-yellow-400" /> How Power-Ups Work
+          <Sparkles size={16} className="text-yellow-600" /> How Power-Ups Work
         </h3>
         <ul className="text-xs font-mono text-gray-500 space-y-1.5">
           <li>• Power-ups are single-use — activate them before they expire</li>

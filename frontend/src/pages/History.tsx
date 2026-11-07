@@ -67,7 +67,7 @@ export default function History() {
             <h1 className="text-3xl font-display font-black text-text-primary">Flight Log</h1>
             <p className="text-gray-500 font-mono text-sm mt-1">Track your progress across all practice sessions</p>
           </motion.div>
-          <div className="flex items-center gap-2 text-sm text-gray-400 font-mono">
+          <div className="flex items-center gap-2 text-sm text-gray-500 font-mono">
             <BarChart3 size={16} />
             {Object.values(data).flat().length} total sessions
           </div>

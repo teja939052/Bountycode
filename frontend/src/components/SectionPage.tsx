@@ -54,7 +54,7 @@ export default function SectionPage({
                     to={item.to}
                     className="group flex items-start gap-3 rounded-2xl border border-border-primary bg-background-surface p-4 shadow-soft-sm transition-all hover:border-brand-primary/50 hover:shadow-soft-md"
                   >
-                    <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-mint text-brand-deep transition-colors group-hover:bg-brand-primary group-hover:text-white">
+                    <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-mint text-brand-deep transition-colors group-hover:bg-brand-primary group-hover:text-slate-900">
                       <Icon size={18} />
                     </div>
                     <div className="min-w-0 flex-1">

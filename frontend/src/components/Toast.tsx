@@ -7,10 +7,10 @@ import { CheckCircle, XCircle, AlertTriangle, Info, X } from 'lucide-react';
 const ToastContext = createContext(null);
 
 const TOAST_STYLES = {
-  success: { icon: CheckCircle, bg: 'bg-green-500/10', border: 'border-green-500/30', text: 'text-green-400' },
-  error: { icon: XCircle, bg: 'bg-red-500/10', border: 'border-red-500/30', text: 'text-red-400' },
-  warning: { icon: AlertTriangle, bg: 'bg-yellow-500/10', border: 'border-yellow-500/30', text: 'text-yellow-400' },
-  info: { icon: Info, bg: 'bg-blue-500/10', border: 'border-blue-500/30', text: 'text-blue-400' },
+  success: { icon: CheckCircle, bg: 'bg-green-500/10', border: 'border-green-500/30', text: 'text-green-600' },
+  error: { icon: XCircle, bg: 'bg-red-500/10', border: 'border-red-500/30', text: 'text-red-600' },
+  warning: { icon: AlertTriangle, bg: 'bg-yellow-500/10', border: 'border-yellow-500/30', text: 'text-yellow-600' },
+  info: { icon: Info, bg: 'bg-blue-500/10', border: 'border-blue-500/30', text: 'text-blue-600' },
 };
 
 let toastId = 0;
@@ -58,10 +58,10 @@ export function ToastProvider({ children }) {
                 className={`pointer-events-auto flex items-start gap-3 px-4 py-3 rounded-xl border backdrop-blur-sm ${style.bg} ${style.border}`}
               >
                 <Icon size={16} className={`${style.text} shrink-0 mt-0.5`} />
-                <p className="text-xs font-mono text-gray-300 flex-1">{t.message}</p>
+                <p className="text-xs font-mono text-gray-600 flex-1">{t.message}</p>
                 <button
                   onClick={() => removeToast(t.id)}
-                  className="text-gray-500 hover:text-gray-300 shrink-0"
+                  className="text-gray-500 hover:text-gray-600 shrink-0"
                 >
                   <X size={12} />
                 </button>

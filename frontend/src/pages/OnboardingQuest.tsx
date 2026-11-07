@@ -244,7 +244,7 @@ export default function OnboardingQuest() {
             <button
               onClick={startJourney}
               disabled={goal === "skills" ? !language : !role}
-              className="mt-6 w-full rounded-xl bg-[#F4532F] py-3 font-bold text-white disabled:opacity-40"
+              className="mt-6 w-full rounded-xl bg-[#F4532F] py-3 font-bold text-slate-900 disabled:opacity-40"
             >
               Start Journey →
             </button>

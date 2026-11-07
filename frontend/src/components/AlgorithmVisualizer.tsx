@@ -22,13 +22,13 @@ function ArrayViz({ data, activeIndices = [], pointers = {} }) {
           return (
             <div key={idx} className="flex flex-col items-center gap-1">
               {matchedPointer && (
-                <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-indigo-500/30 text-indigo-300 border border-indigo-500/40">
+                <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-indigo-500/30 text-indigo-600 border border-indigo-500/40">
                   {matchedPointer[0]}
                 </span>
               )}
               <motion.div layout animate={{ scale: isActive ? 1.12 : 1 }}
                 className={`w-11 rounded-lg border flex items-center justify-center font-mono font-bold text-xs shadow-lg transition-colors ${
-                  isActive ? "bg-amber-500/25 border-amber-400 text-amber-200" : "bg-slate-900 border-slate-700 text-slate-200"
+                  isActive ? "bg-amber-500/25 border-amber-400 text-amber-700" : "bg-white border-slate-200 text-slate-700"
                 }`} style={{ height: `${height}px` }}>
                 <span>{String(val)}</span>
               </motion.div>
@@ -90,10 +90,10 @@ function TreeViz({ tree, activeNode = null, highlightedNodes = [] }) {
               return (
                 <motion.div key={node.id} layout animate={{ scale: isActive ? 1.15 : 1 }}
                   className={`relative flex items-center justify-center rounded-full border-2 font-mono font-bold text-xs shadow-lg transition-all ${
-                    isNull ? "w-6 h-6 border-dashed border-slate-600 bg-transparent" :
-                    isActive ? "w-9 h-9 bg-amber-500/25 border-amber-400 text-amber-200 shadow-amber-500/30" :
-                    isHighlighted ? "w-9 h-9 bg-emerald-500/25 border-emerald-400 text-emerald-200" :
-                    "w-9 h-9 bg-slate-900 border-slate-600 text-slate-200"
+                    isNull ? "w-6 h-6 border-dashed border-slate-200 bg-transparent" :
+                    isActive ? "w-9 h-9 bg-amber-500/25 border-amber-400 text-amber-700 shadow-amber-500/30" :
+                    isHighlighted ? "w-9 h-9 bg-emerald-500/25 border-emerald-400 text-emerald-700" :
+                    "w-9 h-9 bg-white border-slate-200 text-slate-700"
                   }`}>
                   {!isNull && <span>{node.value}</span>}
                 </motion.div>
@@ -124,9 +124,9 @@ function LinkedListViz({ nodes, activeNode = null, direction = "right" }) {
           <div key={idx} className="flex items-center">
             <motion.div layout animate={{ scale: isActive ? 1.1 : 1 }}
               className={`flex items-center gap-1 rounded-lg border-2 px-3 py-2 font-mono font-bold text-xs shadow-lg ${
-                isNull ? "border-dashed border-slate-600 bg-transparent text-slate-500" :
-                isActive ? "bg-amber-500/25 border-amber-400 text-amber-200" :
-                "bg-slate-900 border-indigo-500/50 text-slate-200"
+                isNull ? "border-dashed border-slate-200 bg-transparent text-slate-500" :
+                isActive ? "bg-amber-500/25 border-amber-400 text-amber-700" :
+                "bg-white border-indigo-500/50 text-slate-700"
               }`}>
               <span>{isNull ? "null" : val}</span>
               {typeof node === "object" && node.address && (
@@ -134,7 +134,7 @@ function LinkedListViz({ nodes, activeNode = null, direction = "right" }) {
               )}
             </motion.div>
             {idx < nodes.length - 1 && (
-              <div className="flex items-center text-indigo-400 mx-1">
+              <div className="flex items-center text-indigo-600 mx-1">
                 <ArrowRight className="w-4 h-4" />
               </div>
             )}
@@ -154,18 +154,18 @@ function StackViz({ stack, activeIndex = null }) {
         const isTop = idx === stack.length - 1;
         return (
           <div key={idx} className="flex items-center gap-2">
-            {isTop && <span className="text-[10px] text-amber-400 font-bold font-mono">TOP →</span>}
+            {isTop && <span className="text-[10px] text-amber-600 font-bold font-mono">TOP →</span>}
             <motion.div layout animate={{ scale: isActive ? 1.05 : 1 }}
               className={`w-32 h-9 rounded-lg border flex items-center justify-center font-mono font-bold text-xs ${
-                isActive ? "bg-amber-500/25 border-amber-400 text-amber-200" :
-                "bg-slate-900 border-slate-700 text-slate-200"
+                isActive ? "bg-amber-500/25 border-amber-400 text-amber-700" :
+                "bg-white border-slate-200 text-slate-700"
               }`}>
               {String(val)}
             </motion.div>
           </div>
         );
       })}
-      <div className="w-36 h-0.5 bg-slate-600 rounded" />
+      <div className="w-36 h-0.5 bg-slate-100 rounded" />
     </div>
   );
 }
@@ -174,7 +174,7 @@ function QueueViz({ queue, activeIndex = null }) {
   if (!Array.isArray(queue) || queue.length === 0) return null;
   return (
     <div className="flex items-center gap-1 my-2 py-2 overflow-x-auto">
-      <span className="text-[10px] text-amber-400 font-bold font-mono rotate-180" style={{ writingMode: "vertical-rl" }}>FRONT →</span>
+      <span className="text-[10px] text-amber-600 font-bold font-mono rotate-180" style={{ writingMode: "vertical-rl" }}>FRONT →</span>
       {queue.map((val, idx) => {
         const isActive = idx === activeIndex;
         const isBack = idx === queue.length - 1;
@@ -182,12 +182,12 @@ function QueueViz({ queue, activeIndex = null }) {
           <div key={idx} className="flex flex-col items-center gap-1">
             <motion.div layout animate={{ scale: isActive ? 1.05 : 1 }}
               className={`w-14 h-10 rounded-lg border flex items-center justify-center font-mono font-bold text-xs ${
-                isActive ? "bg-amber-500/25 border-amber-400 text-amber-200" :
-                "bg-slate-900 border-slate-700 text-slate-200"
+                isActive ? "bg-amber-500/25 border-amber-400 text-amber-700" :
+                "bg-white border-slate-200 text-slate-700"
               }`}>
               {String(val)}
             </motion.div>
-            {isBack && <span className="text-[10px] text-indigo-400 font-bold font-mono">← BACK</span>}
+            {isBack && <span className="text-[10px] text-indigo-600 font-bold font-mono">← BACK</span>}
           </div>
         );
       })}
@@ -206,8 +206,8 @@ function MatrixViz({ matrix, activeCells = [] }) {
             return (
               <motion.div key={c} layout animate={{ scale: isActive ? 1.1 : 1 }}
                 className={`w-9 h-9 rounded border flex items-center justify-center font-mono font-bold text-[11px] ${
-                  isActive ? "bg-amber-500/25 border-amber-400 text-amber-200" :
-                  "bg-slate-900 border-slate-700 text-slate-300"
+                  isActive ? "bg-amber-500/25 border-amber-400 text-amber-700" :
+                  "bg-white border-slate-200 text-slate-600"
                 }`}>
                 {String(val)}
               </motion.div>
@@ -267,12 +267,12 @@ function GraphViz({ graph, visitedNodes = [], currentNode = null, activeEdges = 
           return (
             <g key={n.id}>
               <circle cx={pos.x} cy={pos.y} r={isActive ? 22 : 18}
-                fill={isVisited ? "#22c55e" : isActive ? "#fbbf24" : "#1e293b"}
-                stroke={isVisited ? "#4ade80" : isActive ? "#f59e0b" : "#475569"}
+                fill={isVisited ? "#22c55e" : isActive ? "#fbbf24" : "#e2e8f0"}
+                stroke={isVisited ? "#4ade80" : isActive ? "#f59e0b" : "#94a3b8"}
                 strokeWidth={isActive ? 3 : 2} />
               <text x={pos.x} y={pos.y + 4} textAnchor="middle"
                 className={`font-mono text-[11px] font-bold ${
-                  isVisited ? "fill-emerald-300" : isActive ? "fill-amber-200" : "fill-slate-500"
+                  isVisited ? "fill-white" : isActive ? "fill-white" : "fill-slate-700"
                 }`}>
                 {n.label || n.id}
               </text>
@@ -300,13 +300,13 @@ function HashMapViz({ mapData, activeKey = null, activeBucket = null }) {
           <div key={i} className="flex flex-col items-center gap-1">
             <span className="text-[10px] text-slate-500 font-mono">[{i}]</span>
             <div className={`border-2 border-dashed rounded-lg p-1 min-h-[30px] w-full flex flex-col items-center justify-center ${
-              activeBucket === i ? "border-amber-400 bg-amber-500/5" : "border-slate-700"
+              activeBucket === i ? "border-amber-400 bg-amber-500/5" : "border-slate-200"
             }`}>
               {bucket.map((item, j) => {
                 const isKeyActive = activeKey === item.key;
                 return (
                   <div key={j} className={`text-[10px] font-mono text-center px-1 py-0.5 rounded ${
-                    isKeyActive ? "bg-amber-500/20 text-amber-200 border border-amber-400/30" : "text-slate-400"
+                    isKeyActive ? "bg-amber-500/20 text-amber-700 border border-amber-400/30" : "text-slate-500"
                   }`}>
                     {item.key} → {String(item.value)}
                   </div>
@@ -330,8 +330,8 @@ function SortingViz({ data, activeIndices = [], sortedIndices = [], comparing = 
         const isComparing = comparing.includes(idx);
         const isSorted = sortedIndices.includes(idx);
         const isActive = activeIndices.includes(idx);
-        let bgClass = "bg-slate-700";
-        let borderClass = "border-slate-700";
+        let bgClass = "bg-slate-100";
+        let borderClass = "border-slate-200";
         if (isComparing) { bgClass = "bg-amber-500"; borderClass = "border-amber-400"; }
         else if (isSorted) { bgClass = "bg-emerald-500"; borderClass = "border-emerald-400"; }
         else if (isActive) { bgClass = "bg-indigo-500"; borderClass = "border-indigo-400"; }
@@ -438,26 +438,26 @@ export default function AlgorithmVisualizer({ traceData, code, language = "pytho
   const vizLabel = { array: "Array / Pointers", bars: "Bar Chart", tree: "Binary Tree", linked_list: "Linked List", stack: "Stack", queue: "Queue", matrix: "Matrix / Grid", graph: "Graph", hash_map: "Hash Map", sorting: "Sorting", none: "Runtime State" }[vizType] || "State";
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-2xl flex flex-col gap-5 text-slate-100 overflow-hidden">
+    <div className="bg-white border border-slate-200 rounded-2xl p-4 md:p-6 shadow-2xl flex flex-col gap-5 text-slate-900 overflow-hidden">
       {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-800">
+      <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-200">
         <div className="flex items-center gap-3">
-          <div className="p-2.5 bg-indigo-500/10 border border-indigo-500/30 rounded-xl text-indigo-400">
+          <div className="p-2.5 bg-indigo-500/10 border border-indigo-500/30 rounded-xl text-indigo-600">
             <Sparkles className="w-5 h-5 animate-pulse" />
           </div>
           <div>
             <h3 className="font-bold text-lg text-text-primary flex items-center gap-2">
               Algorithm Visualizer
-              <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono">
+              <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 border border-emerald-500/20 font-mono">
                 {totalSteps} steps
               </span>
               {traceData?.algorithm && (
-                <span className="text-xs px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 font-mono">
+                <span className="text-xs px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-600 border border-indigo-500/20 font-mono">
                   {traceData.algorithm}
                 </span>
               )}
             </h3>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-500">
               Step through code execution, inspect variables, watch data structures change
             </p>
             {traceData?.source && (
@@ -469,55 +469,55 @@ export default function AlgorithmVisualizer({ traceData, code, language = "pytho
         </div>
         <div className="flex items-center gap-3">
           {traceData?.time_complexity && (
-            <div className="text-xs px-3 py-1.5 rounded-xl bg-slate-800 border border-slate-700 text-cyan-400 font-mono flex items-center gap-1.5">
+            <div className="text-xs px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-cyan-600 font-mono flex items-center gap-1.5">
               <Zap className="w-3.5 h-3.5" /> {traceData.time_complexity}
             </div>
           )}
           {traceData?.space_complexity && (
-            <div className="text-xs px-3 py-1.5 rounded-xl bg-slate-800 border border-slate-700 text-purple-400 font-mono flex items-center gap-1.5">
+            <div className="text-xs px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-purple-600 font-mono flex items-center gap-1.5">
               <Layers className="w-3.5 h-3.5" /> {traceData.space_complexity}
             </div>
           )}
           <button onClick={() => setSoundEnabled(!soundEnabled)}
-            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors">
-            {soundEnabled ? <Volume2 className="w-4 h-4 text-indigo-400" /> : <VolumeX className="w-4 h-4 text-slate-500" />}
+            className="p-2 rounded-xl bg-slate-100 hover:bg-slate-100 text-slate-600 transition-colors">
+            {soundEnabled ? <Volume2 className="w-4 h-4 text-indigo-600" /> : <VolumeX className="w-4 h-4 text-slate-500" />}
           </button>
         </div>
       </div>
 
       {/* Controls */}
-      <div className="bg-slate-950/70 border border-slate-800/80 rounded-xl p-3 flex flex-wrap items-center justify-between gap-4">
+      <div className="bg-white border border-slate-200 rounded-xl p-3 flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-2">
-          <button onClick={handleReset} className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors" title="Reset">
+          <button onClick={handleReset} className="p-2 rounded-lg bg-slate-100 hover:bg-slate-100 text-slate-600 transition-colors" title="Reset">
             <RotateCcw className="w-4 h-4" />
           </button>
           <button onClick={handlePrev} disabled={currentStepIndex === 0}
-            className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 disabled:opacity-40 text-slate-300 transition-colors">
+            className="p-2 rounded-lg bg-slate-100 hover:bg-slate-100 disabled:opacity-40 text-slate-600 transition-colors">
             <ChevronLeft className="w-4 h-4" />
           </button>
           <button onClick={() => setIsPlaying(!isPlaying)}
             className={`px-4 py-2 rounded-xl font-medium text-sm flex items-center gap-2 transition-all shadow-lg ${
-              isPlaying ? "bg-amber-500/20 text-amber-300 border border-amber-500/40" : "bg-indigo-600 hover:bg-indigo-500 text-text-primary shadow-indigo-600/25"
+              isPlaying ? "bg-amber-500/20 text-amber-600 border border-amber-500/40" : "bg-indigo-600 hover:bg-indigo-500 text-white shadow-indigo-600/25"
             }`}>
             {isPlaying ? <><Pause className="w-4 h-4" /> Pause</> : <><Play className="w-4 h-4 fill-current" /> Play</>}
           </button>
           <button onClick={handleNext} disabled={currentStepIndex === totalSteps - 1}
-            className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 disabled:opacity-40 text-slate-300 transition-colors">
+            className="p-2 rounded-lg bg-slate-100 hover:bg-slate-100 disabled:opacity-40 text-slate-600 transition-colors">
             <ChevronRight className="w-4 h-4" />
           </button>
         </div>
         <div className="flex items-center gap-4 flex-1 max-w-md">
-          <span className="text-xs font-mono text-slate-400 whitespace-nowrap">
+          <span className="text-xs font-mono text-slate-500 whitespace-nowrap">
             {totalSteps > 0 ? currentStepIndex + 1 : 0}/{totalSteps}
           </span>
           <input type="range" min={0} max={Math.max(0, totalSteps - 1)} value={currentStepIndex}
             onChange={e => { setCurrentStepIndex(Number(e.target.value)); if (soundEnabled) playSound.step(); }}
-            className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-indigo-500" />
+            className="w-full h-1.5 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-indigo-500" />
         </div>
-        <div className="flex items-center gap-1.5 text-xs font-mono bg-slate-900 border border-slate-800 p-1 rounded-xl">
+        <div className="flex items-center gap-1.5 text-xs font-mono bg-white border border-slate-200 p-1 rounded-xl">
           {[0.5, 1, 2, 4].map(spd => (
             <button key={spd} onClick={() => setSpeed(spd)}
-              className={`px-2.5 py-1 rounded-lg transition-colors ${speed === spd ? "bg-indigo-600 text-text-primary font-bold" : "text-slate-400 hover:text-slate-200"}`}>
+              className={`px-2.5 py-1 rounded-lg transition-colors ${speed === spd ? "bg-indigo-600 text-white font-bold" : "text-slate-500 hover:text-slate-700"}`}>
               {spd}x
             </button>
           ))}
@@ -527,12 +527,12 @@ export default function AlgorithmVisualizer({ traceData, code, language = "pytho
       {/* Main Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
         {/* Code Panel */}
-        <div className="lg:col-span-5 bg-slate-950/80 border border-slate-800 rounded-xl p-4 flex flex-col gap-3 font-mono text-xs overflow-hidden">
-          <div className="flex items-center justify-between text-slate-400 pb-2 border-b border-slate-800">
-            <span className="flex items-center gap-1.5 text-slate-300 font-semibold">
-              <Code2 className="w-4 h-4 text-indigo-400" /> Source ({language})
+        <div className="lg:col-span-5 bg-white border border-slate-200 rounded-xl p-4 flex flex-col gap-3 font-mono text-xs overflow-hidden">
+          <div className="flex items-center justify-between text-slate-500 pb-2 border-b border-slate-200">
+            <span className="flex items-center gap-1.5 text-slate-600 font-semibold">
+              <Code2 className="w-4 h-4 text-indigo-600" /> Source ({language})
             </span>
-            <span className="text-indigo-400 font-bold">L{currentStep.line || "-"}</span>
+            <span className="text-indigo-600 font-bold">L{currentStep.line || "-"}</span>
           </div>
           <div className="overflow-y-auto max-h-[320px] space-y-1 pr-1">
             {codeLines.map((lineText, idx) => {
@@ -540,7 +540,7 @@ export default function AlgorithmVisualizer({ traceData, code, language = "pytho
               const isCurrent = currentStep.line === lineNum;
               return (
                 <div key={idx} className={`flex items-center gap-3 px-2.5 py-1 rounded-md transition-all ${
-                  isCurrent ? "bg-indigo-500/20 border-l-4 border-indigo-500 text-indigo-200 font-bold" : "text-slate-400 hover:bg-slate-900/60"
+                  isCurrent ? "bg-indigo-500/20 border-l-4 border-indigo-500 text-indigo-700 font-bold" : "text-slate-500 hover:bg-slate-100"
                 }`}>
                   <span className="w-6 text-right text-slate-600 select-none">{lineNum}</span>
                   <span className="whitespace-pre overflow-x-auto">{lineText || " "}</span>
@@ -552,27 +552,27 @@ export default function AlgorithmVisualizer({ traceData, code, language = "pytho
 
         {/* Visualization + Variables */}
         <div className="lg:col-span-7 flex flex-col gap-4">
-          <div className="bg-slate-950/80 border border-slate-800 rounded-xl p-4 flex flex-col gap-3 min-h-[180px]">
-            <div className="text-xs font-semibold text-slate-400 flex items-center justify-between">
-              <span className="flex items-center gap-1.5 text-slate-300">
-                <Cpu className="w-4 h-4 text-emerald-400" /> Data Structure
+          <div className="bg-white border border-slate-200 rounded-xl p-4 flex flex-col gap-3 min-h-[180px]">
+            <div className="text-xs font-semibold text-slate-500 flex items-center justify-between">
+              <span className="flex items-center gap-1.5 text-slate-600">
+                <Cpu className="w-4 h-4 text-emerald-600" /> Data Structure
               </span>
-              <span className="text-emerald-400 font-mono text-[11px]">{vizLabel}</span>
+              <span className="text-emerald-600 font-mono text-[11px]">{vizLabel}</span>
             </div>
             {renderVisualization()}
           </div>
 
           {/* Variable Inspector */}
-          <div className="bg-slate-950/80 border border-slate-800 rounded-xl p-4 flex flex-col gap-3">
-            <div className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
-              <Eye className="w-4 h-4 text-cyan-400" /> Variables
+          <div className="bg-white border border-slate-200 rounded-xl p-4 flex flex-col gap-3">
+            <div className="text-xs font-semibold text-slate-600 flex items-center gap-1.5">
+              <Eye className="w-4 h-4 text-cyan-600" /> Variables
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5">
               {Object.keys(variables).length > 0 ? (
                 Object.entries(variables).map(([k, v]) => (
-                  <div key={k} className="bg-slate-900 border border-slate-800 rounded-lg p-2.5 flex flex-col gap-0.5 font-mono">
-                    <span className="text-[11px] text-slate-400 font-sans">{k}</span>
-                    <span className="text-sm font-bold text-cyan-300 truncate">
+                  <div key={k} className="bg-white border border-slate-200 rounded-lg p-2.5 flex flex-col gap-0.5 font-mono">
+                    <span className="text-[11px] text-slate-500 font-sans">{k}</span>
+                    <span className="text-sm font-bold text-cyan-600 truncate">
                       {typeof v === "object" ? JSON.stringify(v) : String(v)}
                     </span>
                   </div>
@@ -587,14 +587,14 @@ export default function AlgorithmVisualizer({ traceData, code, language = "pytho
 
       {/* Explanation Footer */}
       <div className="bg-indigo-950/30 border border-indigo-500/30 rounded-xl p-4 flex items-start gap-3">
-        <div className="p-2 bg-indigo-500/20 rounded-lg text-indigo-400 shrink-0 mt-0.5">
+        <div className="p-2 bg-indigo-500/20 rounded-lg text-indigo-600 shrink-0 mt-0.5">
           <HelpCircle className="w-5 h-5" />
         </div>
         <div className="flex flex-col gap-1">
-          <span className="text-xs font-bold text-indigo-300 uppercase tracking-wider">
+          <span className="text-xs font-bold text-indigo-600 uppercase tracking-wider">
             {currentStep.action || "Step execution"}
           </span>
-          <p className="text-sm text-slate-200 leading-relaxed">
+          <p className="text-sm text-slate-700 leading-relaxed">
             {currentStep.explanation || "Tracing execution and state changes..."}
           </p>
         </div>

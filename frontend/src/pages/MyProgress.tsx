@@ -55,12 +55,12 @@ export default function MyProgress() {
           animate={{ opacity: 1, y: 0 }}
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/30 rounded-xl flex items-center justify-center">
+            <div className="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center">
               <BarChart3 size={24} className="text-indigo-600" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold dark:text-white">My Progress</h1>
-              <p className="text-brand-secondary dark:text-gray-400">Track your question bank performance</p>
+              <h1 className="text-3xl font-bold">My Progress</h1>
+              <p className="text-brand-secondary">Track your question bank performance</p>
             </div>
           </div>
         </motion.div>
@@ -77,7 +77,7 @@ export default function MyProgress() {
               <p className={`text-3xl font-bold ${s.color}`}>
                 <AnimatedNumber value={s.value} />
               </p>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{s.label}</p>
+              <p className="text-sm text-gray-500 mt-1">{s.label}</p>
             </AnimatedCard>
           ))}
         </div>
@@ -85,27 +85,27 @@ export default function MyProgress() {
         <div className="grid md:grid-cols-2 gap-6 mb-8">
           {/* Strong Areas */}
           <AnimatedCard className="card">
-            <h3 className="font-bold mb-4 flex items-center gap-2 dark:text-white">
+            <h3 className="font-bold mb-4 flex items-center gap-2">
               <CheckCircle size={20} className="text-green-500" />
               Strong Areas
             </h3>
             {strongAreas.length === 0 ? (
-              <p className="text-gray-400 dark:text-gray-500 text-sm">Answer more questions to see your strengths</p>
+              <p className="text-gray-500 text-sm">Answer more questions to see your strengths</p>
             ) : (
               <div className="space-y-3">
                 {strongAreas.map((area) => (
                   <div key={area.topic}>
                     <div className="flex justify-between text-sm mb-1">
-                      <span className="text-brand-primary dark:text-brand-secondary">{area.topic}</span>
+                      <span className="text-brand-primary">{area.topic}</span>
                       <span className="font-medium text-green-600">{area.avg_score}/10</span>
                     </div>
-                    <div className="w-full bg-surface-card/50 dark:bg-gray-700 rounded-full h-2">
+                    <div className="w-full bg-surface-card/50 rounded-full h-2">
                       <div
                         className="bg-green-500 h-2 rounded-full"
                         style={{ width: `${area.avg_score * 10}%` }}
                       />
                     </div>
-                    <p className="text-xs text-gray-400 mt-0.5">{area.count} questions · {area.accuracy}% accuracy</p>
+                    <p className="text-xs text-gray-500 mt-0.5">{area.count} questions · {area.accuracy}% accuracy</p>
                   </div>
                 ))}
               </div>
@@ -114,27 +114,27 @@ export default function MyProgress() {
 
           {/* Weak Areas */}
           <AnimatedCard className="card">
-            <h3 className="font-bold mb-4 flex items-center gap-2 dark:text-white">
+            <h3 className="font-bold mb-4 flex items-center gap-2">
               <AlertCircle size={20} className="text-orange-500" />
               Areas to Improve
             </h3>
             {weakAreas.length === 0 ? (
-              <p className="text-gray-400 dark:text-gray-500 text-sm">No weak areas identified yet</p>
+              <p className="text-gray-500 text-sm">No weak areas identified yet</p>
             ) : (
               <div className="space-y-3">
                 {weakAreas.map((area) => (
                   <div key={area.topic}>
                     <div className="flex justify-between text-sm mb-1">
-                      <span className="text-brand-primary dark:text-brand-secondary">{area.topic}</span>
+                      <span className="text-brand-primary">{area.topic}</span>
                       <span className="font-medium text-orange-600">{area.avg_score}/10</span>
                     </div>
-                    <div className="w-full bg-surface-card/50 dark:bg-gray-700 rounded-full h-2">
+                    <div className="w-full bg-surface-card/50 rounded-full h-2">
                       <div
                         className="bg-orange-500 h-2 rounded-full"
                         style={{ width: `${area.avg_score * 10}%` }}
                       />
                     </div>
-                    <p className="text-xs text-gray-400 mt-0.5">{area.count} questions · {area.accuracy}% accuracy</p>
+                    <p className="text-xs text-gray-500 mt-0.5">{area.count} questions · {area.accuracy}% accuracy</p>
                   </div>
                 ))}
               </div>
@@ -145,16 +145,16 @@ export default function MyProgress() {
         {/* Company Stats */}
         {companyStats.length > 0 && (
           <AnimatedCard className="card mb-8">
-            <h3 className="font-bold mb-4 flex items-center gap-2 dark:text-white">
+            <h3 className="font-bold mb-4 flex items-center gap-2">
               <Target size={20} className="text-blue-500" />
               Performance by Company
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
               {companyStats.map((cs) => (
-                <div key={cs.company} className="bg-surface-base dark:bg-gray-700/50 rounded-lg p-3">
-                  <p className="font-semibold text-sm dark:text-white">{cs.company}</p>
+                <div key={cs.company} className="bg-surface-base rounded-lg p-3">
+                  <p className="font-semibold text-sm">{cs.company}</p>
                   <p className="text-lg font-bold text-primary-600">{cs.avg_score}/10</p>
-                  <p className="text-xs text-gray-400">{cs.count} questions</p>
+                  <p className="text-xs text-gray-500">{cs.count} questions</p>
                 </div>
               ))}
             </div>
@@ -165,19 +165,19 @@ export default function MyProgress() {
         {recent.length > 0 && (
           <AnimatedCard className="card mb-8">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-bold dark:text-white">Recent Answers</h3>
+              <h3 className="font-bold">Recent Answers</h3>
               <Link to="/question-bank" className="text-sm text-primary-600 hover:text-primary-700 flex items-center gap-1">
                 Practice more <ArrowRight size={14} />
               </Link>
             </div>
             <div className="space-y-2">
               {recent.map((a) => (
-                <div key={a.id} className="flex items-center justify-between py-2 border-t border-gray-100 dark:border-gray-700 first:border-0">
+                <div key={a.id} className="flex items-center justify-between py-2 border-t border-gray-100 first:border-0">
                   <div className="min-w-0 flex-1">
-                    <p className="text-sm font-medium dark:text-white truncate">
+                    <p className="text-sm font-medium truncate">
                       {a.feedback?.substring(0, 60) || "Answer submitted"}
                     </p>
-                    <p className="text-xs text-gray-400">
+                    <p className="text-xs text-gray-500">
                       {new Date(a.created_at).toLocaleDateString()}
                     </p>
                   </div>
@@ -202,12 +202,12 @@ export default function MyProgress() {
         {/* CTA */}
         {totalAttempted === 0 && (
           <AnimatedCard className="card text-center py-12">
-            <TrendingUp size={48} className="mx-auto text-brand-secondary dark:text-brand-secondary mb-4" />
-            <h3 className="text-xl font-bold mb-2 dark:text-white">Start Practicing</h3>
-            <p className="text-gray-500 dark:text-gray-400 mb-6">Answer questions from the question bank to see your progress here</p>
+            <TrendingUp size={48} className="mx-auto text-brand-secondary mb-4" />
+            <h3 className="text-xl font-bold mb-2">Start Practicing</h3>
+            <p className="text-gray-500 mb-6">Answer questions from the question bank to see your progress here</p>
             <Link
               to="/question-bank"
-              className="inline-flex items-center gap-2 bg-primary-600 text-text-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors"
+              className="inline-flex items-center gap-2 bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors"
             >
               Open Question Bank <ArrowRight size={18} />
             </Link>

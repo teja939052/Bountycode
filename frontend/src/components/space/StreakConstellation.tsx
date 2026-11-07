@@ -34,7 +34,7 @@ export default function StreakConstellation({ streak = 0, maxStreak = 30 }) {
           <motion.div
             animate={{ scale: [1, 1.1, 1], opacity: [0.8, 1, 0.8] }}
             transition={{ repeat: Infinity, duration: 2 }}
-            className="px-3 py-1 rounded-full bg-cyber-purple/20 border border-cyber-purple/40 text-purple-300 text-[10px] font-mono uppercase tracking-wider"
+            className="px-3 py-1 rounded-full bg-cyber-purple/20 border border-cyber-purple/40 text-purple-600 text-[10px] font-mono uppercase tracking-wider"
           >
             Supernova
           </motion.div>

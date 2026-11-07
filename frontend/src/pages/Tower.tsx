@@ -91,7 +91,7 @@ export default function Tower() {
             {titleEmoji}
           </div>
           <div>
-            <h1 className="text-xl font-bold text-text-primary dark:text-white tracking-tight">The Crow’s Nest</h1>
+            <h1 className="text-xl font-bold text-text-primary tracking-tight">The Crow’s Nest</h1>
             <p className="text-xs text-gray-500 font-mono">Level {level} · {title} · {diamonds.toLocaleString()} Diamonds</p>
           </div>
         </div>
@@ -109,13 +109,13 @@ export default function Tower() {
             <div className="flex items-end justify-between mb-2">
               <div>
                 <p className="text-xs font-mono uppercase tracking-widest text-gray-500 mb-1">Level Progress</p>
-                <p className="text-3xl font-black text-text-primary dark:text-white tracking-tight">{xpPct}%</p>
+                <p className="text-3xl font-black text-text-primary tracking-tight">{xpPct}%</p>
               </div>
               <p className="text-xs text-gray-500 font-mono">
                 {xpToNext - diamonds > 0 ? `${(xpToNext - diamonds).toLocaleString()} Diamonds to Level ${level + 1}` : "Max level reached!"}
               </p>
             </div>
-            <div className="h-3 bg-gray-200/60 dark:bg-gray-800 rounded-full overflow-hidden">
+            <div className="h-3 bg-gray-200/60 rounded-full overflow-hidden">
               <motion.div
                 className="h-full rounded-full"
                 style={{ background: 'linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899)' }}
@@ -147,7 +147,7 @@ export default function Tower() {
             <div className={`w-9 h-9 rounded-xl ${s.bg} flex items-center justify-center mx-auto mb-1.5`}>
               <s.icon size={18} className={s.color} />
             </div>
-            <div className="text-lg font-black text-text-primary dark:text-white">{s.value}</div>
+            <div className="text-lg font-black text-text-primary">{s.value}</div>
             <div className="text-[10px] text-gray-500 uppercase tracking-wider font-medium">{s.label}</div>
           </motion.div>
         ))}
@@ -160,10 +160,10 @@ export default function Tower() {
           animate={{ opacity: 1, y: 0 }}
           className="gamification-card rounded-2xl p-4"
         >
-          <p className="text-[10px] font-mono uppercase tracking-widest text-indigo-400 mb-1">Combo</p>
+          <p className="text-[10px] font-mono uppercase tracking-widest text-indigo-600 mb-1">Combo</p>
           <div className="flex items-end gap-2">
             <span className="text-3xl font-black text-text-primary">{currentCombo}x</span>
-            <span className="text-sm text-indigo-300 mb-1 font-mono">x{comboMultiplier.toFixed(2)}</span>
+            <span className="text-sm text-indigo-600 mb-1 font-mono">x{comboMultiplier.toFixed(2)}</span>
           </div>
           <p className="text-[10px] text-gray-500 mt-1">Rapid activities multiply Diamonds</p>
         </motion.div>
@@ -172,10 +172,10 @@ export default function Tower() {
           animate={{ opacity: 1, y: 0 }}
           className="gamification-card rounded-2xl p-4"
         >
-          <p className="text-[10px] font-mono uppercase tracking-widest text-yellow-300 mb-1">Daily Login</p>
+          <p className="text-[10px] font-mono uppercase tracking-widest text-yellow-600 mb-1">Daily Login</p>
           <div className="flex items-end gap-2">
             <span className="text-3xl font-black text-text-primary">{loginStreak}</span>
-            <span className="text-sm text-yellow-300 mb-1 font-mono">days</span>
+            <span className="text-sm text-yellow-600 mb-1 font-mono">days</span>
           </div>
           <p className="text-[10px] text-gray-500 mt-1">Claim your escalating rewards</p>
         </motion.div>
@@ -192,8 +192,8 @@ export default function Tower() {
           <div className="flex items-center gap-4">
             <div className="text-4xl">🏴‍☠️</div>
             <div className="flex-1">
-              <h3 className="font-bold text-red-400">Boss Island — Level {currentBoss}</h3>
-              <p className="text-sm text-gray-400">Conquer this island to unlock the next fleet!</p>
+              <h3 className="font-bold text-red-600">Boss Island — Level {currentBoss}</h3>
+              <p className="text-sm text-gray-500">Conquer this island to unlock the next fleet!</p>
             </div>
             <button className="btn-glow px-5 py-2.5 rounded-xl bg-red-500 text-white font-bold hover:bg-red-600 transition-colors">
               Fight!
@@ -226,19 +226,19 @@ export default function Tower() {
           animate={{ opacity: 1, y: 0 }}
           className="gamification-card rounded-2xl p-5"
         >
-          <h3 className="text-sm font-bold text-gray-200 mb-4 flex items-center gap-2">
-            <Target size={16} className="text-indigo-400" /> Challenges
+          <h3 className="text-sm font-bold text-gray-700 mb-4 flex items-center gap-2">
+            <Target size={16} className="text-indigo-600" /> Challenges
           </h3>
           <div className="space-y-3">
             {challenges.challenges.slice(0, 3).map((c) => (
-              <div key={c.id} className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.04] border border-white/5 hover:border-white/10 transition-colors">
+              <div key={c.id} className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-200 hover:border-slate-200 transition-colors">
                 <span className="text-xl">{c.completed ? "✅" : "⬜"}</span>
                 <div className="flex-1">
-                  <div className="text-sm font-semibold text-gray-200">{c.title}</div>
+                  <div className="text-sm font-semibold text-gray-700">{c.title}</div>
                   <div className="text-xs text-gray-500">{c.description}</div>
                 </div>
                 {c.reward_xp && (
-                  <span className="text-xs text-amber-400 font-mono font-bold">+{c.reward_xp} Diamonds</span>
+                  <span className="text-xs text-amber-600 font-mono font-bold">+{c.reward_xp} Diamonds</span>
                 )}
               </div>
             ))}
@@ -253,17 +253,17 @@ export default function Tower() {
           animate={{ opacity: 1, y: 0 }}
           className="gamification-card rounded-2xl p-5"
         >
-          <h3 className="text-sm font-bold text-gray-200 mb-4 flex items-center gap-2">
-            <Trophy size={16} className="text-amber-400" /> Leaderboard
+          <h3 className="text-sm font-bold text-gray-700 mb-4 flex items-center gap-2">
+            <Trophy size={16} className="text-amber-600" /> Leaderboard
           </h3>
           <div className="space-y-2">
             {leaderboard.entries.slice(0, 5).map((entry, i) => (
-              <div key={i} className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/[0.04] transition-colors">
+              <div key={i} className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors">
                 <span className="w-7 text-center text-sm font-black">
                   {i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : `#${i + 1}`}
                 </span>
-                <span className="flex-1 text-sm text-gray-300 font-medium">{entry.name || `User ${entry.user_id?.slice(-4)}`}</span>
-                <span className="text-xs text-amber-400 font-mono font-bold">{entry.diamonds} Diamonds</span>
+                <span className="flex-1 text-sm text-gray-600 font-medium">{entry.name || `User ${entry.user_id?.slice(-4)}`}</span>
+                <span className="text-xs text-amber-600 font-mono font-bold">{entry.diamonds} Diamonds</span>
               </div>
             ))}
           </div>
@@ -286,8 +286,8 @@ export default function Tower() {
             <div className="w-9 h-9 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-600 group-hover:scale-110 transition-transform">
               <link.icon size={18} />
             </div>
-            <span className="text-sm font-bold text-text-primary dark:text-white">{link.label}</span>
-            <ArrowRight size={14} className="ml-auto text-gray-400 group-hover:translate-x-0.5 transition-transform" />
+            <span className="text-sm font-bold text-text-primary">{link.label}</span>
+            <ArrowRight size={14} className="ml-auto text-gray-500 group-hover:translate-x-0.5 transition-transform" />
           </Link>
         ))}
       </div>

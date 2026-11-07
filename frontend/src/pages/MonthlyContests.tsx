@@ -40,9 +40,9 @@ const MOCK_CONTESTS = [
 ];
 
 const STATUS_COLORS = {
-  active: { bg: 'bg-green-500/15', text: 'text-green-400', border: 'border-green-500/30', label: 'LIVE NOW' },
-  upcoming: { bg: 'bg-blue-500/15', text: 'text-blue-400', border: 'border-blue-500/30', label: 'UPCOMING' },
-  ended: { bg: 'bg-gray-500/15', text: 'text-gray-400', border: 'border-gray-500/30', label: 'ENDED' },
+  active: { bg: 'bg-green-500/15', text: 'text-green-600', border: 'border-green-500/30', label: 'LIVE NOW' },
+  upcoming: { bg: 'bg-blue-500/15', text: 'text-blue-600', border: 'border-blue-500/30', label: 'UPCOMING' },
+  ended: { bg: 'bg-slate-50', text: 'text-gray-500', border: 'border-slate-100', label: 'ENDED' },
 };
 
 function CountdownTimer({ endDate }) {
@@ -108,7 +108,7 @@ export default function MonthlyContests() {
           {['active', 'upcoming', 'all'].map((tab) => (
             <button key={tab} onClick={() => setActiveTab(tab)}
               className={`px-4 py-2 rounded-lg text-xs font-mono font-medium uppercase tracking-wider transition-all border ${
-                activeTab === tab ? 'bg-cyber-amber/15 text-cyber-amber border-cyber-amber/40' : 'border-transparent text-gray-500 hover:text-gray-300 hover:bg-gray-50'
+                activeTab === tab ? 'bg-cyber-amber/15 text-cyber-amber border-cyber-amber/40' : 'border-transparent text-gray-500 hover:text-gray-600 hover:bg-gray-50'
               }`}>
               {tab === 'active' ? '🔥 Live' : tab === 'upcoming' ? '📅 Upcoming' : '📋 All'}
             </button>
@@ -118,10 +118,10 @@ export default function MonthlyContests() {
         {loading ? (
           <div className="grid sm:grid-cols-2 gap-4">
             {Array.from({ length: 3 }).map((_, i) => (
-              <div key={i} className="rounded-xl border border-gray-700/20 p-6 animate-pulse bg-gray-900/20">
-                <div className="h-5 bg-gray-700/40 rounded w-2/3 mb-3" />
-                <div className="h-3 bg-gray-700/30 rounded w-full mb-2" />
-                <div className="h-3 bg-gray-700/20 rounded w-1/2" />
+              <div key={i} className="rounded-xl border border-slate-100 p-6 animate-pulse bg-white">
+                <div className="h-5 bg-slate-100 rounded w-2/3 mb-3" />
+                <div className="h-3 bg-slate-100 rounded w-full mb-2" />
+                <div className="h-3 bg-slate-100 rounded w-1/2" />
               </div>
             ))}
           </div>
@@ -152,7 +152,7 @@ export default function MonthlyContests() {
                   </div>
 
                   <h3 className="text-lg font-display font-bold text-text-primary mb-1">{contest.title}</h3>
-                  <p className="text-xs text-gray-400 mb-4">{contest.description}</p>
+                  <p className="text-xs text-gray-500 mb-4">{contest.description}</p>
 
                   <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-[10px] font-mono text-gray-500 mb-4">
                     <span>👥 {contest.participants} joined</span>
@@ -167,7 +167,7 @@ export default function MonthlyContests() {
                         <span>{new Date(contest.start_date).toLocaleDateString()}</span>
                         <span>{new Date(contest.end_date).toLocaleDateString()}</span>
                       </div>
-                      <div className="h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                      <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden">
                         <motion.div
                           className="h-full rounded-full bg-gradient-to-r from-cyber-amber to-yellow-400"
                           initial={{ width: 0 }}
@@ -186,7 +186,7 @@ export default function MonthlyContests() {
                         ? 'bg-cyber-amber/15 text-cyber-amber border border-cyber-amber/30 hover:bg-cyber-amber/25'
                         : contest.status === 'upcoming'
                         ? 'bg-cyber-blue/15 text-cyber-blue border border-cyber-blue/30 hover:bg-cyber-blue/25'
-                        : 'bg-gray-800 text-gray-500 border border-gray-700/30 cursor-not-allowed'
+                        : 'bg-white text-gray-500 border border-slate-100 cursor-not-allowed'
                     }`}
                   >
                     {contest.status === 'active' ? '⚔️ Join Now' : contest.status === 'upcoming' ? '🔔 Remind Me' : 'Ended'}
@@ -200,7 +200,7 @@ export default function MonthlyContests() {
         {filtered.length === 0 && !loading && (
           <Card rarity="common" hoverEffect={false} className="text-center py-12">
             <div className="text-4xl mb-3">🏆</div>
-            <p className="text-gray-400 text-sm">No {activeTab === 'active' ? 'live' : activeTab} contests right now</p>
+            <p className="text-gray-500 text-sm">No {activeTab === 'active' ? 'live' : activeTab} contests right now</p>
             <p className="text-xs text-gray-600 mt-1 font-mono">Check back soon!</p>
           </Card>
         )}

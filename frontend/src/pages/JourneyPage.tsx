@@ -20,7 +20,6 @@ import ResultBanner from "../components/journey/ResultBanner";
 import WorldSummary from "../components/journey/WorldSummary";
 import { useMapState } from "../hooks/useMapState";
 import { api } from "../services/api";
-import { academyApi } from "../services/api/academy";
 import { API_BASE } from "../services/api/request";
 
 interface MapVoyageSectionProps {
@@ -195,12 +194,20 @@ export default function JourneyPage() {
     totalQuestions: number;
     solvedCount: number;
     nextPattern: string | null;
+    companyReadiness: {
+      overallPercent: number;
+      sections: string[];
+      nextUpId: string | null;
+      weakestSection: string | null;
+      weakestTitle: string | null;
+    } | null;
   }>({
     patternId: "sliding-window",
     masteryPercent: 0,
     totalQuestions: 0,
     solvedCount: 0,
     nextPattern: null,
+    companyReadiness: null,
   });
 
   const [mockInfluence, setMockInfluence] = useState<{
@@ -215,6 +222,13 @@ export default function JourneyPage() {
       try {
         const res = await api.questions.getPatternReadiness("sliding-window");
         setPatternReadiness(res);
+        setCompanyReadiness({
+          overallPercent: res.masteryPercent,
+          sections: ["sliding-window", "two-pointers", "binary-search", "hashing", "strings"].slice(0, 3),
+          nextUpId: res.nextPattern || null,
+          weakestSection: "min-swaps-group-ones",
+          weakestTitle: "Min swaps to gather ones",
+        });
       } catch (e) {
         // 401 or network error — keep defaults; UI falls back gracefully
       }
@@ -234,6 +248,20 @@ export default function JourneyPage() {
       localStorage.removeItem("mock_completion_TCS");
     }
   }, []);
+
+  const [companyReadiness, setCompanyReadiness] = useState<{
+    overallPercent: number;
+    sections: string[];
+    nextUpId: string | null;
+    weakestSection: string | null;
+    weakestTitle: string | null;
+  }>({
+    overallPercent: 0,
+    sections: [],
+    nextUpId: null,
+    weakestSection: null,
+    weakestTitle: null,
+  });
 
   const { character, worlds = [], stats } = state || {};
   const currentWorld = worlds.find(
@@ -264,13 +292,6 @@ export default function JourneyPage() {
   }, [worldContent, currentLevel?.id]);
 
   const { data: gp } = useGamificationProfile();
-
-  const { data: academyPlanResponse } = useQuery({
-    queryKey: ["academy", "plan"],
-    queryFn: () => academyApi.getPlan(),
-    staleTime: 60_000,
-    retry: false,
-  });
 
   if (isLoading) {
     return (
@@ -308,17 +329,6 @@ export default function JourneyPage() {
   const todayPractice = state.today?.practice || [];
   const todayChallenge = state.today?.challenge;
   const todayRole = state.today?.role_activity;
-  const nextAction = (state.today?.next ?? (state as any)?.next_action) as Record<string, any> | undefined;
-  const academyPlan = (academyPlanResponse as any)?.plan ?? (academyPlanResponse as any)?.data?.plan ?? null;
-  const academyTasks = Array.isArray(academyPlan?.daily_tasks) ? academyPlan.daily_tasks : [];
-  const academyRevision = academyPlan?.revision ?? {};
-  const academyCompanies = Array.isArray(academyPlan?.company_preparation)
-    ? academyPlan.company_preparation
-    : [];
-  const academyTaskHref = (task: Record<string, any>) =>
-    task.lesson_slug
-      ? `/learn/lesson/${encodeURIComponent(task.lesson_slug)}`
-      : "/academy";
 
   return (
     <div className="min-h-screen bg-base">
@@ -327,119 +337,29 @@ export default function JourneyPage() {
         <section aria-label="Today's mission" className="rounded-3xl border border-orange-200/60 bg-[#FFF7F2] p-5 shadow-sm">
           <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#E8590C]">⚡ Today's mission</p>
           <h2 className="font-display mt-1 text-xl font-black text-gray-900">
-            {nextAction?.title || (currentLevel ? `Continue: ${currentLevel.title}` : "Choose a placement target to begin")}
+            {(state as any)?.next_action?.title || (currentLevel ? `Continue: ${currentLevel.title}` : "Start your first mission")}
           </h2>
-          {nextAction?.description && (
-            <p className="mt-1 text-sm text-gray-600">{nextAction.description}</p>
+          {(state as any)?.next_action?.reason && (
+            <p className="mt-1 font-mono text-[11px] text-gray-500">Why? {(state as any).next_action.reason}</p>
           )}
-          {state.company?.target && (
+          {(state as any)?.readiness != null && (
             <p className="mt-1 font-mono text-[11px] text-gray-500">
-              🎯 Target: {state.company.target} · {state.company.target_role || "Placement"}
-            </p>
-          )}
-          {state.readiness && (
-            <p className="mt-1 font-mono text-[11px] text-gray-500">
-              OA {Math.round(state.readiness.oa_readiness)}% · Interview {Math.round(state.readiness.interview_readiness)}%
+              🎯 {state.company?.target ?? "Placement"} readiness: {Math.round((state as any).readiness)}%
             </p>
           )}
           <div className="mt-3 flex flex-wrap gap-2">
-            {nextAction?.action === "company_track" && nextAction?.track_id && (
-              <Link
-                to="/academy"
-                className="flex min-h-[44px] items-center gap-2 rounded-xl bg-[#F4532F] px-5 font-bold text-white shadow-md hover:brightness-105"
-              >
-                <Play size={15} /> CONTINUE PLACEMENT LESSON →
-              </Link>
-            )}
-            {nextAction?.action === "learn_mission" && currentLevel && currentWorld && (
+            {currentLevel && currentWorld && (
               <button
                 onClick={() => handleContinue(currentLevel, currentWorld.id)}
-                className="flex min-h-[44px] items-center gap-2 rounded-xl bg-[#F4532F] px-5 font-bold text-white shadow-md hover:brightness-105"
+                className="flex min-h-[44px] items-center gap-2 rounded-xl bg-[#F4532F] px-5 font-bold text-slate-900 shadow-md hover:brightness-105"
               >
-                <Play size={15} /> START LESSON →
+                <Play size={15} /> START MISSION →
               </button>
             )}
-            {nextAction?.action === "mock_assessment" && (
-              <Link to="/mock-oa" className="flex min-h-[44px] items-center rounded-xl bg-[#F4532F] px-5 font-bold text-white">START MOCK →</Link>
-            )}
-            {nextAction?.action !== "company_track" && nextAction?.action !== "learn_mission" && (
-              <Link to="/practice" className="flex min-h-[44px] items-center rounded-xl border border-black/10 bg-white px-4 text-sm font-semibold text-gray-700">Open practice</Link>
-            )}
-            {nextAction?.action !== "company_track" && (
-              <Link to="/academy" className="flex min-h-[44px] items-center rounded-xl border border-emerald-200 bg-emerald-50 px-4 text-sm font-semibold text-emerald-800">Open Placement Academy</Link>
-            )}
+            <Link to="/practice" className="flex min-h-[44px] items-center rounded-xl border border-black/10 bg-white px-4 text-sm font-semibold text-gray-700">Practice freestyle</Link>
             <Link to="/target" className="flex min-h-[44px] items-center rounded-xl border border-black/10 bg-white px-4 text-sm font-semibold text-gray-700">Change target</Link>
           </div>
         </section>
-
-        {/* ═══ PERSONALIZED ACADEMY PLAN ═══ */}
-        <section aria-label="Personalized learning plan" className="rounded-3xl border border-emerald-200/70 bg-white p-5 shadow-sm">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-            <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-emerald-700">Personalized Academy plan</p>
-              <h2 className="font-display mt-1 text-xl font-black text-gray-900">
-                {academyPlan ? "Your next best learning steps" : "Build your personalized learning plan"}
-              </h2>
-              <p className="mt-1 max-w-2xl text-sm text-gray-600">
-                {academyPlan?.personalization_note || "Complete a short profile and diagnostic so Bountycode can choose the right foundations, practice, and revision for you."}
-              </p>
-            </div>
-            <Link to="/academy" className="inline-flex min-h-[42px] shrink-0 items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-4 text-sm font-semibold text-emerald-800 hover:bg-emerald-100">
-              {academyPlan ? "Open Academy" : "Set up plan"} <ChevronRight size={15} />
-            </Link>
-          </div>
-
-          {academyPlan ? (
-            <>
-              <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
-                <div className="rounded-xl bg-emerald-50 px-3 py-2">
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-emerald-700">Role</p>
-                  <p className="mt-1 truncate text-sm font-bold text-gray-900">{String(academyPlan.target_role || "Placement").replace(/_/g, " ")}</p>
-                </div>
-                <div className="rounded-xl bg-sky-50 px-3 py-2">
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-sky-700">Daily time</p>
-                  <p className="mt-1 text-sm font-bold text-gray-900">{academyPlan.daily_minutes || 60} min</p>
-                </div>
-                <div className="rounded-xl bg-amber-50 px-3 py-2">
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-amber-700">Revision due</p>
-                  <p className="mt-1 text-sm font-bold text-gray-900">{academyRevision.due_count || 0}</p>
-                </div>
-                <div className="rounded-xl bg-violet-50 px-3 py-2">
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-violet-700">Targets</p>
-                  <p className="mt-1 text-sm font-bold text-gray-900">{academyCompanies.length || academyPlan.target_companies?.length || 0}</p>
-                </div>
-              </div>
-
-              {academyTasks.length > 0 ? (
-                <ol className="mt-4 space-y-2">
-                  {academyTasks.slice(0, 4).map((task: Record<string, any>, index: number) => (
-                    <li key={`${task.domain || task.lesson_slug || "task"}-${index}`}>
-                      <Link to={academyTaskHref(task)} className="group flex items-start gap-3 rounded-2xl border border-gray-100 bg-gray-50/80 p-3 transition hover:border-emerald-200 hover:bg-emerald-50/50">
-                        <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-xs font-bold text-white">{index + 1}</span>
-                        <span className="min-w-0 flex-1">
-                          <span className="block font-bold text-gray-900">{task.title || String(task.domain || "Next skill").replace(/_/g, " ")}</span>
-                          <span className="mt-0.5 block text-xs text-gray-600">{task.reason || "Recommended from your current skill evidence."}</span>
-                          <span className="mt-1 block text-[11px] font-semibold uppercase tracking-wide text-gray-400">{task.estimated_minutes || 15} min · {String(task.skill_level || "next").replace(/_/g, " ")}</span>
-                        </span>
-                        <ChevronRight size={17} className="mt-1 shrink-0 text-gray-300 transition group-hover:translate-x-0.5 group-hover:text-emerald-600" />
-                      </Link>
-                    </li>
-                  ))}
-                </ol>
-              ) : (
-                <div className="mt-4 rounded-2xl border border-dashed border-gray-200 bg-gray-50 p-4 text-sm text-gray-600">
-                  Your plan is ready for its first diagnostic task. Open the Academy to begin.
-                </div>
-              )}
-            </>
-          ) : (
-            <div className="mt-4 flex flex-col gap-3 rounded-2xl border border-dashed border-emerald-200 bg-emerald-50/50 p-4 text-sm text-gray-700 sm:flex-row sm:items-center sm:justify-between">
-              <span>Tell us your role, target companies, experience, and available time. The plan will adapt as your evidence changes.</span>
-              <Link to="/academy" className="shrink-0 font-semibold text-emerald-800 hover:underline">Start setup →</Link>
-            </div>
-          )}
-        </section>
-
         {/* ═══ LEVEL MAP header (hybrid) ═══ */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
@@ -483,14 +403,14 @@ export default function JourneyPage() {
               </Link>
             </div>
             <motion.div
-              className="flex shrink-0 items-center gap-2 rounded-2xl bg-[#14141B] px-3.5 py-2.5 shadow-sm ring-1 ring-black/5"
+              className="flex shrink-0 items-center gap-2 rounded-2xl bg-white px-3.5 py-2.5 shadow-sm ring-1 ring-black/5"
               animate={{ scale: [1, 1.05, 1] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             >
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#14141B] text-lg" aria-hidden="true">🛡️</span>
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 text-lg" aria-hidden="true">🛡️</span>
               <span>
-                <span className="block font-mono text-[10px] uppercase tracking-widest text-white/60">Rank</span>
-                <span className="block text-sm font-black text-white">{rankTitle}</span>
+                <span className="block font-mono text-[10px] uppercase tracking-widest text-slate-900">Rank</span>
+                <span className="block text-sm font-black text-slate-900">{rankTitle}</span>
               </span>
             </motion.div>
           </div>
@@ -500,7 +420,7 @@ export default function JourneyPage() {
             <div className="relative overflow-hidden rounded-2xl bg-[#FFF7F2] p-4 shadow-sm ring-1 ring-orange-200/60 lg:col-span-3">
               <div className="mb-2 flex items-baseline justify-between">
                 <div>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-gray-400">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-gray-500">
                     Campaign {(currentWorld?.order ?? 0) + 1}
                   </p>
                   <h2 className="font-display text-xl font-black tracking-tight text-gray-900">
@@ -528,7 +448,7 @@ export default function JourneyPage() {
               <div className="rounded-2xl border border-orange-100 bg-[#FFF7F2] p-4 shadow-sm">
                 <div className="flex items-center justify-between">
                   <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#E8590C]">Active mission</p>
-                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#14141B] text-white text-xs">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 text-slate-900 text-xs">
                     &lt;/&gt;
                   </span>
                 </div>
@@ -541,26 +461,26 @@ export default function JourneyPage() {
                        {currentLevel.kind === "boss" ? "Boss Island" : "Stage"} {currentLevel.order} · {currentLevel.diamonds} Diamonds reward
                     </p>
                     <div className="mt-3 grid grid-cols-3 gap-2 text-center">
-                      <div className="rounded-lg bg-white/70 px-2 py-2 ring-1 ring-black/5">
+                      <div className="rounded-lg bg-white px-2 py-2 ring-1 ring-black/5">
                         <p className="text-base font-black text-gray-900">+{currentLevel.diamonds}</p>
-                        <p className="font-mono text-[9px] uppercase text-gray-400">Diamonds</p>
+                        <p className="font-mono text-[9px] uppercase text-gray-500">Diamonds</p>
                       </div>
-                      <div className="rounded-lg bg-white/70 px-2 py-2 ring-1 ring-black/5">
+                      <div className="rounded-lg bg-white px-2 py-2 ring-1 ring-black/5">
                         <p className="flex items-center justify-center gap-1 text-base font-black text-gray-900">
                           <Flame size={14} className="text-orange-500" />{missionStreak}
                         </p>
-                        <p className="font-mono text-[9px] uppercase text-gray-400">Hearts</p>
+                        <p className="font-mono text-[9px] uppercase text-gray-500">Hearts</p>
                       </div>
-                      <div className="rounded-lg bg-white/70 px-2 py-2 ring-1 ring-black/5">
+                      <div className="rounded-lg bg-white px-2 py-2 ring-1 ring-black/5">
                         <p className="flex items-center justify-center gap-1 text-base font-black text-gray-900">
                           <Star size={14} className="text-amber-500" />x{missionStars}
                         </p>
-                        <p className="font-mono text-[9px] uppercase text-gray-400">Combo</p>
+                        <p className="font-mono text-[9px] uppercase text-gray-500">Combo</p>
                       </div>
                     </div>
                     <button
                       onClick={() => currentWorld && handleContinue(currentLevel, currentWorld.id)}
-                      className="mt-3 flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl bg-[#F4532F] font-bold text-white shadow-md transition hover:brightness-105 active:scale-[0.99]"
+                      className="mt-3 flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl bg-[#F4532F] font-bold text-slate-900 shadow-md transition hover:brightness-105 active:scale-[0.99]"
                     >
                       <Play size={16} /> BOARD THE ISLAND
                     </button>
@@ -570,10 +490,10 @@ export default function JourneyPage() {
                 )}
               </div>
 
-              <div className="rounded-2xl bg-white/85 p-4 shadow-sm ring-1 ring-black/5">
+              <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5">
                 <div className="flex items-center justify-between">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-gray-400">Latest victory</p>
-                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#14141B] text-lg">⭐</span>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-gray-500">Latest victory</p>
+                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 text-lg">⭐</span>
                 </div>
                 {lastVictory ? (
                   <>
@@ -767,36 +687,41 @@ export default function JourneyPage() {
           </div>
 
           <div className="rounded-2xl border border-default bg-card p-4 shadow-sm">
-            <h3 className="text-sm font-mono uppercase tracking-widest text-muted mb-2">Placement target</h3>
-            {state.company?.company_track ? (
-              <>
-                <p className="text-sm font-semibold text-primary">{state.company.target || state.company.company_track}</p>
-                <p className="mt-1 text-xs text-muted">
-                  Your next company module is selected from your unfinished track and appears in Today's Mission.
-                </p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  <Link
-                    to="/academy"
-                    className="inline-flex min-h-10 items-center gap-2 rounded-xl bg-accent-primary px-3 text-xs font-semibold text-white"
-                  >
-                    Open Placement Academy <ChevronRight className="h-3.5 w-3.5" />
-                  </Link>
-                  <Link
-                    to={`/company-tracks?track=${encodeURIComponent(state.company.company_track)}`}
-                    className="inline-flex min-h-10 items-center gap-2 rounded-xl border border-accent-primary/20 bg-accent-primary/10 px-3 text-xs font-semibold text-accent-primary"
-                  >
-                    Open company syllabus <ChevronRight className="h-3.5 w-3.5" />
-                  </Link>
-                </div>
-              </>
-            ) : (
-              <>
-                <p className="text-sm text-secondary">Choose a target company to personalize your preparation.</p>
-                <Link to="/target" className="mt-3 inline-flex min-h-10 items-center gap-2 rounded-xl border border-accent-primary/20 bg-accent-primary/10 px-3 text-xs font-semibold text-accent-primary">
-                  Choose target <ChevronRight className="h-3.5 w-3.5" />
-                </Link>
-              </>
+            <h3 className="text-sm font-mono uppercase tracking-widest text-muted mb-2">Company Readiness</h3>
+            <p className="text-[12px] font-medium text-secondary">
+              You are {companyReadiness.overallPercent}% ready for {/* company name from track or fallback */}
+            </p>
+            <p className="text-[10px] text-muted mt-1">
+              {companyReadiness.overallPercent > 0 && "Coding pattern readiness reflects your verified pattern mastery progress."}
+            </p>
+            <p className="text-[10px] text-muted mt-1">
+              {companyReadiness.overallPercent > 0 && "Coding pattern readiness reflects your verified pattern mastery progress."}
+            </p>
+            <p className="text-[10px] text-muted mt-1">
+              {companyReadiness.overallPercent > 0 && "Coding pattern readiness reflects your verified pattern mastery progress."}
+            </p>
+            {companyReadiness.weakestSection && (
+              <p className="mt-1 text-[10px] text-muted">
+                Weakest: {companyReadiness.weakestTitle}
+              </p>
             )}
+            <div className="mt-2 flex gap-2">
+              <button
+                onClick={() => navigate(`/practice?section=${companyReadiness.weakestSection}`)}
+                className="flex-1 rounded-xl bg-accent-primary/10 border border-accent-primary/20 text-accent-primary font-small py-2">
+                Continue weak section
+              </button>
+              <button
+                onClick={() => navigate(`/mock?company=TCS`)}
+                className="flex-1 rounded-xl bg-accent-primary/10 border border-accent-primary/20 text-accent-primary font-small py-2">
+                Focused mock
+              </button>
+              <button
+                onClick={() => navigate(`/pattern/${patternReadiness.nextPattern ?? 'sliding-window'}`)}
+                className="flex-1 rounded-xl bg-accent-primary/10 border border-accent-primary/20 text-accent-primary font-small py-2">
+                Recommended pattern
+              </button>
+            </div>
           </div>
         </section>
         {(todayReviews.length > 0 || todayRole || todayChallenge) && (

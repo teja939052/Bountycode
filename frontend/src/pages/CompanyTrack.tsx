@@ -48,15 +48,15 @@ const COMPANY_META: Record<string, { label: string; color: string; intro: string
 };
 
 const DIFFICULTY_COLORS: Record<string, string> = {
-  easy: "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400",
-  medium: "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400",
-  hard: "bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400",
+  easy: "bg-green-100 text-green-700",
+  medium: "bg-yellow-100 text-yellow-700",
+  hard: "bg-red-100 text-red-700",
 };
 
 const STATUS_STYLES: Record<string, string> = {
-  not_started: "bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400",
-  attempted: "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400",
-  solved: "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400",
+  not_started: "bg-gray-100 text-gray-500",
+  attempted: "bg-amber-100 text-amber-700",
+  solved: "bg-green-100 text-green-700",
 };
 
 export default function CompanyTrack() {
@@ -64,7 +64,7 @@ export default function CompanyTrack() {
   const reduced = useReducedMotion();
   const meta = COMPANY_META[company] || {
     label: company.toUpperCase(),
-    color: "from-gray-500 to-gray-700",
+    color: "from-gray-500 to-slate-100",
     intro: "",
     tips: [],
   };
@@ -97,11 +97,11 @@ export default function CompanyTrack() {
     return (
       <div className="min-h-screen py-12 px-4">
         <div className="max-w-5xl mx-auto space-y-4">
-          <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-1/3 animate-pulse" />
+          <div className="h-8 bg-gray-200 rounded w-1/3 animate-pulse" />
           {Array.from({ length: 6 }).map((_, i) => (
             <div key={i} className="card animate-pulse">
-              <div className="h-5 bg-gray-200 dark:bg-gray-700 rounded w-2/3 mb-2" />
-              <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/3" />
+              <div className="h-5 bg-gray-200 rounded w-2/3 mb-2" />
+              <div className="h-4 bg-gray-200 rounded w-1/3" />
             </div>
           ))}
         </div>
@@ -129,7 +129,7 @@ export default function CompanyTrack() {
         </Link>
 
         {error ? (
-          <div className="card text-center py-12 text-gray-500 dark:text-gray-400">{error}</div>
+          <div className="card text-center py-12 text-gray-500">{error}</div>
         ) : (
           <div className="space-y-8">
             {/* Header */}
@@ -138,37 +138,37 @@ export default function CompanyTrack() {
               animate={{ opacity: 1, y: 0 }}
             >
               <div className="flex items-center gap-4 mb-3">
-                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${meta.color} flex items-center justify-center text-white font-black text-lg`}>
+                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${meta.color} flex items-center justify-center text-slate-900 font-black text-lg`}>
                   {meta.label.slice(0, 2).toUpperCase()}
                 </div>
                 <div>
-                  <h1 className="text-3xl font-bold dark:text-white">
+                  <h1 className="text-3xl font-bold">
                     {meta.label} Placement Track
                   </h1>
-                  <p className="text-gray-500 dark:text-gray-400 text-sm">
+                  <p className="text-gray-500 text-sm">
                     {structure ? structure.title : `${meta.label} interview prep`}
                   </p>
                 </div>
               </div>
 
               {structure && (
-                <div className="flex flex-wrap gap-3 text-sm text-gray-600 dark:text-gray-400">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-100 dark:bg-gray-800">
+                <div className="flex flex-wrap gap-3 text-sm text-gray-600">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-100">
                     <Clock size={14} /> {structure.duration_minutes} min
                   </span>
                   {structure.stages.map((s) => (
-                    <span key={s.id} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-100 dark:bg-gray-800">
+                    <span key={s.id} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-100">
                       <ListOrdered size={14} /> {s.title}
                     </span>
                   ))}
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-100 text-emerald-700">
                     <ShieldCheck size={14} /> Verified-only bank
                   </span>
                 </div>
               )}
 
               {data?.verified_only && (
-                <p className="mt-3 text-xs text-gray-400">{data.provenance_note}</p>
+                <p className="mt-3 text-xs text-gray-500">{data.provenance_note}</p>
               )}
 
               {/* CTA */}
@@ -181,7 +181,7 @@ export default function CompanyTrack() {
                 </Link>
                 <Link
                   to="/daily-challenge"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-semibold hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gray-100 text-gray-700 font-semibold hover:bg-gray-200 transition-colors"
                 >
                   Daily Challenge
                 </Link>
@@ -199,7 +199,7 @@ export default function CompanyTrack() {
                   <div className="shrink-0">
                     <div className="relative w-28 h-28">
                       <svg viewBox="0 0 36 36" className="w-28 h-28 -rotate-90">
-                        <circle cx="18" cy="18" r="15.9" fill="none" stroke="currentColor" className="text-gray-200 dark:text-gray-700" strokeWidth="3" />
+                        <circle cx="18" cy="18" r="15.9" fill="none" stroke="currentColor" className="text-gray-700" strokeWidth="3" />
                         <motion.circle
                           cx="18"
                           cy="18"
@@ -216,32 +216,32 @@ export default function CompanyTrack() {
                         />
                       </svg>
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-2xl font-black dark:text-white">{data.readiness.overall_percent}%</span>
+                        <span className="text-2xl font-black">{data.readiness.overall_percent}%</span>
                       </div>
                     </div>
                   </div>
                   <div className="flex-1 min-w-64">
-                    <h2 className="text-xl font-bold dark:text-white">
+                    <h2 className="text-xl font-bold">
                       You are {data.readiness.overall_percent}% of the way to {meta.label} readiness
                     </h2>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                    <p className="text-sm text-gray-500 mt-1">
                       Foundation {data.readiness.foundation.solved}/{data.readiness.foundation.total} · Coding{" "}
                       {data.readiness.coding.solved}/{data.readiness.coding.total} — progress is read live from your
                       solved and attempted questions.
                     </p>
                     <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {data.readiness.sections.map((s) => (
-                        <div key={s.section} className="rounded-lg bg-gray-50 dark:bg-gray-900/50 p-3">
+                        <div key={s.section} className="rounded-lg bg-gray-50 p-3">
                           <div className="flex items-center justify-between text-xs mb-1">
-                            <span className={`font-medium ${s.section === data.readiness.weakest_section ? "text-amber-600 dark:text-amber-400" : "text-gray-600 dark:text-gray-300"}`}>
+                            <span className={`font-medium ${s.section === data.readiness.weakest_section ? "text-amber-600" : "text-gray-600"}`}>
                               {s.title}
                               {s.section === data.readiness.weakest_section && s.total > 0 && (
                                 <span className="ml-1.5 text-[10px] font-mono uppercase tracking-wide">focus area</span>
                               )}
                             </span>
-                            <span className="text-gray-400">{s.percent}% · {s.solved}/{s.total}</span>
+                            <span className="text-gray-500">{s.percent}% · {s.solved}/{s.total}</span>
                           </div>
-                          <div className="h-1.5 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
+                          <div className="h-1.5 rounded-full bg-gray-200 overflow-hidden">
                             <div
                               className={`h-full rounded-full transition-all duration-500 ${
                                 s.section === data.readiness.weakest_section ? "bg-amber-500" : "bg-primary-500"
@@ -272,7 +272,7 @@ export default function CompanyTrack() {
                       return topic ? (
                         <Link
                           to={`/problems/${encodeURIComponent(topic)}`}
-                          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-amber-700 dark:text-amber-300 font-semibold text-sm bg-amber-100 dark:bg-amber-900/30 hover:bg-amber-200 dark:hover:bg-amber-900/50 transition-colors"
+                          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-amber-700 font-semibold text-sm bg-amber-100 hover:bg-amber-200 transition-colors"
                         >
                           <Target size={15} /> Repair {data.readiness.weakest_title || "weakest section"}
                         </Link>
@@ -315,13 +315,13 @@ export default function CompanyTrack() {
                 initial={reduced ? {} : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                <h2 className="flex items-center gap-2 text-lg font-bold dark:text-white mb-2">
+                <h2 className="flex items-center gap-2 text-lg font-bold mb-2">
                   <Building2 size={18} className="text-primary-500" /> About this exam
                 </h2>
-                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{meta.intro}</p>
+                <p className="text-gray-600 leading-relaxed">{meta.intro}</p>
                 <ul className="mt-3 space-y-1.5">
                   {meta.tips.map((tip, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
+                    <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
                       <Target size={14} className="mt-0.5 shrink-0 text-primary-500" /> {tip}
                     </li>
                   ))}
@@ -336,19 +336,19 @@ export default function CompanyTrack() {
                 initial={reduced ? {} : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                <h2 className="flex items-center gap-2 text-xl font-bold dark:text-white">
+                <h2 className="flex items-center gap-2 text-xl font-bold">
                   <BookOpen size={18} className="text-primary-500" /> Foundation Practice
                 </h2>
                 {data.foundation.sections.map((section) => (
                   <div key={section.section} className="card p-5">
                     <div className="flex items-center justify-between mb-3">
-                      <h3 className="font-bold dark:text-white">{section.title}</h3>
+                      <h3 className="font-bold">{section.title}</h3>
                       <span className="text-xs text-gray-500">{section.practice_count} practice questions</span>
                     </div>
                     {section.topics.length > 0 && (
                       <div className="flex flex-wrap gap-1.5 mb-3">
                         {section.topics.slice(0, 8).map((t) => (
-                          <span key={t.topic} className="px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-800 text-xs text-gray-500 dark:text-gray-400">
+                          <span key={t.topic} className="px-2 py-0.5 rounded-full bg-gray-100 text-xs text-gray-500">
                             {t.topic} · {t.count}
                           </span>
                         ))}
@@ -356,10 +356,10 @@ export default function CompanyTrack() {
                     )}
                     <div className="space-y-2">
                       {section.practice.map((p: TrackBrief) => (
-                        <div key={p.id} className="flex items-center gap-3 text-sm border-t border-border dark:border-gray-700 pt-2">
+                        <div key={p.id} className="flex items-center gap-3 text-sm border-t border-border pt-2">
                           <Link
                             to={`/solve/${p.id}`}
-                            className="flex-1 min-w-0 truncate font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 transition-colors"
+                            className="flex-1 min-w-0 truncate font-medium text-gray-700 hover:text-primary-600 transition-colors"
                           >
                             {p.title}
                           </Link>
@@ -385,18 +385,18 @@ export default function CompanyTrack() {
                 animate={{ opacity: 1, y: 0 }}
               >
                 <div className="flex items-center justify-between mb-4">
-                  <h2 className="flex items-center gap-2 text-lg font-bold dark:text-white">
+                  <h2 className="flex items-center gap-2 text-lg font-bold">
                     <Terminal size={18} className="text-primary-500" /> Advanced Coding Bank
                   </h2>
                   <span className="text-xs text-gray-500">{advanced.solved}/{advanced.total} solved</span>
                 </div>
                 <div className="space-y-2">
                   {advanced.problems.map((p: TrackBrief, i: number) => (
-                    <div key={p.id} className="flex items-center gap-3 py-2 border-t border-border dark:border-gray-700 first:border-0">
-                      <span className="w-6 text-center text-sm text-gray-400">{i + 1}</span>
+                    <div key={p.id} className="flex items-center gap-3 py-2 border-t border-border first:border-0">
+                      <span className="w-6 text-center text-sm text-gray-500">{i + 1}</span>
                       <Link
                         to={`/solve/${p.id}`}
-                        className="flex-1 min-w-0 truncate font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 transition-colors"
+                        className="flex-1 min-w-0 truncate font-medium text-gray-700 hover:text-primary-600 transition-colors"
                       >
                         {p.title}
                       </Link>
@@ -404,7 +404,7 @@ export default function CompanyTrack() {
                         {p.difficulty}
                       </span>
                       {p.companies.length > 0 && (
-                        <span className="hidden sm:inline text-xs text-gray-400 flex items-center gap-1">
+                        <span className="hidden sm:inline text-xs text-gray-500 flex items-center gap-1">
                           <Building2 size={10} /> {p.companies[0]}
                         </span>
                       )}

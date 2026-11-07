@@ -83,7 +83,7 @@ export default function AIMentor() {
               <Bot className="w-7 h-7 text-nature-blossom" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-[#1F2937] via-[#4F8F57] to-[#7BB661] bg-clip-text text-transparent">
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-slate-100 via-slate-100 to-[#7BB661] bg-clip-text text-transparent">
                 AI Mentor
               </h1>
               <p className="text-text-muted text-sm">Your personal coding companion — debug, learn, and build better</p>
@@ -230,7 +230,7 @@ export default function AIMentor() {
                 <button
                   onClick={() => sendMessage(input)}
                   disabled={!input.trim() || loading}
-                  className="p-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 disabled:cursor-not-allowed text-text-primary transition-all shrink-0 shadow-lg shadow-[#4F8F57]/20"
+                  className="p-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 disabled:cursor-not-allowed text-white transition-all shrink-0 shadow-lg shadow-[#4F8F57]/20"
                 >
                   {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
                 </button>
@@ -263,7 +263,7 @@ export default function AIMentor() {
 
             <div className="bg-white border border-nature-leaf/20 rounded-xl p-4">
               <h3 className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-3 flex items-center gap-2">
-                <Lightbulb className="w-3.5 h-3.5 text-amber-400" /> Tips
+                <Lightbulb className="w-3.5 h-3.5 text-amber-600" /> Tips
               </h3>
               <ul className="space-y-2 text-xs text-text-muted">
                 <li className="flex items-start gap-2">
@@ -287,8 +287,8 @@ export default function AIMentor() {
 
             <div className="bg-gradient-to-br from-[#F3F0E8] to-[#EDF5E6] border border-nature-leaf/20 rounded-xl p-4">
               <div className="flex items-center gap-2 text-xs text-text-muted">
-                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                <span><span className="text-amber-400 font-semibold">Pro tip:</span> Include error messages for better debugging!</span>
+                <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+                <span><span className="text-amber-600 font-semibold">Pro tip:</span> Include error messages for better debugging!</span>
               </div>
             </div>
 

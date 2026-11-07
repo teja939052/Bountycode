@@ -34,7 +34,7 @@ export default function CrewShip({ level = 1, forest, compact = false }: { level
   const zoneProgress = forest?.zone_progress ?? 0;
 
   return (
-    <div className={`rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden relative ${compact ? "p-4" : "p-5"}`}>
+    <div className={`rounded-2xl border border-slate-200 bg-slate-50 overflow-hidden relative ${compact ? "p-4" : "p-5"}`}>
       <div className="absolute inset-0 pointer-events-none opacity-25"
         style={{
           background: `radial-gradient(circle at 70% 20%, ${currentVoyage.color}40 0%, transparent 55%)`,
@@ -44,7 +44,7 @@ export default function CrewShip({ level = 1, forest, compact = false }: { level
       <div className="relative z-10">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h3 className="text-xs font-mono uppercase tracking-widest text-gray-400">⛵ Crew & Ship</h3>
+            <h3 className="text-xs font-mono uppercase tracking-widest text-gray-500">⛵ Crew & Ship</h3>
             <p className="text-[10px] text-gray-500 mt-0.5">Voyage {zoneIndex + 1} · {currentVoyage.name}</p>
           </div>
           <motion.div
@@ -59,8 +59,8 @@ export default function CrewShip({ level = 1, forest, compact = false }: { level
         <div className="flex items-center gap-2 mb-4">
           <div className="flex-1">
             <div className="flex items-center justify-between mb-1">
-              <span className="text-[10px] font-mono text-gray-400">Voyage Progress</span>
-              <span className="text-[10px] font-mono text-gray-400">{Math.round(zoneProgress * 100)}%</span>
+              <span className="text-[10px] font-mono text-gray-500">Voyage Progress</span>
+              <span className="text-[10px] font-mono text-gray-500">{Math.round(zoneProgress * 100)}%</span>
             </div>
             <div className="h-2 w-full rounded-full bg-black/30 overflow-hidden">
               <motion.div
@@ -83,16 +83,16 @@ export default function CrewShip({ level = 1, forest, compact = false }: { level
                 key={voyage.index}
                 className={`shrink-0 flex flex-col items-center gap-1 rounded-xl border p-2 transition-all ${
                   current
-                    ? "border-white/40 bg-white/10 scale-110 shadow-lg w-16"
+                    ? "border-slate-200 bg-slate-100 scale-110 shadow-lg w-16"
                     : visited
-                      ? "border-white/10 bg-white/5 opacity-70 w-14"
-                      : "border-white/5 bg-white/[0.02] opacity-30 w-14"
+                      ? "border-slate-200 bg-slate-100 opacity-70 w-14"
+                      : "border-slate-200 bg-slate-50 opacity-30 w-14"
                 }`}
                 title={voyage.name}
                 whileHover={visited || current ? { scale: 1.1 } : {}}
               >
                 <span className="text-xl">{voyage.emoji}</span>
-                <span className="text-[9px] font-mono text-gray-400 truncate w-full text-center">{voyage.name}</span>
+                <span className="text-[9px] font-mono text-gray-500 truncate w-full text-center">{voyage.name}</span>
                 {current && (
                   <motion.div
                     className="text-[10px] font-bold text-center"

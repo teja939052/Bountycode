@@ -39,12 +39,12 @@ export default function CodeFillInTheBlank() {
   };
 
   return (
-    <div className="rounded-xl border border-border dark:border-gray-700 p-4 bg-gray-50 dark:bg-gray-900/50">
-      <h3 className="font-bold text-sm dark:text-white mb-1">Predict the next operation</h3>
-      <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
+    <div className="rounded-xl border border-border p-4 bg-gray-50">
+      <h3 className="font-bold text-sm mb-1">Predict the next operation</h3>
+      <p className="text-xs text-gray-500 mb-3">
         No answer is revealed until you submit. Choose the line that shrinks a variable window when the constraint breaks.
       </p>
-      <pre className="p-3 text-[12px] leading-relaxed font-mono bg-gray-950 text-cyan-300 rounded-lg overflow-x-auto mb-3">
+      <pre className="p-3 text-[12px] leading-relaxed font-mono bg-slate-100 text-cyan-600 rounded-lg overflow-x-auto mb-3">
 {`left = 0
 summary = 0
 for right in range(len(arr)):
@@ -58,8 +58,8 @@ for right in range(len(arr)):
             key={o}
             className={`flex items-center gap-2 text-xs font-mono px-3 py-2 rounded-lg border cursor-pointer ${
               choice === o
-                ? "border-primary-500 bg-primary-50 dark:bg-primary-900/20"
-                : "border-gray-200 dark:border-gray-700"
+                ? "border-primary-500 bg-primary-50"
+                : "border-gray-200"
             }`}
           >
             <input
@@ -72,7 +72,7 @@ for right in range(len(arr)):
               }}
               className="accent-indigo-600"
             />
-            <span className="dark:text-gray-200">{o}</span>
+            <span className="">{o}</span>
           </label>
         ))}
       </div>
@@ -84,12 +84,12 @@ for right in range(len(arr)):
         Submit prediction
       </button>
       {verdict === "correct" && (
-        <p className="mt-2 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+        <p className="mt-2 text-xs font-semibold text-emerald-600">
           Correct — shrink while the window is invalid, then record the best valid window.
         </p>
       )}
       {verdict === "wrong" && (
-        <p className="mt-2 text-xs font-semibold text-red-600 dark:text-red-400">
+        <p className="mt-2 text-xs font-semibold text-red-600">
           Not quite — the shrink loop must test validity, not just indices. Re-trace which element leaves and why.
         </p>
       )}

@@ -22,10 +22,10 @@ const COMPANY_COLORS = {
   amazon: "from-orange-400 to-yellow-500",
   meta: "from-blue-600 to-indigo-600",
   microsoft: "from-green-500 to-blue-500",
-  tcs: "from-blue-700 to-blue-900",
+  tcs: "from-blue-50 to-blue-50",
   infosys: "from-blue-500 to-purple-600",
   wipro: "from-blue-600 to-cyan-500",
-  uber: "from-black to-gray-700",
+  uber: "from-slate-100 to-slate-100",
 };
 
 const COMPANIES = [
@@ -252,7 +252,7 @@ export default function CodingChallenge() {
                     key={lang}
                     onClick={() => setLanguage(lang)}
                     className={`px-4 py-2 rounded-lg font-mono text-xs capitalize transition-colors ${
-                      language === lang ? "bg-brand-emerald text-text-primary" : "bg-surface-card border border-brand-primary/20 text-brand-dim"
+                      language === lang ? "bg-brand-emerald text-white" : "bg-surface-card border border-brand-primary/20 text-brand-dim"
                     }`}
                   >
                     {lang}
@@ -399,7 +399,7 @@ export default function CodingChallenge() {
             </div>
             {testResults && (
               <div className="mt-4 flex items-center gap-4">
-                <p className="text-xs font-mono text-gray-400">{testResults.summary}</p>
+                <p className="text-xs font-mono text-gray-500">{testResults.summary}</p>
                 {score >= 80 && <span className="text-cyber-green text-xs font-mono">✅ Hyperdrive Engaged!</span>}
               </div>
             )}
@@ -416,7 +416,7 @@ export default function CodingChallenge() {
                       {tc.passed ? <CheckCircle size={14} className="text-cyber-green" /> : <XCircle size={14} className="text-cyber-red" />}
                     </div>
                     {!tc.is_hidden && (
-                      <div className="text-gray-400 space-y-0.5">
+                      <div className="text-gray-500 space-y-0.5">
                         <p><span className="text-cyber-blue">In:</span> {tc.input}</p>
                         <p><span className="text-cyber-green">Expected:</span> {tc.expected}</p>
                         {!tc.passed && <p className="text-cyber-red"><span className="text-cyber-red">Got:</span> {tc.actual}</p>}
@@ -449,17 +449,17 @@ export default function CodingChallenge() {
                   <p className="font-mono text-xs text-text-primary">{interviewerEval.space_complexity}</p>
                 </div>
               </div>
-              <p className="text-gray-400 font-mono text-xs mb-3">{interviewerEval.feedback}</p>
+              <p className="text-gray-500 font-mono text-xs mb-3">{interviewerEval.feedback}</p>
               {interviewerEval.strengths?.length > 0 && (
                 <div className="mb-2">
                   <p className="text-xs font-mono text-cyber-green mb-1">Strengths:</p>
-                  {interviewerEval.strengths.map((s, i) => <p key={i} className="text-xs font-mono text-gray-400">✅ {s}</p>)}
+                  {interviewerEval.strengths.map((s, i) => <p key={i} className="text-xs font-mono text-gray-500">✅ {s}</p>)}
                 </div>
               )}
               {interviewerEval.improvements?.length > 0 && (
                 <div>
                   <p className="text-xs font-mono text-cyber-orange mb-1">Improve:</p>
-                  {interviewerEval.improvements.map((s, i) => <p key={i} className="text-xs font-mono text-gray-400">💡 {s}</p>)}
+                  {interviewerEval.improvements.map((s, i) => <p key={i} className="text-xs font-mono text-gray-500">💡 {s}</p>)}
                 </div>
               )}
             </div>
@@ -479,7 +479,7 @@ export default function CodingChallenge() {
               <h3 className="font-display font-bold text-text-primary text-sm mb-2 flex items-center gap-2">
                 <Lightbulb size={14} className="text-cyber-blue" /> Optimal Solution
               </h3>
-              <p className="text-xs font-mono text-gray-400">{challenge.solution_approach}</p>
+              <p className="text-xs font-mono text-gray-500">{challenge.solution_approach}</p>
             </div>
           )}
 
@@ -488,7 +488,7 @@ export default function CodingChallenge() {
               <h3 className="font-display font-bold text-text-primary text-sm mb-2 flex items-center gap-2">
                 <AlertTriangle size={14} className="text-cyber-yellow" /> Follow-up Mission
               </h3>
-              <p className="text-xs font-mono text-gray-400">{challenge.follow_up}</p>
+              <p className="text-xs font-mono text-gray-500">{challenge.follow_up}</p>
             </div>
           )}
 

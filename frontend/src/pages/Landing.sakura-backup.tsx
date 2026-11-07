@@ -90,7 +90,7 @@ export default function Landing() {
       {/* Skip link — keyboard only, visually hidden until focused */}
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-6 focus:z-[100] focus:inline-flex focus:items-center focus:gap-2 focus:rounded-lg focus:border focus:border-gray-300 focus:bg-white/90 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-[#14201B] focus:shadow-lg focus:backdrop-blur-sm"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-6 focus:z-[100] focus:inline-flex focus:items-center focus:gap-2 focus:rounded-lg focus:border focus:border-gray-300 focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-[#14201B] focus:shadow-lg focus:backdrop-blur-sm"
       >
         Skip to content
       </a>
@@ -219,7 +219,7 @@ export default function Landing() {
 
                <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
                  <Link to="/role-selector">
-                   <button className="hero-cta-primary inline-flex items-center gap-2 rounded-xl px-7 py-3.5 text-sm font-bold text-white shadow-lg transition-all hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]">
+                   <button className="hero-cta-primary inline-flex items-center gap-2 rounded-xl px-7 py-3.5 text-sm font-bold text-slate-900 shadow-lg transition-all hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]">
                      Begin my journey
                      <ArrowRight size={15} />
                    </button>
@@ -239,10 +239,10 @@ export default function Landing() {
                  ].map((chip, i) => (
                    <span key={chip.n} className="flex items-center gap-2">
                      <span
-                       className="inline-flex items-center gap-1.5 rounded-full border border-white/70 bg-white/60 px-3.5 py-1.5 text-xs font-semibold backdrop-blur-sm shadow-sm"
+                       className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-xs font-semibold backdrop-blur-sm shadow-sm"
                        style={{ color: "#14201B" }}
                      >
-                       <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#22C55E] text-[10px] font-bold text-white">
+                       <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#22C55E] text-[10px] font-bold text-slate-900">
                          {chip.n}
                        </span>
                        {chip.label}
@@ -401,7 +401,7 @@ export default function Landing() {
                         ? "border-green-400 bg-green-50 text-green-700"
                         : i === 3
                         ? "border-amber-300 bg-amber-50 text-amber-700"
-                        : "border-gray-200 bg-gray-50 text-gray-400"
+                        : "border-gray-200 bg-gray-50 text-gray-500"
                     }`}
                   >
                     {i < 3 ? (
@@ -447,8 +447,8 @@ export default function Landing() {
                 to="/company-prep"
                 className="flex items-center gap-1.5 sm:gap-2 rounded-full border border-gray-200 bg-white px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium text-gray-700 shadow-sm transition-all hover:border-green-300 hover:shadow-md hover:-translate-y-0.5"
               >
-                <Building2 size={12} className="text-gray-400 sm:hidden" />
-                <Building2 size={14} className="text-gray-400 hidden sm:block" />
+                <Building2 size={12} className="text-gray-500 sm:hidden" />
+                <Building2 size={14} className="text-gray-500 hidden sm:block" />
                 {company}
               </Link>
             ))}
@@ -497,7 +497,7 @@ export default function Landing() {
               { label: "Mock Interviews", value: "50+" },
               { label: "Companies Covered", value: "53+" },
             ].map((stat) => (
-              <div key={stat.label} className="rounded-xl border border-amber-200/60 bg-white/80 p-3 sm:p-4 shadow-sm">
+              <div key={stat.label} className="rounded-xl border border-amber-200/60 bg-white p-3 sm:p-4 shadow-sm">
                 <p className="text-xl sm:text-2xl font-extrabold text-amber-600">{stat.value}</p>
                 <p className="mt-1 text-[10px] sm:text-xs text-gray-600">{stat.label}</p>
               </div>
@@ -538,7 +538,7 @@ export default function Landing() {
 
       {/* ═══ FOOTER ═══ */}
       <footer className="border-t border-gray-100 bg-white py-8">
-        <p className="text-center text-sm text-gray-400">
+        <p className="text-center text-sm text-gray-500">
           Built with care for your career. &copy; {new Date().getFullYear()} BountyCode. All rights reserved.
         </p>
       </footer>

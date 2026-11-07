@@ -54,7 +54,7 @@ export default function AchievementShowcase({ badges = [], maxDisplay = 8, showT
     <div>
       {showTitle && (
         <div className="flex items-center justify-between mb-3">
-          <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-400">
+          <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-500">
             Achievement Showcase
           </h3>
           <span className="text-[10px] font-mono text-gray-600">
@@ -89,7 +89,7 @@ export default function AchievementShowcase({ badges = [], maxDisplay = 8, showT
               >
                 <span className="relative z-10">{info.emoji}</span>
               </div>
-              <span className="text-[8px] font-mono text-gray-500 group-hover:text-gray-300 transition-colors text-center leading-tight w-full truncate">
+              <span className="text-[8px] font-mono text-gray-500 group-hover:text-gray-600 transition-colors text-center leading-tight w-full truncate">
                 {info.title}
               </span>
               <span
@@ -116,7 +116,7 @@ export default function AchievementShowcase({ badges = [], maxDisplay = 8, showT
             whileHover={{ scale: 1.08 }}
             className="flex flex-col items-center gap-1.5 cursor-pointer"
           >
-            <div className="w-full aspect-square rounded-2xl flex items-center justify-center text-xs font-mono font-bold text-gray-500 bg-gray-800/40 border border-gray-700/25">
+            <div className="w-full aspect-square rounded-2xl flex items-center justify-center text-xs font-mono font-bold text-gray-500 bg-white border border-slate-100">
               +{remaining}
             </div>
             <span className="text-[8px] font-mono text-gray-600">more</span>

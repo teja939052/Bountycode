@@ -29,7 +29,7 @@ export default function CriticalHitOverlay({ visible = true, text = 'CRITICAL HI
             </motion.div>
             {subtext && (
               <motion.div
-                className="text-2xl md:text-3xl font-bold text-yellow-300 mt-2"
+                className="text-2xl md:text-3xl font-bold text-yellow-600 mt-2"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}

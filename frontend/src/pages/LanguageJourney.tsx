@@ -30,12 +30,12 @@ function TypeBadge({ type }: { type: string }) {
     challenge: "Solve", project: "Build", boss: "Boss",
   };
   const colors: Record<string, string> = {
-    theory: "bg-sky-500/15 text-sky-300 border-sky-400/25",
-    practice: "bg-emerald-500/15 text-emerald-300 border-emerald-400/25",
-    quiz: "bg-purple-500/15 text-purple-300 border-purple-400/25",
-    challenge: "bg-orange-500/15 text-orange-300 border-orange-400/25",
-    project: "bg-cyan-500/15 text-cyan-300 border-cyan-400/25",
-    boss: "bg-rose-500/15 text-rose-300 border-rose-400/25",
+    theory: "bg-sky-500/15 text-sky-600 border-sky-400/25",
+    practice: "bg-emerald-500/15 text-emerald-600 border-emerald-400/25",
+    quiz: "bg-purple-500/15 text-purple-600 border-purple-400/25",
+    challenge: "bg-orange-500/15 text-orange-600 border-orange-400/25",
+    project: "bg-cyan-500/15 text-cyan-600 border-cyan-400/25",
+    boss: "bg-rose-500/15 text-rose-600 border-rose-400/25",
   };
   return (
     <span className={`inline-block rounded-full border px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider ${colors[type] || colors.theory}`}>
@@ -48,7 +48,7 @@ function DifficultyStars({ difficulty }: { difficulty: number }) {
   return (
     <div className="flex gap-0.5">
       {[1, 2, 3].map((d) => (
-        <Star key={d} size={10} className={d <= difficulty ? "fill-amber-400 text-amber-400" : "text-text-primary/25"} />
+        <Star key={d} size={10} className={d <= difficulty ? "fill-amber-400 text-amber-600" : "text-text-primary/25"} />
       ))}
     </div>
   );
@@ -83,7 +83,7 @@ export default function LanguageJourney() {
   }, [data]);
 
   if (loading) return <div className="min-h-screen flex items-center justify-center"><Spinner /></div>;
-  if (!data) return <div className="min-h-screen flex items-center justify-center text-gray-400">Not found</div>;
+  if (!data) return <div className="min-h-screen flex items-center justify-center text-gray-500">Not found</div>;
 
   const cols = isMobile ? 3 : 5;
   const pitch = isMobile ? 96 : 114;
@@ -136,7 +136,7 @@ export default function LanguageJourney() {
       <div className="relative z-10 mx-auto max-w-4xl">
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
-          <Link to="/learn" className="mb-4 inline-flex items-center gap-2 font-mono text-sm text-text-primary/50 transition-colors hover:text-white">
+          <Link to="/learn" className="mb-4 inline-flex items-center gap-2 font-mono text-sm text-text-primary/50 transition-colors hover:text-slate-900">
             <ArrowLeft size={14} /> All Languages
           </Link>
           <div className="flex flex-wrap items-center gap-4">
@@ -151,7 +151,7 @@ export default function LanguageJourney() {
                 <span className="text-text-primary">{data.language.name}</span>
               </h1>
               <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-sm text-text-primary/60">
-                <span className="flex items-center gap-1"><Trophy size={13} className="text-amber-400" /> {totalXp} XP</span>
+                <span className="flex items-center gap-1"><Trophy size={13} className="text-amber-600" /> {totalXp} XP</span>
                 <span>{completedCount} / {levels.length} levels</span>
                 <span>
                   {levels.reduce((a: number, l: any) => a + l.lessons_completed, 0)} / {levels.reduce((a: number, l: any) => a + l.total_lessons, 0)} lessons
@@ -162,8 +162,8 @@ export default function LanguageJourney() {
                   onClick={() => setDockOpen((v) => !v)}
                   className={`inline-flex items-center gap-2 rounded-xl border px-4 py-2 font-mono text-sm transition-all ${
                     dockOpen
-                      ? "border-cyan-300/50 bg-cyan-400/25 text-cyan-200"
-                      : "border-cyan-300/30 bg-cyan-400/15 text-cyan-200 hover:bg-cyan-400/25"
+                      ? "border-cyan-300/50 bg-cyan-400/25 text-cyan-700"
+                      : "border-cyan-300/30 bg-cyan-400/15 text-cyan-700 hover:bg-cyan-400/25"
                   }`}
                 >
                   {dockOpen ? <X size={14} /> : <Terminal size={14} />}
@@ -171,7 +171,7 @@ export default function LanguageJourney() {
                 </button>
                 <Link
                   to="/playground"
-                  className="inline-flex items-center gap-2 rounded-xl border border-fuchsia-300/30 bg-fuchsia-400/15 px-4 py-2 font-mono text-sm text-fuchsia-200 transition-all hover:bg-fuchsia-400/25"
+                  className="inline-flex items-center gap-2 rounded-xl border border-fuchsia-300/30 bg-fuchsia-400/15 px-4 py-2 font-mono text-sm text-fuchsia-700 transition-all hover:bg-fuchsia-400/25"
                 >
                   <Rocket size={14} /> Playground
                 </Link>
@@ -185,7 +185,7 @@ export default function LanguageJourney() {
           </div>
 
           {/* Candy progress bar */}
-          <div className="mt-6 rounded-2xl border border-white/10 bg-white border-border shadow-card p-4 backdrop-blur-sm">
+          <div className="mt-6 rounded-2xl border border-slate-200 bg-white border-border shadow-card p-4 backdrop-blur-sm">
             <div className="flex items-center justify-between font-mono text-xs uppercase tracking-widest text-text-primary/50">
               <span>Campaign progress</span>
               <span>{completedCount} / {levels.length} levels</span>
@@ -296,7 +296,7 @@ export default function LanguageJourney() {
                   />
                   <div className="mt-2 flex justify-center">
                     <span className={`max-w-[96px] truncate text-center text-[10px] font-semibold md:text-[11px] ${
-                      s === "locked" ? "text-text-primary/35" : s === "completed" ? "text-amber-200/90" : "text-text-primary/80"
+                      s === "locked" ? "text-text-primary/35" : s === "completed" ? "text-amber-700" : "text-text-primary/80"
                     }`}>
                       {level.name}
                     </span>
@@ -311,8 +311,8 @@ export default function LanguageJourney() {
         <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-mono text-xs text-text-primary/50">
           <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-full border-2 border-amber-300 bg-amber-400" /> Complete</span>
           <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-full bg-rose-400" /> You are here</span>
-          <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-full bg-[#232331]" /> Locked</span>
-          <span className="flex items-center gap-1.5"><Crown size={12} className="text-amber-400" /> Milestone</span>
+          <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-full bg-slate-100" /> Locked</span>
+          <span className="flex items-center gap-1.5"><Crown size={12} className="text-amber-600" /> Milestone</span>
         </div>
 
         {/* Expanded level panel */}
@@ -339,7 +339,7 @@ export default function LanguageJourney() {
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
             transition={{ type: "spring", damping: 26, stiffness: 260 }}
-            className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#12101f]/95 p-4 shadow-2xl backdrop-blur-md"
+            className="fixed inset-x-0 bottom-0 z-40 border-t border-slate-200 bg-white p-4 shadow-2xl backdrop-blur-md"
           >
             <div className="mx-auto max-w-6xl">
               <PracticeConsole
@@ -355,7 +355,7 @@ export default function LanguageJourney() {
       {!dockOpen && (
         <button
           onClick={() => setDockOpen(true)}
-          className="fixed bottom-6 right-6 z-40 flex items-center gap-2 rounded-2xl border border-cyan-300/40 bg-[#12101f]/90 px-4 py-3 font-mono text-sm text-cyan-200 shadow-xl backdrop-blur-md transition-all hover:bg-[#1c1930]"
+          className="fixed bottom-6 right-6 z-40 flex items-center gap-2 rounded-2xl border border-cyan-300/40 bg-white px-4 py-3 font-mono text-sm text-cyan-700 shadow-xl backdrop-blur-md transition-all hover:bg-white"
           title="Open practice console"
         >
           <Terminal size={16} /> Practice
@@ -393,7 +393,7 @@ function LevelPanel({ languageId, level }: { languageId: string; level: any }) {
 
   return (
     <div
-      className="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] shadow-2xl backdrop-blur-md"
+      className="overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 shadow-2xl backdrop-blur-md"
       style={{ boxShadow: `0 20px 60px -20px ${c.base}66` }}
     >
       {/* panel header */}
@@ -409,7 +409,7 @@ function LevelPanel({ languageId, level }: { languageId: string; level: any }) {
         <div className="text-right">
           <div className="font-mono text-xs text-text-primary/80">{level.progress_pct}%</div>
           <div className="flex items-center gap-1 font-mono text-[10px] text-text-primary/60">
-            <Trophy size={11} className="text-amber-200" /> {level.xp_earned} / {level.total_xp} XP
+            <Trophy size={11} className="text-amber-700" /> {level.xp_earned} / {level.total_xp} XP
           </div>
         </div>
       </div>
@@ -452,7 +452,7 @@ function LessonRow({ lesson, languageId, levelId }: { lesson: any; languageId: s
 
   if (!lesson.unlocked) {
     return (
-      <div className="flex items-center gap-2 rounded-xl bg-white/[0.03] p-2.5 opacity-40">
+      <div className="flex items-center gap-2 rounded-xl bg-slate-50 p-2.5 opacity-40">
         <Lock size={13} className="shrink-0 text-text-primary/50" />
         <span className="flex-1 truncate font-mono text-xs text-text-primary/50">{lesson.title}</span>
         <DifficultyStars difficulty={lesson.difficulty || 1} />
@@ -471,24 +471,24 @@ function LessonRow({ lesson, languageId, levelId }: { lesson: any; languageId: s
             ? "bg-rose-500/10 ring-1 ring-rose-400/30"
             : isProject
             ? "bg-cyan-500/10 ring-1 ring-cyan-400/30"
-            : "bg-white/[0.05] ring-1 ring-white/10 hover:bg-white/[0.09] hover:ring-white/25"
+            : "bg-slate-50 ring-1 ring-slate-200 hover:bg-slate-100 hover:ring-slate-200"
         }`}
       >
         {lesson.completed ? (
-          <CheckCircle2 size={15} className="shrink-0 text-emerald-300" />
+          <CheckCircle2 size={15} className="shrink-0 text-emerald-600" />
         ) : isBoss ? (
           <span className="shrink-0 text-sm">👑</span>
         ) : isProject ? (
           <span className="shrink-0 text-sm">🔨</span>
         ) : (
-          <span className="h-3.5 w-3.5 shrink-0 rounded-full border-2 border-white/30" />
+          <span className="h-3.5 w-3.5 shrink-0 rounded-full border-2 border-slate-200" />
         )}
-        <span className={`flex-1 truncate font-mono text-xs ${lesson.completed ? "text-emerald-200" : isBoss ? "text-rose-200" : "text-text-primary/85"}`}>
+        <span className={`flex-1 truncate font-mono text-xs ${lesson.completed ? "text-emerald-700" : isBoss ? "text-rose-700" : "text-text-primary/85"}`}>
           {lesson.title}
         </span>
         <DifficultyStars difficulty={lesson.difficulty || 1} />
-        <span className="shrink-0 font-mono text-[10px] text-amber-300/80">+{lesson.xp}</span>
-        <ChevronRight size={13} className="shrink-0 text-text-primary/40 transition-transform group-hover:translate-x-0.5 group-hover:text-white" />
+        <span className="shrink-0 font-mono text-[10px] text-amber-600">+{lesson.xp}</span>
+        <ChevronRight size={13} className="shrink-0 text-text-primary/40 transition-transform group-hover:translate-x-0.5 group-hover:text-slate-900" />
       </div>
     </Link>
   );

@@ -435,7 +435,7 @@ setMyMemories(mine.memories || []);
                         <button
                           type="button"
                           onClick={() => setOptions((prev) => prev.filter((_, i) => i !== idx))}
-                          className="text-red-400 hover:text-red-600 shrink-0"
+                          className="text-red-600 hover:text-red-600 shrink-0"
                           aria-label="Remove option"
                         >
                           <Trash2 size={15} />

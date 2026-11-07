@@ -378,7 +378,7 @@ export default function LearnLesson() {
                   <button
                     onClick={handleRun}
                     disabled={running}
-                    className="rounded-full bg-[#1F2937] px-5 py-2 text-sm font-bold text-text-primary transition-colors hover:bg-[#374151] disabled:opacity-60"
+                    className="rounded-full bg-slate-100 px-5 py-2 text-sm font-bold text-text-primary transition-colors hover:bg-slate-100 disabled:opacity-60"
                   >
                     {running ? "Running…" : "Run code"}
                   </button>
@@ -455,7 +455,7 @@ export default function LearnLesson() {
                                 : showWrong
                                 ? "border-red-300 bg-red-50 text-red-700"
                                 : isSelected
-                                ? "border-[#4F8F57] bg-[#EEF5E7] text-text-primary"
+                                ? "border-slate-200 bg-[#EEF5E7] text-text-primary"
                                 : "border-[#E5E7EB] bg-white text-text-secondary hover:bg-[#F9FAFB]"
                             }`}
                           >
@@ -487,7 +487,7 @@ export default function LearnLesson() {
             {lesson.completion?.nextLesson ? (
               <button
                 onClick={markComplete}
-                className="flex items-center gap-2 rounded-full bg-[#1F2937] px-6 py-3 text-sm font-bold text-text-primary transition-colors hover:bg-[#374151]"
+                className="flex items-center gap-2 rounded-full bg-slate-100 px-6 py-3 text-sm font-bold text-text-primary transition-colors hover:bg-slate-100"
               >
                 {justCompleted ? "Completed!" : "Complete lesson"}
                 <ArrowRight size={16} />
@@ -528,8 +528,8 @@ export default function LearnLesson() {
                   className="min-h-[300px] w-full flex-1 bg-white lg:min-h-0"
                 />
               ) : (
-                <div className="flex w-full flex-1 flex-col bg-[#111827] font-mono text-[13px] text-[#D1D5DB]">
-                  <div className="flex items-center justify-between border-b border-[#1F2937] px-4 py-2">
+                <div className="flex w-full flex-1 flex-col bg-slate-100 font-mono text-[13px] text-slate-700">
+                  <div className="flex items-center justify-between border-b border-slate-200 px-4 py-2">
                     <span className="text-xs uppercase tracking-wider text-text-muted">
                       {exerciseLanguage}
                     </span>
@@ -549,7 +549,7 @@ export default function LearnLesson() {
                       : "Click Run to execute your code in a real sandbox."}
                   </pre>
                   {runOutput && !runOutput.ok && (
-                    <div className="border-t border-red-500/40 bg-red-500/10 px-4 py-2 text-xs text-red-300">
+                    <div className="border-t border-red-500/40 bg-red-500/10 px-4 py-2 text-xs text-red-600">
                       Your code produced an error or no output — review it and try again.
                     </div>
                   )}

@@ -13,9 +13,9 @@ import useAuthStore from "../store/authStore";
 import { GROUP_META, topicGroup } from "../utils/topicGroups";
 
 const DIFFICULTY_COLORS = {
-  easy: "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400",
-  medium: "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400",
-  hard: "bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400",
+  easy: "bg-green-100 text-green-700",
+  medium: "bg-yellow-100 text-yellow-700",
+  hard: "bg-red-100 text-red-700",
 };
 
 export default function TopicProblems() {
@@ -69,8 +69,8 @@ export default function TopicProblems() {
           <div className="space-y-3">
             {Array.from({ length: 8 }).map((_, i) => (
               <div key={i} className="card animate-pulse">
-                <div className="h-5 bg-gray-200 dark:bg-gray-700 rounded w-2/3 mb-2" />
-                <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/3" />
+                <div className="h-5 bg-gray-200 rounded w-2/3 mb-2" />
+                <div className="h-4 bg-gray-200 rounded w-1/3" />
               </div>
             ))}
           </div>
@@ -100,7 +100,7 @@ export default function TopicProblems() {
           <div className="flex items-center justify-between">
             <div>
               <div className="flex items-center gap-3 mb-1 flex-wrap">
-                <h1 className="text-3xl font-bold dark:text-white">{topic}</h1>
+                <h1 className="text-3xl font-bold">{topic}</h1>
                 <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold border ${GROUP_META[topicGroup(topic)].tag}`}>
                   {topicGroup(topic) === "data_structure" && "Data Structure"}
                   {topicGroup(topic) === "algorithm" && "Algorithm"}
@@ -108,7 +108,7 @@ export default function TopicProblems() {
                   {topicGroup(topic) === "career" && "Career & Aptitude"}
                 </span>
               </div>
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-gray-600">
                 {topicData?.total || problems.length || 0} problems{topicData?.solved_count ? ` · ${topicData.solved_count} solved` : ""}
               </p>
             </div>
@@ -122,7 +122,7 @@ export default function TopicProblems() {
             )}
           </div>
           {topicData?.solved_count > 0 && (
-            <div className="mt-4 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+            <div className="mt-4 h-2 bg-gray-200 rounded-full overflow-hidden">
               <motion.div
                 className="h-full rounded-full bg-gradient-to-r from-primary-500 to-primary-600"
                 initial={{ width: 0 }}
@@ -144,9 +144,9 @@ export default function TopicProblems() {
         >
           <button
             onClick={() => setConsoleOpen((v) => !v)}
-            className="w-full flex items-center justify-between gap-2 glass rounded-t-2xl border border-white/10 border-b-0 px-4 py-3 hover:bg-white border-border shadow-card transition-colors"
+            className="w-full flex items-center justify-between gap-2 glass rounded-t-2xl border border-slate-200 border-b-0 px-4 py-3 hover:bg-white border-border shadow-card transition-colors"
           >
-            <span className="flex items-center gap-2 text-sm font-mono uppercase tracking-[0.2em] text-gray-400">
+            <span className="flex items-center gap-2 text-sm font-mono uppercase tracking-[0.2em] text-gray-500">
               <Terminal size={15} className="text-cyber-green" />
               Practice Console
             </span>
@@ -177,21 +177,21 @@ export default function TopicProblems() {
                   onClick={() => handleSolve(problem.id)}
                 >
                   {/* Number */}
-                  <div className="w-10 h-10 rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-sm font-bold text-gray-500 dark:text-gray-400 shrink-0">
+                  <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center text-sm font-bold text-gray-500 shrink-0">
                     {index + 1}
                   </div>
 
                   {/* Content */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
-                      <h3 className="font-semibold dark:text-white truncate group-hover:text-primary-600 transition-colors">
+                      <h3 className="font-semibold truncate group-hover:text-primary-600 transition-colors">
                         {problem.question_title || problem.question}
                       </h3>
                       {problem.solved && (
                         <CheckCircle size={16} className="text-green-500 shrink-0" />
                       )}
                     </div>
-                    <div className="flex items-center gap-3 text-xs text-gray-500 dark:text-gray-400">
+                    <div className="flex items-center gap-3 text-xs text-gray-500">
                       <span className={`px-2 py-0.5 rounded-full ${DIFFICULTY_COLORS[problem.difficulty] || ""}`}>
                         {problem.difficulty}
                       </span>
@@ -213,11 +213,11 @@ export default function TopicProblems() {
                   {/* Status */}
                   <div className="shrink-0">
                     {problem.solved ? (
-                      <span className="px-3 py-1.5 rounded-lg bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-sm font-medium">
+                      <span className="px-3 py-1.5 rounded-lg bg-green-100 text-green-700 text-sm font-medium">
                         Solved
                       </span>
                     ) : (
-                      <span className="px-3 py-1.5 rounded-lg bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 text-sm font-medium flex items-center gap-1 group-hover:bg-primary-600 group-hover:text-white transition-colors">
+                      <span className="px-3 py-1.5 rounded-lg bg-primary-100 text-primary-700 text-sm font-medium flex items-center gap-1 group-hover:bg-primary-600 group-hover:text-slate-900 transition-colors">
                         Solve <ArrowRight size={14} />
                       </span>
                     )}
@@ -228,8 +228,8 @@ export default function TopicProblems() {
           </StaggerContainer>
         ) : (
           <div className="card text-center py-12">
-            <Code size={48} className="mx-auto text-gray-300 dark:text-gray-600 mb-4" />
-            <p className="text-gray-500 dark:text-gray-400">No problems in this topic yet</p>
+            <Code size={48} className="mx-auto text-gray-600 mb-4" />
+            <p className="text-gray-500">No problems in this topic yet</p>
           </div>
         )}
       </div>

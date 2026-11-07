@@ -113,7 +113,7 @@ export default function IndianPlacement() {
             {loading ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
                 {Array.from({ length: 8 }).map((_, i) => (
-                  <div key={i} className="h-40 rounded-xl border border-gray-700/20 p-5 animate-pulse bg-gray-900/20" />
+                  <div key={i} className="h-40 rounded-xl border border-slate-100 p-5 animate-pulse bg-white" />
                 ))}
               </div>
             ) : (
@@ -137,7 +137,7 @@ export default function IndianPlacement() {
                         <p className="text-[9px] font-mono text-gray-500 mb-2">{c.exam_pattern}</p>
                         <div className="flex flex-wrap gap-1 justify-center">
                           {(c.focus_areas || []).slice(0, 3).map((area, j) => (
-                            <span key={j} className="text-[8px] font-mono px-1.5 py-0.5 rounded bg-gray-800 text-gray-400 border border-gray-700/30">
+                            <span key={j} className="text-[8px] font-mono px-1.5 py-0.5 rounded bg-white text-gray-500 border border-slate-100">
                               {area}
                             </span>
                           ))}
@@ -166,12 +166,12 @@ export default function IndianPlacement() {
               <span className="text-3xl">{company?.icon || '🏢'}</span>
               <div>
                 <h2 className="text-xl font-display font-bold text-text-primary">{detail?.name || company?.name}</h2>
-                <p className="text-xs font-mono text-gray-400">{detail?.full_name} · {detail?.package}</p>
+                <p className="text-xs font-mono text-gray-500">{detail?.full_name} · {detail?.package}</p>
               </div>
             </div>
 
             {/* Eligibility Banner */}
-            <div className="mb-4 p-3 rounded-lg bg-yellow-500/10 border border-yellow-500/20 text-xs font-mono text-yellow-400">
+            <div className="mb-4 p-3 rounded-lg bg-yellow-500/10 border border-yellow-500/20 text-xs font-mono text-yellow-600">
               📋 Eligibility: {detail?.eligibility} · Pattern: {detail?.exam_pattern}
             </div>
 
@@ -184,7 +184,7 @@ export default function IndianPlacement() {
                   className={`flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-lg text-xs font-mono font-medium uppercase tracking-wider transition-all border whitespace-nowrap ${
                     activeTab === tab.id
                       ? 'bg-cyber-blue/15 text-cyber-blue border-cyber-blue/40'
-                      : 'border-transparent text-gray-500 hover:text-gray-300 hover:bg-gray-50'
+                      : 'border-transparent text-gray-500 hover:text-gray-600 hover:bg-gray-50'
                   }`}
                 >
                   <span>{tab.icon}</span>
@@ -198,12 +198,12 @@ export default function IndianPlacement() {
               <div className="space-y-4">
                 {/* Interview Rounds */}
                 <Card rarity="rare" hoverEffect={false}>
-                  <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-400 mb-3">Interview Rounds</h3>
+                  <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-500 mb-3">Interview Rounds</h3>
                   <div className="flex flex-wrap gap-3">
                     {(detail.interview_rounds || []).map((round, i) => (
                       <div key={i} className="flex items-center gap-2">
                         <span className="w-7 h-7 rounded-lg bg-cyber-blue/15 text-cyber-blue flex items-center justify-center text-xs font-bold font-mono">{i + 1}</span>
-                        <span className="text-sm text-gray-300">{round}</span>
+                        <span className="text-sm text-gray-600">{round}</span>
                       </div>
                     ))}
                   </div>
@@ -211,10 +211,10 @@ export default function IndianPlacement() {
 
                 {/* Focus Areas */}
                 <Card rarity="uncommon" hoverEffect={false}>
-                  <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-400 mb-3">Focus Areas</h3>
+                  <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-500 mb-3">Focus Areas</h3>
                   <div className="flex flex-wrap gap-1.5">
                     {(detail.focus_areas || []).map((area, i) => (
-                      <span key={i} className="px-2.5 py-1 rounded-lg text-[10px] font-mono bg-blue-500/10 text-blue-400 border border-blue-500/20">{area}</span>
+                      <span key={i} className="px-2.5 py-1 rounded-lg text-[10px] font-mono bg-blue-500/10 text-blue-600 border border-blue-500/20">{area}</span>
                     ))}
                   </div>
                 </Card>
@@ -222,10 +222,10 @@ export default function IndianPlacement() {
                 {/* Tips */}
                 {detail.tips?.length > 0 && (
                   <Card rarity="epic" hoverEffect={false}>
-                    <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-400 mb-3">🎯 Pro Tips</h3>
+                    <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-500 mb-3">🎯 Pro Tips</h3>
                     <ul className="space-y-2">
                       {detail.tips.map((tip, i) => (
-                        <li key={i} className="text-xs text-gray-300 font-mono flex items-start gap-2">
+                        <li key={i} className="text-xs text-gray-600 font-mono flex items-start gap-2">
                           <span className="text-cyber-blue mt-0.5">→</span>
                           <span>{tip}</span>
                         </li>
@@ -259,7 +259,7 @@ export default function IndianPlacement() {
                     <div className="text-center py-6">
                       <div className="text-4xl mb-3">🎯</div>
                       <h3 className="text-lg font-display font-bold text-text-primary mb-2">Start Mock Test</h3>
-                      <p className="text-xs text-gray-400 mb-4 max-w-md mx-auto">
+                      <p className="text-xs text-gray-500 mb-4 max-w-md mx-auto">
                         Simulate the actual {company?.name || selected} placement test with real patterns,
                         timed sections, and scoring.
                       </p>
@@ -294,7 +294,7 @@ function ExamPatternTab({ detail }) {
 
   if (!pattern) return (
     <Card rarity="common" hoverEffect={false}>
-      <p className="text-sm text-gray-400 text-center py-4">No exam pattern data available yet.</p>
+      <p className="text-sm text-gray-500 text-center py-4">No exam pattern data available yet.</p>
     </Card>
   );
 
@@ -302,7 +302,7 @@ function ExamPatternTab({ detail }) {
     <div className="space-y-4">
       <Card rarity="rare" hoverEffect={false}>
         <div className="flex items-center justify-between mb-4">
-          <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-400">Exam Structure</h3>
+          <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-500">Exam Structure</h3>
           <span className="text-xs font-mono text-cyber-blue">⏱ {pattern.total_time_minutes} min total</span>
         </div>
 
@@ -313,7 +313,7 @@ function ExamPatternTab({ detail }) {
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: i * 0.1 }}
-              className="p-4 rounded-xl bg-gray-800/40 border border-gray-700/30"
+              className="p-4 rounded-xl bg-white border border-slate-100"
             >
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
@@ -324,9 +324,9 @@ function ExamPatternTab({ detail }) {
                   <span>{section.questions} Q</span>
                   <span>{section.time_minutes} min</span>
                   <span className={`px-1.5 py-0.5 rounded ${
-                    section.difficulty === 'easy' ? 'bg-green-500/15 text-green-400' :
-                    section.difficulty === 'medium' ? 'bg-yellow-500/15 text-yellow-400' :
-                    'bg-red-500/15 text-red-400'
+                    section.difficulty === 'easy' ? 'bg-green-500/15 text-green-600' :
+                    section.difficulty === 'medium' ? 'bg-yellow-500/15 text-yellow-600' :
+                    'bg-red-500/15 text-red-600'
                   }`}>
                     {section.difficulty}
                   </span>
@@ -335,7 +335,7 @@ function ExamPatternTab({ detail }) {
 
               <div className="flex flex-wrap gap-1">
                 {(section.topics || []).map((topic, j) => (
-                  <span key={j} className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-gray-700/30 text-gray-400">
+                  <span key={j} className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-slate-100 text-gray-500">
                     {topic}
                   </span>
                 ))}
@@ -379,33 +379,33 @@ function ReadinessTab({ companyId, readiness }) {
     <div className="space-y-4">
       <Card rarity="rare" hoverEffect={false}>
         <div className="flex items-center justify-between mb-4">
-          <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-400">Your Readiness</h3>
+          <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-500">Your Readiness</h3>
           <span className="text-xs font-mono text-cyber-blue">{level || "Calculating..."}</span>
         </div>
         <div className="mb-4">
           <div className="flex items-center justify-between text-sm mb-2">
             <span className="text-4xl font-black stat-numeral text-text-primary">{Math.round(overall)}%</span>
-            <span className="text-sm text-gray-400">Overall for {companyId?.toUpperCase()}</span>
+            <span className="text-sm text-gray-500">Overall for {companyId?.toUpperCase()}</span>
           </div>
-          <div className="h-2.5 rounded-full bg-gray-700/30 overflow-hidden">
+          <div className="h-2.5 rounded-full bg-slate-100 overflow-hidden">
             <div className="h-full rounded-full bg-cyber-blue transition-all duration-700 ease-out" style={{ width: `${Math.min(100, Math.max(0, overall))}%` }} />
           </div>
         </div>
         {blockers.length > 0 && (
           <div className="mb-4 rounded-xl border border-red-500/20 bg-red-500/10 p-4">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-red-400 mb-2">
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-red-600 mb-2">
               <AlertCircle size={14} /> Blockers
             </div>
             <div className="flex flex-wrap gap-2">
               {blockers.map((b, i) => (
-                <span key={i} className="inline-flex items-center gap-1 rounded-full bg-red-500/15 px-2.5 py-1 text-xs font-medium text-red-300">
+                <span key={i} className="inline-flex items-center gap-1 rounded-full bg-red-500/15 px-2.5 py-1 text-xs font-medium text-red-600">
                   <span className="h-1.5 w-1.5 rounded-full bg-red-500" />
                   {(b.skill_id || b).replace(/_/g, " ")}
                 </span>
               ))}
             </div>
             {nextAction && (
-              <p className="mt-2 text-xs text-red-300">
+              <p className="mt-2 text-xs text-red-600">
                 Next focus: <span className="font-bold">{(nextAction.skill_id || "").replace(/_/g, " ")}</span>
               </p>
             )}
@@ -416,7 +416,7 @@ function ReadinessTab({ companyId, readiness }) {
             const score = typeof val === "number" ? val : (val as any)?.score || 0;
             const label = key.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase());
             return (
-              <div key={key} className="flex flex-col items-center text-center rounded-xl border border-gray-700/30 p-3">
+              <div key={key} className="flex flex-col items-center text-center rounded-xl border border-slate-100 p-3">
                 <div className="text-lg font-bold text-text-primary">{Math.round(score)}%</div>
                 <div className="text-[10px] text-gray-500 uppercase">{label}</div>
               </div>
@@ -426,20 +426,20 @@ function ReadinessTab({ companyId, readiness }) {
       </Card>
 
       <Card rarity="uncommon" hoverEffect={false}>
-        <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-400 mb-3">30-Day Roadmap</h3>
+        <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-500 mb-3">30-Day Roadmap</h3>
         {loading ? (
           <div className="space-y-2">
             {Array.from({ length: 4 }).map((_, i) => (
-              <div key={i} className="h-12 rounded-lg bg-gray-800/40 border border-gray-700/20 animate-pulse" />
+              <div key={i} className="h-12 rounded-lg bg-white border border-slate-100 animate-pulse" />
             ))}
           </div>
         ) : roadmap?.missions?.length > 0 ? (
           <div className="space-y-2">
             {roadmap.missions.slice(0, 7).map((m, i) => (
-              <div key={i} className="flex items-center gap-3 p-3 rounded-lg bg-gray-800/30 border border-gray-700/20">
+              <div key={i} className="flex items-center gap-3 p-3 rounded-lg bg-white border border-slate-100">
                 <span className="w-6 h-6 rounded-md bg-cyber-blue/15 text-cyber-blue flex items-center justify-center text-[10px] font-bold font-mono shrink-0">D{i + 1}</span>
                 <div className="min-w-0">
-                  <p className="text-xs text-gray-300 font-mono truncate">{m.title || `${m.category}: ${m.topic}`}</p>
+                  <p className="text-xs text-gray-600 font-mono truncate">{m.title || `${m.category}: ${m.topic}`}</p>
                   <p className="text-[10px] text-gray-500">{m.minutes} min • {m.difficulty}</p>
                 </div>
               </div>
@@ -457,7 +457,7 @@ function CodingPatternsTab({ data }) {
   return (
     <div className="space-y-4">
       <Card rarity="rare" hoverEffect={false}>
-        <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-400 mb-3">Frequently Asked Coding Problems</h3>
+        <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-500 mb-3">Frequently Asked Coding Problems</h3>
         <p className="text-[10px] text-gray-500 mb-4">Practice these patterns — they commonly appear in {data.company} placements</p>
 
         <div className="space-y-2">
@@ -467,12 +467,12 @@ function CodingPatternsTab({ data }) {
               initial={{ opacity: 0, x: -8 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: i * 0.05 }}
-              className="flex items-center gap-3 p-3 rounded-lg bg-gray-800/30 border border-gray-700/20 hover:border-cyber-blue/20 transition-all"
+              className="flex items-center gap-3 p-3 rounded-lg bg-white border border-slate-100 hover:border-cyber-blue/20 transition-all"
             >
               <span className="w-6 h-6 rounded-md bg-cyber-blue/15 text-cyber-blue flex items-center justify-center text-[10px] font-bold font-mono shrink-0">
                 {i + 1}
               </span>
-              <span className="text-xs text-gray-300 font-mono">{pattern}</span>
+              <span className="text-xs text-gray-600 font-mono">{pattern}</span>
             </motion.div>
           ))}
         </div>
@@ -480,10 +480,10 @@ function CodingPatternsTab({ data }) {
 
       {data.focus_areas?.length > 0 && (
         <Card rarity="uncommon" hoverEffect={false}>
-          <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-400 mb-3">Key Topics to Master</h3>
+          <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-500 mb-3">Key Topics to Master</h3>
           <div className="flex flex-wrap gap-1.5">
             {data.focus_areas.map((area, i) => (
-              <span key={i} className="px-2.5 py-1 rounded-lg text-[10px] font-mono bg-purple-500/10 text-purple-400 border border-purple-500/20">{area}</span>
+              <span key={i} className="px-2.5 py-1 rounded-lg text-[10px] font-mono bg-purple-500/10 text-purple-600 border border-purple-500/20">{area}</span>
             ))}
           </div>
         </Card>
@@ -496,7 +496,7 @@ function HRTab({ data }) {
   return (
     <div className="space-y-4">
       <Card rarity="epic" hoverEffect={false}>
-        <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-400 mb-3">Common HR Questions at {data.company}</h3>
+        <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-500 mb-3">Common HR Questions at {data.company}</h3>
         <div className="space-y-2">
           {(data.hr_questions || []).map((q, i) => (
             <motion.div
@@ -504,13 +504,13 @@ function HRTab({ data }) {
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.05 }}
-              className="flex items-start gap-3 p-3 rounded-lg bg-gray-800/30 border border-gray-700/20"
+              className="flex items-start gap-3 p-3 rounded-lg bg-white border border-slate-100"
             >
-              <span className="w-6 h-6 rounded-md bg-purple-500/15 text-purple-400 flex items-center justify-center text-[10px] font-bold font-mono shrink-0 mt-0.5">
+              <span className="w-6 h-6 rounded-md bg-purple-500/15 text-purple-600 flex items-center justify-center text-[10px] font-bold font-mono shrink-0 mt-0.5">
                 {i + 1}
               </span>
               <div>
-                <p className="text-xs text-gray-300 font-mono">{q}</p>
+                <p className="text-xs text-gray-600 font-mono">{q}</p>
                 <p className="text-[9px] text-gray-500 mt-1">💡 Think of a specific example from your experience</p>
               </div>
             </motion.div>
@@ -520,10 +520,10 @@ function HRTab({ data }) {
 
       {data.tips?.length > 0 && (
         <Card rarity="rare" hoverEffect={false}>
-          <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-400 mb-3">🎯 HR Round Tips</h3>
+          <h3 className="font-display font-bold text-xs uppercase tracking-widest text-gray-500 mb-3">🎯 HR Round Tips</h3>
           <ul className="space-y-2">
             {data.tips.map((tip, i) => (
-              <li key={i} className="text-xs text-gray-300 font-mono flex items-start gap-2">
+              <li key={i} className="text-xs text-gray-600 font-mono flex items-start gap-2">
                 <span className="text-cyber-green mt-0.5">✓</span>
                 <span>{tip}</span>
               </li>
@@ -635,39 +635,39 @@ function MockTestView({ data }) {
         <div className="text-center py-8">
           <div className="text-5xl mb-4">🎉</div>
           <h3 className="text-xl font-display font-bold text-text-primary mb-2">Mock Test Complete!</h3>
-          <p className="text-sm text-gray-400 mb-4">{data.company} Placement Mock</p>
+          <p className="text-sm text-gray-500 mb-4">{data.company} Placement Mock</p>
 
           {/* Score Cards */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6 max-w-lg mx-auto">
-            <div className="p-3 rounded-xl bg-gray-800/40 border border-gray-700/30">
+            <div className="p-3 rounded-xl bg-white border border-slate-100">
               <div className="text-2xl font-display font-bold text-cyber-blue">{score}%</div>
               <div className="text-[10px] text-gray-500 uppercase">Score</div>
             </div>
-            <div className="p-3 rounded-xl bg-gray-800/40 border border-gray-700/30">
-              <div className="text-2xl font-display font-bold text-green-400">{correct}</div>
+            <div className="p-3 rounded-xl bg-white border border-slate-100">
+              <div className="text-2xl font-display font-bold text-green-600">{correct}</div>
               <div className="text-[10px] text-gray-500 uppercase">Correct</div>
             </div>
-            <div className="p-3 rounded-xl bg-gray-800/40 border border-gray-700/30">
-              <div className="text-2xl font-display font-bold text-yellow-400">{accuracy}%</div>
+            <div className="p-3 rounded-xl bg-white border border-slate-100">
+              <div className="text-2xl font-display font-bold text-yellow-600">{accuracy}%</div>
               <div className="text-[10px] text-gray-500 uppercase">Accuracy</div>
             </div>
-            <div className="p-3 rounded-xl bg-gray-800/40 border border-gray-700/30">
-              <div className="text-2xl font-display font-bold text-purple-400">{formatTime(timeUsed)}</div>
+            <div className="p-3 rounded-xl bg-white border border-slate-100">
+              <div className="text-2xl font-display font-bold text-purple-600">{formatTime(timeUsed)}</div>
               <div className="text-[10px] text-gray-500 uppercase">Time Used</div>
             </div>
           </div>
 
           {/* Section Breakdown */}
           <div className="text-left max-w-md mx-auto mb-6">
-            <h4 className="text-xs font-mono text-gray-400 uppercase mb-2">Section Breakdown</h4>
+            <h4 className="text-xs font-mono text-gray-500 uppercase mb-2">Section Breakdown</h4>
             {data.sections.map((s, i) => {
               const sectionCorrect = s.questions.filter((_, qi) => answers[`${i}-${qi}`]?.correct).length;
               const sectionAttempted = s.questions.filter((_, qi) => answers[`${i}-${qi}`] !== undefined).length;
               return (
                 <div key={i} className="flex items-center gap-3 py-1.5 text-xs font-mono">
-                  <span className="text-gray-400 w-32 truncate">{s.section_name}</span>
-                  <span className="text-green-400">{sectionCorrect}/{s.questions.length}</span>
-                  <div className="flex-1 h-1.5 rounded bg-gray-700/30 overflow-hidden">
+                  <span className="text-gray-500 w-32 truncate">{s.section_name}</span>
+                  <span className="text-green-600">{sectionCorrect}/{s.questions.length}</span>
+                  <div className="flex-1 h-1.5 rounded bg-slate-100 overflow-hidden">
                     <div className="h-full rounded bg-cyber-blue" style={{ width: `${(sectionCorrect / s.questions.length) * 100}%` }} />
                   </div>
                 </div>
@@ -686,7 +686,7 @@ function MockTestView({ data }) {
   if (!section || !question) {
     return (
       <Card rarity="rare" hoverEffect={false}>
-        <p className="text-sm text-gray-400 text-center py-4">No questions loaded. Try starting the mock again.</p>
+        <p className="text-sm text-gray-500 text-center py-4">No questions loaded. Try starting the mock again.</p>
       </Card>
     );
   }
@@ -705,14 +705,14 @@ function MockTestView({ data }) {
         </div>
         <div className="flex items-center gap-3">
           <div className={`px-3 py-1 rounded-lg text-xs font-mono font-bold ${
-            timeLeft < 60 ? 'bg-red-500/20 text-red-400 animate-pulse' :
-            timeLeft < 300 ? 'bg-yellow-500/20 text-yellow-400' :
-            'bg-gray-800/40 text-gray-300'
+            timeLeft < 60 ? 'bg-red-500/20 text-red-600 animate-pulse' :
+            timeLeft < 300 ? 'bg-yellow-500/20 text-yellow-600' :
+            'bg-slate-100 text-gray-600'
           }`}>
             ⏱ {formatTime(timeLeft)}
           </div>
           <div className={`px-2 py-1 rounded-lg text-[10px] font-mono ${
-            sectionTimeLeft < 30 ? 'bg-red-500/15 text-red-400' : 'bg-gray-800/30 text-gray-500'
+            sectionTimeLeft < 30 ? 'bg-red-500/15 text-red-600' : 'bg-slate-100 text-gray-500'
           }`}>
             Section: {formatTime(sectionTimeLeft)}
           </div>
@@ -720,7 +720,7 @@ function MockTestView({ data }) {
       </div>
 
       {/* Global Progress Bar */}
-      <div className="h-1 rounded-full bg-gray-700/30 overflow-hidden">
+      <div className="h-1 rounded-full bg-slate-100 overflow-hidden">
         <motion.div
           className="h-full rounded-full bg-gradient-to-r from-cyber-blue to-cyber-green"
           animate={{ width: `${globalProgress}%` }}
@@ -741,12 +741,12 @@ function MockTestView({ data }) {
                 i === currentSection
                   ? 'bg-cyber-blue/15 text-cyber-blue border-cyber-blue/40'
                   : secDone > 0
-                    ? 'border-green-500/20 text-green-400/70'
-                    : 'border-gray-700/20 text-gray-500'
+                    ? 'border-green-500/20 text-green-600'
+                    : 'border-slate-100 text-gray-500'
               }`}
             >
               {SECTION_ICONS[s.section_name] || '📋'} {s.section_name}
-              {secDone > 0 && <span className="ml-1 text-green-400">{secCorrect}/{s.questions.length}</span>}
+              {secDone > 0 && <span className="ml-1 text-green-600">{secCorrect}/{s.questions.length}</span>}
             </button>
           );
         })}
@@ -757,9 +757,9 @@ function MockTestView({ data }) {
         {isCoding ? (
           <div>
             <h3 className="text-sm font-display font-bold text-text-primary mb-2">{question.question_title || question.statement || 'Coding Problem'}</h3>
-            <p className="text-xs text-gray-400 font-mono mb-4">{question.statement || 'Implement the solution.'}</p>
+            <p className="text-xs text-gray-500 font-mono mb-4">{question.statement || 'Implement the solution.'}</p>
             {question.examples?.map((ex, i) => (
-              <div key={i} className="p-2 rounded-lg bg-gray-800/50 border border-gray-700/20 mb-2 text-[10px] font-mono text-gray-400">
+              <div key={i} className="p-2 rounded-lg bg-white border border-slate-100 mb-2 text-[10px] font-mono text-gray-500">
                 <p>Input: {ex.input || ex}</p>
                 <p>Output: {ex.output || 'N/A'}</p>
               </div>
@@ -788,14 +788,14 @@ function MockTestView({ data }) {
               <span className="w-6 h-6 rounded-md bg-cyber-blue/15 text-cyber-blue flex items-center justify-center text-[10px] font-bold font-mono shrink-0 mt-0.5">
                 {currentQ + 1}
               </span>
-              <p className="text-sm font-mono text-gray-300">{question.question}</p>
+              <p className="text-sm font-mono text-gray-600">{question.question}</p>
             </div>
 
             {/* Company Tag */}
             {question.companies?.length > 0 && (
               <div className="flex flex-wrap gap-1 mb-3">
                 {question.companies.slice(0, 3).map((c, i) => (
-                  <span key={i} className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                  <span key={i} className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-purple-500/10 text-purple-600 border border-purple-500/20">
                     🏢 {c}
                   </span>
                 ))}
@@ -810,11 +810,11 @@ function MockTestView({ data }) {
                 const isCorrectOption = question.correct_answer === opt;
                 const showResult = showExplanation;
 
-                let optStyle = 'bg-gray-800/30 border-gray-700/20 text-gray-300 hover:border-gray-600/30 hover:bg-gray-800/50';
+                let optStyle = 'bg-white border-slate-100 text-gray-600 hover:border-slate-100 hover:bg-white';
                 if (showResult && isCorrectOption) {
-                  optStyle = 'bg-green-500/15 border-green-500/40 text-green-400';
+                  optStyle = 'bg-green-500/15 border-green-500/40 text-green-600';
                 } else if (showResult && selected && !isCorrectOption) {
-                  optStyle = 'bg-red-500/15 border-red-500/40 text-red-400';
+                  optStyle = 'bg-red-500/15 border-red-500/40 text-red-600';
                 } else if (selected) {
                   optStyle = 'bg-cyber-blue/15 border-cyber-blue/40 text-cyber-blue';
                 }
@@ -828,8 +828,8 @@ function MockTestView({ data }) {
                   >
                     <span className="font-bold text-gray-500 mr-2">{String.fromCharCode(65 + i)}.</span>
                     {opt}
-                    {showResult && isCorrectOption && <span className="ml-2 text-green-400">✓</span>}
-                    {showResult && selected && !isCorrectOption && <span className="ml-2 text-red-400">✗</span>}
+                    {showResult && isCorrectOption && <span className="ml-2 text-green-600">✓</span>}
+                    {showResult && selected && !isCorrectOption && <span className="ml-2 text-red-600">✗</span>}
                   </button>
                 );
               })}
@@ -843,9 +843,9 @@ function MockTestView({ data }) {
                 className="mt-4 p-3 rounded-lg bg-cyber-blue/5 border border-cyber-blue/20"
               >
                 <p className="text-[10px] font-mono text-cyber-blue uppercase mb-1">💡 Explanation</p>
-                <p className="text-xs font-mono text-gray-300">{question.explanation}</p>
+                <p className="text-xs font-mono text-gray-600">{question.explanation}</p>
                 {question.correct_answer && (
-                  <p className="text-xs font-mono text-green-400 mt-1">Answer: {question.correct_answer}</p>
+                  <p className="text-xs font-mono text-green-600 mt-1">Answer: {question.correct_answer}</p>
                 )}
               </motion.div>
             )}
@@ -865,7 +865,7 @@ function MockTestView({ data }) {
               className={`w-3 h-3 rounded-full transition-all ${
                 i === currentQ ? 'ring-2 ring-cyber-blue ring-offset-1 ring-offset-space-void' :
                 answered ? (isCorrect ? 'bg-green-500' : 'bg-red-500') :
-                'bg-gray-700'
+                'bg-slate-100'
               }`}
             />
           );

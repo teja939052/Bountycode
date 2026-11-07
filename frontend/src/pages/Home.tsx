@@ -119,19 +119,19 @@ export default function Home() {
   }, [searchQuery]);
 
   return (
-    <div className="min-h-screen bg-[#0a0f0d] text-[#e9e9e9]">
+    <div className="min-h-screen bg-slate-50 text-slate-700">
       <div className="mx-auto max-w-6xl px-4 py-6 sm:py-10">
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="space-y-6">
           {/* Header + greeting */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <p className="text-sm text-[#9a9a9a]">{greeting}, {firstName}</p>
-              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#e9e9e9] mt-1">
+              <p className="text-sm text-slate-500">{greeting}, {firstName}</p>
+              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-700 mt-1">
                 {readiness === null ? "Let's get started." : `You're ${readiness}% voyage ready.`}
               </h1>
             </div>
             {readiness !== null && (
-              <div className="shrink-0 rounded-2xl border border-[#2a2a2a] bg-[#171717] p-3">
+              <div className="shrink-0 rounded-2xl border border-slate-200 bg-white p-3">
                 <ReadinessRing value={readiness} size={80} />
               </div>
             )}
@@ -145,7 +145,7 @@ export default function Home() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search problems, topics, companies..."
-              className="w-full rounded-xl border border-[#2a2a2a] bg-[#171717] py-3 pl-11 pr-4 text-sm text-[#e9e9e9] placeholder-[#6b6b6b] focus:outline-none focus:border-[#ffa116] focus:ring-1 focus:ring-[#ffa116] transition-colors"
+              className="w-full rounded-xl border border-slate-200 bg-white py-3 pl-11 pr-4 text-sm text-slate-700 placeholder-[#6b6b6b] focus:outline-none focus:border-[#ffa116] focus:ring-1 focus:ring-[#ffa116] transition-colors"
             />
           </div>
 
@@ -160,14 +160,14 @@ export default function Home() {
               >
                 <Link
                   to={action.to}
-                  className="flex flex-col items-center gap-2 rounded-xl border border-[#2a2a2a] bg-[#171717] p-4 transition-all hover:border-[#ffa116]/50 hover:bg-[#1f1f1f] hover:-translate-y-0.5"
+                  className="flex flex-col items-center gap-2 rounded-xl border border-slate-200 bg-white p-4 transition-all hover:border-[#ffa116]/50 hover:bg-white hover:-translate-y-0.5"
                 >
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl" style={{ backgroundColor: `${action.color}18`, color: action.color }}>
                     <action.icon size={20} />
                   </div>
                   <div className="text-center">
-                    <p className="text-sm font-semibold text-[#e9e9e9]">{action.label}</p>
-                    <p className="text-[11px] text-[#9a9a9a]">{action.desc}</p>
+                    <p className="text-sm font-semibold text-slate-700">{action.label}</p>
+                    <p className="text-[11px] text-slate-500">{action.desc}</p>
                   </div>
                 </Link>
               </motion.div>
@@ -183,8 +183,8 @@ export default function Home() {
                     <Target size={24} />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-[#e9e9e9]">{mission.label}</h3>
-                    <p className="text-sm text-[#9a9a9a] mt-1">~{mission.minutes} minutes · +{mission.xp || 50} XP</p>
+                    <h3 className="text-lg font-bold text-slate-700">{mission.label}</h3>
+                    <p className="text-sm text-slate-500 mt-1">~{mission.minutes} minutes · +{mission.xp || 50} XP</p>
                   </div>
                 </div>
                 <Link to={mission.to} className="w-full sm:w-auto">
@@ -232,8 +232,8 @@ export default function Home() {
                           <ring.icon size={20} style={{ color: ring.color }} />
                         </div>
                       </div>
-                      <p className="text-sm font-semibold text-[#e9e9e9]">{ring.label}</p>
-                      <p className="text-xs text-[#9a9a9a]">{Math.round(value)}%</p>
+                      <p className="text-sm font-semibold text-slate-700">{ring.label}</p>
+                      <p className="text-xs text-slate-500">{Math.round(value)}%</p>
                     </motion.div>
                   );
                 })}
@@ -250,37 +250,37 @@ export default function Home() {
                       <Flame size={20} />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-[#e9e9e9]">Streak</p>
-                      <p className="text-xs text-[#9a9a9a]">{s.streak} days</p>
+                      <p className="text-sm font-medium text-slate-700">Streak</p>
+                      <p className="text-xs text-slate-500">{s.streak} days</p>
                     </div>
                   </div>
                   <span className="text-lg font-bold text-[#ffa116]">{s.streak}</span>
                 </div>
-                <div className="h-px w-full bg-[#2a2a2a]" />
+                <div className="h-px w-full bg-slate-100" />
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2eb88a1a] text-[#2eb88a]">
                       <Trophy size={20} />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-[#e9e9e9]">Level</p>
-                      <p className="text-xs text-[#9a9a9a]">{s.xp.toLocaleString()} XP</p>
+                      <p className="text-sm font-medium text-slate-700">Level</p>
+                      <p className="text-xs text-slate-500">{s.xp.toLocaleString()} XP</p>
                     </div>
                   </div>
-                  <span className="text-lg font-bold text-[#e9e9e9]">Lv. {s.level}</span>
+                  <span className="text-lg font-bold text-slate-700">Lv. {s.level}</span>
                 </div>
-                <div className="h-px w-full bg-[#2a2a2a]" />
+                <div className="h-px w-full bg-slate-100" />
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#4A90E21a] text-[#4A90E2]">
                       <Clock size={20} />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-[#e9e9e9]">Practice</p>
-                      <p className="text-xs text-[#9a9a9a]">12h this week</p>
+                      <p className="text-sm font-medium text-slate-700">Practice</p>
+                      <p className="text-xs text-slate-500">12h this week</p>
                     </div>
                   </div>
-                  <span className="text-lg font-bold text-[#e9e9e9]">3.2h</span>
+                  <span className="text-lg font-bold text-slate-700">3.2h</span>
                 </div>
               </div>
             </LCard>

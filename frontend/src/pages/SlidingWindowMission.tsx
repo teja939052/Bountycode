@@ -111,7 +111,7 @@ function MCQBlock({ mcq, picked, setPicked, revealed }: { mcq: MCQ; picked: numb
     <div>
       <p className="text-[15px] font-semibold text-text-primary leading-snug">{mcq.q}</p>
       {mcq.code && (
-        <pre className="mt-3 rounded-xl bg-gray-950 p-3 font-mono text-[12px] leading-relaxed text-cyan-300 overflow-x-auto">{mcq.code}</pre>
+        <pre className="mt-3 rounded-xl bg-slate-100 p-3 font-mono text-[12px] leading-relaxed text-cyan-600 overflow-x-auto">{mcq.code}</pre>
       )}
       <div className="mt-3 space-y-2">
         {mcq.options.map((o, i) => {
@@ -284,7 +284,7 @@ export default function SlidingWindowMission() {
               key={s}
               onClick={() => i <= stage && setStage(i)}
               className={`shrink-0 rounded-full px-2.5 py-1.5 font-mono text-[10px] ${
-                i === stage ? "bg-[#14141B] text-white" : i < stage ? "bg-emerald-100 text-emerald-800" : "bg-black/5 text-text-muted"
+                i === stage ? "bg-slate-100 text-slate-900" : i < stage ? "bg-emerald-100 text-emerald-800" : "bg-black/5 text-text-muted"
               }`}
             >
               {s}
@@ -385,7 +385,7 @@ export default function SlidingWindowMission() {
           </section>
         )}
 
-        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-black/10 bg-white/95 px-4 pt-3 backdrop-blur md:static md:rounded-2xl md:border" style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}>
+        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-black/10 bg-white px-4 pt-3 backdrop-blur md:static md:rounded-2xl md:border" style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}>
           <div className="mx-auto flex w-full max-w-xl gap-2">
             <button
               onClick={() => setStage((s) => Math.max(0, s - 1))}
@@ -397,7 +397,7 @@ export default function SlidingWindowMission() {
             {stage < 8 ? (
               <button
                 onClick={next}
-                className="inline-flex min-h-[48px] flex-[2] items-center justify-center gap-1 rounded-xl bg-[#F4532F] text-sm font-bold text-white"
+                className="inline-flex min-h-[48px] flex-[2] items-center justify-center gap-1 rounded-xl bg-[#F4532F] text-sm font-bold text-slate-900"
               >
                 Continue <ArrowRight size={15} />
               </button>
@@ -405,7 +405,7 @@ export default function SlidingWindowMission() {
               <button
                 onClick={() => void submitProve(false)}
                 disabled={submitting || PROVE_QS.some((q) => answers[q.id] == null)}
-                className="inline-flex min-h-[48px] flex-[2] items-center justify-center gap-1 rounded-xl bg-[#F4532F] text-sm font-bold text-white disabled:opacity-40"
+                className="inline-flex min-h-[48px] flex-[2] items-center justify-center gap-1 rounded-xl bg-[#F4532F] text-sm font-bold text-slate-900 disabled:opacity-40"
               >
                 {submitting ? <Spinner size={15} /> : <CheckCircle2 size={15} />} Complete & record
               </button>

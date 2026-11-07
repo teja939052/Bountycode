@@ -150,23 +150,23 @@ function RunOutputPanel({ output }: { output: RunOutput }) {
   const expected = (output.expected || "").trim();
   if (!stdout && !error && !expected) return null;
   return (
-    <div className="mt-2.5 rounded-lg border border-border bg-[#0f172a] text-xs font-mono space-y-2 p-3">
+    <div className="mt-2.5 rounded-lg border border-border bg-white text-xs font-mono space-y-2 p-3">
       {stdout ? (
         <div>
           <div className="text-[10px] uppercase tracking-widest text-text-muted mb-0.5">Your output</div>
-          <pre className="whitespace-pre-wrap break-words text-zinc-200 leading-relaxed">{stdout}</pre>
+          <pre className="whitespace-pre-wrap break-words text-zinc-700 leading-relaxed">{stdout}</pre>
         </div>
       ) : null}
       {error ? (
         <div>
-          <div className="text-[10px] uppercase tracking-widest text-red-400 mb-0.5">Error</div>
-          <pre className="whitespace-pre-wrap break-words text-red-300 leading-relaxed">{error}</pre>
+          <div className="text-[10px] uppercase tracking-widest text-red-600 mb-0.5">Error</div>
+          <pre className="whitespace-pre-wrap break-words text-red-600 leading-relaxed">{error}</pre>
         </div>
       ) : null}
       {expected && expected !== stdout ? (
         <div>
           <div className="text-[10px] uppercase tracking-widest text-text-muted mb-0.5">Expected</div>
-          <pre className="whitespace-pre-wrap break-words text-zinc-200 leading-relaxed">{expected}</pre>
+          <pre className="whitespace-pre-wrap break-words text-zinc-700 leading-relaxed">{expected}</pre>
         </div>
       ) : null}
     </div>
@@ -490,7 +490,7 @@ export function LevelPlayer({ worldId, level, onClose, onMastered, worldContent:
               <p className="text-xs text-text-muted mb-4">{loadError}</p>
               <button
                 onClick={onClose}
-                className="px-4 py-2 rounded-lg bg-black text-white text-sm font-semibold"
+                className="px-4 py-2 rounded-lg bg-slate-100 text-slate-900 text-sm font-semibold"
               >
                 Close
               </button>
@@ -751,7 +751,7 @@ export function LevelPlayer({ worldId, level, onClose, onMastered, worldContent:
                     onChange={(e) => setCode(e.target.value)}
                     rows={8}
                     spellCheck={false}
-                    className="w-full rounded-xl border border-border bg-[#0f172a] text-zinc-100 font-mono text-sm px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/40 resize-none"
+                    className="w-full rounded-xl border border-border bg-white text-zinc-900 font-mono text-sm px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/40 resize-none"
                     placeholder="# complete the code"
                     disabled={busy}
                   />
@@ -894,7 +894,7 @@ export function LevelPlayer({ worldId, level, onClose, onMastered, worldContent:
                   onChange={(e) => setCode(e.target.value)}
                   rows={8}
                   spellCheck={false}
-                  className="w-full rounded-xl border border-border bg-[#0f172a] text-zinc-100 font-mono text-sm px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/40 resize-none"
+                  className="w-full rounded-xl border border-border bg-white text-zinc-900 font-mono text-sm px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/40 resize-none"
                   placeholder="# write your solution here"
                   disabled={busy}
                 />
@@ -947,7 +947,7 @@ export function LevelPlayer({ worldId, level, onClose, onMastered, worldContent:
                   onChange={(e) => setCode(e.target.value)}
                   rows={8}
                   spellCheck={false}
-                  className="w-full rounded-xl border border-border bg-[#0f172a] text-zinc-100 font-mono text-sm px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/40 resize-none"
+                  className="w-full rounded-xl border border-border bg-white text-zinc-900 font-mono text-sm px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/40 resize-none"
                   placeholder="# write your mastery solution here"
                   disabled={busy}
                 />
@@ -992,7 +992,7 @@ export function LevelPlayer({ worldId, level, onClose, onMastered, worldContent:
                     <label className="text-xs font-mono uppercase tracking-widest text-text-muted">Read-only — what will happen?</label>
                     <span className="text-xs font-mono text-primary">{language}</span>
                   </div>
-                  <pre className="w-full rounded-xl border border-border bg-[#0f172a] text-zinc-100 font-mono text-sm px-4 py-3 overflow-x-auto whitespace-pre-wrap">{currentStep.content.break_step.broken_code}</pre>
+                  <pre className="w-full rounded-xl border border-border bg-white text-zinc-900 font-mono text-sm px-4 py-3 overflow-x-auto whitespace-pre-wrap">{currentStep.content.break_step.broken_code}</pre>
                 </div>
               )}
               <div>
@@ -1004,7 +1004,7 @@ export function LevelPlayer({ worldId, level, onClose, onMastered, worldContent:
                   onKeyDown={(e) => {
                     if (e.key === "Enter" && prediction.trim() && !busy) handleAttempt(prediction, "break_step");
                   }}
-                  className="w-full rounded-xl border border-border bg-[#0f172a] text-zinc-100 font-mono text-sm px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                  className="w-full rounded-xl border border-border bg-white text-zinc-900 font-mono text-sm px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/40"
                   placeholder="e.g. it raises a TypeError because you cannot add a number to text"
                   disabled={busy}
                 />
@@ -1047,7 +1047,7 @@ export function LevelPlayer({ worldId, level, onClose, onMastered, worldContent:
                     <label className="text-xs font-mono uppercase tracking-widest text-text-muted">Broken code</label>
                     <span className="text-xs font-mono text-primary">{language}</span>
                   </div>
-                  <pre className="w-full rounded-xl border border-border bg-[#0f172a] text-zinc-100 font-mono text-sm px-4 py-3 overflow-x-auto whitespace-pre-wrap">{currentStep.content.debug.buggy_code}</pre>
+                  <pre className="w-full rounded-xl border border-border bg-white text-zinc-900 font-mono text-sm px-4 py-3 overflow-x-auto whitespace-pre-wrap">{currentStep.content.debug.buggy_code}</pre>
                 </div>
               )}
               <div>
@@ -1057,7 +1057,7 @@ export function LevelPlayer({ worldId, level, onClose, onMastered, worldContent:
                   onChange={(e) => setCode(e.target.value)}
                   rows={8}
                   spellCheck={false}
-                  className="w-full rounded-xl border border-border bg-[#0f172a] text-zinc-100 font-mono text-sm px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/40 resize-none"
+                  className="w-full rounded-xl border border-border bg-white text-zinc-900 font-mono text-sm px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/40 resize-none"
                   placeholder="# paste your fix"
                   disabled={busy}
                 />
@@ -1127,14 +1127,14 @@ export function LevelPlayer({ worldId, level, onClose, onMastered, worldContent:
                 ))}
               </div>
 
-              <div className="rounded-xl bg-[#0f172a] p-3">
-                <div className="text-[11px] font-mono text-zinc-400 mb-1">your code ({language})</div>
+              <div className="rounded-xl bg-slate-100 p-3">
+                <div className="text-[11px] font-mono text-zinc-500 mb-1">your code ({language})</div>
                 <textarea
                   value={code}
                   onChange={(e) => setCode(e.target.value)}
                   rows={8}
                   spellCheck={false}
-                  className="w-full bg-transparent font-mono text-sm text-zinc-100 placeholder:text-zinc-500 focus:outline-none resize-none min-h-[160px]"
+                  className="w-full bg-transparent font-mono text-sm text-zinc-900 placeholder:text-zinc-500 focus:outline-none resize-none min-h-[160px]"
                   placeholder={codeStarter as string || "# write your solution here"}
                 />
               </div>

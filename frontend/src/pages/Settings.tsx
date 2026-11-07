@@ -84,7 +84,7 @@ export default function Settings() {
               className={`flex items-center gap-2 px-4 py-3 font-medium border-b-2 transition-colors ${
                 activeTab === tab.id
                   ? "border-cyber-blue text-cyber-blue"
-                  : "border-transparent text-gray-500 hover:text-gray-300"
+                  : "border-transparent text-gray-500 hover:text-gray-600"
               }`}
             >
               <tab.icon size={18} />
@@ -102,7 +102,7 @@ export default function Settings() {
           >
             <h2 className="text-xl font-display font-bold text-text-primary">Profile Information</h2>
             <div>
-              <label className="block text-xs font-mono uppercase tracking-wider text-gray-400 mb-1.5">Full Name</label>
+              <label className="block text-xs font-mono uppercase tracking-wider text-gray-500 mb-1.5">Full Name</label>
               <div className="relative">
                 <User size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
                 <input
@@ -115,7 +115,7 @@ export default function Settings() {
               </div>
             </div>
             <div>
-              <label className="block text-xs font-mono uppercase tracking-wider text-gray-400 mb-1.5">Email</label>
+              <label className="block text-xs font-mono uppercase tracking-wider text-gray-500 mb-1.5">Email</label>
               <div className="relative">
                 <Mail size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
                 <input
@@ -149,7 +149,7 @@ export default function Settings() {
           >
             <h2 className="text-xl font-display font-bold text-text-primary">Change Password</h2>
             <div>
-              <label className="block text-xs font-mono uppercase tracking-wider text-gray-400 mb-1.5">Current Password</label>
+              <label className="block text-xs font-mono uppercase tracking-wider text-gray-500 mb-1.5">Current Password</label>
               <div className="relative">
                 <Lock size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
                 <input
@@ -162,7 +162,7 @@ export default function Settings() {
               </div>
             </div>
             <div>
-              <label className="block text-xs font-mono uppercase tracking-wider text-gray-400 mb-1.5">New Password</label>
+              <label className="block text-xs font-mono uppercase tracking-wider text-gray-500 mb-1.5">New Password</label>
               <div className="relative">
                 <Lock size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
                 <input
@@ -200,7 +200,7 @@ export default function Settings() {
                 <Crown size={24} className={isPremium ? "text-cyber-blue" : "text-gray-500"} />
                 <div>
                   <p className="font-bold text-lg capitalize text-text-primary">{user?.plan || "Free"} Plan</p>
-                  <p className="text-sm text-gray-400">
+                  <p className="text-sm text-gray-500">
                     {isPremium
                       ? "You have unlimited access to all features"
                       : "Upgrade for unlimited access to all features"}

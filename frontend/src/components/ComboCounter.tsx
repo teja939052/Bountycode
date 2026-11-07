@@ -33,12 +33,12 @@ export default function ComboCounter({ combo = 0, multiplier = 1, visible = true
               ⚡
             </motion.span>
             <div className="text-center">
-              <div className="text-xs font-mono uppercase tracking-widest text-white/70">{label}</div>
-              <div className="text-2xl font-black text-white leading-none">{combo}x</div>
+              <div className="text-xs font-mono uppercase tracking-widest text-slate-900">{label}</div>
+              <div className="text-2xl font-black text-slate-900 leading-none">{combo}x</div>
             </div>
             <div className="text-right">
-              <div className="text-[10px] font-mono text-white/70">MULTIPLIER</div>
-              <div className="text-lg font-bold text-yellow-300">x{multiplier.toFixed(2)}</div>
+              <div className="text-[10px] font-mono text-slate-900">MULTIPLIER</div>
+              <div className="text-lg font-bold text-yellow-600">x{multiplier.toFixed(2)}</div>
             </div>
           </div>
         </motion.div>

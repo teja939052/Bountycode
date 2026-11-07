@@ -74,8 +74,8 @@ export default function CandyNode({
       <span
         className={`absolute -left-1 -top-1 z-20 flex h-6 w-6 items-center justify-center rounded-full border text-[11px] font-black shadow-md ${
           locked
-            ? "border-white/10 bg-[#232331] text-text-primary/40"
-            : "border-white/60 bg-white text-[#1a1a24]"
+            ? "border-slate-200 bg-white text-text-primary/40"
+            : "border-slate-200 bg-white text-[#1a1a24]"
         }`}
       >
         {number}
@@ -87,19 +87,19 @@ export default function CandyNode({
               <Star
                 key={i}
                 size={12}
-                className="fill-amber-400 text-amber-400 drop-shadow"
+                className="fill-amber-400 text-amber-600 drop-shadow"
               />
             )
           )}
         </span>
       )}
       {milestone && !locked && (
-        <span className="absolute -bottom-1 -right-1 z-20 flex h-6 w-6 items-center justify-center rounded-full bg-amber-400 shadow-md ring-2 ring-white/80">
+        <span className="absolute -bottom-1 -right-1 z-20 flex h-6 w-6 items-center justify-center rounded-full bg-amber-400 shadow-md ring-2 ring-slate-200">
           <Crown size={13} className="text-amber-900" />
         </span>
       )}
       {current && (
-        <span className="absolute -bottom-8 left-1/2 z-20 flex -translate-x-1/2 items-center gap-1 whitespace-nowrap rounded-full bg-gradient-to-r from-rose-500 to-amber-400 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-text-primary shadow-xl ring-2 ring-white/40">
+        <span className="absolute -bottom-8 left-1/2 z-20 flex -translate-x-1/2 items-center gap-1 whitespace-nowrap rounded-full bg-gradient-to-r from-rose-500 to-amber-400 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-white shadow-xl ring-2 ring-white/40">
           <Play size={10} className="fill-white" /> Play
         </span>
       )}
@@ -114,7 +114,7 @@ export default function CandyNode({
         className="relative"
       >
         <div className="absolute -inset-2 animate-pulse rounded-full bg-white border-border/15 blur-md" />
-        <div className="candy-spin absolute -inset-[7px] rounded-full border-2 border-dashed border-white/30" />
+        <div className="candy-spin absolute -inset-[7px] rounded-full border-2 border-dashed border-slate-200" />
         {body}
       </motion.div>
     );

@@ -3,21 +3,21 @@ import useReducedMotion from "../../hooks/useReducedMotion";
 
 const THEMES = {
   arcade: {
-    base: "from-[#070B18] via-[#0B1632] to-[#120B23]",
+    base: "from-slate-100 via-slate-100 to-slate-100",
     glowA: "bg-brand-sky/25",
     glowB: "bg-brand-lavender/20",
     glowC: "bg-brand-gold/20",
     grid: "opacity-[0.14]",
   },
   dojo: {
-    base: "from-[#05060C] via-[#0C1120] to-[#1A0C12]",
+    base: "from-slate-100 via-slate-100 to-slate-100",
     glowA: "bg-red-500/18",
     glowB: "bg-brand-gold/12",
     glowC: "bg-brand-sky/12",
     grid: "opacity-[0.12]",
   },
   candy: {
-    base: "from-[#1A1033] via-[#1B204A] to-[#2B0F25]",
+    base: "from-slate-100 via-slate-100 to-slate-100",
     glowA: "bg-fuchsia-400/20",
     glowB: "bg-cyan-300/18",
     glowC: "bg-lime-300/16",
@@ -28,7 +28,7 @@ const THEMES = {
 const SHAPES = [
   {
     className: "left-[5%] top-[12%] h-40 w-40 rounded-[2rem] rotate-12",
-    color: "bg-white border-border/6 border-white/10",
+    color: "bg-white border-border/6 border-slate-200",
     motion: { y: [0, -14, 0], x: [0, 8, 0], rotate: [12, 18, 12] },
   },
   {
@@ -90,7 +90,7 @@ export default function ArcadeBackdrop({ variant = "arcade", className = "", chi
         </div>
       )}
 
-      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white/20 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-slate-100 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/25 to-transparent" />
       {children}
     </div>

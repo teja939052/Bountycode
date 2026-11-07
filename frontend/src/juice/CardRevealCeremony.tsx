@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 const RARITY_COLORS = {
-  common: { border: '#64748b', glow: 'rgba(100,116,139,0.3)', bg: 'from-slate-700 to-slate-800' },
-  uncommon: { border: '#34d399', glow: 'rgba(52,211,153,0.3)', bg: 'from-emerald-700 to-emerald-900' },
-  rare: { border: '#3b82f6', glow: 'rgba(59,130,246,0.3)', bg: 'from-blue-700 to-blue-900' },
-  epic: { border: '#8b5cf6', glow: 'rgba(139,92,246,0.3)', bg: 'from-purple-700 to-purple-900' },
-  legendary: { border: '#f59e0b', glow: 'rgba(245,158,11,0.3)', bg: 'from-amber-600 to-amber-800' },
+  common: { border: '#64748b', glow: 'rgba(100,116,139,0.3)', bg: 'from-slate-100 to-slate-100' },
+  uncommon: { border: '#34d399', glow: 'rgba(52,211,153,0.3)', bg: 'from-emerald-50 to-emerald-50' },
+  rare: { border: '#3b82f6', glow: 'rgba(59,130,246,0.3)', bg: 'from-blue-50 to-blue-50' },
+  epic: { border: '#8b5cf6', glow: 'rgba(139,92,246,0.3)', bg: 'from-purple-50 to-purple-50' },
+  legendary: { border: '#f59e0b', glow: 'rgba(245,158,11,0.3)', bg: 'from-amber-600 to-amber-50' },
 };
 
 export default function CardRevealCeremony({ card, onDismiss }) {
@@ -51,13 +51,13 @@ export default function CardRevealCeremony({ card, onDismiss }) {
               boxShadow: `0 0 40px ${colors.glow}`,
             }}>
             <div className="text-5xl mb-3">{card?.emoji || '💎'}</div>
-            <div className="text-lg font-bold text-white text-center">{card?.name || 'Mystery Card'}</div>
+            <div className="text-lg font-bold text-slate-900 text-center">{card?.name || 'Mystery Card'}</div>
             <div className="text-xs mt-2 px-3 py-1 rounded-full font-medium"
               style={{ backgroundColor: colors.border + '40', color: colors.border }}>
               {card?.rarity || 'Common'}
             </div>
             {card?.description && (
-              <div className="text-xs text-gray-400 text-center mt-3">{card.description}</div>
+              <div className="text-xs text-gray-500 text-center mt-3">{card.description}</div>
             )}
             <div className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl" style={{ backgroundColor: colors.border }} />
           </div>

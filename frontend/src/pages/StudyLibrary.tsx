@@ -22,17 +22,17 @@ import ArcadeBackdrop from "../components/learning/ArcadeBackdrop";
 const LEVEL_STYLES = {
   beginner: "text-brand-primary border-brand-primary/20 bg-brand-primary/10",
   intermediate: "text-brand-gold border-amber-500/30 bg-amber-500/10",
-  advanced: "text-rose-400 border-rose-500/30 bg-rose-500/10",
+  advanced: "text-rose-600 border-rose-500/30 bg-rose-500/10",
 };
 
 const CATEGORY_COLORS = {
   "html-css": "text-[#E34F26] border-[#E34F26]/30 bg-[#E34F26]/10",
-  javascript: "text-[#F7DF1E] border-[#F7DF1E]/30 bg-[#F7DF1E]/10",
-  typescript: "text-[#3178C6] border-[#3178C6]/30 bg-[#3178C6]/10",
+  javascript: "text-slate-700 border-[#F7DF1E]/30 bg-[#F7DF1E]/10",
+  typescript: "text-[#3178C6] border-slate-200 bg-slate-100",
   react: "text-[#61DAFB] border-[#61DAFB]/30 bg-[#61DAFB]/10",
   node: "text-[#339933] border-[#339933]/30 bg-[#339933]/10",
-  sql: "text-[#4479A1] border-[#4479A1]/30 bg-[#4479A1]/10",
-  "full-stack": "text-[#8B5CF6] border-[#8B5CF6]/30 bg-[#8B5CF6]/10",
+  sql: "text-[#4479A1] border-slate-200 bg-slate-100",
+  "full-stack": "text-[#8B5CF6] border-slate-200 bg-slate-100",
 };
 
 function CategoryPill({ categoryId, name, icon, color, active, onClick }) {
@@ -41,8 +41,8 @@ function CategoryPill({ categoryId, name, icon, color, active, onClick }) {
       onClick={onClick}
       className={`flex items-center gap-2 rounded-xl border px-3 py-2 text-sm font-mono transition-all ${
         active
-          ? "border-white/40 bg-white border-border/10 text-text-primary"
-          : "border-brand-primary/10 bg-white/[0.03] text-text-light hover:border-white/25 hover:bg-white/[0.06]"
+          ? "border-slate-200 bg-white border-border/10 text-text-primary"
+          : "border-brand-primary/10 bg-slate-50 text-text-light hover:border-slate-200 hover:bg-slate-50"
       }`}
     >
       <span className="text-base leading-none">{icon}</span>
@@ -59,7 +59,7 @@ function ArticleCard({ article, onOpen }) {
       <button onClick={() => onOpen(article.id)} className="block h-full w-full text-left">
         <div className="arena-card flex h-full flex-col p-5">
           <div className="flex items-center justify-between gap-2">
-            <span className={`rounded-full border px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider ${CATEGORY_COLORS[cat] || "border-white/20 bg-white border-border shadow-card text-text-light"}`}>
+            <span className={`rounded-full border px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider ${CATEGORY_COLORS[cat] || "border-slate-200 bg-white border-border shadow-card text-text-light"}`}>
               {cat.replace("-", " & ")}
             </span>
             <span className="flex items-center gap-1 text-[10px] font-mono text-text-light">
@@ -67,7 +67,7 @@ function ArticleCard({ article, onOpen }) {
             </span>
           </div>
 
-          <h3 className="mt-3 font-display font-bold text-text-primary group-hover:text-white transition-colors">
+          <h3 className="mt-3 font-display font-bold text-text-primary group-hover:text-slate-900 transition-colors">
             {article.title}
           </h3>
           <p className="mt-2 text-sm leading-6 text-text-muted line-clamp-3">{article.summary}</p>
@@ -116,11 +116,11 @@ function QuizBlock({ quiz }) {
               {q.options.map((opt, oi) => {
                 const isAnswer = oi === q.answer;
                 const isChosen = picked[qi] === oi;
-                let cls = "border-brand-primary/10 bg-surface-card/10 text-text-secondary hover:border-cyber-purple/40 hover:bg-white/[0.05]";
+                let cls = "border-brand-primary/10 bg-surface-card/10 text-text-secondary hover:border-cyber-purple/40 hover:bg-slate-50";
                 if (revealed[qi] || isPicked) {
                   if (isAnswer) cls = "border-brand-primary/30 bg-brand-primary/10 text-brand-primary";
-                  else if (isChosen) cls = "border-rose-400/40 bg-rose-500/10 text-rose-300";
-                  else cls = "border-white/5 bg-white/[0.01] text-text-muted";
+                  else if (isChosen) cls = "border-rose-400/40 bg-rose-500/10 text-rose-600";
+                  else cls = "border-slate-200 bg-slate-50 text-text-muted";
                 }
                 return (
                   <button
@@ -132,7 +132,7 @@ function QuizBlock({ quiz }) {
                     <span className="mr-2 font-mono text-text-light">{String.fromCharCode(65 + oi)}.</span>
                     {opt}
                     {revealed[qi] && isAnswer && <CheckCircle2 size={12} className="ml-2 inline text-brand-primary" />}
-                    {revealed[qi] && isChosen && !isAnswer && <XCircle size={12} className="ml-2 inline text-rose-400" />}
+                    {revealed[qi] && isChosen && !isAnswer && <XCircle size={12} className="ml-2 inline text-rose-600" />}
                   </button>
                 );
               })}
@@ -153,7 +153,7 @@ function QuizBlock({ quiz }) {
               )}
             </div>
             {revealed[qi] && q.explanation && (
-              <p className="mt-3 rounded-xl border border-white/5 bg-surface-2 p-3 text-xs leading-6 text-text-secondary">
+              <p className="mt-3 rounded-xl border border-slate-200 bg-surface-2 p-3 text-xs leading-6 text-text-secondary">
                 <Lightbulb size={12} className="mr-1 inline text-brand-gold" />
                 {q.explanation}
               </p>
@@ -189,7 +189,7 @@ function ExerciseBlock({ exercise }) {
             className={`rounded-lg border px-3 py-1.5 text-xs font-mono transition-colors ${
               tab === t.id
                 ? "border-brand-gold/40 bg-brand-gold/10 text-brand-gold"
-                : "border-brand-primary/10 bg-surface-card/10 text-text-light hover:border-white/25"
+                : "border-brand-primary/10 bg-surface-card/10 text-text-light hover:border-slate-200"
             }`}
           >
             {t.label}
@@ -227,14 +227,14 @@ function ArticleModal({ article, onClose }) {
         >
           <button
             onClick={onClose}
-            className="absolute right-4 top-4 rounded-lg border border-brand-primary/10 p-1.5 text-text-light transition-colors hover:border-white/30 hover:text-white"
+            className="absolute right-4 top-4 rounded-lg border border-brand-primary/10 p-1.5 text-text-light transition-colors hover:border-slate-200 hover:text-slate-900"
             aria-label="Close article"
           >
             <X size={16} />
           </button>
 
           <div className="flex flex-wrap items-center gap-2 pr-8">
-            <span className={`rounded-full border px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider ${CATEGORY_COLORS[article.category] || "border-white/20 bg-white border-border shadow-card text-text-light"}`}>
+            <span className={`rounded-full border px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider ${CATEGORY_COLORS[article.category] || "border-slate-200 bg-white border-border shadow-card text-text-light"}`}>
               {article.category.replace("-", " & ")}
             </span>
             <span className={`rounded-full border px-2 py-0.5 text-[10px] font-mono uppercase ${LEVEL_STYLES[article.level] || LEVEL_STYLES.beginner}`}>
@@ -250,7 +250,7 @@ function ArticleModal({ article, onClose }) {
 
           <div className="mt-6 space-y-6">
             {article.sections.map((section, i) => (
-              <div key={i} className="rounded-2xl border border-white/5 bg-surface-card/10 p-5">
+              <div key={i} className="rounded-2xl border border-slate-200 bg-surface-card/10 p-5">
                 <h2 className="flex items-center gap-2 font-display font-bold text-brand-sky">
                   <span className="text-xs font-mono text-text-light">{String(i + 1).padStart(2, "0")}</span>
                   {section.heading}
@@ -361,7 +361,7 @@ export default function StudyLibrary() {
               <h1 className="mt-4 text-3xl font-black tracking-tight text-text-primary md:text-5xl">
                 In-depth guides that go beyond the tutorials
               </h1>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-200 md:text-base">
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-700 md:text-base">
                 W3Schools-depth study articles for every track in the Learning Hub — theory, analogies,
                 real code, common mistakes, and takeaways. Learn the why, not just the syntax.
               </p>
@@ -374,7 +374,7 @@ export default function StudyLibrary() {
                   value={query}
                   onChange={handleSearch}
                   placeholder="Search topics — 'closures', 'joins', 'grid'..."
-                  className="w-full rounded-xl border border-white/15 bg-white border-border shadow-card py-3 pl-10 pr-4 text-sm text-text-primary placeholder:text-slate-400 focus:border-cyber-blue focus:outline-none"
+                  className="w-full rounded-xl border border-slate-200 bg-white border-border shadow-card py-3 pl-10 pr-4 text-sm text-text-primary placeholder:text-slate-500 focus:border-cyber-blue focus:outline-none"
                 />
               </div>
             </div>

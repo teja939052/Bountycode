@@ -87,15 +87,15 @@ export default function Leaderboard() {
   };
 
   const getZoneColor = (index: number, total: number, zone?: string | null) => {
-    if (zone === "promotion") return "text-emerald-400";
-    if (zone === "demotion") return "text-red-400";
-    if (zone === "safe") return "text-sky-400";
-    if (total <= 0) return "text-gray-400";
+    if (zone === "promotion") return "text-emerald-600";
+    if (zone === "demotion") return "text-red-600";
+    if (zone === "safe") return "text-sky-600";
+    if (total <= 0) return "text-gray-500";
     const pct = (index + 1) / total;
-    if (pct <= 0.1) return "text-emerald-400";
-    if (pct <= 0.3) return "text-sky-400";
-    if (pct >= 0.9) return "text-red-400";
-    return "text-gray-400";
+    if (pct <= 0.1) return "text-emerald-600";
+    if (pct <= 0.3) return "text-sky-600";
+    if (pct >= 0.9) return "text-red-600";
+    return "text-gray-500";
   };
 
   const getZoneLabel = (index: number, total: number, zone?: string | null) => {
@@ -117,9 +117,9 @@ export default function Leaderboard() {
       <div className="min-h-screen py-8 px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8 animate-pulse">
-            <div className="h-4 bg-gray-700/40 rounded w-32 mx-auto mb-2" />
-            <div className="h-8 bg-gray-700/40 rounded w-48 mx-auto mb-2" />
-            <div className="h-3 bg-gray-700/30 rounded w-56 mx-auto" />
+            <div className="h-4 bg-slate-100 rounded w-32 mx-auto mb-2" />
+            <div className="h-8 bg-slate-100 rounded w-48 mx-auto mb-2" />
+            <div className="h-3 bg-slate-100 rounded w-56 mx-auto" />
           </div>
           <LeaderboardRowSkeleton count={5} />
         </div>
@@ -158,7 +158,7 @@ export default function Leaderboard() {
               className={`px-4 py-2 rounded-xl text-xs font-mono font-bold uppercase tracking-wider transition-all duration-200 border ${
                 timeframe === tf.id
                   ? 'bg-cyber-blue/15 text-cyber-blue border-cyber-blue/40 shadow-[0_0_12px_rgba(76,201,240,0.12)]'
-                  : 'border-transparent text-gray-500 hover:text-gray-300 hover:bg-gray-50'
+                  : 'border-transparent text-gray-500 hover:text-gray-600 hover:bg-gray-50'
               }`}
             >
               <span className="mr-1.5">{tf.icon}</span>
@@ -217,12 +217,12 @@ export default function Leaderboard() {
                       </p>
                     )}
                     {(myRankServer?.next_up ? myRankServer.next_up.xp_gap : xpToNext) > 0 && (
-                      <p className="text-[10px] font-mono text-emerald-400">
+                      <p className="text-[10px] font-mono text-emerald-600">
                         {((myRankServer?.next_up ? myRankServer.next_up.xp_gap : xpToNext) || 0).toLocaleString()} Diamonds to #{((myRankServer?.rank ?? myRankFromMeta) || 1) - 1}
                       </p>
                     )}
                     {((myRankServer?.next_up ? myRankServer.next_up.xp_gap : xpToNext) || 0) === 0 && typeof myIndex === "number" && myIndex > 0 && (
-                      <p className="text-[10px] font-mono text-emerald-400">You can rank up now!</p>
+                      <p className="text-[10px] font-mono text-emerald-600">You can rank up now!</p>
                     )}
                   </div>
                 </div>
@@ -236,7 +236,7 @@ export default function Leaderboard() {
         {leaderboard.length === 0 ? (
           <Card rarity="common" hoverEffect={false} className="text-center py-12">
             <div className="text-4xl mb-3">🏆</div>
-            <p className="text-gray-400 text-sm">No rankings yet</p>
+            <p className="text-gray-500 text-sm">No rankings yet</p>
             <p className="text-xs text-gray-600 mt-1 font-mono">
               Be the first to practice and climb the ranks!
             </p>
@@ -266,7 +266,7 @@ export default function Leaderboard() {
                     flex items-center gap-2 sm:gap-4 px-3 sm:px-4 py-2.5 sm:py-3 rounded-2xl border transition-all duration-200 mb-1.5
                     ${isMe
                       ? 'bg-cyber-blue/8 border-cyber-blue/30 shadow-[0_0_16px_rgba(76,201,240,0.1)]'
-                      : 'bg-white/40 dark:bg-gray-900/30 border-gray-200/60 dark:border-gray-700/40 hover:border-gray-300 dark:hover:border-gray-600'
+                      : 'bg-slate-200 border-gray-200/60 hover:border-gray-300'
                     }
                   `}
                 >
