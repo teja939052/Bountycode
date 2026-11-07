@@ -21,7 +21,7 @@ const BG_COLORS = [
 const BORDER_STYLES = [
   { name: "None", class: "border-0" },
   { name: "Glow", class: "border-2 border-indigo-400 shadow-[0_0_12px_rgba(99,102,241,0.5)]" },
-  { name: "Pixel", class: "border-2 border-white rounded-none" },
+  { name: "Pixel", class: "border-2 border-slate-200 rounded-none" },
   { name: "Gradient", class: "border-2 border-transparent bg-gradient-to-br from-indigo-400 to-amber-400 bg-clip-padding p-[2px]" },
 ];
 
@@ -58,8 +58,8 @@ function PixelGrid({ value, onChange }) {
 
   return (
     <div className="flex flex-col items-center gap-1">
-      <p className="text-xs text-gray-400 mb-1">Click to toggle pixels (8x8)</p>
-      <div className="bg-gray-800 p-2 rounded-xl inline-block">
+      <p className="text-xs text-gray-500 mb-1">Click to toggle pixels (8x8)</p>
+      <div className="bg-slate-100 p-2 rounded-xl inline-block">
         {grid.map((row, ri) => (
           <div key={ri} className="flex gap-0.5">
             {row.map((col, ci) => (
@@ -69,7 +69,7 @@ function PixelGrid({ value, onChange }) {
                 className={`w-5 h-5 border transition-colors ${
                   col
                     ? "bg-indigo-400 border-indigo-500 shadow-[0_0_4px_rgba(99,102,241,0.5)]"
-                    : "bg-gray-700/50 border-gray-600/30 hover:bg-gray-600/50"
+                    : "bg-white border-slate-100 hover:bg-white"
                 }`}
                 onClick={() => toggle(ri, ci)}
                 aria-label={`Pixel ${ri},${ci}`}
@@ -80,7 +80,7 @@ function PixelGrid({ value, onChange }) {
       </div>
       <button
         type="button"
-        className="text-xs text-gray-400 hover:text-white mt-1 transition-colors"
+        className="text-xs text-gray-500 hover:text-slate-900 mt-1 transition-colors"
         onClick={() => onChange(Array.from({ length: 8 }, () => Array(8).fill(false)))}
       >
         Clear
@@ -154,7 +154,7 @@ export default function AvatarCustomizer({ open, onClose, onSave, currentAvatar 
         const sizeNum = fontSize * 2;
         return (
           <div className={`relative ${sizeClass}`}>
-            <div className={`w-full h-full ${shapeClass} bg-gray-800 overflow-hidden relative`} style={{ minWidth: sizeNum, minHeight: sizeNum }}>
+            <div className={`w-full h-full ${shapeClass} bg-slate-100 overflow-hidden relative`} style={{ minWidth: sizeNum, minHeight: sizeNum }}>
               {drawPixelAvatar(pixelGrid, sizeNum)}
             </div>
           </div>
@@ -198,40 +198,40 @@ export default function AvatarCustomizer({ open, onClose, onSave, currentAvatar 
           <div className="fixed inset-0 bg-surface-2 backdrop-blur-sm" onClick={onClose} />
 
           <motion.div
-            className="relative w-full max-w-lg bg-gray-900 border border-gray-700/50 rounded-2xl shadow-2xl overflow-hidden"
+            className="relative w-full max-w-lg bg-white border border-slate-200 rounded-2xl shadow-2xl overflow-hidden"
             initial={reduced ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={reduced ? { opacity: 0 } : { opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-700/50">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200">
               <h2 className="text-lg font-bold text-text-primary pixel-font tracking-wider">
                 ⚔️ Avatar Customization
               </h2>
               <button
                 onClick={onClose}
-                className="w-8 h-8 rounded-lg bg-gray-800 hover:bg-gray-700 flex items-center justify-center text-gray-400 hover:text-white transition-colors"
+                className="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-100 flex items-center justify-center text-gray-500 hover:text-slate-900 transition-colors"
               >
                 <X size={16} />
               </button>
             </div>
 
             {/* Current avatar preview */}
-            <div className="flex justify-center py-6 bg-gray-800/50">
+            <div className="flex justify-center py-6 bg-slate-100">
               {renderAvatar("w-20 h-20", "text-2xl", 40)}
             </div>
 
             {/* Tabs */}
-            <div className="flex border-b border-gray-700/50 px-2">
+            <div className="flex border-b border-slate-200 px-2">
               {tabs.map(t => (
                 <button
                   key={t.id}
                   type="button"
                   className={`px-4 py-3 text-xs font-medium tracking-wider uppercase transition-colors ${
                     tab === t.id
-                      ? "text-indigo-400 border-b-2 border-indigo-400"
-                      : "text-gray-500 hover:text-gray-300"
+                      ? "text-indigo-600 border-b-2 border-indigo-400"
+                      : "text-gray-500 hover:text-gray-600"
                   }`}
                   onClick={() => setTab(t.id)}
                 >
@@ -245,7 +245,7 @@ export default function AvatarCustomizer({ open, onClose, onSave, currentAvatar 
               {tab === "style" && (
                 <div className="space-y-5">
                   <div>
-                    <p className="text-xs text-gray-400 mb-2 uppercase tracking-wider">Shape</p>
+                    <p className="text-xs text-gray-500 mb-2 uppercase tracking-wider">Shape</p>
                     <div className="flex gap-2">
                       {SHAPE_STYLES.map((s, i) => (
                         <button
@@ -253,8 +253,8 @@ export default function AvatarCustomizer({ open, onClose, onSave, currentAvatar 
                           type="button"
                           className={`px-4 py-2 rounded-lg text-xs font-medium transition-all ${
                             shape === i
-                              ? "bg-indigo-500/20 text-indigo-300 border border-indigo-500/30"
-                              : "bg-gray-800 text-gray-400 border border-gray-700/50 hover:border-gray-600"
+                              ? "bg-indigo-500/20 text-indigo-600 border border-indigo-500/30"
+                              : "bg-white text-gray-500 border border-slate-200 hover:border-slate-200"
                           }`}
                           onClick={() => setShape(i)}
                         >
@@ -265,7 +265,7 @@ export default function AvatarCustomizer({ open, onClose, onSave, currentAvatar 
                   </div>
 
                   <div>
-                    <p className="text-xs text-gray-400 mb-2 uppercase tracking-wider">Border</p>
+                    <p className="text-xs text-gray-500 mb-2 uppercase tracking-wider">Border</p>
                     <div className="flex gap-2 flex-wrap">
                       {BORDER_STYLES.map((b, i) => (
                         <button
@@ -273,8 +273,8 @@ export default function AvatarCustomizer({ open, onClose, onSave, currentAvatar 
                           type="button"
                           className={`px-4 py-2 rounded-lg text-xs font-medium transition-all ${
                             border === i
-                              ? "bg-indigo-500/20 text-indigo-300 border border-indigo-500/30"
-                              : "bg-gray-800 text-gray-400 border border-gray-700/50 hover:border-gray-600"
+                              ? "bg-indigo-500/20 text-indigo-600 border border-indigo-500/30"
+                              : "bg-white text-gray-500 border border-slate-200 hover:border-slate-200"
                           }`}
                           onClick={() => setBorder(i)}
                         >
@@ -285,7 +285,7 @@ export default function AvatarCustomizer({ open, onClose, onSave, currentAvatar 
                   </div>
 
                   <div>
-                    <p className="text-xs text-gray-400 mb-2 uppercase tracking-wider">Avatar Mode</p>
+                    <p className="text-xs text-gray-500 mb-2 uppercase tracking-wider">Avatar Mode</p>
                     <div className="grid grid-cols-3 gap-2">
                       {[
                         { id: "initials", label: "Initials", icon: "Aa" },
@@ -297,8 +297,8 @@ export default function AvatarCustomizer({ open, onClose, onSave, currentAvatar 
                           type="button"
                           className={`px-4 py-3 rounded-lg text-xs font-medium transition-all flex flex-col items-center gap-1 ${
                             mode === m.id
-                              ? "bg-indigo-500/20 text-indigo-300 border border-indigo-500/30"
-                              : "bg-gray-800 text-gray-400 border border-gray-700/50 hover:border-gray-600"
+                              ? "bg-indigo-500/20 text-indigo-600 border border-indigo-500/30"
+                              : "bg-white text-gray-500 border border-slate-200 hover:border-slate-200"
                           }`}
                           onClick={() => setMode(m.id)}
                         >
@@ -315,13 +315,13 @@ export default function AvatarCustomizer({ open, onClose, onSave, currentAvatar 
                 <div className="space-y-5">
                   {mode === "initials" && (
                     <div>
-                      <p className="text-xs text-gray-400 mb-2 uppercase tracking-wider">Initials</p>
+                      <p className="text-xs text-gray-500 mb-2 uppercase tracking-wider">Initials</p>
                       <input
                         type="text"
                         maxLength={2}
                         value={initials}
                         onChange={(e) => setInitials(e.target.value.toUpperCase())}
-                        className="w-full px-4 py-2 bg-gray-800 border border-gray-700/50 rounded-lg text-text-primary text-center text-xl font-bold tracking-widest focus:outline-none focus:border-indigo-500/50"
+                        className="w-full px-4 py-2 bg-white border border-slate-200 rounded-lg text-text-primary text-center text-xl font-bold tracking-widest focus:outline-none focus:border-indigo-500/50"
                         placeholder="U"
                       />
                     </div>
@@ -329,7 +329,7 @@ export default function AvatarCustomizer({ open, onClose, onSave, currentAvatar 
 
                   {mode === "emoji" && (
                     <div>
-                      <p className="text-xs text-gray-400 mb-2 uppercase tracking-wider">Choose Emoji</p>
+                      <p className="text-xs text-gray-500 mb-2 uppercase tracking-wider">Choose Emoji</p>
                       <div className="grid grid-cols-6 gap-1">
                         {AVATAR_EMOJIS.map((e, i) => (
                           <button
@@ -338,7 +338,7 @@ export default function AvatarCustomizer({ open, onClose, onSave, currentAvatar 
                             className={`w-10 h-10 flex items-center justify-center text-lg rounded-lg transition-all ${
                               emoji === i
                                 ? "bg-indigo-500/30 ring-2 ring-indigo-400 scale-110"
-                                : "bg-gray-800 hover:bg-gray-700"
+                                : "bg-slate-100 hover:bg-slate-100"
                             }`}
                             onClick={() => setEmoji(i)}
                           >
@@ -358,14 +358,14 @@ export default function AvatarCustomizer({ open, onClose, onSave, currentAvatar 
               {tab === "color" && (
                 <div className="space-y-5">
                   <div>
-                    <p className="text-xs text-gray-400 mb-2 uppercase tracking-wider">Background Color</p>
+                    <p className="text-xs text-gray-500 mb-2 uppercase tracking-wider">Background Color</p>
                     <div className="grid grid-cols-6 gap-2">
                       {BG_COLORS.map((c, i) => (
                         <button
                           key={c.name}
                           type="button"
                           className={`w-10 h-10 rounded-lg bg-gradient-to-br ${c.class} transition-all ${
-                            bgColor === i ? "ring-2 ring-white ring-offset-2 ring-offset-gray-900 scale-110" : ""
+                            bgColor === i ? "ring-2 ring-slate-200 ring-offset-2 ring-offset-gray-900 scale-110" : ""
                           }`}
                           onClick={() => setBgColor(i)}
                           title={c.name}
@@ -376,14 +376,14 @@ export default function AvatarCustomizer({ open, onClose, onSave, currentAvatar 
 
                   {mode === "initials" && (
                     <div>
-                      <p className="text-xs text-gray-400 mb-2 uppercase tracking-wider">Initials Color</p>
+                      <p className="text-xs text-gray-500 mb-2 uppercase tracking-wider">Initials Color</p>
                       <div className="grid grid-cols-6 gap-2">
                         {INITIAL_COLORS.map((c, i) => (
                           <button
                             key={i}
                             type="button"
                             className={`w-10 h-10 rounded-lg transition-all ${
-                              initialsColor === i ? "ring-2 ring-white ring-offset-2 ring-offset-gray-900 scale-110" : ""
+                              initialsColor === i ? "ring-2 ring-slate-200 ring-offset-2 ring-offset-gray-900 scale-110" : ""
                             }`}
                             style={{ backgroundColor: c }}
                             onClick={() => setInitialsColor(i)}
@@ -397,12 +397,12 @@ export default function AvatarCustomizer({ open, onClose, onSave, currentAvatar 
 
               {tab === "preview" && (
                 <div>
-                  <p className="text-xs text-gray-400 mb-4 uppercase tracking-wider">How it looks</p>
+                  <p className="text-xs text-gray-500 mb-4 uppercase tracking-wider">How it looks</p>
                   <div className="space-y-4">
                     {PREVIEW_SIZES.map((p) => (
-                      <div key={p.label} className="flex items-center gap-4 bg-gray-800/50 rounded-xl p-4">
+                      <div key={p.label} className="flex items-center gap-4 bg-slate-100 rounded-xl p-4">
                         {renderAvatar(p.size, p.textSize, p.fontSize)}
-                        <span className="text-sm text-gray-300">{p.label}</span>
+                        <span className="text-sm text-gray-600">{p.label}</span>
                       </div>
                     ))}
                   </div>
@@ -411,18 +411,18 @@ export default function AvatarCustomizer({ open, onClose, onSave, currentAvatar 
             </div>
 
             {/* Footer */}
-            <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-gray-700/50">
+            <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-slate-200">
               <button
                 type="button"
                 onClick={onClose}
-                className="px-5 py-2 rounded-lg text-sm font-medium text-gray-400 bg-gray-800 hover:bg-gray-700 transition-colors"
+                className="px-5 py-2 rounded-lg text-sm font-medium text-gray-500 bg-slate-100 hover:bg-slate-100 transition-colors"
               >
                 Cancel
               </button>
               <button
                 type="button"
                 onClick={handleSave}
-                className="px-5 py-2 rounded-lg text-sm font-medium text-text-primary bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-400 hover:to-purple-400 transition-all flex items-center gap-2"
+                className="px-5 py-2 rounded-lg text-sm font-medium text-white bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-400 hover:to-purple-400 transition-all flex items-center gap-2"
               >
                 <Check size={14} />
                 Save Avatar

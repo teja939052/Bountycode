@@ -79,7 +79,7 @@ export default function FillInBlank({
               disabled={allCorrect}
               placeholder={blank.placeholder || "..."}
               style={{ width: blank.width || 120 }}
-              className={`px-2 py-0.5 rounded-md border text-xs font-mono bg-slate-800 text-white placeholder:text-slate-500 focus:outline-none transition-colors ${
+              className={`px-2 py-0.5 rounded-md border text-xs font-mono bg-white text-slate-900 placeholder:text-slate-500 focus:outline-none transition-colors ${
                 isCorrect
                   ? "border-emerald-400 bg-emerald-500/10"
                   : isWrong
@@ -88,17 +88,17 @@ export default function FillInBlank({
               }`}
             />
             {submitted && isCorrect && (
-              <CheckCircle size={14} className="ml-1 text-emerald-400" />
+              <CheckCircle size={14} className="ml-1 text-emerald-600" />
             )}
             {isWrong && (
-              <XCircle size={14} className="ml-1 text-rose-400" />
+              <XCircle size={14} className="ml-1 text-rose-600" />
             )}
             {blank.hint && submitted && !isCorrect && (
               <button
                 onClick={() =>
                   setShowHint(showHint === blankId ? null : blankId)
                 }
-                className="ml-1 text-amber-400 hover:text-amber-300"
+                className="ml-1 text-amber-600 hover:text-amber-600"
               >
                 <Lightbulb size={14} />
               </button>
@@ -134,7 +134,7 @@ export default function FillInBlank({
 
       {/* Code area */}
       <div className="p-4 overflow-x-auto">
-        <pre className="text-sm font-mono leading-relaxed text-slate-200 whitespace-pre-wrap">
+        <pre className="text-sm font-mono leading-relaxed text-slate-700 whitespace-pre-wrap">
           {renderCode()}
         </pre>
       </div>
@@ -149,7 +149,7 @@ export default function FillInBlank({
             className="overflow-hidden"
           >
             <div className="px-4 py-2 bg-amber-500/5 border-t border-amber-500/20">
-              <p className="text-xs text-amber-300">
+              <p className="text-xs text-amber-600">
                 💡 {blanks.find((b) => b.id === showHint)?.hint}
               </p>
             </div>
@@ -167,7 +167,7 @@ export default function FillInBlank({
             className="overflow-hidden"
           >
             <div className="px-4 py-3 bg-emerald-500/5 border-t border-emerald-500/20">
-              <p className="text-xs text-emerald-300 leading-relaxed">
+              <p className="text-xs text-emerald-600 leading-relaxed">
                 {explanation}
               </p>
             </div>
@@ -201,7 +201,7 @@ export default function FillInBlank({
           </button>
         )}
         {allCorrect && (
-          <span className="text-sm font-bold text-emerald-400 flex items-center gap-1">
+          <span className="text-sm font-bold text-emerald-600 flex items-center gap-1">
             <CheckCircle size={16} /> All correct!
           </span>
         )}

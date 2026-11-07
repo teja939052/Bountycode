@@ -20,7 +20,7 @@ const VARIANT_CLASS: Record<NonNullable<ButtonProps["variant"]>, string> = {
   ghost: "btn-ghost",
   outline: "btn-outline",
   danger: "btn-danger",
-  gold: "btn font-bold bg-reward text-white hover:brightness-105 active:scale-[0.97]",
+  gold: "btn font-bold bg-reward text-slate-900 hover:brightness-105 active:scale-[0.97]",
   ocean: "btn-adventure",
 };
 

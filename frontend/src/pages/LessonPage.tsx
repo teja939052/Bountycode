@@ -371,7 +371,7 @@ export default function LessonPage() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setPhase("discover")}
-                className="px-8 py-3 rounded-xl bg-brand-sky text-white font-bold text-sm hover:bg-brand-sky/90 transition-colors flex items-center gap-2 mx-auto"
+                className="px-8 py-3 rounded-xl bg-brand-sky text-slate-900 font-bold text-sm hover:bg-brand-sky/90 transition-colors flex items-center gap-2 mx-auto"
               >
                 Enter the Palace
                 <ChevronRight size={16} />
@@ -425,7 +425,7 @@ export default function LessonPage() {
                     setPhase("predict");
                   }
                 }}
-                className="px-4 py-2 rounded-xl bg-brand-sky text-white font-medium"
+                className="px-4 py-2 rounded-xl bg-brand-sky text-slate-900 font-medium"
               >
                 {activeDiscoveryStep < lesson.discovery.steps.length - 1 ? "Next" : "Continue"}
                 <ChevronRight size={16} />
@@ -456,7 +456,7 @@ export default function LessonPage() {
                   <Editor
                     height="100%"
                     language="python"
-                    theme="vs-dark"
+                    theme="vs-light"
                     value={code}
                     onChange={setCode}
                     options={{
@@ -484,7 +484,7 @@ export default function LessonPage() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setPhase("predict")}
-                className="px-6 py-3 rounded-xl bg-brand-sky text-white font-bold"
+                className="px-6 py-3 rounded-xl bg-brand-sky text-slate-900 font-bold"
               >
                 Continue to Predict <ChevronRight size={16} />
               </motion.button>
@@ -544,7 +544,7 @@ export default function LessonPage() {
                   animate={{ opacity: 1, y: 0 }}
                 >
                   <div className="flex items-center gap-2 mb-2">
-                    {predictionCorrect ? <CheckCircle2 className="text-green-400" /> : <XCircle className="text-red-400" />}
+                    {predictionCorrect ? <CheckCircle2 className="text-green-600" /> : <XCircle className="text-red-600" />}
                     <span className="font-bold">
                       {predictionCorrect ? "Correct!" : "Not quite"}
                     </span>
@@ -567,7 +567,7 @@ export default function LessonPage() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setPhase("build")}
-                className="px-6 py-3 rounded-xl bg-brand-sky text-white font-bold"
+                className="px-6 py-3 rounded-xl bg-brand-sky text-slate-900 font-bold"
               >
                 Continue to Build
                 <ChevronRight size={16} />
@@ -595,7 +595,7 @@ export default function LessonPage() {
                     Step {activeBuildStep + 1} of {totalBuildSteps}
                   </span>
                   {currentBuildStep.diamonds && (
-                    <span className="px-2 py-1 bg-yellow-500/10 text-yellow-400 rounded-full">
+                    <span className="px-2 py-1 bg-yellow-500/10 text-yellow-600 rounded-full">
                       +{currentBuildStep.diamonds} Diamonds
                     </span>
                   )}
@@ -620,7 +620,7 @@ export default function LessonPage() {
                       disabled={i + 1 > hintLevel && !buildResult?.passed}
                       className={`p-2 rounded-lg text-xs font-medium transition-all ${
                         hintLevel >= i + 1
-                          ? "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30"
+                          ? "bg-yellow-500/20 text-yellow-600 border border-yellow-500/30"
                           : "bg-surface-card/40 text-text-secondary border border-brand-primary/10 disabled:opacity-50"
                       }`}
                       title={`Hint Level ${i + 1}`}
@@ -638,7 +638,7 @@ export default function LessonPage() {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                 >
-                  <span className="text-xs font-mono text-yellow-400 uppercase">
+                  <span className="text-xs font-mono text-yellow-600 uppercase">
                     Hint Level {hintLevel}
                   </span>
                   <p className="text-sm text-text-primary mt-1">
@@ -651,9 +651,9 @@ export default function LessonPage() {
               {currentBuildStep.is_debug && currentBuildStep.buggy_code && (
                 <div className="rounded-xl border border-red-500/20 bg-red-500/5 overflow-hidden mb-4">
                   <div className="flex items-center justify-between px-4 py-2 border-b border-red-500/10 bg-red-500/5">
-                    <span className="text-xs font-mono text-red-400">Buggy code — do not edit</span>
+                    <span className="text-xs font-mono text-red-600">Buggy code — do not edit</span>
                   </div>
-                  <pre className="p-4 text-sm font-mono text-red-200 whitespace-pre-wrap overflow-x-auto">
+                  <pre className="p-4 text-sm font-mono text-red-700 whitespace-pre-wrap overflow-x-auto">
                     {currentBuildStep.buggy_code}
                   </pre>
                 </div>
@@ -690,7 +690,7 @@ export default function LessonPage() {
                   <Editor
                     height="100%"
                     language="python"
-                    theme="vs-dark"
+                    theme="vs-light"
                     value={code}
                     onChange={setCode}
                     options={{
@@ -736,7 +736,7 @@ export default function LessonPage() {
                   whileTap={{ scale: 0.95 }}
                   onClick={handleSubmitBuild}
                   disabled={running || (attempts[activeBuildStep] || 0) >= (currentBuildStep.max_attempts || 3)}
-                  className="px-6 py-3 rounded-xl bg-green-500/20 text-green-400 font-bold border border-green-500/30 hover:bg-green-500/30 transition-colors flex items-center gap-2"
+                  className="px-6 py-3 rounded-xl bg-green-500/20 text-green-600 font-bold border border-green-500/30 hover:bg-green-500/30 transition-colors flex items-center gap-2"
                 >
                   {running ? <Loader2 size={16} className="animate-spin" /> : <Zap size={16} />}
                   {(attempts[activeBuildStep] || 0) >= (currentBuildStep.max_attempts || 3) ? "Max Attempts Reached" : "Submit Solution"}
@@ -753,7 +753,7 @@ export default function LessonPage() {
                         setPhase("break");
                       }
                     }}
-                    className="px-6 py-3 rounded-xl bg-brand-sky text-white font-bold flex items-center gap-2"
+                    className="px-6 py-3 rounded-xl bg-brand-sky text-slate-900 font-bold flex items-center gap-2"
                   >
                     {activeBuildStep < totalBuildSteps - 1 ? "Next Exercise" : "Break the Code"}
                     <ChevronRight size={16} />
@@ -768,7 +768,7 @@ export default function LessonPage() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                 >
-                  <h3 className="text-sm font-bold text-orange-400 mb-2">🔧 Quick Repair</h3>
+                  <h3 className="text-sm font-bold text-orange-600 mb-2">🔧 Quick Repair</h3>
                   <div className="space-y-2">
                     {currentBuildStep.repair_steps.map((repair, i) => (
                       <div key={i} className="p-3 rounded-lg bg-surface-base/50">
@@ -827,7 +827,7 @@ export default function LessonPage() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setPhase("debug")}
-                className="px-6 py-3 rounded-xl bg-red-500/20 text-red-400 font-bold border border-red-500/30 hover:bg-red-500/30 transition-colors"
+                className="px-6 py-3 rounded-xl bg-red-500/20 text-red-600 font-bold border border-red-500/30 hover:bg-red-500/30 transition-colors"
               >
                 Continue to Debug <ChevronRight size={16} />
               </motion.button>
@@ -851,9 +851,9 @@ export default function LessonPage() {
             {currentBuildStep?.buggy_code && (
               <div className="rounded-xl border border-red-500/20 bg-red-500/5 overflow-hidden mb-4">
                 <div className="flex items-center justify-between px-4 py-2 border-b border-red-500/10 bg-red-500/5">
-                  <span className="text-xs font-mono text-red-400">Buggy code — do not edit</span>
+                  <span className="text-xs font-mono text-red-600">Buggy code — do not edit</span>
                 </div>
-                <pre className="p-4 text-sm font-mono text-red-200 whitespace-pre-wrap overflow-x-auto">
+                <pre className="p-4 text-sm font-mono text-red-700 whitespace-pre-wrap overflow-x-auto">
                   {currentBuildStep.buggy_code}
                 </pre>
               </div>
@@ -866,7 +866,7 @@ export default function LessonPage() {
                 <Editor
                   height="100%"
                   language="python"
-                  theme="vs-dark"
+                  theme="vs-light"
                   value={code}
                   onChange={setCode}
                   options={{
@@ -893,7 +893,7 @@ export default function LessonPage() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setPhase("retrieve")}
-                className="px-6 py-3 rounded-xl bg-brand-sky text-white font-bold"
+                className="px-6 py-3 rounded-xl bg-brand-sky text-slate-900 font-bold"
               >
                 Continue to Retrieve <ChevronRight size={16} />
               </motion.button>
@@ -935,7 +935,7 @@ export default function LessonPage() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setPhase("transfer")}
-                className="px-6 py-3 rounded-xl bg-brand-sky text-white font-bold"
+                className="px-6 py-3 rounded-xl bg-brand-sky text-slate-900 font-bold"
               >
                 Continue to Transfer <ChevronRight size={16} />
               </motion.button>
@@ -972,7 +972,7 @@ export default function LessonPage() {
                 <Editor
                   height="100%"
                   language="python"
-                  theme="vs-dark"
+                  theme="vs-light"
                   value={code}
                   onChange={(val) => setCode(val || "")}
                   options={{
@@ -992,7 +992,7 @@ export default function LessonPage() {
               <div className="mb-4 space-y-2">
                 {lesson.transfer_challenge.scaffolded_hints.slice(0, hintLevel + 1).map((h, i) => (
                   <div key={i} className="p-3 rounded-lg bg-yellow-500/10 border border-yellow-500/30">
-                    <span className="text-xs font-mono text-yellow-400">Hint {i + 1}</span>
+                    <span className="text-xs font-mono text-yellow-600">Hint {i + 1}</span>
                     <p className="text-sm text-text-primary mt-1">{h.text}</p>
                   </div>
                 ))}
@@ -1034,7 +1034,7 @@ export default function LessonPage() {
                 }
               }}
               disabled={running || !code || (transferAttempts[0] || 0) >= (lesson.transfer_challenge.max_attempts || 3)}
-              className="px-6 py-3 rounded-xl bg-purple-500/20 text-purple-400 font-bold border border-purple-500/30 hover:bg-purple-500/30 transition-colors flex items-center gap-2"
+              className="px-6 py-3 rounded-xl bg-purple-500/20 text-purple-600 font-bold border border-purple-500/30 hover:bg-purple-500/30 transition-colors flex items-center gap-2"
             >
               {running ? <Loader2 size={16} className="animate-spin" /> : <Zap size={16} />}
               {(transferAttempts[0] || 0) >= (lesson.transfer_challenge.max_attempts || 3) ? "Max Attempts Reached" : "Submit Transfer Challenge"}
@@ -1051,7 +1051,7 @@ export default function LessonPage() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                <h3 className="text-sm font-bold text-orange-400 mb-2">🔧 Quick Repair</h3>
+                <h3 className="text-sm font-bold text-orange-600 mb-2">🔧 Quick Repair</h3>
                 <div className="space-y-2">
                   {lesson.transfer_challenge.repair_steps.map((repair, i) => (
                     <div key={i} className="p-3 rounded-lg bg-surface-base/50">
@@ -1071,7 +1071,7 @@ export default function LessonPage() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setPhase("mastery")}
-                className="px-6 py-3 rounded-xl bg-brand-sky text-white font-bold"
+                className="px-6 py-3 rounded-xl bg-brand-sky text-slate-900 font-bold"
               >
                 Continue to Mastery <ChevronRight size={16} />
               </motion.button>
@@ -1094,7 +1094,7 @@ export default function LessonPage() {
                  whileHover={{ scale: 1.05 }}
                  whileTap={{ scale: 0.95 }}
                  onClick={() => setPhase("assess")}
-                 className="px-6 py-3 rounded-xl bg-brand-sky text-white font-bold"
+                 className="px-6 py-3 rounded-xl bg-brand-sky text-slate-900 font-bold"
                >
                  Continue to Assess <ChevronRight size={16} />
                </motion.button>
@@ -1148,7 +1148,7 @@ export default function LessonPage() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={handleComplete}
-                    className="px-6 py-3 rounded-xl bg-green-500/20 text-green-400 font-bold border border-green-500/30 hover:bg-green-500/30 transition-colors flex items-center gap-2"
+                    className="px-6 py-3 rounded-xl bg-green-500/20 text-green-600 font-bold border border-green-500/30 hover:bg-green-500/30 transition-colors flex items-center gap-2"
                   >
                     <Trophy size={16} />
                     Claim Rewards
@@ -1163,7 +1163,7 @@ export default function LessonPage() {
                         setAssessmentScore(null);
                         setAssessmentAnswers({});
                       }}
-                      className="px-6 py-3 rounded-xl bg-orange-500/20 text-orange-400 font-bold border border-orange-500/30 hover:bg-orange-500/30 transition-colors flex items-center gap-2"
+                      className="px-6 py-3 rounded-xl bg-orange-500/20 text-orange-600 font-bold border border-orange-500/30 hover:bg-orange-500/30 transition-colors flex items-center gap-2"
                     >
                       <RotateCcw size={16} />
                       Retry Assessment
@@ -1178,7 +1178,7 @@ export default function LessonPage() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={handleAssessSubmit}
-                  className="px-6 py-3 rounded-xl bg-brand-sky text-white font-bold"
+                  className="px-6 py-3 rounded-xl bg-brand-sky text-slate-900 font-bold"
                 >
                   Submit Assessment
                 </motion.button>
@@ -1207,7 +1207,7 @@ export default function LessonPage() {
 
               <div className="flex items-center justify-center gap-4 my-6">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-yellow-400">{assessmentScore}%</div>
+                  <div className="text-2xl font-bold text-yellow-600">{assessmentScore}%</div>
                   <div className="text-xs text-text-secondary">Final Score</div>
                 </div>
                 <div className="w-px h-12 bg-brand-primary/20"></div>
@@ -1232,7 +1232,7 @@ export default function LessonPage() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => navigate("/journey")}
-                className="px-6 py-3 rounded-xl bg-brand-sky text-white font-bold"
+                className="px-6 py-3 rounded-xl bg-brand-sky text-slate-900 font-bold"
               >
                 Continue Learning
               </motion.button>
@@ -1285,7 +1285,7 @@ function DiscoveryStepView({ step, onInsight, codeState, reduced }: {
             <Editor
               height="100%"
               language="python"
-              theme="vs-dark"
+              theme="vs-light"
               value={code}
               onChange={setCode}
               options={{
@@ -1323,9 +1323,9 @@ function DiscoveryStepView({ step, onInsight, codeState, reduced }: {
                   disabled={checked}
                   className={`px-4 py-3 rounded-xl border text-sm font-medium transition-all min-h-[44px] ${
                     checked && isCorrectAnswer
-                      ? "bg-green-500/10 border-green-500/30 text-green-400"
+                      ? "bg-green-500/10 border-green-500/30 text-green-600"
                       : checked && isSelected && !isCorrectAnswer
-                        ? "bg-red-500/10 border-red-500/30 text-red-400"
+                        ? "bg-red-500/10 border-red-500/30 text-red-600"
                         : isSelected
                           ? "bg-brand-sky/10 border-brand-sky/30 text-brand-sky"
                           : "bg-surface-base border-brand-primary/10 hover:border-brand-primary/20 text-text-secondary"
@@ -1338,7 +1338,7 @@ function DiscoveryStepView({ step, onInsight, codeState, reduced }: {
           </div>
           {checked && step.answer && (
             <div className={`mt-3 p-3 rounded-lg border ${isCorrect ? "bg-green-500/10 border-green-500/30" : "bg-red-500/10 border-red-500/30"}`}>
-              <p className={`text-sm font-medium ${isCorrect ? "text-green-400" : "text-red-400"}`}>
+              <p className={`text-sm font-medium ${isCorrect ? "text-green-600" : "text-red-600"}`}>
                 {isCorrect ? "Correct!" : `Not quite. Expected: ${step.answer}`}
               </p>
               {step.explanation && <p className="text-xs text-text-secondary mt-1">{step.explanation}</p>}
@@ -1347,7 +1347,7 @@ function DiscoveryStepView({ step, onInsight, codeState, reduced }: {
           {!checked && selectedValue && (
             <button
               onClick={() => setChecked(true)}
-              className="mt-2 px-4 py-2 rounded-xl bg-brand-sky text-white text-sm font-medium hover:bg-brand-sky/90 transition-colors"
+              className="mt-2 px-4 py-2 rounded-xl bg-brand-sky text-slate-900 text-sm font-medium hover:bg-brand-sky/90 transition-colors"
             >
               Check Answer
             </button>
@@ -1357,8 +1357,8 @@ function DiscoveryStepView({ step, onInsight, codeState, reduced }: {
 
       {step.hint && (
         <div className="mt-3 p-3 rounded-lg bg-blue-500/10 border border-blue-500/30">
-          <Lightbulb size={14} className="inline text-blue-400 mr-2" />
-          <span className="text-sm text-blue-300">{step.hint}</span>
+          <Lightbulb size={14} className="inline text-blue-600 mr-2" />
+          <span className="text-sm text-blue-600">{step.hint}</span>
         </div>
       )}
 
@@ -1385,9 +1385,9 @@ function BuildResultsView({ result }: { result: BuildResult }) {
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
           {all_passed ? (
-            <CheckCircle2 className="text-green-400 w-5 h-5" />
+            <CheckCircle2 className="text-green-600 w-5 h-5" />
           ) : (
-            <XCircle className="text-red-400 w-5 h-5" />
+            <XCircle className="text-red-600 w-5 h-5" />
           )}
           <span className="font-bold">
             {passed_count}/{total_count} test cases passed
@@ -1407,9 +1407,9 @@ function BuildResultsView({ result }: { result: BuildResult }) {
             }`}
           >
             {r.passed ? (
-              <CheckCircle2 size={12} className="text-green-400" />
+              <CheckCircle2 size={12} className="text-green-600" />
             ) : (
-              <XCircle size={12} className="text-red-400" />
+              <XCircle size={12} className="text-red-600" />
             )}
             <span>
               Test {r.test_case_index}: {"Expected " + (r.expected || "")} → {"Got " + (r.actual || "")}
@@ -1485,7 +1485,7 @@ function AssessmentQuestion({ question, index, answer, onChange, result, reduced
         <pre className="bg-surface-base/30 rounded-lg p-3 text-sm font-mono mb-3 whitespace-pre-wrap">
           {question.code}
         </pre>
-        <p className="text-xs text-red-400 mb-2">Error: {question.error}</p>
+        <p className="text-xs text-red-600 mb-2">Error: {question.error}</p>
         <input
           type="text"
           value={answer}

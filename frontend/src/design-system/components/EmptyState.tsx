@@ -73,8 +73,7 @@ export function EmptyState({
     <div className={`flex flex-col items-center text-center py-12 px-4 ${className}`}>
       <div
         className={`
-          w-20 h-20 rounded-${radii.xl} flex items-center justify-center mx-auto mb-6
-          bg-brand-mint text-brand-deep
+          w-20 h-20 rounded-${radii.xl} flex items-center justify-center mx-auto mb-6 bg-brand-mint text-brand-deep
         `}
       >
         {illus}
@@ -259,8 +258,7 @@ export function ErrorState({
     <div className={`flex flex-col items-center text-center py-12 px-4 ${className}`}>
       <div
         className={`
-          w-20 h-20 rounded-${radii.xl} flex items-center justify-center mx-auto mb-6
-          bg-error/10 text-error
+          w-20 h-20 rounded-${radii.xl} flex items-center justify-center mx-auto mb-6 bg-error/10 text-error
         `}
       >
         {illus}

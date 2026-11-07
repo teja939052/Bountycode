@@ -30,7 +30,7 @@ export default function HullScanner({ atsScore = 0, issues = [], keywords = [] }
         </div>
         <div className="flex items-center gap-2">
           <span className={scanning ? "status-processing" : atsScore >= 70 ? "status-online" : "status-warning"} />
-          <span className="text-[10px] font-mono uppercase tracking-wider text-gray-400">
+          <span className="text-[10px] font-mono uppercase tracking-wider text-gray-500">
             {scanning ? "Scanning" : "Complete"}
           </span>
         </div>
@@ -71,15 +71,15 @@ export default function HullScanner({ atsScore = 0, issues = [], keywords = [] }
           {/* Issues summary */}
           <div className="flex-1 space-y-2">
             <div className="flex items-center justify-between text-sm">
-              <span className="font-mono text-gray-400">Critical Issues</span>
+              <span className="font-mono text-gray-500">Critical Issues</span>
               <span className="font-mono text-cyber-red">{issues.filter(i => i.severity === "critical").length}</span>
             </div>
             <div className="flex items-center justify-between text-sm">
-              <span className="font-mono text-gray-400">Warnings</span>
+              <span className="font-mono text-gray-500">Warnings</span>
               <span className="font-mono text-cyber-amber">{issues.filter(i => i.severity === "warning").length}</span>
             </div>
             <div className="flex items-center justify-between text-sm">
-              <span className="font-mono text-gray-400">Keywords Found</span>
+              <span className="font-mono text-gray-500">Keywords Found</span>
               <span className="font-mono text-cyber-green">{keywords.length}</span>
             </div>
           </div>
@@ -114,7 +114,7 @@ export default function HullScanner({ atsScore = 0, issues = [], keywords = [] }
                     }`}>
                       {issue.severity === "critical" ? "Structural Scramble" : "System Warning"}
                     </p>
-                    <p className="text-xs text-gray-400 mt-0.5">{issue.message}</p>
+                    <p className="text-xs text-gray-500 mt-0.5">{issue.message}</p>
                   </div>
                 </motion.div>
               ))}

@@ -20,7 +20,7 @@ export default function HoloPanel({
     online: "status-online",
     processing: "status-processing",
     warning: "status-warning",
-    offline: "w-2 h-2 rounded-full bg-gray-600",
+    offline: "w-2 h-2 rounded-full bg-slate-100",
   };
 
   return (
@@ -54,7 +54,7 @@ export default function HoloPanel({
           {statusLabel && (
             <div className="flex items-center gap-2">
               <span className={statusColors[status] || statusColors.online} />
-              <span className="text-[10px] font-mono uppercase tracking-wider text-gray-400">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-gray-500">
                 {statusLabel}
               </span>
             </div>

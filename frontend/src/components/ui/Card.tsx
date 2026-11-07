@@ -5,9 +5,9 @@ type Rarity = "common" | "uncommon" | "rare" | "epic" | "legendary" | "mythic";
 
 const rarityConfig: Record<Rarity, any> = {
   common: {
-    border: 'border-gray-600/50',
+    border: 'border-slate-200',
     glow: '',
-    bg: 'bg-gray-900/40',
+    bg: 'bg-slate-100',
     label: 'Common',
     color: '#9CA3AF',
     borderColor: 'rgba(156,163,175,0.3)',
@@ -278,10 +278,10 @@ export function CardSkeleton({ count = 6 }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
       {Array.from({ length: count }).map((_, i) => (
-        <div key={i} className="rounded-xl border border-gray-700/30 p-5 animate-pulse bg-gray-900/30">
-          <div className="h-4 bg-gray-700/50 rounded w-1/3 mb-3" />
-          <div className="h-3 bg-gray-700/40 rounded w-2/3 mb-2" />
-          <div className="h-3 bg-gray-700/30 rounded w-1/2" />
+        <div key={i} className="rounded-xl border border-slate-100 p-5 animate-pulse bg-white">
+          <div className="h-4 bg-slate-100 rounded w-1/3 mb-3" />
+          <div className="h-3 bg-slate-100 rounded w-2/3 mb-2" />
+          <div className="h-3 bg-slate-100 rounded w-1/2" />
         </div>
       ))}
     </div>
@@ -299,7 +299,7 @@ export function StatCard({ icon, label, value, trend, color = 'cyber-blue', clas
           <p className="text-[11px] text-gray-500 font-mono uppercase tracking-wider">{label}</p>
           <h3 className="text-lg font-bold font-display">{value}</h3>
           {trend !== undefined && (
-            <span className={`text-[10px] font-mono ${trend >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+            <span className={`text-[10px] font-mono ${trend >= 0 ? 'text-green-600' : 'text-red-600'}`}>
               {trend >= 0 ? '↑' : '↓'} {Math.abs(trend)}%
             </span>
           )}
@@ -339,7 +339,7 @@ export function ProblemCard({ problem, solved = false, onClick }) {
               {diff.label}
             </span>
             {solved && (
-              <span className="text-green-400 text-[10px] font-mono">✓ Solved</span>
+              <span className="text-green-600 text-[10px] font-mono">✓ Solved</span>
             )}
           </div>
         </div>

@@ -7,10 +7,10 @@ const CONFETTI_COLORS = ["#6366f1", "#f59e0b", "#10b981", "#ef4444", "#ec4899", 
 const STREAK_EMOJIS = ["🔥", "🔥", "🔥", "⚡", "💥"];
 
 const DIFFICULTY_CONFIG = {
-  easy: { color: "text-green-400", label: "Easy" },
-  medium: { color: "text-yellow-400", label: "Medium" },
-  hard: { color: "text-red-400", label: "Hard" },
-  expert: { color: "text-purple-400", label: "Expert" },
+  easy: { color: "text-green-600", label: "Easy" },
+  medium: { color: "text-yellow-600", label: "Medium" },
+  hard: { color: "text-red-600", label: "Hard" },
+  expert: { color: "text-purple-600", label: "Expert" },
 };
 
 function randomBetween(min: number, max: number) {
@@ -164,7 +164,7 @@ function LevelUpContent({ title, subtitle, diamonds, reduced }: { title?: string
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.0 }}
           >
-            <span className="text-yellow-300 text-xl font-bold">+<XPCountUp target={diamonds} /> Diamonds</span>
+            <span className="text-yellow-600 text-xl font-bold">+<XPCountUp target={diamonds} /> Diamonds</span>
           </motion.div>
         )}
 
@@ -218,7 +218,7 @@ function BadgeContent({ title, subtitle, reduced }: { title?: string; subtitle?:
         </motion.h1>
 
         <motion.p
-          className="text-2xl md:text-3xl font-bold text-yellow-300 text-center"
+          className="text-2xl md:text-3xl font-bold text-yellow-600 text-center"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
@@ -296,7 +296,7 @@ function SolveContent({ title, subtitle, diamonds, reduced }: { title?: string; 
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
           >
-            <span className="text-green-300 text-xl font-bold">+<XPCountUp target={diamonds} /> Diamonds</span>
+            <span className="text-green-600 text-xl font-bold">+<XPCountUp target={diamonds} /> Diamonds</span>
           </motion.div>
         )}
 
@@ -360,7 +360,7 @@ function StreakContent({ title, subtitle, diamonds, reduced }: { title?: string;
         </motion.h1>
 
         <motion.p
-          className="text-2xl text-orange-300 font-bold text-center"
+          className="text-2xl text-orange-600 font-bold text-center"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
@@ -375,7 +375,7 @@ function StreakContent({ title, subtitle, diamonds, reduced }: { title?: string;
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
           >
-            <span className="text-orange-300 text-xl font-bold">+<XPCountUp target={diamonds} /> Diamonds</span>
+            <span className="text-orange-600 text-xl font-bold">+<XPCountUp target={diamonds} /> Diamonds</span>
           </motion.div>
         )}
 
@@ -430,7 +430,7 @@ function AchievementContent({ title, subtitle, diamonds, reduced }: { title?: st
         </motion.h1>
 
         <motion.p
-          className="text-2xl md:text-3xl font-bold text-yellow-300 pixel-font text-center"
+          className="text-2xl md:text-3xl font-bold text-yellow-600 pixel-font text-center"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
@@ -456,7 +456,7 @@ function AchievementContent({ title, subtitle, diamonds, reduced }: { title?: st
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
           >
-            <span className="text-yellow-300 text-xl font-bold">+<XPCountUp target={diamonds} /> Diamonds</span>
+            <span className="text-yellow-600 text-xl font-bold">+<XPCountUp target={diamonds} /> Diamonds</span>
           </motion.div>
         )}
 
@@ -498,7 +498,7 @@ function BossContent({ title, subtitle, diamonds, reduced }: { title?: string; s
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
           >
-            <span className="text-yellow-300 text-xl font-bold">+<XPCountUp target={diamonds} /> Diamonds</span>
+            <span className="text-yellow-600 text-xl font-bold">+<XPCountUp target={diamonds} /> Diamonds</span>
           </motion.div>
         )}
         <ParticleBurst count={24} colors={["#fbbf24", "#f59e0b", "#ef4444", "#ec4899"]} />
@@ -563,7 +563,7 @@ function DailyLoginContent({ title, subtitle, diamonds, reduced }: { title?: str
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
           >
-            <span className="text-yellow-300 text-xl font-bold">+<XPCountUp target={diamonds} /> Diamonds</span>
+            <span className="text-yellow-600 text-xl font-bold">+<XPCountUp target={diamonds} /> Diamonds</span>
           </motion.div>
         )}
         <ParticleBurst count={16} colors={["#fbbf24", "#f59e0b", "#fde68a"]} />
@@ -606,7 +606,7 @@ function CardContent({ title, subtitle, reduced }: { title?: string; subtitle?: 
           {title || "Card Revealed!"}
         </motion.h1>
         <motion.p
-          className="text-lg text-gray-300 text-center"
+          className="text-lg text-gray-600 text-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
@@ -638,7 +638,7 @@ function CriticalContent({ title, subtitle, reduced }: { title?: string; subtitl
         </motion.div>
         {subtitle && (
           <motion.div
-            className="text-2xl md:text-3xl font-bold text-yellow-300"
+            className="text-2xl md:text-3xl font-bold text-yellow-600"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -778,7 +778,7 @@ export default function CelebrationOverlay({
           />
 
           <motion.button
-            className="absolute top-6 right-6 z-50 w-10 h-10 rounded-full bg-white border-border/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-text-primary hover:bg-white border-border/20 transition-colors"
+            className="absolute top-6 right-6 z-50 w-10 h-10 rounded-full bg-white border-border/10 backdrop-blur-md border border-slate-200 flex items-center justify-center text-text-primary hover:bg-white border-border/20 transition-colors"
             onClick={handleClose}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

@@ -95,7 +95,7 @@ const LevelNode = memo(function LevelNode({
               <Star
                 key={star}
                 size={6}
-                className={star <= level.stars ? "text-yellow-300 fill-yellow-300" : "text-text-primary/20"}
+                className={star <= level.stars ? "text-yellow-600 fill-yellow-300" : "text-text-primary/20"}
               />
             ))}
           </div>
@@ -109,7 +109,7 @@ const LevelNode = memo(function LevelNode({
       )}
 
       {level.title && isInteractive && (
-        <span className="absolute -bottom-7 left-1/2 -translate-x-1/2 z-30 whitespace-nowrap text-[9px] font-bold text-text-primary/90 bg-surface-2 px-2 py-0.5 rounded-full backdrop-blur-md border border-white/10">
+        <span className="absolute -bottom-7 left-1/2 -translate-x-1/2 z-30 whitespace-nowrap text-[9px] font-bold text-text-primary/90 bg-surface-2 px-2 py-0.5 rounded-full backdrop-blur-md border border-slate-200">
           {level.title}
         </span>
       )}

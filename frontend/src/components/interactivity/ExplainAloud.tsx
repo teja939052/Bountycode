@@ -41,9 +41,9 @@ export default function ExplainAloud() {
   };
 
   return (
-    <div className="rounded-xl border border-border dark:border-gray-700 p-4 bg-gray-50 dark:bg-gray-900/50">
-      <h3 className="font-bold text-sm dark:text-white mb-1">Explain: why does the window stay O(n)?</h3>
-      <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
+    <div className="rounded-xl border border-border p-4 bg-gray-50">
+      <h3 className="font-bold text-sm mb-1">Explain: why does the window stay O(n)?</h3>
+      <p className="text-xs text-gray-500 mb-3">
         Type your explanation. This is a keyword match for study evidence — not an objective grade of your speech.
       </p>
       <textarea
@@ -51,7 +51,7 @@ export default function ExplainAloud() {
         onChange={(e) => setText(e.target.value)}
         rows={3}
         placeholder="e.g. Each index expands once and shrinks once, so the window work is linear O(N)..."
-        className="w-full text-sm p-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 dark:text-gray-100 mb-2"
+        className="w-full text-sm p-3 rounded-lg border border-gray-200 bg-white mb-2"
       />
       <button
         onClick={submit}
@@ -62,11 +62,11 @@ export default function ExplainAloud() {
       </button>
       {result && (
         <div className="mt-2 text-xs">
-          <p className="text-gray-600 dark:text-gray-300">
+          <p className="text-gray-600">
             Matched {result.hits.length}/{EXPECTED.length}: {result.hits.join(", ") || "none yet"}
           </p>
           {result.missing.length > 0 && (
-            <p className="text-gray-500 dark:text-gray-400">
+            <p className="text-gray-500">
               Consider: {result.missing.join(", ")}
             </p>
           )}

@@ -42,7 +42,7 @@ export default function AlgorithmGraph({ nodes = [], edges = [], animated = true
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.4 }}
-      className={`bg-gray-900/60 border border-gray-700/40 rounded-xl p-4 ${className}`}
+      className={`bg-white border border-slate-100 rounded-xl p-4 ${className}`}
     >
       <div className="text-center mb-3">
         <span className="text-[10px] font-mono uppercase tracking-widest text-gray-500">

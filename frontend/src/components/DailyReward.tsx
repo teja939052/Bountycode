@@ -13,7 +13,7 @@ const DAY_REWARDS = [
 
 function Checkmark() {
   return (
-    <svg className="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+    <svg className="w-4 h-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
     </svg>
   );
@@ -57,21 +57,21 @@ export default function DailyReward({ currentDay = 1, claimedDays = [], onClaim 
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-sm font-bold text-white uppercase tracking-wider">
+          <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider">
             Daily Login Rewards
           </h3>
-          <p className="text-[10px] text-gray-400 mt-0.5">
+          <p className="text-[10px] text-gray-500 mt-0.5">
             Day {Math.min(currentDay, 7)} of 7 — claim daily to earn bigger rewards
           </p>
         </div>
-        <div className="flex items-center gap-1 text-xs font-mono text-gray-400">
+        <div className="flex items-center gap-1 text-xs font-mono text-gray-500">
           <span>🔥</span>
           <span>{claimedDays.length}/7</span>
         </div>
       </div>
 
       {/* Progress bar */}
-      <div className="relative h-1.5 bg-white/10 rounded-full overflow-hidden">
+      <div className="relative h-1.5 bg-slate-100 rounded-full overflow-hidden">
         <motion.div
           className="absolute inset-y-0 left-0 rounded-full"
           style={{
@@ -103,7 +103,7 @@ export default function DailyReward({ currentDay = 1, claimedDays = [], onClaim 
                   ? 'gamification-card border-emerald-500/30'
                   : isToday
                   ? 'gamification-card border-indigo-500/50 shadow-lg shadow-indigo-500/20'
-                  : 'bg-white/5 border-white/10'
+                  : 'bg-slate-100 border-slate-200'
                 }
                 ${day.special && isToday ? 'border-purple-500/50 shadow-lg shadow-purple-500/20' : ''}
               `}
@@ -134,9 +134,9 @@ export default function DailyReward({ currentDay = 1, claimedDays = [], onClaim 
               <span
                 className={`text-[8px] sm:text-[9px] font-mono leading-tight text-center ${
                   isClaimed
-                    ? 'text-emerald-400/80'
+                    ? 'text-emerald-600'
                     : isToday
-                    ? 'text-indigo-300 font-bold'
+                    ? 'text-indigo-600 font-bold'
                     : 'text-gray-500'
                 }`}
               >
@@ -166,9 +166,7 @@ export default function DailyReward({ currentDay = 1, claimedDays = [], onClaim 
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           className="
-            mt-4 w-full py-2.5 rounded-xl font-bold text-sm uppercase tracking-wider
-            glass-button text-white
-            hover:shadow-lg hover:shadow-indigo-500/25 transition-all duration-300
+            mt-4 w-full py-2.5 rounded-xl font-bold text-sm uppercase tracking-wider glass-button text-slate-900 hover:shadow-lg hover:shadow-indigo-500/25 transition-all duration-300
           "
         >
           Claim Day {currentDay} Reward
@@ -176,7 +174,7 @@ export default function DailyReward({ currentDay = 1, claimedDays = [], onClaim 
       )}
 
       {todayClaimed && (
-        <div className="mt-4 text-center text-xs font-mono text-emerald-400/80 py-2">
+        <div className="mt-4 text-center text-xs font-mono text-emerald-600 py-2">
           ✓ Today&apos;s reward claimed — come back tomorrow!
         </div>
       )}

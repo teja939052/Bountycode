@@ -16,14 +16,14 @@ import {
 } from "lucide-react";
 
 export const LC = {
-  bg: "#0f0f0f",
-  panel: "#171717",
-  panel2: "#1f1f1f",
-  border: "#2a2a2a",
-  hover: "#242424",
-  text: "#e9e9e9",
-  muted: "#9a9a9a",
-  faint: "#6b6b6b",
+  bg: "#f8fafc",
+  panel: "#ffffff",
+  panel2: "#f1f5f9",
+  border: "#e2e8f0",
+  hover: "#f1f5f9",
+  text: "#0f172a",
+  muted: "#64748b",
+  faint: "#94a3b8",
   brand: "#ffa116",
   easy: "#00b8a3",
   medium: "#ffc01e",
@@ -47,12 +47,12 @@ const NAV_ITEMS = [
 
 export function LNav() {
   return (
-    <aside className="hidden lg:flex w-56 shrink-0 sticky top-0 h-screen flex-col border-r border-[#2a2a2a] bg-[#121212] py-5 px-3">
+    <aside className="hidden lg:flex w-56 shrink-0 sticky top-0 h-screen flex-col border-r border-slate-200 bg-white py-5 px-3">
       <div className="flex items-center gap-2 px-2 mb-6">
         <div className="h-7 w-7 rounded-md bg-[#ffa116] flex items-center justify-center text-black font-black text-sm">
           P
         </div>
-         <span className="text-sm font-bold text-[#e9e9e9] tracking-tight">
+         <span className="text-sm font-bold text-slate-700 tracking-tight">
            BountyCode
          </span>
       </div>
@@ -63,7 +63,7 @@ export function LNav() {
             <Link
               key={item.to}
               to={item.to}
-              className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-[#9a9a9a] hover:bg-[#242424] hover:text-[#e9e9e9] transition-colors"
+              className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-500 hover:bg-slate-100 hover:text-slate-700 transition-colors"
             >
               <Icon size={16} className="shrink-0" />
               <span className="truncate">{item.label}</span>
@@ -89,7 +89,7 @@ export function LCard({
 }) {
   return (
     <div
-      className={`rounded-xl border border-[#2a2a2a] bg-[#171717] ${
+      className={`rounded-xl border border-slate-200 bg-white ${
         padded ? "p-5" : ""
       } ${className}`}
     >
@@ -109,7 +109,7 @@ export function LSectionTitle({
 }) {
   return (
     <div className="flex items-center justify-between mb-3">
-      <div className="flex items-center gap-2 text-[#e9e9e9] font-semibold text-[15px]">
+      <div className="flex items-center gap-2 text-slate-700 font-semibold text-[15px]">
         {icon}
         {title}
       </div>
@@ -131,7 +131,7 @@ export function LStat({
 }) {
   return (
     <LCard className="p-4">
-      <div className="text-[11px] text-[#9a9a9a] uppercase tracking-wide">
+      <div className="text-[11px] text-slate-500 uppercase tracking-wide">
         {label}
       </div>
       <div
@@ -209,11 +209,11 @@ export function ProgressRing({
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-        <div className="text-2xl font-bold text-[#e9e9e9]">
+        <div className="text-2xl font-bold text-slate-700">
           {label ?? `${Math.round(value)}%`}
         </div>
         {sublabel && (
-          <div className="text-[10px] text-[#9a9a9a] mt-0.5">{sublabel}</div>
+          <div className="text-[10px] text-slate-500 mt-0.5">{sublabel}</div>
         )}
       </div>
     </div>
@@ -228,7 +228,7 @@ export function Pill({
   tone?: "neutral" | "brand" | "green" | "red";
 }) {
   const tones: Record<string, string> = {
-    neutral: "bg-[#242424] text-[#9a9a9a]",
+    neutral: "bg-slate-100 text-slate-500",
     brand: "bg-[#ffa1161a] text-[#ffa116]",
     green: "bg-[#2eb88a1a] text-[#2eb88a]",
     red: "bg-[#ff375f1a] text-[#ff375f]",
@@ -382,7 +382,7 @@ export function Chip({
   tone?: "neutral" | "brand" | "green" | "red";
 }) {
   const tones: Record<string, string> = {
-    neutral: "border-[#2a2a2a] text-[#9a9a9a]",
+    neutral: "border-slate-200 text-slate-500",
     brand: "border-[#ffa11655] text-[#ffa116]",
     green: "border-[#2eb88a55] text-[#2eb88a]",
     red: "border-[#ff375f55] text-[#ff375f]",

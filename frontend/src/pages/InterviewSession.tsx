@@ -32,11 +32,11 @@ const COMPANY_COLORS = {
   amazon: "from-orange-400 to-yellow-500",
   meta: "from-blue-600 to-indigo-600",
   microsoft: "from-green-500 to-blue-500",
-  tcs: "from-blue-700 to-blue-900",
+  tcs: "from-blue-50 to-blue-50",
   infosys: "from-blue-500 to-purple-600",
   wipro: "from-blue-600 to-cyan-500",
-  uber: "from-black to-gray-700",
-  general: "from-gray-500 to-gray-700",
+  uber: "from-slate-100 to-slate-100",
+  general: "from-gray-500 to-slate-100",
 };
 
 export default function InterviewSession() {

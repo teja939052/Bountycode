@@ -24,12 +24,12 @@ export default function ActivityHeatmap({ data = [] }) {
   const maxCount = Math.max(...days.map((d) => d.count), 1);
 
   const getColor = (count) => {
-    if (count === 0) return "bg-gray-800 dark:bg-gray-800";
+    if (count === 0) return "bg-slate-100";
     const intensity = count / maxCount;
-    if (intensity < 0.25) return "bg-green-900 dark:bg-green-900";
-    if (intensity < 0.5) return "bg-green-700 dark:bg-green-700";
-    if (intensity < 0.75) return "bg-green-500 dark:bg-green-500";
-    return "bg-green-400 dark:bg-green-400";
+    if (intensity < 0.25) return "bg-green-900";
+    if (intensity < 0.5) return "bg-green-700";
+    if (intensity < 0.75) return "bg-green-500";
+    return "bg-green-400";
   };
 
   // Group into weeks (columns)

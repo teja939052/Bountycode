@@ -48,7 +48,7 @@ export default function RewardShowcase({ visible, breakdown, onContinue }: Rewar
     >
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onContinue} />
       <motion.div
-        className="relative w-full max-w-md rounded-3xl border border-white/10 bg-gray-950/90 p-6 shadow-2xl"
+        className="relative w-full max-w-md rounded-3xl border border-slate-200 bg-white p-6 shadow-2xl"
         initial={{ opacity: 0, y: 30, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ type: "spring", stiffness: 180, damping: 16 }}
@@ -56,21 +56,21 @@ export default function RewardShowcase({ visible, breakdown, onContinue }: Rewar
         <div className="flex items-center justify-between mb-5">
           <div>
             <p className="text-xs font-mono uppercase tracking-widest text-gray-500">Session reward</p>
-            <h2 className="text-2xl font-black text-white">+{breakdown.totalXP} Diamonds</h2>
+            <h2 className="text-2xl font-black text-slate-900">+{breakdown.totalXP} Diamonds</h2>
           </div>
-          <button onClick={onContinue} className="rounded-full bg-white/10 px-3 py-1 text-xs font-mono text-gray-300 hover:bg-white/20">
+          <button onClick={onContinue} className="rounded-full bg-slate-100 px-3 py-1 text-xs font-mono text-gray-600 hover:bg-slate-100">
             Continue
           </button>
         </div>
 
-        <div className="rounded-2xl bg-white/5 p-4 mb-4">
+        <div className="rounded-2xl bg-slate-100 p-4 mb-4">
           <p className="text-[10px] font-mono uppercase tracking-widest text-gray-500 mb-2">How you earned it</p>
           <div className="flex flex-wrap items-center gap-2 text-sm font-mono">
-            <span className="text-gray-300">Base {breakdown.baseXP}</span>
+            <span className="text-gray-600">Base {breakdown.baseXP}</span>
             {chips.map((chip) => (
               <span key={chip.label} className="flex items-center gap-1">
                 <span className="text-gray-500">×</span>
-                <span className={`flex items-center gap-1 ${chip.highlight ? "text-amber-300" : "text-gray-200"}`}>
+                <span className={`flex items-center gap-1 ${chip.highlight ? "text-amber-600" : "text-gray-700"}`}>
                   <chip.icon size={14} /> {chip.value}
                 </span>
               </span>
@@ -79,43 +79,43 @@ export default function RewardShowcase({ visible, breakdown, onContinue }: Rewar
         </div>
 
         <div className="grid grid-cols-3 gap-2 mb-5">
-          <div className="rounded-xl bg-white/5 p-3 text-center">
+          <div className="rounded-xl bg-slate-100 p-3 text-center">
             <p className="text-[10px] font-mono uppercase tracking-widest text-gray-500 mb-1">Stars</p>
-            <p className="text-lg font-black text-amber-300">+{breakdown.stars}</p>
+            <p className="text-lg font-black text-amber-600">+{breakdown.stars}</p>
           </div>
-          <div className="rounded-xl bg-white/5 p-3 text-center">
+          <div className="rounded-xl bg-slate-100 p-3 text-center">
             <p className="text-[10px] font-mono uppercase tracking-widest text-gray-500 mb-1">Coins</p>
-            <p className="text-lg font-black text-yellow-300">+{breakdown.coins}</p>
+            <p className="text-lg font-black text-yellow-600">+{breakdown.coins}</p>
           </div>
-          <div className="rounded-xl bg-white/5 p-3 text-center">
+          <div className="rounded-xl bg-slate-100 p-3 text-center">
             <p className="text-[10px] font-mono uppercase tracking-widest text-gray-500 mb-1">Streak</p>
-            <p className="text-lg font-black text-orange-400">{breakdown.streak}d</p>
+            <p className="text-lg font-black text-orange-600">{breakdown.streak}d</p>
           </div>
         </div>
 
         <div className="flex flex-wrap gap-2">
           {breakdown.leveledUp && (
-            <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/15 px-2.5 py-1 text-xs font-mono text-emerald-300 border border-emerald-500/25">
+            <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/15 px-2.5 py-1 text-xs font-mono text-emerald-600 border border-emerald-500/25">
               <ArrowUp size={14} /> Level {breakdown.newLevel}
             </span>
           )}
           {breakdown.newBadges && breakdown.newBadges.length > 0 && (
-            <span className="inline-flex items-center gap-1 rounded-full bg-yellow-500/15 px-2.5 py-1 text-xs font-mono text-yellow-300 border border-yellow-500/25">
+            <span className="inline-flex items-center gap-1 rounded-full bg-yellow-500/15 px-2.5 py-1 text-xs font-mono text-yellow-600 border border-yellow-500/25">
               <Trophy size={14} /> {breakdown.newBadges.length} badge{breakdown.newBadges.length > 1 ? "s" : ""}
             </span>
           )}
           {breakdown.milestone && Object.keys(breakdown.milestone).length > 0 && (
-            <span className="inline-flex items-center gap-1 rounded-full bg-orange-500/15 px-2.5 py-1 text-xs font-mono text-orange-300 border border-orange-500/25">
+            <span className="inline-flex items-center gap-1 rounded-full bg-orange-500/15 px-2.5 py-1 text-xs font-mono text-orange-600 border border-orange-500/25">
               🎁 Milestone
             </span>
           )}
           {breakdown.bossLevel && (
-            <span className="inline-flex items-center gap-1 rounded-full bg-red-500/15 px-2.5 py-1 text-xs font-mono text-red-300 border border-red-500/25">
+            <span className="inline-flex items-center gap-1 rounded-full bg-red-500/15 px-2.5 py-1 text-xs font-mono text-red-600 border border-red-500/25">
               <Skull size={14} /> Boss {breakdown.bossLevel}
             </span>
           )}
           {breakdown.streakFrozen && (
-            <span className="inline-flex items-center gap-1 rounded-full bg-sky-500/10 px-2.5 py-1 text-xs font-mono text-sky-300 border border-sky-500/20">
+            <span className="inline-flex items-center gap-1 rounded-full bg-sky-500/10 px-2.5 py-1 text-xs font-mono text-sky-600 border border-sky-500/20">
               <Snowflake size={14} /> Freeze saved streak
             </span>
           )}

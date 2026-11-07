@@ -33,8 +33,8 @@ export default function SpaceBackground() {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(11,16,32,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(11,16,32,0.035)_1px,transparent_1px)] bg-[size:56px_56px] opacity-40" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0,transparent_52%,rgba(11,16,32,0.06)_100%)]" />
 
-      <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-white/55 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-white/30 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-white to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-slate-200 to-transparent" />
 
       {!reduced && (
         <div className="absolute inset-0">

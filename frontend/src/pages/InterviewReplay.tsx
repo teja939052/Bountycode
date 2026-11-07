@@ -70,7 +70,7 @@ export default function InterviewReplay({ interviewId }: any = {}) {
 
   if (loading) {
     return (
-      <div className="p-8 text-center text-slate-300">
+      <div className="p-8 text-center text-slate-600">
         Loading replay data...
       </div>
     );
@@ -78,7 +78,7 @@ export default function InterviewReplay({ interviewId }: any = {}) {
 
   if (error) {
     return (
-      <div className="p-6 text-center text-amber-400 bg-amber-500/10 border border-amber-500/30 rounded-xl">
+      <div className="p-6 text-center text-amber-600 bg-amber-500/10 border border-amber-500/30 rounded-xl">
         {error}
       </div>
     );
@@ -91,20 +91,20 @@ export default function InterviewReplay({ interviewId }: any = {}) {
     <div className="font-mono text-sm">
       {/* Problem header */}
       {problem.title && (
-        <div className="mb-4 rounded-xl bg-slate-900/40 border border-slate-800 p-4">
-          <h3 className="font-bold text-slate-200">{problem.title}</h3>
-          <p className="text-sm text-slate-400 mt-1">{problem.description}</p>
+        <div className="mb-4 rounded-xl bg-white border border-slate-200 p-4">
+          <h3 className="font-bold text-slate-700">{problem.title}</h3>
+          <p className="text-sm text-slate-500 mt-1">{problem.description}</p>
         </div>
       )}
 
       {/* Controls */}
-      <div className="mb-4 flex items-center justify-between rounded-xl bg-slate-900/40 border border-slate-800 px-4 py-3">
+      <div className="mb-4 flex items-center justify-between rounded-xl bg-white border border-slate-200 px-4 py-3">
         <div className="flex items-center gap-3">
           {!playing ? (
             <button
               onClick={handlePlay}
               disabled={!replay?.trace?.length}
-              className="rounded-lg bg-indigo-600 px-3 py-1 text-sm font-medium text-text-primary hover:bg-indigo-500 disabled:opacity-50"
+              className="rounded-lg bg-indigo-600 px-3 py-1 text-sm font-medium text-white hover:bg-indigo-500 disabled:opacity-50"
             >
               <Play className="h-4 w-4 inline mr-1" />
               Play
@@ -112,7 +112,7 @@ export default function InterviewReplay({ interviewId }: any = {}) {
           ) : (
             <button
               onClick={handlePause}
-              className="rounded-lg bg-slate-700 px-3 py-1 text-sm font-medium text-slate-200 hover:bg-slate-600"
+              className="rounded-lg bg-slate-100 px-3 py-1 text-sm font-medium text-slate-700 hover:bg-slate-100"
             >
               <Pause className="h-4 w-4 inline mr-1" />
               Pause
@@ -121,14 +121,14 @@ export default function InterviewReplay({ interviewId }: any = {}) {
           <button
             onClick={() => handleStep("prev")}
             disabled={currentStep === 0}
-            className="rounded-lg border border-slate-700 px-2 py-1 text-slate-300 hover:bg-slate-800 disabled:opacity-50"
+            className="rounded-lg border border-slate-200 px-2 py-1 text-slate-600 hover:bg-white disabled:opacity-50"
           >
             <SkipBack className="h-4 w-4" />
           </button>
           <button
             onClick={() => handleStep("next")}
             disabled={!replay?.trace || currentStep >= replay.trace.length - 1}
-            className="rounded-lg border border-slate-700 px-2 py-1 text-slate-300 hover:bg-slate-800 disabled:opacity-50"
+            className="rounded-lg border border-slate-200 px-2 py-1 text-slate-600 hover:bg-white disabled:opacity-50"
           >
             <SkipForward className="h-4 w-4" />
           </button>
@@ -139,7 +139,7 @@ export default function InterviewReplay({ interviewId }: any = {}) {
 
         <button
           onClick={() => setShowStats(true)}
-          className="rounded-lg border border-slate-700 px-3 py-1 text-sm text-slate-300 hover:bg-slate-800"
+          className="rounded-lg border border-slate-200 px-3 py-1 text-sm text-slate-600 hover:bg-white"
         >
           <BarChart3 className="h-4 w-4 inline mr-1" />
           View Stats
@@ -148,8 +148,8 @@ export default function InterviewReplay({ interviewId }: any = {}) {
 
       {/* Code viewer */}
       <div className="mb-4">
-        <pre className="overflow-x-auto rounded-xl bg-slate-900/60 border border-slate-800 p-4 text-sm leading-relaxed whitespace-pre-wrap">
-          <code className="text-slate-300">{currentCode}</code>
+        <pre className="overflow-x-auto rounded-xl bg-white border border-slate-200 p-4 text-sm leading-relaxed whitespace-pre-wrap">
+          <code className="text-slate-600">{currentCode}</code>
         </pre>
       </div>
 
@@ -160,20 +160,20 @@ export default function InterviewReplay({ interviewId }: any = {}) {
           animate={{ opacity: 1 }}
           className={`mb-4 rounded-xl border p-3 text-sm ${
             replay.trace[currentStep].run_result.status === "passed"
-              ? "border-green-500/30 bg-green-500/10 text-green-300"
-              : "border-rose-500/30 bg-rose-500/10 text-rose-300"
+              ? "border-green-500/30 bg-green-500/10 text-green-600"
+              : "border-rose-500/30 bg-rose-500/10 text-rose-600"
           }`}
         >
           <div className="flex items-center gap-2">
             {replay.trace[currentStep].run_result.status === "passed" ? (
-              <CheckCircle className="h-4 w-4 text-green-400" />
+              <CheckCircle className="h-4 w-4 text-green-600" />
             ) : (
-              <AlertCircle className="h-4 w-4 text-rose-400" />
+              <AlertCircle className="h-4 w-4 text-rose-600" />
             )}
             Result: {replay.trace[currentStep].run_result.status}
           </div>
           {replay.trace[currentStep].run_result.error && (
-            <pre className="mt-2 text-xs text-rose-400 whitespace-pre-wrap">
+            <pre className="mt-2 text-xs text-rose-600 whitespace-pre-wrap">
               {replay.trace[currentStep].run_result.error.slice(0, 200)}
             </pre>
           )}
@@ -194,37 +194,37 @@ export default function InterviewReplay({ interviewId }: any = {}) {
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
-              className="w-full max-w-md rounded-2xl bg-slate-900 border border-slate-800 p-6"
+              className="w-full max-w-md rounded-2xl bg-white border border-slate-200 p-6"
               onClick={(e) => e.stopPropagation()}
             >
-              <h3 className="text-xl font-bold text-slate-200 mb-4">Coding Stats</h3>
+              <h3 className="text-xl font-bold text-slate-700 mb-4">Coding Stats</h3>
               <div className="space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-slate-400">Submissions</span>
+                  <span className="text-slate-500">Submissions</span>
                   <span className="font-bold text-text-primary">{stats.total_submissions}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-400">Compile Errors</span>
-                  <span className="font-bold text-amber-400">{stats.compile_errors}</span>
+                  <span className="text-slate-500">Compile Errors</span>
+                  <span className="font-bold text-amber-600">{stats.compile_errors}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-400">Estimated WPM</span>
-                  <span className="font-bold text-indigo-300">{stats.estimated_wpm}</span>
+                  <span className="text-slate-500">Estimated WPM</span>
+                  <span className="font-bold text-indigo-600">{stats.estimated_wpm}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-400">Code Length</span>
-                  <span className="font-bold text-slate-300">{stats.code_length} chars</span>
+                  <span className="text-slate-500">Code Length</span>
+                  <span className="font-bold text-slate-600">{stats.code_length} chars</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-400">Accepted</span>
-                  <span className={stats.accepted ? "font-bold text-green-400" : "font-bold text-rose-400"}>
+                  <span className="text-slate-500">Accepted</span>
+                  <span className={stats.accepted ? "font-bold text-green-600" : "font-bold text-rose-600"}>
                     {stats.accepted ? "Yes" : "No"}
                   </span>
                 </div>
               </div>
               <button
                 onClick={() => setShowStats(false)}
-                className="mt-6 w-full rounded-lg bg-indigo-600 py-2 font-semibold text-text-primary hover:bg-indigo-500"
+                className="mt-6 w-full rounded-lg bg-indigo-600 py-2 font-semibold text-white hover:bg-indigo-500"
               >
                 Close
               </button>

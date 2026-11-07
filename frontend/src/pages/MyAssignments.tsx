@@ -19,8 +19,8 @@ function formatDate(value) {
 
 function StatusBadge({ status }) {
   const config = {
-    pending: { label: "Pending", cls: "bg-amber-500/10 text-amber-400 border-amber-500/30", icon: Clock },
-    submitted: { label: "Submitted", cls: "bg-sky-500/10 text-sky-400 border-sky-500/30", icon: Send },
+    pending: { label: "Pending", cls: "bg-amber-500/10 text-amber-600 border-amber-500/30", icon: Clock },
+    submitted: { label: "Submitted", cls: "bg-sky-500/10 text-sky-600 border-sky-500/30", icon: Send },
     graded: { label: "Graded", cls: "bg-nature-bark text-nature-blossom border-nature-leaf/30", icon: CheckCircle2 },
   };
   const c = config[status] || config.pending;
@@ -135,7 +135,7 @@ export default function MyAssignments() {
                         <h3 className="font-display font-bold text-text-primary">{a.title}</h3>
                         <StatusBadge status={status} />
                         {overdue && (
-                          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono border bg-red-500/10 text-red-400 border-red-500/30">
+                          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono border bg-red-500/10 text-red-600 border-red-500/30">
                             Overdue
                           </span>
                         )}
@@ -145,11 +145,11 @@ export default function MyAssignments() {
                       )}
                       <div className="mt-3 flex flex-wrap gap-4 text-xs font-mono text-text-muted">
                         <span className="flex items-center gap-1.5">
-                          <Calendar size={12} className="text-sky-400" />
+                          <Calendar size={12} className="text-sky-600" />
                           Due {formatDate(a.due_date)}
                         </span>
                         <span className="flex items-center gap-1.5">
-                          <Award size={12} className="text-amber-400" />
+                          <Award size={12} className="text-amber-600" />
                           Max score {a.max_score}
                         </span>
                         {a.content_title && (

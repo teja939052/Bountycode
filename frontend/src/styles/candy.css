@@ -13,18 +13,18 @@
   --candy-tangerine: #ff8a5c;
   --candy-cherry: #ff3f6c;
   --candy-gold: #ffd700;
-  --candy-ink: #0f0f1a;
+  --candy-ink: #17211B;
   --candy-cream: #FFF8F0;
   --candy-rose: #FF8A9F;
 
-  /* Semantic tokens */
-  --candy-bg: #0f0f1a;
-  --candy-surface: #1a1a2e;
-  --candy-surface-light: #252540;
-  --candy-text: #ffffff;
-  --candy-text-dim: #a0a0b8;
-  --candy-border: rgba(255, 255, 255, 0.08);
-  --candy-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  /* Semantic tokens — light surfaces to match the global theme */
+  --candy-bg: #FFFFFF;
+  --candy-surface: #FFFFFF;
+  --candy-surface-light: #F7FAF7;
+  --candy-text: #17211B;
+  --candy-text-dim: #68736B;
+  --candy-border: #DCE8DE;
+  --candy-shadow: 0 8px 32px rgba(17, 33, 27, 0.12);
 
   /* Glossy overlays */
   --candy-gloss: linear-gradient(
@@ -328,18 +328,18 @@
 /* ── Glass Morphism ──────────────────────────────────────────── */
 
 .candy-glass {
-  background: rgba(26, 26, 46, 0.6);
+  background: rgba(255, 255, 255, 0.78);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(220, 232, 222, 0.9);
   box-shadow: var(--candy-shadow);
 }
 
 .candy-glass-light {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.55);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(220, 232, 222, 0.7);
 }
 
 /* ── Celebration Effects ─────────────────────────────────────── */

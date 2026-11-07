@@ -10,7 +10,7 @@ export default function HyperdriveStatus({ status = "idle", testResults = {} }: 
     idle: {
       label: "STANDBY",
       color: "text-gray-500",
-      barColor: "bg-gray-600",
+      barColor: "bg-slate-100",
       glowColor: "",
       message: "Hyperdrive on standby. Submit code to initiate jump sequence.",
     },
@@ -67,11 +67,11 @@ export default function HyperdriveStatus({ status = "idle", testResults = {} }: 
       <div className="flex items-center justify-between px-4 py-3 border-b border-space-border bg-space-void/50">
         <div className="flex items-center gap-3">
           <div className="flex gap-1.5">
-            <span className={`w-3 h-3 rounded-full ${status === "success" ? "bg-cyber-green" : status === "failed" || status === "error" ? "bg-cyber-red animate-pulse" : "bg-gray-600"}`} />
-            <span className={`w-3 h-3 rounded-full ${status === "running" || status === "compiling" ? "bg-cyber-blue animate-pulse" : "bg-gray-600"}`} />
-            <span className="w-3 h-3 rounded-full bg-gray-600" />
+            <span className={`w-3 h-3 rounded-full ${status === "success" ? "bg-cyber-green" : status === "failed" || status === "error" ? "bg-cyber-red animate-pulse" : "bg-slate-100"}`} />
+            <span className={`w-3 h-3 rounded-full ${status === "running" || status === "compiling" ? "bg-cyber-blue animate-pulse" : "bg-slate-100"}`} />
+            <span className="w-3 h-3 rounded-full bg-slate-100" />
           </div>
-          <span className="text-[10px] font-mono uppercase tracking-widest text-gray-400">
+          <span className="text-[10px] font-mono uppercase tracking-widest text-gray-500">
             Quantum Hyperdrive
           </span>
         </div>
@@ -101,13 +101,13 @@ export default function HyperdriveStatus({ status = "idle", testResults = {} }: 
           <div className="flex gap-4">
             <div className="flex items-center gap-2">
               <span className="status-online" />
-              <span className="text-xs font-mono text-gray-400">
+              <span className="text-xs font-mono text-gray-500">
                 <span className="text-cyber-green">{passed}</span> passed
               </span>
             </div>
             <div className="flex items-center gap-2">
               <span className="status-dot bg-cyber-red" style={{ boxShadow: "0 0 6px rgba(239,68,68,0.6)" }} />
-              <span className="text-xs font-mono text-gray-400">
+              <span className="text-xs font-mono text-gray-500">
                 <span className="text-cyber-red">{failed}</span> failed
               </span>
             </div>

@@ -65,7 +65,7 @@ export default function DailyBonusCalendar({ dailyBonus, claiming, onClaim }) {
         {cells.map((date) => {
           const entry = cellFor(date);
           const intensity = entry ? Math.min(1, (entry.diamonds || 0) / 25) : 0;
-          let bg = "bg-gray-800";
+          let bg = "bg-slate-100";
           if (intensity > 0.75) bg = "bg-brand-emerald";
           else if (intensity > 0.5) bg = "bg-emerald-600";
           else if (intensity > 0.25) bg = "bg-emerald-800";

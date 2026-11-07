@@ -150,7 +150,7 @@ export default function PracticeConsole({
         <Editor
           height="100%"
           language={lang === "cpp" ? "cpp" : lang === "java" ? "java" : lang === "c" ? "c" : "python"}
-          theme="vs-dark"
+          theme="vs-light"
           value={code}
           onChange={(val) => setCode(val || "")}
           options={{

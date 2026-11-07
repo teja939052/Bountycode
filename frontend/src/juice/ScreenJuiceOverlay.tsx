@@ -58,7 +58,7 @@ export default function ScreenJuiceOverlay({ juice }) {
     >
       {text && (
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-4xl font-black text-white" style={{
+          <div className="text-4xl font-black text-slate-900" style={{
             textShadow: `0 0 40px ${color}`,
             animation: 'floatUp 0.6s ease-out 0.1s both',
           }}>
@@ -68,7 +68,7 @@ export default function ScreenJuiceOverlay({ juice }) {
       )}
       {subtext && (
         <div className="absolute inset-0 flex items-center justify-center mt-16">
-          <div className="text-lg font-bold text-white/80" style={{
+          <div className="text-lg font-bold text-slate-900" style={{
             textShadow: '0 0 20px rgba(0,0,0,0.8)',
             animation: 'floatUp 0.6s ease-out 0.3s both',
           }}>

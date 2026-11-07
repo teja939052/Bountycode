@@ -294,7 +294,7 @@ const VariableDiscovery = () => {
               <div className="flex items-center gap-3">
                 <span className="text-3xl">{story.character.emoji}</span>
                 <div>
-                  <p className="font-display font-bold text-yellow-400">
+                  <p className="font-display font-bold text-yellow-600">
                     {story.character.name} says:
                   </p>
                   <p className="text-sm font-mono text-brand-secondary mt-1">
@@ -337,7 +337,7 @@ const VariableDiscovery = () => {
                       nextPhase();
                     }
                   }}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-cyan-500/20 border border-cyan-300/30 text-cyan-300 font-mono text-sm hover:bg-cyan-500/30 transition-all"
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-cyan-500/20 border border-cyan-300/30 text-cyan-600 font-mono text-sm hover:bg-cyan-500/30 transition-all"
                 >
                   <Play size={14} />
                   {narrationIndex < story.narration.length - 1 ? "Next" : "Begin Discovery"}
@@ -355,7 +355,7 @@ const VariableDiscovery = () => {
             className="space-y-6"
           >
             <h2 className="text-2xl font-display font-bold text-text-primary flex items-center gap-2">
-              <Lightbulb size={24} className="text-yellow-400" />
+              <Lightbulb size={24} className="text-yellow-600" />
               {discovery.title}
             </h2>
 
@@ -374,7 +374,7 @@ const VariableDiscovery = () => {
                         {discovery.steps[discoveryStep].prompt}
                       </p>
                       <div className="mt-4 p-4 bg-yellow-500/10 rounded-lg border border-yellow-500/20">
-                        <p className="text-sm font-mono text-yellow-300">
+                        <p className="text-sm font-mono text-yellow-600">
                           {discovery.steps[discoveryStep].insight}
                         </p>
                       </div>
@@ -384,7 +384,7 @@ const VariableDiscovery = () => {
                           setHintLevel(0);
                         }}
                         disabled={discoveryStep >= discovery.steps.length - 1}
-                        className="mt-4 flex items-center gap-2 px-4 py-2 rounded-lg bg-cyan-500/20 border border-cyan-300/30 text-cyan-300 font-mono text-sm hover:bg-cyan-500/30 transition-all disabled:opacity-50"
+                        className="mt-4 flex items-center gap-2 px-4 py-2 rounded-lg bg-cyan-500/20 border border-cyan-300/30 text-cyan-600 font-mono text-sm hover:bg-cyan-500/30 transition-all disabled:opacity-50"
                       >
                         <Zap size={14} />
                         {discoveryStep >= discovery.steps.length - 1
@@ -424,7 +424,7 @@ const VariableDiscovery = () => {
                         {discovery.steps[discoveryStep].prompt}
                       </p>
 
-                      <div className="bg-surface-card/30 rounded-lg p-4 border border-white/5">
+                      <div className="bg-surface-card/30 rounded-lg p-4 border border-slate-200">
                         <p className="text-sm font-mono text-text-primary mb-3">
                           {discovery.steps[discoveryStep].question}
                         </p>
@@ -462,7 +462,7 @@ const VariableDiscovery = () => {
             className="space-y-6"
           >
             <h2 className="text-2xl font-display font-bold text-text-primary flex items-center gap-2">
-              <Code size={24} className="text-cyan-400" />
+              <Code size={24} className="text-cyan-600" />
               Interactive Code Sandbox
             </h2>
 
@@ -471,11 +471,11 @@ const VariableDiscovery = () => {
                 {sandbox.test_cases[0].description}
               </p>
 
-              <div className="rounded-lg overflow-hidden border border-white/5">
+              <div className="rounded-lg overflow-hidden border border-slate-200">
                 <Editor
                   height="200px"
                   language={sandbox.language === "c" ? "c" : sandbox.language}
-                  theme="vs-dark"
+                  theme="vs-light"
                   value={code}
                   onChange={(val) => setCode(val || "")}
                   options={{
@@ -493,7 +493,7 @@ const VariableDiscovery = () => {
                 <button
                   onClick={handleRunCode}
                   disabled={running}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-cyan-500/20 border border-cyan-300/30 text-cyan-300 font-mono text-sm hover:bg-cyan-500/30 transition-all disabled:opacity-50"
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-cyan-500/20 border border-cyan-300/30 text-cyan-600 font-mono text-sm hover:bg-cyan-500/30 transition-all disabled:opacity-50"
                 >
                   {running ? <Spinner size="sm" /> : <Play size={14} />}
                   {running ? "Running..." : "Run Code"}
@@ -501,13 +501,13 @@ const VariableDiscovery = () => {
                 <button
                   onClick={checkSandboxAnswer}
                   disabled={running}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-green-500/20 border border-green-400/30 text-green-400 font-mono text-sm hover:bg-green-500/30 transition-all"
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-green-500/20 border border-green-400/30 text-green-600 font-mono text-sm hover:bg-green-500/30 transition-all"
                 >
                   Check Answer
                 </button>
                 <button
                   onClick={resetSandbox}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-card/30 border border-white/5 text-brand-muted font-mono text-sm hover:bg-surface-card/50"
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-card/30 border border-slate-200 text-brand-muted font-mono text-sm hover:bg-surface-card/50"
                 >
                   Reset
                 </button>
@@ -534,8 +534,8 @@ const VariableDiscovery = () => {
             </div>
 
             {output && (
-              <div className="bg-[#0d1117] rounded-lg p-3 border border-white/5">
-                <pre className={`text-sm font-mono ${checkResult === "pass" ? "text-green-400" : checkResult === "fail" ? "text-red-400" : "text-green-400"}`}>
+              <div className="bg-white rounded-lg p-3 border border-slate-200">
+                <pre className={`text-sm font-mono ${checkResult === "pass" ? "text-green-600" : checkResult === "fail" ? "text-red-600" : "text-green-600"}`}>
                   {output}
                 </pre>
               </div>
@@ -547,8 +547,8 @@ const VariableDiscovery = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className={`p-3 rounded-lg flex items-center gap-2 ${
                   checkResult === "pass"
-                    ? "bg-green-500/10 border border-green-500/20 text-green-400"
-                    : "bg-red-500/10 border border-red-500/20 text-red-400"
+                    ? "bg-green-500/10 border border-green-500/20 text-green-600"
+                    : "bg-red-500/10 border border-red-500/20 text-red-600"
                 }`}
               >
                 {checkResult === "pass" ? <CheckCircle2 size={16} /> : <XCircle size={16} />}
@@ -566,7 +566,7 @@ const VariableDiscovery = () => {
                   setHintLevel(0);
                   nextPhase();
                 }}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-yellow-500/20 border border-yellow-400/30 text-yellow-400 font-mono text-sm hover:bg-yellow-500/30 transition-all"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-yellow-500/20 border border-yellow-400/30 text-yellow-600 font-mono text-sm hover:bg-yellow-500/30 transition-all"
               >
                 <Star size={14} /> Continue to Transfer Challenge
               </button>
@@ -582,7 +582,7 @@ const VariableDiscovery = () => {
             className="space-y-6"
           >
             <h2 className="text-2xl font-display font-bold text-text-primary flex items-center gap-2">
-              <Target size={24} className="text-purple-400" />
+              <Target size={24} className="text-purple-600" />
               {transfer.title}
             </h2>
 
@@ -591,15 +591,15 @@ const VariableDiscovery = () => {
                 {transfer.description}
               </p>
 
-              <p className="text-xs font-mono text-yellow-400/70 uppercase tracking-wider mb-2">
+              <p className="text-xs font-mono text-yellow-600 uppercase tracking-wider mb-2">
                 Difficulty: {transfer.difficulty}
               </p>
 
-              <div className="rounded-lg overflow-hidden border border-white/5">
+              <div className="rounded-lg overflow-hidden border border-slate-200">
                 <Editor
                   height="200px"
                   language="c"
-                  theme="vs-dark"
+                  theme="vs-light"
                   value={code}
                   onChange={(val) => setCode(val || "")}
                   options={{
@@ -617,7 +617,7 @@ const VariableDiscovery = () => {
                 <button
                   onClick={handleRunCode}
                   disabled={running}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-cyan-500/20 border border-cyan-300/30 text-cyan-300 font-mono text-sm hover:bg-cyan-500/30 transition-all disabled:opacity-50"
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-cyan-500/20 border border-cyan-300/30 text-cyan-600 font-mono text-sm hover:bg-cyan-500/30 transition-all disabled:opacity-50"
                 >
                   {running ? <Spinner size="sm" /> : <Play size={14} />}
                   Run
@@ -625,7 +625,7 @@ const VariableDiscovery = () => {
                 <button
                   onClick={checkTransferAnswer}
                   disabled={running}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-green-500/20 border border-green-400/30 text-green-400 font-mono text-sm hover:bg-green-500/30 transition-all"
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-green-500/20 border border-green-400/30 text-green-600 font-mono text-sm hover:bg-green-500/30 transition-all"
                 >
                   Check Answer
                 </button>
@@ -645,7 +645,7 @@ const VariableDiscovery = () => {
                 <motion.div
                   initial={{ opacity: 0, y: 5 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mt-3 p-3 rounded-lg bg-green-500/10 border border-green-500/20 text-green-400 flex items-center gap-2"
+                  className="mt-3 p-3 rounded-lg bg-green-500/10 border border-green-500/20 text-green-600 flex items-center gap-2"
                 >
                   <CheckCircle2 size={16} />
                   Transfer complete! You applied variables to a new context.
@@ -732,7 +732,7 @@ const VariableDiscovery = () => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.3 }}
               >
-                <p className="text-3xl font-bold text-green-400">
+                <p className="text-3xl font-bold text-green-600">
                   +{xpResult?.xp_gained || content.xp_reward}
                 </p>
                 <p className="text-xs text-brand-muted font-mono">XP EARNED</p>
@@ -742,20 +742,20 @@ const VariableDiscovery = () => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.4 }}
               >
-                <Trophy size={32} className="text-yellow-400 mx-auto" />
+                <Trophy size={32} className="text-yellow-600 mx-auto" />
                 <p className="text-xs text-brand-muted font-mono">Badge Unlocked</p>
               </motion.div>
             </div>
 
             {xpResult?.srs_state && (
-              <p className="text-sm font-mono text-cyan-400 mb-4">
+              <p className="text-sm font-mono text-cyan-600 mb-4">
                 Concept "{xpResult.srs_concept_enrolled}" enrolled in spaced repetition.
               </p>
             )}
 
             <button
               onClick={() => (window.location.href = "/learn")}
-              className="flex items-center gap-2 px-6 py-3 rounded-xl bg-cyan-500/20 border border-cyan-300/30 text-cyan-300 font-mono text-sm hover:bg-cyan-500/30 transition-all"
+              className="flex items-center gap-2 px-6 py-3 rounded-xl bg-cyan-500/20 border border-cyan-300/30 text-cyan-600 font-mono text-sm hover:bg-cyan-500/30 transition-all"
             >
               <BookOpen size={16} />
               Return to Learning Hub
@@ -790,12 +790,12 @@ function NumberInput({ onSubmit, hintLevel, step }: {
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder="Enter address..."
-        className="w-full px-3 py-2 rounded-lg bg-surface-card/30 border border-white/5 text-text-primary font-mono text-sm focus:outline-none focus:border-cyan-300/30"
+        className="w-full px-3 py-2 rounded-lg bg-surface-card/30 border border-slate-200 text-text-primary font-mono text-sm focus:outline-none focus:border-cyan-300/30"
         onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
       />
       <button
         onClick={handleSubmit}
-        className="w-full px-4 py-2 rounded-lg bg-cyan-500/20 border border-cyan-300/30 text-cyan-300 font-mono text-sm hover:bg-cyan-500/30 transition-all"
+        className="w-full px-4 py-2 rounded-lg bg-cyan-500/20 border border-cyan-300/30 text-cyan-600 font-mono text-sm hover:bg-cyan-500/30 transition-all"
       >
         Submit
       </button>
@@ -833,12 +833,12 @@ function TextInput({ onSubmit, hintLevel, step }: {
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder="Enter value..."
-        className="w-full px-3 py-2 rounded-lg bg-surface-card/30 border border-white/5 text-text-primary font-mono text-sm focus:outline-none focus:border-cyan-300/30"
+        className="w-full px-3 py-2 rounded-lg bg-surface-card/30 border border-slate-200 text-text-primary font-mono text-sm focus:outline-none focus:border-cyan-300/30"
         onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
       />
       <button
         onClick={handleSubmit}
-        className="w-full px-4 py-2 rounded-lg bg-cyan-500/20 border border-cyan-300/30 text-cyan-300 font-mono text-sm hover:bg-cyan-500/30 transition-all"
+        className="w-full px-4 py-2 rounded-lg bg-cyan-500/20 border border-cyan-300/30 text-cyan-600 font-mono text-sm hover:bg-cyan-500/30 transition-all"
       >
         Submit
       </button>
@@ -865,7 +865,7 @@ function HintReveal({ level, step, onReveal }: {
     return (
       <button
         onClick={onReveal}
-        className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-mono hover:bg-purple-500/20 transition-all"
+        className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-600 text-xs font-mono hover:bg-purple-500/20 transition-all"
       >
         <Lightbulb size={12} /> Show Hint
       </button>
@@ -879,7 +879,7 @@ function HintReveal({ level, step, onReveal }: {
       className="mt-2 p-3 rounded-lg bg-purple-500/5 border border-purple-500/20 space-y-1"
     >
       {hints.slice(0, level + 1).map((h: string, i: number) => (
-        <p key={i} className="text-xs font-mono text-purple-300 flex items-start gap-2">
+        <p key={i} className="text-xs font-mono text-purple-600 flex items-start gap-2">
           <span className="text-purple-500">💡</span> {h}
         </p>
       ))}
@@ -896,7 +896,7 @@ function HintStrip({ level, hints, onReveal }: {
     return (
       <button
         onClick={onReveal}
-        className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-mono hover:bg-purple-500/20 transition-all"
+        className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-600 text-xs font-mono hover:bg-purple-500/20 transition-all"
       >
         <Lightbulb size={12} /> Hint ({hints.length})
       </button>
@@ -910,7 +910,7 @@ function HintStrip({ level, hints, onReveal }: {
       className="mt-2 p-3 rounded-lg bg-purple-500/5 border border-purple-500/20 space-y-1"
     >
       {hints.slice(0, Math.max(1, level)).map((h: string, i: number) => (
-        <p key={i} className="text-xs font-mono text-purple-300 flex items-start gap-2">
+        <p key={i} className="text-xs font-mono text-purple-600 flex items-start gap-2">
           <span className="text-purple-500">💡</span> {h}
         </p>
       ))}
@@ -925,9 +925,9 @@ function HeartKey({ filled }: { filled: boolean }) {
       transition={{ duration: 0.3 }}
     >
       {filled ? (
-        <span className="text-red-400 text-xl">❤️</span>
+        <span className="text-red-600 text-xl">❤️</span>
       ) : (
-        <span className="text-red-400/30 text-xl">♥</span>
+        <span className="text-red-600 text-xl">♥</span>
       )}
     </motion.div>
   );
@@ -978,12 +978,12 @@ function BossAnswerInput({
             value={answer}
             onChange={(e) => setAnswer(e.target.value)}
             placeholder="Enter your answer..."
-            className="w-full px-3 py-2 rounded-lg bg-surface-card/30 border border-white/5 text-text-primary font-mono text-sm focus:outline-none focus:border-red-400/30"
+            className="w-full px-3 py-2 rounded-lg bg-surface-card/30 border border-slate-200 text-text-primary font-mono text-sm focus:outline-none focus:border-red-400/30"
             onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
           />
           <button
             onClick={handleSubmit}
-            className="w-full px-4 py-2 rounded-lg bg-red-500/20 border border-red-500/30 text-red-400 font-mono text-sm hover:bg-red-500/30 transition-all"
+            className="w-full px-4 py-2 rounded-lg bg-red-500/20 border border-red-500/30 text-red-600 font-mono text-sm hover:bg-red-500/30 transition-all"
           >
             Strike the Boss!
           </button>
@@ -994,8 +994,8 @@ function BossAnswerInput({
           animate={{ opacity: 1, y: 0 }}
           className={`p-3 rounded-lg flex items-start gap-2 ${
             isCorrect
-              ? "bg-green-500/10 border border-green-500/20 text-green-400"
-              : "bg-red-500/10 border border-red-500/20 text-red-400"
+              ? "bg-green-500/10 border border-green-500/20 text-green-600"
+              : "bg-red-500/10 border border-red-500/20 text-red-600"
           }`}
         >
           {isCorrect ? <CheckCircle2 size={16} /> : <XCircle size={16} />}

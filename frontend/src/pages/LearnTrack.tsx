@@ -109,7 +109,7 @@ export default function LearnTrack() {
                         {isDone ? (
                           <CheckCircle2 size={20} className="shrink-0 text-nature-blossom" />
                         ) : locked ? (
-                          <Circle size={20} className="shrink-0 text-[#D1D5DB]" />
+                          <Circle size={20} className="shrink-0 text-slate-700" />
                         ) : (
                           <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#EEF5E7] text-[11px] font-bold text-nature-blossom">
                             {idx + 1}
@@ -121,7 +121,7 @@ export default function LearnTrack() {
                             <p className="truncate text-sm font-semibold text-text-muted">
                               {lesson.title}
                             </p>
-                            <p className="flex items-center gap-2 text-xs text-[#B8BFC9]">
+                            <p className="flex items-center gap-2 text-xs text-slate-500">
                               {lesson.type === "project" ? <Hammer size={12} /> : <Code2 size={12} />}
                               {lesson.type === "project" ? "Project" : "Lesson"}
                               {lesson.xp ? ` · +${lesson.xp} XP` : ""}

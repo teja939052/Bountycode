@@ -55,13 +55,13 @@ export function MysteryBox({ box, index, isOpen, onOpen }: MysteryBoxProps) {
           }}
           className={`w-full flex items-center gap-3 rounded-xl border-2 ${style.border} bg-gradient-to-r ${style.bg} p-4 text-left shadow-sm hover:shadow-md transition-shadow`}
         >
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/60 text-xl">
-            <Lock className="w-5 h-5 text-slate-400" />
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white text-xl">
+            <Lock className="w-5 h-5 text-slate-500" />
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
               <span className="text-sm font-semibold text-slate-700">{box.title}</span>
-              <span className="text-[10px] uppercase tracking-wider text-slate-400 font-medium">{box.rarity}</span>
+              <span className="text-[10px] uppercase tracking-wider text-slate-500 font-medium">{box.rarity}</span>
             </div>
             <p className="text-xs text-slate-500 truncate">{box.description}</p>
           </div>

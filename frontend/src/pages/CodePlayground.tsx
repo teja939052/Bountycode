@@ -25,18 +25,18 @@ const FILE_ICONS = {
 };
 
 const FILE_COLORS = {
-  html: "text-orange-400", css: "text-blue-400", javascript: "text-yellow-400",
-  js: "text-yellow-400", json: "text-green-400", py: "text-blue-300",
+  html: "text-orange-600", css: "text-blue-600", javascript: "text-yellow-600",
+  js: "text-yellow-600", json: "text-green-600", py: "text-blue-600",
 };
 
-const THEMES = ["vs-dark", "vs-light", "hc-black"];
+const THEMES = ["vs-light", "vs-dark", "hc-black"];
 
 export default function CodePlayground() {
   const [project, setProject] = useState(DEFAULT_PROJECT);
   const [activeFileId, setActiveFileId] = useState(project.files[0].id);
   const [output, setOutput] = useState("");
   const [consoleOpen, setConsoleOpen] = useState(true);
-  const [theme, setTheme] = useState("vs-dark");
+  const [theme, setTheme] = useState("vs-light");
   const [previewMode, setPreviewMode] = useState(false);
   const [showNewFile, setShowNewFile] = useState(false);
   const [newFileName, setNewFileName] = useState("");
@@ -138,7 +138,7 @@ export default function CodePlayground() {
       <div className="flex items-center justify-between px-4 py-2 bg-white border-border/95 border-b border-black/10 shrink-0 shadow-sm">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2 text-sm font-medium">
-            <Code2 className="w-5 h-5 text-indigo-400" />
+            <Code2 className="w-5 h-5 text-indigo-600" />
             <span className="text-text-primary">{project.name}</span>
           </div>
           <span className="text-[10px] text-brand-muted font-mono">{project.files.length} files</span>
@@ -147,7 +147,7 @@ export default function CodePlayground() {
           <button
             onClick={() => setPreviewMode(!previewMode)}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-              previewMode ? "bg-indigo-600 text-text-primary" : "bg-surface-2 text-brand-secondary hover:text-text-primary"
+              previewMode ? "bg-indigo-600 text-white" : "bg-surface-2 text-brand-secondary hover:text-text-primary"
             }`}
           >
             <Eye className="w-3.5 h-3.5" /> Preview
@@ -155,7 +155,7 @@ export default function CodePlayground() {
           <button
             onClick={runProject}
             disabled={running}
-            className="flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-text-primary text-xs font-medium transition-all shadow-lg shadow-emerald-600/20"
+            className="flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white text-xs font-medium transition-all shadow-lg shadow-emerald-600/20"
           >
             {running ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : <Play className="w-3.5 h-3.5 fill-current" />}
             Run
@@ -188,14 +188,14 @@ export default function CodePlayground() {
             {project.files.map((file) => {
               const ext = file.name.split(".").pop() || "";
               const IconComp = FILE_ICONS[ext] || FILE_ICONS[file.language] || FileCode;
-              const color = FILE_COLORS[ext] || FILE_COLORS[file.language] || "text-slate-400";
+              const color = FILE_COLORS[ext] || FILE_COLORS[file.language] || "text-slate-500";
               return (
                 <div
                   key={file.id}
                   onClick={() => setActiveFileId(file.id)}
                   className={`group flex items-center gap-2 px-3 py-2 rounded-lg cursor-pointer text-xs transition-all ${
                     activeFileId === file.id
-                      ? "bg-indigo-600/20 text-indigo-300 border border-indigo-500/30"
+                      ? "bg-indigo-600/20 text-indigo-600 border border-indigo-500/30"
                       : "text-brand-secondary hover:bg-surface-2 hover:text-text-primary"
                   }`}
                 >
@@ -203,7 +203,7 @@ export default function CodePlayground() {
                   <span className="flex-1 truncate">{file.name}</span>
                   <button
                     onClick={(e) => { e.stopPropagation(); deleteFile(file.id); }}
-                    className="opacity-0 group-hover:opacity-100 p-0.5 rounded hover:bg-surface-2 text-brand-muted hover:text-red-400 transition-all"
+                    className="opacity-0 group-hover:opacity-100 p-0.5 rounded hover:bg-surface-2 text-brand-muted hover:text-red-600 transition-all"
                   >
                     <Trash2 className="w-3 h-3" />
                   </button>
@@ -222,7 +222,7 @@ export default function CodePlayground() {
                 className="w-full bg-white border border-black/10 rounded px-2 py-1.5 text-xs text-text-primary placeholder-brand-muted focus:outline-none focus:border-indigo-500/50"
               />
               <div className="flex items-center gap-1 mt-1.5">
-                <button onClick={addFile} className="flex-1 py-1 bg-indigo-600 text-text-primary rounded text-[10px] font-medium">Add</button>
+                <button onClick={addFile} className="flex-1 py-1 bg-indigo-600 text-white rounded text-[10px] font-medium">Add</button>
                 <button onClick={() => setShowNewFile(false)} className="py-1 px-2 bg-surface-2 text-brand-secondary rounded text-[10px]">Cancel</button>
               </div>
             </div>

@@ -49,7 +49,7 @@ export default function NeuralNetworkBackground({ reducedMotion = false }: { red
       if (!canvas || !ctx) return;
       time += 0.01;
 
-      ctx.fillStyle = "#0a0f0d";
+      ctx.fillStyle = "#f7faf7";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       const grad = ctx.createRadialGradient(

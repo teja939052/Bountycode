@@ -164,7 +164,7 @@ export default function Privacy() {
               <p className="mt-3 text-sm text-gray-500">For GDPR-related inquiries, our Data Protection Officer (DPO) can be reached at dpo@bountycode.app.</p>
             </section>
 
-            <div className="border-t border-gray-200 pt-6 mt-8 text-xs text-gray-400">
+            <div className="border-t border-gray-200 pt-6 mt-8 text-xs text-gray-500">
               <p>By using BountyCode, you agree to this Privacy Policy.</p>
               <p className="mt-1">Last Updated: August 2026 • Version: 2.0</p>
             </div>

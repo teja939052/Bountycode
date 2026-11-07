@@ -40,7 +40,7 @@ export default function CandyCard({
         <span className="pointer-events-none absolute inset-0 candy-gloss" />
       )}
       {shine && (
-        <span className="pointer-events-none absolute inset-y-0 left-0 z-10 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 transition-all duration-700 group-hover:translate-x-[320%] group-hover:opacity-100" />
+        <span className="pointer-events-none absolute inset-y-0 left-0 z-10 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-slate-200 to-transparent opacity-0 transition-all duration-700 group-hover:translate-x-[320%] group-hover:opacity-100" />
       )}
       <div className={`relative z-10 ${contentClassName}`}>{children}</div>
     </motion.div>

@@ -31,11 +31,11 @@ export default function BadgeCeremony({ badge, onDismiss }) {
           <span className="text-5xl">{badge?.emoji || '🏅'}</span>
         </div>
 
-        <div className="text-2xl font-bold text-emerald-400 mb-2"
+        <div className="text-2xl font-bold text-emerald-600 mb-2"
              style={{ animation: 'floatUp 0.6s ease-out 0.3s both' }}>
           New Badge Unlocked!
         </div>
-        <div className="text-lg text-gray-300" style={{ animation: 'floatUp 0.6s ease-out 0.5s both' }}>
+        <div className="text-lg text-gray-600" style={{ animation: 'floatUp 0.6s ease-out 0.5s both' }}>
           {badge?.name || 'Achievement Unlocked'}
         </div>
         {badge?.description && (
