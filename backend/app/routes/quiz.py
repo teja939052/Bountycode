@@ -176,21 +176,30 @@ async def _load_quiz_evidence(user_id: str) -> Dict[str, Any]:
         "seen_question_ids": [],
     }
     try:
-        graphs = await skill_graph_collection.find({"user_id": user_id}).to_list(500)
-        for doc in graphs:
-            skill = doc.get("skill_id") or doc.get("canonical_skill") or doc.get("topic") or doc.get("sub_topic")
-            if not skill:
-                continue
-            raw_score = doc.get("mastery_score", doc.get("score", doc.get("current_score", 0.5)))
-            try:
-                score = float(raw_score)
-                score = score / 100 if score > 1 else score
-                score = max(0.0, min(1.0, score))
-            except (TypeError, ValueError):
-                score = 0.5
-            evidence["skill_scores"][str(skill)] = score
-            if score < 0.6:
-                evidence["weak_skills"].append(str(skill))
+        # skill_graphs stores one document per learner with per-skill
+        # records nested under "skills" (see record_learning_activity).
+        # Reading the document as a flat list of skill rows silently produced
+        # an empty evidence map, disabling weakness-first selection.
+        graph = await skill_graph_collection.find_one({"user_id": user_id})
+        skill_records = (graph or {}).get("skills") or {}
+        if isinstance(skill_records, dict):
+            for skill, record in skill_records.items():
+                if isinstance(record, dict):
+                    raw_score = record.get(
+                        "mastery_score",
+                        record.get("score", record.get("current_score", 0.5)),
+                    )
+                else:
+                    raw_score = record
+                try:
+                    score = float(raw_score)
+                    score = score / 100 if score > 1 else score
+                    score = max(0.0, min(1.0, score))
+                except (TypeError, ValueError):
+                    score = 0.5
+                evidence["skill_scores"][str(skill)] = score
+                if score < 0.6:
+                    evidence["weak_skills"].append(str(skill))
 
         events = await learning_events_collection.find({"user_id": user_id}).sort("timestamp", -1).to_list(500)
         evidence["seen_question_ids"] = [
