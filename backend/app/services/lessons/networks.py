@@ -207,7 +207,7 @@ NETWORKS_LESSONS = [
                 "instruction": "For IPv4 address 10.0.0.5/8, state the subnet mask and network address.",
                 "starterCode": "Prefix length: 8\nSubnet mask: ?\nNetwork address: ?",
                 "solution": "Subnet mask: 255.0.0.0\nNetwork address: 10.0.0.0",
-                "tests": [{"input": null, "expected": "255.0.0.0 and 10.0.0.0", "check": "identifies_slash_8_network"}],
+                "tests": [{"input": None, "expected": "255.0.0.0 and 10.0.0.0", "check": "identifies_slash_8_network"}],
                 "explanation": "A /8 prefix fixes the first octet as the network portion."
             },
             {
