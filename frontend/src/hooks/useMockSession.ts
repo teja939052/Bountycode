@@ -13,6 +13,8 @@ export interface MockSessionState {
   completedSectionIds: string[];
   tabViolationsCount: number;
   answers: Record<string, string>;
+  flaggedQuestionIds: string[];
+  lastSavedAt: number | null;
   isFullscreen: boolean;
   isExamComplete: boolean;
 }
@@ -28,6 +30,7 @@ export interface UseMockSessionReturn {
   state: MockSessionState;
   triggerFullscreen: () => Promise<void>;
   handleAnswerSelection: (questionId: string, answer: string) => void;
+  toggleFlag: (questionId: string) => void;
   advanceSection: () => void;
   currentSection: Section | undefined;
   canGoBack: boolean;
@@ -40,27 +43,70 @@ export function useMockSession({
   onExamComplete,
   maxTabViolations = 3,
 }: UseMockSessionOptions): UseMockSessionReturn {
+  const storageKey = mockId ? `bountycode:mock-session:${mockId}` : "";
   const [state, setState] = useState<MockSessionState>({
     currentSectionIndex: 0,
     timeRemainingSeconds: sections[0]?.duration_minutes * 60 || 0,
     completedSectionIds: [],
     tabViolationsCount: 0,
     answers: {},
+    flaggedQuestionIds: [],
+    lastSavedAt: null,
     isFullscreen: false,
     isExamComplete: false,
   });
 
   useEffect(() => {
+    let restored: MockSessionState | null = null;
+    if (storageKey && sections.length) {
+      try {
+        const raw = sessionStorage.getItem(storageKey);
+        const parsed = raw ? JSON.parse(raw) : null;
+        if (parsed && Number(parsed.currentSectionIndex) < sections.length && !parsed.isExamComplete) {
+          restored = {
+            ...parsed,
+            currentSectionIndex: Math.max(0, Number(parsed.currentSectionIndex) || 0),
+            timeRemainingSeconds: Math.max(0, Number(parsed.timeRemainingSeconds) || 0),
+            completedSectionIds: Array.isArray(parsed.completedSectionIds) ? parsed.completedSectionIds : [],
+            flaggedQuestionIds: Array.isArray(parsed.flaggedQuestionIds) ? parsed.flaggedQuestionIds.map(String) : [],
+            answers: parsed.answers && typeof parsed.answers === "object" ? parsed.answers : {},
+            lastSavedAt: Number(parsed.lastSavedAt) || null,
+          };
+        }
+      } catch {
+        restored = null;
+      }
+    }
     setState({
-      currentSectionIndex: 0,
-      timeRemainingSeconds: sections[0]?.duration_minutes ? sections[0].duration_minutes * 60 : 0,
-      completedSectionIds: [],
-      tabViolationsCount: 0,
-      answers: {},
-      isFullscreen: false,
-      isExamComplete: false,
+      ...(restored || {
+        currentSectionIndex: 0,
+        timeRemainingSeconds: sections[0]?.duration_minutes ? sections[0].duration_minutes * 60 : 0,
+        completedSectionIds: [],
+        tabViolationsCount: 0,
+        answers: {},
+        flaggedQuestionIds: [],
+        lastSavedAt: null,
+        isFullscreen: false,
+        isExamComplete: false,
+      }),
     });
-  }, [mockId, sections.length]);
+  }, [storageKey, sections.length]);
+
+  useEffect(() => {
+    if (!storageKey || !sections.length || state.isExamComplete) return;
+    try {
+      const saved = { ...state, lastSavedAt: Date.now() };
+      sessionStorage.setItem(storageKey, JSON.stringify(saved));
+      if (!state.lastSavedAt) setState((prev) => ({ ...prev, lastSavedAt: saved.lastSavedAt }));
+    } catch {
+      // Private browsing or storage limits should never block an assessment.
+    }
+  }, [storageKey, sections.length, state]);
+
+  useEffect(() => {
+    if (!storageKey || !state.isExamComplete) return;
+    try { sessionStorage.removeItem(storageKey); } catch { /* ignore storage failures */ }
+  }, [storageKey, state.isExamComplete]);
 
   const onExamCompleteRef = useRef(onExamComplete);
   onExamCompleteRef.current = onExamComplete;
@@ -84,6 +130,15 @@ export function useMockSession({
     setState((prev) => ({
       ...prev,
       answers: { ...prev.answers, [questionId]: answer },
+    }));
+  }, []);
+
+  const toggleFlag = useCallback((questionId: string) => {
+    setState((prev) => ({
+      ...prev,
+      flaggedQuestionIds: prev.flaggedQuestionIds.includes(questionId)
+        ? prev.flaggedQuestionIds.filter((id) => id !== questionId)
+        : [...prev.flaggedQuestionIds, questionId],
     }));
   }, []);
 
@@ -164,6 +219,7 @@ export function useMockSession({
     state,
     triggerFullscreen,
     handleAnswerSelection,
+    toggleFlag,
     advanceSection,
     currentSection,
     canGoBack,
