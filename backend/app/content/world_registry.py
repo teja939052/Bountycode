@@ -20,10 +20,17 @@ from app.content.world_aptitude_quant import WORLD_APTITUDE_QUANT
 from app.content.world_aptitude_reasoning import WORLD_APTITUDE_REASONING
 from app.content.world_aptitude_blood_relations import BLOOD_RELATIONS_TOWN
 from app.content.world_aptitude_direction_sense import DIRECTION_SENSE_TOWN
+from app.content.world_aptitude_seating import SEATING_TOWN
+from app.content.world_aptitude_syllogisms import SYLLOGISMS_TOWN
 
 # Attach extra reasoning towns (keeps main reasoning module size manageable)
 _reasoning_town_ids = {t.id for t in WORLD_APTITUDE_REASONING.towns}
-for _extra_town in (BLOOD_RELATIONS_TOWN, DIRECTION_SENSE_TOWN):
+for _extra_town in (
+    BLOOD_RELATIONS_TOWN,
+    DIRECTION_SENSE_TOWN,
+    SEATING_TOWN,
+    SYLLOGISMS_TOWN,
+):
     if _extra_town.id not in _reasoning_town_ids:
         WORLD_APTITUDE_REASONING.towns = list(WORLD_APTITUDE_REASONING.towns) + [_extra_town]
         _reasoning_town_ids.add(_extra_town.id)
