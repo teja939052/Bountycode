@@ -55,7 +55,7 @@ Source files and imports were inspected after the changes. Automated backend tes
 
 ## Second audit pass — programming and DSA
 
-A source-level inventory of the registered lesson modules found **124 lesson objects across 17 registered tracks/modules** on this branch. This is a count of lesson objects, not proof that every planned concept is covered or that all code examples execute.
+A source-level inventory of the registered lesson modules found **130 lesson objects across 17 registered tracks/modules** on this branch. This is a count of lesson objects, not proof that every planned concept is covered or that all code examples execute.
 
 ### Concrete issues found and fixed
 
@@ -75,8 +75,8 @@ A source-level inventory of the registered lesson modules found **124 lesson obj
 | C | 4 |
 | DSA | 12 |
 | DBMS | 11 |
-| Operating systems | 5 |
-| Computer networks | 5 |
+| Operating systems | 8 |
+| Computer networks | 8 |
 | Aptitude | 10 |
 | Logical reasoning | 7 |
 | Verbal ability | 6 |
@@ -85,7 +85,7 @@ A source-level inventory of the registered lesson modules found **124 lesson obj
 | Debugging | 2 |
 | System design | 2 |
 | Behavioral | 2 |
-| **Total** | **124** |
+| **Total** | **130** |
 
 ### Important limitations
 
@@ -127,3 +127,20 @@ The SQL examples are general relational SQL. Exact syntax and isolation semantic
 The targeted Learning Experience workflow ran, but its backend test collection failed before running the lesson tests. The reported import errors are in existing learning-engine dependencies: `adaptive_learning.py`, `learning_paths.py`, and `quiz.py` import collection names that are not exported by `app.database` (`user_company_tracks_collection`, `user_learning_paths_collection`, and `learning_events_collection`). Those files were not changed in this curriculum pass, so this is recorded as a pre-existing integration blocker rather than silently changed as part of content authoring.
 
 The full CI workflow was still running when this audit note was updated. No passing full-suite result is claimed.
+
+
+## Fourth audit pass — Operating systems and networking
+
+Added three operating-systems lessons:
+- Threads, race conditions, mutexes and semaphores
+- Deadlock prevention, avoidance, detection and recovery
+- Page faults, FIFO and LRU page replacement
+
+Added three networking lessons:
+- IPv4 prefixes, subnet masks and a worked /24 example
+- DNS resolution, HTTPS and TLS concepts
+- TCP versus UDP, the three-way handshake, flow control and congestion control
+
+Added regression tests confirming all six lessons are registered and mapped to the existing operating-systems and computer-networks skill IDs.
+
+Remaining core-subject gaps include deeper CPU scheduling calculations, synchronization exercises, file systems and disk scheduling; IPv6, routing, switching, DHCP, NAT, proxies, firewalls, and more subnetting practice; and a dedicated computer-architecture lesson track.
