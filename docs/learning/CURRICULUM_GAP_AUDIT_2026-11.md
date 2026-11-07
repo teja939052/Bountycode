@@ -176,3 +176,16 @@ python app/scripts/audit_lesson_catalog.py
 ```
 
 The Learning Experience workflow now runs this report as part of its backend checks. The report is diagnostic: warnings are surfaced for content review rather than making every legacy lesson fail CI immediately.
+
+
+## Latest validation results
+
+For commit `411c8248e5be07a5cc0b4915e64b0077bc124213`:
+- Backend `compileall` passed after correcting Python `None` values in lesson test metadata.
+- The lesson catalog audit command passed.
+- The focused `tests/test_lessons.py` suite passed, including the new C, Java syntax, DSA, SQL/DBMS, OS/networking, and architecture registration checks.
+- The broader Learning Experience test command still fails during collection in six existing tests because `adaptive_learning.py` imports `user_company_tracks_collection` and related collection exports that are missing from `app.database`. Those unrelated database/learning-engine modules are outside this content-only change.
+- The full backend suite also fails in collection for the same family of pre-existing route/dependency import mismatches.
+- Frontend and Cloudflare deployment checks are not curriculum-specific; they were not treated as proof of lesson correctness.
+
+The focused lesson suite and catalog audit are passing, but the repository is not fully CI-green. Resolve the existing learning-engine/database integration issues separately before merging if the repository requires all checks to pass.
