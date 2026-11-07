@@ -102,7 +102,7 @@ def _calculate_mastery_score(correct: int, total: int) -> float:
     """Require repeated independent evidence before a high mastery score.
 
     Accuracy alone is noisy on tiny samples. Confidence ramps linearly to full
-    weight after ten question-level outcomes, preventing one lucky answer from
+    weight after twenty question-level outcomes, preventing one lucky answer from
     making a learner appear competent or mastered.
     """
     if total <= 0:
