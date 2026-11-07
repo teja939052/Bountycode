@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useSearchParams } from "react-router-dom";
 import {
@@ -306,6 +306,8 @@ export default function StudyLibrary() {
   const [pathCompany, setPathCompany] = useState("");
   const [companyPath, setCompanyPath] = useState(null);
   const [pathLoading, setPathLoading] = useState(false);
+  const [pathError, setPathError] = useState("");
+  const pathRequestId = useRef(0);
   const [searchParams] = useSearchParams();
 
   const loadArticles = useCallback((category, q) => {
@@ -341,14 +343,32 @@ export default function StudyLibrary() {
   };
 
   const loadCompanyPath = company => {
+    const requestId = ++pathRequestId.current;
     setPathCompany(company);
     setCompanyPath(null);
-    if (!company) return;
+    setPathError("");
+    if (!company) {
+      setPathLoading(false);
+      return;
+    }
+
     setPathLoading(true);
     studyApi.getCompanyLearningPath(company)
-      .then(d => setCompanyPath(d.path || null))
-      .catch(() => setCompanyPath(null))
-      .finally(() => setPathLoading(false));
+      .then(d => {
+        if (requestId === pathRequestId.current) {
+          setCompanyPath(d.path || null);
+        }
+      })
+      .catch(() => {
+        if (requestId === pathRequestId.current) {
+          setPathError("We couldn't load this study path. Please try again.");
+        }
+      })
+      .finally(() => {
+        if (requestId === pathRequestId.current) {
+          setPathLoading(false);
+        }
+      });
   };
 
   const openArticleDetail = id => {
@@ -425,7 +445,18 @@ export default function StudyLibrary() {
             </select>
           </div>
           {pathLoading ? (
-            <div className="mt-4 text-xs font-mono text-text-light">Building your study sequence…</div>
+            <div className="mt-4 text-xs font-mono text-text-light" role="status">Building your study sequence…</div>
+          ) : pathError ? (
+            <div className="mt-4 flex flex-wrap items-center gap-3 text-xs text-rose-300" role="alert">
+              <span>{pathError}</span>
+              <button
+                type="button"
+                onClick={() => loadCompanyPath(pathCompany)}
+                className="rounded-lg border border-rose-300/30 px-3 py-1.5 font-mono hover:bg-rose-300/10"
+              >
+                Retry
+              </button>
+            </div>
           ) : companyPath ? (
             <div className="mt-5 space-y-4">
               <div className="flex flex-wrap gap-2">
