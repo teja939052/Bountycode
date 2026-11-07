@@ -498,3 +498,15 @@ def test_expanded_dsa_topics_map_to_canonical_skills():
     for lesson_id, skill in expected.items():
         assert lesson_id in _LESSONS
         assert lesson_service.skill_for_lesson(_LESSONS[lesson_id]) == ("dsa", skill)
+
+
+def test_sql_and_dbms_extension_is_registered():
+    expected = {
+        "dbms-sql-joins-aggregation",
+        "dbms-sql-subqueries-cte",
+        "dbms-indexing-and-query-plans",
+        "dbms-transactions-and-isolation",
+    }
+    for lesson_id in expected:
+        assert lesson_id in _LESSONS
+        assert lesson_service.skill_for_lesson(_LESSONS[lesson_id]) == ("programming", "dbms")
