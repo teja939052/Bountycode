@@ -389,6 +389,77 @@ async def submit_answer(submission: AnswerSubmission, user=Depends(get_current_u
     except Exception:
         logger.exception("Could not record adaptive evidence for quiz %s", submission.quiz_id)
 
+    # Turn a failed, server-graded answer into an explainable repair loop.
+    # The misconception tag is deduplicated per learner while an active repair
+    # exists, so repeated retries do not flood the learner with duplicate cards.
+    diagnosis_codes = []
+    repair_id = None
+    if not result.get("is_correct"):
+        try:
+            from app.services.diagnosis import diagnose_question_failure, DIAGNOSIS_LABELS
+            from app.services.repair_service import create_repair_mission_from_misconception
+
+            diagnosis = diagnose_question_failure(
+                score=0,
+                answer_text=submission.user_answer,
+                q_type=question.get("type") or ("mcq" if question.get("options") else "text"),
+                question=question,
+                metadata={"all_passed": False, "passed_count": 0, "total": 1},
+            )
+            diagnosis_codes = diagnosis.get("codes") or []
+            if diagnosis_codes:
+                domain_id = _quiz_skill_domain(question)
+                primary_code = diagnosis_codes[0]
+                label = DIAGNOSIS_LABELS.get(primary_code, primary_code.replace("_", " ").title())
+                mission = await create_repair_mission_from_misconception(
+                    user_id=user["id"],
+                    misconception_tag=f"{domain_id}:{primary_code}",
+                    repair_title=f"Repair {question.get('topic') or domain_id}: {label}",
+                    remediation_steps=[
+                        "Read the question explanation and identify the exact concept you missed.",
+                        "Review the prerequisite lesson before attempting another question.",
+                        "Solve a different verified question from this skill without hints.",
+                        "Explain why the correct approach works and why your selected answer failed.",
+                    ],
+                    interactive_drill={
+                        "type": "adaptive_retest",
+                        "skill_id": domain_id,
+                        "topic": question.get("topic"),
+                        "difficulty": question.get("difficulty", "medium"),
+                        "exclude_question_ids": [submission.question_id],
+                        "diagnosis_codes": diagnosis_codes,
+                        "source": "quiz",
+                    },
+                    source_question_id=submission.question_id,
+                )
+                repair_id = mission.id if mission else None
+        except Exception:
+            logger.exception("Could not create quiz repair mission for %s", submission.question_id)
+
+    # Persist every graded quiz answer into the canonical longitudinal
+    # evidence stream. This event is separate from XP and is useful for
+    # readiness, retention and future recommendation explanations.
+    try:
+        from app.services.study_engine import emit_learning_event
+
+        await emit_learning_event(user["id"], {
+            "activity_type": "practice",
+            "source": "question_bank",
+            "skill_id": _quiz_skill_domain(question),
+            "question_id": submission.question_id,
+            "assessment_id": submission.quiz_id,
+            "company": (question.get("companies") or [None])[0],
+            "passed": bool(result.get("is_correct")),
+            "score": 100 if result.get("is_correct") else 0,
+            "time_spent_seconds": int(answer_record["time_taken_seconds"]),
+            "hints_used": answer_record["hints_used"],
+            "attempt_number": 1,
+            "diagnosis_codes": diagnosis_codes,
+            "repair_id": repair_id,
+        })
+    except Exception:
+        logger.exception("Could not emit canonical quiz evidence for %s", submission.question_id)
+
     reward = None
     if result.get("is_correct"):
         try:
