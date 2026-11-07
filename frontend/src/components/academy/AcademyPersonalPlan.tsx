@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ArrowRight, BookOpen, Building2, Target } from "lucide-react";
 import { Link } from "react-router-dom";
 import api from "../../services/api";
+import AcademyLevelProgression from "./AcademyLevelProgression";
 
 const stateStyles: Record<string, string> = {
   foundation_needed: "bg-amber-50 text-amber-800",
@@ -96,27 +97,7 @@ export default function AcademyPersonalPlan() {
         </Link>
       </div>
 
-      {Array.isArray(plan.level_path) && plan.level_path.length > 0 && (
-        <div className="mt-5 rounded-2xl border border-indigo-200 bg-indigo-50/50 p-4">
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            <div>
-              <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-indigo-700">Your placement campaign</p>
-              <p className="mt-1 text-sm font-bold text-slate-900">Level {Number(plan.current_level || 0) + 1}: {plan.level_path[Number(plan.current_level || 0)]?.title || "Orientation"}</p>
-              <p className="mt-1 text-xs text-slate-600">{plan.assessment_track_label || "Service-company core"} · {plan.level_path[Number(plan.current_level || 0)]?.focus}</p>
-            </div>
-            <Link to={`/mock-oa?company=${encodeURIComponent(mockCompany)}`} className="inline-flex min-h-9 items-center gap-2 rounded-xl bg-indigo-700 px-3 py-2 text-xs font-bold text-white hover:bg-indigo-800">Try a mock <ArrowRight size={13} /></Link>
-          </div>
-          <div className="mt-4 grid grid-cols-3 gap-1.5 sm:grid-cols-6">
-            {plan.level_path.map((level: any) => (
-              <div key={level.id} className={`rounded-xl border px-2 py-2 ${level.status === "current" ? "border-indigo-500 bg-white shadow-sm" : level.status === "complete" ? "border-emerald-200 bg-emerald-50" : "border-slate-200 bg-white/60"}`}>
-                <p className="text-[10px] font-black uppercase tracking-wide text-slate-500">L{Number(level.id) + 1}</p>
-                <p className="mt-1 truncate text-[11px] font-bold text-slate-800">{level.title}</p>
-                <p className="mt-1 text-[10px] text-slate-500">{level.status === "complete" ? "Complete" : level.status === "current" ? "Now" : "Next"}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
+      <AcademyLevelProgression plan={plan} mockCompany={mockCompany} />
 
       {plan.assessment_blueprint && (
         <div className="mt-4 rounded-2xl border border-amber-200 bg-amber-50/60 p-4">
