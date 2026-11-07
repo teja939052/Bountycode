@@ -3137,6 +3137,12 @@ def generate_template_content(
         if authored_core:
             return authored_core
 
+    if language_id == "java":
+        from app.data.lesson_content_java_core import get_java_core_lesson
+        authored_core = get_java_core_lesson(lesson_title)
+        if authored_core:
+            return authored_core
+
     if language_id == "python":
         lang_label = "Python"
     elif language_id == "java":
