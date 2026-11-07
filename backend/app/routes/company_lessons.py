@@ -746,6 +746,7 @@ async def complete_lesson(slug: str, req: CompleteRequest, user=Depends(get_curr
     module_completed = False
     reward = None
     xp_earned = 0
+    reward_already_claimed = False
 
     if req.track_id and req.module_id and topic_id:
         try:
@@ -763,7 +764,6 @@ async def complete_lesson(slug: str, req: CompleteRequest, user=Depends(get_curr
             raise HTTPException(status_code=400, detail=str(exc))
         module_completed = bool(module_result.get("module_completed"))
         xp_earned = int(module_result.get("xp_earned", 0) or 0)
-    reward_already_claimed = False
     elif passed:
         # Standalone lessons do not have a company-module completion guard.
         # Claim the first-pass reward atomically in learner progress before
