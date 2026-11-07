@@ -51,3 +51,59 @@ This is the first focused expansion, not a claim that the full A–Z blueprint i
 ## Validation status
 
 Source files and imports were inspected after the changes. Automated backend tests and a full application run have **not** been executed in this GitHub-only editing pass. Run the backend lesson test suite and API smoke tests before merging.
+
+
+## Second audit pass — programming and DSA
+
+A source-level inventory of the registered lesson modules found **120 lesson objects across 17 registered tracks/modules** on this branch. This is a count of lesson objects, not proof that every planned concept is covered or that all code examples execute.
+
+### Concrete issues found and fixed
+
+- The repository had Python, C++, and Java lesson modules, but no registered C-language lesson module. Added a C track with four sequenced lessons covering program structure, variables/input, conditions/loops, arrays, functions, and pointers.
+- Several Java lesson examples contained C++ output syntax (`cout` and `endl`), and the first Java lesson incorrectly described `#include <iostream>`. Corrected the Java examples to use `System.out.println` and the accurate Java program entry-point explanation.
+- The DSA module covered a small foundation set but did not have dedicated lessons for hashing, recursion, graph traversal, or dynamic programming. Added a first lesson for each of those topics.
+- Added tests to check C track registration and skill mapping, reject C++ output syntax in Java lessons, and verify the new DSA topics map to their intended canonical skills.
+- Expanded the Learning Experience CI path filters so edits to the registered lesson modules, lesson service, skill taxonomy, and lesson tests trigger the targeted workflow.
+
+### Registered lesson inventory snapshot
+
+| Track/module | Lesson objects |
+|---|---:|
+| Python (two modules) | 18 |
+| Java | 12 |
+| C++ | 13 |
+| C | 4 |
+| DSA | 12 |
+| DBMS | 7 |
+| Operating systems | 5 |
+| Computer networks | 5 |
+| Aptitude | 10 |
+| Logical reasoning | 7 |
+| Verbal ability | 6 |
+| OOP | 4 |
+| Company preparation | 11 |
+| Debugging | 2 |
+| System design | 2 |
+| Behavioral | 2 |
+| **Total** | **120** |
+
+### Important limitations
+
+- This inventory covers the interactive lesson catalog modules that were inspected. It does not claim to inventory every separate question bank, generated curriculum file, or content endpoint in the repository.
+- The DSA track remains incomplete relative to the blueprint: two pointers, sliding window, greedy patterns, backtracking, heaps, advanced trees, shortest paths, MST, and advanced DP still need dedicated lessons and assessments.
+- SQL depth, DBMS concurrency/recovery/indexing, OS synchronization and memory management, networking subnetting/routing/TLS, computer architecture, and the full aptitude/verbal syllabus still require topic-by-topic coverage work.
+- The C track is a foundation, not a complete C-to-advanced curriculum.
+- Java and C lesson code samples have not yet been executed in a compiler as part of this editing pass.
+
+## Next implementation sequence
+
+1. Expand DSA patterns and advanced data structures, then add unseen assessments.
+2. Expand SQL and DBMS with query exercises, output prediction, normalization, transactions, indexing, and concurrency.
+3. Expand OS, networking, and computer architecture with worked examples and topic tests.
+4. Expand quantitative aptitude, reasoning, and verbal modules.
+5. Add complete project pathways and verified company-specific syllabi.
+6. Continue enforcing the 13-part lesson standard from the blueprint: objectives, prerequisites, intuition, explanation, visual, code, pattern recognition, misconceptions, guided practice, assessment, mastery, spaced repetition, and real-world/interview connection.
+
+## Validation update
+
+The changed files have been re-fetched from the feature branch. GitHub Actions CI was observed queued/in progress during this pass; no successful test result is claimed yet. The compiler and full learner flow still need verification before merge.
