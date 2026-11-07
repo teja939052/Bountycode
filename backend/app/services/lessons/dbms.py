@@ -305,7 +305,7 @@ DBMS_LESSONS = [
                 "instruction": "Write a query that returns each customer_id and the number of orders for that customer from an orders table. Name the count order_count.",
                 "starterCode": "SELECT customer_id,\n       -- add an aggregate\nFROM orders\n-- group the rows by customer",
                 "solution": "SELECT customer_id, COUNT(*) AS order_count\nFROM orders\nGROUP BY customer_id;",
-                "tests": [{"input": null, "expected": null, "check": "groups_orders_by_customer_and_counts"}],
+                "tests": [{"input": None, "expected": None, "check": "groups_orders_by_customer_and_counts"}],
                 "explanation": "COUNT(*) counts rows in each customer group."
             },
             {
@@ -353,7 +353,7 @@ DBMS_LESSONS = [
                 "instruction": "Write a query that returns product_id and price for products whose price is greater than the average price in the products table.",
                 "starterCode": "SELECT product_id, price\nFROM products\nWHERE price > (\n  -- calculate the average price\n);",
                 "solution": "SELECT product_id, price\nFROM products\nWHERE price > (SELECT AVG(price) FROM products);",
-                "tests": [{"input": null, "expected": null, "check": "uses_average_price_subquery"}],
+                "tests": [{"input": None, "expected": None, "check": "uses_average_price_subquery"}],
                 "explanation": "The scalar subquery returns the average product price for the comparison."
             },
             {
@@ -401,7 +401,7 @@ DBMS_LESSONS = [
                 "instruction": "An orders table is frequently queried by customer_id, and the query filters with WHERE customer_id = ?. Write a statement to create an index on customer_id.",
                 "starterCode": "-- Create an index for customer_id",
                 "solution": "CREATE INDEX idx_orders_customer ON orders(customer_id);",
-                "tests": [{"input": null, "expected": null, "check": "creates_customer_id_index"}],
+                "tests": [{"input": None, "expected": None, "check": "creates_customer_id_index"}],
                 "explanation": "This index may improve the repeated customer_id lookup, but its impact should be checked with the actual query plan and workload."
             },
             {
@@ -449,7 +449,7 @@ DBMS_LESSONS = [
                 "instruction": "Write the transaction boundary statements that begin a transaction, perform two related updates, and commit only after both updates succeed.",
                 "starterCode": "-- Begin transaction\n-- Update both related rows\n-- Commit",
                 "solution": "BEGIN;\nUPDATE inventory SET quantity = quantity - 1 WHERE product_id = 10;\nINSERT INTO order_items(order_id, product_id) VALUES (500, 10);\nCOMMIT;",
-                "tests": [{"input": null, "expected": null, "check": "wraps_related_updates_in_transaction"}],
+                "tests": [{"input": None, "expected": None, "check": "wraps_related_updates_in_transaction"}],
                 "explanation": "The related inventory and order-item changes belong in one transaction. Production code must also handle errors and roll back when needed."
             },
             {
